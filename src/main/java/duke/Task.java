@@ -60,19 +60,19 @@ public abstract class Task implements Serializable {
     /**
      * Method used to mark this task as complete.
      */
-    public void markAsDone() {
+    public String markAsDone() {
         this.isComplete = true;
-        System.out.println("\nNice! I've marked this task as done:");
-        System.out.println(this);
+        String output = "\nNice! I've marked this task as done:\n" + this;
+        return output;
     }
 
     /**
      * Method used to mark this task as incomplete
      */
-    public void unmark() {
+    public String unmark() {
         this.isComplete = false;
-        System.out.println("\nOK, I've marked this task as not done yet:");
-        System.out.println(this);
+        String output = "\nOK, I've marked this task as not done yet:\n" + this;
+        return output;
     }
 
     /**
@@ -106,15 +106,11 @@ public abstract class Task implements Serializable {
         }
 
         if (taskType == TaskType.DEADLINE && commandArray[1].indexOf("/by") < 0) {
-            throw new DukeException(
-                    "☹ OOPS!!! The description of a DEADLINE must contain a '/by'"
-            );
+            throw new DukeException("☹ OOPS!!! The description of a DEADLINE must contain a '/by'");
         }
 
         if (taskType == TaskType.EVENT && commandArray[1].indexOf("/at") < 0) {
-            throw new DukeException(
-                    "☹ OOPS!!! The description of a EVENT must contain a '/at'"
-            );
+            throw new DukeException("☹ OOPS!!! The description of a EVENT must contain a '/at'");
         }
     }
 }

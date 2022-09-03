@@ -22,9 +22,9 @@ public class AllTasksList implements Serializable {
      * @param index the index of task to mark as complete
      * @throws DukeException
      */
-    public void markTask(int index) throws DukeException {
+    public String markTask(int index) throws DukeException {
         try {
-            this.allTasks.get(index).markAsDone();
+            return this.allTasks.get(index).markAsDone();
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Error: duke.Task not found");
         }
@@ -36,9 +36,9 @@ public class AllTasksList implements Serializable {
      * @param index the index of task to mark as incomplete
      * @throws DukeException
      */
-    public void unMarkTask(int index) throws DukeException {
+    public String unMarkTask(int index) throws DukeException {
         try {
-            this.allTasks.get(index).unmark();
+            return this.allTasks.get(index).unmark();
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Error: duke.Task not found");
         }
@@ -50,12 +50,12 @@ public class AllTasksList implements Serializable {
      * @param index the index of task to mark as incomplete
      * @throws DukeException
      */
-    public void delete(int index) throws DukeException {
+    public String delete(int index) throws DukeException {
         try {
-            System.out.println("\nNoted. I've removed this task:");
-            System.out.println(this.allTasks.get(index));
+            String output = "\nNoted. I've removed this task:" + this.allTasks.get(index) + "\n";
             this.allTasks.remove(index);
-            this.getSize();
+            output += this.getSize();
+            return output;
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Error: duke.Task not found");
         }
@@ -66,31 +66,29 @@ public class AllTasksList implements Serializable {
      *
      * @param task the task to be added
      */
-    public void addTask(Task task) {
-        System.out.println("\nGot it. I've added this task:");
-        System.out.println(task);
+    public String addTask(Task task) {
+        String output = "\nGot it. I've added this task:" + task + "\n";
         this.allTasks.add(task);
-        this.getSize();
+        output += this.getSize();
+        return output;
     }
 
     /**
      * Method used to mark to list all available tasks
      */
-    public void listAllTasks() {
+    public String listAllTasks() {
         String output = "";
         for (int i = 0; i < this.allTasks.size(); i++) {
             output += "\n" + (i + 1) + ". " + this.allTasks.get(i).toString();
         }
-        System.out.println(output);
+        return output;
     }
 
     /**
      * Method used to output to the user the number of items left on the list
      */
-    private void getSize() {
-        System.out.println(
-                "Now you have " + this.allTasks.size() + " tasks in the list."
-        );
+    private String getSize() {
+        return "Now you have " + this.allTasks.size() + " tasks in the list.";
     }
 
     /**
@@ -98,15 +96,15 @@ public class AllTasksList implements Serializable {
      *
      * @param searchItem  the item to search for
      */
-    public void find(String searchItem) {
+    public String find(String searchItem) {
         ArrayList<Task> allTaskCopy = new ArrayList<>();
         allTaskCopy.addAll(this.allTasks);
-        allTaskCopy.removeIf(s -> s.toString().indexOf(searchItem) < 0);
+        allTaskCopy.removeIf(s -> s.toString().contains(searchItem));
 
         String output = "";
         for (int i = 0; i < allTaskCopy.size(); i++) {
             output += "\n" + (i + 1) + ". " + allTaskCopy.get(i).toString();
         }
-        System.out.println(output);
+        return output;
     }
 }

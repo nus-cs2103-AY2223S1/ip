@@ -46,24 +46,13 @@ public enum Command {
      */
     find;
 
-    private static final String LOGO =
-            " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
-    private static final String BORDER = "------------------------------";
-    private static boolean isChatting = true;
-    private static DukeException noNumberException = new DukeException(
-            "Sorry, no number was detected"
-    );
+    private static DukeException noNumberException = new DukeException("Sorry, no number was detected");
 
     /**
      * Execute the greet command and welcome the user.
      */
-    public static void greet() {
-        System.out.println("Hello from\n" + Command.LOGO);
-        System.out.println("What can I do for you?");
+    public static String greet() {
+        return "Hello from Duke!\nWhat can I do for you?";
     }
 
     /**
@@ -73,7 +62,6 @@ public enum Command {
      */
     public static void exit(Scanner scanner) {
         System.out.println(" Bye. Hope to see you again soon!");
-        Command.isChatting = false;
         scanner.close();
     }
 
@@ -82,30 +70,26 @@ public enum Command {
      *
      * @param allTasks the list to store all tasks created by the user
      */
-    public static void listTasks(AllTasksList allTasks) {
-        allTasks.listAllTasks();
+    public static String listTasks(AllTasksList allTasks) {
+        return allTasks.listAllTasks();
     }
 
     /**
      * Execute the command to chat with the user.
      *
-     * @param scanner  the scanner object to get user input
-     * @param allTasks the list to store all tasks created by the user
+     * @param userInput  the scanner object to get user input.
+     * @param allTasks the list to store all tasks created by the user.
+     * @return the response from the bot
      */
-    public static void chat(Scanner scanner, AllTasksList allTasks) {
-        while (isChatting) {
-            try {
-                System.out.println(BORDER);
-                System.out.print(": ");
-
-                String userInput = scanner.nextLine();
-                Command.parseAndExecuteCommand(userInput, scanner, allTasks);
-
-                System.out.println(BORDER + "\n");
-                Storage.storeTasks(allTasks);
-            } catch (DukeException e) {
-                System.out.println(e.getMessage());
-            }
+    public static String chat(String userInput, AllTasksList allTasks) {
+        String botOutput = "";
+        try {
+            botOutput = Command.parseAndExecuteCommand(userInput, allTasks);
+            Storage.storeTasks(allTasks);
+        } catch (DukeException e) {
+            botOutput = e.getMessage();
+        } finally {
+            return botOutput;
         }
     }
 
@@ -116,15 +100,14 @@ public enum Command {
      * @param allTasks     the list to store all tasks created by the user
      * @throws DukeException
      */
-    public static void markTask(String[] commandArray, AllTasksList allTasks)
-            throws DukeException {
+    public static String markTask(String[] commandArray, AllTasksList allTasks) throws DukeException {
         try {
             if (commandArray.length <= 1) {
                 throw noNumberException;
             }
 
             int index = Integer.parseInt(commandArray[1]) - 1;
-            allTasks.markTask(index);
+            return allTasks.markTask(index);
         } catch (NumberFormatException e) {
             throw noNumberException;
         }
@@ -137,7 +120,7 @@ public enum Command {
      * @param allTasks     the list to store all tasks created by the user
      * @throws DukeException
      */
-    public static void unMarkTask(String[] commandArray, AllTasksList allTasks)
+    public static String unMarkTask(String[] commandArray, AllTasksList allTasks)
             throws DukeException {
         try {
             if (commandArray.length <= 1) {
@@ -145,7 +128,7 @@ public enum Command {
             }
 
             int index = Integer.parseInt(commandArray[1]) - 1;
-            allTasks.unMarkTask(index);
+            return allTasks.unMarkTask(index);
         } catch (NumberFormatException e) {
             throw noNumberException;
         }
@@ -158,7 +141,7 @@ public enum Command {
      * @param allTasks     the list to store all tasks created by the user
      * @throws DukeException
      */
-    public static void delete(String[] commandArray, AllTasksList allTasks)
+    public static String delete(String[] commandArray, AllTasksList allTasks)
             throws DukeException {
         try {
             if (commandArray.length <= 1) {
@@ -166,7 +149,7 @@ public enum Command {
             }
 
             int index = Integer.parseInt(commandArray[1]) - 1;
-            allTasks.delete(index);
+            return allTasks.delete(index);
         } catch (NumberFormatException e) {
             throw noNumberException;
         }
@@ -176,43 +159,31 @@ public enum Command {
      * utility method used to parse the and execute the user command.
      *
      * @param userInput the raw input string the user entered into the chatbot
-     * @param scanner   the scanner that needs to be closed
      * @param allTasks  the Object storing all the tasks created by the user
      * @throws DukeException
      * @throws NumberFormatException
      */
-    public static void parseAndExecuteCommand(
-            String userInput,
-            Scanner scanner,
-            AllTasksList allTasks
-    )
-            throws DukeException {
+    public static String parseAndExecuteCommand(String userInput, AllTasksList allTasks) throws DukeException {
         String[] commandArray = userInput.split(" ", 2);
         String command = commandArray[0];
 
         try {
             switch (Command.valueOf(command)) {
             case bye:
-                Command.exit(scanner);
-                return;
+                return "Goodbye!";
             case list:
-                Command.listTasks(allTasks);
-                break;
+                return Command.listTasks(allTasks);
             case find:
-                allTasks.find(commandArray[1]);
-                break;
+                return allTasks.find(commandArray[1]);
             case mark:
-                Command.markTask(commandArray, allTasks);
-                break;
+                return Command.markTask(commandArray, allTasks);
             case unmark:
-                Command.unMarkTask(commandArray, allTasks);
-                break;
+                return Command.unMarkTask(commandArray, allTasks);
             case delete:
-                Command.delete(commandArray, allTasks);
-                break;
+                return Command.delete(commandArray, allTasks);
             default:
                 Task newTask = Task.createTask(commandArray);
-                allTasks.addTask(newTask);
+                return allTasks.addTask(newTask);
             }
         } catch (IllegalArgumentException e) {
             throw new DukeException();
