@@ -2,8 +2,8 @@ package duke;
 
 import java.util.Scanner;
 
-/*
- * Enum class used to store the command flags and execution logic of the various availabe commands.
+/**
+ * Enum class used to store the command flags and execution logic of the various available commands.
  *
  * @author Cui Shen Yi
  * @version CS2103T AY22/23 Semester 1
@@ -47,11 +47,11 @@ public enum Command {
     find;
 
     private static final String LOGO =
-            " ____        _        \n" +
-                    "|  _ \\ _   _| | _____ \n" +
-                    "| | | | | | | |/ / _ \\\n" +
-                    "| |_| | |_| |   <  __/\n" +
-                    "|____/ \\__,_|_|\\_\\___|\n";
+            " ____        _        \n"
+            + "|  _ \\ _   _| | _____ \n"
+            + "| | | | | | | |/ / _ \\\n"
+            + "| |_| | |_| |   <  __/\n"
+            + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String BORDER = "------------------------------";
     private static boolean isChatting = true;
     private static DukeException noNumberException = new DukeException(
@@ -199,8 +199,8 @@ public enum Command {
                 Command.listTasks(allTasks);
                 break;
             case find:
-                 allTasks.find(commandArray);
-                 break;
+                allTasks.find(commandArray[1]);
+                break;
             case mark:
                 Command.markTask(commandArray, allTasks);
                 break;

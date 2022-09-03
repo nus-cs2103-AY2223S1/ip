@@ -1,9 +1,9 @@
 package duke;
 
-import java.util.ArrayList;
 import java.io.Serializable;
+import java.util.ArrayList;
 
-/*
+/**
  * All Tasks List class used to store the tasks created by the user.
  *
  * @author Cui Shen Yi
@@ -93,10 +93,15 @@ public class AllTasksList implements Serializable {
         );
     }
 
-    public void find(String[] commandArr) {
+    /**
+     * Method used to find a specified item and return a list of items to the user
+     *
+     * @param searchItem  the item to search for
+     */
+    public void find(String searchItem) {
         ArrayList<Task> allTaskCopy = new ArrayList<>();
         allTaskCopy.addAll(this.allTasks);
-        allTaskCopy.removeIf(s -> s.toString().indexOf(commandArr[1]) < 0);
+        allTaskCopy.removeIf(s -> s.toString().indexOf(searchItem) < 0);
 
         String output = "";
         for (int i = 0; i < allTaskCopy.size(); i++) {

@@ -2,6 +2,12 @@ package duke;
 
 import java.io.Serializable;
 
+/**
+ * A basic task with no added features.
+ *
+ * @author Cui Shen Yi
+ * @version CS2103T AY22/23 Semester 1
+ */
 public class Todo extends Task implements Serializable {
 
     /**

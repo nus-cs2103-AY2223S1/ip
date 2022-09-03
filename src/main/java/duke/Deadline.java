@@ -1,11 +1,16 @@
 package duke;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class Deadline extends Task implements Serializable {
+/**
+ * A task that also has a deadline
+ *
+ * @author Cui Shen Yi
+ * @version CS2103T AY22/23 Semester 1
+ */
+public class Deadline extends Task {
     private LocalDateTime dueDate;
 
     /**

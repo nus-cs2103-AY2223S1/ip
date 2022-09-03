@@ -2,6 +2,12 @@ package duke;
 
 import java.io.Serializable;
 
+/**
+ * A task that has a start and end date
+ *
+ * @author Cui Shen Yi
+ * @version CS2103T AY22/23 Semester 1
+ */
 public class Event extends Task implements Serializable {
 
     private String eventTime;

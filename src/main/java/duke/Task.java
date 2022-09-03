@@ -2,7 +2,7 @@ package duke;
 
 import java.io.Serializable;
 
-/*
+/**
  * Abstract super class of all Tasks.
  *
  * @author Cui Shen Yi
