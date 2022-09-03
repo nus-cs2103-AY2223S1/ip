@@ -13,14 +13,16 @@ then
 fi
 
 # compile the code into the bin folder, terminates if error occurred
-if ! javac -cp ../src/main/java/stashy -Xlint:none -d ../bin ../src/main/java/stashy/*.java
+cd ../src/main/java
+if ! javac -cp . -Xlint:none -d ../../../bin stashy/*.java
 then
     echo "********** BUILD FAILURE **********"
     exit 1
 fi
 
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-java -classpath ../bin Stashy < input.txt > ACTUAL.TXT
+cd ../../../text-ui-test
+java -classpath ../bin stashy.Stashy < input.txt > ACTUAL.TXT
 
 # convert to UNIX format
 cp EXPECTED.TXT EXPECTED-UNIX.TXT
