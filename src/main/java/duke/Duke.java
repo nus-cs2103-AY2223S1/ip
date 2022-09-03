@@ -40,7 +40,9 @@ public class Duke {
      * Replace this stub with your completed method.
      */
     public String getResponse(String command) throws IOException {;
-        if ("bye".equals(command)) {
+        if ("hi".equals(command) || "hello".equals(command)) {
+            return ui.greeting();
+        } else if ("bye".equals(command)) {
             return Parser.echo("Bye. Hope to see you again soon!");
         } else if ("list".equals(command)) {
             return Parser.echo(TaskList.printTaskList(tasks));

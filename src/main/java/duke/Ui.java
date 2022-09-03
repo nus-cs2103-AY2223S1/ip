@@ -14,9 +14,9 @@ public class Ui {
     /**
      * Method for greeting
      */
-    public void greeting() {
-        String greet = "Hello! I'm Duke\nWhat can I do for you?";
-        Parser.echo(greet);
+    public String greeting() {
+        String greet = "Hello! I'm DukeAce\nWhat can I do for you?";
+        return Parser.echo(greet);
     }
 
     /**
