@@ -28,38 +28,38 @@ public class Parser {
         if (command.equals("list")) {
             return taskList.list();
         } else if (command.startsWith("mark")) {
-            int item = Integer.parseInt(command.substring(command.length() - 1));
-            return taskList.mark(item);
+            int itemID = Integer.parseInt(command.substring(command.length() - 1));
+            return taskList.mark(itemID);
         } else if (command.startsWith("unmark")) {
-            int item = Integer.parseInt(command.substring(command.length() - 1));
-            return taskList.unmark(item);
+            int itemID = Integer.parseInt(command.substring(command.length() - 1));
+            return taskList.unmark(itemID);
         } else if (command.startsWith("todo")) {
-            String[] arr = command.split(" ", 2);
+            String[] commandArguments = command.split(" ", 2);
             if (command.trim().equals("todo")) {
                 throw new EmptyDescriptionException();
             }
-            return taskList.addTodo(arr[1]);
+            return taskList.addTodo(commandArguments[1]);
         } else if (command.startsWith("deadline")) {
-            String[] arr = command.split(" ", 2);
+            String[] commandArguments = command.split(" ", 2);
             if (command.trim().equals("deadline")) {
                 throw new EmptyDescriptionException();
             }
-            return taskList.addDeadline(arr[1]);
+            return taskList.addDeadline(commandArguments[1]);
         } else if (command.startsWith("event")) {
-            String[] arr = command.split(" ", 2);
+            String[] commandArguments = command.split(" ", 2);
             if (command.trim().equals("event")) {
                 throw new EmptyDescriptionException();
             }
-            return taskList.addEvent(arr[1]);
+            return taskList.addEvent(commandArguments[1]);
         } else if (command.startsWith("delete")) {
-            int item = Integer.parseInt(command.substring(command.length() - 1));
-            return taskList.delete(item);
+            int itemID = Integer.parseInt(command.substring(command.length() - 1));
+            return taskList.delete(itemID);
         } else if (command.startsWith("find")) {
-            String[] arr = command.split(" ", 2);
+            String[] commandArguments = command.split(" ", 2);
             if (command.trim().equals("find")) {
                 throw new EmptyDescriptionException();
             }
-            return taskList.findTask(arr[1]);
+            return taskList.findTask(commandArguments[1]);
         } else {
             throw new TaskNotRecognisedException();
         }

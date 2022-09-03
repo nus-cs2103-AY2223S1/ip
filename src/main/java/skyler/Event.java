@@ -8,17 +8,17 @@ import java.time.format.DateTimeFormatter;
  */
 public class Event extends Task {
 
-    protected LocalDateTime at;
+    protected LocalDateTime time;
 
     /**
      * Creates an event object
      *
      * @param description Description of the event.
-     * @param at Start time of event.
+     * @param time Start time of event.
      */
-    public Event(String description, LocalDateTime at) {
+    public Event(String description, LocalDateTime time) {
         super(description);
-        this.at = at;
+        this.time = time;
     }
 
     /**
@@ -33,13 +33,13 @@ public class Event extends Task {
 
     @Override
     public String toStringUnformatted() {
-        String unformatted = at.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        String unformatted = time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
         return String.format("[D]%s (by: %s)", super.toString(), unformatted);
     }
 
     @Override
     public String toString() {
-        String formatted = formatDateTime(at);
+        String formatted = formatDateTime(time);
         return String.format("[E]%s (at: %s)", super.toString(), formatted);
     }
 }

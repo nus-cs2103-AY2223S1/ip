@@ -53,11 +53,11 @@ public class TaskList {
     /**
      * Marks a task as done
      *
-     * @param item Index of task.
+     * @param itemID Index of task.
      * @return Description of the task marked as completed.
      */
-    public String mark(int item) {
-        Task currTask = tasks.get(item - 1);
+    public String mark(int itemID) {
+        Task currTask = tasks.get(itemID - 1);
         currTask.markAsDone();
         StringBuilder response = new StringBuilder("You have completed this task:\n");
         String completedTask = String.format("  %s", currTask);
@@ -75,11 +75,11 @@ public class TaskList {
     /**
      * Marks a task as not done
      *
-     * @param item Index of task.
+     * @param itemID Index of task.
      * @return Description of the task marked as not completed.
      */
-    public String unmark(int item) {
-        Task currTask = tasks.get(item - 1);
+    public String unmark(int itemID) {
+        Task currTask = tasks.get(itemID - 1);
         currTask.markAsNotDone();
         StringBuilder response = new StringBuilder("OK, I've marked this task as not done yet:\n");
         String uncompletedTask = String.format("  %s", currTask);
@@ -120,12 +120,12 @@ public class TaskList {
      * @return Description of task added and task summary.
      */
     public String addDeadline(String descWithDate) {
-        String[] arr1 = descWithDate.split(" /by ", 2);
+        String[] deadlineComponents = descWithDate.split(" /by ", 2);
 
         // process date and time
-        LocalDateTime dt = processDateTime(arr1[1]);
+        LocalDateTime dt = processDateTime(deadlineComponents[1]);
 
-        Deadline newDeadline = new Deadline(arr1[0], dt);
+        Deadline newDeadline = new Deadline(deadlineComponents[0], dt);
         tasks.add(newDeadline);
 
         try {
@@ -144,12 +144,12 @@ public class TaskList {
      * @return Description of task added and task summary.
      */
     public String addEvent(String descWithDate) {
-        String[] arr1 = descWithDate.split(" /at ", 2);
+        String[] eventComponents = descWithDate.split(" /at ", 2);
 
         // process date and time
-        LocalDateTime dt = processDateTime(arr1[1]);
+        LocalDateTime dt = processDateTime(eventComponents[1]);
 
-        Event newEvent = new Event(arr1[0], dt);
+        Event newEvent = new Event(eventComponents[0], dt);
         tasks.add(newEvent);
 
         try {
@@ -164,17 +164,17 @@ public class TaskList {
     /**
      * Deletes task from the list
      *
-     * @param item Index of task.
+     * @param itemID Index of task.
      * @return Description of task deleted and task summary.
      */
-    public String delete(int item) {
-        Task currTask = tasks.get(item - 1);
+    public String delete(int itemID) {
+        Task currTask = tasks.get(itemID - 1);
 
         StringBuilder response = new StringBuilder("The following task will be removed:\n");
         String deletedTask = String.format("  %s\n", currTask);
         response.append(deletedTask);
 
-        tasks.remove(item - 1);
+        tasks.remove(itemID - 1);
 
         String summary = String.format("Total number of tasks: %d", tasks.size());
         response.append(summary);

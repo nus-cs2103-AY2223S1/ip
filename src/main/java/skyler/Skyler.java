@@ -30,6 +30,12 @@ public class Skyler {
         this.parser = new Parser(taskList);
     }
 
+    /**
+     * Returns Skyler's response to user's input commands
+     *
+     * @param input User input.
+     * @return Skyler's response.
+     */
     public String getResponse(String input) {
         try {
             return parser.parse(input);

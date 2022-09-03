@@ -84,18 +84,18 @@ public class Storage {
         String filePath = new File(currPath).getAbsolutePath();
         File directory = new File(filePath);
 
-        String[] flist = directory.list();
+        String[] fileList = directory.list();
         int flag = 0;
         // directory is empty
-        if (flist == null) {
+        if (fileList == null) {
             filePath = new File(currPath + file).getAbsolutePath();
             directory = new File(filePath);
             directory.createNewFile();
             throw new SkylerException();
         }
 
-        for (int i = 0; i < flist.length; i++) {
-            String filename = flist[i];
+        for (int i = 0; i < fileList.length; i++) {
+            String filename = fileList[i];
             if (filename.equals(file)) {
                 filePath = new File(currPath + file).getAbsolutePath();
                 directory = new File(filePath);
@@ -119,7 +119,7 @@ public class Storage {
             char type = taskStr.charAt(0);
             int taskStatus = Character.getNumericValue(taskStr.charAt(4));
 
-            switch(type) {
+            switch (type) {
             case 'T':
                 Todo todo = new Todo(taskDescription);
                 if (taskStatus == 1) {
@@ -163,8 +163,8 @@ public class Storage {
      * @throws IOException If IO operation fails.
      */
     public void saveTask(ArrayList<Task> task) throws IOException {
-        String filepath = new File(filePathChosen).getAbsolutePath();
-        FileWriter fw = new FileWriter(filepath);
+        String filePath = new File(filePathChosen).getAbsolutePath();
+        FileWriter fw = new FileWriter(filePath);
 
         for (Task currTask : task) {
             String taskStr = currTask.toStringUnformatted();
