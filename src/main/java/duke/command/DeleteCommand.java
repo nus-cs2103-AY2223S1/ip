@@ -1,5 +1,8 @@
 package duke.command;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+
 import duke.DukeException;
 import duke.Storage;
 import duke.Task;
@@ -10,15 +13,17 @@ import duke.Ui;
  * Represents Command to delete any kind of task.
  */
 public class DeleteCommand extends Command {
-    private int index;
+    public static final String ERROR_NO_ARGUMENTS = "No indexes given to delete?";
+
+    private ArrayList<Integer> indexes;
 
     /**
      * Creates delete command.
      *
-     * @param index Index of task to be deleted.
+     * @param indexes Indexes of tasks to be deleted.
      */
-    public DeleteCommand(int index) {
-        this.index = index;
+    public DeleteCommand(ArrayList<Integer> indexes) {
+        this.indexes = indexes;
     }
 
     /**
@@ -33,13 +38,36 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        Task task = tasks.deleteTask(index);
+        if (indexes.size() == 0) {
+            throw new DukeException(DeleteCommand.ERROR_NO_ARGUMENTS);
+        }
+
+        if (indexes.stream().anyMatch(index -> index < 1)) {
+            throw new DukeException(TaskList.ERROR_INDEX_GIVEN_TOO_SMALL);
+        }
+
+        if (indexes.stream().anyMatch(index -> index > tasks.taskCount())) {
+            throw new DukeException(TaskList.ERROR_FEWER_TASKS_THAN_INDEX);
+        }
+
+        // Sort indexes to delete in reverse order.
+        // This guarantees correctness since deleting a higher index
+        // does not change the index of a task with lower index.
+        indexes.sort(Comparator.comparingInt(index -> -index));
+
+        ArrayList<String> responseLines = new ArrayList<>();
+        int currCount = 0;
+        for (int index: indexes) {
+            Task task = tasks.deleteTask(index);
+            currCount++;
+            responseLines.add(String.format("%d. %s", currCount, task));
+        }
         storage.saveFile(tasks);
 
         return String.join(
                 "\n",
-                "Noted. I've removed this task:",
-                "  " + task,
+                String.format("Noted. I've removed %d tasks.", currCount),
+                String.join("\n", responseLines),
                 ui.getTaskCount(tasks.taskCount())
         );
     }

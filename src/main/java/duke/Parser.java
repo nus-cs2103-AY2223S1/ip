@@ -1,6 +1,7 @@
 package duke;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import duke.command.AddCommand;
 import duke.command.Command;
@@ -63,7 +64,13 @@ public class Parser {
             resultCommand = new AddCommand(parseEvent(argsString));
             break;
         case "delete":
-            resultCommand = new DeleteCommand(parseInt(argsString));
+            ArrayList<Integer> indexes = new ArrayList<>();
+            for (String indexString : argsString.split(" +")) {
+                Integer indexInt = parseInt(indexString);
+                indexes.add(indexInt);
+            }
+
+            resultCommand = new DeleteCommand(indexes);
             break;
         case "on":
             resultCommand = new TaskOnDateCommand(LocalDate.parse(argsString));
