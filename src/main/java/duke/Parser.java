@@ -18,10 +18,11 @@ public class Parser {
      * Method that echos command
      * @param echoCommand Command to be echoed
      */
-    public static void echo(String echoCommand) {
-        System.out.println("--------------------------------------------------");
-        System.out.println(echoCommand);
-        System.out.println("--------------------------------------------------");
+    public static String echo(String echoCommand) {
+        String echoMessage = "--------------------------------------------------\n"
+                + echoCommand
+                + "\n--------------------------------------------------\n";
+        return echoMessage;
     }
 
     /**
@@ -29,7 +30,7 @@ public class Parser {
      * @param tasks List of task that has to written on in file
      * @throws IOException
      */
-    private static void writeToFile(TaskList tasks) throws IOException {
+    static void writeToFile(TaskList tasks) throws IOException {
         String filePath = "./././data/duke.txt";
         String directoryPath = "./././data";
         if (!Files.exists(Path.of(directoryPath))) {
@@ -48,60 +49,59 @@ public class Parser {
         }
     }
 
-    public static void run (TaskList tasklist) throws IOException {
+    public static String run (TaskList tasklist) throws IOException {
         String command = "";
         while (true) {
             Scanner userInput = new Scanner(System.in);// Create a Scanner object
             command = userInput.nextLine(); // Read user input
             if ("bye".equals(command)) {
-                echo("Bye. Hope to see you again soon!");
-                break;
+                return echo("Bye. Hope to see you again soon!");
             } else if ("list".equals(command)) {
-                echo(TaskList.printTaskList(tasklist));
+                return echo(TaskList.printTaskList(tasklist));
             } else if (command.contains("unmark")) { // to detect unmark command
                 String number = command.replaceAll("[^\\d.]", "");
                 int n = Integer.parseInt(number);
                 if (n > tasklist.size()){
-                    echo(DukeException.IndexOutofBoundsException(tasklist));
+                    return echo(DukeException.IndexOutofBoundsException(tasklist));
                 } else {
                     Task unmarkedTask = tasklist.get(n-1);
                     unmarkedTask.markAsUndone();
                     String taskStatus = String.format("OK, I've marked this task as not done yet:\n%s", unmarkedTask);
-                    echo(taskStatus);
                     writeToFile(tasklist);
+                    return echo(taskStatus);
                 }
             } else if (command.contains("mark")){ // to detect mark command
                 String number = command.replaceAll("[^\\d.]", "");
                 int n = Integer.parseInt(number);
                 if (n > tasklist.size()){
-                    echo(DukeException.IndexOutofBoundsException(tasklist));
+                    return echo(DukeException.IndexOutofBoundsException(tasklist));
                 } else {
                     Task markedTask = tasklist.get(n-1);
                     markedTask.markAsDone();
                     String taskStatus = String.format("Nice! I've marked this task as done:\n%s", markedTask);
-                    echo(taskStatus);
                     writeToFile(tasklist);
+                    return echo(taskStatus);
                 }
             } else if (command.contains("todo")) {
                 String todoTask = command.replace("todo ", "");
                 if (todoTask.equals(command) || "".equals(todoTask)) {
                     String error = DukeException.taskErrorMessage(command);
-                    echo(error);
+                    return echo(error);
                 } else {
                     Task newTask = new Todo(todoTask);
                     tasklist.add(newTask);
                     String taskStatus = String.format("Got it. I've added this task:\n" +
                             "%s\n" +
                             "Now you have %d tasks in the list.", newTask, tasklist.size());
-                    echo(taskStatus);
                     writeToFile(tasklist);
+                    return echo(taskStatus);
                 }
 
             } else if (command.contains("deadline")) {
                 String deadlineTask = command.replace("deadline ", "");
                 if (deadlineTask.equals(command) || "".equals(deadlineTask)) {
                     String error = DukeException.taskErrorMessage(command);
-                    echo(error);
+                    return echo(error);
                 } else {
                     String[] parts = deadlineTask.split(" /by ", 2);
                     Deadline newTask = new Deadline(parts[0], parts[1]);
@@ -109,14 +109,14 @@ public class Parser {
                     String taskStatus = String.format("Got it. I've added this task:\n" +
                             "%s\n" +
                             "Now you have %d tasks in the list.", newTask, tasklist.size());
-                    echo(taskStatus);
                     writeToFile(tasklist);
+                    return echo(taskStatus);
                 }
             } else if (command.contains("event")) {
                 String eventTask = command.replace("event ", "");
                 if (eventTask.equals(command) || "".equals(eventTask)) {
                     String error = DukeException.taskErrorMessage(command);
-                    echo(error);
+                    return echo(error);
                 } else {
                     String[] parts = eventTask.split(" /",2);
                     Task newTask = new Event(parts[0], parts[1]);
@@ -124,39 +124,39 @@ public class Parser {
                     String taskStatus = String.format("Got it. I've added this task:\n" +
                             "%s\n" +
                             "Now you have %d tasks in the list.", newTask, tasklist.size());
-                    echo(taskStatus);
                     writeToFile(tasklist);
+                    return echo(taskStatus);
                 }
             } else if (command.contains("delete")) {
                 String deleteTaskNumber = command.replace("delete ", "");
                 if (deleteTaskNumber.equals(command) || "".equals(deleteTaskNumber)) {
                     String error = DukeException.taskErrorMessage(command);
-                    echo(error);
+                    return echo(error);
                 } else {
                     int n = Integer.parseInt(deleteTaskNumber);
                     if (n > tasklist.size()){
-                        echo(DukeException.IndexOutofBoundsException(tasklist));
+                        return echo(DukeException.IndexOutofBoundsException(tasklist));
                     } else {
                         Task deletedTask = tasklist.remove(n-1);
                         String taskStatus = String.format("Noted. I've removed this task:\n" +
                                 "%s\n" +
                                 "Now you have %d tasks in the list.", deletedTask, tasklist.size());
-                        echo(taskStatus);
                         writeToFile(tasklist);
+                        return echo(taskStatus);
                     }
                 }
             } else if(command.contains("find")) {
                 String findWord = command.replace("find ", "");
                 if (findWord.equals(command) || "".equals(findWord)) {
                     String error = DukeException.taskErrorMessage(command);
-                    echo(error);
+                    return echo(error);
                 } else {
                     TaskList keywordList = tasklist.find(findWord);
                     String stringList = TaskList.printTaskList(keywordList);
-                    echo("Here are the matching tasks in your list:\n" + stringList);
+                    return echo("Here are the matching tasks in your list:\n" + stringList);
                 }
             } else {
-                echo(DukeException.taskErrorMessage());
+                return echo(DukeException.taskErrorMessage());
             }
         }
     }
