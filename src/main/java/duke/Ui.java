@@ -13,36 +13,30 @@ import duke.task.Todo;
 public class Ui {
 
     /**
-     * To greet the user with logo and welcoming messages
+     * The logo
+     * @return the logo
      */
-    public String greet() {
+    public static String logo() {
         String logo = "\n"
-                + "   ██▓    ▄▄▄       ███▄ ▄███▓▓█████▄  ▄▄▄\n"
-                + "  ▓██▒   ▒████▄    ▓██▒▀█▀ ██▒▒██▀ ██▌▒████▄\n"
-                + "  ▒██░   ▒██  ▀█▄  ▓██    ▓██░░██   █▌▒██  ▀█▄\n"
-                + "  ▒██░   ░██▄▄▄▄██ ▒██    ▒██ ░▓█▄   ▌░██▄▄▄▄██\n"
-                + "  ░██████▒▓█   ▓██▒▒██▒   ░██▒░▒████▓  ▓█   ▓██▒\n"
-                + "  ░ ▒░▓  ░▒▒   ▓▒█░░ ▒░   ░  ░ ▒▒▓  ▒  ▒▒   ▓▒█░\n"
-                + "  ░ ░ ▒  ░ ▒   ▒▒ ░░  ░      ░ ░ ▒  ▒   ▒   ▒▒ ░\n"
-                + "    ░ ░    ░   ▒   ░      ░    ░ ░  ░   ░   ▒\n"
-                + "      ░  ░     ░  ░       ░      ░          ░  ░\n"
+                + "     ██▓    ▄▄▄       ███▄ ▄███▓▓█████▄  ▄▄▄\n"
+                + "    ▓██▒   ▒████▄    ▓██▒▀█▀ ██▒▒██▀ ██▌▒████▄\n"
+                + "    ▒██░   ▒██  ▀█▄  ▓██    ▓██░░██   █▌▒██  ▀█▄\n"
+                + "    ▒██░   ░██▄▄▄▄██ ▒██    ▒██ ░▓█▄   ▌░██▄▄▄▄██\n"
+                + "    ░██████▒▓█   ▓██▒▒██▒   ░██▒░▒████▓  ▓█   ▓██▒\n"
+                + "    ░ ▒░▓  ░▒▒   ▓▒█░░ ▒░   ░  ░ ▒▒▓  ▒  ▒▒   ▓▒█░\n"
+                + "    ░ ░ ▒  ░ ▒   ▒▒ ░░  ░      ░ ░ ▒  ▒   ▒   ▒▒ ░\n"
+                + "      ░ ░    ░   ▒   ░      ░    ░ ░  ░   ░   ▒\n"
+                + "        ░  ░     ░  ░       ░      ░          ░  ░\n"
                 + "                               ░\n";
-        return logo + "Hi, I am LaMDA.\nHow may I assist you today?\n";
+        return logo;
     }
 
     /**
-     * To display a splitting line
+     * To greet the user with welcoming messages
+     * @return greeting message
      */
-    public String showLine() {
-        return ("\t____________________________________________\n");
-    }
-
-    /**
-     * To show error if the file is not found
-     */
-
-    public String showLoadingError() {
-        return ("Error locating \"tasks.dat\".\nA new file will be created.\n");
+    public static String greet() {
+        return "  Hi, I am LaMDA, your personal assistant.\n  How may I assist you today?\n";
     }
 
     /**
@@ -57,7 +51,7 @@ public class Ui {
      * To display exit message
      */
     public String exitTask() {
-        return ("\t It's a great time talking with you.\n\t See you next time!\n");
+        return ("  It's a great time talking with you.\n  See you next time!\n");
     }
 
     /**
@@ -66,7 +60,7 @@ public class Ui {
      * @return
      */
     public String listTask(TaskList tasks) {
-        return ("\t Here are the tasks in your list:\n" + tasks.listTasks());
+        return ("  Here are the tasks in your list:\n" + tasks.listTasks());
     }
 
     /**
@@ -75,9 +69,9 @@ public class Ui {
      * @param todo the added {@code Todo}
      */
     public String todoTask(TaskList tasks, Todo todo) {
-        return ("\t Got it. I've added this task:\n")
-                + ("\t   " + todo.toString() + "\n")
-                + ("\t Now you have " + tasks.size() + " tasks in the list.\n");
+        return ("  Got it. I've added this task:\n")
+                + ("    " + todo.toString() + "\n")
+                + ("  Now you have " + tasks.size() + " tasks in the list.\n");
     }
 
     /**
@@ -86,9 +80,9 @@ public class Ui {
      * @param deadline the added {@code Deadline}
      */
     public String deadlineTask(TaskList tasks, Deadline deadline) {
-        return ("\t Got it. I've added this task:\n")
-                + ("\t   " + deadline.toString() + "\n")
-                + ("\t Now you have " + tasks.size() + " tasks in the list.\n");
+        return ("  Got it. I've added this task:\n")
+                + ("    " + deadline.toString() + "\n")
+                + ("  Now you have " + tasks.size() + " tasks in the list.\n");
     }
 
     /**
@@ -97,9 +91,9 @@ public class Ui {
      * @param event the added {@code Event}
      */
     public String eventTask(TaskList tasks, Event event) {
-        return ("\t Got it. I've added this task:\n")
-                + ("\t   " + event.toString() + "\n")
-                + ("\t Now you have " + tasks.size() + " tasks in the list.\n");
+        return ("  Got it. I've added this task:\n")
+                + ("    " + event.toString() + "\n")
+                + ("  Now you have " + tasks.size() + " tasks in the list.\n");
     }
 
     /**
@@ -107,8 +101,8 @@ public class Ui {
      * @param task the marked {@code Task}
      */
     public String markTask(Task task) {
-        return ("\t I've marked this task as done:\n")
-                + ("\t   " + task.toString() + "\n");
+        return ("  I've marked this task as done:\n")
+                + ("    " + task.toString() + "\n");
     }
 
     /**
@@ -116,8 +110,8 @@ public class Ui {
      * @param task the unmarked {@code Task}
      */
     public String unmarkTask(Task task) {
-        return ("\t I've marked this task as not done yet:\n")
-                + ("\t   " + task.toString() + "\n");
+        return ("  I've marked this task as not done yet:\n")
+                + ("    " + task.toString() + "\n");
     }
 
     /**
@@ -125,9 +119,9 @@ public class Ui {
      * @param task the deleted {@code Task}
      */
     public String deleteTask(TaskList tasks, Task task) {
-        return ("\t Noted. I've removed this task:\n")
-                + ("\t   " + task.toString() + "\n")
-                + ("\t Now you have " + tasks.size() + " tasks in the list.\n");
+        return ("  Noted. I've removed this task:\n")
+                + ("    " + task.toString() + "\n")
+                + ("  Now you have " + tasks.size() + " tasks in the list.\n");
     }
 
     /**
@@ -137,11 +131,11 @@ public class Ui {
      */
     public String findTask(TaskList tasks, String description) {
         ArrayList<Task> temp = tasks.find(description);
-        String list = "";
+        StringBuilder list = new StringBuilder();
         for (int i = 0; i < temp.size(); i++) {
-            list += ("\t " + (i + 1) + "." + temp.get(i).toString() + "\n");
+            list.append("    ").append(i + 1).append(".").append(temp.get(i).toString()).append("\n");
         }
-        return ("\t Here are the matching tasks in your list:\n")
+        return ("  Here are the matching tasks in your list:\n")
                 + list;
     }
 }

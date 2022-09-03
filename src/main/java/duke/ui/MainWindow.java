@@ -12,6 +12,9 @@ import javafx.scene.layout.VBox;
 
 import duke.Duke;
 import duke.command.Command;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -25,6 +28,9 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
+    @FXML
+    private Text logo;
+
     private Duke duke;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
@@ -34,7 +40,10 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
 
-        String greetMessage = new Ui().greet();
+        String l = Ui.logo();
+        String greetMessage = Ui.greet();
+        logo.setText(l);
+        logo.setFont(new Font("SF Mono Medium", 12));
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(greetMessage, dukeImage)
         );

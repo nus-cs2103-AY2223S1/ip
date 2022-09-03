@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 
 /**
@@ -25,15 +26,18 @@ public class DialogBox extends HBox {
     private ImageView displayPicture;
 
     private DialogBox(String s, Image img) {
+        Circle clip = new Circle(40, 40, 40);
         dialog = new Label(s);
-        dialog.setFont(new Font("SF Mono Medium", 9));
-        displayPicture = new ImageView(img);
+        dialog.setFont(new Font("SF Mono Medium", 10));
+        ImageView iv = new ImageView(img);
+        iv.setClip(clip);
+        displayPicture = iv;
 
         dialog.setWrapText(true);
-        displayPicture.setFitWidth(100.0);
-        displayPicture.setFitHeight(150.0);
+        displayPicture.setFitWidth(80.0);
+        displayPicture.setFitHeight(80.0);
 
-        this.setAlignment(Pos.TOP_RIGHT);
+        this.setAlignment(Pos.BOTTOM_RIGHT);
         this.getChildren().addAll(dialog, displayPicture);
     }
 
@@ -44,15 +48,15 @@ public class DialogBox extends HBox {
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
-        setAlignment(Pos.TOP_LEFT);
+        setAlignment(Pos.BOTTOM_LEFT);
     }
 
     public static DialogBox getUserDialog(String s, Image img) {
-        return new DialogBox(s, img);
+        return new DialogBox(s + "  \n\n", img);
     }
 
     public static DialogBox getDukeDialog(String s, Image img) {
-        var db = new DialogBox(s, img);
+        var db = new DialogBox(s + "\n", img);
         db.flip();
         return db;
     }
