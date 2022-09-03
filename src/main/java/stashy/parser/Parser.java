@@ -52,6 +52,8 @@ public class Parser {
      * @throws StashyException If there is any issue encountered
      */
     public static Command parseCommand(String fullCommand) throws StashyException {
+        assert !fullCommand.strip().isEmpty() : "fullCommand should not be empty";
+
         String[] splittedCommands = fullCommand.strip().split(" ");
         String keyword = splittedCommands[0];
         String[] remainingCommands = IntStream.range(1, splittedCommands.length)
@@ -95,6 +97,9 @@ public class Parser {
 
         final String category = matcher.group("category");
         final boolean isDone = matcher.group("isDone").equals("X");
+        assert isDone || matcher.group("isDone").equals(" ")
+            : "isDone regex capturing group must be either an 'X' or a space";
+
         final String description = matcher.group("description").strip();
         final String byString = matcher.group("by").replaceAll("by: ", "").strip();
         final String atString = matcher.group("at").replaceAll("at: ", "").strip();
@@ -124,6 +129,7 @@ public class Parser {
         }
         try {
             int taskId = Integer.parseInt(remainingCommands[0]);
+            assert taskId > 0 : "Task ID cannot be negative";
             return new MarkCommand(taskId);
         } catch (NumberFormatException nfe) {
             throw new StashyException("Invalid task ID given!");
@@ -143,6 +149,7 @@ public class Parser {
         }
         try {
             int taskId = Integer.parseInt(remainingCommands[0]);
+            assert taskId > 0 : "Task ID cannot be negative";
             return new UnmarkCommand(taskId);
         } catch (NumberFormatException nfe) {
             throw new StashyException("Invalid task ID given!");
@@ -162,6 +169,7 @@ public class Parser {
         }
         try {
             int taskId = Integer.parseInt(remainingCommands[0]);
+            assert taskId > 0 : "Task ID cannot be negative";
             return new DeleteCommand(taskId);
         } catch (NumberFormatException nfe) {
             throw new StashyException("Invalid task ID given!");
@@ -186,7 +194,7 @@ public class Parser {
                                 .withResolverStyle(ResolverStyle.SMART));
                 return new Deadline(description, byDateTime, isDone);
             } catch (Exception e) {
-                // Go for the next dateTimeFormat
+                // Go to the next dateTimeFormat
             }
         }
         throw new StashyException("Invalid datetime format given!");
@@ -210,7 +218,7 @@ public class Parser {
                                 .withResolverStyle(ResolverStyle.SMART));
                 return new Event(description, atDateTime, isDone);
             } catch (Exception e) {
-                // Go for the next dateTimeFormat
+                // Go to the next dateTimeFormat
             }
         }
         throw new StashyException("Invalid datetime format given!");

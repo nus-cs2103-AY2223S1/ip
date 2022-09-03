@@ -43,6 +43,7 @@ public class TaskList {
      * @param query The query string of interest
      */
     public TaskList(ArrayList<Task> taskArrayList, String query) {
+        assert query.length() > 0 : "Query string cannot be empty";
         this.taskList = taskArrayList
             .stream()
             .filter(t -> t.containsText(query))
