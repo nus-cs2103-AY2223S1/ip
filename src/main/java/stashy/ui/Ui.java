@@ -66,7 +66,17 @@ public class Ui {
      * @param message The error message
      */
     public void showError(String message) {
-        showIndented("☹ BEEP BOOP BUZZ ERROR!!! " + message);
+        showIndented(showErrorString(message));
+    }
+
+    /**
+     * Prints an error message, String version.
+     *
+     * @param message The error message
+     * @return The error message prepended by a special text
+     */
+    public String showErrorString(String message) {
+        return "☹ BEEP BOOP BUZZ ERROR!!!\n" + message;
     }
 
     /**
@@ -82,6 +92,7 @@ public class Ui {
      * Prints the task list in a tidy manner, String version.
      *
      * @param tasks The list of tasks
+     * @return The String version of the print statement
      */
     public static String showTasksString(TaskList tasks) {
         return "Listing all task(s) in your list...\n" + tasks;
@@ -100,6 +111,7 @@ public class Ui {
      * Prints the filtered task list in a tidy manner, String version.
      *
      * @param tasks The list of (filtered) tasks
+     * @return The String version of the print statement
      */
     public static String showFilteredTasksString(TaskList tasks) {
         return "Listing all the matching task(s)...\n" + tasks;

@@ -64,10 +64,14 @@ public class Stashy {
      * Executes a given command supplied to Stashy but returns a string.
      *
      * @param c The command passed to this method
-     * @throws StashyException If there is indeed an exception thrown
+     * @return The String version of the execution result
      */
-    public String executeCommandReturnString(Command c) throws StashyException {
-        return c.executeString(tasks, ui, storage);
+    public String executeCommandReturnString(Command c) {
+        try {
+            return c.executeString(tasks, ui, storage);
+        } catch (StashyException se) {
+            return ui.showErrorString(se.getMessage());
+        }
     }
 
     /**
