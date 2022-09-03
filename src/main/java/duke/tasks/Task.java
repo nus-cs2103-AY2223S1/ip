@@ -5,6 +5,8 @@ import java.util.Optional;
 
 /**
  * Represents a task.
+ *
+ * @author sikai00
  */
 public abstract class Task {
     private final String description;
@@ -22,11 +24,12 @@ public abstract class Task {
     }
 
     /**
-     * Returns the task type as a String.
+     * Returns the task word as a String.
      *
-     * @return Task type as a String
+     * @return Task word as a String
      */
-    public abstract String getTaskType();
+    // This is needed as all Tasks has a TASK_WORD, but the abstract class Task does not.
+    public abstract String getTaskWord();
 
     /**
      * Returns an Optional of the time of the task.
@@ -64,8 +67,7 @@ public abstract class Task {
      * Sets the task as not done.
      */
     public void setNotDone() {
-        // This method is preferred over a toggle method as it is clearer on
-        // its effects.
+        // This method is preferred over a toggle method as it is clearer with its effects.
         this.done = false;
     }
 }

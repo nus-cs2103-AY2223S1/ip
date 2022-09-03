@@ -6,6 +6,8 @@ import duke.utils.TaskList;
 
 /**
  * Represents an executable command that finds a Task from the specified TaskList.
+ *
+ * @author sikai00
  */
 public class FindCommand extends Command {
     /** Command identifier used by Parser **/
@@ -34,8 +36,6 @@ public class FindCommand extends Command {
         } else {
             msg = "There are no matching tasks in your list.";
         }
-
-        CommandResult cr = new CommandResult(msg);
-        return cr;
+        return new CommandResult(msg);
     }
 }

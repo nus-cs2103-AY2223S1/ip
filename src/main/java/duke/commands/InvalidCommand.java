@@ -7,6 +7,8 @@ import duke.utils.TaskList;
 /**
  * Represents an executable command that throws a DukeException.
  * This command is only used when there is an error.
+ *
+ * @author sikai00
  */
 public class InvalidCommand extends Command {
     private final String errorMsg;

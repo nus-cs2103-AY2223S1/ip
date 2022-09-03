@@ -6,6 +6,8 @@ import java.util.Optional;
 
 /**
  * Represents a task with a specific event duration (e.g., starts at 4pm and ends at 6pm).
+ *
+ * @author sikai00
  */
 public class Event extends Task {
     /** Task identifier used by Parser **/
@@ -35,13 +37,11 @@ public class Event extends Task {
     }
 
     /**
-     * Returns the task type as a String.
-     *
-     * @return Task type as a String
+     * {@inheritDoc}
      */
     @Override
-    public String getTaskType() {
-        return "Event";
+    public String getTaskWord() {
+        return Event.TASK_WORD;
     }
 
     /**

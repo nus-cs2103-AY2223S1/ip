@@ -6,6 +6,8 @@ import duke.utils.TaskList;
 
 /**
  * Represents an executable command that marks the task as done.
+ *
+ * @author sikai00
  */
 public class MarkCommand extends Command {
     /** Command identifier used by Parser **/
@@ -36,7 +38,6 @@ public class MarkCommand extends Command {
         String msg = msgBegin + taskList.getTask(this.taskIndex);
 
         storage.writeAllToStorage(taskList);
-        CommandResult cr = new CommandResult(msg);
-        return cr;
+        return new CommandResult(msg);
     }
 }

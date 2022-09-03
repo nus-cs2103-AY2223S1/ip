@@ -5,6 +5,8 @@ import duke.utils.TaskList;
 
 /**
  * Represents an executable command prints an overview of all added tasks and their status.
+ *
+ * @author sikai00
  */
 public class ListCommand extends Command {
     /** Command identifier used by Parser **/
@@ -21,8 +23,6 @@ public class ListCommand extends Command {
         } else {
             msg = "Here are the tasks in your list:\n" + taskList;
         }
-
-        CommandResult cr = new CommandResult(msg);
-        return cr;
+        return new CommandResult(msg);
     }
 }

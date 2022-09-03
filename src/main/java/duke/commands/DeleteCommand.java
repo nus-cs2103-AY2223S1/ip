@@ -6,6 +6,8 @@ import duke.utils.TaskList;
 
 /**
  * Represents an executable command that adds a Task to the specified TaskList.
+ *
+ * @author sikai00
  */
 public class DeleteCommand extends Command {
     /** Command identifier used by Parser **/
@@ -41,7 +43,6 @@ public class DeleteCommand extends Command {
         String msg = msgBegin + " " + task + msgEnd;
 
         storage.writeAllToStorage(taskList);
-        CommandResult cr = new CommandResult(msg);
-        return cr;
+        return new CommandResult(msg);
     }
 }

@@ -28,11 +28,9 @@ public class Duke {
     public CommandResult getResponse(String input) {
         Command c = parser.parseCommand(input);
         try {
-            CommandResult cr = c.execute(this.taskList, this.storage);
-            return cr;
+            return c.execute(this.taskList, this.storage);
         } catch (DukeException e) {
-            CommandResult cr = new CommandResult(e.getMessage());
-            return cr;
+            return new CommandResult(e.getMessage());
         }
     }
 }

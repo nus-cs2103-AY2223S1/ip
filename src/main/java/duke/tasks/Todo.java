@@ -5,6 +5,8 @@ import java.util.Optional;
 
 /**
  * Represents a task without any time specifications.
+ *
+ * @author sikai00
  */
 public class Todo extends Task {
     /** Task identifier used by Parser **/
@@ -15,7 +17,6 @@ public class Todo extends Task {
      *
      * @param description Description of the task
      * @param done Whether the task is completed or not
-     * @param at The event duration for this task
      */
     public Todo(String description, boolean done) {
         super(description, done);
@@ -32,13 +33,11 @@ public class Todo extends Task {
     }
 
     /**
-     * Returns the task type as a String.
-     *
-     * @return Task type as a String
+     * {@inheritDoc}
      */
     @Override
-    public String getTaskType() {
-        return "Todo";
+    public String getTaskWord() {
+        return Todo.TASK_WORD;
     }
 
     /**

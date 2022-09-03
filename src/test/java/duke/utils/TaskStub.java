@@ -14,7 +14,7 @@ public class TaskStub extends Task {
     }
 
     @Override
-    public String getTaskType() {
+    public String getTaskWord() {
         return "TaskStub";
     }
 
