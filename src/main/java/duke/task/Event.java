@@ -24,6 +24,7 @@ public class Event extends Task {
     public Event(String description, boolean isDone, LocalDate localDate) throws DukeException {
         super("event", description, isDone);
         this.localDate = localDate;
+        assert !description.isBlank();
     }
 
     /**

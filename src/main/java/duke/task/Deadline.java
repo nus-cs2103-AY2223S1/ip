@@ -24,6 +24,7 @@ public class Deadline extends Task {
     public Deadline(String description, boolean isDone, LocalDate localDate) throws DukeException {
         super("deadline", description, isDone);
         this.localDate = localDate;
+        assert !description.isBlank();
     }
 
     /**
