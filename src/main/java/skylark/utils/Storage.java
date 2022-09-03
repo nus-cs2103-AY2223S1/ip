@@ -43,22 +43,7 @@ public class Storage {
                 throw new SkylarkException("This path is a directory!");
             }
 
-            if (!file.exists()) {
-                try {
-                    // https://stackoverflow.com/questions/9620683/java-fileoutputstream-create-file-if-not-exists
-                    // https://stackoverflow.com/a/4040667
-                    File parent = file.getParentFile();
-                    if (parent != null && !parent.exists() && !parent.mkdirs()) {
-                        throw new SkylarkException("Error creating directory!");
-                    }
-
-                    if (!file.createNewFile()) {
-                        throw new SkylarkException("Error creating new file!");
-                    }
-                } catch (IOException ioException) {
-                    throw new SkylarkException("IOException occurred when creating new file");
-                }
-            }
+            createFile(file);
 
             try {
                 Scanner scanner = new Scanner(file);
@@ -121,6 +106,7 @@ public class Storage {
         try {
             File file = new File(this.filePath);
 
+            createFile(file);
             if (file.exists() && !file.canWrite()) {
                 boolean isWritable = file.setWritable(true);
                 if (!isWritable) {
@@ -138,6 +124,25 @@ public class Storage {
             throw new SkylarkException("IOException occurred when writing to file");
         } catch (SecurityException securityException) {
             throw new SkylarkException("SecurityException occurred when writing to file");
+        }
+    }
+    private void createFile(File file) throws SkylarkException {
+        if (file.exists()) {
+            return;
+        }
+        try {
+            // https://stackoverflow.com/questions/9620683/java-fileoutputstream-create-file-if-not-exists
+            // https://stackoverflow.com/a/4040667
+            File parent = file.getParentFile();
+            if (parent != null && !parent.exists() && !parent.mkdirs()) {
+                throw new SkylarkException("Error creating directory!");
+            }
+
+            if (!file.createNewFile()) {
+                throw new SkylarkException("Error creating new file!");
+            }
+        } catch (IOException ioException) {
+            throw new SkylarkException("IOException occurred when creating new file");
         }
     }
 }
