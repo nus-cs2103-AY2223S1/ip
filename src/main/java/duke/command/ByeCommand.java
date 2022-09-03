@@ -25,6 +25,15 @@ public class ByeCommand extends Command {
     }
 
     /**
+     * Returns the format of the bye command.
+     *
+     * @return The format of the bye command.
+     */
+    public static String getFormat() {
+        return "bye";
+    }
+
+    /**
      * Returns true, because bye is an application terminating command.
      *
      * @return True, terminating the Duke application.

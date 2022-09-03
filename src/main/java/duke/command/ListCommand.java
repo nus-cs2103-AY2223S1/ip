@@ -24,6 +24,15 @@ public class ListCommand extends Command {
     }
 
     /**
+     * Returns the format of the list command.
+     *
+     * @return The format of the list command.
+     */
+    public static String getFormat() {
+        return "list";
+    }
+
+    /**
      * Returns false, because deadline is not an application terminating command.
      *
      * @return False.
