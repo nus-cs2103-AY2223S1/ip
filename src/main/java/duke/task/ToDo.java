@@ -1,7 +1,7 @@
 package duke.task;
 
 /**
- * Class for a toDo task.
+ * Class for a ToDo task.
  *
  * @author dexter-sim
  * @version 0.1
@@ -19,17 +19,17 @@ public class ToDo extends Task {
     /**
      * Creates a ToDo with specified description and completeness.
      *
-     * @param description The description of the toDo to be created.
-     * @param isDone If the toDo is completed.
+     * @param description The description of the ToDo to be created.
+     * @param isDone If the ToDo is completed.
      */
     public ToDo(String description, boolean isDone) {
         super(description, isDone);
     }
 
     /**
-     * Returns the todo in a string format to be saved in a local file.
+     * Returns the ToDo in a string format to be saved in a local file.
      *
-     * @return A string corresponding to the todo.
+     * @return A string corresponding to the ToDo.
      */
     @Override
     public String stringify() {

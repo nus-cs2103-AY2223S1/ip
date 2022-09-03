@@ -14,6 +14,7 @@ import duke.command.WelcomeCommand;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.Arrays;
 
 /**
  * Class for parsing input string into commands to execute.
@@ -22,6 +23,9 @@ import java.time.format.DateTimeParseException;
  * @version 0.1
  */
 public class Parser {
+    private static final String PARSE_FAIL_MESSAGE =
+            "OOPS!!! I'm sorry, but I don't know what that means :-(";
+
     /**
      * Returns a command based on the specified user input.
      *
@@ -30,75 +34,140 @@ public class Parser {
      * @throws DukeException If user input is an invalid string command.
      */
     public static Command parseInput(String userInput) throws DukeException {
-        String[] split = userInput.split(" ");
+        String[] split = userInput.trim().split(" ");
+        if (split.length == 0) {
+            throw new DukeException(PARSE_FAIL_MESSAGE);
+        }
         String command = split[0];
+        String argument = String.join(" ", Arrays.copyOfRange(split, 1, split.length)).trim();
+        switch (command) {
+        case "welcome":
+            return parseWelcomeCommand(argument);
+        case "bye":
+            return parseByeCommand(argument);
+        case "list":
+            return parseListCommand(argument);
+        case "mark":
+            return parseMarkCommand(argument);
+        case "unmark":
+            return parseUnmarkCommand(argument);
+        case "delete":
+            return parseDeleteCommand(argument);
+        case "find":
+            return parseFindCommand(argument);
+        case "todo":
+            return parseTodoCommand(argument);
+        case "deadline":
+            return parseDeadlineCommand(argument);
+        case "event":
+            return parseEventCommand(argument);
+        default:
+            throw new DukeException(PARSE_FAIL_MESSAGE);
+        }
+    }
 
-        if (userInput.equals("welcome") && split.length == 1) {
-            return new WelcomeCommand();
+    private static Command parseWelcomeCommand(String argument) throws DukeException {
+        if (!argument.isEmpty()) {
+            throw new DukeException(PARSE_FAIL_MESSAGE);
+        }
+        return new WelcomeCommand();
+    }
+
+    private static Command parseByeCommand(String argument) throws DukeException {
+        if (!argument.isEmpty()) {
+            throw new DukeException(PARSE_FAIL_MESSAGE);
+        }
+        return new ByeCommand();
+    }
+
+    private static Command parseListCommand(String argument) throws DukeException {
+        if (!argument.isEmpty()) {
+            throw new DukeException(PARSE_FAIL_MESSAGE);
+        }
+        return new ListCommand();
+    }
+
+    private static Command parseMarkCommand(String argument) throws DukeException {
+        if (!isNumeric(argument)) {
+            throw new DukeException(PARSE_FAIL_MESSAGE);
+        }
+        return new MarkCommand(Integer.parseInt(argument));
+    }
+
+    private static Command parseUnmarkCommand(String argument) throws DukeException {
+        if (!isNumeric(argument)) {
+            throw new DukeException(PARSE_FAIL_MESSAGE);
+        }
+        return new UnmarkCommand(Integer.parseInt(argument));
+    }
+
+    private static Command parseDeleteCommand(String argument) throws DukeException {
+        if (!isNumeric(argument)) {
+            throw new DukeException(PARSE_FAIL_MESSAGE);
+        }
+        return new DeleteCommand(Integer.parseInt(argument));
+    }
+
+    private static Command parseFindCommand(String argument) throws DukeException {
+        if (argument.isEmpty()) {
+            throw new DukeException("OOPS!!! The keyword cannot be empty :-(");
+        }
+        return new FindCommand(argument);
+    }
+
+    private static Command parseTodoCommand(String argument) throws DukeException {
+        String description = argument;
+        if (description.isEmpty()) {
+            throw new DukeException("OOPS!!! The description of a todo cannot be empty :-(");
+        }
+        return new ToDoCommand(description);
+    }
+
+    private static Command parseDeadlineCommand(String argument) throws DukeException {
+        String keyword = "/by";
+        if (!argument.contains(keyword)) {
+            throw new DukeException(PARSE_FAIL_MESSAGE);
         }
 
-        if (userInput.equals("bye") && split.length == 1) {
-            return new ByeCommand();
+        String description = argument.substring(0, argument.indexOf(keyword)).trim();
+        if (description.isEmpty()) {
+            throw new DukeException("OOPS!!! The description of a deadline cannot be empty :-(");
         }
 
-        if (userInput.equals("list") && split.length == 1) {
-            return new ListCommand();
-        }
-
-        if (command.equals("mark") && split.length == 2 && isNumeric(split[1])) {
-            return new MarkCommand(Integer.parseInt(split[1]));
-        }
-
-        if (command.equals("unmark") && split.length == 2 && isNumeric(split[1])) {
-            return new UnmarkCommand(Integer.parseInt(split[1]));
-        }
-
-        if (command.equals("delete") && split.length == 2 && isNumeric(split[1])) {
-            return new DeleteCommand(Integer.parseInt(split[1]));
-        }
-
-        if (command.equals("find")) {
-            String keyword = userInput.substring(4).trim();
-            if (keyword.length() == 0) {
-                throw new DukeException("OOPS!!! The keyword cannot be empty :-(");
-            }
-            return new FindCommand(keyword);
-        }
-
-        if (command.equals("todo")) {
-            String description = userInput.substring(4).trim();
-            if (description.length() == 0) {
-                throw new DukeException("OOPS!!! The description of a todo cannot be empty :-(");
-            }
-            return new ToDoCommand(description);
-        }
-
+        LocalDate date;
         try {
-            if (command.equals("deadline") && userInput.contains("/by")) {
-                int index = userInput.indexOf("/by");
-                String description = userInput.substring(8, index).trim();
-                if (description.length() == 0) {
-                    throw new DukeException("OOPS!!! The description of a deadline cannot be empty :-(");
-                }
-                return new DeadlineCommand(description, LocalDate.parse(userInput.substring(index + 3).trim()));
-            }
-
-            if (command.equals("event") && userInput.contains("/at")) {
-                int index = userInput.indexOf("/at");
-                String description = userInput.substring(5, index).trim();
-                if (description.length() == 0) {
-                    throw new DukeException("OOPS!!! The description of an event cannot be empty :-(");
-                }
-                return new EventCommand(description, LocalDate.parse(userInput.substring(index + 3).trim()));
-            }
+            date = LocalDate.parse(argument.substring(argument.indexOf(keyword) + keyword.length()).trim());
         } catch (DateTimeParseException e) {
             throw new DukeException("Please format date in YYYY-MM-DD.");
         }
+        return new DeadlineCommand(description, date);
+    }
 
-        throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+    private static Command parseEventCommand(String argument) throws DukeException {
+        String keyword = "/at";
+        if (!argument.contains(keyword)) {
+            throw new DukeException(PARSE_FAIL_MESSAGE);
+        }
+
+        String description = argument.substring(0, argument.indexOf(keyword)).trim();
+        if (description.isEmpty()) {
+            throw new DukeException("OOPS!!! The description of an event cannot be empty :-(");
+        }
+
+        LocalDate date;
+        try {
+            date = LocalDate.parse(argument.substring(argument.indexOf(keyword) + keyword.length()).trim());
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Please format date in YYYY-MM-DD.");
+        }
+        return new EventCommand(description, date);
     }
 
     private static boolean isNumeric(String input) {
+        if (input.isEmpty()) {
+            return false;
+        }
+
         for (char c : input.toCharArray()) {
             if (c < 48 || c > 57) {
                 return false;
