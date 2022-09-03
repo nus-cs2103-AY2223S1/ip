@@ -1,6 +1,7 @@
 package duke.task;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 import duke.common.DukeException;
 
@@ -63,7 +64,7 @@ public abstract class Task {
             }
         } catch (IndexOutOfBoundsException exception) {
             throw new DukeException("OOPS!!! Invalid encoded format :(");
-        } catch (java.time.format.DateTimeParseException exception) {
+        } catch (DateTimeParseException exception) {
             throw new DukeException(
                     "OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.");
         }

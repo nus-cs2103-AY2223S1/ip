@@ -31,7 +31,9 @@ public abstract class Parser {
      * @throws DukeException if the input format is invalid
      */
     public static Command parse(String input) throws DukeException {
+        assert !input.isBlank();
         String[] args = input.trim().split("\\s+");
+        assert args.length >= 1;
         Command command;
         switch (args[0]) {
         case "bye":
