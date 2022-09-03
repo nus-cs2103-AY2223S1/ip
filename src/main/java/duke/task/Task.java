@@ -20,7 +20,7 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "[X]" : "[ ]"); // mark done task with X
+        return (isDone ? "[X]" : "[_]"); // mark done task with X
     }
 
     public boolean getStatus() {

@@ -1,12 +1,12 @@
 package duke;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -34,12 +34,14 @@ public class TaskList {
      * task types (todo, event, deadline) are represented by [T], [E], [D],
      * task status (done, undone) are represented by [X], [ ].
      */
-    public void printTaskList() {
+    public String printTaskList() {
         int count = 1;
+        String listString = "";
         for (Task t : tasks) {
-            System.out.println(String.format("%d.%s %s", count, t.getStatusIcon(), t.getDescription()));
+            listString += String.format("%d.%s %s\n", count, t.getStatusIcon(), t.getDescription());
             count += 1;
         }
+        return listString;
     }
 
     /**
