@@ -35,6 +35,6 @@ public class DeadlineCommand extends Command {
         ui.showMessage("I've added this deadline.")
                 .showMessage(task.toString())
                 .showTaskListSize(tasks);
-        storage.save(tasks);
+        storage.saveTasks(tasks);
     }
 }
