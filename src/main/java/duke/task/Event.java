@@ -53,4 +53,22 @@ public class Event extends Task {
     public String toString() {
         return String.format("[E]%s (at: %s)", super.toString(), printDate());
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null) {
+            return false;
+        }
+
+        if (obj instanceof Event) {
+            Event event = (Event) obj;
+            return super.equals(event) && event.at.equals(at);
+        } else {
+            return false;
+        }
+    }
 }

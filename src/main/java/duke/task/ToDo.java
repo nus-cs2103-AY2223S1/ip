@@ -40,4 +40,22 @@ public class ToDo extends Task {
     public String toString() {
         return String.format("[T]%s", super.toString());
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null) {
+            return false;
+        }
+
+        if (obj instanceof ToDo) {
+            ToDo toDo = (ToDo) obj;
+            return super.equals(toDo);
+        } else {
+            return false;
+        }
+    }
 }

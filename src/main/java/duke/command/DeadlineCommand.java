@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -42,10 +43,14 @@ public class DeadlineCommand extends Command {
         assert storage != null;
         assert taskList != null;
         assert ui != null;
-        String output = "";
-        output += ui.printAddTask(taskList.addTask(new Deadline(description, by)));
-        output += ui.printSizeOfList(taskList.getSize());
-        storage.save(taskList.getTasks());
-        return output;
+        try {
+            String output = "";
+            output += ui.printAddTask(taskList.addTask(new Deadline(description, by)));
+            output += ui.printSizeOfList(taskList.getSize());
+            storage.save(taskList.getTasks());
+            return output;
+        } catch (DukeException e) {
+            return ui.printErrorMessage(e);
+        }
     }
 }
