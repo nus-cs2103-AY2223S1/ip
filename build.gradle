@@ -43,7 +43,7 @@ test {
 }
 
 application {
-    mainClassName = "cheese.Cheese"
+    mainClassName = "cheese.Launcher"
 }
 
 shadowJar {
@@ -51,6 +51,6 @@ shadowJar {
     archiveClassifier = null
 }
 
-run{
+run {
     standardInput = System.in
 }
