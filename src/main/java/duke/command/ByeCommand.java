@@ -1,6 +1,5 @@
 package duke.command;
 
-import duke.gui.Ui;
 import duke.storage.Storage;
 import duke.task.TaskList;
 
@@ -23,13 +22,12 @@ public class ByeCommand extends Command {
     /**
      * Executes the command and returns a closing message.
      *
-     * @param ui the ui class that prints text in a readable format
-     * @param storage the storage object which handles reading and writing of data
+     * @param storage  the storage object which handles reading and writing of data
      * @param taskList the list of tasks currently stored
      * @return a String which replies to the user
      */
     @Override
-    public String runCommand(Ui ui, Storage storage, TaskList taskList) {
+    public String runCommand(Storage storage, TaskList taskList) {
         return "Bye. Hope to see you again soon!";
     }
 }

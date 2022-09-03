@@ -10,6 +10,8 @@ import duke.exception.DukeException;
  * Represents an event task which will occur on a certain date.
  */
 public class Event extends Task {
+
+    private static final int MINIMUM_COMMAND_LENGTH = 6;
     private LocalDate eventDate = null;
 
     /**
@@ -23,14 +25,14 @@ public class Event extends Task {
      * @throws DukeException
      */
     public void addName(String userInput) throws DukeException {
-        if (userInput.length() <= 6) {
+        if (userInput.length() <= MINIMUM_COMMAND_LENGTH) {
             throw new DukeException("OOPS!!! The description of a event cannot be empty.");
         }
         int index = userInput.indexOf("/at") - 1;
-        if (index <= 5) {
+        if (index <= MINIMUM_COMMAND_LENGTH - 1) {
             throw new DukeException("OOPS!!! Please indicate when the event is happening with '/at'.");
         }
-        super.addName(userInput.substring(6, index));
+        super.addName(userInput.substring(MINIMUM_COMMAND_LENGTH, index));
         try {
             this.eventDate = LocalDate.parse(userInput.substring(index + 5).replace('/', '-'));
         } catch (DateTimeParseException e) {
@@ -47,6 +49,7 @@ public class Event extends Task {
      */
     @Override
     public String getTask() {
+        assert this.eventDate != null : "Event date is empty!";
         return String.format("E | " + super.getTask() + " | " + this.eventDate);
     }
 

@@ -7,6 +7,8 @@ import duke.exception.DukeException;
  */
 public class ToDo extends Task {
 
+    private static final int MINIMUM_COMMAND_LENGTH = 5;
+
     /**
      * Adds the description of a task.
      * The userInput argument must contain a description of the todo task.
@@ -18,10 +20,10 @@ public class ToDo extends Task {
      */
     @Override
     public void addName(String userInput) throws DukeException {
-        if (userInput.length() <= 5) {
+        if (userInput.length() <= MINIMUM_COMMAND_LENGTH) {
             throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
         }
-        super.addName(userInput.substring(5));
+        super.addName(userInput.substring(MINIMUM_COMMAND_LENGTH));
     }
 
     /**

@@ -31,6 +31,7 @@ public class Duke {
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.load());
+            assert tasks != null : "Task is not loaded properly!";
         } catch (Exception e) {
             tasks = new TaskList();
             ui.showLoadingError();
@@ -45,6 +46,6 @@ public class Duke {
      */
     public String getResponse(String userInput) {
         Command command = Parser.parse(userInput);
-        return command.runCommand(ui, storage, tasks);
+        return command.runCommand(storage, tasks);
     }
 }
