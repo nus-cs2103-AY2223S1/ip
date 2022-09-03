@@ -30,6 +30,7 @@ dependencies {
 
 checkstyle {
     toolVersion = '10.2'
+    configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
 }
 
 application {
