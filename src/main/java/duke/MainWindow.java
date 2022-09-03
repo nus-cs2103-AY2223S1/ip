@@ -13,6 +13,13 @@ import javafx.scene.layout.VBox;
  * Controller for MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
+
+    private static final String DIALOG_BOX_STYLE = "maxHeight:-Infinity; maxWidth:-Infinity; prefWidth:388.0;"
+            + "spacing:15; -fx-background-radius: 16;";
+
+    private static final String COLOR_RED = "#ffb6c1";
+
+    private static final String COLOR_GREEN = "#6adcd3";
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -26,6 +33,8 @@ public class MainWindow extends AnchorPane {
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
+
+
 
     @FXML
     public void initialize() {
@@ -45,20 +54,18 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String response = "";
         String input = "";
-        String color = "#6adcd3";
+        String color = COLOR_GREEN;
         try {
             input = userInput.getText();
             response = duke.getResponse(input);
         } catch (DukeException e) {
-            color = "#ffb6c1";
+            color = COLOR_RED;
             response = e.getMessage();
         }
         DialogBox userGui = DialogBox.getUserDialog(input, userImage);
-        userGui.setStyle("-fx-background-color:" + color + "; "
-                + "maxHeight:-Infinity; maxWidth:-Infinity; prefWidth:388.0; spacing:15; -fx-background-radius: 16;");
+        userGui.setStyle("-fx-background-color:" + color + "; " + DIALOG_BOX_STYLE);
         DialogBox dukeGui = DialogBox.getDukeDialog(response, dukeImage);
-        dukeGui.setStyle("-fx-background-color:" + color + "; "
-                + "maxHeight:-Infinity; maxWidth:-Infinity; prefWidth:388.0; spacing:15; -fx-background-radius: 16;");
+        dukeGui.setStyle("-fx-background-color:" + color + "; " + DIALOG_BOX_STYLE);
         dialogContainer.getChildren().addAll(userGui, dukeGui);
         userInput.clear();
     }
