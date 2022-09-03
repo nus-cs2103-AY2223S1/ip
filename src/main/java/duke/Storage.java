@@ -44,11 +44,11 @@ public class Storage {
         if (!taskFile.exists()) {
             File directory = new File(taskFile.getParent());
             directory.mkdir();
-            try {
-                taskFile.createNewFile();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
+        }
+        try {
+            taskFile.createNewFile();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
 
         try {
