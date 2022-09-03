@@ -33,6 +33,7 @@ public class Storage {
     public Storage(String filePath) {
         String path = System.getProperty("user.dir") + "/data/duke.txt";
         file = new File(path);
+        assert file != null : "File is null";
     }
 
     /**

@@ -17,6 +17,7 @@ public class FindCommand extends Command {
      */
     public FindCommand(String string) {
         this.string = string;
+        assert string != null : "String is empty!";
     }
 
     /**

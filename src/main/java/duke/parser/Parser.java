@@ -64,6 +64,7 @@ public class Parser {
             if (number > taskList.getTaskListSize() || number <= 0) {
                 throw new DukeException("OOPS!!! Task number does not exist.");
             } else {
+                assert number > 0 : "Integer is not valid!";
                 return new MarkCommand(number);
             }
         } else if (fullCommand.length() >= 7 && (fullCommand.startsWith("unmark")
@@ -73,6 +74,7 @@ public class Parser {
             if (number > taskList.getTaskListSize() || number <= 0) {
                 throw new DukeException("OOPS!!! Task number does not exist.");
             } else {
+                assert number > 0 : "Integer is not valid!";
                 return new UnmarkCommand(number);
             }
         } else if (fullCommand.length() >= 7 && (fullCommand.startsWith("delete")
@@ -82,6 +84,7 @@ public class Parser {
             if (number > taskList.getTaskListSize() || number <= 0) {
                 throw new DukeException("OOPS!!! Task number does not exist.");
             } else {
+                assert number > 0 : "Integer is not valid!";
                 return new DeleteCommand(number);
             }
         } else if (fullCommand.equals("todo")
@@ -92,6 +95,7 @@ public class Parser {
             if (string.isBlank()) {
                 throw new DukeException("OOPS!!! Enter keyword to find.");
             } else {
+                assert string != null : "String is empty!";
                 return new FindCommand(string);
             }
         } else if (fullCommand.equals("todo") || (fullCommand.startsWith("todo")
