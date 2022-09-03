@@ -31,7 +31,7 @@ public class EventCommand extends Command {
     /**
      * Creates an Event object
      * adds it to tasklist object
-     * saves tasklist to task file
+     * saves tasklist to storage task file
      */
     @Override
     public void execute(TaskList taskList, Storage storage) {

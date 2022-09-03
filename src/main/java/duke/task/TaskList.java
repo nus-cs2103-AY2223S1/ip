@@ -34,7 +34,7 @@ public class TaskList {
             tasks = "You have no tasks! :D";
         } else {
             for (int i = 0; i < TaskList.tasks.size(); i++) {
-                tasks += (i + 1) + "." + TaskList.tasks.get(i) + "\n";
+                tasks += formatTaskForPrint(i + 1, TaskList.tasks.get(i));
             }
         }
         return tasks;
@@ -74,8 +74,10 @@ public class TaskList {
         int counter = 0;
 
         for (int i = 0; i < TaskList.tasks.size(); i++) {
-            if (TaskList.tasks.get(i).getDescription().contains(text)) {
-                tasks += (counter + 1) + "." + TaskList.tasks.get(i) + "\n";
+            String description = TaskList.tasks.get(i).getDescription();
+
+            if (description.contains(text)) {
+                tasks += formatTaskForPrint(counter + 1, TaskList.tasks.get(i));
                 counter++;
             }
         }
@@ -88,8 +90,16 @@ public class TaskList {
     }
 
     /**
+     * Returns a string describing a task to print to
+     * the user
+     */
+    private String formatTaskForPrint(int number, Task task) {
+        return number + "." + task + "\n";
+    }
+
+    /**
      * Returns the number of tasks in
-     * task arraylist
+     * tasks arraylist
      */
     public static int length() {
         return TaskList.tasks.size();

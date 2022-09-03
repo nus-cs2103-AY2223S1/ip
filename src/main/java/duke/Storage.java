@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import duke.exception.InvalidStorageDataException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -33,23 +34,25 @@ public class Storage {
     }
 
     /**
-     * Loads tasks from a task file
+     * Loads tasks from a storage task file
      * into an ArrayList of tasks
      */
     public ArrayList<Task> loadTaskFile() {
         File taskFile = new File(fileLocation);
         ArrayList<Task> tasks = new ArrayList<Task>();
 
+        //Checks if storage task file exists, if not, create one
         if (!taskFile.exists()) {
             File directory = new File(taskFile.getParent());
             directory.mkdir();
-            try {
-                taskFile.createNewFile();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
+        }
+        try {
+            taskFile.createNewFile();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
 
+        //Parsing data in storage task file
         try {
             Scanner sc = new Scanner(taskFile);
             while (sc.hasNext()) {
@@ -62,25 +65,37 @@ public class Storage {
                 switch (taskType) {
                 case 'T':
                     taskDesc = line.substring(DESC_MARKER).trim();
+                    if (taskDesc.isEmpty()) {
+                        throw new InvalidStorageDataException();
+                    }
                     tasks.add(new ToDo(taskDesc, taskIsDone));
                     break;
+
                 case 'D':
                     taskDesc = line.substring(DESC_MARKER, line.indexOf('(')).trim();
                     taskTime = line.substring(line.indexOf('(') + 1, line.indexOf(')')).trim();
-
+                    if (taskDesc.isEmpty() | taskTime.isEmpty()) {
+                        throw new InvalidStorageDataException();
+                    }
                     tasks.add(new Deadline(taskDesc, taskIsDone, taskTime));
                     break;
+
                 case 'E':
                     taskDesc = line.substring(DESC_MARKER, line.indexOf('(')).trim();
                     taskTime = line.substring(line.indexOf('(') + 1, line.indexOf(')')).trim();
-
+                    if (taskDesc.isEmpty() | taskTime.isEmpty()) {
+                        throw new InvalidStorageDataException();
+                    }
                     tasks.add(new Event(taskDesc, taskIsDone, taskTime));
                     break;
+
                 default:
+                    throw new InvalidStorageDataException();
                 }
             }
             sc.close();
-        } catch (FileNotFoundException e) {
+
+        } catch (FileNotFoundException | InvalidStorageDataException e) {
             System.out.println(e.getMessage());
         }
         return tasks;
@@ -89,13 +104,15 @@ public class Storage {
 
     /**
      * Saves the ArrayList of tasks from
-     * a taskList object into a task file
+     * a taskList object into a storage task file
      */
     public void saveTaskFile(TaskList taskList) {
         ArrayList<Task> tasks = taskList.getTasks();
+
         try {
             FileWriter taskFile = new FileWriter(fileLocation);
             String textToSave = " ";
+
             for (int i = 0; i < tasks.size(); i++) {
                 textToSave += tasks.get(i).toStringStorage() + "\n";
             }

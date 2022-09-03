@@ -11,7 +11,7 @@ public class FindCommand extends Command {
     private String text;
 
     /**
-     * Creates a Delete Command object
+     * Creates a Find Command object
      */
     public FindCommand(String text) {
         this.text = text;

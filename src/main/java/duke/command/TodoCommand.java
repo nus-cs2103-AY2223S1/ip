@@ -25,7 +25,7 @@ public class TodoCommand extends Command {
     /**
      * Creats a ToDo object
      * adds it to tasklist
-     * saves tasklist to task file
+     * saves tasklist to storage task file
      */
     @Override
     public void execute(TaskList taskList, Storage storage) {

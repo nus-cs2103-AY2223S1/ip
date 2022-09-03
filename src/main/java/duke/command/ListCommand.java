@@ -10,7 +10,7 @@ import duke.task.TaskList;
 public class ListCommand extends Command {
 
     /**
-     * Prints out all tasks in tasklist
+     * Prints out all tasks in tasklist object
      */
     @Override
     public void execute(TaskList taskList, Storage storage) {
