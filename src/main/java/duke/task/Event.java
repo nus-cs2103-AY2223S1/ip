@@ -18,6 +18,9 @@ public class Event extends Task {
         super(description);
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy, h:mma");
+
+        assert !at.isEmpty();
+
         LocalDateTime dateTime = LocalDateTime.parse(at.trim(), inputFormatter);
         this.at = dateTime.format(outputFormatter);
     }
@@ -28,6 +31,7 @@ public class Event extends Task {
      */
     public Event(String description, boolean isDone, String at) {
         super(description, isDone);
+        assert !at.isEmpty();
         this.at = at;
     }
 
