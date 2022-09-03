@@ -2,6 +2,7 @@ package duke.task;
 
 import java.time.LocalDateTime;
 
+import duke.exception.FileCorruptedException;
 import duke.util.Parser;
 
 /**
@@ -36,7 +37,7 @@ public class Task {
      * @param fileFormatString String representation of the Task object, in file format.
      * @return New Task object.
      */
-    public static Task parse(String fileFormatString) {
+    public static Task parse(String fileFormatString) throws FileCorruptedException {
         String[] taskSplit = fileFormatString.split("\\|");
 
         assert(taskSplit.length >= 3);
@@ -52,10 +53,12 @@ public class Task {
             assert(taskSplit.length == 4);
             LocalDateTime byDateTime = Parser.parseDateTime(taskSplit[3]);
             task = new Deadline(taskDescription, byDateTime);
-        } else {
+        } else if (taskSymbol.equals("E")) {
             assert(taskSplit.length == 4);
             LocalDateTime atDateTime = Parser.parseDateTime(taskSplit[3]);
             task = new Event(taskDescription, atDateTime);
+        } else {
+            throw new FileCorruptedException("Unable to read [" + taskSymbol + "] from file.");
         }
         if (isComplete) {
             task.markAsDone();

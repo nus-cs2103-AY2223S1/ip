@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import duke.exception.DukeException;
+import duke.exception.FileCorruptedException;
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -47,7 +48,7 @@ public class Storage {
      * @return List of previously saved tasks.
      * @throws FileNotFoundException If the file located in path does not exist.
      */
-    public List<Task> load() throws FileNotFoundException {
+    public List<Task> load() throws FileNotFoundException, FileCorruptedException {
         File file = new File(pathString);
         Scanner sc = new Scanner(file);
         ArrayList<Task> tasks = new ArrayList<>();
