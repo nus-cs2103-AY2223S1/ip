@@ -27,15 +27,6 @@ public class Ui {
                 + DOUBLE_INDENT + "what can I do for you today?" + "\n" + DIVIDER);
     }
 
-    public void showFileCreated() {
-        System.out.println(INDENT + " A new Task file is created! What can I do for you?\n" + DIVIDER);
-    }
-
-    public void showFileExists() {
-        System.out.println(INDENT + " Your Task file already exists! Welcome back :D\n"
-                + INDENT + " What can I do for you today?\n" + DIVIDER);
-    }
-
     public String readCommand() {
         return this.s.nextLine();
     }

@@ -5,14 +5,8 @@ public class DukeException extends Exception {
         super(message);
     }
 
-    public static class EmptyTaskException extends DukeException {
-        public EmptyTaskException(String message) {
-            super(message);
-        }
-    }
-
     @Override
     public String toString() {
-        return "Oops, Duke Exception detected";
+        return "oops, Duke Exception detected";
     }
 }

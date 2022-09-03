@@ -18,7 +18,7 @@ public class AddCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
-            if (this.input.isBlank() || this.input.isBlank()) {
+            if (this.input.isBlank()) {
                 throw new DukeException("oops, the description of your task seems to be incomplete!");
             }
             tasks.addTask(this.keyword, this.input);
