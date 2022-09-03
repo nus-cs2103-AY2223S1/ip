@@ -91,6 +91,13 @@ public class TaskList {
         return taskToRemove;
     }
 
+    /**
+     * Update task's date.
+     *
+     * @param taskNumber item with the number user want to update.
+     * @return Task to be updated.
+     * @throws DukeException if task number not valid.
+     */
     public Task updateDate(int taskNumber, String updatedDate) throws DukeException {
         assert taskNumber > 0;
         Task updatedTask = null;

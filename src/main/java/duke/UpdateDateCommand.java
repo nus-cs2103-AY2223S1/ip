@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * Encapsulate a command that allows user to update existing Tasks' date,
+ * which is-a Command.
+ */
 public class UpdateDateCommand extends Command {
 
     private int taskNumber;

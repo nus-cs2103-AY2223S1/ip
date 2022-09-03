@@ -143,8 +143,8 @@ public class Parser {
      * Gets the task number that user wants to update.
      *
      * @param inputList user input after spliting by " ".
-     * @throws DukeException if input list length > 3 or < 3.
      * @return task number that user inputted.
+     *  @throws DukeException if input list length > 3 or < 3.
      */
     public static int getUpdatedTaskNumber(String[] inputList) throws DukeException {
         if (inputList.length > 3) {
@@ -163,8 +163,8 @@ public class Parser {
      * Gets the user integer input from user string input.
      *
      * @param inputList user input after spliting by " ".
-     * @throws DukeException if input list length > 2 or input list length < 2.
      * @return task number that user inputted.
+     * @throws DukeException if input list length > 2 or input list length < 2.
      */
     public static int getIntegerInUserInput(String[] inputList) throws DukeException {
         if (inputList.length > 2) {
