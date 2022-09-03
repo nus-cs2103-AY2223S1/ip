@@ -1,10 +1,10 @@
 package duke.main;
 
+import java.io.File;
+import java.io.IOException;
+
 import duke.command.Command;
 import duke.exception.DukeException;
-
-import java.io.IOException;
-import java.io.File;
 
 /**
  * Starts the duke chatbot.
@@ -31,6 +31,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Initializes the chatbot and the file to store its data.
+     *
+     * @param args arguments.
+     * @throws IOException i the ile does not exist.
+     */
     public static void main(String[] args) throws IOException {
         File dir = new File("data/");
         if (!dir.exists()) {
@@ -45,6 +51,9 @@ public class Duke {
         new Duke("data/duke.txt").runBot();
     }
 
+    /**
+     * Starts the chatbot.
+     */
     public void runBot() {
 
         try {

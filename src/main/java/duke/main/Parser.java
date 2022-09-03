@@ -1,10 +1,19 @@
 package duke.main;
 
-import duke.command.*;
-import duke.exception.DukeException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import duke.command.AddDeadlineCommand;
+import duke.command.AddEventCommand;
+import duke.command.AddTodoCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.DoneCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.UndoneCommand;
+import duke.exception.DukeException;
 
 /**
  * Deals with making sense of the user command.
@@ -68,7 +77,7 @@ public class Parser {
     private static boolean isDate(String input) {
         // Assume date is in the format 2/12/2019 1800
         String[] splitInput = input.split("/");
-        if (splitInput.length != 3)  {
+        if (splitInput.length != 3) {
             return false;
         }
 
@@ -97,13 +106,19 @@ public class Parser {
      * @throws DukeException  If description is empty.
      */
     public static void validateTodo(String todo) throws DukeException {
-        if(todo.isEmpty()) {
+        if (todo.isEmpty()) {
             throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
         }
     }
 
+    /**
+     * Checks whether the keyword to find is empty.
+     *
+     * @param toFind keyword to find
+     * @throws DukeException  If keyword is empty.
+     */
     public static void validateFind(String toFind) throws DukeException {
-        if(toFind.isEmpty()) {
+        if (toFind.isEmpty()) {
             throw new DukeException("OOPS!!! The task to find cannot be empty.");
         }
     }
@@ -115,7 +130,7 @@ public class Parser {
      * @throws DukeException  If index is < 1.
      */
     public static void validateMark(int taskNum) throws DukeException {
-        if(taskNum < 1) {
+        if (taskNum < 1) {
             throw new DukeException("OOPS!!! The index of the task is not in the list.");
         }
     }
@@ -127,7 +142,7 @@ public class Parser {
      * @throws DukeException  If index is < 1.
      */
     public static void validateDelete(int taskNum) throws DukeException {
-        if(taskNum < 1) {
+        if (taskNum < 1) {
             throw new DukeException("OOPS!!! The index of the task to delete is not in the list.");
         }
     }

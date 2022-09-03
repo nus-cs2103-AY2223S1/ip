@@ -1,9 +1,9 @@
 package duke.main;
 
-import duke.task.Task;
-
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.task.Task;
 
 /**
  * Deals with interactions with the user.
@@ -19,8 +19,8 @@ public class Ui {
      * Prints a greeting message when the bot is opened.
      */
     public void greetingMessage() {
-        String greeting = "Hello! I'm Duke\n\t" +
-                "What can I do for you?";
+        String greeting = "Hello! I'm Duke\n\t"
+                + "What can I do for you?";
         printMessage(greeting);
     }
 
@@ -81,6 +81,11 @@ public class Ui {
         linePrint();
     }
 
+    /**
+     * Lists all the tasks found.
+     *
+     * @param tasks all tasks found in the list
+     */
     public void listFoundTasks(ArrayList<Task> tasks) {
         linePrint();
         System.out.println("\tHere are the matching tasks in your list:");

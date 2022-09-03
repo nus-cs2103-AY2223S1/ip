@@ -1,12 +1,12 @@
 package duke.command;
 
+import java.time.LocalDateTime;
+
 import duke.exception.DukeException;
 import duke.main.Storage;
 import duke.main.TaskList;
 import duke.main.Ui;
 import duke.task.Deadline;
-
-import java.time.LocalDateTime;
 
 /**
  * Adds a deadline task to the list when command is called.
@@ -47,9 +47,10 @@ public class AddDeadlineCommand extends Command {
             deadline = new Deadline(description, byDate);
         }
         tasks.add(deadline);
-        ui.printMessage("\tGot it. I've added this task:\n\t" +
-                deadline.toString() +
-                "\n\tNow you have " + tasks.size() + " tasks in the list.");
+        ui.printMessage("\tGot it. I've added this task:\n\t"
+                + deadline.toString()
+                + "\n\tNow you have " + tasks.size()
+                + " tasks in the list.");
         storage.save(tasks.getAllTasks());
     }
 }

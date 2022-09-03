@@ -1,9 +1,9 @@
 package duke.main;
 
+import java.util.ArrayList;
+
 import duke.exception.DukeException;
 import duke.task.Task;
-
-import java.util.ArrayList;
 
 /**
  * Contains the task list and relevant operations on tasks.
@@ -89,6 +89,12 @@ public class TaskList {
         return tasks.size();
     }
 
+    /**
+     * Finds a task by keyword search
+     *
+     * @param toFind keyword to search or
+     * @return tasks containing the keyword
+     */
     public ArrayList<Task> find(String toFind) {
         ArrayList<Task> foundTasks = new ArrayList<>();
         for (Task t : tasks) {
