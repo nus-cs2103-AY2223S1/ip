@@ -14,6 +14,8 @@ public class DeleteCommand extends Command {
         this.taskIndex = taskIndex;
     }   
 
+    
+
     @Override
     public void execute(ArrayList<Task> taskList, Ui ui) {
         Task task = taskList.get(taskIndex);
@@ -21,6 +23,11 @@ public class DeleteCommand extends Command {
         System.out.println(task.toString());
         taskList.remove(taskIndex); 
         System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+    }
+
+    @Override
+    public boolean isExit() {
+        return false;
     }
 
 }

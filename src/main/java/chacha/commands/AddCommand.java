@@ -22,4 +22,9 @@ public class AddCommand extends Command {
             System.out.println("Now you have " + taskList.size() + " tasks in the list.");
     }
 
+    @Override
+    public boolean isExit() {
+        return false;
+    }
+
 }

@@ -21,4 +21,9 @@ public class UnmarkCommand extends Command {
                 System.out.println("OK, I've marked this task as not done yet:\n" + task.toString());
     }
 
+    @Override
+    public boolean isExit() {
+        return false;
+    }
+
 }

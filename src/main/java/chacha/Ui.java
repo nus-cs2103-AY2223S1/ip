@@ -27,4 +27,8 @@ public String readInput() {
                 t.toString()); 		
         }   
     }
+
+    public void printError(String message) {
+        System.out.println("The following error has occurred.\n" + message);
+    }
 }
