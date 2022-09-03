@@ -48,7 +48,7 @@ test {
 }
 
 application {
-    mainClassName = "duke.JavaFX"
+    mainClassName = "duke.Launcher"
 }
 
 shadowJar {

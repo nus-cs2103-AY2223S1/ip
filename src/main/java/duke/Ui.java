@@ -1,5 +1,7 @@
 package duke;
 
+import task.Task;
+
 /**
  *  A class which encapsulates the user interactions between Duke and the user.
  *  @author  Chen Guanzhou
@@ -10,7 +12,7 @@ public class Ui {
     /**
      * A method for Duke to tell the user how many tasks they currently have.
      */
-    public static String taskNumberMessage(TaskList taskList) {
+    public static String getTaskNumberMessage(TaskList taskList) {
         if (taskList.getLength() == 1) {
             return "Now you have 1 task in the list.";
         }
@@ -40,5 +42,14 @@ public class Ui {
      */
     public static String endingMessage() {
         return "See ya! Come again~"; //end of bot
+    }
+
+    /**
+     * A task message to inform the user after task is added.
+     */
+    public static String addTaskMessage(Task t){
+        String res = "Gotcha, I've added this task:\n";
+        res += t + "\n";
+        return res;
     }
 }

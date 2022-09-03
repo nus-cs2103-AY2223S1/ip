@@ -1,4 +1,6 @@
 package duke;
+import task.Task;
+
 import java.util.ArrayList;
 
 /**
@@ -30,7 +32,7 @@ public class TaskList {
     }
 
     
-    public TaskList matchingItems(String input) {
+    public TaskList getMatchingItems(String input) {
         TaskList matchingList = new TaskList();
         Task[] tasks = new Task[taskList.size()];
         String[] descriptions = new String[taskList.size()];

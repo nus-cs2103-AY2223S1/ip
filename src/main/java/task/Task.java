@@ -1,16 +1,10 @@
-package duke;
+package task;
+
 public class Task {
+
     private String description;
     private boolean isDone;
 
-    /**
-     * A task message.
-     */
-    public String addTaskMessage(){
-        String res = "Gotcha, I've added this task:\n";
-        res += this + "\n";
-        return res;
-    }
 
     public Task(String description) {
         this.description = description;
@@ -33,13 +27,17 @@ public class Task {
     }
 
     /**
-     * String representation of the current task.
+     * String representation of the current task description.
      * @return The task description and whether the task is done as a string.
      */
     public String getDescription() {
         return this.description;
     }
-    
+
+    /**
+     * String representation of the task status with description.
+     * @return Task status icon and description.
+     */
     @Override
     public String toString(){
         return this.isDone ? "[X] " + this.description : "[ ] " + this.description;

@@ -1,4 +1,9 @@
 package duke;
+
+import task.Deadline;
+import task.Event;
+import task.Todo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -98,6 +103,9 @@ public class Storage {
         }
     }
 
+    /**
+     * A method to read file input tasks into the task list.
+     */
     public void readAndProcessFile() {
         this.handleFile(FILE);
         try {
