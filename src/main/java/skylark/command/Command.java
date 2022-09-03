@@ -13,10 +13,18 @@ import skylark.task.ToDo;
  * a particular command selected by the user e.g., user selects <code>list</code>.
  */
 public abstract class Command {
+    private static final int MIN_LENGTH_DONE = 4;
+    private static final int MIN_LENGTH_UNDONE = 6;
+    private static final int MIN_LENGTH_TODO = 4;
+    private static final int MIN_LENGTH_DEADLINE = 8;
+    private static final int MIN_LENGTH_EVENT = 5;
+    private static final int MIN_LENGTH_DELETE = 6;
+    private static final int MIN_LENGTH_FIND = 5;
 
     /** String representing the input keyed by the user. */
     private final String input;
 
+    /** Returns the exact input keyed by the user. */
     private Command(String input) {
         this.input = input;
     }
@@ -31,19 +39,26 @@ public abstract class Command {
     public static Command createCommand(String command) {
         if (command.equals(CommandList.COMMAND_LIST.toString())) {
             return new ListCommand(command);
-        } else if (command.length() >= 4 && command.startsWith(CommandList.COMMAND_DONE.toString())) {
+        } else if (command.length() >= Command.MIN_LENGTH_DONE
+                && command.startsWith(CommandList.COMMAND_DONE.toString())) {
             return new DoneCommand(command);
-        } else if (command.length() >= 6 && command.startsWith(CommandList.COMMAND_UNDONE.toString())) {
+        } else if (command.length() >= Command.MIN_LENGTH_UNDONE
+                && command.startsWith(CommandList.COMMAND_UNDONE.toString())) {
             return new UndoneCommand(command);
-        } else if (command.length() >= 4 && command.startsWith(CommandList.COMMAND_TODO.toString())) {
+        } else if (command.length() >= Command.MIN_LENGTH_TODO
+                && command.startsWith(CommandList.COMMAND_TODO.toString())) {
             return new TodoCommand(command);
-        } else if (command.length() >= 8 && command.startsWith(CommandList.COMMAND_DEADLINE.toString())) {
+        } else if (command.length() >= Command.MIN_LENGTH_DEADLINE
+                && command.startsWith(CommandList.COMMAND_DEADLINE.toString())) {
             return new DeadlineCommand(command);
-        } else if (command.length() >= 5 && command.startsWith(CommandList.COMMAND_EVENT.toString())) {
+        } else if (command.length() >= Command.MIN_LENGTH_EVENT
+                && command.startsWith(CommandList.COMMAND_EVENT.toString())) {
             return new EventCommand(command);
-        } else if (command.length() >= 6 && command.startsWith(CommandList.COMMAND_DELETE.toString())) {
+        } else if (command.length() >= Command.MIN_LENGTH_DELETE
+                && command.startsWith(CommandList.COMMAND_DELETE.toString())) {
             return new DeleteCommand(command);
-        } else if (command.length() >= 5 && command.startsWith(CommandList.COMMAND_FIND.toString())) {
+        } else if (command.length() >= Command.MIN_LENGTH_FIND
+                && command.startsWith(CommandList.COMMAND_FIND.toString())) {
             return new FindCommand(command);
         } else {
             return new UnknownCommand(command);
@@ -57,8 +72,6 @@ public abstract class Command {
      * @param taskList List of Tasks that already exists.
      */
     public abstract String run(TaskList taskList) throws SkylarkException;
-
-    /** Returns the exact input keyed by the user. */
     public String getInput() {
         return this.input;
     }
@@ -89,6 +102,8 @@ public abstract class Command {
     }
 
     private static class DoneCommand extends Command {
+        private static final int POSITION = 5;
+
         /**
          * Returns a DoneCommand object.
          *
@@ -100,24 +115,30 @@ public abstract class Command {
 
         @Override
         public String run(TaskList taskList) throws SkylarkException {
-            int index = Integer.parseInt(super.getInput().substring(5)) - 1;
             String response;
-            if (taskList.doesIndexExist(index)) {
-                Task currentTask = taskList.get(index);
-                currentTask.markAsDone();
-                response = "Nice! I've marked this task as done:"
-                        + System.lineSeparator()
-                        + currentTask;
-                taskList.saveToFile();
-            } else {
-                throw new SkylarkException("Sorry, index does not exist!");
+            String command = super.getInput();
+            try {
+                int index = Integer.parseInt(command.substring(DoneCommand.POSITION)) - 1;
+                if (taskList.doesIndexExist(index)) {
+                    Task currentTask = taskList.get(index);
+                    currentTask.markAsDone();
+                    response = "Nice! I've marked this task as done:"
+                            + System.lineSeparator()
+                            + currentTask;
+                    taskList.saveToFile();
+                } else {
+                    throw new SkylarkException("Sorry, index does not exist!");
+                }
+            } catch (NumberFormatException numberFormatException) {
+                throw new SkylarkException("Input is not a number!");
             }
-
             return response;
         }
     }
 
     private static class UndoneCommand extends Command {
+        private static final int POSITION = 7;
+
         /**
          * Returns a UndoneCommand object.
          *
@@ -129,24 +150,30 @@ public abstract class Command {
 
         @Override
         public String run(TaskList taskList) throws SkylarkException {
-            int index = Integer.parseInt(super.getInput().substring(7)) - 1;
+            String command = super.getInput();
             String response;
-            if (taskList.doesIndexExist(index)) {
-                Task currentTask = taskList.get(index);
-                currentTask.markAsUndone();
-                response = "OK, I've marked this task as not done yet:"
-                        + System.lineSeparator()
-                        + currentTask;
-                taskList.saveToFile();
-            } else {
-                throw new SkylarkException("Sorry, index does not exist!");
+            try {
+                int index = Integer.parseInt(command.substring(UndoneCommand.POSITION)) - 1;
+                if (taskList.doesIndexExist(index)) {
+                    Task currentTask = taskList.get(index);
+                    currentTask.markAsUndone();
+                    response = "OK, I've marked this task as not done yet:"
+                            + System.lineSeparator()
+                            + currentTask;
+                    taskList.saveToFile();
+                } else {
+                    throw new SkylarkException("Sorry, index does not exist!");
+                }
+            } catch (NumberFormatException numberFormatException) {
+                throw new SkylarkException("Input is not a number!");
             }
-
             return response;
         }
     }
 
     private static class TodoCommand extends Command {
+        private static final int POSITION = 5;
+
         /**
          * Returns a Todo object.
          *
@@ -158,10 +185,11 @@ public abstract class Command {
 
         @Override
         public String run(TaskList taskList) throws SkylarkException {
-            if (super.getInput().equals(CommandList.COMMAND_TODO.toString())) {
+            String command = super.getInput();
+            if (command.equals(CommandList.COMMAND_TODO.toString())) {
                 throw new SkylarkException("The description of a todo cannot be empty.");
             }
-            ToDo toDoTask = new ToDo(super.getInput().substring(5));
+            ToDo toDoTask = new ToDo(command.substring(TodoCommand.POSITION));
             taskList.add(toDoTask);
             String response = "Got it. I've added this task:"
                     + System.lineSeparator()
@@ -177,6 +205,9 @@ public abstract class Command {
     }
 
     private static class DeadlineCommand extends Command {
+        private static final int POSITION = 9;
+        private static final int POSITION_DATE = 4;
+
         /**
          * Returns a DeadlineCommand object.
          *
@@ -190,11 +221,10 @@ public abstract class Command {
         public String run(TaskList taskList) throws SkylarkException {
             String command = super.getInput();
             int slashIndex = command.lastIndexOf("/");
-            String desc = command.substring(9, slashIndex - 1);
-            String endDate = command.substring(slashIndex + 4);
+            String desc = command.substring(DeadlineCommand.POSITION, slashIndex - 1);
+            String endDate = command.substring(slashIndex + DeadlineCommand.POSITION_DATE);
             if (desc.isEmpty() || endDate.isEmpty()) {
-                throw new SkylarkException("☹ OOPS!!! "
-                        + "The description or end date of a deadline cannot be empty.");
+                throw new SkylarkException("The description or end date of a deadline cannot be empty.");
             }
             Deadline deadlineTask = new Deadline(desc, endDate);
             taskList.add(deadlineTask);
@@ -211,6 +241,9 @@ public abstract class Command {
     }
 
     private static class EventCommand extends Command {
+        private static final int POSITION = 6;
+        private static final int POSITION_DATE = 4;
+
         /**
          * Returns a EventCommand object.
          *
@@ -224,11 +257,10 @@ public abstract class Command {
         public String run(TaskList taskList) throws SkylarkException {
             String command = super.getInput();
             int slashIndex = command.lastIndexOf("/");
-            String desc = command.substring(6, slashIndex - 1);
-            String timing = command.substring(slashIndex + 4);
+            String desc = command.substring(EventCommand.POSITION, slashIndex - 1);
+            String timing = command.substring(slashIndex + EventCommand.POSITION_DATE);
             if (desc.isEmpty() || timing.isEmpty()) {
-                throw new SkylarkException("☹ OOPS!!! "
-                        + "The description or timing of an event cannot be empty.");
+                throw new SkylarkException("The description or timing of an event cannot be empty.");
             }
             Event eventTask = new Event(desc, timing);
             taskList.add(eventTask);
@@ -244,6 +276,8 @@ public abstract class Command {
     }
 
     private static class DeleteCommand extends Command {
+        private static final int POSITION = 7;
+
         /**
          * Returns a DeleteCommand object.
          *
@@ -255,29 +289,34 @@ public abstract class Command {
 
         @Override
         public String run(TaskList taskList) throws SkylarkException {
-            String command = super.getInput();
-            int index = Integer.parseInt(command.substring(7)) - 1;
             String response;
-            if (taskList.doesIndexExist(index)) {
-                Task currentTask = taskList.get(index);
-                taskList.remove(index);
-                response = "Noted. I've removed this task:"
-                        + System.lineSeparator()
-                        + currentTask
-                        + System.lineSeparator()
-                        + "Now you have "
-                        + taskList.size()
-                        + " tasks in the list.";
-                taskList.saveToFile();
-            } else {
-                throw new SkylarkException("Sorry, index does not exist!");
+            try {
+                String command = super.getInput();
+                int index = Integer.parseInt(command.substring(DeleteCommand.POSITION)) - 1;
+                if (taskList.doesIndexExist(index)) {
+                    Task currentTask = taskList.get(index);
+                    taskList.remove(index);
+                    response = "Noted. I've removed this task:"
+                            + System.lineSeparator()
+                            + currentTask
+                            + System.lineSeparator()
+                            + "Now you have "
+                            + taskList.size()
+                            + " tasks in the list.";
+                    taskList.saveToFile();
+                } else {
+                    throw new SkylarkException("Sorry, index does not exist!");
+                }
+            } catch (NumberFormatException numberFormatException) {
+                throw new SkylarkException("Input is not a number!");
             }
-
             return response;
         }
     }
 
     private static class FindCommand extends Command {
+        private static final int POSITION = 5;
+
         public FindCommand(String input) {
             super(input);
         }
@@ -285,25 +324,26 @@ public abstract class Command {
         @Override
         public String run(TaskList taskList) throws SkylarkException {
             String command = super.getInput();
-            String query = command.substring(5);
+            String query = command.substring(FindCommand.POSITION);
             if (query.isEmpty()) {
-                throw new SkylarkException("☹ OOPS!!! "
-                        + "The find query cannot be empty.");
+                throw new SkylarkException("The find query cannot be empty.");
             }
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("Here are the matching tasks in your list:");
-            stringBuilder.append(System.lineSeparator());
+            String response = "";
+            response += "Here are the matching tasks in your list:";
+            response += System.lineSeparator();
             int count = 1;
             for (int i = 0; i < taskList.size(); i++) {
                 Task currentTask = taskList.get(i);
                 if (currentTask.toString().contains(query)) {
-                    stringBuilder.append(count).append(". ").append(currentTask);
-                    stringBuilder.append(System.lineSeparator());
+                    response += count
+                            + ". "
+                            + currentTask
+                            + System.lineSeparator();
                     count += 1;
                 }
             }
 
-            return stringBuilder.toString();
+            return response;
         }
     }
 
