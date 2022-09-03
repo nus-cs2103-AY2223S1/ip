@@ -100,8 +100,11 @@ public class TaskList {
      * @param task The specified task to be added.
      * @return Task from input parameter.
      */
-    public Task addTask(Task task) {
+    public Task addTask(Task task) throws DukeException {
         assert task != null;
+        if (tasks.contains(task)) {
+            throw new DukeException("Task already exists in task list.");
+        }
         tasks.add(task);
         return task;
     }
