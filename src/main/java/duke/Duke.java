@@ -3,9 +3,7 @@ package duke;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Optional;
 
-import duke.task.Task;
 import duke.task.TaskList;
 
 /**

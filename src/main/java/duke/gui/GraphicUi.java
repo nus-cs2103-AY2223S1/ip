@@ -12,7 +12,7 @@ import duke.UiInterface;
  * Used for GUI.
  */
 public class GraphicUi implements UiInterface {
-    private static PipedWriter writer = new PipedWriter();
+    private static final PipedWriter writer = new PipedWriter();
     private static final BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
     /**
