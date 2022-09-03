@@ -85,14 +85,14 @@ public class Parser {
 
         Task newTask;
         switch (taskType) {
-        case "T":
+        case Todo.STORAGE_CHAR:
             newTask = new Todo(desc);
             break;
-        case "D":
+        case Deadline.STORAGE_CHAR:
             newTask = new Deadline(desc, LocalDate.parse(date, Deadline.INPUT_DATE_FORMAT));
             break;
-        case "E":
-            newTask = new Event(desc, LocalDate.parse(date, Deadline.INPUT_DATE_FORMAT));
+        case Event.STORAGE_CHAR:
+            newTask = new Event(desc, LocalDate.parse(date, Event.INPUT_DATE_FORMAT));
             break;
         default:
             throw new DukeException("Invalid task format in storage: " + taskString);
