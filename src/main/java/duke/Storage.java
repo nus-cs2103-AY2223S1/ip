@@ -64,19 +64,18 @@ public class Storage {
                     taskDesc = line.substring(DESC_MARKER).trim();
                     tasks.add(new ToDo(taskDesc, taskIsDone));
                     break;
-
                 case 'D':
                     taskDesc = line.substring(DESC_MARKER, line.indexOf('(')).trim();
                     taskTime = line.substring(line.indexOf('(') + 1, line.indexOf(')')).trim();
+
                     tasks.add(new Deadline(taskDesc, taskIsDone, taskTime));
                     break;
-
                 case 'E':
                     taskDesc = line.substring(DESC_MARKER, line.indexOf('(')).trim();
                     taskTime = line.substring(line.indexOf('(') + 1, line.indexOf(')')).trim();
+
                     tasks.add(new Event(taskDesc, taskIsDone, taskTime));
                     break;
-
                 default:
                 }
             }
