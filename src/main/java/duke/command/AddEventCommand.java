@@ -13,9 +13,7 @@ import duke.ui.Ui;
  * Represents an executable command to add a new Event object
  */
 public class AddEventCommand extends Command {
-    /* Description of the task. */
     private String description;
-    /* Deadline of the task. */
     private LocalDateTime atDate;
 
     public AddEventCommand(String description, LocalDateTime atDate) {

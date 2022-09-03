@@ -11,7 +11,6 @@ import duke.ui.Ui;
  * Represents an executable command to mark a task at index as done.
  */
 public class MarkCommand extends Command {
-    /* Index of task to mark as done. */
     private int idx;
 
     public MarkCommand(int idx) {

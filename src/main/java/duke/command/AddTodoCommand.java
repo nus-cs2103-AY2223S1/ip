@@ -11,7 +11,6 @@ import duke.ui.Ui;
  * Represents an executable command to add a new Todo object
  */
 public class AddTodoCommand extends Command {
-    /* Description of the task. */
     private String description;
 
     public AddTodoCommand(String description) {
