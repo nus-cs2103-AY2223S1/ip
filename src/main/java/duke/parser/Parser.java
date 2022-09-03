@@ -37,6 +37,7 @@ public class Parser {
      * @return Command object that can be executed.
      */
     public static Command parseCommand(String commandString) {
+        assert commandString != null : "Command string is null";
         Matcher matcher = BASIC_COMMAND_FORMAT.matcher(commandString.trim());
         if (!matcher.matches()) {
             throw new DukeException("Unknown command");
@@ -74,6 +75,7 @@ public class Parser {
      * @return Task object.
      */
     public static Task fromStorage(String taskString) {
+        assert taskString != null : "Task string is null";
         Matcher matcher = STORAGE_FORMAT.matcher(taskString);
         if (!matcher.matches()) {
             throw new DukeException("Invalid task format in storage: " + taskString);
