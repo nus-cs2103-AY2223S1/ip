@@ -3,7 +3,6 @@ package duke;
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.task.TaskList;
-import duke.ui.Ui;
 import javafx.application.Platform;
 
 /**

@@ -58,6 +58,7 @@ public class Storage {
    */
   public void saveFile(TaskList taskList) throws DukeException {
     createFile();
+    assert file.exists() : "File should exists";
     PrintWriter writer;
     try {
       writer = new PrintWriter(file);
@@ -81,6 +82,7 @@ public class Storage {
    */
   public TaskList readFile() throws DukeException {
     createFile();
+    assert file.exists() : "File should exists";
     TaskList taskList = new TaskList();
     BufferedReader reader;
 
