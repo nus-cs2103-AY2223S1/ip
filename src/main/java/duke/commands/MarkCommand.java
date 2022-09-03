@@ -36,9 +36,9 @@ public class MarkCommand extends Command {
             storage.setTaskStatusOnDisk(taskNumber, true);
             return ui.printMarkTask(tasks.getTaskToString(taskNumber - 1));
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            return ("     OOPS!!! Please enter a valid task number.");
+            return ("\tOOPS!!! Please enter a valid task number.");
         } catch (IOException e) {
-            return ("     " + e.getMessage());
+            return ("\t" + e.getMessage());
         }
     }
 

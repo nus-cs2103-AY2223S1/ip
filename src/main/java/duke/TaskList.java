@@ -89,7 +89,7 @@ public class TaskList {
         for (int i = 1; i <= taskList.size(); i++) {
             Task currentTask = taskList.get(i - 1);
             String taskDescription = currentTask.toString();
-            message += ("     "
+            message += ("\t"
                     + i
                     + "."
                     + taskDescription);
@@ -111,7 +111,7 @@ public class TaskList {
             Task currentTask = taskList.get(i - 1);
             String taskDescription = currentTask.toString();
             if (taskDescription.contains(keyword)) {
-                message += ("     "
+                message += ("\t"
                         + i
                         + "."
                         + taskDescription);

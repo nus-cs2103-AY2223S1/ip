@@ -42,7 +42,7 @@ public class ToDoCommand extends Command {
             storage.addTaskToDisk(task.taskMemo() + System.lineSeparator());
             return ui.printAddTask(task, tasks.getTaskListSize());
         } catch (IOException e) {
-            return ("     " + e.getMessage());
+            return ("\t" + e.getMessage());
         }
     }
 

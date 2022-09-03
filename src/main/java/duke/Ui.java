@@ -8,25 +8,12 @@ import java.util.Scanner;
  * Handles interaction with user.
  */
 public class Ui {
-//    /**
-//     * Prints line format.
-//     */
-//    public String showLine() {
-//        return ("    ____________________________________________________________");
-//    }
-
     /**
      * Greets user.
      */
     public static String showWelcome() {
-//        String logo = " ____        _        \n"
-//                + "|  _ \\ _   _| | _____ \n"
-//                + "| | | | | | | |/ / _ \\\n"
-//                + "| |_| | |_| |   <  __/\n"
-//                + "|____/ \\__,_|_|\\_\\___|\n";
-//        String result = ("Hello from\n" + logo);
-        String result = ("     Hello! I'm duke.Duke\n"
-                + "     What can I do for you?");
+        String result = ("\tHello! I'm Duke\n"
+                + "\tWhat can I do for you?");
         return result;
     }
 
@@ -38,9 +25,9 @@ public class Ui {
      *
      */
     public String printAddTask(Task task, int size) {
-        return ("     Got it. I've added this task:\n"
-                + "       " + task.toString() + "\n"
-                + "     Now you have " + size + " tasks in the list.");
+        return ("\tGot it. I've added this task:\n"
+                + "\t" + task.toString() + "\n"
+                + "\tNow you have " + size + " tasks in the list.");
     }
 
     /**
@@ -50,9 +37,9 @@ public class Ui {
      * @param size Remaining number of Tasks in list.
      */
     public String printDeleteTask(String task, int size) {
-        return ("     Noted. I've removed this task:\n"
-                + "       " + task + "\n"
-                + "     Now you have " + size + " tasks in the list.");
+        return ("\tNoted. I've removed this task:\n"
+                + "\t" + task + "\n"
+                + "\tNow you have " + size + " tasks in the list.");
     }
 
     /**
@@ -61,7 +48,7 @@ public class Ui {
      * @param list The list of Tasks in String.
      */
     public String printDisplayList(String list) {
-        String message = "     Here are the tasks in your list:\n";
+        String message = "\tHere are the tasks in your list:\n";
         message += list;
         return (message);
     }
@@ -72,8 +59,8 @@ public class Ui {
      * @param message The Task that was marked in String.
      */
     public String printMarkTask(String message) {
-        return ("     Nice! I've marked this task as done:\n"
-                + "       " + message);
+        return ("\tNice! I've marked this task as done:\n"
+                + "\t" + message);
     }
 
     /**
@@ -82,8 +69,8 @@ public class Ui {
      * @param message The Task that was unmarked in String.
      */
     public String printUnmarkTask(String message) {
-        return ("     OK, I've marked this task as not done yet:\n"
-                + "       " + message);
+        return ("\tOK, I've marked this task as not done yet:\n"
+                + "\t" + message);
     }
 
     /**
@@ -92,7 +79,7 @@ public class Ui {
      * @param list Tasks that matched description given.
      */
     public String printFindTask(String list) {
-        String message = "     Here are the matching tasks in your list:\n";
+        String message = "\tHere are the matching tasks in your list:\n";
         message += list;
         return (message);
     }
@@ -103,13 +90,13 @@ public class Ui {
      * @param e Exception caught.
      */
     public String printError(Exception e) {
-        return ("     " + e.getMessage());
+        return ("\t" + e.getMessage());
     }
 
     /**
      * Prints when program terminates.
      */
     public String printExit() {
-        return ("     Bye. Hope to see you again soon!");
+        return ("\tBye. Hope to see you again soon!");
     }
 }

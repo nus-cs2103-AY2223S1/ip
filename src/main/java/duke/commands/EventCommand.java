@@ -50,9 +50,9 @@ public class EventCommand extends Command {
             storage.addTaskToDisk(task.taskMemo() + System.lineSeparator());
             return ui.printAddTask(task, tasks.getTaskListSize());
         } catch (IOException e) {
-            return ("     " + e.getMessage());
+            return ("\t" + e.getMessage());
         } catch (DateTimeParseException e) {
-            return ("     OOPS!!! Please enter a valid date format (/at yyyy-mm-dd)");
+            return ("\tOOPS!!! Please enter a valid date format (/at yyyy-mm-dd)");
         }
     }
 

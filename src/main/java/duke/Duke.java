@@ -1,6 +1,5 @@
 package duke;
 
-import duke.*;
 import duke.commands.Command;
 import javafx.scene.image.Image;
 

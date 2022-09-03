@@ -145,7 +145,7 @@ public class Storage {
      * @param isDone the new status of the task.
      * @throws IOException if unable to write to file.
      */
-    public void setTaskStatusOnDisk(int taskNumber, boolean isDone)throws IOException {
+    public void setTaskStatusOnDisk(int taskNumber, boolean isDone) throws IOException {
         File inputFile = new File(filePath);
         File tempFile = new File(tempFilePath);
         Scanner s = new Scanner(inputFile);
