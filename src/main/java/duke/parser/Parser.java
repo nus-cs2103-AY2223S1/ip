@@ -2,7 +2,9 @@ package duke.parser;
 
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 import duke.command.AddCommand;
 import duke.command.Command;
@@ -23,6 +25,12 @@ import duke.task.ToDo;
  * @author Rama Aryasuta Pangestu
  */
 public abstract class Parser {
+    private static Stream<String> parseArgument(String[] args, String argument) {
+        return Arrays.stream(args)
+                .dropWhile(x -> !x.equals(argument)).skip(1)
+                .takeWhile(x -> x.charAt(0) != '/');
+    }
+
     /**
      * Returns a <code>Command</code> equivalent to the user input.
      *
@@ -43,8 +51,8 @@ public abstract class Parser {
             command = new ListCommand();
             break;
         case "find":
-            command = new FindCommand(
-                    Arrays.stream(args).skip(1).reduce("", (x, y) -> x + " " + y).trim());
+            command = new FindCommand(Parser.parseArgument(args, "find")
+                    .reduce("", (x, y) -> x + " " + y).trim());
             break;
         case "mark":
             try {
@@ -74,39 +82,37 @@ public abstract class Parser {
             }
             break;
         case "todo":
-            command = new AddCommand(new ToDo(
-                    Arrays.stream(args).skip(1).reduce("", (x, y) -> x + " " + y).trim(),
-                    false));
+            command = new AddCommand(new ToDo(Parser.parseArgument(args, "todo")
+                    .reduce("", (x, y) -> x + " " + y).trim(), false));
             break;
         case "event":
             try {
-                String description = Arrays.stream(args)
-                        .takeWhile(x -> !x.equals("/at")).skip(1)
+                String description = Parser.parseArgument(args, "event")
                         .reduce("", (x, y) -> x + " " + y).trim();
-                String[] timeArgument = Arrays.stream(args)
-                        .dropWhile(x -> !x.equals("/at")).toArray(String[]::new);
-                if (timeArgument.length <= 1) {
+                String[] timeArgument = Parser.parseArgument(args, "/at")
+                        .toArray(String[]::new);
+                if (timeArgument.length == 0) {
                     throw new DukeException("OOPS!!! There is no /at argument for event :(");
                 }
                 command = new AddCommand(
-                        new Event(description, false, LocalDate.parse(timeArgument[1])));
-            } catch (java.time.format.DateTimeParseException exception) {
+                        new Event(description, false, LocalDate.parse(timeArgument[0])));
+            } catch (DateTimeParseException exception) {
                 throw new DukeException(
                         "OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.");
             }
             break;
         case "deadline":
             try {
-                String description = Arrays.stream(args).takeWhile(x -> !x.equals("/by"))
-                        .skip(1).reduce("", (x, y) -> x + " " + y).trim();
-                String[] timeArgument = Arrays.stream(args).dropWhile(x -> !x.equals("/by"))
+                String description = Parser.parseArgument(args, "deadline")
+                        .reduce("", (x, y) -> x + " " + y).trim();
+                String[] timeArgument = Parser.parseArgument(args, "/by")
                         .toArray(String[]::new);
-                if (timeArgument.length <= 1) {
+                if (timeArgument.length == 0) {
                     throw new DukeException("OOPS!!! There is no /by argument for deadline :(");
                 }
                 command = new AddCommand(
-                        new Deadline(description, false, LocalDate.parse(timeArgument[1])));
-            } catch (java.time.format.DateTimeParseException exception) {
+                        new Deadline(description, false, LocalDate.parse(timeArgument[0])));
+            } catch (DateTimeParseException exception) {
                 throw new DukeException(
                         "OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.");
             }

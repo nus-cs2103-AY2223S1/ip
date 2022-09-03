@@ -50,7 +50,7 @@ public class Duke {
             ui.addError(e.getMessage());
         }
         if (isExit) {
-            System.exit(0);
+            Launcher.exit();
         }
         return ui.getOutput();
     }
