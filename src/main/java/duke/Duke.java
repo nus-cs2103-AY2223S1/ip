@@ -133,7 +133,6 @@ public class Duke {
             String information = Parser.parseCommand(input);
             String[] infoArray = information.split("\\|");
             System.out.println("/" + infoArray[0]+"/");
-
             switch (infoArray[0]) {
                 case "hello":
                     response = this.ui.printDukeOpening();
@@ -203,7 +202,6 @@ public class Duke {
         }
         return response;
     }
-
 
     /**
      * The main method that is the entry to the Duke Application.
