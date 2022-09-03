@@ -13,6 +13,8 @@ import command.Commands;
  */
 public class Task {
 
+    private static final String MALFORMED = "[T][ ] MALFORMED TASK";
+
     protected String description;
     protected boolean isDone;
     private final Commands type;
@@ -85,6 +87,10 @@ public class Task {
         this.isDone = status;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
@@ -94,9 +100,11 @@ public class Task {
         case DEADLINE:
             return "[D]" + getStatusIcon() + " " + description + " (by: "
                    + date.format(formatter).replace("T", " ") + ")";
-        default:
+        case EVENT:
             return "[E]" + getStatusIcon() + " " + description + " (at: "
                    + date.format(formatter).replace("T", " ") + ")";
+        default:
+            return MALFORMED;
         }
     }
 
@@ -115,9 +123,11 @@ public class Task {
         case DEADLINE:
             return "D | " + (isDone ? 1 : 0) + " | " + description + " | (by: "
                    + date.format(formatter).replace("T", " ") + ")";
-        default:
+        case EVENT:
             return "E | " + (isDone ? 1 : 0) + " | " + description + " | (at: "
                    + date.format(formatter).replace("T", " ") + ")";
+        default:
+            return MALFORMED;
         }
     }
 }

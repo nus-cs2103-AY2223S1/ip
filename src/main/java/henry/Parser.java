@@ -93,12 +93,15 @@ public class Parser {
 
     private Command parseDeadlineArguments(String args) {
         assert args != null : "Arguments are null!";
+
         Matcher matcher = DEADLINE_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             throw new HenryException("ARGUMENT HAS THE WRONG FORMAT!");
         }
+
         String description = matcher.group("desc");
         String dateTime = matcher.group("dateTime");
+
         try {
             return new DeadlineCommand(description, LocalDateTime.parse(dateTime, formatter));
         } catch (NumberFormatException e) {
@@ -107,12 +110,15 @@ public class Parser {
     }
 
     private Command parseEventArguments(String args) {
+
         Matcher matcher = EVENT_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             throw new HenryException("ARGUMENT HAS THE WRONG FORMAT!");
         }
+
         String description = matcher.group("desc");
         String dateTime = matcher.group("dateTime");
+
         try {
             return new EventCommand(description, LocalDateTime.parse(dateTime, formatter));
         } catch (NumberFormatException e) {
