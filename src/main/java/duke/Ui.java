@@ -10,7 +10,8 @@ import duke.task.TaskList;
  * A component of the chatBot Duke that returns his response as a string.
  */
 public class Ui {
-
+    public static final String INTRO_MESSAGE = "Gigachad is here to help";
+    public static final String EXIT_MESSAGE = "Farewell, till we meet again";
 
     /**
      * Returns the outro message of the chatBot Duke.
@@ -18,7 +19,7 @@ public class Ui {
      * @return The outro message.
      */
     public String getOutroMessage() {
-        return "Farewell, till we meet again";
+        return EXIT_MESSAGE;
     }
 
 
