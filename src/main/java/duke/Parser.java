@@ -18,6 +18,8 @@ import duke.ui.Ui;
 
 /**
  * Represents an abstraction that handles inputs from the user.
+ *
+ * Inspired by addressBook-level2
  */
 public class Parser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<argument>.*)");

@@ -15,6 +15,6 @@ public class DeleteCommand implements Command {
 
     @Override
     public String execute(TaskList taskList) {
-        return taskList.remove(index - 1);
+        return taskList.remove(index);
     }
 }
