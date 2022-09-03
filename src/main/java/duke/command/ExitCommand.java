@@ -21,7 +21,6 @@ public class ExitCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         storage.update(tasks.getTasks());
         Command.end();
-        ui.exitTask();
         return ui.exitTask();
     }
 }

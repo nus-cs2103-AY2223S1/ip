@@ -17,17 +17,17 @@ public class Ui {
      * @return the logo
      */
     public static String logo() {
-        String logo = "\n"
-                + "     ██▓    ▄▄▄       ███▄ ▄███▓▓█████▄  ▄▄▄\n"
-                + "    ▓██▒   ▒████▄    ▓██▒▀█▀ ██▒▒██▀ ██▌▒████▄\n"
-                + "    ▒██░   ▒██  ▀█▄  ▓██    ▓██░░██   █▌▒██  ▀█▄\n"
-                + "    ▒██░   ░██▄▄▄▄██ ▒██    ▒██ ░▓█▄   ▌░██▄▄▄▄██\n"
-                + "    ░██████▒▓█   ▓██▒▒██▒   ░██▒░▒████▓  ▓█   ▓██▒\n"
-                + "    ░ ▒░▓  ░▒▒   ▓▒█░░ ▒░   ░  ░ ▒▒▓  ▒  ▒▒   ▓▒█░\n"
-                + "    ░ ░ ▒  ░ ▒   ▒▒ ░░  ░      ░ ░ ▒  ▒   ▒   ▒▒ ░\n"
-                + "      ░ ░    ░   ▒   ░      ░    ░ ░  ░   ░   ▒\n"
-                + "        ░  ░     ░  ░       ░      ░          ░  ░\n"
-                + "                               ░\n";
+        String logo = ""
+                + " ██▓    ▄▄▄       ███▄ ▄███▓▓█████▄  ▄▄▄      \n"
+                + "▓██▒   ▒████▄    ▓██▒▀█▀ ██▒▒██▀ ██▌▒████▄    \n"
+                + "▒██░   ▒██  ▀█▄  ▓██    ▓██░░██   █▌▒██  ▀█▄  \n"
+                + "▒██░   ░██▄▄▄▄██ ▒██    ▒██ ░▓█▄   ▌░██▄▄▄▄██ \n"
+                + "░██████▒▓█   ▓██▒▒██▒   ░██▒░▒████▓  ▓█   ▓██▒\n"
+                + "░ ▒░▓  ░▒▒   ▓▒█░░ ▒░   ░  ░ ▒▒▓  ▒  ▒▒   ▓▒█░\n"
+                + "░ ░ ▒  ░ ▒   ▒▒ ░░  ░      ░ ░ ▒  ▒   ▒   ▒▒ ░\n"
+                + "  ░ ░    ░   ▒   ░      ░    ░ ░  ░   ░   ▒   \n"
+                + "    ░  ░     ░  ░       ░      ░          ░  ░\n"
+                + "                           ░                  \n";
         return logo;
     }
 
@@ -36,7 +36,17 @@ public class Ui {
      * @return greeting message
      */
     public static String greet() {
-        return "  Hi, I am LaMDA, your personal assistant.\n  How may I assist you today?\n";
+        return "Hi, I am LaMDA, your personal assistant.\nHow may I assist you today?\n";
+    }
+
+    public static void exitProgram() {
+        /*try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }*/
+        javafx.application.Platform.exit();
+        System.exit(0);
     }
 
     /**
@@ -51,7 +61,7 @@ public class Ui {
      * To display exit message
      */
     public String exitTask() {
-        return ("  It's a great time talking with you.\n  See you next time!\n");
+        return ("It's a great time talking with you.\nSee you next time!\n");
     }
 
     /**
@@ -60,7 +70,7 @@ public class Ui {
      * @return
      */
     public String listTask(TaskList tasks) {
-        return ("  Here are the tasks in your list:\n" + tasks.listTasks());
+        return ("Here are the tasks in your list:\n" + tasks.listTasks());
     }
 
     /**
@@ -69,9 +79,9 @@ public class Ui {
      * @param todo the added {@code Todo}
      */
     public String todoTask(TaskList tasks, Todo todo) {
-        return ("  Got it. I've added this task:\n")
-                + ("    " + todo.toString() + "\n")
-                + ("  Now you have " + tasks.size() + " tasks in the list.\n");
+        return ("Got it. I've added this task:\n")
+                + ("  " + todo.toString() + "\n")
+                + ("Now you have " + tasks.size() + " tasks in the list.\n");
     }
 
     /**
@@ -80,9 +90,9 @@ public class Ui {
      * @param deadline the added {@code Deadline}
      */
     public String deadlineTask(TaskList tasks, Deadline deadline) {
-        return ("  Got it. I've added this task:\n")
-                + ("    " + deadline.toString() + "\n")
-                + ("  Now you have " + tasks.size() + " tasks in the list.\n");
+        return ("Got it. I've added this task:\n")
+                + ("  " + deadline.toString() + "\n")
+                + ("Now you have " + tasks.size() + " tasks in the list.\n");
     }
 
     /**
@@ -91,9 +101,9 @@ public class Ui {
      * @param event the added {@code Event}
      */
     public String eventTask(TaskList tasks, Event event) {
-        return ("  Got it. I've added this task:\n")
-                + ("    " + event.toString() + "\n")
-                + ("  Now you have " + tasks.size() + " tasks in the list.\n");
+        return ("Got it. I've added this task:\n")
+                + ("  " + event.toString() + "\n")
+                + ("Now you have " + tasks.size() + " tasks in the list.\n");
     }
 
     /**
@@ -101,8 +111,8 @@ public class Ui {
      * @param task the marked {@code Task}
      */
     public String markTask(Task task) {
-        return ("  I've marked this task as done:\n")
-                + ("    " + task.toString() + "\n");
+        return ("I've marked this task as done:\n")
+                + ("  " + task.toString() + "\n");
     }
 
     /**
@@ -110,8 +120,8 @@ public class Ui {
      * @param task the unmarked {@code Task}
      */
     public String unmarkTask(Task task) {
-        return ("  I've marked this task as not done yet:\n")
-                + ("    " + task.toString() + "\n");
+        return ("I've marked this task as not done yet:\n")
+                + ("  " + task.toString() + "\n");
     }
 
     /**
@@ -119,9 +129,9 @@ public class Ui {
      * @param task the deleted {@code Task}
      */
     public String deleteTask(TaskList tasks, Task task) {
-        return ("  Noted. I've removed this task:\n")
-                + ("    " + task.toString() + "\n")
-                + ("  Now you have " + tasks.size() + " tasks in the list.\n");
+        return ("Noted. I've removed this task:\n")
+                + ("  " + task.toString() + "\n")
+                + ("Now you have " + tasks.size() + " tasks in the list.\n");
     }
 
     /**
@@ -133,9 +143,9 @@ public class Ui {
         ArrayList<Task> temp = tasks.find(description);
         StringBuilder list = new StringBuilder();
         for (int i = 0; i < temp.size(); i++) {
-            list.append("    ").append(i + 1).append(".").append(temp.get(i).toString()).append("\n");
+            list.append("  ").append(i + 1).append(".").append(temp.get(i).toString()).append("\n");
         }
-        return ("  Here are the matching tasks in your list:\n")
+        return ("Here are the matching tasks in your list:\n")
                 + list;
     }
 }

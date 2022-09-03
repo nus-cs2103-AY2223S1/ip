@@ -88,7 +88,7 @@ public class TaskList {
     public String listTasks() {
         String list = "";
         for (int i = 0; i < tasks.size(); i++) {
-            list += ("    " + (i + 1) + "." + tasks.get(i).toString() + "\n");
+            list += ("  " + (i + 1) + "." + tasks.get(i).toString() + "\n");
         }
         return list;
     }

@@ -5,14 +5,21 @@ import java.util.Collections;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 /**
  * An example of a custom control using FXML.
@@ -21,23 +28,30 @@ import javafx.scene.text.Font;
  */
 public class DialogBox extends HBox {
     @FXML
-    private Label dialog;
+    private Text dialog;
     @FXML
     private ImageView displayPicture;
 
-    private DialogBox(String s, Image img) {
-        Circle clip = new Circle(40, 40, 40);
-        dialog = new Label(s);
-        dialog.setFont(new Font("SF Mono Medium", 10));
+    private DialogBox(String s, Image img, TextAlignment t) {
+        Circle clip = new Circle(50, 50, 40);
+        dialog = new Text(s);
+        dialog.setFont(new Font("SF Mono Medium", 11));
+        dialog.setFill(Paint.valueOf("FFFFFF"));
         ImageView iv = new ImageView(img);
         iv.setClip(clip);
         displayPicture = iv;
 
-        dialog.setWrapText(true);
-        displayPicture.setFitWidth(80.0);
-        displayPicture.setFitHeight(80.0);
+        dialog.setTextAlignment(t);
+        dialog.setWrappingWidth(330);
+        displayPicture.setFitWidth(100.0);
+        displayPicture.setFitHeight(100.0);
 
-        this.setAlignment(Pos.BOTTOM_RIGHT);
+        if (t == TextAlignment.LEFT) {
+            this.setBackground(new Background(new BackgroundFill(Color.valueOf("405E79"), new CornerRadii(5), new Insets(5))));
+        } else {
+            this.setBackground(new Background(new BackgroundFill(Color.valueOf("6DDA86"), new CornerRadii(5), new Insets(5))));
+        }
+        this.setAlignment(Pos.CENTER_RIGHT);
         this.getChildren().addAll(dialog, displayPicture);
     }
 
@@ -48,15 +62,15 @@ public class DialogBox extends HBox {
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
-        setAlignment(Pos.BOTTOM_LEFT);
+        setAlignment(Pos.CENTER_LEFT);
     }
 
     public static DialogBox getUserDialog(String s, Image img) {
-        return new DialogBox(s + "  \n\n", img);
+        return new DialogBox("\n" + s + "\n", img, TextAlignment.RIGHT);
     }
 
     public static DialogBox getDukeDialog(String s, Image img) {
-        var db = new DialogBox(s + "\n", img);
+        var db = new DialogBox("\n" + s, img, TextAlignment.LEFT);
         db.flip();
         return db;
     }

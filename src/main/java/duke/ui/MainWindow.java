@@ -3,15 +3,17 @@ package duke.ui;
 import duke.DukeException;
 import duke.Ui;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
 import duke.Duke;
 import duke.command.Command;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
@@ -27,7 +29,8 @@ public class MainWindow extends AnchorPane {
     private TextField userInput;
     @FXML
     private Button sendButton;
-
+    @FXML
+    private AnchorPane pane;
     @FXML
     private Text logo;
 
@@ -38,12 +41,19 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     public void initialize() {
+        Background background = new Background(new BackgroundFill(Color.valueOf("203649"), new CornerRadii(0), new Insets(0)));
+        Font font = new Font("SF Mono Medium", 12);
+        pane.setBackground(background);
+        dialogContainer.setBackground(background);
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        sendButton.setFont(font);
+        userInput.setFont(font);
 
         String l = Ui.logo();
         String greetMessage = Ui.greet();
         logo.setText(l);
-        logo.setFont(new Font("SF Mono Medium", 12));
+        logo.setFont(font);
+        logo.setFill(Paint.valueOf("FFFFFF"));
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(greetMessage, dukeImage)
         );
@@ -62,23 +72,19 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         String response;
         try {
-             response = duke.getResponse(userInput.getText());
+            response = duke.getResponse(userInput.getText());
         } catch (DukeException e) {
             response = e.getMessage();
         }
-        dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
+        dialogContainer.getChildren().add(
+                DialogBox.getUserDialog(input, userImage)
+        );
+        dialogContainer.getChildren().add(
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
         if (Command.isExit()) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            } finally {
-                javafx.application.Platform.exit();
-            }
+            Ui.exitProgram();
         }
     }
 }
