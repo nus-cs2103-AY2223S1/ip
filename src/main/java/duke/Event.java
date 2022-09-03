@@ -5,6 +5,7 @@ import java.time.format.DateTimeParseException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+
 /**
  * An Event class containing an event description and date.
  * Inherits from the Task class.
@@ -20,7 +21,9 @@ public class Event extends Task {
      * Constructor for an Event object.
      * Converts both MMM d yyy and yyyy-MM-dd format to yyyy-MM-dd format.
      */
-    public Event(String description, String at) {
+    public Event(String description, String at) throws DukeException {
+        //throws DukeException when the date is wrong telling user to change date format
+        //event breakfast /at 2022-12-12
         super(description);
         this.at = at;
         try {
@@ -37,9 +40,9 @@ public class Event extends Task {
                 this.localDate = LocalDate.parse(at.trim(),
                         DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             } catch (DateTimeParseException e1) {
-                System.out.println("Please provide the date " +
+                throw new DukeException("Please provide the date " +
                         "in the correct format, which is yyyy-mm-dd");
-                return;
+
             }
         }
     }

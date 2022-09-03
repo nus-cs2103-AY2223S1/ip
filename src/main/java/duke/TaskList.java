@@ -63,4 +63,14 @@ public class TaskList {
         return this.inputs.get(i);
     }
 
+    /**
+     * Obtains the index of a task.
+     *
+     * @param task
+     * @return index of the task needed by the user.
+     */
+    public int getIndex(Task task) {
+        return inputs.indexOf(task);
+    }
+
 }

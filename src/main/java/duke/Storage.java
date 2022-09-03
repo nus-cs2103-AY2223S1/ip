@@ -27,7 +27,8 @@ public class Storage {
      * @param inputs the TaskList to save the files of the contents into.
      * @throws FileNotFoundException
      */
-    public void readAndSaveFile(File file, TaskList inputs) throws FileNotFoundException {
+    public void readAndSaveFile(File file, TaskList inputs) throws FileNotFoundException, DukeException {
+
         Scanner scanner = new Scanner(file);
         //System.out.println("parsing activated");
 
@@ -95,10 +96,29 @@ public class Storage {
      * @throws IOException
      */
     public void updateFile(String file, TaskList taskList) throws IOException {
-        FileWriter fileWriter = new FileWriter(file);
+        FileWriter fileWriter = new FileWriter(file, false);
         for (int i = 0; i < taskList.getSize(); i++) {
             fileWriter.write(taskList.getTask(i).toString() + "\n");
         }
         fileWriter.close();
     }
+
+    public void inputSavedFile(TaskList taskList) {
+        try{
+            File dukeFile = new File("data/duke.txt");
+            dukeFile.getParentFile().mkdirs();//create the directory
+            if(dukeFile.createNewFile()){
+                System.out.println("new file created!");
+            } else {
+                readAndSaveFile(dukeFile, taskList);
+                System.out.println("updated file");
+            }
+        }catch (IOException e) {
+            System.out.println("Error in creating file");
+        } catch (DukeException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

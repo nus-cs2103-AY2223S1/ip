@@ -1,6 +1,7 @@
 package duke;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -12,24 +13,26 @@ public class Parser {
      * The Parser constructor.
      */
     Parser() {
-    }
 
-    private static void parseToDo(String str, TaskList taskList) throws DukeException {
+    }
+    private static String parseToDo(String str, TaskList taskList) throws DukeException {
         //parses a string to obtain a to do event description and its date  and adds it to the task list
         Ui ui = new Ui(taskList);
         try {
             str = str.split(" ", 2)[1].trim();
             ToDo taskToDo = new ToDo(str);
             taskList.addTask(taskToDo);
-            System.out.println(ui.printAddedTask(taskToDo.toString()));
+            return (ui.printAddedTask(taskToDo.toString()));
 
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException(("OOPS!!! The description of a duke." +
+            throw new DukeException(("OOPS!!! The description of a " +
                     "ToDo cannot be empty."));
+
         }
 
     }
-    private static void parseDeadline(String str, TaskList taskList) throws DukeException {
+
+    private static String parseDeadline(String str, TaskList taskList) throws DukeException {
         Ui ui = new Ui(taskList);
         try {
             //splits away deadline
@@ -38,14 +41,15 @@ public class Parser {
             String by = str.split("/by")[1].trim();
             Deadline taskDeadline = new Deadline(desc, by);
             taskList.addTask(taskDeadline);
-            System.out.println(ui.printAddedTask(taskDeadline.toString()));
+            return (ui.printAddedTask(taskDeadline.toString()));
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException(("OOPS!!! The description of a duke.Deadline " +
-                    "cannot be empty/incomplete."));
+            throw new DukeException(("OOPS!!! The description of a Deadline " +
+                    "cannot be empty/incomplete.\n" +
+                    "The format is event <deadline_name> /by yyyy-mm-dd"));
         }
     }
 
-    private static void parseEvent(String str, TaskList taskList) throws DukeException {
+    private static String parseEvent(String str, TaskList taskList) throws DukeException {
         Ui ui = new Ui(taskList);
         try {
             //splits away event
@@ -54,23 +58,25 @@ public class Parser {
             String at = str.split("/at")[1].trim();
             Event taskEvent = new Event(desc, at);
             taskList.addTask(taskEvent);
-            System.out.println(ui.printAddedTask(taskEvent.toString()));
+            return (ui.printAddedTask(taskEvent.toString()));
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException(("OOPS!!! The description of an duke.Event " +
-                    "cannot be empty/incomplete."));
+            throw new DukeException(("OOPS!!! The description of a Deadline " +
+                    "cannot be empty/incomplete.\n" +
+                    "The format is event <event_name> /at yyyy-mm-dd"));
         }
     }
 
-    private static void parseDelete(String str, TaskList taskList) throws DukeException {
+    private static String parseDelete(String str, TaskList taskList) throws DukeException {
         Ui ui = new Ui(taskList);
         str = str.split(" ", 2)[1].trim();
         int index = Integer.valueOf(str) - 1;
         String msg = taskList.getTask(index).toString();
-        System.out.println(ui.printRemovedTask(msg));
+        //i shifted the remove here, not sure if this will show the wrong one or not
         taskList.removeTask(index);
+        return (ui.printRemovedTask(msg));
     }
 
-    private static void parseFind(String str, TaskList taskList) throws DukeException {
+    private static String parseFind(String str, TaskList taskList) throws DukeException {
         Ui ui = new Ui(taskList);
         String find = str.split(" ")[1].trim();
         String msg = "";
@@ -84,65 +90,75 @@ public class Parser {
                 counter++;
             }
         }
-        System.out.println(ui.printFindTask(msg));
+        return (ui.printFindTask(msg));
     }
 
     /**
-     * A method to obtain and parse the user instructions and conduct them in the TaskList.
+     * Parses a user input and stores it inside a file while also showing a string in response to the input
      *
-     * @param storage to update all the contents of the TaskList into.
-     * @param taskList to save all the tasks into after parsing and conducting user instructions.
+     * @param storage
+     * @param taskList
+     * @param str
+     * @return String in response to the input of the user
      * @throws DukeException
      */
-    public void parseInstruction(Storage storage, TaskList taskList) throws DukeException {
-        Scanner sc = new Scanner(System.in);
-        String str = sc.nextLine();
+    public String parseInstruction(Storage storage, TaskList taskList, String str) throws DukeException {
         Ui ui = new Ui(taskList);
-        while (!str.equals("bye")) {
+        String response = "";
+        //Scanner sc = new Scanner(System.in);
+        try {
+            if (str.equals("bye")) {
+                //exits the application
+                System.exit(0);
+                return ui.goodbye();
+            }
             //for listing
             if (str.equals("list")) {
-                System.out.println("Here are all the tasks in your list\n");
-                System.out.println("_______________________________________________________" +
-                        "\n" + ui.printAllTasks() + "\n" +
-                        "_______________________________________________________");
+                return ui.printList();
             } else {
                 String instruction = str.split(" ")[0];
                 if (instruction.equals("mark")) {
                     //this is as index is greater than array index by 1
                     int index = Integer.valueOf(str.split(" ")[1]) - 1;
                     taskList.getTask(index).setDone();
-                    System.out.println(ui.printMarkDone(taskList.getTask(index).toString()));
+                    response += (ui.printMarkDone(taskList.getTask(index).toString()));
 
                 } else if ((instruction.equals("unmark"))) {
                     int index = Integer.valueOf(str.split(" ")[1]) - 1;
                     taskList.getTask(index).setUndone();
-                    System.out.println(ui.printMarkUndone(taskList.getTask(index).toString()));
+                    response += (ui.printMarkUndone(taskList.getTask(index).toString()));
 
                 } else if (instruction.equals("todo")) {
-                    parseToDo(str, taskList);
+                    response += parseToDo(str, taskList);
 
                 } else if (instruction.equals("deadline")) {
-                    parseDeadline(str, taskList);
+                    response += parseDeadline(str, taskList);
 
                 } else if (instruction.equals("event")) {
-                    parseEvent(str, taskList);
+                    response += parseEvent(str, taskList);
 
                 } else if (instruction.equals("delete")) {
-                    parseDelete(str, taskList);
+                    response += parseDelete(str, taskList);
 
                 } else if (instruction.equals("find")) {
-                    parseFind(str, taskList);
+                    response += parseFind(str, taskList);
 
                 } else {
                     throw new DukeException("I have no idea what you are saying, this is not a task >_<");
                 }
             }
+
             try {
                 storage.updateFile("data/duke.txt", taskList);//updates dukeFile after each input
             } catch (IOException e) {
                 System.out.println("Error in saving the file");
             }
-            str = sc.nextLine();
+            return response;
+        } catch (DukeException e) {
+            //returns the exception message
+            return e.toString();
         }
     }
+
 }
+

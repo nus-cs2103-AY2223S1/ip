@@ -46,7 +46,7 @@ public class Ui {
      * @return String telling the user a task has been removed to his list.
      */
     public String printRemovedTask(String msg) {
-        int taskRemaining = taskList.getSize() - 1;
+        int taskRemaining = taskList.getSize();
         return "_______________________________________________________" +
                 "\n" + "OK, I have deleted this task from your list:\n " + msg + "\n" +
                 "Great, now you have " + taskRemaining  + " tasks in the list.\n" +
@@ -105,10 +105,32 @@ public class Ui {
         return userInputs;
     }
 
+    /**
+     * Shows the found tasks in the list
+     *
+     * @param msg
+     * @return String of all the found tasks in the list
+     */
     public String printFindTask(String msg) {
         return "_______________________________________________________" + "\n" +
                 "Here are the matching tasks in your list:" +
-                "\n" + msg + "\n" +
+                "\n" + msg +
                 "\n" + "_______________________________________________________";
     }
+
+    /**
+     * Shows the found tasks in the list in brackets
+     *
+     * @return String of all the found tasks in the list
+     */
+    public String printList() {
+        return ("_______________________________________________________\n" +
+                "Here are all the tasks in your list:\n" +
+                "\n" + printAllTasks()  +
+                "_______________________________________________________");
+    }
+
+
+
+
 }

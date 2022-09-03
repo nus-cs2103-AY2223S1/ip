@@ -11,8 +11,11 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
 
 
 
@@ -34,15 +37,21 @@ public class Duke extends Application {
     private Button sendButton;
     private Scene scene;
 
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/paimon.jpg"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/images/gigachad.jpg"));
+
     /**
      * Constructor of the duke class.
      *
      */
-    public Duke() {
-        parser = new Parser();
+    public Duke()  {
         taskList = new TaskList();
         ui = new Ui(taskList);
         storage = new Storage("data/duke.txt");
+        parser = new Parser();
+        //load the file ONLY in the constructor so that multiple calls in parse
+        //will not duplicate it via updateFile
+        storage.inputSavedFile(taskList);
     }
 
     /**
@@ -59,17 +68,21 @@ public class Duke extends Application {
                 System.out.println("new file created!");
             } else {
                storage.readAndSaveFile(dukeFile, taskList);
-                System.out.println("updated file");
+                //System.out.println("updated file");
             }
         }catch (IOException e) {
             System.out.println("Error in creating file");
         }
-        parser.parseInstruction(storage, taskList);
+        //parser.parseInstruction(storage, taskList);
         System.out.println(ui.goodbye());
     }
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws IOException {
+
+        storage.inputSavedFile(taskList);
+
+        //for reading the file
         Label helloWorld = new Label("Hello World!"); // Creating a new Label control
         Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
 
@@ -133,6 +146,27 @@ public class Duke extends Application {
             dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
             userInput.clear();
         });
+
+        //Scroll down to the end every time dialogContainer's height changes.
+        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
+
+        //Part 3. Add functionality to handle user input.
+        //exception added
+        sendButton.setOnMouseClicked((event) -> {
+            try {
+                handleUserInput();
+            } catch (DukeException e) {
+                e.printStackTrace();
+            }
+        });
+
+        userInput.setOnAction((event) -> {
+            try {
+                handleUserInput();
+            } catch (DukeException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     /**
@@ -147,6 +181,31 @@ public class Duke extends Application {
         textToAdd.setWrapText(true);
 
         return textToAdd;
+    }
+
+    /**
+     * Iteration 2:
+     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
+     * the dialog container. Clears the user input after processing.
+     */
+    //exception added
+    private void handleUserInput() throws DukeException {
+        Label userText = new Label(userInput.getText());
+        Label dukeText = new Label(getResponse(userInput.getText()));
+        dialogContainer.getChildren().addAll(
+                new DialogBox("hello", user),
+                new DialogBox("no", duke)
+        );
+        userInput.clear();
+    }
+    //exception added
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    String getResponse(String input) throws DukeException {
+        //initialise or read the file here
+        return parser.parseInstruction(storage, taskList, input);
     }
 
 

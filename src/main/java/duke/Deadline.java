@@ -21,7 +21,9 @@ public class Deadline extends Task {
      * Constructor for a Deadline object.
      * Converts both MMM d yyy and yyyy-MM-dd format to yyyy-MM-dd format.
      */
-    public Deadline(String description, String date) {
+    public Deadline(String description, String date) throws DukeException{
+        //throws DukeException when the date is wrong telling user to change date format
+        //deadline breakfast /by 2022-12-12
         super(description);
         this.date = date;
         try {
@@ -38,9 +40,8 @@ public class Deadline extends Task {
                 this.localDate = LocalDate.parse(date.trim(),
                         DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             } catch (DateTimeParseException e1) {
-                System.out.println("Please provide the date in the " +
-                        "correct format, which is yyyy-MM-dd");
-                return;
+                throw new DukeException("Please provide the date " +
+                        "in the correct format, which is yyyy-mm-dd");
             }
         }
     }
