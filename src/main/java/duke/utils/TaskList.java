@@ -74,7 +74,7 @@ public class TaskList {
         return tasks;
     }
 
-    public String printTasks() {
+    public String tasksToString() {
         String str = "Your tasks:\n";
         for (Task task : tasks) {
             int taskIndex = tasks.indexOf(task) + 1;
