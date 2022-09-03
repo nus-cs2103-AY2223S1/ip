@@ -24,8 +24,7 @@ public class Todo extends Task {
      */
     @Override
     public String formatFileText() {
-        String s = String.format("T | %s | %s\n", super.getStatusIcon(), this.description);
-        return s;
+        return String.format("T | %s | %s\n", super.getStatusIcon(), this.description);
     }
 
     /**

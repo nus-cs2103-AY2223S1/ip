@@ -29,8 +29,7 @@ public class Event extends Task {
      */
     @Override
     public String formatFileText() {
-        String s = String.format("E | %s | %s | %s\n", super.getStatusIcon(), this.description, this.at);
-        return s;
+        return String.format("E | %s | %s | %s\n", super.getStatusIcon(), this.description, this.at);
     }
 
     /**

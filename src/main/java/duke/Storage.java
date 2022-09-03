@@ -27,13 +27,15 @@ public class Storage {
      * in the saved file.
      *
      * @param input String of the task that was parsed.
-     * @return Todo object.
      */
-    private Todo loadTodo(String input) {
+    private void loadTodo(String input, boolean isDone, TaskList list) {
         assert(input.split(" ").length != 0);
         String[] taskType = input.split(" ", 2);
         Todo todo = new Todo(taskType[1]);
-        return todo;
+        if (isDone) {
+            todo.loadDone();
+        }
+        list.add(todo);
     }
 
     /**
@@ -42,20 +44,21 @@ public class Storage {
      * is read from the file has been properly formatted.
      *
      * @param input String of the task that was parsed.
-     * @return Deadline object.
      */
-    private Deadline loadDeadline(String input) {
+    private void loadDeadline(String input, boolean isDone, TaskList list) {
         assert(input.split(" ").length != 0);
         String[] taskType = input.split(" ", 2);
         String[] taskBy = taskType[1].split("/by ", 2);
         assert(taskBy[1].trim().matches("(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2})") == true);
         try {
             Deadline deadline = new Deadline(taskBy[0], taskBy[1]);
-            return deadline;
+            if (isDone) {
+                deadline.loadDone();
+            }
+            list.add(deadline);
         } catch (DukeException e) {
             e.printStackTrace();
         }
-        return null;
     }
 
     /**
@@ -63,21 +66,23 @@ public class Storage {
      * in the saved file.
      *
      * @param input String of the task that was parsed.
-     * @return Event object.
      */
-    private Event loadEvent(String input) {
+    private void loadEvent(String input, boolean isDone, TaskList list) {
         assert(input.split(" ").length != 0);
         String[] taskType = input.split(" ", 2);
         String[] taskBy = taskType[1].split("/at ", 2);
         Event event = new Event(taskBy[0], taskBy[1]);
-        return event;
+        if (isDone) {
+            event.loadDone();
+        }
+        list.add(event);
     }
 
     /**
      * Reads all tasks in file and adds them to the TaskList. If no previous
-     * file has been found, it returns the tasklist provided in param.
+     * file has been found, it returns the TaskList provided in param.
      *
-     * @param list an empty tasklist for saved tasks to be re-written to.
+     * @param list an empty TaskList for saved tasks to be re-written to.
      * @return TaskList with all saved tasks added to.
      */
     public TaskList loadFile(TaskList list) {
@@ -89,30 +94,15 @@ public class Storage {
                 switch (task[0]) {
                 case "T": // create event task
                     String taskString = String.format("todo %s", task[2]);
-                    assert(taskString != null);
-                    Todo newTodo = loadTodo(taskString);
-                    if (task[1].trim().equals("X")) {
-                        newTodo.loadDone();
-                    }
-                    list.add(newTodo);
+                    loadTodo(taskString, isLoadedTaskDone(task[1]), list);
                     break;
                 case "D": // create deadline task
                     String deadlineString = String.format("deadline %s/by %s", task[2], task[3]);
-                    assert(deadlineString != null);
-                    Deadline newDeadline = loadDeadline(deadlineString);
-                    if (task[1].trim().equals("X")) {
-                        newDeadline.loadDone();
-                    }
-                    list.add(newDeadline);
+                    loadDeadline(deadlineString, isLoadedTaskDone(task[1]), list);
                     break;
                 case "E": // create event task
                     String eventString = String.format("event %s/at %s", task[2], task[3]);
-                    assert(eventString != null);
-                    Event newEvent = loadEvent(eventString);
-                    if (task[1].trim().equals("X")) {
-                        newEvent.loadDone();
-                    }
-                    list.add(newEvent);
+                    loadEvent(eventString, isLoadedTaskDone(task[1]), list);
                     break;
                 default:
                 }
@@ -121,6 +111,10 @@ public class Storage {
         } catch (FileNotFoundException e) {
             return list;
         }
+    }
+
+    private boolean isLoadedTaskDone(String input) {
+        return input.trim().equals("X");
     }
 
     /**
@@ -133,14 +127,8 @@ public class Storage {
     public static void writeToFile(String filePath, TaskList inputList) {
         assert(inputList.isEmpty() == false);
         try {
-            File dir = new File(filePath);
-            if (!dir.exists()) {
-                dir.mkdirs();
-            }
-            File textFile = new File(filePath + "/tasks.txt");
-            textFile.createNewFile();
-            FileWriter fw = new FileWriter(textFile);
-
+            createDirectory(filePath);
+            FileWriter fw = createFileWriter(filePath);
             Task[] taskArray = inputList.taskListToArray();
             for (int i = 0; i < taskArray.length; i++) {
                 String fileTextInput = taskArray[i].formatFileText();
@@ -150,5 +138,18 @@ public class Storage {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void createDirectory(String filePath) {
+        File dir = new File(filePath);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+    }
+
+    private static FileWriter createFileWriter(String filePath) throws IOException {
+        File textFile = new File(filePath + "/tasks.txt");
+        textFile.createNewFile();
+        return new FileWriter(textFile);
     }
 }
