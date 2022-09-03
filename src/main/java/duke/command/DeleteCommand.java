@@ -15,6 +15,10 @@ public class DeleteCommand implements Command {
 
     @Override
     public String execute(TaskList taskList) {
-        return taskList.remove(index);
+        try {
+            return taskList.remove(index);
+        } catch (IndexOutOfBoundsException e) {
+            return "Invalid task index";
+        }
     }
 }

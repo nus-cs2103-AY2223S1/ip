@@ -16,6 +16,7 @@ public class FindCommand implements Command {
     @Override
     public String execute(TaskList taskList) {
         TaskList filteredList = taskList.findTask(description);
+        assert filteredList != null : "Filtered list cannot be null";
         return filteredList.printListWithMessage("Here are the matching tasks in your list:");
     }
 }
