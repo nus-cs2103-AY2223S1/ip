@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.exception.DukeException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -14,6 +16,16 @@ public class Deadline extends Task {
         super(description);
         assert byDate != null: "Date cannot be null";
         this.byDate = byDate;
+    }
+
+    @Override
+    public LocalDateTime getTime() {
+        return this.byDate;
+    }
+
+    @Override
+    public void setTime(LocalDateTime time) {
+        this.byDate = time;
     }
 
     /**
