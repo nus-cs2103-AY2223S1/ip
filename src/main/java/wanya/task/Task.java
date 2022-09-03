@@ -37,28 +37,32 @@ public abstract class Task {
 
     /**
      * Marks the task as completed.
+     *
+     * @return String message for setting a task to be complete.
      */
-    public void setComplete() {
+    public String setComplete() {
         if (hasCompleted) {
-            System.out.println("Wanya is confused errrrr... You have already marked this task as done!\n");
+            return("Wanya is confused errrrr... You have already marked this task as done!");
         }
         this.hasCompleted = true;
-        System.out.println("Hehe well done! One task down, one step closer to play time!\n" +
-                "This task has been completed:");
-        System.out.println(this + "\n");
+        return("Hehe well done! One task down, one step closer to play time!\n"
+                + "This task has been completed:\n"
+                + this);
     }
 
     /**
      * Marks the task as uncompleted.
+     *
+     * @return String message for setting a task to be incomplete.
      */
-    public void setIncomplete() {
+    public String setIncomplete() {
         if (!hasCompleted) {
-            System.out.println("Wanya is confused errrrr... This task is not done yet!\n");
+            return("Wanya is confused errrrr... This task is not done yet!");
         }
         hasCompleted = false;
-        System.out.println("Oh nooo!!! Gotta buck up and finish up your tasks before you can play games.\n" +
-                "This task has not been completed:");
-        System.out.println(this + "\n");
+        return("Oh nooo!!! Gotta buck up and finish up your tasks before you can play games.\n"
+                + "This task has not been completed:\n"
+                + this);
     }
 
     /**

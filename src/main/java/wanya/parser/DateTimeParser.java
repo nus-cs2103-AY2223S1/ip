@@ -53,7 +53,7 @@ public class DateTimeParser {
      * Encodes a LocalDateTime object to a String representation for saving file.
      *
      * @param dateTime LocalDateTime object of date and time.
-     * @return encoded String representation of date and time.
+     * @return Encoded String representation of date and time.
      */
     public static String getDateTimeStorage(LocalDateTime dateTime) {
         return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(dateTime);
