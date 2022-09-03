@@ -24,7 +24,7 @@ public class Storage {
      * Reads the data into the list.
      * @throws DukeException If the file is unreadable.
      */
-    public void readData() throws DukeException{
+    public void readData() throws DukeException {
         File f = new File(this.filePath);
         try {
             if (!f.exists()) {
@@ -36,11 +36,11 @@ public class Storage {
                 String[] taskStrArray = sc.nextLine().split(" \\| ");
                 Task task = new Task("");
                 if (taskStrArray[0].contains("T")) {
-                    task = new Todo(taskStrArray[2]);
+                    task = new TodoTask(taskStrArray[2]);
                 } else if (taskStrArray[0].contains("D")) {
-                    task = new Deadline(taskStrArray[2], taskStrArray[3]);
+                    task = new DeadlineTask(taskStrArray[2], taskStrArray[3]);
                 } else if (taskStrArray[0].contains("E")) {
-                    task = new Event(taskStrArray[2], taskStrArray[3]);
+                    task = new EventTask(taskStrArray[2], taskStrArray[3]);
                 }
                 if (taskStrArray[1].contains("1")) {
                     task.mark();
@@ -60,14 +60,14 @@ public class Storage {
             FileWriter fileWriter = new FileWriter(filePath);
             for (Task task : TaskList.taskList) {
                 String holder;
-                if (task instanceof Todo) {
+                if (task instanceof TodoTask) {
                     holder = String.format("T | %s | %s", task.getStatus(), task.description);
-                } else if (task instanceof Deadline) {
-                    Deadline deadlineTask = (Deadline) task;
+                } else if (task instanceof DeadlineTask) {
+                    DeadlineTask deadlineTask = (DeadlineTask) task;
                     holder = String.format("D | %s | %s | %s",
                             deadlineTask.getStatus(), deadlineTask.description, deadlineTask.getOldDate());
                 } else {
-                    Event eventTask = (Event) task;
+                    EventTask eventTask = (EventTask) task;
                     holder = String.format("D | %s | %s | %s",
                             eventTask.getStatus(), eventTask.description, eventTask.getOldDate());
                 }

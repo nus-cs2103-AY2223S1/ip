@@ -3,19 +3,21 @@ package duke;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+/**
+ * Represents a deadline task.
+ */
+public class DeadlineTask extends Task {
 
-public class Event extends Task {
-
-    protected LocalDateTime dateTime;
-    private String formattedDateTime;
     private String oldDate;
+    private LocalDateTime dateTime;
+    private String formattedDateTime;
 
     /**
-     * Default constructor for Event.
+     * Default constructor for Deadline.
      * @param description Description of task.
      * @param dateTime Datetime of task.
      */
-    public Event(String description, String dateTime) {
+    public DeadlineTask(String description, String dateTime) {
         super(description);
         this.oldDate = dateTime;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
@@ -35,6 +37,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + formattedDateTime + ")";
+        return "[D]" + super.toString() + " (by: " + formattedDateTime + ")";
     }
 }

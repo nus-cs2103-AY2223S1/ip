@@ -26,7 +26,7 @@ public class TaskList {
                         if (newInput.trim().length() == 0) {
                             throw new DukeToDoIncorrectException();
                         } else {
-                            Todo todoTask = new Todo(newInput);
+                            TodoTask todoTask = new TodoTask(newInput);
                             taskList.add(todoTask);
                             newTask = todoTask;
                         }
@@ -40,12 +40,12 @@ public class TaskList {
 
                         if (input.startsWith("deadline")) {
                             String newDescription = description.replace("deadline ", "");
-                            Deadline deadlineTask = new Deadline(newDescription, date);
+                            DeadlineTask deadlineTask = new DeadlineTask(newDescription, date);
                             taskList.add(deadlineTask);
                             newTask = deadlineTask;
                         } else if (input.startsWith("event")) {
                             String newDescription = description.replace("event ", "");
-                            Event eventTask = new Event(newDescription, date);
+                            EventTask eventTask = new EventTask(newDescription, date);
                             taskList.add(eventTask);
                             newTask = eventTask;
                         }
@@ -63,7 +63,7 @@ public class TaskList {
             return Ui.addedMsg(newTask);
 
         } catch (DukeException e) {
-            return(e.getMessage());
+            return (e.getMessage());
         }
     }
 
@@ -74,10 +74,10 @@ public class TaskList {
                 Task removedTask = taskList.remove(index);
                 return Ui.deleteMsg(removedTask);
             } catch (IndexOutOfBoundsException e) {
-                return(new DukeException("ERROR: there is no item in the list there!").getMessage());
+                return (new DukeException("ERROR: there is no item in the list there!").getMessage());
             }
         } else {
-            return(new DukeException("ERROR: please specify an index.").getMessage());
+            return (new DukeException("ERROR: please specify an index.").getMessage());
         }
     }
 
@@ -87,7 +87,7 @@ public class TaskList {
      */
     public static String showList() {
         if (taskList.size() == 0) {
-            return(new DukeException("ERROR: empty list.").getMessage());
+            return (new DukeException("ERROR: empty list.").getMessage());
         }
         String list = "";
         for (int i = 0; i < TaskList.taskList.size(); i++) {
@@ -112,7 +112,7 @@ public class TaskList {
         copyToList(temp).removeIf(s -> !s.getDescription().contains(input));
         ;
         if (temp.size() == 0) {
-            return(new DukeException("ERROR: empty list.").getMessage());
+            return (new DukeException("ERROR: empty list.").getMessage());
         }
         String list = "";
         for (int i = 0; i < temp.size(); i++) {
