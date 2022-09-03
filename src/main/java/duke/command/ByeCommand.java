@@ -19,7 +19,7 @@ public class ByeCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Storage storage, Ui ui) throws IOException {
-        storage.save(tasks);
+        storage.saveTasks(tasks);
         ui.showMessage("Bye! Hope to see you again soon!");
     }
 }

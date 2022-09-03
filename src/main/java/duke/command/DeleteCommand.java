@@ -32,6 +32,6 @@ public class DeleteCommand extends Command {
         ui.showMessage("I've deleted this task.")
                 .showMessage(task.toString())
                 .showTaskListSize(tasks);
-        storage.save(tasks);
+        storage.saveTasks(tasks);
     }
 }

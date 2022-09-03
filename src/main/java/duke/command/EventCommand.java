@@ -35,6 +35,6 @@ public class EventCommand extends Command {
         ui.showMessage("I've added this event.")
                 .showMessage(task.toString())
                 .showTaskListSize(tasks);
-        storage.save(tasks);
+        storage.saveTasks(tasks);
     }
 }

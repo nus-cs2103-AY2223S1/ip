@@ -30,6 +30,6 @@ public class UnmarkCommand extends Command {
         Task task = tasks.getTask(index);
         task.markAsUndone();
         ui.showMessage("I've unmarked this task as done.").showMessage(task.toString());
-        storage.save(tasks);
+        storage.saveTasks(tasks);
     }
 }

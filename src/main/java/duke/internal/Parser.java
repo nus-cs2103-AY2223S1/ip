@@ -25,7 +25,7 @@ public class Parser {
      * @param str the string to parse
      * @return the Command object to execute
      */
-    public static Command parse(String str) {
+    public static Command parseString(String str) {
         String[] arguments = Parser.getArguments(str);
         if (arguments.length == 0) {
             throw new DukeException("Missing command");

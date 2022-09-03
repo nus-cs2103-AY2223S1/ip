@@ -6,19 +6,19 @@ import java.time.LocalDateTime;
  * A task that start at a specific date/time and ends at a specific date/time.
  */
 public class Event extends Task {
-    private final LocalDateTime datetime;
+    private final LocalDateTime dateTime;
 
-    public Event(String description, LocalDateTime datetime) {
+    public Event(String description, LocalDateTime dateTime) {
         super(description);
-        this.datetime = datetime;
+        this.dateTime = dateTime;
     }
 
-    public Event(String description, String datetime) {
-        this(description, LocalDateTime.parse(datetime, Task.DATE_TIME_FORMATTER));
+    public Event(String description, String dateTime) {
+        this(description, LocalDateTime.parse(dateTime, Task.DATE_TIME_FORMATTER));
     }
 
-    public Event(String description, String datetime, boolean isDone) {
-        this(description, datetime);
+    public Event(String description, String dateTime, boolean isDone) {
+        this(description, dateTime);
         this.isDone = isDone;
     }
 
@@ -36,7 +36,7 @@ public class Event extends Task {
                 "E|%s|%s|%s",
                 isDone,
                 description,
-                Task.DATE_TIME_FORMATTER.format(datetime)
+                Task.DATE_TIME_FORMATTER.format(dateTime)
         );
     }
 
@@ -44,7 +44,7 @@ public class Event extends Task {
     public String toString() {
         return String.format("[E]%s (at: %s)",
                 super.toString(),
-                Task.DATE_TIME_FORMATTER.format(datetime)
+                Task.DATE_TIME_FORMATTER.format(dateTime)
         );
     }
 }
