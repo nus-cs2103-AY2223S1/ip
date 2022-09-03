@@ -6,6 +6,7 @@ public abstract class Task {
 
     protected String description;
     protected boolean isDone;
+    protected TaskType taskType;
 
     public Task(String description) {
         this.description = description;
@@ -26,11 +27,11 @@ public abstract class Task {
 
     public String encode() {
         String encodedStatus = isDone ? "1" : "0";
-        return encodedStatus + " | " + this.description;
+        return this.taskType.getTaskSymbol() + " | " + encodedStatus + " | " + this.description;
     }
 
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "] " + this.description;
+        return "[" + this.taskType.getTaskSymbol() + "]" + "[" + this.getStatusIcon() + "] " + this.description;
     }
 }

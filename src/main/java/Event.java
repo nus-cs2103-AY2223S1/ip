@@ -1,20 +1,21 @@
 import java.time.LocalDateTime;
 
 public class Event extends Task {
-    protected LocalDateTime eventTime;
+    protected LocalDateTime eventTiming;
 
-    public Event(String description, LocalDateTime eventTime) {
+    public Event(String description, LocalDateTime eventTiming) {
         super(description);
-        this.eventTime = eventTime;
+        this.eventTiming = eventTiming;
+        this.taskType = TaskType.EVENT;
     }
 
     @Override
     public String encode() {
-        return "E | " + super.encode() + "| " + this.eventTime;
+        return super.encode() + " | " + this.eventTiming;
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(on: " + eventTime.format(Task.DATE_TIME_DISPLAY_FORMATTER) + ")";
+        return  super.toString() + " (at: " + eventTiming.format(Task.DATE_TIME_DISPLAY_FORMATTER) + ")";
     }
 }

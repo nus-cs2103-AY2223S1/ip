@@ -3,11 +3,11 @@ public enum TaskType {
     DEADLINE,
     EVENT;
 
-    public String getTaskType() {
+    public String getTaskSymbol() {
         switch (this) {
-            case TODO: return "a todo";
-            case DEADLINE: return "a deadline";
-            case EVENT: return "an event";
+            case TODO: return "T";
+            case DEADLINE: return "D";
+            case EVENT: return "E";
         }
         return null;
     }

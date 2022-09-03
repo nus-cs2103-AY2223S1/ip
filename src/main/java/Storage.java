@@ -71,10 +71,11 @@ public class Storage {
         }
     }
 
-    public void writeAllTasksToFile(List<Task> taskList) throws DukeException {
+    public void writeAllTasksToFile(TaskList tasks) throws DukeException {
         try {
             List<String> list = new ArrayList<>();
-            for (Task task : taskList) {
+            for (int i = 0; i < tasks.size(); i++) {
+                Task task = tasks.getTask(i);
                 list.add(encodeTaskToString(task));
             }
             Files.write(FILE_PATH, list);

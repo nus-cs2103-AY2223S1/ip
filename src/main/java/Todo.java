@@ -1,15 +1,16 @@
 public class Todo extends Task {
     public Todo(String description) {
         super(description);
+        this.taskType = TaskType.TODO;
     }
 
     @Override
     public String encode() {
-        return "T | " + super.encode();
+        return super.encode();
     }
 
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return super.toString();
     }
 }
