@@ -1,5 +1,10 @@
 package duke;
 
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
 import duke.task.TaskList;
 import duke.util.Parser;
 import duke.util.StoredTasks;
@@ -12,7 +17,7 @@ import java.io.File;
  *
  * @author Kavan
  */
-public class Duke {
+public class Duke extends Application {
     private static final String FILE_DIR = "data";
     private static final String FILE_PATH = FILE_DIR + File.separator + "duke.txt";
 
@@ -22,12 +27,9 @@ public class Duke {
 
     /**
      * Constructor for Duke class.
-     *
-     * @param fileDir Target File Directory.
-     * @param filePath Target File Path.
      */
-    public Duke(String fileDir, String filePath) {
-        this.storedTasks = new StoredTasks(fileDir, filePath);
+    public Duke() {
+        this.storedTasks = new StoredTasks(FILE_DIR, FILE_PATH);
         this.ui = new Ui();
         try {
             this.tasks = new TaskList(this.storedTasks.load());
@@ -62,6 +64,15 @@ public class Duke {
      * @param args Command line arguments.
      */
     public static void main(String[] args) {
-        new Duke(FILE_DIR, FILE_PATH).runDuke();
+        new Duke().runDuke();
+    }
+
+    @Override
+    public void start(Stage stage) {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
     }
 }
