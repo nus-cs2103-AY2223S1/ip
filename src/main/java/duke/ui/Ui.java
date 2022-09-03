@@ -5,29 +5,17 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 public class Ui {
-    private static final char lineBreak = '\n';
-    private static final String indent = "      ";
 
     public static String getGreetingMessage() {
         return Message.GREETING.toString();
     }
 
     public static String getTaskStatusString(Message prefix, Task task) {
-        return String.format("%s %s %s %s", prefix, lineBreak, indent, task);
+        return String.format("%s\n    %s", prefix, task);
     }
 
     public static String getTaskListString(TaskList taskList) throws DukeException {
-        String msg = "";
-        if (taskList.getSize() == 0) {
-            throw new DukeException(Message.EMPTY);
-        }
-        for (int i = 0; i < taskList.getSize(); i++) {
-            msg += i + 1 + ". " + taskList.get(i);
-            if (i < taskList.getSize() - 1)  {
-                msg += lineBreak;
-            }
-        }
-        return msg;
+        return taskList.getListString();
     }
 
     public static String getTerminationString() {
@@ -35,6 +23,6 @@ public class Ui {
     }
 
     public static String getErrorMessageString(DukeException exc) {
-        return String.format("%s %s %s", Message.ERROR, lineBreak, exc);
+        return String.format("%s\n%s", Message.ERROR, exc);
     }
 }

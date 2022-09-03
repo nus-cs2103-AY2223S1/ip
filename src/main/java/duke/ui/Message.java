@@ -15,7 +15,9 @@ public enum Message {
     NO_AT_ERROR("You need to use \"/at\" to specify when the event is"),
     NO_BY_ERROR("You need to use \"/by\" to specify when the event is"),
     NO_TIME_ERROR("You didn't specify the time."),
-    DATE_FORMAT_ERROR("Invalid date/time format");
+    DATE_FORMAT_ERROR("Invalid date/time format"),
+    NO_RESULTS_FOUND("No results found."),
+    DESCRIPTION_EMPTY("Description cannot be empty.");
 
     private String value;
 
