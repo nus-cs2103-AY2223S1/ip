@@ -2,7 +2,7 @@ package cheese.command;
 
 import cheese.data.TaskList;
 import cheese.storage.Storage;
-import cheese.ui.Ui;
+import cheese.ui.Response;
 
 /**
  * Represents a user command to display the list.
@@ -10,11 +10,9 @@ import cheese.ui.Ui;
 public class ListCommand extends Command {
     /**
      * Executes operation to display the list.
-     * 
-     * @param {@inheritDoc}
      */
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) {
-        ui.showTaskList(taskList);
+    public String execute(TaskList taskList, Storage storage) {
+        return Response.getTaskListMessage(taskList);
     }
 }

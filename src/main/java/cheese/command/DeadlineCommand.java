@@ -4,7 +4,7 @@ import cheese.data.TaskList;
 import cheese.storage.Storage;
 import cheese.task.Deadline;
 import cheese.task.Task;
-import cheese.ui.Ui;
+import cheese.ui.Response;
 
 /**
  * Represents a user command to create a new deadline.
@@ -18,9 +18,9 @@ public class DeadlineCommand extends Command {
 
     /**
      * Constructs an instance of <code>DeadlineCommand</code>.
-     * 
+     *
      * @param description Description of new deadline.
-     * @param deadline Deadline of new deadline.
+     * @param deadline    Deadline of new deadline.
      */
     public DeadlineCommand(String description, String deadline) {
         this.description = description;
@@ -29,13 +29,11 @@ public class DeadlineCommand extends Command {
 
     /**
      * Executes operations to create a new deadline, add deadline to list, and save the list.
-     * 
-     * @param {@inheritDoc}
      */
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) {
+    public String execute(TaskList taskList, Storage storage) {
         Task addedTask = taskList.add(new Deadline(description, deadline));
-        ui.showAddTask(addedTask, taskList.getSize());
         storage.save(taskList);
+        return Response.getAddTaskMessage(addedTask, taskList.getSize());
     }
 }

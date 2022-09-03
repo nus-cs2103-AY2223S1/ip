@@ -1,10 +1,11 @@
 package cheese.command;
 
-import java.util.ArrayList;
 import cheese.data.TaskList;
 import cheese.storage.Storage;
 import cheese.task.Task;
-import cheese.ui.Ui;
+import cheese.ui.Response;
+
+import java.util.ArrayList;
 
 /**
  * Represents a user command to find a task by searching for a keyword.
@@ -15,8 +16,8 @@ public class FindCommand extends Command {
 
     /**
      * Constructs an instance of <code>FindCommand</code>.
-     * 
-     * @param keyword Keyword given by user to serach for in list.
+     *
+     * @param keyword Keyword given by user to search for in list.
      */
     public FindCommand(String keyword) {
         this.keyword = keyword;
@@ -24,12 +25,10 @@ public class FindCommand extends Command {
 
     /**
      * Executes operations to search for task in list.
-     * 
-     * @param {@inheritDoc}
      */
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) {
+    public String execute(TaskList taskList, Storage storage) {
         ArrayList<Task> searchResult = taskList.searchTasksByKeyword(keyword);
-        ui.showSearchResult(searchResult);
+        return Response.getSearchResultMessage(searchResult);
     }
 }
