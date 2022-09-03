@@ -338,6 +338,8 @@ public class Parser {
 
         default: {
             // Case where no commands are matched.
+            assert !commands.containsKey(command) : "A command we know how "
+                    + "to handle is being rejected!";
             throw new DukeException("Sorry, I did not quite get that! "
                     + String.format("(%s)\n", userInput));
         }
