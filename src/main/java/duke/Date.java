@@ -26,7 +26,7 @@ public class Date {
      * @param localDate The LocalDate object to convert.
      * @return A String representing the LocalDate.
      */
-    public static String displayFormat(LocalDate localDate) {
+    public static String getDisplayFormat(LocalDate localDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy");
         return localDate.format(formatter);
     }
@@ -37,7 +37,7 @@ public class Date {
      * @param localDate The LocalDate object to convert.
      * @return A String representing the LocalDate.
      */
-    public static String storageFormat(LocalDate localDate) {
+    public static String getStorageFormat(LocalDate localDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return localDate.format(formatter);
     }

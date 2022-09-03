@@ -71,7 +71,7 @@ public class Event extends Task {
         String s = String.format("%c;%s;%s",
                 SYMBOL,
                 super.encode(),
-                Date.storageFormat(this.date));
+                Date.getStorageFormat(this.date));
         return s;
     }
 
@@ -85,7 +85,7 @@ public class Event extends Task {
         String s = String.format("[%c]%s (at: %s)",
                 SYMBOL,
                 super.toString(),
-                Date.displayFormat(this.date));
+                Date.getDisplayFormat(this.date));
         return s;
     }
 }
