@@ -1,7 +1,5 @@
 package duke;
 
-import duke.task.Task;
-
 import java.util.Scanner;
 
 /**
@@ -32,27 +30,8 @@ public class UI {
 
         System.out.println("Hello! I'm Duke\n" + "What can I do for you?\n");
     }
-    
-    public void addTask(Task task, int size) {
-        System.out.print("Got it. I've added this task:\n" +
-                " " + task + "\n" +
-                "Now you have " + size + " tasks in the list.\n");
-    }
-    
-    public void markTask(Task task, boolean isDone) {
-        System.out.print(
-                ( isDone ? "Nice! I've marked this task as done:\n " : "OK, I've marked this task as not done yet:\n ")
-                        + task + "\n"
-        );
-    }
-    
-    public void deleteTask(Task task, int size) {
-        System.out.print("Noted. I've removed this task:\n " +
-                task + "\n" +
-                "Now you have " + size + " tasks in the list.\n");
-    }
 
-    public static void print(String string) {
+    public void print(String string) {
         System.out.print(string);
     }
 }

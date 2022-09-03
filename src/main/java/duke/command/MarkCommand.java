@@ -19,7 +19,7 @@ public class MarkCommand extends Command {
      * 
      * @throws DukeException If the data file cannot be accessed.
      */
-    public void execute(TaskList tasks) throws DukeException {
-        tasks.markTask(pos, isDone);
+    public String execute(TaskList tasks) throws DukeException {
+        return tasks.markTask(pos, isDone);
     }
 }

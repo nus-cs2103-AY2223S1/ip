@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.TaskList;
-import duke.UI;
 
 public class ListCommand extends Command {
     /**
@@ -9,7 +8,7 @@ public class ListCommand extends Command {
      *
      * @param tasks The user's current list of tasks.
      */
-    public void execute(TaskList tasks) {
-        UI.print(tasks.toString());
+    public String execute(TaskList tasks) {
+        return tasks.toString();
     }
 }

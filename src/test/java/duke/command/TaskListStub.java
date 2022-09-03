@@ -17,8 +17,9 @@ public class TaskListStub extends TaskList {
     }
 
     @Override
-    public void addTask(Task task) {
+    public String addTask(Task task) {
         data.add(task);
+        return " ";
     }
     
     public boolean checkTask(int pos, String string) {
