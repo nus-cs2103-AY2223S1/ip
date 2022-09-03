@@ -23,7 +23,7 @@ public class Parser {
             "Wrong usage of event.\nUsage: event some description /at some date";
     public static final String ERROR_WRONG_USAGE_OF_DEADLINE =
             "Wrong usage of deadline.\nUsage: deadline some description /by some date";
-    
+
     /**
      * Parses user command into Command instance to execute.
      * @param fullCommand String representing the command input of the user.
