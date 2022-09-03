@@ -2,95 +2,71 @@ package Duke.Storage;
 
 import Duke.Exceptions.StoredFileException;
 
+import Duke.Tasks.TaskList;
+import Duke.Tasks.Task;
+import Duke.Tasks.ToDo;
+import Duke.Tasks.Event;
+import Duke.Tasks.Deadline;
 
-import Duke.Tasks.*;
 
-import java.io.EOFException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-
-public class Storage {
+/**
+ * FileReader provides methods to load the data stored before.
+ */
+public class FileReader {
 
     private Path filePath;
 
-    public Storage(String fileName){
+    public FileReader(String fileName){
         String dirPath = System.getProperty("user.dir");
-        this.filePath = Paths.get(dirPath, "src", "test", "artifacts", "ip_jar", "data", fileName + ".txt");
+        this.filePath = Paths.get(dirPath, "src", "test", "artifacts", "ip_jar", "data", fileName + ".txt");    // Change the storage path
     }
 
-    public TaskList obtain() throws StoredFileException{
-
-        Path filePath = this.filePath;
-
+    /**
+     * Load all tasks the stored before.
+     *
+     * @return the stored tasks with a TaskList Object.
+     */
+    public TaskList load() {
         try {
+            Scanner sc = new Scanner(filePath);
+            TaskList tasks = new TaskList();        // Set up a class
+            while (sc.hasNextLine()) {
 
-            Scanner fileReader = new Scanner(filePath);
-            TaskList tasks = new TaskList();
-            String contents;
-            Task newTask;
-
-            while(fileReader.hasNext()) {
-                contents = fileReader.nextLine();
-
-                System.out.println(contents);
-                newTask = readTask(contents);
+                String nextLine = sc.nextLine();
+                Task newTask = convertToTask(nextLine);
                 tasks.addTask(newTask);
-            }
 
-            fileReader.close();
+            }
             return tasks;
+        } catch (FileNotFoundException e) {
+            System.out.println("sth wrong");
+            return null;
+        } catch (NullPointerException e) {
+            System.out.println("Null pointer ");
+            return null;
         } catch (IOException e) {
-            System.out.println("IO Exception e");
+            return null;
+        } catch (StoredFileException e) {
             return null;
         }
 
-
-
-
-
-    }
-
-    public ArrayList<Task> load() {
-        ArrayList<Task> tasks = null;
-
-        try {
-            File text = new File(String.valueOf(filePath));
-
-            Scanner sc = new Scanner(text);
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-                Task task = new Task(line);
-                tasks.add(task);
-            }
-
-        } catch (FileNotFoundException e) {
-            System.out.println("sth wrong");
-        } catch (NullPointerException e) {
-            System.out.println("Null pointer ");
-        }
-
-        // return tasks == null ? new ArrayList<>() : tasks;
-        return new ArrayList<>();
-
-
-
-
     }
 
 
-
-    private Task readTask(String content) throws StoredFileException {
+    /**
+     * Covert from the input line to the task
+     * @param content
+     * @return the tasks with a Task Object
+     * @throws StoredFileException
+     */
+    private Task convertToTask(String content) throws StoredFileException {  // will be changed later
         try {
             String[] components = content.split(" \\| "); // Here it is very important
             String type = components[0].strip();
@@ -118,18 +94,9 @@ public class Storage {
                 default:
                     throw new Exception();
             }
-
-        } catch (Exception e)
-        {
-            System.out.println("StoredFiledException!");
+        } catch (Exception e) {
             throw new StoredFileException();
         }
-
-
-
-
     }
-
-
 
 }
