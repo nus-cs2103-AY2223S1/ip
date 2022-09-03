@@ -3,6 +3,7 @@ package duke;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 /**
  * Represents a deadline task that can be stored by Duke.
@@ -34,6 +35,17 @@ public class Deadline extends Task {
                 + " (by: "
                 + by.format(DateTimeFormatter.ofPattern("MMM-d-yyyy"))
                 + ")";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        } else {
+            Deadline deadline = (Deadline) obj;
+            return Objects.equals(this.description, deadline.description)
+                    && Objects.equals(this.by, deadline.by);
+        }
     }
 
     /**

@@ -129,9 +129,18 @@ public class Ui {
     }
 
     /**
-     * Displays the goodbye message to uesr before application exits.
+     * Displays the goodbye message to user before application exits.
      */
     public void showGoodbyeMessage() {
         System.out.println("Bye nya! Hope to see you again nya");
+    }
+
+    /**
+     * Displays message to inform user of presence of duplicate tasks.
+     *
+     * @return the string containing the message to be displayed to the user.
+     */
+    public String showDuplicateMessage() {
+        return "You already have this task nya! Please remove if you do not want duplicates.";
     }
 }

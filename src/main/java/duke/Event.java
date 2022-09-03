@@ -2,6 +2,7 @@ package duke;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 /**
  * Represents an event task that can be stored by Duke.
@@ -30,6 +31,17 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM-d-yyyy")) + ")";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        } else {
+            Event event = (Event) obj;
+            return Objects.equals(this.description, event.description)
+                    && Objects.equals(this.at, event.at);
+        }
     }
 
     /**

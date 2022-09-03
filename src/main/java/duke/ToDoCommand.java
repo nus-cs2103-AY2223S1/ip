@@ -14,7 +14,12 @@ public class ToDoCommand extends Command {
         Task todo = new ToDo(this.description);
         tasks.addTask(todo);
         storage.save(tasks);
-        return ui.showAddTask(todo, tasks.getSize());
+        String addTaskMessage = ui.showAddTask(todo, tasks.getSize());
+        if (tasks.checkDuplicates(todo)) {
+            return addTaskMessage + "\n" + ui.showDuplicateMessage();
+        } else {
+            return addTaskMessage;
+        }
     }
 
     public boolean isExit() {

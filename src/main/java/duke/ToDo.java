@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.Objects;
+
 /**
  * Represents a todo task that can be stored by Duke.
  */
@@ -28,5 +30,15 @@ public class ToDo extends Task {
     @Override
     public String getSaveString() {
         return "T | " + (isDone ? "1 | " : "0 | " + this.description);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        } else {
+            ToDo todo = (ToDo) obj;
+            return Objects.equals(this.description, todo.description);
+        }
     }
 }

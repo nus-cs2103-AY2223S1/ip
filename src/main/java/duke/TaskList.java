@@ -75,4 +75,13 @@ public class TaskList {
         return this.tasks.size();
     }
 
+    public boolean checkDuplicates(Task task) {
+        for (Task t : this.tasks) {
+            if (task.equals(t)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

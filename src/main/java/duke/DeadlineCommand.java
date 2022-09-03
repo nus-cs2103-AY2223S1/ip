@@ -24,7 +24,12 @@ public class DeadlineCommand extends Command {
         Task deadline = new Deadline(this.description, this.by);
         tasks.addTask(deadline);
         storage.save(tasks);
-        return ui.showAddTask(deadline, tasks.getSize());
+        String addTaskMessage = ui.showAddTask(deadline, tasks.getSize());
+        if (tasks.checkDuplicates(deadline)) {
+            return addTaskMessage + "\n" + ui.showDuplicateMessage();
+        } else {
+            return addTaskMessage;
+        }
     }
 
     @Override
