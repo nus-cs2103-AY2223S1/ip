@@ -22,6 +22,7 @@ fi
 
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
 cd ../../../text-ui-test
+rm -rf src/main/data/tasks.txt || true
 java -classpath ../bin stashy.Stashy < input.txt > ACTUAL.TXT
 
 # convert to UNIX format
