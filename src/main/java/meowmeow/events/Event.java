@@ -9,7 +9,6 @@ public class Event extends Task {
 
     private String taskName;
     private String time;
-    private boolean isDone = false;
 
     /**
      * Constructor for Event.
@@ -18,6 +17,7 @@ public class Event extends Task {
      */
     public Event(String taskName, String time) {
         super(taskName);
+        this.taskName  = taskName;
         this.time = time;
     }
 
@@ -36,6 +36,6 @@ public class Event extends Task {
      */
     @Override
     public String getSaveData() {
-        return " E" + " | " + super.isDone() + " | " + taskName + " | " + time;
+        return "E" + " | " + super.isDone() + " | " + super.getName() + " | " + time;
     }
 }

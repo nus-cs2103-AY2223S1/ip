@@ -29,7 +29,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D] " + super.toString() + " (by:"
+        return "[D] " + super.toString() + "(by:"
                 + date.format(DateTimeFormatter.ofPattern(" hh:mm a 'on' dd/MM/yyyy")) + ")";
     }
 
@@ -39,6 +39,6 @@ public class Deadline extends Task {
      */
     @Override
     public String getSaveData() {
-        return " D" + " | " + super.isDone() + " | " + taskName + " | " + date;
+        return "D" + " | " + super.isDone() + " | " + taskName + " | " + date;
     }
 }
