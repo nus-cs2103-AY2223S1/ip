@@ -2,6 +2,10 @@ package duke;
 
 import java.util.Scanner;
 
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 /**
  * The Duke program implements an application that
  * acts as your to-do list. It can add, delete, mark/unmark
@@ -12,17 +16,16 @@ import java.util.Scanner;
  * @since 2022-08-28
  */
 
-public class Duke {
-
+public class Duke extends Application {
+static final String filePath = "tasks.txt";
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
 
     /**
      * Constructor for Duke program
-     * @param filePath File path to txt file that stores task list data
      */
-    public Duke(String filePath) {
+    public Duke() {
         this.storage = new Storage(filePath);
         this.taskList = new TaskList(storage.load());
         this.ui = new Ui();
@@ -40,9 +43,15 @@ public class Duke {
         ui.start(sc, this.storage, this.taskList);
     }
     public static void main(String[] args) {
-        new Duke("tasks.txt").run();
+        new Duke().run();
     }
 
+    @Override
+    public void start(Stage stage) {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
 
-
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
+    }
 }
