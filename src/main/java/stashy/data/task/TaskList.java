@@ -1,6 +1,8 @@
 package stashy.data.task;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import stashy.data.exception.StashyException;
 import stashy.parser.Parser;
@@ -41,12 +43,10 @@ public class TaskList {
      * @param query The query string of interest
      */
     public TaskList(ArrayList<Task> taskArrayList, String query) {
-        this.taskList = new ArrayList<Task>();
-        for (Task task : taskArrayList) {
-            if (task.containsText(query)) {
-                this.taskList.add(task);
-            }
-        }
+        this.taskList = taskArrayList
+            .stream()
+            .filter(t -> t.containsText(query))
+            .collect(Collectors.toCollection(ArrayList::new));
     }
 
     /**
@@ -101,11 +101,10 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        String message = "";
-        for (int i = 1; i <= this.taskList.size(); i++) {
-            message += (i + ". " + this.taskList.get(i - 1)) + "\n";
-        }
-        String trimmedMessage = message.substring(0, Math.max(0, message.length() - 1));
-        return trimmedMessage.isEmpty() ? "Nothing to see here..." : trimmedMessage;
+        String message = IntStream
+            .rangeClosed(1, this.taskList.size())
+            .mapToObj(i -> i + ". " + this.taskList.get(i - 1))
+            .collect(Collectors.joining("\n"));
+        return message.isEmpty() ? "Nothing to see here..." : message;
     }
 }
