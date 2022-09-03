@@ -1,5 +1,9 @@
-package duke;
+package duke.main;
 
+import duke.exception.DukeException;
+import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.ui.Ui;
 import duke.task.Task;
 import duke.task.Todo;
 import duke.task.Event;
@@ -21,14 +25,11 @@ public class Duke {
     // INSTANCE VARIABLES
     private final TaskList tasks;
     private final Storage storage;
+    private final Ui ui;
 
     public Duke() {
+        this.ui = new Ui();
         this.storage = new Storage(saveFilePath);
-        this.tasks = new TaskList(storage.load());
-    }
-
-    public Duke(String filePath) {
-        this.storage = new Storage(filePath);
         this.tasks = new TaskList(storage.load());
     }
 

@@ -1,4 +1,6 @@
-package duke;
+package duke.parser;
+
+import duke.exception.DukeException;
 
 public class Parser {
     private static final String invalidTaskIndexMessage = "You entered an invalid task index";
