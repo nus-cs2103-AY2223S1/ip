@@ -6,13 +6,6 @@ package duke;
 public class Ui {
 
     /**
-     * Class constructor for Ui class.
-     */
-    public Ui() {
-
-    }
-
-    /**
      * Handles what to show during Duke's startup.
      *
      * @return response of duke in string.
@@ -52,7 +45,7 @@ public class Ui {
      */
     public String showDeletedTask(Task taskToRemove, TaskList tasks) {
         return "Noted. I've removed this task:\n" + taskToRemove.toString()
-                + "Now you have " + tasks.getLength() + " tasks in the list";
+                + "\nNow you have " + tasks.getLength() + " tasks in the list";
     }
 
     /**

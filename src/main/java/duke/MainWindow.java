@@ -62,6 +62,8 @@ public class MainWindow extends AnchorPane {
             color = COLOR_RED;
             response = e.getMessage();
         }
+        assert response != null;
+        assert input != null;
         DialogBox userGui = DialogBox.getUserDialog(input, userImage);
         userGui.setStyle("-fx-background-color:" + color + "; " + DIALOG_BOX_STYLE);
         DialogBox dukeGui = DialogBox.getDukeDialog(response, dukeImage);

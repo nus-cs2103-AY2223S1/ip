@@ -1,4 +1,2 @@
-T | 1 | test
-E | 1 | testing | 2022-08-31
 D | 1 | assignment | 2022-08-31
-T | 0 | testing
+T | 1 | testing

@@ -31,13 +31,14 @@ public class Duke {
      */
     public String getResponse(String userInput) throws DukeException {
         boolean isExit = false;
-        String dukeResponse = "";
+        String dukeResponse = null;
         Command c = Parser.parse(userInput);
         dukeResponse = c.execute(tasks, ui, storage);
         isExit = c.isExit();
         if (isExit) {
             System.exit(0);
         }
+        assert dukeResponse != null;
         return dukeResponse;
     }
 }
