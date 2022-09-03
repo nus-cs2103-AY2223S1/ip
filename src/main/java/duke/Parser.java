@@ -4,6 +4,7 @@ import duke.command.AddCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.LoadCommand;
 import duke.command.MarkCommand;
@@ -27,26 +28,39 @@ public class Parser {
      */
     public static Command parse(String command) throws DukeException {
         switch (command) {
+        case "b":
         case "bye":
             return new ExitCommand();
+        case "ls":
         case "list":
             return new ListCommand();
+        case "m":
         case "mark":
             return new MarkCommand();
+        case "u":
         case "unmark":
             return new UnmarkCommand();
+        case "dl":
         case "deadline":
+        case "t":
         case "todo":
+        case "e":
         case "event":
             return new AddCommand();
+        case "d":
         case "delete":
             return new DeleteCommand();
+        case "s":
         case "save":
             return new SaveCommand();
+        case "ld":
         case "load":
             return new LoadCommand();
         case "date":
             return new MatchCommand();
+        case "f":
+        case "find":
+            return new FindCommand();
         default:
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
@@ -103,12 +117,15 @@ public class Parser {
             String desc = findFirstCommand(input, command);
             String secondCommand = findSecondCommand(input, secCommand);
             switch (command) {
+            case "dl":
             case "deadline":
                 storageList.addTask(new Deadline(desc, secondCommand));
                 break;
+            case "e":
             case "event":
                 storageList.addTask(new Event(desc, secondCommand));
                 break;
+            case "t":
             case "todo":
                 storageList.addTask(new Todo(desc));
                 break;

@@ -31,6 +31,18 @@ public class AddTest {
     }
 
     @Test
+    public void addTodoShortcutTest() {
+        ui.setLastInput("t borrow book");
+        ui.setLastCommand("t");
+        try {
+            new AddCommand().execute(ui, storageList);
+            assert (storageList.get(0) instanceof Todo && storageList.get(0).toString().equals("[T][ ] borrow book"));
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Test
     public void addDeadlineTest() {
         ui.setLastInput("deadline return book /by 2019-10-15 1800");
         ui.setLastCommand("deadline");

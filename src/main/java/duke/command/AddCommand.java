@@ -22,12 +22,15 @@ public class AddCommand extends Command {
         String command = ui.getLastCommand();
         String secCommand;
         switch (command) {
+        case "dl":
         case "deadline":
             secCommand = "/by";
             break;
+        case "e":
         case "event":
             secCommand = "/at";
             break;
+        case "t":
         case "todo":
             secCommand = "";
             break;

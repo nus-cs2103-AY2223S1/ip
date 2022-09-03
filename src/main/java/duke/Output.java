@@ -26,15 +26,18 @@ public enum Output {
     DATE("These tasks matches the date:\n"),
     FIND("Here are the matching tasks in your list:\n"),
     HELP("Here are the commands you can use:\n"
-            + "\t1. todo <task name>\n"
-            + "\t2. deadline <task name> /by <date>\n"
-            + "\t3. event <task name> /at <date>\n"
-            + "\t4. list\n"
-            + "\t5. done <task number>\n"
-            + "\t6. delete <task number>\n"
-            + "\t7. find <keyword>\n"
-            + "\t8. date <date>\n"
-            + "\t9. bye\n");
+            + "\t 1. todo(t) <task name>\n"
+            + "\t 2. deadline(dl) <task name> /by <date>\n"
+            + "\t 3. event(e) <task name> /at <date>\n"
+            + "\t 4. list(ls)\n"
+            + "\t 5. mark(m) <task number>\n"
+            + "\t 6. unmark(u) <task number>\n"
+            + "\t 7. delete(d) <task number>\n"
+            + "\t 8. find(f) <keyword>\n"
+            + "\t 9. date <date>\n"
+            + "\t 10. save(s)\n"
+            + "\t 11. load(ld)\n"
+            + "\t 12. bye(b)\n");
 
     private String output = "";
 
