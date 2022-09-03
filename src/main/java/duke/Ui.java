@@ -7,7 +7,7 @@ public class Ui {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-    String toPrint = "Hello from\n" + logo + "\n Hello! I'm Duke\n What can I do for you?";
+    String welcomeMessage = "Hello from\n" + logo + "\n Hello! I'm Duke\n What can I do for you?";
 
     Ui() {}
 
@@ -57,13 +57,13 @@ public class Ui {
                 return "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
             }
         }
-        return "";
+        return toPrint;
     }
     
     /**
      * Start message of Duke
      */
     public String startMessage() {
-        return toPrint;
+        return welcomeMessage;
     }
 }
