@@ -1,7 +1,5 @@
 package chacha.commands;
 
-import java.util.ArrayList;
-
 import chacha.Storage;
 import chacha.TaskList;
 import chacha.Ui;
@@ -17,9 +15,7 @@ public class AddCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui) {
         taskList.add(task);  
-            System.out.println("Got it. I've added this task:");
-            System.out.println(task.toString()); 
-            System.out.println("Now you have " + taskList.getSize() + " tasks in the list.");
+        ui.printAdd(task, taskList);
     }
 
     @Override

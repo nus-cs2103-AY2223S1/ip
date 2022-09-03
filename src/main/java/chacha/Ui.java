@@ -24,7 +24,28 @@ public class Ui {
         }   
     }
 
+    public void printAdd(Task task, TaskList taskList) {
+        System.out.println("Got it. I've added this task:");
+            System.out.println(task.toString()); 
+            System.out.println("Now you have " + taskList.getSize() + " tasks in the list.");
+    }
+
+    public void printDelete(Task task, int size) {
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(task.toString());
+        System.out.println("Now you have " + size + " tasks in the list.");
+    }
+
+    public void printMark(Task task) {
+        System.out.println("Nice! I've marked this task as done:\n" + task.toString());
+    }
+
+    public void printUnmark(Task task) {
+        System.out.println("Nice! I've marked this task as not done yet:\n" + task.toString());
+    }
+
     public void printError(String message) {
         System.out.println("Chacha error: " + message);
     }
+    
 }

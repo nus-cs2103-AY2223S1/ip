@@ -1,6 +1,5 @@
 package chacha.commands;
 
-import java.util.ArrayList;
 
 import chacha.Storage;
 import chacha.TaskList;
@@ -16,9 +15,9 @@ public class MarkCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui) {
-                Task task = taskList.get(taskIndex);
-                task.markAsDone();
-                System.out.println("Nice! I've marked this task as done:\n" + task.toString());
+        Task task = taskList.get(taskIndex);
+        task.markAsDone();
+        ui.printMark(task);
     }
 
     @Override
