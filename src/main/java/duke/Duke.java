@@ -1,18 +1,15 @@
 package duke;
 
 import duke.ui.Ui;
-import java.io.*;
-import java.lang.reflect.Array;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.nio.file.Path;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  * Represents Duke - an interactive virtual assistant to organize tasks.
  */
-public class Duke {
+public class Duke extends Application {
 
     private final Ui ui;
 
@@ -31,6 +28,16 @@ public class Duke {
         this.ui.readAndRespond();
     }
 
+    @Override
+    public void start(Stage stage){
+        Label helloWorld = new Label("Hello World!");
+        Scene scene = new Scene(helloWorld);
+        stage.setScene(scene);
+        stage.show();
+
+
+    }
+
     /**
      * Creates a new Duke object and begins interaction 
      */
@@ -38,4 +45,5 @@ public class Duke {
        Duke AemonT = new Duke();
        AemonT.interact();
     }
+
 }
