@@ -16,7 +16,7 @@ public class UnknownCommand extends Command {
      * @throws DukeException
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         throw new DukeException("Input not recognised! Please try again! ");
     }
 }

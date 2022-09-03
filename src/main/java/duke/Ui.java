@@ -31,10 +31,11 @@ public class Ui {
     /**
      * Shows the welcome message for the bot.
      */
-    public void showWelcomeMessage() {
-        System.out.println("Hello! I'm Duke");
-        System.out.println("What can I do for you?");
-        System.out.println(DIVIDER);
+    public String showWelcomeMessage() {
+        StringBuilder toReturn = new StringBuilder();
+        toReturn.append("Hello! I'm Duke\n");
+        toReturn.append("What can I do for you?\n");
+        return toReturn.toString();
     }
 
     /**
@@ -42,15 +43,12 @@ public class Ui {
      *
      * @return
      */
-    public String readCommand() {
-        return in.nextLine();
-    }
 
     /**
      * Shows the divider.
      */
-    public void showLine() {
-        System.out.println(DIVIDER);
+    public String showLine() {
+        return DIVIDER + "\n";
     }
 
     /**
@@ -58,8 +56,8 @@ public class Ui {
      *
      * @param e DukeException type exception.
      */
-    public void showError (DukeException e) {
-        System.out.println(e);
+    public String showError (DukeException e) {
+        return e.toString();
     }
 
 }

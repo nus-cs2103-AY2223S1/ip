@@ -24,13 +24,15 @@ public class MarkCommand extends Command{
      * @param storage Storage information for tasks.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         int i = Integer.parseInt(arg[1]);
         if (i  <= tasks.getCount()) {
             tasks.get(i - 1).setComplete();
             storage.write(tasks);
-            System.out.println("Nice! I have marked this task as done: ");
-            System.out.println(tasks.get(i - 1));
+            StringBuilder toReturn = new StringBuilder();
+            toReturn.append("Nice! I have marked this task as done: \n");
+            toReturn.append(tasks.get(i - 1) + "\n");
+            return toReturn.toString();
         } else {
             throw new DukeException("Index does not exist");
         }

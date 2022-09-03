@@ -2,6 +2,10 @@ package duke;
 
 import duke.command.Command;
 
+import javafx.scene.image.Image;
+
+
+
 public class Duke {
 
     /**
@@ -17,35 +21,40 @@ public class Duke {
      */
     private Ui ui;
 
-    public Duke(String filePath) {
+    private boolean isExit = false;
+
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+
+    public Duke() {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage("./data/dukeInfo.txt");
         tasks = new TaskList(storage.load());
+
     }
 
-    /**
-     * Runs the duke bot.
-     */
-    public void run() {
-        ui.showWelcomeMessage();
-        boolean isExit = false;
-        while(!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e);
-            } finally {
-                ui.showLine();
-            }
+    public Ui getUi() {
+        return this.ui;
+    }
+
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            String toReturn = c.execute(tasks, ui, storage);
+            this.isExit = c.isExit();
+            return toReturn;
+        } catch (DukeException e) {
+            return ui.showError(e);
         }
+
+    }
+
+    public boolean getIsExit() {
+        return this.isExit;
     }
 
     public static void main(String[] args) {
-        new Duke("./data/dukeInfo.txt").run();
+        new Duke();
 
     }
 }

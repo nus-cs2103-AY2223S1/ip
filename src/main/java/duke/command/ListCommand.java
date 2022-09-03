@@ -15,18 +15,20 @@ public class ListCommand extends Command{
      * @param storage Storage information for tasks.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException{
         if (tasks.getCount() == 0) {
             throw new DukeException("You currently have no tasks remaining! Create a task now!");
         }
+        StringBuilder toReturn = new StringBuilder();
         for (int i = 0; i < tasks.getCount(); i++) {
             if (tasks.get(i) == null) {
                 break;
             }
             else {
-                System.out.println((i+1) + ". " + tasks.get(i).toString());
+                toReturn.append((i+1) + ". " + tasks.get(i).toString() + "\n");
             }
         }
+        return toReturn.toString();
     }
 
 

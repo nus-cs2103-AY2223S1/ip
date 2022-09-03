@@ -23,12 +23,14 @@ public class TodoCommand extends Command {
      * @param storage Storage information for tasks.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         Todo curr = new Todo(input);
         tasks.add(curr);
-        System.out.println("Got it. I've added this task: ");
-        System.out.println(curr);
-        System.out.println("Now you have " +tasks.getCount() + " tasks in the list.");
+        StringBuilder toReturn = new StringBuilder();
+        toReturn.append("Got it. I've added this task: \n");
+        toReturn.append(curr + "\n");
+        toReturn.append("Now you have " +tasks.getCount() + " tasks in the list.\n");
+        return toReturn.toString();
     }
 
 

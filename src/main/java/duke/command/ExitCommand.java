@@ -14,9 +14,9 @@ public class ExitCommand extends Command{
      * @param storage Storage information for tasks.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         storage.write(tasks);
+        return "Bye. Hope to see you again soon!\n";
     }
 
     @Override

@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.Deadline;
+import duke.Duke;
 import duke.DukeException;
 import duke.Storage;
 import duke.Task;
@@ -28,23 +29,22 @@ public class DeadlineCommand extends Command {
      */
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        try {
-            if (!input.contains("/by")) {
-                throw new DukeException("duke.Deadline creation should contain the '/by' tag! Please input again!");
-            }
-            String[] arr = input.split("/by ", 2);
-            Deadline curr = new Deadline(arr[0]);
-
-            dateSetter(curr, arr[1]);
-            tasks.add(curr);
-
-            System.out.println("Got it. I've added this task: ");
-            System.out.println(curr);
-            System.out.println("Now you have " + tasks.getCount() + " tasks in the list.");
-        } catch (DukeException e) {
-            System.out.println(e);
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        if (!input.contains("/by")) {
+            throw new DukeException("duke.Deadline creation should contain the '/by' tag! Please input again!");
         }
+        String[] arr = input.split("/by ", 2);
+        Deadline curr = new Deadline(arr[0]);
+
+        dateSetter(curr, arr[1]);
+        tasks.add(curr);
+
+        StringBuilder toReturn = new StringBuilder();
+        toReturn.append("Got it. I've added this task:\n");
+        toReturn.append(curr + "\n");
+        toReturn.append("Now you have " + tasks.getCount() + " tasks in the list.\n");
+
+         return toReturn.toString();
     }
 
     /**
