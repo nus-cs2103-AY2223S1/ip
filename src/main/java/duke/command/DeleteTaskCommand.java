@@ -1,5 +1,9 @@
 package duke.command;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -10,16 +14,26 @@ import duke.task.TaskList;
 public class DeleteTaskCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
-    private final int taskIndex;
+    private List<Integer> taskIndices;
 
-    public DeleteTaskCommand(int taskIndex) {
-        this.taskIndex = taskIndex;
+    public DeleteTaskCommand(List<Integer> taskIndices) {
+        this.taskIndices = taskIndices;
     }
 
     @Override
     public String execute(TaskList tasks, Storage storage) {
-        Task del = tasks.deleteTask(taskIndex);
+        taskIndices = new ArrayList<>(new HashSet<>(taskIndices)); // Remove duplicates
+        Task[] removedTasks = new Task[taskIndices.size()];
+        for (int i = taskIndices.size() - 1; i >= 0; i--) {
+            Task deletedTask = tasks.deleteTask(taskIndices.get(i));
+            removedTasks[i] = deletedTask;
+        }
         storage.write(tasks);
-        return "Noted. I've removed this task:\n\t" + del + "\nNow you have " + tasks.size() + " tasks in the list.";
+        StringBuilder ret = new StringBuilder("Noted. I've removed the following tasks:");
+        for (Task deletedTask : removedTasks) {
+            ret.append("\n\t").append(deletedTask);
+        }
+        ret.append("\nNow you have ").append(tasks.size()).append(" tasks in the list.");
+        return ret.toString();
     }
 }

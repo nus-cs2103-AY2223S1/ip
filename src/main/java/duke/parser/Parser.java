@@ -2,6 +2,8 @@ package duke.parser;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +32,7 @@ public class Parser {
     public static final Pattern EVENT_ARGS_FORMAT = Pattern.compile("(?<desc>.+)/at(?<date>.+)");
     public static final Pattern STORAGE_FORMAT = Pattern.compile(
             "(?<taskType>[TDE])\\|(?<done>[01])\\|(?<desc>[^|]+)\\|?(?<date>.+)?");
+    public static final Pattern TASK_INDICES_FORMAT = Pattern.compile("\\d+");
 
     /**
      * Parses a command entered by the user.
@@ -49,9 +52,9 @@ public class Parser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
         case MarkTaskCommand.COMMAND_WORD:
-            return new MarkTaskCommand(Parser.parseTaskIndex(arguments));
+            return new MarkTaskCommand(Parser.parseTaskIndices(arguments));
         case UnmarkTaskCommand.COMMAND_WORD:
-            return new UnmarkTaskCommand(Parser.parseTaskIndex(arguments));
+            return new UnmarkTaskCommand(Parser.parseTaskIndices(arguments));
         case AddTodoCommand.COMMAND_WORD:
             return Parser.prepareTodo(arguments);
         case AddDeadlineCommand.COMMAND_WORD:
@@ -59,7 +62,7 @@ public class Parser {
         case AddEventCommand.COMMAND_WORD:
             return Parser.prepareEvent(arguments);
         case DeleteTaskCommand.COMMAND_WORD:
-            return new DeleteTaskCommand(Parser.parseTaskIndex(arguments));
+            return new DeleteTaskCommand(Parser.parseTaskIndices(arguments));
         case FindCommand.COMMAND_WORD:
             return new FindCommand(arguments);
         case ExitCommand.COMMAND_WORD:
@@ -143,18 +146,22 @@ public class Parser {
         return new AddDeadlineCommand(desc, by);
     }
 
-    private static int parseTaskIndex(String taskIndexString) {
+    private static List<Integer> parseTaskIndices(String taskIndexString) {
         if (taskIndexString == null) {
-            throw new DukeException("Task index not specified");
+            throw new DukeException("Task indices not specified");
         }
-        taskIndexString = taskIndexString.trim();
-        int taskIndex;
-        try {
-            taskIndex = Integer.parseInt(taskIndexString);
-        } catch (NumberFormatException e) {
-            throw new DukeException(taskIndexString + " is not a valid task index");
+        System.out.println(taskIndexString);
+        Matcher matcher = TASK_INDICES_FORMAT.matcher(taskIndexString);
+        List<Integer> taskIndices = new ArrayList<>();
+        while (matcher.find()) {
+            try {
+                int taskIndex = Integer.parseInt(matcher.group());
+                taskIndices.add(taskIndex);
+            } catch (NumberFormatException e) {
+                throw new DukeException("Invalid task indices: " + taskIndexString);
+            }
         }
-        return taskIndex;
+        return taskIndices;
     }
 
     private static Command prepareTodo(String arguments) {

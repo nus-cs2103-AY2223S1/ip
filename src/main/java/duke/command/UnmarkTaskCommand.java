@@ -1,5 +1,9 @@
 package duke.command;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
 import duke.storage.Storage;
 import duke.task.TaskList;
 
@@ -9,16 +13,21 @@ import duke.task.TaskList;
 public class UnmarkTaskCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
 
-    private final int taskIndex;
+    private List<Integer> taskIndices;
 
-    public UnmarkTaskCommand(int taskIndex) {
-        this.taskIndex = taskIndex;
+    public UnmarkTaskCommand(List<Integer> taskIndices) {
+        this.taskIndices = taskIndices;
     }
 
     @Override
     public String execute(TaskList tasks, Storage storage) {
-        tasks.markTaskAsNotDone(taskIndex);
+        taskIndices = new ArrayList<>(new HashSet<>(taskIndices)); // Remove duplicates
+        StringBuilder ret = new StringBuilder("Nice! I've marked these tasks as not done yet:");
+        for (int taskIndex : taskIndices) {
+            tasks.markTaskAsNotDone(taskIndex);
+            ret.append("\n\t").append(tasks.getTask(taskIndex));
+        }
         storage.write(tasks);
-        return "Nice! I've marked this task as not done yet:\n\t" + tasks.getTask(taskIndex);
+        return ret.toString();
     }
 }
