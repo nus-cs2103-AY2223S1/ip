@@ -16,6 +16,7 @@ public class Ui {
     public static void addTaskLog(Task task) {
         dukeResponse += "Ok, new task for you: \n"
                 + " " + task + "\n";
+
         dukeResponse += "You now have " + TaskList.length() + " tasks.\n";
     }
 
@@ -25,6 +26,7 @@ public class Ui {
     public static void removeTaskLog(Task task) {
         dukeResponse += "Ok, I've removed this task for you: \n"
                 + " " + task + "\n";
+
         dukeResponse += "You now have " + (TaskList.length() - 1) + " tasks.\n";
     }
 
@@ -37,6 +39,7 @@ public class Ui {
         } else {
             dukeResponse += "This task hasn't been done yet? I've updated it for you\n";
         }
+        
         dukeResponse += task;
     }
 
