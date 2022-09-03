@@ -12,6 +12,12 @@ public class Todo extends Task {
         super(description, isDone);
     }
 
+    /**
+     * Returns a Todo deserialized from a string.
+     *
+     * @param str the string to deserialize
+     * @return the deserialized Todo
+     */
     public static Task deserialize(String str) {
         String[] parts = str.split("\\|");
         if (parts.length != 3 || !parts[0].equals("T")) {

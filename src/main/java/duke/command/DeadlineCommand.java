@@ -19,6 +19,12 @@ public class DeadlineCommand extends Command {
     private final String description;
     private final String deadline;
 
+    /**
+     * Returns a new DeadlineCommand object.
+     *
+     * @param description the description of the deadline task
+     * @param deadline    the deadline of the task
+     */
     public DeadlineCommand(String description, String deadline) {
         this.description = description;
         this.deadline = deadline;

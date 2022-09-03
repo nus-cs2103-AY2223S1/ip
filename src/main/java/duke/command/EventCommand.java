@@ -19,6 +19,12 @@ public class EventCommand extends Command {
     private final String description;
     private final String datetime;
 
+    /**
+     * Returns a new EventCommand object.
+     *
+     * @param description the description of the event task
+     * @param datetime    the date and time of the event
+     */
     public EventCommand(String description, String datetime) {
         this.description = description;
         this.datetime = datetime;

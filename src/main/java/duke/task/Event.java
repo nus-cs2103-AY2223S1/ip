@@ -8,6 +8,12 @@ import java.time.LocalDateTime;
 public class Event extends Task {
     private final LocalDateTime dateTime;
 
+    /**
+     * Returns a new Event object.
+     *
+     * @param description the description of the event task
+     * @param dateTime    the date and time of the event
+     */
     public Event(String description, LocalDateTime dateTime) {
         super(description);
         this.dateTime = dateTime;
@@ -17,11 +23,24 @@ public class Event extends Task {
         this(description, LocalDateTime.parse(dateTime, Task.DATE_TIME_FORMATTER));
     }
 
+    /**
+     * Returns a new Event object.
+     *
+     * @param description the description of the event task
+     * @param dateTime    the date and time of the event
+     * @param isDone      whether the task is done
+     */
     public Event(String description, String dateTime, boolean isDone) {
         this(description, dateTime);
         this.isDone = isDone;
     }
 
+    /**
+     * Returns an Event deserialized from a string.
+     *
+     * @param str the string to deserialize
+     * @return the deserialized Event
+     */
     public static Task deserialize(String str) {
         String[] parts = str.split("\\|");
         if (parts.length != 4 || !parts[0].equals("E")) {

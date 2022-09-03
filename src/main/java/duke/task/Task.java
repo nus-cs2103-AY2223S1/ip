@@ -12,11 +12,22 @@ public abstract class Task {
     protected final String description;
     protected boolean isDone;
 
+    /**
+     * Returns a new Task object.
+     *
+     * @param description the description of the task
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
+    /**
+     * Returns a new Task object.
+     *
+     * @param description the description of the task
+     * @param isDone      whether the task is done
+     */
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;

@@ -8,6 +8,12 @@ import java.time.LocalDateTime;
 public class Deadline extends Task {
     private final LocalDateTime deadline;
 
+    /**
+     * Returns a new Deadline object.
+     *
+     * @param description the description of the deadline task
+     * @param deadline    the deadline of the task
+     */
     public Deadline(String description, LocalDateTime deadline) {
         super(description);
         this.deadline = deadline;
@@ -17,11 +23,24 @@ public class Deadline extends Task {
         this(description, LocalDateTime.parse(deadline, Task.DATE_TIME_FORMATTER));
     }
 
+    /**
+     * Returns a new Deadline object.
+     *
+     * @param description the description of the deadline task
+     * @param deadline    the deadline of the task
+     * @param isDone      whether the task is done
+     */
     public Deadline(String description, String deadline, boolean isDone) {
         this(description, deadline);
         this.isDone = isDone;
     }
 
+    /**
+     * Returns a Deadline deserialized from a string.
+     *
+     * @param str the string to deserialize
+     * @return the deserialized Deadline
+     */
     public static Task deserialize(String str) {
         String[] parts = str.split("\\|");
         if (parts.length != 4 || !parts[0].equals("D")) {
