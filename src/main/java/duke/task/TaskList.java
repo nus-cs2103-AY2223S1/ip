@@ -36,6 +36,7 @@ public class TaskList {
      * @param task Task object to be added.
      */
     public void add(Task task) {
+        assert(task != null);
         tasks.add(task);
     }
 
@@ -62,6 +63,7 @@ public class TaskList {
      */
     public Task mark(int taskIndex) throws TaskIndexOutOfBoundsException {
         checkIsValidIndex(taskIndex);
+        assert(taskIndex - 1 >= 0 && taskIndex - 1 < getSize());
         Task task = tasks.get(taskIndex - 1);
         task.markAsDone();
         return task;
@@ -77,6 +79,7 @@ public class TaskList {
      */
     public Task unmark(int taskIndex) throws TaskIndexOutOfBoundsException {
         checkIsValidIndex(taskIndex);
+        assert(taskIndex - 1 >= 0 && taskIndex - 1 < getSize());
         Task task = tasks.get(taskIndex - 1);
         task.unmarkAsDone();
         return task;
