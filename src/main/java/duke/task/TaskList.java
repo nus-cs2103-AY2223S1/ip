@@ -23,6 +23,7 @@ public class TaskList {
      * @param storage Hard disk storage that contains tasks.
      */
     public void loadTasksFromStorage(Storage storage) {
+        assert storage != null : "Storage is null";
         if (size() != 0) {
             throw new DukeException("Current list of tasks is not empty!");
         }
