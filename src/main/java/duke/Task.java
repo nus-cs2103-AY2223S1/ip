@@ -42,6 +42,11 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Update item's date.
+     */
+    public abstract void updateDate(String updatedDate) throws DukeException;
+
     @Override
     public String toString() {
         if (isDone) {

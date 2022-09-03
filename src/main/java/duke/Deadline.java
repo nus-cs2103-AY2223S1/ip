@@ -31,6 +31,11 @@ public class Deadline extends Task {
     }
 
     @Override
+    public void updateDate(String updatedBy) throws DukeException {
+        this.by = LocalDate.parse(updatedBy);
+    }
+
+    @Override
     public String toString() {
         return "[D]" + super.toString()
                 + " (by: " + this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";

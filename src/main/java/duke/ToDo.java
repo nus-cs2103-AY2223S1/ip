@@ -15,6 +15,11 @@ public class ToDo extends Task {
     }
 
     @Override
+    public void updateDate(String updatedDate) throws DukeException {
+        throw new DukeException("This task does not have a date to be updated.");
+    }
+
+    @Override
     public String toString() {
         return "[T]" + super.toString();
     }
@@ -23,4 +28,5 @@ public class ToDo extends Task {
     public String toStorageString() {
         return "T" + super.toStorageString();
     }
+
 }

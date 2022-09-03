@@ -91,6 +91,18 @@ public class TaskList {
         return taskToRemove;
     }
 
+    public Task updateDate(int taskNumber, String updatedDate) throws DukeException {
+        assert taskNumber > 0;
+        Task updatedTask = null;
+        try {
+            updatedTask = tasks.get(taskNumber - 1);
+            updatedTask.updateDate(updatedDate);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Please enter a valid task number!");
+        }
+        return updatedTask;
+    }
+
     /**
      * Updates data file with all existing tasks.
      *

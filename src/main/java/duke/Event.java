@@ -32,6 +32,11 @@ public class Event extends Task {
     }
 
     @Override
+    public void updateDate(String updatedAt) throws DukeException {
+        this.at = LocalDate.parse(updatedAt);
+    }
+
+    @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: "
                 + this.at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";

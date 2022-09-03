@@ -59,6 +59,16 @@ public class Ui {
     }
 
     /**
+     * Handles user interface showing updated task.
+     *
+     * @param updatedTask task to be shown on ui.
+     * @return response of duke in string.
+     */
+    public String showUpdatedTask(Task updatedTask) {
+        return "Nice! I've updated this task's date:\n" + updatedTask.toString();
+    }
+
+    /**
      * Handles user interface for marking task as not done.
      *
      * @param unmarkedTask task to be shown.
