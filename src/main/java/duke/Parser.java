@@ -61,6 +61,8 @@ public class Parser {
      * @throws DukeException if the command is invalid
      */
     public static String findFirstCommand(String input, String command) throws DukeException {
+        assert input != null : "Input cannot be null";
+        assert command != null : "Command cannot be null";
         int endOfCommand = input.indexOf("/");
         int beginIndex = input.indexOf(command) + command.length() + 1;
         if (beginIndex > input.length()) {
@@ -79,6 +81,8 @@ public class Parser {
      * @return String between second command (if exist) and end
      */
     public static String findSecondCommand(String input, String command) {
+        assert input != null : "Input cannot be null";
+        assert command != null : "Command cannot be null";
         return input.contains(command) && !command.equals("")
                 ? input.substring(input.indexOf(command) + command.length() + 1)
                 : "";
@@ -93,6 +97,8 @@ public class Parser {
      * @param secCommand  Second command that the user inputs
      */
     public static void parseTask(String input, String command, StorageList storageList, String secCommand) {
+        assert input != null : "Input cannot be null";
+        assert command != null : "Command cannot be null";
         try {
             String desc = findFirstCommand(input, command);
             String secondCommand = findSecondCommand(input, secCommand);
@@ -121,6 +127,7 @@ public class Parser {
      * @return Index of the Task
      */
     public static int getIndex(String input) {
+        assert input != null : "Input cannot be null";
         return Integer.parseInt(input.split(" ")[1]) - 1;
     }
 }
