@@ -1,6 +1,5 @@
 package duke.commands;
 
-import duke.exceptions.DukeException;
 import duke.utils.Storage;
 import duke.utils.TaskList;
 
@@ -26,7 +25,7 @@ public class InvalidCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public CommandResult execute(TaskList taskList, Storage storage) throws DukeException {
-        throw new DukeException(errorMsg);
+    public CommandResult execute(TaskList taskList, Storage storage) {
+        return new CommandResult(errorMsg);
     }
 }

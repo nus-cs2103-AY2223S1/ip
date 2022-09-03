@@ -1,6 +1,5 @@
 package duke.commands;
 
-import duke.exceptions.DukeException;
 import duke.utils.Storage;
 import duke.utils.TaskList;
 
@@ -27,10 +26,10 @@ public class MarkCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public CommandResult execute(TaskList taskList, Storage storage) throws DukeException {
+    public CommandResult execute(TaskList taskList, Storage storage) {
         if (this.taskIndex > taskList.size() - 1 || this.taskIndex < 0) {
-            throw new DukeException("There is no such task index... "
-                    + "Try 'list' to view all the tasks and their index!");
+            String msg = "There is no such task index... Try 'list' to view all the tasks and their index!";
+            return new CommandResult(msg);
         }
         taskList.markTask(this.taskIndex);
 

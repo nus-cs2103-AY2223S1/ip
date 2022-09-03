@@ -1,6 +1,5 @@
 package duke.commands;
 
-import duke.exceptions.DukeException;
 import duke.utils.Storage;
 import duke.utils.TaskList;
 
@@ -27,10 +26,9 @@ public class FindCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public CommandResult execute(TaskList taskList, Storage storage) throws DukeException {
+    public CommandResult execute(TaskList taskList, Storage storage) {
         TaskList results = taskList.findMatchingTasks(this.keyword);
-        String msgBegin = "Here are the matching tasks in your list:\n";
-        String msg = msgBegin;
+        String msg = "Here are the matching tasks in your list:\n";
         if (results.size() > 0) {
             msg += results.toString();
         } else {
