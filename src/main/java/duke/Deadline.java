@@ -4,9 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- * A class that creates deadline task.
- */
+/** A class that creates deadline task. */
 public class Deadline extends Task {
     protected String by;
     protected LocalDate date;

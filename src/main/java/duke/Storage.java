@@ -8,16 +8,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
 
-/**
- * A class that creates the Storage object.
- */
+/** A class that creates the Storage object. */
 public class Storage {
     private String pathName;
     private File file;
     private TaskList previousTaskList;
 
     /**
-     * A constructor that intialises the Storage object.
+     * A constructor that initialises the Storage object.
      *
      * @param pathName Path name of the text file where the list of tasks is stored.
      * @param previousTaskList ArrayList of tasks.

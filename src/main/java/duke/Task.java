@@ -1,8 +1,6 @@
 package duke;
 
-/**
- * A class that creates a Task object.
- */
+/** A class that creates a Task object. */
 public class Task {
     protected String description;
     protected boolean isDone;

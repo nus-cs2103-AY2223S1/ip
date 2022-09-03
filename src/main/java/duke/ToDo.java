@@ -1,8 +1,6 @@
 package duke;
 
-/**
- * A class that creates the ToDo task.
- */
+/** A class that creates the ToDo task. */
 public class ToDo extends Task {
 
     /**
