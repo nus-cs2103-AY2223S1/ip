@@ -5,14 +5,11 @@ import duke.storage.Storage;
 import duke.ui.Ui;
 
 /**
- * When the command is not recognised
+ * When the user types quack, we need to quack back
  */
-public class InvalidCommand extends Command {
-    public InvalidCommand() {
-
-    }
+public class QuackCommand extends Command {
     @Override
     public String execute(TaskList tasks, Storage storage, Ui ui) {
-        return "INVALID COMMAND";
+        return "Quack!";
     }
 }

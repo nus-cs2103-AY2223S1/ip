@@ -1,11 +1,13 @@
 package duke.ui;
 
+import java.util.Iterator;
+import java.util.List;
+
 import duke.Constants;
 import duke.TaskList;
 import duke.models.Task;
 
-import java.util.Iterator;
-import java.util.List;
+
 
 /**
  * Deals with interactions with the user and displaying output on the console
@@ -18,26 +20,16 @@ public class Ui {
     /**
      * Display welcome message to user
      */
-    public void showWelcome() {
-        this.showIndentedDottedLines();
-        System.out.println(Constants.WELCOME_MESSAGE);
-        this.showIndentedDottedLines();
-    }
-
-    /**
-     * Display indented dotted line
-     */
-    public void showIndentedDottedLines() {
-        System.out.println(Constants.INDENTED_DOTTED_LINE);
+    public String showWelcome() {
+        return Constants.WELCOME_MESSAGE + "\n";
     }
 
     /**
      * Output bye message
      */
-    public void showByeMessage() {
-        this.showIndentedDottedLines();
-        System.out.println(Constants.INDENT + "Bye! Hope to see you again soon!");
-        this.showIndentedDottedLines();
+    public String showByeMessage() {
+        return "Bye! Hope to see you again soon!\n";
+
     }
 
     /**
@@ -45,34 +37,26 @@ public class Ui {
      * @param t
      * @param size
      */
-    public void newItemAdded(Task t, int size) {
-        this.showIndentedDottedLines();
-        System.out.println(Constants.INDENT + "Got it. I've added this task:");
-        System.out.println(Constants.INDENT + Constants.INDENT + t);
-        System.out.println(Constants.INDENT + "Now you have " + size + " tasks in the list.");
-        this.showIndentedDottedLines();
+    public String newItemAdded(Task t, int size) {
+        return "Got it. I've added this task:\n"
+                + t + "\n" + "Now you have " + size + " tasks in the list.\n";
     }
 
     /**
      * Show that Task has been marked with details of the Task
      * @param t
      */
-    public void showTaskMarkMessage(Task t) {
-        this.showIndentedDottedLines();
-        System.out.println(Constants.INDENT + "Nice! I've marked this task as done");
-        System.out.println(Constants.INDENT + Constants.INDENT + t);
-        this.showIndentedDottedLines();
+    public String showTaskMarkMessage(Task t) {
+        return "\n" + "Nice! I've marked this task as done"
+                + t + "\n";
     }
 
     /**
      * Show that Task has been unmarked with details it the Task
      * @param t
      */
-    public void showTaskUnmarkMessage(Task t) {
-        this.showIndentedDottedLines();
-        System.out.println(Constants.INDENT + "OK, I've marked this task as not done yet");
-        System.out.println(Constants.INDENT + Constants.INDENT + t);
-        this.showIndentedDottedLines();
+    public String showTaskUnmarkMessage(Task t) {
+        return "OK, I've marked this task as not done yet\n" + t + "\n";
     }
 
     /**
@@ -80,44 +64,37 @@ public class Ui {
      * @param t
      * @param size
      */
-    public void showTaskDeletedMessage(Task t, int size) {
-        this.showIndentedDottedLines();
-        System.out.println(Constants.INDENT + "Noted. I've removed this task:");
-        System.out.println(Constants.INDENT + Constants.INDENT + t);
-        System.out.println(Constants.INDENT + "Now you have " + size + " tasks in the list.");
-        this.showIndentedDottedLines();
+    public String showTaskDeletedMessage(Task t, int size) {
+        return "Noted. I've removed this task:\n"
+                + t + "\n" + "Now you have " + size + " tasks in the list.\n";
     }
 
     /**
      * Displays error that data has not been loaded successfully
      */
-    public void showLoadingError() {
-        this.showIndentedDottedLines();
-        System.out.println(Constants.INDENT + "ERROR LOADING DATA FROM DISK");
-        this.showIndentedDottedLines();
+    public String showLoadingError() {
+        return "ERROR LOADING DATA FROM DISK\n";
     }
 
     /**
      * Prints a list of all tasks in the list
      * @param tasks
      */
-    public void listAllTasks(TaskList tasks) {
-        this.showIndentedDottedLines();
-        System.out.println(tasks.getAllTasks());
-        this.showIndentedDottedLines();
+    public String listAllTasks(TaskList tasks) {
+        return "\n" + tasks.getAllTasks() + "\n";
     }
 
     /**
      * Prints out the list of tasks
      * @param taskList
      */
-    public void listQueryResult(List<Task> taskList) {
-        this.showIndentedDottedLines();
+    public String listQueryResult(List<Task> taskList) {
+        String result = "";
         Iterator<Task> iterator = taskList.iterator();
         while (iterator.hasNext()) {
-            System.out.println(iterator);
+            result += iterator;
         }
-        this.showIndentedDottedLines();
+        return result;
     }
 
 }

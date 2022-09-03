@@ -5,5 +5,4 @@ public enum CommandResult {
     SUCCESSFUL_DELETE,
     SUCCESSFUL_MARK,
     SUCCESSFUL_UNMARK,
-
 }

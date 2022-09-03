@@ -1,13 +1,13 @@
 package duke.command;
 
 import duke.TaskList;
-import duke.ui.Ui;
 import duke.storage.Storage;
+import duke.ui.Ui;
 
 /**
  * Abstract class to handle commands
  */
 public abstract class Command {
 
-    public abstract void execute(TaskList tasks, Storage storage, Ui ui);
+    public abstract String execute(TaskList tasks, Storage storage, Ui ui);
 }

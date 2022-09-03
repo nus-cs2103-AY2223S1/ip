@@ -47,7 +47,7 @@ public class TaskList {
         ListIterator<Task> listIterator = tasks.listIterator();
         while (listIterator.hasNext()) {
             Task t = listIterator.next();
-            result += Constants.INDENT + listIterator.nextIndex()
+            result += listIterator.nextIndex()
                     + ". " + t + "\n";
         }
         return result;
