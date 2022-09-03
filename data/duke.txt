@@ -5,3 +5,4 @@
 [D][ ] try eating (by: Aug 07 2018)
 [T][X] yell
 [T][ ] aspdoq
+[T][ ] die

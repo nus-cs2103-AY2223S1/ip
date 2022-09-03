@@ -19,6 +19,7 @@ public class DeleteCommand extends Command {
      */
     public DeleteCommand(int integer) {
         this.integer = integer;
+        assert integer > 0 : "Integer is not valid!";
     }
 
     /**
