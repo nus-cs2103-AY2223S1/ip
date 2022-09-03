@@ -1,29 +1,23 @@
-# User Guide
+# Amanda Pro
 
-## Features 
+> “Your mind is for having ideas, not holding them.” – David Allen
 
-### Feature-ABC
+### AmandaPro frees your mind of having to remember things you need to do. It's,
+- text-based
+- easy to learn
+- ~~FAST~~ SUPER FAST to use
 
-Description of the feature.
+### All you need to do is
 
-### Feature-XYZ
+1. download it from [here](https://github.com/hoang227/ip).
+2. double-click it.
+3. add your tasks.
+4. let it manage your tasks for you :kissing_heart:
 
-Description of the feature.
+### And it is **FREE**!
 
-## Usage
+## Features:
 
-### `Keyword` - Describe action
-
-Describe the action and its outcome.
-
-Example of usage: 
-
-`keyword (optional arguments)`
-
-Expected outcome:
-
-Description of the outcome.
-
-```
-expected output
-```
+- [x] Managing tasks
+- [ ] Managing deadlines (coming soon)
+- [ ] Reminders (coming soon)
