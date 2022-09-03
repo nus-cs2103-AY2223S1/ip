@@ -46,6 +46,6 @@ public class AddTodoCommand extends AddTaskCommand {
 
     @Override
     protected boolean isEmptyDescription(String[] splitTodo) {
-        return splitTodo[1].trim().equals(EMPTY_STRING);
+        return splitTodo.length == 1;
     }
 }

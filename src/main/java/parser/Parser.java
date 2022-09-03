@@ -47,9 +47,9 @@ public class Parser {
     public Command parse(String input) {
         if (input.equals("")) {
             return new EmptyCommand(tasks, ui);
-        } else if (input.startsWith("bye")) {
+        } else if (input.equals("bye")) {
             return new ExitCommand(tasks, ui);
-        } else if (input.startsWith("list")) {
+        } else if (input.equals("list")) {
             return new ListCommand(tasks, input, ui);
         } else if (input.startsWith("todo")) {
             return new AddTodoCommand(tasks, input, ui);

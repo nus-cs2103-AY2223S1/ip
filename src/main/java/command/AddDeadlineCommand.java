@@ -70,8 +70,6 @@ public class AddDeadlineCommand extends AddTaskCommand {
 
     private Deadline getDeadlineFromInput(String[] splitDeadline) {
         LocalDateTime deadlineDateTime = DateTimeParser.changeStringToParsingDateTime(splitDeadline[1].trim());
-        assert deadlineDateTime.toString().equals(deadlineDateTime.format(
-                DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a")));
         return new Deadline(splitDeadline[0].trim(), false, deadlineDateTime);
     }
 

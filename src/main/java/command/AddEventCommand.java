@@ -70,8 +70,6 @@ public class AddEventCommand extends AddTaskCommand {
 
     private Event getEventFromInput(String[] splitEvent) {
         LocalDateTime eventDateTime = DateTimeParser.changeStringToParsingDateTime(splitEvent[1].trim());
-        assert eventDateTime.toString().equals(eventDateTime.format(
-                DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a")));
         return new Event(splitEvent[0].trim(), false, eventDateTime);
     }
 
