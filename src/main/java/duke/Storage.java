@@ -96,7 +96,7 @@ public class Storage {
             sc.close();
 
         } catch (FileNotFoundException | InvalidStorageDataException e) {
-            System.out.println(e.getMessage());
+            Ui.appendDukeResponse(e.getMessage());
         }
         return tasks;
     }
