@@ -2,6 +2,8 @@ package duke.task;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import duke.exception.InvalidIndexException;
 
@@ -77,14 +79,8 @@ public class TaskList {
      * @param time The given date.
      * @return An arraylist containing the tasks that matches the criteria.
      */
-    public ArrayList<Task> getDueTasks(LocalDate time) {
-        ArrayList<Task> list = new ArrayList<>();
-        for (Task task : this.tasks) {
-            if (task.isDateEqual(time)) {
-                list.add(task);
-            }
-        }
-        return list;
+    public List<Task> getDueTasks(LocalDate time) {
+        return this.tasks.stream().filter(x -> x.isDateEqual(time)).collect(Collectors.toList());
     }
     /**
      * Marks the task located at the given index as uncompleted.
@@ -104,21 +100,10 @@ public class TaskList {
     /**
      * Returns the list of tasks that matches the queried keyword.
      *
-     * @param queries The given query keyword.
+     * @param queries The given query keywords.
      * @return An arraylist containing the tasks that matches the query.
      */
-    public ArrayList<Task> findTasks(String ... queries) {
-        ArrayList<Task> list = new ArrayList<>();
-        for (String query : queries) {
-            checkTask(list, query);
-        }
-        return list;
-    }
-    private void checkTask(ArrayList<Task> list, String query) {
-        for (Task task: this.tasks) {
-            if (task.isQueryPresent(query)) {
-                list.add(task);
-            }
-        }
+    public List<Task> findTasks(String ... queries) {
+        return this.tasks.stream().filter(x -> x.isQueriesPresent(queries)).collect(Collectors.toList());
     }
 }

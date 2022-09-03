@@ -1,6 +1,6 @@
 package duke;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import duke.task.Task;
 import duke.task.TaskList;
@@ -86,10 +86,10 @@ public class Ui {
     /**
      * Returns the message containing all the due tasks in the given arraylist.
      *
-     * @param list The arraylist containing the queried tasks.
+     * @param list The list containing the queried tasks.
      * @return The string containing the intended message.
      */
-    public String getDueTasksMessage(ArrayList<Task> list) {
+    public String getDueTasksMessage(List<Task> list) {
         StringBuilder strBuilder = new StringBuilder("Here are the tasks due at this date:");
         for (int i = 0; i < list.size(); i++) {
             strBuilder.append("\n").append(i + 1).append(".").append(list.get(i));
@@ -104,7 +104,7 @@ public class Ui {
      * @param list The given list of found tasks.
      * @return The string containing the intended message.
      */
-    public String getFoundTasksMessage(ArrayList<Task> list) {
+    public String getFoundTasksMessage(List<Task> list) {
         StringBuilder strBuilder = new StringBuilder("Here are the matching tasks in your list:");
         for (int i = 0; i < list.size(); i++) {
             strBuilder.append("\n").append(i + 1).append(".").append(list.get(i));
