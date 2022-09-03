@@ -1,17 +1,15 @@
-package duke;
+package duke.gui;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,22 +20,27 @@ import java.util.List;
  */
 public class DialogBox extends HBox {
     @FXML
-    private Label dialog;
+    private TextArea dialog;
     @FXML
     private ImageView displayPicture;
 
-    private DialogBox(String text, Image img, String color) {
+    private DialogBox(String text, javafx.scene.image.Image img, String color) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
+            javafx.fxml.FXMLLoader fxmlLoader = new javafx.fxml.FXMLLoader(duke.gui.MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
-        } catch (IOException e) {
+        } catch (java.io.IOException e) {
             e.printStackTrace();
         }
 
         dialog.setText(text);
-        dialog.setStyle(String.format("-fx-border-color: LIGHTSLATEGRAY; -fx-background-color: %s; -fx-padding: 4;", color));
+        dialog.setWrapText(true);
+        dialog.getStyleClass().add("scroll-free-text-area");
+        int noOfLines = text.split("\r\n|\r|\n").length;
+        dialog.setPrefHeight(12 * noOfLines);
+        dialog.setStyle(String.format("-fx-line-spacing: 8px; -fx-control-inner-background: %s; -fx-hbar-policy:never; "
+                + "-fx-vbar-policy:never; -fx-padding: 2;", color));
         displayPicture.setImage(img);
         displayPicture.setClip(new javafx.scene.shape.Circle(25, 25, 25));
     }

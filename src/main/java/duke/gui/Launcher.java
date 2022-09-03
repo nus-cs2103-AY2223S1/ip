@@ -1,4 +1,4 @@
-package duke;
+package duke.gui;
 
 /**
  * A launcher class to workaround classpath issues.
@@ -8,3 +8,5 @@ public class Launcher {
         javafx.application.Application.launch(duke.Main.class, args);
     }
 }
+
+

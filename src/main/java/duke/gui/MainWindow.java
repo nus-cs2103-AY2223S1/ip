@@ -1,5 +1,7 @@
-package duke;
+package duke.gui;
 
+import duke.Duke;
+import duke.Ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -10,7 +12,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.List;
 
-import static duke.DialogBox.getDukeDialogs;
+import static duke.gui.DialogBox.getDukeDialogs;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
