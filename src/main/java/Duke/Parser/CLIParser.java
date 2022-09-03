@@ -15,6 +15,10 @@ import Duke.Tasks.Deadline;
 
 import javax.xml.stream.events.Comment;
 
+/**
+ * CLIParser
+ * Acts as a class to interpret user commands.
+ */
 public class CLIParser {
 
     // Like a classifier
@@ -41,6 +45,8 @@ public class CLIParser {
         if (commandType.equals("Deadline")) {
             return parseDeadlineCommand(commandElse, userTasks);
         }
+
+        return null;
     }
 
 
@@ -52,13 +58,14 @@ public class CLIParser {
 
         try {
             String[] parts = commandElse.split("/");
-            String taskName = split[0].strip();
+            String taskName = parts[0].strip();
             String[] time = parts[1].strip().split(" ");
         } catch (Exception e) {
 
         }
         Deadline deadline = null;
 
-        return new AddTaskCommand(null, userTask)
+        return new AddTaskCommand(null, userTask);
     }
+
 }
