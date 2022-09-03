@@ -11,7 +11,8 @@ public class Event extends Task {
     protected LocalDate at;
     protected LocalTime timeStart;
     protected LocalTime timeEnd;
-
+    protected DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+    protected DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MMM d yyyy");
     /**
      * Creates an event object upon receiving an event command from the user.
      *
@@ -45,9 +46,9 @@ public class Event extends Task {
     @Override
     public String toString() {
         String str = "";
-        str += timeStart.format(DateTimeFormatter.ofPattern("HH:mm ")) + "to ";
-        str += timeEnd.format(DateTimeFormatter.ofPattern("HH:mm "));
-        str += at.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        str += timeStart.format(timeFormatter) + "to ";
+        str += timeEnd.format(timeFormatter);
+        str += at.format(dateFormatter);
         return "[E]" + super.toString() + "(at: " + str + ")";
     }
 }

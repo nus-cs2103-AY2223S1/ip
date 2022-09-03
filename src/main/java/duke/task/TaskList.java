@@ -78,13 +78,13 @@ public class TaskList {
      * @return An arraylist containing the tasks that matches the criteria.
      */
     public ArrayList<Task> getDueTasks(LocalDate time) {
-        ArrayList<Task> tmp = new ArrayList<>();
+        ArrayList<Task> list = new ArrayList<>();
         for (Task task : this.tasks) {
             if (task.isDateEqual(time)) {
-                tmp.add(task);
+                list.add(task);
             }
         }
-        return tmp;
+        return list;
     }
     /**
      * Marks the task located at the given index as uncompleted.
@@ -108,14 +108,17 @@ public class TaskList {
      * @return An arraylist containing the tasks that matches the query.
      */
     public ArrayList<Task> findTasks(String ... queries) {
-        ArrayList<Task> tmp = new ArrayList<>();
+        ArrayList<Task> list = new ArrayList<>();
         for (String query : queries) {
-            for (Task task: this.tasks) {
-                if (task.isQueryPresent(query)) {
-                    tmp.add(task);
-                }
+            checkTask(list, query);
+        }
+        return list;
+    }
+    private void checkTask(ArrayList<Task> list, String query) {
+        for (Task task: this.tasks) {
+            if (task.isQueryPresent(query)) {
+                list.add(task);
             }
         }
-        return tmp;
     }
 }

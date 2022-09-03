@@ -5,7 +5,8 @@ package duke.exception;
  * an invalid index.
  */
 public class InvalidIndexException extends DukeException {
+    private static final String ERR_STARTING_MESSAGE = "Unfortunate, ";
     public InvalidIndexException(String errorMsg) {
-        super("Unfortunate, " + errorMsg);
+        super(ERR_STARTING_MESSAGE + errorMsg);
     }
 }
