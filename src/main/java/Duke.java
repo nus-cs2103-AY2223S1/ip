@@ -1,160 +1,106 @@
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
+import java.time.DateTimeException;
 import java.util.Scanner;
 
 public class Duke {
 
-    private static final ArrayList<Task> LIST_OF_TASKS = new ArrayList<>();
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
 
-    private static void updateFromFile() {
+    public Duke(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
         try {
-            String line = FileHandler.readLine(1);
-            int lineNum = 1;
-            while (line != null) {
-                Task task;
-                if (line.charAt(1) == 'D') {
-                    int index = line.indexOf('|');
-                    String taskName = line.substring(7, index - 1);
-                    String dateTime = line.substring(index + 2);
-                    String month = dateTime.substring(3, 6);
-                    int numberMonth = Task.monthToInt(month);
-                    dateTime = dateTime.substring(0, 2) + "-" + numberMonth + "-" + dateTime.substring(7);
-                    task = new Task.DeadlineTask(taskName, dateTime);
-                } else if (line.charAt(1) == 'E') {
-                    int index = line.indexOf('|');
-                    String taskName = line.substring(7, index - 1);
-                    String dateTime = line.substring(index + 2);
-                    String month = dateTime.substring(3, 6);
-                    int numberMonth = Task.monthToInt(month);
-                    dateTime = dateTime.substring(0, 2) + "-" + numberMonth + "-" + dateTime.substring(7);
-                    task = new Task.DeadlineTask(taskName, dateTime);
-                } else if (line.charAt(1) == 'T') {
-                    String taskName = line.substring(7);
-                    task = new Task.TodoTask(taskName);
-                } else {
-                    throw new InputMismatchException();
-                }
-                if (line.charAt(4) == '1') {
-                    task.markComplete();
-                }
-                LIST_OF_TASKS.add(task);
-                lineNum++;
-                line = FileHandler.readLine(lineNum);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("No file found to read from");
+            tasks = new TaskList(storage.load());
         } catch (IOException e) {
-            System.out.println("Unknown IO Exception");
-        } catch (NullPointerException | InputMismatchException e) {
-            System.out.println("Input file format not recognised");
+            ui.showLoadingError();
+            tasks = new TaskList();
         }
     }
 
-    private static void updateToFile() {
-        StringBuilder outputFile = new StringBuilder();
-        for (Task task : LIST_OF_TASKS) {
-            outputFile.append(task);
-            outputFile.append("\n");
-        }
-        try {
-            FileHandler.writeToFile(outputFile.toString());
-        } catch (FileNotFoundException e) {
-            System.out.println("No file found to write to");
-        } catch (IOException e) {
-            System.out.println("Unknown IO error");
+    public void run() {
+        System.out.println("Hi, I'm Duke. What may I do for you?");
+        while (true) {
+            try {
+                Scanner sc = new Scanner(System.in);
+                String input = sc.nextLine();
+                String parsedInput = Parser.parse(input);
+                if (parsedInput.equalsIgnoreCase("bye")) {
+                    break;
+                } else if (parsedInput.equalsIgnoreCase("list")) {
+                    ui.display(tasks.list());
+                } else if (parsedInput.toLowerCase().startsWith("mark")) {
+                    int taskNum = Integer.parseInt(parsedInput.substring(4));
+                    try {
+                        Task task = tasks.mark(taskNum);
+                        ui.display(String.format("I've marked this task as complete:%n%s%n", task));
+                    } catch (IndexOutOfBoundsException e) {
+                        ui.displayError(e);
+                    }
+                } else if (parsedInput.toLowerCase().startsWith("unmark")) {
+                    int taskNum = Integer.parseInt(parsedInput.substring(6));
+                    try {
+                        Task task = tasks.unmark(taskNum);
+                        ui.display(String.format("I've marked this task as incomplete:%n%s%n", task));
+                    } catch (IndexOutOfBoundsException e) {
+                        ui.displayError(e);
+                    }
+                } else if (parsedInput.toLowerCase().startsWith("delete")) {
+                    int taskNum = Integer.parseInt(parsedInput.substring(6));
+                    try {
+                        Task task = tasks.delete(taskNum);
+                        ui.display(String.format("I've deleted this task:%n%s%n", task));
+                    } catch (IndexOutOfBoundsException e) {
+                        ui.displayError(e);
+                    }
+                } else if (parsedInput.toLowerCase().startsWith("dwt")) {
+                    String date = parsedInput.substring(3, 11);
+                    String time = parsedInput.substring(11, 15);
+                    String taskName = parsedInput.substring(15);
+                    Task task = new Task.DeadlineTask(taskName, date, time);
+                    tasks.add(task);
+                    ui.display(String.format("Added new deadline task:%n%s%n", task));
+                } else if (parsedInput.toLowerCase().startsWith("dnt")) {
+                    String date = parsedInput.substring(3, 11);
+                    String taskName = parsedInput.substring(11);
+                    Task task = new Task.DeadlineTask(taskName, date);
+                    tasks.add(task);
+                    ui.display(String.format("Added new deadline task:%n%s%n", task));
+                } else if (parsedInput.toLowerCase().startsWith("ewt")) {
+                    String date = parsedInput.substring(3, 11);
+                    String time = parsedInput.substring(11, 15);
+                    String taskName = parsedInput.substring(15);
+                    Task task = new Task.EventTask(taskName, date, time);
+                    tasks.add(task);
+                    ui.display(String.format("Added new event task:%n%s%n", task));
+                } else if (parsedInput.toLowerCase().startsWith("ent")) {
+                    String date = parsedInput.substring(3, 11);
+                    String taskName = parsedInput.substring(11);
+                    Task task = new Task.EventTask(taskName, date);
+                    tasks.add(task);
+                    ui.display(String.format("Added new event task:%n%s%n", task));
+                } else if (parsedInput.toLowerCase().startsWith("todo")) {
+                    String taskName = parsedInput.substring(4);
+                    Task task = new Task.TodoTask(taskName);
+                    tasks.add(task);
+                    ui.display(String.format("Added new todo task:%n%s%n", task));
+                } else {
+                    ui.display("Sorry I don't recognise that command :(");
+                }
+                try {
+                    storage.writeToFile(tasks.list());
+                } catch (IOException e) {
+                    ui.showWritingError();
+                }
+            } catch (DateTimeException | IllegalArgumentException e) {
+               ui.displayError(e);
+            }
         }
     }
 
     public static void main(String[] args) {
-        updateFromFile();
-        System.out.println("Hi, I'm Duke. What can I do for you?");
-        Scanner keyboard = new Scanner(System.in);
-        String message = keyboard.nextLine();
-        while (true) {
-            if (message.equals("bye")) {
-                System.out.println("Bye! See you next time!");
-                break;
-            } else if (message.toLowerCase().equals("list")) {
-                StringBuilder output_message = new StringBuilder();
-                for (int i = 0; i < LIST_OF_TASKS.size(); i++) {
-                    output_message.append(String.format("%d. %s", i + 1, LIST_OF_TASKS.get(i)));
-                    output_message.append("\n");
-                }
-                System.out.println(output_message);
-            } else if (message.toLowerCase().startsWith("mark")) {
-                try {
-                    int task_index = Integer.parseInt(message.substring(5)) - 1;
-                    Task task = LIST_OF_TASKS.get(task_index);
-                    task.markComplete();
-                    System.out.printf("Marked task %d as complete. %n%s%n",task_index + 1, task);
-                } catch (StringIndexOutOfBoundsException e) {
-                    System.out.println("Please indicate which task you would like to mark");
-                } catch (NumberFormatException e) {
-                    System.out.println("You need to enter a number!");
-                } catch (IndexOutOfBoundsException e) {
-                    System.out.printf("You only have %d tasks!%n%n", LIST_OF_TASKS.size());
-                }
-            } else if (message.toLowerCase().startsWith("unmark")) {
-                try {
-                    int task_index = Integer.parseInt(message.substring(7)) - 1;
-                    Task task = LIST_OF_TASKS.get(task_index);
-                    task.markIncomplete();
-                    System.out.printf("Marked task %d as incomplete. %n%s%n",task_index + 1, task);
-                } catch (StringIndexOutOfBoundsException e) {
-                    System.out.println("Please indicate which task you would like to unmark");
-                } catch (NumberFormatException e) {
-                    System.out.println("You need to enter a number!");
-                } catch (IndexOutOfBoundsException e) {
-                    System.out.printf("You only have %d tasks!%n", LIST_OF_TASKS.size());
-                }
-            }else if (message.toLowerCase().startsWith("deadline")) {
-                int slash_char_pos = message.indexOf("/by");
-                if (slash_char_pos < 11) {
-                    System.out.println("Deadline tasks require a task name and a deadline specified by /by");
-                } else {
-                    String task_name = message.substring(9, slash_char_pos - 1);
-                    String deadline = message.substring(slash_char_pos + 4);
-                    Task this_task = new Task.DeadlineTask(task_name, deadline);
-                    LIST_OF_TASKS.add(this_task);
-                    System.out.printf("I've added this task:%n%s%n", this_task);
-                }
-            } else if (message.toLowerCase().startsWith(("event"))) {
-                int slash_char_pos = message.indexOf("/at");
-                if (slash_char_pos < 8) {
-                    System.out.println("Event tasks require a task name and a datetime specified by /at");
-                } else {
-                    String task_name = message.substring(6, slash_char_pos - 1);
-                    String date = message.substring(slash_char_pos + 4);
-                    Task this_task = new Task.EventTask(task_name, date);
-                    LIST_OF_TASKS.add(this_task);
-                    System.out.printf("I've added this task:%n%s%n", this_task);
-                }
-            } else if (message.toLowerCase().startsWith(("todo"))) {
-                String task_name = message.substring(5);
-                Task this_task = new Task.TodoTask(task_name);
-                LIST_OF_TASKS.add(this_task);
-                System.out.printf("I've added this task:%n%s%n", this_task);
-            } else if (message.toLowerCase().startsWith("delete")) {
-                try {
-                    int task_index = Integer.parseInt(message.substring(7)) - 1;
-                    Task removed = LIST_OF_TASKS.remove(task_index);
-                    System.out.printf("Noted. I've removed this task:%n%s%nNow you have %d tasks in the list%n",
-                            removed, LIST_OF_TASKS.size());
-                } catch (StringIndexOutOfBoundsException e) {
-                    System.out.println("Please indicate which task you would like to delete");
-                } catch (NumberFormatException e) {
-                    System.out.println("You need to enter a number!");
-                } catch (IndexOutOfBoundsException e) {
-                    System.out.printf("You only have %d tasks!%n", LIST_OF_TASKS.size());
-                }
-            } else {
-                System.out.println("Sorry, I don't know what that means :(");
-            }
-            updateToFile();
-            message = keyboard.nextLine();
-        }
+        new Duke("data/Duke.txt").run();
     }
+
 }
