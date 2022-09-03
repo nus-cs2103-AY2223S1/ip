@@ -39,14 +39,26 @@ public class Parser {
             return new ListCommand();
 
         case "unmark":
+            if (fullCommand.trim().length() <= 6) {
+                throw new InvalidIndexException();
+            }
+
             targetIndex = Integer.parseInt(fullCommand.substring(6).trim()) - 1;
             return new MarkCommand(false, targetIndex);
 
         case "mark":
+            if (fullCommand.trim().length() <= 4) {
+                throw new InvalidIndexException();
+            }
+
             targetIndex = Integer.parseInt(fullCommand.substring(4).trim()) - 1;
             return new MarkCommand(true, targetIndex);
 
         case "delete":
+            if (fullCommand.trim().length() <= 6) {
+                throw new InvalidIndexException();
+            }
+
             targetIndex = Integer.parseInt(fullCommand.substring(6).trim()) - 1;
             return new DeleteCommand(targetIndex);
 
@@ -57,6 +69,10 @@ public class Parser {
             return new TodoCommand(fullCommand.substring(4).trim());
 
         case "editd":
+            if (fullCommand.trim().length() <= 5) {
+                throw new InvalidIndexException();
+            }
+
             targetIndex = Integer.parseInt(fullCommand.substring(5).trim().substring(0, 1));
             descIndex = fullCommand.indexOf("/d");
             if (descIndex == -1) {
