@@ -86,7 +86,7 @@ public class TaskList {
      * Returns the number of tasks in the List of tasks.
      * @return Size of the List of tasks.
      */
-    public int size() {
+    public int getSize() {
         return tasks.size();
     }
 
@@ -141,9 +141,9 @@ public class TaskList {
      * @throws TaskIndexOutOfBoundsException If index of a Task object is invalid.
      */
     private void checkIsValidIndex(int index) throws TaskIndexOutOfBoundsException {
-        boolean isValid = index >= 1 && index <= this.size();
+        boolean isValid = index >= 1 && index <= getSize();
         if (!isValid) {
-            throw new TaskIndexOutOfBoundsException(index, this.size());
+            throw new TaskIndexOutOfBoundsException(index, getSize());
         }
     }
 }
