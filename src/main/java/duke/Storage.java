@@ -63,20 +63,30 @@ public class Storage {
                 switch (taskType) {
                 case 'T':
                     taskDesc = line.substring(DESC_MARKER).trim();
+                    if (taskDesc.isEmpty()) {
+                        throw new InvalidStorageDataException();
+                    }
                     tasks.add(new ToDo(taskDesc, taskIsDone));
                     break;
+
                 case 'D':
                     taskDesc = line.substring(DESC_MARKER, line.indexOf('(')).trim();
                     taskTime = line.substring(line.indexOf('(') + 1, line.indexOf(')')).trim();
-
+                    if (taskDesc.isEmpty() | taskTime.isEmpty()) {
+                        throw new InvalidStorageDataException();
+                    }
                     tasks.add(new Deadline(taskDesc, taskIsDone, taskTime));
                     break;
+
                 case 'E':
                     taskDesc = line.substring(DESC_MARKER, line.indexOf('(')).trim();
                     taskTime = line.substring(line.indexOf('(') + 1, line.indexOf(')')).trim();
-
+                    if (taskDesc.isEmpty() | taskTime.isEmpty()) {
+                        throw new InvalidStorageDataException();
+                    }
                     tasks.add(new Event(taskDesc, taskIsDone, taskTime));
                     break;
+
                 default:
                     throw new InvalidStorageDataException();
                 }
