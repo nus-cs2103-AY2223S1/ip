@@ -31,6 +31,8 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        this.dialogContainer.getChildren().add(DialogBox.getCheeseDialog("hi", cheeseImage));
+
     }
 
     public void setCheese(Cheese c) {
