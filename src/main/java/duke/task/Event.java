@@ -68,11 +68,10 @@ public class Event extends Task {
      */
     @Override
     public String encode() {
-        String s = String.format("%c;%s;%s",
+        return String.format("%c;%s;%s",
                 SYMBOL,
                 super.encode(),
-                Date.storageFormat(this.date));
-        return s;
+                Date.getStorageFormat(this.date));
     }
 
     /**
@@ -82,11 +81,10 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        String s = String.format("[%c]%s (at: %s)",
+        return String.format("[%c]%s (at: %s)",
                 SYMBOL,
                 super.toString(),
-                Date.displayFormat(this.date));
-        return s;
+                Date.getDisplayFormat(this.date));
     }
 }
 

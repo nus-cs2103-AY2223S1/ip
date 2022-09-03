@@ -83,7 +83,7 @@ public class TaskList {
      */
     public List<String> encode() {
         List<String> encodedTasks = new ArrayList<>();
-        for (Task task : tasks) {
+        for (Task task : this.tasks) {
             encodedTasks.add(task.encode());
         }
         return encodedTasks;
@@ -101,9 +101,9 @@ public class TaskList {
      */
     public static TaskList decode(List<String> encodedTasks) throws DukeException {
         TaskList decodedTasks = new TaskList();
-        for (String s : encodedTasks) {
-            char taskType = s.charAt(0);
-            String content = s.substring(2);
+        for (String encodedTask : encodedTasks) {
+            char taskType = encodedTask.charAt(0);
+            String content = encodedTask.substring(2);
 
             switch (taskType) {
             case Todo.SYMBOL:
