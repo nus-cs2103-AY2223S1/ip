@@ -35,6 +35,15 @@ public class TaskList {
     }
 
     /**
+     * Removes a task from the list.
+     *
+     * @param task Task to be removed.
+     */
+    public void removeTask(Task task) {
+        tasks.remove(task);
+    }
+
+    /**
      * Gets a task from the list.
      *
      * @param index Index of the task to be retrieved.

@@ -2,6 +2,7 @@ package duke.commands;
 
 import duke.exceptions.DukeException;
 import duke.task.Todo;
+import duke.undo.TaskUndo;
 
 /**
  * Represents a todo command in the Duke application.
@@ -33,8 +34,9 @@ public class TodoCommand extends Command {
     public CommandResult execute() {
         assert tasks != null : "Should setData() before calling execute().";
         tasks.addTask(todo);
+        TaskUndo undoAction = new TaskUndo(todo);
         int numberOfTasks = tasks.size();
         String userMessage = String.format(USER_MESSAGE_FORMAT, todo, numberOfTasks);
-        return new CommandResult(userMessage, true, false);
+        return new CommandResult(userMessage, CommandResult.Action.UPDATE_FILE, undoAction);
     }
 }

@@ -11,6 +11,6 @@ public class ExitCommand extends Command {
      * {@inheritDoc}
      */
     public CommandResult execute() {
-        return new CommandResult("", false, true);
+        return new CommandResult("", CommandResult.Action.EXIT);
     }
 }

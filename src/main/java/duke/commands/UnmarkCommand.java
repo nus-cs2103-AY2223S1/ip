@@ -2,6 +2,8 @@ package duke.commands;
 
 import duke.exceptions.DukeException;
 import duke.task.Task;
+import duke.undo.MarkUndo;
+import duke.undo.UndoAction;
 
 /**
  * Represents an unmark command in the Duke application.
@@ -32,8 +34,9 @@ public class UnmarkCommand extends Command {
         }
         // Subtract 1 to account for 0-index data structure.
         Task task = tasks.getTask(index - 1);
+        UndoAction undoAction = new MarkUndo(task, false);
         task.markAsUndone();
         String userMessage = String.format(USER_MESSAGE_FORMAT, index, task);
-        return new CommandResult(userMessage, true, false);
+        return new CommandResult(userMessage, CommandResult.Action.UPDATE_FILE, undoAction);
     }
 }
