@@ -41,6 +41,13 @@ public class Duke {
         ui.greet(dialogContainer);
     }
 
+    /**
+     * Parses and executes the user's input
+     *
+     * @param trimmedUserInput user input String that is trimmed.
+     * @param userDialog the Dialog Box containing the user's input to be added to the Vbox.
+     * @param dialogContainer the VBox to add the dialog to.
+     */
     public void execute(String trimmedUserInput, DialogBox userDialog, VBox dialogContainer) {
         try {
             Command command = parser.parse(trimmedUserInput);
@@ -49,9 +56,7 @@ public class Duke {
                 try {
                     storage.writeToFile(tasks);
                     ui.sayGoodbye(dialogContainer, userDialog);
-                    PauseTransition delay = new PauseTransition(Duration.seconds(2.5));
-                    delay.setOnFinished(event -> Platform.exit());
-                    delay.play();
+                    executeDelay();
                 } catch (DukeException e) {
                     ui.sayErrorMessageWithUserInput(e.getMessage(), dialogContainer, userDialog);
                 }
@@ -59,5 +64,11 @@ public class Duke {
         } catch (DukeException e) {
             ui.sayErrorMessageWithUserInput(e.getMessage(), dialogContainer, userDialog);
         }
+    }
+
+    private void executeDelay() {
+        PauseTransition delay = new PauseTransition(Duration.seconds(2.5));
+        delay.setOnFinished(event -> Platform.exit());
+        delay.play();
     }
 }

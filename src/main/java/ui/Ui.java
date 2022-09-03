@@ -1,9 +1,5 @@
 package ui;
 
-import java.util.Scanner;
-
-import javafx.geometry.Insets;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import task.Task;

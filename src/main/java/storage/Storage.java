@@ -25,6 +25,11 @@ import task.Todo;
  * tasks can be used the next time the chat bot is run.
  */
 public class Storage {
+    public static final String DEADLINE_REGEX = " \\(by: ";
+    public static final String EVENT_REGEX = " \\(at: ";
+    public static final String OUTPUT_FOLDER_NAME = "data";
+    public static final String OUTPUT_FILE_NAME = "duke.txt";
+    public static final String EMPTY_STRING = "";
     private String folderPath;
     private String filename;
     private String userDirectory = System.getProperty("user.dir");
@@ -56,16 +61,28 @@ public class Storage {
         }
         if (!hasSavedTasks(savedTasksPath)) {
             return new ArrayList<>();
-        } else {
-            File tasksFile = getTasksFile(savedTasksPath);
-            ArrayList<Task> tasks = new ArrayList<>();
-            try {
-                tasks = parseFileToTasks(tasksFile);
-            } catch (FileNotFoundException e) {
-                throw new DukeException(e.getMessage());
-            } finally {
-                return tasks;
-            }
+        }
+        File tasksFile = getTasksFile(savedTasksPath);
+        try {
+            return parseFileToTasks(tasksFile);
+        } catch (FileNotFoundException e) {
+            throw new DukeException(e.getMessage());
+        }
+    }
+
+    /**
+     * Writes the saved tasks to the output file.
+     *
+     * @param tasks TaskList to be written from.
+     * @throws DukeException if an exception is encountered.
+     */
+    public void writeToFile(TaskList tasks) throws DukeException {
+        try {
+            FileWriter fw = new FileWriter(getRelativePath());
+            fw.write(generateTasksToAdd(tasks));
+            fw.close();
+        } catch (IOException e) {
+            throw new DukeException(e.getMessage());
         }
     }
 
@@ -86,21 +103,19 @@ public class Storage {
 
     private Task parseLineToTask(String line) throws DukeException {
         if (line.length() <= 7) {
-            throw new DukeException("");
+            throw new DukeException(EMPTY_STRING);
         }
         char taskSymbol = line.charAt(1);
-        boolean isDone = line.charAt(4) == 'X'
-                ? true
-                : false;
+        boolean isDone = line.charAt(4) == 'X';
         switch (taskSymbol) {
         case 'T':
             return getTodoFromLine(line, isDone);
         case 'D':
-            return getTaskFromLine(line, isDone, " \\(by: ");
+            return getTaskFromLine(line, isDone, DEADLINE_REGEX);
         case 'E':
-            return getTaskFromLine(line, isDone, " \\(at: ");
+            return getTaskFromLine(line, isDone, EVENT_REGEX);
         default:
-            throw new DukeException("");
+            throw new DukeException(EMPTY_STRING);
         }
     }
 
@@ -110,22 +125,23 @@ public class Storage {
 
     private Task getTaskFromLine(String line, boolean isDone, String regex) throws DukeException {
         switch (regex) {
-        case " \\(at: ":
-            String[] splittedEvent = line.substring(7).split(" \\(at: ", 3);
-            String trimmedInputEventDateString = trimInputDateString(splittedEvent[1]);
-            LocalDateTime eventDateTime = DateTimeParser.changeStringToReadingDateTime(trimmedInputEventDateString);
+        case EVENT_REGEX:
+            String[] splittedEvent = line.substring(7).split(regex, 3);
+            LocalDateTime eventDateTime = getLocalDateTimeFromString(splittedEvent);
             return new Event(splittedEvent[0], isDone, eventDateTime);
-        case " \\(by: ":
-            String[] splittedDeadline = line.substring(7).split(" \\(by: ", 3);
-            String trimmedInputDeadlineDateString = trimInputDateString(splittedDeadline[1]);
-            LocalDateTime deadlineDateTime = DateTimeParser
-                    .changeStringToReadingDateTime(trimmedInputDeadlineDateString);
+        case DEADLINE_REGEX:
+            String[] splittedDeadline = line.substring(7).split(regex, 3);
+            LocalDateTime deadlineDateTime = getLocalDateTimeFromString(splittedDeadline);
             return new Deadline(splittedDeadline[0], isDone, deadlineDateTime);
         default:
-            throw new DukeException("");
+            throw new DukeException(EMPTY_STRING);
         }
     }
 
+    private LocalDateTime getLocalDateTimeFromString(String[] splitTask) {
+        String trimmedTaskDate = trimInputDateString(splitTask[1]);
+        return DateTimeParser.changeStringToReadingDateTime(trimmedTaskDate);
+    }
     private Todo getTodoFromLine(String line, boolean isDone) {
         return new Todo(line.substring(7), isDone);
     }
@@ -159,24 +175,8 @@ public class Storage {
         return stringBuilder.toString();
     }
 
-    private String relativePath() {
-        Path path = Paths.get(userDirectory, "data", "duke.txt");
+    private String getRelativePath() {
+        Path path = Paths.get(userDirectory, OUTPUT_FOLDER_NAME, OUTPUT_FILE_NAME);
         return path.toAbsolutePath().toString();
-    }
-
-    /**
-     * Writes the saved tasks to the output file.
-     *
-     * @param tasks TaskList to be written from.
-     * @throws DukeException if an exception is encountered.
-     */
-    public void writeToFile(TaskList tasks) throws DukeException {
-        try {
-            FileWriter fw = new FileWriter(relativePath());
-            fw.write(generateTasksToAdd(tasks));
-            fw.close();
-        } catch (IOException e) {
-            throw new DukeException(e.getMessage());
-        }
     }
 }
