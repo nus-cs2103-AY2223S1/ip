@@ -111,7 +111,10 @@ public class Command {
             } else if (isIncorrectEventRange) {
                 throw new DukeException("Eh you never added the event range");
             } else {
+                assert splittedEvent.length == 2 && !splittedEvent[0].equals("") && !splittedEvent[1].equals("");
                 LocalDateTime eventDateTime = DateTimeParser.changeStringToParsingDateTime(splittedEvent[1].trim());
+                assert eventDateTime.toString().equals(eventDateTime.format(
+                        DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a")));
                 Event event = new Event(splittedEvent[0].trim(), false, eventDateTime);
                 this.addTask(event);
                 ui.printAddedTaskMessage(event, dialogContainer, userDialog);
@@ -128,8 +131,11 @@ public class Command {
             } else if (isIncorrectDeadlineDate) {
                 throw new DukeException("Eh you never added a deadline");
             } else {
+                assert splittedDeadline.length == 2 && !splittedDeadline[0].equals("") && !splittedDeadline[1].equals("");
                 try {
                     LocalDateTime deadlineDateTime = stringToLocalDateTime(splittedDeadline[1].trim());
+                    assert deadlineDateTime.toString().equals(deadlineDateTime.format(
+                            DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a")));
                     Deadline deadline = new Deadline(splittedDeadline[0].trim(), false, deadlineDateTime);
                     this.addTask(deadline);
                     ui.printAddedTaskMessage(deadline, dialogContainer, userDialog);
@@ -151,8 +157,10 @@ public class Command {
                 }
                 if (this.tasks.get(taskIndex - 1).canChangeIsDone(true)) {
                     this.tasks.get(taskIndex - 1).changeIsDone(true);
+                    assert this.tasks.get(taskIndex - 1).getIsDone();
                     ui.printMarkedMessage(this.tasks.get(taskIndex - 1), dialogContainer, userDialog);
                 } else {
+                    assert this.tasks.get(taskIndex - 1).getIsDone();
                     throw new DukeException("Eh, you done that task alr lah");
                 }
             } catch (NumberFormatException e) {
@@ -168,8 +176,10 @@ public class Command {
                 }
                 if (this.tasks.get(taskIndex - 1).canChangeIsDone(false)) {
                     this.tasks.get(taskIndex - 1).changeIsDone(false);
+                    assert !this.tasks.get(taskIndex - 1).getIsDone();
                     ui.printUnmarkedMessage(this.tasks.get(taskIndex - 1), dialogContainer, userDialog);
                 } else {
+                    assert !this.tasks.get(taskIndex - 1).getIsDone();
                     throw new DukeException("Eh, your task alr not done lah");
                 }
             } catch (NumberFormatException e) {
