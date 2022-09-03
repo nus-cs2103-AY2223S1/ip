@@ -43,23 +43,23 @@ public class Parser {
                 String[] details;
                 Task task;
                 switch (strs[0]) {
-                    case "deadline":
-                        details = command.split(" ", 2)[1].split(" /by ");
-                        task = new Deadline(details[0], false, details[1]);
-                        tasks.add(task);
-                        break;
-                    case "event":
-                        details = command.split(" ", 2)[1].split(" /at ");
-                        task = new Event(details[0], false, details[1]);
-                        tasks.add(task);
-                        break;
-                    case "todo":
-                        String detail = command.split(" ", 2)[1];
-                        task = new Todo(detail, false);
-                        tasks.add(task);
-                        break;
-                    default:
-                        ui.printDontUnderstandMsg();
+                case "deadline":
+                    details = command.split(" ", 2)[1].split(" /by ");
+                    task = new Deadline(details[0], false, details[1]);
+                    tasks.add(task);
+                    break;
+                case "event":
+                    details = command.split(" ", 2)[1].split(" /at ");
+                    task = new Event(details[0], false, details[1]);
+                    tasks.add(task);
+                    break;
+                case "todo":
+                    String detail = command.split(" ", 2)[1];
+                    task = new Todo(detail, false);
+                    tasks.add(task);
+                    break;
+                default:
+                    ui.printDontUnderstandMsg();
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
                 ui.printDescriptionCantBeEmptyMsg(strs[0]);
