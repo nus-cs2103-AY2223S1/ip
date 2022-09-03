@@ -12,9 +12,7 @@ import duke.ui.Ui;
  * Represents an executable command to add a new Deadline object.
  */
 public class AddDeadlineCommand extends Command {
-    /* Description of the task. */
     private String description;
-    /* Deadline of the task. */
     private LocalDateTime byDate;
 
     public AddDeadlineCommand(String description, LocalDateTime byDate) {

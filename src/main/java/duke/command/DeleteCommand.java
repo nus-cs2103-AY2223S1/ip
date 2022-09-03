@@ -11,7 +11,6 @@ import duke.ui.Ui;
  * Represents an executable command to delete a task at index.
  */
 public class DeleteCommand extends Command {
-    /* Index of task that will be deleted. */
     private int idx;
 
     public DeleteCommand(int idx) {

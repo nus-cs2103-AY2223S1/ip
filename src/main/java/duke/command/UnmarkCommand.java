@@ -11,7 +11,6 @@ import duke.ui.Ui;
  * Represents an executable command to mark a task at index as undone.
  */
 public class UnmarkCommand extends Command {
-    /* Index of task to mark as undone. */
     private int idx;
 
     public UnmarkCommand(int idx) {

@@ -9,7 +9,6 @@ import duke.ui.Message;
  * Represents a task list that can store and update tasks.
  */
 public class TaskList {
-    /* ArrayList container to hold all the tasks. */
     private ArrayList<Task> taskList;
 
     public TaskList() {

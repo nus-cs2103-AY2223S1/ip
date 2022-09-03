@@ -10,7 +10,6 @@ import duke.ui.Ui;
  * Represents an executable command to find a subset of tasks based on query.
  */
 public class FindCommand extends Command {
-    /* Query to search for in task list. */
     private String query;
 
     public FindCommand(String query) {
