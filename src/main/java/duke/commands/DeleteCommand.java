@@ -37,8 +37,7 @@ public class DeleteCommand extends Command {
         int size = taskList.size();
         String taskString = size > 1 ? "tasks" : "task";
         String msgBegin = "Noted. I've removed this task:\n";
-        String msgEnd = "\nNow you have " + size + " " + taskString
-                + " in this list.";
+        String msgEnd = "\nNow you have " + size + " " + taskString + " in this list.";
         String msg = msgBegin + " " + task + msgEnd;
 
         storage.writeAllToStorage(taskList);
