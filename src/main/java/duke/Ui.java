@@ -18,7 +18,7 @@ public class Ui {
     /**
      * Prints goodbye message.
      */
-    public void goodByeMessage() {
+    public void printGoodByeMessage() {
         System.out.println(LINE_DIVIDER + "\nBye. Zai Jian!\n" + LINE_DIVIDER);
     }
 
@@ -35,7 +35,7 @@ public class Ui {
         }
         System.out.println("Here are your tasks la:");
         for (int j = 0; j < tl.size(); j++) {
-            System.out.println(j + 1 + ":" + tl.get(j).toString());
+            System.out.println(j + 1 + "." + tl.get(j).toString());
         }
         System.out.println(LINE_DIVIDER);
     }
@@ -133,5 +133,13 @@ public class Ui {
             System.out.println(j + 1 + ":" + tl.get(j).toString());
         }
         System.out.println(LINE_DIVIDER);
+    }
+
+    public void printIncompleteEvent() {
+        System.out.println("Why not complete event?");
+    }
+
+    public void printIncompleteDeadline() {
+        System.out.println("Why not complete deadline?");
     }
 }

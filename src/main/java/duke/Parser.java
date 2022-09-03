@@ -1,10 +1,6 @@
 package duke;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 /**
  * Class containing parsing methods, or conversions.
@@ -20,7 +16,7 @@ public class Parser {
      * @param dateTime string with date and time in format (dd/mm/yyyy hhmm).
      * @return LocalDateTime object containing date and time.
      */
-    public static LocalDateTime dateParser(String dateTime) {
+    public static LocalDateTime parseDate(String dateTime) {
         String[] splitDateTime = dateTime.trim().split(" ");
         String[] dateArray = splitDateTime[0].split("/");
         String time = splitDateTime[1];
@@ -43,15 +39,33 @@ public class Parser {
         String[] taskSplit = task.split("\\|");
         String type = taskSplit[0];
         switch (type) {
-            case TASK_TODO:
-                return new Todo(taskSplit[2].trim(), taskSplit[1].equals("1"));
-            case TASK_EVENT:
-                return new Event(taskSplit[2].trim(), taskSplit[3], taskSplit[1].equals("1"));
-            case TASK_DEADLINE:
-                return new Deadline(taskSplit[2].trim(), taskSplit[3], taskSplit[1].equals("1"));
-            default:
-                return null;
+        case TASK_TODO:
+            return new Todo(taskSplit[2].trim(), taskSplit[1].trim().equals("1"));
+        case TASK_EVENT:
+            return new Event(taskSplit[2].trim(), taskSplit[3], taskSplit[1].trim().equals("1"));
+        case TASK_DEADLINE:
+            return new Deadline(taskSplit[2].trim(), taskSplit[3], taskSplit[1].trim().equals("1"));
+        default:
+            return null;
         }
     }
 
+    public static Event parseEventInput(String eventCommand) {
+        int slashPos = eventCommand.indexOf("/at");
+        String taskName = eventCommand.substring(5, slashPos - 1) + " ";
+        String deadline = eventCommand.substring(slashPos + 3);
+        return new Event(taskName, deadline);
+    }
+
+    public static Deadline parseDeadlineInput(String deadlineCommand) {
+        int slashPos = deadlineCommand.indexOf("/by");
+        String taskName = deadlineCommand.substring(8, slashPos - 1) + " ";
+        String deadline = deadlineCommand.substring(slashPos + 3);
+        return new Deadline(taskName, deadline);
+    }
+
+    public static Todo parseTodoInput(String todoCommand){
+        String item = todoCommand.substring(4);
+        return new Todo(item);
+    }
 }

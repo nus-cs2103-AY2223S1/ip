@@ -1,9 +1,9 @@
 package duke;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+
+import static duke.Storage.listToFile;
 
 /**
  * A TaskList object containing the tasklist.
@@ -26,22 +26,6 @@ public class TaskList {
      */
     public Task get(int index) {
         return this.taskList.get(index);
-    }
-
-    /**
-     * Writes tasks into storage file.
-     * @param tasklist TaskList to be written.
-     */
-    public static void listToFile(ArrayList<Task> tasklist) {
-        try {
-            FileWriter fw = new FileWriter("./data/dukedata.txt");
-            for (Task t : tasklist) {
-                fw.write(t.taskToFileString() + System.lineSeparator());
-            }
-            fw.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     /**

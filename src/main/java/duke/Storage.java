@@ -2,6 +2,7 @@ package duke;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -19,6 +20,22 @@ public class Storage {
      */
     public Storage(String filePath) {
         this.file = new File(filePath);
+    }
+
+    /**
+     * Writes tasks into storage file.
+     * @param tasklist TaskList to be written.
+     */
+    public static void listToFile(ArrayList<Task> tasklist) {
+        try {
+            FileWriter fw = new FileWriter("./data/dukedata.txt");
+            for (Task t : tasklist) {
+                fw.write(t.taskToFileString() + System.lineSeparator());
+            }
+            fw.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**

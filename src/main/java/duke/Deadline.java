@@ -8,27 +8,27 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
 
-    private final LocalDateTime dueBy;
+    private final LocalDateTime byDate;
 
     /**
      * Constructor for a new Deadline from stored tasks.
      * @param taskName name of task.
-     * @param dueBy due date and time of task in the format (dd/mm/yyyy hh:mm).
+     * @param byDate due date and time of task in the format (dd/mm/yyyy hh:mm).
      * @param isDone to set marked tasks (for storage retrieval).
      */
-    public Deadline(String taskName, String dueBy, boolean isDone) {
+    public Deadline(String taskName, String byDate, boolean isDone) {
         super(taskName.trim(), isDone);
-        this.dueBy = Parser.dateParser(dueBy);
+        this.byDate = Parser.parseDate(byDate);
     }
 
     /**
      * Constructor for a new Deadline.
      * @param taskName name of task.
-     * @param dueBy due date and time of task in the format (dd/mm/yyyy hh:mm).
+     * @param byDate due date and time of task in the format (dd/mm/yyyy hh:mm).
      */
-    public Deadline(String taskName, String dueBy) {
+    public Deadline(String taskName, String byDate) {
         super(taskName.trim(), false);
-        this.dueBy = Parser.dateParser(dueBy);
+        this.byDate = Parser.parseDate(byDate);
     }
 
     /**
@@ -38,7 +38,7 @@ public class Deadline extends Task {
     @Override
     public String taskToFileString() {
         return " D " + "| " + (this.done ? "1 " : "0 ") + "| " + this.taskName + " | "
-                + dateTimeToString(dueBy);
+                + dateTimeToString(byDate);
     }
 
     /**
@@ -48,7 +48,7 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy HH:mm");
-        String stringBy = dueBy.format(formatter);
+        String stringBy = byDate.format(formatter);
         return "[D]" + (this.done ? "[X] " : "[ ] ") + this.taskName + " (by: " + stringBy + ")";
     }
 }

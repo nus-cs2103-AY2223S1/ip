@@ -7,27 +7,27 @@ import java.time.format.DateTimeFormatter;
  * Represents an Event Task
  */
 public class Event extends Task {
-    private final LocalDateTime occursAt;
+    private final LocalDateTime atDate;
 
     /**
      * Constructor for a new Event from stored tasks.
      * @param taskName name of task.
-     * @param occursAt date and time of task in the format (dd/mm/yyyy hh:mm).
+     * @param atDate date and time of task in the format (dd/mm/yyyy hh:mm).
      * @param isDone to set marked tasks (for storage retrieval).
      */
-    public Event(String taskName, String occursAt, boolean isDone) {
+    public Event(String taskName, String atDate, boolean isDone) {
         super(taskName.trim(), isDone);
-        this.occursAt = Parser.dateParser(occursAt);
+        this.atDate = Parser.parseDate(atDate);
     }
 
     /**
      * Constructor for a new Event.
      * @param taskName name of task.
-     * @param occursAt date and time of task in the format (dd/mm/yyyy hh:mm).
+     * @param atDate date and time of task in the format (dd/mm/yyyy hh:mm).
      */
-    public Event(String taskName, String occursAt) {
+    public Event(String taskName, String atDate) {
         super(taskName.trim(), false);
-        this.occursAt = Parser.dateParser(occursAt);
+        this.atDate = Parser.parseDate(atDate);
     }
 
     /**
@@ -37,7 +37,7 @@ public class Event extends Task {
     @Override
     public String taskToFileString() {
         return " E " + "| " + (this.done ? "1 " : "0 ") + "| " + this.taskName + " | "
-                + dateTimeToString(occursAt);
+                + dateTimeToString(atDate);
     }
 
     /**
@@ -47,7 +47,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy HH:mm");
-        String stringAt = occursAt.format(formatter);
+        String stringAt = atDate.format(formatter);
         return "[E]" + (this.done ? "[X] " : "[ ] ") + this.taskName + " (at: " + stringAt + ")";
     }
 
