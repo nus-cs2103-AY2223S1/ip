@@ -108,6 +108,7 @@ public class TaskList {
             String response = "";
             for (int i = 0; i < tasks.size(); i++) {
                 response += "\n" + (i + 1) + ". " + getTask(i);
+                response += getTask(i).getTags();
             }
             return response;
         }

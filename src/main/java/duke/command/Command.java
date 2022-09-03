@@ -16,7 +16,7 @@ public abstract class Command {
      * All commands recognised by Duke
      */
     public enum RecognisedCommand {
-        BYE, LIST, HELP, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT, FIND, INVALID;
+        BYE, LIST, HELP, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT, FIND, TAG, INVALID;
     }
 
     /**

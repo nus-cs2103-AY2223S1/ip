@@ -19,13 +19,18 @@ public class FindCommand extends Command {
     /**
      * Constructor for a FindCommand
      *
-     * @param word the keyword to search
+     * @param commands the command split by " " into an array
      * @param tasks the TaskList that Duke is using
      * @param ui the Ui that Duke is using
+     * @since 0.3
      */
-    public FindCommand(String word, TaskList tasks, Ui ui) {
-        assert(word != null && tasks != null && ui != null);
-        this.word = word;
+    public FindCommand(String[] commands, TaskList tasks, Ui ui) throws DukeException {
+        assert(commands != null && tasks != null && ui != null);
+        if (commands.length > 2) {
+            throw new DukeException("this <find> command is invalid.\n"
+                    + " Please use command [help] for documentation on proper use.");
+        }
+        this.word = commands[1];
         this.tasks = tasks;
         this.ui = ui;
     }
@@ -40,7 +45,7 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute(Storage storage) {
-        return ui.readList(tasks.find(word));
+        return ui.readFilteredList(tasks.find(word));
     }
     /**
      * {@inheritDoc}
