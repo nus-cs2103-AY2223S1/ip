@@ -17,7 +17,7 @@ public class ToDo extends Task {
     }
 
     @Override
-    public String save() { return null; }
+    public String save() { return String.format("T | %b | %s\n", super.getIsDone(), this.discription); }
 
     @Override
     public String getTaskType() { return "ToDo" ; }

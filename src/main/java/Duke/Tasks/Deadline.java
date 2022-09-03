@@ -32,7 +32,12 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String save() { return null; }
+    public String save() {
+        return String.format("D | %b | %s | %s\n",
+                super.getIsDone(),
+                this.discription,
+                this.ddl.toString());
+    }
 
     @Override
     public String getTaskType() { return "Deadline"; }

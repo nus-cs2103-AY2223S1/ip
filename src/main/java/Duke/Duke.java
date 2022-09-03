@@ -1,14 +1,19 @@
 
 package Duke;
 import Duke.Exceptions.DukeException;
+import Duke.Tasks.Deadline;
+import Duke.Tasks.Event;
 import Duke.Tasks.TaskList;
-
+import Duke.*;
 import Duke.UI.Ui;
 
 
 import Duke.Storage.FileReader;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 
 /**
@@ -63,10 +68,14 @@ public class Duke {
     }
 
     public static void main(String[] args) throws DukeException, FileNotFoundException {
-        System.out.println("Hello World!");
+        Event e = new Event("Go to the lecture", LocalDateTime.of(LocalDate.parse("2022-02-22"), LocalTime.parse("11:22")), false);
+        Deadline ddl = new Deadline("Go to the lecture", LocalDateTime.of(LocalDate.parse("2022-02-22"), LocalTime.parse("11:22")), true);
 
-        System.out.println(tasks);
-        new Duke().launch();
+        System.out.println(e.toString());
+        System.out.println(e.save());
+        System.out.println(ddl.toString());
+        System.out.println(ddl.save());
+       // new Duke().launch();
     }
 }
 

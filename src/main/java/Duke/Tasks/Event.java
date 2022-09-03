@@ -26,7 +26,12 @@ public class Event extends Task {
     }
 
     @Override
-    public String save() { return null; }
+    public String save() {
+        return String.format("E | %b | %s | %s\n",
+                super.getIsDone(),
+                this.discription,
+                this.eventTime.toString());
+    }
 
     @Override
     public String getTaskType() { return "Event"; }

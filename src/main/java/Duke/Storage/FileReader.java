@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 /**
@@ -46,16 +47,14 @@ public class FileReader {
 
             }
             return tasks;
-        } catch (FileNotFoundException e) {
-            System.out.println("sth wrong");
-            return null;
-        } catch (NullPointerException e) {
-            System.out.println("Null pointer ");
+
+        } catch (StoredFileException e) {
+            System.out.println(e.toString());
             return null;
         } catch (IOException e) {
+            e.printStackTrace();
             return null;
-        } catch (StoredFileException e) {
-            return null;
+
         }
 
     }
@@ -82,13 +81,15 @@ public class FileReader {
                     localdate = LocalDate.parse(components[3].strip());
 
                     return new Deadline(
-                            components[2].strip(), localdate,
+                            components[2].strip(),
+                            LocalDateTime.parse(components[3].strip()).toLocalDate(),
+                            LocalDateTime.parse(components[3].strip()).toLocalTime(),
                             components[1].strip().equals("true"));
                 case "E":
 
                     return new Event(
                             components[2].strip(),
-                            components[3].strip(),
+                            LocalDateTime.parse(components[3].strip()),
                             components[1].strip().equals("true"));
 
                 default:
