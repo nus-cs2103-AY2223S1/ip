@@ -5,7 +5,6 @@ import duke.exception.TaskNotFoundException;
 import duke.task.Task;
 import duke.util.Storage;
 import duke.util.TaskList;
-import duke.util.Ui;
 
 /**
  * Represents a MarkCommand object to be called when user inputs 'mark'.
@@ -29,9 +28,9 @@ public class MarkCommand extends Command {
      *
      * @param tasks list of task where the index specified will be marked as done.
      * @param storage updates the storage when task is marked done.
+     * @return mark command message
      * @throws TaskMarkException when task specified by the index is already marked done.
      * @throws TaskNotFoundException when index given is out of range.
-     * @return mark command message
      */
     @Override
     public String execute(TaskList tasks, Storage storage) throws TaskMarkException, TaskNotFoundException {

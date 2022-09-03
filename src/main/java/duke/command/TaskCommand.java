@@ -3,7 +3,6 @@ package duke.command;
 import duke.task.Task;
 import duke.util.Storage;
 import duke.util.TaskList;
-import duke.util.Ui;
 
 /**
  * Represents a TaskCommand object.

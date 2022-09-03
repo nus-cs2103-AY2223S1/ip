@@ -53,7 +53,7 @@ public class Storage {
      *
      * @param tasks task list to be written into the file.
      */
-    public String update(TaskList tasks){
+    public String update(TaskList tasks) {
         try {
             fileWriter = new FileWriter(dukeFile);
             fileWriter.write(tasks.toString());

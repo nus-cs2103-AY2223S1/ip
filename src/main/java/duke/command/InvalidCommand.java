@@ -3,7 +3,6 @@ package duke.command;
 import duke.exception.DukeCommandNotFoundException;
 import duke.util.Storage;
 import duke.util.TaskList;
-import duke.util.Ui;
 
 /**
  * Represents InvalidCommand object to be called when user inputs an invalid command.

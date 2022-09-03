@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.util.Storage;
 import duke.util.TaskList;
-import duke.util.Ui;
 
 /**
  * Represents a ByeCommand object to be called when user inputs 'bye'.

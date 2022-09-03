@@ -3,7 +3,6 @@ package duke.command;
 import duke.exception.NoTaskFoundExcpetion;
 import duke.util.Storage;
 import duke.util.TaskList;
-import duke.util.Ui;
 
 /**
  * Represents a ListCommand object to be called when user inputs 'list'.
@@ -17,8 +16,8 @@ public class ListCommand extends Command {
      *
      * @param tasks every task in tasks to be displayed.
      * @param storage
-     * @throws NoTaskFoundExcpetion when tasks is empty.
      * @return list command message
+     * @throws NoTaskFoundExcpetion when tasks is empty.
      */
     @Override
     public String execute(TaskList tasks, Storage storage) throws NoTaskFoundExcpetion {

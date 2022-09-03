@@ -5,7 +5,6 @@ import duke.exception.TaskUnmarkException;
 import duke.task.Task;
 import duke.util.Storage;
 import duke.util.TaskList;
-import duke.util.Ui;
 
 /**
  * Represents a UnmarkCommand object to be called when user inputs 'unmark'.

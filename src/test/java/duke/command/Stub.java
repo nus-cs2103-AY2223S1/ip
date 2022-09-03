@@ -3,16 +3,9 @@ package duke.command;
 import duke.exception.DukeException;
 import duke.util.Storage;
 import duke.util.TaskList;
-import duke.util.Ui;
 
 class TaskListStub extends TaskList {
     public TaskListStub() {
-        super();
-    }
-}
-
-class UiStub extends Ui {
-    public UiStub() {
         super();
     }
 }
@@ -28,7 +21,7 @@ class CommandStub extends Command {
         super();
     }
 
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        return;
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
+        return "";
     };
 }

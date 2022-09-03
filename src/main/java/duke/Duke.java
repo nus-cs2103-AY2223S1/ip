@@ -1,13 +1,12 @@
 package duke;
 
+import java.io.IOException;
+
 import duke.command.Command;
 import duke.exception.DukeException;
 import duke.util.Parser;
 import duke.util.Storage;
 import duke.util.TaskList;
-import duke.util.Ui;
-
-import java.io.IOException;
 
 /**
  * Represents a chatbot named Duke.
@@ -40,8 +39,8 @@ public class Duke {
         }
     }
 
-    public static String WelcomeText() {
-        return DUKE_INTRODUCTION + "\n" +  DUKE_HELP;
+    public static String welcomeText() {
+        return DUKE_INTRODUCTION + "\n" + DUKE_HELP;
     }
 
 }

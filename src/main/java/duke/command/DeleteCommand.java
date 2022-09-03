@@ -4,8 +4,6 @@ import duke.exception.TaskNotFoundException;
 import duke.task.Task;
 import duke.util.Storage;
 import duke.util.TaskList;
-import duke.util.Ui;
-
 
 /**
  * Represents a DeleteCommand object to be called when user inputs 'delete'.
@@ -29,8 +27,8 @@ public class DeleteCommand extends Command {
      *
      * @param tasks list of task to delete the index from.
      * @param storage Updates the list of task after the deletion.
-     * @throws TaskNotFoundException when index given is out of range.
      * @return delete command message
+     * @throws TaskNotFoundException when index given is out of range.
      */
     @Override
     public String execute(TaskList tasks, Storage storage) throws TaskNotFoundException {
