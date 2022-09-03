@@ -3,6 +3,7 @@ package chatbot.commands;
 import chatbot.exceptions.DukeException;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
+import chatbot.ui.Response;
 import chatbot.ui.UI;
 
 /**
@@ -15,6 +16,7 @@ public class Unmark implements Command {
     public Unmark(int target) {
         this.target = target;
     }
+
     @Override
     public void execute(TaskList todos, UI ui) {
         try {
@@ -22,6 +24,16 @@ public class Unmark implements Command {
             ui.unmark(unmarked);
         } catch (DukeException e) {
             ui.reprimand(e);
+        }
+    }
+
+    @Override
+    public String execute(TaskList todos, Response resp) {
+        try {
+            Task unmarked = todos.unmarkTask(this.target);
+            return resp.unmark(unmarked);
+        } catch (DukeException e) {
+            return resp.reprimand(e);
         }
     }
 

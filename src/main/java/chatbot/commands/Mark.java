@@ -3,6 +3,7 @@ package chatbot.commands;
 import chatbot.exceptions.DukeException;
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
+import chatbot.ui.Response;
 import chatbot.ui.UI;
 
 /**
@@ -15,6 +16,7 @@ public class Mark implements Command {
     public Mark(int target) {
         this.target = target;
     }
+
     @Override
     public void execute(TaskList todos, UI ui) {
         try {
@@ -22,6 +24,16 @@ public class Mark implements Command {
             ui.mark(marked);
         } catch (DukeException e) {
             ui.reprimand(e);
+        }
+    }
+
+    @Override
+    public String execute(TaskList todos, Response resp) {
+        try {
+            Task marked = todos.markTask(this.target);
+            return resp.mark(marked);
+        } catch (DukeException e) {
+            return resp.reprimand(e);
         }
     }
 

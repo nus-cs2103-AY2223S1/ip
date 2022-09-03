@@ -1,6 +1,7 @@
 package chatbot.commands;
 
 import chatbot.tasks.TaskList;
+import chatbot.ui.Response;
 import chatbot.ui.UI;
 
 /**
@@ -15,6 +16,8 @@ public interface Command {
      *           when the command is executed.
      */
     void execute(TaskList todos, UI ui);
+
+    String execute(TaskList todos, Response resp);
 
     /**
      * The method informs the caller if the command is an exit command.

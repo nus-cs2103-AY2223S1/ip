@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import chatbot.tasks.Task;
 import chatbot.tasks.TaskList;
+import chatbot.ui.Response;
 import chatbot.ui.UI;
 
 /**
@@ -29,6 +30,12 @@ public class AddDeadline implements Command {
     public void execute(TaskList todos, UI ui) {
         Task deadline = todos.addDeadline(this.taskName, this.date);
         ui.add(deadline, todos.getNumberOfTasks());
+    }
+
+    @Override
+    public String execute(TaskList todos, Response resp) {
+        Task deadline = todos.addDeadline(this.taskName, this.date);
+        return resp.add(deadline, todos.getNumberOfTasks());
     }
 
     @Override

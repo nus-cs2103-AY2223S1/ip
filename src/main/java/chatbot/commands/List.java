@@ -1,6 +1,7 @@
 package chatbot.commands;
 
 import chatbot.tasks.TaskList;
+import chatbot.ui.Response;
 import chatbot.ui.UI;
 
 /**
@@ -13,6 +14,11 @@ public class List implements Command {
     @Override
     public void execute(TaskList todos, UI ui) {
         ui.listAll(todos.listTasks());
+    }
+
+    @Override
+    public String execute(TaskList todos, Response resp) {
+        return resp.listAll(todos.listTasks());
     }
 
     @Override

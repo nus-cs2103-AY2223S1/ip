@@ -3,6 +3,7 @@ package chatbot.commands;
 import java.time.LocalDate;
 
 import chatbot.tasks.TaskList;
+import chatbot.ui.Response;
 import chatbot.ui.UI;
 
 /**
@@ -19,6 +20,11 @@ public class ListOn implements Command {
     @Override
     public void execute(TaskList todos, UI ui) {
         ui.listTaskOn(todos.getTaskOn(date));
+    }
+
+    @Override
+    public String execute(TaskList todos, Response resp) {
+        return resp.listTaskOn(todos.getTaskOn(date));
     }
 
     @Override

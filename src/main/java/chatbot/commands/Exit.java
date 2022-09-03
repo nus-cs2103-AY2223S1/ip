@@ -1,6 +1,7 @@
 package chatbot.commands;
 
 import chatbot.tasks.TaskList;
+import chatbot.ui.Response;
 import chatbot.ui.UI;
 
 /**
@@ -13,6 +14,11 @@ public class Exit implements Command {
     @Override
     public void execute(TaskList todos, UI ui) {
         ui.bye();
+    }
+
+    @Override
+    public String execute(TaskList todos, Response resp) {
+        return resp.bye();
     }
 
     @Override
