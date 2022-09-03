@@ -23,8 +23,13 @@ public class DialogBox extends HBox {
     private Label dialog;
     @FXML
     private ImageView displayPicture;
+    private static final float PROFILE_PICTURE_RADIUS = 50;
 
-    public DialogBox(String l, Image iv, int who) {
+    public enum Who {
+        USER, ZLIMEZ;
+    }
+
+    public DialogBox(String l, Image iv, Who who) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -37,16 +42,12 @@ public class DialogBox extends HBox {
         dialog.setText(l);
         displayPicture.setImage(iv);
 
-        Circle clip = new Circle(50);
-        clip.setCenterX(50);
+        Circle clip = new Circle(PROFILE_PICTURE_RADIUS);
+        clip.setCenterX(PROFILE_PICTURE_RADIUS);
         clip.setCenterY(50);
         displayPicture.setClip(clip);
-        Color color = who == 1 ? Color.LIGHTPINK : Color.LIGHTBLUE;
+        Color color = who == Who.ZLIMEZ ? Color.LIGHTPINK : Color.LIGHTBLUE;
         this.setBackground(new Background(new BackgroundFill(color, null, null)));
-//        this.setPadding(new Insets(10));
-//        this.setSpacing(10);
-//        this.setAlignment(Pos.TOP_RIGHT);
-//        this.getChildren().addAll(text, displayPicture);
     }
 
     /**
@@ -60,11 +61,11 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String l, Image image) {
-        return new DialogBox(l, image, 0);
+        return new DialogBox(l, image, Who.USER);
     }
 
     public static DialogBox getZlimezDialog(String l, Image image) {
-        DialogBox db = new DialogBox(l, image, 1);
+        DialogBox db = new DialogBox(l, image, Who.ZLIMEZ);
         db.flip();
         return db;
     }

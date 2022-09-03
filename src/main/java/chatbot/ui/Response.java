@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Response {
     private static final String EMOJI = "<_>";
+    public static final String SLEEPING = "You said bye already, I am resting now. Restart, if you wish wish to talk again.";
 
     public String greet() {
         return "Yes? I'm Zlimez~~ \nWhat can I possibly do for you?\n >>>^<<<";
@@ -60,8 +61,8 @@ public class Response {
      * @param numberOfTasks The number of tasks after the addition.
      */
     public String add(Task target, int numberOfTasks) {
-        return "Lazily added this task for you " + EMOJI + "\n\t" + target +
-                "\nWala now you have " + numberOfTasks + " tasks in the list.";
+        return String.format("Lazily added this task for you %s\n\t%s\nWala now you have %d tasks in the list.",
+                EMOJI, target, numberOfTasks);
     }
 
     /**
@@ -71,8 +72,8 @@ public class Response {
      * @param numberOfTasks The number of tasks after the deletion.
      */
     public String delete(Task target, int numberOfTasks) {
-        return "YES, I've removed this task for YOU:\n\t" + target +
-                "\nWala now you have " + numberOfTasks + " tasks in the list.";
+        return String.format("YES, I've removed this task for YOU:\n\t%s\nWala now you have %d tasks in the list.",
+                target, numberOfTasks);
     }
 
     /**
@@ -81,7 +82,7 @@ public class Response {
      * @param target The task marked as complete.
      */
     public String unmark(Task target) {
-        return "-_-, I've unmarked this task for YOU AGAIN:\n\t" + "target";
+        return String.format("-_-, I've unmarked this task for YOU AGAIN:\n\t%s", target);
     }
 
     /**
@@ -90,7 +91,7 @@ public class Response {
      * @param target The task marked as incomplete.
      */
     public String mark(Task target) {
-        return "Wellz, I've marked this task for YOU:\n\t" + target;
+        return String.format("Wellz, I've marked this task for YOU:\n\t%s", target);
     }
 
     /**

@@ -1,6 +1,5 @@
 package chatbot.gui;
 
-import chatbot.Main;
 import javafx.application.Application;
 
 public class Launcher {

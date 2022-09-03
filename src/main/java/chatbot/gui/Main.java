@@ -1,8 +1,8 @@
-package chatbot;
+package chatbot.gui;
 
 import java.io.IOException;
 
-import chatbot.gui.MainWindow;
+import chatbot.Zlimez;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -28,5 +28,10 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void stop() {
+        zlimez.exit();
     }
 }

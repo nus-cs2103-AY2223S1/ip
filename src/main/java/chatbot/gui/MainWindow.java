@@ -1,14 +1,19 @@
 package chatbot.gui;
 
 import chatbot.Zlimez;
+import chatbot.ui.Response;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -23,21 +28,21 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private Zlimez zlimez;
-
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private Image zlimezImage = new Image(this.getClass().getResourceAsStream("/images/Reg.png"));
+    private static long shutDownBufferTime = 2;
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-//        String greet = zlimez.start();
-//        dialogContainer.getChildren().addAll(
-//                DialogBox.getZlimezDialog(greet, zlimezImage)
-//        );
     }
 
     public void setZlimez(Zlimez d) {
         zlimez = d;
+        String greet = zlimez.start();
+        dialogContainer.getChildren().addAll(
+                DialogBox.getZlimezDialog(greet, zlimezImage)
+        );
     }
 
     /**
@@ -46,12 +51,25 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
-        String input = userInput.getText();
-        String response = zlimez.getResponse(input);
-        dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getZlimezDialog(response, zlimezImage)
-        );
-        userInput.clear();
+        if (zlimez.checkStatus()) {
+            String input = userInput.getText();
+            String response = zlimez.getResponse(input);
+            dialogContainer.getChildren().addAll(
+                    DialogBox.getUserDialog(input, userImage),
+                    DialogBox.getZlimezDialog(response, zlimezImage)
+            );
+            userInput.clear();
+        } else {
+            dialogContainer.getChildren().addAll(
+                    DialogBox.getZlimezDialog(Response.SLEEPING, zlimezImage)
+            );
+        }
+
+        // Check if application should exit
+        if (!zlimez.checkStatus()) {
+            CompletableFuture.delayedExecutor(shutDownBufferTime, TimeUnit.SECONDS).execute(() -> {
+                Platform.exit();
+            });
+        }
     }
 }

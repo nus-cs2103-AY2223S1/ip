@@ -17,7 +17,7 @@ import java.io.IOException;
  * @author James Chiu
  */
 public class Zlimez {
-//    private UI ui;
+    private boolean isActive;
     private Response resp;
     private Storage storage;
     private TaskList taskList;
@@ -28,18 +28,11 @@ public class Zlimez {
 //     * equipped with UI, Storage and Task list components.
 //     */
     public Zlimez() {
-//        ui = new UI();
-        resp = new Response();
-        storage = new Storage();
-        taskList = new TaskList();
+        this.resp = new Response();
+        this.storage = new Storage();
+        this.taskList = new TaskList();
+        this.isActive = true;
     }
-
-//    public static void main(String[] args) throws IOException {
-//        Duke bot = new Duke();
-//        bot.start();
-//        bot.respond();
-//        bot.exit();
-//    }
 
     /**
      * You should have your own function to generate a response to user input.
@@ -51,6 +44,7 @@ public class Zlimez {
             if (currentCommand.isExit()) {
                 this.exit();
             }
+
             return currentCommand.execute(taskList, resp);
         } catch (DukeException e) {
             return resp.reprimand(e);
@@ -79,25 +73,7 @@ public class Zlimez {
 
         return init.toString();
     }
-//
-//    /**
-//     * The method is responsible for responding to user inputs during the chatbot session.
-//     *
-//     * @throws DukeException Exceptions that can be raised when interacting
-//     *                       with the chatbot.
-//     */
-//    public void respond() {
-//        do {
-//            String input = ui.getUserInput();
-//            try {
-//                currentCommand = Parser.parse(input);
-//                currentCommand.execute(taskList, ui);
-//            } catch (DukeException e) {
-//                ui.reprimand(e);
-//            }
-//        } while (!currentCommand.isExit());
-//    }
-//
+
     /**
      * Ends the current chatbot session and demands the data in the current
      * task list to be saved.
@@ -107,8 +83,13 @@ public class Zlimez {
     public void exit() {
         try {
             storage.saveData(taskList);
+            this.isActive = false;
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public boolean checkStatus() {
+        return this.isActive;
     }
 }
