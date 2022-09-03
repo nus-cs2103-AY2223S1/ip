@@ -1,13 +1,13 @@
 package duke.command;
 
+import java.time.LocalDate;
+
 import duke.DukeException;
 import duke.TaskList;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
 import duke.task.Task;
 import duke.task.ToDoTask;
-
-import java.time.LocalDate;
 
 public class AddCommand extends Command {
     private String type;
@@ -37,25 +37,23 @@ public class AddCommand extends Command {
      * 
      * @throws DukeException If the data file cannot be accessed.
      */
-    public void execute(TaskList tasks) throws DukeException {
+    public String execute(TaskList tasks) throws DukeException {
         switch(type) {
         case "todo":
             Task tTask = new ToDoTask(description);
-            tasks.addTask(tTask);
-            break;
+            return tasks.addTask(tTask);
         case "deadline":
             String by = description.split(" /by ")[1];
             LocalDate date = LocalDate.parse(by);
             String info = description.split(" /by ")[0];
             Task dTask = new DeadlineTask(info, date);
-            tasks.addTask(dTask);
-            break;
+            return tasks.addTask(dTask);
         case "event":
             String at = description.split(" /at ")[1];
             String about = description.split(" /at ")[0];
             Task eTask = new EventTask(about, at);
-            tasks.addTask(eTask);
-            break;
+            return tasks.addTask(eTask);
         }
+        return " ";
     }
 }

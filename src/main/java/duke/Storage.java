@@ -1,10 +1,5 @@
 package duke;
 
-import duke.task.DeadlineTask;
-import duke.task.EventTask;
-import duke.task.Task;
-import duke.task.ToDoTask;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,6 +10,10 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
+import duke.task.DeadlineTask;
+import duke.task.EventTask;
+import duke.task.Task;
+import duke.task.ToDoTask;
 
 public class Storage {
     private final String FILE_PATH;

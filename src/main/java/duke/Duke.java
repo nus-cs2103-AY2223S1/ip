@@ -7,7 +7,7 @@ public class Duke {
     private Storage storage; 
     private TaskList tasks;
     private UI ui;
-
+    
     public Duke(String filePath) {
         ui = new UI();
         storage = new Storage(filePath);
@@ -17,7 +17,7 @@ public class Duke {
             ui.showError(e);
         }
     }
-    
+
     public void run() {
         ui.showWelcome();
         while (true) {
@@ -25,13 +25,23 @@ public class Duke {
                 String fullCommand = ui.readCommand();
                 ui.showLine(); // show the divider line ("_______")
                 Command c = Parser.parse(fullCommand);
-                c.execute(tasks);
+                String output = c.execute(tasks);
+                ui.print(output);
                 if (c instanceof ExitCommand) break;
             } catch (DukeException e) {
                 ui.showError(e);
             } finally {
                 ui.showLine();
             }
+        }
+    }
+
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(tasks);
+        } catch (DukeException e) {
+            return "Something went wrong: " + e.getMessage();
         }
     }
 

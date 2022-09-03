@@ -1,8 +1,8 @@
 package duke;
 
-import duke.task.Task;
-
 import java.util.ArrayList;
+
+import duke.task.Task;
 
 public class TaskList {
     private ArrayList<Task> data;
@@ -20,17 +20,20 @@ public class TaskList {
      * @param task The task to be added.
      * @throws DukeException If data file cannot be accessed.
      */
-    public void addTask(Task task) throws DukeException {
+    public String addTask(Task task) throws DukeException {
         data.add(task);
         storage.appendFile(task);
-        ui.addTask(task, data.size());
+        return "Got it. I've added this task:\n" + 
+                " " + task + "\n" +
+                "Now you have " + data.size() + " tasks in the list.\n";
     }
 
-    public void markTask (int pos, boolean isDone) throws DukeException {
+    public String markTask (int pos, boolean isDone) throws DukeException {
         Task task = data.get(pos);
         task.mark(isDone);
         storage.writeFile(pos, task);
-        ui.markTask(task, isDone);
+        return (isDone ? "Nice! I've marked this task as done:\n " : "OK, I've marked this task as not done yet:\n ")
+                + task + "\n";
     }
     
     /**
@@ -39,11 +42,13 @@ public class TaskList {
      * @param task The position of the task to be removed in the list.
      * @throws DukeException If data file cannot be accessed.
      */
-    public void deleteTask(int pos) throws DukeException {
+    public String deleteTask(int pos) throws DukeException {
         Task task = data.get(pos);
         data.remove(pos);
         storage.writeFile(pos, null);
-        ui.deleteTask(task, data.size());
+        return "Noted. I've removed this task:\n " 
+                + task + "\n" +
+                "Now you have " + data.size() + " tasks in the list.\n";
     }
     
     public String findTasks(String keyword) {

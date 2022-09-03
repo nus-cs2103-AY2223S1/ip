@@ -17,7 +17,7 @@ public class DeleteCommand extends Command {
      * 
      * @throws DukeException If the data file cannot be accessed.
      */
-    public void execute(TaskList tasks) throws DukeException {
-        tasks.deleteTask(pos);
+    public String execute(TaskList tasks) throws DukeException {
+        return tasks.deleteTask(pos);
     }
 }

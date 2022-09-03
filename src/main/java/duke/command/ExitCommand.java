@@ -9,7 +9,7 @@ public class ExitCommand extends Command {
      *
      * @param tasks The user's current list of tasks.
      */
-    public void execute(TaskList tasks) {
-        System.out.println("Bye. Hope to see you again soon!\n");
+    public String execute(TaskList tasks) {
+        return "Bye. Hope to see you again soon!\n";
     }
 }

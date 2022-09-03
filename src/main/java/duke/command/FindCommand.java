@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.TaskList;
-import duke.UI;
 
 public class FindCommand extends Command {
     String description;
@@ -11,7 +10,7 @@ public class FindCommand extends Command {
     }
     
     // must search by description (and not date/time)
-    public void execute(TaskList tasks) {
-        UI.print(tasks.findTasks(description));
+    public String execute(TaskList tasks) {
+        return tasks.findTasks(description);
     }
 }
