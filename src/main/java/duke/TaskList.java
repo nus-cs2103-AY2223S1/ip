@@ -222,4 +222,12 @@ public class TaskList {
     protected void printData() {
         this.list.forEach(x -> System.out.println(String.format("%s. %s", this.list.indexOf(x) + 1, x)));
     }
+
+    protected String getData() {
+        String result = "";
+        for (Task task : this.list) {
+            result += String.format("%s. %s\n", this.list.indexOf(task) + 1, task);
+        }
+        return result;
+    }
 }

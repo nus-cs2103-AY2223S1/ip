@@ -1,5 +1,7 @@
 package duke;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 /**
@@ -19,6 +21,14 @@ public class Duke {
         tasks = new TaskList(Storage.load(filePath));
         parser = new Parser();
     }
+
+    /**
+     * Empty Constructor for the Duke class for JavaFX.
+     */
+    public Duke(){
+        tasks = new TaskList();
+        parser = new Parser();
+    };
 
     /**
      * Runs the main Duke program.
@@ -43,7 +53,16 @@ public class Duke {
         }
     }
 
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    String getResponse(String input) {
+        String response = this.parser.execute(input, tasks);
+        return response;
+    }
+
     public static void main(String[] args) {
-        new Duke("./data/duke.txt").run();
+         new Duke("./data/duke.txt").run();
     }
 }
