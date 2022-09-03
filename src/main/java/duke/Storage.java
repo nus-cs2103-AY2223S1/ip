@@ -18,7 +18,9 @@ import duke.task.ToDo;
  * tasks in a file on the hard drive
  */
 public class Storage {
+    //Index at which description of task starts in storage
     private static final int DESC_MARKER = 8;
+    //Index at which isDone status of task is located in storage
     private static final int ISDONE_MARKER = 4;
 
     private String fileLocation;
@@ -62,21 +64,18 @@ public class Storage {
                     taskDesc = line.substring(DESC_MARKER).trim();
                     tasks.add(new ToDo(taskDesc, taskIsDone));
                     break;
-
                 case 'D':
                     taskDesc = line.substring(DESC_MARKER, line.indexOf('(')).trim();
                     taskTime = line.substring(line.indexOf('(') + 1, line.indexOf(')')).trim();
 
                     tasks.add(new Deadline(taskDesc, taskIsDone, taskTime));
                     break;
-
                 case 'E':
                     taskDesc = line.substring(DESC_MARKER, line.indexOf('(')).trim();
                     taskTime = line.substring(line.indexOf('(') + 1, line.indexOf(')')).trim();
 
                     tasks.add(new Event(taskDesc, taskIsDone, taskTime));
                     break;
-
                 default:
                 }
             }
@@ -98,7 +97,7 @@ public class Storage {
             FileWriter taskFile = new FileWriter(fileLocation);
             String textToSave = " ";
             for (int i = 0; i < tasks.size(); i++) {
-                textToSave += tasks.get(i).toStringData() + "\n";
+                textToSave += tasks.get(i).toStringStorage() + "\n";
             }
             taskFile.write(textToSave.trim());
             taskFile.close();
