@@ -1,6 +1,6 @@
 package task;
 
-public class Task {
+public abstract class Task {
 
     private String description;
     private boolean isDone;
@@ -11,7 +11,7 @@ public class Task {
         this.isDone = false;
     }
 
-
+    public abstract String snooze();
     /**
      * A setter to change the task to be done.
      */
@@ -32,6 +32,10 @@ public class Task {
      */
     public String getDescription() {
         return this.description;
+    }
+
+    public boolean getDoneStatus() {
+        return this.isDone;
     }
 
     /**

@@ -17,6 +17,16 @@ public class Event extends Task {
     }
 
     /**
+     * Postpones the event to be a day later.
+     * @return Informs the user that the event is snoozed for a day.
+     */
+    @Override
+    public String snooze() {
+        this.date = date.plusDays(1);
+        return this + "\n" + "This event has been snoozed for a day!";
+    }
+
+    /**
      * String representation of a event object.
      * @return The string representing the object with the state of the event task.
      */

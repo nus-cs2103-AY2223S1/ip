@@ -17,6 +17,16 @@ public class Deadline extends Task {
     }
 
     /**
+     * Snoozes and postpones the deadline to a day later.
+     * @return Informs the user that deadline has been snoozed for a day.
+     */
+    @Override
+    public String snooze() {
+        this.date = date.plusDays(1);
+        return this + "\n" + "This deadline has been snoozed for a day!";
+    }
+
+    /**
      * String representation of a deadline object.
      * @return The string representing the object with the state of the deadline task.
      */

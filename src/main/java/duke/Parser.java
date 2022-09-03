@@ -39,6 +39,7 @@ public class Parser {
         acceptedKeywords.add("find");
         acceptedKeywords.add("mark");
         acceptedKeywords.add("unmark");
+        acceptedKeywords.add("snooze");
         String[] parts = input.split(" ", 2);
         String keyword = parts[0];
         if (input.equals("bye") || input.equals("list")) return;
@@ -72,6 +73,9 @@ public class Parser {
                     result += i + 1 + ". " + currList.getTaskAt(i).toString() + "\n";
                 }
                 return result;
+            case "snooze":
+                Task snoozeTask = currList.getTaskAt(Integer.parseInt(parts[1]) - 1);
+                return snoozeTask.snooze();
             case "mark": //command is mark 2
                 Task currTask = currList.getTaskAt(Integer.parseInt(parts[1]) - 1); //the arraylist is 0 indexed, so task 1 is actually 0 index
                 currTask.setDone();
@@ -89,7 +93,7 @@ public class Parser {
                 String by = temp[1];
                 String deadlineDesc = temp[0].split("deadline ")[1];
                 Deadline deadlineTask = new Deadline(deadlineDesc, LocalDate.parse(by));
-                currList.addTask(deadlineTask);
+                currList.addTask(deadlineTask, false);
                 result += Ui.addTaskMessage(deadlineTask);
                 result += Ui.getTaskNumberMessage(currList);
                 return result;
@@ -98,14 +102,14 @@ public class Parser {
                 String at = temp1[1];
                 String eventDesc = temp1[0].split("event ", 2)[1];
                 Event eventTask = new Event(eventDesc, LocalDate.parse(at));
-                currList.addTask(eventTask);
+                currList.addTask(eventTask, false);
                 result += Ui.addTaskMessage(eventTask);
                 result += Ui.getTaskNumberMessage(currList);
                 return result;
             case "todo": //can abstract this whole case to be generalized
                 String todoDesc = input.split("todo ")[1];
                 Todo todoTask = new Todo(todoDesc);
-                currList.addTask(todoTask);
+                currList.addTask(todoTask, false);
                 result += Ui.addTaskMessage(todoTask);
                 result += Ui.getTaskNumberMessage(currList);
                 return result;

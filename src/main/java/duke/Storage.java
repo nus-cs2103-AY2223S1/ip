@@ -42,23 +42,24 @@ public class Storage {
             String data = myReader.nextLine();
             char key = data.charAt(1);
             String temp = data.substring(7); //description
+            boolean isDone = data.charAt(4) == 'X'? true : false;
             if (key == 'T') { //todo
                 Todo task = new Todo(temp);
-                currList.addTask(task);
+                currList.addTask(task, isDone);
             }
             else if (key == 'D') { //deadline
                 String parts[] = temp.split(" \\(by: ", 2);
                 String dateEnglish = parts[1].substring(0, 11); //handle ) at the end
                 LocalDate inputDate = LocalDate.parse(dateEnglish, DateTimeFormatter.ofPattern("MMM dd yyyy"));
                 Deadline task = new Deadline(parts[0], inputDate);
-                currList.addTask(task);
+                currList.addTask(task, isDone);
             }
             else { //event
                 String parts[] = temp.split(" \\(at: ", 2);
                 String dateEnglish = parts[1].substring(0, 11); //to handle the ) at the end
                 LocalDate inputDate = LocalDate.parse(dateEnglish, DateTimeFormatter.ofPattern("MMM dd yyyy"));
                 Event task = new Event(parts[0], inputDate);
-                currList.addTask(task);
+                currList.addTask(task, isDone);
             }
         }
         myReader.close();

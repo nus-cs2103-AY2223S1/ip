@@ -27,7 +27,10 @@ public class TaskList {
      * Adds a task to the end of the task list.
      * @param t The task to be added.
      */
-    public void addTask(Task t) {
+    public void addTask(Task t, boolean isDone) {
+        if (isDone) {
+            t.setDone();
+        }
         this.taskList.add(t);
     }
 
@@ -45,7 +48,7 @@ public class TaskList {
         for (int i = 0; i < this.getLength(); i++){
             String desc = descriptions[i];
             if (desc.contains(input)) {
-                matchingList.addTask(tasks[i]);
+                matchingList.addTask(tasks[i], tasks[i].getDoneStatus());
             }
         }
         return matchingList;

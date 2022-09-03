@@ -12,6 +12,14 @@ public class Todo extends Task {
     }
 
     /**
+     * Attempting to postpone a todo task.
+     * @return Message that the todo task cannot be postponed.
+     */
+    public String snooze() {
+        return "ToDo tasks do not have a deadline!";
+    }
+
+    /**
      * String representation of a todo object.
      * @return The string representing the object with the state of the todo task.
      */
