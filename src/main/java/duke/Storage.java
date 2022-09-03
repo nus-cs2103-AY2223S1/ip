@@ -89,7 +89,6 @@ public class Storage {
                 throw new DukeException("Invalid task found in data file!");
             }
             if (taskDataArray[1].equals("1")) {
-                assert currTask != null;
                 currTask.markAsDone();
             }
         }
