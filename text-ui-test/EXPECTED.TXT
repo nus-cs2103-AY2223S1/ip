@@ -6,7 +6,8 @@
 
  Beep boop! Stashy here! What can I do for you?
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Please don't give me an empty todo description :(
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Please don't give me an empty todo description :(
     __________________________________________________
     __________________________________________________
     There, we have a new todo:
@@ -19,104 +20,125 @@
     You have 2 task(s) in the list.
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! I have no idea what are you saying :<
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    I have no idea what are you saying :<
     __________________________________________________
     __________________________________________________
     Listing all task(s) in your list...
-    1.[T][ ] borrow book
-    2.[T][ ] borrow book with /at perhaps?
+    1. [T][ ] borrow book
+    2. [T][ ] borrow book with /at perhaps?
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Please don't give me an empty deadline description :(
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Please don't give me an empty deadline description :(
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid datetime format given!
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid datetime format given!
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid datetime format given!
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid datetime format given!
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Please don't give me an empty deadline description :(
-    __________________________________________________
-    __________________________________________________
-    Listing all task(s) in your list...
-    1.[T][ ] borrow book
-    2.[T][ ] borrow book with /at perhaps?
-    __________________________________________________
-    __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Please don't give me an empty event description :(
-    __________________________________________________
-    __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
-    __________________________________________________
-    __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
-    __________________________________________________
-    __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
-    __________________________________________________
-    __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
-    __________________________________________________
-    __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Please don't give me an empty event description :(
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Please don't give me an empty deadline description :(
     __________________________________________________
     __________________________________________________
     Listing all task(s) in your list...
-    1.[T][ ] borrow book
-    2.[T][ ] borrow book with /at perhaps?
+    1. [T][ ] borrow book
+    2. [T][ ] borrow book with /at perhaps?
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Please don't give me an empty event description :(
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid datetime format given!
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid datetime format given!
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid datetime format given!
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid datetime format given!
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Please don't give me an empty event description :(
+    __________________________________________________
+    __________________________________________________
+    Listing all task(s) in your list...
+    1. [T][ ] borrow book
+    2. [T][ ] borrow book with /at perhaps?
     __________________________________________________
     __________________________________________________
     LFG, marking this task as done!
       [T][X] borrow book
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid task ID: 4
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid task ID: 4
     __________________________________________________
     __________________________________________________
     L + ratio, unmarking this task as not done!
       [T][ ] borrow book
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid task ID: 5
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid task ID: 5
     __________________________________________________
     __________________________________________________
     Listing all task(s) in your list...
-    1.[T][ ] borrow book
-    2.[T][ ] borrow book with /at perhaps?
+    1. [T][ ] borrow book
+    2. [T][ ] borrow book with /at perhaps?
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid task ID given!
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid task ID given!
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid number of arguments given >:(
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid number of arguments given >:(
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid task ID given!
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid task ID given!
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid number of arguments given >:(
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid number of arguments given >:(
     __________________________________________________
     __________________________________________________
     LFG, marking this task as done!
       [T][X] borrow book with /at perhaps?
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid number of arguments given >:(
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid number of arguments given >:(
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid number of arguments given >:(
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid number of arguments given >:(
     __________________________________________________
     __________________________________________________
     Listing all task(s) in your list...
-    1.[T][ ] borrow book
-    2.[T][X] borrow book with /at perhaps?
+    1. [T][ ] borrow book
+    2. [T][X] borrow book with /at perhaps?
     __________________________________________________
     __________________________________________________
     Task has been removed!
@@ -125,16 +147,19 @@
     __________________________________________________
     __________________________________________________
     Listing all task(s) in your list...
-    1.[T][X] borrow book with /at perhaps?
+    1. [T][X] borrow book with /at perhaps?
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid task ID: 0
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid task ID: 0
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid number of arguments given >:(
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid number of arguments given >:(
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid task ID: 30
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid task ID: 30
     __________________________________________________
     __________________________________________________
     Task has been removed!
@@ -143,113 +168,177 @@
     __________________________________________________
     __________________________________________________
     Listing all task(s) in your list...
-    You have no tasks right now.
+    Nothing to see here...
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid number of arguments given >:(
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid number of arguments given >:(
     __________________________________________________
     __________________________________________________
     Listing all task(s) in your list...
-    You have no tasks right now.
+    Nothing to see here...
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid number of arguments given >:(
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid number of arguments given >:(
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid number of arguments given >:(
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid number of arguments given >:(
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid task ID given!
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid task ID given!
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! I have no idea what are you saying :<
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    I have no idea what are you saying :<
     __________________________________________________
     __________________________________________________
     There, we have a new deadline:
-      [D][ ] go to CLB (by: Dec 31 2021 1817)
+      [D][ ] go to CLB (by: Dec 31 2021 18:17)
     You have 1 task(s) in the list.
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid datetime format given!
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! You cannot provide both /by and /at simultaneously!
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    You cannot provide both /by and /at simultaneously!
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! You cannot provide both /by and /at simultaneously!
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    You cannot provide both /by and /at simultaneously!
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid datetime format given!
     __________________________________________________
     __________________________________________________
     There, we have a new event:
-      [E][ ] go to CLB (at: Dec 31 2021 1817)
+      [E][ ] go to CLB (at: Dec 31 2021 18:17)
     You have 2 task(s) in the list.
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! You cannot provide both /by and /at simultaneously!
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    You cannot provide both /by and /at simultaneously!
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! You cannot provide both /by and /at simultaneously!
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    You cannot provide both /by and /at simultaneously!
     __________________________________________________
     __________________________________________________
     There, we have a new event:
-      [E][ ] go to CLB (at: Dec 31 2029 1817)
+      [E][ ] go to CLB (at: Dec 31 2029 18:17)
     You have 3 task(s) in the list.
     __________________________________________________
     __________________________________________________
     There, we have a new event:
-      [E][ ] go to CLB (at: Feb 28 2021 1817)
+      [E][ ] go to CLB (at: Feb 28 2021 18:17)
     You have 4 task(s) in the list.
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid datetime format given!
     __________________________________________________
     __________________________________________________
     There, we have a new event:
-      [E][ ] go to CLB (at: Dec 31 2021 0017)
+      [E][ ] go to CLB (at: Dec 31 2021 00:17)
     You have 5 task(s) in the list.
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid datetime format given!
     __________________________________________________
     __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid datetime format given!
-    __________________________________________________
-    __________________________________________________
-    L + ratio, unmarking this task as not done!
-      [D][ ] go to CLB (by: Dec 31 2021 1817)
-    __________________________________________________
-    __________________________________________________
-    LFG, marking this task as done!
-      [E][X] go to CLB (at: Dec 31 2029 1817)
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid datetime format given!
     __________________________________________________
     __________________________________________________
     L + ratio, unmarking this task as not done!
-      [E][ ] go to CLB (at: Dec 31 2029 1817)
+      [D][ ] go to CLB (by: Dec 31 2021 18:17)
     __________________________________________________
     __________________________________________________
     LFG, marking this task as done!
-      [E][X] go to CLB (at: Feb 28 2021 1817)
-    __________________________________________________
-    __________________________________________________
-    LFG, marking this task as done!
-      [E][X] go to CLB (at: Dec 31 2021 0017)
-    __________________________________________________
-    __________________________________________________
-    ☹ BEEP BOOP BUZZ ERROR!!! Invalid task ID: 7
+      [E][X] go to CLB (at: Dec 31 2029 18:17)
     __________________________________________________
     __________________________________________________
     L + ratio, unmarking this task as not done!
-      [E][ ] go to CLB (at: Dec 31 2021 1817)
+      [E][ ] go to CLB (at: Dec 31 2029 18:17)
+    __________________________________________________
+    __________________________________________________
+    LFG, marking this task as done!
+      [E][X] go to CLB (at: Feb 28 2021 18:17)
+    __________________________________________________
+    __________________________________________________
+    LFG, marking this task as done!
+      [E][X] go to CLB (at: Dec 31 2021 00:17)
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    Invalid task ID: 7
+    __________________________________________________
+    __________________________________________________
+    L + ratio, unmarking this task as not done!
+      [E][ ] go to CLB (at: Dec 31 2021 18:17)
     __________________________________________________
     __________________________________________________
     Listing all task(s) in your list...
-    1.[D][ ] go to CLB (by: Dec 31 2021 1817)
-    2.[E][ ] go to CLB (at: Dec 31 2021 1817)
-    3.[E][ ] go to CLB (at: Dec 31 2029 1817)
-    4.[E][X] go to CLB (at: Feb 28 2021 1817)
-    5.[E][X] go to CLB (at: Dec 31 2021 0017)
+    1. [D][ ] go to CLB (by: Dec 31 2021 18:17)
+    2. [E][ ] go to CLB (at: Dec 31 2021 18:17)
+    3. [E][ ] go to CLB (at: Dec 31 2029 18:17)
+    4. [E][X] go to CLB (at: Feb 28 2021 18:17)
+    5. [E][X] go to CLB (at: Dec 31 2021 00:17)
+    __________________________________________________
+    __________________________________________________
+    There, we have a new todo:
+      [T][ ] feed dog
+    You have 6 task(s) in the list.
+    __________________________________________________
+    __________________________________________________
+    There, we have a new todo:
+      [T][ ] hello world
+    You have 7 task(s) in the list.
+    __________________________________________________
+    __________________________________________________
+    There, we have a new todo:
+      [T][ ] iron man is coming???
+    You have 8 task(s) in the list.
+    __________________________________________________
+    __________________________________________________
+    Listing all the matching task(s)...
+    1. [D][ ] go to CLB (by: Dec 31 2021 18:17)
+    2. [E][ ] go to CLB (at: Dec 31 2021 18:17)
+    3. [E][ ] go to CLB (at: Dec 31 2029 18:17)
+    4. [E][X] go to CLB (at: Feb 28 2021 18:17)
+    5. [E][X] go to CLB (at: Dec 31 2021 00:17)
+    6. [T][ ] feed dog
+    7. [T][ ] hello world
+    8. [T][ ] iron man is coming???
+    __________________________________________________
+    __________________________________________________
+    Listing all the matching task(s)...
+    1. [D][ ] go to CLB (by: Dec 31 2021 18:17)
+    2. [E][ ] go to CLB (at: Dec 31 2021 18:17)
+    3. [E][ ] go to CLB (at: Dec 31 2029 18:17)
+    4. [E][X] go to CLB (at: Feb 28 2021 18:17)
+    5. [E][X] go to CLB (at: Dec 31 2021 00:17)
+    6. [T][ ] feed dog
+    7. [T][ ] hello world
+    8. [T][ ] iron man is coming???
+    __________________________________________________
+    __________________________________________________
+    Listing all the matching task(s)...
+    1. [D][ ] go to CLB (by: Dec 31 2021 18:17)
+    2. [E][ ] go to CLB (at: Dec 31 2021 18:17)
+    3. [E][ ] go to CLB (at: Dec 31 2029 18:17)
+    4. [E][X] go to CLB (at: Feb 28 2021 18:17)
+    5. [E][X] go to CLB (at: Dec 31 2021 00:17)
+    __________________________________________________
+    __________________________________________________
+    Listing all the matching task(s)...
+    1. [T][ ] hello world
     __________________________________________________
     __________________________________________________
  --                                                  -++-  

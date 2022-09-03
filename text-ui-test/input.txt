@@ -65,4 +65,11 @@ mark 5
 mark 7
 unmark 2
 list
+todo feed dog
+todo hello world
+todo     iron man is coming???
+find o
+find O
+find cLb
+find             hello
 bye
