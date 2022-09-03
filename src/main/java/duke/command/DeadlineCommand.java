@@ -39,6 +39,9 @@ public class DeadlineCommand extends Command {
      */
     @Override
     public String execute(Storage storage, TaskList taskList, Ui ui) {
+        assert storage != null;
+        assert taskList != null;
+        assert ui != null;
         String output = "";
         output += ui.printAddTask(taskList.addTask(new Deadline(description, by)));
         output += ui.printSizeOfList(taskList.getSize());

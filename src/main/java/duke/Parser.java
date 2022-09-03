@@ -99,6 +99,7 @@ public class Parser {
     }
 
     private static boolean isNumeric(String input) {
+        assert input != null;
         for (char c : input.toCharArray()) {
             if (c < 48 || c > 57) {
                 return false;

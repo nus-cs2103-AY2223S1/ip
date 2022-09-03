@@ -101,6 +101,7 @@ public class TaskList {
      * @return Task from input parameter.
      */
     public Task addTask(Task task) {
+        assert task != null;
         tasks.add(task);
         return task;
     }
@@ -112,6 +113,7 @@ public class TaskList {
      * @return A TaskList containing the tasks that match with the keyword.
      */
     public TaskList findMatchingTasks(String keyword) {
+        assert !keyword.isEmpty();
         List<Task> matchingTasks = new ArrayList<>();
         for (Task task : tasks) {
             if (task.match(keyword)) {

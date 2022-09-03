@@ -38,6 +38,7 @@ public abstract class Task {
      * @return If description contains specified keyword.
      */
     public boolean match(String keyword) {
+        assert !keyword.isEmpty();
         return description.contains(keyword);
     }
 

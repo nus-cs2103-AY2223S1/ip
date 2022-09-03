@@ -69,6 +69,7 @@ public class Storage {
      * @param tasks
      */
     public void save(List<Task> tasks) {
+        assert tasks != null;
         List<String> data = new ArrayList<>();
         for (Task task : tasks) {
             data.add(task.stringify());
