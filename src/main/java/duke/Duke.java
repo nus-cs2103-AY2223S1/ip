@@ -2,7 +2,10 @@ package duke;
 
 import duke.ui.Ui;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -45,6 +48,7 @@ public class Duke extends Application {
         this.ui.introduceDuke();
         this.ui.readAndRespond();
     }
+
 
     @Override
     public void start(Stage stage){
@@ -117,7 +121,7 @@ public class Duke extends Application {
     //adapted from https://se-education.org/guides/tutorials/javaFxPart3.html
 
 
-    public class DialogBox extends HBox {
+    public static class DialogBox extends HBox {
 
         private Label text;
         private ImageView displayPicture;
@@ -133,6 +137,25 @@ public class Duke extends Application {
             this.setAlignment(Pos.TOP_RIGHT);
             this.getChildren().addAll(text, displayPicture);
         }
+
+        private void flip() {
+            this.setAlignment(Pos.TOP_LEFT);
+            ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
+            FXCollections.reverse(tmp);
+            this.getChildren().setAll(tmp);
+        }
+
+        public static DialogBox getDukeDialog(Label l, ImageView iv) {
+            var db = new DialogBox(l, iv);
+            db.flip();
+            return db;
+        }
+
+
+        public static DialogBox getUserDialog(Label l, ImageView iv) {
+            return new DialogBox(l, iv);
+        }
+
     }
 
 
@@ -141,10 +164,15 @@ public class Duke extends Application {
         Label userText = new Label(userInput.getText());
         Label dukeText = new Label(getResponse(userInput.getText()));
         dialogContainer.getChildren().addAll(
-                new DialogBox(userText, new ImageView(user)),
-                new DialogBox(dukeText, new ImageView(duke))
+                DialogBox.getUserDialog(userText, new ImageView(user)),
+                DialogBox.getDukeDialog(dukeText, new ImageView(duke))
         );
         userInput.clear();
+    }
+
+
+    private String getResponse(String input) {
+        return "";
     }
 
     private Label getDialogLabel(String text) {
@@ -153,10 +181,6 @@ public class Duke extends Application {
         textToAdd.setWrapText(true);
 
         return textToAdd;
-    }
-
-    private String getResponse(String input) {
-        return "Duke heard: " + input;
     }
 
 
