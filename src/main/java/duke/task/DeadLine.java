@@ -52,6 +52,7 @@ public class DeadLine extends Task {
      */
     @Override
     public String getTask() {
+        assert this.eventDate != null : "Event date is empty!";
         return String.format("D | " + super.getTask() + " | " + this.eventDate);
     }
 

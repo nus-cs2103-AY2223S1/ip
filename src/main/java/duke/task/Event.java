@@ -49,6 +49,7 @@ public class Event extends Task {
      */
     @Override
     public String getTask() {
+        assert this.eventDate != null : "Event date is empty!";
         return String.format("E | " + super.getTask() + " | " + this.eventDate);
     }
 

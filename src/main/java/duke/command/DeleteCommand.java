@@ -36,6 +36,7 @@ public class DeleteCommand extends Command {
         try {
             Integer taskIndex = Integer.valueOf(userInput.substring(POSITION_OF_TASK_INDEX));
             String reply = taskList.delete(taskIndex);
+            assert reply.startsWith("Noted. I've removed this task:") : "Delete command replies wrongly!";
             storage.write(taskList.writeTasks());
             return reply;
         } catch (DukeException | IOException e) {
