@@ -18,7 +18,7 @@ public class Ui {
     public static final String FIND_HEADER = Duke.LINE + "\n"
             + "Here are the matching tasks in your list:" + "\n";
     public static final String FIND_PRIORITY_HEADER = Duke.LINE + "\n"
-            + "Tasks with priority that are ";
+            + "Tasks that matches priority ";
 
     /**
      * Constructs a UI by greeting the user.
