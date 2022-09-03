@@ -14,7 +14,7 @@ public class Ui {
     private final Scanner in;
     private final PrintStream out;
     private static final String END_CMD = "bye";
-    private static final String BREAK_LINE = "\n***********************************************************************";
+    private static final String BREAK_LINE = "\n***\n";
 
     /**
      * Constructs a Ui object
