@@ -74,7 +74,7 @@ public class Parser {
                 validateMetaNullity(meta);
                 return new Todo(meta);
             default:
-                throw new DukeException("Not a valid task command.");
+                throw new DukeException(Message.INVALID);
         }
     }
 
@@ -111,7 +111,7 @@ public class Parser {
                 return ((LocalDate) temporalAccessor).atStartOfDay();
             }
         } catch (DateTimeParseException e) {
-            throw new DukeException("Invalid date format");
+            throw new DukeException(Message.DATE_FORMAT_ERROR);
         }
     }
 
