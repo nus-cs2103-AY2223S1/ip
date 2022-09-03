@@ -1,3 +1,5 @@
 [T][ ] borrow book
 [D][ ] return book (by: 18:00, Tue, Oct 15 2019)
 [E][ ] project meeting (at: Mon 2-4pm)
+[T][ ] read book
+[T][ ] hello
