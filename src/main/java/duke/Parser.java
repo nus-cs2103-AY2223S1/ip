@@ -36,6 +36,7 @@ public class Parser {
                 if (descriptions.length == 1) {
                     throw new MarkException(command);
                 }
+                assert descriptions.length != 1 : "should have a mark index";
                 int index = Integer.parseInt(descriptions[1]);
                 Task task = list.get(index - 1);
                 if (command.equals("mark")) {
