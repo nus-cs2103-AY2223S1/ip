@@ -51,8 +51,10 @@ public class GraphicUi implements UiInterface {
         }
         result.append('\n');
         try {
+            System.out.printf("Tried to write:\n%s\n", result);
             bufferedWriter.write(result.toString(), 0, result.length());
             bufferedWriter.flush();
+            System.out.println("Written.");
         } catch (IOException e) {
             System.out.println("Error: Cannot write output.");
             throw new RuntimeException(e);

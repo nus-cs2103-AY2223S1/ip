@@ -29,11 +29,13 @@ public class Main extends Application {
             Thread appLogic = new Thread("appLogic") {
                 @Override
                 public void run() {
+                    System.out.println("Starting app logic");
                     Duke.setUi(new GraphicUi());
                     Duke.main(new String[]{});
                 }
             };
             appLogic.start();
+            fxmlLoader.<MainWindow>getController().getOutput();
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

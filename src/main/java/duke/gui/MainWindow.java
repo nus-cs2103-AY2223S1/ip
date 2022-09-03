@@ -1,6 +1,7 @@
 package duke.gui;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.PipedReader;
 import java.io.PipedWriter;
@@ -21,6 +22,8 @@ public class MainWindow extends AnchorPane {
      * GUI writes to here.
      */
     private static final PipedWriter writer = new PipedWriter();
+
+    private static final BufferedWriter bufferedWriter = new BufferedWriter(writer);
     /**
      * GUI reads from here.
      */
@@ -73,15 +76,34 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage)
         );
         userInput.clear();
+        System.out.println("User input detected");
+        System.out.println(input);
         try {
-            writer.write(input);
+            bufferedWriter.write(input);
+            bufferedWriter.newLine();
+            bufferedWriter.flush();
+        } catch (IOException ex) {
+            dialogContainer.getChildren().addAll(
+                    DialogBox.getDukeDialog(String.format(
+                            "I did not manage to send that to application logic:\n%s",
+                            input), dukeImage)
+            );
+        }
+        getOutput();
+    }
+
+    /**
+     * Gets output. Used for first message too.
+     */
+    public void getOutput() {
+        try {
             StringBuilder result = new StringBuilder();
             while (true) {
                 String line = reader.readLine();
                 if (line.length() == 0) {
                     break;
                 }
-                result.append(reader.readLine());
+                result.append(line);
                 result.append('\n');
             }
             String response = result.substring(0, result.length() - 1);
@@ -90,7 +112,7 @@ public class MainWindow extends AnchorPane {
             );
         } catch (IOException ex) {
             dialogContainer.getChildren().addAll(
-                    DialogBox.getDukeDialog(String.format("I did not manage to read that:\n%s", input), dukeImage)
+                    DialogBox.getDukeDialog("I did not manage to read it...", dukeImage)
             );
         }
     }
