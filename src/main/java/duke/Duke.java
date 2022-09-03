@@ -8,7 +8,7 @@ import duke.task.TaskList;
  */
 public class Duke {
     private final Storage storage;
-    private TaskList taskList;
+    private final TaskList taskList;
 
     /**
      * Creates a new Duke to chat with.

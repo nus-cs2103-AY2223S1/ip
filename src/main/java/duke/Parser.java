@@ -37,36 +37,40 @@ public class Parser {
         // @@author
 
         try {
-            switch (commandWord) {
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand(taskList);
-            case MarkCommand.COMMAND_WORD:
-                return new MarkCommand(taskList, Integer.parseInt(argument) - 1);
-            case UnmarkCommand.COMMAND_WORD:
-                return new UnmarkCommand(taskList, Integer.parseInt(argument) - 1);
-            case TodoCommand.COMMAND_WORD:
-                return new TodoCommand(taskList, new Todo(argument));
-            case DeadlineCommand.COMMAND_WORD:
-                String[] arguments = splitArgument(argument, DeadlineCommand.COMMAND_SEPARATOR);
-                return new DeadlineCommand(taskList, new Deadline(arguments[0], arguments[1]));
-            case EventCommand.COMMAND_WORD:
-                arguments = splitArgument(argument, EventCommand.COMMAND_SEPARATOR);
-                return new EventCommand(taskList, new Event(arguments[0], arguments[1]));
-            case DeleteCommand.COMMAND_WORD:
-                return new DeleteCommand(taskList, Integer.parseInt(argument) - 1);
-            case FindCommand.COMMAND_WORD:
-                return new FindCommand(taskList, argument);
-            default:
-                throw new DukeException("I'm sorry, but I don't know what that means.");
-            }
+            return getCommand(commandWord, argument, taskList);
         } catch (DukeException e) {
             return new InvalidCommand(e.getMessage());
         } catch (NumberFormatException e) {
             return new InvalidCommand("Oops! That's not a proper number.");
         }
     }
+
+    private static Command getCommand(String commandWord, String argument, TaskList taskList) throws DukeException {
+        switch (commandWord) {
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand(taskList);
+        case MarkCommand.COMMAND_WORD:
+            return new MarkCommand(taskList, Integer.parseInt(argument) - 1);
+        case UnmarkCommand.COMMAND_WORD:
+            return new UnmarkCommand(taskList, Integer.parseInt(argument) - 1);
+        case TodoCommand.COMMAND_WORD:
+            return new TodoCommand(taskList, new Todo(argument));
+        case DeadlineCommand.COMMAND_WORD:
+            String[] arguments = splitArgument(argument, DeadlineCommand.COMMAND_SEPARATOR);
+            return new DeadlineCommand(taskList, new Deadline(arguments[0], arguments[1]));
+        case EventCommand.COMMAND_WORD:
+            arguments = splitArgument(argument, EventCommand.COMMAND_SEPARATOR);
+            return new EventCommand(taskList, new Event(arguments[0], arguments[1]));
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommand(taskList, Integer.parseInt(argument) - 1);
+        case FindCommand.COMMAND_WORD:
+            return new FindCommand(taskList, argument);
+        default:
+            throw new DukeException("I'm sorry, but I don't know what that means.");
+        }
+}
 
     /**
      * Splits the given argument into description and date, separated by the command separator.

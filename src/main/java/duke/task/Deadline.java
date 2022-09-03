@@ -67,11 +67,10 @@ public class Deadline extends Task {
      */
     @Override
     public String encode() {
-        String s = String.format("%c;%s;%s",
+        return String.format("%c;%s;%s",
                 SYMBOL,
                 super.encode(),
                 Date.getStorageFormat(this.date));
-        return s;
     }
 
     /**
@@ -81,10 +80,9 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        String s = String.format("[%c]%s (by: %s)",
+        return String.format("[%c]%s (by: %s)",
                 SYMBOL,
                 super.toString(),
                 Date.getDisplayFormat(this.date));
-        return s;
     }
 }

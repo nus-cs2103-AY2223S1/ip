@@ -63,10 +63,9 @@ public abstract class Task {
      */
     public String encode() {
         String status = this.isDone ? "1" : "0";
-        String s = String.format("%s;%s",
+        return String.format("%s;%s",
                 status,
                 this.description);
-        return s;
     }
 
     /**
@@ -77,9 +76,8 @@ public abstract class Task {
     @Override
     public String toString() {
         String status = this.isDone ? "X" : " ";
-        String s = String.format("[%s] %s",
+        return String.format("[%s] %s",
                 status,
                 this.description);
-        return s;
     }
 }
