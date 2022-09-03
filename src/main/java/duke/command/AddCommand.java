@@ -5,6 +5,7 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
+/** A class that represents a command for the bot to add a task to the to-do list. */
 public class AddCommand extends Command {
 
     private String keyword;
@@ -15,6 +16,15 @@ public class AddCommand extends Command {
         this.input = commandInput;
     }
 
+    /**
+     * Executes the user command by adding a task to the to-do list, after receiving the appropriate input from the user.
+     * Writes the task to the file, to save the task.
+     *
+     * @param tasks The TaskList object that is keeping track of all the current tasks.
+     * @param ui The UI object that displays messages to the user.
+     * @param storage The storage used to save the task to file.
+     * @throws DukeException If the input from the user is invalid.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {

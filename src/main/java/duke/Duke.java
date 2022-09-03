@@ -2,6 +2,7 @@ package duke;
 
 import duke.command.Command;
 
+/** A bot to help you to keep track of your tasks in a to-do list. */
 public class Duke {
 
     private Storage storage;
@@ -19,6 +20,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Starts up the bot.
+     * Allows user to interact with the bot and give commands, until the bot is given the command to deactivate.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

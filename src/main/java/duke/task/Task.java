@@ -1,5 +1,6 @@
 package duke.task;
 
+/** A class that represents a task, that can be added and removed from the to-do list. */
 public class Task {
 
     protected String description;

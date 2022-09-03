@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/** A class representing the storage where the tasks of the user are stored in a file. */
 public class Storage {
 
     private static String filepath;
@@ -19,6 +20,9 @@ public class Storage {
         this.filepath = filepath;
     }
 
+    /**
+     * Loads and retrieves the tasks currently saved in the file, upon starting the bot.
+     */
     public ArrayList<String> load() {
         ArrayList<String> loadedTasks = new ArrayList<>();
         File directory = new File(DUKE_FILEPATH);
@@ -41,6 +45,12 @@ public class Storage {
         return loadedTasks;
     }
 
+    /**
+     * Writes a new task to the file that saves all the tasks.
+     *
+     * @param strToWrite The String representing the task, to be written into the file.
+     * @throws DukeException If the bot is unable to write to the file.
+     */
     public void writeToFile(String strToWrite) throws DukeException {
         try {
             FileWriter dukeWriter = new FileWriter(DUKEFILE_STR, true);
@@ -51,6 +61,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Deletes an existing task from the file.
+     *
+     * @param taskToRemove The String representing the task to be deleted.
+     * @throws FileNotFoundException If the file containing the tasks cannot be found.
+     * @throws DukeException If the bot is unable to delete the task.
+     */
     public void removeFromFile(String taskToRemove) throws FileNotFoundException, DukeException {
         Integer taskNo = Integer.valueOf(taskToRemove);
         Scanner sc = new Scanner(dukeFile);

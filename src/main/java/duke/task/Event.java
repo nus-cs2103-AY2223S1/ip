@@ -1,5 +1,6 @@
 package duke.task;
 
+/** A class representing a type of task that is an event to attend, and includes a date when the event occurs. */
 public class Event extends Task{
 
     protected String on;

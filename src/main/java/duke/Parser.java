@@ -5,6 +5,7 @@ import duke.command.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/** A class that deals with making sense of the user input, and translating it to a command for the bot to execute. */
 public class Parser {
 
     private static final ArrayList<String> ADD_COMMANDS = new ArrayList<>(List.of("todo", "deadline", "event"));
@@ -17,6 +18,13 @@ public class Parser {
         //
     }
 
+    /**
+     * Parses the user input into a command for the bot.
+     *
+     * @param strToParse The user input.
+     * @return A Command that can be executed by the bot.
+     * @throws DukeException If the user gives an invalid input that the bot cannot understand.
+     */
     public static Command parse(String strToParse) throws DukeException {
         String[] splitTask = strToParse.split(" ", 2);
         String keyword = splitTask[0];
