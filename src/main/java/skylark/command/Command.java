@@ -328,20 +328,22 @@ public abstract class Command {
             if (query.isEmpty()) {
                 throw new SkylarkException("The find query cannot be empty.");
             }
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("Here are the matching tasks in your list:");
-            stringBuilder.append(System.lineSeparator());
+            String response = "";
+            response += "Here are the matching tasks in your list:";
+            response += System.lineSeparator();
             int count = 1;
             for (int i = 0; i < taskList.size(); i++) {
                 Task currentTask = taskList.get(i);
                 if (currentTask.toString().contains(query)) {
-                    stringBuilder.append(count).append(". ").append(currentTask);
-                    stringBuilder.append(System.lineSeparator());
+                    response += count
+                            + ". "
+                            + currentTask
+                            + System.lineSeparator();
                     count += 1;
                 }
             }
 
-            return stringBuilder.toString();
+            return response;
         }
     }
 
