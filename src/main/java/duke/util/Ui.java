@@ -67,13 +67,23 @@ public class Ui {
     }
 
     /**
-     * Lists all the tasks in taskList
+     * Begin to list tasks
      *
      * @return Duke's response to reading a list
      * @since 0.2
      */
     public String list() {
         return "Here are the current tasks in your list:";
+    }
+
+    /**
+     * Begin to list filtered tasks
+     *
+     * @return Duke's response to reading a filtered list
+     * @since 0.2
+     */
+    public String filteredList() {
+        return "Here are the matching tasks in your list:";
     }
 
     /**
@@ -149,5 +159,24 @@ public class Ui {
             list += "\n" + (i + 1) + ". " + tasks.get(i);
         }
         return list;
+    }
+
+    /**
+     * Reads a filtered list
+     *
+     * @param tasks ArrayList contained within TaskList
+     * @return Duke's response to reading the list of tasks, and the list of tasks for Duke to recite
+     * @since 0.2
+     */
+    public String readFilteredList(ArrayList<Task> tasks) {
+        String list = filteredList();
+        for (int i = 0; i < tasks.size(); i++) {
+            list += "\n" + (i + 1) + ". " + tasks.get(i) + tasks.get(i).getTags();
+        }
+        return list;
+    }
+
+    public String addTag(Task task, String tag) {
+        return "Tagged task " + task + " with #" + tag;
     }
 }

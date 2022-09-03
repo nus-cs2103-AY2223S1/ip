@@ -52,9 +52,8 @@ public class Storage {
             File save = new File(saveFilePath);
             FileWriter saveWriter = new FileWriter(save);
             String saveString = "";
-
             for (int i = 0; i < tasks.size(); i++) {
-                saveString += tasks.getTask(i) + "\n";
+                saveString += tasks.getTask(i) + tasks.getTask(i).getTags() + "\n";
             }
             saveWriter.write(saveString);
             saveWriter.flush();
@@ -171,7 +170,12 @@ public class Storage {
             ArrayList<Task> res = new ArrayList<>();
             while (sc.hasNextLine()) {
                 String command = sc.nextLine();
-                res.add(loadTaskDifferentiator(command));
+                String[] splitTaskFromTags = command.split(" #");
+                Task task = loadTaskDifferentiator(splitTaskFromTags[0]);
+                res.add(task);
+                for (int i = 1; i < splitTaskFromTags.length; i++) {
+                    task.addTag(splitTaskFromTags[i]);
+                }
             }
             sc.close();
             return res;

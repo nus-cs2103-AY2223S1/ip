@@ -61,7 +61,7 @@ public class Duke {
             Command c = Parser.inputCommand(input, tasks, ui);
             String response = c.execute(storage);
             latestCommand = c;
-            return "Suisei: " + response;
+            return "Suisei:\n" + response;
         } catch (DukeException e) {
             return ui.showDukeException(e.getMessage());
         }
