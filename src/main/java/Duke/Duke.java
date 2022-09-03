@@ -526,7 +526,15 @@ public class Duke extends Application {
     }
 
     private class Parser {
-        private String list, todo, ddl, event, mark, unmark, exit, delete, find;
+        private String list;
+        private String todo;
+        private String ddl;
+        private String event;
+        private String mark;
+        private String unmark;
+        private String exit;
+        private String delete;
+        private String find;
 
         public Parser() {
             list = "list";
