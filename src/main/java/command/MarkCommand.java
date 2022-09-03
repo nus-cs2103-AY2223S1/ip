@@ -48,6 +48,7 @@ public class MarkCommand extends Command {
                 throw new DukeException(TASK_ALREADY_COMPLETED_ERROR_MESSAGE);
             }
             this.tasks.get(taskIndex - 1).changeIsDone(true);
+            assert this.tasks.get(taskIndex - 1).getIsDone();
             ui.printMarkedMessage(this.tasks.get(taskIndex - 1), dialogContainer, userDialog);
         } catch (NumberFormatException e) {
             throw new DukeException(INVALID_TASK_NUMBER_FORMAT_ERROR_MESSAGE);

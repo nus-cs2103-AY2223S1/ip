@@ -1,6 +1,7 @@
 package command;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import exception.DukeException;
@@ -51,6 +52,7 @@ public class AddDeadlineCommand extends AddTaskCommand {
         } else if (isIncorrectDeadlineDate) {
             throw new DukeException(EMPTY_DEADLINE_ERROR_MESSAGE);
         }
+        assert splitDeadline.length == 2 && !splitDeadline[0].equals("") && !splitDeadline[1].equals("");
         try {
             Deadline deadline = getDeadlineFromInput(splitDeadline);
             this.addTask(deadline);
@@ -68,6 +70,8 @@ public class AddDeadlineCommand extends AddTaskCommand {
 
     private Deadline getDeadlineFromInput(String[] splitDeadline) {
         LocalDateTime deadlineDateTime = DateTimeParser.changeStringToParsingDateTime(splitDeadline[1].trim());
+        assert deadlineDateTime.toString().equals(deadlineDateTime.format(
+                DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a")));
         return new Deadline(splitDeadline[0].trim(), false, deadlineDateTime);
     }
 

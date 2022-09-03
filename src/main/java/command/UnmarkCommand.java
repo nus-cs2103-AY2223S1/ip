@@ -47,6 +47,7 @@ public class UnmarkCommand extends Command {
             if (!this.tasks.get(taskIndex - 1).canChangeIsDone(false)) {
                 throw new DukeException(TASK_ALREADY_UNMARKED_ERROR_MESSAGE);
             }
+            assert !this.tasks.get(taskIndex - 1).getIsDone();
             this.tasks.get(taskIndex - 1).changeIsDone(false);
             ui.printUnmarkedMessage(this.tasks.get(taskIndex - 1), dialogContainer, userDialog);
         } catch (NumberFormatException e) {

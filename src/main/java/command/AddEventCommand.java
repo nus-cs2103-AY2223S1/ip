@@ -1,6 +1,7 @@
 package command;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import exception.DukeException;
@@ -51,6 +52,7 @@ public class AddEventCommand extends AddTaskCommand {
         } else if (isIncorrectEventDate) {
             throw new DukeException(EMPTY_EVENT_RANGE_ERROR_MESSAGE);
         }
+        assert splitEvent.length == 2 && !splitEvent[0].equals("") && !splitEvent[1].equals("");
         try {
             Event event = getEventFromInput(splitEvent);
             this.addTask(event);
@@ -68,6 +70,8 @@ public class AddEventCommand extends AddTaskCommand {
 
     private Event getEventFromInput(String[] splitEvent) {
         LocalDateTime eventDateTime = DateTimeParser.changeStringToParsingDateTime(splitEvent[1].trim());
+        assert eventDateTime.toString().equals(eventDateTime.format(
+                DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a")));
         return new Event(splitEvent[0].trim(), false, eventDateTime);
     }
 
