@@ -1,13 +1,13 @@
 package duke;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.ToDo;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Handles creating commands through duke.CommandMatcher/duke.PrefixCommandMatcher.
@@ -33,14 +33,14 @@ public class Parser {
 
         commands.add(new CommandMatcher((str) -> str.equals("list"), (str) -> {
             List<Task> tasks = TaskList.getTaskList();
-            Duke.getCurrentUi().printStyledMessage(
+            Duke.getUi().printStyledMessage(
                     listTasks("Here, your tasks:", tasks));
         }));
 
         commands.add(new PrefixCommandMatcher("mark", (str, map) -> {
             TaskList.getTask(str).ifPresent((task) -> {
                 task.markAsDone();
-                Duke.getCurrentUi().printStyledMessage(
+                Duke.getUi().printStyledMessage(
                         "Marked your task as done:",
                         task.toString());
             });
@@ -49,7 +49,7 @@ public class Parser {
         commands.add(new PrefixCommandMatcher("unmark", (str, map) -> {
             TaskList.getTask(str).ifPresent((task) -> {
                 task.markAsNotDone();
-                Duke.getCurrentUi().printStyledMessage(
+                Duke.getUi().printStyledMessage(
                         "Aw... it's not done yet:",
                         task.toString());
             });
@@ -58,7 +58,7 @@ public class Parser {
         commands.add(new PrefixCommandMatcher("deadline", (str, map) -> {
             Task task = new Deadline(str, map.getOrDefault("by", "[unknown]"));
             TaskList.getTaskList().add(task);
-            Duke.getCurrentUi().printStyledMessage(
+            Duke.getUi().printStyledMessage(
                     "Good luck with the deadline, here's the task:",
                     task.toString());
         }));
@@ -66,7 +66,7 @@ public class Parser {
         commands.add(new PrefixCommandMatcher("todo", (str, map) -> {
             Task task = new ToDo(str);
             TaskList.getTaskList().add(task);
-            Duke.getCurrentUi().printStyledMessage(
+            Duke.getUi().printStyledMessage(
                     "I've recorded this thing you need to do:",
                     task.toString());
         }));
@@ -74,7 +74,7 @@ public class Parser {
         commands.add(new PrefixCommandMatcher("event", (str, map) -> {
             Task task = new Event(str, map.getOrDefault("at", "[unknown]"));
             TaskList.getTaskList().add(task);
-            Duke.getCurrentUi().printStyledMessage(
+            Duke.getUi().printStyledMessage(
                     "That's going to happen at some time later:",
                     task.toString());
         }));
@@ -82,7 +82,7 @@ public class Parser {
         commands.add(new PrefixCommandMatcher("delete", (str, map) -> {
             TaskList.getTask(str).ifPresent((task) -> {
                 TaskList.getTaskList().remove(task);
-                Duke.getCurrentUi().printStyledMessage(
+                Duke.getUi().printStyledMessage(
                         "It seems you didn't need this task anymore, so I removed it:",
                         task.toString(),
                         String.format("You have %d tasks left.", TaskList.getTaskList().size()));
@@ -91,13 +91,13 @@ public class Parser {
 
         commands.add(new PrefixCommandMatcher("find", (str, map) -> {
             List<Task> tasks = TaskList.filterTasks(str);
-            Duke.getCurrentUi().printStyledMessage(
+            Duke.getUi().printStyledMessage(
                     listTasks("Here are the tasks that you might be looking for:", tasks));
         }));
 
         // default command matcher - add to list
         commands.add(new CommandMatcher((str) -> true, (str) -> {
-            Duke.getCurrentUi().printStyledMessage(
+            Duke.getUi().printStyledMessage(
                     "(>.<') I'm sorry, I don't really know what that means.");
         }));
 

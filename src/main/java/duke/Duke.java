@@ -1,11 +1,12 @@
 package duke;
 
-import duke.task.Task;
-import duke.task.TaskList;
-
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.Scanner;
+
+import duke.task.Task;
+import duke.task.TaskList;
 
 /**
  * The main method of the chatbot, as well as its startup and teardown.
@@ -13,29 +14,24 @@ import java.util.Scanner;
 public class Duke {
     /** List of commands */
     private static ArrayList<CommandMatcher> commands;
-    private static UiInterface ui;
+    private static UiInterface ui = new ConsoleUi();
 
     /**
-     * Gets the current UiInterface for command line purposes.
+     * Sets the current UI.
+     *
+     * @param ui The current UI to use.
+     */
+    public static void setUi(UiInterface ui) {
+        Duke.ui = ui;
+    }
+
+    /**
+     * Gets the current UI to interact with.
      *
      * @return UiInterface that helps display text to screen.
      */
-    public static UiInterface getCurrentUi() {
+    public static UiInterface getUi() {
         return ui;
-    }
-
-    private static Optional<Task> getTask(String index) {
-        try {
-            int idx = Integer.parseInt(index);
-            Task task = TaskList.getTaskList().get(idx - 1);
-            return Optional.of(task);
-        } catch (NumberFormatException ex) {
-            ui.printStyledMessage("Sorry, I didn't understand " + index + ", please give me a number.");
-            return Optional.empty();
-        } catch (IndexOutOfBoundsException ex) {
-            ui.printStyledMessage("Sorry, the number " + index + ", wasn't in the range.");
-            return Optional.empty();
-        }
     }
 
     private static void handleCommand(String command) {
@@ -52,23 +48,22 @@ public class Duke {
      * @param args Command line args which are not used.
      */
     public static void main(String[] args) {
-        // allow for console tests to run
-        if (args.length >= 1 && args[0].equals("console-test")) {
-            ui = new Ui();
-        } else {
-            ui = new GuiHandler();
-        }
-
         // initialization
         ui.greet();
         TaskList.initializeTaskList();
         commands = Parser.getCommands();
-        Scanner input = new Scanner(System.in);
+        BufferedReader input = new BufferedReader(ui.getReader());
 
         // main application logic
         boolean isStillRunning = true;
         while (isStillRunning) {
-            String command = input.nextLine();
+            String command;
+            try {
+                command = input.readLine();
+            } catch (IOException ex) {
+                System.out.println("IOException in application logic.");
+                throw new RuntimeException(ex);
+            }
             if (command.equals("bye")) {
                 isStillRunning = false;
             } else {
