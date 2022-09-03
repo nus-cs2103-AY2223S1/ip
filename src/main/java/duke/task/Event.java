@@ -12,6 +12,7 @@ public class Event extends Task {
 
     public Event(String description, LocalDateTime atDate) {
         super(description);
+        assert atDate != null: "Date cannot be null";
         this.atDate = atDate;
     }
 

@@ -17,6 +17,8 @@ public class AddEventCommand extends Command {
     private LocalDateTime atDate;
 
     public AddEventCommand(String description, LocalDateTime atDate) {
+        assert description != null: "Description cannot be null";
+        assert atDate != null: "Date cannot be null";
         this.description = description;
         this.atDate = atDate;
     }
