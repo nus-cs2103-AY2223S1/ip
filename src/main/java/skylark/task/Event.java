@@ -27,6 +27,7 @@ public class Event extends Task {
      */
     public Event(String description, String timing) throws SkylarkException {
         super(description);
+        assert timing.length() > 0 : "Timing should not be empty!";
         try {
             this.timing = LocalDateTime.parse(timing, DateTimeFormatter.ofPattern(inputFormat));
         } catch (DateTimeParseException dateTimeParseException) {

@@ -32,6 +32,7 @@ public class TaskList {
      * @return Size of the TaskList.
      */
     public int size() {
+        assert this.taskArrayList != null : "ArrayList should be initialised!";
         return this.taskArrayList.size();
     }
 
@@ -42,6 +43,7 @@ public class TaskList {
      * @return Task object that is stored at the index.
      */
     public Task get(int index) {
+        assert this.taskArrayList != null : "ArrayList should be initialised!";
         return this.taskArrayList.get(index);
     }
 
@@ -51,6 +53,7 @@ public class TaskList {
      * @param task Task object that is to be added.
      */
     public void add(Task task) {
+        assert this.taskArrayList != null : "ArrayList should be initialised!";
         this.taskArrayList.add(task);
     }
 

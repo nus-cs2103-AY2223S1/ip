@@ -33,6 +33,7 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String endDate) throws SkylarkException {
         super(description);
+        assert endDate.length() > 0 : "End Date should not be empty!";
         try {
             this.endDate = LocalDateTime.parse(endDate, DateTimeFormatter.ofPattern(inputFormat));
         } catch (DateTimeParseException dateTimeParseException) {
