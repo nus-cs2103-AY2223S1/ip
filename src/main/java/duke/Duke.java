@@ -2,10 +2,7 @@ package duke;
 
 import command.Command;
 import exception.DukeException;
-import javafx.animation.PauseTransition;
-import javafx.application.Platform;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 import parser.Parser;
 import storage.Storage;
 import task.TaskList;

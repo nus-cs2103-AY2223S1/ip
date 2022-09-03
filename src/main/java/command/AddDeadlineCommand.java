@@ -1,28 +1,46 @@
 package command;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+
 import exception.DukeException;
 import javafx.scene.layout.VBox;
 import parser.DateTimeParser;
 import storage.Storage;
 import task.Deadline;
 import task.TaskList;
-import task.Todo;
 import ui.DialogBox;
 import ui.Ui;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
-
+/**
+ * <h1>AddDeadlineCommand class</h1>
+ * Adds the generated Deadline to the TaskList
+ */
 public class AddDeadlineCommand extends AddTaskCommand {
     private static final String DEADLINE_COMMAND_REGEX = " /by ";
     private static final String EMPTY_DEADLINE_ERROR_MESSAGE = "Eh you never added a deadline";
     private static final String INVALID_INPUT_DEADLINE_ERROR_MESSAGE = "Eh you never add a proper deadline date! \n"
             + "Your deadline date should be like this lah: Jan 21 2023 04:10 AM";
 
+    /**
+     * Creates the AddDeadlineCommand object.
+     *
+     * @param tasks the list of Tasks.
+     * @param input the input String from the user
+     * @param ui the Ui object that handles the User Interface.
+     */
     public AddDeadlineCommand(TaskList tasks, String input, Ui ui) {
         super(tasks, input, ui);
     }
 
+    /**
+     * Adds the Deadline to the TaskList
+     *
+     * @param dialogContainer the VBox to add the dialog to.
+     * @param userDialog the Dialog Box containing the user's input to be added to the Vbox.
+     * @param storage the Storage to write the Tasks to an output file.
+     * @throws DukeException Throws an error message indicating that the user's input is invalid
+     */
     @Override
     public void execute(VBox dialogContainer, DialogBox userDialog, Storage storage) throws DukeException {
         String[] splitDeadline = input.substring(8).split(DEADLINE_COMMAND_REGEX, 3);

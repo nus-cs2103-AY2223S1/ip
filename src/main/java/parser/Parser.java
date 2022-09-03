@@ -2,9 +2,19 @@ package parser;
 
 import java.util.Scanner;
 
-import command.*;
+import command.AddDeadlineCommand;
+import command.AddEventCommand;
+import command.AddTodoCommand;
+import command.Command;
+import command.DeleteCommand;
+import command.EmptyCommand;
+import command.ExitCommand;
+import command.FindCommand;
+import command.InvalidCommand;
+import command.ListCommand;
+import command.MarkCommand;
+import command.UnmarkCommand;
 import task.TaskList;
-import task.Todo;
 import ui.Ui;
 
 /**
