@@ -11,12 +11,12 @@ import duke.task.ToDo;
 class ToDoTest {
 
     @Test
-    void testToString() {
+    void toString_todoTask() {
         assertEquals("[T][ ] buy bread", new ToDo("buy bread").toString());
     }
 
     @Test
-    void toStringData() {
-        assertEquals("T | 0 | buy bread", new ToDo("buy bread").toStringData());
+    void toStringStorage_todoTask() {
+        assertEquals("T | 0 | buy bread", new ToDo("buy bread").toStringStorage());
     }
 }
