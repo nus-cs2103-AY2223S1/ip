@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import duke.exceptions.DukeException;
 import duke.task.Event;
+import duke.undo.TaskUndo;
 
 /**
  * Represents an event command in the Duke application.
@@ -55,8 +56,9 @@ public class EventCommand extends Command {
     public CommandResult execute() {
         assert tasks != null : "Should setData() before calling execute().";
         tasks.addTask(event);
+        TaskUndo undoAction = new TaskUndo(event);
         int numberOfTasks = tasks.size();
         String userMessage = String.format(USER_MESSAGE_FORMAT, event, numberOfTasks);
-        return new CommandResult(userMessage, true, false);
+        return new CommandResult(userMessage, CommandResult.Action.UPDATE_FILE, undoAction);
     }
 }

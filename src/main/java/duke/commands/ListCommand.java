@@ -21,6 +21,6 @@ public class ListCommand extends Command {
         }
 
         String userMessage = String.join("\n", lines);
-        return new CommandResult(userMessage, false, false);
+        return new CommandResult(userMessage);
     }
 }

@@ -2,6 +2,8 @@ package duke.commands;
 
 import duke.exceptions.DukeException;
 import duke.task.Task;
+import duke.undo.MarkUndo;
+import duke.undo.UndoAction;
 
 /**
  * Represents a mark command in the Duke application.
@@ -33,8 +35,9 @@ public class MarkCommand extends Command {
         }
         // Subtract 1 to account for 0-index data structure.
         Task task = tasks.getTask(index - 1);
+        UndoAction undoAction = new MarkUndo(task, true);
         task.markAsDone();
         String userMessage = String.format(USER_MESSAGE_FORMAT, index, task);
-        return new CommandResult(userMessage, true, false);
+        return new CommandResult(userMessage, CommandResult.Action.UPDATE_FILE, undoAction);
     }
 }

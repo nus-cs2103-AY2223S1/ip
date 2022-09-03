@@ -2,6 +2,7 @@ package duke;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import duke.commands.Command;
 import duke.commands.CommandResult;
@@ -9,6 +10,7 @@ import duke.exceptions.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
+import duke.undo.UndoAction;
 import javafx.application.Platform;
 
 /**
@@ -23,6 +25,8 @@ public class Duke {
     private int commandsHistoryPointer;
     /* History of commands. */
     private final ArrayList<String> commandsHistory;
+    /* Actions to undo. */
+    private final LinkedList<UndoAction> undoActions;
 
     /**
      * Constructor for a Duke application instance.
@@ -34,6 +38,7 @@ public class Duke {
         assert this.tasks != null : "Tasks should not be null after being loaded.";
         commandsHistoryPointer = 0;
         commandsHistory = new ArrayList<>();
+        undoActions = new LinkedList<>();
     }
 
     /**
@@ -111,11 +116,32 @@ public class Duke {
         storage.save(tasks);
     }
 
+    private void addToUndoActions(CommandResult result) {
+        UndoAction undoAction = result.getUndoAction();
+        if (undoAction == null) {
+            return;
+        }
+        undoActions.add(undoAction);
+    }
+
+    private void useUndoActionIfRequired(CommandResult result) throws DukeException {
+        if (!result.shouldUndo()) {
+            return;
+        } else if (undoActions.isEmpty()) {
+            throw DukeException.NO_UNDO_ACTIONS;
+        }
+        UndoAction undoAction = undoActions.pop();
+        assert undoAction != null : "Null action should not have been added to undoActions.";
+        undoAction.perform(tasks);
+    }
+
     private String handleUserInput(String input) {
         try {
             CommandResult result = parseAndExecuteInput(input);
             assert result != null : "Result from the execution of a command should never be null.";
             exitIfRequired(result);
+            addToUndoActions(result);
+            useUndoActionIfRequired(result);
             updateFileIfRequired(result);
             return result.getUserMessage();
         } catch (DukeException | IOException e) {

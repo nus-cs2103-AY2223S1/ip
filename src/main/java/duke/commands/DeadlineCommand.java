@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import duke.exceptions.DukeException;
 import duke.task.Deadline;
+import duke.undo.TaskUndo;
 
 /**
  * Represents a deadline command in the Duke application.
@@ -55,8 +56,9 @@ public class DeadlineCommand extends Command {
     public CommandResult execute() {
         assert tasks != null : "Should setData() before calling execute().";
         tasks.addTask(deadline);
+        TaskUndo undoAction = new TaskUndo(deadline);
         int numberOfTasks = tasks.size();
         String userMessage = String.format(USER_MESSAGE_FORMAT, deadline, numberOfTasks);
-        return new CommandResult(userMessage, true, false);
+        return new CommandResult(userMessage, CommandResult.Action.UPDATE_FILE, undoAction);
     }
 }

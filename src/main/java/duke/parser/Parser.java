@@ -12,6 +12,7 @@ import duke.commands.FindCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
 import duke.commands.TodoCommand;
+import duke.commands.UndoCommand;
 import duke.commands.UnmarkCommand;
 import duke.exceptions.DukeException;
 
@@ -74,6 +75,10 @@ public class Parser {
         }
         case FindCommand.COMMAND_WORD: {
             command = new FindCommand(arguments);
+            break;
+        }
+        case UndoCommand.COMMAND_WORD: {
+            command = new UndoCommand();
             break;
         }
         default:
