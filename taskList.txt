@@ -1,7 +1,7 @@
 Here are the tasks in your list:
 1.[T][ ] study math
 2.[D][ ] homework (by: Mar 02 2023 17:00)
-3.[D][X] math homework (by: Mar 01 2023 12:00)
-4.[E][ ] charity match (at: Jun 15 2022 14:00)
-5.[E][ ] IFG (at: Feb 03 2019 13:00)
-6.[D][ ] project (by: Aug 09 2020 14:00)
+3.[E][ ] charity match (at: Jun 15 2022 14:00)
+4.[D][ ] project (by: Aug 09 2020 14:00)
+5.[T][ ] study
+6.[T][ ] play

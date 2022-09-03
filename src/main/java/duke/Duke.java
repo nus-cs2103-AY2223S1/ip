@@ -2,10 +2,8 @@ package duke;
 
 import java.util.ArrayList;
 import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
@@ -14,12 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
-/**
- * A class that initialises and runs the Duke bot.
- *
- */
+/** A class that initialises and runs the Duke bot. */
 public class Duke extends Application {
     private Storage storage;
     private TaskList taskList;
@@ -57,6 +51,9 @@ public class Duke extends Application {
 
     }
 
+    /**
+     * An empty constructor for the Duke bot.
+     */
     public Duke() {
 
     }
@@ -74,12 +71,6 @@ public class Duke extends Application {
     public String parse(String text) {
         return this.parser.parse(text);
     }
-
-    /**
-     * Runs the Duke bot.
-     *
-     * @param args Arguments passed to the main function.
-     */
 
     /*
     public static void main(String[] args) {
@@ -157,26 +148,21 @@ public class Duke extends Application {
 
         });
 
-        Label welcomeMessage = new Label(dukeBot.runUi());
-
-        dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog(welcomeMessage, new ImageView(duke))
-        );
-
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(dukeBot.runUi(), duke));
     }
 
-
     /**
-     * Iteration 2:
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
+     *
+     * @param dukeBot Duke bot that parses the user input.
      */
-    private void handleUserInput(Duke dukeBot) {
-        Label userText = new Label(userInput.getText());
-        Label dukeText = new Label(getResponse(dukeBot.parse(userInput.getText())));
+    public void handleUserInput(Duke dukeBot) {
+        String userText = userInput.getText();
+        String dukeText = getResponse(dukeBot.parse(userInput.getText()));
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(userText, new ImageView(user)),
-                DialogBox.getDukeDialog(dukeText, new ImageView(duke))
+                DialogBox.getUserDialog(userText, user),
+                DialogBox.getDukeDialog(dukeText, duke)
         );
 
         if (userInput.getText().equals("bye")) {
@@ -187,10 +173,12 @@ public class Duke extends Application {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Returns the response of the Duke bot.
+     *
+     * @param input Response of Duke bot.
+     * @return String as the response of the Duke bot.
      */
-    private String getResponse(String input) {
+    public String getResponse(String input) {
         return input;
     }
 

@@ -1,17 +1,14 @@
 package duke;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- * A class that stores the list of tasks.
- */
+/** A class that stores the list of tasks. */
 public class TaskList {
     private ArrayList<Task> taskArray;
     private int index;
 
     /**
-     * A constructor that intialises the list of tasks.
+     * A constructor that initialises the list of tasks.
      *
      * @param taskArray ArrayList of tasks to be stored.
      */
@@ -105,8 +102,6 @@ public class TaskList {
      */
     public void markList(int index) {
         this.taskArray.get(index - 1).markAsDone();
-        /* System.out.println("Nice! I've marked this task as done:\n "
-                + this.taskArray.get(index - 1).toString() + '\n'); */
     }
 
     /**
@@ -116,9 +111,6 @@ public class TaskList {
      */
     public void unMarkList(int index) {
         this.taskArray.get(index - 1).unMarkTask();
-
-        /* System.out.println("OK, I've marked this task as not done yet:\n "
-                + this.taskArray.get(index - 1).toString() + '\n'); */
     }
 }
 

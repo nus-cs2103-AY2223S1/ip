@@ -1,8 +1,6 @@
 package duke;
 
-/**
- * A class that handles the user interface of the Duke bot.
- */
+/** A class that handles the user interface of the Duke bot. */
 public class Ui {
     private String welcomeMessage;
 

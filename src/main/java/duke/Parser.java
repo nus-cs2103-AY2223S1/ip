@@ -3,9 +3,7 @@ package duke;
 import java.io.IOException;
 import java.util.Scanner;
 
-/**
- * A class that handles the user input commands.
- */
+/** A class that handles the user input commands. */
 public class Parser {
 
     private TaskList taskList;
@@ -21,7 +19,6 @@ public class Parser {
         this.taskList = taskList;
         this.storage = storage;
     }
-
 
     /*
     public void parse() {

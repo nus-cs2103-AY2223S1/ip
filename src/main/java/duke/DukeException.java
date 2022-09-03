@@ -1,8 +1,6 @@
 package duke;
 
-/**
- * A class that creates a DukeException for invalid user inputs.
- */
+/** A class that creates a DukeException for invalid user inputs. */
 public class DukeException extends Exception{
     protected String errorMessage;
 
