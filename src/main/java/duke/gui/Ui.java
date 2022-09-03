@@ -100,7 +100,7 @@ public class Ui {
      * @param tasks Target TaskList
      */
     private String getNumTasks(TaskList tasks) {
-        return "You have [" + tasks.size() + "] tasks in the list O_O";
+        return "You have [" + tasks.getSize() + "] tasks in the list O_O";
     }
 
     /**
