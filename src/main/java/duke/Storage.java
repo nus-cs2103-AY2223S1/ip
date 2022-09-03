@@ -84,9 +84,13 @@ public class Storage {
     private static void addLineFromFile(String data, int lineNumberInFile,
                                         TaskList taskList) {
         String[] dataArgs = data.split("\\|");
-        if ((dataArgs[0].equals("deadline") && dataArgs.length == 4)
-                || (dataArgs[0].equals("event") && dataArgs.length == 4)
-                || (dataArgs[0].equals("todo") && dataArgs.length == 3)) {
+        Boolean isValidDeadlineEntry =
+                dataArgs[0].equals("deadline") && dataArgs.length == 4;
+        Boolean isValidEventEntry =
+                dataArgs[0].equals("event") && dataArgs.length == 4;
+        Boolean isValidTodoEntry =
+                dataArgs[0].equals("todo") && dataArgs.length == 3;
+        if (isValidDeadlineEntry || isValidEventEntry || isValidTodoEntry) {
             // Only add task if format in file is correct.
             taskList.addFromFile(dataArgs);
         } else {
