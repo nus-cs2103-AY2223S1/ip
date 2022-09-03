@@ -13,6 +13,7 @@ import duke.task.TaskList;
  * App to store and keep track of tasks.
  */
 public class Duke {
+    public static final String GREETING = "Hello! I'm Duke.\nWhat can I do for you?";
     public static final Path STORAGE_PATH = Paths.get(System.getProperty("user.dir"), "data", "duke.txt");
 
     private final Storage storage;
@@ -59,10 +60,6 @@ public class Duke {
             out = "Error: " + e.getMessage();
         }
         return out;
-    }
-
-    public String getWelcome() {
-        return "Hello! I'm Duke.\nWhat can I do for you?";
     }
 
     public boolean isRunning() {
