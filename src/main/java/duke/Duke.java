@@ -51,24 +51,11 @@ public class Duke {
     public void execute(String trimmedUserInput, DialogBox userDialog, VBox dialogContainer) {
         try {
             Command command = parser.parse(trimmedUserInput);
-            command.execute(dialogContainer, userDialog);
-            if (command.isExit()) {
-                try {
-                    storage.writeToFile(tasks);
-                    ui.sayGoodbye(dialogContainer, userDialog);
-                    executeDelay();
-                } catch (DukeException e) {
-                    ui.sayErrorMessageWithUserInput(e.getMessage(), dialogContainer, userDialog);
-                }
-            }
+            command.execute(dialogContainer, userDialog, storage);
         } catch (DukeException e) {
             ui.sayErrorMessageWithUserInput(e.getMessage(), dialogContainer, userDialog);
         }
     }
 
-    private void executeDelay() {
-        PauseTransition delay = new PauseTransition(Duration.seconds(2.5));
-        delay.setOnFinished(event -> Platform.exit());
-        delay.play();
-    }
+
 }

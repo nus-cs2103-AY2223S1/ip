@@ -2,9 +2,9 @@ package parser;
 
 import java.util.Scanner;
 
-import command.Command;
-import command.CommandType;
+import command.*;
 import task.TaskList;
+import task.Todo;
 import ui.Ui;
 
 /**
@@ -36,27 +36,27 @@ public class Parser {
      */
     public Command parse(String input) {
         if (input.equals("")) {
-            return new Command(CommandType.EMPTY, tasks, input, ui);
-        } else if (input.equals("bye")) {
-            return new Command(CommandType.BYE, tasks, input, ui);
-        } else if (input.equals("list")) {
-            return new Command(CommandType.LIST, tasks, input, ui);
-        } else if (input.length() >= 4 && input.substring(0, 4).equals("todo")) {
-            return new Command(CommandType.TODO, tasks, input, ui);
-        } else if (input.length() >= 8 && input.substring(0, 8).equals("deadline")) {
-            return new Command(CommandType.DEADLINE, tasks, input, ui);
-        } else if (input.length() >= 5 && input.substring(0, 5).equals("event")) {
-            return new Command(CommandType.EVENT, tasks, input, ui);
-        } else if (input.length() >= 4 && input.substring(0, 4).equals("mark")) {
-            return new Command(CommandType.MARK, tasks, input, ui);
-        } else if (input.length() >= 6 && input.substring(0, 6).equals("unmark")) {
-            return new Command(CommandType.UNMARK, tasks, input, ui);
-        } else if (input.length() >= 6 && input.substring(0, 6).equals("delete")) {
-            return new Command(CommandType.DELETE, tasks, input, ui);
-        } else if (input.length() >= 4 && input.substring(0, 4).equals("find")) {
-            return new Command(CommandType.FIND, tasks, input, ui);
+            return new EmptyCommand(tasks, ui);
+        } else if (input.startsWith("bye")) {
+            return new ExitCommand(tasks, ui);
+        } else if (input.startsWith("list")) {
+            return new ListCommand(tasks, input, ui);
+        } else if (input.startsWith("todo")) {
+            return new AddTodoCommand(tasks, input, ui);
+        } else if (input.startsWith("deadline")) {
+            return new AddDeadlineCommand(tasks, input, ui);
+        } else if (input.startsWith("event")) {
+            return new AddEventCommand(tasks, input, ui);
+        } else if (input.startsWith(("mark"))) {
+            return new MarkCommand(tasks, input, ui);
+        } else if (input.startsWith("unmark")) {
+            return new UnmarkCommand(tasks, input, ui);
+        } else if (input.startsWith("delete")) {
+            return new DeleteCommand(tasks, input, ui);
+        } else if (input.startsWith("find")) {
+            return new FindCommand(tasks, input, ui);
         } else {
-            return new Command(CommandType.INVALID, tasks, input, ui);
+            return new InvalidCommand(tasks, ui);
         }
     }
 }
