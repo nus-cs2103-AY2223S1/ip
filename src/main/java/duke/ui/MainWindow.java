@@ -38,7 +38,7 @@ public class MainWindow extends AnchorPane {
         String loadStatus = duke.loadTasks();
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(loadStatus, dukeImage),
-                DialogBox.getDukeDialog(duke.getWelcome(), dukeImage)
+                DialogBox.getDukeDialog(Duke.GREETING, dukeImage)
         );
     }
 

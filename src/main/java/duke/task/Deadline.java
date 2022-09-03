@@ -6,6 +6,7 @@ import java.time.LocalDate;
  * Represents a task with a deadline.
  */
 public class Deadline extends Task {
+    public static final String STORAGE_CHAR = "D";
     private final LocalDate by;
 
     /**
@@ -20,7 +21,7 @@ public class Deadline extends Task {
 
     @Override
     public String toStorage() {
-        return "D|" + super.toStorage() + "|" + by.format(Deadline.INPUT_DATE_FORMAT);
+        return STORAGE_CHAR + STORAGE_SEPARATOR + super.toStorage() + STORAGE_SEPARATOR + by.format(Deadline.INPUT_DATE_FORMAT);
     }
 
     @Override

@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 public abstract class Task {
     public static final DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public static final DateTimeFormatter OUTPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy");
+    public static final String STORAGE_SEPARATOR = "|";
 
     protected String description;
     protected boolean isDone;
@@ -22,7 +23,7 @@ public abstract class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return "[" + (isDone ? "X" : " ") + "]"; // mark done task with X
     }
 
     public void markAsDone() {
@@ -34,11 +35,11 @@ public abstract class Task {
     }
 
     public String toStorage() {
-        return (isDone ? "1" : "0") + "|" + description;
+        return (isDone ? "1" : "0") + STORAGE_SEPARATOR + description;
     }
 
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " + description;
+        return getStatusIcon() + description;
     }
 }

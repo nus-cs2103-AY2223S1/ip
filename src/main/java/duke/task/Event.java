@@ -6,6 +6,7 @@ import java.time.LocalDate;
  * Represents an event occurring on a specific date.
  */
 public class Event extends Task {
+    public static final String STORAGE_CHAR = "E";
     private final LocalDate at;
 
     /**
@@ -20,7 +21,7 @@ public class Event extends Task {
 
     @Override
     public String toStorage() {
-        return "E|" + super.toStorage() + "|" + at.format(Event.INPUT_DATE_FORMAT);
+        return STORAGE_CHAR + STORAGE_SEPARATOR + super.toStorage() + STORAGE_SEPARATOR + at.format(Event.INPUT_DATE_FORMAT);
     }
 
     @Override

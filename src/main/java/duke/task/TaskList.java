@@ -43,7 +43,8 @@ public class TaskList {
      * @return The deleted task.
      */
     public Task deleteTask(int taskIndex) {
-        if (taskIndex < 1 || taskIndex > tasks.size()) {
+        boolean validTaskIndex = taskIndex >= 1 && taskIndex <= size();
+        if (!validTaskIndex) {
             throw new TaskIndexOutOfBoundsException(taskIndex);
         }
         return tasks.remove(taskIndex - 1);
