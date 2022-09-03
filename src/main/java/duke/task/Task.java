@@ -7,6 +7,9 @@ package duke.task;
  * @version 0.1
  */
 public abstract class Task {
+    private static final String COMPLETE_ICON = "X";
+    private static final String INCOMPLETE_ICON = " ";
+
     private String description;
     private boolean isDone;
 
@@ -56,7 +59,7 @@ public abstract class Task {
     }
 
     private String getStatusIcon() {
-        return isDone ? "X" : " ";
+        return isDone ? COMPLETE_ICON : INCOMPLETE_ICON;
     }
 
     /**
@@ -65,8 +68,7 @@ public abstract class Task {
      * @return A string corresponding to the task.
      */
     public String stringify() {
-        int doneStatus = isDone ? 1 : 0;
-        return String.format("%d | %s", doneStatus, description);
+        return String.format("%s | %s", getStatusIcon(), description);
     }
 
     @Override
