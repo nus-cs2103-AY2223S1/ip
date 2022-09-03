@@ -37,11 +37,11 @@ public class DeadlineCommand extends Command {
      * @param storage Duke's storage system for tasks
      * @return Duke's response to the execution of the command
      * @throws DukeException if the input command is invalid
-     * @since 0.2
+     * @since 0.3
      */
     @Override
     public String execute(Storage storage) throws DukeException {
-        String[] returnedArray = command.split(" /by ");
+        String[] returnedArray = command.split(" /by ", 2);
         if (returnedArray.length <= 0) {
             throw new DukeException("your command is incomplete."
                     + "\nPlease use the [help] command to check the proper usage of [deadline].");
@@ -49,18 +49,24 @@ public class DeadlineCommand extends Command {
             throw new DukeException("your command is missing the [/by] component, or the "
                     + "second half of the command."
                     + "\nPlease use the [help] command to check the proper usage of [deadline].");
-        } else if (returnedArray.length > 2) {
-            String secondHalf = "";
-            for (int i = 1; i < returnedArray.length; i++) {
-                secondHalf += returnedArray[i] + " ";
-            }
-            returnedArray[1] = secondHalf;
         }
-        Deadline deadline = new Deadline(returnedArray[0], returnedArray[1]);
-        tasks.add(deadline);
-        String response = ui.addTask(deadline, tasks.size());
+        String response = addDeadLineGetResponse(returnedArray[0], returnedArray[1]);
         storage.saveDuke(tasks);
         return response;
+    }
+
+    /**
+     * Adds deadline to tasks and returns Duke's response
+     *
+     * @param task
+     * @param deadlineDate
+     * @return Duke's response to adding a Deadline
+     * @since 0.3
+     */
+    private String addDeadLineGetResponse(String task, String deadlineDate) {
+        Deadline deadline = new Deadline(task, deadlineDate);
+        tasks.add(deadline);
+        return ui.addTask(deadline, tasks.size());
     }
 
     /**

@@ -16,47 +16,46 @@ public class HelpCommand extends Command {
      * @param storage Duke's storage system for tasks
      * @return Duke's response to the execution of the command
      * @throws DukeException for invalid inputs
-     * @since 0.2
+     * @since 0.3
      */
     @Override
     public String execute(Storage storage) {
-        System.out.println("These are the commands I know.");
+        String response = "These are the commands I know.\n";
         for (RecognisedCommand e : RecognisedCommand.values()) {
             switch (e) {
             case BYE:
-                return "Ends my service.";
+                response += "Ends my service.\n";
             case LIST:
-                return "Lists all the tasks I have been given to track.";
+                response += "Lists all the tasks I have been given to track.\n";
             case HELP:
-                return "Lists all the commands I know.";
+                response += "Lists all the commands I know.\n";
             case MARK:
-                return "Format: mark x, where x is an integer."
-                        + "\nMarks the task that is index x on the list as done.";
+                response += "Format: mark x, where x is an integer."
+                        + "\nMarks the task that is index x on the list as done.\n";
             case UNMARK:
-                return "Format: unmark x, where x is an integer."
-                        + "\nMarks the task that is index x on the list as not done.";
+                response += "Format: unmark x, where x is an integer."
+                        + "\nMarks the task that is index x on the list as not done.\n";
             case DELETE:
-                return "Format: delete x, where x is an integer."
-                        + "\nMarks the task that is index x on the list as done.";
+                response += "Format: delete x, where x is an integer."
+                        + "\nMarks the task that is index x on the list as done.\n";
             case TODO:
-                return "Format: todo <duke.task>"
-                        + "\nI will add the <task> to the list of tasks.";
+                response += "Format: todo <duke.task>"
+                        + "\nI will add the <task> to the list of tasks.\n";
             case DEADLINE:
-                return "Format: todo <task> /by <time/date>"
+                response += "Format: todo <task> /by <time/date>"
                         + "\nI will add the <task> to the list of tasks."
-                        + "\nThe <task> will also display its deadline at <time/date>.";
+                        + "\nThe <task> will also display its deadline at <time/date>.\n";
             case EVENT:
-                return "Format: todo <task> /at <time/date"
+                response += "Format: todo <task> /at <time/date"
                         + "\nI will add the <task> to the list of tasks."
-                        + "\nThe <task> will also display the <time/date> the task should be done.";
+                        + "\nThe <task> will also display the <time/date> the task should be done.\n";
             case FIND:
-                return "Format: find <keyword>"
-                        + "\nI will search for all tasks that possesses the <keyword>";
+                response += "Format: find <keyword>"
+                        + "\nI will search for all tasks that possesses the <keyword>\n";
             default:
-                return null;
             }
         }
-        return null;
+        return response;
     }
     /**
      * {@inheritDoc}
