@@ -71,4 +71,8 @@ public class Parser {
             }
         }
     }
+
+    public static int parseTaskId (String taskIdString) {
+        return Integer.parseInt(taskIdString) - 1;
+    }
 }

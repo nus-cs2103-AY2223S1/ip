@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.exception.DukeException;
+import duke.task.Deadline;
 import duke.task.Event;
 import duke.util.Storage;
 import duke.util.TaskList;
@@ -38,11 +39,11 @@ public class EventCommand extends Command {
      * @param storage Duke's storage system for tasks
      * @return Duke's response to the execution of the command
      * @throws DukeException for invalid inputs
-     * @since 0.2
+     * @since 0.3
      */
     @Override
     public String execute(Storage storage) throws DukeException {
-        String[] returnedArray = command.split(" /at ");
+        String[] returnedArray = command.split(" /at ", 2);
         if (returnedArray.length <= 0) {
             throw new DukeException("your command is incomplete."
                     + "\nPlease use the [help] command to check the proper usage of [event].");
@@ -50,18 +51,24 @@ public class EventCommand extends Command {
             throw new DukeException("your command is missing the [/at] component,"
                     + " or the second half ot the command."
                     + "\nPlease use the [help] command to check the proper usage of [event].");
-        } else if (returnedArray.length > 2) {
-            String secondHalf = "";
-            for (int i = 1; i < returnedArray.length; i++) {
-                secondHalf += returnedArray[i] + " ";
-            }
-            returnedArray[1] = secondHalf;
         }
-        Event event = new Event(returnedArray[0], returnedArray[1]);
-        tasks.add(event);
-        String response = ui.addTask(event, tasks.size());
+        String response = addEventGetResponse(returnedArray[0], returnedArray[1]);
         storage.saveDuke(tasks);
         return response;
+    }
+
+    /**
+     * Adds event to tasks and returns Duke's response
+     *
+     * @param task
+     * @param date
+     * @return Duke's response to adding a Deadline
+     * @since 0.3
+     */
+    private String addEventGetResponse(String task, String date) {
+        Event event = new Event(task, date);
+        tasks.add(event);
+        return ui.addTask(event, tasks.size());
     }
 
     /**

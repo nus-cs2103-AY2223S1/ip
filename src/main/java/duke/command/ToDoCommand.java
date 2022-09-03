@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.exception.DukeException;
+import duke.task.Deadline;
 import duke.task.ToDo;
 import duke.util.Storage;
 import duke.util.TaskList;
@@ -57,20 +58,30 @@ public class ToDoCommand extends Command {
      * @param storage Duke's storage system for tasks
      * @return Duke's response to the execution of the command
      * @throws DukeException for invalid inputs
-     * @since 0.2
+     * @since 0.3
      */
     @Override
     public String execute(Storage storage) throws DukeException {
-        String[] returnedArray = command.split(" ");
+        String[] returnedArray = command.split(" ", 2);
         if (returnedArray.length == 1) {
             throw new DukeException("your [todo] command is empty."
                     + "\nPlease use the [help] command to check the proper usage of [todo].");
         }
-        ToDo toDo = new ToDo(command);
-        tasks.add(toDo);
-        String response = ui.addTask(toDo, tasks.size());
+        String response = addToDoGetResponse(command);
         storage.saveDuke(tasks);
         return response;
+    }
+    /**
+     * Adds toDo to tasks and returns Duke's response
+     *
+     * @param command
+     * @return Duke's response to adding a Deadline
+     * @since 0.3
+     */
+    private String addToDoGetResponse(String command) {
+        ToDo toDo = new ToDo(command);
+        tasks.add(toDo);
+        return ui.addTask(toDo, tasks.size());
     }
     /**
      * {@inheritDoc}

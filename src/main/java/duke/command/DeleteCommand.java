@@ -1,10 +1,10 @@
 package duke.command;
 
 import duke.exception.DukeException;
+import duke.util.Parser;
 import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
-
 
 /**
  * Command to execute deleting a task
@@ -55,7 +55,7 @@ public class DeleteCommand extends Command {
      * @param storage Duke's storage system for tasks
      * @return Duke's response to the execution of the command
      * @throws DukeException for invalid inputs
-     * @since 0.2
+     * @since 0.3
      */
     @Override
     public String execute(Storage storage) throws DukeException {
@@ -65,23 +65,44 @@ public class DeleteCommand extends Command {
         } else if (splitCommands.length > 2) {
             throw new DukeException("your command has too many arguments."
                     + "\nPlease use the [help] command to check the proper usage of [delete].");
-        } else if (isNumber(splitCommands[1])) {
-            int taskId = Integer.parseInt(splitCommands[1]) - 1;
-            if (tasks.size() <= taskId || taskId < 0) {
-                throw new DukeException("that task you want to delete does not exist."
-                        + "\nUse the [list] command to check what tasks are available.");
-            } else {
-                String response = ui.delete(tasks.getTask(taskId), (tasks.size() - 1));
-                tasks.remove(taskId);
-                storage.saveDuke(tasks);
-                return response;
-            }
-        } else {
+        } else if (!isNumber(splitCommands[1])) {
             throw new DukeException("your command is incorrect."
                     + "\nPlease use the [help] command to check the proper usage of [delete].");
         }
+        int taskId = Parser.parseTaskId(splitCommands[1]);
+        return checkTaskIdThenDelete(taskId, storage);
     }
-
+    /**
+     * Checks if the taskId input is valid, then deletes the task and returns Duke's response
+     *
+     * @param taskId
+     * @param storage
+     * @return Duke's response
+     * @throws DukeException
+     * @since 0.3
+     */
+    private String checkTaskIdThenDelete (int taskId, Storage storage) throws DukeException {
+        if (tasks.size() <= taskId || taskId < 0) {
+            throw new DukeException("that task you want to delete does not exist."
+                    + "\nUse the [list] command to check what tasks are available.");
+        } else {
+            return deleteTaskGetResponse(taskId, storage);
+        }
+    }
+    /**
+     * Deletes the task corresponding to the taskId, then saves the tasks and returns Duke's response
+     *
+     * @param taskId
+     * @param storage
+     * @return Duke's response
+     * @since 0.3
+     */
+    private String deleteTaskGetResponse (int taskId, Storage storage) {
+        String response = ui.delete(tasks.getTask(taskId), (tasks.size() - 1));
+        tasks.remove(taskId);
+        storage.saveDuke(tasks);
+        return response;
+    }
     /**
      * {@inheritDoc}
      *
