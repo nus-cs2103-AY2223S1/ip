@@ -32,6 +32,7 @@ public class ByeCommand extends Command {
      */
     @Override
     public String execute(Storage storage, TaskList taskList, Ui ui) {
+        assert ui != null;
         return ui.close();
     }
 }
