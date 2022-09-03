@@ -36,6 +36,7 @@ public class MarkCommand extends Command {
     public String runCommand(Ui ui, Storage storage, TaskList taskList) {
         try {
             String reply = taskList.mark(Integer.valueOf(userInput.substring(5)));
+            assert reply.startsWith("Nice! I've marked this task as done:") : "Mark command replies wrongly!";
             storage.write(taskList.writeTasks());
             return reply;
         } catch (DukeException | IOException e) {

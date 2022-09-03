@@ -36,6 +36,7 @@ public class UnmarkCommand extends Command {
     public String runCommand(Ui ui, Storage storage, TaskList taskList) {
         try {
             String reply = taskList.unmark(Integer.valueOf(userInput.substring(7)));
+            assert reply.startsWith("OK, I've marked this task as not done yet:") : "Unmark command replies wrongly!";
             storage.write(taskList.writeTasks());
             return reply;
         } catch (DukeException | IOException e) {

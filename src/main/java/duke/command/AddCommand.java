@@ -50,6 +50,7 @@ public class AddCommand extends Command {
         try {
             newTask.addName(userInput);
             String reply = taskList.add(newTask);
+            assert reply.startsWith("Got it. I've added this task:") : "Add command replies wrongly!";
             storage.write(taskList.writeTasks());
             return reply;
         } catch (DukeException | IOException e) {
