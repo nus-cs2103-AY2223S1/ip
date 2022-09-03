@@ -9,6 +9,6 @@ import chacha.tasks.Task;
 
 public abstract class Command {
 
-    public abstract void execute(ArrayList<Task> tasks, Ui ui);
+    public abstract void execute(ArrayList<Task> taskList, Ui ui);
     
 }

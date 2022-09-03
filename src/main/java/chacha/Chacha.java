@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 import chacha.commands.Command;
 import chacha.commands.ListCommand;
+import chacha.commands.UnmarkCommand;
 import chacha.tasks.Deadline;
 import chacha.tasks.Event;
 import chacha.tasks.Task;
@@ -23,15 +24,14 @@ public class Chacha {
             //run command
             //print ui
             if (s.equals("list")) {
-                //run command
                 Command command = new ListCommand();
                 command.execute(taskList, ui);
             } else if (s.contains("unmark")) {
-                
                 String[] split = s.split("\\s+");
-                Task task = taskList.get(Integer.valueOf(split[1]) - 1);
-                task.unmarkAsDone();
-                System.out.println("OK, I've marked this task as not done yet:\n" + task.toString());
+
+                Command command = new UnmarkCommand(Integer.valueOf(split[1]) - 1);
+                command.execute(taskList, ui);
+                
 
             } else if (s.contains("mark")) {
                 String[] split = s.split("\\s+");
