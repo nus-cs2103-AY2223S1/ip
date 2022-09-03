@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * Represents task object
+ * Represents task object.
  */
 public class Task {
     protected String description;
@@ -13,20 +13,20 @@ public class Task {
     }
 
     /**
-     * Gets status icon of task
+     * Gets status icon of task.
      *
-     * @return String of status of task
+     * @return String of status of task.
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
     /**
-     * Returns formatted string of data to be saved
+     * Returns formatted string of data to be saved.
      *
-     * @return Formatted string of data
+     * @return Formatted string of data.
      */
-    public String savedData() {
+    public String printSavedData() {
         return getStatusIcon() + " | " + description + " | ";
     }
 

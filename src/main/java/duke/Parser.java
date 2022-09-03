@@ -21,7 +21,7 @@ public class Parser {
     /**
      * Parses user input to determine what Duke method to call.
      *
-     * @param userInput input entered by user.
+     * @param userInput Input entered by user.
      * @throws DukeException If user fails to specify what task they want to do.
      */
     public String parse(String userInput) throws DukeException {
@@ -31,7 +31,6 @@ public class Parser {
             int taskNum = Integer.parseInt(String.valueOf(userInput.charAt(5)));
             if (taskNum <= tasklist.getSize() && taskNum > 0) {
                 return markDone(userInput);
-                //storage.save(tasklist);
             } else {
                 throw new DukeException("An invalid number is inputted!");
             }
@@ -39,41 +38,35 @@ public class Parser {
             int taskNum = Integer.parseInt(String.valueOf(userInput.charAt(7)));
             if (taskNum <= tasklist.getSize() && taskNum > 0) {
                 return markUndone(userInput);
-                //storage.save(tasklist);
             } else {
                 throw new DukeException("An invalid number is inputted!");
             }
         } else if (userInput.startsWith("todo")) {
             if (userInput.length() > 5) {
                 return addToDo(userInput);
-                //storage.save(tasklist);
             } else {
                 throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
             }
         } else if (userInput.startsWith("deadline")) {
             if (userInput.length() > 10) {
                 return addDeadline(userInput);
-                //storage.save(tasklist);
             } else {
                 throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
             }
         } else if (userInput.startsWith("event")) {
             if (userInput.length() > 6) {
                 return addEvent(userInput);
-                //storage.save(tasklist);
             } else {
                 throw new DukeException("OOPS!!! The description of an event cannot be empty.");
             }
         } else if (userInput.length() > 7 && userInput.startsWith("delete")) {
             return deleteTask(userInput);
-            //storage.save(tasklist);
         } else if (userInput.startsWith("find ")) {
             return findTask(userInput);
         } else if (userInput.equals("bye")) {
             storage.save(tasklist);
             return ui.printGoodbyeMessage();
         } else {
-            //System.out.println("I'm sorry, but I don't know what that means! Try typing something else!");
             return "I'm sorry, but I don't know what that means! Try typing something else!";
         }
     }

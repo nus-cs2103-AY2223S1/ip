@@ -3,7 +3,7 @@ package duke;
 import java.util.ArrayList;
 
 /**
- * Contains the task list
+ * Contains the task list.
  */
 public class TaskList {
 
@@ -21,7 +21,7 @@ public class TaskList {
      * Adds task to list.
      *
      * @param task task to be added.
-     * @return Task added
+     * @return Task added.
      */
     public Task addTask(Task task) {
         tasks.add(task);

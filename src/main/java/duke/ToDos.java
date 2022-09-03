@@ -14,8 +14,8 @@ public class ToDos extends Task {
      *
      * @return String of formatted todo task to saved file
      */
-    public String savedData() {
-        return "T | " + super.savedData() + "\n";
+    public String printSavedData() {
+        return "T | " + super.printSavedData() + "\n";
     }
 
     /**

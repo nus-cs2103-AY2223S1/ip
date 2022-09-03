@@ -31,14 +31,14 @@ public class Deadlines extends Task {
      * @return Data to be saved.
      */
     @Override
-    public String savedData() {
-        return "D | " + super.savedData() + getDateStr() + "\n";
+    public String printSavedData() {
+        return "D | " + super.printSavedData() + getDateStr() + "\n";
     }
 
     /**
      * Returns string for deadline to be displayed on Duke.
      *
-     * @return string of deadline.
+     * @return String of deadline.
      */
     @Override
     public String toString() {

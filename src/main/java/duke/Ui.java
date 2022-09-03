@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class Ui {
 
     private Scanner scanner;
-    private final String line = "--------------------------------------------------------------------------------\n";
 
     public Ui() {
         scanner = new Scanner(System.in);
@@ -22,11 +21,6 @@ public class Ui {
      */
     public String printWelcomeMessage() {
         String str = "";
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
         str += "Welcome to Duke bot!\n";
         str += "What tasks do you have to do today?\n";
         str += "To input a deadline or event, type the date and time in the format 'yyyy-mm-ddThh:mm'";
@@ -43,7 +37,6 @@ public class Ui {
     /**
      * Prints list of tasks.
      */
-    //public String printList(ArrayList<Task> tasks) {
     public String printList(TaskList tasks) {
         String str = "Here are the tasks that you have:\n";
         for (int i = 0; i < tasks.getSize(); i++) {
@@ -125,15 +118,7 @@ public class Ui {
      * Prints error message.
      */
     public String printErrorMsg(String str) {
-        //System.out.println(str);
         return str;
-    }
-
-    /**
-     * Prints horizontal line.
-     */
-    public void drawLine() {
-        System.out.println(line);
     }
 
 }

@@ -9,6 +9,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Deals with loading tasks from the file and saving tasks in the file
+ */
 public class Storage {
 
     private String filePath;
@@ -28,7 +31,7 @@ public class Storage {
         try {
             FileWriter fw = new FileWriter(filePath);
             for (int i = 0; i < tasklist.getSize(); i++) {
-                fw.write(tasklist.getTask(i).savedData());
+                fw.write(tasklist.getTask(i).printSavedData());
             }
             fw.close();
         } catch (IOException e) {
