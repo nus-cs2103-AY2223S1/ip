@@ -17,7 +17,11 @@ import duke.task.Task;
 import duke.task.Todo;
 import duke.ui.Message;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.TemporalAccessor;
 
 public class Parser {
     public static Command getCommand(String input) throws DukeException {
@@ -94,7 +98,21 @@ public class Parser {
     }
 
     private static LocalDateTime parseDateTime(String timeString) throws DukeException {
-        return LocalDateTime.now();
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy[ H:mm]");
+            TemporalAccessor temporalAccessor = formatter.parseBest(
+                    timeString,
+                    LocalDateTime::from,
+                    LocalDate::from
+            );
+            if (temporalAccessor instanceof LocalDateTime) {
+                return (LocalDateTime) temporalAccessor;
+            } else {
+                return ((LocalDate) temporalAccessor).atStartOfDay();
+            }
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Invalid date format");
+        }
     }
 
     private static int extractIndex(String meta) throws DukeException {

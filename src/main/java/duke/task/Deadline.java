@@ -13,11 +13,20 @@ public class Deadline extends Task {
 
     @Override
     public String saveText() {
-        return String.format("%d deadline %s /by %s", this.isDone ? 1 : 0, this.description, this.byDate);
+        return String.format(
+                "%d deadline %s /by %s",
+                this.isDone ? 1 : 0,
+                this.description,
+                this.byDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy H:mm"))
+        );
     }
 
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), this.byDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+        return String.format(
+                "[D]%s (by: %s)",
+                super.toString(),
+                this.byDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
+        );
     }
 }

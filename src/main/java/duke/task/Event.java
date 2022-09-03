@@ -13,11 +13,20 @@ public class Event extends Task {
 
     @Override
     public String saveText() {
-        return String.format("%d event %s /at %s", this.isDone ? 1 : 0, this.description, this.atDate);
+        return String.format(
+                "%d event %s /at %s",
+                this.isDone ? 1 : 0,
+                this.description,
+                this.atDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy H:mm"))
+        );
     }
 
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), this.atDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+        return String.format(
+                "[E]%s (at: %s)",
+                super.toString(),
+                this.atDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
+        );
     }
 }
