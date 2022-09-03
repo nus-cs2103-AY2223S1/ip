@@ -17,7 +17,8 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 /**
- * FileReader provides methods to load the data stored before.
+ * FileReader
+ * provides methods to load the data stored before.
  */
 public class FileReader {
 
