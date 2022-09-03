@@ -45,22 +45,34 @@ public class Storage {
      */
     public void parser(String line) {
         String taskType = Character.toString(line.charAt(1));
+        String isComplete = Character.toString(line.charAt(4));
+        Task myTask; 
         switch (taskType){
-            case "T":
-                myList.add(new Todo(line.substring(7)));
-                break;
-            case "D":
-                myList.add(new Deadline(line.substring(7).split(" \\(by")[0], 
-                    dateFormatter(line.split("\\(by: ")[1].split("\\)")[0]))
-                );
-                break;
-            case "E":
-                myList.add(new Event(line.substring(7).split(" \\(at")[0], 
-                    dateFormatter(line.split("\\(at: ")[1].split("\\)")[0]))
-                );
-                break;
-            default:
-                break;
+        case "T":
+            myTask = new Todo(line.substring(7));
+            if (isComplete.equals("X")) {
+                myTask.markAsDone();
+            }
+            myList.add(myTask);
+            break;
+        case "D":
+            myTask = new Deadline(line.substring(7).split(" \\(by")[0], 
+                dateFormatter(line.split("\\(by: ")[1].split("\\)")[0]));
+            if (isComplete.equals("X")) {
+                myTask.markAsDone();
+            }
+            myList.add(myTask);
+            break;
+        case "E":
+            myTask = new Event(line.substring(7).split(" \\(at")[0], 
+                dateFormatter(line.split("\\(at: ")[1].split("\\)")[0]));
+            if (isComplete.equals("X")) {
+                myTask.markAsDone();
+            }
+            myList.add(myTask);
+            break;
+        default:
+            break;
         }
     }
 

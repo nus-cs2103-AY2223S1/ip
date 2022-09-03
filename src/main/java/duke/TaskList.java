@@ -14,21 +14,23 @@ public class TaskList {
     /**
      * Adds new task to master list
      */
-    public void addTask(Task myTask) {
+    public String addTask(Task myTask) {
+        String res = "";
         try {
             myList.add(myTask);
-            System.out.println("Got it. I've added this task:");
-            System.out.println(myTask);
-            System.out.println("Now you have " + myList.size() + " task(s) in the list.");
+            res += "Got it. I've added this task:\n";
+            res += myTask;
+            res += "\nNow you have " + myList.size() + " task(s) in the list.";
+            return res;
         } catch (Exception e) {
-            System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+            return "☹ OOPS!!! The description of a todo cannot be empty.";
         }
     }
 
     /**
      * Find matching tasks from master list
      */
-    public void findTasks(String myString) {
+    public String findTasks(String myString) {
         final ArrayList<Task> findList = new ArrayList<>();
         for (Task myTask: myList) {
             if (myTask.description.toUpperCase().contains(myString.toUpperCase())) {
@@ -36,48 +38,60 @@ public class TaskList {
             }
         }
         if (findList.size() == 0) {
-            System.out.println("You have no matching search results.");
-        } else {
-            System.out.println("Here are the matching tasks in your list: ");
-            for(int i = 0; i<findList.size(); i++) {
-                System.out.println(i+1 + "." + findList.get(i));
-            }
+            return "You have no matching search results.";
         }
+        String res = "";
+        res += "Here are the matching tasks in your list: \n";
+        for(int i = 0; i<findList.size(); i++) {
+            res += i+1 + "." + findList.get(i) + "\n";
+        }
+        return res;
+        
     }
 
     /**
      * List all tasks from master list
      */
-    public void listTasks() {
+    public String listTasks() {
+        String res = "";
         if (myList.size() == 0) {
-            System.out.println("You have no tasks in your list.");
-        } else {
-            System.out.println("Here are the tasks in your list: ");
+            return "You have no tasks in your list.";
+        }
+        else {
+            res += "Here are the tasks in your list: \n";
             for(int i = 0; i<myList.size(); i++) {
-                System.out.println(i+1 + "." + myList.get(i));
+                res += (i+1);
+                res += "."; 
+                res += myList.get(i);
+                res += "\n";
             }
+            return res;
         }
     }
 
     /**
      * Marks task as done
      */
-    public void markTask(Integer itemNumber) {
+    public String markTask(Integer itemNumber) {
+        String res = "";
         myList.get(itemNumber).markAsDone();
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println("["
-        + myList.get(itemNumber).getStatusIcon() + "] "
-        + myList.get(itemNumber).getDescription());
+        res += "Nice! I've marked this task as done: [";
+        res += myList.get(itemNumber).getStatusIcon();
+        res += "] ";
+        res += myList.get(itemNumber).getDescription();
+        return res;
     }
 
     /**
      * Removes task from master list
      */
-    public void removeTask(Integer itemNumber) {
-        System.out.println("Noted. I've removed this task:");
-        System.out.println(myList.get(itemNumber));
+    public String removeTask(Integer itemNumber) {
+        String res = "";
+        res += "Noted. I've removed this task:\n";
+        res += myList.get(itemNumber);
         myList.remove(myList.get(itemNumber));
-        System.out.println("Now you have " + myList.size() + " in the list.");
+        res += "\nNow you have " + myList.size() + " in the list.";
+        return res;
     }
 
     /**
@@ -99,12 +113,13 @@ public class TaskList {
     /**
      * Marks task as undone
      */
-    public void unmarkTask (Integer itemNumber) {
+    public String unmarkTask (Integer itemNumber) {
+        String res = "";
         myList.get(itemNumber).markAsUndone();
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println("["
-        + myList.get(itemNumber).getStatusIcon() + "] "
-        + myList.get(itemNumber).getDescription());
+        res += "OK, I've marked this task as not done yet:\n";
+        res += "[" + myList.get(itemNumber).getStatusIcon() + "] "
+        + myList.get(itemNumber).getDescription();
+        return res;
     }
 
     /**

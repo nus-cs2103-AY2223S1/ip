@@ -1,5 +1,4 @@
 package duke;
-import java.util.Scanner;
 import java.time.LocalDate;
 
 public class Ui {
@@ -15,56 +14,56 @@ public class Ui {
     /**
      * Handling User Input
      */
-    void getUserCommand(TaskList myTasks) {
-        Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNextLine()) {
-            String userInput = scanner.nextLine();
+    String getUserCommand(TaskList myTasks, String userInput) {
+        String toPrint = "";
+        while (userInput != "") {
             switch(userInput.split(" ")[0]) {
-                case "bye":
-                    System.out.println("Bye. Hope to see you again soon!");
-                    break;
-                case "list":
-                    myTasks.listTasks();
-                    break;
-                case "mark":
-                    myTasks.markTask(Integer.parseInt(userInput.split(" ")[1]) - 1);
-                    myTasks.saveTasks();
-                    break;
-                case "unmark":
-                    myTasks.unmarkTask(Integer.parseInt(userInput.split(" ")[1]) - 1);
-                    myTasks.saveTasks();
-                    break;
-                case "todo":
-                    myTasks.addTask(new Todo(userInput.substring(5)));
-                    myTasks.saveTasks();
-                    break;
-                case "deadline":
-                    myTasks.addTask(new Deadline(
-                        userInput.substring(9).split("/by")[0], LocalDate.parse(
-                        userInput.split("/by ")[1])));
-                    myTasks.saveTasks();
-                    break;
-                case "event":
-                    myTasks.addTask(new Event(
-                        userInput.substring(6).split("/at")[0], LocalDate.parse(
-                        userInput.split("/at ")[1])));
-                    myTasks.saveTasks();
-                    break;
-                case "delete":
-                    myTasks.removeTask(Integer.parseInt(userInput.split(" ")[1]) - 1);
-                    myTasks.saveTasks();
-                    break;
-                default:
-                    System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            case "bye":
+                return "Bye. Hope to see you again soon!";
+            case "list":
+                return myTasks.listTasks();
+            case "mark":
+                toPrint = myTasks.markTask(Integer.parseInt(userInput.split(" ")[1]) - 1);
+                myTasks.saveTasks();
+                return toPrint;
+            case "unmark":
+                toPrint = myTasks.unmarkTask(Integer.parseInt(userInput.split(" ")[1]) - 1);
+                myTasks.saveTasks();
+                return toPrint;
+            case "todo":
+                toPrint = myTasks.addTask(new Todo(userInput.substring(5)));
+                myTasks.saveTasks();
+                return toPrint;
+            case "deadline":
+                toPrint = myTasks.addTask(new Deadline(
+                    userInput.substring(9).split("/by")[0], LocalDate.parse(
+                    userInput.split("/by ")[1])));
+                myTasks.saveTasks();
+                return toPrint;
+            case "event":
+                toPrint = myTasks.addTask(new Event(
+                    userInput.substring(6).split("/at")[0], LocalDate.parse(
+                    userInput.split("/at ")[1])));
+                myTasks.saveTasks();
+                return toPrint;
+            case "find":
+                toPrint = myTasks.findTasks(userInput.substring(5));
+                return toPrint;
+            case "delete":
+                toPrint = myTasks.removeTask(Integer.parseInt(userInput.split(" ")[1]) - 1);
+                myTasks.saveTasks();
+                return toPrint;
+            default:
+                return "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
             }
         }
-        scanner.close();
+        return "";
     }
     
     /**
      * Start message of Duke
      */
-    public void startMessage() {
-        System.out.println(toPrint);
+    public String startMessage() {
+        return toPrint;
     }
 }
