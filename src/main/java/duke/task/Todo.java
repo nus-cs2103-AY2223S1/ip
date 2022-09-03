@@ -4,6 +4,8 @@ package duke.task;
  * Todo task.
  */
 public class Todo extends Task {
+    private static final String STRING_FORMAT_STORAGE = "T | %s";
+    private static final String STRING_FORMAT_DISPLAY = "[T]%s";
     /**
      * Constructor for Todo.
      *
@@ -20,16 +22,16 @@ public class Todo extends Task {
      * @param description Description of task.
      */
     public Todo(String description) {
-        this(description, false);
+        this(description, Task.INCOMPLETE);
     }
 
     @Override
     public String toStorageFormat() {
-        return "T | " + super.toStorageFormat();
+        return String.format(STRING_FORMAT_STORAGE, super.toStorageFormat());
     }
 
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return String.format(STRING_FORMAT_DISPLAY, super.toString());
     }
 }

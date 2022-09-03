@@ -13,13 +13,14 @@ import javafx.stage.Stage;
  * A GUI for Duke using FXML.
  */
 public class Main extends Application {
+    private static final String FXML_VIEW_MAIN_WINDOW = "/view/MainWindow.fxml";
 
-    private Duke duke = new Duke(Duke.DEFAULT_STORAGE_PATH);
+    private final Duke duke = new Duke(Duke.DEFAULT_STORAGE_PATH);
 
     @Override
     public void start(Stage stage) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(FXML_VIEW_MAIN_WINDOW));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);

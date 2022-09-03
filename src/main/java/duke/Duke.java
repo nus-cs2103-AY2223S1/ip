@@ -10,7 +10,9 @@ import duke.command.Command;
 public class Duke {
     public static final String DEFAULT_STORAGE_PATH = "data/duke.txt";
 
-    private StorageInterface storage;
+    private static final String SUCCESS_MESSAGE_LOAD = "Successfully loaded from storage file.";
+
+    private final StorageInterface storage;
     private TaskList taskList;
 
     /**
@@ -29,7 +31,7 @@ public class Duke {
      * Starts the program by loading saved tasks from the storage file and returning
      * a welcome message.
      *
-     * @return A list containg the welcome message and load result message.
+     * @return A list containing the welcome message and load result message.
      */
     public List<String> start() {
         String loadResultMessage = loadSavedTasks();
@@ -37,7 +39,7 @@ public class Duke {
     }
 
     /**
-     * Creates and executes a command based on ther user input string and returns
+     * Creates and executes a command based on the user input string and returns
      * the execution message.
      *
      * @param input Input string from user.
@@ -46,8 +48,7 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Command command = Parser.parse(input);
-            String returnMessage = command.execute();
-            return returnMessage;
+            return command.execute();
         } catch (DukeException e) {
             return Ui.getErrorMessage(e.getMessage());
         }
@@ -56,7 +57,7 @@ public class Duke {
     private String loadSavedTasks() {
         try {
             this.taskList = new TaskList(this.storage.readFile());
-            return "Successfully loaded from storage file.";
+            return SUCCESS_MESSAGE_LOAD;
         } catch (DukeException e) {
             return e.getMessage();
         } finally {

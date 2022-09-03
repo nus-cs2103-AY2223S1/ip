@@ -30,6 +30,7 @@ public class DeleteCommand extends IndexedCommand {
 
         int finalTaskListSize = Command.taskList.size();
         assert finalTaskListSize - initialTaskListSize == 1;
+
         return Ui.getDeleteTaskMessage(task, Command.taskList.size());
     }
 }

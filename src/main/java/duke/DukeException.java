@@ -4,6 +4,9 @@ package duke;
  * Exception raised in Duke.
  */
 public class DukeException extends Exception {
+
+    private static final String ERROR_MESSAGE_PREFIX = "Oh no! ";
+
     /**
      * Constructor for DukeException.
      *
@@ -25,6 +28,6 @@ public class DukeException extends Exception {
 
     @Override
     public String toString() {
-        return "Oh no! " + super.getMessage();
+        return ERROR_MESSAGE_PREFIX + super.getMessage();
     }
 }

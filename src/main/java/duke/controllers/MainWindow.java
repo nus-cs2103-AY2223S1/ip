@@ -4,9 +4,7 @@ import java.util.List;
 
 import duke.Duke;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -24,19 +22,15 @@ public class MainWindow extends AnchorPane {
     @FXML
     private VBox dialogContainer;
     @FXML
-    private TextField userInput;
-    @FXML
-    private Button sendButton;
-    @FXML
     private InputBox inputBoxController;
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
+    private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
 
     /**
-     * Initalizes MainWindow and its composed objects.
+     * Initializes MainWindow and its composed objects.
      */
     @FXML
     public void initialize() {

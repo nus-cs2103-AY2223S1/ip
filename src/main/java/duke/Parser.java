@@ -6,7 +6,6 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.Scanner;
 
 import duke.command.AddCommand;
@@ -27,17 +26,25 @@ import duke.task.Todo;
  * Class used to parse user inputs.
  */
 public abstract class Parser {
-    private static final String BYE = "bye";
-    private static final String LIST = "list";
-    private static final String TODO = "todo";
-    private static final String DEADLINE = "deadline";
-    private static final String EVENT = "event";
-    private static final String MARK = "mark";
-    private static final String UNMARK = "unmark";
-    private static final String DELETE = "delete";
-    private static final String FIND = "find";
-    private static final String DEADLINE_INDICATOR_PATTERN = "\\s*/by\\s*";
-    private static final String EVENT_INDICATOR_PATTERN = "\\s*/at\\s*";
+    private static final String COMMAND_BYE = "bye";
+    private static final String COMMAND_LIST = "list";
+    private static final String COMMAND_TODO = "todo";
+    private static final String COMMAND_DEADLINE = "deadline";
+    private static final String COMMAND_EVENT = "event";
+    private static final String COMMAND_MARK = "mark";
+    private static final String COMMAND_UNMARK = "unmark";
+    private static final String COMMAND_DELETE = "delete";
+    private static final String COMMAND_FIND = "find";
+    private static final String INDICATOR_PATTERN_DEADLINE = "\\s*/by\\s*";
+    private static final String INDICATOR_PATTERN_EVENT = "\\s*/at\\s*";
+
+    private static final String ERROR_MESSAGE_INDEX_NOT_INT = "The index must be an Integer!";
+    private static final String ERROR_MESSAGE_INDEX_NOT_FOUND = "No index detected!";
+    private static final String ERROR_MESSAGE_DATE_FORMAT_INVALID = "Date format is invalid!";
+    private static final String ERROR_MESSAGE_INPUT_READ_ERROR = "Can't read input!";
+    private static final String ERROR_MESSAGE_ARGUMENTS_NOT_FOUND = "Required arguments not found!";
+    private static final String ERROR_MESSAGE_DEADLINE_FORMAT_INVALID = "Invalid format for adding deadline!";
+    private static final String ERROR_MESSAGE_EVENT_FORMAT_INVALID = "Invalid format for adding event!";
 
     /**
      * Parses input into Command indicator and arguments.
@@ -46,24 +53,32 @@ public abstract class Parser {
      * @return A command indicator and arguments pair.
      * @throws DukeException When error parsing input.
      */
-    static Map.Entry<String, Optional<String>> getCommandAndArguments(String input) throws DukeException {
-        Scanner scanner = new Scanner(input);
-        String indicator;
-        try {
-            indicator = scanner.next();
-        } catch (NoSuchElementException e) {
-            scanner.close();
-            throw new DukeException("Can't read input!", e);
-        }
-        try {
+    static Map.Entry<String, String> getCommandAndArguments(String input) throws DukeException {
+        try (Scanner scanner = new Scanner(input)) {
+            String indicator = parseIndicator(scanner);
             assert indicator.length() > 0;
-            scanner.skip(scanner.delimiter());
-            String arguments = scanner.nextLine();
-            return new SimpleEntry<>(indicator, Optional.of(arguments));
+            String arguments = parseArguments(scanner);
+            return new SimpleEntry<>(indicator, arguments);
+        } catch (IllegalStateException e) {
+            throw new DukeException(ERROR_MESSAGE_INPUT_READ_ERROR , e);
+        }
+    }
+
+    private static String parseIndicator(Scanner scanner) throws DukeException {
+        try {
+            return scanner.next();
         } catch (NoSuchElementException e) {
-            return new SimpleEntry<>(indicator, Optional.empty());
-        } finally {
             scanner.close();
+            throw new DukeException(ERROR_MESSAGE_INPUT_READ_ERROR, e);
+        }
+    }
+
+    private static String parseArguments(Scanner scanner) {
+        try {
+            scanner.skip(scanner.delimiter());
+            return scanner.nextLine();
+        } catch (NoSuchElementException e) {
+            return null;
         }
     }
 
@@ -74,8 +89,11 @@ public abstract class Parser {
      * @return Argument in the Optional.
      * @throws DukeException When argument is empty.
      */
-    static String getCommandArgument(Optional<String> argument) throws DukeException {
-        return argument.orElseThrow(() -> new DukeException("Required arguments not found!"));
+    static String getCommandArgument(String argument) throws DukeException {
+        if (argument == null) {
+            throw new DukeException(ERROR_MESSAGE_ARGUMENTS_NOT_FOUND);
+        }
+        return argument;
     }
 
     /**
@@ -86,37 +104,37 @@ public abstract class Parser {
      * @throws DukeException When error in parsing or executing command.
      */
     static Command parse(String input) throws DukeException {
-        Map.Entry<String, Optional<String>> commandString = getCommandAndArguments(input);
+        Map.Entry<String, String> commandString = getCommandAndArguments(input);
         String commandIndicator = commandString.getKey();
-        Optional<String> commandArguments = commandString.getValue();
+        String commandArguments = commandString.getValue();
 
         Command command;
         switch (commandIndicator) {
-        case BYE:
+        case COMMAND_BYE:
             command = parseBye();
             break;
-        case LIST:
+        case COMMAND_LIST:
             command = parseList();
             break;
-        case TODO:
+        case COMMAND_TODO:
             command = parseTodo(getCommandArgument(commandArguments));
             break;
-        case DEADLINE:
+        case COMMAND_DEADLINE:
             command = parseDeadline(getCommandArgument(commandArguments));
             break;
-        case EVENT:
+        case COMMAND_EVENT:
             command = parseEvent(getCommandArgument(commandArguments));
             break;
-        case MARK:
+        case COMMAND_MARK:
             command = parseMark(getCommandArgument(commandArguments));
             break;
-        case UNMARK:
+        case COMMAND_UNMARK:
             command = parseUnmark(getCommandArgument(commandArguments));
             break;
-        case DELETE:
+        case COMMAND_DELETE:
             command = parseDelete(getCommandArgument(commandArguments));
             break;
-        case FIND:
+        case COMMAND_FIND:
             command = parseFind(getCommandArgument(commandArguments));
             break;
         default:
@@ -164,13 +182,13 @@ public abstract class Parser {
      */
     static Command parseDeadline(String input) throws DukeException {
         try (Scanner lineScanner = new Scanner(input)
-                .useDelimiter(DEADLINE_INDICATOR_PATTERN)) {
+                .useDelimiter(INDICATOR_PATTERN_DEADLINE)) {
             String description = lineScanner.next();
             String by = lineScanner.next();
             Task task = new Deadline(description, by);
             return new AddCommand(task);
         } catch (NoSuchElementException e) {
-            throw new DukeException("Invalid format for adding deadline!", e);
+            throw new DukeException(ERROR_MESSAGE_DEADLINE_FORMAT_INVALID, e);
         }
     }
 
@@ -183,13 +201,13 @@ public abstract class Parser {
      */
     static Command parseEvent(String input) throws DukeException {
         try (Scanner lineScanner = new Scanner(input)
-                .useDelimiter(EVENT_INDICATOR_PATTERN)) {
+                .useDelimiter(INDICATOR_PATTERN_EVENT)) {
             String description = lineScanner.next();
             String at = lineScanner.next();
             Task task = new Event(description, at);
             return new AddCommand(task);
         } catch (NoSuchElementException e) {
-            throw new DukeException("Invalid format for adding event!", e);
+            throw new DukeException(ERROR_MESSAGE_EVENT_FORMAT_INVALID, e);
         }
     }
 
@@ -252,7 +270,7 @@ public abstract class Parser {
     /**
      * Parses command arguments to task index in 0-based index.
      *
-     * @param input command arugments.
+     * @param input command arguments.
      * @return index given by user.
      * @throws DukeException when index not an integer or no index detected.
      */
@@ -260,9 +278,9 @@ public abstract class Parser {
         try (Scanner scanner = new Scanner(input)) {
             return scanner.nextInt() - 1;
         } catch (InputMismatchException e) {
-            throw new DukeException("The index must be an Integer!", e);
+            throw new DukeException(ERROR_MESSAGE_INDEX_NOT_INT, e);
         } catch (NoSuchElementException e) {
-            throw new DukeException("No index detected!", e);
+            throw new DukeException(ERROR_MESSAGE_INDEX_NOT_FOUND, e);
         }
     }
 
@@ -277,7 +295,7 @@ public abstract class Parser {
         try {
             return LocalDate.parse(dateString);
         } catch (DateTimeParseException e) {
-            throw new DukeException("Date format is invalid!", e);
+            throw new DukeException(ERROR_MESSAGE_DATE_FORMAT_INVALID, e);
         }
     }
 
