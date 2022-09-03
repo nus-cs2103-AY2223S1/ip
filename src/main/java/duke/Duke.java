@@ -2,14 +2,18 @@ package duke;
 
 import duke.ui.Ui;
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
@@ -23,6 +27,8 @@ public class Duke extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/sherlock.png"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/images/Aemon_Targaryen.png"));
 
 
     /**
@@ -74,6 +80,7 @@ public class Duke extends Application {
         scrollPane.setFitToWidth(true);
 
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
 
         userInput.setPrefWidth(325.0);
 
@@ -97,15 +104,62 @@ public class Duke extends Application {
             userInput.clear();
         });
 
+        sendButton.setOnMouseClicked((event) -> {
+            handleUserInput();
+        });
+
+        userInput.setOnAction((event) -> {
+            handleUserInput();
+        });
+
     }
 
     //adapted from https://se-education.org/guides/tutorials/javaFxPart3.html
+
+
+    public class DialogBox extends HBox {
+
+        private Label text;
+        private ImageView displayPicture;
+
+        public DialogBox(Label l, ImageView iv) {
+            text = l;
+            displayPicture = iv;
+
+            text.setWrapText(true);
+            displayPicture.setFitWidth(100.0);
+            displayPicture.setFitHeight(100.0);
+
+            this.setAlignment(Pos.TOP_RIGHT);
+            this.getChildren().addAll(text, displayPicture);
+        }
+    }
+
+
+
+    private void handleUserInput() {
+        Label userText = new Label(userInput.getText());
+        Label dukeText = new Label(getResponse(userInput.getText()));
+        dialogContainer.getChildren().addAll(
+                new DialogBox(userText, new ImageView(user)),
+                new DialogBox(dukeText, new ImageView(duke))
+        );
+        userInput.clear();
+    }
+
     private Label getDialogLabel(String text) {
+        // You will need to import `javafx.scene.control.Label`.
         Label textToAdd = new Label(text);
         textToAdd.setWrapText(true);
 
         return textToAdd;
     }
+
+    private String getResponse(String input) {
+        return "Duke heard: " + input;
+    }
+
+
 
     /**
      * Creates a new Duke object and begins interaction 
