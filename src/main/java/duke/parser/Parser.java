@@ -31,7 +31,10 @@ import duke.task.ToDo;
  * A component of the chatBot Duke that deciphers the user inputs.
  */
 public class Parser {
-
+    private static final String INVALID_INTEGER_MESSAGE = "please input a valid integer";
+    private static final String INVALID_FIND_DATE_MESSAGE = "Input a valid date in the format YYYY-MM-DD";
+    private static final String INVALID_DATE_MESSAGE = "Input valid date in the format YYYY-MM-DD "
+            + "HH:mm\nor YYYY-MM-DD for deadlines and YYYY-MM-DD HH:mm-HH:mm for events";
     /**
      * Parses the user input and returns a command if the input is valid.
      *
@@ -46,72 +49,85 @@ public class Parser {
         String commandWord = str[0];
         Command command;
         if (str.length == 1 || str[1].trim().equals("")) {
-            switch (commandWord) {
-            case ExitCommand.COMMAND_WORD: {
-                command = new ExitCommand();
-                break;
-            }
-            case ListCommand.COMMAND_WORD: {
-                command = new ListCommand();
-                break;
-            }
-            case DueCommand.COMMAND_WORD:
-            case MarkCommand.COMMAND_WORD:
-            case DeadlineCommand.COMMAND_WORD:
-            case UnmarkCommand.COMMAND_WORD:
-            case ToDoCommand.COMMAND_WORD:
-            case EventCommand.COMMAND_WORD:
-            case DeleteCommand.COMMAND_WORD:
-            case FindCommand.COMMAND_WORD:
-                throw new MissingDescriptionException(commandWord);
-            default:
-                throw new InvalidInputException();
-            }
+            command = parseOneComponentCommands(commandWord);
         } else {
-            switch (commandWord) {
-            case MarkCommand.COMMAND_WORD: {
-                command = new MarkCommand(parseIntegerString(str[1]));
-                break;
-            }
-            case UnmarkCommand.COMMAND_WORD: {
-                command = new UnmarkCommand(parseIntegerString(str[1]));
-                break;
-            }
-            case ToDoCommand.COMMAND_WORD: {
-                command = new ToDoCommand(new ToDo(str[1], TaskType.TODO));
-                break;
-            }
-            case DeadlineCommand.COMMAND_WORD: {
-                command = prepareTasksCommand(str[1], TaskType.DEADLINE);
-                break;
-            }
-            case EventCommand.COMMAND_WORD: {
-                command = prepareTasksCommand(str[1], TaskType.EVENT);
-                break;
-            }
-            case DeleteCommand.COMMAND_WORD: {
-                command = new DeleteCommand(parseIntegerString(str[1]));
-                break;
-            }
-            case DueCommand.COMMAND_WORD: {
-                command = prepareDueCommand(str[1]);
-                break;
-            }
-            case FindCommand.COMMAND_WORD: {
-                command = new FindCommand(str[1].split("\\s+"));
-                break;
-            }
-            default:
-                throw new InvalidInputException();
-            }
+            command = parseTwoComponentCommands(commandWord, str[1]);
         }
         return command;
     }
+
+    private Command parseOneComponentCommands(String commandWord) {
+        Command command;
+        switch (commandWord) {
+        case ExitCommand.COMMAND_WORD: {
+            command = new ExitCommand();
+            break;
+        }
+        case ListCommand.COMMAND_WORD: {
+            command = new ListCommand();
+            break;
+        }
+        case DueCommand.COMMAND_WORD:
+        case MarkCommand.COMMAND_WORD:
+        case DeadlineCommand.COMMAND_WORD:
+        case UnmarkCommand.COMMAND_WORD:
+        case ToDoCommand.COMMAND_WORD:
+        case EventCommand.COMMAND_WORD:
+        case DeleteCommand.COMMAND_WORD:
+        case FindCommand.COMMAND_WORD:
+            throw new MissingDescriptionException(commandWord);
+        default:
+            throw new InvalidInputException();
+        }
+        return command;
+    }
+
+    private Command parseTwoComponentCommands(String commandWord, String str) {
+        Command command;
+        switch (commandWord) {
+        case MarkCommand.COMMAND_WORD: {
+            command = new MarkCommand(parseIntegerString(str.trim()));
+            break;
+        }
+        case UnmarkCommand.COMMAND_WORD: {
+            command = new UnmarkCommand(parseIntegerString(str.trim()));
+            break;
+        }
+        case ToDoCommand.COMMAND_WORD: {
+            command = new ToDoCommand(new ToDo(str, TaskType.TODO));
+            break;
+        }
+        case DeadlineCommand.COMMAND_WORD: {
+            command = prepareTasksCommand(str, TaskType.DEADLINE);
+            break;
+        }
+        case EventCommand.COMMAND_WORD: {
+            command = prepareTasksCommand(str, TaskType.EVENT);
+            break;
+        }
+        case DeleteCommand.COMMAND_WORD: {
+            command = new DeleteCommand(parseIntegerString(str.trim()));
+            break;
+        }
+        case DueCommand.COMMAND_WORD: {
+            command = prepareDueCommand(str);
+            break;
+        }
+        case FindCommand.COMMAND_WORD: {
+            command = new FindCommand(str.split("\\s+"));
+            break;
+        }
+        default:
+            throw new InvalidInputException();
+        }
+        return command;
+    }
+
     private int parseIntegerString(String string) {
         try {
             return Integer.parseInt(string);
         } catch (NumberFormatException e) {
-            throw new InvalidIndexException("please input a valid integer");
+            throw new InvalidIndexException(INVALID_INTEGER_MESSAGE);
         }
     }
 
@@ -135,8 +151,7 @@ public class Parser {
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new InvalidInputException();
         } catch (DateTimeParseException e) {
-            throw new InvalidDateException("Input valid date in the format YYYY-MM-DD "
-                    + "HH:mm\nor YYYY-MM-DD for deadlines and YYYY-MM-DD HH:mm-HH:mm for events");
+            throw new InvalidDateException(INVALID_DATE_MESSAGE);
         }
         assert false;
         throw new InvalidInputException();
@@ -178,7 +193,7 @@ public class Parser {
             LocalDate date = LocalDate.parse(input);
             return new DueCommand(date);
         } catch (DateTimeParseException e) {
-            throw new InvalidDateException("Input a valid date in the format YYYY-MM-DD");
+            throw new InvalidDateException(INVALID_FIND_DATE_MESSAGE);
         }
     }
 
@@ -246,8 +261,6 @@ public class Parser {
         }
         return list;
     }
-
-
     private Task createTaskFromFile(String input, TaskType type) {
         Task task = null;
         int taskStatus = 0;

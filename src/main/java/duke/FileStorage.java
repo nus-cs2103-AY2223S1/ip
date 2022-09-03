@@ -15,6 +15,8 @@ import duke.task.Task;
  * A component of the chatBot Duke that handles reading and writing of data.
  */
 public class FileStorage {
+    private static final String directoryName = "dukeData";
+    private static final String fileName = "Duke.txt";
     private Path directoryPath;
     private Path filePath;
     private Parser parser;
@@ -26,8 +28,8 @@ public class FileStorage {
      */
     public FileStorage(String home) {
         this.parser = new Parser();
-        this.directoryPath = Paths.get(home, "dukeData");
-        this.filePath = Paths.get(home, "dukeData", "Duke.txt");
+        this.directoryPath = Paths.get(home, directoryName);
+        this.filePath = Paths.get(home, directoryName, fileName);
     }
 
     public boolean isDirectoryPresent() {

@@ -10,6 +10,8 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
     protected LocalDate by;
     protected LocalTime time;
+    protected DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+    protected DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MMM d yyyy");
 
     /**
      * Creates a deadline object upon receiving a deadline command from the user.
@@ -48,9 +50,9 @@ public class Deadline extends Task {
     public String toString() {
         String str = "";
         if (time != null) {
-            str = time.format(DateTimeFormatter.ofPattern("HH:mm "));
+            str = time.format(timeFormatter);
         }
-        str += by.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        str += by.format(dateFormatter);
         return "[D]" + super.toString() + "(by: " + str + ")";
     }
 }

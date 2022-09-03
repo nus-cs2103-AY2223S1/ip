@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import duke.Ui;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,6 +27,7 @@ public class DialogBox extends HBox {
     private Label dialog;
     @FXML
     private ImageView displayPicture;
+
 
     private DialogBox(String text, Image img) {
         try {
@@ -63,7 +65,7 @@ public class DialogBox extends HBox {
     }
 
     private static void checkExitMessage(String text) {
-        if (text.equals("Farewell, till we meet again")) {
+        if (text.equals(Ui.EXIT_MESSAGE)) {
             new Timer().schedule(new TimerTask() {
                 public void run() {
                     System.exit(0);

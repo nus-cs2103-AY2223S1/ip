@@ -1,6 +1,7 @@
 package duke.gui;
 
 import duke.Duke;
+import duke.Ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -33,7 +34,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        dialogContainer.getChildren().add(DialogBox.getDukeDialog("Gigachad is here to help", dukeImage));
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(Ui.INTRO_MESSAGE, dukeImage));
     }
 
     public void setDuke(Duke d) {
