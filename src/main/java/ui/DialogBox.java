@@ -1,5 +1,7 @@
 package ui;
 
+import java.io.IOException;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,8 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
 
-import java.io.IOException;
-
 /**
  * <h1>DialogBox class</h1>
  * A HBox that represents a Dialog containing text and
@@ -25,12 +25,6 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
-//    /**
-//     * Creates the DialogBox object.
-//     *
-//     * @param l Label to be contained within the DialogBox.
-//     * @param iv ImageView to be contained within the DialogBox.
-//     */
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
