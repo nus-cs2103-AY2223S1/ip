@@ -13,6 +13,9 @@ import duke.Storage;
 public class TaskList extends ArrayList<Task> {
     private final Storage storage;
 
+    /**
+     * Creates a tasklist without storage.
+     */
     public TaskList() {
         this(null);
     }
@@ -25,11 +28,7 @@ public class TaskList extends ArrayList<Task> {
     public TaskList(Storage storage) {
         super(100);
         if (storage != null) {
-            try {
-                this.addAll(storage.loadTasks());
-            } catch (DukeException e) {
-                // initialize with no tasks.
-            }
+            this.addAll(storage.loadTasks().orElse(new ArrayList<>()));
         }
         this.storage = storage;
     }
@@ -60,9 +59,7 @@ public class TaskList extends ArrayList<Task> {
      */
     public boolean addTask(Task task) throws DukeException {
         if (super.add(task)) {
-            if (storage != null) {
-                storage.saveTasks(this);
-            }
+            trySaveTasks();
             return true;
         }
         return false;
@@ -76,13 +73,13 @@ public class TaskList extends ArrayList<Task> {
      * @throws DukeException any error when removing the task from the list.
      */
     public Task removeTask(int index) throws DukeException {
-        if (0 <= index && index <= this.size()) {
-            Task task = super.remove(index);
-            storage.saveTasks(this);
-            return task;
-        } else {
+        if (index < 0 || index > this.size()) {
             throw new DukeException("Failed to delete task %d", index + 1);
         }
+        Task task = super.remove(index);
+        trySaveTasks();
+
+        return task;
     }
 
     /**
@@ -97,12 +94,16 @@ public class TaskList extends ArrayList<Task> {
         try {
             Task task = super.get(index);
             task.setDone(completed);
-            if (storage != null) {
-                storage.saveTasks(this);
-            }
+            trySaveTasks();
             return task;
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new DukeException("Task %d not found.", index + 1);
+        }
+    }
+
+    private void trySaveTasks() throws DukeException {
+        if (!storage.saveTasks(this)) {
+            throw new DukeException("Unable to save tasks to disk.");
         }
     }
 
