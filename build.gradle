@@ -44,7 +44,7 @@ test {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'duke.Duke'
+                'Main-Class': 'duke.ui.Launcher'
         )
     }
 }
