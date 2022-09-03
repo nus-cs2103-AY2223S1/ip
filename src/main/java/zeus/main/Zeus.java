@@ -33,7 +33,7 @@ public class Zeus {
             return "You have exited.";
         }
         try {
-            ui.newResponse();
+            ui.generateNewResponse();
             Command c = Parser.parse(input);
             c.execute(tasks, ui, storage);
             isExit = c.isExit();

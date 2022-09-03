@@ -21,7 +21,7 @@ public class Ui {
     /**
      * Initialises a new output.
      */
-    public void newResponse() {
+    public void generateNewResponse() {
         this.response.setLength(0);
     }
 
