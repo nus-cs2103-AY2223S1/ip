@@ -21,7 +21,8 @@ public class Event extends Task {
 
     @Override
     public String toStorage() {
-        return STORAGE_CHAR + STORAGE_SEPARATOR + super.toStorage() + STORAGE_SEPARATOR + at.format(Event.INPUT_DATE_FORMAT);
+        return STORAGE_CHAR + STORAGE_SEPARATOR + super.toStorage() + STORAGE_SEPARATOR
+                + at.format(Event.INPUT_DATE_FORMAT);
     }
 
     @Override

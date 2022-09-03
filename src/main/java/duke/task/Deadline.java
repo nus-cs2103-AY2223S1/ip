@@ -21,7 +21,8 @@ public class Deadline extends Task {
 
     @Override
     public String toStorage() {
-        return STORAGE_CHAR + STORAGE_SEPARATOR + super.toStorage() + STORAGE_SEPARATOR + by.format(Deadline.INPUT_DATE_FORMAT);
+        return STORAGE_CHAR + STORAGE_SEPARATOR + super.toStorage() + STORAGE_SEPARATOR
+                + by.format(Deadline.INPUT_DATE_FORMAT);
     }
 
     @Override
