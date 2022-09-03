@@ -224,8 +224,7 @@ public abstract class Command {
             String desc = command.substring(DeadlineCommand.POSITION, slashIndex - 1);
             String endDate = command.substring(slashIndex + DeadlineCommand.POSITION_DATE);
             if (desc.isEmpty() || endDate.isEmpty()) {
-                throw new SkylarkException("☹ OOPS!!! "
-                        + "The description or end date of a deadline cannot be empty.");
+                throw new SkylarkException("The description or end date of a deadline cannot be empty.");
             }
             Deadline deadlineTask = new Deadline(desc, endDate);
             taskList.add(deadlineTask);
@@ -261,8 +260,7 @@ public abstract class Command {
             String desc = command.substring(EventCommand.POSITION, slashIndex - 1);
             String timing = command.substring(slashIndex + EventCommand.POSITION_DATE);
             if (desc.isEmpty() || timing.isEmpty()) {
-                throw new SkylarkException("☹ OOPS!!! "
-                        + "The description or timing of an event cannot be empty.");
+                throw new SkylarkException("The description or timing of an event cannot be empty.");
             }
             Event eventTask = new Event(desc, timing);
             taskList.add(eventTask);
@@ -328,8 +326,7 @@ public abstract class Command {
             String command = super.getInput();
             String query = command.substring(FindCommand.POSITION);
             if (query.isEmpty()) {
-                throw new SkylarkException("☹ OOPS!!! "
-                        + "The find query cannot be empty.");
+                throw new SkylarkException("The find query cannot be empty.");
             }
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("Here are the matching tasks in your list:");
