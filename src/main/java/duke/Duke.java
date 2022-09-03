@@ -10,6 +10,8 @@ import java.util.Scanner;
  * This task list is stored in an output file, and loaded on program start.
  */
 public class Duke {
+    public static final String FILE_NAME = "data.txt";
+    public static final String[] DIRECTORIES = new String[]{"data"};
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
@@ -59,6 +61,18 @@ public class Duke {
      * @param args command line arguments.
      */
     public static void main(String[] args) {
-        new Duke("data.txt", "data").run();
+        new Duke(FILE_NAME, DIRECTORIES).run();
+    }
+
+    public static Duke initialiseForGui() {
+        return new Duke(FILE_NAME, DIRECTORIES);
+    }
+
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    protected String getResponse(String input) {
+        return "Duke heard: " + input;
     }
 }
