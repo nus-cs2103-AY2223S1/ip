@@ -19,6 +19,7 @@ public class AddCommand extends Command {
      */
     public AddCommand(Task task) {
         this.task = task;
+        assert task != null : "Task is empty!";
     }
 
     /**

@@ -18,6 +18,7 @@ public class UnmarkCommand extends Command {
      */
     public UnmarkCommand(int integer) {
         this.integer = integer;
+        assert integer > 0 : "Integer is not valid!";
     }
 
     /**

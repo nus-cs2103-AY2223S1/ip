@@ -18,6 +18,7 @@ public class MarkCommand extends Command {
      */
     public MarkCommand(int integer) {
         this.integer = integer;
+        assert integer > 0 : "Integer is not valid!";
     }
 
     /**
