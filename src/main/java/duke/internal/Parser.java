@@ -44,6 +44,7 @@ public class Parser {
             }
             // Find the "/by" delimiter to get the two arguments.
             int delimiter = Parser.findArgumentIndex(arguments, "/by");
+            assert delimiter > 0 : "/by should be present";
             return new DeadlineCommand(Parser.concatenateArguments(arguments, 1, delimiter),
                     Parser.concatenateArguments(arguments, delimiter + 1)
             );
@@ -52,6 +53,7 @@ public class Parser {
                 throw new DukeException("Missing event description and/or date-time");
             }
             delimiter = Parser.findArgumentIndex(arguments, "/at");
+            assert delimiter > 0 : "/at should be present";
             return new EventCommand(Parser.concatenateArguments(arguments, 1, delimiter),
                     Parser.concatenateArguments(arguments, delimiter + 1)
             );
