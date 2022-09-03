@@ -22,8 +22,8 @@ public class ExitCommand extends Command {
      *                The storage is used to save and load the task list.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        System.out.println("UwU Byebyeeee! Come back soon... Meowmeow misses you already =^._.^= ");
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return "UwU Byebyeeee! Come back soon... Meowmeow misses you already =^._.^= ";
     }
 
     /**

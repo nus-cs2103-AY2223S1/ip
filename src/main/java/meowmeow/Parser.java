@@ -66,13 +66,12 @@ public class Parser {
                     return new FindCommand(taskToFind);
 
                 default:
-                    System.out.println("Sowwie meowmeow doesn't understand what you said uwu");
                     return new DefaultCommand();
                 }
             }
 
         } catch (MeowmeowException e) {
-            System.out.println(e.toString());
+            System.out.println(e);
         }
         return new DefaultCommand();
     }

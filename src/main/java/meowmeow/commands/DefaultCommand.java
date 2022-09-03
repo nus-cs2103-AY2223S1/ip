@@ -23,8 +23,9 @@ public class DefaultCommand extends Command {
      *     Prints an error message to the user interface.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        System.out.println("Try typing something else!");
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return "Sowwie meowmeow doesn't understand what you said uwu ♥ \n"
+                + "Try typing something else! owo";
     }
 
     /**

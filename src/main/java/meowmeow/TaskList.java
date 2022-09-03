@@ -24,34 +24,36 @@ public class TaskList {
         return taskList;
     }
 
-    public void printTaskList() {
-        System.out.println("Here are your tasks =0w0=");
+    public String printTaskList() {
+        String output = "Here are your tasks =0w0= \n";
         Task task;
 
         for (int i = 0; i < numOfInputs; i++) {
             task = taskList.get(i);
 
-            System.out.println((i + 1) + ". " + task);
+            output += (i + 1) + ". " + task + "\n";
         }
+        return output;
     }
 
-    public void deleteTask(int taskNum) {
+    public String deleteTask(int taskNum) {
         try {
             if (taskNum >= numOfInputs) {
                 throw new MeowmeowException("Meowmeow can't throw away a task that doesn't exist =owo=");
             } else {
-                System.out.println("Meowmeow has thrown this task into the void!! (=^>w<^=) \n"
-                        + taskList.get(taskNum));
+                String task = taskList.get(taskNum).toString();
                 taskList.remove(taskNum);
                 numOfInputs -= 1;
-                System.out.println("You have " + numOfInputs + " tasks left now Owo");
+                return "Meowmeow has thrown this task into the void!! (=^>w<^=) \n"
+                        + task + "\n"
+                        + "You have " + numOfInputs + " tasks left now Owo";
             }
         } catch (MeowmeowException e) {
-            System.out.println(e);
+            return e.getMessage();
         }
     }
 
-    public void addTodo(String taskName) {
+    public String addTodo(String taskName) {
         try {
             if (taskName == null || taskName.equals("")) {
                 throw new MeowmeowException("Meowmeow needs a name for the task you want to add (=^0w0^=)");
@@ -60,15 +62,15 @@ public class TaskList {
                 taskList.add(t);
                 numOfInputs += 1;
 
-                System.out.println("(=^-w-^=) " + t + " has been added to your task list!\n");
-                System.out.println("You now have " + numOfInputs + " tasks >w<");
+                return "(=^-w-^=) " + t + " has been added to your task list!\n"
+                + "You now have " + numOfInputs + " tasks >w<";
             }
         } catch (MeowmeowException e) {
-            System.out.println(e);
+            return e.toString();
         }
     }
 
-    public void addDeadline(String userInput) {
+    public String addDeadline(String userInput) {
         try {
             String[] splitB = userInput.split("/by ");
 
@@ -81,15 +83,15 @@ public class TaskList {
                 Task d = new Deadline(splitB[0], deadline);
                 taskList.add(d);
                 numOfInputs += 1;
-                System.out.println("(=^-w-^=) " + d + " has been added to your task list!\n");
-                System.out.println("You now have " + numOfInputs + " tasks >w<");
+                return "(=^-w-^=) " + d + " has been added to your task list!\n"
+                        + "You now have " + numOfInputs + " tasks >w<";
             }
         } catch (MeowmeowException e) {
-            System.out.println(e);
+            return e.toString();
         }
     }
 
-    public void addEvent(String userInput) {
+    public String addEvent(String userInput) {
         try {
             String[] splitA = userInput.split("/at");
 
@@ -101,63 +103,65 @@ public class TaskList {
                 taskList.add(e);
                 numOfInputs += 1;
 
-                System.out.println("(=^-w-^=) " + e + " has been added to your task list!\n");
-                System.out.println("You now have " + numOfInputs + " tasks >w<");
+                return "(=^-w-^=) " + e + " has been added to your task list!\n"
+                        + "You now have " + numOfInputs + " tasks >w<";
             }
         } catch (MeowmeowException e) {
-            e.printStackTrace();
+            return e.toString();
         }
     }
 
-    public void finishTask(int taskNum) {
+    public String finishTask(int taskNum) {
         Task task;
         try {
             if (taskNum <= numOfInputs) {
                 task = taskList.get(taskNum - 1);
                 task.markAsDone();
 
-                System.out.println("Good job (=OwO=) You finished this task! \n" + task);
+                return "Good job (=OwO=) You finished this task! \n" + task;
             } else {
                 throw new MeowmeowException("Meowmeow there isn't a task with that number uwu");
             }
         } catch (MeowmeowException e) {
-            System.out.println(e);
+            return e.toString();
         }
     }
 
-    public void unfinishTask(int taskNum) {
+    public String unfinishTask(int taskNum) {
         Task task;
         try {
             if (taskNum <= numOfInputs) {
                 task = taskList.get(taskNum - 1);
                 task.markAsNotDone();
 
-                System.out.println("uwu this task has been marked as not done... \n" + task);
+                return "uwu this task has been marked as not done... \n" + task;
             } else {
                 throw new MeowmeowException("Meowmeow there isn't a task with that number uwu");
             }
 
         } catch (MeowmeowException e) {
-            System.out.println(e);
+            return e.toString();
         }
     }
 
-    public void findTask(String userInput) {
+    public String findTask(String userInput) {
         try {
             int numMatchingTasks = 0;
+            String similarTasks = "";
             for (int i = 0; i < numOfInputs; i++) {
                 Task task = taskList.get(i);
                 String taskName = task.getName();
                 if (taskName.contains(userInput)) {
-                    System.out.println(task);
+                    similarTasks += task + "\n";
                     numMatchingTasks += 1;
                 }
             }
             if (numMatchingTasks == 0) {
                 throw new MeowmeowException("Meowmeow can't find any tasks that contain these words (=^0w0^=)");
             }
+            return similarTasks;
         } catch (MeowmeowException e) {
-            System.out.println(e);
+            return e.toString();
         }
     }
 }

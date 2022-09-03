@@ -36,14 +36,15 @@ public class AddCommand extends Command {
      *                The storage is used to save and load the task list.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         if (taskType == 'T') {
-            tasks.addTodo(userInput);
+            return tasks.addTodo(userInput);
         } else if (taskType == 'D') {
-            tasks.addDeadline(userInput);
+            return tasks.addDeadline(userInput);
         } else if (taskType == 'E') {
-            tasks.addEvent(userInput);
+            return tasks.addEvent(userInput);
         }
+        return "Something went wrong with AddCommand";
     }
 
     /**

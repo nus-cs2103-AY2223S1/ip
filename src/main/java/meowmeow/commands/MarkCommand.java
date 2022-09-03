@@ -34,11 +34,11 @@ public class MarkCommand extends Command {
      *                The storage is used to save and load the task list.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         if (isDone) {
-            tasks.finishTask(taskNum);
+            return tasks.finishTask(taskNum);
         } else {
-            tasks.unfinishTask(taskNum);
+            return tasks.unfinishTask(taskNum);
         }
     }
 

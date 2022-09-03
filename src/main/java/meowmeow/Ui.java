@@ -22,4 +22,12 @@ public class Ui {
         return sc.nextLine();
     }
 
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) {
+        return "Meowmeow heard: " + input;
+    }
+
 }
