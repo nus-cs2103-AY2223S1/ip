@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HandleTaskTest {
 
-    String filePath = "C:/!Education/CS2103/gitFolderOne/data/pixel.txt";
+    String filePath = "./data/pixel.txt";
     Pixel pixelBot = new Pixel(filePath); // output file address
     TaskList taskList = new TaskList(filePath);
 

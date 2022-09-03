@@ -15,7 +15,7 @@ import pixel.Pixel;
  */
 public class Main extends Application {
 
-    private final Pixel pixel = new Pixel("C:/!Education/CS2103/gitFolderOne/data/pixel.txt");
+    private final Pixel pixel = new Pixel("./data/pixel.txt");
 
     @Override
     public void start(Stage stage) {

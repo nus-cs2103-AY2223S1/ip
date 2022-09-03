@@ -3,6 +3,8 @@ package pixel.util;
 import pixel.Pixel;
 import pixel.task.Task;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -133,9 +135,17 @@ public class Parser { // inner class
             + UserInterface.PROMPT_MESSAGE);
 
         } catch (IOException e) {
-            // System.out.println(e);
-            return ("Caught IO exception! Please ensure that the file address provided is valid \n"
-            + UserInterface.PROMPT_MESSAGE);
+
+            if (e instanceof FileNotFoundException) {
+                File tempFile = new File("./data/pixel", "pixel.txt");
+                return ("Caught FileNotFound exception! \n"
+                    + "New file is created for you \n"
+                    + UserInterface.PROMPT_MESSAGE);
+            } else {
+                // System.out.println(e);
+                return ("Caught IO exception! \n"
+                    + UserInterface.PROMPT_MESSAGE);
+            }
 
 //        } finally {
 //            // clean up

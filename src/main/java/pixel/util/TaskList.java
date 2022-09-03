@@ -66,7 +66,7 @@ public class TaskList {
 
         // Not so efficient method
         // first delete existing content in old file
-        Storage.resetFile(filePath);
+        Storage.resetFile(this.filePath);
 
         // run through all the files in the list and update pixel.txt accordingly
         for (Task task : Storage.INPUT_TASKS) {
