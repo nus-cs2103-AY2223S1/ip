@@ -84,7 +84,7 @@ public class Ui {
      * @since 0.2
      */
     public String mark(Task task) {
-        return "Good Job! I will mark this duke.task as done:" + "\n" + task;
+        return "Good Job! I will mark this task as done:" + "\n" + task;
     }
 
     /**
@@ -95,7 +95,7 @@ public class Ui {
      * @since 0.2
      */
     public String unmark(Task task) {
-        return "Alright, I will mark this duke.task as undone:" + "\n" + task;
+        return "Alright, I will mark this task as undone:" + "\n" + task;
     }
 
     /**
@@ -107,17 +107,6 @@ public class Ui {
      */
     public String showDukeException(String exception) {
         return exception;
-    }
-
-    /**
-     * Duke's final goodbye to the user.
-     *
-     * @return Duke's goodbyes
-     * @since 0.2
-     */
-    public String finalGoodbye() {
-        commandInput.close();
-        return "Goodbye. Call for me again when you need me!";
     }
 
     /**
@@ -143,7 +132,7 @@ public class Ui {
      * @since 0.2
      */
     public String delete(Task task, int size) {
-        return "Understood. I will purge this duke.task from your list:\n" + task
+        return "Understood. I will purge this task from your list:\n" + task
                 + "\nCurrently, you have " + size + " tasks in your list.";
     }
 

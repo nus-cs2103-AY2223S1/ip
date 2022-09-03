@@ -99,13 +99,15 @@ public class TaskList {
      *
      * @since 0.1
      */
-    public void printList() {
+    public String printList() {
         if (tasks == null || tasks.size() <= 0) {
-            System.out.println("No tasks assigned yet.");
+            return "No tasks assigned yet.";
         } else {
+            String response = "";
             for (int i = 0; i < tasks.size(); i++) {
-                System.out.println((i + 1) + ". " + getTask(i));
+                response += "\n" + (i + 1) + ". " + getTask(i);
             }
+            return response;
         }
     }
 }

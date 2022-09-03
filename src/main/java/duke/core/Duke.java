@@ -28,6 +28,10 @@ public class Duke {
      * Ui object that allows Duke to communicate with the user.
      */
     private final Ui ui;
+    /**
+     * Most recent command duke has received
+     */
+    private Command latestCommand;
 
     /**
      * Constructor for a Duke object
@@ -50,16 +54,29 @@ public class Duke {
     /**
      * Sends a command to Duke to obtain a response
      *
-     * @since 0.2
+     * @since 0.3
      */
     public String getResponse(String input) {
         try {
             Command c = Parser.inputCommand(input, tasks, ui);
             String response = c.execute(storage);
-            System.out.println(response);
+            latestCommand = c;
             return "Suisei: " + response;
         } catch (DukeException e) {
             return ui.showDukeException(e.getMessage());
         }
+    }
+
+    /**
+     * Checks for if the most recent command was an exit command
+     *
+     * @return True if the most recent command was an exit command. Otherwise, false.
+     * @since 0.3
+     */
+    public boolean isMostRecentCommandExit() {
+        if (latestCommand == null) {
+            return false;
+        }
+        return latestCommand.isExit();
     }
 }

@@ -10,8 +10,10 @@ plugins {
     id 'java'
     id 'application'
     id 'checkstyle'
-    id 'com.github.johnrengelman.shadow' version '5.1.0'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'org.openjfx.javafxplugin' version '0.0.7'
 }
+
 
 repositories {
     mavenCentral()
@@ -52,12 +54,13 @@ test {
 }
 
 application {
-    mainClassName = 'seedu.duke.Duke'
+    mainClassName = 'duke.DukeLauncher'
 }
 
 shadowJar {
     archiveBaseName = "duke"
     archiveClassifier = null
+    archiveAppendix = null
 }
 
 checkstyle {
@@ -66,4 +69,10 @@ checkstyle {
 
 run{
     standardInput = System.in
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'duke.DukeLauncher'
+    }
 }

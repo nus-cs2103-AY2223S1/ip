@@ -1,12 +1,17 @@
 package duke.gui;
 
 import duke.core.Duke;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  *
@@ -45,11 +50,19 @@ public class MainWindow {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = duke.getResponse(input);
-        System.out.println("Input: " + input + "Response: " + response);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
+
+        if (duke.isMostRecentCommandExit()) {
+            new Timer().schedule(new TimerTask() {
+                public void run() {
+                    Platform.exit();
+                    System.exit(0);
+                }
+            }, 3000);
+        }
     }
 }

@@ -38,7 +38,7 @@ public class ListCommand extends Command {
     @Override
     public String execute(Storage storage) {
         String response = ui.list();
-        tasks.printList();
+        response += tasks.printList();
         return response;
     }
     /**
