@@ -1,8 +1,11 @@
 package chacha;
 import java.util.Scanner;
 
+import chacha.commands.AddCommand;
 import chacha.commands.Command;
+import chacha.commands.DeleteCommand;
 import chacha.commands.ListCommand;
+import chacha.commands.MarkCommand;
 import chacha.commands.UnmarkCommand;
 import chacha.tasks.Deadline;
 import chacha.tasks.Event;
@@ -28,37 +31,31 @@ public class Chacha {
                 command.execute(taskList, ui);
             } else if (s.contains("unmark")) {
                 String[] split = s.split("\\s+");
-
-                Command command = new UnmarkCommand(Integer.valueOf(split[1]) - 1);
+                int taskIndex = Integer.valueOf(split[1]) - 1;
+                Command command = new UnmarkCommand(taskIndex);
                 command.execute(taskList, ui);
-                
-
             } else if (s.contains("mark")) {
                 String[] split = s.split("\\s+");
-                Task task = taskList.get(Integer.valueOf(split[1]) - 1);
-                task.markAsDone();
-                System.out.println("Nice! I've marked this task as done:\n" + task.toString());
-
+                int taskIndex = Integer.valueOf(split[1]) - 1;
+                Command command = new MarkCommand(taskIndex);
+                command.execute(taskList, ui);
             } else if (s.contains("delete")) {
                 String[] split = s.split("\\s+");
-                Task task = taskList.get(Integer.valueOf(split[1]) - 1);
-                System.out.println("Noted. I've removed this task:");
-                System.out.println(task.toString());
-                taskList.remove(Integer.valueOf(split[1]) - 1); 
-                System.out.println("Now you have " + taskList.size() + " tasks in the list.");
-                
+                int taskIndex = Integer.valueOf(split[1]) - 1;
+                Command command = new DeleteCommand(taskIndex);
+                command.execute(taskList, ui);
             } else if (s.contains("deadline")) {
                 try {
+                    
                     String date = s.substring(s.indexOf("/by ") + 4);
                     date.trim();
                     String description = s.substring(0,s.indexOf("/"));
                     description = description.substring(s.indexOf("deadline ") + 9);
                     description.trim();
                     Deadline deadline = new Deadline(description, date);
-                    taskList.add(deadline);  
-                    System.out.println("Got it. I've added this task:");
-                    System.out.println(deadline.toString()); 
-                    System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                    Command command = new AddCommand(deadline);
+                    command.execute(taskList, ui);
+                    
                 } catch(Exception e) {
                     System.out.println("OOPS!!! The description of a deadline cannot be empty."); 
                 }
@@ -68,10 +65,8 @@ public class Chacha {
                     System.out.println("heree");
                     description.trim();
                     Todo todo = new Todo(description);
-                    taskList.add(todo);  
-                    System.out.println("Got it. I've added this task:");
-                    System.out.println(todo.toString()); 
-                    System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                    Command command = new AddCommand(todo);
+                    command.execute(taskList, ui);
                 } catch(Exception e) {
                     System.out.println("OOPS!!! The description of a todo cannot be empty.");  
                 }
@@ -84,10 +79,8 @@ public class Chacha {
                     description = description.substring(s.indexOf("event ") + 6);
                     description.trim();
                     Event event = new Event(description, range);
-                    taskList.add(event);  
-                    System.out.println("Got it. I've added this task:");
-                    System.out.println(event.toString()); 
-                    System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                    Command command = new AddCommand(event);
+                    command.execute(taskList, ui);
                 } catch(Exception e) {
                     System.out.println("OOPS!!! The description of a event cannot be empty."); 
                 }
