@@ -7,6 +7,7 @@ import duke.task.TaskList;
  * Class that handles interactions with the user
  */
 public class Ui {
+    //string that will be printed to user for every user input
     private static String dukeResponse = "";
 
     /**
@@ -39,14 +40,23 @@ public class Ui {
         dukeResponse += task;
     }
 
+    /**
+     * Appends a string to dukeResponse
+     */
     public static void appendDukeResponse(String text) {
         dukeResponse += text;
     }
 
+    /**
+     * Reset dukeResponse to an empty string
+     */
     public static void clearDukeResponse() {
         dukeResponse = "";
     }
 
+    /**
+     * Returns dukeResponse
+     */
     public static String getDukeResponse() {
         return dukeResponse;
     }
