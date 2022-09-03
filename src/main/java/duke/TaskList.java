@@ -5,6 +5,7 @@ import static java.util.stream.Collectors.toCollection;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.function.Predicate;
 
 /**
  * Represents a list of Tasks.
@@ -116,10 +117,7 @@ public class TaskList implements Iterable<Task> {
      * @return ArrayList of tasks on specified date.
      */
     public ArrayList<Task> getTasksOn(LocalDate date) {
-        ArrayList<Task> filteredTaskList = this.taskArrayList.stream()
-                .filter(task -> task.isOn(date))
-                .collect(toCollection(ArrayList::new));
-        return filteredTaskList;
+        return this.filterTasks(task -> task.isOn(date));
     }
 
     /**
@@ -128,8 +126,12 @@ public class TaskList implements Iterable<Task> {
      * @return ArrayList of type Task matching the search description.
      */
     public ArrayList<Task> searchTasks(String searchQuery) {
+        return this.filterTasks(task -> task.descriptionIncludes(searchQuery));
+    }
+
+    private ArrayList<Task> filterTasks(Predicate<? super Task> predicate) {
         ArrayList<Task> filteredTaskList = this.taskArrayList.stream()
-                .filter(task -> task.descriptionIncludes(searchQuery))
+                .filter(predicate)
                 .collect(toCollection(ArrayList::new));
         return filteredTaskList;
     }
