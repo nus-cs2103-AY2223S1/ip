@@ -21,6 +21,25 @@ import ui.Ui;
  * command based on the input commandType.
  */
 public class Command {
+    private static final String DEFAULT_ERROR_MESSAGE = "What talking you";
+    private static final String EMPTY_KEYWORD_ERROR_MESSAGE = "Eh your keyword cannot be empty lah!";
+    private static final String INCORRECT_TASK_NUMBER_ERROR_MESSAGE = "Eh, you enter your task number correctly anot?";
+    private static final String INVALID_TASK_NUMBER_ERROR_MESSAGE = "Eh, you got that task number meh?";
+    private static final String NO_MATCHING_TASKS_MESSAGE = "Boss, no matching tasks ah";
+    private static final String TASK_ALREADY_UNMARKED_ERROR_MESSAGE = "Eh, your task alr not done lah";
+    private static final String TASK_ALREADY_COMPLETED_ERROR_MESSAGE = "Eh, you done that task alr lah";
+    private static final String LIST_TASKS_MESSAGE = "Boss ah, this one your tasks:";
+    private static final String NO_TASKS_MESSAGE = "Boss, you got no task yet ah";
+    private static final String EMPTY_TASK_NAME_ERROR_MESSAGE = "Eh you never added your task name";
+    private static final String EMPTY_EVENT_RANGE_ERROR_MESSAGE = "Eh you never added the event range";
+    private static final String EMPTY_DEADLINE_ERROR_MESSAGE = "Eh you never added a deadline";
+    private static final String INVALID_INPUT_DEADLINE_ERROR_MESSAGE = "Eh you never add a proper deadline date! \n"
+            + "Your deadline date should be like this lah: Jan 21 2023 04:10 AM";
+    private static final String EMPTY_USER_INPUT_ERROR_MESSAGE = "Eh you never type anything leh?";
+    private static final String FIND_TASKS_PREFIX_MESSAGE = "Boss ah, this one all your tasks matching '";
+    private static final String FIND_TASKS_SUFFIX_MESSAGE = "' : ";
+    private static final String EVENT_COMMAND_REGEX = " /at ";
+    private static final String DEADLINE_COMMAND_REGEX = " /by ";
     private CommandType commandType;
     private TaskList tasks;
     private String input;
@@ -83,124 +102,168 @@ public class Command {
      *         the input is invalid.
      */
     public void execute(VBox dialogContainer, DialogBox userDialog) throws DukeException {
-        switch (this.commandType) {
+        switch (commandType) {
         case BYE:
             break;
         case LIST:
-            ui.printTasks(tasks, "Boss ah, this one your tasks:",
-                    "Boss, you got no task yet ah", dialogContainer, userDialog);
+            parseAndExecuteListCommand(tasks, LIST_TASKS_MESSAGE, NO_TASKS_MESSAGE, dialogContainer, userDialog);
             break;
         case TODO:
-            String todoDescription = input.substring(4).trim();
-            if (todoDescription.equals("")) {
-                throw new DukeException("Eh your task cannot be empty lah!");
-            } else {
-                Todo todo = new Todo(todoDescription, false);
-                this.addTask(todo);
-                ui.printAddedTaskMessage(todo, dialogContainer, userDialog);
-                ui.printTaskCountMessage(tasks, dialogContainer);
-            }
+            parseAndExecuteTodo(dialogContainer, userDialog);
             break;
         case EVENT:
-            String[] splittedEvent = input.substring(5).split(" /at ", 3);
-            boolean isEmptyEvent = splittedEvent.length == 2 && splittedEvent[0].trim().equals("");
-            boolean isIncorrectEventRange = splittedEvent.length != 2 || splittedEvent[0].trim().equals("")
-                    || splittedEvent[1].trim().equals("");
-            if (isEmptyEvent) {
-                throw new DukeException("Eh you never added your task name");
-            } else if (isIncorrectEventRange) {
-                throw new DukeException("Eh you never added the event range");
-            } else {
-                LocalDateTime eventDateTime = DateTimeParser.changeStringToParsingDateTime(splittedEvent[1].trim());
-                Event event = new Event(splittedEvent[0].trim(), false, eventDateTime);
-                this.addTask(event);
-                ui.printAddedTaskMessage(event, dialogContainer, userDialog);
-                ui.printTaskCountMessage(tasks, dialogContainer);
-            }
+            parseAndExecuteEvent(dialogContainer, userDialog);
             break;
         case DEADLINE:
-            String[] splittedDeadline = input.substring(8).split(" /by ", 3);
-            boolean isEmptyDeadline = splittedDeadline.length == 2 && splittedDeadline[0].trim().equals("");
-            boolean isIncorrectDeadlineDate = splittedDeadline.length != 2 || splittedDeadline[0].trim().equals("")
-                    || splittedDeadline[1].trim().equals("");
-            if (isEmptyDeadline) {
-                throw new DukeException("Eh you never added your task name");
-            } else if (isIncorrectDeadlineDate) {
-                throw new DukeException("Eh you never added a deadline");
-            } else {
-                try {
-                    LocalDateTime deadlineDateTime = stringToLocalDateTime(splittedDeadline[1].trim());
-                    Deadline deadline = new Deadline(splittedDeadline[0].trim(), false, deadlineDateTime);
-                    this.addTask(deadline);
-                    ui.printAddedTaskMessage(deadline, dialogContainer, userDialog);
-                    ui.printTaskCountMessage(tasks, dialogContainer);
-                } catch (DateTimeParseException e) {
-                    throw new DukeException("Eh you never add a proper deadline date! \n"
-                            + "Your deadline date should be like this lah: Jan 21 2023 04:10 AM");
-                }
-            }
+            parseAndExecuteDeadline(dialogContainer, userDialog);
             break;
         case EMPTY:
-            throw new DukeException("Eh you never type anything leh?");
+            throw new DukeException(EMPTY_USER_INPUT_ERROR_MESSAGE);
         case MARK:
-            String markIndexString = input.substring(4).trim();
-            try {
-                int taskIndex = Integer.parseInt(markIndexString);
-                if (!hasTaskIndex(taskIndex)) {
-                    throw new DukeException("Eh, you got that task number meh?");
-                }
-                if (this.tasks.get(taskIndex - 1).canChangeIsDone(true)) {
-                    this.tasks.get(taskIndex - 1).changeIsDone(true);
-                    ui.printMarkedMessage(this.tasks.get(taskIndex - 1), dialogContainer, userDialog);
-                } else {
-                    throw new DukeException("Eh, you done that task alr lah");
-                }
-            } catch (NumberFormatException e) {
-                throw new DukeException("Eh, you enter your task number correctly anot?");
-            }
+            parseAndExecuteMarkCommand(dialogContainer, userDialog);
             break;
         case UNMARK:
-            String unmarkIndexString = input.substring(6).trim();
-            try {
-                int taskIndex = Integer.parseInt(unmarkIndexString);
-                if (!hasTaskIndex(taskIndex)) {
-                    throw new DukeException("Eh, you got that task number meh?");
-                }
-                if (this.tasks.get(taskIndex - 1).canChangeIsDone(false)) {
-                    this.tasks.get(taskIndex - 1).changeIsDone(false);
-                    ui.printUnmarkedMessage(this.tasks.get(taskIndex - 1), dialogContainer, userDialog);
-                } else {
-                    throw new DukeException("Eh, your task alr not done lah");
-                }
-            } catch (NumberFormatException e) {
-                throw new DukeException("Eh, you enter your task number correctly anot?");
-            }
+            parseAndExecuteUnmarkCommand(dialogContainer, userDialog);
             break;
         case DELETE:
-            String taskIndexToDelete = input.substring(6).trim();
-            try {
-                int taskIndex = Integer.parseInt(taskIndexToDelete);
-                if (!hasTaskIndex(taskIndex)) {
-                    throw new DukeException("Eh, you got that task number meh?");
-                } else {
-                    ui.printDeletedTaskMessage(tasks.get(taskIndex - 1), dialogContainer, userDialog);
-                    tasks.remove(taskIndex - 1);
-                }
-            } catch (NumberFormatException e) {
-                throw new DukeException("Eh, you enter your task number correctly anot?");
-            }
+            parseAndExecuteDeleteCommand(dialogContainer, userDialog);
             break;
         case FIND:
-            String keyword = input.substring(4).trim();
-            TaskList newTaskList = getMatchingTasks(keyword);
-            ui.printTasks(newTaskList, "Boss ah, this one all your tasks matching '" + keyword + "' : ",
-                    "Boss, no matching tasks ah", dialogContainer, userDialog);
-            if (keyword.equals("")) {
-                throw new DukeException("Eh your keyword cannot be empty lah!");
-            }
+            parseAndExecuteFindCommand(dialogContainer, userDialog);
             break;
         default:
-            throw new DukeException("What talking you");
+            throw new DukeException(DEFAULT_ERROR_MESSAGE);
         }
+    }
+
+    private void parseAndExecuteListCommand(TaskList tasks, String listTasksMessage,
+                                            String noTasksMessage, VBox dialogContainer, DialogBox userDialog) {
+        ui.printTasks(tasks, listTasksMessage, noTasksMessage, dialogContainer, userDialog);
+    }
+
+    private void parseAndExecuteEvent(VBox dialogContainer, DialogBox userDialog) throws DukeException {
+        boolean isEmptyEvent = isEmptyTask(5, EVENT_COMMAND_REGEX);
+        boolean isIncorrectEventRange = isInvalidTaskInput(5, EVENT_COMMAND_REGEX);
+        if (isEmptyEvent) {
+            throw new DukeException(EMPTY_TASK_NAME_ERROR_MESSAGE);
+        }
+        if (isIncorrectEventRange) {
+            throw new DukeException(EMPTY_EVENT_RANGE_ERROR_MESSAGE);
+        }
+        Event event = getEventFromInput(5, EVENT_COMMAND_REGEX);
+        this.addTask(event);
+        ui.printAddedTaskMessage(event, dialogContainer, userDialog);
+        ui.printTaskCountMessage(tasks, dialogContainer);
+    }
+
+    private Event getEventFromInput(int beginIndex, String commandRegex) {
+        String[] splitEvent = input.substring(beginIndex).split(commandRegex, 3);
+        LocalDateTime eventDateTime = DateTimeParser.changeStringToParsingDateTime(splitEvent[1].trim());
+        return new Event(splitEvent[0].trim(), false, eventDateTime);
+    }
+
+    private Deadline getDeadlineFromInput(int beginIndex, String commandRegex) {
+        String[] splitDeadline = input.substring(beginIndex).split(commandRegex, 3);
+        LocalDateTime deadlineDateTime = DateTimeParser.changeStringToParsingDateTime(splitDeadline[1].trim());
+        return new Deadline(splitDeadline[0].trim(), false, deadlineDateTime);
+    }
+
+    private void parseAndExecuteDeadline(VBox dialogContainer, DialogBox userDialog) throws DukeException {
+        boolean isEmptyDeadline = isEmptyTask(8, DEADLINE_COMMAND_REGEX);
+        boolean isIncorrectDeadlineDate = isInvalidTaskInput(8, DEADLINE_COMMAND_REGEX);
+        if (isEmptyDeadline) {
+            throw new DukeException(EMPTY_TASK_NAME_ERROR_MESSAGE);
+        } else if (isIncorrectDeadlineDate) {
+            throw new DukeException(EMPTY_DEADLINE_ERROR_MESSAGE);
+        }
+        try {
+            Deadline deadline = getDeadlineFromInput(8, DEADLINE_COMMAND_REGEX);
+            this.addTask(deadline);
+            ui.printAddedTaskMessage(deadline, dialogContainer, userDialog);
+            ui.printTaskCountMessage(tasks, dialogContainer);
+        } catch (DateTimeParseException e) {
+            throw new DukeException(INVALID_INPUT_DEADLINE_ERROR_MESSAGE);
+        }
+    }
+
+    private void parseAndExecuteMarkCommand(VBox dialogContainer, DialogBox userDialog) throws DukeException {
+        String markIndexString = input.substring(4).trim();
+        try {
+            int taskIndex = Integer.parseInt(markIndexString);
+            if (!hasTaskIndex(taskIndex)) {
+                throw new DukeException(INVALID_TASK_NUMBER_ERROR_MESSAGE);
+            }
+            if (!this.tasks.get(taskIndex - 1).canChangeIsDone(true)) {
+                throw new DukeException(TASK_ALREADY_COMPLETED_ERROR_MESSAGE);
+            }
+            this.tasks.get(taskIndex - 1).changeIsDone(true);
+            ui.printMarkedMessage(this.tasks.get(taskIndex - 1), dialogContainer, userDialog);
+        } catch (NumberFormatException e) {
+            throw new DukeException(INCORRECT_TASK_NUMBER_ERROR_MESSAGE);
+        }
+    }
+
+    private void parseAndExecuteUnmarkCommand(VBox dialogContainer, DialogBox userDialog) throws DukeException {
+        String unmarkIndexString = input.substring(6).trim();
+        try {
+            int taskIndex = Integer.parseInt(unmarkIndexString);
+            if (!hasTaskIndex(taskIndex)) {
+                throw new DukeException(INVALID_TASK_NUMBER_ERROR_MESSAGE);
+            }
+            if (!this.tasks.get(taskIndex - 1).canChangeIsDone(false)) {
+                throw new DukeException(TASK_ALREADY_UNMARKED_ERROR_MESSAGE);
+            }
+            this.tasks.get(taskIndex - 1).changeIsDone(false);
+            ui.printUnmarkedMessage(this.tasks.get(taskIndex - 1), dialogContainer, userDialog);
+        } catch (NumberFormatException e) {
+            throw new DukeException(INCORRECT_TASK_NUMBER_ERROR_MESSAGE);
+        }
+    }
+
+    private void parseAndExecuteDeleteCommand(VBox dialogContainer, DialogBox userDialog) throws DukeException {
+        String taskIndexToDelete = input.substring(6).trim();
+        try {
+            int taskIndex = Integer.parseInt(taskIndexToDelete);
+            if (!hasTaskIndex(taskIndex)) {
+                throw new DukeException(INVALID_TASK_NUMBER_ERROR_MESSAGE);
+            }
+            ui.printDeletedTaskMessage(tasks.get(taskIndex - 1), dialogContainer, userDialog);
+            tasks.remove(taskIndex - 1);
+        } catch (NumberFormatException e) {
+            throw new DukeException(INCORRECT_TASK_NUMBER_ERROR_MESSAGE);
+        }
+    }
+
+    private void parseAndExecuteFindCommand(VBox dialogContainer, DialogBox userDialog) throws DukeException {
+        String keyword = input.substring(4).trim();
+        if (keyword.equals("")) {
+            throw new DukeException(EMPTY_KEYWORD_ERROR_MESSAGE);
+        }
+        TaskList newTaskList = getMatchingTasks(keyword);
+        ui.printTasks(newTaskList, FIND_TASKS_PREFIX_MESSAGE + keyword
+                + FIND_TASKS_SUFFIX_MESSAGE, NO_MATCHING_TASKS_MESSAGE, dialogContainer, userDialog);
+    }
+
+    private void parseAndExecuteTodo(VBox dialogContainer, DialogBox userDialog) throws DukeException {
+        String todoDescription = input.substring(4).trim();
+        if (todoDescription.equals("")) {
+            throw new DukeException(EMPTY_TASK_NAME_ERROR_MESSAGE);
+        }
+        Todo todo = new Todo(todoDescription, false);
+        this.addTask(todo);
+        ui.printAddedTaskMessage(todo, dialogContainer, userDialog);
+        ui.printTaskCountMessage(tasks, dialogContainer);
+    }
+
+    private boolean isEmptyTask(int beginIndex, String commandRegex) {
+        String[] splitTask = input.substring(beginIndex).split(commandRegex, 3);
+        return splitTask.length == 2 && splitTask[0].trim().equals("");
+    }
+
+    private boolean isInvalidTaskInput(int beginIndex, String commandRegex) {
+        String[] splitInput = input.substring(beginIndex).split(commandRegex, 3);
+        return splitInput.length != 2 || splitInput[0].trim().equals("")
+                || splitInput[1].trim().equals("");
+
     }
 }
