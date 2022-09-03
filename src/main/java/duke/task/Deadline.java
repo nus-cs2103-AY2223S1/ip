@@ -28,7 +28,6 @@ public class Deadline extends Task {
      */
     public Deadline(String description, boolean isDone, String by) {
         super(description, isDone);
-        assert by.isEmpty();
         this.by = by;
     }
 

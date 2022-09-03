@@ -48,10 +48,6 @@ application {
     mainClassName = "duke.Launcher"
 }
 
-run {
-    enableAssertions = true
-}
-
 shadowJar {
     archiveBaseName = "duke"
     archiveClassifier = null

@@ -11,7 +11,6 @@ public class Task {
      * Creates a Task object
      */
     public Task(String description) {
-        assert description.isEmpty();
         this.description = description;
         this.isDone = false;
     }
@@ -20,7 +19,6 @@ public class Task {
      * Creates a Task object and set isDone property
      */
     public Task(String description, boolean isDone) {
-        assert description.isEmpty();
         this.description = description;
         this.isDone = isDone;
     }
