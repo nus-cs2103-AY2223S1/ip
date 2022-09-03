@@ -1,5 +1,18 @@
 package duke;
 
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.layout.Region;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 
 import duke.command.Command;
@@ -17,6 +30,11 @@ import duke.ui.Ui;
  */
 public class Duke {
     /**
+     * Represents a Ui object.
+     */
+    private static Ui ui;
+
+    /**
      * Represents a Storage object.
      */
     private Storage storage;
@@ -27,9 +45,10 @@ public class Duke {
     private TaskList tasks;
 
     /**
-     * Represents a Ui object.
+     * Represents Duke's response.
      */
-    private static Ui ui;
+    private String response;
+
 
     /**
      * A constructor to initialize a Duke object.
@@ -38,7 +57,7 @@ public class Duke {
      * @param filePath The filePath to where the data is stored.
      */
     public Duke(String filePath) {
-        ui = new Ui();
+        ui = new Ui(this);
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.loadData());
@@ -54,8 +73,8 @@ public class Duke {
     public void run() {
         ui.printGreetings();
         boolean isExit = false;
-        while(!isExit) {
-            try{
+        while (!isExit) {
+            try {
                 String fullCommand = ui.getInput();
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
@@ -82,5 +101,32 @@ public class Duke {
      */
     public static void main(String[] args) {
         new Duke("data/duke.txt").run();
+    }
+
+    public void setResponse(String response) {
+        this.response = response;
+    }
+
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            c.execute(tasks, ui, storage);
+        } catch (ArrayIndexOutOfBoundsException | DukeException e) {
+            ui.printError(e);
+        } catch (IOException e) {
+            ui.printTab("Can't save to duke.txt. There is an invalid data, please edit accordingly");
+            this.setResponse("Can't save to duke.txt. There is an invalid data, please edit accordingly");
+        } catch (Exception e) {
+            try {
+                storage.updateData(tasks);
+            } catch (IOException e1) {
+                e1.getMessage();
+            }
+        }
+        return response;
     }
 }

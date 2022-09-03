@@ -1,5 +1,6 @@
 package duke.ui;
 
+import duke.Duke;
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -25,12 +26,17 @@ public class Ui {
      * Scanner object.
      */
     private Scanner sc;
+    /**
+     * Duke object.
+     */
+    private Duke duke;
 
     /**
      * A constructor to initialize Ui.
      */
-    public Ui() {
+    public Ui(Duke duke) {
         this.sc = new Scanner(System.in);
+        this.duke = duke;
     }
 
     /**
@@ -82,6 +88,8 @@ public class Ui {
         String temp = String.format("Now you have %d tasks in the list.", tasks.size());
         printTab(temp);
         showLine();
+        String response = "Got it. I've added this task:\n" + t + "\n" + temp;
+        duke.setResponse(response);
     }
 
     /**
@@ -92,6 +100,7 @@ public class Ui {
         printTab("Bye. Hope to see you again soon!");
         showLine();
         System.out.println();
+        duke.setResponse("Bye. Hope to see you again soon!");
     }
 
     /**
@@ -103,6 +112,7 @@ public class Ui {
         showLine();
         printTab(e.getMessage());
         showLine();
+        duke.setResponse(e.getMessage());
     }
 
     /**
@@ -115,6 +125,7 @@ public class Ui {
         printTab("Nice! I've marked this task as done:");
         printTab("  " + t);
         showLine();
+        duke.setResponse("Nice! I've marked this task as done:\n" + t);
     }
 
     /**
@@ -127,6 +138,7 @@ public class Ui {
         printTab("OK, I've marked this task as not done yet:");
         printTab("  " + t);
         showLine();
+        duke.setResponse("OK, I've marked this task as not done yet:\n" + t);
     }
 
     /**
@@ -137,12 +149,15 @@ public class Ui {
     public void printCurrentList(TaskList tasks) {
         showLine();
         printTab("Here are the tasks in your list:");
+        String listOfTasks = "";
         for (int i = 0; i < tasks.size(); i++) {
             Task t = tasks.get(i);
             String temp = String.format("%d. %s", i + 1, t);
             printTab(temp);
+            listOfTasks += "\n" + temp;
         }
         showLine();
+        duke.setResponse("Here are the tasks in your list:\n" + listOfTasks);
     }
 
     /**
@@ -154,11 +169,14 @@ public class Ui {
     public void printMatchingList(TaskList tasks, List<Integer> indexArr) {
         showLine();;
         printTab("Here are the matching tasks in your list:");
+        String listOfTasks = "";
         for (int i = 0; i < indexArr.size(); i++) {
             Task t = tasks.get(indexArr.get(i));
             String temp = String.format("%d. %s", i + 1, t);
             printTab(temp);
+            listOfTasks += "\n" + temp;
         }
+        duke.setResponse("Here are the matching tasks in your list:\n" + listOfTasks);
     }
 
     /**
@@ -186,5 +204,6 @@ public class Ui {
         String temp = String.format("Now you have %d tasks in the list.", tasks.size());
         printTab(temp);
         showLine();
+        duke.getResponse("Noted. I've removed this task:\n" + t + "\n" + temp);
     }
 }
