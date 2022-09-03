@@ -25,7 +25,8 @@ public class TimeStamp {
         // format of the date and time information in the input
         DateTimeFormatter format = DateTimeFormatter.ofPattern("d/M/yyyy-H:mm");
         try {
-            return new TimeStamp(LocalDateTime.parse(dateTime.strip(), format));
+            LocalDateTime timestamp = LocalDateTime.parse(dateTime.strip(), format);
+            return new TimeStamp(timestamp);
         } catch (DateTimeParseException e) {
             throw new RenException("Please indicate date and time properly. (20/8/2022-15:37)");
         }
@@ -41,7 +42,8 @@ public class TimeStamp {
         // format of the date and time information in the input
         DateTimeFormatter format = DateTimeFormatter.ofPattern("E, d MMMM yyyy h:mm a");
         try {
-            return new TimeStamp(LocalDateTime.parse(dateTime.strip(), format));
+            LocalDateTime timestamp = LocalDateTime.parse(dateTime.strip(), format);
+            return new TimeStamp(timestamp);
         } catch (DateTimeParseException e) {
             System.out.println("fromFile failed");
             return new TimeStamp(LocalDateTime.now());
@@ -55,6 +57,7 @@ public class TimeStamp {
      */
     @Override
     public String toString() {
-        return " " + timestamp.format(DateTimeFormatter.ofPattern("E, d MMMM yyyy h:mm a"));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E, d MMMM yyyy h:mm a");
+        return " " + timestamp.format(formatter);
     }
 }
