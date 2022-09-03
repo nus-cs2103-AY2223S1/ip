@@ -1,15 +1,14 @@
 package duke;
 
-import duke.task.Task;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Scanner;
 import java.util.List;
-
+import java.util.Scanner;
 import java.util.stream.Collectors;
+
+import duke.task.Task;
 
 /**
  * Represents a {@code List} of the {@code Tasks}
@@ -30,7 +29,9 @@ public class TaskList {
             Scanner fileScanner = storage.getScannerForTasksFile();
             while (fileScanner.hasNextLine()) {
                 parser.parseUserCommand(fileScanner.nextLine(), parser.breakLoopIndicator);
-                if (parser.breakLoopIndicator.getIsExitCommand()) break;
+                if (parser.breakLoopIndicator.getIsExitCommand()) {
+                    break;
+                }
             }
             fileScanner.close();
         } catch (FileNotFoundException e) {
@@ -95,8 +96,8 @@ public class TaskList {
 
     // use LinkedHashMap to guarantee order of elements is insertion order
     private LinkedHashMap<Integer, Task> getMappedIndexToUserText(List<Task> taskList) {
-        return taskList.stream().collect(LinkedHashMap::new,
-                (hashMap, streamElement) -> hashMap.put(hashMap.size() + 1, streamElement), HashMap::putAll);
+        return taskList.stream().collect(LinkedHashMap::new, (
+                hashMap, streamElement) -> hashMap.put(hashMap.size() + 1, streamElement), HashMap::putAll);
     }
 
     private String convertTaskListToString(List<Task> taskListToConvert) {

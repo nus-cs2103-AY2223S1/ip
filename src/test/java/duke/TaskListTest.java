@@ -1,9 +1,6 @@
 package duke;
 
-import duke.task.Event;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,19 +8,23 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import duke.task.Event;
 
 class TaskListTest {
-    private final Storage storage = new Storage(Duke.filePath);
+    private static final File FILE = new File(Duke.FILE_PATH);
+    private final Storage storage = new Storage(Duke.FILE_PATH);
     private final TaskList taskList = new TaskList(storage);
-    private static final File file = new File(Duke.filePath);
 
     /**
      * Deletes the file that was created.
      */
     @AfterAll
     static void tearDown() {
-        if (file.exists() && !file.delete()) {
+        if (FILE.exists() && !FILE.delete()) {
             throw new RuntimeException("Could not delete file");
         }
     }
@@ -46,7 +47,7 @@ class TaskListTest {
     @Test
     public void addToTaskList_newTask_addSuccessfully() throws FileNotFoundException {
         assertEquals("[E][X] project meeting (at: 31 Dec 2023 23:59)", taskList.getTaskString(0));
-        Scanner fileScanner = new Scanner(file);
+        Scanner fileScanner = new Scanner(FILE);
         assertEquals("event project meeting /at 2023-12-31 23:59", fileScanner.nextLine());
     }
 
@@ -58,7 +59,7 @@ class TaskListTest {
     public void markTaskAsDone_eventTask_markSuccessfully() throws FileNotFoundException {
         taskList.markTaskAsDone(0);
         assertEquals("[E][X] project meeting (at: 31 Dec 2023 23:59)", taskList.getTaskString(0));
-        Scanner fileScanner = new Scanner(file);
+        Scanner fileScanner = new Scanner(FILE);
         assertEquals("event project meeting /at 2023-12-31 23:59", fileScanner.nextLine());
         assertEquals("mark 1", fileScanner.nextLine());
     }

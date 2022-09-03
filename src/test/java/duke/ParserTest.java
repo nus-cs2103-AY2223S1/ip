@@ -1,14 +1,16 @@
 package duke;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 class ParserTest {
-    private final Storage storage = new Storage(Duke.filePath);
+    private final Storage storage = new Storage(Duke.FILE_PATH);
     private final TaskList taskList = new TaskList(storage);
     private final Parser parser = new Parser(taskList);
 
@@ -17,39 +19,40 @@ class ParserTest {
      */
     @AfterEach
     void tearDown() {
-        final File file = new File(Duke.filePath);
+        final File file = new File(Duke.FILE_PATH);
         if (file.exists() && !file.delete()) {
             throw new RuntimeException("Could not delete file");
         }
     }
 
-//    featureUnderTest_testScenario_expectedBehavior
+    //    featureUnderTest_testScenario_expectedBehavior
 
     /**
      * Tests all possible commands, except find. Improper input and improper commands that throw exceptions are also
      * tested for.
+     *
      * @throws CustomMessageException for improper input
      */
     @Test
     public void parseUserCommand_actualCommand_performsAction() throws CustomMessageException {
-        assertEquals("     Got it. I've added this task:\n" +
-                "       [T][ ] borrow book\n" +
-                "     Now you have 1 task in the list.\n", parser.parseUserCommand(
+        assertEquals("     Got it. I've added this task:\n"
+                + "       [T][ ] borrow book\n"
+                + "     Now you have 1 task in the list.\n", parser.parseUserCommand(
                 "todo borrow book", parser.breakLoopIndicator));
-        assertEquals("     Here are the tasks in your list:\n" +
-                        "      1.[T][ ] borrow book\n",
+        assertEquals("     Here are the tasks in your list:\n"
+                        + "      1.[T][ ] borrow book\n",
                 parser.parseUserCommand("list", parser.breakLoopIndicator));
-        assertEquals("     Nice! I've marked this task as done:\n" +
-                        "       [T][X] borrow book\n",
+        assertEquals("     Nice! I've marked this task as done:\n"
+                        + "       [T][X] borrow book\n",
                 parser.parseUserCommand("mark 1", parser.breakLoopIndicator));
-        assertEquals("     Got it. I've added this task:\n" +
-                        "       [D][ ] return book (by: 24 Aug 2022 14:00)\n" +
-                        "     Now you have 2 tasks in the list.\n",
+        assertEquals("     Got it. I've added this task:\n"
+                        + "       [D][ ] return book (by: 24 Aug 2022 14:00)\n"
+                        + "     Now you have 2 tasks in the list.\n",
                 parser.parseUserCommand("deadline return book /by 2022-08-24 14:00",
                         parser.breakLoopIndicator));
-        assertEquals("     Got it. I've added this task:\n" +
-                        "       [E][ ] project meeting (at: 31 Dec 2023 23:59)\n" +
-                        "     Now you have 3 tasks in the list.\n",
+        assertEquals("     Got it. I've added this task:\n"
+                        + "       [E][ ] project meeting (at: 31 Dec 2023 23:59)\n"
+                        + "     Now you have 3 tasks in the list.\n",
                 parser.parseUserCommand("event project meeting /at 2023-12-31 23:59",
                         parser.breakLoopIndicator));
 
@@ -61,20 +64,20 @@ class ParserTest {
         CustomMessageException blahThrows = assertThrows(CustomMessageException.class, () -> parser.parseUserCommand(
                 "blah", parser.breakLoopIndicator), "Expected parses to throw, but it didn't");
 
-        assertTrue(blahThrows.getMessage().contains("☹ OOPS!!! I'm sorry, but I don't know what that " +
-                "means :-("));
+        assertTrue(blahThrows.getMessage().contains("☹ OOPS!!! I'm sorry, but I don't know what that "
+                + "means :-("));
 
-        assertEquals("     Noted. I've removed this task:\n" +
-                        "       [D][ ] return book (by: 24 Aug 2022 14:00)\n" +
-                        "     Now you have 2 tasks in the list.\n",
+        assertEquals("     Noted. I've removed this task:\n"
+                        + "       [D][ ] return book (by: 24 Aug 2022 14:00)\n"
+                        + "     Now you have 2 tasks in the list.\n",
                 parser.parseUserCommand("delete 2", parser.breakLoopIndicator));
-        assertEquals("     Here are the tasks in your list:\n" +
-                        "      1.[T][X] borrow book\n" +
-                        "      2.[E][ ] project meeting (at: 31 Dec 2023 23:59)\n",
+        assertEquals("     Here are the tasks in your list:\n"
+                        + "      1.[T][X] borrow book\n"
+                        + "      2.[E][ ] project meeting (at: 31 Dec 2023 23:59)\n",
                 parser.parseUserCommand("list", parser.breakLoopIndicator));
-        assertEquals("     Got it. I've added this task:\n" +
-                        "       [D][ ] return book (by: 24 Aug 2022 14:00)\n" +
-                        "     Now you have 3 tasks in the list.\n",
+        assertEquals("     Got it. I've added this task:\n"
+                        + "       [D][ ] return book (by: 24 Aug 2022 14:00)\n"
+                        + "     Now you have 3 tasks in the list.\n",
                 parser.parseUserCommand("deadline return book /by 2022-08-24 14:00",
                         parser.breakLoopIndicator));
     }

@@ -1,12 +1,12 @@
 package duke;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * A class to parse user input
@@ -20,6 +20,7 @@ public class Parser {
 
     /**
      * Takes in a list of the tasks where the parsed tasks will be stored.
+     *
      * @param taskList A list of the tasks
      */
     public Parser(TaskList taskList) {
@@ -41,7 +42,8 @@ public class Parser {
 
     /**
      * Returns a {@code String} representing the parsed input
-     * @param command The user input
+     *
+     * @param command            The user input
      * @param breakLoopIndicator The {@code BreakLoopIndicator} instance
      * @return A {@code String} representing the input
      * @throws CustomMessageException if invalid input is given
@@ -53,71 +55,71 @@ public class Parser {
         try {
             taskType = Command.valueOf(commands[0].toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new CustomMessageException((" ☹ OOPS!!! I'm sorry, but I " +
-                    "don't know what that means :-(\n"));
+            throw new CustomMessageException((" ☹ OOPS!!! I'm sorry, but I "
+                    + "don't know what that means :-(\n"));
         }
         commands[0] = "";
         int index;
         String toPrint;
         switch (taskType) {
-            case BYE:
-                toPrint = "";
-                breakLoopIndicator.setIsExitCommand();
-                break;
-            case LIST:
-                toPrint = (Ui.indentedMessage("Here are the tasks in your list:"
-                        + taskList.getTextRepresentationOfAllTasks()));
-                break;
-            case MARK:
-                if (commands.length == 1) {
-                    throw new CustomMessageException((generateEmptyActionMessage("mark")));
-                }
-                index = Integer.parseInt(commands[1]) - 1;
-                taskList.markTaskAsDone(index);
-                toPrint = "Nice! I've marked this task as done:\n       " + taskList.getTaskString(index);
-                toPrint = (Ui.indentedMessage(toPrint));
-                break;
-            case UNMARK:
-                if (commands.length == 1) {
-                    throw new CustomMessageException(generateEmptyActionMessage("unmark"));
-                }
-                index = Integer.parseInt(commands[1]) - 1;
-                taskList.markTaskAsNotDone(index);
-                toPrint = "OK, I've marked this task as not done yet:\n       "
-                        + taskList.getTaskString(index);
-                toPrint = (Ui.indentedMessage(toPrint));
-                break;
-            case DELETE:
-                if (commands.length == 1) {
-                    throw new CustomMessageException(
-                            Ui.indentedMessage(generateEmptyActionMessage("delete")));
-                }
-                index = Integer.parseInt(commands[1]) - 1;
-                String deletedTaskDescription = taskList.getTaskString(index);
-                taskList.removeTask(index);
-                toPrint = "Noted. I've removed this task:\n       "
-                        + deletedTaskDescription + "\n     " + generateTasksNumberMessage();
-                toPrint = (Ui.indentedMessage(toPrint));
-                break;
-            case TODO:
-                toPrint = parseNewTaskCommand(command, commands.length, Command.TODO, "");
-                break;
-            case DEADLINE:
-                toPrint = parseNewTaskCommand(command, commands.length, Command.DEADLINE, " /by ");
-                break;
-            case EVENT:
-                toPrint = parseNewTaskCommand(command, commands.length, Command.EVENT, " /at ");
-                break;
-            case FIND:
-                if (commands.length == 1) {
-                    throw new CustomMessageException(generateEmptyActionMessage("find"));
-                }
-                toPrint = Ui.indentedMessage("Here are the matching tasks in your list:"
-                        + taskList.getTextRepresentationOfKeywordTasks(commands[1]));
-                break;
-            default:
-                throw new CustomMessageException((
-                        " ☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n"));
+        case BYE:
+            toPrint = "";
+            breakLoopIndicator.setIsExitCommand();
+            break;
+        case LIST:
+            toPrint = (Ui.indentedMessage("Here are the tasks in your list:"
+                    + taskList.getTextRepresentationOfAllTasks()));
+            break;
+        case MARK:
+            if (commands.length == 1) {
+                throw new CustomMessageException((generateEmptyActionMessage("mark")));
+            }
+            index = Integer.parseInt(commands[1]) - 1;
+            taskList.markTaskAsDone(index);
+            toPrint = "Nice! I've marked this task as done:\n       " + taskList.getTaskString(index);
+            toPrint = (Ui.indentedMessage(toPrint));
+            break;
+        case UNMARK:
+            if (commands.length == 1) {
+                throw new CustomMessageException(generateEmptyActionMessage("unmark"));
+            }
+            index = Integer.parseInt(commands[1]) - 1;
+            taskList.markTaskAsNotDone(index);
+            toPrint = "OK, I've marked this task as not done yet:\n       "
+                    + taskList.getTaskString(index);
+            toPrint = (Ui.indentedMessage(toPrint));
+            break;
+        case DELETE:
+            if (commands.length == 1) {
+                throw new CustomMessageException(
+                        Ui.indentedMessage(generateEmptyActionMessage("delete")));
+            }
+            index = Integer.parseInt(commands[1]) - 1;
+            String deletedTaskDescription = taskList.getTaskString(index);
+            taskList.removeTask(index);
+            toPrint = "Noted. I've removed this task:\n       "
+                    + deletedTaskDescription + "\n     " + generateTasksNumberMessage();
+            toPrint = (Ui.indentedMessage(toPrint));
+            break;
+        case TODO:
+            toPrint = parseNewTaskCommand(command, commands.length, Command.TODO, "");
+            break;
+        case DEADLINE:
+            toPrint = parseNewTaskCommand(command, commands.length, Command.DEADLINE, " /by ");
+            break;
+        case EVENT:
+            toPrint = parseNewTaskCommand(command, commands.length, Command.EVENT, " /at ");
+            break;
+        case FIND:
+            if (commands.length == 1) {
+                throw new CustomMessageException(generateEmptyActionMessage("find"));
+            }
+            toPrint = Ui.indentedMessage("Here are the matching tasks in your list:"
+                    + taskList.getTextRepresentationOfKeywordTasks(commands[1]));
+            break;
+        default:
+            throw new CustomMessageException((
+                    " ☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n"));
         }
         return toPrint.equals("") ? "" : toPrint + "\n";
     }

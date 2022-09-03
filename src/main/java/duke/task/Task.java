@@ -11,11 +11,11 @@ public abstract class Task {
      */
     // original access modifier was protected
     protected final String description;
-    private boolean isDone;
     /**
      * The {@code Command} type of the {@code Task}
      */
     protected final Command taskCommand;
+    private boolean isDone;
 
     /**
      * Constructs the {@code Task}
@@ -64,7 +64,7 @@ public abstract class Task {
      * @param index The index of the task
      * @return A {@code String} representing the command
      */
-    abstract public String getFileStorageString(int index);
+    public abstract String getFileStorageString(int index);
 
     public boolean isMatchingKeywordInDescription(String keyword) {
         return description.contains(keyword);

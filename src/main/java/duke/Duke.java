@@ -4,26 +4,38 @@ package duke;
  *
  */
 public class Duke {
+    public static final String FILE_PATH = "tasks.txt";
+
     private final Ui ui = new Ui();
     private TaskList taskList = null;
+
     /**
      * The file path at where the tasks are stored
      */
-    public static String filePath = "tasks.txt";
 
     public Duke() {}
 
-        /**
-         * Constructs an instance with the file path
-         * @param filePath The path to the file
-         */
+    /**
+     * Constructs an instance with the file path
+     *
+     * @param filePath The path to the file
+     */
     public Duke(String filePath) {
         Storage storage = new Storage(filePath);
-//        try {
-            taskList = new TaskList(storage);
-//        } catch (CustomMessageException e) {
-//            ui.showLoadingError();
-//        }
+        //        try {
+        taskList = new TaskList(storage);
+        //        } catch (CustomMessageException e) {
+        //            ui.showLoadingError();
+        //        }
+    }
+
+    /**
+     * Tne driver method
+     *
+     * @param args The command-line arguments
+     */
+    public static void main(String[] args) {
+        new Duke(Duke.FILE_PATH).run();
     }
 
     /**
@@ -41,8 +53,8 @@ public class Duke {
                     ui.showExitMessage();
                     break;
                 }
-//                Command c = Parser.parse(fullCommand);
-//                c.execute(tasks, ui, storage);
+            //                Command c = Parser.parse(fullCommand);
+            //                c.execute(tasks, ui, storage);
             } catch (CustomMessageException e) {
                 ui.showError(e.getMessage());
             } finally {
@@ -58,13 +70,5 @@ public class Duke {
     // made this public so that it can be used in MainWindow
     public String getResponse(String input) {
         return "Duke heard: " + input;
-    }
-
-    /**
-     * Tne driver method
-     * @param args The command-line arguments
-     */
-    public static void main(String[] args) {
-        new Duke(Duke.filePath).run();
     }
 }
