@@ -32,6 +32,6 @@ public class TodoCommand extends Command {
         ui.showMessage("I've added this task.")
                 .showMessage(task.toString())
                 .showTaskListSize(tasks);
-        storage.save(tasks);
+        storage.saveTasks(tasks);
     }
 }

@@ -23,7 +23,7 @@ public class Duke {
         this.ui = new Ui();
         TaskList tasks;
         try {
-            tasks = storage.load();
+            tasks = storage.loadTasks();
         } catch (IOException e) {
             tasks = new TaskList();
         }
@@ -32,7 +32,7 @@ public class Duke {
 
     public String getResponse(String input) {
         try {
-            Command command = Parser.parse(input);
+            Command command = Parser.parseString(input);
             command.execute(tasks, storage, ui);
             return ui.flush();
         } catch (DukeException e) {

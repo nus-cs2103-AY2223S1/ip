@@ -26,7 +26,7 @@ public class Storage {
      * @throws IOException if an I/O error occurs reading the file
      * @since Level-7
      */
-    public TaskList load() throws IOException {
+    public TaskList loadTasks() throws IOException {
         List<Task> tasks = Files.readAllLines(path)
                 .stream()
                 .map(Task::deserialize)
@@ -41,7 +41,7 @@ public class Storage {
      * @throws IOException if an I/O error occurs writing to the file
      * @since Level-7
      */
-    public void save(TaskList tasks) throws IOException {
+    public void saveTasks(TaskList tasks) throws IOException {
         if (Files.notExists(path)) {
             Files.createDirectories(path.getParent());
             Files.createFile(path);
