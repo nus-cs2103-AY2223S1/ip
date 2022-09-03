@@ -59,13 +59,18 @@ public abstract class Task {
     public abstract boolean isDateEqual(LocalDate date);
 
     /**
-     * Returns true when the description contains the queried keyword.
+     * Returns true when the description contains the queried keywords.
      *
-     * @param query The keyword queried.
-     * @return The boolean value of whether the description contains the keyword.
+     * @param queries The keywords queried.
+     * @return The boolean value of whether the description contains any keyword.
      */
-    public boolean isQueryPresent(String query) {
-        return this.description.contains(query);
+    public boolean isQueriesPresent(String[] queries) {
+        for (String query : queries) {
+            if (this.description.contains(query)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

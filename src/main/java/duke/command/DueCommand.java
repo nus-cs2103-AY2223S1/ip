@@ -1,7 +1,7 @@
 package duke.command;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.List;
 
 import duke.FileStorage;
 import duke.Ui;
@@ -30,7 +30,7 @@ public class DueCommand extends Command {
      */
     @Override
     public String execute(TaskList list, FileStorage storage, Ui ui) {
-        ArrayList<Task> dueTasks = list.getDueTasks(date);
+        List<Task> dueTasks = list.getDueTasks(date);
         return ui.getDueTasksMessage(dueTasks);
     }
 }
