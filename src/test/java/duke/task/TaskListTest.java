@@ -21,6 +21,15 @@ public class TaskListTest {
         assertEquals("", taskList.toString());
 
         try {
+            taskList.undo();
+            fail();
+        } catch (DukeException dukeException) {
+            assertEquals("There are no more commands to undo :(", dukeException.getMessage());
+        } catch (Exception exception) {
+            fail();
+        }
+
+        try {
             Task task = new ToDo("todo", false);
             taskList.addTask(task);
             arrayList.add(task);
@@ -124,5 +133,29 @@ public class TaskListTest {
 
         assertEquals(2, taskList.size());
         assertEquals("1. [T][X] todo\n2. [E][ ] event (at: Dec 12, 2012)\n", taskList.toString());
+
+        try {
+            taskList.undo();
+            assertEquals(3, taskList.size());
+            assertEquals("1. [T][X] todo\n2. [D][X] deadline (by: Dec 12, 2022)\n3. [E][ ] event (at: Dec 12, 2012)\n",
+                    taskList.toString());
+            assertEquals("1. [T][X] todo\n2. [D][X] deadline (by: Dec 12, 2022)\n",
+                    taskList.filter(x -> x.getStatusIcon() == 'X').toString());
+            assertEquals("1. [D][X] deadline (by: Dec 12, 2022)\n2. [E][ ] event (at: Dec 12, 2012)\n",
+                    taskList.filter(x -> x.getTaskTypeIcon() != 'T').toString());
+            assertEquals("1. [T][X] todo\n2. [D][X] deadline (by: Dec 12, 2022)\n",
+                    taskList.filter(x -> x.getDescription().contains("d")).toString());
+        } catch (Exception exception) {
+            fail();
+        }
+
+        try {
+            taskList.undo();
+            assertEquals(3, taskList.size());
+            assertEquals("1. [T][X] todo\n2. [D][X] deadline (by: Dec 12, 2022)\n3. [E][X] event (at: Dec 12, 2012)\n",
+                    taskList.toString());
+        } catch (Exception exception) {
+            fail();
+        }
     }
 }

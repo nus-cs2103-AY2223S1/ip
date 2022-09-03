@@ -14,6 +14,7 @@ import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnMarkCommand;
+import duke.command.UndoCommand;
 import duke.common.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
@@ -49,6 +50,9 @@ public abstract class Parser {
             break;
         case "list":
             command = new ListCommand();
+            break;
+        case "undo":
+            command = new UndoCommand();
             break;
         case "find":
             command = new FindCommand(Parser.parseArgument(args, "find")

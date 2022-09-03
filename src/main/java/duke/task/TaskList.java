@@ -12,13 +12,15 @@ import duke.common.DukeException;
  * @author Rama Aryasuta Pangestu
  */
 public class TaskList {
-    private final ArrayList<Task> tasks;
+    private final ArrayList<ArrayList<Task>> previousTasks;
+    private ArrayList<Task> tasks;
 
     /**
      * Constructs the list of tasks which is initially empty.
      */
     public TaskList() {
         this.tasks = new ArrayList<Task>();
+        this.previousTasks = new ArrayList<>();
     }
 
     /**
@@ -28,6 +30,30 @@ public class TaskList {
      */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
+        this.previousTasks = new ArrayList<>();
+    }
+
+    /**
+     * Constructs a new version of the list of tasks.
+     */
+    private void createNewVersion() {
+        ArrayList<Task> newVersion = new ArrayList<Task>();
+        for (int i = 0; i < tasks.size(); i += 1) {
+            newVersion.add(tasks.get(i).clone());
+        }
+        previousTasks.add(newVersion);
+    }
+
+    /**
+     * Reverts to the last version of the task list.
+     */
+    public void undo() throws DukeException {
+        if (previousTasks.size() == 0) {
+            throw new DukeException("There are no more commands to undo :(");
+        }
+        int index = previousTasks.size() - 1;
+        tasks = new ArrayList<>(previousTasks.get(index));
+        previousTasks.remove(index);
     }
 
     /**
@@ -55,8 +81,8 @@ public class TaskList {
      * @return a <code>TaskList</code> containing tasks in which the specified predicate returns true
      */
     public TaskList filter(Predicate<Task> predicate) {
-        return new TaskList(
-                tasks.stream().filter(predicate).collect(Collectors.toCollection(ArrayList::new)));
+        return new TaskList(tasks.stream().filter(predicate)
+                .collect(Collectors.toCollection(ArrayList::new)));
     }
 
     /**
@@ -65,6 +91,7 @@ public class TaskList {
      * @param task the task added to the list
      */
     public void addTask(Task task) {
+        createNewVersion();
         tasks.add(task);
     }
 
@@ -76,11 +103,13 @@ public class TaskList {
      * @throws DukeException if the specified index is out of bounds
      */
     public Task markTask(int index) throws DukeException {
+        createNewVersion();
         try {
             tasks.get(index).setDone(true);
             assert 0 <= index && index < tasks.size();
             return tasks.get(index);
         } catch (IndexOutOfBoundsException exception) {
+            undo();
             throw new DukeException("OOPS!!! No such task exists :(");
         }
     }
@@ -93,11 +122,13 @@ public class TaskList {
      * @throws DukeException if the specified index is out of bounds
      */
     public Task unMarkTask(int index) throws DukeException {
+        createNewVersion();
         try {
             tasks.get(index).setDone(false);
             assert 0 <= index && index < tasks.size();
             return tasks.get(index);
         } catch (IndexOutOfBoundsException exception) {
+            undo();
             throw new DukeException("OOPS!!! No such task exists :(");
         }
     }
@@ -110,12 +141,14 @@ public class TaskList {
      * @throws DukeException if the specified index is out of bounds
      */
     public Task deleteTask(int index) throws DukeException {
+        createNewVersion();
         try {
             Task task = tasks.get(index);
             assert 0 <= index && index < tasks.size();
             tasks.remove(index);
             return task;
         } catch (IndexOutOfBoundsException exception) {
+            undo();
             throw new DukeException("OOPS!!! No such task exists :(");
         }
     }
