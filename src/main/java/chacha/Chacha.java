@@ -1,6 +1,8 @@
 package chacha;
 import java.util.Scanner;
 
+import chacha.commands.Command;
+import chacha.commands.ListCommand;
 import chacha.tasks.Deadline;
 import chacha.tasks.Event;
 import chacha.tasks.Task;
@@ -21,13 +23,9 @@ public class Chacha {
             //run command
             //print ui
             if (s.equals("list")) {
-                for (int i = 0; i < taskList.size();i++) {
-                    Task t = taskList.get(i);	      
-	                System.out.println(i + 1 + 
-                        "." + 
-                        t.toString()); 		
-	            }   
-                 
+                //run command
+                Command command = new ListCommand();
+                command.execute(taskList, ui);
             } else if (s.contains("unmark")) {
                 
                 String[] split = s.split("\\s+");
