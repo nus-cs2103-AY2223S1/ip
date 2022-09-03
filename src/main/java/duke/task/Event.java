@@ -38,6 +38,14 @@ public class Event extends Task {
         this.eventEndDatetime = eventEndDatetime;
     }
 
+    public String getStartDatetimeString() {
+        return eventStartDatetime.format(DateTimeFormatter.ofPattern("EEEE, dd MMM yyyy HH:mm"));
+    }
+
+    public String getEndDatetimeString() {
+        return eventEndDatetime.format(DateTimeFormatter.ofPattern("EEEE, dd MMM yyyy HH:mm"));
+    }
+
     /**
      * Parses the Event into a savable string format, ready to be written to the hard disk.
      * @return Savable string representation of the Deadline Task
@@ -58,7 +66,6 @@ public class Event extends Task {
     @Override
     public String toString() {
         return String.format("[E]%s (at: %s to %s)", super.toString(),
-                eventStartDatetime.format(DateTimeFormatter.ofPattern("EEEE, dd MMM yyyy HH:mm")),
-                eventEndDatetime.format(DateTimeFormatter.ofPattern("EEEE, dd MMM yyyy HH:mm")));
+                getStartDatetimeString(), getEndDatetimeString());
     }
 }

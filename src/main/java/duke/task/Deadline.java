@@ -32,6 +32,10 @@ public class Deadline extends Task {
         this.dueDate = dueDate;
     }
 
+    public String getDueDatetimeString() {
+        return dueDate.format(DateTimeFormatter.ofPattern("EEEE, dd MMM yyyy HH:mm"));
+    }
+
     /**
      * Parses the Deadline into a savable string format, ready to be written to the hard disk.
      *
@@ -52,7 +56,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(),
-                this.dueDate.format(DateTimeFormatter.ofPattern("EEEE, dd MMM yyyy HH:mm")));
+        return String.format("[D]%s (by: %s)", super.toString(), getDueDatetimeString());
     }
 }

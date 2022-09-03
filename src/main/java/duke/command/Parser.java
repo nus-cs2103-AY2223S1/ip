@@ -6,6 +6,14 @@ import duke.exception.DukeException;
  * Parsers user inputs of the duke program.
  */
 public class Parser {
+    private static int parseInt(String taskNumber) throws DukeException {
+        try {
+            return Integer.parseInt(taskNumber);
+        } catch (NumberFormatException e) {
+            throw new DukeException("yikes! bobo can't handle this number...");
+        }
+    }
+
     /**
      * Parses user input, identifying the command to run and returns that command.
      *
@@ -17,13 +25,13 @@ public class Parser {
         if (userInput.equals("list")) {
             return new ListTasksCommand();
         } else if (userInput.matches("mark \\d+")) {
-            int taskNumber = Integer.parseInt(userInput.substring(5));
+            int taskNumber = parseInt(userInput.substring(5));
             return new MarkTaskDoneCommand(taskNumber);
         } else if (userInput.matches("unmark \\d+")) {
-            int taskNumber = Integer.parseInt(userInput.substring(7));
+            int taskNumber = parseInt(userInput.substring(7));
             return new MarkTaskNotDoneCommand(taskNumber);
         } else if (userInput.matches("delete \\d+")) {
-            int taskNumber = Integer.parseInt(userInput.substring(7));
+            int taskNumber = parseInt(userInput.substring(7));
             return new DeleteTaskCommand(taskNumber);
         } else if (userInput.matches("find .+")) {
             return new FindTaskCommand(userInput.substring(5));

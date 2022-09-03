@@ -34,9 +34,11 @@ public class Duke {
             String message = cmd.execute(tasks, storage);
 
             if (cmd instanceof duke.command.ExitCommand) {
-                return new Response(ResponseType.QUIT, message);
+                return new Response<String>(ResponseType.QUIT, message);
+            } else if (cmd instanceof duke.command.ListTasksCommand) {
+                return new Response<TaskList>(ResponseType.LIST, tasks);
             } else {
-                return new Response(ResponseType.STANDARD, message);
+                return new Response<String>(ResponseType.STANDARD, message);
             }
         } catch (DukeException e) {
             return new Response(ResponseType.ERROR, e.getMessage());

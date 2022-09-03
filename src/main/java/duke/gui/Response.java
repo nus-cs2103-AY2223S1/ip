@@ -1,19 +1,19 @@
 package duke.gui;
 
-public class Response {
+public class Response<T> {
     private ResponseType responseType;
-    private String message;
+    private T responseObject;
 
-    public Response(ResponseType responseType, String responseMessage) {
+    public Response(ResponseType responseType, T responseObject) {
         this.responseType = responseType;
-        message = responseMessage;
+        this.responseObject = responseObject;
     }
 
     public ResponseType getResponseType() {
         return responseType;
     }
 
-    public String getResponseMessage() {
-        return message;
+    public T getResponseMessage() {
+        return responseObject;
     }
 }

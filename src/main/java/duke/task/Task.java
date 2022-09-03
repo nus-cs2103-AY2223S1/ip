@@ -37,6 +37,10 @@ public abstract class Task {
     public String getStatusIcon() {
         return (this.isDone ? "X" : " "); // mark done task with X
     }
+    public String getDescription() {
+        return description;
+    }
+    public boolean isCompleted() { return isDone; }
 
     /**
      * Marks the task as completed.

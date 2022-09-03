@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import duke.exception.DukeException;
@@ -53,13 +54,17 @@ public class TaskList {
         }
     }
 
+    public int size() {
+        return tasks.size();
+    }
+
     /**
      * Returns the display message of the number of tasks in the task list.
      *
      * @return The display String representation of the number of tasks in the task list
      */
     public String numberOfTasks() {
-        int numTasks = this.tasks.size();
+        int numTasks = size();
         if (numTasks == 0) {
             return "Your task list looks empty, add some tasks to get started!";
         } else {
@@ -150,6 +155,24 @@ public class TaskList {
             }
         }
         return filtered;
+    }
+
+    public <T> LinkedList<T> transform(Function<Task, T> func) {
+        LinkedList<T> transformed = new LinkedList<>();
+        for (Task task : tasks) {
+            transformed.add(func.apply(task));
+        }
+        return transformed;
+    }
+
+    public <T> LinkedList<T> transform(BiFunction<Task, Integer, T> func) {
+        LinkedList<T> transformed = new LinkedList<>();
+        int count = 1;
+        for (Task task : tasks) {
+            transformed.add(func.apply(task, count));
+            count++;
+        }
+        return transformed;
     }
 
     /**
