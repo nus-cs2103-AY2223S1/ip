@@ -88,13 +88,13 @@ public class Storage {
         try {
             String[] entry = str.split(" \\| ");
             if (entry[0].equals("T")) {
-                return new ToDo(entry[2], entry[1].equals("1"));
+                return new ToDo(entry[2], entry[1].equals("X"));
             }
             if (entry[0].equals("D")) {
-                return new Deadline(entry[2], entry[1].equals("1"), LocalDate.parse(entry[3]));
+                return new Deadline(entry[2], entry[1].equals("X"), LocalDate.parse(entry[3]));
             }
             if (entry[0].equals("E")) {
-                return new Event(entry[2], entry[1].equals("1"), LocalDate.parse(entry[3]));
+                return new Event(entry[2], entry[1].equals("X"), LocalDate.parse(entry[3]));
             }
         } catch (DateTimeParseException | ArrayIndexOutOfBoundsException e) {
             throw new DukeException("Invalid string in file.");
