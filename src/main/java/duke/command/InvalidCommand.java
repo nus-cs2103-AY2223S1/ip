@@ -12,12 +12,11 @@ public class InvalidCommand extends Command {
     /**
      * Throws a DukeCommandNotFoundException.
      * @param tasks
-     * @param ui
      * @param storage
      * @throws DukeCommandNotFoundException when the command given is invalid.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeCommandNotFoundException {
+    public String execute(TaskList tasks, Storage storage) throws DukeCommandNotFoundException {
         throw new DukeCommandNotFoundException();
     }
 }

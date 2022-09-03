@@ -12,7 +12,7 @@ import duke.util.Ui;
  */
 public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
-    private static final String TASK_ADD = "Good Job! I will mark this task as done: ";
+    private static final String TASK_MARK = "Good Job! I will mark this task as done: ";
     private int index;
 
     /**
@@ -28,15 +28,15 @@ public class MarkCommand extends Command {
      * Executes MarkCommand by marking the task specified by the index as done.
      *
      * @param tasks list of task where the index specified will be marked as done.
-     * @param ui display the task that was marked done.
      * @param storage updates the storage when task is marked done.
      * @throws TaskMarkException when task specified by the index is already marked done.
      * @throws TaskNotFoundException when index given is out of range.
+     * @return mark command message
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws TaskMarkException, TaskNotFoundException {
+    public String execute(TaskList tasks, Storage storage) throws TaskMarkException, TaskNotFoundException {
         Task task = tasks.markTask(index);
-        storage.update(tasks, ui);
-        displayCommand(ui, TASK_ADD, task, tasks.getStatus());
+        storage.update(tasks);
+        return String.format("%s\n%s", TASK_MARK, task);
     }
 }

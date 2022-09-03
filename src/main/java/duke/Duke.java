@@ -7,6 +7,8 @@ import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
 
+import java.io.IOException;
+
 /**
  * Represents a chatbot named Duke.
  * It helps a person to keep track of various things.
@@ -14,38 +16,32 @@ import duke.util.Ui;
  * @author Rexong
  */
 public class Duke {
+    private static final String DUKE_INTRODUCTION = "Hello, I'm your personal assistant, Duke.";
+    private static final String DUKE_HELP = "How can I assist you today?";
 
+    private static final String FILE_NAME = "duke.txt";
     private Storage storage;
     private TaskList tasks;
-    private Ui ui;
 
     /**
      * Constructs a duke object which consist of Ui, Storage and TaskList.
-     *
-     * @param filePath Name of file to store the tasks in TaskList.
      */
-    public Duke(String filePath) {
-        ui = new Ui();
-        storage = new Storage(filePath);
-        tasks = storage.setUp(ui);
+    public Duke() throws IOException {
+        storage = new Storage(FILE_NAME);
+        tasks = storage.setUp();
     }
 
-    /**
-     * Runs the duke object in a loop until 'bye' command is received.
-     */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.show(e);
-            }
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            return command.execute(tasks, storage);
+        } catch (DukeException e) {
+            return e.getMessage();
         }
+    }
+
+    public static String WelcomeText() {
+        return DUKE_INTRODUCTION + "\n" +  DUKE_HELP;
     }
 
 }

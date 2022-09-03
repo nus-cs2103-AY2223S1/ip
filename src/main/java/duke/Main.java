@@ -1,17 +1,33 @@
 package duke;
 
+import java.io.IOException;
+
+import duke.display.MainWindow;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
 /**
- * Represents the main function that runs the duke object.
+ * A GUI for Duke using FXML.
  */
-public class Main {
-    /**
-     * Runs the duke object.
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        String fileName = "duke.txt";
-        Duke duke = new Duke(fileName);
-        duke.run();
+public class Main extends Application {
+
+    private Duke duke;
+
+    @Override
+    public void start(Stage stage) {
+        try {
+            duke = new Duke();
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
+            AnchorPane ap = fxmlLoader.load();
+            Scene scene = new Scene(ap);
+            stage.setScene(scene);
+            fxmlLoader.<MainWindow>getController().setDuke(duke);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

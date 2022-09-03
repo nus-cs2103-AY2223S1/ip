@@ -9,17 +9,18 @@ import duke.util.Ui;
  */
 public class ByeCommand extends Command {
     public static final String COMMAND_WORD = "bye";
+    public static final String DUKE_END =
+            "Pleasure to be at your service! Run me again if you need more assistance! :)";
 
     /**
-     * Executes bye command.
+     * Return message when bye command executes.
      *
      * @param tasks
-     * @param ui displays goodbye message.
      * @param storage
+     * @return bye command message
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        isExit = true;
-        ui.showGoodbye();
+    public String execute(TaskList tasks, Storage storage) {
+        return DUKE_END;
     }
 }

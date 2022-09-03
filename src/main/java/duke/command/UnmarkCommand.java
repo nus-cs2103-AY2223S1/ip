@@ -28,16 +28,16 @@ public class UnmarkCommand extends Command {
      * Executes UnmarkCommand by marking the task specified by the index as not done.
      *
      * @param tasks list of task where the index specified will be marked as not done.
-     * @param ui display the task that was marked not done.
      * @param storage updates the storage when task is marked not done.
+     * @return unmark command message
      * @throws TaskUnmarkException when task specified by the index is already marked not done.
      * @throws TaskNotFoundException when index given is out of range.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws TaskUnmarkException, TaskNotFoundException {
+    public String execute(TaskList tasks, Storage storage) throws TaskUnmarkException, TaskNotFoundException {
         Task task = tasks.unmarkTask(index);
-        storage.update(tasks, ui);
-        displayCommand(ui, TASK_UNMARK, task, tasks.getStatus());
+        storage.update(tasks);
+        return String.format("%s\n%s", TASK_UNMARK, task);
     }
 
 }
