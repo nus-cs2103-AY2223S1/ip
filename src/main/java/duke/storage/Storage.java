@@ -1,10 +1,8 @@
 package duke.storage;
 
 import duke.exception.DukeException;
+import duke.parser.Parser;
 import duke.task.Task;
-import duke.task.Todo;
-import duke.task.Deadline;
-import duke.task.Event;
 import duke.task.TaskList;
 import java.io.File;
 import java.io.BufferedReader;
@@ -26,26 +24,19 @@ public class Storage {
      * @param line Individual line in the save file.
      * @return Task from the line if it is able to be parsed, else null.
      */
-    private static Task parseTaskLine(String line) {
-        String[] tokens = line.split("\\|");
-        Task t;
-        try {
-            String type = tokens[0];
-            int done = Integer.parseInt(tokens[1]);
-            String meta = tokens[2];
-            switch (type) {
-                case "T": t = new Todo(meta); break;
-                case "D": t = new Deadline(meta); break;
-                case "E": t = new Event(meta); break;
-                default: throw new Exception();
-            }
-            if (done == 1) {
-                t.mark();
-            }
-            return t;
-        } catch (Exception e) {
-            return null;
+    private static Task parseTaskLine(String line) throws DukeException {
+        String[] tokens = line.split("\\s+?", 2);
+        if (tokens.length < 2) {
+            throw new DukeException("Invalid save format");
         }
+        int done = Integer.parseInt(tokens[0]);
+        String commandInput = tokens[1];
+
+        Task task = Parser.getTask(commandInput);
+        if (done == 1) {
+            task.mark();
+        }
+        return task;
     }
 
     /**
