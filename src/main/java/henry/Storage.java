@@ -51,10 +51,10 @@ public class Storage {
     }
 
     private List<Task> parseTasksFromFile(File savedList) throws FileNotFoundException {
-        Scanner s = new Scanner(savedList);
+        Scanner scanner = new Scanner(savedList);
         List<Task> tasks = new ArrayList<>();
-        while (s.hasNextLine()) {
-            tasks.add(Task.parseTask(s.nextLine()));
+        while (scanner.hasNextLine()) {
+            tasks.add(Task.parseTask(scanner.nextLine()));
         }
         return tasks;
     }

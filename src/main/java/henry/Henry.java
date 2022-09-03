@@ -25,19 +25,16 @@ public class Henry extends Application {
     private static final String home = System.getProperty("user.home");
     // The text file is created on the user's Desktop
     private static final Path FILE_PATH = java.nio.file.Paths.get(home, "Desktop", "henry.txt");
-
-    private final Ui ui;
     private final Storage storage;
     private final TaskList taskList;
     private final Parser parser;
 
     /**
      * The constructor for the logical component of Henry.
-     * When Henry is instantiated, a new UI, Storage, TaskList
+     * When Henry is instantiated, a new Storage, TaskList
      * and Parser classes are also created.
      */
     public Henry() {
-        ui = new Ui();
         storage = new Storage(FILE_PATH.toString());
         taskList = new TaskList(storage.load());
         parser = new Parser();
@@ -60,52 +57,28 @@ public class Henry extends Application {
 
     /**
      * Generates a response based on user input.
+     *
      * @param input the given user input
      * @return a String representing the {@link CommandResult} of the user input
      */
     public String getResponse(String input) {
+        assert input != null : "Input is null!";
+
         if (input.equalsIgnoreCase("bye")) {
             PauseTransition delay = new PauseTransition(Duration.seconds(2));
             delay.setOnFinished(event -> Platform.exit());
             delay.play();
             return "GOODBYE! YOUR TASK LIST HAS BEEN SAVED!";
         }
+
         Command parsed = parser.parseCommand(input.toLowerCase());
         CommandResult result = executeCommand(parsed);
         return result.toString();
     }
 
-    /**
-     * Activates the program. The program will take input from
-     * the user and perform the adequate actions until the "bye"
-     * command is entered.
-     *
-     * @deprecated As of 30/8/2022: program now runs on JavaFX
-     */
-    @Deprecated
-    public void runProgram() {
-        Command command;
-        String input;
-        do {
-            System.out.print("\n> ");
-            input = ui.getInput();
-            if (input.equals("bye")) {
-                close();
-                break;
-            }
-            command = parser.parseCommand(input);
-            CommandResult result = executeCommand(command);
-            ui.output(result.toString());
-        } while (true);
-    }
-
-    /**
-     * @deprecated As of 3/9/2022: program now runs on JavaFX
-     */
-    @Deprecated
     private CommandResult executeCommand(Command command) {
         try {
-            assert taskList != null;
+            assert taskList != null : "TaskList is null!";
             command.setData(taskList);
             CommandResult result = command.execute();
             if (result.getTaskList().isPresent()) {
@@ -115,16 +88,7 @@ public class Henry extends Application {
         } catch (HenryException he) {
             throw he;
         } catch (Exception e) {
-            ui.output(e.getMessage());
             throw new RuntimeException(e);
         }
-    }
-
-    /**
-     * @deprecated As of 3/9/2022: program now runs on JavaFX
-     */
-    @Deprecated
-    private void close() {
-        ui.close();
     }
 }

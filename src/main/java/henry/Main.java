@@ -21,7 +21,7 @@ public class Main {
      *             applicable to this program.
      */
     public static void main(String[] args) {
-        Henry henry = new Henry();
-        henry.runProgram();
+//        Henry henry = new Henry();
+//        henry.runProgram();
     }
 }
