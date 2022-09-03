@@ -28,7 +28,7 @@ public class Parser {
                 tasks.markTaskAsDone(index);
                 return "I've marked this as done:\n" + tasks.taskToString(index);
             } catch (IndexOutOfBoundsException e) {
-                return ui.showInvalidTaskIndexError();
+                return ui.getInvalidTaskIndexError();
             }
         case "unmark":
             try {
@@ -36,7 +36,7 @@ public class Parser {
                 tasks.markTaskAsUndone(index);
                 return "I've marked this as undone:\n" + tasks.taskToString(index);
             } catch (IndexOutOfBoundsException e) {
-                return ui.showInvalidTaskIndexError();
+                return ui.getInvalidTaskIndexError();
             }
         case "delete":
             try {
@@ -46,7 +46,7 @@ public class Parser {
                 return "I'll remove this task:\n" + toDelete.toString()
                         + "\nYou now have " + (tasks.size()) + " tasks.";
             } catch (IndexOutOfBoundsException e) {
-                return ui.showInvalidTaskIndexError();
+                return ui.getInvalidTaskIndexError();
             }
         case "list":
             return "Here are your tasks:" + tasks.toString();
@@ -91,7 +91,7 @@ public class Parser {
         if (type.equals("todo")) {
             Todo temp = new Todo(desc);
             tasks.add(temp);
-            return ui.showTaskAddedMessage(temp, tasks);
+            return ui.getTaskAddedMessage(temp, tasks);
         }
         if (type.equals("deadline")) {
             try {
@@ -100,7 +100,7 @@ public class Parser {
                         .format(DateTimeFormatter.ofPattern("MMM d yyyy"));
                 Deadline temp = new Deadline(details[0], by);
                 tasks.add(temp);
-                return ui.showTaskAddedMessage(temp, tasks);
+                return ui.getTaskAddedMessage(temp, tasks);
             } catch (ArrayIndexOutOfBoundsException e) {
                 return "Oops! Your deadline should have a due date after /by.";
             } catch (DateTimeParseException e) {
@@ -114,7 +114,7 @@ public class Parser {
                         .format(DateTimeFormatter.ofPattern("MMM d yyyy"));
                 Event temp = new Event(details[0], at);
                 tasks.add(temp);
-                return ui.showTaskAddedMessage(temp, tasks);
+                return ui.getTaskAddedMessage(temp, tasks);
             } catch (ArrayIndexOutOfBoundsException e) {
                 return "Oops! Your event should have a date after /at.";
             } catch (DateTimeParseException e) {

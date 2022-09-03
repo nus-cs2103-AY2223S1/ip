@@ -3,39 +3,32 @@ package duke;
 public class Ui {
 
     /**
-     * Prints out text with decorative lines.
-     * Used for all output by Duke.
+     * Returns welcome message.
      *
-     * @param str Text to be printed.
+     * @return Welcome message.
      */
-    public void printOut(String str) {
-        String line = "____________________________________________________________\n";
-        System.out.println(line + str + "\n" + line);
-    }
-
-    /**
-     * Prints out welcome message.
-     */
-    public String showWelcome() {
+    public String getWelcome() {
         return "Hello! I'm Duke.\n"
                 + "What can I do for you?";
     }
 
     /**
-     * Prints out goodbye message.
+     * Returns invalid task index error message.
+     *
+     * @return Invalid task index error message.
      */
-    public String showGoodbye() {
-        return "See you later. Bye!";
-    }
-
-    /**
-     * Prints out error message for invalid task index.
-     */
-    public String showInvalidTaskIndexError() {
+    public String getInvalidTaskIndexError() {
         return "This task number is invalid!";
     }
 
-    public String showTaskAddedMessage(Task task, TaskList tasks) {
+    /**
+     * Returns task added message.
+     *
+     * @param task Task that was added.
+     * @param tasks TaskList that the Task was added to.
+     * @return Task added message.
+     */
+    public String getTaskAddedMessage(Task task, TaskList tasks) {
         return "Okay, I've added this task:\n" + task.toString()
                 + "\nYou now have " + tasks.size() + " tasks.";
     }
