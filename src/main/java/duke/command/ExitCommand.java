@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.Main;
 import duke.Storage;
 import duke.Ui;
 import duke.task.TaskList;
@@ -32,7 +33,8 @@ public class ExitCommand extends Command {
     @Override
     public String execute() throws DukeException {
         this.ui.endSession(this.storage, this.taskList);
-        return "Duke: Bye! Hope to see you again soon!";
+        Main.closeStage();
+        return "Bye! Hope to see you again soon!";
     }
 
     /**
@@ -42,6 +44,6 @@ public class ExitCommand extends Command {
      * @return true if the command to exit is valid, false otherwise.
      */
     public static boolean isCommand(String s) {
-        return s.equals("bye");
+        return s.equals("bye") || s.equals("exit");
     }
 }

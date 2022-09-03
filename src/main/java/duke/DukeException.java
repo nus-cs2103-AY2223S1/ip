@@ -20,6 +20,6 @@ public class DukeException extends Exception {
      */
     @Override
     public String toString() {
-        return "☹ OOPS!!! Duke got an error!\n" + super.getMessage();
+        return "E R R O R!\n" + super.getMessage();
     }
 }

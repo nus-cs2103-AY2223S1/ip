@@ -48,7 +48,7 @@ public class Ui {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        String greetMessage = "Hello, I'm Duke!\n" + logo + "\nDuke: What can I do for you?\n";
+        String greetMessage = "Hello, I'm Duke!\n" + logo + "\nWhat can I do for you?\n";
         return greetMessage;
     }
 

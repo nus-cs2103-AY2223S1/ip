@@ -20,7 +20,7 @@ public class Event extends Task {
      */
     public Event(String description, String date) throws DateTimeException {
         super(description);
-        this.date = DateParser.parseToDate(date);
+        this.date = DateParser.parseStringToDate(date);
     }
 
     /**
@@ -30,7 +30,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[" + TaskType.E + "]" + super.toString() + " (at: " + DateParser.dateToString(this.date) + ")";
+        return "[" + TaskType.E + "]" + super.toString() + " (at: " + DateParser.parseDateToString(this.date) + ")";
     }
 
     /**
@@ -40,6 +40,6 @@ public class Event extends Task {
      */
     @Override
     public String toCommand() {
-        return TaskType.E + " | " + super.toCommand() + " /at " + DateParser.dateToCommand(this.date);
+        return TaskType.E + " | " + super.toCommand() + " /at " + DateParser.parseDateToCommand(this.date);
     }
 }

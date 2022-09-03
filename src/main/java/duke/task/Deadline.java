@@ -20,7 +20,7 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String date) throws DateTimeException {
         super(description);
-        this.date = DateParser.parseToDate(date);
+        this.date = DateParser.parseStringToDate(date);
     }
 
     /**
@@ -30,7 +30,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[" + TaskType.D + "]" + super.toString() + " (by: " + DateParser.dateToString(this.date) + ")";
+        return "[" + TaskType.D + "]" + super.toString() + " (by: " + DateParser.parseDateToString(this.date) + ")";
     }
 
     /**
@@ -40,6 +40,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toCommand() {
-        return TaskType.D + " | " + super.toCommand() + " /by " + DateParser.dateToCommand(this.date);
+        return TaskType.D + " | " + super.toCommand() + " /by " + DateParser.parseDateToCommand(this.date);
     }
 }

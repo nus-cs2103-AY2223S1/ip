@@ -28,7 +28,7 @@ public class DateParser {
      * @return The LocalDate object of the date.
      * @throws DateTimeException if the text cannot be parsed
      */
-    public static LocalDateTime parseToDate(String date) throws DateTimeException {
+    public static LocalDateTime parseStringToDate(String date) throws DateTimeException {
         // @@author HowSuen-reused
         // Reused from https://stackoverflow.com/questions/48280447/java-8-datetimeformatter-with-optional-part
         // with minor modifications.
@@ -49,7 +49,7 @@ public class DateParser {
      * @param date The LocalDate object of the date.
      * @return The String representation of the date.
      */
-    public static String dateToString(LocalDateTime date) {
+    public static String parseDateToString(LocalDateTime date) {
         DateTimeFormatter stringFormat = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
         return date.format(stringFormat);
     }
@@ -60,7 +60,7 @@ public class DateParser {
      * @param date The LocalDate object of the date.
      * @return The String representation of the command.
      */
-    public static String dateToCommand(LocalDateTime date) {
+    public static String parseDateToCommand(LocalDateTime date) {
         DateTimeFormatter stringFormat = DateTimeFormatter.ofPattern("dd MM yyyy HH:mm");
         return date.format(stringFormat);
     }

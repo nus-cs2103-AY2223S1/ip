@@ -47,8 +47,7 @@ public class Parser {
             return new FindCommand(taskList, words);
         } else if (HelpCommand.isCommand(command)) {
             return new HelpCommand();
-        } else {
-            return new InvalidCommand();
         }
+        return new InvalidCommand();
     }
 }
