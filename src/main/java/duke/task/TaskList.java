@@ -117,4 +117,18 @@ public class TaskList {
         return result;
     }
 
+    public String getListString() throws DukeException {
+        String msg = "";
+        if (this.getSize() == 0) {
+            throw new DukeException(Message.EMPTY);
+        }
+        for (int i = 0; i < this.getSize(); i++) {
+            msg += i + 1 + ". " + this.get(i);
+            if (i < this.getSize() - 1)  {
+                msg += "\n";
+            }
+        }
+        return msg;
+    }
+
 }

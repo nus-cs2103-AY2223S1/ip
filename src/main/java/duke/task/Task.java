@@ -1,6 +1,6 @@
 package duke.task;
 
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -37,9 +37,7 @@ public class Task {
      *
      * @return String that is of the save file format.
      */
-    public String saveText() {
-        return String.format("Task|%d|%s", this.isDone ? 1 : 0, this.description);
-    }
+    public abstract String saveText();
 
     @Override
     public String toString() {
