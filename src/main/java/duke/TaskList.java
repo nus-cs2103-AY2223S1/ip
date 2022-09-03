@@ -33,6 +33,8 @@ public class TaskList {
         } else if (input.startsWith("todo")) {
             return input.substring(5);
         }
+        assert false : "`getDescription` method should not be called on inputs"
+                + "that do not start with 'deadline', 'event' or 'toDo'.";
         return null;
     }
 
@@ -82,7 +84,8 @@ public class TaskList {
             break;
 
         default:
-            return "No task added.";
+            assert false : "`add` method should not be called on inputs that "
+                    + "do not start with 'deadline', 'event' or 'toDo'.";
         }
 
         taskList.add(newTask);
@@ -191,7 +194,9 @@ public class TaskList {
             break;
 
         default:
-            break;
+            assert false : "`addFromFile` method should not be called on "
+                    + "inputs that do not start with 'deadline', 'event' "
+                    + "or 'toDo'.";
         }
         taskList.add(newTask);
     }
