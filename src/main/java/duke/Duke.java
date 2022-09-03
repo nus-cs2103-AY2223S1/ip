@@ -1,5 +1,6 @@
 package duke;
 
+import java.util.Optional;
 import java.util.function.Consumer;
 
 import duke.commands.Command;
@@ -27,13 +28,18 @@ public class Duke {
                 false,
                 Message.User.DUKE));
 
+
+        this.tasks = getStorage(fileName).map(TaskList::new).orElse(new TaskList());
+    }
+
+    private Optional<Storage> getStorage(String fileName) {
         Storage storage;
         try {
             storage = new Storage(fileName);
         } catch (DukeException e) {
             storage = null;
         }
-        this.tasks = new TaskList(storage);
+        return Optional.ofNullable(storage);
     }
 
     /**

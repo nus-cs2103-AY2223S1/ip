@@ -11,6 +11,7 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import duke.task.Deadline;
 import duke.task.Event;
@@ -51,7 +52,7 @@ public class Storage {
         this.fileName = fileName;
     }
 
-    public ArrayList<Task> loadTasks() throws DukeException {
+    public Optional<ArrayList<Task>> loadTasks() {
         return loadTasks(this.fileName);
     }
 
@@ -59,16 +60,15 @@ public class Storage {
      * Loads the list of task from a previously save text file.
      *
      * @param fileName Name of the file.
-     * @return The list of tasks.
-     * @throws DukeException Exception thrown if the file couldn't be read properly or contains invalid input.
+     * @return optional array list of tasks if no errors are found.
      */
-    public ArrayList<Task> loadTasks(String fileName) throws DukeException {
+    public Optional<ArrayList<Task>> loadTasks(String fileName) {
         this.fileName = fileName;
         ArrayList<Task> tasks = new ArrayList<>();
 
         File file = new File(tasksFolderPath.concat(File.separator + fileName));
         if (!file.exists()) {
-            return tasks;
+            return Optional.empty();
         }
         try {
             FileReader reader = new FileReader(file);
@@ -96,11 +96,10 @@ public class Storage {
                 }
             });
             br.close();
-            return tasks;
+            return Optional.of(tasks);
         } catch (IOException e) {
-            throw new DukeException("Could not read file! " + e.getMessage());
+            return Optional.empty();
         }
-
     }
 
     private void writeToFile(String fileName, String content) throws DukeException {
@@ -121,13 +120,18 @@ public class Storage {
      * Encodes and saves the given list of tasks to a file.
      *
      * @param tasks the list of tasks to save.
-     * @throws DukeException Exception thrown if the file cannot be found or modified.
+     * @return true if the tasks were saved successfully.
      */
-    public void saveTasks(ArrayList<Task> tasks) throws DukeException {
-        StringBuilder sb = new StringBuilder();
-        for (Task task : tasks) {
-            sb.append(task.encode()).append(System.lineSeparator());
+    public boolean saveTasks(ArrayList<Task> tasks) {
+        try {
+            StringBuilder sb = new StringBuilder();
+            for (Task task : tasks) {
+                sb.append(task.encode()).append(System.lineSeparator());
+            }
+            this.writeToFile(fileName, sb.toString());
+            return true;
+        } catch (DukeException e) {
+            return false;
         }
-        this.writeToFile(fileName, sb.toString());
     }
 }
