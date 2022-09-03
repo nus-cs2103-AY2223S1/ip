@@ -25,6 +25,7 @@ public class MarkCommand extends Command {
      * @since 0.1
      */
     public MarkCommand(String[] splitCommands, TaskList tasks, Ui ui) {
+        assert(splitCommands != null && tasks != null && ui != null);
         this.splitCommands = splitCommands;
         this.tasks = tasks;
         this.ui = ui;

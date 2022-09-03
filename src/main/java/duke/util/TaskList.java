@@ -53,6 +53,7 @@ public class TaskList {
      * @since 0.1
      */
     public Task getTask(int taskId) {
+        assert(taskId < tasks.size() && taskId >= 0);
         return tasks.get(taskId);
     }
 
@@ -63,6 +64,7 @@ public class TaskList {
      * @since 0.1
      */
     public void remove(int taskId) {
+        assert(taskId < tasks.size() && taskId >= 0);
         tasks.remove(taskId);
     }
 
@@ -101,7 +103,7 @@ public class TaskList {
      */
     public String printList() {
         if (tasks == null || tasks.size() <= 0) {
-            return "No tasks assigned yet.";
+            return "\nNo tasks assigned yet.";
         } else {
             String response = "";
             for (int i = 0; i < tasks.size(); i++) {

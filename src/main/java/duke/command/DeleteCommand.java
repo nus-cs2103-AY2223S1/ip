@@ -26,6 +26,7 @@ public class DeleteCommand extends Command {
      * @since 0.1
      */
     public DeleteCommand(String[] splitCommands, TaskList tasks, Ui ui) {
+        assert(splitCommands != null && tasks != null && ui != null);
         this.splitCommands = splitCommands;
         this.tasks = tasks;
         this.ui = ui;

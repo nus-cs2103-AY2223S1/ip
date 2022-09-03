@@ -24,6 +24,7 @@ public class FindCommand extends Command {
      * @param ui the Ui that Duke is using
      */
     public FindCommand(String word, TaskList tasks, Ui ui) {
+        assert(word != null && tasks != null && ui != null);
         this.word = word;
         this.tasks = tasks;
         this.ui = ui;

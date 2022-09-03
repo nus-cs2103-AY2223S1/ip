@@ -48,6 +48,7 @@ public class Storage {
      */
     public void saveDuke(TaskList tasks) {
         try {
+            assert(saveFilePath != locateHomeDir());
             File save = new File(saveFilePath);
             FileWriter saveWriter = new FileWriter(save);
             String saveString = "";
@@ -163,7 +164,7 @@ public class Storage {
         if (!savesDir.exists()) {
             savesDir.mkdir();
         }
-
+        assert(saveFilePath == locateHomeDir());
         File save = new File(saveFilePath);
         if (save.exists()) {
             Scanner sc = new Scanner(save);

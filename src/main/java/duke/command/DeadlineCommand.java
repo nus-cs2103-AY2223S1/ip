@@ -26,6 +26,7 @@ public class DeadlineCommand extends Command {
      * @since 0.1
      */
     public DeadlineCommand(String command, TaskList tasks, Ui ui) {
+        assert(command != null && tasks != null && ui != null);
         this.command = command;
         this.tasks = tasks;
         this.ui = ui;
