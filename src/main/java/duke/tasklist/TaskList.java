@@ -48,15 +48,17 @@ public class TaskList implements Serializable {
      * @param instruction String representing type of action to be performed
      * @param itemNum int representing the item number to be modified
      */
-    public void handleItem(String instruction, int itemNum) {
+    public String handleItem(String instruction, int itemNum) {
         if (instruction.equals("UNMARK") || instruction.equals("MARK")) {
             ListObject currItem = tasksList.get(itemNum);
             currItem.switchStatus();
-            System.out.println(currItem.toString());
+            return currItem.toString();
         } else if (instruction.equals("DELETE")) {
             ListObject currItem = tasksList.get(itemNum);
             tasksList.remove(itemNum);
-            System.out.println(currItem.toString());
+            return currItem.toString();
+        } else {
+            return "Oh dear! I have forgotten what it is you asked...";
         }
     }
 
@@ -96,13 +98,13 @@ public class TaskList implements Serializable {
         return this.tasksList;
     }
 
-    public void findByKeyword(String target) {
+    public String findByKeyword(String target) {
         Stream<ListObject> filteredOptions = tasksList.stream().filter(x -> x.hasWord(target));
         List<ListObject> eligibleTasks = filteredOptions.collect(Collectors.toList());
         ArrayList<ListObject> filteredTasks = new ArrayList<>(eligibleTasks);
         TaskList tasksToDisplay = new TaskList();
         tasksToDisplay.setTasks(filteredTasks);
-        tasksToDisplay.printList();
+        return tasksToDisplay.toString();
     }
 
     /**
@@ -113,7 +115,7 @@ public class TaskList implements Serializable {
     public String toString() {
         String str = "";
         for (int i = 0; i < this.tasksList.size(); i++) {
-            str = str + i + ". " + tasksList.get(i).toString();
+            str = str + i + ". " + tasksList.get(i).toString() + "\n";
         }
         return str;
     }
