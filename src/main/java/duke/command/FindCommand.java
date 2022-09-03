@@ -14,6 +14,7 @@ public class FindCommand extends Command {
     private String query;
 
     public FindCommand(String query) {
+        assert query != null: "Query cannot be null";
         this.query = query;
     }
 
