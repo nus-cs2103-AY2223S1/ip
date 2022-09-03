@@ -3,7 +3,6 @@ package duke.command;
 import java.io.IOException;
 
 import duke.exception.DukeException;
-import duke.gui.Ui;
 import duke.storage.Storage;
 import duke.task.TaskList;
 
@@ -12,6 +11,7 @@ import duke.task.TaskList;
  */
 public class UnmarkCommand extends Command {
 
+    private static final int POSITION_OF_TASK_INDEX = 7;
     private String userInput;
 
     /**
@@ -27,15 +27,15 @@ public class UnmarkCommand extends Command {
      * Executes the command which un-marks the indexed task from done.
      * Saves and updates the storage to include the new un-marked status of the task.
      *
-     * @param ui the ui class that prints text in a readable format
-     * @param storage the storage object which handles reading and writing of data
+     * @param storage  the storage object which handles reading and writing of data
      * @param taskList the list of tasks currently stored
      * @return a String which replies to the user
      */
     @Override
-    public String runCommand(Ui ui, Storage storage, TaskList taskList) {
+    public String runCommand(Storage storage, TaskList taskList) {
         try {
-            String reply = taskList.unmark(Integer.valueOf(userInput.substring(7)));
+            Integer taskIndex = Integer.valueOf(userInput.substring(POSITION_OF_TASK_INDEX));
+            String reply = taskList.unmark(taskIndex);
             storage.write(taskList.writeTasks());
             return reply;
         } catch (DukeException | IOException e) {

@@ -11,6 +11,10 @@ import duke.exception.DukeException;
  */
 public class TaskList {
     private static List<Task> savedTasks;
+    private static final int INDEX_OF_TASK_STATUS = 1;
+    private static final int INDEX_OF_DESCRIPTION = 2;
+    private static final int INDEX_OF_DATE = 3;
+    private static final String OUT_OF_BOUNDS_INDEX_MESSAGE = "Index has to be between 1 and ";
 
     /**
      * Constructs a new ArrayList to store tasks in the event when there is no stored tasks.
@@ -37,18 +41,18 @@ public class TaskList {
 
             if (taskType.equals("T")) {
                 newTask = new ToDo();
-                newTask.addName("todo " + inputArr[2]);
+                newTask.addName("todo " + inputArr[INDEX_OF_DESCRIPTION]);
             } else if (taskType.equals("E")) {
                 newTask = new Event();
-                newTask.addName("event " + inputArr[2] + " /at " + inputArr[3]);
+                newTask.addName("event " + inputArr[INDEX_OF_DESCRIPTION] + " /at " + inputArr[INDEX_OF_DATE]);
             } else if (taskType.equals("D")) {
                 newTask = new DeadLine();
-                newTask.addName("deadline " + inputArr[2] + " /by " + inputArr[3]);
+                newTask.addName("deadline " + inputArr[INDEX_OF_DESCRIPTION] + " /by " + inputArr[INDEX_OF_DATE]);
             } else {
                 throw new DukeException("File is corrupted!");
             }
 
-            if (inputArr[1].equals("1")) {
+            if (inputArr[INDEX_OF_TASK_STATUS].equals("1")) {
                 newTask.markAsDone();
             }
             TaskList.savedTasks.add(newTask);
@@ -80,7 +84,7 @@ public class TaskList {
             throw new DukeException("You cannot delete anything from an empty Task List!");
         }
         if (index <= 0 || index > size) {
-            throw new DukeException("Index has to be between 1 and " + String.valueOf(size));
+            throw new DukeException(OUT_OF_BOUNDS_INDEX_MESSAGE + String.valueOf(size));
         } else {
             Task removedTask = TaskList.savedTasks.remove(index - 1);
             return "Noted. I've removed this task:\n" + removedTask.getStatus()
@@ -102,7 +106,7 @@ public class TaskList {
             throw new DukeException("You cannot mark anything from an empty Task List!");
         }
         if (index <= 0 || index > size) {
-            throw new DukeException("Index has to be between 1 and " + String.valueOf(size));
+            throw new DukeException(OUT_OF_BOUNDS_INDEX_MESSAGE + String.valueOf(size));
         } else {
             Task selectedTask = TaskList.savedTasks.get(index - 1);
             selectedTask.markAsDone();
@@ -124,7 +128,7 @@ public class TaskList {
             throw new DukeException("You cannot unmark anything from an empty Task List!");
         }
         if (index <= 0 || index > size) {
-            throw new DukeException("Index has to be between 1 and " + String.valueOf(size));
+            throw new DukeException(OUT_OF_BOUNDS_INDEX_MESSAGE + String.valueOf(size));
         } else {
             Task selectedTask = TaskList.savedTasks.get(index - 1);
             selectedTask.markAsUndone();

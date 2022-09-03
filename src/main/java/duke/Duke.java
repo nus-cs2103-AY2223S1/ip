@@ -45,6 +45,6 @@ public class Duke {
      */
     public String getResponse(String userInput) {
         Command command = Parser.parse(userInput);
-        return command.runCommand(ui, storage, tasks);
+        return command.runCommand(storage, tasks);
     }
 }

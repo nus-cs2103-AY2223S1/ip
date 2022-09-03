@@ -10,6 +10,8 @@ import duke.exception.DukeException;
  * Represents a deadline task which needs to be completed by a certain date.
  */
 public class DeadLine extends Task {
+
+    private static final int MINIMUM_COMMAND_LENGTH = 9;
     private LocalDate eventDate = null;
 
     /**
@@ -23,17 +25,17 @@ public class DeadLine extends Task {
      * @throws DukeException
      */
     public void addName(String userInput) throws DukeException {
-        if (userInput.length() <= 9) {
+        if (userInput.length() <= MINIMUM_COMMAND_LENGTH) {
             throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
         }
 
         int index = userInput.indexOf("/by") - 1;
 
-        if (index <= 8) {
+        if (index <= MINIMUM_COMMAND_LENGTH - 1) {
             throw new DukeException("OOPS!!! Please indicate when the deadline is due with '/by'.");
         }
 
-        super.addName(userInput.substring(9, index));
+        super.addName(userInput.substring(MINIMUM_COMMAND_LENGTH, index));
         try {
             this.eventDate = LocalDate.parse(userInput.substring(index + 5).replace('/', '-'));
         } catch (DateTimeParseException e) {
