@@ -70,6 +70,8 @@ public abstract class Command {
      * Throws a SkylarkException if there is an error.
      *
      * @param taskList List of Tasks that already exists.
+     * @return String representation of response from executing the command
+     * @throws SkylarkException When there is an unexpected exception
      */
     public abstract String run(TaskList taskList) throws SkylarkException;
     public String getInput() {

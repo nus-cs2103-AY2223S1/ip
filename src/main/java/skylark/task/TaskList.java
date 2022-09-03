@@ -44,6 +44,9 @@ public class TaskList {
      */
     public Task get(int index) {
         assert this.taskArrayList != null : "ArrayList should be initialised!";
+        if (!doesIndexExist(index)) {
+            return null;
+        }
         return this.taskArrayList.get(index);
     }
 
@@ -73,6 +76,7 @@ public class TaskList {
      * @return Boolean whether the index exists in the TaskList.
      */
     public boolean doesIndexExist(int index) {
+        assert this.taskArrayList != null : "ArrayList should be initialized already!";
         return index >= 0 && index < this.taskArrayList.size();
     }
 
