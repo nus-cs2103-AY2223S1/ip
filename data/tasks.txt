@@ -1,14 +1,6 @@
-ToDo#dsf jknf jkn #false
-ToDo#dsf jknf jkn #false
-ToDo#dsf jknf jkn #false
-ToDo#dsf jknf jkn #false
-ToDo#jo #false
-ToDo#dsf jknf jkn #false
-ToDo#dsf jknf jkn #false
-ToDo#dsf jknf jkn #false
-ToDo#dsf jknf jkn #false
-ToDo#jojo #false
-ToDo#oko #false
-ToDo#hello #false
-ToDo#helio #false
-ToDo#dsfsfshelpp #false
+ToDo#math #false
+ToDo#science #false
+ToDo#chemistry #false
+ToDo#pop #false
+ToDo#ijo #false
+ToDo#pop #false

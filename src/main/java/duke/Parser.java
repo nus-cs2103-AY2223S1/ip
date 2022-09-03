@@ -28,76 +28,65 @@ public class Parser {
      * @param storage
      * @return true if "bye" command was given
      */
-    public boolean parse(String fullCommand, Ui ui, TaskList taskList, Storage storage) {
+    public String parse(String fullCommand, Ui ui, TaskList taskList, Storage storage) {
         String[] commandBreakdown = fullCommand.split(" ");
         String command = commandBreakdown[0];
 
         switch (command) {
         case "list":
-            ui.printTasks(taskList);
-            break;
+            return ui.getTasks(taskList);
         case "mark":
             int taskNo = Integer.valueOf(commandBreakdown[1]) - 1;
             Task task = taskList.getTask(taskNo);
             taskList.getTask(taskNo).markDone();
-            ui.printMarked(task);
-            break;
+            return ui.markTask(task);
         case "unmark":
             taskNo = Integer.valueOf(commandBreakdown[1]) - 1;
             task = taskList.getTask(taskNo);
             taskList.getTask(taskNo).markUndone();
-            ui.printUnmarked(task);
-            break;
+            return ui.unmarkTask(task);
         case "bye":
-            ui.printBye();
+            String byeMessage = ui.bye();
             storage.write(taskList);
-            return true;
+            return byeMessage;
         case "todo":
             String todoName = "";
             if (commandBreakdown.length == 1) {
-                ui.printDukeException(new EmptyTodoException());
-                break;
+                return new EmptyTodoException().toString();
             }
             for (int i = 1; i < commandBreakdown.length; i++) {
                 todoName = todoName + commandBreakdown[i] + " ";
             }
             ToDo todo = new ToDo(todoName);
             taskList.addTask(todo);
-            ui.printTaskAdded(todo, taskList);
-            break;
+            return ui.taskAdded(todo, taskList);
         case "deadline":
             String[] deadlineSplit = fullCommand.split(" /by ");
             String formattedDate = this.getDate(deadlineSplit[1]);
             Deadline deadline = new Deadline(deadlineSplit[0].substring(9, deadlineSplit[0].length()), formattedDate);
             taskList.addTask(deadline);
-            ui.printTaskAdded(deadline, taskList);
-            break;
+            return ui.taskAdded(deadline, taskList);
         case "event":
             String[] eventSplit = fullCommand.split(" /at ");
             formattedDate = this.getDate(eventSplit[1]);
             Event event = new Event(eventSplit[0].substring(6, eventSplit[0].length()), formattedDate);
             taskList.addTask(event);
-            ui.printTaskAdded(event, taskList);
-            break;
+            return ui.taskAdded(event, taskList);
         case "delete":
             int indToDelete = Integer.valueOf(commandBreakdown[1]) - 1;
             Task toDelete = taskList.getTask(indToDelete);
 
             taskList.remove(indToDelete);
-            ui.printDelete(toDelete, taskList);
-            break;
+            return ui.taskDeleted(toDelete, taskList);
         case "find":
             String keyword = "";
             for (int i = 1; i < commandBreakdown.length; i++) {
                 keyword += (commandBreakdown[i] + " ");
             }
             keyword = keyword.trim();
-            taskList.printMatchingTasks(keyword, ui);
-            break;
+            return ui.getMatchingTasks(keyword, taskList);
         default:
-            ui.printDukeException(new UnknownCommandException());
+            return new UnknownCommandException().toString();
         }
-
-        return false;
     }
 }

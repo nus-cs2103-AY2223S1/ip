@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.Scanner;
+import java.lang.StringBuilder;
 
 /**
  * Class which handles the interaction with the user.
@@ -9,106 +10,85 @@ import java.util.Scanner;
 public class Ui {
 
     /**
-     * Prints the opening message.
-     *
-     */
-    public void printStart() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("How can I help?");
-    }
-
-    /**
-     * Prints all the tasks from the TaskList.
+     * Returns all the tasks from the TaskList.
      *
      * @param taskList
+     * @return all tasks
      */
-    public void printTasks(TaskList taskList) {
+    public String getTasks(TaskList taskList) {
+        StringBuilder str = new StringBuilder();
         for (int i = 0; i < taskList.size(); i++) {
-            System.out.println(String.format("%d. %s", i + 1, taskList.getTask(i).toString()));
+            str.append(String.format("%d. %s\n", i + 1, taskList.getTask(i).toString()));
         }
+        return str.toString();
     }
 
     /**
-     * Prints message when a task is marked as done.
+     * Returns message when a task is marked as done.
      *
      * @param task
+     * @return message
      */
-    public void printMarked(Task task) {
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(String.format("%s", task.toString()));
+    public String markTask(Task task) {
+        return String.format("Nice! I've marked this task as done:\n%s", task.toString());
     }
 
     /**
-     * Prints message when a task is marked as undone.
+     * Returns message when a task is marked as undone.
      *
      * @param task
+     * @return message
      */
-    public void printUnmarked(Task task) {
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(String.format("%s", task.toString()));
+    public String unmarkTask(Task task) {
+        return String.format("OK, I've marked this task as not done yet:\n%s", task.toString());
     }
 
     /**
-     * Prints a message after user exits program.
+     * Returns a message after user exits program.
      *
+     * @return message
      */
-    public void printBye() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String bye() {
+        return "Bye!";
     }
 
     /**
-     * Prints a message after a new task is added.
-     *
-     * @param task
-     * @param taskList
-     */
-    public void printTaskAdded(Task task, TaskList taskList) {
-        System.out.println("added: " + task.toString());
-        System.out.println(String.format("Now you have %d tasks in the list", taskList.size()));
-    }
-
-    /**
-     * Prints a message after a task is deleted.
+     * Returns a message after a new task is added.
      *
      * @param task
      * @param taskList
+     * @return message
      */
-    public void printDelete(Task task, TaskList taskList) {
-        System.out.println("Noted. I've removed this task:");
-        System.out.println(task.toString());
-        System.out.println(String.format("Now you have %d tasks in the list", taskList.size()));
+    public String taskAdded(Task task, TaskList taskList) {
+        return String.format("added: %s\nNow you have %d tasks in the list", task.toString(), taskList.size());
     }
 
     /**
-     * Prints the String representation of a DukeException.
-     *
-     * @param e
-     */
-    public void printDukeException(DukeException e) {
-        System.out.println(e.toString());
-    }
-
-    /**
-     * Prints out the Task provided.
+     * Returns a message after a task is deleted.
      *
      * @param task
+     * @param taskList
+     * @return message
      */
-    public void printTask(Task task) {
-        System.out.println(task.toString());
+    public String taskDeleted(Task task, TaskList taskList) {
+        return String.format("Noted. I've removed this task:\n%s\nNow you have %d tasks in the list", task.toString(), taskList.size());
     }
 
     /**
-     * Returns user input.
+     * Looks for tasks which contain the keyword and returns them in String format
      *
-     * @param sc
-     * @return user input
+     * @param keyword
+     * @param tasks
+     * @return tasks which contain the keyword
      */
-    public String getCommand(Scanner sc) {
-        return sc.nextLine();
+    public String getMatchingTasks(String keyword, TaskList tasks) {
+        StringBuilder str = new StringBuilder();
+
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.getTask(i).getName().contains(keyword)) {
+                str.append(tasks.getTask(i));
+            }
+        }
+        return str.toString();
     }
 }
