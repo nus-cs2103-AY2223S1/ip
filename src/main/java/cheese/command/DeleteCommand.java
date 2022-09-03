@@ -4,7 +4,7 @@ import cheese.data.TaskList;
 import cheese.exception.CheeseException;
 import cheese.storage.Storage;
 import cheese.task.Task;
-import cheese.ui.Ui;
+import cheese.ui.Response;
 
 /**
  * Represents a user command to delete a task.
@@ -15,7 +15,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Constructs an instance of <code>DeleteCommand</code>.
-     * 
+     *
      * @param givenIndex Index of task to delete using 1-based indexing.
      */
     public DeleteCommand(int givenIndex) {
@@ -24,15 +24,15 @@ public class DeleteCommand extends Command {
 
     /**
      * Executes operations to delete task from list and save the list.
-     * 
+     *
      * @param {@inheritDoc}
      * @throws CheeseException If given index of task to delete does not match a task from
-     *         <code>taskList</code>.
+     *                         <code>taskList</code>.
      */
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) throws CheeseException {
+    public String execute(TaskList taskList, Storage storage) throws CheeseException {
         Task deletedTask = taskList.delete(taskIndex);
-        ui.showDeleteTask(deletedTask, taskList.getSize());
         storage.save(taskList);
+        return Response.getDeleteTaskMessage(deletedTask, taskList.getSize());
     }
 }

@@ -4,7 +4,7 @@ import cheese.data.TaskList;
 import cheese.storage.Storage;
 import cheese.task.Event;
 import cheese.task.Task;
-import cheese.ui.Ui;
+import cheese.ui.Response;
 
 /**
  * Represents a user command to create a new event.
@@ -18,8 +18,8 @@ public class EventCommand extends Command {
 
     /**
      * Constructs an instance of <code>EventCommand</code>
-     * 
-     * @param description Description of new event.
+     *
+     * @param description  Description of new event.
      * @param timeInterval Time interval of new event.
      */
     public EventCommand(String description, String timeInterval) {
@@ -29,13 +29,11 @@ public class EventCommand extends Command {
 
     /**
      * Executes operations to create a new event, add event to list, and save list.
-     * 
-     * @param {@inheritDoc}
      */
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) {
+    public String execute(TaskList taskList, Storage storage) {
         Task addedTask = taskList.add(new Event(description, timeInterval));
-        ui.showAddTask(addedTask, taskList.getSize());
         storage.save(taskList);
+        return Response.getAddTaskMessage(addedTask, taskList.getSize());
     }
 }

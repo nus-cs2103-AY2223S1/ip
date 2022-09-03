@@ -2,7 +2,7 @@ package cheese.command;
 
 import cheese.data.TaskList;
 import cheese.storage.Storage;
-import cheese.ui.Ui;
+import cheese.ui.Response;
 
 /**
  * Represents a user command that is unrecognized.
@@ -10,11 +10,9 @@ import cheese.ui.Ui;
 public class UnknownCommand extends Command {
     /**
      * Executes operation to display error message.
-     * 
-     * @param {@inheritDoc}
      */
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) {
-        ui.showError("Sowwy, I don't understand");
+    public String execute(TaskList taskList, Storage storage) {
+        return Response.getUnknownCommandMessage();
     }
 }

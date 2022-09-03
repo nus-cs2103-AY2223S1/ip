@@ -77,6 +77,13 @@ public class Response {
     }
 
     /**
+     * Returns unknown command message.
+     */
+    public static String getUnknownCommandMessage() {
+        return "Sowwy, I don't understand";
+    }
+
+    /**
      * Returns goodbye message.
      */
     public static String getGoodbyeMessage() {
