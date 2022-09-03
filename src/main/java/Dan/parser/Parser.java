@@ -31,29 +31,23 @@ public class Parser {
         try {
             switch (action) {
             case "bye":
-                Ui.sayonara();
+                Ui.bye();
                 return true;
-
             case "list":
                 tasks.showTasks();
                 break;
-
             case "mark":
                 tasks.markTask(Integer.parseInt(input.split(" ")[1]));
                 break;
-
             case "unmark":
-                tasks.unMarkTask(Integer.parseInt(input.split(" ")[1]));
+                tasks.unmarkTask(Integer.parseInt(input.split(" ")[1]));
                 break;
-
             case "delete":
                 tasks.deleteTask(Integer.parseInt(input.split(" ")[1]));
                 break;
-
             case "find":
                 tasks.findTask(input.split(" ", 1)[1]);
                 break;
-
             case "todo":
                 //fall through
             case "deadline":
@@ -61,7 +55,6 @@ public class Parser {
             case "event":
                 tasks.addTask(input);
                 break;
-
             default:
                 throw new DanException("I don't really understand what do you mean by that...");
             }

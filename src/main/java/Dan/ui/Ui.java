@@ -57,7 +57,7 @@ public class Ui {
     /**
      * Prints the goodbye message
      */
-    public static void sayonara() {
+    public static void bye() {
         printBlock("Boo! Bye bye... :(");
     }
 }

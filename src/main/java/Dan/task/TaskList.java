@@ -33,24 +33,24 @@ public class TaskList {
             tasks.add(new ToDo(description));
 
         } else if (input.startsWith("deadline")) {
-            String[] temp = input.replace("deadline","").strip().split("/by");
-            if (temp.length != 2) {
+            String[] inputArr = input.replace("deadline","").strip().split("/by");
+            if (inputArr.length != 2) {
                 throw new DanException("Please follow the following format:\n deadline <description> /by <due date>");
             }
-            description = temp[0].strip();
-            dateString = temp[1].strip();
+            description = inputArr[0].strip();
+            dateString = inputArr[1].strip();
             if (description.isEmpty()) {
                 throw new DanException("Please provide me a description for your deadline");
             }
             tasks.add(new Deadline(description, dateString));
 
         } else if (input.startsWith("event")) {
-            String[] temp = input.replace("event", "").strip().split("/at");
-            if (temp.length != 2) {
+            String[] inputArr = input.replace("event", "").strip().split("/at");
+            if (inputArr.length != 2) {
                 throw new DanException("Please follow the following format:\n event <description> /at <time/date>");
             }
-            description = temp[0].strip();
-            dateString = temp[1].strip();
+            description = inputArr[0].strip();
+            dateString = inputArr[1].strip();
             if (description.isEmpty()) {
                 throw new DanException("Please provide me a description for your event");
             }
@@ -101,7 +101,7 @@ public class TaskList {
      * @param index Task number (as displayed in `showTasks()`) of the task that is completed
      * @throws DanException if the given task number does not exist in the list
      */
-    public void unMarkTask(int index) throws DanException {
+    public void unmarkTask(int index) throws DanException {
         if (index > tasks.size()) {
             throw new DanException("This task number doesn't exist!");
         }
