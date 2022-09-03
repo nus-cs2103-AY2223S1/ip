@@ -8,17 +8,17 @@ import duke.task.TaskList;
  */
 public class Ui {
     /**
-     * Method to print welcome message
+     * Method to return welcome message
      */
-    public static void welcome() {
-        System.out.println("-------------------------------------------\n"
+    public static String welcome() {
+       return "-------------------------------------------\n"
                 + "Hello from Phil\n"
                         + "How may I assist you on this fine day?\n" +
-                                "-------------------------------------------\n");
+                                "-------------------------------------------\n";
     }
 
     /**
-     * Method to print bye message
+     * Method to return bye message
      */
     public static String bye() {
         return "See you later alligator!"
@@ -26,7 +26,7 @@ public class Ui {
     }
 
     /**
-     * Method to print add task message
+     * Method to return add task message
      *
      * @param task the task to be added
      */
@@ -36,21 +36,21 @@ public class Ui {
     }
 
     /**
-     * Method to print mark task message
+     * Method to return mark task message
      */
     public static String mark() {
         return "Roger sir the task has been marked!";
     }
 
     /**
-     * Method to print unmark task message
+     * Method to return unmark task message
      */
     public static String unmark() {
         return "Aww okay the task has been unmarked.";
     }
 
     /**
-     * Method to print delete task message
+     * Method to return delete task message
      *
      * @param task the task to be deleted
      */
@@ -60,7 +60,7 @@ public class Ui {
     }
 
     /**
-     * Method to print count task message
+     * Method to return count task message
      *
      * @param list the list to be counted
      */
@@ -70,21 +70,21 @@ public class Ui {
     }
 
     /**
-     * Method to print clear list message
+     * Method to return clear list message
      */
     public static String clear() {
         return "The list has been successfully cleared!";
     }
 
     /**
-     * Method to print task found message
+     * Method to return task found message
      */
     public static String taskFound() {
         return "Woohoo here are some matches found!";
     }
 
     /**
-     * Method to print no task found message
+     * Method to return no task found message
      */
     public static String noTaskFound() {
         return "Ohno I could not find any tasks fitting the keywords...";
