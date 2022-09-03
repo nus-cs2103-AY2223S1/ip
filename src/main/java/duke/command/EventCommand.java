@@ -25,15 +25,17 @@ public class EventCommand extends Command {
 
     /**
      * to execute the {@code EventCommand}
-     * @param tasks the current {@code TaskList}
-     * @param ui the current {@code Ui}
+     *
+     * @param tasks   the current {@code TaskList}
+     * @param ui      the current {@code Ui}
      * @param storage the current {@code Storage}
+     * @return
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         Event event = new Event(description, remark);
         tasks.add(event);
-        ui.eventTask(tasks, event);
         storage.update(tasks.getTasks());
+        return ui.eventTask(tasks, event);
     }
 }

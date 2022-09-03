@@ -21,12 +21,14 @@ public class FindCommand extends Command {
 
     /**
      * To execute the {@code FindCommand}
-     * @param tasks the current {@code TaskList}
-     * @param ui the current {@code Ui}
+     *
+     * @param tasks   the current {@code TaskList}
+     * @param ui      the current {@code Ui}
      * @param storage the current {@code Storage}
+     * @return
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.findTask(tasks, description);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.findTask(tasks, description);
     }
 }

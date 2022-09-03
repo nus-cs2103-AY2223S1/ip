@@ -22,15 +22,17 @@ public class TodoCommand extends Command {
 
     /**
      * To execute the {@code TodoCommand}
-     * @param tasks the current {@code TaskList}
-     * @param ui the current {@code Ui}
+     *
+     * @param tasks   the current {@code TaskList}
+     * @param ui      the current {@code Ui}
      * @param storage the current {@code Storage}
+     * @return
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         Todo todo = new Todo(description);
         tasks.add(todo);
-        ui.todoTask(tasks, todo);
         storage.update(tasks.getTasks());
+        return ui.todoTask(tasks, todo);
     }
 }

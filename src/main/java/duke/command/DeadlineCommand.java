@@ -27,15 +27,17 @@ public class DeadlineCommand extends Command {
 
     /**
      * To execute the {@code DeadlineCommand}
-     * @param tasks the current {@code TaskList}
-     * @param ui the current {@code Ui}
+     *
+     * @param tasks   the current {@code TaskList}
+     * @param ui      the current {@code Ui}
      * @param storage the current {@code Storage}
+     * @return
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         Deadline deadline = new Deadline(description, date);
         tasks.add(deadline);
-        ui.deadlineTask(tasks, deadline);
         storage.update(tasks.getTasks());
+        return ui.deadlineTask(tasks, deadline);
     }
 }

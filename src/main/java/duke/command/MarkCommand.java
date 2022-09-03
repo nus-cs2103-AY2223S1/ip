@@ -26,18 +26,20 @@ public class MarkCommand extends Command {
 
     /**
      * To execute the {@code MarkCommand}
-     * @param tasks the current {@code TaskList}
-     * @param ui the current {@code Ui}
+     *
+     * @param tasks   the current {@code TaskList}
+     * @param ui      the current {@code Ui}
      * @param storage the current {@code Storage}
+     * @return
      * @throws DukeException if the index is invalid
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             task = tasks.get(idx);
             task.markAsDone();
-            ui.markTask(task);
             storage.update(tasks.getTasks());
+            return ui.markTask(task);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Invalid index.");
         }

@@ -11,12 +11,14 @@ public class ListCommand extends Command {
 
     /**
      * To execute the {@code ListCommand}
-     * @param tasks the current {@code TaskList}
-     * @param ui the current {@code Ui}
+     *
+     * @param tasks   the current {@code TaskList}
+     * @param ui      the current {@code Ui}
      * @param storage the current {@code Storage}
+     * @return
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.listTask(tasks);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.listTask(tasks);
     }
 }

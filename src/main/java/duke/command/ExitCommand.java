@@ -11,13 +11,17 @@ public class ExitCommand extends Command {
 
     /**
      * to execute the {@code ExitCommand}
-     * @param tasks the current {@code TaskList}
-     * @param ui the current {@code Ui}
+     *
+     * @param tasks   the current {@code TaskList}
+     * @param ui      the current {@code Ui}
      * @param storage the current {@code Storage}
+     * @return
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        storage.update(tasks.getTasks());
         Command.end();
         ui.exitTask();
+        return ui.exitTask();
     }
 }

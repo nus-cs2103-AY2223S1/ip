@@ -85,9 +85,11 @@ public class TaskList {
     /**
      * To list out all the tasks in the list
      */
-    public void listTasks() {
+    public String listTasks() {
+        String list = "";
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println("\t " + (i + 1) + "." + tasks.get(i).toString());
+            list += ("\t " + (i + 1) + "." + tasks.get(i).toString() + "\n");
         }
+        return list;
     }
 }

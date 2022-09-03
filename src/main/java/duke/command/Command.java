@@ -33,5 +33,5 @@ public abstract class Command {
      * @param storage the current {@code Storage}
      * @throws DukeException if there is an error
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 }

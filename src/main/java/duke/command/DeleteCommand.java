@@ -24,21 +24,22 @@ public class DeleteCommand extends Command {
 
     /**
      * To execute the {@code DeleteCommand}
-     * @param tasks the current {@code TaskList}
-     * @param ui the current {@code Ui}
+     *
+     * @param tasks   the current {@code TaskList}
+     * @param ui      the current {@code Ui}
      * @param storage the current {@code Storage}
+     * @return
      * @throws DukeException if the index is invalid
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             task = tasks.get(idx);
             tasks.remove(idx);
-            ui.deleteTask(tasks, task);
             storage.update(tasks.getTasks());
+            return ui.deleteTask(tasks, task);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Invalid index.");
         }
-
     }
 }

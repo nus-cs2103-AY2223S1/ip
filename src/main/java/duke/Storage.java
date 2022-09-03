@@ -69,6 +69,7 @@ public class Storage {
             @SuppressWarnings("unchecked")
             ArrayList<Task> temp = (ArrayList<Task>) ois.readObject();
             return temp;
+
         } catch (IOException | ClassNotFoundException ex) {
             ex.printStackTrace();
         }
