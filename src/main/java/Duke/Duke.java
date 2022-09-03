@@ -24,12 +24,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
-
-
-
-
 /**
- *
+ * Duke class that handles user inputs
  */
 public class Duke extends Application {
     private ArrayList<Task> all = new ArrayList<>();
@@ -654,6 +650,8 @@ public class Duke extends Application {
                 ui.showLine();
             }
         }
+
+        assert isExit == false : "isExit should be false";
     }
 
     /**
