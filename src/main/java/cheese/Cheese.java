@@ -23,7 +23,7 @@ public class Cheese {
 
     /**
      * Constructs an instance of <code>Cheese</code>.
-     * 
+     *
      * @param filePath File path of save file.
      */
     public Cheese(String filePath) {
@@ -57,7 +57,7 @@ public class Cheese {
 
     /**
      * Acts as entry point for program.
-     * 
+     *
      * @param args Command line arguments.
      */
     public static void main(String[] args) {
