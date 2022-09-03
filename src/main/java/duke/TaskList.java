@@ -95,6 +95,24 @@ public class TaskList {
     }
 
     /**
+     * Find tasks that contain a specific keyword given by the user.
+     *
+     * @param wordToSearch The keyword given by the user.
+     * @param ui The Ui object to display the found tasks to the user.
+     */
+    public void findTasks(String wordToSearch, Ui ui) {
+        ArrayList<Integer> taskNo = new ArrayList<>();
+        ArrayList<Task> relevantTasks = new ArrayList<>();
+        for (Integer i = 0; i < taskArr.size(); i++) {
+            if (taskArr.get(i).toString().contains(wordToSearch)) {
+                taskNo.add(i);
+                relevantTasks.add(taskArr.get(i));
+            }
+        }
+        ui.showFoundTasks(taskNo, relevantTasks);
+    }
+
+    /**
      * Gets the most recent task added to the to-do list.
      *
      * @return The retrieved Task.
@@ -109,17 +127,5 @@ public class TaskList {
 
     public Task getTask(int taskNo) {
         return this.taskArr.get(taskNo);
-    }
-
-    public void findTasks(String wordToSearch, Ui ui) {
-        ArrayList<Integer> taskNo = new ArrayList<>();
-        ArrayList<Task> relevantTasks = new ArrayList<>();
-        for (Integer i = 0; i < taskArr.size(); i++) {
-            if (taskArr.get(i).toString().contains(wordToSearch)) {
-                taskNo.add(i);
-                relevantTasks.add(taskArr.get(i));
-            }
-        }
-        ui.showFoundTasks(taskNo, relevantTasks);
     }
 }

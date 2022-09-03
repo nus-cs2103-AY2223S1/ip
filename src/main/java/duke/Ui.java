@@ -105,6 +105,20 @@ public class Ui {
     }
 
     /**
+     * Displays the tasks in the to-do list that matches the keyword given by the user.
+     *
+     * @param taskNo The list of task numbers whose tasks matches the keyword.
+     * @param relevantTasks The list of matching tasks.
+     */
+    public void showFoundTasks(ArrayList<Integer> taskNo, ArrayList<Task> relevantTasks) {
+        System.out.println(INDENT + "alright, I've found " + taskNo.size() +  " matching tasks in your list \n");
+        for (int i = 0; i < taskNo.size(); i++) {
+            System.out.println(INDENT + (taskNo.get(i) + 1) + ". " + relevantTasks.get(i).toString());
+        }
+        System.out.println(DIVIDER);
+    }
+
+    /**
      * Tells the user that an error has occurred.
      *
      * @param message The error message to display to the user.
@@ -120,13 +134,4 @@ public class Ui {
         System.out.println(INDENT + "Bye! Hope to see you again soon! Thank You for using Zelk :D\n" + DIVIDER);
         s.close();
     }
-
-    public void showFoundTasks(ArrayList<Integer> taskNo, ArrayList<Task> relevantTasks) {
-        System.out.println(INDENT + "alright, I've found " + taskNo.size() +  " matching tasks in your list \n");
-        for (int i = 0; i < taskNo.size(); i++) {
-            System.out.println(INDENT + (taskNo.get(i) + 1) + ". " + relevantTasks.get(i).toString());
-        }
-        System.out.println(DIVIDER);
-    }
-
 }
