@@ -13,7 +13,7 @@ import duke.task.TaskList;
 
 
 /**
- * Duke ChatBot that is able to manage a list of tasks
+ * Duke is a chatbot that is able to manage a list of tasks
  */
 public class Duke {
 
@@ -31,7 +31,12 @@ public class Duke {
     }
 
     /**
-     * Executes command and returns Duke's response
+     * Takes in an input string, parses it for a command,
+     * executes the command and returns a string describing
+     * what command has been executed
+     *
+     * @param input
+     * @return output string that Duke prints to user
      */
     public String getResponse(String input) {
         try {
