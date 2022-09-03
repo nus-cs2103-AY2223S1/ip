@@ -9,6 +9,7 @@ import duke.command.FindCommand;
 import duke.command.InvalidCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.SortCommand;
 import duke.command.TodoCommand;
 import duke.command.UnmarkCommand;
 import duke.task.Deadline;
@@ -67,6 +68,8 @@ public class Parser {
             return new DeleteCommand(taskList, Integer.parseInt(argument) - 1);
         case FindCommand.COMMAND_WORD:
             return new FindCommand(taskList, argument);
+        case SortCommand.COMMAND_WORD:
+            return new SortCommand(taskList);
         default:
             throw new DukeException("I'm sorry, but I don't know what that means.");
         }

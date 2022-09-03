@@ -49,6 +49,15 @@ public class Event extends Task {
     }
 
     /**
+     * Returns the date of this Event.
+     *
+     * @return The date of this Event.
+     */
+    public LocalDate getDate() {
+        return this.date;
+    }
+
+    /**
      * Returns an Event after decoding the String.
      *
      * @param s The String to decode.
@@ -85,6 +94,28 @@ public class Event extends Task {
                 SYMBOL,
                 super.toString(),
                 Date.getDisplayFormat(this.date));
+    }
+
+    /**
+     * Compares this Event with the given Task.
+     * If the given Task is an Event or a Deadline, their dates are compared chronologically.
+     * Otherwise, this Event is always smaller.
+     *
+     * @param task The Task to compare to.
+     * @return A negative integer, zero, or a positive integer as this Event is
+     *     smaller than, equals to, or larger than the given Task.
+     */
+    @Override
+    public int compareTo(Task task) {
+        if (task instanceof Event) {
+            Event event = (Event) task;
+            return this.date.compareTo(event.date);
+        } else if (task instanceof Deadline) {
+            Deadline deadline = (Deadline) task;
+            return this.date.compareTo(deadline.getDate());
+        } else {
+            return -1;
+        }
     }
 }
 

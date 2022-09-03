@@ -20,7 +20,7 @@ public class ListCommand extends Command {
     }
 
     /**
-     * Returns a String containing the given TaskList.
+     * Returns a String containing the TaskList.
      *
      * @return A String containing the TaskList.
      */

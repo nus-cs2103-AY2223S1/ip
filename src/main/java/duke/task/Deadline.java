@@ -48,6 +48,15 @@ public class Deadline extends Task {
     }
 
     /**
+     * Returns the date of this Deadline.
+     *
+     * @return The date of this Deadline.
+     */
+    public LocalDate getDate() {
+        return this.date;
+    }
+
+    /**
      * Returns a Deadline after decoding the given String.
      *
      * @param s The String to decode.
@@ -84,5 +93,27 @@ public class Deadline extends Task {
                 SYMBOL,
                 super.toString(),
                 Date.getDisplayFormat(this.date));
+    }
+
+    /**
+     * Compares this Deadline with the given Task.
+     * If the given Task is a Deadline or an Event, their dates are compared chronologically.
+     * Otherwise, this Deadline is always smaller.
+     *
+     * @param task The Task to compare to.
+     * @return A negative integer, zero, or a positive integer as this Deadline is
+     *     smaller than, equals to, or larger than the given Task.
+     */
+    @Override
+    public int compareTo(Task task) {
+        if (task instanceof Deadline) {
+            Deadline deadline = (Deadline) task;
+            return this.date.compareTo(deadline.date);
+        } else if (task instanceof Event) {
+            Event event = (Event) task;
+            return this.date.compareTo(event.getDate());
+        } else {
+            return -1;
+        }
     }
 }

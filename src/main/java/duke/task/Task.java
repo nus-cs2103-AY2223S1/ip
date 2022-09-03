@@ -5,7 +5,7 @@ import duke.DukeException;
 /**
  * This class encapsulates a task set by the user.
  */
-public abstract class Task {
+public abstract class Task implements Comparable<Task> {
     private String description;
     private boolean isDone;
 

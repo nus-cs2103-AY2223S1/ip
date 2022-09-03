@@ -1,6 +1,7 @@
 package duke.task;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import duke.DukeException;
@@ -74,6 +75,15 @@ public class TaskList {
             }
         }
         return matchingTasks;
+    }
+
+    /**
+     * Sorts this TaskList in the following order: to-dos, then deadlines and events.
+     * To-dos are sorted by alphabetical order, while deadlines and events are sorted by
+     * chronological order.
+     */
+    public void sort() {
+        this.tasks.sort(Comparator.naturalOrder());
     }
 
     /**
