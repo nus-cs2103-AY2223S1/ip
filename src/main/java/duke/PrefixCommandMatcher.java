@@ -21,7 +21,7 @@ public class PrefixCommandMatcher extends CommandMatcher {
 
             // corner case
             if (cmd.equals(prefix)) {
-                Duke.getCurrentUi().printStyledMessage(
+                Duke.getUi().printStyledMessage(
                         "(>.<') Add a description to your " + prefix + ".");
                 return;
             }
@@ -41,7 +41,7 @@ public class PrefixCommandMatcher extends CommandMatcher {
 
             // another corner case
             if (commandParts[0].equals("")) {
-                Duke.getCurrentUi().printStyledMessage("(>.<') The description for " + prefix + " shouldn't be empty.");
+                Duke.getUi().printStyledMessage("(>.<') The description for " + prefix + " shouldn't be empty.");
                 return;
             }
 

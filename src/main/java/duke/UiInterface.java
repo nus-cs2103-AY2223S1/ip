@@ -1,23 +1,32 @@
 package duke;
 
+import java.io.Reader;
+
 /**
  * Functions that a UI interface needs to implement.
  */
 public interface UiInterface {
     /**
+     * Gives you the input stream to scan to interact with this interface.
+     *
+     * @return InputStream to scan.
+     */
+    Reader getReader();
+
+    /**
      * Styles and prints lines with a border.
      *
      * @param lines Lines to be printed
      */
-    public void printStyledMessage(String... lines);
+    void printStyledMessage(String... lines);
 
     /**
      * Greets user.
      */
-    public void greet();
+    void greet();
 
     /**
      * Leaves the user.
      */
-    public void leave();
+    void leave();
 }

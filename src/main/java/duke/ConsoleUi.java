@@ -1,10 +1,20 @@
 package duke;
 
+import java.io.InputStreamReader;
+import java.io.Reader;
 
 /**
  * Handles console-based user interface. Used for sanity checks.
  */
-public class Ui implements UiInterface {
+public class ConsoleUi implements UiInterface {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Reader getReader() {
+        return new InputStreamReader(System.in);
+    }
+
     /**
      * {@inheritDoc}
      */
