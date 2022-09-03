@@ -1,7 +1,12 @@
 package duke.task;
 
-public class Task {
+/**
+ * Represents a Task that can be described and marked as done.
+ */
+public abstract class Task {
+    /* Description of the task. */
     protected String description;
+    /* Boolean representing the completion of the task. */
     protected boolean isDone;
 
     public Task(String description) {
@@ -37,9 +42,7 @@ public class Task {
      *
      * @return String that is of the save file format.
      */
-    public String saveText() {
-        return String.format("Task|%d|%s", this.isDone ? 1 : 0, this.description);
-    }
+    public abstract String saveText();
 
     @Override
     public String toString() {

@@ -1,50 +1,41 @@
 package duke.task;
 
-import duke.DukeException;
-import duke.task.Task;
-
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+/**
+ * Represents an Event that can be described and marked as done,
+ * and holds a date on which the task will be held.
+ */
 public class Event extends Task {
-    private LocalDate time;
+    private LocalDateTime atDate;
 
-    private static final String metaPattern = "(^.+)(\\s?+/at\\s?+)(.+)?$";
-    private static String extractDescription(String meta) throws DukeException {
-        Matcher m = Pattern.compile(metaPattern).matcher(meta);
-        if (!m.find()) {
-            throw new DukeException("You need to use \"/at\" to specify when the event is");
-        }
-        return m.group(1);
+    public Event(String description, LocalDateTime atDate) {
+        super(description);
+        this.atDate = atDate;
     }
 
-    public Event(String meta) throws DukeException {
-        super(extractDescription(meta));
-        Matcher m = Pattern.compile(metaPattern).matcher(meta);
-        if (!m.find()) {
-            throw new DukeException("You need to use \"/at\" to specify when the event is");
-        }
-        String time = m.group(3);
-        if (time == null) {
-            throw new DukeException("You didn't specify the time.");
-        }
-        try {
-            this.time = LocalDate.parse(time);
-        } catch (DateTimeParseException e) {
-            throw new DukeException("Invalid date/time format");
-        }
-    }
-
+    /**
+     * Returns a string that is safe to use with the save file.
+     *
+     * @return String that is of the save file format.
+     */
     @Override
     public String saveText() {
-        return String.format("E|%d|%s /at %s", this.isDone ? 1 : 0, this.description, this.time);
+        return String.format(
+                "%d event %s /at %s",
+                this.isDone ? 1 : 0,
+                this.description,
+                this.atDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy H:mm"))
+        );
     }
 
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+        return String.format(
+                "[E]%s (at: %s)",
+                super.toString(),
+                this.atDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
+        );
     }
 }

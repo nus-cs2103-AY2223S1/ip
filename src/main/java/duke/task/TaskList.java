@@ -1,12 +1,16 @@
 package duke.task;
 
-import duke.DukeException;
+import duke.exception.DukeException;
+import duke.ui.Message;
+
 import java.util.ArrayList;
 
+/**
+ * Represents a task list that can store and update tasks.
+ */
 public class TaskList {
+    /* ArrayList container to hold all the tasks. */
     private ArrayList<Task> taskList;
-
-    private static final String outOfBoundsMessage = "The entered task index is out of bounds";
 
     public TaskList() {
         this.taskList = new ArrayList<>();
@@ -47,7 +51,7 @@ public class TaskList {
         try {
             return this.taskList.remove(idx - 1);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(outOfBoundsMessage);
+            throw new DukeException(Message.OUT_OF_BOUNDS_ERROR);
         }
     }
 
@@ -64,7 +68,7 @@ public class TaskList {
             task.mark();
             return task;
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(outOfBoundsMessage);
+            throw new DukeException(Message.OUT_OF_BOUNDS_ERROR);
         }
     }
 
@@ -81,7 +85,7 @@ public class TaskList {
             task.unmark();
             return task;
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(outOfBoundsMessage);
+            throw new DukeException(Message.OUT_OF_BOUNDS_ERROR);
         }
     }
 
@@ -96,7 +100,7 @@ public class TaskList {
         try {
             return this.taskList.get(idx);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(outOfBoundsMessage);
+            throw new DukeException(Message.OUT_OF_BOUNDS_ERROR);
         }
     }
 
@@ -115,6 +119,26 @@ public class TaskList {
             }
         }
         return result;
+    }
+
+    /**
+     * Returns a string with tasks on separate lines.
+     *
+     * @return String with tasks on separate lines.
+     * @throws DukeException If task list is empty.
+     */
+    public String getListString() throws DukeException {
+        String msg = "";
+        if (this.getSize() == 0) {
+            throw new DukeException(Message.EMPTY);
+        }
+        for (int i = 0; i < this.getSize(); i++) {
+            msg += i + 1 + ". " + this.get(i);
+            if (i < this.getSize() - 1)  {
+                msg += "\n";
+            }
+        }
+        return msg;
     }
 
 }

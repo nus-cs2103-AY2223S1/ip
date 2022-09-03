@@ -1,48 +1,41 @@
 package duke.task;
 
-import duke.DukeException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+/**
+ * Represents a Deadline that can be described and marked as done,
+ * and holds a date by which the task must be completed.
+ */
 public class Deadline extends Task {
-    private LocalDate time;
+    private LocalDateTime byDate;
 
-    private static final String metaPattern = "(^.+)(\\s?+/by\\s?+)(.+)?$";
-    private static String extractDescription(String meta) throws DukeException {
-        Matcher m = Pattern.compile(metaPattern).matcher(meta);
-        if (!m.find()) {
-            throw new DukeException("You need to use \"/by\" to specify when the event is");
-        }
-        return m.group(1);
+    public Deadline(String description, LocalDateTime byDate) {
+        super(description);
+        this.byDate = byDate;
     }
 
-    public Deadline(String meta) throws DukeException {
-        super(extractDescription(meta));
-        Matcher m = Pattern.compile(metaPattern).matcher(meta);
-        if (!m.find()) {
-            throw new DukeException("You need to use \"/by\" to specify when the event is");
-        }
-        String time = m.group(3);
-        if (time == null) {
-            throw new DukeException("You didn't specify the time.");
-        }
-        try {
-            this.time = LocalDate.parse(time);
-        } catch (DateTimeParseException e) {
-            throw new DukeException("Invalid date/time format");
-        }
-    }
-
+    /**
+     * Returns a string that is safe to use with the save file.
+     *
+     * @return String that is of the save file format.
+     */
     @Override
     public String saveText() {
-        return String.format("D|%d|%s /by %s", this.isDone ? 1 : 0, this.description, this.time);
+        return String.format(
+                "%d deadline %s /by %s",
+                this.isDone ? 1 : 0,
+                this.description,
+                this.byDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy H:mm"))
+        );
     }
 
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+        return String.format(
+                "[D]%s (by: %s)",
+                super.toString(),
+                this.byDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
+        );
     }
 }
