@@ -40,7 +40,7 @@ public class Parser {
      *
      * @param input The given user input.
      * @return The specified command of the user.
-     * @throws MissingDescriptionException The exception that occurs.
+     * @throws MissingDescriptionException The exception that occurs
      *     when the user did not input the command fully.
      * @throws InvalidInputException The exception that occurs when the user did not input any valid command.
      */
@@ -145,6 +145,7 @@ public class Parser {
                 task = createTaskWithDate(components[0], components[1], type);
                 return new EventCommand(task);
             default:
+                assert false;
                 break;
             }
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -152,6 +153,7 @@ public class Parser {
         } catch (DateTimeParseException e) {
             throw new InvalidDateException(INVALID_DATE_MESSAGE);
         }
+        assert false;
         throw new InvalidInputException();
     }
 
@@ -180,6 +182,7 @@ public class Parser {
             task = new Event(description, date, time, timeEnd, type);
             break;
         default:
+            assert false;
             break;
         }
         return task;
@@ -219,11 +222,10 @@ public class Parser {
                 break;
             }
             default:
+                assert false;
                 break;
             }
-            if (task != null) {
-                listOfTasks.add(task);
-            }
+            listOfTasks.add(task);
         }
         return listOfTasks;
     }
@@ -236,8 +238,8 @@ public class Parser {
      */
     public ArrayList<String> writeFileContents(ArrayList<Task> taskList) {
         ArrayList<String> list = new ArrayList<>();
-        String string = "";
         for (Task task : taskList) {
+            String string = "";
             switch (task.type) {
             case TODO: {
                 string = "T | " + task.getDoneStatus() + " | " + task.getDescription();
@@ -252,12 +254,10 @@ public class Parser {
                 break;
             }
             default:
-                string = "";
+                assert false;
                 break;
             }
-            if (!string.equals("")) {
-                list.add(string);
-            }
+            list.add(string);
         }
         return list;
     }
@@ -280,9 +280,11 @@ public class Parser {
             break;
         }
         default:
+            assert false;
             break;
         }
-        if (task != null & taskStatus == 1) {
+        assert task != null;
+        if (taskStatus == 1) {
             task.markAsDone();
         }
         return task;

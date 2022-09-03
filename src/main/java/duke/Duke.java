@@ -52,10 +52,12 @@ public class Duke {
         String response = "";
         try {
             Command command = parser.parse(input);
+            assert command != null : "Command should not be null";
             response = command.execute(listOfTasks, storage, ui);
         } catch (DukeException e) {
             response = e.getMessage();
         }
+        assert !response.equals("") : "Response should not be empty";
         return response;
     }
 }
