@@ -56,6 +56,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
+
         try {
             String response = henry.getResponse(input);
             dialogContainer.getChildren().addAll(
@@ -68,6 +69,7 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getHenryDialog(e.getMessage(), henryImage)
             );
         }
+
         userInput.clear();
     }
 }
