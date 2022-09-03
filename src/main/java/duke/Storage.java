@@ -108,9 +108,11 @@ public class Storage {
      */
     public void saveTaskFile(TaskList taskList) {
         ArrayList<Task> tasks = taskList.getTasks();
+
         try {
             FileWriter taskFile = new FileWriter(fileLocation);
             String textToSave = " ";
+
             for (int i = 0; i < tasks.size(); i++) {
                 textToSave += tasks.get(i).toStringStorage() + "\n";
             }
