@@ -7,6 +7,7 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.function.Supplier;
 
 /**
  * Parser deals with making sense of user input.
@@ -44,7 +45,7 @@ public class Parser {
      * @param response the user input.
      * @return the command based on the user input.
      */
-    public Runnable parse(String response) {
+    public Supplier<String> parse(String response) {
         //strip() to allow for any (unintentional) whitespaces before or after
         response = response.strip();
         String lresponse = response.toLowerCase();  //for any caps commands
@@ -92,13 +93,9 @@ public class Parser {
                 return new FindCommand(taskList, response.substring(5).stripLeading()); //ensure no leading whitespaces
             }
         } catch (NumberFormatException | IllegalTaskException e) {
-            return () -> {
-                System.out.println(" ☹ OOPS!!! The task number you have inputted does not exist or is invalid.");
-            };
+            return () -> " ☹ OOPS!!! The task number you have inputted does not exist or is invalid.";
         } catch (IllegalKeywordException e) {
-            return () -> {
-                System.out.println(" ☹ OOPS!!! You have not specified a keyword.");
-            };
+            return () -> " ☹ OOPS!!! You have not specified a keyword.";
         }
 
         try {
@@ -171,21 +168,13 @@ public class Parser {
                 return new EventCommand(taskList, description, Parser.parseTime(time));
             }
         } catch (IllegalDescriptionException e) {
-            return () -> {
-                System.out.println(" ☹ OOPS!!! The description cannot be empty.");
-            };
+            return () -> " ☹ OOPS!!! The description cannot be empty.";
         } catch (IllegalTimeException e) {
-            return () -> {
-                System.out.println(" ☹ OOPS!!! The time specified is either invalid or empty.");
-            };
+            return () -> " ☹ OOPS!!! The time specified is either invalid or empty.";
         } catch (IllegalTokenException e) {
-            return () -> {
-                System.out.println(" ☹ OOPS!!! You are mising the \"/by\" or \"/at\" token.");
-            };
+            return () -> " ☹ OOPS!!! You are mising the \"/by\" or \"/at\" token.";
         }
-        return () -> {
-            System.out.println(" ☹ OOPS!!! I'm sorry, but I don't know what that means. :-(");
-        };
+        return () -> " ☹ OOPS!!! I'm sorry, but I don't know what that means. :-(";
     }
     
     /**

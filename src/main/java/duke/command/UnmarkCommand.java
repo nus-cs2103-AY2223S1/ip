@@ -31,12 +31,9 @@ public class UnmarkCommand extends Command {
         }
     }
 
-    /**
-     * Unmarks the specified task.
-     */
     @Override
-    public void run() {
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(taskList.unmarkTask(query).toString());
+    public String get() {
+        return "OK, I've marked this task as not done yet:\n"
+                + taskList.unmarkTask(query).toString();
     }
 }

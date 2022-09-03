@@ -31,12 +31,9 @@ public class MarkCommand extends Command {
         }
     }
 
-    /**
-     * Marks the specified task.
-     */
     @Override
-    public void run() {
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(taskList.markTask(query).toString());
+    public String get() {
+        return "Nice! I've marked this task as done:\n"
+                + taskList.markTask(query).toString();
     }
 }

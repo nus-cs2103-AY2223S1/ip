@@ -40,14 +40,11 @@ public class EventCommand extends Command {
         this.time = time;
     }
 
-    /**
-     * Adds new event to the list of tasks.
-     */
     @Override
-    public void run() {
+    public String get() {
         taskList.add(new Event(description, time));
-        System.out.println("Got it. I've added this task:");
-        System.out.println(taskList.get(taskList.size() - 1).toString());
-        System.out.println(String.format("Now you have %d tasks in the list.", taskList.size()));
+        return "Got it. I've added this task:\n"
+                + taskList.get(taskList.size() - 1).toString() + "\n"
+                + String.format("Now you have %d tasks in the list.", taskList.size());
     }
 }

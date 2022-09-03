@@ -21,12 +21,9 @@ public class ListCommand extends Command {
         this.taskList = taskList;
     }
 
-    /**
-     * Lists the tasks in the user task list.
-     */
     @Override
-    public void run() {
-        System.out.println("Here are the tasks in your list:");
-        System.out.print(this.taskList.toString());
+    public String get() {
+        return "Here are the tasks in your list:\n"
+                + this.taskList.toString();
     }
 }
