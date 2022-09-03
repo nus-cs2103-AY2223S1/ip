@@ -167,6 +167,17 @@ public class Duke extends Application {
     }
 
     private String getResponse(String input) {
+        boolean isExit = false;
+//        try {
+//            String fullCommand = input;
+//            Command c = parser.parse(fullCommand);
+//            c.execute();
+//            isExit = c.isExit();
+//            storage.saveData();
+//        } catch (Exception e) {
+//            ui.showError(e.getMessage());
+//        } finally {
+//        }
         return "Duke heard: " + input;
     }
 
@@ -200,26 +211,36 @@ public class Duke extends Application {
             System.out.println(s);
         }
 
-        public void marked(Task task) {
+        public String marked(Task task) {
             System.out.println("Nice! I've marked this task as done:");
             System.out.println(task.toString());
+            String str = "Nice! I've marked this task as done:\n" + task.toString();
+            return str;
         }
 
-        public void unmarked(Task task) {
+        public String unmarked(Task task) {
             System.out.println("OK, I've marked this task as not done yet:");
             System.out.println(task.toString());
+            String str = "OK, I've marked this task as not done yet:\n" + task.toString();
+            return str;
         }
 
-        public void added(Task task) {
+        public String added(Task task) {
             System.out.println("Got it. I've added this task:");
             System.out.printf("  added: %s\n", task.toString());
             System.out.printf("Now you have %s tasks in the list.\n", taskList.count());
+            String str = "Got it. I've added this task:\n" + "  added: %s\n" + task.toString() + "\n"
+                    + "Now you have %s tasks in the list.\n" + taskList.count();
+            return str;
         }
 
-        public void deleted(Task task) {
+        public String deleted(Task task) {
             System.out.println("Got it. I've deleted this task:");
             System.out.printf("  added: %s\n", task.toString());
             System.out.printf("Now you have %s tasks in the list.\n", taskList.count());
+            String str = "Got it. I've deleted this task:\n" + "  added: %s\n" + task.toString()
+                    + "Now you have %s tasks in the list.\n" + taskList.count();
+            return str;
         }
 
         public void exit() {
