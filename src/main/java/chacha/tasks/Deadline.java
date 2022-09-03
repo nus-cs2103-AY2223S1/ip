@@ -1,11 +1,19 @@
-public class Todo extends Task {
+package chacha.tasks;
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
+public class Deadline extends Task {
     private String description;
+    private String date;
     private boolean isDone;
     private String type;
 
-    public Todo(String description) {
+    public Deadline(String description, String date) {
         this.description = description;
-        this.type = "T";
+        this.date = date;
+        this.type = "D";
     }
 
     public void markAsDone() {
@@ -28,9 +36,13 @@ public class Todo extends Task {
         return type;
     }
 
+    public String getDate() {
+        return date;
+    }
+
     @Override
     public String toString() {
-        return "[" + type + "]" + "[" + getStatusIcon() + "] " + description;
+        return "[" + type + "]" + "[" + getStatusIcon() + "] " + description + "(by: " + date + ")";
     }
      
 }

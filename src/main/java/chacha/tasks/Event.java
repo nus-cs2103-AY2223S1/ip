@@ -1,18 +1,19 @@
+package chacha.tasks;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
-public class Deadline extends Task {
+public class Event extends Task {
     private String description;
-    private LocalDate date;
+    private String range;
     private boolean isDone;
     private String type;
 
-    public Deadline(String description, String date) {
+    public Event(String description, String range) {
         this.description = description;
-        this.date = LocalDate.parse(date);
-        this.type = "D";
+        this.range = range;
+        this.type = "E";
     }
 
     public void markAsDone() {
@@ -36,13 +37,12 @@ public class Deadline extends Task {
     }
 
     public String getDate() {
-        String formattedDate = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-        return formattedDate;
+        return range;
     }
 
     @Override
     public String toString() {
-        return "[" + type + "]" + "[" + getStatusIcon() + "] " + description + "(by: " + getDate() + ")";
+        return "[" + type + "]" + "[" + getStatusIcon() + "] " + description + "(at: " + range + ")";
     }
      
 }

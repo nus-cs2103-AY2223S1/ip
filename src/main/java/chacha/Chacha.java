@@ -1,4 +1,11 @@
+package chacha;
 import java.util.Scanner;
+
+import chacha.tasks.Deadline;
+import chacha.tasks.Event;
+import chacha.tasks.Task;
+import chacha.tasks.Todo;
+
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
