@@ -1,7 +1,8 @@
+package duke.tasks;
+
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
-
 public class Event extends Task {
     private final LocalDateTime timing;
 

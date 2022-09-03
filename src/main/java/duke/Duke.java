@@ -1,10 +1,9 @@
-import java.util.*;
-import java.io.File;
-import java.io.IOException;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.time.*;
-import java.time.format.DateTimeFormatter;
+package duke;
+import duke.parser.Parser;
+import duke.taskList.TaskList;
+import duke.storage.Storage;
+import duke.ui.Ui;
+import duke.tasks.Task;
 
 public class Duke {
     //start with folder no need filepath

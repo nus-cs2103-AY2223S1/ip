@@ -1,11 +1,21 @@
+package duke.storage;
+
+
+import duke.taskList.TaskList;
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Task;
+import duke.tasks.ToDo;
+
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.List;
 
 public class Storage {
     private static final String FILE_PATH = "C:/Unu_Stuff/Y3S1/CS2103-CS2103T/Lab/Lab 2/src/data/duke.txt";

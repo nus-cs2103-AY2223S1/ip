@@ -1,7 +1,7 @@
-package Parser;
+package duke.parser;
 
-import TaskList.TaskList;
-import Ui.Ui;
+import duke.taskList.TaskList;
+import duke.ui.Ui;
 
 public class Parser {
 
