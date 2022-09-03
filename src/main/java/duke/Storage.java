@@ -30,6 +30,7 @@ public class Storage {
      * @return Todo object.
      */
     private Todo loadTodo(String input) {
+        assert(input.split(" ").length != 0);
         String[] taskType = input.split(" ", 2);
         Todo todo = new Todo(taskType[1]);
         return todo;
@@ -44,8 +45,10 @@ public class Storage {
      * @return Deadline object.
      */
     private Deadline loadDeadline(String input) {
+        assert(input.split(" ").length != 0);
         String[] taskType = input.split(" ", 2);
         String[] taskBy = taskType[1].split("/by ", 2);
+        assert(taskBy[1].trim().matches("(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2})") == true);
         try {
             Deadline deadline = new Deadline(taskBy[0], taskBy[1]);
             return deadline;
@@ -63,6 +66,7 @@ public class Storage {
      * @return Event object.
      */
     private Event loadEvent(String input) {
+        assert(input.split(" ").length != 0);
         String[] taskType = input.split(" ", 2);
         String[] taskBy = taskType[1].split("/at ", 2);
         Event event = new Event(taskBy[0], taskBy[1]);
@@ -77,6 +81,7 @@ public class Storage {
      * @return TaskList with all saved tasks added to.
      */
     public TaskList loadFile(TaskList list) {
+        assert(list.isEmpty() == true);
         try {
             Scanner s = new Scanner(this.file);
             while (s.hasNext()) {
@@ -84,6 +89,7 @@ public class Storage {
                 switch (task[0]) {
                 case "T": // create event task
                     String taskString = String.format("todo %s", task[2]);
+                    assert(taskString != null);
                     Todo newTodo = loadTodo(taskString);
                     if (task[1].trim().equals("X")) {
                         newTodo.loadDone();
@@ -92,6 +98,7 @@ public class Storage {
                     break;
                 case "D": // create deadline task
                     String deadlineString = String.format("deadline %s/by %s", task[2], task[3]);
+                    assert(deadlineString != null);
                     Deadline newDeadline = loadDeadline(deadlineString);
                     if (task[1].trim().equals("X")) {
                         newDeadline.loadDone();
@@ -100,6 +107,7 @@ public class Storage {
                     break;
                 case "E": // create event task
                     String eventString = String.format("event %s/at %s", task[2], task[3]);
+                    assert(eventString != null);
                     Event newEvent = loadEvent(eventString);
                     if (task[1].trim().equals("X")) {
                         newEvent.loadDone();
@@ -123,6 +131,7 @@ public class Storage {
      * @param inputList the TaskList where all tasks are to be saved.
      */
     public static void writeToFile(String filePath, TaskList inputList) {
+        assert(inputList.isEmpty() == false);
         try {
             File dir = new File(filePath);
             if (!dir.exists()) {

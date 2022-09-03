@@ -27,6 +27,10 @@ public class Parser {
      */
     public String parse(String input) throws DukeException {
         String[] parts = input.split(" ");
+        if (parts.length <= 1) {
+            throw new DukeException("Please enter an input.");
+        }
+
         if (parts[0].equals("mark")) {
             return tasks.markTask(parts);
         } else if (parts[0].equals("todo")) {
