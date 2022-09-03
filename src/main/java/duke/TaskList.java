@@ -26,7 +26,16 @@ public class TaskList {
      * @param task to be added.
      */
     public void add(Task task) {
+        assert(task != null);
         this.inputList.add(task);
+    }
+
+    /**
+     * Checks if the arraylist is empty.
+     * @return boolean
+     */
+    public boolean isEmpty() {
+        return this.inputList.isEmpty();
     }
 
     /**
@@ -49,6 +58,7 @@ public class TaskList {
      * @throws DukeException thrown if there is no such task.
      */
     public String markTask(String[] parts) throws DukeException {
+        assert(parts.length != 0);
         if (parts.length == 1) {
             throw new DukeException("Please specify the index of the task (i.e. mark 2).");
         } else if (Integer.parseInt(parts[1]) == 0 || Integer.parseInt(parts[1]) > this.inputList.size()) {
@@ -69,6 +79,7 @@ public class TaskList {
      * @throws DukeException thrown if there is no such task.
      */
     public String deleteTask(String[] parts) throws DukeException {
+        assert(parts.length != 0);
         if (parts.length == 1) {
             throw new DukeException("Please specify the index of the task (i.e. delete 2).");
         } else if (Integer.parseInt(parts[1]) == 0 || Integer.parseInt(parts[1]) > inputList.size()) {
@@ -92,6 +103,7 @@ public class TaskList {
      * @return String confirming the addition of the task into the list.
      */
     public String taskAdd(Task task) {
+        assert(task != null);
         this.inputList.add(task);
         String output = String.format("Got it. I've added this task:\n%s\nNow you have %s tasks in the list.",
                 task.toString(),
@@ -107,6 +119,7 @@ public class TaskList {
      * @throws DukeException thrown if there is no description.
      */
     public String createTodo(String input) throws DukeException {
+        assert(input != null);
         String[] taskType = input.split(" ", 2);
         if (taskType.length == 1) {
             throw new DukeException("The description of a todo cannot be empty.");
@@ -124,6 +137,7 @@ public class TaskList {
      * @throws DukeException thrown if there is no description or /by field.
      */
     public String createDeadline(String input) throws DukeException {
+        assert(input != null);
         String[] taskType = input.split(" ", 2);
         if (taskType.length == 1) {
             throw new DukeException("The description of a deadline cannot be empty.");
@@ -144,6 +158,7 @@ public class TaskList {
      * @throws DukeException thrown if there is no description or /at field
      */
     public String createEvent(String input) throws DukeException {
+        assert(input != null);
         String[] taskType = input.split(" ", 2);
         if (taskType.length == 1) {
             throw new DukeException("The description of a event cannot be empty.");

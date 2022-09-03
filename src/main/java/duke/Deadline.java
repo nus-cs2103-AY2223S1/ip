@@ -20,6 +20,7 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String by) throws DukeException {
         super(description);
+        assert(by != null);
         if (by.trim().matches("(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2})")) {
             String preDate = by.split(" ", 2)[0];
             String preTime = by.split(" ", 2)[1];
@@ -28,7 +29,7 @@ public class Deadline extends Task {
 
             LocalDateTime deadline = LocalDateTime.of(Integer.parseInt(dates[0]), Integer.parseInt(dates[1]),
                     Integer.parseInt(dates[2]), Integer.parseInt(time[0]), Integer.parseInt(time[1]));
-
+            assert(deadline != null);
             this.by = deadline;
         } else {
             throw new DukeException("Invalid Date Format (YYYY-MM-DD HH:MM required).");
@@ -57,7 +58,7 @@ public class Deadline extends Task {
      * Returns a string representation of a Deadline object formatted
      * for writing into text file.
      *
-     * @return String of the deadline formatted to saved.
+     * @return String of the deadline formatted to save.
      */
     @Override
     public String formatFileText() {
