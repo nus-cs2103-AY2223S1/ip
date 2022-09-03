@@ -2,7 +2,6 @@ package duke;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -15,7 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 
 
-public class JavaFX extends Application {
+public class Main extends Application {
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -25,16 +24,16 @@ public class JavaFX extends Application {
     @FXML
     private Button sendButton;
     private Scene scene;
-    private static Image user = new Image(JavaFX.class.getResourceAsStream("/images/DaUser.png"));
-    private static Image duke = new Image(JavaFX.class.getResourceAsStream("/images/DaDuke.png"));
+    private static Image user = new Image(Main.class.getResourceAsStream("/images/DaUser.png"));
+    private static Image duke = new Image(Main.class.getResourceAsStream("/images/DaDuke.png"));
     private static TaskList currList;
     private static Parser p;
 
-    public static void main(String[] args) {
-        // ...
-    }
-
-    public String initialize(Stage stage) {
+    /**
+     * Setting up of the stage components.
+     * @param stage The stage where the dimensions of the different components are specified.
+     */
+    public void settingUpGui(Stage stage) {
         //The container for the content of the chat to scroll.
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
@@ -77,6 +76,15 @@ public class JavaFX extends Application {
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(Ui.greetingMessage(), duke));
+    }
+
+    /**
+     * The method to initialize all variables and behaviour when the app launches.
+     * @param stage The stage for the initialization.
+     * @return The initial greeting message before any user commands.
+     */
+    public String initialize(Stage stage) {
+        this.settingUpGui(stage);
         currList = new TaskList();
         Storage fileHandler = new Storage(currList);
         fileHandler.readAndProcessFile();
@@ -84,9 +92,13 @@ public class JavaFX extends Application {
         return Ui.greetingMessage();
     }
 
+    /**
+     * Starting the GUI and the chatbot application.
+     * @param stage The stage for the JavaFX GUI.
+     */
     @Override
     public void start(Stage stage) {
-        initialize(stage);
+        this.initialize(stage);
         sendButton.setOnMouseClicked((event) -> {
             handleUserInput();
         });
@@ -100,14 +112,10 @@ public class JavaFX extends Application {
 
         // more code to be added here later
     }
-    private Label getDialogLabel(String text) {
-        // You will need to import `javafx.scene.control.Label`.
-        Label textToAdd = new Label(text);
-        textToAdd.setWrapText(true);
 
-        return textToAdd;
-    }
-
+    /**
+     * Handles input from user and passes it to the parser to process the commands.
+     */
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();

@@ -1,4 +1,4 @@
-package duke;
+package task;
 
 /**
  *  A class which encapsulates the todo type of task.

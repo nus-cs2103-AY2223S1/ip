@@ -2,7 +2,6 @@ package duke;
 
 import java.io.IOException;
 import java.util.Collections;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -28,7 +27,7 @@ public class DialogBox extends HBox {
 
     private DialogBox(String text, Image img) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(duke.JavaFX.class.getResource("/view/DialogBox.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
@@ -52,10 +51,22 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * A method for retrieving the user dialog to be displayed in the GUI.
+     * @param text The text to be displayed in the GUI.
+     * @param img The profile picture of the user.
+     * @return The dialog box displayed.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * A method for retrieving Duke's dialog to be displayed in the GUI.
+     * @param text The text to be displayed in the GUI.
+     * @param img The profile picture of the chatbot Duke.
+     * @return The dialog box displayed.
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();

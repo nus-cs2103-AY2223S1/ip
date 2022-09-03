@@ -1,4 +1,11 @@
 package duke;
+import exception.EmptyDescriptionException;
+import exception.InvalidCommandException;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.Todo;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -45,8 +52,9 @@ public class Parser {
 
 
     /**
-     * A method to parse the user input and execute the appropriate action accordingly.
+     * A method to parse the user input and executes the appropriate action accordingly.
      * @param input The user keyboard input after prompt from Duke.
+     * @return The resulting duke response as a string.
      */
     public String parseUserInput(String input) {
         if (input.equals("bye")) {
@@ -82,8 +90,8 @@ public class Parser {
                 String deadlineDesc = temp[0].split("deadline ")[1];
                 Deadline deadlineTask = new Deadline(deadlineDesc, LocalDate.parse(by));
                 currList.addTask(deadlineTask);
-                result += deadlineTask.addTaskMessage();
-                result += Ui.taskNumberMessage(currList);
+                result += Ui.addTaskMessage(deadlineTask);
+                result += Ui.getTaskNumberMessage(currList);
                 return result;
             case "event": //can abstract this whole case to be generalized
                 String[] temp1 = input.split(" /at ", 2);
@@ -91,15 +99,15 @@ public class Parser {
                 String eventDesc = temp1[0].split("event ", 2)[1];
                 Event eventTask = new Event(eventDesc, LocalDate.parse(at));
                 currList.addTask(eventTask);
-                result += eventTask.addTaskMessage();
-                result += Ui.taskNumberMessage(currList);
+                result += Ui.addTaskMessage(eventTask);
+                result += Ui.getTaskNumberMessage(currList);
                 return result;
             case "todo": //can abstract this whole case to be generalized
                 String todoDesc = input.split("todo ")[1];
                 Todo todoTask = new Todo(todoDesc);
                 currList.addTask(todoTask);
-                result += todoTask.addTaskMessage();
-                result += Ui.taskNumberMessage(currList);
+                result += Ui.addTaskMessage(todoTask);
+                result += Ui.getTaskNumberMessage(currList);
                 return result;
             case "delete":
                 Task toBeDeleted = currList.getTaskAt(Integer.parseInt(parts[1]) - 1);
@@ -110,7 +118,7 @@ public class Parser {
             case "find":
                 String searchWord = parts[1];
                 result += "Here are the matching tasks:\n";
-                TaskList matched = currList.matchingItems(searchWord);
+                TaskList matched = currList.getMatchingItems(searchWord);
                 for (int i = 0; i < matched.getLength(); i++) {
                     result += i + 1 + ". " + matched.getTaskAt(i).toString() + "\n";
                 }
