@@ -11,17 +11,17 @@ public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
 
     private static final String MESSAGE_SUCCESS = "I'VE MARKED THIS TASK AS DONE:\n %1$s.";
-    private final int index;
+    private final int indexToMark;
 
     public MarkCommand(int index) {
-        this.index = index;
+        this.indexToMark = index;
     }
 
     @Override
     public CommandResult execute() {
-        Task task = taskList.getTasks().get(index);
+        Task task = taskList.getTasks().get(indexToMark);
         task.setComplete(true);
-        taskList.getTasks().set(index, task);
+        taskList.getTasks().set(indexToMark, task);
         return new CommandResult(String.format(MESSAGE_SUCCESS, task));
     }
 }

@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 /**
  * Responsible for reading user input.
+ * @deprecated As of 30/8/2022: program now runs on JavaFX for text output is ignored.
  */
+@Deprecated
 public class Ui {
 
     private final Scanner sc;

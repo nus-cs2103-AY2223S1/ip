@@ -14,7 +14,7 @@ import henry.TaskList;
 public class CommandResult {
 
     private final String feedback;
-    private final TaskList list;
+    private final TaskList taskList;
 
     public CommandResult(String feedback) {
         this(feedback, null);
@@ -23,13 +23,13 @@ public class CommandResult {
     /**
      * Constructs a CommandResult with the given feedback and TaskList.
      *
-     * @param feedback the feedback to be displayed to the user. Usually
+     * @param inputFeedback the feedback to be displayed to the user. Usually
      *                 a success or error message.
-     * @param list     the TaskList modified by the Command (if applicable).
+     * @param inputList     the TaskList modified by the Command (if applicable).
      */
-    public CommandResult(String feedback, TaskList list) {
-        this.feedback = feedback;
-        this.list = list;
+    public CommandResult(String inputFeedback, TaskList inputList) {
+        this.feedback = inputFeedback;
+        this.taskList = inputList;
     }
 
     /**
@@ -38,9 +38,13 @@ public class CommandResult {
      * @return the task list if it is present, otherwise returns an empty optional.
      */
     public Optional<TaskList> getTaskList() {
-        return Optional.ofNullable(list);
+        return Optional.ofNullable(taskList);
     }
 
+    /**
+     * A CommandResult returns its feedback in its toString method.
+     * @return the feedback of the CommandResult.
+     */
     @Override
     public String toString() {
         return feedback;

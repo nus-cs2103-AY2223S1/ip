@@ -1,19 +1,26 @@
 package henry;
 
+import java.io.IOException;
 import java.nio.file.Path;
 
 import command.Command;
 import command.CommandResult;
+import components.MainWindow;
 import exceptions.HenryException;
 import javafx.animation.PauseTransition;
+import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
  * The base class of the Henry application.
  * All functions of Henry pass through this class.
  */
-public class Henry {
+public class Henry extends Application {
 
     private static final String home = System.getProperty("user.home");
     // The text file is created on the user's Desktop
@@ -36,9 +43,25 @@ public class Henry {
         parser = new Parser();
     }
 
+    // Refactored on 3/9/2022
+    @Override
+    public void start(Stage stage) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
+            AnchorPane ap = fxmlLoader.load();
+            Scene scene = new Scene(ap);
+            stage.setScene(scene);
+            fxmlLoader.<MainWindow>getController().setHenry(this);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Generates a response based on user input.
+     * @param input the given user input
+     * @return a String representing the {@link CommandResult} of the user input
      */
     public String getResponse(String input) {
         if (input.equalsIgnoreCase("bye")) {
@@ -47,7 +70,7 @@ public class Henry {
             delay.play();
             return "GOODBYE! YOUR TASK LIST HAS BEEN SAVED!";
         }
-        Command parsed = parser.parseCommand(input);
+        Command parsed = parser.parseCommand(input.toLowerCase());
         CommandResult result = executeCommand(parsed);
         return result.toString();
     }
@@ -76,8 +99,13 @@ public class Henry {
         } while (true);
     }
 
+    /**
+     * @deprecated As of 3/9/2022: program now runs on JavaFX
+     */
+    @Deprecated
     private CommandResult executeCommand(Command command) {
         try {
+            assert taskList != null;
             command.setData(taskList);
             CommandResult result = command.execute();
             if (result.getTaskList().isPresent()) {
@@ -92,6 +120,10 @@ public class Henry {
         }
     }
 
+    /**
+     * @deprecated As of 3/9/2022: program now runs on JavaFX
+     */
+    @Deprecated
     private void close() {
         ui.close();
     }

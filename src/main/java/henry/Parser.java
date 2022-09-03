@@ -44,6 +44,7 @@ public class Parser {
      * @return the command corresponding to the string, or an exception if the string is malformed.
      */
     public Command parseCommand(String text) {
+        assert text != null;
         Matcher matcher = BASIC_COMMAND_FORMAT.matcher(text.trim());
         if (!matcher.matches()) {
             throw new HenryException("UNKNOWN COMMAND!");
@@ -91,6 +92,7 @@ public class Parser {
     }
 
     private Command parseDeadlineArguments(String args) {
+        assert args != null;
         Matcher matcher = DEADLINE_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             throw new HenryException("ARGUMENT HAS THE WRONG FORMAT!");

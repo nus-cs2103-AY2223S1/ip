@@ -23,9 +23,9 @@ public abstract class Command {
      * Some commands do not require a task list, and therefore this method is
      * not called in the execution of the command.
      *
-     * @param taskList a TaskList object the represents the list of tasks.
+     * @param inputTaskList a TaskList object the represents the list of tasks.
      */
-    public void setData(TaskList taskList) {
-        this.taskList = taskList;
+    public void setData(TaskList inputTaskList) {
+        this.taskList = inputTaskList;
     }
 }

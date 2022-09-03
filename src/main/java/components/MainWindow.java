@@ -41,13 +41,17 @@ public class MainWindow extends AnchorPane {
         );
     }
 
-    public void setHenry(Henry h) {
-        henry = h;
+    /**
+     * Sets the Henry object to be used in the GUI.
+     * @param henry the Henry object to be used for operations
+     */
+    public void setHenry(Henry henry) {
+        this.henry = henry;
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
+     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply
+     * and then appends them to the dialog container. Clears the user input after processing.
      */
     @FXML
     private void handleUserInput() {
@@ -59,7 +63,8 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getHenryDialog(response, henryImage)
             );
         } catch (HenryException e) {
-            dialogContainer.getChildren().add(
+            dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(input, userImage),
                 DialogBox.getHenryDialog(e.getMessage(), henryImage)
             );
         }

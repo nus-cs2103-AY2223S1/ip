@@ -33,20 +33,21 @@ public class FindCommand extends Command {
         StringBuilder sb = new StringBuilder();
         sb.append("\n");
         int i = 1;
-        boolean flag;
         for (Task task : tasks) {
-            flag = true;
-            for (String term : termsToFind) {
-                if (!task.toSimpleString().contains(term)) {
-                    flag = false;
-                    break;
-                }
-            }
-            if (flag) {
+            if (isMatch(task)) {
                 sb.append(" ").append(i).append(". ").append(task).append("\n");
                 i++;
             }
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, sb.toString().trim()));
+    }
+
+    private boolean isMatch(Task task) {
+        for (String term : termsToFind) {
+            if (!task.toSimpleString().contains(term)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -26,6 +26,8 @@ public class DialogBox extends HBox {
     @FXML
     private Circle displayPicture;
 
+    // We will never initialise DialogBox with a constructor.
+    // Use the static methods instead to get relevant DialogBox objects.
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -40,10 +42,22 @@ public class DialogBox extends HBox {
         displayPicture.setFill(new ImagePattern(img));
     }
 
+    /**
+     * Gets the dialog box representing text from the user.
+     * @param text the text to be displayed
+     * @param img the image to be displayed
+     * @return a DialogBox object with the given text and image
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Gets the dialog box representing text from Henry.
+     * @param text the text to be displayed
+     * @param img the image to be displayed
+     * @return a DialogBox object with the given text and image
+     */
     public static DialogBox getHenryDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flipDialogBox();
