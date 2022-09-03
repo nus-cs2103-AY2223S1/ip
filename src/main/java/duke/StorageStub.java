@@ -9,10 +9,10 @@ import duke.task.Task;
  * Stub implementation for StorageInterface for testing.
  */
 public class StorageStub implements StorageInterface {
-    private List<Task> tasks;
+    private final List<Task> tasks;
 
     /**
-     * Constructor for Storge stub
+     * Constructor for Storage stub
      *
      * @param tasks Initial list of tasks.
      */
@@ -21,21 +21,21 @@ public class StorageStub implements StorageInterface {
     }
 
     @Override
-    public List<Task> readFile() throws DukeException {
+    public List<Task> readFile() {
         return this.tasks;
     }
 
     @Override
-    public void save(Task task) throws DukeException {
+    public void save(Task task) {
         this.tasks.add(task);
     }
 
     @Override
-    public void deleteLine(int lineIndex) throws DukeException {
+    public void deleteLine(int lineIndex) {
     }
 
     @Override
-    public void updateLine(int lineIndex, String updatedLine) throws DukeException {
+    public void updateLine(int lineIndex, String updatedLine) {
     }
 
     public List<Task> getTasks() {

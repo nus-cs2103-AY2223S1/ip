@@ -16,7 +16,7 @@ import duke.task.Task;
  * storage.
  */
 public class Storage implements StorageInterface {
-    private Path filePath;
+    private final Path filePath;
 
     /**
      * Constructor for Storage.
@@ -49,7 +49,7 @@ public class Storage implements StorageInterface {
             }
             return taskList;
         } catch (IOException e) {
-            throw new DukeException("Error occured when reading storage file!", e);
+            throw new DukeException("Error occurred when reading storage file!", e);
         }
     }
 
@@ -66,18 +66,23 @@ public class Storage implements StorageInterface {
             lines.set(lineIndex, updatedLine);
             Files.write(filePath, lines, StandardCharsets.UTF_8);
         } catch (IOException e) {
-            throw new DukeException("Error occured when updating storage file!", e);
+            throw new DukeException("Error occurred when updating storage file!", e);
         }
     }
 
     @Override
     public void deleteLine(int lineIndex) throws DukeException {
         try {
+            long initialSize = Files.size(filePath);
+
             List<String> lines = Files.readAllLines(filePath, StandardCharsets.UTF_8);
             lines.remove(lineIndex);
             Files.write(filePath, lines, StandardCharsets.UTF_8);
+
+            long finalSize = Files.size(filePath);
+            assert finalSize <= initialSize;
         } catch (IOException e) {
-            throw new DukeException("Error occured when updating storage file!", e);
+            throw new DukeException("Error occurred when updating storage file!", e);
         }
     }
 
@@ -90,8 +95,9 @@ public class Storage implements StorageInterface {
             Files.createDirectories(filePath.getParent());
             Files.createFile(filePath);
         } catch (IOException e) {
-            throw new DukeException("Error occured when creating storage file!", e);
+            throw new DukeException("Error occurred when creating storage file!", e);
         }
+        assert isFileExist();
     }
 
     /**
@@ -105,10 +111,15 @@ public class Storage implements StorageInterface {
             createFile();
         }
         try {
+            long initialSize = Files.size(filePath);
+
             line += System.lineSeparator();
             Files.write(filePath, line.getBytes(), StandardOpenOption.APPEND);
+
+            long finalSize = Files.size(filePath);
+            assert finalSize >= initialSize;
         } catch (IOException e) {
-            throw new DukeException("Error occured when writing to storage file!", e);
+            throw new DukeException("Error occurred when writing to storage file!", e);
         }
     }
 }

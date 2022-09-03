@@ -7,20 +7,22 @@ then
 fi
 
 # delete output from previous run
-if [ -e "./ACTUAL.TXT" ]
+if [ -e "./text-ui-test/ACTUAL.TXT" ]
 then
-    rm ACTUAL.TXT
+    rm ./text-ui-test/ACTUAL.TXT
 fi
 
 # compile the code into the bin folder, terminates if error occurred
-if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/*.java
+if ! ./gradlew assemble
 then
     echo "********** BUILD FAILURE **********"
     exit 1
 fi
 
+cd ./text-ui-test/
+
 # delete old storage file
-rm ./data/duke.txt
+rm data/duke.txt
 
 # run the program and generate storage file
 java -classpath ../bin Duke < preinput.txt > /dev/null

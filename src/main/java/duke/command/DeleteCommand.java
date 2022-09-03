@@ -23,8 +23,13 @@ public class DeleteCommand extends IndexedCommand {
      */
     @Override
     public String execute() throws DukeException {
+        int initialTaskListSize = Command.taskList.size();
+
         Task task = Command.taskList.delete(super.index);
-        Command.storage.save(task);
+        Command.storage.deleteLine(super.index);
+
+        int finalTaskListSize = Command.taskList.size();
+        assert finalTaskListSize - initialTaskListSize == 1;
         return Ui.getDeleteTaskMessage(task, Command.taskList.size());
     }
 }

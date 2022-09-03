@@ -26,8 +26,13 @@ public class AddCommand extends Command {
      */
     @Override
     public String execute() throws DukeException {
+        int initialTaskListSize = Command.taskList.size();
+
         Command.taskList.add(this.task);
         Command.storage.save(this.task);
+
+        int finalTaskListSize = Command.taskList.size();
+        assert initialTaskListSize - finalTaskListSize == 1;
         return Ui.getAddTaskMessage(this.task, Command.taskList.size());
     }
 }

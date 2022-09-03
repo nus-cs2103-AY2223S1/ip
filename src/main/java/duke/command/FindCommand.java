@@ -30,6 +30,8 @@ public class FindCommand extends Command {
     @Override
     public String execute() throws DukeException {
         List<Task> matched = Command.taskList.find(this.query);
+
+        assert matched.size() <= Command.taskList.size();
         return Ui.getTaskListSearchMessage(matched);
     }
 }
