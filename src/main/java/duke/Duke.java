@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -61,27 +60,6 @@ public class Duke extends Application {
         tasks = new TaskList(storage.loadFile());
     }
 
-    /**
-     * Runs the entire program
-     * @throws IOException
-     */
-    /*
-    public void run() throws IOException {
-        ui.showGreetings();
-        tasks = new TaskList(storage.loadFile());
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand, tasks);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            }
-        }
-    }
-     */
     /**
      * Initializes the stage
      * @param stage the primary stage for this application, onto which
@@ -206,18 +184,6 @@ public class Duke extends Application {
             return ui.showError(e.getMessage());
         }
     }
-
-
-    /**
-     * The main Duke method
-     * @param args
-     * @throws IOException
-     */
-    /*
-    public static void main(String[] args) throws IOException {
-        new Duke("data/duke.txt").run();
-    }
-    */
 
     /**
      * Gets Ui

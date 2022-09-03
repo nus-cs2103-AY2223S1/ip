@@ -77,19 +77,12 @@ public class Ui {
      */
     public static String showTasksInList(TaskList taskList) {
         StringBuilder stringBuilder = new StringBuilder("Here are the tasks in your list:\n");
-        for (int i = 0; i < taskList.taskListSize(); i++) {
+        for (int i = 0; i < taskList.getTaskListSize(); i++) {
             stringBuilder.append(i + 1 + ". " + taskList.getTask(i).toString() + "\n");
         }
         return stringBuilder.toString();
     }
 
-    /**
-     * Reads the command entered by user
-     * @return the command entered by user
-     */
-    public String readCommand() {
-        return sc.nextLine();
-    }
 
     /**
      * Shows the error message
@@ -107,7 +100,7 @@ public class Ui {
      */
     public String showTaskAdded(TaskList taskList) {
         return ("Got it. I've added this task:")
-                + "\n" + (taskList.latestTask() + "\nNow you have " + taskList.taskListSize()
+                + "\n" + (taskList.latestTask() + "\nNow you have " + taskList.getTaskListSize()
                 + " tasks in the list.");
     }
 
@@ -120,7 +113,7 @@ public class Ui {
     public String showTaskDeleted(TaskList taskList, Task deletedTask) {
         return ("Noted. I've removed this task:\n"
                 + deletedTask) +
-                ("\nNow you have " + (taskList.taskListSize()) + " tasks in the list.");
+                ("\nNow you have " + (taskList.getTaskListSize()) + " tasks in the list.");
     }
 
     /**
@@ -150,9 +143,9 @@ public class Ui {
      * @param taskList the tasklist to be displayed
      * @return string that contains tasks found
      */
-    public String showTaskFound(TaskList taskList) {
+    public String showTasksFound(TaskList taskList) {
         StringBuilder stringBuilder = new StringBuilder("Here are the matching tasks in your list:\n");
-        for (int i = 0; i < taskList.taskListSize(); i++) {
+        for (int i = 0; i < taskList.getTaskListSize(); i++) {
             stringBuilder.append(i + 1 + ". " + taskList.getTask(i).toString() + "\n");
         }
         return stringBuilder.toString();
