@@ -57,6 +57,15 @@ public class Parser {
         return true;
     }
 
+    private static String getCommandString(String fullCommand) {
+        String[] fullCommandSplit = fullCommand.split(" ", 2);
+        return fullCommandSplit[0].strip();
+    }
+
+    private static String getCommandArgument(String fullCommand) {
+        String[] fullCommandSplit = fullCommand.split(" ", 2);
+        return fullCommandSplit.length > 1 ? fullCommandSplit[1].strip() : "";
+    }
     /**
      * Parses the full input from the user and returns the correct Command object.
      *
@@ -67,9 +76,8 @@ public class Parser {
      *                          correctly due to incorrect formatting.
      */
     public static Command parse(String fullCommand) throws DukeException, DateTimeException {
-        String[] fullCommandSplit = fullCommand.split(" ", 2);
-        String command = fullCommandSplit[0].strip();
-        String commandArgument = fullCommandSplit.length > 1 ? fullCommandSplit[1].strip() : "";
+        String command = getCommandString(fullCommand);
+        String commandArgument = getCommandArgument(fullCommand);
         if (command.equals("")) {
             throw new DukeException("Command cannot be empty");
         }
