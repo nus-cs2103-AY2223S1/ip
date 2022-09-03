@@ -107,6 +107,7 @@ public class Ui {
     }
 
     private String printTask(Task task) {
+        assert task != null;
         return task.toString() + '\n';
     }
 }
