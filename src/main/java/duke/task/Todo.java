@@ -1,8 +1,8 @@
 package duke.task;
 
-import duke.exception.DukeException;
-
 import java.time.LocalDateTime;
+
+import duke.exception.DukeException;
 
 /**
  * Represents an Todo Task that can be described and marked as done.

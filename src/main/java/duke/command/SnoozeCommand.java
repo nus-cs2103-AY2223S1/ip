@@ -22,16 +22,16 @@ public class SnoozeCommand extends Command {
 
     private static LocalDateTime addTime(LocalDateTime time, int amount, char type) throws DukeException {
         switch (type) {
-            case 'M':
-                return time.plusMonths(amount);
-            case 'D':
-                return time.plusDays(amount);
-            case 'h':
-                return time.plusHours(amount);
-            case 'm':
-                return time.plusMinutes(amount);
-            default:
-                throw new DukeException(Message.INVALID_SNOOZE_TYPE);
+        case 'M':
+            return time.plusMonths(amount);
+        case 'D':
+            return time.plusDays(amount);
+        case 'h':
+            return time.plusHours(amount);
+        case 'm':
+            return time.plusMinutes(amount);
+        default:
+            throw new DukeException(Message.INVALID_SNOOZE_TYPE);
         }
     }
 

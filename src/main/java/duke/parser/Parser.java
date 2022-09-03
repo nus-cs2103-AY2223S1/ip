@@ -38,7 +38,7 @@ public class Parser {
     public static Command getCommand(String input) throws DukeException {
         String[] commandTokens = input.split("\\s+", 2);
         String direction = commandTokens[0];
-        assert direction != null: "Direction cannot be null";
+        assert direction != null : "Direction cannot be null";
         String meta = commandTokens.length > 1 ? commandTokens[1] : null;
         switch (direction) {
         case "bye":
@@ -87,7 +87,7 @@ public class Parser {
     public static Task getTask(String input) throws DukeException {
         String[] commandTokens = input.split("\\s+", 2);
         String direction = commandTokens[0];
-        assert direction != null: "Direction cannot be null";
+        assert direction != null : "Direction cannot be null";
         String meta = commandTokens.length > 1 ? commandTokens[1] : null;
         switch (direction) {
         case "deadline":

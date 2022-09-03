@@ -12,7 +12,7 @@ public abstract class Task {
     protected boolean isDone;
 
     public Task(String description) {
-        assert description != null: "Description cannot be null";
+        assert description != null : "Description cannot be null";
         this.description = description;
         this.isDone = false;
     }

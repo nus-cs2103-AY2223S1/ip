@@ -14,7 +14,7 @@ public class AddTodoCommand extends Command {
     private String description;
 
     public AddTodoCommand(String description) {
-        assert description != null: "Description cannot be null";
+        assert description != null : "Description cannot be null";
         this.description = description;
     }
 
