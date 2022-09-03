@@ -11,7 +11,8 @@ public class Ren {
      * Constructor for a Ren bot.
      */
     public Ren() {
-        TaskList tasks = new TaskList(new Storage("data/list.txt"));
+        Storage storage = new Storage("data/list.txt");
+        TaskList tasks = new TaskList(storage);
         parser = new Parser(tasks);
     }
 

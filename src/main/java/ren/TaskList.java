@@ -90,8 +90,9 @@ public class TaskList {
      */
     public String updateTask(boolean status, int taskNum) throws RenException {
         if (taskNum <= tasks.size() && taskNum > 0) {
-            String message = tasks.get(taskNum - 1).setDone(status);
-            storage.updateTask(tasks.get(taskNum - 1), taskNum - 1);
+            Task selectedTask = tasks.get(taskNum - 1);
+            String message = selectedTask.setDone(status);
+            storage.updateTask(selectedTask, taskNum - 1);
             return message;
         } else if (tasks.size() == 0) {
             throw new RenException("You have no tasks to mark or unmark.");
@@ -108,13 +109,13 @@ public class TaskList {
     public String listTasks() {
         if (tasks.size() == 0) {
             return " You have not added any tasks!\n";
-        } else {
-            StringBuilder result = new StringBuilder(" Here are your current tasks:\n");
-            for (int i = 0; i < tasks.size(); i++) {
-                result.append(" ").append(i + 1).append(". ").append(tasks.get(i).toString());
-            }
-            return result.toString();
         }
+
+        StringBuilder result = new StringBuilder(" Here are your current tasks:\n");
+        for (int i = 0; i < tasks.size(); i++) {
+            result.append(" ").append(i + 1).append(". ").append(tasks.get(i).toString());
+        }
+        return result.toString();
     }
 
     /**
@@ -126,17 +127,17 @@ public class TaskList {
     public String findTasks(String term) {
         if (tasks.size() == 0) {
             return " Apologies! I have not found any matching tasks.\n";
-        } else {
-            int index = 1;
-            StringBuilder result = new StringBuilder(" I have found these matching tasks:\n");
-            for (Task taskToCheck : tasks) {
-                if (taskToCheck.isMatch(term)) {
-                    result.append(" ").append(index).append(". ").append(taskToCheck);
-                    index++;
-                }
-            }
-            return index != 1 ? result.toString() : " Apologies! I have not found any matching tasks.\n";
         }
+
+        int index = 1;
+        StringBuilder result = new StringBuilder(" I have found these matching tasks:\n");
+        for (Task taskToCheck : tasks) {
+            if (taskToCheck.isMatch(term)) {
+                result.append(" ").append(index).append(". ").append(taskToCheck);
+                index++;
+            }
+        }
+        return index != 1 ? result.toString() : " Apologies! I have not found any matching tasks.\n";
     }
 
     /**
