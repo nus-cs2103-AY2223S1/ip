@@ -150,16 +150,15 @@ public class Parser {
         if (taskIndexString == null) {
             throw new DukeException("Task indices not specified");
         }
-        System.out.println(taskIndexString);
+        taskIndexString = taskIndexString.trim();
         Matcher matcher = TASK_INDICES_FORMAT.matcher(taskIndexString);
         List<Integer> taskIndices = new ArrayList<>();
         while (matcher.find()) {
-            try {
-                int taskIndex = Integer.parseInt(matcher.group());
-                taskIndices.add(taskIndex);
-            } catch (NumberFormatException e) {
-                throw new DukeException("Invalid task indices: " + taskIndexString);
-            }
+            int taskIndex = Integer.parseInt(matcher.group());
+            taskIndices.add(taskIndex);
+        }
+        if (taskIndices.size() == 0) {
+            throw new DukeException("Invalid task indices: " + taskIndexString);
         }
         return taskIndices;
     }

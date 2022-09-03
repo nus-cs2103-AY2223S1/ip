@@ -21,7 +21,7 @@ public class ParserTest {
             Parser.parseCommand("mark foo");
             fail();
         } catch (DukeException e) {
-            assertEquals("foo is not a valid task index", e.getMessage());
+            assertEquals("Invalid task indices: foo", e.getMessage());
         }
     }
 }
