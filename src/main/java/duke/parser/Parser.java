@@ -1,3 +1,8 @@
+package Parser;
+
+import TaskList.TaskList;
+import Ui.Ui;
+
 public class Parser {
 
     public TaskList readInput(String command, TaskList taskList, Ui ui) {
