@@ -82,8 +82,7 @@ public class FileReader {
                     localdate = LocalDate.parse(components[3].strip());
 
                     return new Deadline(
-                            components[2].strip(),
-                            localdate,
+                            components[2].strip(), localdate,
                             components[1].strip().equals("true"));
                 case "E":
 
