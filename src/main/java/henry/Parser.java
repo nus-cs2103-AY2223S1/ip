@@ -88,6 +88,7 @@ public class Parser {
     }
 
     private String[] parseFindArguments(String args) {
+        assert args != null : "Arguments are null!";
         return args.split("--");
     }
 
@@ -107,6 +108,7 @@ public class Parser {
     }
 
     private Command parseEventArguments(String args) {
+        assert args != null : "Arguments are null!";
         Matcher matcher = EVENT_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             throw new HenryException("ARGUMENT HAS THE WRONG FORMAT!");
@@ -121,10 +123,12 @@ public class Parser {
     }
 
     private boolean isFindInputValid(String args) {
+        assert args != null : "Arguments are null!";
         return args.matches("(--\\w*\\s*)+");
     }
 
     private boolean isInputValid(String args) {
+        assert args != null : "Arguments are null!";
         return args.matches("\\d+");
     }
 }
