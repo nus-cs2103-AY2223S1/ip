@@ -43,8 +43,8 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
-        String response = "";
-        String input = "";
+        String response;
+        String input = null;
         String color = "#6adcd3";
         try {
             input = userInput.getText();
@@ -53,6 +53,8 @@ public class MainWindow extends AnchorPane {
             color = "#ffb6c1";
             response = e.getMessage();
         }
+        assert response != null;
+        assert input != null;
         DialogBox userGui = DialogBox.getUserDialog(input, userImage);
         userGui.setStyle("-fx-background-color:" + color + "; "
                 + "maxHeight:-Infinity; maxWidth:-Infinity; prefWidth:388.0; spacing:15; -fx-background-radius: 16;");
