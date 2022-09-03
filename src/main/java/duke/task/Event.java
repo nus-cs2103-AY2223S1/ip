@@ -103,7 +103,7 @@ public class Event extends Task {
      *
      * @param task The Task to compare to.
      * @return A negative integer, zero, or a positive integer as this Event is
-     *     smaller than, equals to, or larger than the given Task.
+     *     smaller than, equals to, or greater than the given Task.
      */
     @Override
     public int compareTo(Task task) {
