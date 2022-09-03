@@ -7,20 +7,24 @@ import duke.internal.Storage;
 import duke.internal.Ui;
 import duke.task.TaskList;
 
-
 /**
- * Command to exit the program.
- * Usage: bye
+ * A command to list all aliases.
+ * Usage: alias list
  */
-public class ByeCommand extends Command {
+public class AliasListCommand extends Command {
+    private final String aliases;
+
+    public AliasListCommand(String aliases) {
+        this.aliases = aliases;
+    }
+
     @Override
     public boolean isTerminal() {
-        return true;
+        return false;
     }
 
     @Override
     public void execute(TaskList tasks, Storage storage, Ui ui, Parser parser) throws IOException {
-        storage.saveTasks(tasks);
-        ui.showMessage("Bye! Hope to see you again soon!");
+        ui.showMessage("Here are your aliases:").showMessage(aliases);
     }
 }

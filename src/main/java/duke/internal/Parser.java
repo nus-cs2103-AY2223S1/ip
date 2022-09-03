@@ -3,8 +3,12 @@ package duke.internal;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import duke.command.AliasAddCommand;
+import duke.command.AliasListCommand;
+import duke.command.AliasRemoveCommand;
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeadlineCommand;
@@ -21,19 +25,41 @@ import duke.command.UnmarkCommand;
  * and determine which Command object should be used to execute it.
  */
 public class Parser {
-    private static final Map<String, String> DEFAULT_ALIASES = Map.of(
-            "t", "todo",
-            "d", "deadline",
-            "e", "event",
-            "m", "mark",
-            "u", "unmark",
-            "um", "unmark",
-            "f", "find",
-            "search", "find",
-            "rm", "delete",
-            "ls", "list"
+    private static final Map<String, String> DEFAULT_ALIASES = Map.of("t",
+            "todo",
+            "d",
+            "deadline",
+            "e",
+            "event",
+            "m",
+            "mark",
+            "u",
+            "unmark",
+            "um",
+            "unmark",
+            "f",
+            "find",
+            "search",
+            "find",
+            "rm",
+            "delete",
+            "ls",
+            "list"
     );
     private final Map<String, String> aliases = new HashMap<>(DEFAULT_ALIASES);
+
+    /**
+     * Splits a string into an array of arguments, delimited by spaces.
+     *
+     * @param command the string to split
+     * @return the array of arguments
+     */
+    private static String[] getArguments(String command) {
+        if (command.isBlank()) {
+            return new String[0];
+        }
+        return command.split(" ");
+    }
 
     /**
      * Parses a command from a string.
@@ -95,13 +121,14 @@ public class Parser {
                 throw new DukeException("Missing index");
             }
             return new DeleteCommand(Integer.parseInt(arguments[1]) - 1);
+        case "alias":
+            return handleAliasCommands(arguments);
         default:
             String alias = arguments[0];
             if (!aliases.containsKey(alias)) {
                 throw new DukeException("Unknown command");
             }
-            String command = String.format(
-                    "%s %s",
+            String command = String.format("%s %s",
                     aliases.get(alias),
                     Parser.concatenateArguments(arguments, 1)
             );
@@ -109,16 +136,86 @@ public class Parser {
         }
     }
 
-    /**
-     * Splits a string into an array of arguments, delimited by spaces.
-     * @param command the string to split
-     * @return the array of arguments
-     */
-    private static String[] getArguments(String command) {
-        if (command.isBlank()) {
-            return new String[0];
+    private Command handleAliasCommands(String[] arguments) {
+        if (arguments.length < 2) {
+            throw new DukeException(
+                    "Usage: alias [add|remove|list] [alias] [command]");
         }
-        return command.split(" ");
+        switch (arguments[1]) {
+        case "add":
+            if (arguments.length != 4) {
+                throw new DukeException(
+                        "Invalid number of arguments. Usage: alias add [alias] [command]");
+            }
+            return new AliasAddCommand(arguments[2], arguments[3]);
+        case "remove":
+            if (arguments.length != 3) {
+                throw new DukeException("Invalid number of arguments. Usage: alias remove [alias]");
+            }
+            return new AliasRemoveCommand(arguments[2]);
+        case "list":
+            if (arguments.length != 2) {
+                throw new DukeException("Invalid number of arguments. Usage: alias list");
+            }
+            String allAliases = this.aliases.entrySet()
+                    .stream()
+                    .map(entry -> String.format("%s -> %s\n", entry.getKey(), entry.getValue()))
+                    .collect(Collectors.joining());
+            return new AliasListCommand(allAliases);
+        default:
+            throw new DukeException(String.format(
+                    "Invalid argument `%s`. Usage: alias [add|remove|list] [alias] [command]",
+                    arguments[1]
+            ));
+        }
+    }
+
+    /**
+     * Adds an alias (shorthand command) to a command.
+     * Binding an alias to another alias is not allowed to prevent infinite recursion
+     * when expanding aliases during command parsing.
+     *
+     * @param alias   the alias to add
+     * @param command the command to bind the alias to
+     */
+    public void addAlias(String alias, String command) {
+        if (alias.equals(command)) {
+            throw new DukeException("Cannot bind an alias to itself");
+        }
+        if (!DEFAULT_ALIASES.containsValue(command)) {
+            // This prevents any circular aliases, because aliases can only be bound to commands.
+            if (aliases.containsKey(command)) {
+                throw new DukeException(String.format(
+                        "Cannot bind the alias `%s` to the existing alias `%s`",
+                        alias,
+                        command
+                ));
+            }
+            throw new DukeException(String.format("The command `%s` does not exist", command));
+        }
+        if (aliases.containsKey(alias)) {
+            throw new DukeException(String.format("The alias `%s` already exists", alias));
+        }
+        if (aliases.containsValue(alias)) {
+            throw new DukeException(String.format("Cannot bind the command `%s` as an alias", alias));
+        }
+        aliases.put(alias, command);
+    }
+
+    /**
+     * Removes an alias bound to a command if it exists.
+     *
+     * @param alias the alias to remove
+     * @return the command the alias was bound to
+     * @throws DukeException if the alias does not exist
+     */
+    public String removeAlias(String alias) {
+        if (!aliases.containsKey(alias)) {
+            throw new DukeException("Alias does not exist");
+        }
+        String command = aliases.get(alias);
+        aliases.remove(alias);
+        return command;
     }
 
     /**

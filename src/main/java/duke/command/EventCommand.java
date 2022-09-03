@@ -2,6 +2,7 @@ package duke.command;
 
 import java.io.IOException;
 
+import duke.internal.Parser;
 import duke.internal.Storage;
 import duke.internal.Ui;
 import duke.task.Event;
@@ -29,7 +30,7 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Storage storage, Ui ui) throws IOException {
+    public void execute(TaskList tasks, Storage storage, Ui ui, Parser parser) throws IOException {
         Task task = new Event(description, datetime);
         tasks.addTask(task);
         ui.showMessage("I've added this event.")

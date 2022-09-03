@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import duke.internal.Parser;
 import duke.internal.Storage;
 import duke.internal.Ui;
 import duke.task.Task;
@@ -29,7 +30,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Storage storage, Ui ui) throws IOException {
+    public void execute(TaskList tasks, Storage storage, Ui ui, Parser parser) throws IOException {
         List<Task> results = tasks.stream()
                 .filter(task -> task.getDescription().contains(query))
                 .collect(Collectors.toList());
