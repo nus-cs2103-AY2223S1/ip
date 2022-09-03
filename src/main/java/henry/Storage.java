@@ -28,8 +28,10 @@ public class Storage {
      */
     public Storage(String filePath) {
         this.filePath = filePath;
+
         try {
             File savedList = new File(filePath);
+
             if (savedList.createNewFile()) {
                 tasks = new ArrayList<>();
             } else {
@@ -53,9 +55,11 @@ public class Storage {
     private List<Task> parseTasksFromFile(File savedList) throws FileNotFoundException {
         Scanner scanner = new Scanner(savedList);
         List<Task> tasks = new ArrayList<>();
+
         while (scanner.hasNextLine()) {
             tasks.add(Task.parseTask(scanner.nextLine()));
         }
+
         return tasks;
     }
 

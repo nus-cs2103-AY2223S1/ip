@@ -40,7 +40,6 @@ public class Henry extends Application {
         parser = new Parser();
     }
 
-    // Refactored on 3/9/2022
     @Override
     public void start(Stage stage) {
         try {

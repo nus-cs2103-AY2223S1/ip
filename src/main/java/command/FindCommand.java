@@ -44,7 +44,7 @@ public class FindCommand extends Command {
 
     private boolean isMatch(Task task) {
         for (String term : termsToFind) {
-            if (!task.toSimpleString().contains(term)) {
+            if (!task.getDescription().contains(term)) {
                 return false;
             }
         }
