@@ -12,14 +12,15 @@ import duke.util.Parser;
  * @version v0.1
  */
 public class Task {
+    /** Icon to represent that a task is completed. */
+    private static final String COMPLETED_ICON = "X";
+    /** Icon to represent that a task is not completed. */
+    private static final String INCOMPLETE_ICON = " ";
+
     /** Description of the task. **/
     private String description;
     /** Describes if the task is completed or not. */
     private boolean isDone;
-    /** Icon to represent that a task is completed. */
-    private final static String completedIcon = "X";
-    /** Icon to represent that a task is not completed. */
-    private final static String inCompleteIcon = " ";
 
     /**
      * Creates a Task object.
@@ -43,7 +44,7 @@ public class Task {
         assert(taskSplit.length >= 3);
 
         String taskSymbol = taskSplit[0];
-        boolean isComplete = taskSplit[1].equals(completedIcon);
+        boolean isComplete = taskSplit[1].equals(COMPLETED_ICON);
         String taskDescription = taskSplit[2];
         Task task;
 
@@ -72,7 +73,7 @@ public class Task {
      * @return 'X' if the task is completed, returns a whitespace otherwise.
      */
     public String getStatusIcon() {
-        return isDone ? completedIcon : inCompleteIcon;
+        return isDone ? COMPLETED_ICON : INCOMPLETE_ICON;
     }
 
     /**
@@ -114,7 +115,7 @@ public class Task {
      * @return Formatted task, which is to be written into the storage file.
      */
     public String toFileFormatString() {
-        String icon = isDone ? completedIcon : inCompleteIcon;
+        String icon = isDone ? COMPLETED_ICON : INCOMPLETE_ICON;
         return "|" + icon + "|";
     }
 }
