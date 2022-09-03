@@ -1,12 +1,12 @@
 package duke.task;
 
 import duke.exception.DukeException;
+import duke.ui.Message;
+
 import java.util.ArrayList;
 
 public class TaskList {
     private ArrayList<Task> taskList;
-
-    private static final String outOfBoundsMessage = "The entered task index is out of bounds";
 
     public TaskList() {
         this.taskList = new ArrayList<>();
@@ -47,7 +47,7 @@ public class TaskList {
         try {
             return this.taskList.remove(idx - 1);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(outOfBoundsMessage);
+            throw new DukeException(Message.OUT_OF_BOUNDS_ERROR);
         }
     }
 
@@ -64,7 +64,7 @@ public class TaskList {
             task.mark();
             return task;
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(outOfBoundsMessage);
+            throw new DukeException(Message.OUT_OF_BOUNDS_ERROR);
         }
     }
 
@@ -81,7 +81,7 @@ public class TaskList {
             task.unmark();
             return task;
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(outOfBoundsMessage);
+            throw new DukeException(Message.OUT_OF_BOUNDS_ERROR);
         }
     }
 
@@ -96,7 +96,7 @@ public class TaskList {
         try {
             return this.taskList.get(idx);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(outOfBoundsMessage);
+            throw new DukeException(Message.OUT_OF_BOUNDS_ERROR);
         }
     }
 

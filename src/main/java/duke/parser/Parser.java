@@ -1,10 +1,9 @@
 package duke.parser;
 
 import duke.exception.DukeException;
+import duke.ui.Message;
 
 public class Parser {
-    private static final String invalidTaskIndexMessage = "You entered an invalid task index";
-
     private final String direction;
     private final String meta;
 
@@ -25,7 +24,7 @@ public class Parser {
         try {
             return Integer.parseInt(this.meta.replaceAll("[^0-9]", ""));
         } catch (NumberFormatException e) {
-            throw new DukeException(invalidTaskIndexMessage);
+            throw new DukeException(Message.TASK_INDEX_ERROR);
         }
     }
 

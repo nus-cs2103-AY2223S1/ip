@@ -8,23 +8,18 @@ public class Ui {
     private static final char lineBreak = '\n';
     private static final String indent = "      ";
 
-    private static final String greetingMessage = "Hi, I'm Lurch." + lineBreak + "You rang?";
-    private static final String noTasksMessage = "You have no tasks in the list right now";
-    private static final String byeMessage = "Have a lovely day with dark and cloudy skies.";
-    private static final String oopsMessage = "Oh bother!";
-
     public static String getGreetingMessage() {
-        return greetingMessage;
+        return Message.GREETING.toString();
     }
 
-    public static String getTaskStatusString(String prefix, Task task) {
-        return prefix + lineBreak + indent + task;
+    public static String getTaskStatusString(Message prefix, Task task) {
+        return String.format("%s %s %s %s", prefix, lineBreak, indent, task);
     }
 
     public static String getTaskListString(TaskList taskList) throws DukeException {
         String msg = "";
         if (taskList.getSize() == 0) {
-            throw new DukeException(noTasksMessage);
+            throw new DukeException(Message.EMPTY);
         }
         for (int i = 0; i < taskList.getSize(); i++) {
             msg += i + 1 + ". " + taskList.get(i);
@@ -36,10 +31,10 @@ public class Ui {
     }
 
     public static String getTerminationString() {
-        return byeMessage;
+        return Message.BYE.toString();
     }
 
     public static String getErrorMessageString(DukeException exc) {
-        return oopsMessage + lineBreak + exc;
+        return String.format("%s %s %s", Message.ERROR, lineBreak, exc);
     }
 }

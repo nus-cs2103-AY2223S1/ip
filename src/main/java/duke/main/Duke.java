@@ -3,6 +3,7 @@ package duke.main;
 import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
+import duke.ui.Message;
 import duke.ui.Ui;
 import duke.task.Task;
 import duke.task.Todo;
@@ -11,13 +12,6 @@ import duke.task.Deadline;
 import duke.task.TaskList;
 
 public class Duke {
-
-    // MESSAGES
-    private static final String markMessage = "Nice! I've marked this task as done:";
-    private static final String unmarkMessage = "OK, I've marked this task as not done yet:";
-    private static final String deleteMessage = "OK, I've deleted this task:";
-    private static final String addedMessage = "Got it! I've added this task:";
-    private static final String invalidCommandMessage = "I don't know what you mean.";
 
     // FILE PATH
     private static final String saveFilePath = "data/duke.txt";
@@ -45,32 +39,32 @@ public class Duke {
                     return Ui.getTaskListString(this.tasks);
                 case "unmark":
                     Task unmarked = this.tasks.unmark(currentCommand.extractIndex());
-                    return Ui.getTaskStatusString(unmarkMessage, unmarked);
+                    return Ui.getTaskStatusString(Message.UNMARK, unmarked);
                 case "mark":
                     Task marked = this.tasks.mark(currentCommand.extractIndex());
-                    return Ui.getTaskStatusString(markMessage, marked);
+                    return Ui.getTaskStatusString(Message.MARK, marked);
                 case "delete":
                     Task deleted = this.tasks.delete(currentCommand.extractIndex());
-                    return Ui.getTaskStatusString(deleteMessage, deleted);
+                    return Ui.getTaskStatusString(Message.DELETE, deleted);
                 case "todo":
                     if (meta == null) throw new DukeException("Description cannot be empty");
                     Task todo = this.tasks.add(new Todo(meta));
-                    return Ui.getTaskStatusString(addedMessage, todo);
+                    return Ui.getTaskStatusString(Message.ADDED, todo);
                 case "deadline":
                     if (meta == null) throw new DukeException("Description cannot be empty");
                     Task deadline = this.tasks.add(new Deadline(meta));
-                    return Ui.getTaskStatusString(addedMessage, deadline);
+                    return Ui.getTaskStatusString(Message.ADDED, deadline);
                 case "event":
                     if (meta == null) throw new DukeException("Description cannot be empty");
                     Task event = this.tasks.add(new Event(meta));
-                    return Ui.getTaskStatusString(addedMessage, event);
+                    return Ui.getTaskStatusString(Message.ADDED, event);
                 case "find":
                     if (meta == null) throw new DukeException("Query cannot be empty");
                     TaskList filtered = this.tasks.filter(meta);
                     if (filtered.getSize() == 0) throw new DukeException("No results found");
                     return Ui.getTaskListString(filtered);
                 default:
-                    throw new DukeException(invalidCommandMessage);
+                    throw new DukeException(Message.INVALID);
             }
         } catch (DukeException e) {
             return Ui.getErrorMessageString(e);

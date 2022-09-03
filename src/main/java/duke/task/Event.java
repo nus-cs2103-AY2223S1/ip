@@ -1,6 +1,7 @@
 package duke.task;
 
 import duke.exception.DukeException;
+import duke.ui.Message;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -15,7 +16,7 @@ public class Event extends Task {
     private static String extractDescription(String meta) throws DukeException {
         Matcher m = Pattern.compile(metaPattern).matcher(meta);
         if (!m.find()) {
-            throw new DukeException("You need to use \"/at\" to specify when the event is");
+            throw new DukeException(Message.NO_AT_ERROR);
         }
         return m.group(1);
     }
@@ -24,16 +25,16 @@ public class Event extends Task {
         super(extractDescription(meta));
         Matcher m = Pattern.compile(metaPattern).matcher(meta);
         if (!m.find()) {
-            throw new DukeException("You need to use \"/at\" to specify when the event is");
+            throw new DukeException(Message.NO_AT_ERROR);
         }
         String time = m.group(3);
         if (time == null) {
-            throw new DukeException("You didn't specify the time.");
+            throw new DukeException(Message.NO_TIME_ERROR);
         }
         try {
             this.time = LocalDate.parse(time);
         } catch (DateTimeParseException e) {
-            throw new DukeException("Invalid date/time format");
+            throw new DukeException(Message.DATE_FORMAT_ERROR);
         }
     }
 
