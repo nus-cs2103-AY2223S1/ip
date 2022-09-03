@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 
 import java.util.List;
 
-// Below code is referenced from
+// Below code is adapted from
 // https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/storage/StorageFile.java
 
 /**
@@ -34,11 +34,11 @@ public class Storage {
      *
      * @param tasks TaskList that contains list of tasks.
      */
-    public void save(TaskList tasks) {
+    public void save(TaskList tasks) throws WanyaException{
         try {
             Files.write(path, tasks.saveToStorage());
         } catch (IOException e) {
-            System.out.println("Oops! Problem encountered! " +
+            throw new WanyaException("Oops! Problem encountered! " +
                     "Wanya cannot save the task to hard disk.");
         }
     }

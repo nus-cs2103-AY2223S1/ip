@@ -54,10 +54,21 @@ public class TaskList {
         return tasks.size();
     }
 
+    /**
+     * Checks if the task list is empty.
+     *
+     * @return Boolean value whether task list is empty.
+     */
     public boolean isEmpty() {
         return tasks.size() == 0;
     }
 
+    /**
+     * Gets the task from task list with index.
+     *
+     * @param index Index of the task.
+     * @return Task in position index of task list.
+     */
     public Task get(int index) {
         return tasks.get(index);
     }
@@ -66,10 +77,11 @@ public class TaskList {
      * Adds a ToDo task to the TaskList.
      *
      * @param taskName name of ToDo task.
+     * @return String message for adding a ToDo task.
      */
-    public void addToDo(String taskName)  {
+    public String addToDo(String taskName)  {
         Task newTask = new ToDo(taskName);
-        addTask(newTask);
+        return addTask(newTask);
     }
 
     /**
@@ -78,8 +90,9 @@ public class TaskList {
      * @param commandInput user input with command deadline.
      * @throws WanyaException if input does not contain /by and date.
      * @throws DateTimeException if invalid date time format is provided.
+     * @return String message for adding a Deadline task.
      */
-    public void addDeadline(String commandInput) throws WanyaException, DateTimeException {
+    public String addDeadline(String commandInput) throws WanyaException, DateTimeException {
         String[] inputs = commandInput.split("/by");
         //no deadline provided
         if (inputs.length == 1) {
@@ -90,7 +103,7 @@ public class TaskList {
         String taskName = inputs[0];
         String dueDate = inputs[1].trim();
         Task newTask = new Deadline(taskName, dueDate);
-        addTask(newTask);
+        return addTask(newTask);
     }
 
     /**
@@ -99,8 +112,9 @@ public class TaskList {
      * @param commandInput user input with command event.
      * @throws WanyaException if input does not contain /at and date.
      * @throws DateTimeException if invalid date time format is provided.
+     * @return String message for adding an Event task.
      */
-    public void addEvent(String commandInput) throws WanyaException, DateTimeException {
+    public String addEvent(String commandInput) throws WanyaException, DateTimeException {
         String[] inputs = commandInput.split("/at");
         //no date provided
         if (inputs.length == 1) {
@@ -111,44 +125,53 @@ public class TaskList {
         String taskName = inputs[0];
         String date = inputs[1].trim();
         Task newTask = new Event(taskName, date);
-        addTask(newTask);
+        return addTask(newTask);
     }
 
     /**
      * Adds the task to the TaskList and display task added.
      *
      * @param task task to be added.
+     * @return String message for adding a task.
      */
-    private void addTask(Task task) {
+    private String addTask(Task task) {
         tasks.add(task);
-        System.out.println("You have added: \n" + task);
-        System.out.println("Now you have " + size() + " tasks in your list. \n");
+        return("You have added: \n"
+                + task
+                + "\nNow you have " + size() + " tasks in your list.");
     }
 
     /**
      * Deletes a task from the TaskList.
      *
      * @param index the task number to be deleted.
+     * @return String message for successfully deleting a task.
      */
-    public void deleteTask(int index) {
+    public String deleteTask(int index) {
         Task task = tasks.get(index - 1);
         tasks.remove(index - 1);
-        System.out.println("WWaku WWaku!!! Wanya has used her magic powers to remove this task:\n" + task);
-        System.out.println("Now you have " + size() + " tasks in your list. \n");
+        return("WWaku WWaku!!! Wanya has used her magic powers to remove this task:\n"
+                + task
+                + "\nNow you have " + size() + " tasks in your list.");
     }
 
     /**
      * Displays the list of tasks in TaskList.
+     *
+     * @return List of tasks in String.
      */
-    public void showTasks() {
+    public String showTasks() {
         if (isEmpty()) {
-            System.out.println("List is empty! Wheee slack time!");
+            return("List is empty! Wheee slack time!");
         }
+
+        StringBuilder taskString = new StringBuilder();
+        taskString.append("Your current list now!\n");
         for (int i = 1; i <= size(); i++) {
             Task task = tasks.get(i - 1);
-            System.out.println(i + "." + task);
+            taskString.append(i + "." + task + "\n");
         }
-        System.out.println("");
+        return taskString.toString();
     }
 
     /**
@@ -169,8 +192,9 @@ public class TaskList {
      * Finds a list of tasks that contains the keyword and print it.
      *
      * @param keyword word to find matching tasks.
+     * @return List of tasks that match keyword if any.
      */
-    public void findTasks(String keyword) {
+    public String findTasks(String keyword) {
         List<Task> matchingTasks = new ArrayList<>();
 
         for (Task task: tasks) {
@@ -181,14 +205,15 @@ public class TaskList {
         }
 
         if (matchingTasks.isEmpty()) {
-            System.out.println("Oopsie! There are no matching tasks in your list?\n" +
-                    "Maybe you have typed in wrongly...");
-            return;
+            return("Oopsie! There are no matching tasks in your list?\n"
+                    + "Maybe you have typed in wrongly...");
         }
 
-        System.out.println("Here are the matching tasks in your list:");
+        StringBuilder matchingTasksString = new StringBuilder();
+        matchingTasksString.append("Here are the matching tasks in your list:\n");
         for (Task task: matchingTasks) {
-            System.out.println(task);
+            matchingTasksString.append(task.toString() + '\n');
         }
+        return matchingTasksString.toString();
     }
 }

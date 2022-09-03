@@ -2,6 +2,8 @@ package wanya;
 
 import wanya.parser.Parser;
 import wanya.task.TaskList;
+import wanya.ui.Ui;
+
 
 /**
  * Represents a Wanya bot that act as a task checker.
@@ -13,12 +15,10 @@ public class Wanya {
 
     /**
      * Creates a Wanya object and initialise Ui, Storage and TaskList.
-     *
-     * @param filePath the String of the filepath that store previous data.
      */
-    public Wanya(String filePath) {
+    public Wanya() {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage("tasks.txt");
         ui.showLoading();
         try {
             tasks = new TaskList(storage.load());
@@ -28,26 +28,15 @@ public class Wanya {
         }
     }
 
-    /**
-     * Runs the Wanya bot to greet and read commands from user.
-     */
-    public void run() {
-        ui.greet();
-        while(ui.isActive()) {
-            String command = ui.getUserCommand();
-            Parser.parseCommand(command, tasks, ui);
-        }
-        storage.save(tasks);
-    }
 
     /**
-     * Initialises Wanya bot and runs it.
+     * Parse the command input by user and returns a response.
      *
-     * @param args
+     * @param input Command input by user.
+     * @return String message in response to user's input.
      */
-    public static void main(String[] args) {
-        Wanya wanya = new Wanya("tasks.txt");
-        wanya.run();
+    public String getResponse(String input) {
+        return Parser.parseCommand(input, tasks, ui, storage);
     }
 }
 

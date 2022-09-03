@@ -1,7 +1,8 @@
 package wanya.parser;
 
+import wanya.Storage;
 import wanya.task.TaskList;
-import wanya.Ui;
+import wanya.ui.Ui;
 import wanya.WanyaException;
 
 import java.time.DateTimeException;
@@ -19,8 +20,9 @@ public class Parser {
      */
     public static void checkTask(String[] inputs, String command) throws WanyaException {
         //handle the error where no task name
-        if (inputs.length == 1 || inputs[1].trim().startsWith("/at")
-                || inputs[1].trim().startsWith("/by") || inputs[1].trim().equals("")) {
+        String description = inputs.length > 1 ? inputs[1].trim() : "";
+        if (inputs.length == 1 || description.startsWith("/at")
+                || description.startsWith("/by") || description.equals("")) {
             throw new WanyaException("The description of " + command + " cannot be empty");
         }
     }
@@ -57,51 +59,60 @@ public class Parser {
      * @param commandInput String that user inputs.
      * @param tasks TaskList that contains all the tasks.
      * @param ui Ui that handles the strings to print.
+     * @return String message to print on GUI.
      */
-    public static void parseCommand(String commandInput, TaskList tasks, Ui ui) {
+    public static String parseCommand(String commandInput, TaskList tasks, Ui ui, Storage storage) {
         try {
             String[] inputs = commandInput.split(" ", 2);
             String command = inputs[0];
+            String response = "";
 
             if (commandInput.equals("bye")) {
-                ui.exit();
+                return ui.exit();
             } else if (commandInput.equals("list")) {
-                tasks.showTasks();
+                return tasks.showTasks();
             } else if (command.equals("mark")) {
                 int indexToMark = checkTaskNumber(inputs, tasks);
-                tasks.get(indexToMark - 1).setComplete();
+                response = tasks.get(indexToMark - 1).setComplete();
+                storage.save(tasks);
             } else if (command.equals("unmark")) {
                 int indexToUnmark = checkTaskNumber(inputs, tasks);
-                tasks.get(indexToUnmark - 1).setIncomplete();
+                response = tasks.get(indexToUnmark - 1).setIncomplete();
+                storage.save(tasks);
             } else if (command.equals("todo")) {
                 checkTask(inputs, command);
-                tasks.addToDo(inputs[1]);
+                response = tasks.addToDo(inputs[1]);
+                storage.save(tasks);
             } else if (command.equals("deadline")) {
                 checkTask(inputs, command);
                 try {
-                    tasks.addDeadline(inputs[1]);
+                    response = tasks.addDeadline(inputs[1]);
+                    storage.save(tasks);
                 } catch (DateTimeException e) {
-                    ui.showDateTimeFormat("D");
+                    return ui.showDateTimeFormat("D");
                 }
             } else if (command.equals("event")) {
                 checkTask(inputs, command);
                 try {
-                    tasks.addEvent(inputs[1]);
+                    response = tasks.addEvent(inputs[1]);
+                    storage.save(tasks);
                 } catch (DateTimeException e) {
-                    ui.showDateTimeFormat("E");
+                    return ui.showDateTimeFormat("E");
                 }
             } else if (command.equals("delete")) {
                 int index = checkTaskNumber(inputs, tasks);
-                tasks.deleteTask(index);
+                response = tasks.deleteTask(index);
+                storage.save(tasks);
             } else if (command.equals("find")) {
                 checkTask(inputs, command);
-                tasks.findTasks(inputs[1]);
+                return tasks.findTasks(inputs[1]);
             } else {
                 throw new WanyaException("I am sorry. Wanya doesn't like to study " +
                         "so Wanya don't know what that means.");
             }
+            return response;
         } catch (WanyaException e) {
-            ui.showErrorMessage(e);
+            return ui.showErrorMessage(e);
         }
     }
 }
