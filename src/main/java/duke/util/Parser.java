@@ -37,9 +37,6 @@ public class Parser {
         String command = getCommandString(fullCommand);
         String commandArgument = getCommandArgument(fullCommand);
         String commandFormat = getCommandFormat(command);
-        if (isEmptyInput(command)) {
-            throw new DukeException("Command cannot be empty");
-        }
         try {
             if (command.equals("todo")) {
                 if (isEmptyInput(commandArgument)) {
@@ -121,10 +118,15 @@ public class Parser {
      *
      * @param fullCommand Full user input.
      * @return Name of the command corresponding to the user input.
+     * @throws DukeException If the command string is empty.
      */
-    private static String getCommandString(String fullCommand) {
+    private static String getCommandString(String fullCommand) throws DukeException {
         String[] fullCommandSplit = fullCommand.split(" ", 2);
-        return fullCommandSplit[0].strip();
+        String command = fullCommandSplit[0].strip();
+        if (isEmptyInput(command)) {
+            throw new DukeException("Command cannot be empty");
+        }
+        return command;
     }
 
     /**
@@ -146,10 +148,10 @@ public class Parser {
      * @param expectedLength Expected number of smaller arguments after splitting.
      * @return Array of smaller command arguments.
      * @throws InvalidCommandFormatException If the actual number of command arguments after splitting is not equal to
-     * the expected number.
+     *              the expected number.
      */
     private static String[] getCommandArgumentSplit(String commandArgument, String delimiter, int expectedLength)
-            throws InvalidCommandFormatException{
+            throws InvalidCommandFormatException {
         String[] argumentSplit = commandArgument.split(delimiter);
         if (argumentSplit.length != expectedLength) {
             throw new InvalidCommandFormatException(DeadlineCommand.getFormat());
@@ -175,7 +177,8 @@ public class Parser {
      *
      * @param commandString Name of the command.
      * @return Expected format of the command.
-     * @throws UnknownCommandException If the name of the command does not match with any of the existing known commands.
+     * @throws UnknownCommandException If the name of the command does not match with any of the existing known
+     *              commands.
      */
     private static String getCommandFormat(String commandString) throws UnknownCommandException {
         switch (commandString) {
