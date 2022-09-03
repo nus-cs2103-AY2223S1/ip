@@ -29,6 +29,7 @@ public class Storage {
      * @param input String of the task that was parsed.
      */
     private void loadTodo(String input, boolean isDone, TaskList list) {
+        assert(input.split(" ").length != 0);
         String[] taskType = input.split(" ", 2);
         Todo todo = new Todo(taskType[1]);
         if (isDone) {
@@ -45,8 +46,10 @@ public class Storage {
      * @param input String of the task that was parsed.
      */
     private void loadDeadline(String input, boolean isDone, TaskList list) {
+        assert(input.split(" ").length != 0);
         String[] taskType = input.split(" ", 2);
         String[] taskBy = taskType[1].split("/by ", 2);
+        assert(taskBy[1].trim().matches("(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2})") == true);
         try {
             Deadline deadline = new Deadline(taskBy[0], taskBy[1]);
             if (isDone) {
@@ -65,6 +68,7 @@ public class Storage {
      * @param input String of the task that was parsed.
      */
     private void loadEvent(String input, boolean isDone, TaskList list) {
+        assert(input.split(" ").length != 0);
         String[] taskType = input.split(" ", 2);
         String[] taskBy = taskType[1].split("/at ", 2);
         Event event = new Event(taskBy[0], taskBy[1]);
@@ -82,6 +86,7 @@ public class Storage {
      * @return TaskList with all saved tasks added to.
      */
     public TaskList loadFile(TaskList list) {
+        assert(list.isEmpty() == true);
         try {
             Scanner s = new Scanner(this.file);
             while (s.hasNext()) {
@@ -120,6 +125,7 @@ public class Storage {
      * @param inputList the TaskList where all tasks are to be saved.
      */
     public static void writeToFile(String filePath, TaskList inputList) {
+        assert(inputList.isEmpty() == false);
         try {
             createDirectory(filePath);
             FileWriter fw = createFileWriter(filePath);

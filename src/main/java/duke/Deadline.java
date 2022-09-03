@@ -21,6 +21,7 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String by) throws DukeException {
         super(description);
+        assert(by != null);
         if (!isByCorrectFormat(by)) {
             throw new DukeException("Invalid Date Format (YYYY-MM-DD HH:MM required).");
         }
@@ -68,7 +69,7 @@ public class Deadline extends Task {
      * Returns a string representation of a Deadline object formatted
      * for writing into text file.
      *
-     * @return String of the deadline formatted to saved.
+     * @return String of the deadline formatted to save.
      */
     @Override
     public String formatFileText() {
