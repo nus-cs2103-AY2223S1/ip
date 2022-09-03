@@ -50,6 +50,8 @@ public class TaskList {
             break;
         default:
         }
+        assert newTask != null : "newTask in addTask in TaskList should not be null";
+
         tasks.add(newTask);
         storage.addTask(newTask);
         return " Understood. I have added the following task:\n"
@@ -108,10 +110,10 @@ public class TaskList {
         if (tasks.size() == 0) {
             return " You have not added any tasks!\n";
         }
-        
+
         StringBuilder result = new StringBuilder(" Here are your current tasks:\n");
         for (int i = 0; i < tasks.size(); i++) {
-            result.append(" ").append(i + 1).append(".").append(tasks.get(i).toString());
+            result.append(" ").append(i + 1).append(". ").append(tasks.get(i).toString());
         }
         return result.toString();
     }
@@ -131,7 +133,7 @@ public class TaskList {
         StringBuilder result = new StringBuilder(" I have found these matching tasks:\n");
         for (Task taskToCheck : tasks) {
             if (taskToCheck.isMatch(term)) {
-                result.append(" ").append(index).append(".").append(taskToCheck);
+                result.append(" ").append(index).append(". ").append(taskToCheck);
                 index++;
             }
         }
