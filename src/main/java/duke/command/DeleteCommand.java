@@ -17,13 +17,13 @@ public class DeleteCommand extends Command {
         if (index < 0 || index > TaskList.length() - 1) {
             throw new InvalidIndexException();
         }
-        this.index = index;
 
+        this.index = index;
     }
 
     /**
      * Deletes a task from tasklist
-     * saves updated tasklist to task file
+     * saves updated tasklist to storage task file
      */
     @Override
     public void execute(TaskList taskList, Storage storage) {

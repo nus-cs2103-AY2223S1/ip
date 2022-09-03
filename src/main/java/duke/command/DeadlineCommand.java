@@ -31,7 +31,7 @@ public class DeadlineCommand extends Command {
     /**
      * Creates a Deadline object
      * adds it to tasklist object
-     * saves the tasklist to task file
+     * saves the tasklist to storage task file
      */
     @Override
     public void execute(TaskList taskList, Storage storage) {

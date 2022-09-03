@@ -18,13 +18,14 @@ public class MarkCommand extends Command {
         if (index < 0 || index > TaskList.length() - 1) {
             throw new InvalidIndexException();
         }
+
         this.isMark = isMark;
         this.index = index;
     }
 
     /**
      * Marks a task in tasklist as done/not done
-     * saves tasklist to task file
+     * saves tasklist to storage task file
      */
     @Override
     public void execute(TaskList taskList, Storage storage) {
