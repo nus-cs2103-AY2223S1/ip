@@ -1,6 +1,8 @@
 package duke.internal;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 import duke.command.ByeCommand;
@@ -19,13 +21,27 @@ import duke.command.UnmarkCommand;
  * and determine which Command object should be used to execute it.
  */
 public class Parser {
+    private static final Map<String, String> DEFAULT_ALIASES = Map.of(
+            "t", "todo",
+            "d", "deadline",
+            "e", "event",
+            "m", "mark",
+            "u", "unmark",
+            "um", "unmark",
+            "f", "find",
+            "search", "find",
+            "rm", "delete",
+            "ls", "list"
+    );
+    private final Map<String, String> aliases = new HashMap<>(DEFAULT_ALIASES);
+
     /**
      * Parses a command from a string.
      *
      * @param str the string to parse
      * @return the Command object to execute
      */
-    public static Command parseString(String str) {
+    public Command parseString(String str) {
         String[] arguments = Parser.getArguments(str);
         if (arguments.length == 0) {
             throw new DukeException("Missing command");
@@ -80,7 +96,16 @@ public class Parser {
             }
             return new DeleteCommand(Integer.parseInt(arguments[1]) - 1);
         default:
-            throw new DukeException("Unknown command");
+            String alias = arguments[0];
+            if (!aliases.containsKey(alias)) {
+                throw new DukeException("Unknown command");
+            }
+            String command = String.format(
+                    "%s %s",
+                    aliases.get(alias),
+                    Parser.concatenateArguments(arguments, 1)
+            );
+            return parseString(command);
         }
     }
 

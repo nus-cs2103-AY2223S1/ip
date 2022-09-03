@@ -14,11 +14,18 @@ import duke.task.TaskList;
  * The main class of the Duke application.
  */
 public class Duke {
+    private final Parser parser;
     private final TaskList tasks;
     private final Storage storage;
     private final Ui ui;
 
+    /**
+     * Returns a new Duke object.
+     *
+     * @param path the path to the storage file of tasks
+     */
     public Duke(Path path) {
+        this.parser = new Parser();
         this.storage = new Storage(path);
         this.ui = new Ui();
         TaskList tasks;
@@ -32,7 +39,7 @@ public class Duke {
 
     public String getResponse(String input) {
         try {
-            Command command = Parser.parseString(input);
+            Command command = parser.parseString(input);
             command.execute(tasks, storage, ui);
             return ui.flush();
         } catch (DukeException e) {
