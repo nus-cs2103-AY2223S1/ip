@@ -69,11 +69,11 @@ public class Todo extends Task {
     /**
      * Compares this To-do with the given Task.
      * If the given Task is also a To-do, their descriptions are compared alphabetically.
-     * Otherwise, this To-do is always larger.
+     * Otherwise, this To-do is always greater.
      *
      * @param task The Task to compare to.
      * @return A negative integer, zero, or a positive integer as this To-do is
-     *         smaller than, equals to, or larger than the given Task.
+     *         smaller than, equals to, or greater than the given Task.
      */
     @Override
     public int compareTo(Task task) {
