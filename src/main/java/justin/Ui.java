@@ -25,6 +25,9 @@ public class Ui {
     private final static String DELETE_MESSAGE = "OK, I have removed the following task from the list: ";
     private final static String ADD_MESSAGE = "Got it, I have added the following into the list: ";
     private final static String FIND_MESSAGE = "Here are the matching tasks in your list: ";
+    private final static String TODO_HELP = "Type in todo <task name> to add ToDo task";
+    private final static String DEADLINE_HELP = "Type in deadline <task name> /by YYYY-MM-DD HH:MM to add Deadline task";
+    private final static String EVENT_HELP = "Type in event <task name> /by YYYY-MM-DD HH:MM to add Event task";
 
     private final Scanner in;
     private final PrintStream out;
@@ -49,22 +52,22 @@ public class Ui {
     /**
      * Prints out the welcome message.
      */
-    public void welcome() {
-        out.println(DIVIDER + SEPARATOR + WELCOME_MESSAGE + SEPARATOR + DIVIDER);
+    public String welcome() {
+        return WELCOME_MESSAGE;
     }
 
     /**
      * Prints out the goodbye message.
      */
-    public void goodbye() {
-        out.println(DIVIDER + SEPARATOR + GOODBYE_MESSAGE + SEPARATOR + DIVIDER);
+    public String goodbye() {
+        return GOODBYE_MESSAGE;
     }
 
     /**
      * Prints out the divider.
      */
-    public void showLine() {
-        out.println(DIVIDER);
+    public String showLine() {
+        return SEPARATOR;
     }
 
     /**
@@ -80,38 +83,37 @@ public class Ui {
      * Prints out the outputs when a Task is being unmarked.
      * @param task The Task that is to be unmarked.
      */
-    public void unmarkMessage(Task task) {
-        out.println(DIVIDER + SEPARATOR + UNMARK_MESSAGE + SEPARATOR + DIVIDER);
-        out.println(task.toString() + SEPARATOR);
+    public String unmarkMessage(Task task) {
+        return UNMARK_MESSAGE + SEPARATOR + task.toString();
     }
 
     /**
      * Prints out the outputs when a Task is being marked.
      * @param task The Task that is to be marked.
      */
-    public void markMessage(Task task) {
-        out.println(DIVIDER + SEPARATOR + MARK_MESSAGE + SEPARATOR + task.toString() + SEPARATOR + DIVIDER);
+    public String markMessage(Task task) {
+        return MARK_MESSAGE + SEPARATOR + task.toString();
     }
 
     /**
      * Prints out every Task in the TaskList.
      * @param list The TaskList that will be enumerated.
      */
-    public void listMessage(TaskList list) {
-        out.println(DIVIDER + SEPARATOR + LIST_MESSAGE + SEPARATOR);
+    public String listMessage(TaskList list) {
+        String res = LIST_MESSAGE;
         ArrayList<Task> tasks = list.getTasks();
         for (Task task: tasks) {
-            out.println(task.toString());
+           res += SEPARATOR + task.toString();
         }
-        out.println(DIVIDER);
+        return res;
     }
 
     /**
      * Prints out the outputs when a Task is being deleted.
      * @param task The Task to be deleted.
      */
-    public void deleteMessage(Task task) {
-        out.println(DIVIDER + SEPARATOR + DELETE_MESSAGE + SEPARATOR + task.toString() + SEPARATOR + DIVIDER);
+    public String deleteMessage(Task task) {
+        return DELETE_MESSAGE + SEPARATOR + task.toString();
     }
 
     /**
@@ -119,17 +121,17 @@ public class Ui {
      * into the TaskList.
      * @param task The Task to be added.
      */
-    public void addMessage(Task task) {
-        out.println(DIVIDER + SEPARATOR + ADD_MESSAGE + SEPARATOR + task.toString() + SEPARATOR + DIVIDER);
+    public String addMessage(Task task) {
+        return ADD_MESSAGE + SEPARATOR + task.toString();
     }
 
     /**
      * Prints out the number of Tasks in the TaskList.
      * @param list The TaskList to be enumerated.
      */
-    public void countMessage(TaskList list) {
+    public String countMessage(TaskList list) {
         int size = list.getTasks().size();
-        out.println("You now have " + size + " tasks in your list");
+        return "You now have " + size + " tasks in your list";
     }
 
     /**
@@ -140,14 +142,15 @@ public class Ui {
         out.println(text);
     }
 
-    public void findMessage(TaskList list, String description) {
-        out.println(FIND_MESSAGE);
+    public String findMessage(TaskList list, String description) {
+        String res = FIND_MESSAGE;
         ArrayList<Task> tasks = list.getTasks();
         for (Task task: tasks) {
             if (task.getDescription().contains(description)) {
-                out.println(task.toString());
+                res += SEPARATOR+ task;
             }
         }
+        return res;
     }
 
 }

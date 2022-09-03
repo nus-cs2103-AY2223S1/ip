@@ -1,11 +1,8 @@
 package justin.command;
 
-import justin.DukeException;
-import justin.Storage;
+import justin.*;
 import justin.task.Task;
-import justin.TaskList;
 import justin.task.ToDo;
-import justin.Ui;
 
 /**
  * Represents a command that is called to add a ToDo
@@ -35,15 +32,15 @@ public class AddToDoCommand extends Command {
      * @param storage The Storage to save changes.
      */
     @Override
-    public void execute(TaskList list, Ui ui, Storage storage) {
-        try {
-            Task task = new ToDo(description, isDone);
-            list.addTask(task);
-            ui.addMessage(task);
-            ui.countMessage(list);
-            storage.save(list);
-        } catch (DukeException e) {
-            ui.showText(e.toString());
-        }
+    public void execute(TaskList list, Ui ui, Storage storage, MainWindow mw) throws DukeException {
+        Task task = new ToDo(description, isDone);
+        list.addTask(task);
+        storage.save(list);
+    }
+
+    @Override
+    public String getMessage(TaskList list, Ui ui) {
+        Task task = new ToDo(description, isDone);
+        return ui.addMessage(task) + ui.showLine() + ui.countMessage(list);
     }
 }

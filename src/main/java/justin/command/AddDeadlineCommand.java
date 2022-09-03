@@ -1,11 +1,8 @@
 package justin.command;
 
+import justin.*;
 import justin.task.Deadline;
-import justin.DukeException;
-import justin.Storage;
 import justin.task.Task;
-import justin.TaskList;
-import justin.Ui;
 
 /**
  * Represents a command that is called to add a deadline
@@ -17,6 +14,7 @@ public class AddDeadlineCommand extends Command {
     private boolean isDone;
     private String by;
     private String time;
+    private Deadline task;
 
     /**
      * Constructor for the AddDeadlineCommand class.
@@ -54,15 +52,14 @@ public class AddDeadlineCommand extends Command {
      * @param storage The Storage to save changes.
      */
     @Override
-    public void execute(TaskList list, Ui ui, Storage storage) {
-        try {
-            Task task = new Deadline(description, isDone, by, time);
-            list.addTask(task);
-            ui.addMessage(task);
-            ui.countMessage(list);
-            storage.save(list);
-        } catch (DukeException e) {
-            ui.showText(e.toString());
-        }
+    public void execute(TaskList list, Ui ui, Storage storage, MainWindow mw) throws DukeException {
+        this.task = new Deadline(description, isDone, by, time);
+        list.addTask(task);
+        storage.save(list);
+    }
+
+    @Override
+    public String getMessage(TaskList list, Ui ui) {
+        return ui.addMessage(task) + ui.showLine() + ui.countMessage(list);
     }
 }

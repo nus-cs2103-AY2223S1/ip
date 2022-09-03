@@ -1,8 +1,6 @@
 package justin.command;
 
-import justin.Storage;
-import justin.TaskList;
-import justin.Ui;
+import justin.*;
 
 /**
  * An abstract class that represents any command
@@ -10,6 +8,7 @@ import justin.Ui;
  * @author Justin Cheng.
  */
 public abstract class Command {
+
     /**
      * Encapsulates actions taken when
      * a command is called.
@@ -17,7 +16,9 @@ public abstract class Command {
      * @param ui The Ui to send outputs.
      * @param storage The Storage to save changes.
      */
-    public abstract void execute(TaskList list, Ui ui, Storage storage);
+    public abstract void execute(TaskList list, Ui ui, Storage storage, MainWindow mw) throws DukeException;
+
+    public abstract String getMessage(TaskList list, Ui ui);
 
     protected boolean isExit = false;
 
@@ -28,4 +29,5 @@ public abstract class Command {
     public boolean isExit() {
         return this.isExit;
     }
+
 }

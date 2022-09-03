@@ -1,10 +1,7 @@
 package justin.command;
 
-import justin.DukeException;
-import justin.Storage;
+import justin.*;
 import justin.task.Task;
-import justin.TaskList;
-import justin.Ui;
 
 /**
  * Represents a command that marks a particular
@@ -13,6 +10,7 @@ import justin.Ui;
  */
 public class MarkCommand extends Command {
     private int num;
+    private Task markedTask;
 
     /**
      * Constructor for the MarkCommand class.
@@ -31,14 +29,14 @@ public class MarkCommand extends Command {
      * @param storage The Storage to save changes.
      */
     @Override
-    public void execute(TaskList list, Ui ui, Storage storage) {
-        try {
-            list.mark(num);
-            Task curr = list.getTask(num);
-            ui.markMessage(curr);
-            storage.save(list);
-        } catch (DukeException e) {
-            ui.showText(e.toString());
-        }
+    public void execute(TaskList list, Ui ui, Storage storage, MainWindow mw) throws DukeException {
+        list.mark(num);
+        this.markedTask = list.getTask(num);
+        storage.save(list);
+    }
+
+    @Override
+    public String getMessage(TaskList list, Ui ui) {
+        return ui.markMessage(markedTask);
     }
 }

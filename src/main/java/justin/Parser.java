@@ -15,6 +15,7 @@ import justin.command.UnmarkCommand;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -88,6 +89,7 @@ public class Parser {
 
 
     public static Command parseFind(String message) {
+
         Scanner sc = new Scanner(message);
         String res = "";
         while (sc.hasNext()) {
@@ -106,44 +108,48 @@ public class Parser {
     public static Command parse(String message) throws DukeException {
         Scanner sc = new Scanner(message);
         String first = sc.next();
-        switch (first) {
-            case "bye": {
-                return new ExitCommand();
+        try {
+            switch (first) {
+                case "bye": {
+                    return new ExitCommand();
+                }
+                case "list": {
+                    return new ListCommand();
+                }
+                case "todo": {
+                    String description = sc.nextLine();
+                    return parseToDo(description);
+                }
+                case "deadline": {
+                    String description = sc.nextLine();
+                    return parseDeadline(description);
+                }
+                case "event": {
+                    String description = sc.nextLine();
+                    return parseEvent(description);
+                }
+                case "mark": {
+                    int num = sc.nextInt();
+                    return new MarkCommand(num);
+                }
+                case "unmark": {
+                    int num = sc.nextInt();
+                    return new UnmarkCommand(num);
+                }
+                case "delete": {
+                    int num = sc.nextInt();
+                    return new DeleteCommand(num);
+                }
+                case "find": {
+                    String description = sc.nextLine();
+                    return parseFind(description);
+                }
+                default: {
+                    throw new DukeException("OOPS! Sorry I do not know what that means...");
+                }
             }
-            case "list": {
-                return new ListCommand();
-            }
-            case "todo": {
-                String description = sc.nextLine();
-                return parseToDo(description);
-            }
-            case "deadline": {
-                String description = sc.nextLine();
-                return parseDeadline(description);
-            }
-            case "event": {
-                String description = sc.nextLine();
-                return parseEvent(description);
-            }
-            case "mark": {
-                int num = sc.nextInt();
-                return new MarkCommand(num);
-            }
-            case "unmark": {
-                int num = sc.nextInt();
-                return new UnmarkCommand(num);
-            }
-            case "delete": {
-                int num = sc.nextInt();
-                return new DeleteCommand(num);
-            }
-            case "find": {
-                String description = sc.nextLine();
-                return parseFind(description);
-            }
-            default: {
-                throw new DukeException("OOPS! Sorry I do not know what that means...");
-            }
+        } catch (NoSuchElementException e) {
+            throw new DukeException("Please type something!");
         }
     }
 

@@ -1,11 +1,8 @@
 package justin.command;
 
-import justin.DukeException;
+import justin.*;
 import justin.task.Event;
-import justin.Storage;
 import justin.task.Task;
-import justin.TaskList;
-import justin.Ui;
 
 /**
  * Represents a command that is called to add an event
@@ -17,6 +14,7 @@ public class AddEventCommand extends Command {
     private boolean isDone;
     private String at;
     private String time;
+    private Event task;
 
     /**
      * Constructor for the AddEventCommand class
@@ -54,15 +52,18 @@ public class AddEventCommand extends Command {
      * @param storage The Storage to store changes.
      */
     @Override
-    public void execute(TaskList list, Ui ui, Storage storage) {
+    public void execute(TaskList list, Ui ui, Storage storage, MainWindow mw) {
         try {
-            Task task = new Event(description, isDone, at, time);
+            this.task = new Event(description, isDone, at, time);
             list.addTask(task);
-            ui.addMessage(task);
-            ui.countMessage(list);
             storage.save(list);
         } catch (DukeException e) {
-            ui.showText(e.toString());
+            mw.handleException(e.getMessage());
         }
+    }
+
+    @Override
+    public String getMessage(TaskList list, Ui ui) {
+        return ui.addMessage(task) + ui.showLine() + ui.countMessage(list);
     }
 }

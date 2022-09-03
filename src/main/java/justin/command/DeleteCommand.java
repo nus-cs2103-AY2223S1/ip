@@ -1,10 +1,7 @@
 package justin.command;
 
-import justin.DukeException;
-import justin.Storage;
+import justin.*;
 import justin.task.Task;
-import justin.TaskList;
-import justin.Ui;
 
 /**
  * Represents a command to delete a particular
@@ -13,6 +10,7 @@ import justin.Ui;
  */
 public class DeleteCommand extends Command {
     private int num;
+    private Task deletedTask;
 
     /**
      * Constructor for the DeleteCommand class.
@@ -30,14 +28,14 @@ public class DeleteCommand extends Command {
      * @param storage The Storage to save changes.
      */
     @Override
-    public void execute(TaskList list, Ui ui, Storage storage) {
-        try {
-            Task curr = list.getTask(num);
-            list.delete(num);
-            ui.deleteMessage(curr);
-            storage.save(list);
-        } catch (DukeException e){
-            ui.showText(e.toString());
-        }
+    public void execute(TaskList list, Ui ui, Storage storage, MainWindow mw) throws DukeException {
+        this.deletedTask = list.getTask(num);
+        list.delete(num);
+        storage.save(list);
+    }
+
+    @Override
+    public String getMessage(TaskList list, Ui ui) {
+        return ui.deleteMessage(deletedTask) + ui.showLine() + ui.countMessage(list);
     }
 }

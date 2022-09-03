@@ -1,5 +1,6 @@
 package justin.command;
 
+import justin.MainWindow;
 import justin.Storage;
 import justin.TaskList;
 import justin.Ui;
@@ -19,7 +20,10 @@ public class ListCommand extends Command {
      * @param storage The Storage to save changes.
      */
     @Override
-    public void execute(TaskList list, Ui ui, Storage storage) {
-        ui.listMessage(list);
+    public void execute(TaskList list, Ui ui, Storage storage, MainWindow mw) {}
+
+    @Override
+    public String getMessage(TaskList list, Ui ui) {
+        return ui.listMessage(list);
     }
 }

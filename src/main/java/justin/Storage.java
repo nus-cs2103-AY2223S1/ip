@@ -18,6 +18,7 @@ import java.util.ArrayList;
  */
 public class Storage {
     private final String fileName;
+    private MainWindow mw;
 
     /**
      * Constructor for the Storage class.
@@ -86,11 +87,15 @@ public class Storage {
         try {
             for (String s : strArray) {
                 Command command = Parser.parseCommand(s);
-                command.execute(tasks, ui, this);
+                command.execute(tasks, ui, this, this.mw);
             }
         } catch (DukeException e) {
             ui.showText(e.toString());
         }
         return tasks.getTasks();
+    }
+
+    public void setMw(MainWindow mw) {
+        this.mw = mw;
     }
 }
