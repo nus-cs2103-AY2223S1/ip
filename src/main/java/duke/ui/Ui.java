@@ -14,6 +14,7 @@ public class Ui {
     private final Scanner in;
     private final PrintStream out;
     private static final String END_CMD = "bye";
+    private static final String BREAK_LINE = "\n***********************************************************************";
 
     /**
      * Constructs a Ui object
@@ -29,29 +30,33 @@ public class Ui {
     /**
      * Prints Duke's self-introduction and helps to customise its personality.
      */
-    public void introduceDuke() {
+    public String introduceDuke() {
         String intro = "I once wandered these halls, centuries ago. I am Duke Aemon of Old.\n";
         String quote1 = "Indeed, my memory is long when I am but a ghost of a memory myself..." +
                 "\nBut you are young blood. What brings you to these ancient halls?"
                 +"\n***********************************************************************";
 
-        System.out.println("Welcome, my friend!\n" + intro + quote1);
+        String reply = "Welcome, my friend!\n" + intro + quote1;
+        System.out.println(reply);
+        return reply;
     }
 
     /**
      * Exits chat if user types "bye" and prints user input otherwise.
      */
-    public static void echoAndExit() {
-        String exitCmd = "bye";
+    public static String echoAndExit() {
         while (true) {
-            Scanner readinput = new Scanner(System.in);
-            String userMsg = readinput.nextLine();
-            if (!userMsg.equals(exitCmd)) {
-                System.out.println(userMsg + "\n" + "***********************************************************************\n");
+            Scanner input = new Scanner(System.in);
+            String userMsg = input.nextLine();
+            String reply;
+            if (!userMsg.equals(END_CMD)) {
+                reply = userMsg + BREAK_LINE;
             } else {
-                System.out.println("Ah! And so we part here today.\n We may yet meet again...Farewell, my friend!");
-                break;
+                reply = "Ah! And so we part here today." +
+                        "\n We may yet meet again...Farewell, my friend!";
             }
+            System.out.println(reply);
+            return reply;
         }
     }
 
@@ -60,10 +65,13 @@ public class Ui {
      * Prints a farewell message at the end of the conversation
      */
 
-    public void bidFarewell() {
+    public String bidFarewell() {
 
-        System.out.println("Ah! And so we part here today.\n We may yet meet again...Farewell, my friend!");
-        System.out.println("\n***********************************************************************");
+        String reply = "Ah! And so we part here today."
+                + "\n We may yet meet again...Farewell, my friend!"
+                + BREAK_LINE;
+        System.out.println(reply);
+        return reply;
     }
 
 
@@ -72,11 +80,13 @@ public class Ui {
      * @param userMsg String representing user message
      */
 
-    public void askForClarification(String userMsg) {
+    public String askForClarification(String userMsg) {
 
-        System.out.print("Did you say..." + userMsg + "?\n");
-        System.out.println("The shadow of my memory is long...State what you would ask clearly.");
-        System.out.println("\n***********************************************************************");
+        String question = "Did you say..." + userMsg + "?\n";
+        String response = "The shadow of my memory is long...State what you would ask clearly.";
+        String reply = question + response + BREAK_LINE;
+        System.out.println(reply);
+        return reply;
     }
 
 
@@ -84,19 +94,17 @@ public class Ui {
      * Reads user message and prints an appropriate response back
      */
 
-    public void readAndRespond() {
+    public String readAndRespond(String userMsg) {
 
-
-        Scanner readInput = this.in;
+//        Scanner readInput = this.in;
 
         while (true) {
-            String userMsg = readInput.nextLine();
+//            String userMsg = readInput.nextLine();
             if (userMsg.equals(END_CMD)) {
-                bidFarewell();
-                break;
+                return bidFarewell();
             } else {
                 ParserDuke parseCmd = new ParserDuke(userMsg);
-                parseCmd.parseCommand();
+                return parseCmd.parseCommand();
             }
         }
     }

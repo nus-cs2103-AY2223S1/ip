@@ -44,9 +44,8 @@ public class Duke extends Application {
     /**
      * Introduces Duke and initiates interactive conversation with user
      */
-    public void interact() {
-        this.ui.introduceDuke();
-        this.ui.readAndRespond();
+    public String interact(String input) {
+        return this.ui.readAndRespond(input);
     }
 
 
@@ -172,7 +171,7 @@ public class Duke extends Application {
 
 
     private String getResponse(String input) {
-        return "";
+        return interact(input);
     }
 
     private Label getDialogLabel(String text) {
@@ -190,7 +189,7 @@ public class Duke extends Application {
      */
     public static void main(String[] args) {
        Duke AemonT = new Duke();
-       AemonT.interact();
+//       AemonT.interact();
     }
 
 }
