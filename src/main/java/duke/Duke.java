@@ -61,6 +61,7 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Command command = Parser.parse(input);
+
             return command.execute(taskList, ui, storage);
         } catch (DukeException e) {
             return "Error: " + e.getMessage();

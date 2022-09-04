@@ -81,6 +81,7 @@ public class TaskList {
             throw new DukeException("Task " + (index + 1) + " does not exist!");
         }
         list.get(index).setStatus(status);
+
         return this;
     }
 
