@@ -37,6 +37,7 @@ public class FindCommand extends Command {
         TaskList filtered = taskList.filter(keyword);
         if (filtered.getTaskList().isEmpty()) {
             ui.showOutput("No matching task found!");
+
             return "No matching task found!";
         } else {
             ui.showOutput("Here are the matching tasks in your list:");
