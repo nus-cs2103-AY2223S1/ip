@@ -51,7 +51,7 @@ public class UI {
     /**
      * Prints the message when a task has been marked/unmarked.
      *
-     * @param task Task to be marked.
+     * @param task    Task to be marked.
      * @param command Mark status.
      * @return String output of the marked/unmarked task.
      */
@@ -67,5 +67,14 @@ public class UI {
             throw new DukeException("Error in printing marked task!");
         }
         }
+    }
+
+    /**
+     * Prints the message if the task list is empty.
+     *
+     * @return Empty list message.
+     */
+    public static String printTaskListEmpty() {
+        return "No tasks have been added!";
     }
 }

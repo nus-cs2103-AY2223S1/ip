@@ -66,7 +66,7 @@ public class TaskList {
             }
             return output;
         } else {
-            return "No tasks have been added!";
+            return UI.printTaskListEmpty();
         }
     }
 
