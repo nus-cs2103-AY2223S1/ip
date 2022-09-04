@@ -2,6 +2,7 @@ package duke.command;
 
 import java.io.IOException;
 
+import duke.DukeException;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -35,7 +36,10 @@ public class MarkCommand extends Command {
      * @throws IOException If there is an error when updating the file.
      */
     @Override
-    public String run(TaskList tasks, Ui ui, Storage storage) throws IOException {
+    public String run(TaskList tasks, Ui ui, Storage storage) throws IOException, DukeException {
+        if (tasks.getSize() == 0) {
+            throw new DukeException("Task list is currently empty.");
+        }
         Task task = tasks.getTask(this.num);
         task.markDone();
         storage.writeFile(tasks);

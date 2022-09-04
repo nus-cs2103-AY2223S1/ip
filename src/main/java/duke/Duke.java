@@ -40,27 +40,6 @@ public class Duke {
     }
 
     /**
-     * Main driver function for Duke program.
-     */
-    private void run() {
-        this.ui.printIntro();
-        while (!this.isEnd) {
-            try {
-                String line = this.ui.nextLine();
-                Command command = Parser.parse(line);
-                this.ui.printLine();
-                command.run(this.tasks, this.ui, this.storage);
-                this.isEnd = command.getIsEnd();
-            } catch (DukeException | IOException | DateTimeParseException e) {
-                this.ui.printException(e);
-            } finally {
-                this.ui.printLine();
-            }
-        }
-        this.ui.close();
-    }
-
-    /**
      * Returns Duke bot response to input.
      *
      * @param input User input into bot.
@@ -71,8 +50,7 @@ public class Duke {
             Command command = Parser.parse(input);
             return command.run(this.tasks, this.ui, this.storage);
         } catch (DukeException | IOException | DateTimeParseException e) {
-            this.ui.printException(e);
+            return this.ui.printException(e);
         }
-        return "Sorry didn't catch that.";
     }
 }
