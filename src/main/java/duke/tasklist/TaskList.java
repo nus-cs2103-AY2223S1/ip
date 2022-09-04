@@ -4,6 +4,7 @@ import duke.tasks.Task;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 /**
@@ -91,17 +92,17 @@ public class TaskList {
      * @return String that contains all matching tasks, formatted.
      */
     public String search(String[] terms) {
-        StringBuilder result = new StringBuilder("");
+        String result = "";
         for (Task task: this.taskList) {
             for (String term: terms) {
                 if (task.toString().toLowerCase().contains(term.toLowerCase())) {
-                   if (result.indexOf(task.toString()) != -1) {
-                       result.append(task.toString() + "\n");
+                   if (!result.contains(task.toString())) {
+                       result += task.toString() + "\n";
                    }
                 }
             }
         }
-        return result.equals("") ? result.toString() : result.toString().substring(0, result.length() - 1);
+        return result.equals("") ? result : result.substring(0, result.length() - 1);
     }
 
     /**
