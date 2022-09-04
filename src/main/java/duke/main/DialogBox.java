@@ -7,12 +7,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 /**
@@ -21,6 +27,10 @@ import javafx.scene.shape.Circle;
  * containing text from the speaker.
  */
 public class DialogBox extends HBox {
+    private static final Background USER_LABEL =
+            new Background(new BackgroundFill(Color.web("#cefad0"), new CornerRadii(10), Insets.EMPTY));
+    private static final Background DUKE_LABEL =
+            new Background(new BackgroundFill(Color.WHITE, new CornerRadii(10), Insets.EMPTY));
     private final Circle c = new Circle(25, 25, 25);
     @FXML
     private Label dialog;
@@ -34,6 +44,7 @@ public class DialogBox extends HBox {
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
+            this.setPrefHeight(Region.USE_COMPUTED_SIZE);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -44,12 +55,15 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        var db = new DialogBox(text, img);
+        db.dialog.setBackground(USER_LABEL);
+        return db;
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
+        db.dialog.setBackground(DUKE_LABEL);
         return db;
     }
 
