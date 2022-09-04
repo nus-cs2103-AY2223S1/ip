@@ -3,6 +3,7 @@ package duke.task;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import duke.DukeException;
 
@@ -53,12 +54,9 @@ public class TaskList {
      * @return A new TaskList of every task which description contains a specified keyword (or phrase).
      */
     public TaskList getAllContaining(String keyword) {
-        ArrayList<Task> matchingList = new ArrayList<>();
-        for (Task task : tasks) {
-            if (task.contains(keyword)) {
-                matchingList.add(task);
-            }
-        }
+        ArrayList<Task> matchingList = tasks.stream()
+                    .filter(x -> x.contains(keyword))
+                    .collect(Collectors.toCollection(ArrayList::new));
         return new TaskList(matchingList);
     }
 
@@ -71,12 +69,9 @@ public class TaskList {
      */
     public TaskList getAllOnDate(LocalDate date) {
         assert date != null : "TaskList::allOnDate invoked with null argument.";
-        ArrayList<Task> matchingList = new ArrayList<>();
-        for (Task task : tasks) {
-            if (task.isOnDate(date)) {
-                matchingList.add(task);
-            }
-        }
+        ArrayList<Task> matchingList = tasks.stream()
+                .filter(x -> x.isOnDate(date))
+                .collect(Collectors.toCollection(ArrayList::new));
         return new TaskList(matchingList);
     }
 
@@ -87,13 +82,10 @@ public class TaskList {
      * @return An array of strings representing each Task in the TaskList as data
      *     that can be stored in the hard disk.
      */
-    public String[] convertAllToData() {
-        int count = tasks.size();
-        String[] strings = new String[count];
-        for (int i = 0; i < count; i++) {
-            strings[i] = tasks.get(i).toData();
-        }
-        return strings;
+    public String[] allToData() {
+        return tasks.stream()
+                .map(Task::toData)
+                .toArray(String[]::new);
     }
 
     /**
@@ -103,12 +95,9 @@ public class TaskList {
      * @return An array of strings representing each task in the TaskList.
      */
     public String[] convertAllToString() {
-        int count = tasks.size();
-        String[] strings = new String[count];
-        for (int i = 0; i < count; i++) {
-            strings[i] = tasks.get(i).toString();
-        }
-        return strings;
+        return tasks.stream()
+                .map(Task::toString)
+                .toArray(String[]::new);
     }
 
     /**
