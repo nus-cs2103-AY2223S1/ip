@@ -45,6 +45,7 @@ public class TaskList {
         for(int i = 0; i<findList.size(); i++) {
             res += i+1 + "." + findList.get(i) + "\n";
         }
+        assert res != "" : "listTasks returns empty string";
         return res;
         
     }
@@ -65,6 +66,7 @@ public class TaskList {
                 res += myList.get(i);
                 res += "\n";
             }
+            assert res != "" : "listTasks returns empty string";
             return res;
         }
     }
