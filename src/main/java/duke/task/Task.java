@@ -84,10 +84,10 @@ public abstract class Task {
     /**
      * Produces {@code String}  with "|" delimiters for storing
      * task's data into a text file.
-     * @return "deadline|[COMPLETION STATUS]|[TASK DESCRIPTION]|[TASK DEADLINE]
+     * @return "[COMPLETION STATUS]|[TASK DESCRIPTION]|[PRIORITY]"
      */
     public String toFileFormat() {
-        return this.isDone + "|" + this.description;
+        return this.isDone + "|" + this.description + "|" + this.priority;
     }
 
     /**

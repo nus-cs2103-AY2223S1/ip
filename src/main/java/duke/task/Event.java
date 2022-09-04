@@ -43,7 +43,8 @@ public class Event extends Task {
     /**
      * Produces a {@code String} with "|" delimiters for
      * storing the {@code Event}'s data into a text file.
-     * @return "event|[COMPLETION STATUS]|[TASK DESCRIPTION]|[TASK VENUE]"
+     * @return "event|[COMPLETION STATUS]|[TASK DESCRIPTION]
+     *               |[PRIORITY]|[TASK VENUE]"
      */
     public String toFileFormat() {
         return "event" + "|" + super.toFileFormat() + "|" + this.at;

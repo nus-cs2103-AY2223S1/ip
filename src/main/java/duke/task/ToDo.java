@@ -36,7 +36,7 @@ public class ToDo extends Task {
     /**
      * Produces a {@code String} with "|" delimiters for
      * storing the task's data into a text file.
-     * @return "todo|[COMPLETION STATUS]|[TASK DESCRIPTION]|"
+     * @return "todo|[COMPLETION STATUS]|[TASK DESCRIPTION]|[PRIORITY]"
      */
     public String toFileFormat() {
         return "todo" + "|" + super.toFileFormat();

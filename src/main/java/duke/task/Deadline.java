@@ -51,7 +51,8 @@ public class Deadline extends Task {
     /**
      * To produce a {@code String} with "|" delimiters for storing the
      * {@code Deadline}'s data in a text file.
-     * @return "deadline|[COMPLETION STATUS]|[TASK DESCRIPTION]|[TASK DEADLINE]
+     * @return "deadline|[COMPLETION STATUS]|[TASK DESCRIPTION]
+     *                  |[PRIORITY][TASK DEADLINE]"
      */
     public String toFileFormat() {
         return "deadline" + "|" + super.toFileFormat() + "|" + this.by;
