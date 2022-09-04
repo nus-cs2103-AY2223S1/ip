@@ -36,19 +36,31 @@ public class TaskListTest {
 
     @Test
     public void testDelete_success() throws DukeException {
-        TaskList testList = new TaskList();
-        Task expectedTask = new Todo("test");
-        testList.add(expectedTask);
-        Task actualTask = testList.delete(1);
-        assertEquals("Now you have 0 tasks in your list.", testList.getCountStatement());
-        assertEquals(expectedTask, actualTask);
+        Task testTask1 = new Todo("1");
+        Task testTask2 = new Todo("2");
+        Task testTask3 = new Todo("3");
+        TaskList testList = new TaskList(testTask1, testTask2, testTask3);
+
+        TaskList expectedRemainingTasks = new TaskList(testTask2);
+
+        ArrayList<Task> expectedDeletedTasks = new ArrayList<>();
+        expectedDeletedTasks.add(testTask1);
+        expectedDeletedTasks.add(testTask3);
+
+        Integer[] testArray = {3, 1};
+        ArrayList<Task> actualDeletedTasks = testList.delete(testArray);
+
+        assertEquals("Now you have 1 task in your list.", testList.getCountStatement());
+        assertEquals(expectedRemainingTasks, testList);
+        assertEquals(expectedDeletedTasks, actualDeletedTasks);
     }
 
     @Test
     public void testDelete_exceptionThrown() {
         try {
             TaskList testList = new TaskList();
-            testList.delete(1);
+            Integer[] testArray = {1};
+            testList.delete(testArray);
             fail();
         } catch (DukeException e) {
             assertEquals("The specified task does not exist.", e.getMessage());
@@ -57,20 +69,24 @@ public class TaskListTest {
 
     @Test
     public void testMark_success() throws DukeException {
-        TaskList testList = new TaskList();
-        Task expectedTask = new Todo("test");
-        testList.add(expectedTask);
-        Task actualTask = testList.mark(1);
+        Task testTask1 = new Todo("1");
+        TaskList testList = new TaskList(testTask1);
+
+        Integer[] testArray = {1};
+        ArrayList<Task> markedTasks = testList.mark(testArray);
+        Task actualTask = markedTasks.get(0);
+
         assertEquals("Now you have 1 task in your list.", testList.getCountStatement());
-        assertEquals(expectedTask, actualTask);
-        assertEquals("[T][X] test", actualTask.toString());
+        assertEquals(testTask1, actualTask);
+        assertEquals("[T][X] 1", actualTask.toString());
     }
 
     @Test
     public void testMark_exceptionThrown() {
         try {
             TaskList testList = new TaskList();
-            testList.mark(1);
+            Integer[] testArray = {1};
+            testList.mark(testArray);
             fail();
         } catch (DukeException e) {
             assertEquals("The specified task does not exist.", e.getMessage());
@@ -79,21 +95,25 @@ public class TaskListTest {
 
     @Test
     public void testUnmark_success() throws DukeException {
-        TaskList testList = new TaskList();
-        Task expectedTask = new Todo("test");
-        testList.add(expectedTask);
-        testList.mark(1);
-        Task actualTask = testList.unmark(1);
+        Task testTask1 = new Todo("1");
+        TaskList testList = new TaskList(testTask1);
+
+        Integer[] testArray = {1};
+        testList.mark(testArray);
+        ArrayList<Task> unmarkedTasks = testList.unmark(testArray);
+        Task actualTask = unmarkedTasks.get(0);
+
         assertEquals("Now you have 1 task in your list.", testList.getCountStatement());
-        assertEquals(expectedTask, actualTask);
-        assertEquals("[T][ ] test", actualTask.toString());
+        assertEquals(testTask1, actualTask);
+        assertEquals("[T][ ] 1", actualTask.toString());
     }
 
     @Test
     public void testUnmark_exceptionThrown() {
         try {
             TaskList testList = new TaskList();
-            testList.unmark(1);
+            Integer[] testArray = {1};
+            testList.unmark(testArray);
             fail();
         } catch (DukeException e) {
             assertEquals("The specified task does not exist.", e.getMessage());

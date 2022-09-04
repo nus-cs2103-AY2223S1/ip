@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.ArrayList;
+
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -31,16 +33,26 @@ public class Ui {
     }
 
     /**
-     * Gets a message that a specified task has been deleted from a task list.
+     * Gets a message that the specified tasks have been deleted from a task list.
      *
-     * @param task The specified task that was deleted.
+     * @param deletedTasks The specified tasks that were deleted.
      * @param tasks The task list that the specified task was deleted from.
      * @return A message that a specified task has been deleted from a task list.
      */
-    public String showDeleted(Task task, TaskList tasks) {
-        return "Noted. I've removed this task:\n  "
-                + task + "\n"
-                + tasks.getCountStatement();
+    public String showDeleted(ArrayList<Task> deletedTasks, TaskList tasks) {
+        StringBuilder response;
+        if (deletedTasks.size() == 1) {
+            response = new StringBuilder("Noted. I've removed this task:\n");
+        } else {
+            response = new StringBuilder("Noted. I've removed these tasks:\n");
+        }
+        for (Task deletedTask : deletedTasks) {
+            response.append("  ")
+                    .append(deletedTask.toString())
+                    .append("\n");
+        }
+        response.append(tasks.getCountStatement());
+        return response.toString();
     }
 
     /**
@@ -71,10 +83,11 @@ public class Ui {
     public String showFound(TaskList tasks) {
         StringBuilder response = new StringBuilder("Here are the matching tasks in your list:");
         String[] strings = tasks.convertAllToString();
-        if (strings.length == 0) {
+        int len = strings.length;
+        if (len == 0) {
             response.append("\nYou have no matching tasks!");
         } else {
-            for (int i = 0; i < strings.length; i++) {
+            for (int i = 0; i < len; i++) {
                 response.append("\n").append(i + 1).append(".").append(strings[i]);
             }
         }
@@ -103,21 +116,41 @@ public class Ui {
     /**
      * Gets a message that a specified task has been marked as done.
      *
-     * @param task The specified task that was marked as done.
+     * @param markedTasks The specified task that were marked as done.
      * @return A message that a specified task has been marked as done.
      */
-    public String showMarked(Task task) {
-        return "Nice! I've marked this task as done:\n  " + task;
+    public String showMarked(ArrayList<Task> markedTasks) {
+        StringBuilder response;
+        if (markedTasks.size() == 1) {
+            response = new StringBuilder("Nice! I've marked this task as done:");
+        } else {
+            response = new StringBuilder("Nice! I've marked these tasks as done:");
+        }
+        for (Task markedTask : markedTasks) {
+            response.append("\n  ")
+                    .append(markedTask.toString());
+        }
+        return response.toString();
     }
 
     /**
      * Gets a message that a specified task has been marked as done.
      *
-     * @param task The specified task that was marked as done.
+     * @param unmarkedTasks The specified task that was marked as done.
      * @return A message that a specified task has been marked as done.
      */
-    public String showNotMarked(Task task) {
-        return "OK, I've marked this task as not done yet:\n  " + task;
+    public String showNotMarked(ArrayList<Task> unmarkedTasks) {
+        StringBuilder response;
+        if (unmarkedTasks.size() == 1) {
+            response = new StringBuilder("OK, I've marked this task as not done:");
+        } else {
+            response = new StringBuilder("OK, I've marked these tasks as not done:");
+        }
+        for (Task unmarkedTask : unmarkedTasks) {
+            response.append("\n  ")
+                    .append(unmarkedTask.toString());
+        }
+        return response.toString();
     }
 
     /**

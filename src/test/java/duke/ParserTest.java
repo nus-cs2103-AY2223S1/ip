@@ -48,7 +48,7 @@ public class ParserTest {
             Parser.parse("mark");
             fail();
         } catch (DukeException e) {
-            assertEquals("Specify which task to mark with a single integer.",
+            assertEquals("Specify which tasks to mark with integers.",
                     e.getMessage());
         }
     }
@@ -59,7 +59,7 @@ public class ParserTest {
             Parser.parse("mark food");
             fail();
         } catch (DukeException e) {
-            assertEquals("Specify which task to mark with a single integer.",
+            assertEquals("Specify which tasks to mark with integers.",
                     e.getMessage());
         }
     }
@@ -75,7 +75,7 @@ public class ParserTest {
             Parser.parse("unmark");
             fail();
         } catch (DukeException e) {
-            assertEquals("Specify which task to unmark with a single integer.",
+            assertEquals("Specify which tasks to unmark with integers.",
                     e.getMessage());
         }
     }
@@ -86,7 +86,7 @@ public class ParserTest {
             Parser.parse("unmark food");
             fail();
         } catch (DukeException e) {
-            assertEquals("Specify which task to unmark with a single integer.",
+            assertEquals("Specify which tasks to unmark with integers.",
                     e.getMessage());
         }
     }
@@ -222,7 +222,7 @@ public class ParserTest {
             Parser.parse("delete");
             fail();
         } catch (DukeException e) {
-            assertEquals("Specify which task to delete with a single integer.",
+            assertEquals("Specify which tasks to delete with integers.",
                     e.getMessage());
         }
     }
@@ -233,7 +233,7 @@ public class ParserTest {
             Parser.parse("delete food");
             fail();
         } catch (DukeException e) {
-            assertEquals("Specify which task to delete with a single integer.",
+            assertEquals("Specify which tasks to delete with integers.",
                     e.getMessage());
         }
     }
