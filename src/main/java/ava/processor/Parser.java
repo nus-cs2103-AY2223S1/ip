@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import ava.Ui;
+import ava.exception.AvaException;
 import ava.exception.NoCommandException;
 import ava.exception.NoDescriptionException;
 import ava.exception.NoTimeException;
@@ -37,10 +38,8 @@ public class Parser {
      * @param chat Input from the scanner.
      * @param tasklist ArrayList of tasks.
      * @return Task object.
-     * @throws NoDescriptionException If there are no description.
-     * @throws NoCommandException If there are no commands.
      */
-    public static Task mark(String chat, TaskList tasklist) throws NoDescriptionException, NoCommandException {
+    public static Task mark(String chat, TaskList tasklist) {
         int num = Integer.parseInt(chat.split(" ")[1]) - 1;
         return new Mark(num);
     }
@@ -51,10 +50,8 @@ public class Parser {
      * @param chat Input from the scanner.
      * @param tasklist ArrayList of tasks.
      * @return Task object.
-     * @throws NoDescriptionException If there are no description.
-     * @throws NoCommandException If there are no commands.
      */
-    public static Task unmark(String chat, TaskList tasklist) throws NoDescriptionException, NoCommandException {
+    public static Task unmark(String chat, TaskList tasklist) {
         int num = Integer.parseInt(chat.split(" ")[1]) - 1;
         return new Unmark(num);
     }
@@ -65,18 +62,16 @@ public class Parser {
      * @param chat Input from the scanner.
      * @param tasklist ArrayList of tasks.
      * @return Task object.
-     * @throws NoDescriptionException If there are no description.
-     * @throws NoCommandException If there are no commands.
+     * @throws AvaException If an exception is found.
      */
-    public static Task addTask(String chat, TaskList tasklist) throws NoDescriptionException, NoCommandException,
-            NoTimeException, WrongTimeFormatException {
+    public static Task addTask(String chat, TaskList tasklist) throws AvaException {
 
         Commands command = Parser.Commands.valueOf(chat.toUpperCase().split(" ")[0]);
         if (chat.split(" ").length != 1) {
             switch (command) {
             case TODO:
                 if (chat.split(" ").length == 1) {
-                    throw new NoDescriptionException(command.name());
+                    throw new NoDescriptionException();
                 } else {
                     return new Todo(chat.substring(5), false);
                 }
@@ -84,7 +79,7 @@ public class Parser {
             case DEADLINE:
                 String subStringDeadline = chat.substring(9);
                 if (subStringDeadline.split(" /by ").length == 1) {
-                    throw new NoTimeException(command.name());
+                    throw new NoTimeException();
                 } else {
                     try {
                         return new Deadline(subStringDeadline.split(" /by ")[0], false,
@@ -97,7 +92,7 @@ public class Parser {
             case EVENT:
                 String subStringEvent = chat.substring(6);
                 if (subStringEvent.split(" /at ").length == 1) {
-                    throw new NoTimeException(command.name());
+                    throw new NoTimeException();
                 } else {
                     try {
                         return new Event(subStringEvent.split(" /at ")[0], false,
@@ -108,18 +103,18 @@ public class Parser {
                 }
 
             default:
-                throw new NoCommandException(command.name());
+                throw new NoCommandException();
             }
         } else {
             switch (command) {
             case TODO:
-                throw new NoDescriptionException(command.name());
+                throw new NoDescriptionException();
             case DEADLINE:
-                throw new NoDescriptionException(command.name());
+                throw new NoDescriptionException();
             case EVENT:
-                throw new NoDescriptionException(command.name());
+                throw new NoDescriptionException();
             default:
-                throw new NoCommandException(command.name());
+                throw new NoCommandException();
             }
         }
     }
@@ -130,14 +125,13 @@ public class Parser {
      * @param chat Input from the scanner.
      * @param tasklist ArrayList of tasks.
      * @return Task object
-     * @throws NoDescriptionException If there are no description.
-     * @throws NoCommandException If there are no commands.
+     * @throws AvaException If an exception is found.
      */
-    public static Task delete(String chat, TaskList tasklist) throws NoDescriptionException {
+    public static Task delete(String chat, TaskList tasklist) throws AvaException {
 
         int order = tasklist.size();
         if (chat.split(" ").length == 1) {
-            throw new NoDescriptionException("Delete");
+            throw new NoDescriptionException();
         } else {
             int num = Integer.parseInt(chat.split(" ")[1]) - 1;
             return new Delete(num);
@@ -150,11 +144,11 @@ public class Parser {
      * @param chat Input from the scanner.
      * @param tasklist ArrayList of tasks.
      * @return Find object
-     * @throws NoDescriptionException If there are no description.
+     * @throws AvaException If an exception is found;
      */
-    public static Find find(String chat, TaskList tasklist) throws NoDescriptionException {
+    public static Find find(String chat, TaskList tasklist) throws AvaException {
         if (chat.split(" ").length == 1) {
-            throw new NoDescriptionException("Find");
+            throw new NoDescriptionException();
         } else {
             return new Find(chat.substring(5));
         }
@@ -166,9 +160,9 @@ public class Parser {
      * @param chat Input from the scanner.
      * @param tasklist ArrayList of tasks.
      * @return Task object.
-     * @throws NoCommandException If there are no commands.
+     * @throws AvaException If an exception is found.
      */
-    public static Task parse(String chat, TaskList tasklist) throws NoCommandException {
+    public static Task parse(String chat, TaskList tasklist) throws AvaException {
 
         Commands command;
 
@@ -176,7 +170,11 @@ public class Parser {
             try {
                 command = Parser.Commands.valueOf(chat.toUpperCase().split(" ")[0]);
             } catch (Exception e) {
-                throw new NoCommandException(chat);
+                if (chat.trim().length() < 1) {
+                    throw new NoCommandException();
+                } else {
+                    throw new UnknownCommandException(chat.toUpperCase().split(" ")[0]);
+                }
             }
             switch (command) {
             case BYE:
@@ -210,10 +208,8 @@ public class Parser {
                 throw new UnknownCommandException(chat);
             }
 
-        } catch (NoDescriptionException | NoCommandException | NoTimeException
-                | WrongTimeFormatException | UnknownCommandException e) {
-            e.printStackTrace();
-            return null;
+        } catch (AvaException e) {
+            throw e;
         }
     }
 }

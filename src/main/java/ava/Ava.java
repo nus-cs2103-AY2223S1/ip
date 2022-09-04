@@ -2,7 +2,7 @@ package ava;
 
 import java.io.IOException;
 
-import ava.exception.NoCommandException;
+import ava.exception.AvaException;
 import ava.processor.Parser;
 import ava.processor.Storage;
 import ava.processor.TaskList;
@@ -33,7 +33,6 @@ public class Ava {
      * Runs the main logic of the program.
      *
      * @return The response from executing the command.
-     * @throws NoCommandException If there are no commands.
      */
     public String run(String input) {
         String output = "";
@@ -41,8 +40,8 @@ public class Ava {
             Task t = Parser.parse(input, tasks);
             output = t.execute(tasks, ui, storage);
             isBye = t.isBye();
-        } catch (NoCommandException e) {
-            e.printStackTrace();
+        } catch (AvaException e) {
+            output = e.getMessage();
         }
         assert !output.equals("");
         return output;
