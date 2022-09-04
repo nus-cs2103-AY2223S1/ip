@@ -83,12 +83,15 @@ public class Parser {
     }
 
     private static void checkIntInputError(String[] arr) throws DukeException {
-        if (!isNumber(arr[1]))
+        if (!isNumber(arr[1])) {
             throw new DukeException(Constants.INVALID_INPUT);
+        }
     }
 
     private static boolean isNumber(String str) {
-        if (str == null) return false;
+        if (str == null) {
+            return false;
+        }
         try {
             Integer.parseInt(str);
         } catch (NumberFormatException e) {

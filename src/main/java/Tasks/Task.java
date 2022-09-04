@@ -65,6 +65,6 @@ public class Task {
      * @return String that contains the task name and whether the task is marked or not
      */
     public String toString() {
-        return  String.format("%s %s", getStatusIcon(), this.taskName);
+        return String.format("%s %s", getStatusIcon(), this.taskName);
     }
 }
