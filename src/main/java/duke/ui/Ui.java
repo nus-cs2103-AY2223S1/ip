@@ -22,22 +22,6 @@ public class Ui {
     }
 
     /**
-     * Prints out a line to user.
-     */
-    public void printLine() {
-        System.out.println("\t____________________________________________________________");
-    }
-
-    /**
-     * Prints out a message to user.
-     *
-     * @param s The message to be printed.
-     */
-    private void print(String s) {
-        System.out.println("\t " + s);
-    }
-
-    /**
      * Returns the String introduction message to Duke program.
      */
     public static String printIntro() {
@@ -150,21 +134,5 @@ public class Ui {
             sb.append(task);
         }
         return sb.toString();
-    }
-
-    /**
-     * Returns the next user input.
-     *
-     * @return The next line of Scanner.
-     */
-    public String nextLine() {
-        return this.sc.nextLine();
-    }
-
-    /**
-     * Closes the Scanner.
-     */
-    public void close() {
-        this.sc.close();
     }
 }
