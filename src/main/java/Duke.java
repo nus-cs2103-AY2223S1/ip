@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -7,34 +9,35 @@ public class Duke {
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
-    private static ArrayList<Task> list;
+    private static TaskList list;
+    private static Path filePath;
+    private static Storage storage = new Storage();
 
-    public static void main(String[] args) throws DukeException {
-        list = new ArrayList<>();
-
+    public static void main(String[] args) throws DukeException, IOException {
         System.out.println("Hello from\n" + logo);
-        System.out.println("What can I do for you today, Master?");
+        filePath = storage.createSave();
+        list = storage.loadList(filePath);
+        System.out.println("This is your current list:\n" + list.toString());
+
         Scanner scanner = new Scanner(System.in);
         String text = scanner.nextLine().toLowerCase();
-        boolean open = true;
-        while (open) {
+        boolean isOpen = true;
+        while (isOpen) {
             try {
                 // Bye
                 if (text.equals("bye") || text.equals("exit")) {
                     scanner.close();
-                    open = false;
+                    isOpen = false;
+                    storage.saveList(list, filePath);
                     System.out.println("Goodbye, Master! Thank you for visiting\n" + logo);
                     // List
-                } else if (text.equalsIgnoreCase("list")) {
+                } else if (text.equals("list")) {
                     if (list.isEmpty()) {
                         throw new DukeException("There is nothing in your list yet!");
                     } else {
-                        System.out.println("Here is your to-do list, Master:");
-                        for (int i = 1; i <= list.size(); i++) {
-                            System.out.println(i + ". " + list.get(i - 1).toString());
-                        }
+                        System.out.println("Here is your to-do list, Master:\n" +
+                                           list.toString());
                     }
-                    text = scanner.nextLine().toLowerCase();
 
                     // Mark
                 } else if (text.startsWith("mark")) {
@@ -60,7 +63,6 @@ public class Duke {
                             }
                         }
                     }
-                    text = scanner.nextLine().toLowerCase();
                 } else if (text.startsWith("unmark")) {
                     if (text.length() <= 7) {
                         throw new DukeException("You'll have to provide more information than that, Master.");
@@ -84,7 +86,6 @@ public class Duke {
                             }
                         }
                     }
-                    text = scanner.nextLine().toLowerCase();
                 } else if (text.startsWith("delete")) {
                     if (text.length() <= 7) {
                         throw new DukeException("You'll have to provide more information than that, Master.");
@@ -101,7 +102,6 @@ public class Duke {
                             list.remove(number);
                             System.out.println("Very well. I have deleted " + tmp + " from the list, Master.");
                         }
-                        text = scanner.nextLine().toLowerCase();
                     }
                 } else if (text.startsWith("deadline")) {
                     if (text.length() <= 9) {
@@ -116,7 +116,6 @@ public class Duke {
                     } else {
                         throw new DukeException("I need to know the deadline to add this task to the list, Master.");
                     }
-                    text = scanner.nextLine().toLowerCase();
                 } else if (text.startsWith("event")) {
                     if (text.length() <= 6) {
                         throw new DukeException("You'll have to provide more information than that, Master.");
@@ -130,7 +129,6 @@ public class Duke {
                     } else {
                         throw new DukeException("I need to know the time to add this task to the list, Master.");
                     }
-                    text = scanner.nextLine().toLowerCase();
                 } else if (text.startsWith("todo")) {
                     if (text.length() <= 5) {
                         throw new DukeException("You'll have to provide more information than that, Master.");
@@ -140,13 +138,15 @@ public class Duke {
                         list.add(newTask);
                         System.out.println("I have added " + newTask.toString() + " to the list, Master.");
                     }
-                    text = scanner.nextLine().toLowerCase();
                 } else {
                     throw new DukeException("I beg your pardon?");
                 }
             } catch (DukeException e){
                 System.out.println(e);
-                text = scanner.nextLine().toLowerCase();
+            } finally {
+                if (isOpen) {
+                    text = scanner.nextLine().toLowerCase();
+                }
             }
         }
     }

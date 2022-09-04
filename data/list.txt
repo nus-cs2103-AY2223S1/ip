@@ -1,0 +1,3 @@
+[T][ ] eat
+[E][ ] eat   (on:   7pm)))
+[D][ ] eat  (by:  7pm))
