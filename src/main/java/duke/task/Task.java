@@ -9,7 +9,7 @@ import java.time.format.DateTimeParseException;
  *
  * @author Pontakorn Prasertsuk
  */
-public abstract class Task {
+public abstract class Task implements Comparable<Task> {
     protected final String title;
     protected boolean status;
 
@@ -69,6 +69,15 @@ public abstract class Task {
      * @return the string to be saved into the file
      */
     public abstract String encode();
+
+    @Override
+    public int compareTo(Task rhs) {
+        if (this.status == rhs.status) {
+            return this.title.compareTo(rhs.title);
+        }
+
+        return this.status ? 1 : -1;
+    }
 
     @Override
     public String toString() {
