@@ -32,36 +32,26 @@ public class Parser {
         try {
             String[] parts = fullCommand.split(" ", 0);
             String command = parts[0];
-            String mainCommand = "";
-            if (command.equals("todo") || command.equals("deadline") || command.equals("event")) {
-                mainCommand = "Add";
-            } else if (command.equals("delete")) {
-                mainCommand = "Delete";
-            } else if (command.equals("bye")) {
-                mainCommand = "Exit";
-            } else if (command.equals("mark") || command.equals("unmark")) {
-                mainCommand = "Mark";
-            } else if (command.equals("list")) {
-                mainCommand = "List";
-            } else if (command.equals("find")) {
-                mainCommand = "Find";
-            }
 
-            switch (mainCommand) {
-            case "Delete":
+
+            switch (command) {
+            case "delete":
                 return new DeleteCommand(Integer.parseInt(parts[1]) - 1);
-            case "Exit":
+            case "bye":
                 return new ExitCommand();
-                case "Add":
-                    return new AddCommand(fullCommand);
-                case "Mark":
-                    return new MarkCommand(command, Integer.parseInt(parts[1]) - 1);
-                case "List":
-                    return new ListCommand();
-                case "Find":
-                    return new FindCommand(fullCommand.substring(5));
-                default:
-                    return new EmptyCommand();
+            case "todo":
+            case "deadline":
+            case "event":
+                return new AddCommand(fullCommand);
+            case "mark":
+            case "unmark":
+                return new MarkCommand(command, Integer.parseInt(parts[1]) - 1);
+            case "list":
+                return new ListCommand();
+            case "find":
+                return new FindCommand(fullCommand.substring(5));
+            default:
+                return new EmptyCommand();
             }
         }
         catch (ArrayIndexOutOfBoundsException ex) {

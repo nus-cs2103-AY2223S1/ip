@@ -70,13 +70,17 @@ public class AddCommand extends Command {
                 time = validateTimeString(timeString);
             }
 
-            Task task = new Task("DummyTask", date, time);
-            if (command.equals("todo")) {
+            Task task = null;
+            switch (command) {
+            case "todo":
                 task = new ToDo(taskName, date, time);
-            } else if (command.equals("deadline")) {
+                break;
+            case "deadline":
                 task = new Deadline(taskName, date, time);
-            } else if (command.equals("event")) {
+                break;
+            case "event":
                 task = new Event(taskName, date, time);
+                break;
             }
             taskList.getList().add(task);
 
@@ -86,6 +90,7 @@ public class AddCommand extends Command {
             }
             storage.write(list);
 
+            assert task != null : "Task is null.";
             return "Got it. I've added this task:\n" + ui.beautyWrapTask(task)
                     + "\nNow you have " + taskList.getList().size() + " tasks in the list.\n";
 
