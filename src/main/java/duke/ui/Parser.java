@@ -43,7 +43,8 @@ public class Parser {
      * @throws DateTimeParseException If there is an error in Date and Time input.
      */
     public static Command parse(String command) throws DukeException, DateTimeParseException {
-        switch (getInput(command)) {
+        Inputs input = getInput(command);
+        switch (input) {
         case BYE:
             return new ByeCommand();
             // Fallthrough
@@ -59,16 +60,20 @@ public class Parser {
             return new UnMarkCommand(unMarkNum - 1);
             // Fallthrough
         case TODO:
-            String tDes = command.replace("todo", "");
-            return new AddCommand(new Todo(tDes));
+            String todoInfo = command.replace("todo", "");
+            return new AddCommand(new Todo(todoInfo));
             // Fallthrough
         case EVENT:
-            String[] eDes = command.replace("event", "").split(" /at ");
-            return new AddCommand(new Event(eDes[0], LocalDate.parse(eDes[1])));
+            String[] eventInfo = command.replace("event", "").split(" /at ");
+            String eventDescription = eventInfo[0];
+            LocalDate eventAt = LocalDate.parse(eventInfo[1]);
+            return new AddCommand(new Event(eventDescription, eventAt));
             // Fallthrough
         case DEADLINE:
-            String[] dDes = command.replace("deadline", "").split(" /by ");
-            return new AddCommand(new Deadline(dDes[0], LocalDate.parse(dDes[1])));
+            String[] deadlineInfo = command.replace("deadline", "").split(" /by ");
+            String deadlineDescription = deadlineInfo[0];
+            LocalDate deadlineBy = LocalDate.parse(deadlineInfo[1]);
+            return new AddCommand(new Deadline(deadlineDescription, deadlineBy));
             // Fallthrough
         case DELETE:
             int delNum = Integer.parseInt(command.replace("delete ", ""));

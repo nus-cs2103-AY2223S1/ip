@@ -55,17 +55,22 @@ public class Storage {
         while (sc.hasNext()) {
             String current = sc.nextLine();
             String[] info = current.split("\\|");
-            switch (info[0]) {
+            String taskType = info[0];
+            String description = info[2];
+            boolean isDone = info[1].equals("1");
+            switch (taskType) {
             case "T":
-                Task addTodo = new Todo(info[2], (info[1].equals("1")));
+                Task addTodo = new Todo(description, isDone);
                 tasks.add(addTodo);
                 break;
             case "E":
-                Task addEvent = new Event(info[2], LocalDate.parse(info[3]), info[1].equals("1"));
+                LocalDate atDate = LocalDate.parse(info[3]);
+                Task addEvent = new Event(description, atDate, isDone);
                 tasks.add(addEvent);
                 break;
             case "D":
-                Task addDeadline = new Deadline(info[2], LocalDate.parse(info[3]), info[1].equals("1"));
+                LocalDate byDate = LocalDate.parse(info[3]);
+                Task addDeadline = new Deadline(description, byDate, isDone);
                 tasks.add(addDeadline);
                 break;
             default:
@@ -88,33 +93,45 @@ public class Storage {
         StringBuilder sb = new StringBuilder();
         for (Task t : tasks.getTasks()) {
             if (t instanceof Todo) {
-                sb.append("T")
-                        .append("|")
-                        .append(t.getIsDone() ? "1" : "0")
-                        .append("|")
-                        .append(t.getDescription())
-                        .append(System.lineSeparator());
+                writeTodo(t, sb);
             } else if (t instanceof Deadline) {
-                sb.append("D")
-                        .append("|")
-                        .append(t.getIsDone() ? "1" : "0")
-                        .append("|")
-                        .append(t.getDescription())
-                        .append("|")
-                        .append(((Deadline) t).getBy())
-                        .append(System.lineSeparator());
+                writeDeadline(t, sb);
             } else {
-                sb.append("E")
-                        .append("|")
-                        .append(t.getIsDone() ? "1" : "0")
-                        .append("|")
-                        .append(t.getDescription())
-                        .append("|")
-                        .append(((Event) t).getAt())
-                        .append(System.lineSeparator());
+                writeEvent(t, sb);
             }
         }
         fw.write(sb.toString());
         fw.close();
+    }
+
+    private void writeTodo(Task t, StringBuilder sb) {
+        sb.append("T")
+                .append("|")
+                .append(t.getIsDone() ? "1" : "0")
+                .append("|")
+                .append(t.getDescription())
+                .append(System.lineSeparator());
+    }
+
+    private void writeDeadline(Task t, StringBuilder sb) {
+        sb.append("D")
+                .append("|")
+                .append(t.getIsDone() ? "1" : "0")
+                .append("|")
+                .append(t.getDescription())
+                .append("|")
+                .append(((Deadline) t).getBy())
+                .append(System.lineSeparator());
+    }
+
+    private void writeEvent(Task t, StringBuilder sb) {
+        sb.append("E")
+                .append("|")
+                .append(t.getIsDone() ? "1" : "0")
+                .append("|")
+                .append(t.getDescription())
+                .append("|")
+                .append(((Event) t).getAt())
+                .append(System.lineSeparator());
     }
 }
