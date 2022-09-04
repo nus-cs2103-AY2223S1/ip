@@ -96,11 +96,13 @@ public class Storage {
         try {
             List<String> history = Files.readAllLines(this.path);
             history.add(task.toCommand());
-            StringBuilder sb = new StringBuilder();
-            for (String s : history) {
-                sb.append(s + "\n");
-            }
-            Files.write(this.path, sb.toString().getBytes());
+            String saveResult = history.stream()
+                    .map(s -> s + "\n")
+                    .collect(StringBuilder::new,
+                            StringBuilder::append,
+                            StringBuilder::append)
+                    .toString();
+            Files.write(this.path, saveResult.getBytes());
         } catch (IOException e) {
             throw new DukeException("I/O Error occurred when reading from save file!");
         }
