@@ -39,6 +39,8 @@ public class Storage {
             if (!file.exists()) {
                 file.createNewFile();
             }
+
+            assert file.exists();
         } catch (IOException e) {
             throw new DukeException("Unable to create save file!");
         }
