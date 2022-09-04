@@ -59,7 +59,7 @@ public class TaskList {
         }
     }
 
-    public String addEvent(String item, String at) {
+    private String addEvent(String item, String at) {
         try {
             Event event = new Event(item, at);
             return this.addItem(event);
@@ -70,7 +70,7 @@ public class TaskList {
         }
     }
 
-    public String getList() {
+    private String getList() {
         if (this.storedItems.isEmpty()) {
             return "    The list is currently empty Dattebayo!";
         }
@@ -81,7 +81,7 @@ public class TaskList {
         return list.toString();
     }
 
-    public String markItem(String strIndex) {
+    private String markItem(String strIndex) {
         int index = this.string2Int(strIndex) - 1;
         if (index >= this.storedItems.size() || index < 0) {
             return "Whoops it appears you entered an invalid index, there are " + this.storedItems.size()
@@ -91,7 +91,7 @@ public class TaskList {
         return "    Alright! I've marked this task as done Dattebayo:\n  " + this.storedItems.get(index).toString();
     }
 
-    public String unMarkItem(String strIndex) {
+    private String unMarkItem(String strIndex) {
         int index = this.string2Int(strIndex) - 1;
         if (index >= this.storedItems.size() || index < 0) {
             ui.printErrorMessage("Whoops it appears you entered an invalid index, there are " + this.storedItems.size()
@@ -104,7 +104,7 @@ public class TaskList {
     }
 
 
-    public String deleteItem(String strIndex) {
+    private String deleteItem(String strIndex) {
         int index = this.string2Int(strIndex) - 1;
         if (index >= this.storedItems.size() || index < 0) {
             return "Whoops it appears you entered an invalid index, there are " + this.storedItems.size()

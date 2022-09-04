@@ -13,7 +13,7 @@ public class Parser {
 
         case "todo":
             try {
-                return new Command(CommandsList.TODO, new String[]{input[1]});
+                return new Command(CommandsList.TODO, input[1].trim());
             } catch (ArrayIndexOutOfBoundsException e) {
                 this.ui.printErrorMessage("Whoops! todo needs a description of the task Dattebayo!\n'todo <Task>'");
             }
@@ -21,7 +21,7 @@ public class Parser {
 
         case "deadline":
             try {
-                String[] splitArgs = input[1].split("/by", 2);
+                String[] splitArgs = input[1].split(" /by ", 2);
                 return new Command(CommandsList.DEADLINE, splitArgs);
             } catch (ArrayIndexOutOfBoundsException e) {
                 this.ui.printErrorMessage("Whoops! deadline needs a description of the task and due date Dattebayo!" +
@@ -31,8 +31,8 @@ public class Parser {
 
         case "event":
             try {
-                String[] splitArgs = input[1].split("/at", 2);
-                return new Command(CommandsList.DEADLINE, splitArgs);
+                String[] splitArgs = input[1].split(" /at ", 2);
+                return new Command(CommandsList.EVENT, splitArgs);
             } catch (ArrayIndexOutOfBoundsException e) {
                 this.ui.printErrorMessage("Whoops! event needs a description of the task and time Dattebayo!" +
                         "\n'event <Task> /by <Time>'");
@@ -41,7 +41,7 @@ public class Parser {
 
         case "mark":
             try {
-                return new Command(CommandsList.MARK, new String[]{input[1]});
+                return new Command(CommandsList.MARK, input[1].trim());
             } catch (NumberFormatException e) {
                 this.ui.printErrorMessage("Whoops! it seems you your index is not an integer Dattebayo!" +
                         "\n'mark <Index>'");
@@ -53,7 +53,7 @@ public class Parser {
 
         case "unmark":
             try {
-                return new Command(CommandsList.UNMARK, new String[]{input[1]});
+                return new Command(CommandsList.UNMARK, input[1].trim());
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Whoops! unmark needs the index of the item Dattebayo!" +
                         "\n'unmark <Index>'");
@@ -62,7 +62,7 @@ public class Parser {
 
         case "delete":
             try {
-                return new Command(CommandsList.DELETE, new String[]{input[1]});
+                return new Command(CommandsList.DELETE, input[1].trim());
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Whoops! delete needs the index of the item Dattebayo!" +
                         "\n'delete <Index>'");
