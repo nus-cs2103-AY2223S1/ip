@@ -49,6 +49,20 @@ public class TaskList {
         return taskList.get(taskNumber - 1).markNotDone();
     }
 
+    public String markHighPriority(int taskNumber) {
+        String output = taskList.get(taskNumber - 1).markAsPriority();
+        taskList.sort((t1, t2) -> {
+            if (t1.checkPriority() && t2.checkPriority()) {
+                return 0;
+            } else if (t1.checkPriority() && !t2.checkPriority()) {
+                return -1;
+            } else {
+                return 1;
+            }
+        });
+        return output;
+    }
+
     /**
      * Removes desired task from list.
      * @param taskNumber Task number.
@@ -92,4 +106,5 @@ public class TaskList {
         }
         return matchingList;
     }
+
 }

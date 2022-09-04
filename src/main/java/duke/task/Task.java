@@ -6,6 +6,7 @@ package duke.task;
 public class Task {
     protected String description;
     protected boolean isDone;
+    protected boolean isHighPriority;
 
     /**
      * Constructs an instance of a task.
@@ -14,6 +15,7 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        this.isHighPriority = false;
     }
 
     /**
@@ -28,8 +30,16 @@ public class Task {
         this.isDone = true;
     }
 
+    public void setPriority() {
+        this.isHighPriority = true;
+    }
+
     public boolean checkDone() {
         return isDone;
+    }
+
+    public boolean checkPriority() {
+        return isHighPriority;
     }
 
     public String getDescription() {
@@ -52,6 +62,13 @@ public class Task {
     public String markNotDone() {
         this.isDone = false;
         String output = "OK, I've marked this task as not done yet:\n";
+        output += this.toString();
+        return output;
+    }
+
+    public String markAsPriority() {
+        this.isHighPriority = true;
+        String output = "OK, I've marked this task as high priority:\n";
         output += this.toString();
         return output;
     }

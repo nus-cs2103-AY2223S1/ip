@@ -27,8 +27,13 @@ public class Ui {
         int i = tasks.size();
         StringBuilder output = new StringBuilder("Here are the tasks in your list:\n");
         for (int a = 1; a <= i; a++) {
-            String taskString = tasks.get(a - 1).toString();
-            output.append(a).append(".").append(taskString).append("\n");
+            Task curr = tasks.get(a - 1);
+            String taskString = curr.toString();
+            output.append(a).append(".").append(taskString);
+            if (curr.checkPriority()) {
+                output.append(" (HIGH PRIORITY)");
+            }
+            output.append("\n");
         }
         return output.toString();
     }

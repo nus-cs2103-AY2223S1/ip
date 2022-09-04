@@ -46,14 +46,17 @@ public class Storage {
                 String[] words = data.split("\\s*\\|\\s*");
                 Task newTask;
                 if (words[0].equals("T")) {
-                    newTask = new Todo(words[2]);
+                    newTask = new Todo(words[3]);
                 } else if (words[0].equals("E")) {
-                    newTask = new Event(words[2], words[3]);
+                    newTask = new Event(words[3], words[4]);
                 } else {
-                    newTask = new Deadline(words[2], LocalDate.parse(words[3]));
+                    newTask = new Deadline(words[3], LocalDate.parse(words[4]));
                 }
                 if (words[1].equals("1")) {
                     newTask.setDone();
+                }
+                if (words[2].equals("1")) {
+                    newTask.setPriority();
                 }
                 tasks.add(newTask);
             }
@@ -74,20 +77,24 @@ public class Storage {
             StringBuilder output = new StringBuilder();
             ArrayList<Task> tasks = taskList.getTasks();
             for (Task task:tasks) {
-                int number;
+                int number = 0;
+                int priority = 0;
                 if (task.checkDone()) {
                     number = 1;
-                } else {
-                    number = 0;
+                }
+                if (task.checkPriority()) {
+                    priority = 1;
                 }
                 if (task instanceof Todo) {
-                    output.append("T | ").append(number).append(" | ").append(task.getDescription()).append("\n");
+                    output.append("T | ").append(number).append(" | ").append(priority).
+                            append(" | ").append(task.getDescription()).append("\n");
                 } else if (task instanceof Event) {
                     output.append("E | ").append(number).append(" | ").append(task.getDescription()).append(" | ")
-                            .append(((Event) task).getTiming()).append("\n");
+                            .append(priority).append(" | ").append(((Event) task).getTiming()).append("\n");
                 } else {
-                    output.append("D | ").append(number).append(" | ").append(task.getDescription()).append(" | ")
-                            .append(((Deadline) task).getDeadline()).append("\n");
+                    output.append("D | ").append(number).append(" | ").append(priority).append(" | ")
+                            .append(((Deadline) task).getDeadline()).append(" | ").append(task.getDescription()).
+                            append("\n");
                 }
             }
             myWriter.write(output.toString());

@@ -60,6 +60,11 @@ public class Duke {
                         dukeResponse = tasks.markNotDone(taskNumber);
                         break;
                     }
+                    case "priority": {
+                        int taskNumber = parser.getTaskNumber();
+                        dukeResponse = tasks.markHighPriority(taskNumber);
+                        break;
+                    }
                     case "delete": {
                         int taskNumber = parser.getTaskNumber();
                         assert (taskNumber > 0);
