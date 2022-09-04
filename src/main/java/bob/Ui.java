@@ -20,20 +20,21 @@ public class Ui {
     /**
      * Displays welcome message with list of commands
      */
-    public void displayWelcomeMessage() {
-        System.out.println("hey, i'm bob!👻\ndo you need help?");
-        printLine();
-        System.out.println("    ↓ here's what you can do! ↓\n"
+    public String displayWelcomeMessage() {
+        String response = "hey, i'm bob!👻\ndo you need help?\n"
+                + this.printLine()
+                + "    ↓ here's what you can do! ↓\n"
                 + "    ---------------------------\n"
-                + "❤️    ADD A TODO TASK: todo <task>\n"
-                + "🌸    ADD A DEADLINE: deadline <task> /by <yyyy-mm-dd>\n"
-                + "✨    ADD AN EVENT: event <task /at <yyyy-mm-dd>\n"
-                + "💕    VIEW LIST OF EVENTS: list\n"
-                + "🌼    MARK AS DONE: mark <task number in list>\n"
-                + "❣️    UNMARK TASK: unmark <task number in list>\n"
-                + "🌟    REMOVE TASK: remove <task number in list>\n"
-                + "🍀    FILTER TASKS OF SPECIFIC DATE: filter <yyyy-mm-dd>\n"
-                + "💞    TO END THE PROGRAM: bye\n");
+                + "1.    ADD A TODO TASK: todo <task>\n"
+                + "2.    ADD A DEADLINE: deadline <task> /by <yyyy-mm-dd>\n"
+                + "3.    ADD AN EVENT: event <task /at <yyyy-mm-dd>\n"
+                + "4.    VIEW LIST OF EVENTS: list\n"
+                + "5.    MARK AS DONE: mark <task number in list>\n"
+                + "6.    UNMARK TASK: unmark <task number in list>\n"
+                + "7.    REMOVE TASK: remove <task number in list>\n"
+                + "8.    FILTER TASKS OF SPECIFIC DATE: filter <yyyy-mm-dd>\n"
+                + "9.    TO END THE PROGRAM: bye\n";
+        return response;
     }
 
     /**
@@ -49,15 +50,17 @@ public class Ui {
     /**
      * Displays goodbye message
      */
-    public void sayGoodbye() {
-        System.out.println("bye\nsee you again!");
+    public String sayGoodbye() {
+        String response = this.printLine() + "bye\nsee you again!\n" + this.printLine();
+        return response;
     }
 
     /**
      * Prints dashed line
      */
-    public void printLine() {
-        System.out.println("-------------------------------------");
+    public String printLine() {
+
+        return "-------------------------------------\n";
     }
 
     /**
@@ -66,14 +69,18 @@ public class Ui {
      * @param taskList list of tasks
      * @param outputMessage header to be printed with tasks
      */
-    public void displayTaskList(TaskList taskList, String outputMessage) {
+    public String displayTaskList(TaskList taskList, String outputMessage) {
+        if (taskList.getLength() == 0) {
+            return this.displayError("you have no tasks!");
+        }
         int index = 1;
         String list = "";
         while (index < (taskList.getLength() + 1)) {
             list = list + "\n" + (index) + ". " + taskList.getTask(index).toString();
             index += 1;
         }
-        System.out.println(outputMessage + "\n" + list);
+        String response = this.printLine() + outputMessage + "\n" + list + "\n" + this.printLine();
+        return response;
     }
 
     /**
@@ -82,8 +89,10 @@ public class Ui {
      * @param tasks list of tasks
      * @param index index of marked task
      */
-    public void displayMarked(TaskList tasks, int index) {
-        System.out.println("yay! you've completed a task!\n" + tasks.getTask(index).toString());
+    public String displayMarked(TaskList tasks, int index) {
+        String response = this.printLine() + "yay! you've completed a task!\n"
+                + tasks.getTask(index).toString() + "\n" + this.printLine();
+        return response;
     }
 
     /**
@@ -92,8 +101,10 @@ public class Ui {
      * @param tasks list of tasks
      * @param index index of unmarked task
      */
-    public void displayUnmarked(TaskList tasks, int index) {
-        System.out.println("aw...i guess there's another task.\n" + tasks.getTask(index).toString());
+    public String displayUnmarked(TaskList tasks, int index) {
+        String response = this.printLine() + "aw...i guess there's another task.\n"
+                + tasks.getTask(index).toString() + "\n" + this.printLine();
+        return response;
     }
 
     /**
@@ -102,9 +113,10 @@ public class Ui {
      * @param tasks list of tasks
      * @param task task removed
      */
-    public void displayRemoved(TaskList tasks, Task task) {
-        System.out.println("that's one less task for you! removed:" + "\n  "
-                + task.toString() + "\njust " + (tasks.getLength()) + " tasks left!");
+    public String displayRemoved(TaskList tasks, Task task) {
+        String response = this.printLine() + "that's one less task for you! removed:" + "\n  "
+                + task.toString() + "\njust " + (tasks.getLength()) + " tasks left!\n" + this.printLine();
+        return response;
     }
 
     /**
@@ -113,9 +125,10 @@ public class Ui {
      * @param tasks list of tasks
      * @param task task added
      */
-    public void displayAddedTask(TaskList tasks, Task task) {
-        System.out.println("okay! new task:" + "\n  " + task.toString()
-                + "\njust " + tasks.getLength() + " tasks left!");
+    public String displayAddedTask(TaskList tasks, Task task) {
+        String response = this.printLine() + "okay! new task:" + "\n  " + task.toString()
+                + "\njust " + tasks.getLength() + " tasks left!\n" + this.printLine();
+        return response;
     }
 
     /**
@@ -123,7 +136,8 @@ public class Ui {
      *
      * @param error the error message to be displayed
      */
-    public void displayError(String error) {
-        System.out.println(error);
+    public String displayError(String error) {
+        String response = this.printLine() + error + "\n" + this.printLine();
+        return response;
     }
 }
