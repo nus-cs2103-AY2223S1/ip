@@ -18,7 +18,7 @@ public class UiTest {
     }
 
     @Test
-    public void showLoadingErrorTest() {
+    public void showLoadingError() {
         Ui ui = new Ui();
         ui.showLoadingError();
         assertEquals(

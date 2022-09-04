@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ParserTest {
     @Test
-    public void parseWrongCommandTest() {
+    public void parse_wrongCommand_exceptionThrown() {
         assertThrows(IllegalArgumentException.class,
                 () -> Parser.parse("wrong command", new TaskList()));
         assertThrows(IllegalArgumentException.class,

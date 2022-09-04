@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class TaskListTest {
     private final TaskList taskList = new TaskList();
     @Test
-    public void addTest() {
+    public void add_deadline_successfullyAddedToTaskList() {
         String commandString = "deadline test /by 10/02/22 1800";
         Deadline deadline = new Deadline(false,
                 "test",
