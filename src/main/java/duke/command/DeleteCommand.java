@@ -40,6 +40,8 @@ public class DeleteCommand extends Command {
         if (tasks.getSize() == 0) {
             throw new DukeException("Task list is already empty.");
         }
+        assert this.num >= 0 : "Index of Task to be deleted has to be at least 1.";
+        assert this.num < tasks.getSize() : "Index of Task to be deleted has to be less than size of Task list.";
         Task task = tasks.getTask(this.num);
         tasks.deleteTask(this.num);
         storage.writeFile(tasks);

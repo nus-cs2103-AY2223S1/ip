@@ -1,0 +1,2 @@
+T|1| read book
+D|0| return book|1990-11-12
