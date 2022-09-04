@@ -60,6 +60,7 @@ public abstract class Task {
      */
     public Task setStatus(boolean status) {
         this.status = status;
+
         return this;
     }
 

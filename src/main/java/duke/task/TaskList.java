@@ -48,6 +48,7 @@ public class TaskList {
      */
     public TaskList add(Task task) {
         list.add(task);
+
         return this;
     }
 
@@ -63,6 +64,7 @@ public class TaskList {
             throw new DukeException("Task " + (index + 1) + " does not exist!");
         }
         list.remove(index);
+
         return this;
     }
 
@@ -85,6 +87,7 @@ public class TaskList {
     public TaskList filter(String keyword) {
         List<Task> filtered = list.stream().filter(task -> task.title.contains(keyword))
                 .collect(Collectors.<Task>toList());
+
         return new TaskList(filtered);
     }
 
@@ -94,6 +97,7 @@ public class TaskList {
         for (int i = 0; i < list.size(); i++) {
             ret += (i + 1) + ") " + list.get(i).toString() + "\n";
         }
+
         return ret;
     }
 }
