@@ -33,6 +33,10 @@ public class Duke {
         this.dukeData = dukeData;
         this.tasks = tasks;
         this.userInputOutput = dukeIo;
+
+        dukeIo.printTask(LOGO);
+        dukeIo.printTask(INTRO, 2);
+
     }
 
     /**
@@ -69,13 +73,19 @@ public class Duke {
     /**
      * Creates a Duke cli object with the default save path.
      * 
-     * @return Duke
+     * @return Duke a cli duke object
      */
     public static Duke createApplication() {
         DukeIo userIo = new DukeCliIo();
         return Duke.createApplication(userIo);
     }
 
+    /**
+     * Creates a standard duke application given an io source
+     * 
+     * @param userIo io object to communicate
+     * @return returns an instance of Duke
+     */
     public static Duke createApplication(DukeIo userIo) {
         Storage dukeData;
         TaskList tasks;
@@ -91,6 +101,13 @@ public class Duke {
         return new Duke(tasks, dukeData, userIo);
     }
 
+    /**
+     * Creates a standard duke application given an io source while loading from a save file
+     * 
+     * @param userIo io object to communicate
+     * @param filePath path to the save file
+     * @return
+     */
     public static Duke createApplication(DukeIo userIo, String filePath) {
         Storage dukeData;
         TaskList tasks;
@@ -104,6 +121,13 @@ public class Duke {
         }
 
         return new Duke(tasks, dukeData, userIo);
+    }
+
+    /**
+     * returns a reference to the io method
+     */
+    public DukeIo getIo() {
+        return userInputOutput;
     }
 
     /**

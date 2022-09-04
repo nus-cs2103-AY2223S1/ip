@@ -1,7 +1,7 @@
 package duke.util;
 
 public final class StringParser {
-    private static final String LINE = "   ____________________________________________________________";
+    private static final String LINE = "   ______________________________";
 
     /**
      * Returns txt indented at every linebreak.

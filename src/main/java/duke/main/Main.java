@@ -13,12 +13,9 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Duke duke;
-
     @Override
     public void start(Stage stage) {
-        System.out.println(getParameters().getNamed().toString());
-        duke = Duke.createApplication();
+        // System.out.println(getParameters().getRaw().toString());
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();

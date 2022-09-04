@@ -3,6 +3,8 @@ package duke.gui;
 import duke.inputoutput.DukeGuiIo;
 import duke.inputoutput.DukeIo;
 import duke.main.Duke;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -55,5 +57,25 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage));
         userInput.clear();
+
+        if (!duke.handleInput(input)) {
+            Task<Void> timeout = new Task<Void>() {
+                @Override
+                protected Void call() throws Exception {
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                    }
+                    return null;
+                }
+            };
+            timeout.setOnSucceeded(e -> {
+                Platform.exit();
+                System.exit(0);
+            });
+
+            new Thread(timeout).start();
+
+        }
     }
 }
