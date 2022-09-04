@@ -68,7 +68,7 @@ public class MainWindow extends AnchorPane {
         String response;
         try {
             if (!isExit) {
-                Command c = Parser.parseCommand(input);
+                Command c = Parser.parseCommand(input, false);
                 response = stashy.executeCommandReturnString(c);
                 isExit = c.isExit();
             } else {

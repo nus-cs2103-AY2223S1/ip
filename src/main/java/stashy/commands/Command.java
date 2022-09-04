@@ -13,7 +13,7 @@ public abstract class Command {
     public abstract boolean isExit();
 
     /**
-     * Default execute method. Not applicable here.
+     * Default execute method.
      *
      * @param tasks The list of tasks
      * @param ui The UI of this application
@@ -21,7 +21,7 @@ public abstract class Command {
      * @throws StashyException If any exception is caught
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        throw new StashyException("Note to dev: Implement this method in the child class!");
+        ui.showIndented(executeString(tasks, ui, storage));
     }
 
     /**

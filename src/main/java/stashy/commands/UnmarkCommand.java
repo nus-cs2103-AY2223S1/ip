@@ -11,15 +11,37 @@ import stashy.ui.Ui;
  */
 public class UnmarkCommand extends Command {
     public static final String KEYWORD = "unmark";
+    public static final String HELP_MESSAGE = KEYWORD
+        + "\n\nUnmarks the task referenced by task ID as not done."
+        + "\n\nExample: unmark 4";
     private int taskId;
+    private boolean showHelp;
 
     /**
      * Constructor method.
      *
      * @param taskId Task ID from the task list
+     * @param showHelp Whether to show help or not
+     */
+    private UnmarkCommand(Integer taskId, boolean showHelp) {
+        this.taskId = taskId;
+        this.showHelp = showHelp;
+    }
+
+    /**
+     * Overloaded constructor method to unmark a task as not done.
+     *
+     * @param taskId Task ID from the task list
      */
     public UnmarkCommand(Integer taskId) {
-        this.taskId = taskId;
+        this(taskId, false);
+    }
+
+    /**
+     * Overloaded constructor method to show help.
+     */
+    public UnmarkCommand() {
+        this(Integer.MIN_VALUE, true);
     }
 
     @Override
@@ -33,38 +55,23 @@ public class UnmarkCommand extends Command {
      * @param tasks The list of tasks
      * @param ui The UI of this application
      * @param storage The storage used for this application
-     * @throws StashyException If any exception is caught
-     */
-    @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        if (1 <= this.taskId && this.taskId <= tasks.size()) {
-            ui.showIndented("L + ratio, unmarking this task as not done!");
-            tasks.get(this.taskId - 1).unmarkAsNotDone();
-            ui.showIndented("  " + tasks.get(this.taskId - 1));
-        } else {
-            throw new StashyException("Invalid task ID: " + this.taskId);
-        }
-    }
-
-    /**
-     * Adds a Deadline task class to the task list and outputs the UI string.
-     *
-     * @param tasks The list of tasks
-     * @param ui The UI of this application
-     * @param storage The storage used for this application
      * @return The stringtified UI output
      * @throws StashyException If any exception is caught
      */
     @Override
     public String executeString(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        if (1 <= this.taskId && this.taskId <= tasks.size()) {
-            String returnString = "";
-            returnString += "L + ratio, unmarking this task as not done!";
-            tasks.get(this.taskId - 1).unmarkAsNotDone();
-            returnString += "\n  " + tasks.get(this.taskId - 1);
-            return returnString;
+        if (this.showHelp) {
+            return HELP_MESSAGE;
         } else {
-            throw new StashyException("Invalid task ID: " + this.taskId);
+            if (1 <= this.taskId && this.taskId <= tasks.size()) {
+                String returnString = "";
+                returnString += "L + ratio, unmarking this task as not done!";
+                tasks.get(this.taskId - 1).unmarkAsNotDone();
+                returnString += "\n  " + tasks.get(this.taskId - 1);
+                return returnString;
+            } else {
+                throw new StashyException("Invalid task ID: " + this.taskId);
+            }
         }
     }
 }
