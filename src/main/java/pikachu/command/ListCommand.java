@@ -14,7 +14,6 @@ public class ListCommand extends Command{
             output.append(tasks.taskList.indexOf(task)+1).append('.').append(task).append('\n');
         }
         output.deleteCharAt(output.length() - 1);
-        String.valueOf(output);
         System.out.println(String.valueOf(output));
     }
 

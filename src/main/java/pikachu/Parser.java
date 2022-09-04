@@ -1,12 +1,6 @@
 package pikachu;
 
-import pikachu.command.AddCommand;
-import pikachu.command.Command;
-import pikachu.command.DeleteCommand;
-import pikachu.command.ExitCommand;
-import pikachu.command.ListCommand;
-import pikachu.command.MarkCommand;
-import pikachu.command.UnmarkCommand;
+import pikachu.command.*;
 
 public class Parser {
 
@@ -25,6 +19,8 @@ public class Parser {
             return new AddCommand(fullCommand);
         } else if (fullCommand.startsWith("delete ")) {
             return new DeleteCommand(fullCommand);
+        } else if (fullCommand.startsWith("find ")) {
+            return new FindCommand(fullCommand);
         }
         throw new PikachuException("Pi?");
     }
