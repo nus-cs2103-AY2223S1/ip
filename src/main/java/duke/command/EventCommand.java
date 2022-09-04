@@ -5,7 +5,7 @@ import java.io.IOException;
 import duke.exceptions.DukeException;
 import duke.task.Event;
 import duke.task.Task;
-import duke.util.DukeIo;
+import duke.inputoutput.DukeIo;
 import duke.util.ParsedData;
 import duke.util.Storage;
 import duke.util.TaskList;
@@ -21,6 +21,7 @@ public class EventCommand extends DataCommand {
 
     /**
      * Creates a command that makes an Event when execute is called.
+     * 
      * @param d Parseddata containing parsed user input
      */
     public EventCommand(ParsedData d) {
@@ -29,6 +30,7 @@ public class EventCommand extends DataCommand {
 
     /**
      * Creates a new Event task and prints it to screen.
+     * 
      * @throws DukeException Thrown when input data is invalid
      * @throws IOException Thrown when data failed to be saved
      */

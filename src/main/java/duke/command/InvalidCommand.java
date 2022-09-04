@@ -3,7 +3,7 @@ package duke.command;
 import java.io.IOException;
 
 import duke.exceptions.UnknownCommandException;
-import duke.util.DukeIo;
+import duke.inputoutput.DukeIo;
 import duke.util.Storage;
 import duke.util.TaskList;
 
@@ -22,6 +22,7 @@ public class InvalidCommand implements Command {
 
     /**
      * {@inheritDoc} Throws invalid command exception
+     * 
      * @throws UnknownCommandException Throw invalid command
      */
     @Override

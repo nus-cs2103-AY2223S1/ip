@@ -16,7 +16,6 @@ import duke.task.Task;
  */
 public class Storage {
     private static final String DEFAULT_SAVE_PATH = "data/SavedData.duke";
-    private static final String DEFAULT_SAVE_FOLDER = "data";
     private File file;
 
     private Storage(File file) {
@@ -25,30 +24,34 @@ public class Storage {
 
     /**
      * Factory to create use a path as save file if possible
+     * 
      * @param path Path to save file
      * @return Storage
      * @throws IOException Throws if pathing cannot exist.
      */
     public static Storage createStorage(String path) throws IOException {
         File newFile = new File(path);
+        File parentFolder = newFile.getParentFile();
+        if (parentFolder != null) {
+            parentFolder.mkdir();
+        }
         newFile.createNewFile();
         return new Storage(newFile);
     }
 
     /**
      * Factory to use the default save path.
+     * 
      * @return Storage
      * @throws IOException
      */
     public static Storage createStorage() throws IOException {
-        File newFile = new File(DEFAULT_SAVE_PATH);
-        new File(DEFAULT_SAVE_FOLDER).mkdir();
-        newFile.createNewFile();
-        return new Storage(newFile);
+        return createStorage(DEFAULT_SAVE_PATH);
     }
 
     /**
      * Read the save file and convert it to a list of Task.
+     * 
      * @return List of Tasks
      * @throws FileNotFoundException Throws when save file does not exist
      */
@@ -62,7 +65,7 @@ public class Storage {
             line = sc.nextLine();
             lineNum++;
             try {
-                ret.add(Parser.parseDataFromLine(line));
+                ret.add(DataParser.parseDataFromLine(line));
             } catch (CorruptedLineException e) {
                 corruptedLines.add(lineNum);
             }
@@ -73,6 +76,7 @@ public class Storage {
 
     /**
      * Takes in ParsedData and saves them into the save file.
+     * 
      * @param dataList Data to be saved
      * @throws IOException Throws when save file doesn't exist
      */
@@ -92,6 +96,7 @@ public class Storage {
 
     /**
      * Saves all entries in a {@code TaskList}
+     * 
      * @param tl Task to save
      * @throws IOException Throws when save file is missing
      */
@@ -101,6 +106,7 @@ public class Storage {
 
     /**
      * Saves an individual task by appending to the save file.
+     * 
      * @param task Task to append
      * @throws IOException Throws when save file is missing
      */

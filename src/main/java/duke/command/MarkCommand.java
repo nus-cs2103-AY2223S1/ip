@@ -5,7 +5,7 @@ import java.io.IOException;
 import duke.exceptions.DukeException;
 import duke.exceptions.InvalidValueException;
 import duke.task.Task;
-import duke.util.DukeIo;
+import duke.inputoutput.DukeIo;
 import duke.util.ParsedData;
 import duke.util.Storage;
 import duke.util.TaskList;
@@ -19,6 +19,7 @@ public class MarkCommand extends DataCommand {
 
     /**
      * Passes in the index of which task to mark.
+     * 
      * @param data ParsedData that contains index of the task.
      */
     public MarkCommand(ParsedData data) {
@@ -27,6 +28,7 @@ public class MarkCommand extends DataCommand {
 
     /**
      * {@inheritDoc} Marks the task with the given index as complete.
+     * 
      * @throws DukeException Thrown when invalid index is given or out range
      * @throws IOException Thrown when data failed to save
      */

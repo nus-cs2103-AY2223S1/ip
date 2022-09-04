@@ -6,9 +6,9 @@ import java.util.List;
 
 import duke.exceptions.InvalidTimeFormatException;
 import duke.task.Task;
-import duke.util.DukeIo;
+import duke.inputoutput.DukeIo;
 import duke.util.ParsedData;
-import duke.util.Parser;
+import duke.util.DataParser;
 import duke.util.Storage;
 import duke.util.TaskList;
 
@@ -33,7 +33,7 @@ public class ByCommand extends DataCommand {
      */
     @Override
     public void execute(TaskList tasks, DukeIo io, Storage storage) throws InvalidTimeFormatException {
-        LocalDateTime dt = Parser.strToDateTime(data.description)
+        LocalDateTime dt = DataParser.strToDateTime(data.description)
                 .orElseThrow(() -> new InvalidTimeFormatException(data.description));
 
         List<Task> cpy = new ArrayList<>(tasks.getTasks());

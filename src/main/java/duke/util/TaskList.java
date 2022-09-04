@@ -14,6 +14,7 @@ public class TaskList {
 
     /**
      * Takes in an existing list of task.
+     * 
      * @param tasks
      */
     public TaskList(List<Task> tasks) {
@@ -29,6 +30,7 @@ public class TaskList {
 
     /**
      * Append the task to the bottom of the list.
+     * 
      * @param task
      */
     public void addEntry(Task task) {
@@ -37,6 +39,7 @@ public class TaskList {
 
     /**
      * Delete the index's task and return it.
+     * 
      * @param index Index of task to delete
      * @return Task
      * @throws OutOfBoundException Throws when index is out of bound
@@ -50,6 +53,7 @@ public class TaskList {
 
     /**
      * Returns the task at the given index.
+     * 
      * @param index Index of task to retrieve
      * @return Task
      * @throws OutOfBoundException Throws when index is out of bound
@@ -63,6 +67,7 @@ public class TaskList {
 
     /**
      * Returns the number of tasks currently.
+     * 
      * @return int
      */
     public int getSize() {
@@ -71,6 +76,7 @@ public class TaskList {
 
     /**
      * Returns the current List of Task.
+     * 
      * @return List of Tasks
      */
     public List<Task> getTasks() {
@@ -79,6 +85,7 @@ public class TaskList {
 
     /**
      * Converts current tasks to ParsedData[] to be saved.
+     * 
      * @return ParsedData[]
      */
     public ParsedData[] getParsedData() {

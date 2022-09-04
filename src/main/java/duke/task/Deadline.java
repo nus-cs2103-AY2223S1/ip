@@ -5,7 +5,7 @@ import duke.exceptions.DukeException;
 import duke.exceptions.EmptyDescriptionException;
 import duke.exceptions.EmptyTimeException;
 import duke.util.ParsedData;
-import duke.util.Parser;
+import duke.util.DataParser;
 
 /**
  * Task that potentiall have a time deadline Identified by /by
@@ -16,7 +16,7 @@ public class Deadline extends Task {
     private String deadline;
 
     private Deadline(String description, String deadline) {
-        super(description, Parser.strToDateTime(deadline));
+        super(description, DataParser.strToDateTime(deadline));
         this.deadline = deadline;
     }
 
