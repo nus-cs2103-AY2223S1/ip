@@ -25,7 +25,7 @@ public class Storage {
         File myObj = new File(FILE_PATH);
         try {
             this.myReader = new Scanner(myObj);
-            this.writer = new PrintWriter(new File(FILE_PATH));
+            this.writer = new PrintWriter(FILE_PATH);
         } catch (FileNotFoundException e) {
             System.out.println("Hi, u got error in storage file not exist");
             e.printStackTrace();
@@ -34,21 +34,21 @@ public class Storage {
 
     public TaskList readDuke(List<Task> tasks, int curr) {
         while (myReader.hasNextLine()) {
-            String data = myReader.nextLine();
-            String[] fromText = data.split(" \\| "); //special chara
+            String userInput = myReader.nextLine();
+            String[] userInputArray = userInput.split(" \\| "); //special chara
             Task task;
-            boolean done = fromText[1].equals("1");
-            switch (fromText[0]) {
+            boolean done = userInputArray[1].equals("1");
+            switch (userInputArray[0]) {
                 case "T":
-                    task = new ToDo(fromText[2], done, "");
+                    task = new ToDo(userInputArray[2], done, "");
                     tasks.add(curr++, task);
                     break;
                 case "E":
-                    task = new Event(fromText[2], done, dateReader(fromText[3]));
+                    task = new Event(userInputArray[2], done, dateReader(userInputArray[3]));
                     tasks.add(curr++, task);
                     break;
                 case "D":
-                    task = new Deadline(fromText[2], done, dateReader(fromText[3]));
+                    task = new Deadline(userInputArray[2], done, dateReader(userInputArray[3]));
                     tasks.add(curr++, task);
                     break;
                 case "":

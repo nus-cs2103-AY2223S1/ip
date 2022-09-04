@@ -32,7 +32,7 @@ public class TaskList {
 
     public TaskList listTasks(Ui ui) {
         if(this.curr == 0) {
-            ui. emptyList();
+            ui. emptyListPrint();
         }
         for (int i = 0; i < curr; i++) {
             System.out.println(tasks.get(i));
@@ -43,14 +43,14 @@ public class TaskList {
     public TaskList markTask(String[] atMark, Ui ui) {
         int index = Integer.parseInt(atMark[1]);
         tasks.set(index - 1, tasks.get(index - 1).markDone());
-        ui.markTask(tasks.get(index - 1));
+        ui.markTaskPrint(tasks.get(index - 1));
         return this;
     }
 
     public TaskList unmarkTask(String[] atUnmark, Ui ui) {
         int index = Integer.parseInt(atUnmark[1]);
         tasks.set(index - 1, tasks.get(index - 1).markUndone());
-        ui.unmarkTask(tasks.get(index - 1));
+        ui.unmarkTaskPrint(tasks.get(index - 1));
         return this;
     }
 
@@ -67,9 +67,9 @@ public class TaskList {
 
     public TaskList toDoTask(String command, Ui ui) {
         String todo = command.substring(5);
-        Task task = new ToDo(todo);
-        tasks.add(curr, task);
-        ui.addTaskPrint(task, curr + 1);
+        Task toDoTask = new ToDo(todo);
+        tasks.add(curr, toDoTask);
+        ui.addTaskPrint(toDoTask, curr + 1);
         return(this.addCurr());
     }
 
@@ -80,9 +80,9 @@ public class TaskList {
         timeDead[0] = String.format("%02d", Integer.parseInt(timeDead[0]));
         timeDead[1] = String.format("%02d", Integer.parseInt(timeDead[1]));
         String dateDead = String.join("/", timeDead);
-        Task task = new Deadline(atDead[0], dateDead);
-        tasks.add(curr, task);
-        ui.addTaskPrint(task, curr + 1);
+        Task deadlineTask = new Deadline(atDead[0], dateDead);
+        tasks.add(curr, deadlineTask);
+        ui.addTaskPrint(deadlineTask, curr + 1);
         return(this.addCurr());
     }
 
@@ -93,9 +93,9 @@ public class TaskList {
         timeEvent[0] = String.format("%02d", Integer.parseInt(timeEvent[0]));
         timeEvent[1] = String.format("%02d", Integer.parseInt(timeEvent[1]));
         String dateEvent = String.join("/", timeEvent);
-        Task task = new Event(atEvent[0], dateEvent);
-        tasks.add(curr, task);
-        ui.addTaskPrint(task, curr + 1);
+        Task eventTask = new Event(atEvent[0], dateEvent);
+        tasks.add(curr, eventTask);
+        ui.addTaskPrint(eventTask, curr + 1);
         return(this.addCurr());
     }
 

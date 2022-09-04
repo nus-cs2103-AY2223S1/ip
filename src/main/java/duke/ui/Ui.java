@@ -79,11 +79,11 @@ public class Ui {
         System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
     }
 
-    public void emptyList() {
+    public void emptyListPrint() {
         System.out.println("☹ OOPS!!! I'm sorry, but cannot print empty list");
     }
 
-    public void byePrint() {
+    public void byePrintPrint() {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
@@ -91,12 +91,12 @@ public class Ui {
         System.out.println("hi, made new directory");
     }
 
-    public void markTask(Task task) {
+    public void markTaskPrint(Task task) {
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(task);
     }
 
-    public void unmarkTask(Task task) {
+    public void unmarkTaskPrint(Task task) {
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println(task);
     }

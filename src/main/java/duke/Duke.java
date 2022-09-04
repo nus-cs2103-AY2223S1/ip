@@ -16,12 +16,11 @@ public class Duke {
 
         //file creation
         try {
-            storage.createFiles();
+            Storage.createFiles();
         } catch (Exception e) {
             ui.fileErrorPrint();
         }
 
-        Task task = new Task("", "");
         //file reading
         taskList = storage.readDuke(taskList.getTasks(), taskList.getCurr());
 
@@ -34,7 +33,7 @@ public class Duke {
 
         //bye block
         storage.writerToDuke(taskList.getTasks(), taskList.getCurr());
-        ui.byePrint();
+        ui.byePrintPrint();
 
     }
 }

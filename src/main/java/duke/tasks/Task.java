@@ -47,5 +47,7 @@ public class Task {
         return "";
     }
 
-    public String toText() {return "";}
+    public String toText() {
+        return "";
+    }
 }
