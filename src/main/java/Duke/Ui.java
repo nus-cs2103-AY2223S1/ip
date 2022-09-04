@@ -40,8 +40,8 @@ public class Ui {
      * @return string that shows the welcome message
      */
     public String showWelcome() {
-        return (Constants.LINE + "\nHello! I'm " + Constants.NAME +
-                "\nWhat can I do for you?\n" + Constants.LINE);
+        return (Constants.LINE + "\nHello! I'm " + Constants.NAME
+                + "\nWhat can I do for you?\n" + Constants.LINE);
     }
 
     /**
@@ -103,8 +103,8 @@ public class Ui {
      * @return string that returns the final output to be printed for a deleted task
      */
     public String printDeleteTask(Task t, int size) {
-        return  String.format("Noted. I've removed this task: \n%s " +
-                "\nNow you have %d tasks in the list.\n", t.toString(), size);
+        return  String.format("Noted. I've removed this task: \n%s "
+                + "\nNow you have %d tasks in the list.\n", t.toString(), size);
     }
 
     /**
