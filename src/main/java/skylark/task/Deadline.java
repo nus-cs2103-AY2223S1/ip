@@ -42,6 +42,25 @@ public class Deadline extends Task {
     }
 
     /**
+     * Returns a Deadline object.
+     * Throws a SkylarkException if the endDate is not parsable.
+     *
+     * @param description Description of the Task
+     * @param endDate     Date in yyyy-MM-dd HHmm format
+     * @param tag         Tag of the Task
+     * @throws SkylarkException If date is not parsable
+     */
+    public Deadline(String description, String endDate, String tag) throws SkylarkException {
+        super(description, tag);
+        assert endDate.length() > 0 : "End Date should not be empty!";
+        try {
+            this.endDate = LocalDateTime.parse(endDate, DateTimeFormatter.ofPattern(inputFormat));
+        } catch (DateTimeParseException dateTimeParseException) {
+            throw new SkylarkException("Cannot parse date");
+        }
+    }
+
+    /**
      * {@inheritDoc}
      * <br><br>
      *
