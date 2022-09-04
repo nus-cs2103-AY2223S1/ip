@@ -28,7 +28,7 @@ public class Ui {
     }
 
     /**
-     * A method that returns the farewell message.
+     * Returns the farewell message.
      *
      * @return The farewell message.
      */
