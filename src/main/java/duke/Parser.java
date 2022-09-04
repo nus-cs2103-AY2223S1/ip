@@ -55,15 +55,15 @@ public class Parser {
                 break;
 
             case "deadline":
-                s = TaskList.addTaskToArray(str2, Task.TYPE.DEADLINE);
+                s = TaskList.addTaskToArray(str2, Task.Type.DEADLINE);
                 break;
 
             case "todo":
-                s = TaskList.addTaskToArray(str2, Task.TYPE.TODO);
+                s = TaskList.addTaskToArray(str2, Task.Type.TODO);
                 break;
 
             case "event":
-                s = TaskList.addTaskToArray(str2, Task.TYPE.EVENT);
+                s = TaskList.addTaskToArray(str2, Task.Type.EVENT);
                 break;
 
             case "find":
@@ -71,7 +71,7 @@ public class Parser {
                 break;
 
             default:
-                throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
 
             }
             Storage.save(TaskList.getTaskList());

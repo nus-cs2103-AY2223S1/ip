@@ -18,7 +18,7 @@ public class UI {
 
     private static final String GOODBYE_MESSAGE = "Bye, Hope to see you again soon!";
 
-    private static String getLOGO() {
+    private static String getLogo() {
         return (LOGO);
     }
 
@@ -29,13 +29,12 @@ public class UI {
     private static String getGoodbyeMessage() {
         return (GOODBYE_MESSAGE);
     }
-    public static String getGREETING() {
+    public static String getGreeting() {
         return GREETING;
     }
 
     public static String start() {
-        return getGREETING();
-        //getLine();
+        return getGreeting();
     }
 
     public static String end() {
@@ -52,7 +51,6 @@ public class UI {
         ArrayList<Task> taskArrayList = TaskList.getTaskList();
         int counter = 0;
         int numbering = 1;
-        //getLine();
         String printListString = "";
 
         while (counter < len) {
@@ -62,36 +60,25 @@ public class UI {
             numbering++;
         }
         return printListString;
-        //getLine();
     }
 
     public static String printAddition(Task task) {
         int tasksLeft = TaskList.taskListLength();
-        //getLine();
-        return "Got it. I've added this task:\n " + " " + task.toString() +
-                "\nNow you have " + tasksLeft + " tasks in the list.";
-        //getLine();
+        return "Got it. I've added this task:\n " + " " + task.toString()
+                + "\nNow you have " + tasksLeft + " tasks in the list.";
     }
 
     public static String markAsDoneUI(Task tsk) {
-        //getLine();
-        return ("Nice! I've marked this task as done:\n" +
-                "  " + tsk);
-        //getLine();
+        return ("Nice! I've marked this task as done:\n" + "  " + tsk);
     }
 
     public static String markAsUndoneUI(Task tsk) {
-        //getLine();
-        return "OK, I've marked this task as not done yet:\n" +
-                "  " + tsk;
-        //getLine();
+        return "OK, I've marked this task as not done yet:\n" + "  " + tsk;
     }
 
     public static String deleteTaskUI(ArrayList<Task> arrayList, Task t) {
-        //getLine();
-        return "Noted. I've removed this task:\n " + " " + t.toString() +
-                "\nNow you have " + arrayList.size() + " tasks in the list.";
-        //getLine();
+        return "Noted. I've removed this task:\n " + " " + t.toString()
+                + "\nNow you have " + arrayList.size() + " tasks in the list.";
     }
 
     public static String findTasksUI(ArrayList<Task> arrayList) {
@@ -101,7 +88,6 @@ public class UI {
         }
         int counter = 0;
         int numbering = 1;
-        //getLine();
         String tasksFound = "";
 
         while (counter < len) {
@@ -110,7 +96,6 @@ public class UI {
             counter++;
             numbering++;
         }
-        //getLine();
         return String.format("Here are the matching tasks in your list:\n" + tasksFound);
     }
 

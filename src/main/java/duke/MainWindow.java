@@ -8,10 +8,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-
 import java.util.Objects;
 
 public class MainWindow extends AnchorPane {
+    /**
+     * MainWindow fields.
+     */
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -20,11 +22,11 @@ public class MainWindow extends AnchorPane {
     private TextField userInput;
     @FXML
     private Button sendButton;
-
     private Duke duke;
-
-    private Image userImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/DaUser.png")));
-    private Image dukeImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/DaDuke.png")));
+    private Image userImage = new Image(Objects.requireNonNull(this.getClass()
+                        .getResourceAsStream("/images/DaUser.png")));
+    private Image dukeImage = new Image(Objects.requireNonNull(this.getClass()
+                        .getResourceAsStream("/images/DaDuke.png")));
 
     @FXML
     public void initialize() {
@@ -36,7 +38,7 @@ public class MainWindow extends AnchorPane {
     }
 
     public void getGreeting() {
-        dialogContainer.getChildren().add(DialogBox.getDukeDialog(UI.getGREETING(), dukeImage));
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(UI.getGreeting(), dukeImage));
     }
 
     /**

@@ -1,7 +1,7 @@
 package duke;
 
 
-class DukeException extends RuntimeException{
+class DukeException extends RuntimeException {
     private final String exception;
 
     public DukeException(String exception) {

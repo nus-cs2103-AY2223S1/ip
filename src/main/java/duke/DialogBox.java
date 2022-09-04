@@ -10,11 +10,14 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-
 import java.io.IOException;
 import java.util.Collections;
 
 public class DialogBox extends HBox {
+
+    /**
+     * For FXML file.
+     */
     @FXML
     private Label dialog;
     @FXML

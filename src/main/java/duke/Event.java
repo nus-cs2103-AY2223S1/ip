@@ -3,8 +3,13 @@ package duke;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Event class for handling event tasks.
+ */
 public class Event extends Task {
-
+    /**
+     * Time of event.
+     */
     private LocalDateTime at;
 
     public Event(String description, LocalDateTime at) {

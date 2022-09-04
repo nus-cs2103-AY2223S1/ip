@@ -30,7 +30,7 @@ public class TaskList {
      * @param s string description of task.
      * @param type type of task.
      */
-    public static String addTaskToArray(String s, Task.TYPE type) {
+    public static String addTaskToArray(String s, Task.Type type) {
         Task t;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         try {
