@@ -15,4 +15,8 @@ public class TaskList {
     TaskList(List<Task> existTasks) {
             taskList = existTasks;
     }
+
+    public List<Task> getTaskList() {
+        return taskList;
+    }
 }

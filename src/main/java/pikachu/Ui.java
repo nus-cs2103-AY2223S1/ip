@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Ui {
 
-    final static String HORIZON = "____________________________________________________________\n";
+    static final String HORIZON = "____________________________________________________________\n";
     Scanner sc = new Scanner(System.in);
     
     static String withFormat(String str) {
@@ -20,11 +20,11 @@ public class Ui {
         System.out.println(HORIZON);
     }
 
-    public void bye() {
+    public void sayBye() {
         System.out.println("Pi-ka...");
     }
 
-    public void intro() {
+    public void sayHi() {
         System.out.println(withFormat("Pika Pikachu! (I am Pikachu!)\nPi-ka-chu?(Do you need any help?)"));
     }
 

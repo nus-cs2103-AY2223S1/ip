@@ -1,7 +1,7 @@
 package pikachu.task;
 abstract public class Task {
-    public String description;
-    public boolean isDone;
+    protected String description;
+    protected boolean isDone;
 
     public Task(String description) {
         this.description = description;
@@ -11,6 +11,14 @@ abstract public class Task {
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
+    }
+
+    public boolean getDone() {
+        return isDone;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public String getStatusIcon() {
@@ -26,6 +34,6 @@ abstract public class Task {
 
     @Override
     public String toString() {
-        return '[' + getStatusIcon() + "] " + description;
+        return '[' + getStatusIcon() + "] " + getDescription();
     }
 }
