@@ -7,7 +7,12 @@ import duke.models.TaskList;
 import static duke.services.Ui.dukePrint;
 
 public class DeadlineHandler {
-
+    /**
+     * Handles the DEADLINE command.
+     * Adds Deadline task to TaskList.
+     * @param taskList TaskList for the deadline task to be added to.
+     * @param input Deadline to be added to TaskList.
+     */
     public static void handle(TaskList taskList, String input) throws DukeException {
         String[] deadline = input.split("/", 2);
         if (deadline.length < 2 || deadline[1].trim().equals("")) {

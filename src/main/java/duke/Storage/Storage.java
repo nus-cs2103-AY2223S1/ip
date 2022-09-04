@@ -15,6 +15,10 @@ public class Storage {
     File f;
     String filePath;
 
+    /**
+     * Saves the list of task in a tasklist into a .txt file as specified by the FILE_PATH.
+     * @param taskList: ArrayList of tasks to save to the file.
+     **/
     public void save(ArrayList<Task> taskList) {
         try {
             FileWriter fw = new FileWriter(FILE_PATH);
@@ -26,6 +30,11 @@ public class Storage {
             dukePrint(String.format("Unable to write to file at (%s)", FILE_PATH));
         }
     }
+
+    /**
+     * Loads tasks from a .txt file as specified by FILE_PATH.
+     * @return TaskList of tasks saved in the .txt file.
+     **/
     public TaskList load() {
         try {
             TaskList taskList = new TaskList();
