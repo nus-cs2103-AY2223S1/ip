@@ -4,7 +4,7 @@ import duke.storage.Storage;
 import duke.tasks.TaskList;
 import duke.ui.Ui;
 
-public class ByeCommand extends Command{
+public class ByeCommand extends Command {
 
     /**
      * Sends a message to the `ui` to say bye to the user.

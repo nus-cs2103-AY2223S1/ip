@@ -1,13 +1,14 @@
 package duke.tasks;
 
-import duke.exceptions.DukeException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import duke.exceptions.DukeException;
 
 public class TodoTest {
     @Test
-    public void encodeTest(){
+    public void encodeTest() {
         Task todo = null;
         try {
             todo = new Todo("Description");
@@ -18,7 +19,7 @@ public class TodoTest {
     }
 
     @Test
-    public void toStringTest(){
+    public void toStringTest() {
         Task todo = null;
         try {
             todo = new Todo("Description");

@@ -1,15 +1,16 @@
 package duke.tasks;
 
-import duke.exceptions.DukeException;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import duke.exceptions.DukeException;
 
 public class DeadlineTest {
     @Test
-    public void encodeTest(){
+    public void encodeTest() {
         Task task = null;
         try {
             task = new Deadline("Description", LocalDate.parse("2022-08-28"));
@@ -20,7 +21,7 @@ public class DeadlineTest {
     }
 
     @Test
-    public void toStringTest(){
+    public void toStringTest() {
         Task task = null;
         try {
             task = new Deadline("Description", LocalDate.parse("2022-08-28"));
