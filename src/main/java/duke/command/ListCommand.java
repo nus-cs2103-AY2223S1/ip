@@ -1,11 +1,11 @@
 package duke.command;
 
-import duke.storage.TaskRecords;
+import duke.storage.TaskList;
 import duke.ui.BotUI;
 
 /**
  * Represents a list command of task. A <code>ListCommand</code> object
- * will show users the detail of tasks recorded in the TaskRecords.
+ * will show users the detail of tasks recorded in the TaskList.
  */
 
 public class ListCommand extends Command {
@@ -19,14 +19,14 @@ public class ListCommand extends Command {
         super(command);
     }
     /**
-     * Returns Tasks in the task list.
+     * Returns list of Tasks in the TaskList.
      * @param taskList stores the list of tasks
      * @param ui Object that responsible in returning necessary formatted String
      *           to print on the user interface
      * @return String of number-formatted tasks through BotUI object.
      */
     @Override
-    public String execute(TaskRecords taskList, BotUI ui) {
+    public String execute(TaskList taskList, BotUI ui) {
         return ui.showList(taskList);
     }
 

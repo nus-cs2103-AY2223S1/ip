@@ -1,7 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
-import duke.storage.TaskRecords;
+import duke.storage.TaskList;
 import duke.ui.BotUI;
 
 /**
@@ -23,7 +23,7 @@ public abstract class Command {
         return this.command;
     }
 
-    public abstract String execute(TaskRecords taskList, BotUI ui) throws DukeException;
+    public abstract String execute(TaskList taskList, BotUI ui) throws DukeException;
 
     public abstract boolean isExit();
 }

@@ -4,11 +4,11 @@ import java.time.LocalDateTime;
 
 import duke.DukeException;
 import duke.parser.Parser;
-import duke.storage.TaskRecords;
-import duke.task.Deadlines;
-import duke.task.Events;
+import duke.storage.TaskList;
+import duke.task.Deadline;
+import duke.task.Event;
 import duke.task.Task;
-import duke.task.ToDos;
+import duke.task.ToDo;
 import duke.ui.BotUI;
 
 /**
@@ -18,49 +18,49 @@ import duke.ui.BotUI;
 
 public class AddCommand extends Command {
 
-    private final String details;
+    private final String detail;
 
     /**
      * Constructs AddCommand object
      *
      * @param command command of the user input
-     * @param details details of the user input AFTER command is filtered
+     * @param detail detail of the user input AFTER command is filtered
      */
-    public AddCommand(String command, String details) {
+    public AddCommand(String command, String detail) {
         super(command);
-        this.details = details;
+        this.detail = detail;
     }
 
     /**
-     * Adds Tasks into the TaskRecords
+     * Adds Tasks into the TaskList
      *
      * @param taskList stores the list of tasks
      * @param ui       Object that responsible in returning necessary formatted String
      *                 to print on the user interface
      * @return String of suitable response according to the user input through BotUI object.
      * @throws DukeException - thrown from Parser.extractDateTime methods.
-     * @see Parser - the details of the extratDateTime method throw DukeException
+     * @see Parser - the details of the extractDateTime method throw DukeException
      */
     @Override
-    public String execute(TaskRecords taskList, BotUI ui) throws DukeException {
+    public String execute(TaskList taskList, BotUI ui) throws DukeException {
         try {
             String taskCommand = super.getCommand();
             switch (taskCommand) {
             case "todo":
-                Task taskToDo = new ToDos(details);
-                taskList.addProcess(taskToDo);
+                Task taskToDo = new ToDo(detail);
+                taskList.addTask(taskToDo);
                 return ui.addStatus(taskList, taskToDo);
             case "deadline":
-                String deadlineDetail = Parser.extractDetail(details, " /by ");
-                LocalDateTime deadlineDateTime = Parser.extractDateTime(details, " /by ");
-                Task taskDeadline = new Deadlines(deadlineDetail, deadlineDateTime);
-                taskList.addProcess(taskDeadline);
+                String deadlineDetail = Parser.extractDetail(detail, " /by ");
+                LocalDateTime deadlineDateTime = Parser.extractDateTime(detail, " /by ");
+                Task taskDeadline = new Deadline(deadlineDetail, deadlineDateTime);
+                taskList.addTask(taskDeadline);
                 return ui.addStatus(taskList, taskDeadline);
             case "event":
-                String eventDetail = Parser.extractDetail(details, " /at ");
-                LocalDateTime eventDateTime = Parser.extractDateTime(details, " /at ");
-                Task taskEvent = new Events(eventDetail, eventDateTime);
-                taskList.addProcess(taskEvent);
+                String eventDetail = Parser.extractDetail(detail, " /at ");
+                LocalDateTime eventDateTime = Parser.extractDateTime(detail, " /at ");
+                Task taskEvent = new Event(eventDetail, eventDateTime);
+                taskList.addTask(taskEvent);
                 return ui.addStatus(taskList, taskEvent);
             default:
                 return "Adding process fail!";

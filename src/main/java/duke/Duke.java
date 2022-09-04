@@ -6,30 +6,30 @@ import java.io.IOException;
 import duke.command.Command;
 import duke.parser.Parser;
 import duke.storage.FileManager;
-import duke.storage.TaskRecords;
+import duke.storage.TaskList;
 import duke.ui.BotUI;
 
 /**
  * Represents the class of the duke bot program.
- * A <code>Duke</code> object consists of BotUI and TaskRecords.
+ * A <code>Duke</code> object consists of BotUI and TaskList.
  */
 public class Duke {
 
     private final BotUI ui;
-    private final TaskRecords taskList;
+    private final TaskList taskList;
 
     /**
      * Constructs Duke object.
      * The taskList is assigned to the previous duke chatBot data if the file is found.
-     * TaskRecords will be initialised to an empty taskList if file is not found.
+     * TaskList will be initialised to an empty taskList if file is not found.
      */
     public Duke() {
         this.ui = new BotUI();
-        TaskRecords temp;
+        TaskList temp;
         try {
             temp = FileManager.read();
         } catch (FileNotFoundException ex) {
-            temp = new TaskRecords();
+            temp = new TaskList();
         }
         this.taskList = temp;
     }
