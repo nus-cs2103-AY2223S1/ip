@@ -24,6 +24,6 @@ public class UnknownCommand extends Command {
      */
     @Override
     public String execute() {
-        return Ui.displayUnknownCommandMessage(this.command);
+        return Ui.getUnknownCommandMessage(this.command);
     }
 }

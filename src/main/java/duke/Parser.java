@@ -18,6 +18,7 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnknownCommand;
 import duke.command.UnmarkCommand;
+import duke.command.UpdateCommand;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -36,6 +37,7 @@ public abstract class Parser {
     private static final String UNMARK = "unmark";
     private static final String DELETE = "delete";
     private static final String FIND = "find";
+    private static final String UPDATE = "update";
     private static final String DEADLINE_INDICATOR_PATTERN = "\\s*/by\\s*";
     private static final String EVENT_INDICATOR_PATTERN = "\\s*/at\\s*";
 
@@ -118,6 +120,9 @@ public abstract class Parser {
             break;
         case FIND:
             command = parseFind(getCommandArgument(commandArguments));
+            break;
+        case UPDATE:
+            command = parseUpdate(getCommandArgument(commandArguments));
             break;
         default:
             command = parseUnknown(commandIndicator);
@@ -237,6 +242,23 @@ public abstract class Parser {
      */
     static Command parseFind(String input) {
         return new FindCommand(input);
+    }
+
+    /**
+     * Returns an UpdateCommand
+     *
+     * @param input command arguments.
+     * @return UpdateCommand.
+     * @throws DukeException when error parsing index or index out of range.
+     */
+    static Command parseUpdate(String input) throws DukeException {
+        try (Scanner lineScanner = new Scanner(input)) {
+            int index = parseIndex(lineScanner.next());
+            String description = lineScanner.next();
+            return new UpdateCommand(index, description);
+        } catch (NoSuchElementException e) {
+            throw new DukeException("Invalid format for updating task!", e);
+        }
     }
 
     /**
