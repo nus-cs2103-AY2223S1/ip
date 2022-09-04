@@ -1,7 +1,7 @@
 package duke.task;
 
 /**
- * A task stores the state and description of a task.
+ * A task stores its state and description.
  */
 public class Task {
     private static final char MARKER_DONE = 'X';

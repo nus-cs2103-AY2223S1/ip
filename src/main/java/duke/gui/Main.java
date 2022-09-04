@@ -29,7 +29,6 @@ public class Main extends Application {
             Thread appLogic = new Thread("appLogic") {
                 @Override
                 public void run() {
-                    System.out.println("Starting app logic");
                     Duke.setUi(new GraphicUi());
                     Duke.main(new String[]{});
                 }

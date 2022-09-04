@@ -57,11 +57,9 @@ public class Duke {
         while (isStillRunning) {
             String command;
             try {
-                //System.out.println("Ready to read input");
                 command = input.readLine();
-                //System.out.printf("Read %s\n", command);
             } catch (IOException ex) {
-                System.out.println("IOException in application logic.");
+                System.out.println("IOException in application logic - terminating");
                 throw new RuntimeException(ex);
             }
             if (command.equals("bye")) {

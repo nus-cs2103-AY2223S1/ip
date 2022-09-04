@@ -59,7 +59,7 @@ public class MainWindow extends AnchorPane {
         try {
             reader = new BufferedReader(new PipedReader(GraphicUi.getWriter()));
         } catch (IOException e) {
-            System.out.println("Cannot initialize GUI output reader.");
+            System.out.println("Cannot initialize GUI output reader - terminating");
             throw new RuntimeException(e);
         }
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -76,8 +76,6 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage)
         );
         userInput.clear();
-        System.out.println("User input detected");
-        System.out.println(input);
         try {
             bufferedWriter.write(input);
             bufferedWriter.newLine();

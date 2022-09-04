@@ -32,7 +32,7 @@ public class GraphicUi implements UiInterface {
         try {
             return new PipedReader(MainWindow.getWriter());
         } catch (IOException e) {
-            System.out.println("Error: Did not obtain GUI reader.");
+            System.out.println("Did not obtain GUI reader - terminating");
             throw new RuntimeException(e);
         }
     }
@@ -51,12 +51,10 @@ public class GraphicUi implements UiInterface {
         }
         result.append('\n');
         try {
-            System.out.printf("Tried to write:\n%s\n", result);
             bufferedWriter.write(result.toString(), 0, result.length());
             bufferedWriter.flush();
-            System.out.println("Written.");
         } catch (IOException e) {
-            System.out.println("Error: Cannot write output.");
+            System.out.println("Cannot write output - terminating");
             throw new RuntimeException(e);
         }
     }
