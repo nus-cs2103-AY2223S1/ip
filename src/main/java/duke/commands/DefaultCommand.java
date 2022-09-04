@@ -16,12 +16,11 @@ public class DefaultCommand extends Command {
      * or if the message was empty.
      *
      * @param tasks Contains the task list.
-     * @param ui Ui to interact with the user.
      * @param storage Storage to save and load tasks from a local file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.invalidInput();
+    public String execute(TaskList tasks, Storage storage) {
+        return Ui.invalidInput();
     }
 
 }

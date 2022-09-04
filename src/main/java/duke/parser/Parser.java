@@ -18,6 +18,7 @@ import duke.commands.MarkCommand;
 import duke.commands.SearchCommand;
 import duke.commands.TodoCommand;
 import duke.commands.UnmarkCommand;
+import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -37,10 +38,9 @@ public class Parser {
      * corresponding command to be executed.
      *
      * @param input Input from the user.
-     * @param ui Ui to interact with the user.
      * @return Command to be executed.
      */
-    public static Command parse(String input, Ui ui) {
+    public static Command parse(String input) throws DukeException {
         String[] arr = input.split(" ", 2);
         String command = arr[0];
 
@@ -53,23 +53,20 @@ public class Parser {
             try {
                 return new MarkCommand(Integer.parseInt(arr[1]) - 1);
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                ui.invalidMarkInput();
+                throw new DukeException(Ui.invalidMarkInput());
             }
-            return null;
         case UnmarkCommand.COMMAND_WORD:
             try {
                 return new UnmarkCommand(Integer.parseInt(arr[1]) - 1);
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                ui.invalidUnmarkInput();
+                throw new DukeException(Ui.invalidUnmarkInput());
             }
-            return null;
         case TodoCommand.COMMAND_WORD:
             try {
                 return new TodoCommand(new ToDo(arr[1]));
             } catch (IndexOutOfBoundsException e) {
-                ui.invalidTaskInput(Task.TaskType.ToDo);
+                throw new DukeException(Ui.invalidTaskInput(Task.TaskType.ToDo));
             }
-            return null;
         case DeadlineCommand.COMMAND_WORD:
             try {
                 String[] dl = arr[1].split(" /by ", 2);
@@ -82,11 +79,10 @@ public class Parser {
                             dl[0], day, LocalTime.parse(datetime[1], timeFormatter)));
                 }
             } catch (IndexOutOfBoundsException e) {
-                ui.invalidTaskInput(Task.TaskType.Deadline);
+                throw new DukeException(Ui.invalidTaskInput(Task.TaskType.Deadline));
             } catch (DateTimeParseException e) {
-                ui.invalidDateTimeInput();
+                throw new DukeException(Ui.invalidDateTimeInput());
             }
-            return null;
         case EventCommand.COMMAND_WORD:
             try {
                 String[] info = arr[1].split(" /", 2);
@@ -101,34 +97,30 @@ public class Parser {
                             info[0], timings[0], startDateTime, LocalTime.parse(dateTimeInfo[1], timeFormatter)));
                 }
             } catch (IndexOutOfBoundsException e) {
-                ui.invalidTaskInput(Task.TaskType.Event);
+                throw new DukeException(Ui.invalidTaskInput(Task.TaskType.Event));
             } catch (DateTimeParseException e) {
-                ui.invalidStartEndDateInput();
+                throw new DukeException(Ui.invalidStartEndDateInput());
             }
-            return null;
         case DeleteCommand.COMMAND_WORD:
             try {
                 return new DeleteCommand(Integer.parseInt(arr[1]) - 1);
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                ui.invalidDeleteInput();
+                throw new DukeException(Ui.invalidDeleteInput());
             }
-            return null;
         case SearchCommand.COMMAND_WORD:
             try {
                 return new SearchCommand(LocalDate.parse(arr[1], dateFormatter));
             } catch (IndexOutOfBoundsException e) {
-                ui.emptyDateInput();
+                throw new DukeException(Ui.emptyDateInput());
             } catch (DateTimeParseException e) {
-                ui.invalidDateInput();
+                throw new DukeException(Ui.invalidDateInput());
             }
-            return null;
         case FindCommand.COMMAND_WORD:
             try {
                 return new FindCommand(arr[1]);
             } catch (IndexOutOfBoundsException e) {
-                ui.emptyFindInput();
+                throw new DukeException(Ui.emptyFindInput());
             }
-            return null;
         default:
             return new DefaultCommand();
         }

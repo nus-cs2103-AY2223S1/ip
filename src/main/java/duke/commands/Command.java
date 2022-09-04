@@ -1,8 +1,8 @@
 package duke.commands;
 
+import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Represents a command that a user would send to Duke.
@@ -31,8 +31,8 @@ public abstract class Command {
      * Executes the command.
      *
      * @param tasks Contains the task list.
-     * @param ui Ui to interact with the user.
      * @param storage Storage to save and load tasks from a local file.
+     * @return The response of Duke.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage);
+    public abstract String execute(TaskList tasks, Storage storage) throws DukeException;
 }

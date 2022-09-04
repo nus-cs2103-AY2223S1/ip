@@ -2,6 +2,7 @@ package duke.commands;
 
 import java.io.IOException;
 
+import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
@@ -18,17 +19,16 @@ public class ByeCommand extends Command {
      * This command exits Duke.
      *
      * @param tasks Contains the task list.
-     * @param ui Ui to interact with the user.
      * @param storage Storage to save and load tasks from a local file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         super.setExit();
         try {
             tasks.writeToFile(storage);
-            ui.goodbye();
+            return Ui.goodbye();
         } catch (IOException e) {
-            ui.saveFail();
+            throw new DukeException(Ui.saveFail());
         }
     }
 }

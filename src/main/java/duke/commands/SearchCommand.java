@@ -5,7 +5,6 @@ import java.time.format.DateTimeParseException;
 
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Represents a command to search for tasks occurring
@@ -28,7 +27,7 @@ public class SearchCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.search(date);
+    public String execute(TaskList tasks, Storage storage) {
+        return tasks.search(date);
     }
 }
