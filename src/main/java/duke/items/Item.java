@@ -1,3 +1,5 @@
+package duke.items;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -32,30 +34,30 @@ public abstract class Item {
         return this.time != null ? this.time.toLocalDate() : null;
     }
 
-    protected String getDateTimeString() {
+    public String getDateTimeString() {
         if(this.time == null) {
             return null;
         }
         return this.getDate().toString() + ((this.getTime() != null) ? " " + this.getTime().toString() : "");
     }
 
-    protected ItemTypes getItemType() {
+    public ItemTypes getItemType() {
         return this.itemType;
     }
 
-    protected String getName() {
+    public String getName() {
         return this.name;
     }
 
-    protected boolean isDone() {
+    public boolean isDone() {
         return this.isDone;
     }
 
-    protected void setDone() {
+    public void setDone() {
         this.isDone = true;
     }
 
-    protected void setUnDone() {
+    public void setUnDone() {
         this.isDone = false;
     }
 
@@ -68,20 +70,16 @@ public abstract class Item {
         str = str.trim();
         String[] splitInput = str.split(" ", 2);
 
-        try {
-            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
-            LocalDate date = LocalDate.parse(splitInput[0].trim(), dateFormatter);
-            if (splitInput.length == 2) {
-                this.isTimed = true;
-                DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-                LocalTime time = LocalTime.parse(splitInput[1].trim(), timeFormatter);
-                this.time = date.atTime(time);
-            } else {
-                this.isTimed = false;
-                this.time = date.atStartOfDay();
-            }
-        } catch (DateTimeParseException e) {
-            throw e;
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
+        LocalDate date = LocalDate.parse(splitInput[0].trim(), dateFormatter);
+        if (splitInput.length == 2) {
+            this.isTimed = true;
+            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+            LocalTime time = LocalTime.parse(splitInput[1].trim(), timeFormatter);
+            this.time = date.atTime(time);
+        } else {
+            this.isTimed = false;
+            this.time = date.atStartOfDay();
         }
     }
 

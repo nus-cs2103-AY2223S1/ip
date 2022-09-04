@@ -1,3 +1,5 @@
+package duke.commands;
+
 import java.util.Arrays;
 
 public class Command {

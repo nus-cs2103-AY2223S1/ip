@@ -1,3 +1,11 @@
+package duke;
+
+import duke.commands.Command;
+import duke.items.Deadline;
+import duke.items.Event;
+import duke.items.Item;
+import duke.items.ToDo;
+
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
@@ -53,7 +61,7 @@ public class TaskList {
             Deadline deadline = new Deadline(item, due);
             return this.addItem(deadline);
         } catch (DateTimeParseException e) {
-            ui.printErrorMessage("Error Parsing Date Time Info, Item not added, " +
+            ui.printErrorMessage("Error Parsing Date Time Info, duke.items.Item not added, " +
                     "please use this format /by YYYY-MM-DD HH:MM (omit time if not necessary)");
             return null;
         }
@@ -64,7 +72,7 @@ public class TaskList {
             Event event = new Event(item, at);
             return this.addItem(event);
         } catch (DateTimeParseException e) {
-            ui.printErrorMessage("Error Parsing Date Time Info, Item not added, " +
+            ui.printErrorMessage("Error Parsing Date Time Info, duke.items.Item not added, " +
                     "please use this format /at YYYY-MM-DD HH:MM (omit time if necessary)");
             return null;
         }

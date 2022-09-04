@@ -1,3 +1,7 @@
+import duke.UI;
+import duke.commands.Command;
+import duke.commands.CommandsList;
+import duke.TaskList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

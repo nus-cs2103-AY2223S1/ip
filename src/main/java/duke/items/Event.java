@@ -1,6 +1,11 @@
+package duke.items;
+
+import duke.items.Item;
+import duke.items.ItemTypes;
+
 import java.time.format.DateTimeParseException;
 
-public class Event extends Item{
+public class Event extends Item {
     public Event(String name, String eventTime) throws DateTimeParseException {
         super(name, ItemTypes.EVENT, eventTime);
     }

@@ -1,4 +1,9 @@
-public class ToDo extends Item{
+package duke.items;
+
+import duke.items.Item;
+import duke.items.ItemTypes;
+
+public class ToDo extends Item {
 
     public ToDo(String name) {
         super(name, ItemTypes.TODO, null);

@@ -1,6 +1,11 @@
+package duke.items;
+
+import duke.items.Item;
+import duke.items.ItemTypes;
+
 import java.time.format.DateTimeParseException;
 
-public class Deadline extends Item{
+public class Deadline extends Item {
     public Deadline(String name, String dueDate) throws DateTimeParseException {
         super(name, ItemTypes.DEADLINE, dueDate);
     }
