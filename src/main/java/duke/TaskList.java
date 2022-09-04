@@ -49,8 +49,8 @@ public class TaskList {
      * @return      Return venue of input task as {@code String}.
      */
     private String getVenue(String input) {
-        String DELIMITER = "/at ";
-        int startIndex = input.indexOf("/at ") + DELIMITER.length();
+        String delimiter = "/at ";
+        int startIndex = input.indexOf("/at ") + delimiter.length();
         int endIndex = input.indexOf("/p") - 1;
         if (endIndex < startIndex) {
             // For case where input is given without priority.
@@ -66,9 +66,9 @@ public class TaskList {
      * @return      Return date of input task as {@code LocalDate}.
      */
     private LocalDate getDate(String input) {
-        String DELIMITER = "/by ";
+        String delimiter = "/by ";
         String dateString;
-        int startIndex = input.indexOf("/by ") + DELIMITER.length();
+        int startIndex = input.indexOf("/by ") + delimiter.length();
         int endIndex = input.indexOf("/p") - 1;
         if (endIndex < startIndex) {
             // For case where input is given without priority.
@@ -88,11 +88,11 @@ public class TaskList {
      * @return      Return priority level of input task as {@code Level}.
      */
     public Level getPriority(String input) {
-        String DELIMITER = "/p ";
-        int index = input.indexOf(DELIMITER);
+        String delimiter = "/p ";
+        int index = input.indexOf(delimiter);
         Boolean hasPriority = (index >= 0);
         if (hasPriority) {
-            switch (input.substring(index + DELIMITER.length()).toLowerCase()) {
+            switch (input.substring(index + delimiter.length()).toLowerCase()) {
             case "low":
                 return Level.LOW;
             case "med":

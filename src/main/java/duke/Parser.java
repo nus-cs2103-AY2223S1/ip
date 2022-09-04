@@ -248,9 +248,9 @@ public class Parser {
     private void testInputForDeadline(String userInput) throws DukeException {
         Boolean hasNoSpaceAtIndexEight = userInput.indexOf(" ") != 8;
         Boolean isMissingDelimiter = userInput.indexOf("/by ") <= 9;
-        String DELIMITER = "/by ";
+        String delimiter = "/by ";
         String dateString;
-        int startIndex = userInput.indexOf("/by ") + DELIMITER.length();
+        int startIndex = userInput.indexOf("/by ") + delimiter.length();
         int endIndex = userInput.indexOf("/p") - 1;
         if (endIndex < startIndex) {
             // For case where input is given without priority.
@@ -284,8 +284,8 @@ public class Parser {
      */
     private void testInputForEvent(String userInput) throws DukeException {
         Boolean hasNoSpaceAtIndexFive = userInput.indexOf(" ") != 5;
-        Boolean isMissingDelimiter = userInput.indexOf("/at ") <= 6;
-        if (hasNoSpaceAtIndexFive || isMissingDelimiter) {
+        Boolean isMissingdelimiter = userInput.indexOf("/at ") <= 6;
+        if (hasNoSpaceAtIndexFive || isMissingdelimiter) {
             throw new DukeException("Wrong format! To add a new "
                     + "event, please enter the following:\n"
                     + "   event [TASK DESCRIPTION] /at [VENUE] "
