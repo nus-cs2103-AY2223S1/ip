@@ -13,6 +13,6 @@ public class Duke {
      * @return Response from Duke.
      */
     public String getResponse(String input) {
-        return parser.processCommand(input);
+        return parser.parseCommand(input);
     }
 }

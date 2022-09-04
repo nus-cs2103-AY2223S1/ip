@@ -19,7 +19,7 @@ public class Parser {
      *
      * @param next The user's input.
      */
-    public String processCommand(String next) {
+    public String parseCommand(String next) {
         String[] nextWords = next.split(" ");
         switch(nextWords[0]) {
         case "mark":
@@ -55,7 +55,7 @@ public class Parser {
         case "deadline":
             //Fallthrough
         case "event":
-            return processTask(next, nextWords[0]);
+            return parseTask(next, nextWords[0]);
         case "find":
             try {
                 String found = tasks.find(next.split(" ")[1]);
@@ -73,7 +73,7 @@ public class Parser {
      * @param input The user's input.
      * @param type The type of task.
      */
-    public String processTask(String input, String type) {
+    public String parseTask(String input, String type) {
         DateTimeFormatter parserFormats = new DateTimeFormatterBuilder()
                 .appendOptional(DateTimeFormatter.ISO_LOCAL_DATE)
                 .appendOptional(DateTimeFormatter.ofPattern("d MMM uuuu"))
