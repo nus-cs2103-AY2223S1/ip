@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
     private LocalDate date;
+    private static final String TASK_TYPE = "[D]";
 
     /**
      * Constructs a deadline task.
@@ -39,7 +40,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.date.format(DateTimeFormatter
-                .ofPattern("MMM dd yyyy")) + ")";
+        return Deadline.TASK_TYPE + super.toString() + " (by: " + this.date.format(DateTimeFormatter
+                .ofPattern(Task.DATE_FORMAT)) + ")";
     }
 }
