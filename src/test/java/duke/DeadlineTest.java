@@ -9,7 +9,7 @@ import duke.types.Deadline;
 
 public class DeadlineTest {
     private String invalidDate = "40/40/999";
-    private String validDate = "1/1/2022";
+    private String validDate = "01/01/2022";
     private String validDescription = "test description";
     /**
      * Test Deadline with valid input
@@ -19,6 +19,7 @@ public class DeadlineTest {
         try {
             Deadline test = new Deadline(validDescription, true, validDate);
         } catch (Exception e) {
+            System.out.println(e);
             fail();
         }
     }
