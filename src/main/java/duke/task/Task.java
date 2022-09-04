@@ -16,8 +16,7 @@ public abstract class Task {
     private static final String STRING_FORMAT_STORAGE = "%s | %s";
     private static final String STRING_FORMAT_DISPLAY = "%s %s";
 
-
-    private final String description;
+    private String description;
     private boolean isComplete;
 
     /**
@@ -52,6 +51,13 @@ public abstract class Task {
      */
     public void unmark() {
         isComplete = INCOMPLETE;
+    }
+
+    /**
+     * Sets {@code description} to {@code updatedDescription}
+     */
+    public void setDescription(String updatedDescription) {
+        this.description = updatedDescription;
     }
 
     /**

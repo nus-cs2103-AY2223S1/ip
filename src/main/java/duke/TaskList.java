@@ -113,6 +113,23 @@ public class TaskList {
     }
 
     /**
+     * Updates description of task at specified index.
+     *
+     * @param index Index of task to update.
+     * @param updatedDescription New description of task.
+     * @return Updated Task.
+     * @throws DukeException When index specified is out of range.
+     */
+    public Task updateTask(int index, String updatedDescription) throws DukeException {
+        try {
+            getTask(index).setDescription(updatedDescription);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(outOfBoundsMessage(index), e);
+        }
+        return getTask(index);
+    }
+
+    /**
      * Returns a list of tasks in the TaskList.
      * Each string is prefixed with their corresponding index in the list.
      *

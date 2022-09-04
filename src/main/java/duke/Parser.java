@@ -17,6 +17,7 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnknownCommand;
 import duke.command.UnmarkCommand;
+import duke.command.UpdateCommand;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -26,6 +27,7 @@ import duke.task.Todo;
  * Class used to parse user inputs.
  */
 public abstract class Parser {
+
     private static final String COMMAND_BYE = "bye";
     private static final String COMMAND_LIST = "list";
     private static final String COMMAND_TODO = "todo";
@@ -35,6 +37,7 @@ public abstract class Parser {
     private static final String COMMAND_UNMARK = "unmark";
     private static final String COMMAND_DELETE = "delete";
     private static final String COMMAND_FIND = "find";
+    private static final String COMMAND_UPDATE = "update";
     private static final String INDICATOR_PATTERN_DEADLINE = "\\s*/by\\s*";
     private static final String INDICATOR_PATTERN_EVENT = "\\s*/at\\s*";
 
@@ -45,6 +48,7 @@ public abstract class Parser {
     private static final String ERROR_MESSAGE_ARGUMENTS_NOT_FOUND = "Required arguments not found!";
     private static final String ERROR_MESSAGE_DEADLINE_FORMAT_INVALID = "Invalid format for adding deadline!";
     private static final String ERROR_MESSAGE_EVENT_FORMAT_INVALID = "Invalid format for adding event!";
+    private static final String ERROR_MESSAGE_UPDATE_FORMAT_INVALID = "Invalid format for updating task!"
 
     /**
      * Parses input into Command indicator and arguments.
@@ -136,6 +140,9 @@ public abstract class Parser {
             break;
         case COMMAND_FIND:
             command = parseFind(getCommandArgument(commandArguments));
+            break;
+        case COMMAND_UPDATE:
+            command = parseUpdate(getCommandArgument(commandArguments));
             break;
         default:
             command = parseUnknown(commandIndicator);
@@ -255,6 +262,23 @@ public abstract class Parser {
      */
     static Command parseFind(String input) {
         return new FindCommand(input);
+    }
+
+    /**
+     * Returns an UpdateCommand
+     *
+     * @param input command arguments.
+     * @return UpdateCommand.
+     * @throws DukeException when error parsing index or index out of range.
+     */
+    static Command parseUpdate(String input) throws DukeException {
+        try (Scanner lineScanner = new Scanner(input)) {
+            int index = parseIndex(lineScanner.next());
+            String description = lineScanner.next();
+            return new UpdateCommand(index, description);
+        } catch (NoSuchElementException e) {
+            throw new DukeException(ERROR_MESSAGE_UPDATE_FORMAT_INVALID, e);
+        }
     }
 
     /**

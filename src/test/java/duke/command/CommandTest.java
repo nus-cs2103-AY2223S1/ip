@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import duke.DukeException;
@@ -13,8 +14,16 @@ import duke.task.Task;
 import duke.task.Todo;
 
 public class CommandTest {
-    private final StorageStub storageStub = new StorageStub(List.<Task>of());
-    private final TaskList taskList = new TaskList();
+    private StorageStub storageStub;
+    private TaskList taskList;
+
+    @BeforeEach
+    void setUpCommand() {
+        storageStub = new StorageStub(List.<Task>of());
+        taskList = new TaskList();
+        Command.setTaskList(taskList);
+        Command.setStorage(storageStub);
+    }
 
     @Test
     void execute_addCommand() throws DukeException {
@@ -30,7 +39,6 @@ public class CommandTest {
 
     @Test
     void execute_listCommand() throws DukeException {
-        Command.setTaskList(new TaskList(List.of()));
 
         Command command = new ListCommand();
         String response = command.execute();
