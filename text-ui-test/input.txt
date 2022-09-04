@@ -1,4 +1,0 @@
-hello
-todo borrow book
-deadline return book /by sunday
-bye
