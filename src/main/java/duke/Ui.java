@@ -29,30 +29,6 @@ public class Ui {
     }
 
     /**
-     * Prints the message that is given.
-     *
-     * @param message The message to be printed.
-     */
-    public void showMessage(String message) {
-        System.out.println(message);
-    }
-
-    /**
-     * Returns the String of the greeting message.
-     *
-     * @return The String message of the greeting.
-     */
-    public String showGreeting() {
-        String logo = " ____        _\n"
-                + "|  _ \\ _   _| | _____\n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        String greetMessage = "Hello, I'm Duke!\n" + logo + "\nWhat can I do for you?\n";
-        return greetMessage;
-    }
-
-    /**
      * Prints the error message when DukeException occurs.
      *
      * @param e The DukeException for this error.
