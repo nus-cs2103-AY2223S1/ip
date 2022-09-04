@@ -1,4 +1,4 @@
-package tuna;
+package tuna.gui;
 
 import javafx.application.Application;
 

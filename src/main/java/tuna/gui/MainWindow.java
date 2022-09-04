@@ -1,4 +1,4 @@
-package tuna;
+package tuna.gui;
 
 import java.util.Objects;
 
@@ -9,6 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import tuna.Tuna;
+import tuna.TunaException;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.

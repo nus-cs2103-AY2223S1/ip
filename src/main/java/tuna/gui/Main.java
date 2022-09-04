@@ -1,4 +1,4 @@
-package tuna;
+package tuna.gui;
 
 import java.io.IOException;
 
@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import tuna.Tuna;
+import tuna.TunaException;
 
 /**
  * A GUI for Duke using FXML.
