@@ -2,6 +2,7 @@ package duke;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 import duke.task.Deadline;
 import duke.task.Event;
@@ -164,20 +165,13 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        if (tasks.isEmpty()) {
-            return "\tYou currently have no tasks in your list.";
-        } else {
-            String lst = "";
-            int size = tasks.size();
-            for (int i = 0; i < size; i++) {
-                if (i == size - 1) {
-                    lst += String.format("\t%d.%s", i + 1, tasks.get(i));
-                } else {
-                    lst += String.format("\t%d.%s\n", i + 1, tasks.get(i));
-                }
-            }
-            return lst;
-        }
+        int size = tasks.size();
+        return Stream.iterate(0, i -> i + 1)
+                .limit(size)
+                .map(j -> (j == size - 1)
+                        ? String.format("\t%d.%s", j + 1, tasks.get(j))
+                        : String.format("\t%d.%s\n", j + 1, tasks.get(j)))
+                .reduce("Here are the task(s) in your list:\n", (x, y) -> x + y);
     }
 }
 

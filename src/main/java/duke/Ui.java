@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 import duke.task.Task;
 import javafx.animation.PauseTransition;
@@ -46,7 +47,7 @@ public class Ui {
      * @return The TaskList display.
      */
     public String showList(TaskList tasks) {
-        return String.format("%s%n%s%n", "Here are the task(s) in your list: ", tasks.toString());
+        return tasks.toString();
     }
 
     /**
@@ -100,15 +101,12 @@ public class Ui {
      * @return The list of Task(s) containing the specified keyword.
      */
     public String showFind(ArrayList<Task> foundTasks) {
-        String lst = "";
         int size = foundTasks.size();
-        for (int i = 0; i < size; i++) {
-            if (i == size - 1) {
-                lst += String.format("\t%d.%s", i + 1, foundTasks.get(i));
-            } else {
-                lst += String.format("\t%d.%s\n", i + 1, foundTasks.get(i));
-            }
-        }
-        return String.format("%s%n%s%n", "Here are the matching task(s) in your list: ", lst);
+        return Stream.iterate(0, i -> i + 1)
+                .limit(size)
+                .map(j -> (j == size - 1)
+                        ? String.format("\t%d.%s", j + 1, foundTasks.get(j))
+                        : String.format("\t%d.%s\n", j + 1, foundTasks.get(j)))
+                .reduce("Here are the matching task(s) in your list:\n", (x, y) -> x + y);
     }
 }
