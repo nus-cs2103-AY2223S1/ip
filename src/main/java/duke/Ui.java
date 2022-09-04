@@ -16,15 +16,6 @@ import duke.task.Todo;
  */
 public class Ui {
 
-    private Scanner sc = new Scanner(System.in);
-
-    /**
-     * Prints an error message upon failure to load data from the saved file.
-     */
-    public String showLoadingError() {
-        return "There was an error loading your file. Starting a new list...\n";
-    }
-
     /**
      * Prints a farewell message.
      */
@@ -38,15 +29,17 @@ public class Ui {
      * @param t Task that was added to the list.
      * @param len New length of the list.
      */
-    public String showAdd(Task t, int len) {
-        boolean isTodo = t instanceof Todo;
+    public String showAdd(Task t, int len) throws DukeException {
+	boolean isTodo = t instanceof Todo;
         boolean isDeadline = t instanceof Deadline;
         boolean isEvent = t instanceof Event;
         assert (isTodo || isDeadline || isEvent) : "Task that was added must be either Todo, Deadline or Event.";
         assert (len >= 0) : "Length of list after add must be non-negative.";
 
-        return "Got it. I've added this task:\n" + t.toString() + "\n" + "Now you have " + len
-                + taskString(len) + "in the list.";
+        String openingMessage = "Got it. I've added this task:\n";
+        String taskDescription = t.toString() + "\n";
+        String closingMessage = "Now you have " + len + taskSingularOrPluralWord(len) + "in the list.";
+        return openingMessage + taskDescription + closingMessage;
     }
 
     /**
@@ -55,17 +48,17 @@ public class Ui {
      * @param t Task that was deleted from the list.
      * @param len New length of the list.
      */
-    public String showDelete(Task t, int len) {
-        boolean isTodo = t instanceof Todo;
+    public String showDelete(Task t, int len) throws DukeException {
+	boolean isTodo = t instanceof Todo;
         boolean isDeadline = t instanceof Deadline;
         boolean isEvent = t instanceof Event;
         assert (isTodo || isDeadline || isEvent) : "Task that was deleted must be either Todo, Deadline or Event.";
         assert (len >= 0) : "Length of list after delete must be non-negative.";
 
-        String notice = "Noted. I've removed this task:\n";
-        String desc = t.toString() + "\n";
-        String tasksLeft = "Now you have " + len + taskString(len) + "in the list.";
-        return notice + desc + tasksLeft;
+        String openingMessage = "Noted. I've removed this task:\n";
+        String taskDescription = t.toString() + "\n";
+        String tasksLeft = "Now you have " + len + taskSingularOrPluralWord(len) + "in the list.";
+        return openingMessage + taskDescription + tasksLeft;
     }
 
     /**
@@ -103,13 +96,21 @@ public class Ui {
         return "Here are the matching tasks in your list:\n";
     }
 
-    private String taskString(int len) {
-        assert (len >= 0) : "Length of task list must be non-negative.";
 
-        if (len <= 1) {
-            return " task ";
+    private String taskSingularOrPluralWord(int len) throws DukeException {
+        boolean isSingular = len == 0 || len == 1;
+        boolean isPlural = len >= 2;
+        String word;
+
+        if (isSingular) {
+            word = " task ";
+        } else if (isPlural) {
+            word = " tasks ";
         } else {
-            return " tasks ";
+            String errorMessage = "Length of task list must not be non-negative.";
+            throw new DukeException(errorMessage);
         }
+	assert (len >= 0) : "Length of task list must be non-negative.";
+        return word;
     }
 }

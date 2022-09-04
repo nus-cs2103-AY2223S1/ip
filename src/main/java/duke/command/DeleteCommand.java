@@ -20,7 +20,7 @@ import duke.task.Todo;
  */
 public class DeleteCommand extends Command {
 
-    private int index;
+    private final int index;
 
     public DeleteCommand(int index) {
         this.index = index;
@@ -46,18 +46,26 @@ public class DeleteCommand extends Command {
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         ArrayList<Task> list = taskList.getTaskArrayList();
-        if ((index > 0) && index <= list.size() && (list.get(index - 1) != null)) {
-            assert (index >= 1) : "Given index must be at least 1.";
-            assert (index <= list.size()) : "Index cannot exceed length of list";
 
-            Task t = list.get(index - 1);
-            assert (t instanceof Todo || t instanceof Deadline || t instanceof Event);
-            taskList.delete(this.index);
-            return ui.showDelete(t, list.size());
-        } else {
-            String s = "OOPS!!! The index of the task to be marked/unmarked/deleted must be valid/within range.";
-            throw new DukeException(s);
+        boolean isValidIndex = (index >= 1) && (index <= list.size());
+
+        if (!isValidIndex) {
+            String errorMessage = "OOPS!!! The index of the task to be marked/unmarked/deleted must be within range.";
+            throw new DukeException(errorMessage);
         }
+
+        assert (index >= 1) : "Given index must be at least 1.";
+        assert (index <= list.size()) : "Index cannot exceed length of list";
+
+        Task task = list.get(index - 1);
+
+	boolean isTodo = task instanceof Todo;
+	boolean isDeadline = task instanceof Deadline;
+	boolean isEvent = task instanceof Event;
+	assert (isTodo || isDeadline || isEvent) : "Task is either an instance of Todo, Deadline or Event.";
+
+        taskList.delete(this.index);
+        return ui.showDelete(task, list.size());
     }
 
 }

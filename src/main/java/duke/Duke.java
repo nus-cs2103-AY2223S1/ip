@@ -4,6 +4,7 @@ import java.io.IOException;
 
 //import duke.command.Command;
 //import javafx.application.Application;
+import duke.command.Command;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 //import javafx.scene.control.Label;
@@ -50,7 +51,6 @@ public class Duke {
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException | IOException e) {
-            ui.showLoadingError();
             tasks = new TaskList();
         }
     }
@@ -63,9 +63,12 @@ public class Duke {
      */
     public String getResponse(String input) {
         try {
-            return Parser.parse(input).execute(tasks, ui, storage);
+            Command command = Parser.parse(input);
+            String response = command.execute(tasks, ui, storage);
+            return response;
         } catch (DukeException | IOException e) {
-            return e.getMessage();
+            String errorMessage = e.getMessage();
+            return errorMessage;
         }
     }
 }

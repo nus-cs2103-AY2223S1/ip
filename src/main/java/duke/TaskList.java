@@ -16,10 +16,10 @@ import duke.task.Todo;
  */
 public class TaskList {
 
-    private ArrayList<Task> taskArrayList;
+    private final ArrayList<Task> taskArrayList;
 
     /**
-     * Constructs a TaskList when there is no previous saved data.
+     * Constructs a TaskList when there is no previously saved data.
      */
     public TaskList() {
         this.taskArrayList = new ArrayList<>(100);
@@ -33,15 +33,20 @@ public class TaskList {
     }
 
     /**
-     * Prints the list of tasks that are recorded.
+     * Returns the list of tasks that are being kept track of.
+     *
+     * @return A list of tasks.
      */
     public String printList() {
         ArrayList<Task> list = this.taskArrayList;
-        String str = "";
+        StringBuilder str = new StringBuilder();
         for (int i = 0; i < list.size(); i++) {
-            str += i + 1 + ". " + list.get(i).toString() + "\n";
+            String index = i + 1 + ". ";
+            String taskDescription = list.get(i).toString() + "\n";
+            String fullDescription = index + taskDescription;
+            str.append(fullDescription);
         }
-        return str;
+        return str.toString();
     }
 
     /**
@@ -64,12 +69,10 @@ public class TaskList {
      * @param i Index of the task in the list to be deleted.
      */
     public void delete(int i) {
-        ArrayList<Task> list = this.taskArrayList;
-
         assert (i >= 1) : "Given index must be at least 1.";
         assert (i <= list.size()) : "Index cannot exceed length of list";
 
-        list.remove(i - 1);
+        this.taskArrayList.remove(i - 1);
     }
 
     /**
@@ -78,12 +81,10 @@ public class TaskList {
      * @param i Index of the task in the list to be marked.
      */
     public void mark(int i) {
-        ArrayList<Task> list = this.taskArrayList;
-
         assert (i >= 1) : "Given index must be at least 1.";
         assert (i <= list.size()) : "Index cannot exceed length of list";
 
-        Task t = list.get(i - 1);
+        Task t = this.taskArrayList.get(i - 1);
         t.mark();
     }
 
@@ -93,12 +94,10 @@ public class TaskList {
      * @param i Index of the task in the list to be unmarked.
      */
     public void unmark(int i) {
-        ArrayList<Task> list = this.taskArrayList;
-
         assert (i >= 1) : "Given index must be at least 1.";
         assert (i <= list.size()) : "Index cannot exceed length of list";
 
-        Task t = list.get(i - 1);
+        Task t = this.taskArrayList.get(i - 1);
         t.unmark();
     }
 
@@ -115,19 +114,23 @@ public class TaskList {
      * Finds tasks in the list that contains the specified input String.
      *
      * @param s Input string to be checked against.
+     * @return List of tasks matching the input string.
      */
     public String find(String s) {
         int counter = 1;
-        ArrayList<Task> list = this.taskArrayList;
-        String str = "";
-        for (int i = 0; i < list.size(); i++) {
-            Task t = list.get(i);
-            if (t.toString().contains(s)) {
-                str = str + counter + ". " + t + "\n";
+        StringBuilder str = new StringBuilder();
+        for (Task t : this.taskArrayList) {
+            boolean hasWord = t.toString().contains(s);
+
+            if (hasWord) {
+                String index = counter + ". ";
+                String taskDescription = t + "\n";
+                String fullDescription = index + taskDescription;
+                str.append(fullDescription);
                 counter++;
             }
         }
-        return str;
+        return str.toString();
     }
 
 }

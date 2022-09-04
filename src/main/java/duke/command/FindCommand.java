@@ -13,7 +13,7 @@ import duke.Ui;
  */
 public class FindCommand extends Command {
 
-    private String target;
+    private final String target;
 
     /**
      * Instantiates command with the keyword to be matched.
@@ -42,6 +42,8 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {
-        return ui.showFound() + taskList.find(target);
+        String openingMessage = ui.showFound();
+        String foundTasks = taskList.find(this.target);
+        return openingMessage + foundTasks;
     }
 }
