@@ -21,7 +21,7 @@ import duke.task.Todo;
  */
 public class Storage {
 
-    private String filePath;
+    private final String filePath;
 
     public Storage(String filePath) {
         this.filePath = filePath;
@@ -46,9 +46,12 @@ public class Storage {
      */
     public ArrayList<Task> load() throws IOException, DukeException {
         File file = new File(filePath);
-        if (!file.exists()) {
+        boolean hasFile = file.exists();
+
+        if (!hasFile) {
             this.createFile(file);
-            throw new DukeException("Loading error.");
+            String errorMessage = "There was an error loading your file. Starting a new list...\n";
+            throw new DukeException(errorMessage);
         } else {
             System.out.println("Saved tasks retrieved!\n");
             ArrayList<Task> tasks = new ArrayList<>(100);
@@ -57,52 +60,53 @@ public class Storage {
             while (sc.hasNextLine()) {
                 String text = sc.nextLine();
                 Scanner temp = new Scanner(text);
-                temp.useDelimiter("\\[|\\]\\s*|by:\\s*|at:\\s*|\\s*\\(|\\s*\\)");
+                String filter = "\\[|\\]\\s*|by:\\s*|at:\\s*|\\s*\\(|\\s*\\)";
+                temp.useDelimiter(filter);
 
-                String type = temp.next();
-                String ignore = temp.next();
-                String marked = temp.next();
+                String taskType = temp.next();
+                temp.next();
+                String markStatus = temp.next();
                 String description = temp.next();
 
-                switch (type) {
-                case "D": {
-                    String ignore1 = temp.next();
-                    String date = temp.next();
-                    DateTimeFormatter alt = DateTimeFormatter.ofPattern("MMM d yyyy");
-                    DateTimeFormatter input = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                    String dateAlt = input.format(alt.parse(date));
-                    Deadline d = new Deadline(description, dateAlt);
-                    if (isMarked(marked)) {
-                        d.mark();
+                DateTimeFormatter inputDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                DateTimeFormatter newDateFormat = DateTimeFormatter.ofPattern("MMM d yyyy");
+                String date;
+                String formattedDate;
+
+                switch (taskType) {
+
+                case "D":
+                    temp.next();
+                    date = temp.next();
+                    formattedDate = inputDateFormat.format(newDateFormat.parse(date));
+                    Deadline deadline = new Deadline(description, formattedDate);
+                    if (isMarked(markStatus)) {
+                        deadline.mark();
                     }
-                    tasks.add(d);
+                    tasks.add(deadline);
                     break;
-                }
-                case "E": {
-                    String ignore1 = temp.next();
-                    String date = temp.next();
-                    DateTimeFormatter alt = DateTimeFormatter.ofPattern("MMM d yyyy");
-                    DateTimeFormatter input = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                    String dateAlt = input.format(alt.parse(date));
-                    Deadline d = new Deadline(description, dateAlt);
-                    Event e = new Event(description, dateAlt);
-                    if (isMarked(marked)) {
-                        e.mark();
+
+                case "E":
+                    temp.next();
+                    date = temp.next();
+                    formattedDate = inputDateFormat.format(newDateFormat.parse(date));
+                    Event event = new Event(description, formattedDate);
+                    if (isMarked(markStatus)) {
+                        event.mark();
                     }
-                    tasks.add(e);
+                    tasks.add(event);
                     break;
-                }
-                case "T": {
-                    Todo t = new Todo(description);
-                    if (isMarked(marked)) {
-                        t.mark();
+
+                case "T":
+                    Todo todo = new Todo(description);
+                    if (isMarked(markStatus)) {
+                        todo.mark();
                     }
-                    tasks.add(t);
+                    tasks.add(todo);
                     break;
-                }
-                default: {
+
+                default:
                     throw new DukeException("Invalid or no input read.");
-                }
                 }
             }
             return tasks;
@@ -117,8 +121,8 @@ public class Storage {
      */
     public void save(ArrayList<Task> taskArrayList) throws IOException {
         FileWriter fw = new FileWriter(filePath);
-        for (int i = 0; i < taskArrayList.size(); i++) {
-            fw.write(taskArrayList.get(i).toString() + System.lineSeparator());
+        for (Task task : taskArrayList) {
+            fw.write(task.toString() + System.lineSeparator());
         }
         fw.close();
     }
