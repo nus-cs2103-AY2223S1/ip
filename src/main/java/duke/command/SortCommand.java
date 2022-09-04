@@ -24,6 +24,7 @@ public class SortCommand extends Command {
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         ui.showOutput(taskList.sort().toString());
+        storage.save(taskList.getTaskList());
 
         return taskList.sort().toString();
     }
