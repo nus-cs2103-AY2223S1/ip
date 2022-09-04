@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -57,7 +58,12 @@ public class Storage {
         List<Task> tasks = new ArrayList<>();
 
         while (scanner.hasNextLine()) {
-            tasks.add(Task.parseTask(scanner.nextLine()));
+            Task parsed = Task.parseTask(scanner.nextLine());
+            LocalDateTime now = LocalDateTime.now();
+            LocalDateTime dateTime = parsed.getLocalDateTime();
+            if (!dateTime.isBefore(now)) {
+                tasks.add(parsed);
+            }
         }
 
         return tasks;

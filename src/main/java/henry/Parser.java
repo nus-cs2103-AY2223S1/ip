@@ -14,6 +14,7 @@ import command.EventCommand;
 import command.FindCommand;
 import command.ListCommand;
 import command.MarkCommand;
+import command.TentativeCommand;
 import command.TodoCommand;
 import command.UnmarkCommand;
 import exceptions.HenryException;
@@ -28,6 +29,11 @@ public class Parser {
     private static final Pattern DATE_FORMAT = Pattern.compile("(?<desc>.+) /(at|by) "
                                                                + "(?<dateTime>\\d{2}-\\d{2}-\\d{4} "
                                                                + "\\d{2}:\\d{2})");
+    private static final Pattern TENTATIVE_NEW_DATE_FORMAT =
+        Pattern.compile("(?<index>\\d+) (?<dateTime>\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2})");
+    private static final Pattern TENTATIVE_CONFIRM_DATE_FORMAT =
+        Pattern.compile("(?<index>\\d+) (--confirm) (?<chosenDateIndex>\\d+)");
+
     private static final String DATE_FORMATTER = "dd-MM-yyyy HH:mm";
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
 
@@ -61,6 +67,8 @@ public class Parser {
             return new FindCommand(parseFindArguments(args));
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+        case TentativeCommand.COMMAND_WORD:
+            return handleTentativeCommand(args);
 
         case MarkCommand.COMMAND_WORD:
         case UnmarkCommand.COMMAND_WORD:
@@ -73,6 +81,31 @@ public class Parser {
             return handleTaskCommand(command, args);
         default:
             throw new HenryException("UNKNOWN COMMAND!");
+        }
+    }
+
+    private Command handleTentativeCommand(String args) {
+        Matcher newDateMatcher = TENTATIVE_NEW_DATE_FORMAT.matcher(args.trim());
+        Matcher confirmDateMatcher = TENTATIVE_CONFIRM_DATE_FORMAT.matcher(args.trim());
+        if (!newDateMatcher.matches() && !confirmDateMatcher.matches()) {
+            throw new HenryException("INVALID TENTATIVE COMMAND!");
+        }
+        if (newDateMatcher.matches()) {
+            int index = Integer.parseInt(newDateMatcher.group("index"));
+            String dateTime = newDateMatcher.group("dateTime");
+            try {
+                LocalDateTime parsed = LocalDateTime.parse(dateTime, formatter);
+                if (isDateValid(parsed)) {
+                    return new TentativeCommand(index, parsed);
+                }
+                throw new HenryException("DATE IS IN THE PAST!");
+            } catch (NumberFormatException e) {
+                throw new HenryException("DATE AND TIME NUMBERS ARE OUT OF RANGE!");
+            }
+        } else {
+            int index = Integer.parseInt(confirmDateMatcher.group("index"));
+            int chosenDateIndex = Integer.parseInt(confirmDateMatcher.group("chosenDateIndex"));
+            return new TentativeCommand(index, chosenDateIndex);
         }
     }
 
@@ -122,19 +155,19 @@ public class Parser {
 
         String description = matcher.group("desc");
         String dateTime = matcher.group("dateTime");
-        LocalDateTime now = LocalDateTime.now();
-        LocalDateTime parsed = LocalDateTime.parse(dateTime, formatter);
-        if (parsed.isBefore(now)) {
-            throw new HenryException("DATE IS IN THE PAST!");
-        }
-
         try {
-            if (type == Commands.DEADLINE) {
-                return new DeadlineCommand(description, parsed);
-            } else if (type == Commands.EVENT) {
-                return new EventCommand(description, parsed);
+            LocalDateTime parsed = LocalDateTime.parse(dateTime, formatter);
+            if (isDateValid(parsed)) {
+                switch (type) {
+                case DEADLINE:
+                    return new DeadlineCommand(description, parsed);
+                case EVENT:
+                    return new EventCommand(description, parsed);
+                default:
+                    throw new HenryException("UNKNOWN COMMAND!");
+                }
             } else {
-                throw new HenryException("UNKNOWN COMMAND!");
+                throw new HenryException("DATE IS IN THE PAST!");
             }
         } catch (NumberFormatException e) {
             throw new HenryException("DATE AND TIME NUMBERS ARE OUT OF RANGE!");
@@ -149,5 +182,9 @@ public class Parser {
     private boolean isInputValid(String args) {
         assert args != null : "Arguments are null!";
         return args.matches("\\d+");
+    }
+
+    private boolean isDateValid(LocalDateTime dateTime) {
+        return !dateTime.isBefore(LocalDateTime.now());
     }
 }

@@ -1,5 +1,7 @@
 package command;
 
+import java.time.LocalDateTime;
+
 import henry.Task;
 
 /**
@@ -13,7 +15,7 @@ public class TodoCommand extends Command {
     private final Task task;
 
     public TodoCommand(String description) {
-        this.task = new Task(Commands.TODO, description, null);
+        this.task = new Task(Commands.TODO, description, LocalDateTime.MAX);
     }
 
     @Override
