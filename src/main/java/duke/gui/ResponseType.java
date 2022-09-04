@@ -1,5 +1,5 @@
 package duke.gui;
 
 public enum ResponseType {
-    STANDARD, LIST, QUIT, ERROR;
+    STANDARD, LIST, TASK, QUIT, ERROR;
 }

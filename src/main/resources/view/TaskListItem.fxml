@@ -10,7 +10,7 @@
 
 <fx:root fx:id="root" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="400.0" minHeight="60.0" prefHeight="63.0" prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Rectangle fx:id="taskStatus" fill="#171717" height="63.0" stroke="#171717" strokeType="INSIDE" strokeWidth="0.0" width="8.0">
+        <Rectangle fx:id="taskStatus" fill="#171717" height="56.0" stroke="#171717" strokeType="INSIDE" strokeWidth="0.0" width="8.0">
          <HBox.margin>
             <Insets left="10.0" />
          </HBox.margin></Rectangle>
@@ -48,7 +48,7 @@
                         <Insets right="5.0" />
                      </HBox.margin>
                   </ImageView>
-                    <Label fx:id="date" maxHeight="1.7976931348623157E308" maxWidth="230.0" minWidth="40.0" prefWidth="230.0" text="Label" textFill="#dedede" wrapText="true">
+                    <Label fx:id="date" maxHeight="1.7976931348623157E308" maxWidth="200.0" minWidth="40.0" prefWidth="200.0" text="Label" textFill="#999999" wrapText="true">
                      <font>
                         <Font name="SansSerif Regular" size="10.0" />
                      </font>

@@ -2,6 +2,8 @@ package duke.command;
 
 import duke.Storage;
 import duke.exception.DukeException;
+import duke.gui.Response;
+import duke.gui.ResponseType;
 import duke.task.TaskList;
 
 /**
@@ -17,8 +19,9 @@ public class ExitCommand extends Command {
      * @throws DukeException If the file could not be saved to the hard disk
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) throws DukeException {
+    public Response<Void> execute(TaskList tasks, Storage storage) throws DukeException {
         storage.writeToFile(tasks.toSaveFormat());
-        return "Bye. Hope to see you again soon!";
+        return new Response<Void>(ResponseType.QUIT,
+                "bye bye~~ blob blob ☆（･∀･)つ ☆");
     }
 }

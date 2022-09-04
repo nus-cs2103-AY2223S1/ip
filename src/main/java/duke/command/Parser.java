@@ -40,7 +40,7 @@ public class Parser {
         } else if (userInput.equals("bye")) {
             return new ExitCommand();
         } else {
-            throw new DukeException("Hm...Duke doesn't understand what that means :(");
+            throw new DukeException("hmmm...bobo doesn't understand what that means (・へ・；)?");
         }
     }
 }

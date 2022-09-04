@@ -2,6 +2,9 @@ package duke.command;
 
 import duke.Storage;
 import duke.exception.DukeException;
+import duke.gui.Response;
+import duke.gui.ResponseType;
+import duke.task.Task;
 import duke.task.TaskList;
 
 /**
@@ -27,7 +30,8 @@ public class DeleteTaskCommand extends Command {
      * @throws DukeException If the task is invalid (eg: does not exist, or is not a positive number)
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) throws DukeException {
-        return tasks.deleteTask(this.taskNumber);
+    public Response<Task> execute(TaskList tasks, Storage storage) throws DukeException {
+        Task deletedTask = tasks.getTask(taskNumber);
+        return new Response<Task>(ResponseType.TASK, tasks.deleteTask(taskNumber), deletedTask);
     }
 }

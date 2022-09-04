@@ -1,8 +1,12 @@
 package duke.command;
 
 import duke.Storage;
+import duke.gui.Response;
+import duke.gui.ResponseType;
 import duke.task.Task;
 import duke.task.TaskList;
+
+import static java.util.Objects.isNull;
 
 /**
  * Represents a command to search the specified task list for tasks containing
@@ -27,14 +31,16 @@ public class FindTaskCommand extends Command {
      * @param storage The storage manager that deals with loading and saving tasks to the hard disk
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) {
+    public Response<TaskList> execute(TaskList tasks, Storage storage) {
         TaskList filtered = tasks.filter((Task t) -> t.toString().contains(this.keyword));
-        String filteredTasks = filtered.stringify();
 
-        if (filteredTasks.equals("")) {
-            return "Duke can't find any matching tasks in your list.";
+        if (filtered.size() == 0) {
+            return new Response<TaskList>(ResponseType.ERROR,
+                    "uhoh- bobo can't find any matching tasks in your list...");
         } else {
-            return ("Here are the matching tasks in your list:\n" + filteredTasks);
+            return new Response<TaskList>(ResponseType.LIST,
+                    "sure thing! here are the matching tasks bobo found",
+                    filtered);
         }
     }
 }

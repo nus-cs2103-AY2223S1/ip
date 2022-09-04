@@ -66,10 +66,15 @@ public class TaskList {
     public String numberOfTasks() {
         int numTasks = size();
         if (numTasks == 0) {
-            return "Your task list looks empty, add some tasks to get started!";
+            return "your task list looks empty, add some tasks to get started!（･∀･)つ";
         } else {
             // TODO pluralise properly
-            return String.format("You currently have %d tasks in your list.", numTasks);
+            int numUncompletedTasks = filter((Task t) -> !t.isDone).size();
+            if (numUncompletedTasks == 0) {
+                return String.format("yay, you checked everything off your list! ヽ(˘◡˘)ノ", numTasks);
+            } else {
+                return String.format("you have %d uncompleted tasks- it's time to get to work! *（･v･)つ *", numTasks);
+            }
         }
     }
 
@@ -82,7 +87,7 @@ public class TaskList {
     public boolean isValidTask(int i) throws DukeException {
         boolean isValid = i > 0 && i <= tasks.size();
         if (!isValid) {
-            throw new DukeException("Hm... Duke can't find this task.");
+            throw new DukeException("uhoh... bobo can't find this task (・へ・)?? ");
         }
         return true;
     }
@@ -96,7 +101,7 @@ public class TaskList {
         isValidTask(i);
         Task task = tasks.get(i - 1);
         task.markTaskAsDone();
-        return (String.format("Nice! I've marked this task as done:\n %s", task));
+        return "awesome!! bobo marked this task as done ~(˘▾˘~)";
     }
 
     /**
@@ -109,7 +114,7 @@ public class TaskList {
         isValidTask(i);
         Task task = tasks.get(i - 1);
         task.markTaskAsUndone();
-        return (String.format("OK, I've marked this task as not done yet:\n %s", task));
+        return "alright-y, bobo marked this task as not done yet  (・◡・)ゝ";
     }
 
     /**
@@ -121,8 +126,8 @@ public class TaskList {
      */
     public String addTask(Task task) {
         tasks.add(task);
-        return (String.format("Got it. I've added this task:\n"
-                + "  %s\nNow you have %d tasks in the list.", task, tasks.size()));
+        return (String.format("aye aye! bobo added this task ( ･o･) you now have %d items in your list!",
+                tasks.size()));
     }
 
     /**
@@ -135,9 +140,9 @@ public class TaskList {
      */
     public String deleteTask(int i) throws DukeException {
         isValidTask(i);
-        Task task = tasks.remove(i - 1);
-        return (String.format("Noted. I've removed this task:\n"
-                + "  %s\nNow you have %d tasks in the list.", task, tasks.size()));
+        tasks.remove(i - 1);
+        return (String.format("okayy! bobo removed this task (´･ω･`)┐ you now have %d tasks in your list",
+                tasks.size()));
     }
 
     /**
@@ -173,6 +178,11 @@ public class TaskList {
             count++;
         }
         return transformed;
+    }
+
+    public Task getTask(int taskNumber) throws DukeException {
+        isValidTask(taskNumber);
+        return tasks.get(taskNumber - 1);
     }
 
     /**

@@ -2,6 +2,9 @@ package duke.command;
 
 import duke.Storage;
 import duke.exception.DukeException;
+import duke.gui.Response;
+import duke.gui.ResponseType;
+import duke.task.Task;
 import duke.task.TaskList;
 
 /**
@@ -28,7 +31,8 @@ public class MarkTaskDoneCommand extends Command {
      * @throws DukeException If the task number is invalid (eg: Task does not exist/ task number is not positive)
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) throws DukeException {
-        return tasks.markTaskDone(this.taskNumber);
+    public Response<Task> execute(TaskList tasks, Storage storage) throws DukeException {
+        Task task = tasks.getTask(taskNumber);
+        return new Response<Task>(ResponseType.TASK, tasks.markTaskDone(taskNumber), task);
     }
 }

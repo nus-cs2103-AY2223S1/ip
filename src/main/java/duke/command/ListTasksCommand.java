@@ -1,6 +1,8 @@
 package duke.command;
 
 import duke.Storage;
+import duke.gui.Response;
+import duke.gui.ResponseType;
 import duke.task.TaskList;
 
 /**
@@ -14,7 +16,7 @@ public class ListTasksCommand extends Command {
      * @param storage The storage manager that deals with loading and saving tasks to the hard disk
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) {
-        return tasks.toString();
+    public Response<TaskList> execute(TaskList tasks, Storage storage) {
+        return new Response<TaskList>(ResponseType.LIST, tasks.numberOfTasks(), tasks);
     }
 }

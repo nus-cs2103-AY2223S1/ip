@@ -25,21 +25,14 @@ public class Duke {
     }
 
     public String greet() {
-        return String.format("Hello, I'm Duke! %s What can I do for you?", tasks.numberOfTasks());
+        return String.format("blob blob, it’s bobo the bot; %s ", tasks.numberOfTasks());
     }
 
     public static Response reply(String userInput) {
         try {
             Command cmd = Parser.parse(userInput);
-            String message = cmd.execute(tasks, storage);
-
-            if (cmd instanceof duke.command.ExitCommand) {
-                return new Response<String>(ResponseType.QUIT, message);
-            } else if (cmd instanceof duke.command.ListTasksCommand) {
-                return new Response<TaskList>(ResponseType.LIST, tasks);
-            } else {
-                return new Response<String>(ResponseType.STANDARD, message);
-            }
+            Response response = cmd.execute(tasks, storage);
+            return response;
         } catch (DukeException e) {
             return new Response(ResponseType.ERROR, e.getMessage());
         }

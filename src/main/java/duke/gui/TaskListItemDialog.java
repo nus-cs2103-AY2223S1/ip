@@ -10,8 +10,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javax.annotation.Nullable;
 
 import java.io.IOException;
+
+import static java.util.Objects.nonNull;
 
 public class TaskListItemDialog extends HBox {
     @FXML
@@ -41,7 +44,7 @@ public class TaskListItemDialog extends HBox {
     private Image calendar = new Image(this.getClass().getResourceAsStream("/images/calendar icon.png"));
 
     private TaskListItemDialog(TaskType taskType, String description, boolean completed,
-                               Task task, Integer taskNumber) {
+                               Task task, @Nullable Integer taskNumber) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/TaskListItem.fxml"));
             fxmlLoader.setController(this);
@@ -58,6 +61,7 @@ public class TaskListItemDialog extends HBox {
             dateSection.setVisible(false);
             dateSection.setMinHeight(0);
             dateSection.setMaxHeight(0);
+            taskDetails.setTranslateY(5);
             break;
         case DEADLINE:
             Deadline dl = (Deadline) task;
@@ -90,13 +94,25 @@ public class TaskListItemDialog extends HBox {
             taskStatus.setFill(Color.rgb(255, 200, 61));
         }
 
-        this.taskNumber.setText(taskNumber + ". ");
+        if (nonNull(taskNumber)) {
+            this.taskNumber.setText(taskNumber + ". ");
+            this.taskNumber.widthProperty().addListener((obs, oldVal, newVal) -> {
+                dateSection.setTranslateX(newVal.doubleValue() + 10);
+            });
+        } else {
+            this.taskNumber.setVisible(false);
+            this.taskDescription.setTranslateX(-20);
+        }
+
         taskDescription.setText(description);
         taskDescription.setMinHeight(Region.USE_PREF_SIZE);
-        root.setMinHeight(Region.USE_PREF_SIZE);
+        taskDetails.heightProperty().addListener((obs, oldVal, newVal) -> {
+            taskStatus.setHeight(newVal.intValue());
+            root.setMinHeight(10 + newVal.intValue());
+        });
     }
 
-    public static TaskListItemDialog getTaskListItemDialog(Task task, Integer taskNumber) {
+    public static TaskListItemDialog getTaskListItemDialog(Task task, @Nullable Integer taskNumber) {
         String description = task.getDescription();
         boolean completed = task.isCompleted();
 

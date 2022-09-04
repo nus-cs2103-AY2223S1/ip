@@ -60,26 +60,34 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         Response response = duke.reply(input);
+        ResponseType responseType = response.getResponseType();
 
-        if (response.getResponseType().equals(ResponseType.LIST)) {
-            TaskList tasklist = (TaskList) response.getResponseMessage();
-            LinkedList<HBox> tasklistItemDialogs;
-            String reply = String.format("bobo found a list of %d tasks!", tasklist.size());
-            tasklistItemDialogs = tasklist.transform((Task t, Integer i) ->
-                    TaskListItemDialog.getTaskListItemDialog(t, i)
-            );
-            tasklistItemDialogs.push(DialogBox.getDukeDialog(reply, studiousDukeImage));
+        if (responseType.equals(ResponseType.LIST) || responseType.equals(ResponseType.TASK)) {
+            LinkedList<HBox> tasklistItemDialogs = new LinkedList<>();
+            String replyMessage = response.getResponseMessage();
+
+            if (responseType.equals(ResponseType.LIST)) {
+                TaskList tasklist = (TaskList) response.getResponseObject();
+                tasklistItemDialogs = tasklist.transform((Task t, Integer i) ->
+                        TaskListItemDialog.getTaskListItemDialog(t, i)
+                );
+            } else {
+                Task task = (Task) response.getResponseObject();
+                tasklistItemDialogs.push(TaskListItemDialog.getTaskListItemDialog(task, null));
+            }
+
+            tasklistItemDialogs.push(DialogBox.getDukeDialog(replyMessage, studiousDukeImage));
             tasklistItemDialogs.push(DialogBox.getUserDialog(input, userImage));
             dialogContainer.getChildren().addAll(tasklistItemDialogs);
-        } else if (response.getResponseType().equals(ResponseType.ERROR)) {
+        } else if (responseType.equals(ResponseType.ERROR)) {
             // todo
-            String replyMessage = (String) response.getResponseMessage();
+            String replyMessage = response.getResponseMessage();
             dialogContainer.getChildren().addAll(
                     DialogBox.getUserDialog(input, userImage),
                     DialogBox.getDukeDialog(replyMessage, dukeImage)
             );
         } else {
-            String replyMessage = (String) response.getResponseMessage();
+            String replyMessage = response.getResponseMessage();
             dialogContainer.getChildren().addAll(
                     DialogBox.getUserDialog(input, userImage),
                     DialogBox.getDukeDialog(replyMessage, dukeImage)
