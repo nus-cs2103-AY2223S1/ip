@@ -1,32 +1,53 @@
 package duke.task;
 
 /**
- * Defines <Code>Task</Code> class.
+ * Defines {@code Task}  class.
  */
 public abstract class Task {
     /** Description of task. */
     protected String description;
 
-    /** <Code>Boolean</Code> object representing whether task is done. */
+    /** {@code Boolean}  object representing whether task is done. */
     protected boolean isDone;
 
+    /** {@code int}  attribute representing task's priority. */
+    protected Level priority;
+
     /**
-     * Constructor for <Code>Task</Code>.
+     * Constructor for {@code Task}.
+     * {@code isDone} defaults to {@code false} and {@code priority}
+     * defaults to {@code LOW}.
      * @param description Description of task.
      */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        this.priority = Level.LOW;
     }
 
     /**
-     * Constructor for <Code>Task</Code> with <Code>isDone</Code> known.
+     * Constructor for {@code Task} with only {@code isDone} known.
+     * {@code priority} defaults to {@code LOW}.
      * @param description Description of task.
      * @param isDone      Whether task is done.
      */
     public Task(String description, Boolean isDone) {
         this.description = description;
         this.isDone = isDone;
+        this.priority = Level.LOW;
+    }
+
+    /**
+     * Constructor for {@code Task} with both {@code isDone} and
+     * {@code priority} known.
+     * @param isDone      Whether task is done.
+     * @param description Description of task.
+     * @param priority    Priority level of task.
+     */
+    public Task(String description, Boolean isDone, Level priority) {
+        this.description = description;
+        this.isDone = false;
+        this.priority = priority;
     }
 
     /**
@@ -38,22 +59,22 @@ public abstract class Task {
     }
 
     /**
-     * Marks <Code>Task</Code> as done.
+     * Marks {@code Task}  as done.
      */
     public void markDone() {
         this.isDone = true;
     }
 
     /**
-     * Marks <Code>Task</Code> as undone.
+     * Marks {@code Task}  as undone.
      */
     public void markUnDone() {
         this.isDone = false;
     }
 
     /**
-     * Overrides <Code>toString</Code> method to return status
-     * and description of <Code>Task</Code>.
+     * Overrides {@code toString}  method to return status
+     * and description of {@code Task} .
      * @return [[TASK STATUS]] [TASK DESCRIPTION]
      */
     @Override
@@ -62,8 +83,8 @@ public abstract class Task {
     }
 
     /**
-     * Produces <Code>String</Code> with "|" delimiters for storing task's data
-     * into a text file.
+     * Produces {@code String}  with "|" delimiters for storing
+     * task's data into a text file.
      * @return "deadline|[COMPLETION STATUS]|[TASK DESCRIPTION]|[TASK DEADLINE]
      */
     public String toFileFormat() {
@@ -71,9 +92,9 @@ public abstract class Task {
     }
 
     /**
-     * Returns whether <Code>Task</Code>'s description contains given word.
+     * Returns whether {@code Task} 's description contains given word.
      * @param word Word to search description for.
-     * @return     <Code>Boolean</Code> value of whether <Code>Task</Code>'s
+     * @return     {@code Boolean}  value of whether {@code Task} 's
      *             description contains given word.
      */
     public Boolean hasWord(String word) {
