@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * This class handles the manipulation of all tasks, such as marking,
@@ -182,7 +183,7 @@ public class TaskList {
 
     /**
      * Returns a single String with the string representation of all tasks
-     * that contains the keyword provided by the user.
+     * that strictly contains the keyword provided by the user.
      *
      * @param parts sliced String input.
      * @return String output of all tasks found with the given keyword.
@@ -192,17 +193,17 @@ public class TaskList {
         if (parts.length == 1) {
             throw new DukeException("Please enter a keyword (i.e. find book).");
         }
-        return printMatchingTasks(parts);
+        return printStrictMatchingTasks(parts);
     }
 
     /**
-     * Returns the String output of all tasks found to be matching with the given input.
+     * Returns the String output of all tasks found to be strictly matching with the given input.
      *
      * @param parts sliced String input.
      * @return String output of all tasks found with the given keyword.
      */
-    private String printMatchingTasks(String[] parts) {
-        ArrayList<Task> match = fillWithMatchingTasks(parts);
+    private String printStrictMatchingTasks(String[] parts) {
+        ArrayList<Task> match = fillWithStrictMatchingTasks(parts);
         String output = "Here are the matching tasks in your list:\n";
 
         if (match.size() == 0) {
@@ -216,12 +217,64 @@ public class TaskList {
     }
 
     /**
-     * Fills an ArrayList with all tasks founds to be matching with the given input.
+     * Fills an ArrayList with all tasks founds to be strictly matching with the given input.
      *
      * @param parts sliced String input.
      * @return ArrayList with all matching tasks.
      */
-    private ArrayList<Task> fillWithMatchingTasks(String[] parts) {
+    private ArrayList<Task> fillWithStrictMatchingTasks(String[] parts) {
+        ArrayList<Task> match = new ArrayList<>();
+        inputList.forEach(task -> {
+            String[] words = task.getDescription().split(" ", -1);
+            if (Arrays.asList(words).contains(parts[1])) {
+                match.add(task);
+            }
+        });
+        return match;
+    }
+
+    /**
+     * Returns a single String with the string representation of all tasks
+     * that partially contains the keyword provided by the user.
+     *
+     * @param parts sliced String input.
+     * @return String output of all tasks found with the given keyword.
+     * @throws DukeException thrown if no keyword is given.
+     */
+    public String findPartialMatchingTasks(String[] parts) throws DukeException {
+        if (parts.length == 1) {
+            throw new DukeException("Please enter a keyword (i.e. find book).");
+        }
+        return printPartialMatchingTasks(parts);
+    }
+
+    /**
+     * Returns the String output of all tasks found to be partially matching with the given input.
+     *
+     * @param parts sliced String input.
+     * @return String output of all tasks found with the given keyword.
+     */
+    private String printPartialMatchingTasks(String[] parts) {
+        ArrayList<Task> match = fillWithPartialMatchingTasks(parts);
+        String output = "Here are the matching tasks in your list:\n";
+
+        if (match.size() == 0) {
+            return output += "You do not have any tasks matching that keyword.";
+        }
+        for (int i = 0; i < match.size(); i++) {
+            String s = String.format("%s. %s\n", i + 1, match.get(i).toString());
+            output += s;
+        }
+        return output;
+    }
+
+    /**
+     * Fills an ArrayList with all tasks founds to be partially matching with the given input.
+     *
+     * @param parts sliced String input.
+     * @return ArrayList with all matching tasks.
+     */
+    private ArrayList<Task> fillWithPartialMatchingTasks(String[] parts) {
         ArrayList<Task> match = new ArrayList<>();
         inputList.forEach(task -> {
             if (task.getDescription().contains(parts[1])) {

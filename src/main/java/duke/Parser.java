@@ -43,6 +43,8 @@ public class Parser {
             return tasks.deleteTask(parts);
         } else if (prefix.equals("find")) {
             return tasks.findTasks(parts);
+        } else if (prefix.equals("match")) {
+            return tasks.findPartialMatchingTasks(parts);
         } else {
             throw new DukeException("I'm sorry, but I don't know what that means :(");
         }
