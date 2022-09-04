@@ -50,7 +50,8 @@ public class Interact {
         } else {
             throw new DukeException("bad input");
         }
-        return "";
+        assert false;
+        return null;
     }
 
     /**

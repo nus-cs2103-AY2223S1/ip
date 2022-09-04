@@ -1,3 +1,6 @@
-D,true,say hi ,2022-10-10
 T,true,nothing
 T,true,send
+T,true,nothing
+D,false,dddd ,2022-12-12
+E,true,dhfbhwdfb , hbvjd
+D,true,i gota clock tick ticking away ,2022-10-10
