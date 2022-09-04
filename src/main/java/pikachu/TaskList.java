@@ -5,6 +5,10 @@ import pikachu.task.Task;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents the task list to store all tasks. A <code>TaskList</code> object corresponds to
+ * a string arraylist containing all tasks
+ */
 public class TaskList {
     public List<Task> taskList;
     
