@@ -8,10 +8,7 @@ import Duke.Tasks.Event;
 import Duke.Tasks.TaskList;
 import Duke.Tasks.ToDo;
 import Duke.Tasks.Deadline;
-import javafx.concurrent.Task;
 
-
-import javax.xml.stream.events.Comment;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -50,7 +47,6 @@ public class CLIParser {
 
         switch (commandType) {
             case "todo" :
-                System.out.println("todo");
                 return parseTodoCommand(commandElse, userTasks);
             case "deadline" :
                 return parseDeadlineCommand(commandElse, userTasks);
@@ -63,7 +59,7 @@ public class CLIParser {
             case "done":
                 return parseMarkDoneCommand(commandElse, userTasks);
             default:
-                System.out.println("all");
+                System.out.println("CLIParser .. default ...");
 
         }
         throw new InvalidCommandException();

@@ -19,8 +19,6 @@ public class AddTaskCommand extends UserCommand {
 
     @Override
     public String execute() {
-        System.out.println("Executing...");
-        System.out.println(this.newTask);
         tasks.addTask(this.newTask);
         return String.format("Done Added");
     }
