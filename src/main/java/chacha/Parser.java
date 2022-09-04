@@ -1,5 +1,9 @@
 package chacha;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import chacha.commands.AddCommand;
 import chacha.commands.Command;
 import chacha.commands.DeleteCommand;
@@ -27,27 +31,34 @@ public class Parser {
                 }
             case "deadline":
                 try {
-                    String description = userInput.substring(0, userInput.indexOf("/"));
+                    String description = userInput.substring(0, userInput.indexOf("/") - 1);
                     description = description.substring(userInput.indexOf("deadline ") + 9);
                     description.trim();   
                     String date = userInput.substring(userInput.indexOf("/by ") + 4);
                     date.trim();
-                    
-                    Deadline deadline = new Deadline(description, date);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                    LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
+                    Deadline deadline = new Deadline(description, dateTime);
                     return new AddCommand(deadline);
-                    
+                } catch(DateTimeParseException e) {
+                    throw new ChachaException("Date should be in this format: yyyy-MM-dd HH:mm");
                 } catch(Exception e) {
                     throw new ChachaException("The description of a deadline cannot be empty.\n" + "Please enter again with a description.");
                 }
             case "event":
                 try {
-                    String description = userInput.substring(0, userInput.indexOf("/"));
+                    String description = userInput.substring(0, userInput.indexOf("/") - 1);
                     description = description.substring(userInput.indexOf("event ") + 6);
+                    System.out.println(description + "here");
                     description.trim();
-                    String range = userInput.substring(userInput.indexOf("/at ") + 4);
-                    range.trim();
-                    Event event = new Event(description, range);
+                    String date = userInput.substring(userInput.indexOf("/at ") + 4);
+                    date.trim();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                    LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
+                    Event event = new Event(description, dateTime);
                     return new AddCommand(event);
+                } catch(DateTimeParseException e) {
+                    throw new ChachaException("Date should be in this format: yyyy-MM-dd HH:mm");
                 } catch(Exception e) {
                     throw new ChachaException("The description of an event cannot be empty.\n" + "Please enter again with a description."); 
                 }

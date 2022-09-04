@@ -1,6 +1,5 @@
 package chacha;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import chacha.tasks.Task;
@@ -8,8 +7,6 @@ import chacha.tasks.Task;
 public class TaskList {
     
         private List<Task> tasks;
-        private HashMap<String, List<Task>> descriptionToTaskMap;
-    
         
         public TaskList() {
             this.tasks = new ArrayList<>();

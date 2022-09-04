@@ -1,15 +1,18 @@
 package chacha.tasks;
+
+import java.time.LocalDateTime;
+
 public class Task {
     private String description;
     private boolean isDone;
     private String type;
-    private String date;
+    private LocalDateTime date;
 
     public Task(String description) {
         this.description = description;
         this.isDone = false;
         this.type = "";
-        this.date = "";
+        this.date = null;
     }
 
     public Task() {
@@ -35,7 +38,7 @@ public class Task {
         return type;
     }
 
-    public String getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
      

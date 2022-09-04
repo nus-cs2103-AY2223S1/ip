@@ -8,6 +8,9 @@ public class Ui {
     public String readInput() {
         Scanner input = new Scanner(System.in);
         String s = input.nextLine();
+        if (s == "exit") {
+            input.close();
+        }
         return s;
     }
 

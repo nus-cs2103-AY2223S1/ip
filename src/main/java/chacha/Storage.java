@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import chacha.tasks.Deadline;
@@ -50,7 +52,16 @@ public class Storage {
     }
 
     private String taskToText(Task task) {
-        return task.getType() + " , " + task.getStatusIcon() + " , " + task.getDescription() + " , " + task.getDate();
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+        String date;
+        if (task.getDate() != null) {
+            date = task.getDate().format(formatter);
+            date = date.replace("T", " ");
+            date = date.substring(0, 16);
+        } else {
+            date = "no date";
+        }
+        return task.getType() + " , " + task.getStatusIcon() + " , " + task.getDescription() + " , " + date;
     }
 
     private Task textToTask(String text) {
@@ -59,16 +70,24 @@ public class Storage {
         String isDone = textArray[1];
         String description = textArray[2];
         String date = textArray[3];
+        LocalDateTime dateTime = null;
+        System.out.println(date + "date");
+        if (!date.contains("no date")) {
+            System.out.println("entered this if block");
+            
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            dateTime = LocalDateTime.parse(date, formatter);
+        }  
         Task task = new Task();
         switch (type) {
             case "T":
                 task = new Todo(description);
                 break;   
             case "D":
-                task = new Deadline(description, date);
+                task = new Deadline(description, dateTime);
                 break;
             case "E":
-                task = new Event(description, date);
+                task = new Event(description, dateTime);
                 break;   
             default:
                 break;

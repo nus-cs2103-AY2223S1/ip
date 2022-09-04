@@ -1,16 +1,15 @@
 package chacha.tasks;
-import java.text.DateFormat;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 
 public class Event extends Task {
     private String description;
-    private String date;
+    private LocalDateTime date;
     private boolean isDone;
     private String type;
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
 
-    public Event(String description, String date) {
+    public Event(String description, LocalDateTime date) {
         this.description = description;
         this.date = date;
         this.type = "E";
@@ -36,13 +35,13 @@ public class Event extends Task {
         return type;
     }
 
-    public String getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
     @Override
     public String toString() {
-        return "[" + type + "]" + "[" + getStatusIcon() + "] " + description + " (at: " + date + ")";
+        return "[" + type + "]" + "[" + getStatusIcon() + "] " + description + " (at: " + date.format(formatter) + ")";
     }
      
 }
