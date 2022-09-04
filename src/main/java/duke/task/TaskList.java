@@ -73,7 +73,8 @@ public class TaskList {
             if (numUncompletedTasks == 0) {
                 return String.format("yay, you checked everything off your list! ヽ(˘◡˘)ノ", numTasks);
             } else {
-                return String.format("you have %d uncompleted tasks- it's time to get to work! *（･v･)つ *", numTasks);
+                return String.format("you have %d uncompleted tasks- it's time to get to work! *（･v･)つ *",
+                        numUncompletedTasks);
             }
         }
     }
