@@ -17,10 +17,10 @@ public class UnmarkCommand extends TaskListCommand {
     void specialisedFunction(TaskList tasks, Ui ui, Storage storage, int taskIndex) {
         boolean isUnchecked = tasks.fetchTask(taskIndex).uncheck();
         if (isUnchecked) {
-            ui.showUnmarked();
+            ui.appendMessage(ui.getUnmarkedTaskMessage());
         } else {
-            ui.showAlreadyUnmarked();
+            ui.appendMessage(ui.getAlreadyUnmarkedTaskMessage());
         }
-        System.out.println(tasks.fetchTask(taskIndex));
+        ui.appendMessage(tasks.fetchTask(taskIndex).toString());
     }
 }

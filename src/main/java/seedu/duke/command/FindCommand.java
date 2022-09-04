@@ -35,15 +35,15 @@ public class FindCommand extends Command {
         for (int i = 1; i <= tasks.numOfTasks(); i++) {
             if (tasks.fetchTask(i).toString().contains(keyWord)) {
                 if (noTaskPrinted) {
-                    ui.showSearchResult();
+                    ui.appendMessage(ui.getSearchTaskMessage());
                 }
                 noTaskPrinted = false;
-                System.out.println(String.format("%d. %s", searchIndex, tasks.fetchTask(i).toString()));
+                ui.appendMessage(String.format("%d. %s", searchIndex, tasks.fetchTask(i).toString()));
                 searchIndex++;
             }
         }
         if (noTaskPrinted) {
-            ui.showNoSearchResult();
+            ui.appendMessage(ui.getNoMatchingTaskMessage());
         }
     }
 }

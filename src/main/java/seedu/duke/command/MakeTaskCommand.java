@@ -26,8 +26,8 @@ abstract class MakeTaskCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task newTask = makeNewTask(detail, ui);
         tasks.addTask(newTask);
-        ui.showNewTask();
-        System.out.println(newTask);
+        ui.appendMessage(ui.getNewTaskMessage());
+        ui.appendMessage(newTask.toString());
         storage.updateSave(tasks);
     }
 

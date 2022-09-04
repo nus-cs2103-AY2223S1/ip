@@ -11,6 +11,7 @@ import java.util.Scanner;
  */
 public class Ui {
     private final Scanner cmdReader;
+    private String messageOutputs = "";
 
     /**
      * Ui initializes a Scanner to take user inputs.
@@ -28,67 +29,77 @@ public class Ui {
         return cmdReader.nextLine();
     }
 
+    public void appendMessage(String message) {
+        messageOutputs += message + "\n";
+    }
+
+    public String returnMessages() {
+        String output = messageOutputs.substring(0, messageOutputs.length() - 2);
+        messageOutputs = "";
+        return output;
+    }
+
     /**
      * Prints welcome message when initializing Duke.
      */
-    public void showWelcome() {
-        System.out.println("Hello! I'm duke.Duke\nWhat can I do for you?");
+    public String getWelcomeMessage() {
+        return "Hello! I'm duke.Duke\nWhat can I do for you?";
     }
 
     /**
      * Prints line breaks.
      */
-    public void showLine() {
-        System.out.println("_".repeat(100));
+    public String getLineBreak() {
+        return "_".repeat(100);
     }
 
     /**
      * Prints exit message when user closes Duke.
      */
-    public void showExit() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String getExitMessage() {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
      * Message printed when there are no task in task-list.
      */
-    public void showNoTask() {
-        System.out.println("It appears you have no tasks right now,\nwould you like to add some?");
+    public String getNoTaskMessage() {
+        return "It appears you have no tasks right now,\nwould you like to add some?";
     }
 
     /**
      * Message printed when adding a new task to task-list.
      */
-    public void showNewTask() {
-        System.out.println("Got it. I've added this task:");
+    public String getNewTaskMessage() {
+        return "Got it. I've added this task:";
     }
 
     /**
      * Message printed when marking an unmarked task.
      */
-    public void showMarked() {
-        System.out.println("Nice! I've marked this task as done:");
+    public String getMarkedTaskMessage() {
+        return "Nice! I've marked this task as done:";
     }
 
     /**
      * Message printed when unmarking a marked task.
      */
-    public void showUnmarked() {
-        System.out.println("OK, I've marked this task as not done yet:");
+    public String getUnmarkedTaskMessage() {
+        return "OK, I've marked this task as not done yet:";
     }
 
     /**
      * Message printed when marking a marked task.
      */
-    public void showAlreadyMarked() {
-        System.out.println("This task is already marked:");
+    public String getAlreadyMarkedTaskMessage() {
+        return "This task is already marked:";
     }
 
     /**
      * Message printed when unmarking an unmarked task.
      */
-    public void showAlreadyUnmarked() {
-        System.out.println("This task is already unmarked:");
+    public String getAlreadyUnmarkedTaskMessage() {
+        return "This task is already unmarked:";
     }
 
     /**
@@ -96,22 +107,22 @@ public class Ui {
      *
      * @param task  Task to be removed
      */
-    public void showRemoveTask(Task task) {
-        System.out.println("Noted. I've removed this task:" + task.toString());
+    public String getRemovedTaskMessage(Task task) {
+        return "Noted. I've removed this task:" + task.toString();
     }
 
     /**
      * Message printed when matching tasks are found.
      */
-    public void showSearchResult() {
-        System.out.println("Here are the matching tasks in your list:");
+    public String getSearchTaskMessage() {
+        return "Here are the matching tasks in your list:";
     }
 
     /**
      * Message printed when no matching task found.
      */
-    public void showNoSearchResult() {
-        System.out.println("Sorry! I did not find any matching task.");
+    public String getNoMatchingTaskMessage() {
+        return "Sorry! I did not find any matching task.";
     }
 
     /**
@@ -139,7 +150,7 @@ public class Ui {
      * @return Invalid input error message
      */
     public String getNoIndexProvidedErrorMessage() {
-        return "Please provide the index of he relevant task after the\ncommand.";
+        return "Please provide the index of he relevant task after the command.";
     }
 
     /**
@@ -149,7 +160,7 @@ public class Ui {
      * @return Invalid input error message
      */
     public String getTaskListIndexErrorMessage() {
-        return "It appears there is no such task,\nPlease try again";
+        return "It appears there is no such task. Please try again";
     }
 
     /**
@@ -169,7 +180,7 @@ public class Ui {
      * @return Invalid input error message
      */
     public String getNoTimeErrorMessage() {
-        return "Please provide the relevant time for this type of task,\n"
+        return "Please provide the relevant time for this type of task,"
                 + "by typing \"/\" followed by the time.";
     }
 
