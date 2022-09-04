@@ -38,7 +38,10 @@ public class TaskList {
      * @throws DukeException if the add command is invalid.
      */
     public String addTask(String[] command, Storage storage) throws DukeException {
+        assert command.length > 0 : "String array command must not be empty.";
         String taskType = command[0];
+        assert taskType.equals("todo") || taskType.equals("deadline") || taskType.equals("event")
+                : "Add command must be valid, ie. either todo, deadline or event.";
         if (taskType.equals("todo")) {
             return addToDo(command, storage);
         } else if (taskType.equals("deadline")) {
@@ -59,18 +62,21 @@ public class TaskList {
      * @throws DukeException if the todo command is invalid.
      */
     public String addToDo(String[] command, Storage storage) throws DukeException {
+        assert command.length > 0 : "String array command must not be empty.";
         if (command.length == 1) {
             throw new DukeException("Please specify what task you wish to do:\n"
                     + "todo <description>");
         }
+        assert command[0].equals("todo") : "command must be todo";
+        assert command.length == 2 : "command must consist of 'todo' and task description only.";
         StringBuilder result = new StringBuilder();
-        result.append("Duke: Got it! Duke has added this task:");
+        result.append("Got it! Duke has added this task:\n");
         String description = command[1];
         Task newTask = new ToDo(description);
         result.append(newTask);
         this.taskList.add(newTask);
         int len = this.taskList.size();
-        String line = String.format("Now you have %d task%s in the list.",
+        String line = String.format("\nNow you have %d task%s in the list.",
                 len, len != 1 ? "s" : "");
         result.append(line);
         storage.addTaskToSave(newTask);
@@ -86,23 +92,26 @@ public class TaskList {
      * @throws DukeException if the deadline command is invalid.
      */
     public String addDeadline(String[] command, Storage storage) throws DukeException {
+        assert command.length > 0 : "String array command must not be empty.";
         if (command.length == 1) {
             throw new DukeException("Please specify what task you wish to do:\n"
                     + "deadline <description> /by <date/time>");
         }
+        assert command[0].equals("deadline") : "command must be deadline";
         String[] deadline = command[1].split(" /by ", 2);
         if (deadline.length == 1) {
             throw new DukeException("Please specify the description and the date/time of this deadline:\n"
                     + "deadline <description> /by <date/time>");
         }
+        assert deadline.length == 2 : "command must consist of 'deadline', task description and date/time.";
         try {
             StringBuilder result = new StringBuilder();
-            result.append("Duke: Got it! Duke has added this task:");
+            result.append("Got it! Duke has added this task:\n");
             Task newTask = new Deadline(deadline[0], deadline[1]);
             result.append(newTask);
             this.taskList.add(newTask);
             int len = this.taskList.size();
-            String line = String.format("Now you have %d task%s in the list.",
+            String line = String.format("\nNow you have %d task%s in the list.",
                     len, len != 1 ? "s" : "");
             result.append(line);
             storage.addTaskToSave(newTask);
@@ -122,23 +131,26 @@ public class TaskList {
      * @throws DukeException if the event command is invalid.
      */
     public String addEvent(String[] command, Storage storage) throws DukeException {
+        assert command.length > 0 : "String array command must not be empty.";
         if (command.length == 1) {
             throw new DukeException("Please specify what task you wish to do:\n"
                     + "event <description> /at <date/time>");
         }
+        assert command[0].equals("event") : "command must be event";
         String[] event = command[1].split(" /at ", 2);
         if (event.length == 1) {
             throw new DukeException("Please specify the description and the date/time of this event:\n"
                     + "event <description> /at <date/time>");
         }
+        assert event.length == 2 : "command must consist of 'event', task description and date/time.";
         try {
             StringBuilder result = new StringBuilder();
-            result.append("Got it! Duke has added this task:");
+            result.append("Got it! Duke has added this task:\n");
             Task newTask = new Event(event[0], event[1]);
             result.append(newTask);
             this.taskList.add(newTask);
             int len = this.taskList.size();
-            String line = String.format("Now you have %d task%s in the list.",
+            String line = String.format("\nNow you have %d task%s in the list.",
                     len, len != 1 ? "s" : "");
             result.append(line);
             storage.addTaskToSave(newTask);
@@ -160,6 +172,7 @@ public class TaskList {
         if (isEmpty()) {
             return result.toString() + "*No tasks! ^_^*";
         }
+        assert this.taskList.size() > 0 : "TaskList should not be empty here.";
         for (int i = 0; i < taskList.size(); i++) {
             String line = String.format("%d. %s\n", i + 1, this.taskList.get(i));
             result.append(line);
@@ -176,10 +189,12 @@ public class TaskList {
      * @throws DukeException if the mark command is invalid.
      */
     public String markTask(String[] command, Storage storage) throws DukeException {
+        assert command.length > 0 : "String array command must not be empty.";
         if (command.length == 1) {
             throw new DukeException("Please specify the task to mark by its id:\n"
                     + "mark <id>");
         }
+        assert command[0].equals("mark") : "command must be mark";
         try {
             int id = Integer.parseInt(command[1]);
             int len = this.taskList.size();
@@ -205,10 +220,12 @@ public class TaskList {
      * @throws DukeException if the unmark command is invalid.
      */
     public String unmarkTask(String[] command, Storage storage) throws DukeException {
+        assert command.length > 0 : "String array command must not be empty.";
         if (command.length == 1) {
             throw new DukeException("Please specify the task to unmark by its id:\n"
                     + "unmark <id>");
         }
+        assert command[0].equals("unmark") : "command must be unmark";
         try {
             int id = Integer.parseInt(command[1]);
             int len = this.taskList.size();
@@ -232,13 +249,18 @@ public class TaskList {
      * @throws DukeException if the delete command is invalid.
      */
     public String deleteTask(String[] command, Storage storage) throws DukeException {
+        assert command.length > 0 : "String array command must not be empty.";
         if (command.length == 1) {
             throw new DukeException("Please specify the task to be deleted by its id:\n"
                     + "delete <id>");
         }
+        assert command[0].equals("delete") : "command must be delete";
         try {
             int id = Integer.parseInt(command[1]);
             int len = this.taskList.size();
+            if (len == 0) {
+                throw new DukeException("Your task list is empty!");
+            }
             if (id <= 0 || id > len) {
                 throw new DukeException("Invalid task id!");
             }
@@ -277,6 +299,7 @@ public class TaskList {
      */
     public void loadFromSave(String line) {
         String[] command = line.split(" \\| ", 3);
+        assert command.length == 3 : "command from save file is not valid.";
         String taskType = command[0];
         String completionStatus = command[1];
         String details = command[2];
@@ -317,10 +340,12 @@ public class TaskList {
      * @throws DukeException if the find command is invalid.
      */
     public String findTask(String[] command) throws DukeException {
+        assert command.length > 0 : "String array command must not be empty.";
         if (command.length == 1) {
             throw new DukeException("Please provide a keyword to search for the task:\n"
                     + "find <keyword>");
         }
+        assert command[0].equals("find") : "command must be find.";
         String keyword = command[1];
         StringBuilder result = new StringBuilder();
         int count = 0;
