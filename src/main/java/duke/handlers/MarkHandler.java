@@ -1,4 +1,5 @@
 package duke.handlers;
+
 import duke.models.Task;
 import duke.models.TaskList;
 
@@ -16,10 +17,12 @@ public class MarkHandler {
         try {
             Task task = taskList.get(taskNo - 1);
             task.setDone();
-            dukePrint("Nice! I've marked this task as done:\n" + "[" + task.getStatusIcon() + "] " + task.getTaskName());
+            dukePrint("Nice! I've marked this task as done:\n"
+                    + "[" + task.getStatusIcon() + "] " + task.getTaskName());
         } catch (IndexOutOfBoundsException e) {
             int taskListSize = taskList.size();
-            dukePrint(String.format("List size is %s. Please enter a valid input.", taskListSize));
+            dukePrint(String.format("List size is %s. Please enter a valid input."
+                    , taskListSize));
         }
     }
 }

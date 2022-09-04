@@ -21,7 +21,8 @@ public class DeadlineHandler {
         String taskDescription = deadline[0];
         String taskDeadline = deadline[1].split(" ", 2)[1];
         taskList.add(new Deadline(taskDescription, taskDeadline));
-        dukePrint("Got it. I've added this task:\n" + taskList.get(taskList.size()-1).toString() +
-                "\nNow you have " + taskList.size() + " tasks in the list.");
+        dukePrint("Got it. I've added this task:\n"
+                + taskList.get(taskList.size()-1).toString()
+                + "\nNow you have " + taskList.size() + " tasks in the list.");
     }
 }

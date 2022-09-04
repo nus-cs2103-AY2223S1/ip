@@ -1,4 +1,4 @@
-package duke.Storage;
+package duke.storage;
 
 import duke.models.Deadline;
 import duke.models.Event;
@@ -12,8 +12,6 @@ import static duke.services.Ui.dukePrint;
 
 public class Storage {
     public static final String FILE_PATH = "./data/duke.txt";
-    File f;
-    String filePath;
 
     /**
      * Saves the list of task in a tasklist into a .txt file as specified by the FILE_PATH.
@@ -38,9 +36,9 @@ public class Storage {
     public TaskList load() {
         try {
             TaskList taskList = new TaskList();
-            File f = new File(FILE_PATH);
-            if (!f.exists()) {
-                f.mkdirs();
+            File file = new File(FILE_PATH);
+            if (!file.exists()) {
+                file.mkdirs();
             }
             BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH));
             String nextLine;
