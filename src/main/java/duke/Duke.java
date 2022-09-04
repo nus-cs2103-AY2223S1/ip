@@ -40,6 +40,8 @@ static final String filePath = "tasks.txt";
     }
 
     protected String getResponse(String input) {
-        return input;
+        String str = Parser.parseCommand(input,this.taskList,this.ui);
+        this.storage.save(this.taskList.getList());
+        return str;
     }
 }
