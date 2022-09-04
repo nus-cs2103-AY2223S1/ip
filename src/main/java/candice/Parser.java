@@ -2,7 +2,7 @@ package candice;
 
 import candice.command.Command;
 import candice.command.CommandType;
-import candice.exception.EmptyTaskNameException;
+import candice.exception.EmptyCommandDescriptionException;
 import candice.exception.EmptyTimingException;
 import candice.exception.InvalidDateException;
 import candice.exception.InvalidFormattingException;
@@ -203,56 +203,60 @@ public class Parser {
      *
      * @param command The command given.
      * @return The corresponding Command object that encapsulates the command given.
-     * @throws EmptyTaskNameException If there was a command with no task name given.
+     * @throws EmptyCommandDescriptionException If there was a command with no task name given.
      * @throws EmptyTimingException If there was no date and time given for a deadline or event task.
      * @throws InvalidDateException If there was a date inputted that does not follow the format or does not exist.
      * @throws InvalidFormattingException If there was a command inputted that did not follow the format.
      * @throws InvalidTimeException If there was a time inputted that was not a 4 digit 24-hour time.
      * @throws UnknownCommandException If a command type was unrecognised.
      */
-    public static Command parse(String command) throws EmptyTaskNameException, EmptyTimingException,
+    public static Command parse(String command) throws EmptyCommandDescriptionException, EmptyTimingException,
             InvalidDateException, InvalidFormattingException, InvalidTimeException, UnknownCommandException {
         String[] commandSplit = command.split(" ", 2);
 
-        String commandType = commandSplit[0];
+        String commandTypeAsString = commandSplit[0];
+        CommandType commandType;
 
+        try {
+            commandType = CommandType.valueOf(commandTypeAsString.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new UnknownCommandException();
+        }
+        
         switch (commandType) {
-        case "bye":
-        case "list":
+        case BYE:
+        case LIST:
             if (commandSplit.length == 2) { // Should only have "bye" or "list"
                 throw new UnknownCommandException();
             } else {
-                return new Command.SingleWordCommand(CommandType.valueOf(commandType.toUpperCase()));
+                return new Command.SingleWordCommand(commandType);
             }
-        case "todo":
+        case TODO:
+        case FIND:
             if (commandSplit.length == 2) {
-                return new Command.NonTimedTaskCommand(commandSplit[1]);
+                return new Command.NonTimedCommand(commandType, commandSplit[1]);
             } else {
-                throw new EmptyTaskNameException(CommandType.TODO);
+                throw new EmptyCommandDescriptionException(commandType);
             }
-        case "mark":
-        case "unmark":
-        case "delete":
+        case MARK:
+        case UNMARK:
+        case DELETE:
             if (commandSplit.length == 2) {
                 try {
                     int taskNumber = Integer.parseInt(commandSplit[1]);
-                    return new Command.NumberedCommand(CommandType.valueOf(commandType.toUpperCase()), taskNumber);
+                    return new Command.NumberedCommand(commandType, taskNumber);
                 } catch (NumberFormatException e) {
                     throw new NumberFormatException("Write properly leh. Your number format is wrong.");
                 }
             } else {
-                throw new EmptyTaskNameException(CommandType.valueOf(commandType.toUpperCase()));
+                throw new EmptyCommandDescriptionException(commandType);
             }
-        case "deadline":
-        case "event":
+        case DEADLINE:
+        case EVENT:
             if (commandSplit.length == 2) {
-                return parseTimedTaskCommand(CommandType.valueOf(commandType.toUpperCase()), commandSplit[1]);
+                return parseTimedTaskCommand(commandType, commandSplit[1]);
             } else {
-                if (commandType.equals("deadline")) {
-                    throw new EmptyTaskNameException(CommandType.DEADLINE);
-                } else {
-                    throw new EmptyTaskNameException(CommandType.EVENT);
-                }
+                throw new EmptyCommandDescriptionException(commandType);
             }
         default:
             throw new UnknownCommandException();

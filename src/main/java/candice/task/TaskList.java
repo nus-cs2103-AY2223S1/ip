@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class TaskList {
     private final Storage storage;
-    private ArrayList<Task> taskArrayList = new ArrayList<>();
+    private final ArrayList<Task> taskArrayList = new ArrayList<>();
 
     public TaskList(Storage storage) {
         this.storage = storage;
@@ -69,7 +69,6 @@ public class TaskList {
             }
         } catch (IOException e) {
             System.out.println(e);
-            this.taskArrayList = new ArrayList<>(); // Creates an empty taskArrayList if there is an error
         }
     }
 
@@ -114,6 +113,31 @@ public class TaskList {
         return selectedTask;
     }
 
+    /**
+     * Returns a String representing all the tasks that contain the keyword in the task name.
+     *
+     * @param taskKeyword The keyword that is inside the name of the tasks.
+     * @return A String containing all the tasks that contain the keyword.
+     */
+    public String findTasks(String taskKeyword) {
+        StringBuilder taskList = new StringBuilder();
+        int taskNumber = 1;
+
+        for (int i = 0; i < this.getLength(); i++) {
+            Task task = this.taskArrayList.get(i);
+            String taskStatus = task.getStatus();
+
+            if (taskStatus.contains(taskKeyword)) {
+                taskList.append(taskNumber).append(".").append(taskStatus).append("\n");
+                taskNumber++;
+            }
+        }
+
+        return taskList.length() != 0
+               ? taskList.substring(0, taskList.length() - 1) // to remove the last "\n"
+               : taskList.toString();
+    }
+
     private void updateStorage() {
         int taskListLength = this.getLength();
         String[] taskDescriptionArray = new String[taskListLength];
@@ -126,11 +150,15 @@ public class TaskList {
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();
+
         for (int i = 0; i < this.getLength(); i++) {
             Task task = this.taskArrayList.get(i);
             String taskNumber = String.valueOf(i + 1);
             output.append(taskNumber).append(".").append(task.getStatus()).append("\n");
         }
-        return output.toString();
+
+        return output.length() != 0
+               ? output.substring(0, output.length() - 1) // to remove the last "\n"
+               : output.toString();
     }
 }

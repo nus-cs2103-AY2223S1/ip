@@ -30,25 +30,27 @@ public abstract class Command {
         public void resolve(TaskList taskList) {
             if (super.commandType == CommandType.LIST) {
                 Ui.printMessageForList(taskList);
-            } else { // Command is "bye"
-                System.out.println("Bye bro. See you soon.");
             }
         }
     }
 
-    public static class NonTimedTaskCommand extends Command { // todo
-        private final String taskName;
+    public static class NonTimedCommand extends Command { // todo
+        private final String commandDescription;
 
-        public NonTimedTaskCommand(String taskName) {
-            super(CommandType.TODO);
-            this.taskName = taskName;
+        public NonTimedCommand(CommandType commandType, String commandDescription) {
+            super(commandType);
+            this.commandDescription = commandDescription;
         }
 
         @Override
         public void resolve(TaskList taskList) {
-            Task newTask = new Task.ToDo(taskName);
-            taskList.addTask(newTask);
-            Ui.printMessageForAddTask(newTask, taskList);
+            if (super.commandType == CommandType.TODO) {
+                Task newTask = new Task.ToDo(commandDescription);
+                taskList.addTask(newTask);
+                Ui.printMessageForAddTask(newTask, taskList);
+            } else { // Command type is find
+                Ui.printMessageForFind(taskList, commandDescription);
+            }
         }
     }
 
