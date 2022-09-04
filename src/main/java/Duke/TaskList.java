@@ -163,4 +163,13 @@ public class TaskList {
         }
         return tasksStrings;
     }
+
+    public boolean isTasksDuplicated(Task task) {
+        for (int i = 0; i < tasks.size(); i++) {
+            if (task.toString().equals(tasks.get(i).toString())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

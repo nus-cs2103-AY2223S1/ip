@@ -1,5 +1,6 @@
 package Command;
 
+import Duke.Constants;
 import Duke.Storage;
 import Duke.TaskList;
 import Duke.Ui;
@@ -39,8 +40,14 @@ public class DeadlineCommand extends Command {
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {
         Deadline deadline = new Deadline(this.desc, this.by);
-        taskList.addTask(deadline);
-        storage.writeFile(taskList.tasksToString());
-        return ui.printAddTask(deadline, taskList.getSize());
+        boolean isDuplicated = taskList.isTasksDuplicated(deadline);
+        if (isDuplicated) {
+            return Constants.ERROR_IF_DUPLICATED;
+        }
+        else {
+            taskList.addTask(deadline);
+            storage.writeFile(taskList.tasksToString());
+            return ui.printAddTask(deadline, taskList.getSize());
+        }
     }
 }

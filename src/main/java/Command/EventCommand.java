@@ -1,5 +1,6 @@
 package Command;
 
+import Duke.Constants;
 import Duke.Storage;
 import Duke.TaskList;
 import Duke.Ui;
@@ -39,8 +40,14 @@ public class EventCommand extends Command {
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {
         Event event = new Event(this.desc, this.at);
-        taskList.addTask(event);
-        storage.writeFile(taskList.tasksToString());
-        return ui.printAddTask(event, taskList.getSize());
+        boolean isDuplicated = taskList.isTasksDuplicated(event);
+        if (isDuplicated) {
+            return Constants.ERROR_IF_DUPLICATED;
+        }
+        else {
+            taskList.addTask(event);
+            storage.writeFile(taskList.tasksToString());
+            return ui.printAddTask(event, taskList.getSize());
+        }
     }
 }

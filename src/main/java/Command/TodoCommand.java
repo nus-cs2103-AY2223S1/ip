@@ -1,5 +1,6 @@
 package Command;
 
+import Duke.Constants;
 import Duke.Storage;
 import Duke.TaskList;
 import Duke.Ui;
@@ -33,8 +34,14 @@ public class TodoCommand extends Command {
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {
         Todo todo = new Todo(this.desc);
-        taskList.addTask(todo);
-        storage.writeFile(taskList.tasksToString());
-        return ui.printAddTask(todo, taskList.getSize());
+        boolean isDuplicated = taskList.isTasksDuplicated(todo);
+        if (isDuplicated) {
+            return Constants.ERROR_IF_DUPLICATED;
+        }
+        else {
+            taskList.addTask(todo);
+            storage.writeFile(taskList.tasksToString());
+            return ui.printAddTask(todo, taskList.getSize());
+        }
     }
 }

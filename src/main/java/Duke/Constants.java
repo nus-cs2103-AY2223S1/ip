@@ -53,4 +53,6 @@ public class Constants {
     public static final String INVALID_DEADLINE_INPUT = "Not a valid input for creating a deadline task";
 
     public static final String INVALID_EVENT_INPUT = "Not a valid input for creating an event task";
+
+    public static final String ERROR_IF_DUPLICATED = "This task has been added before";
 }
