@@ -41,7 +41,7 @@ public abstract class TimedTask extends Task {
 
         @Override
         public String getStorageDescription() {
-            String finishedStatus = super.finished ? "finished" : "unfinished";
+            String finishedStatus = super.isFinished ? "finished" : "unfinished";
 
             if (this.deadlineTime == null) {
                 return "[D], " + finishedStatus + ", " + this.taskName + ", " + this.date
@@ -75,12 +75,12 @@ public abstract class TimedTask extends Task {
 
         @Override
         public String getStorageDescription() {
-            String finishedStatus = super.finished ? "finished" : "unfinished";
+            String finishedStatus = super.isFinished ? "finished" : "unfinished";
             if (this.eventStartTime == null || this.eventEndTime == null) {
-                return "[D], " + finishedStatus + ", " + this.taskName + ", " + this.date
+                return "[E], " + finishedStatus + ", " + this.taskName + ", " + this.date
                         + ", no time given\n";
             } else {
-                return "[D], " + finishedStatus + ", " + this.taskName + ", " + this.date + ", "
+                return "[E], " + finishedStatus + ", " + this.taskName + ", " + this.date + ", "
                         + this.eventStartTime + ", " + this.eventEndTime + "\n";
             }
         }

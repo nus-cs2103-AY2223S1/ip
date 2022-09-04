@@ -68,8 +68,8 @@ public class Parser {
      * @throws InvalidFormattingException If there was a command inputted that did not follow the format.
      * @throws InvalidTimeException If there was a time inputted that was not a 4 digit 24-hour time.
      */
-    private static Command.TimedTaskCommand parseDateAndTime(CommandType taskType, String taskName, String taskDateAndTime)
-            throws InvalidDateException, InvalidFormattingException, InvalidTimeException {
+    private static Command.TimedTaskCommand parseDateAndTime(CommandType taskType, String taskName,
+            String taskDateAndTime) throws InvalidDateException, InvalidFormattingException, InvalidTimeException {
         String[] splitDateAndTime = taskDateAndTime.split(" ");
 
         if (splitDateAndTime.length > 2) {
