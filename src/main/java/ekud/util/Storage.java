@@ -52,6 +52,7 @@ public class Storage {
             task = new Deadline(parts[2], parts[3]);
             break;
         }
+        assert task != null;
         if (parts[1].equals("1")) {
             task.markAsDone();
         }
