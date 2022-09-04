@@ -2,7 +2,7 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
+import duke.ui.Ui;
 
 /*
  * Encapsulates a command to mark a task as undone.
@@ -27,9 +27,9 @@ public class UnmarkCommand extends Command {
      * @param storage Persistent storage of task list.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         String undoneTask = tasks.markAsUndone(index);
         storage.save(tasks);
-        ui.printString("Task marked as undone:\n" + undoneTask);
+        return "Task marked as undone:\n" + undoneTask;
     }
 }

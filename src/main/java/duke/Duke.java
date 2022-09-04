@@ -2,6 +2,7 @@ package duke;
 
 import duke.command.Command;
 import duke.exception.DukeException;
+import duke.ui.Ui;
 
 /**
  * Represents the Duke application.
@@ -45,6 +46,16 @@ public class Duke {
             } finally {
                 ui.showLine();
             }
+        }
+    }
+
+    public String handleUserInput(String input) {
+        try {
+            Command c = Parser.parse(input);
+            String result = c.execute(tasks, ui, storage);
+            return result;
+        } catch (DukeException e) {
+            return e.getMessage();
         }
     }
 

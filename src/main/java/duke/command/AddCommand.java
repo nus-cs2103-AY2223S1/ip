@@ -3,7 +3,7 @@ package duke.command;
 import java.time.LocalDate;
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
+import duke.ui.Ui;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -39,7 +39,7 @@ public class AddCommand extends Command {
      * @param storage Persistent storage of task list.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         Task task = null;
         switch (taskType) {
         case TODO:
@@ -54,6 +54,6 @@ public class AddCommand extends Command {
         }
         tasks.add(task);
         storage.save(tasks);
-        ui.printString("added:" + task);
+        return "added:" + task;
     }
 }
