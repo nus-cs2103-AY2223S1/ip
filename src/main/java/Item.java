@@ -6,40 +6,18 @@ import java.time.format.DateTimeParseException;
 
 public abstract class Item {
     private boolean isDone = false;
-    private final itemType itemType;
+    private final ItemTypes itemType;
     private boolean isTimed;
     private LocalDateTime time;
-    private final String done = "[X] ";
-    private final String unDone = "[ ] ";
     private final String name;
 
-    public enum itemType {
-        TODO,
-        DEADLINE,
-        EVENT;
-
-        @Override
-        public String toString() {
-            switch(this) {
-            case TODO:
-                return "[T]";
-            case DEADLINE:
-                return "[D]";
-            case EVENT:
-                return "[E]";
-            }
-            return null;
-        }
-    }
-
-
-    public Item(String name, itemType itemType, String time) throws DateTimeParseException {
+    public Item(String name, ItemTypes itemType, String time) throws DateTimeParseException {
         this.name = name;
         this.itemType = itemType;
         this.setLocalDateTime(time);
     }
 
-    public Item(String name, boolean isDone, itemType itemType, String time) throws DateTimeParseException {
+    public Item(String name, boolean isDone, ItemTypes itemType, String time) throws DateTimeParseException {
         this.name = name;
         this.isDone = isDone;
         this.itemType = itemType;
@@ -61,7 +39,7 @@ public abstract class Item {
         return this.getDate().toString() + ((this.getTime() != null) ? " " + this.getTime().toString() : "");
     }
 
-    protected itemType getItemType() {
+    protected ItemTypes getItemType() {
         return this.itemType;
     }
 
@@ -109,6 +87,8 @@ public abstract class Item {
 
     @Override
     public String toString() {
-        return (this.isDone ? this.done : this.unDone) + this.name;
+        String done = "[X] ";
+        String unDone = "[ ] ";
+        return (this.isDone ? done : unDone) + this.name;
     }
 }

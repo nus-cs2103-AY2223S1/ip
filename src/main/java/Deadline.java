@@ -2,12 +2,12 @@ import java.time.format.DateTimeParseException;
 
 public class Deadline extends Item{
     public Deadline(String name, String dueDate) throws DateTimeParseException {
-        super(name, itemType.DEADLINE, dueDate);
+        super(name, ItemTypes.DEADLINE, dueDate);
     }
 
 
     public Deadline(String name, String dueDate, boolean isDone) throws DateTimeParseException {
-        super(name, isDone, itemType.DEADLINE, dueDate);
+        super(name, isDone, ItemTypes.DEADLINE, dueDate);
     }
 
     @Override

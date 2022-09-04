@@ -2,11 +2,11 @@ import java.time.format.DateTimeParseException;
 
 public class Event extends Item{
     public Event(String name, String eventTime) throws DateTimeParseException {
-        super(name, itemType.EVENT, eventTime);
+        super(name, ItemTypes.EVENT, eventTime);
     }
 
     public Event(String name, String eventTime, boolean isDone) throws DateTimeParseException {
-        super(name, isDone, itemType.EVENT, eventTime);
+        super(name, isDone, ItemTypes.EVENT, eventTime);
     }
 
     @Override

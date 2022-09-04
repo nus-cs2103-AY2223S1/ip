@@ -1,17 +1,41 @@
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
-public class Naruto {
+public class TaskList {
     private final ArrayList<Item> storedItems;
     private final Saver saveManager = new Saver();
+    private final UI ui;
 
-    public Naruto() {
+    public TaskList(UI ui) {
         this.storedItems = this.saveManager.loadItems();
+        this.ui = ui;
     }
 
     public void destructor() {
         this.saveManager.saveItems(this.storedItems);
     }
+
+    public String executeTask(Command command) {
+        String[] arguments = command.getArguments();
+        switch (command.getCommand()) {
+            case TODO:
+                return addToDo(command.getArguments()[0]);
+            case DEADLINE:
+                return addDeadline(arguments[0], arguments[1]);
+            case EVENT:
+                return addEvent(arguments[0], arguments[1]);
+            case LIST:
+                return getList();
+            case MARK:
+                return markItem(arguments[0]);
+            case UNMARK:
+                return unMarkItem(arguments[0]);
+            case DELETE:
+                return deleteItem(arguments[0]);
+        }
+        return null;
+    }
+
 
     private String addItem(Item item) {
         this.storedItems.add(item);
@@ -19,20 +43,20 @@ public class Naruto {
                 + "\n    Now we have " + this.storedItems.size() + " tasks in our list Dattebayo!";
     }
 
-    public String addToDo(String item) {
+    private String addToDo(String item) {
         ToDo todo = new ToDo(item);
         return this.addItem(todo);
     }
 
-    public String addDeadline(String item, String due) {
+    private String addDeadline(String item, String due) {
         try {
             Deadline deadline = new Deadline(item, due);
             return this.addItem(deadline);
         } catch (DateTimeParseException e) {
-            return "Error Parsing Date Time Info, Item not added, " +
-                    "please use this format /by YYYY-MM-DD HH:MM (omit time if not necessary)";
+            ui.printErrorMessage("Error Parsing Date Time Info, Item not added, " +
+                    "please use this format /by YYYY-MM-DD HH:MM (omit time if not necessary)");
+            return null;
         }
-
     }
 
     public String addEvent(String item, String at) {
@@ -40,8 +64,9 @@ public class Naruto {
             Event event = new Event(item, at);
             return this.addItem(event);
         } catch (DateTimeParseException e) {
-            return "Error Parsing Date Time Info, Item not added, " +
-                    "please use this format /at YYYY-MM-DD HH:MM (omit time if necessary)";
+            ui.printErrorMessage("Error Parsing Date Time Info, Item not added, " +
+                    "please use this format /at YYYY-MM-DD HH:MM (omit time if necessary)");
+            return null;
         }
     }
 
@@ -56,7 +81,8 @@ public class Naruto {
         return list.toString();
     }
 
-    public String markItem(int index) {
+    public String markItem(String strIndex) {
+        int index = this.string2Int(strIndex) - 1;
         if (index >= this.storedItems.size() || index < 0) {
             return "Whoops it appears you entered an invalid index, there are " + this.storedItems.size()
                     + " items in the list Dattebayo!";
@@ -65,17 +91,21 @@ public class Naruto {
         return "    Alright! I've marked this task as done Dattebayo:\n  " + this.storedItems.get(index).toString();
     }
 
-    public String unMarkItem(int index) {
+    public String unMarkItem(String strIndex) {
+        int index = this.string2Int(strIndex) - 1;
         if (index >= this.storedItems.size() || index < 0) {
-            return "Whoops it appears you entered an invalid index, there are " + this.storedItems.size()
-                    + " items in the list Dattebayo!";
+            ui.printErrorMessage("Whoops it appears you entered an invalid index, there are " + this.storedItems.size()
+                    + " items in the list Dattebayo!");
+            return null;
         }
         this.storedItems.get(index).setUnDone();
         return "    Alright! I've marked this task as not done yet Dattebayo: \n  "
                 + this.storedItems.get(index).toString();
     }
 
-    public String deleteItem(int index) {
+
+    public String deleteItem(String strIndex) {
+        int index = this.string2Int(strIndex) - 1;
         if (index >= this.storedItems.size() || index < 0) {
             return "Whoops it appears you entered an invalid index, there are " + this.storedItems.size()
                     + " items in the list Dattebayo!";
@@ -86,11 +116,13 @@ public class Naruto {
                 + "\n    Now we have " + this.storedItems.size() + " tasks in our list Dattebayo!";
     }
 
-    public String bye() {
-        return "    Looks like this is the end for now, till we meet again! Ja Ne!";
-    }
-
-    public static int string2Int(String input) throws NumberFormatException {
-        return Integer.parseInt(input);
+    private int string2Int(String input) {
+        try{
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            ui.printErrorMessage("Whoops! it seems you your index is not an integer Dattebayo!" +
+                    "\n'delete <Index>'");
+            return -1;
+        }
     }
 }
