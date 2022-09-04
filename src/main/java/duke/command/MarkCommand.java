@@ -40,6 +40,8 @@ public class MarkCommand extends Command {
         if (tasks.getSize() == 0) {
             throw new DukeException("Task list is currently empty.");
         }
+        assert this.num >= 0 : "Index of Task to be marked has to be at least 1.";
+        assert this.num < tasks.getSize() : "Index of Task to be marked has to be less than size of Task list.";
         Task task = tasks.getTask(this.num);
         task.markDone();
         storage.writeFile(tasks);
