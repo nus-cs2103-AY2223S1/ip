@@ -38,6 +38,7 @@ public class Parser {
     public static Command parse(String inputCommand) throws DukeException {
         try {
             String[] splitInputCommand = inputCommand.trim().split(" ", 2);
+            assert splitInputCommand.length > 0 : "Input command cannot be empty!";
             CommandTag commandTag = CommandTag.valueOf(splitInputCommand[0].toUpperCase());
             switch (commandTag) {
             case BYE:
