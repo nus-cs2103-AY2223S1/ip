@@ -51,6 +51,8 @@ public class Storage {
         case "D":
             task = new Deadline(parts[2], parts[3]);
             break;
+        default:
+            throw new EkudException("Invalid txt file - all lines should begin with T,E or D");
         }
         if (parts[1].equals("1")) {
             task.markAsDone();
