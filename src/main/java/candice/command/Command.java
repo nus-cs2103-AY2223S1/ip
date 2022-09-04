@@ -10,7 +10,7 @@ import java.time.LocalTime;
 
 /**
  * Encapsulates all the relevant info of the command inputted after parsing it.
- * Commands can be resolved to execute the respective commands inputted.
+ * Command objects can be resolved to execute the respective commands inputted.
  */
 public abstract class Command {
     /** The type of this Command object */
