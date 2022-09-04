@@ -39,18 +39,20 @@ public class MarkCommand extends Command {
      * @param taskList List of tasks being operated on.
      * @param ui UI that prints corresponding responses.
      * @param storage Storage for saving purposes if applicable.
-     * @throws DukeException If the input index is invalid.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         ArrayList<Task> list = taskList.getTaskArrayList();
         if ((index > 0) && index <= list.size() && (list.get(index - 1) != null)) {
+            assert (index >= 1) : "Given index must be at least 1.";
+            assert (index <= list.size()) : "Index cannot exceed length of list";
+
             Task t = list.get(index - 1);
             taskList.mark(this.index);
             return ui.showMark(t);
         } else {
             String s = "OOPS!!! The index of the task to be marked/unmarked/deleted must be valid/within range.";
-            return s;
+            throw new DukeException(s);
         }
     }
 

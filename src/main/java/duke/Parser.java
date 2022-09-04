@@ -42,6 +42,7 @@ public class Parser {
 
         if (sc.hasNext("mark")) {
             String mark = sc.next();
+            assert (mark.equals("mark"));
             if (!sc.hasNextInt()) {
                 throw new DukeException(NO_INDEX);
             } else {
@@ -51,6 +52,7 @@ public class Parser {
             }
         } else if (sc.hasNext("unmark")) {
             String unmark = sc.next();
+            assert (unmark.equals("unmark"));
             if (!sc.hasNextInt()) {
                 throw new DukeException(NO_INDEX);
             } else {
@@ -108,14 +110,16 @@ public class Parser {
                 sc.close();
                 return new FindCommand(s);
             }
+        } else if (command.equals("bye")) {
+            assert (command.equals("bye"));
+            sc.close();
+            return new ExitCommand();
+        } else if (command.equals("list")) {
+            assert (command.equals("list"));
+            sc.close();
+            return new ShowListCommand();
         } else {
-            if (command.equals("bye")) {
-                return new ExitCommand();
-            } else if (command.equals("list")) {
-                return new ShowListCommand();
-            } else {
-                throw new DukeException(UNKNOWN_COMMAND);
-            }
+            throw new DukeException(UNKNOWN_COMMAND);
         }
     }
 

@@ -2,7 +2,10 @@ package duke;
 
 import java.util.ArrayList;
 
+import duke.task.Deadline;
+import duke.task.Event;
 import duke.task.Task;
+import duke.task.Todo;
 
 /**
  * List of Tasks recorded by the Duke program.
@@ -47,6 +50,11 @@ public class TaskList {
      * @param t New task to be added to the list.
      */
     public void add(Task t) {
+        boolean isTodo = t instanceof Todo;
+        boolean isDeadline = t instanceof Deadline;
+        boolean isEvent = t instanceof Event;
+        assert (isTodo || isDeadline || isEvent) : "Task to be added must be either Todo, Deadline or Event.";
+
         this.taskArrayList.add(t);
     }
 
@@ -56,7 +64,12 @@ public class TaskList {
      * @param i Index of the task in the list to be deleted.
      */
     public void delete(int i) {
-        this.taskArrayList.remove(i - 1);
+        ArrayList<Task> list = this.taskArrayList;
+
+        assert (i >= 1) : "Given index must be at least 1.";
+        assert (i <= list.size()) : "Index cannot exceed length of list";
+
+        list.remove(i - 1);
     }
 
     /**
@@ -66,6 +79,10 @@ public class TaskList {
      */
     public void mark(int i) {
         ArrayList<Task> list = this.taskArrayList;
+
+        assert (i >= 1) : "Given index must be at least 1.";
+        assert (i <= list.size()) : "Index cannot exceed length of list";
+
         Task t = list.get(i - 1);
         t.mark();
     }
@@ -77,6 +94,10 @@ public class TaskList {
      */
     public void unmark(int i) {
         ArrayList<Task> list = this.taskArrayList;
+
+        assert (i >= 1) : "Given index must be at least 1.";
+        assert (i <= list.size()) : "Index cannot exceed length of list";
+
         Task t = list.get(i - 1);
         t.unmark();
     }

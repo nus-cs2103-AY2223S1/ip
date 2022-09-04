@@ -60,12 +60,16 @@ public class Storage {
                 temp.useDelimiter("\\[|\\]\\s*|by:\\s*|at:\\s*|\\s*\\(|\\s*\\)");
 
                 String type = temp.next();
+                boolean isTodo = type.equals("T");
+                boolean isDeadline = type.equals("D");
+                boolean isEvent = type.equals("E");
                 String ignore = temp.next();
                 String marked = temp.next();
                 String description = temp.next();
 
                 switch (type) {
                 case "D": {
+                    assert (isDeadline);
                     String ignore1 = temp.next();
                     String date = temp.next();
                     DateTimeFormatter alt = DateTimeFormatter.ofPattern("MMM d yyyy");
@@ -79,6 +83,7 @@ public class Storage {
                     break;
                 }
                 case "E": {
+                    assert (isEvent);
                     String ignore1 = temp.next();
                     String date = temp.next();
                     DateTimeFormatter alt = DateTimeFormatter.ofPattern("MMM d yyyy");
@@ -93,6 +98,7 @@ public class Storage {
                     break;
                 }
                 case "T": {
+                    assert (isTodo);
                     Todo t = new Todo(description);
                     if (isMarked(marked)) {
                         t.mark();

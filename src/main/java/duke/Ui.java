@@ -2,7 +2,10 @@ package duke;
 
 import java.util.Scanner;
 
+import duke.task.Deadline;
+import duke.task.Event;
 import duke.task.Task;
+import duke.task.Todo;
 
 /**
  * UI interactions from the Duke program.
@@ -36,6 +39,12 @@ public class Ui {
      * @param len New length of the list.
      */
     public String showAdd(Task t, int len) {
+        boolean isTodo = t instanceof Todo;
+        boolean isDeadline = t instanceof Deadline;
+        boolean isEvent = t instanceof Event;
+        assert (isTodo || isDeadline || isEvent) : "Task that was added must be either Todo, Deadline or Event.";
+        assert (len >= 0) : "Length of list after add must be non-negative.";
+
         return "Got it. I've added this task:\n" + t.toString() + "\n" + "Now you have " + len
                 + taskString(len) + "in the list.";
     }
@@ -47,6 +56,12 @@ public class Ui {
      * @param len New length of the list.
      */
     public String showDelete(Task t, int len) {
+        boolean isTodo = t instanceof Todo;
+        boolean isDeadline = t instanceof Deadline;
+        boolean isEvent = t instanceof Event;
+        assert (isTodo || isDeadline || isEvent) : "Task that was deleted must be either Todo, Deadline or Event.";
+        assert (len >= 0) : "Length of list after delete must be non-negative.";
+
         String notice = "Noted. I've removed this task:\n";
         String desc = t.toString() + "\n";
         String tasksLeft = "Now you have " + len + taskString(len) + "in the list.";
@@ -59,6 +74,11 @@ public class Ui {
      * @param t Task that was marked as done.
      */
     public String showMark(Task t) {
+        boolean isTodo = t instanceof Todo;
+        boolean isDeadline = t instanceof Deadline;
+        boolean isEvent = t instanceof Event;
+        assert (isTodo || isDeadline || isEvent) : "Task that was marked must be either Todo, Deadline or Event.";
+
         return "Nice! I've marked this task as done:\n" + t;
     }
 
@@ -68,6 +88,11 @@ public class Ui {
      * @param t Task that was unmarked as done.
      */
     public String showUnmark(Task t) {
+        boolean isTodo = t instanceof Todo;
+        boolean isDeadline = t instanceof Deadline;
+        boolean isEvent = t instanceof Event;
+        assert (isTodo || isDeadline || isEvent) : "Task that was unmarked must be either Todo, Deadline or Event.";
+
         return "OK, I've marked this task as not done yet:\n" + t;
     }
 
@@ -79,6 +104,8 @@ public class Ui {
     }
 
     private String taskString(int len) {
+        assert (len >= 0) : "Length of task list must be non-negative.";
+
         if (len <= 1) {
             return " task ";
         } else {

@@ -54,6 +54,11 @@ public class AddCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+        boolean isTodo = type.equals("todo");
+        boolean isDeadline = type.equals("deadline");
+        boolean isEvent = type.equals("event");
+        assert (isTodo || isDeadline || isEvent) : "Type must be one of the three: todo, deadline, event";
+
         if (this.type.equals("todo")) {
             Todo t = new Todo(description);
             taskList.add(t);
