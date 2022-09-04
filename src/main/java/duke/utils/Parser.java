@@ -199,6 +199,7 @@ public class Parser {
             throw wrongFormat;
         }
         String parsedDate = String.join("-", dateTokens);
+        assert parsedDate.split("-").length == 3;
 
         String unparsedTime = dateTextTokens[1];
         String[] timeTokens = unparsedTime.split("[-:.|]");
@@ -210,9 +211,11 @@ public class Parser {
             throw wrongFormat;
         }
         String parsedTime = String.join(":", timeTokens);
+        assert parsedTime.split(":").length == 2;
 
 
         String parsedDateTime = parsedDate + "T" + parsedTime;
+        assert parsedDateTime.split("T").length == 2;
         try {
             return LocalDateTime.parse(parsedDateTime);
         } catch (DateTimeParseException e) {

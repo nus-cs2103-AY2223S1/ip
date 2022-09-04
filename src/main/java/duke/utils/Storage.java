@@ -65,6 +65,7 @@ public class Storage {
                     break;
                 default:
                     // Something that cannot be recognized
+                    assert false;
                     break;
                 }
             }
@@ -104,6 +105,7 @@ public class Storage {
             }
             fw.close();
         } catch (IOException e) {
+            assert false;
             System.out.println("Something went wrong: " + e.getMessage());
         }
     }
@@ -122,6 +124,7 @@ public class Storage {
             fw.write(strRepresentation);
             fw.close();
         } catch (IOException e) {
+            assert false;
             System.out.println("Something went wrong: " + e.getMessage());
         }
     }
