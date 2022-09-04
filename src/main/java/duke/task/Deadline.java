@@ -9,7 +9,10 @@ import duke.Parser;
  * Tasks with a deadline.
  */
 public class Deadline extends Task {
-    private LocalDate by;
+    private static final String STRING_FORMAT_STORAGE = "D | %s | %s";
+    private static final String STRING_FORMAT_DISPLAY = "[D]%s (by: %s)";
+
+    private final LocalDate by;
 
     /**
      * Constructor for Deadline.
@@ -21,16 +24,6 @@ public class Deadline extends Task {
     Deadline(String description, boolean isComplete, LocalDate by) {
         super(description, isComplete);
         this.by = by;
-    }
-
-    /**
-     * Constructor for Deadline. {@code isComplete} defaults to {@code false}.
-     *
-     * @param description Description of task.
-     * @param by Deadline date.
-     */
-    Deadline(String description, LocalDate by) {
-        this(description, false, by);
     }
 
     /**
@@ -51,7 +44,7 @@ public class Deadline extends Task {
      * @param by Deadline date in String format.
      */
     public Deadline(String description, String by) throws DukeException {
-        this(description, false, Parser.parseDate(by));
+        this(description, Task.INCOMPLETE, Parser.parseDate(by));
     }
 
     /**
@@ -60,7 +53,7 @@ public class Deadline extends Task {
      * @return Deadline of task.
      */
     LocalDate getDate() {
-        return this.by;
+        return by;
     }
 
     /**
@@ -69,16 +62,16 @@ public class Deadline extends Task {
      * @return Deadline of task.
      */
     String getFormattedDate() {
-        return this.getDate().format(DATE_FORMAT);
+        return getDate().format(Task.DATE_FORMAT);
     }
 
     @Override
     public String toStorageFormat() {
-        return "D | " + super.toStorageFormat() + " | " + this.by;
+        return String.format(STRING_FORMAT_STORAGE, super.toStorageFormat(), by);
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.getFormattedDate() + ")";
+        return String.format(STRING_FORMAT_DISPLAY, super.toString(), getFormattedDate());
     }
 }

@@ -13,9 +13,14 @@ import duke.task.Todo;
  */
 public abstract class StorageParser {
     private static final String DELIMITER = "\\s*[|]\\s*";
-    private static final String TODO_INDICATOR = "T";
-    private static final String DEADLINE_INDICATOR = "D";
-    private static final String EVENT_INDICATOR = "E";
+    private static final String INDICATOR_TODO = "T";
+    private static final String INDICATOR_DEADLINE = "D";
+    private static final String INDICATOR_EVENT = "E";
+    private static final String MESSAGE_UNKNOWN_TASK = "Unknown task";
+    private static final String ERROR_MESSAGE_READ_STORAGE_FILE = "Error reading storage file";
+    private static final String ERROR_MESSAGE_TODO_FORMAT_INVALID = "Invalid format read when loading todo!";
+    private static final String ERROR_MESSAGE_DEADLINE_FORMAT_INVALID = "Invalid format read when adding deadline!";
+    private static final String ERROR_MESSAGE_EVENT_FORMAT_INVALID = "Invalid format read when adding event!";
 
     private static Scanner createScanner(String input) {
         Scanner scanner = new Scanner(input);
@@ -35,25 +40,25 @@ public abstract class StorageParser {
             String taskIndicator = scanner.next();
             Task task;
             switch (taskIndicator) {
-            case (TODO_INDICATOR):
+            case (INDICATOR_TODO):
                 task = parseTodo(line);
                 break;
-            case (DEADLINE_INDICATOR):
+            case (INDICATOR_DEADLINE):
                 task = parseDeadline(line);
                 break;
-            case (EVENT_INDICATOR):
+            case (INDICATOR_EVENT):
                 task = parseEvent(line);
                 break;
             default:
-                throw new DukeException("Unknown task");
+                throw new DukeException(MESSAGE_UNKNOWN_TASK);
             }
             return task;
         } catch (NoSuchElementException e) {
-            throw new DukeException("Error reading storage file");
+            throw new DukeException(ERROR_MESSAGE_READ_STORAGE_FILE);
         }
     }
 
-    private static boolean intToBoolean(int number) {
+    private static boolean convertIntToBoolean(int number) {
         return number != 0;
     }
 
@@ -67,11 +72,11 @@ public abstract class StorageParser {
     static Todo parseTodo(String line) throws DukeException {
         try (Scanner lineScanner = createScanner(line)) {
             lineScanner.next();
-            boolean status = intToBoolean(lineScanner.nextInt());
+            boolean status = convertIntToBoolean(lineScanner.nextInt());
             String description = lineScanner.next();
             return new Todo(description, status);
         } catch (NoSuchElementException e) {
-            throw new DukeException("Invalid format read when loading todo!", e);
+            throw new DukeException(ERROR_MESSAGE_TODO_FORMAT_INVALID, e);
         }
     }
 
@@ -85,12 +90,12 @@ public abstract class StorageParser {
     static Deadline parseDeadline(String line) throws DukeException {
         try (Scanner lineScanner = createScanner(line)) {
             lineScanner.next();
-            boolean status = intToBoolean(lineScanner.nextInt());
+            boolean status = convertIntToBoolean(lineScanner.nextInt());
             String description = lineScanner.next();
             String by = lineScanner.next();
             return new Deadline(description, status, by);
         } catch (NoSuchElementException e) {
-            throw new DukeException("Invalid format read when adding deadline!", e);
+            throw new DukeException(ERROR_MESSAGE_DEADLINE_FORMAT_INVALID, e);
         }
     }
 
@@ -104,12 +109,12 @@ public abstract class StorageParser {
     static Event parseEvent(String line) throws DukeException {
         try (Scanner lineScanner = createScanner(line)) {
             lineScanner.next();
-            boolean status = intToBoolean(lineScanner.nextInt());
+            boolean status = convertIntToBoolean(lineScanner.nextInt());
             String description = lineScanner.next();
             String at = lineScanner.next();
             return new Event(description, status, at);
         } catch (NoSuchElementException e) {
-            throw new DukeException("Invalid format read when adding event!", e);
+            throw new DukeException(ERROR_MESSAGE_EVENT_FORMAT_INVALID, e);
         }
     }
 

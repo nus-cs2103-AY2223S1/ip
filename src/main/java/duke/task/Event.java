@@ -9,14 +9,17 @@ import duke.Parser;
  * Event tasks.
  */
 public class Event extends Task {
-    private LocalDate at;
+    private static final String STRING_FORMAT_STORAGE = "E | %s | %s";
+    private static final String STRING_FORMAT_DISPLAY = "[E]%s (at: %s)";
+
+    private final LocalDate at;
 
     /**
      * Constructor for Deadline.
      *
      * @param description Description of task.
      * @param isComplete Whether task is complete.
-     * @param by Event date.
+     * @param at Event date.
      */
     Event(String description, boolean isComplete, LocalDate at) {
         super(description, isComplete);
@@ -24,21 +27,11 @@ public class Event extends Task {
     }
 
     /**
-     * Constructor for Deadline. {@code isComplete} defaults to {@code false}.
-     *
-     * @param description Description of task.
-     * @param by Event date.
-     */
-    Event(String description, LocalDate at) {
-        this(description, false, at);
-    }
-
-    /**
      * Constructor for Deadline.
      *
      * @param description Description of task.
      * @param isComplete Whether task is complete.
-     * @param by Event date in String format.
+     * @param at Event date in String format.
      */
     public Event(String description, boolean isComplete, String at) throws DukeException {
         this(description, isComplete, Parser.parseDate(at));
@@ -48,10 +41,10 @@ public class Event extends Task {
      * Constructor for Deadline. {@code isComplete} defaults to {@code false};
      *
      * @param description Description of task.
-     * @param by Event date in String format.
+     * @param at Event date in String format.
      */
     public Event(String description, String at) throws DukeException {
-        this(description, false, Parser.parseDate(at));
+        this(description, Task.INCOMPLETE, Parser.parseDate(at));
     }
 
     /**
@@ -60,7 +53,7 @@ public class Event extends Task {
      * @return Deadline of task.
      */
     LocalDate getDate() {
-        return this.at;
+        return at;
     }
 
     /**
@@ -69,16 +62,16 @@ public class Event extends Task {
      * @return Deadline of task.
      */
     String getFormattedDate() {
-        return this.getDate().format(DATE_FORMAT);
+        return getDate().format(Task.DATE_FORMAT);
     }
 
     @Override
     public String toStorageFormat() {
-        return "E | " + super.toStorageFormat() + " | " + this.at;
+        return String.format(STRING_FORMAT_STORAGE, super.toStorageFormat(), at);
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (at: " + this.getFormattedDate() + ")";
+        return String.format(STRING_FORMAT_DISPLAY, super.toString(), getFormattedDate());
     }
 }

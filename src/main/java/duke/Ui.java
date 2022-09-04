@@ -12,6 +12,18 @@ import duke.task.Task;
  */
 public class Ui {
     private static final String PADDING = "  ";
+    private static final String MESSAGE_WELCOME = "Hello! I'm Duke.\nWhat can I do for you?";
+    private static final String MESSAGE_TASK_NOT_FOUND = "No task matched your query!";
+    private static final String MESSAGE_TASK_ADDED = "Task added: ";
+    private static final String MESSAGE_TASK_DELETED = "Task deleted: ";
+    private static final String MESSAGE_TASK_UPDATED_COMPLETE = "I have marked this task as done: ";
+    private static final String MESSAGE_TASK_UPDATED_INCOMPLETE = "I have unmarked the completion of this task: ";
+    private static final String MESSAGE_EXIT = "Bye bye!";
+    private static final String MESSAGE_PREFIX_ERROR = "Error! ";
+    private static final String MESSAGE_PREFIX_TASK_FOUND = "Here is what I found:\n";
+    private static final String MESSAGE_PREFIX_UNKNOWN_COMMAND = "Unknown command: ";
+    private static final String STRING_FORMAT_UPDATE_MESSAGE = "%s\nThere are now %d tasks in the list.";
+    private static final String STRING_FORMAT_INDEXED_TASK = "%d. %s";
 
     /**
      * Returns formatted welcome message.
@@ -19,8 +31,7 @@ public class Ui {
      * @return Welcome message.
      */
     public static String getWelcomeMessage() {
-        return "Hello! I'm Duke.\n"
-                + "What can I do for you?";
+        return MESSAGE_WELCOME;
     }
 
     /**
@@ -36,19 +47,19 @@ public class Ui {
     /**
      * Joins texts with new line and returns the result as a String.
      *
-     * @param texts Variable number of texts to display to ther user.
+     * @param texts Variable number of texts to display to the user.
      */
     public static String joinTextsWithNewLine(String... texts) {
-        return String.join("\n", texts);
+        return String.join(System.lineSeparator(), texts);
     }
 
     /**
      * Joins texts with new line and returns the result as a String.
      *
-     * @param texts List of number of texts to display to ther user.
+     * @param texts List of number of texts to display to the user.
      */
     public static String joinTextsWithNewLine(List<String> texts) {
-        return String.join("\n", texts);
+        return String.join(System.lineSeparator(), texts);
     }
 
     /**
@@ -58,7 +69,7 @@ public class Ui {
      * @return Formatted error message.
      */
     public static String getErrorMessage(String errorMessage) {
-        return "Error! " + errorMessage;
+        return MESSAGE_PREFIX_ERROR + errorMessage;
     }
 
     /**
@@ -82,10 +93,9 @@ public class Ui {
      */
     public static String getTaskListSearchMessage(List<Task> tasks) {
         if (tasks.isEmpty()) {
-            return "No task matched your query!";
+            return MESSAGE_TASK_NOT_FOUND;
         }
-        return "Here is what I found:" + "\n"
-                + joinTextsWithNewLine(formatTaskList(tasks));
+        return MESSAGE_PREFIX_TASK_FOUND + joinTextsWithNewLine(formatTaskList(tasks));
     }
 
     /**
@@ -96,7 +106,7 @@ public class Ui {
      * @return Add task message.
      */
     public static String getAddTaskMessage(Task task, int taskListSize) {
-        return getUpdateMessage(task, "Task added: ", taskListSize);
+        return getUpdateMessage(task, MESSAGE_TASK_ADDED, taskListSize);
     }
 
     /**
@@ -107,7 +117,7 @@ public class Ui {
      * @return Delete task message.
      */
     public static String getDeleteTaskMessage(Task task, int taskListSize) {
-        return getUpdateMessage(task, "Task deleted: ", taskListSize);
+        return getUpdateMessage(task, MESSAGE_TASK_DELETED, taskListSize);
     }
 
     /**
@@ -117,7 +127,7 @@ public class Ui {
      * @return Mark task message;
      */
     public static String getMarkTaskMessage(Task task) {
-        return getUpdateMessage(task, "I have marked this task as done: ");
+        return getUpdateMessage(task, MESSAGE_TASK_UPDATED_COMPLETE);
     }
 
     /**
@@ -126,8 +136,9 @@ public class Ui {
      * @param task Task that was unmarked.
      * @return Unmark task message.
      */
+
     public static String getUnmarkTaskMessage(Task task) {
-        return getUpdateMessage(task, "I have unmarked the completion of this task: ");
+        return getUpdateMessage(task, MESSAGE_TASK_UPDATED_INCOMPLETE);
     }
 
     /**
@@ -146,7 +157,7 @@ public class Ui {
      * @return Exit message;
      */
     public static String getExitMessage() {
-        return "Bye bye!";
+        return MESSAGE_EXIT;
     }
 
     /**
@@ -155,9 +166,10 @@ public class Ui {
      * @param input unknown command text.
      * @return Unknown command message;
      */
+
     public static String getUnknownCommandMessage(String input) {
-        return "Unknown command: " + input;
-    };
+        return MESSAGE_PREFIX_UNKNOWN_COMMAND + input;
+    }
 
     /**
      * Returns a String containing the {@code updateMessage} followed by the
@@ -165,7 +177,7 @@ public class Ui {
      *
      * @param task {@code Task} object to display in the message.
      * @param updateMessage Message to display before the {@code Task} object.
-     * @return String containing {@updateMessage} and {@code Task}.
+     * @return String containing {@code updateMessage} and {@code Task}.
      */
     private static String getUpdateMessage(Task task, String updateMessage) {
         List<String> toPrint = new ArrayList<>();
@@ -181,8 +193,7 @@ public class Ui {
      * @see Ui#getUpdateMessage(Task, String)
      */
     private static String getUpdateMessage(Task task, String updateMessage, int taskListSize) {
-        return getUpdateMessage(task, updateMessage) + "\n"
-                + "There are now " + taskListSize + " tasks in the list.";
+        return String.format(STRING_FORMAT_UPDATE_MESSAGE, getUpdateMessage(task, updateMessage), taskListSize);
     }
 
     /**
@@ -193,10 +204,10 @@ public class Ui {
      * @return List of task Strings.
      */
     private static List<String> formatTaskList(List<Task> tasks) {
-        List<String> indexedList = IntStream.range(0,
-                tasks.size()).mapToObj((index) -> String.format("%d. %s", index + 1, tasks.get(index).toString()))
+        return IntStream.range(0, tasks.size())
+                .mapToObj((index) ->
+                        String.format(STRING_FORMAT_INDEXED_TASK, index + 1, tasks.get(index).toString()))
                 .collect(Collectors.toList());
-        return indexedList;
     }
 
 }

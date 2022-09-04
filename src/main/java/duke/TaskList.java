@@ -10,6 +10,8 @@ import duke.task.Task;
  * A class that handles logging of Tasks.
  */
 public class TaskList {
+    private static final String STRING_FORMAT_OUT_OF_BOUNDS = "Index %d out of bounds. There are only %d tasks";
+
     private final List<Task> logs;
 
     /**
@@ -18,7 +20,7 @@ public class TaskList {
      * @param tasks Initial list of tasks.
      */
     public TaskList(List<Task> tasks) {
-        this.logs = new ArrayList<>(tasks);
+        logs = new ArrayList<>(tasks);
     }
 
     /**
@@ -134,7 +136,7 @@ public class TaskList {
      * @return List of tasks.
      */
     public List<Task> getTasks() {
-        return this.logs;
+        return logs;
     }
 
     /**
@@ -149,7 +151,11 @@ public class TaskList {
     }
 
     private String outOfBoundsMessage(int index) {
-        return "Index " + (index + 1) + " out of bounds. There are only " + this.logs.size() + " tasks!";
+        return String.format(STRING_FORMAT_OUT_OF_BOUNDS, (convertZeroToOneIndex(index)), logs.size());
+    }
+
+    private int convertZeroToOneIndex(int index) {
+        return index + 1;
     }
 
     @Override

@@ -7,6 +7,15 @@ import java.time.format.DateTimeFormatter;
  */
 public abstract class Task {
     protected static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy");
+    protected static final boolean INCOMPLETE = false;
+
+    private static final int STATUS_COMPLETE_INT = 1;
+    private static final String STATUS_COMPLETE_STRING = "[X]";
+    private static final int STATUS_INCOMPLETE_INT = 0;
+    private static final String STATUS_INCOMPLETE_STRING = "[ ]";
+    private static final String STRING_FORMAT_STORAGE = "%s | %s";
+    private static final String STRING_FORMAT_DISPLAY = "%s %s";
+
     private String description;
     private boolean isComplete;
 
@@ -34,14 +43,14 @@ public abstract class Task {
      * Sets {@code isComplete} to {@code true}
      */
     public void mark() {
-        this.isComplete = true;
+        isComplete = true;
     }
 
     /**
      * Sets {@code isComplete} to {@code false}
      */
     public void unmark() {
-        this.isComplete = false;
+        isComplete = INCOMPLETE;
     }
 
     /**
@@ -57,7 +66,7 @@ public abstract class Task {
      * @return Task description
      */
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     /**
@@ -66,16 +75,17 @@ public abstract class Task {
      * @return {@code isComplete} status String.
      */
     String getStatusIcon() {
-        return isComplete ? "[X]" : "[ ]";
+        return isComplete ? STATUS_COMPLETE_STRING : STATUS_INCOMPLETE_STRING;
     }
 
     /**
      * Returns {@code isComplete} status in integer format.
      *
-     * @return {@code isComplete} status. {@code 0} signfies incomplete. {@code 1} signifies complete.
+     * @return {@code isComplete} status.
+     *         {@code 0} signifies incomplete. {@code 1} signifies complete.
      */
     int getStatusNumber() {
-        return isComplete ? 1 : 0;
+        return isComplete ? STATUS_COMPLETE_INT : STATUS_INCOMPLETE_INT;
     }
 
     /**
@@ -84,11 +94,11 @@ public abstract class Task {
      * @return Storage-readable String.
      */
     public String toStorageFormat() {
-        return this.getStatusNumber() + " | " + this.description;
+        return String.format(STRING_FORMAT_STORAGE, getStatusNumber(), description);
     }
 
     @Override
     public String toString() {
-        return String.format("%s %s", this.getStatusIcon(), description);
+        return String.format(STRING_FORMAT_DISPLAY, this.getStatusIcon(), description);
     }
 }
