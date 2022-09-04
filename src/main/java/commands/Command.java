@@ -8,6 +8,9 @@ import tasklist.TaskList;
 
 import ui.Ui;
 
+/**
+ * Command abstract class that all command classes will inherit from
+ */
 public abstract class Command {
 
     protected boolean isExit;
