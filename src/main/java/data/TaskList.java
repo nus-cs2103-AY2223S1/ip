@@ -49,20 +49,14 @@ public class TaskList implements Serializable {
         return task;
     }
 
-    public String[] findAndReturnStringArr(String searchString) {
+    public List<Task> findBySearchString(String searchString) {
         List<Task> results = new ArrayList<>();
         for (Task t : tasks) {
             if (t.contains(searchString)) {
                 results.add(t);
             }
         }
-
-        String[] outputStrings = new String[results.size() + 1];
-        outputStrings[0] = "Here are the matching tasks in your list:";
-        for (int i = 0; i < results.size(); i++) {
-            outputStrings[i + 1] = (i + 1) + ". " + results.get(i).toString();
-        }
-        return outputStrings;
+        return results;
     }
 
     public int getSize() {
@@ -74,11 +68,12 @@ public class TaskList implements Serializable {
      *
      * @return Array of string representations.
      */
-    public String[] toStringArr() {
-        String[] taskStrings = new String[tasks.size()];
+    @Override
+    public String toString() {
+        StringBuilder resultStringBuilder = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
-            taskStrings[i] = (i + 1) + ". " + tasks.get(i).toString();
+            resultStringBuilder.append(i+1).append(". ").append(tasks.get(i)).append("\n");
         }
-        return taskStrings;
+        return resultStringBuilder.toString();
     }
 }

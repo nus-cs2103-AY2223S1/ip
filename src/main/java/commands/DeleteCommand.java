@@ -3,7 +3,6 @@ package commands;
 import data.Task;
 import data.TaskList;
 import storage.Storage;
-import ui.Ui;
 
 public class DeleteCommand extends Command {
     private final String description;
@@ -13,13 +12,11 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         Task task = tasks.delete(Integer.parseInt(description) - 1);
-        ui.printMultiMsg(new String[] {
-                "Noted. I've removed this task:",
-                "  " + task,
-                "Now you have " + tasks.getSize() + " task" + (tasks.getSize() == 1 ? "" : "s") + " in the list."
-        });
         storage.save(tasks);
+        return "Noted. I've removed this task: \n" +
+                "  " + task + "\n" +
+                "Now you have " + tasks.getSize() + " task" + (tasks.getSize() == 1 ? "" : "s") + " in the list.";
     }
 }

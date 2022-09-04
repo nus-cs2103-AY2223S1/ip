@@ -5,7 +5,6 @@ import data.TaskList;
 import data.ToDo;
 import exceptions.DukeException;
 import storage.Storage;
-import ui.Ui;
 
 public class ToDoCommand extends Command {
     private final String description;
@@ -18,13 +17,11 @@ public class ToDoCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) {
         Task task = tasks.add(new ToDo(description, false));
-        ui.printMultiMsg(new String[] {
-                "Got it. I've added this task:",
-                "  " + task,
-                "Now you have " + tasks.getSize() + " task" + (tasks.getSize() == 1 ? "" : "s") + " in the list."
-        });
         storage.save(tasks);
+        return "Got it. I've added this task: \n" +
+                "  " + task + "\n" +
+                "Now you have " + tasks.getSize() + " task" + (tasks.getSize() == 1 ? "" : "s") + " in the list.";
     }
 }
