@@ -89,7 +89,7 @@ public class TaskList {
         int index = input.indexOf(DELIMITER);
         Boolean hasPriority = (index >= 0);
         if (hasPriority) {
-            switch (input.substring(index + DELIMITER.length())) {
+            switch (input.substring(index + DELIMITER.length()).toLowerCase()) {
             case "low":
                 return Level.LOW;
             case "med":
