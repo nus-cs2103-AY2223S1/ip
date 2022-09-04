@@ -59,6 +59,7 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         try {
             String input = userInput.getText();
+            assert !input.equals("") : "Input cannot be empty.";
             String response = duke.getResponse(input);
             dialogContainer.getChildren().addAll(
                     DialogBox.getUserDialog(input, userImage),
@@ -79,6 +80,8 @@ public class MainWindow extends AnchorPane {
     private void handleExit() {
         userInput.setDisable(true);
         sendButton.setDisable(true);
+        assert userInput.isDisable() : "Text box is not disabled.";
+        assert sendButton.isDisable() : "Send button is not disabled.";
     }
 
 }
