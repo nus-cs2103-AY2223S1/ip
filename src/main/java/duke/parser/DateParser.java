@@ -50,6 +50,7 @@ public class DateParser {
      * @return The String representation of the date.
      */
     public static String parseDateToString(LocalDateTime date) {
+        // Format to show the Date/Time on GUI
         DateTimeFormatter stringFormat = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
         return date.format(stringFormat);
     }
@@ -61,6 +62,7 @@ public class DateParser {
      * @return The String representation of the command.
      */
     public static String parseDateToCommand(LocalDateTime date) {
+        // Format to save the Date/Time of the task in the save file
         DateTimeFormatter stringFormat = DateTimeFormatter.ofPattern("dd MM yyyy HH:mm");
         return date.format(stringFormat);
     }
