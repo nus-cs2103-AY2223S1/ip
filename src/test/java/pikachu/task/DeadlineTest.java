@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DeadlineTest {
 
     /**
-     * Tests the correctness of name of deadline tasks
+     * Tests the correctness of name of deadline tasks.
      */
     @Test
     public void getName_rightName(){
@@ -21,7 +21,7 @@ public class DeadlineTest {
     }
 
     /**
-     * Tests the correctness of timing of deadline tasks
+     * Tests the correctness of timing of deadline tasks.
      */
     @Test
     public void getTiming_rightTiming(){

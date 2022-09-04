@@ -28,14 +28,14 @@ public class Ui {
     }
 
     /**
-     * Says bye for pikachu
+     * Says bye for pikachu.
      */
     public void sayBye() {
         System.out.println("Pi-ka...");
     }
 
     /**
-     * Greets from pikachu
+     * Greets from pikachu.
      */
     public void sayHi() {
         System.out.println(HORIZON + "Pika Pikachu! (I am Pikachu!)\nPi-ka-chu?(Do you need any help?)\n" + HORIZON);

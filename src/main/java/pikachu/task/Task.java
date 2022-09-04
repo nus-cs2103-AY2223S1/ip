@@ -2,7 +2,7 @@ package pikachu.task;
 
 /**
  * Represents the abstract task. A <code>Task</code> object corresponds to
- * a deadline/to do/event
+ * a deadline/to do/event.
  */
 abstract public class Task {
     protected String description;
@@ -43,7 +43,7 @@ abstract public class Task {
     }
 
     /**
-     * Sets the new isDone
+     * Sets the new isDone.
      */
     public void setDone(boolean newDone) {
         this.isDone = newDone;
@@ -53,8 +53,8 @@ abstract public class Task {
     abstract public String getTiming();
 
     /**
-     * Returns the general format of task in task list
-     * @return general of tasks in task list
+     * Returns the general format of task in task list.
+     * @return general of tasks in task list.
      */
     @Override
     public String toString() {

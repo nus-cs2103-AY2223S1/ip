@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TodoTest {
 
     /**
-     * Tests the correctness of name of to-do tasks
+     * Tests the correctness of name of to-do tasks.
      */
     @Test
     public void getName_rightName(){
@@ -19,7 +19,7 @@ public class TodoTest {
     }
 
     /**
-     * Tests the correctness of timing of to-do tasks, which is no timing indicated at all
+     * Tests the correctness of timing of to-do tasks, which is no timing indicated at all.
      */
     @Test
     public void getTiming_rightNoTime(){

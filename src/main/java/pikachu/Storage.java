@@ -19,7 +19,7 @@ import pikachu.task.Todo;
 
 /**
  * Represents a storage process for the task data. A <code>Storage</code> object corresponds to
- * a filepath to put the file e.g., <code>/User/Pikachu/MyManager</code>
+ * a filepath to put the file e.g., <code>/User/Pikachu/MyManager</code>.
  */
 public class Storage {
     String filepath;
@@ -31,7 +31,7 @@ public class Storage {
     }
 
     /**
-     * Returns the initial tasks in the storage space when starting the Pikachu task manager
+     * Returns the initial tasks in the storage space when starting the Pikachu task manager.
      *
      * @return tasks in the storage space.
      * @throws PikachuException If anything unexpected happen (e,g invalid filepath).

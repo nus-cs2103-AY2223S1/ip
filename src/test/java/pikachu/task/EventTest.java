@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class EventTest {
 
     /**
-     * Tests the correctness of name of event tasks
+     * Tests the correctness of name of event tasks.
      */
     @Test
     public void getName_rightName(){
@@ -19,7 +19,7 @@ public class EventTest {
     }
 
     /**
-     * Tests the correctness of location of event tasks
+     * Tests the correctness of location of event tasks.
      */
     @Test
     public void getLocation_rightLocation(){

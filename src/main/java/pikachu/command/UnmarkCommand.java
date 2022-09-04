@@ -9,7 +9,7 @@ import pikachu.TaskList;
 
 /**
  * Represents command that unmarks certain tasks as completed according to index. A <code>UnmarkCommand</code> object corresponds to
- * an instruction to unmark completion by index e.g., <code>mark 2</code>
+ * an instruction to unmark completion by index e.g., <code>mark 2</code>.
  */
 public class UnmarkCommand extends Command {
     private final String input;
@@ -20,12 +20,12 @@ public class UnmarkCommand extends Command {
 
     /**
      * Marks a task as incomplete, saves the new task if valid, else throw exception.
-     * Informs the user about the situation through String output
+     * Informs the user about the situation through String output.
      *
      * @param tasks Task List of all tasks currently.
      * @param ui Ui for user to see.
      * @param storage Storage in charge of the current tasks.
-     * @throws PikachuException If invalid format or out of range of the task index
+     * @throws PikachuException If invalid format or out of range of the task index.
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws PikachuException {
         if (!Pikachu.isNumeric(input.substring(7))) {
@@ -42,7 +42,7 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * Returns whether this function performs an exit action on the task manager
+     * Returns whether this function performs an exit action on the task manager.
      * @return false, do not exit.
      */
     public boolean isExit() {

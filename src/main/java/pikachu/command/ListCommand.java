@@ -13,8 +13,8 @@ import pikachu.TaskList;
 public class ListCommand extends Command{
 
     /**
-     * Lists the current task list
-     * Informs the user about the situation through String output
+     * Lists the current task list.
+     * Informs the user about the situation through String output.
      *
      * @param tasks Task List of all tasks currently.
      * @param ui Ui for user to see.
@@ -31,7 +31,7 @@ public class ListCommand extends Command{
     }
 
     /**
-     * Returns whether this function performs an exit action on the task manager
+     * Returns whether this function performs an exit action on the task manager.
      * @return false, do not exit.
      */
     public boolean isExit() {

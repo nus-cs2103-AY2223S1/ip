@@ -24,7 +24,7 @@ public class Pikachu {
     }
 
     /**
-     * Returns whether the string being put in is numeric or not
+     * Returns whether the string being put in is numeric or not.
      *
      * @param str String to be checked whether it is numeric.
      * @return boolean value indicating if string is numeric.
@@ -39,7 +39,7 @@ public class Pikachu {
     }
 
     /**
-     * Runs the Pikachu task manager bot
+     * Runs the Pikachu task manager bot.
      */
     public void run() {
         ui.sayHi();
@@ -61,7 +61,7 @@ public class Pikachu {
     }
 
     /**
-     * Runs the Pikachu task manager bot with a location to put the stored task data
+     * Runs the Pikachu task manager bot with a location to put the stored task data.
      */
     public static void main(String[] args) {
         new Pikachu("/Users/xuyi/Documents/CS2103T/ip/data/pikachu.txt").run();
