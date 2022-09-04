@@ -10,8 +10,6 @@ import java.util.ArrayList;
  */
 public class TaskList {
     protected static ArrayList<Task> taskList = new ArrayList<Task>();
-    private Ui ui;
-    private Storage storage;
 
     /**
      * TaskList constructor.
@@ -35,7 +33,8 @@ public class TaskList {
      * @param task Task to be added.
      */
     public void addTask(Task task) {
-        taskList.add(task);
+        boolean successful = taskList.add(task);
+        assert successful : "Task should be added successfully";
     }
 
     /**
@@ -56,6 +55,7 @@ public class TaskList {
     public void setTaskStatus(int taskNumber, boolean isDone) {
         Task currentTask = taskList.get(taskNumber);
         currentTask.setTaskStatus(isDone);
+        assert currentTask != null : "Task should not be null";
     }
 
     /**
@@ -76,6 +76,7 @@ public class TaskList {
      */
     public String deleteTask(int taskNumber) {
         Task removedTask = taskList.remove(taskNumber);
+        assert removedTask != null : "Task should not be null";
         return removedTask.toString();
     }
 
@@ -88,6 +89,7 @@ public class TaskList {
         String message = "";
         for (int i = 1; i <= taskList.size(); i++) {
             Task currentTask = taskList.get(i - 1);
+            assert currentTask != null : "Task should not be null";
             String taskDescription = currentTask.toString();
             message += (i
                     + "."
@@ -108,6 +110,7 @@ public class TaskList {
         String message = "";
         for (int i = 1; i <= taskList.size(); i++) {
             Task currentTask = taskList.get(i - 1);
+            assert currentTask != null : "Task should not be null";
             String taskDescription = currentTask.toString();
             if (taskDescription.contains(keyword)) {
                 message += (i

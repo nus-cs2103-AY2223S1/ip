@@ -47,6 +47,10 @@ public class Storage {
             System.out.println("     " + e.getMessage());
         }
 
+        // hardDiskTasks and tempTasks files should exist here
+        assert new File(filePath).exists() : "File exists is supposed to return true";
+        assert new File(tempFilePath).exists() : "Temp file exists is supposed to return true";
+
         // Add disk info to taskList
         ArrayList<Task> pastTasks = loadTasksFromDisk(hardDiskTasks);
         return pastTasks;
@@ -91,7 +95,11 @@ public class Storage {
             }
             s.close();
         } catch (FileNotFoundException e) {
-            System.out.println("     " + e.getMessage());
+            System.out.println(e.getMessage());
+            return new ArrayList<>();
+        } catch (IndexOutOfBoundsException e) {
+            // input file is invalid, just start from empty list;
+            return new ArrayList<>();
         }
         return pastTasks;
     }
@@ -166,6 +174,7 @@ public class Storage {
         }
         s.close();
         boolean successful = tempFile.renameTo(inputFile);
+        assert successful : "Temp file should be successfully renamed as main Memory file keep track of Tasks";
     }
 
     /**
@@ -187,6 +196,8 @@ public class Storage {
         }
         s.close();
         boolean successful = tempFile.renameTo(inputFile);
+        assert successful : "Temp file should be successfully renamed as main Memory file keep track of Tasks";
+
     }
 
     /**
