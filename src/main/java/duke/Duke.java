@@ -77,6 +77,8 @@ public class Duke {
             return ui.getMissingInputResponse(e.getMessage());
         } catch (InputIndexOutOfBoundsException e) {
             return executeIndexOutOfBoundsResponse(e);
+        } catch (NumberFormatException e) {
+            return ui.getBadNumberFormatResponse();
         } catch (DateTimeParseException e) {
             return ui.getDateTimeErrorResponse();
         } finally {
@@ -143,7 +145,8 @@ public class Duke {
         return ui.getRemovedTask(removedTask, tasks.getTaskCount());
     }
 
-    private int getTaskIndexFromParsedOutput(String[] parsedOutput, String cmd) throws InputIndexOutOfBoundsException {
+    private int getTaskIndexFromParsedOutput(String[] parsedOutput, String cmd)
+            throws InputIndexOutOfBoundsException, NumberFormatException {
         int taskNum = Integer.parseInt(parsedOutput[1]);
         int taskIndex = taskNum - 1;
         if (taskIndex < 0 || taskIndex >= tasks.getTaskCount()) {

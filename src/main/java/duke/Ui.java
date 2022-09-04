@@ -173,6 +173,11 @@ public class Ui {
         return getMessage(response);
     }
 
+    public String getBadNumberFormatResponse() {
+        String response = "OOPS!!! I don't think you've typed in a proper number!!!!";
+        return getMessage(response);
+    }
+
     /**
      * Prints an error message caused by having date input that is unable to be parsed by the program.
      *
