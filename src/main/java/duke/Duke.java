@@ -12,6 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 
 
 public class Duke extends Application{
@@ -25,6 +28,9 @@ public class Duke extends Application{
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
+
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     /*
      * Constructor for Class Duke.
@@ -109,26 +115,25 @@ public class Duke extends Application{
 
         stage.setScene(this.scene);
         stage.show();
-
+        
         stage.setTitle("Duke");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
-        stage.setMinWidth(400.0);
+        stage.setMaxHeight(600.0);
+        stage.setMinWidth(600.0);
 
-        mainLayout.setPrefSize(400.0, 600.0);
-
-        scrollPane.setPrefSize(385, 535);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-
-        scrollPane.setVvalue(1.0);
-        scrollPane.setFitToWidth(true);
+        mainLayout.setPrefSize(685, 535);
 
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
-        userInput.setPrefWidth(325.0);
-
+        userInput.setPrefWidth(525.0);
         sendButton.setPrefWidth(55.0);
+
+        scrollPane.setPrefSize(585, 535);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        scrollPane.setVvalue(1.0);
+        scrollPane.setFitToWidth(true);
 
         AnchorPane.setTopAnchor(scrollPane, 1.0);
 
@@ -138,23 +143,40 @@ public class Duke extends Application{
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
-        // Adding Text Messages into the Dialog Container upon clicking the send button
-        sendButton.setOnMouseClicked((e) -> {
-            this.dialogContainer.getChildren().addAll(getDialogLabel(this.userInput.getText()));
-            userInput.clear();
+        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
+
+        sendButton.setOnMouseClicked((event) -> {
+            handleUserInput();
         });
 
-        //
+        this.userInput.setOnAction((event) -> {
+            handleUserInput();
+        });
+
+
 
     }
 
-    private Label getDialogLabel(String text) {
-        // Creates a label with specified text and returns it
+    private void handleUserInput() {
+        Label userText = new Label(userInput.getText());
+        Label dukeText = new Label(getResponse(userInput.getText()));
 
-        Label textToAdd = new Label(text);
-        textToAdd.setWrapText(true);
-    
-        return textToAdd;
+        ImageView userImage = new ImageView(user);
+        ImageView dukeImage = new ImageView(duke);
+        
+        userImage.setFitHeight(100.0);
+        userImage.setFitWidth(100.0);
+        
+        dialogContainer.getChildren().addAll(
+            DialogBox.getUserDialog(userText, userImage),
+            DialogBox.getDukeDialog(dukeText, dukeImage)
+        );
+        
+        userInput.clear();
+    }
+
+    private String getResponse(String text) {
+        return "Duke heard: " + text;
     }
 
 }
