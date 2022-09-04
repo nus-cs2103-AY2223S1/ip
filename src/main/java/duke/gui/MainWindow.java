@@ -1,5 +1,7 @@
 package duke.gui;
 
+import duke.inputoutput.DukeGuiIo;
+import duke.inputoutput.DukeIo;
 import duke.main.Duke;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -32,8 +34,14 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setDuke(Duke d) {
-        duke = d;
+    public void makeDuke() {
+        DukeIo io = new DukeGuiIo(dialogContainer, txt -> DialogBox.getDukeDialog(txt, dukeImage));
+        duke = Duke.createApplication(io);
+    }
+
+    public void makeDuke(String filepath) {
+        DukeIo io = new DukeGuiIo(dialogContainer, txt -> DialogBox.getDukeDialog(txt, dukeImage));
+        duke = Duke.createApplication(io, filepath);
     }
 
     /**
@@ -47,7 +55,5 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage));
         userInput.clear();
-
-        duke.handleInput(input);
     }
 }

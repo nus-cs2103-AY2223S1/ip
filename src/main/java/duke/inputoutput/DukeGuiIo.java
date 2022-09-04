@@ -1,6 +1,7 @@
 package duke.inputoutput;
 
 import java.util.function.Function;
+import duke.util.StringParser;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 
@@ -20,14 +21,21 @@ public class DukeGuiIo extends DukeAbstractIo {
 
     @Override
     public void printTask(String txt, int features) {
-        // TODO Auto-generated method stub
-
+        // 00 - no wrapper/indent
+        // 10 - indent
+        // 01 - wrapper
+        if ((features & 2) == 2) {
+            txt = StringParser.addIndent(txt);
+        }
+        if ((features & 1) == 1) {
+            txt = StringParser.addWrapper(txt);
+        }
+        addMsgToContainer(txt);
     }
 
     @Override
     public void printTask(String txt) {
-        // TODO Auto-generated method stub
-
+        printTask(txt, 3);
     }
 
     @Override
