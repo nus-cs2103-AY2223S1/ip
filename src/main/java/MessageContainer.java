@@ -6,18 +6,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import java.io.IOException;
-import java.util.Collections;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 
 public class MessageContainer extends HBox {
     @FXML
@@ -38,15 +29,6 @@ public class MessageContainer extends HBox {
 
         this.message.setText(message);
         this.profile.setImage(profile);
-//        this.message = message;
-//        this.profile = profile;
-
-//        message.setWrapText(true);
-//        profile.setFitWidth(100.0);
-//        profile.setFitHeight(100.0);
-//
-//        this.setAlignment(Pos.TOP_RIGHT);
-//        this.getChildren().addAll(message, profile);
     }
 
     private void moveLeft() {
@@ -64,5 +46,17 @@ public class MessageContainer extends HBox {
         var botMessageContainer = new MessageContainer(message, profile);
         botMessageContainer.moveLeft();
         return botMessageContainer;
+    }
+
+    public static MessageContainer getIntroduction(Image profile) {
+        var introMessageContainer = new MessageContainer(Ui.printIntroduction(), profile);
+        introMessageContainer.moveLeft();
+        return introMessageContainer;
+    }
+
+    public static MessageContainer getErrMsg(String message, Image profile) {
+        var errorMessageContainer = new MessageContainer(message, profile);
+        errorMessageContainer.moveLeft();
+        return errorMessageContainer;
     }
 }

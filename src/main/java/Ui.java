@@ -9,30 +9,31 @@ public class Ui {
 
     public Ui() {}
 
-    public static void printIntroduction() {
-        System.out.println("Hello there! My name's Duck...");
-        System.out.println("Please type in a command...");
+    public static String printIntroduction() {
+        return "Hello there! My name's Duck...\nPlease type in a command...";
     }
 
     /**
      * Prints out all the added tasks.
      */
-    public static void showTasks(List<Task> tasks) throws NoTasksException {
+    public static String showTasks(List<Task> tasks) throws NoTasksException {
         if (tasks.isEmpty()) {
             throw new NoTasksException();
         }
+        StringBuilder text = new StringBuilder();
         int id = 1;
         for (Task task: tasks) {
-            System.out.println(id + "." + task.toString());
+            text.append(id).append(".").append(task.toString()).append("\n");
             id += 1;
         }
+        return text.toString();
     }
 
     /**
      * Marks the task at the taskIndex in the list as done.
      * @param taskIndex position of the task in the list (1-indexed)
      */
-    public void markTaskAsDone(int taskIndex, List<Task> tasks)
+    public String markTaskAsDone(int taskIndex, List<Task> tasks)
             throws NoTasksException, InvalidTaskIndexException {
         if (tasks.isEmpty()) {
             throw new NoTasksException();
@@ -42,15 +43,14 @@ public class Ui {
         }
         Task currTask = tasks.get(taskIndex - 1); // label starting from 1
         currTask.markAsDone();
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println("  " + currTask);
+        return "Nice! I've marked this task as done:\n" + "  " + currTask;
     }
 
     /**
      * Marks the task at the taskIndex in the list as not done.
      * @param taskIndex position of the task in the list (1-indexed)
      */
-    public void markTaskAsNotDone(int taskIndex, List<Task> tasks)
+    public String markTaskAsNotDone(int taskIndex, List<Task> tasks)
             throws NoTasksException, InvalidTaskIndexException {
         if (tasks.isEmpty()) {
             throw new NoTasksException();
@@ -62,21 +62,22 @@ public class Ui {
         currTask.markAsNotDone();
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println("  " + currTask);
+        return "OK, I've marked this task as not done yet:\n" + "  " + currTask;
     }
 
     /**
      * Prints a comment on the number of tasks added so far.
      */
-    public static void printNumberOfTasks(List<Task> tasks) {
+    public static String printNumberOfTasks(List<Task> tasks) {
         if (tasks.size() == 1) {
-            System.out.println("Now you have " + tasks.size() + " task in the list.");
+            return "Now you have " + tasks.size() + " task in the list.";
         } else {
-            System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+            return "Now you have " + tasks.size() + " tasks in the list.";
         }
     }
 
-    public static void printExceptionMessage(Exception e) {
-        System.out.println(e.getMessage());
+    public static String printExceptionMessage(Exception e) {
+        return e.getMessage();
     }
 
     /**
@@ -86,8 +87,7 @@ public class Ui {
      * 
      * @param input scanner object
      */
-    public static void endSession(Scanner input) {
-        System.out.println("Bye! See you next time!");
-        input.close();
+    public static String endSession(Scanner input) {
+        return "Bye! See you next time!";
     }
 }

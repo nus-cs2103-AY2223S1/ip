@@ -20,7 +20,7 @@ public class TaskList {
      * Creates a new objects.Todo object and adds it to the tasks list.
      * @param inputs array of input strings (e.g. ["todo", "wash dishes"]
      */
-    public void addTodo(String[] inputs) throws EmptyNameException {
+    public String addTodo(String[] inputs) throws EmptyNameException {
         if (inputs.length == 1) {
             throw new EmptyNameException("Todo name cannot be empty...");
         }
@@ -33,16 +33,14 @@ public class TaskList {
 
         Todo newTodo = new Todo(todoName.toString().trim());
         tasks.add(newTodo);
-        System.out.println("Got it. I've added this task:");
-        System.out.println("  " + newTodo);
-        Ui.printNumberOfTasks(tasks);
+        return "Got it. I've added this task:\n" + "  " + newTodo + "\n" + Ui.printNumberOfTasks(tasks);
     }
 
     /**
      * Creates a new objects.Deadline object and adds it to the tasks list.
      * @param inputs array of input strings
      */
-    public void addDeadline(String[] inputs) throws EmptyNameException {
+    public String addDeadline(String[] inputs) throws EmptyNameException {
         if (inputs.length == 1) {
             throw new EmptyNameException("Deadline name cannot be empty...");
         }
@@ -71,16 +69,15 @@ public class TaskList {
                 deadlineName.toString().trim(),
                 endDateTime.toString().trim());
         tasks.add(newDeadline);
-        System.out.println("Got it. I've added this task:");
-        System.out.println("  " + newDeadline);
-        Ui.printNumberOfTasks(tasks);
+        return "Got it. I've added this task:\n" + "  "
+                + newDeadline + "\n" + Ui.printNumberOfTasks(tasks);
     }
 
     /**
      * Creates a new objects.Event object and adds it to the tasks list.
      * @param inputs array of input strings
      */
-    public void addEvent(String[] inputs) throws EmptyNameException {
+    public String addEvent(String[] inputs) throws EmptyNameException {
         if (inputs.length == 1) {
             throw new EmptyNameException("Event name cannot be empty...");
         }
@@ -107,9 +104,8 @@ public class TaskList {
 
         Event newEvent = new Event(eventName.toString().trim(), periodDateTime.toString().trim());
         tasks.add(newEvent);
-        System.out.println("Got it. I've added this task:");
-        System.out.println("  " + newEvent);
-        Ui.printNumberOfTasks(tasks);
+        return "Got it. I've added this task:\n" + "  "
+                + newEvent + "\n" + Ui.printNumberOfTasks(tasks);
     }
 
     /**
@@ -120,7 +116,7 @@ public class TaskList {
      * @throws InvalidTaskIndexException an exception thrown when there is no Task object
      * at that particular index (1-indexed)
      */
-    public void deleteTask(int taskIndex)
+    public String deleteTask(int taskIndex)
             throws NoTasksException, InvalidTaskIndexException {
         if (tasks.isEmpty()) {
             throw new NoTasksException();
@@ -130,25 +126,25 @@ public class TaskList {
         }
         // taskIndex is 1-indexed
         Task t = tasks.remove(taskIndex - 1);
-        System.out.println("Noted. I've removed this task:");
-        System.out.println("  " + t);
-        Ui.printNumberOfTasks(tasks);
+        return "Noted. I've removed this task:\n" + "  " + t
+                + "\n" + Ui.printNumberOfTasks(tasks);
     }
 
-    public void findTasks(String keyword) {
-        System.out.println("Here are the matching tasks in your list:");
+    public String findTasks(String keyword) {
+        StringBuilder text = new StringBuilder("Here are the matching tasks in your list:\n");
         boolean isNotFound = true;
         int index = 1;
         for (Task task : tasks) {
             String taskName = task.getName();
             if (taskName.contains(keyword)) {
-                System.out.println(index + "." + task);
+                text.append(index).append(".").append(task).append("\n");
                 isNotFound = false;
                 index += 1;
             }
         }
         if (isNotFound) {
-            System.out.println("There are no matching tasks...");
+            text.append("There are no matching tasks...");
         }
+        return text.toString();
     }
 }

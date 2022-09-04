@@ -31,53 +31,51 @@ public class Parser {
      *
      * @param tasks list of Task objects
      */
-    public void parseCommand(List<Task> tasks) {
+    public String parseCommand(List<Task> tasks, String textInput) {
         while (true) {
             try {
                 // Scan input from the user
-                String inputLine = input.nextLine();
-                String[] inputs = inputLine.split(" ");
+                String[] inputs = textInput.split(" ");
                 String command = inputs[0];
 
-                if (inputLine.equals(Command.BYE.name().toLowerCase())) {
-                    Ui.endSession(input);
-                    return;
-                } else if (inputLine.equals(Command.LIST.name().toLowerCase())) {
-                    Ui.showTasks(tasks);
+                if (textInput.equals(Command.BYE.name().toLowerCase())) {
+                    System.exit(0);
+                } else if (textInput.equals(Command.LIST.name().toLowerCase())) {
+                    return Ui.showTasks(tasks);
                 } else if (command.equals(Command.MARK.name().toLowerCase())) {
                     // inputs[1] is the index number of the task to be marked
                     if (inputs.length < 2) {
                         throw new InvalidTaskIndexException();
                     }
-                    ui.markTaskAsDone(Integer.parseInt(inputs[1]), tasks);
+                    return ui.markTaskAsDone(Integer.parseInt(inputs[1]), tasks);
                 } else if (command.equals(Command.UNMARK.name().toLowerCase())) {
                     // inputs[1] is the index number of the task to be unmarked
                     if (inputs.length < 2) {
                         throw new InvalidTaskIndexException();
                     }
-                    ui.markTaskAsNotDone(Integer.parseInt(inputs[1]), tasks);
+                    return ui.markTaskAsNotDone(Integer.parseInt(inputs[1]), tasks);
                 } else if (command.equals(Command.TODO.name().toLowerCase())) {
-                    taskList.addTodo(inputs);
+                    return taskList.addTodo(inputs);
                 } else if (command.equals(Command.DEADLINE.name().toLowerCase())) {
-                    taskList.addDeadline(inputs);
+                    return taskList.addDeadline(inputs);
                 } else if (command.equals(Command.EVENT.name().toLowerCase())) {
-                    taskList.addEvent(inputs);
+                    return taskList.addEvent(inputs);
                 } else if (command.equals(Command.DELETE.name().toLowerCase())) {
                     // inputs[1] is the index number of the task to be marked
                     if (inputs.length < 2) {
                         throw new InvalidTaskIndexException();
                     }
-                    taskList.deleteTask(Integer.parseInt(inputs[1]));
+                    return taskList.deleteTask(Integer.parseInt(inputs[1]));
                 } else if (command.equals(Command.FIND.name().toLowerCase())) {
                     // inputs[1] is the keyword (do not accept keywords)
-                    taskList.findTasks(inputs[1]);
+                    return taskList.findTasks(inputs[1]);
                 } else {
                     // when none of the commands match
                     throw new UnknownCommandException();
                 }
             } catch (EmptyNameException | UnknownCommandException
                     | NoTasksException | InvalidTaskIndexException e) {
-                System.out.println(e.getMessage());
+                return e.getMessage();
             }
         }
     }

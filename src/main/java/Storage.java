@@ -12,17 +12,20 @@ import java.util.Scanner;
 
 public class Storage {
 
+    private static final String FILE_PATH = "data/tasks.txt";
+    private static final File file = new File(FILE_PATH);
+
     /**
      * This function reads the text file at the specified file path and parses the tasks,
      * adding them into list of tasks in the app. It allows for persistent storage of tasks.
      *
-     * @param FILE_PATH path of the txt file that contains data of tasks
      * @param tasks list of Task objects of the app
      * @throws FileNotFoundException exception thrown when the txt file is not found
      */
-    public void loadTasks(String FILE_PATH, List<Task> tasks) throws FileNotFoundException {
-        File dataFile = new File(FILE_PATH);
-        Scanner sc = new Scanner(dataFile);
+    public void loadTasks(List<Task> tasks) throws IOException {
+        file.getParentFile().mkdirs();
+        file.createNewFile();
+        Scanner sc = new Scanner(file);
         while (sc.hasNext()) {
             String[] dataChunk = sc.nextLine().split(" \\| ");
             switch (dataChunk[0]) {
@@ -69,12 +72,11 @@ public class Storage {
      * a txt file, ensuring persistent storage of the tasks. When the app is opened
      * again after being terminated, the tasks saved will be available again.
      *
-     * @param FILE_PATH path of the txt file that contains the tasks data
      * @param tasks list of Task objects in the app
      * @throws IOException an exception thrown when there is a problem with the input/output (IO)
      */
-    public void saveTasks(String FILE_PATH, List<Task> tasks) throws IOException {
-        FileWriter fw = new FileWriter(FILE_PATH);
+    public void saveTasks(List<Task> tasks) throws IOException {
+        FileWriter fw = new FileWriter(file.getPath());
         for (Task task : tasks) {
             String isDoneSymbol = task.getIsDone() ? "1" : "0";
             if (task instanceof Todo) {

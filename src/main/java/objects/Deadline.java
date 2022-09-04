@@ -13,7 +13,7 @@ public class Deadline extends Task {
     private LocalDate endDate;
     private LocalTime endTime;
 
-    // example: deadline return book /by 02/08/2019 1800
+    // example: deadline return book /by 02/08/2019 18:00
     // only accept DD/MM/YYYY TTTT format
     public Deadline(String name, String endDateTime) {
         super(name.trim());
