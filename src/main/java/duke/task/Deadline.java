@@ -38,7 +38,7 @@ public class Deadline extends Task {
     /**
      * Overrides {@code toString} to return status and description of
      * {@code Deadline}.
-     * @return [D][COMPLETION STATUS][TASK DESCRIPTION]
+     * @return [D][[COMPLETION STATUS]][[PRIORITY]] [TASK DESCRIPTION]
      */
     @Override
     public String toString() {

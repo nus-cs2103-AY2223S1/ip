@@ -26,7 +26,7 @@ public class ToDo extends Task {
     /**
      * Overrides {@code toString} method to return status and
      * description of {@code ToDo} object.
-     * @return [T][COMPLETION STATUS][TASK DESCRIPTION]
+     * @return [T][[COMPLETION STATUS]][[PRIORITY]] [TASK DESCRIPTION]
      */
     @Override
     public String toString() {

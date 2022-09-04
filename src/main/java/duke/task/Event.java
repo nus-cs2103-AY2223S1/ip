@@ -33,7 +33,7 @@ public class Event extends Task {
     /**
      * Overrides {@code toString} method to return status and
      * description of {@code Event} object.
-     * @return [E][COMPLETION STATUS][TASK DESCRIPTION]
+     * @return [E][[COMPLETION STATUS]][[PRIORITY]] [TASK DESCRIPTION]
      */
     @Override
     public String toString() {

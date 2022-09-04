@@ -74,17 +74,18 @@ public abstract class Task {
     /**
      * Overrides {@code toString}  method to return status
      * and description of {@code Task} .
-     * @return [[TASK STATUS]] [TASK DESCRIPTION]
+     * @return [[COMPLETION STATUS]][[PRIORITY]] [TASK DESCRIPTION]
      */
     @Override
     public String toString() {
-        return String.format("[%s] %s", this.getStatusIcon(), this.description);
+        return String.format("[%s][%s] %s",
+                this.getStatusIcon(), this.priority, this.description);
     }
 
     /**
      * Produces {@code String}  with "|" delimiters for storing
      * task's data into a text file.
-     * @return "[COMPLETION STATUS]|[TASK DESCRIPTION]|[PRIORITY]"
+     * @return [COMPLETION STATUS]|[TASK DESCRIPTION]|[PRIORITY]
      */
     public String toFileFormat() {
         return this.isDone + "|" + this.description + "|" + this.priority;
