@@ -28,7 +28,6 @@ public class Parser {
      * @return the corresponding Command subclasses.
      */
     public static Command parse(String fullCommand) {
-        //assert false;
         String[] parts = fullCommand.split(" ", 0);
         String command = parts[0];
         String mainCommand = "";

@@ -32,7 +32,7 @@ public class EmptyCommand extends Command {
         try {
             throw new InvalidCommandException();
         } catch (InvalidCommandException ex) {
-            return "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
+            return "OOPS!!! I'm sorry, but I don't know what that means.";
         }
     }
 
