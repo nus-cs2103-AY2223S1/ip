@@ -124,10 +124,20 @@ public class Ui {
      * Returns an unmark task message.
      *
      * @param task Task that was unmarked.
-     * @return Unmark task message;
+     * @return Unmark task message.
      */
-    public static String displayUnmarkTaskMessage(Task task) {
+    public static String getUnmarkTaskMessage(Task task) {
         return getUpdateMessage(task, "I have unmarked the completion of this task: ");
+    }
+
+    /**
+     * Returns an update task message
+     *
+     * @param task Task that was updated.
+     * @return Update task message.
+     */
+    public static String getUpdateTaskMessage(Task task) {
+        return getUpdateMessage(task, "I have updated the description of this task: ");
     }
 
     /**
@@ -145,7 +155,7 @@ public class Ui {
      * @param input unknown command text.
      * @return Unknown command message;
      */
-    public static String displayUnknownCommandMessage(String input) {
+    public static String getUnknownCommandMessage(String input) {
         return "Unknown command: " + input;
     };
 

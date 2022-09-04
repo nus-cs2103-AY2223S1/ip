@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
  */
 public abstract class Task {
     protected static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy");
-    private final String description;
+    private String description;
     private boolean isComplete;
 
     /**
@@ -45,6 +45,13 @@ public abstract class Task {
     }
 
     /**
+     * Sets {@code description} to {@code updatedDescription}
+     */
+    public void setDescription(String updatedDescription) {
+        this.description = updatedDescription;
+    }
+
+    /**
      * Returns Task description.
      *
      * @return Task description
@@ -65,8 +72,7 @@ public abstract class Task {
     /**
      * Returns {@code isComplete} status in integer format.
      *
-     * @return {@code isComplete} status.
-     *         {@code 0} signfies incomplete. {@code 1} signifies complete.
+     * @return {@code isComplete} status. {@code 0} signfies incomplete. {@code 1} signifies complete.
      */
     int getStatusNumber() {
         return isComplete ? 1 : 0;
