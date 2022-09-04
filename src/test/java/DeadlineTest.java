@@ -31,13 +31,13 @@ public class DeadlineTest {
     @Test
     public void saveDeadlineTest() {
         Deadline deadline = new Deadline("Tutorial 1", LocalDate.parse("2022-08-25"));
-        assertEquals("D | 0 | Tutorial 1 | 2022-08-25", deadline.saveTask());
+        assertEquals("D | 0 | 0 | Tutorial 1 | 2022-08-25", deadline.saveTask());
     }
 
     @Test
     public void saveDeadlineTest2() {
         Deadline deadline = new Deadline("Tutorial 1", LocalDate.parse("2022-08-25"));
         deadline.mark();
-        assertEquals("D | 1 | Tutorial 1 | 2022-08-25", deadline.saveTask());
+        assertEquals("D | 1 | 0 | Tutorial 1 | 2022-08-25", deadline.saveTask());
     }
 }

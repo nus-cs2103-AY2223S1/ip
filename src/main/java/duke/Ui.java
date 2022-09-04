@@ -69,4 +69,14 @@ public class Ui {
         return String.format("Noted. I've removed this task:%n%s%nNow you have %d task%s in the list.%n",
                 task, size, size != 1 ? "s" : "");
     }
+
+    /**
+     * Returns the message indicating the given Task has been set to high priority.
+     *
+     * @param task String representation of the Task.
+     * @return The message indicating the given Task has been set to high priority.
+     */
+    public String showHighPriority(String task) {
+        return String.format("Noted. I've set this task to high priority:%n%s%n", task);
+    }
 }

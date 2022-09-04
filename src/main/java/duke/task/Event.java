@@ -28,12 +28,14 @@ public class Event extends Task {
      *
      * @param description Description of the Event.
      * @param isDone Whether the Event is completed.
+     * @param priority Level of priority of the Event.
      * @param at The date/time when the Event happens.
      */
-    public Event(String description, boolean isDone, LocalDate at) {
+    public Event(String description, boolean isDone, Priority priority, LocalDate at) {
         super(description);
         this.at = at;
         this.isDone = isDone;
+        this.priority = priority;
     }
 
     /**
@@ -43,8 +45,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)",
-                super.toString(), at.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+        return String.format("[E]%s (at: %s)", super.toString(), at.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
     }
 
     /**

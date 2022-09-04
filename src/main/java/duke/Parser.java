@@ -9,6 +9,7 @@ import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
 import duke.command.EventCommand;
 import duke.command.FindCommand;
+import duke.command.HighCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.TodoCommand;
@@ -22,7 +23,7 @@ import duke.command.UnmarkCommand;
  */
 public class Parser {
     private enum CommandType {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND, HIGH
     }
 
     /**
@@ -51,6 +52,8 @@ public class Parser {
                     throw new EmptyIndexException("mark");
                 case UNMARK:
                     throw new EmptyIndexException("unmark");
+                case HIGH:
+                    throw new EmptyIndexException("set to high priority");
                 case TODO:
                     throw new EmptyDescriptionException("a todo");
                 case DEADLINE:
@@ -71,6 +74,8 @@ public class Parser {
                     return new MarkCommand(Integer.parseInt(info) - 1);
                 case UNMARK:
                     return new UnmarkCommand(Integer.parseInt(info) - 1);
+                case HIGH:
+                    return new HighCommand(Integer.parseInt(info) - 1);
                 case TODO:
                     return new TodoCommand(info);
                 case DEADLINE:
