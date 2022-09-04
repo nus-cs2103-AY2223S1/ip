@@ -40,35 +40,44 @@ public class Parser {
         String firstCommand = input[0];
         switch (firstCommand) {
         case "bye":
+            assert input.length == 1: Constants.INVALID_BYE_INPUT;
             return new ExitCommand();
         case "list":
+            assert input.length == 1: Constants.INVALID_LIST_INPUT;
             return new ListCommand();
         case "mark":
+            assert input.length == 2: Constants.INVALID_MARK_INPUT;
             checkInputError(input);
             checkIntInputError(input);
             return new MarkCommand(parseInt(input[1]));
         case "unmark":
+            assert input.length == 2: Constants.INVALID_UNMARK_INPUT;
             checkInputError(input);
             checkIntInputError(input);
             return new UnmarkCommand(parseInt(input[1]));
         case "delete":
+            assert input.length == 2: Constants.INVALID_DELETE_INPUT;
             checkInputError(input);
             checkIntInputError(input);
             return new DeleteCommand(parseInt(input[1]));
         case "todo":
+            assert input.length >= 2: Constants.INVALID_TODO_INPUT;
             checkInputError(input);
             return new TodoCommand(input[1]);
         case "event":
+            assert input.length >= 5: Constants.INVALID_EVENT_INPUT;
             checkInputError(input);
             String[] input2 = input[1].split(" /at ");
             checkInputError(input2);
             return new EventCommand(input2[0], LocalDateTime.parse(input2[1], formatter));
         case "deadline":
+            assert input.length >= 5: Constants.INVALID_DEADLINE_INPUT;
             checkInputError(input);
             String[] input3 = input[1].split(" /by ");
             checkInputError(input3);
             return new DeadlineCommand(input3[0], LocalDateTime.parse(input3[1], formatter));
         case "find":
+            assert input.length == 2: Constants.INVALID_FIND_INPUT;
             checkInputError(input);
             return new FindCommand(input[1]);
         default:
