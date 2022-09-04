@@ -1,8 +1,10 @@
 package commands;
 
+import data.Task;
 import data.TaskList;
 import storage.Storage;
-import ui.Ui;
+
+import java.util.List;
 
 public class FindCommand extends Command {
     private final String searchString;
@@ -12,7 +14,14 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.printMultiMsg(tasks.findAndReturnStringArr(searchString));
+    public String execute(TaskList tasks, Storage storage) {
+        StringBuilder resultStringBuilder = new StringBuilder();
+        resultStringBuilder.append("Here are the matching tasks in your list:\n");
+
+        List<Task> matchingTasks = tasks.findBySearchString(searchString);
+        for (int i = 0; i < matchingTasks.size(); i++) {
+            resultStringBuilder.append(i+1).append(". ").append(matchingTasks.get(i)).append("\n");
+        }
+        return resultStringBuilder.toString();
     }
 }
