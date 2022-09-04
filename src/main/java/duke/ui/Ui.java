@@ -66,7 +66,8 @@ public class Ui {
         StringBuilder sb = new StringBuilder();
         sb.append("Here are the tasks in your list:\n");
         for (int i = 0; i < tasks.getSize(); i++) {
-            sb.append(String.format(" %d. %s\n", i + 1, tasks.getTask(i)));
+            String task = String.format(" %d. %s\n", i + 1, tasks.getTask(i));
+            sb.append(task);
         }
         return sb.toString();
     }
@@ -81,8 +82,10 @@ public class Ui {
     public String printAddTasks(Task task, TaskList tasks) {
         StringBuilder sb = new StringBuilder();
         sb.append("Got it. I've added this duke.task:\n");
-        sb.append(String.format("  %s\n", task.toString()));
-        sb.append(String.format("Now you have %d tasks in the list.", tasks.getSize()));
+        String taskToBeAdded = String.format("  %s\n", task.toString());
+        String numberOfTasksLeft = String.format("Now you have %d tasks in the list.", tasks.getSize());
+        sb.append(taskToBeAdded);
+        sb.append(numberOfTasksLeft);
         return sb.toString();
     }
 
@@ -116,8 +119,10 @@ public class Ui {
     public String printDeleteTask(Task task, TaskList tasks) {
         StringBuilder sb = new StringBuilder();
         sb.append("Noted. I've removed this task:\n");
-        sb.append(String.format("  %s\n", task.toString()));
-        sb.append(String.format("Now you have %d tasks in the list.", tasks.getSize()));
+        String taskToBeDeleted = String.format("  %s\n", task.toString());
+        String numberOfTasksLeft = String.format("Now you have %d tasks in the list.", tasks.getSize());
+        sb.append(taskToBeDeleted);
+        sb.append(numberOfTasksLeft);
         return sb.toString();
     }
 
@@ -141,7 +146,8 @@ public class Ui {
         StringBuilder sb = new StringBuilder();
         sb.append("Here are the matching tasks in your list:\n");
         for (int i = 0; i < tasks.size(); i++) {
-            sb.append(String.format(" %d. %s\n", i + 1, tasks.get(i)));
+            String task = String.format(" %d. %s\n", i + 1, tasks.get(i));
+            sb.append(task);
         }
         return sb.toString();
     }
