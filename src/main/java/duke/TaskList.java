@@ -77,7 +77,9 @@ public class TaskList {
      * @throws DukeException If the provided string is not valid.
      */
     public Task setTaskCompletion(String indexString, boolean isComplete) throws DukeException {
-        Task task = data.get(stringIndexToInt(indexString));
+        int index = stringIndexToInt(indexString);
+        assert index >= 0 && index < data.size();
+        Task task = data.get(index);
         if (isComplete) {
             task.markDone();
         } else {
@@ -94,9 +96,10 @@ public class TaskList {
      * @throws DukeException If the provided string is not valid.
      */
     public Task deleteTask(String indexString) throws DukeException {
-        int targetIndex = stringIndexToInt(indexString);
-        Task task = data.get(targetIndex);
-        data.remove(targetIndex);
+        int index = stringIndexToInt(indexString);
+        assert index >= 0 && index < data.size();
+        Task task = data.get(index);
+        data.remove(index);
         return task;
     }
 

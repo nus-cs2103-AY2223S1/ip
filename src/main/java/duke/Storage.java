@@ -31,10 +31,8 @@ public class Storage {
         String home = System.getProperty("user.dir");
         Path path = Paths.get(home, "data");
         File dataDir = new File(path.toString());
-        if (!dataDir.exists()) {
-            if (!dataDir.mkdir()) {
-                throw new DukeException("Unable to create 'data' directory");
-            }
+        if (!dataDir.exists() && !dataDir.mkdir()) {
+            throw new DukeException("Unable to create 'data' directory");
         }
     }
 
@@ -57,7 +55,7 @@ public class Storage {
                 if (taskData.length < 3 || (taskData.length < 4 && !"T".equals(taskData[0]))) {
                     throw new DukeException("File format invalid!");
                 }
-                Task task = null;
+                Task task;
                 switch (taskData[0]) {
                 case "T":
                     task = new ToDo(taskData[2]);
@@ -69,15 +67,13 @@ public class Storage {
                     task = new Event(taskData[2], LocalDate.parse(taskData[3]));
                     break;
                 default:
-                    break;
+                    throw new DukeException("File format invalid!");
                 }
-                if (task != null) {
-                    data.add(task);
-                    if ("1".equals(taskData[1])) {
-                        task.markDone();
-                    } else {
-                        task.markNotDone();
-                    }
+                data.add(task);
+                if ("1".equals(taskData[1])) {
+                    task.markDone();
+                } else {
+                    task.markNotDone();
                 }
             }
             sc.close();
