@@ -38,19 +38,13 @@ public class Ui {
     }
 
     /**
-     * Prints out the Introduction to Duke program.
+     * Returns the String introduction message to Duke program.
      */
-    public void printIntro() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        printLine();
-        print("Hello! I'm duke.Duke");
-        print("What can I do for you?");
-        printLine();
+    public static String printIntro() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Hello! I'm duke.Duke\n");
+        sb.append("What can I do for you?");
+        return sb.toString();
     }
 
     /**
