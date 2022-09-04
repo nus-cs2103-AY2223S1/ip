@@ -66,70 +66,6 @@ public class Duke extends Application {
         return this.tasks;
     }
 
-    /**
-     * Executes the programme with data from storage if it exists
-     * If the data does not exist, create a new file to store our data
-     * Exit the programme only when the bye command is given
-     */
-    /*
-    public void run() {
-        ui.showWelcome();
-        tasks.printTasks();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.printLine();
-
-                //we get the commandType to know how to process the command
-                String commandType = Parser.getCommandType(fullCommand);
-
-                if (commandType.equals("EXIT")) {
-                    System.out.println("Bye. Hope to see you again soon!");
-                    isExit = true;
-                } else if (commandType.equals("PRINT")) {
-                    tasks.printTasks();
-                } else if (commandType.equals("UPDATE")) {
-                    int[] arr = Parser.parseUpdateCommand(fullCommand);
-
-                    //mark/unmark the task depending on the integer in the first entry of our array
-                    if (arr[0] == 1) {
-                        tasks.mark(arr[1]);
-                    } else {
-                        tasks.unmark(arr[1]);
-                    }
-                } else if (commandType.equals("DELETE")) {
-                    int taskIndex = Parser.getDeleteNum(fullCommand);
-                    tasks.delete(taskIndex);
-                } else if (commandType.equals("ADD")){
-                    if (fullCommand.startsWith("todo")) {
-                        String task = fullCommand.substring(5);
-                        tasks.add(new Todo(task));
-                    } else {
-                        LocalDateTime dateTime = Parser.parseDateTime(fullCommand);
-                        if (fullCommand.startsWith("deadline")) {
-                            tasks.add(new Deadline(fullCommand.substring(9, fullCommand.indexOf("/"))
-                                    , dateTime));
-                        } else {
-                            tasks.add(new Event(fullCommand.substring(6, fullCommand.indexOf("/"))
-                                    , dateTime));
-                        }
-                    }
-                } else if (commandType.equals("FIND")) {
-                    Parser.parseFindCommand(fullCommand, tasks);
-                } else {
-                    Parser.printUpcomingTasks(tasks);
-                }
-                storage.save(tasks);
-            } catch (DukeException e){
-                ui.showError(e);
-            } finally {
-                ui.printLine();
-            }
-        }
-        System.exit(0);
-    }
-    */
     @Override
     public void start(Stage stage) {
 
@@ -195,19 +131,6 @@ public class Duke extends Application {
         userInput.setOnAction((event) -> {
             handleUserInput();
         });
-
-        /*
-        //Step 3. Add functionality to handle user input.
-        sendButton.setOnMouseClicked((event) -> {
-            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            userInput.clear();
-        });
-
-        userInput.setOnAction((event) -> {
-            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            userInput.clear();
-        });
-        */
 
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
@@ -305,9 +228,3 @@ public class Duke extends Application {
         }
     }
 }
-
-    /*
-    public static void main(String[] args)  {
-        new Duke("./src/main/data/duke.txt").run();
-    }
-     */
