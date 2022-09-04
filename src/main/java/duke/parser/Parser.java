@@ -3,6 +3,8 @@ package duke.parser;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import duke.commands.Command;
 import duke.commands.DeadlineCommand;
@@ -22,6 +24,12 @@ import duke.data.exception.DukeException;
  * the validity of inputs provided
  */
 public class Parser {
+    private static final String INVALID_INPUT = "Invalid input!";
+    private static final String INCORRECT_DATE_FORMAT = "Incorrect date format!";
+    private static final String TODO_REGEX = "(?<desc>.+)";
+    private static final String DEADLINE_REGEX = "(?<desc>.+)/by(?<date>.+)";
+    private static final String EVENT_REGEX = "(?<desc>.+)/at(?<date>.+)";
+
     /**
      * Makes sense of the commands provided by the user
      * @param input The input provided by the user
@@ -57,20 +65,9 @@ public class Parser {
     }
 
     /**
-     * Checks if the input is valid
-     * @param input An array consisting of the command and task
-     * @throws DukeException If the array has a length of less than two
-     */
-    public static void checkInput(String[] input) throws DukeException {
-        if (input.length <= 1) {
-            throw new DukeException("Invalid input!");
-        }
-    }
-
-    /**
      * Checks if the date provided is valid
      * @param date
-     * @throws DukeException
+     * @throws DukeException If the date's is not valid
      */
     public static boolean isDateValid(String date) {
         try {
@@ -85,92 +82,86 @@ public class Parser {
     private static ListCommand prepareList(String args) throws DukeException {
         if (args.equals("")) {
             return new ListCommand();
-        } else {
-            isDateValid(args);
-            return new ListCommand(args);
         }
+
+        if (!isDateValid(args)) {
+            throw new DukeException(Parser.INVALID_INPUT);
+        }
+
+        return new ListCommand(args);
     }
 
     private static MarkCommand prepareMark(String args) throws DukeException {
-        if (args.equals("")) {
-            throw new DukeException("Invalid input!");
+        if (!args.matches("[0-9]+")) {
+            throw new DukeException(Parser.INVALID_INPUT);
         }
 
-        try {
-            int index = Integer.parseInt(args);
-            return new MarkCommand(index);
-        } catch (NumberFormatException e) {
-            throw new DukeException("Invalid input!");
-        }
+        return new MarkCommand(Integer.parseInt(args));
     }
 
     private static UnmarkCommand prepareUnmark(String args) throws DukeException {
-        if (args.equals("")) {
-            throw new DukeException("Invalid input!");
+        if (!args.matches("[0-9]+")) {
+            throw new DukeException(Parser.INVALID_INPUT);
         }
 
-        try {
-            int index = Integer.parseInt(args);
-            return new UnmarkCommand(index);
-        } catch (NumberFormatException e) {
-            throw new DukeException("Invalid input!");
-        }
+        return new UnmarkCommand(Integer.parseInt(args));
     }
 
     private static TodoCommand prepareTodo(String args) throws DukeException {
-        if (args.equals("")) {
-            throw new DukeException("Invalid input!");
+        Pattern pattern = Pattern.compile(Parser.TODO_REGEX);
+        Matcher matcher = pattern.matcher(args);
+        boolean hasMatches = matcher.matches();
+
+        if (!hasMatches) {
+            throw new DukeException(Parser.INVALID_INPUT);
         }
 
-        return new TodoCommand(args);
+        return new TodoCommand(matcher.group("desc").trim());
     }
 
     private static DeadlineCommand prepareDeadline(String args) throws DukeException {
-        if (args.equals("")) {
-            throw new DukeException("Invalid input!");
+        Pattern pattern = Pattern.compile(Parser.DEADLINE_REGEX);
+        Matcher matcher = pattern.matcher(args);
+        boolean hasMatches = matcher.matches();
+
+        if (!hasMatches) {
+            throw new DukeException(Parser.INVALID_INPUT);
         }
 
-        String[] components = args.split(" /by ", 2);
-        if (components.length == 1) {
-            throw new DukeException("Invalid input!");
-        } else if (!isDateValid(components[1])) {
-            throw new DukeException("The date included should follow this format: dd/MM/yyyy");
+        if (!isDateValid(matcher.group("date").trim())) {
+            throw new DukeException(Parser.INCORRECT_DATE_FORMAT);
         }
 
-        return new DeadlineCommand(components[0], components[1]);
+        return new DeadlineCommand(matcher.group("desc").trim(), matcher.group("date").trim());
     }
 
     private static EventCommand prepareEvent(String args) throws DukeException {
-        if (args.equals("")) {
-            throw new DukeException("Invalid input!");
+        Pattern pattern = Pattern.compile(Parser.EVENT_REGEX);
+        Matcher matcher = pattern.matcher(args);
+        boolean hasMatches = matcher.matches();
+
+        if (!hasMatches) {
+            throw new DukeException(Parser.INVALID_INPUT);
         }
 
-        String[] components = args.split(" /at ", 2);
-        if (components.length == 1) {
-            throw new DukeException("Invalid input!");
-        } else if (!isDateValid(components[1])) {
-            throw new DukeException("The date included should follow this format: dd/MM/yyyy");
+        if (!isDateValid(matcher.group("date").trim())) {
+            throw new DukeException(Parser.INCORRECT_DATE_FORMAT);
         }
 
-        return new EventCommand(components[0], components[1]);
+        return new EventCommand(matcher.group("desc").trim(), matcher.group("date").trim());
     }
 
     private static DeleteCommand prepareDelete(String args) throws DukeException {
-        if (args.equals("")) {
-            throw new DukeException("Invalid input!");
+        if (!args.matches("[0-9]+")) {
+            throw new DukeException(Parser.INVALID_INPUT);
         }
 
-        try {
-            int index = Integer.parseInt(args);
-            return new DeleteCommand(index);
-        } catch (NumberFormatException e) {
-            throw new DukeException("Invalid input!");
-        }
+        return new DeleteCommand(Integer.parseInt(args));
     }
 
     private static FindCommand prepareFind(String args) throws DukeException {
-        if (args.equals("")) {
-            throw new DukeException("Invalid input!");
+        if (args.matches("")) {
+            throw new DukeException(Parser.INVALID_INPUT);
         }
 
         return new FindCommand(args.split(" "));

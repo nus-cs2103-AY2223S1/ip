@@ -1,5 +1,7 @@
 package duke.commands;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import duke.data.TaskList;
@@ -52,7 +54,8 @@ public class ListCommand extends Command {
             return ui.printList(list);
         } else {
             ArrayList<Task> list = taskList.getTasks(date);
-            return ui.printTasks(list, date);
+            LocalDate d = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            return ui.printList(list, d);
         }
     }
 }
