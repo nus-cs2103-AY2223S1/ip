@@ -4,7 +4,7 @@
 
 ### Feature-ABC
 
-Description of the feature.
+Description of the feature. 
 
 ### Feature-XYZ
 
