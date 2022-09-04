@@ -67,6 +67,9 @@ public class Storage {
                 temp.next();
                 String markStatus = temp.next();
                 String description = temp.next();
+                boolean isTodo = taskType.equals("T");
+                boolean isDeadline = taskType.equals("D");
+                boolean isEvent = taskType.equals("E");
 
                 DateTimeFormatter inputDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 DateTimeFormatter newDateFormat = DateTimeFormatter.ofPattern("MMM d yyyy");
@@ -76,6 +79,7 @@ public class Storage {
                 switch (taskType) {
 
                 case "D":
+                    assert (isDeadline);
                     temp.next();
                     date = temp.next();
                     formattedDate = inputDateFormat.format(newDateFormat.parse(date));
@@ -87,6 +91,7 @@ public class Storage {
                     break;
 
                 case "E":
+                    assert (isEvent);
                     temp.next();
                     date = temp.next();
                     formattedDate = inputDateFormat.format(newDateFormat.parse(date));
@@ -98,6 +103,7 @@ public class Storage {
                     break;
 
                 case "T":
+                    assert (isTodo);
                     Todo todo = new Todo(description);
                     if (isMarked(markStatus)) {
                         todo.mark();

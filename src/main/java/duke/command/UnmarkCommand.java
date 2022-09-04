@@ -6,7 +6,10 @@ import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.task.Deadline;
+import duke.task.Event;
 import duke.task.Task;
+import duke.task.Todo;
 
 /**
  * Command that unmarks a task in the list as done.
@@ -44,7 +47,6 @@ public class UnmarkCommand extends Command {
      * @param taskList List of tasks being operated on.
      * @param ui UI that prints corresponding responses.
      * @param storage Storage for saving purposes if applicable.
-     * @throws DukeException If the input index is invalid.
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
@@ -56,7 +58,14 @@ public class UnmarkCommand extends Command {
             throw new DukeException(errorMessage);
         }
 
+        assert (index >= 1) : "Given index must be at least 1.";
+        assert (index <= list.size()) : "Index cannot exceed length of list";
+
         Task task = list.get(index - 1);
+        boolean isTodo = task instanceof Todo;
+        boolean isDeadline = task instanceof Deadline;
+        boolean isEvent = task instanceof Event;
+        assert (isTodo || isDeadline || isEvent) : "Task is either an instance of Todo, Deadline or Event.";
         taskList.unmark(this.index);
         return ui.showUnmark(task);
     }
