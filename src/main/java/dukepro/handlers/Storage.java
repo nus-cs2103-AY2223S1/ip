@@ -87,7 +87,6 @@ public class Storage {
      * @return A boolean.
      */
     public boolean rewriteFile(ArrayList<Task> tasks) {
-        //delete all file contents
         printWriter.flush();
         try {
             printWriter = new PrintWriter(new FileWriter(this.tasklist, false));

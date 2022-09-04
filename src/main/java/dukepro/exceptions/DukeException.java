@@ -4,7 +4,7 @@ package dukepro.exceptions;
  * Class for DukeException.
  */
 public class DukeException extends Exception {
-    private static String line = "_______________________________________";
+    private static final String LINE = "_______________________________________";
 
     /**
      * Creates a DukeException.
@@ -23,7 +23,7 @@ public class DukeException extends Exception {
      */
     @Override
     public String toString() {
-        String ret = line + "\nohai, please provide proper input :<<<<<\n" + line;
+        String ret = LINE + "\nohai, please provide proper input :<<<<<\n" + LINE;
         return ret;
     }
 }

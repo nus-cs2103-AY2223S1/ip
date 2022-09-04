@@ -82,26 +82,30 @@ public class Decoder {
 
         if (splitted[0].equals("todo")) {
             return makeTask(splitted[1], null, 'T');
+        }
+
+        String[] stringAndDate;
+        if (splitted[0].equals("deadline")) {
+            stringAndDate = splitted[1].split("/by");
         } else {
-            String[] stringAndDate;
-            if (splitted[0].equals("deadline")) {
-                stringAndDate = splitted[1].split("/by");
-            } else {
-                stringAndDate = splitted[1].split("/at");
-            }
+            stringAndDate = splitted[1].split("/at");
+        }
 
-            if (stringAndDate.length < 2) {
-                throw new BadFormatException("incorrect format", splitted[0]);
-            }
-
+        if (stringAndDate.length < 2) {
             if (splitted[0].equals("deadline")) {
-                parseLD(stringAndDate[1]);
-                return makeTask(stringAndDate[0], stringAndDate[1], 'D');
+                throw new BadFormatException("incorrect format", splitted[0], "<DATE in yyyy-mm-dd>", "/by");
             } else if (splitted[0].equals("event")) {
-                return makeTask(stringAndDate[0], stringAndDate[1], 'E');
+                throw new BadFormatException("incorrect format", splitted[0], "<LOCATION>", "/at");
             }
             assert false;
             return null;
+        }
+
+        if (splitted[0].equals("deadline")) {
+            parseLD(stringAndDate[1]);
+            return makeTask(stringAndDate[0], stringAndDate[1], 'D');
+        } else {
+            return makeTask(stringAndDate[0], stringAndDate[1], 'E');
         }
     }
 
@@ -144,7 +148,7 @@ public class Decoder {
             throw new BadTaskOperationException("delete", "delete");
         }
         if (!isValidNum(deleteTasks[1])) {
-            throw new BadFormatException("delete", "delete");
+            throw new BadFormatException("delete", "delete", "<TASK ID>", "");
         }
         int taskNo = Integer.parseInt(deleteTasks[1]);
         if (taskNo > len) {
@@ -167,7 +171,7 @@ public class Decoder {
             throw new BadTaskOperationException("done", "done");
         }
         if (!isValidNum(doneTasks[1])) {
-            throw new BadFormatException("done", "done");
+            throw new BadFormatException("done", "done", "<TASK ID>", "");
         }
         int taskNo = Integer.parseInt(doneTasks[1]);
         if (taskNo > len) {
@@ -188,7 +192,7 @@ public class Decoder {
             String[] splitted = str.split(" ");
             return LocalDate.parse(splitted[splitted.length - 1].stripLeading());
         } catch (DateTimeParseException e) {
-            throw new BadFormatException("date time error", "Date", "Date: <YYYY-MM-DD>");
+            throw new BadFormatException("date time error", "Date", "Date: <YYYY-MM-DD>", "");
         }
     }
 
