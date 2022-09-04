@@ -130,16 +130,16 @@ public class TaskList {
     @Override
     public String toString() {
         int counter = 1;
-        String res = "Here are the tasks that you have added to the list:\n";
+        StringBuilder res = new StringBuilder("Here are the tasks that you have added to the list:\n");
         for (Task task : this.taskList) {
             if (task != null) {
-                res += counter + ". " + task;
+                res.append(counter + ". " + task);
                 if (counter != taskList.size()) {
-                    res += "\n";
+                    res.append("\n");
                 }
                 counter++;
             }
         }
-        return counter == 1 ? "There are no tasks in your task list at the moment!" : res;
+        return counter == 1 ? "There are no tasks in your task list at the moment!" : res.toString();
     }
 }
