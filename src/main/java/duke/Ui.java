@@ -1,6 +1,5 @@
 package duke;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -47,9 +46,9 @@ public class Ui {
     }
 
     /**
-     * Returns the message that a task has been mark as uncompleted.
+     * Returns the message that a task has changed its priority.
      *
-     * @param task The task that is marked as uncompleted.
+     * @param task The task that has its priority changed.
      * @return The string containing the intended message.
      */
     public String getPrioritySetMessage(Task task) {

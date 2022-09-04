@@ -106,6 +106,7 @@ public abstract class Task {
 
     /**
      * Encodes the priority of the task into a string for writing purposes.
+     *
      * @return The string depicting the priority status.
      */
     public String priorityEncode() {

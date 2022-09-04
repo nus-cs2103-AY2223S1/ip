@@ -8,6 +8,7 @@ public enum Priority {
 
     /**
      * Checks whether the user has inputted a priority in his command.
+     *
      * @param str The inputted string.
      * @return The boolean value of whether the input matches any of the priority strings.
      */

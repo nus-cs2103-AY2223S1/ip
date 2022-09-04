@@ -74,6 +74,7 @@ public class TaskList {
     }
     /**
      * Sets the priority of the task located at the given index.
+     *
      * @param index The given index for the ArrayList.
      * @param priority The given priority for the task.
      * @throws InvalidIndexException The exception that occurs when the index given is invalid.

@@ -16,6 +16,7 @@ public class PriorityCommand extends Command {
 
     /**
      * Constructor for a priorityCommand
+     *
      * @param index The given index.
      * @param priority The given priority.
      */
