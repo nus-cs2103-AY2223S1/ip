@@ -45,7 +45,10 @@ public class TaskList {
      * @return      Return venue of input task as {@code String}.
      */
     private String getVenue(String input) {
-        return input.substring(input.indexOf("/at ") + 4);
+        String DELIMITER = "/at ";
+        int startIndex = input.indexOf("/at ") + DELIMITER.length();
+        int endIndex = input.indexOf("/p ") - 1;
+        return input.substring(startIndex, endIndex);
     }
 
     /**
@@ -54,9 +57,12 @@ public class TaskList {
      * @return      Return date of input task as {@code LocalDate}.
      */
     private LocalDate getDate(String input) {
+        String DELIMITER = "/by ";
+        int startIndex = input.indexOf("/by ") + DELIMITER.length();
+        int endIndex = input.indexOf("/p ") - 1;
         DateTimeFormatter formatter =
                 DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        String dateString = input.substring(input.indexOf("/by ") + 4);
+        String dateString = input.substring(startIndex, endIndex);
         return LocalDate.parse(dateString, formatter);
     }
 
