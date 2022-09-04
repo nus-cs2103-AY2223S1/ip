@@ -60,9 +60,11 @@ public class TaskList {
         String [] taskDetails = input.split(SAVE_DETAILS_SEPERATOR);
         String taskDescription = taskDetails[POSITION_OF_TASK_DESCRIPTION_IN_TASK];
         boolean isDone;
+
         isDone = taskDetails[POSITION_OF_MARK_IN_TASK].equals(SAVE_MARK_DONE);
         if (taskDetails.length == TASK_CONTAINS_DATE) {
             String time = taskDetails[POSITION_OF_DATE_IN_TASK];
+            assert Task.isCorrectFormat(time) : "date saved is not of the correct format";
             LocalDate date = LocalDate.parse(time, DateTimeFormatter.ofPattern(Task.LOAD_DATE_FORMAT));
             if (taskDetails[POSITION_OF_TASK_TYPE_IN_TASK].equals(Deadline.TASK_TYPE)) {
                 return new Deadline(taskDescription, isDone, date);
@@ -75,8 +77,10 @@ public class TaskList {
 
     private static String taskToString(Task task) {
         String taskDescription = task.getDescription();
+
         String completed = (task.isDone()) ? SAVE_MARK_DONE : SAVE_MARK_UNDONE;
         String type = task.toString().substring(START_POSITION_OF_TYPE_IN_STRING, END_POSITION_OF_TYPE_IN_STRING);
+        assert Task.isCorrectTaskType(type) : "task type was extracted incorrectly from task";
         String [] splitTime = task.toString().split(DATE_SEPERATOR);
         if (splitTime.length == LENGTH_WITH_DATE_IN_STRING) {
             String time = splitTime[POSITION_OF_DATE_IN_STRING];
@@ -104,6 +108,8 @@ public class TaskList {
      */
     public Task delete(int ind) throws DukeException {
         try {
+            assert 0 <= ind : "index should be greater than 0";
+            assert ind < this.tasks.size() : "ind should be within size of TaskList";
             Task deletingTask = this.tasks.get(ind);
             this.tasks.remove(ind);
             return deletingTask;
