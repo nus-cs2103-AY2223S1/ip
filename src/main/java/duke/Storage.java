@@ -78,13 +78,13 @@ public class Storage {
         String time2 = info[6];
         switch (taskType) {
         case "T":
-            tasks.loadTask(new Todo(description, status));
+            tasks.addTask(new Todo(description, status));
             break;
         case "D":
-            tasks.loadTask(new Deadline(description, status, date1, time1));
+            tasks.addTask(new Deadline(description, status, date1, time1));
             break;
         case "E":
-            tasks.loadTask(new Event(description, status, date1, time1, date2, time2));
+            tasks.addTask(new Event(description, status, date1, time1, date2, time2));
             break;
         default:
             System.out.println("Unknown task type");
