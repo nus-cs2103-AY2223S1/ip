@@ -62,18 +62,21 @@ public class Storage {
             BufferedReader reader = new BufferedReader(new FileReader(this.filepath));
             String readLine = reader.readLine();
             while (readLine != null) {
-                String[] parse = readLine.split(" > ");
+                String[] input = readLine.split(" > ");
                 Task task;
-                if (parse[0].equals(Constants.TODO)) {
-                    task = new Todo(parse[2]);
-                } else if (parse[0].equals(Constants.EVENT)) {
-                    task = new Event(parse[2], LocalDateTime.parse(parse[3], formatter));
-                } else if (parse[0].equals(Constants.DEADLINE)) {
-                    task = new Deadline(parse[2], LocalDateTime.parse(parse[3], formatter));
+                if (input[0].equals(Constants.TODO)) {
+                    assert input.length == 3: Constants.INVALID_TODO_INPUT;
+                    task = new Todo(input[2]);
+                } else if (input[0].equals(Constants.EVENT)) {
+                    assert input.length == 4: Constants.INVALID_EVENT_INPUT;
+                    task = new Event(input[2], LocalDateTime.parse(input[3], formatter));
+                } else if (input[0].equals(Constants.DEADLINE)) {
+                    assert input.length == 4: Constants.INVALID_DEADLINE_INPUT;
+                    task = new Deadline(input[2], LocalDateTime.parse(input[3], formatter));
                 } else {
                     throw new DukeException(Constants.INVALID_FILE);
                 }
-                if (parse[1].equals("[X]")) {
+                if (input[1].equals("[X]")) {
                     task.setMarked();
                 }
                 tasks.add(task);
