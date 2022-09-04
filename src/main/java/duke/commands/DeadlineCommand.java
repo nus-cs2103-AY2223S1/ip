@@ -45,9 +45,11 @@ public class DeadlineCommand extends Command {
             LocalDate d1 = LocalDate.parse(splitCommand[1]);
             String description = splitCommand[0];
             LocalDate date = d1;
+
             Task task = new Deadline(description, date);
             tasks.addTask(task);
             storage.addTaskToDisk(task.taskMemo() + System.lineSeparator());
+
             return ui.printAddTask(task, tasks.getTaskListSize());
         } catch (IOException e) {
             return (e.getMessage());
