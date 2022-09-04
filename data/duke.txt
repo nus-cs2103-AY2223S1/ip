@@ -1,3 +1,2 @@
 T | 0 |  borrow book
 T | 0 |  buy bread
-T | 0 |  buy bread
