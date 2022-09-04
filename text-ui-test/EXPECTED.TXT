@@ -4,10 +4,29 @@
 \___ \  )( /    \\___ \) __ ( )  / 
 (____/ (__)\_/\_/(____/\_)(_/(__/  
 
- Beep boop! Stashy here! What can I do for you?
+Beep boop! Stashy here! What can I do for you?
+
+List of available commands so far:
+todo
+deadline
+event
+list
+mark
+unmark
+find
+help
+delete
+bye
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
     Please don't give me an empty todo description :(
+    __________________________________________________
+    __________________________________________________
+    help
+    
+    Shows the help message for the given command.
+    
+    Example: help todo
     __________________________________________________
     __________________________________________________
     There, we have a new todo:
@@ -339,6 +358,110 @@
     __________________________________________________
     Listing all the matching task(s)...
     1. [T][ ] hello world
+    __________________________________________________
+    __________________________________________________
+    todo
+    
+    Adds a todo task.
+    
+    Example: todo buy book
+    __________________________________________________
+    __________________________________________________
+    deadline
+    
+    Adds an deadline with a given date and time of deadline.
+    
+    Required: /by The delimiter to detect the date and time
+    
+    Example: deadline submit iP /by 10 Oct 2021 23:59
+    __________________________________________________
+    __________________________________________________
+    deadline
+    
+    Adds an deadline with a given date and time of deadline.
+    
+    Required: /by The delimiter to detect the date and time
+    
+    Example: deadline submit iP /by 10 Oct 2021 23:59
+    __________________________________________________
+    __________________________________________________
+    deadline
+    
+    Adds an deadline with a given date and time of deadline.
+    
+    Required: /by The delimiter to detect the date and time
+    
+    Example: deadline submit iP /by 10 Oct 2021 23:59
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    I have no idea what are you saying :<
+    __________________________________________________
+    __________________________________________________
+    help
+    
+    Shows the help message for the given command.
+    
+    Example: help todo
+    __________________________________________________
+    __________________________________________________
+    find
+    
+    Lists all the tasks filtered by a specific string query.
+    
+    Example: find book
+    __________________________________________________
+    __________________________________________________
+    delete
+    
+    Deletes a task based on the task ID provided.
+    
+    Example: delete 3
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    I have no idea what are you saying :<
+    __________________________________________________
+    __________________________________________________
+    mark
+    
+    Marks the task referenced by the task ID as done.
+    
+    Example: mark 2
+    __________________________________________________
+    __________________________________________________
+    unmark
+    
+    Unmarks the task referenced by task ID as not done.
+    
+    Example: unmark 4
+    __________________________________________________
+    __________________________________________________
+    list
+    
+    Lists all the tasks that you currently have.
+    
+    Example: list
+    __________________________________________________
+    __________________________________________________
+    event
+    
+    Adds an event with a given date and time of event.
+    
+    Required: /at The delimiter to detect the date and time
+    
+    Example: event buy coffee /at 10 Oct 2021 10:30
+    __________________________________________________
+    __________________________________________________
+    ☹ BEEP BOOP BUZZ ERROR!!!
+    I have no idea what are you saying :<
+    __________________________________________________
+    __________________________________________________
+    bye
+    
+    Exits the chatbot.
+    
+    Example: exit
     __________________________________________________
     __________________________________________________
  --                                                  -++-  

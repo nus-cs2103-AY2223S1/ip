@@ -1,4 +1,5 @@
 todo
+help
 todo borrow book
    todo    borrow book with /at perhaps?
 
@@ -72,4 +73,19 @@ find o
 find O
 find cLb
 find             hello
+help        todo
+help deadline ???
+help deadline
+help deadline /at
+help book
+help help
+help find
+help delete
+help exit
+help mark
+help unmark
+help list
+  help  event
+  help byee
+ help     bye
 bye
