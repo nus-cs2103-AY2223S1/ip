@@ -24,7 +24,8 @@ public class ParserTest {
         String testInput1 = "event /at EVENT VENUE";
         String expectedOutput1 = "Wrong format! To add a new "
                 + "event, please enter the following:\n"
-                + "   event [TASK DESCRIPTION] /at [VENUE]\n";
+                + "   event [TASK DESCRIPTION] /at [VENUE] "
+                + "(/p [PRIORITY])";
         try {
             BiFunction<TaskList, String, String> testOutput =
                     testParser.handleUserInputs(testInput1);
