@@ -14,7 +14,7 @@ import duke.Ui;
 
 public class ByeCommand extends Command {
     /**
-     * A method that displays the farewell message with Duke.
+     * Displays the farewell message with Duke.
      *
      * @param tasks The TaskList containing the task list.
      * @param ui The Ui dealing with interactions with the user.

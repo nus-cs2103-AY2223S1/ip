@@ -25,7 +25,7 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * A method that marks a Task at the specified index, displays the mark-message, and updates the Storage.
+     * Marks a Task at the specified index, displays the mark-message, and updates the Storage.
      *
      * @param tasks The TaskList containing the task list.
      * @param ui The Ui dealing with interactions with the user.

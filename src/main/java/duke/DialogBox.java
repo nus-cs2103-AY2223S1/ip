@@ -49,17 +49,17 @@ public class DialogBox extends HBox {
     }
 
     /**
-     * A method that flips the dialog box such that the ImageView is on the left and text on the right.
+     * Flips the dialog box such that the ImageView is on the left and text on the right.
      */
     private void flip() {
-        ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
-        Collections.reverse(tmp);
-        getChildren().setAll(tmp);
+        ObservableList<Node> observableList = FXCollections.observableArrayList(this.getChildren());
+        Collections.reverse(observableList);
+        getChildren().setAll(observableList);
         setAlignment(Pos.TOP_LEFT);
     }
 
     /**
-     * A method that retrieves the user's dialog.
+     * Retrieves the user's dialog.
      *
      * @param text The text to be displayed.
      * @param img The display image.
@@ -70,7 +70,7 @@ public class DialogBox extends HBox {
     }
 
     /**
-     * A method that retrieves Duke's dialog.
+     * Retrieves Duke's dialog.
      *
      * @param text The text to be displayed.
      * @param img The display image.

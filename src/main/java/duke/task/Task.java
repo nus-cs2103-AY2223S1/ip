@@ -28,7 +28,7 @@ public class Task {
     }
 
     /**
-     * A method that generates the status icon of the Task depending on whether it is done or not.
+     * Generates the status icon of the Task depending on whether it is done or not.
      *
      * @return The status icon.
      */
@@ -37,7 +37,7 @@ public class Task {
     }
 
     /**
-     * A method that converts boolean to int.
+     * Converts boolean to int.
      *
      * @return The int representation of whether the Task is done.
      */
@@ -46,21 +46,21 @@ public class Task {
     }
 
     /**
-     * A method that sets the Task to be done.
+     * Sets the Task to be done.
      */
     public void markAsDone() {
         this.isDone = true;
     }
 
     /**
-     * A method that sets the Task to be undone.
+     * Sets the Task to be undone.
      */
     public void markAsUndone() {
         this.isDone = false;
     }
 
     /**
-     * A method that checks if a Task description contains the specified keyword.
+     * Checks if a Task description contains the specified keyword.
      *
      * @param keyword The keyword to search for.
      * @return Is the keyword in the Task description.
@@ -70,7 +70,7 @@ public class Task {
     }
 
     /**
-     * A method that creates a specific Task type given the input details.
+     * Creates a specific Task type given the input details.
      *
      * @param data The String formatted data of the Task retrieved from the Storage.
      * @return A specific type of Task created from the data.
@@ -94,7 +94,7 @@ public class Task {
     }
 
     /**
-     * A method that converts the Task into the String format required to be saved in the Storage.
+     * Converts the Task into the String format required to be saved in the Storage.
      *
      * @return String formatted data of the Task.
      */
@@ -103,7 +103,7 @@ public class Task {
     }
 
     /**
-     * A method that converts the Task into its String representation.
+     * Converts the Task into its String representation.
      *
      * @return String representation of the Task.
      */

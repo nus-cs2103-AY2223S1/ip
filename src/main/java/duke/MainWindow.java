@@ -29,7 +29,7 @@ public class MainWindow extends AnchorPane {
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     /**
-     * A method to initialize the MainWindow.
+     * Initializes the MainWindow.
      */
     @FXML
     public void initialize() {
@@ -37,7 +37,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * A method to set the Duke object.
+     * Sets the Duke object.
      *
      * @param d The Duke object.
      */
@@ -46,7 +46,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * A method that creates two dialog boxes, one echoing user input and the other containing Duke's reply and then
+     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then
      * appends them to the dialog container. Clears the user input after processing.
      */
     @FXML

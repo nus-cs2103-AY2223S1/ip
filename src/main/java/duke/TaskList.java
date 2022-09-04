@@ -117,7 +117,7 @@ public class TaskList {
     }
 
     /**
-     * A method that deletes a Task from the list.
+     * Deletes a Task from the list.
      *
      * @param index Index of the Task to be deleted, with respect to the TaskList.
      * @return The deleted Task.
@@ -127,7 +127,7 @@ public class TaskList {
     }
 
     /**
-     * A method that searches the TaskList for Task(s) with the specified keyword(s).
+     * Searches the TaskList for Task(s) with the specified keyword(s).
      *
      * @param keywords The keyword(s) to search for.
      * @return The list of Task(s) found with the specified keyword.
@@ -158,7 +158,7 @@ public class TaskList {
     }
 
     /**
-     * A method that converts the TaskList into its String representation.
+     * Converts the TaskList into its String representation.
      *
      * @return String representation of the TaskList.
      */

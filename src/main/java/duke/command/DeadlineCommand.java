@@ -30,7 +30,7 @@ public class DeadlineCommand extends Command {
     }
 
     /**
-     * A method that creates a new Deadline and adds it to the TaskList, displays the add-message, and updates the
+     * Creates a new Deadline and adds it to the TaskList, displays the add-message, and updates the
      * Storage.
      *
      * @param tasks The TaskList containing the task list.

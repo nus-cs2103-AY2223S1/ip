@@ -14,7 +14,7 @@ import duke.Ui;
 
 public class ListCommand extends Command {
     /**
-     * A method that displays the TaskList.
+     * Displays the TaskList.
      *
      * @param tasks The TaskList containing the task list.
      * @param ui The Ui dealing with interactions with the user.

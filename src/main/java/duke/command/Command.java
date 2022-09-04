@@ -15,7 +15,7 @@ import duke.Ui;
 
 public abstract class Command {
     /**
-     * A method that executes the Command according to its type.
+     * Executes the Command according to its type.
      *
      * @param tasks The TaskList containing the task list.
      * @param ui The Ui dealing with interactions with the user.

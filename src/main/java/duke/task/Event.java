@@ -27,7 +27,7 @@ public class Event extends Task {
     }
 
     /**
-     * A method that converts the Event into the String format required to be saved in the Storage.
+     * Converts the Event into the String format required to be saved in the Storage.
      *
      * @return String formatted data of the Event.
      */
@@ -37,7 +37,7 @@ public class Event extends Task {
     }
 
     /**
-     * A method that converts the Event into its String representation.
+     * Converts the Event into its String representation.
      *
      * @return String representation of the Event.
      */
