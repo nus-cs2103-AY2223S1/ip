@@ -1,5 +1,8 @@
 package duke.tasks;
 
+/**
+ * Represents a ToDo, which has the task in String, if done as boolean
+ */
 public class ToDo extends Task {
     public ToDo(String input) {
         super(input, "");
@@ -9,13 +12,23 @@ public class ToDo extends Task {
         super(input, done, "");
     }
 
+    /**
+     * @return new ToDo object, with deadline toggled to True
+     */
     public ToDo markDone() {
         return new ToDo(this.getVal(), true, "");
     }
 
+    /**
+     * @return new ToDo object, with deadline toggled to False
+     */
     public ToDo markUndone() {
         return new ToDo(this.getVal(), false, "");
     }
+
+    /**
+     * @return string of method as [T][deadline] task (date) format
+     */
     @Override
     public String toString() {
         if(this.getDone()) {
@@ -26,6 +39,9 @@ public class ToDo extends Task {
         }
     }
 
+    /**
+     * @return string format T | done | task | date, as specified in duke.txt
+     */
     @Override
     public String toText() {
         return String.format("T | %s | %s", this.getDone() ? 1 : 0, this.getVal());

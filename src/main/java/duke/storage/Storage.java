@@ -17,6 +17,12 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.List;
 
+/**
+ * reads file from duke.txt and
+ * writes to duke.txt once programme terminates
+ * has a Scanner object to read from duke.txt
+ * has a PrintWriter to write to duke.txt
+ */
 public class Storage {
     private static final String FILE_PATH = "C:/Unu_Stuff/Y3S1/CS2103-CS2103T/Lab/Lab 2/src/data/duke.txt";
     private Scanner myReader;
@@ -32,6 +38,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Reads the files from duke.txt and stores them in TaskList
+     * @param tasks tasks Arraylist from TaskList
+     * @param curr no of tasks in taskList
+     * @return new Taskist with updated tasks
+     */
     public TaskList readDuke(List<Task> tasks, int curr) {
         while (myReader.hasNextLine()) {
             String data = myReader.nextLine();
@@ -60,6 +72,11 @@ public class Storage {
         return new TaskList(tasks, curr);
     }
 
+    /**
+     *
+     * @param tasks takes in arrayList of TaskList, list of tasks
+     * @param curr the no of tasks in TaskList
+     */
     public void writerToDuke(List<Task> tasks, int curr) {
         for (int i = 0; i < curr; i++) {
             writer.println(tasks.get(i).toText());
@@ -89,6 +106,10 @@ public class Storage {
         return String.format("%s/%s/%s %s", arr[0], arr[1], arr[2], arr[3]);
     }
 
+    /**
+     * creats the necessary files if it is not found
+     * @throws IOException unable to create new File in directory
+     */
     public static void createFiles() throws IOException {
         String[] arr = FILE_PATH.split("/");
         java.nio.file.Path path = java.nio.file.Paths.get("");
