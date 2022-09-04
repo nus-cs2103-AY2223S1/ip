@@ -11,12 +11,12 @@ import java.util.Scanner;
  * Deals with saving Duke tasks as well as loading them from a file.
  */
 public class Storage {
-    private final File SAVE_FOLDER;
-    private final File SAVE_FILE;
+    private final File saveFolder;
+    private final File saveFile;
 
     public Storage(String savePath, String saveName) {
-        this.SAVE_FOLDER = new File(savePath);
-        this.SAVE_FILE = new File(savePath + saveName);
+        this.saveFolder = new File(savePath);
+        this.saveFile = new File(savePath + saveName);
     }
 
     /**
@@ -29,19 +29,19 @@ public class Storage {
             createSaveFolderIfAbsent();
             writeToSaveFile(tasks);
         } catch (IOException e) {
-            final String ERROR_MSG = "An error occurred while attempting to save the file";
-            System.out.println(ERROR_MSG);
+            String errorMsg = "An error occurred while attempting to save the file";
+            System.out.println(errorMsg);
         }
     }
 
     private void createSaveFolderIfAbsent() {
-        if (!SAVE_FOLDER.exists()) {
-            SAVE_FOLDER.mkdir();
+        if (!saveFolder.exists()) {
+            saveFolder.mkdir();
         }
     }
 
     private void writeToSaveFile(TaskList tasks) throws IOException {
-        FileWriter fw = new FileWriter(SAVE_FILE);
+        FileWriter fw = new FileWriter(saveFile);
         for (Task t : tasks.getTasks()) {
             String saveTask = t.parseToSaveData();
             fw.write(saveTask + "\n");
@@ -56,8 +56,8 @@ public class Storage {
      */
     public void loadFile(TaskList tasks) {
         try {
-            if (SAVE_FILE.exists()) {
-                Scanner s = new Scanner(SAVE_FILE);
+            if (saveFile.exists()) {
+                Scanner s = new Scanner(saveFile);
                 while (s.hasNext()) {
                     String line = s.nextLine();
                     loadTaskLineTo(tasks, line);
@@ -65,8 +65,8 @@ public class Storage {
                 s.close();
             }
         } catch (FileNotFoundException e) {
-            final String ERROR_MSG = "The duke scanner is unable to load the information in the file.";
-            System.out.println(ERROR_MSG);
+            String errorMsg = "The duke scanner is unable to load the information in the file.";
+            System.out.println(errorMsg);
         }
     }
 
@@ -83,9 +83,9 @@ public class Storage {
 
     private String[] parseSavedTask(String line) {
         // There are at most 7 parameters in a saved task, including status.
-        final int PARSED_ARRAY_SIZE = 7;
+        int parsedArraySize = 7;
         String[] temp = line.split("\\|");
-        String[] info = Arrays.copyOf(temp, PARSED_ARRAY_SIZE);
+        String[] info = Arrays.copyOf(temp, parsedArraySize);
         return info;
     }
 

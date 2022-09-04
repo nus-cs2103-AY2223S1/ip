@@ -10,17 +10,17 @@ import java.util.TimerTask;
  * the duke package.
  */
 public class Duke {
-    private final Ui UI;
-    private final Storage STORAGE;
+    private final Ui ui;
+    private final Storage storage;
     private boolean isAcceptingInput;
-    private final TaskList TASKS;
+    private final TaskList tasks;
 
     public Duke(String savePath, String saveName) {
-        this.UI = new Ui();
-        this.STORAGE = new Storage(savePath, saveName);
-        TASKS = new TaskList();
+        this.ui = new Ui();
+        this.storage = new Storage(savePath, saveName);
+        tasks = new TaskList();
 
-        STORAGE.loadFile(TASKS);
+        storage.loadFile(tasks);
         isAcceptingInput = true;
     }
 
@@ -70,23 +70,23 @@ public class Duke {
                 throw new InvalidDukeInputException();
             }
         } catch (BannedDukeCharacterException e) {
-            return UI.getBannedCharacterInputResponse(e.getMessage());
+            return ui.getBannedCharacterInputResponse(e.getMessage());
         } catch (InvalidDukeInputException e) {
-            return UI.getInvalidInputResponse();
+            return ui.getInvalidInputResponse();
         } catch (MissingDukeInputException e) {
-            return UI.getMissingInputResponse(e.getMessage());
+            return ui.getMissingInputResponse(e.getMessage());
         } catch (InputIndexOutOfBoundsException e) {
             return executeIndexOutOfBoundsResponse(e);
         } catch (DateTimeParseException e) {
-            return UI.getDateTimeErrorResponse();
+            return ui.getDateTimeErrorResponse();
         } finally {
-            STORAGE.saveFile(TASKS);
+            storage.saveFile(tasks);
         }
     }
 
     private void assertClassReferencesPresent() {
-        assert TASKS != null : "There should be a TaskList at all times.";
-        assert UI != null : "There should be a UI at all times";
+        assert tasks != null : "There should be a TaskList at all times.";
+        assert ui != null : "There should be a UI at all times";
     }
 
     private void assertCurrentlyAcceptingInput() {
@@ -102,67 +102,67 @@ public class Duke {
     private String executeByeResponse() {
         isAcceptingInput = false;
         closeApplicationAfterDelay();
-        return UI.getExitMessage();
+        return ui.getExitMessage();
     }
 
     private void closeApplicationAfterDelay() {
-        final int APPLICATION_CLOSE_DELAY = 1000;
+        int applicationCloseDelay = 1000;
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
                 System.exit(0);
             }
         };
-        new Timer().schedule(timerTask, APPLICATION_CLOSE_DELAY);
+        new Timer().schedule(timerTask, applicationCloseDelay);
     }
 
     private String executeListResponse() {
-        return UI.listTasks(TASKS.getTasks());
+        return ui.listTasks(tasks.getTasks());
     }
 
     private String executeFindResponse(String[] parsedOutput) {
-        ArrayList<Task> foundTasks = TASKS.find(parsedOutput[1]);
-        return UI.listFoundTasks(foundTasks);
+        ArrayList<Task> foundTasks = tasks.find(parsedOutput[1]);
+        return ui.listFoundTasks(foundTasks);
     }
 
     private String executeMarkResponse(String[] parsedOutput, String cmd) {
         int taskIndex = getTaskIndexFromParsedOutput(parsedOutput, cmd);
-        Task markedTask = TASKS.markTask(taskIndex);
-        return UI.getMarkedTask(markedTask);
+        Task markedTask = tasks.markTask(taskIndex);
+        return ui.getMarkedTask(markedTask);
     }
 
     private String executeUnmarkResponse(String[] parsedOutput, String cmd) {
         int taskIndex = getTaskIndexFromParsedOutput(parsedOutput, cmd);
-        Task unmarkedTask = TASKS.unmarkTask(taskIndex);
-        return UI.getUnmarkedTask(unmarkedTask);
+        Task unmarkedTask = tasks.unmarkTask(taskIndex);
+        return ui.getUnmarkedTask(unmarkedTask);
     }
 
     private String executeDeleteResponse(String[] parsedOutput, String cmd) {
         int taskIndex = getTaskIndexFromParsedOutput(parsedOutput, cmd);
-        Task removedTask = TASKS.removeTask(taskIndex);
-        return UI.getRemovedTask(removedTask, TASKS.getTaskCount());
+        Task removedTask = tasks.removeTask(taskIndex);
+        return ui.getRemovedTask(removedTask, tasks.getTaskCount());
     }
 
     private int getTaskIndexFromParsedOutput(String[] parsedOutput, String cmd) throws InputIndexOutOfBoundsException {
         int taskNum = Integer.parseInt(parsedOutput[1]);
         int taskIndex = taskNum - 1;
-        if (taskIndex < 0 || taskIndex >= TASKS.getTaskCount()) {
+        if (taskIndex < 0 || taskIndex >= tasks.getTaskCount()) {
             throw new InputIndexOutOfBoundsException(cmd + " " + taskNum);
         }
         return taskIndex;
     }
 
     private String executeTodoResponse(String[] parsedOutput) {
-        Task addedTask = TASKS.addTodo(parsedOutput[1]);
-        return UI.getAddedTask(addedTask, TASKS.getTaskCount());
+        Task addedTask = tasks.addTodo(parsedOutput[1]);
+        return ui.getAddedTask(addedTask, tasks.getTaskCount());
     }
 
     private String executeDeadlineResponse(String[] parsedOutput) {
         String description = parsedOutput[1];
         String date = parsedOutput[2];
         String time = parsedOutput[3];
-        Task addedTask = TASKS.addDeadline(description, date, time);
-        return UI.getAddedTask(addedTask, TASKS.getTaskCount());
+        Task addedTask = tasks.addDeadline(description, date, time);
+        return ui.getAddedTask(addedTask, tasks.getTaskCount());
     }
 
     private String executeEventResponse(String[] parsedOutput) {
@@ -171,15 +171,15 @@ public class Duke {
         String timeStart = parsedOutput[3];
         String dateEnd = parsedOutput[4];
         String timeEnd = parsedOutput[5];
-        Task addedTask = TASKS.addEvent(description, dateStart, timeStart, dateEnd, timeEnd);
-        return UI.getAddedTask(addedTask, TASKS.getTaskCount());
+        Task addedTask = tasks.addEvent(description, dateStart, timeStart, dateEnd, timeEnd);
+        return ui.getAddedTask(addedTask, tasks.getTaskCount());
     }
 
     private String executeIndexOutOfBoundsResponse(InputIndexOutOfBoundsException e) {
-        final String SPACE_SEPARATOR = " ";
-        String[] cmdNum = e.getMessage().split(SPACE_SEPARATOR);
+        String spaceSeparator = " ";
+        String[] cmdNum = e.getMessage().split(spaceSeparator);
         String cmd = cmdNum[0];
         String inputNum = cmdNum[1];
-        return UI.getInputIndexOutOfBoundsResponse(cmd, inputNum);
+        return ui.getInputIndexOutOfBoundsResponse(cmd, inputNum);
     }
 }

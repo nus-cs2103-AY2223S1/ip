@@ -57,16 +57,16 @@ public class Parser {
     }
 
     private static void checkForBannedCharacters(String input) throws BannedDukeCharacterException {
-        String BANNED_CHARACTER = "|";
-        if (input.contains(BANNED_CHARACTER)) {
-            throw new BannedDukeCharacterException(BANNED_CHARACTER);
+        String bannedCharacter = "|";
+        if (input.contains(bannedCharacter)) {
+            throw new BannedDukeCharacterException(bannedCharacter);
         }
     }
 
     private static String[] splitInputIntoArray(String input) {
         // There are at most 6 parameters in an input. Status of task is assumed to be undone.
-        final int PARSED_ARRAY_SIZE = 6;
-        String[] parsedOutput = new String[PARSED_ARRAY_SIZE];
+        int parsedArraySize = 6;
+        String[] parsedOutput = new String[parsedArraySize];
         /*
          Splits the input into 2 halves, one containing the command itself and the other containing the
          rest of the string.
@@ -79,9 +79,9 @@ public class Parser {
         switch (cmd) {
         case "deadline":
         case "event":
-            final String DEADLINE_SEPARATOR = " /by ";
-            final String EVENT_SEPARATOR = " /at ";
-            String splitWord = cmd.equals("deadline") ? DEADLINE_SEPARATOR : EVENT_SEPARATOR;
+            String deadlineSeparator = " /by ";
+            String eventSeparator = " /at ";
+            String splitWord = cmd.equals("deadline") ? deadlineSeparator : eventSeparator;
             String[] str2 = parsedOutput[1].split(splitWord, 2);
             if (str2.length == 1) {
                 break;
@@ -93,6 +93,7 @@ public class Parser {
             parsedOutput[3] = dateTime[1];
             parsedOutput[4] = dateTime[2];
             parsedOutput[5] = dateTime[3];
+            break;
         default:
             // Do nothing
         }
@@ -113,25 +114,25 @@ public class Parser {
         String cmd = parsedOutput[0];
         int minimumArgumentsNeeded;
         switch (cmd) {
-            case "bye":
-            case "list":
-                minimumArgumentsNeeded = 1;
-                break;
-            case "find":
-            case "mark":
-            case "unmark":
-            case "delete":
-            case "todo":
-                minimumArgumentsNeeded = 2;
-                break;
-            case "deadline":
-                minimumArgumentsNeeded = 4;
-                break;
-            case "event":
-                minimumArgumentsNeeded = 6;
-                break;
-            default:
-                throw new InvalidDukeInputException();
+        case "bye":
+        case "list":
+            minimumArgumentsNeeded = 1;
+            break;
+        case "find":
+        case "mark":
+        case "unmark":
+        case "delete":
+        case "todo":
+            minimumArgumentsNeeded = 2;
+            break;
+        case "deadline":
+            minimumArgumentsNeeded = 4;
+            break;
+        case "event":
+            minimumArgumentsNeeded = 6;
+            break;
+        default:
+            throw new InvalidDukeInputException();
         }
 
         int minimumArrayIndexNeededToBeFilled = minimumArgumentsNeeded - 1;
