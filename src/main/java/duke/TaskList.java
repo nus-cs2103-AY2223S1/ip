@@ -2,6 +2,9 @@ package duke;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import duke.task.Deadline;
 import duke.task.Event;
@@ -154,19 +157,10 @@ public class TaskList {
      */
     public String findTasks(String ... keywords) {
         assert keywords.length > 0 : "keywords should not be empty";
-        ArrayList<String> foundTasks = new ArrayList<>();
-        for (Task task : tasks) {
-            boolean hasAllKeywords = true;
-            for (String keyword : keywords) {
-                if (!task.hasKeyword(keyword)) {
-                    hasAllKeywords = false;
-                    break;
-                }
-            }
-            if (hasAllKeywords) {
-                foundTasks.add(task.toString());
-            }
-        }
+        List<Task> foundTasks = tasks
+                .stream()
+                .filter(task -> Arrays.stream(keywords).allMatch(task::hasKeyword))
+                .collect(Collectors.toList());
 
         int size = foundTasks.size();
         if (size == 0) {
