@@ -111,4 +111,5 @@ public class Parser {
     public static boolean isAEvent(String s) {
         return s.contains("event") && s.substring(0, 5).equals("event");
     }
+
 }

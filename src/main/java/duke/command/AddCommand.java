@@ -34,4 +34,5 @@ public class AddCommand extends Command {
         taskList.addToList(task);
         return ui.showAddingTaskMessage(task, taskList.getSize());
     }
+
 }

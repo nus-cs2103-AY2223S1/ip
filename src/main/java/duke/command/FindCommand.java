@@ -29,4 +29,5 @@ public class FindCommand extends Command {
         ArrayList<Integer> ls = taskList.findListOfTaskIDs(wanted);
         return ui.showFoundTask(taskList.getSpecificListOfTasks(ls));
     }
+
 }
