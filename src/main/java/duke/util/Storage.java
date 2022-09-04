@@ -65,7 +65,7 @@ public class Storage {
             line = sc.nextLine();
             lineNum++;
             try {
-                ret.add(Parser.parseDataFromLine(line));
+                ret.add(DataParser.parseDataFromLine(line));
             } catch (CorruptedLineException e) {
                 corruptedLines.add(lineNum);
             }

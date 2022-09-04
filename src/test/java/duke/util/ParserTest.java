@@ -11,7 +11,7 @@ public class ParserTest {
     @Test
     public void parseDataFromLine_Invalid1() {
         try {
-            Parser.parseDataFromLine("txt");
+            DataParser.parseDataFromLine("txt");
             fail();
         } catch (CorruptedLineException e) {
         }
@@ -20,7 +20,7 @@ public class ParserTest {
     @Test
     public void parseDataFromLine_Invalid2() {
         try {
-            Parser.parseDataFromLine("Tz <<<< nothing <<<< temperol");
+            DataParser.parseDataFromLine("Tz <<<< nothing <<<< temperol");
             fail();
         } catch (CorruptedLineException e) {
         }

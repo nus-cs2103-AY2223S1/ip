@@ -5,7 +5,7 @@ import duke.exceptions.DukeException;
 import duke.exceptions.EmptyDescriptionException;
 import duke.exceptions.EmptyTimeException;
 import duke.util.ParsedData;
-import duke.util.Parser;
+import duke.util.DataParser;
 
 /**
  * Task that potentiall have a duration/start time Identified by /at
@@ -16,7 +16,7 @@ public class Event extends Task {
     private String period;
 
     Event(String description, String period) {
-        super(description, Parser.strToDateTime(period));
+        super(description, DataParser.strToDateTime(period));
         this.period = period;
     }
 

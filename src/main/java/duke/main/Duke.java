@@ -6,7 +6,7 @@ import duke.command.Command;
 import duke.exceptions.DukeException;
 import duke.inputoutput.DukeCliIo;
 import duke.inputoutput.DukeIo;
-import duke.util.Parser;
+import duke.util.DataParser;
 import duke.util.Storage;
 import duke.util.TaskList;
 
@@ -29,16 +29,20 @@ public class Duke {
     private TaskList tasks;
     private Storage dukeData;
 
-    public Duke() {}
-
     private Duke(TaskList tasks, Storage dukeData, DukeIo dukeIo) {
         this.dukeData = dukeData;
         this.tasks = tasks;
         this.userInputOutput = dukeIo;
     }
 
-    private boolean handleInput(String txt) {
-        Command c = Parser.parseCommand(txt);
+    /**
+     * Takes in user input as string and does appropriate commands via the Duke IO
+     * 
+     * @param txt user input given by the user
+     * @return
+     */
+    public boolean handleInput(String txt) {
+        Command c = DataParser.parseCommand(txt);
         try {
             c.execute(tasks, userInputOutput, dukeData);
         } catch (DukeException e) {
@@ -59,20 +63,7 @@ public class Duke {
      */
     public static Duke createApplication(String filepath) {
         DukeIo userIo = new DukeCliIo();
-        userIo.printTask(LOGO, 2);
-        userIo.printTask(INTRO, 3);
-        Storage dukeData;
-        TaskList tasks;
-        try {
-            dukeData = Storage.createStorage(filepath);
-            tasks = new TaskList(dukeData.readFile());
-        } catch (IOException e) {
-            userIo.printError(e);
-            userIo.printTask("Fatal Error! The system will exit abnormally!");
-            return null;
-        }
-
-        return new Duke(tasks, dukeData, userIo);
+        return Duke.createApplication(userIo);
     }
 
     /**
@@ -90,6 +81,21 @@ public class Duke {
         TaskList tasks;
         try {
             dukeData = Storage.createStorage();
+            tasks = new TaskList(dukeData.readFile());
+        } catch (IOException e) {
+            userIo.printError(e);
+            userIo.printTask("Fatal Error! The system will exit abnormally!");
+            return null;
+        }
+
+        return new Duke(tasks, dukeData, userIo);
+    }
+
+    public static Duke createApplication(DukeIo userIo, String filePath) {
+        Storage dukeData;
+        TaskList tasks;
+        try {
+            dukeData = Storage.createStorage(filePath);
             tasks = new TaskList(dukeData.readFile());
         } catch (IOException e) {
             userIo.printError(e);
