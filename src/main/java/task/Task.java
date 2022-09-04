@@ -1,3 +1,5 @@
+package task;
+
 public class Task {
     String name;
     boolean isDone;
@@ -30,12 +32,20 @@ public class Task {
         return type;
     }
 
-    public void markDone() {
+    public boolean markDone() {
+        if (isDone) {
+            return false;
+        }
         this.isDone = true;
+        return true;
     }
 
-    public void markUndone() {
+    public boolean markUndone() {
+        if (!isDone) {
+            return false;
+        }
         this.isDone = false;
+         return true;
     }
 
     @Override

@@ -1,3 +1,7 @@
+package task;
+
+import task.Task;
+
 public class ToDo extends Task {
     private static final String TYPE = "[T]";
 

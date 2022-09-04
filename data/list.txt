@@ -1,3 +1,2 @@
-[T][ ] eat
-[E][ ] eat   (on:   7pm)))
-[D][ ] eat  (by:  7pm))
+[E][ ] eat (on: tuesday)
+[D][ ] eat (by: Apr 1 2025)

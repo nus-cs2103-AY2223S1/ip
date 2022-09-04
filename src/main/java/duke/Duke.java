@@ -1,7 +1,16 @@
+package duke;
+
+import exception.DukeException;
+import storage.Storage;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.ToDo;
+import tasklist.TaskList;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Duke {
     private static String logo  = " ____        _        \n"
@@ -53,7 +62,7 @@ public class Duke {
                             throw new DukeException("There is no task " + taskNumber + " just yet, Master.");
                         } else {
                             Task curr = list.get(number);
-                            if (curr.isDone) {
+                            if (!curr.markDone()) {
                                 throw new DukeException("This task was already marked done, Master.");
                             } else {
                                 curr.markDone();
@@ -76,7 +85,7 @@ public class Duke {
                             throw new DukeException("There is no task " + taskNumber + " just yet, Master.");
                         } else {
                             Task curr = list.get(number);
-                            if (!curr.isDone) {
+                            if (!curr.markUndone()) {
                                 throw new DukeException("This task was already marked undone, Master.");
                             } else {
                                 curr.markUndone();
