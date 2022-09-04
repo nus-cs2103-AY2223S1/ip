@@ -25,6 +25,7 @@ import exceptions.HenryException;
  */
 public class Parser {
 
+    // REGEX PATTERNS
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<command>\\S*)(?<args>.*)");
     private static final Pattern DATE_FORMAT = Pattern.compile("(?<desc>.+) /(at|by) "
                                                                + "(?<dateTime>\\d{2}-\\d{2}-\\d{4} "

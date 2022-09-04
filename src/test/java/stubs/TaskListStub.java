@@ -1,6 +1,9 @@
-package henry;
+package stubs;
 
 import java.util.List;
+
+import henry.Task;
+import henry.TaskList;
 
 /**
  * Stub for the TaskList class.
