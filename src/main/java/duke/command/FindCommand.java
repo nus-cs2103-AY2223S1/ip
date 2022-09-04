@@ -29,7 +29,7 @@ public class FindCommand extends Command {
     }
 
     /**
-     * A method that displays the list of Task(s) with the specified keyword(s).
+     * Displays the list of Task(s) with the specified keyword(s).
      *
      * @param tasks The TaskList containing the task list.
      * @param ui The Ui dealing with interactions with the user.

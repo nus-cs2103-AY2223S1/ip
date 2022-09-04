@@ -25,7 +25,7 @@ public class Duke {
      * @param stage The current Stage of the Application.
      */
     public Duke(Stage stage) {
-        this.ui = new Ui(stage);
+        ui = new Ui(stage);
         this.storage = new Storage(System.getProperty("user.home") + "/data/duke.txt");
         try {
             this.tasks = new TaskList(storage.load());
@@ -37,7 +37,7 @@ public class Duke {
     }
 
     /**
-     * A method that generates a response from Duke.
+     * Generates a response from Duke.
      *
      * @param fullCommand The input command by the user.
      */

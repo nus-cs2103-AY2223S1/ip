@@ -25,7 +25,7 @@ public class ToDoCommand extends Command {
     }
 
     /**
-     * A method that creates a new ToDo and adds it to the TaskList, displays the add-message, and updates the Storage.
+     * Creates a new ToDo and adds it to the TaskList, displays the add-message, and updates the Storage.
      *
      * @param tasks The TaskList containing the task list.
      * @param ui The Ui dealing with interactions with the user.

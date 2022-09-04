@@ -40,7 +40,7 @@ public class Ui {
     }
 
     /**
-     * A method that returns the TaskList display.
+     * Returns the TaskList display.
      *
      * @param tasks TaskList to be displayed.
      * @return The TaskList display.
@@ -50,7 +50,7 @@ public class Ui {
     }
 
     /**
-     * A method that returns the mark-message.
+     * Returns the mark-message.
      *
      * @param task The Task to be marked.
      * @return The mark-message.
@@ -60,7 +60,7 @@ public class Ui {
     }
 
     /**
-     * A method that returns the un-mark-message.
+     * Returns the un-mark-message.
      *
      * @param task The Task to be un-marked.
      * @return The un-mark-message.
@@ -70,7 +70,7 @@ public class Ui {
     }
 
     /**
-     * A method that returns the add-message.
+     * Returns the add-message.
      *
      * @param task The Task to be added.
      * @param size Size of the TaskList after Task has been added.
@@ -82,7 +82,7 @@ public class Ui {
     }
 
     /**
-     * A method that returns the delete-message.
+     * Returns the delete-message.
      *
      * @param task The Task to be deleted.
      * @param size Size of the TaskList after Task has been deleted.
@@ -94,7 +94,7 @@ public class Ui {
     }
 
     /**
-     * A method that returns the list of Task(s) containing the specified keyword.
+     * Returns the list of Task(s) containing the specified keyword.
      *
      * @param foundTasks The list of Task(s) to be displayed.
      * @return The list of Task(s) containing the specified keyword.

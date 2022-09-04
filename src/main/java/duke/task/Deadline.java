@@ -27,7 +27,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * A method that converts the Deadline into the String format required to be saved in the Storage.
+     * Converts the Deadline into the String format required to be saved in the Storage.
      *
      * @return String formatted data of the Deadline.
      */
@@ -37,7 +37,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * A method that converts the Deadline into its String representation.
+     * Converts the Deadline into its String representation.
      *
      * @return String representation of the Deadline.
      */

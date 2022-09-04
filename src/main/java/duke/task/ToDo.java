@@ -20,7 +20,7 @@ public class ToDo extends Task {
     }
 
     /**
-     * A method that converts the ToDo into the String format required to be saved in the Storage.
+     * Converts the ToDo into the String format required to be saved in the Storage.
      *
      * @return String formatted data of the ToDo.
      */
@@ -30,7 +30,7 @@ public class ToDo extends Task {
     }
 
     /**
-     * A method that converts the ToDo into its String representation.
+     * Converts the ToDo into its String representation.
      *
      * @return String representation of the ToDo.
      */

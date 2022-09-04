@@ -28,7 +28,7 @@ public class Storage {
     }
 
     /**
-     * A method to write the lines from the list into the save file.
+     * Write the lines from the list into the save file.
      *
      * @param dataArrayList ArrayList containing the data to be written into the save file.
      */
@@ -46,7 +46,7 @@ public class Storage {
     }
 
     /**
-     * A method that returns the list read from the save file.
+     * Returns the list read from the save file.
      *
      * @return ArrayList containing the data read from the save file.
      * @throws FileNotFoundException If the save file does not exist.

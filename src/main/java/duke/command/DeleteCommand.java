@@ -27,7 +27,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * A method that deletes a Task at the specified index, displays the delete-message, and updates the
+     * Deletes a Task at the specified index, displays the delete-message, and updates the
      * Storage.
      *
      * @param tasks The TaskList containing the task list.

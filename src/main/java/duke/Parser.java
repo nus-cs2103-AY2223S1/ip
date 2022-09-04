@@ -29,7 +29,7 @@ public class Parser {
     }
 
     /**
-     * A method that creates a new Command according to the user input.
+     * Creates a new Command according to the user input.
      *
      * @param inputCommand Input command from the user.
      * @return A specific-typed Command corresponding to the user input.
@@ -38,8 +38,8 @@ public class Parser {
     public static Command parse(String inputCommand) throws DukeException {
         try {
             String[] splitInputCommand = inputCommand.trim().split(" ", 2);
-            CommandTag ct = CommandTag.valueOf(splitInputCommand[0].toUpperCase());
-            switch (ct) {
+            CommandTag commandTag = CommandTag.valueOf(splitInputCommand[0].toUpperCase());
+            switch (commandTag) {
             case BYE:
                 return new ByeCommand();
             case LIST:
