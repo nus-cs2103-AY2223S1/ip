@@ -39,6 +39,8 @@ public class DeleteCommand extends Command {
                     , deletedTask.toString(), tasks.getSize()));
         } catch (IndexOutOfBoundsException e) {
             throw new CleverNotBotException("The task does not exist!", textBox);
+        } catch(NumberFormatException ex) {
+            throw new CleverNotBotException("Input a valid number!",textBox);
         }
 
     }

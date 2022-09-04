@@ -42,6 +42,8 @@ public class UnmarkCommand extends Command {
             String exceptionErrorMessage = String.format(
                     "Invalid number. Please input the number from 1 - %d", tasks.getSize());
             throw new CleverNotBotException(exceptionErrorMessage, textBox);
+        } catch(NumberFormatException ex) {
+            throw new CleverNotBotException("Input a valid number!",textBox);
         }
     }
 }

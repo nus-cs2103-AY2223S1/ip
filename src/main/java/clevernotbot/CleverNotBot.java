@@ -9,12 +9,12 @@ public class CleverNotBot {
         Storage storage = new Storage();
         TaskList tasks = new TaskList(storage.getTasksFromFile());
         Scanner sc = new Scanner(System.in);
-        Parser hl = new Parser();
+        Parser parser = new Parser();
 
-        hl.parseText("greet").run(tasks, textBox, storage);
+        parser.parseText("greet").run(tasks, textBox, storage);
         while (sc.hasNext()) {
             String inp = sc.nextLine();
-            Command commandToRun = hl.parseText(inp);
+            Command commandToRun = parser.parseText(inp);
             commandToRun.run(tasks, textBox, storage);
             if (commandToRun.isExitingProgram()) {
                 break;
