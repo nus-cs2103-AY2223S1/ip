@@ -61,7 +61,7 @@ public class TaskList {
      * @param userInput Index number of the task to be removed from list.
      * @throws DukeException If task does not exist.
      */
-    public void deleteTask(String userInput) throws DukeException {
+    public String deleteTask(String userInput) throws DukeException {
         String line = " _______________________________________ \n";
         int index = Integer.parseInt(userInput.trim());
         if (index <= 0 || index > this.taskList.size()) {
@@ -69,8 +69,8 @@ public class TaskList {
         }
         Task taskRemoved = this.taskList.get(index - 1);
         this.taskList.remove(index - 1);
-        System.out.println(line + " okie! i've removed: \n " + taskRemoved +
-                "\n now you have " + this.taskList.size() + " task(s) in your list!\n" + line);
+        return "okie! i've removed: \n " + taskRemoved +
+                "\n now you have " + this.taskList.size() + " task(s) in your list!";
     }
 
     /**
@@ -79,7 +79,7 @@ public class TaskList {
      * @param userInput Complete user input.
      * @throws DukeException If task name does not exist.
      */
-    public void addTask(String userInput) throws DukeException {
+    public String addTask(String userInput) throws DukeException {
         String line = " _______________________________________ \n";
         if (!userInput.contains(" ") || userInput.substring(userInput.indexOf(" ")).trim().isEmpty()) {
             throw new DukeException("the description of a task cannot be empty.");
@@ -91,8 +91,8 @@ public class TaskList {
         Task t = new Task(userInput.substring(userInput.indexOf(" ") + 1),
                 userInput.substring(0, userInput.indexOf(" ")).toUpperCase(), false);
         this.taskList.add(t);
-        System.out.println(line + " okie! i've added: \n " + t +
-                "\n now you have " + this.taskList.size() + " task(s) in your list!\n" + line);
+        return "okie! i've added: \n " + t +
+                "\n now you have " + this.taskList.size() + " task(s) in your list!";
     }
 
     public ArrayList<Task> find(String keyword) {
