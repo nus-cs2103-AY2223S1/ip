@@ -92,4 +92,17 @@ public class Ui {
         System.out.println(taskList.toString());
         System.out.println(LINE_BREAK);
     }
+
+    /**
+     * Prints out the tasks that have a name containing the task keyword.
+     *
+     * @param taskList The task list that is being searched for the keyword.
+     * @param taskKeyword The keyword that the name of the task should contain.
+     */
+    public static void printMessageForFind(TaskList taskList, String taskKeyword) {
+        System.out.println(LINE_BREAK);
+        System.out.println("No problem fam. Here are the tasks that match the keyword:");
+        System.out.println(taskList.findTasks(taskKeyword));
+        System.out.println(LINE_BREAK);
+    }
 }

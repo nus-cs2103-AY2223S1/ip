@@ -69,7 +69,7 @@ public class Candice {
             try {
                 Command command = Parser.parse(input);
                 command.resolve(taskList);
-            } catch (EmptyTaskNameException | EmptyTimingException | IllegalArgumentException | InvalidDateException
+            } catch (EmptyCommandDescriptionException | EmptyTimingException | IllegalArgumentException | InvalidDateException
                     | InvalidFormattingException | InvalidTimeException | UnknownCommandException e) {
                 System.out.println(e);
             }

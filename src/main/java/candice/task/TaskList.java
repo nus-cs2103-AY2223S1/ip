@@ -166,6 +166,31 @@ public class TaskList {
     }
 
     /**
+     * Returns a String representing all the tasks that contain the keyword in the task name.
+     *
+     * @param taskKeyword The keyword that is inside the name of the tasks.
+     * @return A String containing all the tasks that contain the keyword.
+     */
+    public String findTasks(String taskKeyword) {
+        StringBuilder taskList = new StringBuilder();
+        int taskNumber = 1;
+
+        for (int i = 0; i < this.getLength(); i++) {
+            Task task = this.taskArrayList.get(i);
+            String taskStatus = task.getStatus();
+
+            if (taskStatus.contains(taskKeyword)) {
+                taskList.append(taskNumber).append(".").append(taskStatus).append("\n");
+                taskNumber++;
+            }
+        }
+
+        return taskList.length() != 0
+               ? taskList.substring(0, taskList.length() - 1) // to remove the last "\n"
+               : taskList.toString();
+    }
+
+    /**
      * Updates the task list text encapsulated by the Storage object in this instance of TaskList to match the task
      * list in this instance of TaskList.
      */
@@ -187,11 +212,15 @@ public class TaskList {
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();
+
         for (int i = 0; i < this.getLength(); i++) {
             Task task = this.taskArrayList.get(i);
             String taskNumber = String.valueOf(i + 1);
             output.append(taskNumber).append(".").append(task.getStatus()).append("\n");
         }
-        return output.toString();
+
+        return output.length() != 0
+               ? output.substring(0, output.length() - 1) // to remove the last "\n"
+               : output.toString();
     }
 }

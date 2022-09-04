@@ -50,27 +50,28 @@ public abstract class Command {
         public void resolve(TaskList taskList) {
             if (super.commandType == CommandType.LIST) {
                 Ui.printMessageForList(taskList);
-            } else { // Command is "bye"
-                // Does nothing
             }
         }
     }
 
     /**
-     * Encapsulates commands to add tasks with no date or time attached to it, specifically todo tasks.
+     * Encapsulates commands that do not have a time associated to it, specifically todo and find.
      */
-    public static class NonTimedTaskCommand extends Command { // todo
-        /** The name of the task in the inputted command */
-        private final String taskName;
+    public static class NonTimedCommand extends Command { // todo & find
+        /** The description of the inputted command */
+        private final String commandDescription;
 
         /**
-         * Constructor for a command to add a task with no date or time, specifically todo tasks.
+         * Constructor for a command that does not have a time associated with it, namely creating a todo task or
+         * finding tasks that have a certain keyword.
          *
-         * @param taskName The name of the todo task.
+         * @param commandType The type of the command inputted.
+         * @param commandDescription The description of the command, specifically the name of the task or the keyword
+         * used to find tasks.
          */
-        public NonTimedTaskCommand(String taskName) {
-            super(CommandType.TODO);
-            this.taskName = taskName;
+        public NonTimedCommand(CommandType commandType, String commandDescription) {
+            super(commandType);
+            this.commandDescription = commandDescription;
         }
 
         /**
@@ -80,9 +81,13 @@ public abstract class Command {
          */
         @Override
         public void resolve(TaskList taskList) {
-            Task newTask = new Task.ToDo(taskName);
-            taskList.addTask(newTask);
-            Ui.printMessageForAddTask(newTask, taskList);
+            if (super.commandType == CommandType.TODO) {
+                Task newTask = new Task.ToDo(commandDescription);
+                taskList.addTask(newTask);
+                Ui.printMessageForAddTask(newTask, taskList);
+            } else { // Command type is find
+                Ui.printMessageForFind(taskList, commandDescription);
+            }
         }
     }
 
