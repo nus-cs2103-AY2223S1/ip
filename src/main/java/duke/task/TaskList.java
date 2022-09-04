@@ -115,7 +115,7 @@ public class TaskList extends ArrayList<Task> {
     }
 
     private void trySaveTasks() throws DukeException {
-        if (!storage.saveTasks(this)) {
+        if (storage != null && !storage.saveTasks(this)) {
             throw new DukeException("Unable to save tasks to disk.");
         }
     }
