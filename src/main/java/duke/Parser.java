@@ -1,6 +1,15 @@
 package duke;
 
-import duke.commands.*;
+import duke.commands.Command;
+import duke.commands.DeadlineCommand;
+import duke.commands.DeleteCommand;
+import duke.commands.DisplayListCommand;
+import duke.commands.EventCommand;
+import duke.commands.ExitCommand;
+import duke.commands.FindCommand;
+import duke.commands.MarkCommand;
+import duke.commands.ToDoCommand;
+import duke.commands.UnmarkCommand;
 
 /**
  * Handles interpretation of user inputs.

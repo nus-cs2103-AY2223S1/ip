@@ -1,15 +1,15 @@
 package duke.commands;
 
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import duke.tasks.Event;
 import duke.tasks.Task;
-
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 /**
  * Command for adding Event tasks.
@@ -38,8 +38,8 @@ public class EventCommand extends Command {
         try {
             String[] splitCommand = remainingCommand.split(" /at ");
             if (splitCommand.length != 2) {
-                throw new DukeException("OOPS!!! Please enter a valid event format " +
-                        "(event <description> /at yyyy-mm-dd)");
+                throw new DukeException("OOPS!!! Please enter a valid event format "
+                        + "(event <description> /at yyyy-mm-dd)");
             }
 
             LocalDate d1 = LocalDate.parse(splitCommand[1]);

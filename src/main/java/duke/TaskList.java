@@ -1,9 +1,8 @@
 package duke;
 
-import duke.tasks.Task;
-
 import java.util.ArrayList;
 
+import duke.tasks.Task;
 
 /**
  * Deals with keeping track of Tasks added.

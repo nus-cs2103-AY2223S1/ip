@@ -1,15 +1,15 @@
 package duke.commands;
 
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import duke.tasks.Deadline;
 import duke.tasks.Task;
-
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 /**
  * Command for adding Deadline Task.
@@ -38,8 +38,8 @@ public class DeadlineCommand extends Command {
         try {
             String[] splitCommand = remainingCommand.split(" /by ");
             if (splitCommand.length != 2) {
-                throw new DukeException("OOPS!!! Please enter a valid deadline format " +
-                        "(deadline <description> /by yyyy-mm-dd)");
+                throw new DukeException("OOPS!!! Please enter a valid deadline format "
+                        + "(deadline <description> /by yyyy-mm-dd)");
             }
 
             LocalDate d1 = LocalDate.parse(splitCommand[1]);

@@ -1,10 +1,5 @@
 package duke;
 
-import duke.tasks.Deadline;
-import duke.tasks.Event;
-import duke.tasks.Task;
-import duke.tasks.ToDo;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -12,6 +7,11 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Task;
+import duke.tasks.ToDo;
 
 /**
  * Contains methods that deal with storing and loading Tasks from memory.
@@ -83,6 +83,12 @@ public class Storage {
         return pastTasks;
     }
 
+    /**
+     * Parse TaskMemo to create Task list.
+     *
+     * @param memo The input read from Task memory file.
+     * @return Task created using info from memory.
+     */
     public Task parseTaskMemo(String memo) {
         // first letter to identify task
         String task = memo.substring(0, 1);

@@ -1,10 +1,10 @@
 package duke.commands;
 
+import java.io.IOException;
+
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-
-import java.io.IOException;
 
 /**
  * Command for Marking Tasks.
