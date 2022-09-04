@@ -1,8 +1,5 @@
 package tuna.task;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 /**
  * Represents a task. A task object contains a description, isDone to indicate if it is completed and a task type
  */
@@ -16,10 +13,10 @@ public abstract class Task {
     protected String taskType;
 
     /**
-     * Creates a task
+     * Creates a task.
      *
-     * @param description description of the task
-     * @param taskType the type of the task
+     * @param description description of the task.
+     * @param taskType the type of the task.
      */
     public Task(String description, String taskType) {
         this.description = description;
@@ -28,32 +25,32 @@ public abstract class Task {
     }
 
     /**
-     * Gets the description of the task
+     * Gets the description of the task.
      *
-     * @return description of the task
+     * @return description of the task.
      */
     public String getDescription() {
         return this.description;
     }
 
     /**
-     * Gets the status of the task
+     * Gets the status of the task.
      *
-     * @return status of the task
+     * @return status of the task.
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
 
     /**
-     * Mark a task as done
+     * Mark a task as done.
      */
     public void markAsDone() {
         this.isDone = true;
     }
 
     /**
-     * Mark a task as not done
+     * Mark a task as not done.
      */
     public void markAsNotDone() {
         this.isDone = false;

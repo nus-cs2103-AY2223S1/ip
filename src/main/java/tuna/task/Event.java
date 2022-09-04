@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents an Event task. An Event object contains the start time of the event.
+ * Represents an Event task.
  */
 public class Event extends TimeBasedTask {
     /**

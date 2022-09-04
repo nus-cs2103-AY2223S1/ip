@@ -3,12 +3,23 @@ package tuna.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a time based task. A TimeBasedTask object contains a LocalDateTime object indicating the date and time
+ * of the task.
+ */
 public abstract class TimeBasedTask extends Task {
     /** Date and Time of the task */
     private LocalDateTime dateTime;
 
-    public TimeBasedTask(String taskDescription, String type, LocalDateTime dateTime) {
-        super(taskDescription, type);
+    /**
+     * Creates a time based task.
+     *
+     * @param taskDescription description of the task.
+     * @param taskType the type of the task.
+     * @param dateTime LocalDateTime object indicating the date and time of the task.
+     */
+    public TimeBasedTask(String taskDescription, String taskType, LocalDateTime dateTime) {
+        super(taskDescription, taskType);
         this.dateTime = dateTime;
     }
 
