@@ -206,10 +206,13 @@ public class Parser {
         }
 
         String parsedDate = parseDateTokens(dateTextTokens[0]);
+        assert parsedDate.split(USER_INPUT_DELIMITER).length == 3;
         String parsedTime = parseTimeTokens(dateTextTokens[1]);
+        assert parsedTime.split(USER_INPUT_DELIMITER).length == 2;
         // Create the default toString representation (ISO-8601 format, uuuu-MM-dd'T'HH:mm) or
         // (DateTimeFormatter#ISO_LOCAL_DATE_TIME) for easier parsing and creation of LocalDateTime
         String parsedDateTime = parsedDate + "T" + parsedTime;
+        assert parsedDateTime.split("T").length == 2;
         try {
             return LocalDateTime.parse(parsedDateTime);
         } catch (DateTimeParseException e) {

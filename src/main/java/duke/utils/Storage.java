@@ -66,8 +66,8 @@ public class Storage {
                     taskList.addTask(currEvent);
                     break;
                 default:
-                    // Something that cannot be recognized
                     // TODO: Alert user data is corrupted, don't immediately replace with empty task list
+                    assert false;
                     break;
                 }
             }
@@ -98,6 +98,7 @@ public class Storage {
             fw.close();
         } catch (IOException e) {
             // TODO: Fix, user will never see this
+            assert false;
             System.out.println("Something went wrong: " + e.getMessage());
         }
     }
@@ -117,6 +118,7 @@ public class Storage {
             fw.close();
         } catch (IOException e) {
             // TODO: Fix, user will never see this
+            assert false;
             System.out.println("Something went wrong: " + e.getMessage());
         }
     }
