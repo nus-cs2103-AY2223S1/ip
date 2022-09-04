@@ -29,24 +29,23 @@ public abstract class Task {
      * Constructor for {@code Task} with only {@code isDone} known.
      * {@code priority} defaults to {@code LOW}.
      * @param description Description of task.
-     * @param isDone      Whether task is done.
+     * @param priority    Priority level of task.
      */
-    public Task(String description, Boolean isDone) {
+    public Task(String description, Level priority) {
         this.description = description;
-        this.isDone = isDone;
-        this.priority = Level.LOW;
+        this.priority = priority;
     }
 
     /**
      * Constructor for {@code Task} with both {@code isDone} and
      * {@code priority} known.
-     * @param isDone      Whether task is done.
      * @param description Description of task.
+     * @param isDone      Whether task is done.
      * @param priority    Priority level of task.
      */
     public Task(String description, Boolean isDone, Level priority) {
         this.description = description;
-        this.isDone = false;
+        this.isDone = isDone;
         this.priority = priority;
     }
 

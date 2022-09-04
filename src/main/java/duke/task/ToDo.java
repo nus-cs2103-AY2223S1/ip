@@ -1,29 +1,31 @@
 package duke.task;
 
 /**
- * Defines <Code>ToDo</Code> class.
+ * Defines {@code ToDo} class.
  */
 public class ToDo extends Task {
     /**
-     * Constructor for <Code>ToDo</Code>.
+     * Constructor for {@code ToDo}.
      * @param description Description of task.
+     * @param priority    Priority level of task.
      */
-    public ToDo(String description) {
-        super(description);
+    public ToDo(String description, Level priority) {
+        super(description, priority);
     }
 
     /**
-     * Constructor for <Code>ToDo</Code> if <Code>isDone</Code> is known.
+     * Constructor for {@code ToDo} if {@code isDone} is known.
      * @param description Description of task.
      * @param isDone      Whether task is done.
+     * @param priority    Priority level of task.
      */
-    public ToDo(String description, Boolean isDone) {
-        super(description, isDone);
+    public ToDo(String description, Boolean isDone, Level priority) {
+        super(description, isDone, priority);
     }
 
     /**
-     * Overrides <Code>toString</Code> method to return status and
-     * description of <Code>ToDo</Code> object.
+     * Overrides {@code toString} method to return status and
+     * description of {@code ToDo} object.
      * @return [T][COMPLETION STATUS][TASK DESCRIPTION]
      */
     @Override
@@ -32,7 +34,7 @@ public class ToDo extends Task {
     }
 
     /**
-     * Produces a <Code>String</Code> with "|" delimiters for
+     * Produces a {@code String} with "|" delimiters for
      * storing the task's data into a text file.
      * @return "todo|[COMPLETION STATUS]|[TASK DESCRIPTION]|"
      */
