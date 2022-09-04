@@ -1,5 +1,7 @@
 package duke.parser;
 
+import static duke.common.Messages.DATE_TIME_FORMAT;
+
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -24,11 +26,24 @@ import duke.ui.BotUI;
 public class Parser {
 
     private static final BotUI UI = new BotUI();
+    private static final int NUMBER_OF_SECTION_SPLIT = 2;
+    private static final int MINIMUM_COMMAND_SECTION = 1;
+    private static final int FIRST_ITEM_AFTER_SPLIT = 0;
+    private static final int SECOND_ITEM_AFTER_SPLIT = 1;
+    private static final int HOURS_IN_TIME = 100;
+    private static final int MINUTES_IN_TIME = 100;
 
     private static String[] splitInput(String input, String regex) {
-        return input.split(regex, 2);
+        return input.split(regex, NUMBER_OF_SECTION_SPLIT);
     }
 
+    private static int extractHours(int time) {
+        return time / HOURS_IN_TIME;
+    }
+
+    private static int extractMinutes(int time) {
+        return time % MINUTES_IN_TIME;
+    }
     /**
      * Returns different type of Command according to the user raw input.
      *
@@ -38,16 +53,18 @@ public class Parser {
      */
     public static Command parse(String rawInput) throws DukeException {
         try {
-            String[] commandAndDetail = rawInput.split(" ", 2);
-            String command = commandAndDetail[0];
-            if (commandAndDetail.length < 2) {
+            String[] commandAndDetail = rawInput.split(" ", NUMBER_OF_SECTION_SPLIT);
+            String command = commandAndDetail[FIRST_ITEM_AFTER_SPLIT];
+
+            if (commandAndDetail.length == MINIMUM_COMMAND_SECTION) {
                 if (command.equals("list")) {
                     return new ListCommand(command);
                 } else if (command.equals("bye")) {
                     return new ExitCommand(command);
                 }
             }
-            String detail = commandAndDetail[1];
+
+            String detail = commandAndDetail[SECOND_ITEM_AFTER_SPLIT];
             if (command.equals("todo") || command.equals("event") || command.equals("deadline")) {
                 InputChecker.checkInput(rawInput);
                 return new AddCommand(command, detail);
@@ -66,22 +83,22 @@ public class Parser {
     }
 
     /**
-     * Returns LocalDateTime for Events and Deadlines tasks.
+     * Returns LocalDateTime for Event and Deadline tasks.
      *
      * @param filteredInput user's filtered input which command is extracted (e.g. someDetails /by 2022-08-25 1800)
      * @return LocalDateTime of the filtered input.
      * @throws DukeException - thrown if the date/time format is invalid (e.g. 2022-08-251800) which
      *                       cause DateTimeException and IndexOutOfBoundsException during the process.
      */
-    public static LocalDateTime extractDateTime(String filteredInput, String timeIdentifier) throws DukeException {
+    public static LocalDateTime extractDateTime(String filteredInput, String detailDateSplitter) throws DukeException {
         try {
-            String filterDate = splitInput(filteredInput, timeIdentifier)[1];
+            String filterDate = splitInput(filteredInput, detailDateSplitter)[SECOND_ITEM_AFTER_SPLIT];
             String[] dateAndTime = filterDate.split(" ");
-            int time = Integer.parseInt(dateAndTime[1]);
-            int hours = time / 100;
-            int minutes = time % 100;
-            String[] splitDate = dateAndTime[0].split("-");
-            ArrayList<Integer> dateInfo = new ArrayList<Integer>();
+            int time = Integer.parseInt(dateAndTime[SECOND_ITEM_AFTER_SPLIT]);
+            int hours = extractHours(time);
+            int minutes = extractMinutes(time);
+            String[] splitDate = dateAndTime[FIRST_ITEM_AFTER_SPLIT].split("-");
+            ArrayList<Integer> dateInfo = new ArrayList<>();
             for (String s : splitDate) {
                 dateInfo.add(Integer.parseInt(s));
             }
@@ -95,11 +112,12 @@ public class Parser {
     /**
      * Returns detail for Events and Deadlines tasks.
      *
-     * @param filteredInput user's filtered input which command is extracted (e.g. someDetails /by 2022-08-25 1800)
-     * @return String of task's detail
+     * @param filteredInput user's filtered input which command is extracted (e.g. someDetails /by 2022-08-25 1800).
+     * @param detailDateSplitter detail and date splitter of Event and Deadline tasks ("/by" or "/at).
+     * @return String of task's detail.
      */
-    public static String extractDetail(String filteredInput, String timeIdentifier) {
-        return splitInput(filteredInput, timeIdentifier)[0];
+    public static String extractDetail(String filteredInput, String detailDateSplitter) {
+        return splitInput(filteredInput, detailDateSplitter)[FIRST_ITEM_AFTER_SPLIT];
     }
 
     /**
@@ -110,7 +128,7 @@ public class Parser {
      * @see duke.storage.FileManager for the usage of this method.
      */
     public static LocalDateTime convertTime(String timeString) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT);
         return LocalDateTime.parse(timeString, formatter);
     }
 

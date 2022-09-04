@@ -1,18 +1,18 @@
 package duke.task;
 
+import static duke.common.Messages.TODO_ID;
+
 import java.time.LocalDateTime;
 
 /**
- * Represents an ToDos task.
+ * Represents an ToDo task.
  */
-public class ToDos extends Task {
+public class ToDo extends Task {
 
-    private static final String ID = "[T]";
-
-    public ToDos(String detail, boolean isDone) {
+    public ToDo(String detail, boolean isDone) {
         super(detail, isDone);
     }
-    public ToDos(String detail) {
+    public ToDo(String detail) {
         super(detail);
     }
 
@@ -22,20 +22,20 @@ public class ToDos extends Task {
     }
     @Override
     public String getId() {
-        return ID;
+        return TODO_ID;
     }
     @Override
     public Task markDone() {
-        return new ToDos(super.getDetail(), true);
+        return new ToDo(super.getDetail(), true);
     }
 
     @Override
     public Task unmarkDone() {
-        return new ToDos(super.getDetail(), false);
+        return new ToDo(super.getDetail(), false);
     }
 
     @Override
     public String toString() {
-        return ID + super.toString();
+        return TODO_ID + super.toString();
     }
 }

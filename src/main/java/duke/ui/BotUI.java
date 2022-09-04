@@ -15,11 +15,12 @@ import static duke.common.Messages.MESSAGE_SHOW_FORMAT;
 import static duke.common.Messages.MESSAGE_TASK_NOT_EXIST;
 import static duke.common.Messages.MESSAGE_UNMARK_SUCCESS;
 import static duke.common.Messages.MESSAGE_USER_SAY;
+import static duke.common.Messages.SHOW_LIST_DESCRIPTION;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import duke.storage.TaskRecords;
+import duke.storage.TaskList;
 import duke.task.Task;
 
 /**
@@ -59,21 +60,21 @@ public class BotUI {
         return botSpeak(MESSAGE_BYE);
     }
     /**
-     * Returns the tasks contain in the TaskRecords.
-     * @param taskList TaskRecords that store the tasks registered by user.
+     * Returns the tasks contain in the TaskList.
+     * @param taskList TaskList that store the tasks registered by user.
      * @return Numbering-formatted String of the tasks in the task list.
      */
-    public String showList(TaskRecords taskList) {
-        ArrayList<Task> lst = taskList.getList();
-        if (lst.size() == 0) {
+    public String showList(TaskList taskList) {
+        ArrayList<Task> list = taskList.getList();
+        if (list.size() == 0) {
             return botSpeak(MESSAGE_NOTHING_IN_LIST);
         } else {
-            StringBuilder lstFormat = new StringBuilder();
-            for (int i = 1; i <= lst.size(); i++) {
-                lstFormat.append(i).append(". ").append(lst.get(i - 1).toString());
-                lstFormat.append((i == lst.size()) ? "" : "\n");
+            StringBuilder listFormat = new StringBuilder();
+            for (int i = 1; i <= list.size(); i++) {
+                listFormat.append(i).append(". ").append(list.get(i - 1).toString());
+                listFormat.append((i == list.size()) ? "" : "\n");
             }
-            return botSpeak(lstFormat.toString());
+            return botSpeak(SHOW_LIST_DESCRIPTION + listFormat.toString());
         }
     }
     /**
@@ -82,36 +83,35 @@ public class BotUI {
      * @return The String of completed task.
      */
     public String informMarkStatus(Task task) {
-        String response = botSpeak((task.isDone()) ? String.format(MESSAGE_MARK_SUCCESS, task)
+        return botSpeak((task.isDone()) ? String.format(MESSAGE_MARK_SUCCESS, task)
                : String.format(MESSAGE_UNMARK_SUCCESS, task));
-        return response;
     }
     /**
-     * Returns task added into the TaskRecords.
+     * Returns task added into the TaskList.
      * @param task Task that have been added by user.
-     * @param taskList the updated TaskRecords to show user the updated number of tasks in it.
+     * @param taskList the updated TaskList to show user the updated number of tasks in it.
      * @return The String of task added.
      */
-    public String addStatus(TaskRecords taskList, Task task) {
-        ArrayList<Task> lst = taskList.getList();
-        return botSpeak(String.format(MESSAGE_ADD_SUCCESS, task, lst.size()));
+    public String addStatus(TaskList taskList, Task task) {
+        ArrayList<Task> list = taskList.getList();
+        return botSpeak(String.format(MESSAGE_ADD_SUCCESS, task, list.size()));
     }
     /**
-     * Returns task removed from the TaskRecords.
+     * Returns task removed from the TaskList.
      * @param task Task that have been added by user.
-     * @param taskList the updated TaskRecords to show user the updated number of tasks in it.
+     * @param taskList the updated TaskList to show user the updated number of tasks in it.
      * @return The String of task added.
      */
-    public String successRemoved(TaskRecords taskList, Task task) {
-        ArrayList<Task> lst = taskList.getList();
-        return botSpeak(String.format(MESSAGE_DELETE_SUCCESS, task, lst.size()));
+    public String successRemoveTask(TaskList taskList, Task task) {
+        ArrayList<Task> list = taskList.getList();
+        return botSpeak(String.format(MESSAGE_DELETE_SUCCESS, task, list.size()));
     }
     /**
-     * Returns the list of tasks found in the TaskRecords according to user find command.
-     * @param foundTaskList the updated TaskRecords to show user the updated number of tasks in it.
+     * Returns the list of tasks found in the TaskList according to user find command.
+     * @param foundTaskList the updated TaskList to show user the updated number of tasks in it.
      * @return The String task found.
      */
-    public String taskFound(TaskRecords foundTaskList) {
+    public String taskFound(TaskList foundTaskList) {
         StringBuilder taskString = new StringBuilder();
         for (Task t : foundTaskList.getList()) {
             taskString.append(t).append("\n");
@@ -135,11 +135,11 @@ public class BotUI {
     }
     /**
      * Returns the message of task not exist.
-     * Uses when user trying to modify task that does not exist in the TaskRecords.
+     * Uses when user trying to modify task that does not exist in the TaskList.
      * @param taskList current taskList to show user the number of tasks in it.
      * @return String of correct input format wrapped by the bot and user divider.
      */
-    public String taskNotExist(TaskRecords taskList) {
+    public String taskNotExist(TaskList taskList) {
         return botSpeak(String.format(MESSAGE_TASK_NOT_EXIST,
                 taskList.getList().size()));
     }

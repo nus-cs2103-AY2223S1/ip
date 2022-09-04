@@ -1,7 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
-import duke.storage.TaskRecords;
+import duke.storage.TaskList;
 import duke.task.Task;
 import duke.ui.BotUI;
 
@@ -11,21 +11,21 @@ import duke.ui.BotUI;
  *
  */
 public class MarkCommand extends Command {
-    private final String details;
+    private final String detail;
 
     /**
      * Constructs MarkCommand object
      *
      * @param command command of the user input
-     * @param details details of the user input as String type Integer
+     * @param detail detail of the user input as String type Integer
      */
-    public MarkCommand(String command, String details) {
+    public MarkCommand(String command, String detail) {
         super(command);
-        this.details = details;
+        this.detail = detail;
     }
 
     /**
-     * Marks or Un-marks Tasks from the TaskRecords
+     * Marks or Un-marks Tasks from the TaskList
      *
      * @param taskList stores the list of tasks
      * @param ui Object that responsible in returning necessary formatted String
@@ -35,12 +35,12 @@ public class MarkCommand extends Command {
      *     catch cause by invalid user input. e.g. delete1 or delete someNonIntegerText.
      */
     @Override
-    public String execute(TaskRecords taskList, BotUI ui) throws DukeException {
+    public String execute(TaskList taskList, BotUI ui) throws DukeException {
         try {
-            int taskIdx = Integer.parseInt(details) - 1;
+            int taskIdx = Integer.parseInt(detail) - 1;
             Task currTask = taskList.get(taskIdx);
             currTask = (super.getCommand().equals("mark")) ? currTask.markDone() : currTask.unmarkDone();
-            taskList.addProcess(currTask);
+            taskList.addTask(currTask);
             return ui.informMarkStatus(taskList.get(taskIdx));
         } catch (NumberFormatException ex) {
             throw new DukeException(ui.invalidCheckFormat());

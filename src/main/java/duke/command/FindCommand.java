@@ -1,6 +1,6 @@
 package duke.command;
 
-import duke.storage.TaskRecords;
+import duke.storage.TaskList;
 import duke.task.Task;
 import duke.ui.BotUI;
 
@@ -11,17 +11,17 @@ import duke.ui.BotUI;
  */
 
 public class FindCommand extends Command {
-    private final String details;
+    private final String detail;
 
     /**
      * Constructs DeleteCommand object
      *
      * @param command command of the user input
-     * @param details details of the user input as String type Integer
+     * @param detail detail of the user input as String type Integer
      */
-    public FindCommand(String command, String details) {
+    public FindCommand(String command, String detail) {
         super(command);
-        this.details = details;
+        this.detail = detail;
     }
 
     /**
@@ -33,12 +33,12 @@ public class FindCommand extends Command {
      * @return String of suitable response according to the user input through BotUI object.
      */
     @Override
-    public String execute(TaskRecords taskList, BotUI ui) {
-        TaskRecords foundList = new TaskRecords();
+    public String execute(TaskList taskList, BotUI ui) {
+        TaskList foundList = new TaskList();
         boolean found = false;
         for (Task t : taskList.getList()) {
-            if (t.getDetail().contains(this.details)) {
-                foundList.addProcess(t);
+            if (t.getDetail().contains(this.detail)) {
+                foundList.addTask(t);
                 found = true;
             }
         }

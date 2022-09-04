@@ -20,9 +20,9 @@ public class Messages {
     public static final String MESSAGE_SHOW_FORMAT = "Based on my understanding,"
             + " your command didn't follow the format\n"
             + "todo              : todo [task description]\n"
-            + "deadline         : deadline [task description] /by [YYYY-MM-DD HHmm]\n"
-            + "event            : event [task description] /at [YYYY-MM-DD HHmm]\n"
-            + "single command: | bye | list |\n"
+            + "deadline          : deadline [task description] /by [YYYY-MM-DD HHmm]\n"
+            + "event             : event [task description] /at [YYYY-MM-DD HHmm]\n"
+            + "single command    : | bye | list |\n"
             + "mark/unmark/delete: [command] [number of task in list you wish to modify]\n"
             + "find              : find [search keyword]";
     public static final String MESSAGE_TASK_NOT_EXIST = "Opps! we only have %d tasks in the list :(";
@@ -32,4 +32,9 @@ public class Messages {
             + "(eg. 2022-08-21 1300)";
     public static final String MESSAGE_FOUND_TASK = "Here you go! your matching tasks in your list";
     public static final String MESSAGE_NOT_FOUND = "Nothing in the list match your search keyword!";
+    public static final String DATE_TIME_FORMAT = "MMM dd yyyy HH:mm";
+    public static final String SHOW_LIST_DESCRIPTION = "Weeeee, your current list is as follow:\n";
+    public static final String TODO_ID = "[T]";
+    public static final String EVENT_ID = "[E]";
+    public static final String DEADLINE_ID = "[D]";
 }
