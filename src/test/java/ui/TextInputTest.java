@@ -6,16 +6,16 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-
-import henry.Henry;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.framework.junit5.Start;
 import org.testfx.util.WaitForAsyncUtils;
+
+import henry.Henry;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 @ExtendWith(ApplicationExtension.class)
 public class TextInputTest extends ApplicationTest {

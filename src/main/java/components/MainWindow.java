@@ -16,11 +16,12 @@ import javafx.scene.layout.VBox;
  * Controller for MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
+
+    private static final String GREETING = "HELLO. I AM HENRY. HOW MAY I ASSIST YOU TODAY?";
     private final Image userImage = new Image(
         Objects.requireNonNull(this.getClass().getResourceAsStream("/images/user.png")));
     private final Image henryImage = new Image(
         Objects.requireNonNull(this.getClass().getResourceAsStream("/images/henry.png")));
-    private static final String GREETING = "HELLO. I AM HENRY. HOW MAY I ASSIST YOU TODAY?";
 
     // FXML
     @FXML
@@ -33,6 +34,9 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
     private Henry henry;
 
+    /**
+     * Initializes the main window of the JavaFX application.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -43,6 +47,7 @@ public class MainWindow extends AnchorPane {
 
     /**
      * Sets the Henry object to be used in the GUI.
+     *
      * @param henry the Henry object to be used for operations
      */
     public void setHenry(Henry henry) {

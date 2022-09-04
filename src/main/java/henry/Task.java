@@ -41,6 +41,11 @@ public class Task {
         this.isDone = isDone;
     }
 
+    /**
+     * Parses a new Task object from the given String input
+     * @param input the String to be converted into a Task
+     * @return a new Task representing the input
+     */
     public static Task parseTask(String input) {
         String[] tokens = input.split("\\|");
         Commands type;

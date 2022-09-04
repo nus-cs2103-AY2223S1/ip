@@ -11,7 +11,7 @@ import command.Command;
 public class ParserTest {
 
     @Test
-    public void parseCommand_AddedTask_IfParserIsWorking() {
+    public void testParser() {
         Parser parser = new Parser();
         TaskListStub taskList = new TaskListStub(new ArrayList<>());
         String command = "event event stub /at 01-01-2000 00:00";
