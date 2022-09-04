@@ -13,16 +13,17 @@ import java.util.List;
  * @author Pontakorn Prasertsuk
  */
 public class Storage {
-
     private final String filePath;
+    private final String notePath;
 
     /**
      * Constructs a new Storage instance
      *
      * @param filePath the file path to be used
      */
-    public Storage(String filePath) {
+    public Storage(String filePath, String notePath) {
         this.filePath = filePath;
+        this.notePath = notePath;
     }
 
     /**
@@ -30,9 +31,9 @@ public class Storage {
      *
      * @throws DukeException if error occurs
      */
-    private void createFileIfNotExist() throws DukeException {
+    private void createFileIfNotExist(String path) throws DukeException {
         try {
-            File file = new File(filePath);
+            File file = new File(path);
             if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdirs();
             }
@@ -53,7 +54,7 @@ public class Storage {
      * @throws DukeException if error occurs
      */
     public List<Task> load() throws DukeException {
-        createFileIfNotExist();
+        createFileIfNotExist(filePath);
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             List<Task> list = new ArrayList<Task>();
@@ -80,7 +81,7 @@ public class Storage {
      * @throws DukeException if error occurs
      */
     public void save(List<Task> list) throws DukeException {
-        createFileIfNotExist();
+        createFileIfNotExist(filePath);
 
         try (PrintWriter pw = new PrintWriter(filePath, "UTF-8")) {
             list.forEach(task -> pw.println(task.encode()));
@@ -89,6 +90,76 @@ public class Storage {
             throw new DukeException("Save file not found!");
         } catch (UnsupportedEncodingException e) {
             throw new DukeException("Unable to write save file!");
+        }
+    }
+
+    /**
+     * Load note from the file
+     * 
+     * @param key note name
+     * @return note content
+     * @throws DukeException if error occurs
+     */
+    public String loadNote(String key) throws DukeException {
+        String currentNotePath = notePath + "/" + key + ".txt";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(currentNotePath))) {
+            String note = "";
+
+            String line = br.readLine();
+            while (line != null) {
+                note += line + "\n";
+                line = br.readLine();
+            }
+            br.close();
+
+            return note;
+        } catch (FileNotFoundException e) {
+            throw new DukeException("Note file not found!");
+        } catch (IOException e) {
+            throw new DukeException("Unable to read note file!");
+        }
+    }
+
+    /**
+     * Save note to the file
+     * 
+     * @param key note name
+     * @param note note content
+     * @throws DukeException if error occurs
+     */
+    public void saveNote(String key, String note) throws DukeException {
+        String currentNotePath = notePath + "/" + key + ".txt";
+        createFileIfNotExist(currentNotePath);
+
+        try (PrintWriter pw = new PrintWriter(currentNotePath, "UTF-8")) {
+            pw.println(note);
+            pw.close();
+        } catch (FileNotFoundException e) {
+            throw new DukeException("Note file not found!");
+        } catch (UnsupportedEncodingException e) {
+            throw new DukeException("Unable to write note file!");
+        }
+    }
+
+    /**
+     * Delete note from the file
+     * 
+     * @param key note name
+     * @throws DukeException if error occurs
+     */
+    public void deleteNote(String key) throws DukeException {
+        String currentNotePath = notePath + "/" + key + ".txt";
+
+        try {
+            File file = new File(currentNotePath);
+            if (file.exists()) {
+                file.delete();
+            } else {
+                throw new DukeException("Note file not found!");
+            }
+        } catch (Exception e) {
+            throw new DukeException("Unable to delete note file!");
         }
     }
 }

@@ -15,6 +15,7 @@ import duke.ui.Ui;
 public class Duke {
 
     private static final String FILE_PATH = "data/tasks.txt";
+    private static final String NOTE_PATH = "notes";
 
     private final Ui ui;
     private final Storage storage;
@@ -25,9 +26,9 @@ public class Duke {
      *
      * @param filePath the path to the file that stores the tasks
      */
-    public Duke(String filePath) {
+    public Duke(String filePath, String notePath) {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage(filePath, notePath);
         try {
             taskList = new TaskList(storage.load());
         } catch (DukeException e) {
@@ -69,6 +70,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke(FILE_PATH).run();
+        new Duke(FILE_PATH, NOTE_PATH).run();
     }
 }

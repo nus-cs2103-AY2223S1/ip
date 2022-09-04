@@ -16,8 +16,9 @@ import java.io.IOException;
  */
 public class Main extends Application {
     private static final String FILE_PATH = "data/tasks.txt";
+    private static final String NOTE_PATH = "notes";
 
-    private final Duke duke = new Duke(FILE_PATH);
+    private final Duke duke = new Duke(FILE_PATH, NOTE_PATH);
 
     /**
      * Starts the GUI application
