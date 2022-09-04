@@ -71,6 +71,7 @@ public class Deadline extends Task {
      */
     @Override
     public boolean isOnDate(LocalDate date) {
+        assert date != null : "Deadline::onDate invoked with null argument.";
         return date.equals(this.date);
     }
 }

@@ -32,6 +32,7 @@ public class Parser {
      * @throws DukeException when the user command is invalid.
      */
     public static Command parse(String fullCommand) throws DukeException {
+        assert fullCommand != null : "Parser::parse invoked with null argument.";
         try {
             String[] strings = fullCommand.split(" ");
             String firstCommand = strings[0].toUpperCase();

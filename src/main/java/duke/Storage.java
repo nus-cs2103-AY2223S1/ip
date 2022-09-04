@@ -57,6 +57,7 @@ public class Storage {
      * @throws DukeException when unable to write into the hard disk file.
      */
     public void writeToFile(TaskList tasks) throws DukeException {
+        assert tasks != null : "Storage::writeToFile invoked with null argument.";
         try {
             FileWriter fw = new FileWriter(filePath);
             String[] dataStrings = tasks.convertAllToData();

@@ -42,6 +42,7 @@ public class Todo extends Task {
      */
     @Override
     public boolean isOnDate(LocalDate date) {
+        assert date != null : "Todo::onDate invoked with null argument.";
         return false;
     }
 }

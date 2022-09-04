@@ -70,6 +70,7 @@ public class TaskList {
      * @return A new TaskList of every task that occurs by/at a specified date.
      */
     public TaskList getAllOnDate(LocalDate date) {
+        assert date != null : "TaskList::allOnDate invoked with null argument.";
         ArrayList<Task> matchingList = new ArrayList<>();
         for (Task task : tasks) {
             if (task.isOnDate(date)) {
