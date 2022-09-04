@@ -82,7 +82,7 @@ public class TaskList {
      * @return An array of strings representing each Task in the TaskList as data
      *     that can be stored in the hard disk.
      */
-    public String[] allToData() {
+    public String[] convertAllToData() {
         return tasks.stream()
                 .map(Task::toData)
                 .toArray(String[]::new);
