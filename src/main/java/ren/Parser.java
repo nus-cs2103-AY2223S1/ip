@@ -107,6 +107,23 @@ public class Parser {
             }
         case "empty":
             return tasks.emptyList();
+        case "sort":
+            if (!hasSecondTerm) {
+                throw new RenException("Please specify how you want the list to be sorted.");
+            }
+            String secondTerm = firstParse[1].split(" ", 2)[0];
+            switch (secondTerm) {
+            case "type":
+                return tasks.sortTasks(TaskList.SortType.TYPE);
+            case "status":
+                return tasks.sortTasks(TaskList.SortType.STATUS);
+            case "description":
+                return tasks.sortTasks(TaskList.SortType.DESCRIPTION);
+            case "date":
+                return tasks.sortTasks(TaskList.SortType.DATE);
+            default:
+                throw new RenException("Please specify how you want the list to be sorted.");
+            }
         default:
             throw new RenException("Please enter a supported command.");
         }

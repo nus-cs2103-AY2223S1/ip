@@ -58,6 +58,40 @@ public class Event extends Task {
     }
 
     /**
+     * Compares this Event to another Task by their type of task.
+     *
+     * @param other The task to compare with.
+     * @return 1 if the other task is not an Event, 0 if the other task is an Event.
+     */
+    @Override
+    public int compareType(Task other) {
+        if (other instanceof Todo) {
+            return 1;
+        } else if (other instanceof Deadline) {
+            return 1;
+        }
+        return 0;
+    }
+
+    /**
+     * Compares this Event to another Task by their date.
+     *
+     * @param other The task to compare with.
+     * @return -1 if this task should be sorted first, 1 if the other task should be sorted first, 0 otherwise.
+     */
+    @Override
+    public int compareDate(Task other) {
+        if (other instanceof Todo) {
+            return -1;
+        } else if (other instanceof Deadline) {
+            return this.start.compareTo(((Deadline) other).dateTime);
+        } else if (other instanceof Event) {
+            return this.start.compareTo(((Event) other).start);
+        }
+        return 0;
+    }
+
+    /**
      * Returns the string representation of this Event.
      *
      * @return String Representation.

@@ -119,6 +119,38 @@ public class TaskList {
     }
 
     /**
+     * Sorts the tasks according to sortType.
+     * For type, the order is Todo, Deadline, Event.
+     * For status, unmarked tasks are before marked tasks.
+     * For description, tasks are sorted lexicographically, ignoring case differences.
+     * For date, Todo are sorted last while Deadline and Event are sorted chronologically.
+     *
+     * @param sortType The order to sort the tasks by.
+     * @return String containing the sorted list of tasks.
+     */
+    public String sortTasks(SortType sortType) {
+        switch (sortType) {
+        case TYPE:
+            tasks.sort(Task::compareType);
+            break;
+        case STATUS:
+            tasks.sort(Task::compareStatus);
+            break;
+        case DESCRIPTION:
+            tasks.sort(Task::compareDescription);
+            break;
+        case DATE:
+            tasks.sort(Task::compareDate);
+            break;
+        default:
+            break;
+        }
+        storage.emptyList();
+        tasks.forEach(storage::addTask);
+        return " I have finished sorting your list of tasks!\n\n" + listTasks();
+    }
+
+    /**
      * Searches TaskList for Tasks matching a search term.
      *
      * @param term The Search Term to match Tasks with.
@@ -149,5 +181,15 @@ public class TaskList {
         tasks.clear();
         storage.emptyList();
         return " Understood. I have emptied your list of tasks.";
+    }
+
+    /**
+     * The types of sorting supported by Ren.
+     */
+    enum SortType {
+        TYPE,
+        STATUS,
+        DESCRIPTION,
+        DATE
     }
 }

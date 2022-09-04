@@ -24,6 +24,7 @@ import javafx.scene.shape.Rectangle;
 public class DialogBox extends HBox {
     @FXML
     private Label dialog;
+
     @FXML
     private ImageView displayPicture;
 

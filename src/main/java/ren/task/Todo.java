@@ -42,6 +42,28 @@ public class Todo extends Task {
     }
 
     /**
+     * Compares this Todo to another Task by their type of task.
+     *
+     * @param other The task to compare with.
+     * @return -1 if the other task is not a Todo, 0 otherwise.
+     */
+    @Override
+    public int compareType(Task other) {
+        return (other instanceof Todo) ? 0 : -1;
+    }
+
+    /**
+     * Compares this Todo to another Task by their date.
+     *
+     * @param other The task to compare with.
+     * @return 1 if the other task is not a Todo, 0 otherwise.
+     */
+    @Override
+    public int compareDate(Task other) {
+        return (other instanceof Todo) ? 0 : 1;
+    }
+
+    /**
      * Returns the string representation of this Todo Task.
      *
      * @return String Representation.

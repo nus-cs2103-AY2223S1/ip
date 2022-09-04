@@ -23,9 +23,13 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
+    /** The instance of Ren for this program. */
     private Ren ren;
 
+    /** Profile picture for the user. */
     private Image userImage;
+
+    /** Profile picture for Ren. */
     private Image renImage;
 
     /**
