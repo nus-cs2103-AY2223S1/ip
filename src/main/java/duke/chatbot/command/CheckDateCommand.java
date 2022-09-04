@@ -10,18 +10,24 @@ import duke.chatbot.data.task.TaskList;
 import duke.chatbot.util.MessageBuilder;
 
 /**
- * A command that prints a list of TimedTask that have the same
- * date as the date argument input.
+ * A command that prints a list of TimedTask that have the same date as the date argument input.
+ *
  * @author jq1836
  */
 public class CheckDateCommand extends Command {
+    /**
+     * The command word to invoke this command
+     */
+    public static final String COMMAND_WORD = "check";
+
     public CheckDateCommand(List<String> arguments) {
         this.arguments = arguments;
     }
 
     /**
-     * Returns an instance of CommandResult with a message that displays
-     * a list of TimedTask which have the same date as the argument input.
+     * Returns an instance of {@link CommandResult} with a message that displays a list of TimedTask which have the
+     * same date as the argument input.
+     *
      * @return The result after executing the command.
      */
     @Override

@@ -2,6 +2,7 @@ package duke.chatbot.common;
 
 /**
  * Contains the messages that are used by the application.
+ *
  * @author jq1836
  */
 public class Message {

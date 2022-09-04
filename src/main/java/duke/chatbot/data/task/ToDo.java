@@ -2,6 +2,7 @@ package duke.chatbot.data.task;
 
 /**
  * A type of task that only has a description.
+ *
  * @author jq1836
  */
 public class ToDo extends Task {

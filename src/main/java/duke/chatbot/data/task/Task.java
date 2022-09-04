@@ -3,17 +3,23 @@ package duke.chatbot.data.task;
 /**
  * A task that contains a description and a boolean
  * that indicates whether the task has been completed.
+ *
  * @author jq1836
  */
 public abstract class Task {
-    /** A description of the task */
+    /**
+     * A description of the task
+     */
     private final String description;
 
-    /** A boolean describing whether the task is done */
+    /**
+     * A boolean describing whether the task is done
+     */
     private boolean isDone = false;
 
     /**
      * Constructs a task that is not done.
+     *
      * @param description A string that describes the task.
      */
     public Task(String description) {
@@ -22,9 +28,10 @@ public abstract class Task {
 
     /**
      * Constructs a task that may be done depending on the isDone argument.
+     *
      * @param description A string that describes the task.
-     * @param isDone A boolean value that describes whether the
-     *     task is done.
+     * @param isDone      A boolean value that describes whether the
+     *                    task is done.
      */
     public Task(String description, boolean isDone) {
         this(description);
@@ -47,6 +54,7 @@ public abstract class Task {
 
     /**
      * Returns a string that represents whether the task is done.
+     *
      * @return A string that represents whether the task is done.
      */
     private String getStatusIcon() {
@@ -60,6 +68,7 @@ public abstract class Task {
 
     /**
      * Returns a string that is written onto a text file to be stored.
+     *
      * @return A string that is written onto a text file to be stored.
      */
     public String encode() {

@@ -10,19 +10,24 @@ import duke.chatbot.util.MessageBuilder;
 import duke.chatbot.util.Parser;
 
 /**
- * A command that adds an instance of Event to the list of tasks
- * stored in the Duke application instance.
+ * A command that adds an instance of {@link Event} to the list of tasks stored in the Duke application instance.
+ *
  * @author jq1836
  */
 public class AddEventCommand extends Command {
+    /**
+     * The command word to invoke this command
+     */
+    public static final String COMMAND_WORD = "event";
+
     public AddEventCommand(List<String> arguments) {
         this.arguments = arguments;
     }
 
     /**
-     * Adds an instance of Event to the list of tasks stored in
-     * the Duke application instance and returns an instance of
-     * CommandResult which contains the Event added.
+     * Adds an instance of Event to the list of tasks stored in the Duke application instance and returns an instance
+     * of {@link CommandResult} which contains the Event added.
+     *
      * @return The result after executing the command.
      * @throws InvalidInputException If arguments passed to Command is invalid.
      */

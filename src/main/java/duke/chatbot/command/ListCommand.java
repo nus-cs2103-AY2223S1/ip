@@ -7,14 +7,20 @@ import duke.chatbot.data.task.Task;
 import duke.chatbot.util.MessageBuilder;
 
 /**
- * A command that prints the list of tasks in the application. Prints
- * an empty list message if the list is empty.
+ * A command that displays the list of tasks in the application. Displays an empty list message if the list is empty.
+ *
  * @author jq1836
  */
 public class ListCommand extends Command {
     /**
-     * Returns an instance of CommandResult with a message that displays
-     * the list of all tasks stored in the application.
+     * The command word to invoke this command
+     */
+    public static final String COMMAND_WORD = "list";
+
+    /**
+     * Returns an instance of {@link CommandResult} with a message that displays the list of all tasks stored in the
+     * application.
+     *
      * @return The result after executing the command.
      */
     @Override

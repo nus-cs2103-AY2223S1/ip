@@ -8,20 +8,24 @@ import duke.chatbot.data.task.Task;
 import duke.chatbot.util.MessageBuilder;
 
 /**
- * A command that unmarks the targeted task from the
- * list of Task in the application. The targeted
- * is chosen by an argument string with an integer in
- * the argument list.
+ * A command that unmarks the targeted task from the list of Task in the application. The targeted is chosen by an
+ * argument string with an integer in the argument list.
+ *
  * @author jq1836
  */
 public class UnmarkCommand extends Command {
+    /**
+     * The command word to invoke this command
+     */
+    public static final String COMMAND_WORD = "unmark";
+
     public UnmarkCommand(List<String> arguments) {
         this.arguments = arguments;
     }
 
     /**
-     * Returns an instance of CommandResult with a message that displays the
-     * task unmarked.
+     * Returns an instance of {@link CommandResult} with a message that displays the task unmarked.
+     *
      * @return The result after executing the command.
      */
     @Override

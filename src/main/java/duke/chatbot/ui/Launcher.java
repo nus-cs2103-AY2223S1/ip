@@ -1,4 +1,4 @@
-package duke.chatbot;
+package duke.chatbot.ui;
 
 import javafx.application.Application;
 

@@ -8,19 +8,24 @@ import duke.chatbot.data.task.ToDo;
 import duke.chatbot.util.MessageBuilder;
 
 /**
- * A command that adds an instance of ToDo to the list of tasks
- * stored in the Duke application instance.
+ * A command that adds an instance of {@link ToDo} to the list of tasks stored in the Duke application instance.
+ *
  * @author jq1836
  */
 public class AddToDoCommand extends Command {
+    /**
+     * The command word to invoke this command
+     */
+    public static final String COMMAND_WORD = "todo";
+
     public AddToDoCommand(List<String> arguments) {
         this.arguments = arguments;
     }
 
     /**
-     * Adds an instance of ToDo to the list of tasks stored in
-     * the Duke application instance and returns an instance of
-     * CommandResult which contains the ToDo added.
+     * Adds an instance of ToDo to the list of tasks stored in the Duke application instance and returns an instance
+     * of {@link CommandResult} which contains the ToDo added.
+     *
      * @return The result after executing the command.
      */
     @Override

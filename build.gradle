@@ -48,7 +48,7 @@ test {
 }
 
 application {
-    mainClassName = "duke.chatbot.Launcher"
+    mainClassName = "duke.chatbot.ui.Launcher"
 }
 
 shadowJar {

@@ -8,12 +8,14 @@ import duke.chatbot.data.task.TaskList;
 import duke.chatbot.util.Parser;
 
 /**
- * A file loader which loads tasks into the application task list
- * during runtime.
+ * A file loader which loads tasks into the application task list during runtime.
+ *
  * @author jq1836
  */
 public class TaskFileLoader {
-    /** The file to load the list of tasks from */
+    /**
+     * The file to load the list of tasks from
+     */
     private final File file;
 
     protected TaskFileLoader(File file) {
@@ -21,11 +23,11 @@ public class TaskFileLoader {
     }
 
     /**
-     * Return list of tasks after loading them from the stored file.
+     * Returns an instance of {@link TaskList} after loading them from the stored file.
+     *
      * @return A list of tasks loaded from the stored file.
      * @throws FileNotFoundException If a file is not found.
-     * @throws InvalidInputException If the date and time portion
-     *     of the encoded task is not in the correct format.
+     * @throws InvalidInputException If the date and time portion of the encoded task is not in the correct format.
      */
     public TaskList getTaskList() throws FileNotFoundException, InvalidInputException {
         return Parser.parseFile(file);

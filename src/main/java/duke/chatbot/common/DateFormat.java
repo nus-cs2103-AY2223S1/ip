@@ -3,8 +3,8 @@ package duke.chatbot.common;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Contains the string formatter for date and time related strings used in the
- * application.
+ * Contains the string formatter for date and time related strings used in the application.
+ *
  * @author jq1836
  */
 public class DateFormat {

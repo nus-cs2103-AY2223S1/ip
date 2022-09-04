@@ -1,8 +1,8 @@
-package duke.chatbot;
+package duke.chatbot.ui;
 
 import java.io.IOException;
 
-import duke.chatbot.ui.MainWindow;
+import duke.chatbot.Duke;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

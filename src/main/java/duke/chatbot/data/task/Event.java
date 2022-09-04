@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 /**
  * A type of task that has a date for the user to attend.
+ *
  * @author jq1836
  */
 public class Event extends TimedTask {

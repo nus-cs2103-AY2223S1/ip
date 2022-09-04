@@ -10,19 +10,24 @@ import duke.chatbot.data.task.TaskList;
 import duke.chatbot.util.MessageBuilder;
 
 /**
- * A command that prints a list of tasks that have the argument
- * string as a substring of the task description.
+ * A command that prints a list of tasks that have the argument string as a substring of the task description.
+ *
  * @author jq1836
  */
 public class FindCommand extends Command {
+    /**
+     * The command word to invoke this command
+     */
+    public static final String COMMAND_WORD = "find";
+
     public FindCommand(List<String> arguments) {
         this.arguments = arguments;
     }
 
     /**
-     * Returns an instance of CommandResult with a message that displays
-     * a list of tasks which have the argument string as a substring of the
-     * task description.
+     * Returns an instance of {@link CommandResult} with a message that displays a list of tasks which have the
+     * argument string as a substring of the task description.
+     *
      * @return The result after executing the command.
      */
     @Override
