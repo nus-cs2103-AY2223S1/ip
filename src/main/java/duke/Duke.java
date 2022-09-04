@@ -12,6 +12,8 @@ import duke.ui.Ui;
 /**
  * Main class for Duke program.
  * Keeps track of tasks for user.
+ *
+ * @author Ho Jun Hao
  */
 public class Duke {
 
