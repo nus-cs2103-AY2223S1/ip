@@ -6,7 +6,10 @@ import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.task.Deadline;
+import duke.task.Event;
 import duke.task.Task;
+import duke.task.Todo;
 
 /**
  * Command that deletes a task from the list.
@@ -48,6 +51,7 @@ public class DeleteCommand extends Command {
             assert (index <= list.size()) : "Index cannot exceed length of list";
 
             Task t = list.get(index - 1);
+            assert (t instanceof Todo || t instanceof Deadline || t instanceof Event);
             taskList.delete(this.index);
             return ui.showDelete(t, list.size());
         } else {
