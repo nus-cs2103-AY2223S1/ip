@@ -1,6 +1,7 @@
 package duke;
 
 import java.io.*;
+import javafx.application.Platform;
 
 /**
  * Represents the main Duke class.
@@ -31,6 +32,7 @@ public class Duke {
      */
     String getResponse(String input) {
         if (input.equals("bye")) {
+            Platform.exit();
             return Ui.sayGoodbye();
         }
         else {
