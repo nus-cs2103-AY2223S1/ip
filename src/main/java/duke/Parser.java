@@ -6,10 +6,13 @@ import java.util.Arrays;
  * Deals with making sense of the user command and converting input into a format understandable by the Duke program.
  */
 public class Parser {
+    private static final String SPACE_SEPARATOR = " ";
+    private static final String EMPTY_STRING = "";
+
     private static void fillNullElementsWithEmptyString(String[] arr) {
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == null) {
-                arr[i] = "";
+                arr[i] = EMPTY_STRING;
             }
         }
     }
@@ -31,7 +34,9 @@ public class Parser {
         String trimmedInput = input.trim();
 
         checkForBannedCharacters(trimmedInput);
-        return sortInputIntoArray(trimmedInput);
+        String[] parsedOutput = splitInputIntoArray(trimmedInput);
+        checkForBadInput(parsedOutput);
+        return parsedOutput;
     }
 
     private static void checkForBannedCharacters(String input) throws BannedDukeCharacterException {
@@ -41,60 +46,68 @@ public class Parser {
         }
     }
 
-    private static String[] sortInputIntoArray(String input) {
+    private static String[] splitInputIntoArray(String input) {
         // There are at most 6 parameters in an input. Status of task is assumed to be undone.
         final int PARSED_ARRAY_SIZE = 6;
         String[] parsedOutput = new String[PARSED_ARRAY_SIZE];
+        String[] str = input.split(SPACE_SEPARATOR, 2);
+        parsedOutput[0] = str[0];
+        parsedOutput[1] = str.length != 1 ? str[1] : EMPTY_STRING;
 
-        switch (input) {
-        case "bye":
-        case "list":
-            parsedOutput[0] = input;
-            return parsedOutput;
+        String cmd = parsedOutput[0];
+        switch (cmd) {
+        case "deadline":
+        case "event":
+            final String DEADLINE_SEPARATOR = " /by ";
+            final String EVENT_SEPARATOR = " /at ";
+            String splitWord = cmd.equals("deadline") ? DEADLINE_SEPARATOR : EVENT_SEPARATOR;
+            String[] str2 = parsedOutput[1].split(splitWord, 2);
+            if (str2.length == 1) {
+                break;
+            }
+            String description = str2[0];
+            String[] dateTime = Arrays.copyOf(str2[1].split(SPACE_SEPARATOR), 4);
+            parsedOutput[1] = description;
+            parsedOutput[2] = dateTime[0];
+            parsedOutput[3] = dateTime[1];
+            parsedOutput[4] = dateTime[2];
+            parsedOutput[5] = dateTime[3];
         default:
-            String[] str = input.split(" ", 2);
-            String cmd = str[0];
-            parsedOutput[0] = cmd;
-            checkForMissingInput(str, cmd);
+            // Do nothing
+        }
+        fillNullElementsWithEmptyString(parsedOutput);
+        return parsedOutput;
+    }
 
-            switch (cmd) {
+    private static void checkForBadInput(String[] parsedOutput)
+            throws InvalidDukeInputException, MissingDukeInputException {
+        String cmd = parsedOutput[0];
+        int minimumArgumentsNeeded;
+        switch (cmd) {
+            case "bye":
+            case "list":
+                minimumArgumentsNeeded = 1;
+                break;
             case "find":
             case "mark":
             case "unmark":
             case "delete":
             case "todo":
-                parsedOutput[1] = str[1];
-                return parsedOutput;
+                minimumArgumentsNeeded = 2;
+                break;
             case "deadline":
+                minimumArgumentsNeeded = 4;
+                break;
             case "event":
-                String splitWord = cmd.equals("deadline") ? " /by " : " /at ";
-                String[] str2 = str[1].split(splitWord);
-                if (str2.length == 1) {
-                    throw new MissingDukeInputException(cmd);
-                }
-                String description = str2[0];
-                String[] dateTime = Arrays.copyOf(str2[1].split(" "), 4);
-                fillNullElementsWithEmptyString(dateTime);
-                parsedOutput[1] = description;
-                parsedOutput[2] = dateTime[0];
-                parsedOutput[3] = dateTime[1];
-                parsedOutput[4] = dateTime[2];
-                parsedOutput[5] = dateTime[3];
-                return parsedOutput;
+                minimumArgumentsNeeded = 6;
+                break;
             default:
                 throw new InvalidDukeInputException();
-            }
         }
-    }
 
-    private static void checkForMissingInput(String[] str, String cmd) {
-        if (str.length == 1
-                && (cmd.equals("mark")
-                || cmd.equals("unmark")
-                || cmd.equals("delete")
-                || cmd.equals("todo")
-                || cmd.equals("deadline")
-                || cmd.equals("event"))) {
+        int minimumArrayIndexNeededToBeFilled = minimumArgumentsNeeded - 1;
+        boolean hasMissingArguments = parsedOutput[minimumArrayIndexNeededToBeFilled].equals(EMPTY_STRING);
+        if (hasMissingArguments) {
             throw new MissingDukeInputException(cmd);
         }
     }
