@@ -82,7 +82,7 @@ public class Storage {
     }
 
     private String[] parseSavedTask(String line) {
-        // There are at most 7 parameters in a command.
+        // There are at most 7 parameters in a saved task, including status.
         final int PARSED_ARRAY_SIZE = 7;
         String[] temp = line.split("\\|");
         String[] info = Arrays.copyOf(temp, PARSED_ARRAY_SIZE);

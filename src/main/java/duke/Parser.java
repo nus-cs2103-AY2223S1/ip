@@ -27,11 +27,25 @@ public class Parser {
             throws BannedDukeCharacterException,
             InvalidDukeInputException,
             MissingDukeInputException {
-        String[] parsedOutput = new String[6];
-        input = input.trim();
-        if (input.contains("|")) {
-            throw new BannedDukeCharacterException("|");
+        // Remove spaces at the end of the input.
+        String trimmedInput = input.trim();
+
+        checkForBannedCharacters(trimmedInput);
+        return sortInputIntoArray(trimmedInput);
+    }
+
+    private static void checkForBannedCharacters(String input) throws BannedDukeCharacterException {
+        String BANNED_CHARACTER = "|";
+        if (input.contains(BANNED_CHARACTER)) {
+            throw new BannedDukeCharacterException(BANNED_CHARACTER);
         }
+    }
+
+    private static String[] sortInputIntoArray(String input) {
+        // There are at most 6 parameters in an input. Status of task is assumed to be undone.
+        final int PARSED_ARRAY_SIZE = 6;
+        String[] parsedOutput = new String[PARSED_ARRAY_SIZE];
+
         switch (input) {
         case "bye":
         case "list":
@@ -40,16 +54,8 @@ public class Parser {
         default:
             String[] str = input.split(" ", 2);
             String cmd = str[0];
-            if (str.length == 1
-                    && (cmd.equals("mark")
-                    || cmd.equals("unmark")
-                    || cmd.equals("delete")
-                    || cmd.equals("todo")
-                    || cmd.equals("deadline")
-                    || cmd.equals("event"))) {
-                throw new MissingDukeInputException(cmd);
-            }
             parsedOutput[0] = cmd;
+            checkForMissingInput(str, cmd);
 
             switch (cmd) {
             case "find":
@@ -78,6 +84,18 @@ public class Parser {
             default:
                 throw new InvalidDukeInputException();
             }
+        }
+    }
+
+    private static void checkForMissingInput(String[] str, String cmd) {
+        if (str.length == 1
+                && (cmd.equals("mark")
+                || cmd.equals("unmark")
+                || cmd.equals("delete")
+                || cmd.equals("todo")
+                || cmd.equals("deadline")
+                || cmd.equals("event"))) {
+            throw new MissingDukeInputException(cmd);
         }
     }
 }
