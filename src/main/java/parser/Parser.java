@@ -48,46 +48,46 @@ public class Parser {
         String[] cmdSplit = cmd.split(" ", 2);
         Command c;
         switch (cmdSplit[0]) {
-            case "todo":
-                if (cmd.length() <= 5) {
-                    throw new LunaInvalidDescriptionException();
-                }
-                c = new AddCommand(cmdSplit[1]);
-                break;
-            case "deadline":
-                if (cmd.length() <= 9) {
-                    throw new LunaInvalidDescriptionException();
-                }
-                String[] desSplit = cmdSplit[1].split(" /by ");
-                c = new AddCommand("deadline", desSplit[0], parseDate(desSplit[1]));
-                break;
-            case "event":
-                if (cmd.length() <= 6) {
-                    throw new LunaInvalidDescriptionException();
-                }
-                String[] split = cmdSplit[1].split(" /at ");
-                c = new AddCommand("event", split[0], parseDate(split[1]));
-                break;
-            case "list":
-                c = new ListCommand();
-                break;
-            case "bye":
-                c = new ExitCommand();
-                break;
-            case "delete":
-                c = new DeleteCommand(parseNum(cmdSplit[1]));
-                break;
-            case "mark":
-                c = new UpdateCommand("mark", parseNum(cmdSplit[1]));
-                break;
-            case "unmark":
-                c = new UpdateCommand("unmark", parseNum(cmdSplit[1]));
-                break;
-            case "find":
-                c = new FindCommand(cmdSplit[1].toLowerCase());
-                break;
-            default:
-                throw new LunaInvalidCommandException();
+        case "todo":
+            if (cmd.length() <= 5) {
+                throw new LunaInvalidDescriptionException();
+            }
+            c = new AddCommand(cmdSplit[1]);
+            break;
+        case "deadline":
+            if (cmd.length() <= 9) {
+                throw new LunaInvalidDescriptionException();
+            }
+            String[] desSplit = cmdSplit[1].split(" /by ");
+            c = new AddCommand("deadline", desSplit[0], parseDate(desSplit[1]));
+            break;
+        case "event":
+            if (cmd.length() <= 6) {
+                throw new LunaInvalidDescriptionException();
+            }
+            String[] split = cmdSplit[1].split(" /at ");
+            c = new AddCommand("event", split[0], parseDate(split[1]));
+            break;
+        case "list":
+            c = new ListCommand();
+            break;
+        case "bye":
+            c = new ExitCommand();
+            break;
+        case "delete":
+            c = new DeleteCommand(parseNum(cmdSplit[1]));
+            break;
+        case "mark":
+            c = new UpdateCommand("mark", parseNum(cmdSplit[1]));
+            break;
+        case "unmark":
+            c = new UpdateCommand("unmark", parseNum(cmdSplit[1]));
+            break;
+        case "find":
+            c = new FindCommand(cmdSplit[1].toLowerCase());
+            break;
+        default:
+            throw new LunaInvalidCommandException();
         }
         return c;
     }

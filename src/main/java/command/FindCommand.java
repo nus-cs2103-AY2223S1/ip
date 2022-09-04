@@ -22,11 +22,6 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public boolean isExit() {
-        return false;
-    }
-
-    @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         String found = tasks.find(txt);
         return ui.showFound(found);

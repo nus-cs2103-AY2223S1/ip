@@ -25,15 +25,10 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public boolean isExit() {
-        return false;
-    }
-
-    @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         try {
-            Task task = tasks.delete(this.num);
             storage.updateStorage(tasks);
+            Task task = tasks.delete(this.num);
             return ui.showDeleted(tasks, task);
         } catch (LunaException e) {
             return ui.showError(e);

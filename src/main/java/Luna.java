@@ -31,25 +31,6 @@ public class Luna {
         tasks = new TaskList(storage.load(ui));
     }
 
-//    /**
-//     * Starts the chatbot by reading commands from and executing them.
-//     */
-//    public void run() {
-//        ui.showWelcome();
-//
-//        boolean isExit = false;
-//        while (!isExit) {
-//            try {
-//                String fullCommand = ui.readCommand();
-//                Command c = Parser.parse(fullCommand);
-//                c.execute(tasks, ui, storage);
-//                isExit = c.isExit();
-//            } catch (LunaException e) {
-//                ui.showError(e);
-//            }
-//        }
-//    }
-
     public String getResponse(String input) {
         try {
             Command cmd = Parser.parse(input);

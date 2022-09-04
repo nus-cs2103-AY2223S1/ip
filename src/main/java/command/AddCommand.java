@@ -49,15 +49,10 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public boolean isExit() {
-        return false;
-    }
-
-    @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         try {
-            tasks.add(this.task);
             storage.updateStorage(tasks);
+            tasks.add(this.task);
             return ui.showAdded(tasks, this.task);
         } catch (LunaException e) {
             return ui.showError(e);
