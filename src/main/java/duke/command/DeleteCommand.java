@@ -29,12 +29,13 @@ public class DeleteCommand extends Command {
      * @param tasks The specified TaskList involved with the command.
      * @param ui The specified Ui involved with the command.
      * @param storage The specified Storage involved with the command.
+     * @return A message that a task was deleted from Duke.
      * @throws DukeException when the command cannot be successfully executed.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task task = tasks.delete(n);
         storage.writeToFile(tasks);
-        ui.showDeleted(task, tasks);
+        return ui.showDeleted(task, tasks);
     }
 }

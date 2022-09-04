@@ -2,7 +2,6 @@ package duke.command;
 
 import java.time.LocalDate;
 
-import duke.DukeException;
 import duke.Storage;
 import duke.Ui;
 import duke.task.TaskList;
@@ -30,11 +29,11 @@ public class OnCommand extends Command {
      * @param tasks The specified TaskList involved with the command.
      * @param ui The specified Ui involved with the command.
      * @param storage The specified Storage involved with the command.
-     * @throws DukeException when the command cannot be successfully executed.
+     * @return A message with all the tasks on a specified date in Duke.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        TaskList matchingList = tasks.allOnDate(date);
-        ui.showOnDate(matchingList);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        TaskList matchingList = tasks.getAllOnDate(date);
+        return ui.showOnDate(matchingList);
     }
 }

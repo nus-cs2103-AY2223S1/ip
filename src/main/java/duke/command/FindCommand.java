@@ -1,6 +1,5 @@
 package duke.command;
 
-import duke.DukeException;
 import duke.Storage;
 import duke.Ui;
 import duke.task.TaskList;
@@ -10,7 +9,6 @@ import duke.task.TaskList;
  * finds a task in Duke's task list using a keyword.
  */
 public class FindCommand extends Command {
-    /** The keyword to search the task list with. */
     private final String keyword;
 
     /**
@@ -28,11 +26,11 @@ public class FindCommand extends Command {
      * @param tasks The specified TaskList involved with the command.
      * @param ui The specified Ui involved with the command.
      * @param storage The specified Storage involved with the command.
-     * @throws DukeException when the command cannot be successfully executed.
+     * @return A message of every task found with the matching keyword (or phrase).
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        TaskList matchingList = tasks.allContaining(keyword);
-        ui.showFound(matchingList);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        TaskList matchingList = tasks.getAllContaining(keyword);
+        return ui.showFound(matchingList);
     }
 }

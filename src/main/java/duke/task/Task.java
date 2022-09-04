@@ -80,7 +80,7 @@ public abstract class Task {
     /**
      * Marks a Task as not done.
      */
-    public void unmarkAsDone() {
+    public void markAsNotDone() {
         isDone = false;
     }
 
@@ -126,5 +126,5 @@ public abstract class Task {
      * @param date The specified date to check.
      * @return true if the task occurs by/at the specified date.
      */
-    public abstract boolean onDate(LocalDate date);
+    public abstract boolean isOnDate(LocalDate date);
 }

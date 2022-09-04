@@ -9,13 +9,14 @@ import duke.task.TaskList;
 public class Duke {
     private static final String DEFAULT_FILE_PATH = "data/tasks.txt";
 
-    /** The Storage that loads and writes files for Duke. */
     private final Storage storage;
-    /** The Ui that interacts with the user. */
     private final Ui ui;
-    /** The list of tasks stored by Duke. */
     private TaskList tasks;
+
     private boolean isExit;
+
+    private boolean hasLoadingError;
+    private String loadingError;
 
     /**
      * Constructs a new Duke chatbot that loads and saves data
@@ -26,9 +27,11 @@ public class Duke {
         storage = new Storage(DEFAULT_FILE_PATH);
         try {
             tasks = new TaskList(storage.load());
+            hasLoadingError = false;
         } catch (DukeException e) {
-            ui.showError(e.getMessage());
             tasks = new TaskList();
+            hasLoadingError = true;
+            loadingError = ui.showError(e.getMessage());
         }
     }
 
@@ -50,13 +53,11 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input);
-            c.execute(tasks, ui, storage);
             isExit = c.isExit();
+            return c.execute(tasks, ui, storage);
         } catch (DukeException e) {
-            ui.showError(e.getMessage());
-            return ui.getResponse();
+            return ui.showError(e.getMessage());
         }
-        return ui.getResponse();
     }
 
     /**
@@ -65,7 +66,10 @@ public class Duke {
      * @return Duke's welcome message.
      */
     public String getWelcome() {
-        ui.showWelcome();
-        return ui.getResponse();
+        String response = ui.showWelcome();
+        if (hasLoadingError) {
+            response += "\n" + Ui.LINE + "\n" + loadingError;
+        }
+        return response;
     }
 }
