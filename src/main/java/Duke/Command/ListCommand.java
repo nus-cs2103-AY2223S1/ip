@@ -11,7 +11,7 @@ import Duke.FileStorage.Storage;
 public class ListCommand extends Command{
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showResponse(tasks.toString());
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return ui.indentResponse(tasks.toString());
     }
 }

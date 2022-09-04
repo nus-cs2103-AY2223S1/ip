@@ -83,12 +83,31 @@ public class Ui {
     }
 
     /**
+     * Return the formattedgeneral error for user ouput.
+     * 
+     * @param errorMsg The error message to be displayed.
+     */
+    public String getErrMsg(String errorMsg) {
+        return indentResponse(String.format("[ERROR] %s", errorMsg));
+    }
+
+
+    /**
      * Formats a general warning for user ouput.
      * 
      * @param errorMsg The warning message to be displayed.
      */
     public void showWarning(String errorMsg) {
         System.out.println(indentResponse(String.format("**[Warning] %s", errorMsg)));
+    }
+
+    /**
+     * Return the formattedgeneral error for user ouput.
+     * 
+     * @param wrnMsg The warning message to be displayed.
+     */
+    public String getWarnMsg(String wrnMsg) {
+        return indentResponse(String.format("**[Warning] %s", wrnMsg));
     }
 
     /** Showss the welcome message for the user. */
@@ -106,4 +125,8 @@ public class Ui {
         System.out.println("Goodbye, see you next time!");
     }
 
+    /** Returns the exit message for the user. */
+    public String getExitMsg() {
+        return "Goodbye, see you next time!";
+    }
 }

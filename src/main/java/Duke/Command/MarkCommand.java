@@ -26,11 +26,11 @@ public class MarkCommand extends Command{
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         this.markedTask = tasks.markTask(this.taskID);
         storage.writeListToFile(tasks);
-        ui.showResponse(String.format("%s\nNow still you have %d tasks in the list.", 
-                this.toString(), tasks.getNumOfTasks()));
+        return String.format("%s\nNow still you have %d tasks in the list.", 
+                this.toString(), tasks.getNumOfTasks());
     }
 
     @Override public String toString() {
