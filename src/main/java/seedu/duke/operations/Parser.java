@@ -14,8 +14,8 @@ public class Parser {
      * @param cmd   User input
      * @return      Command
      */
-    public static Command parse(String cmd) {
-        cmd = cmd.strip();
+    public static Command parse(String command) {
+        command = command.strip();
         int separator = cmd.indexOf(' ');
         String keyWord = cmd;
         if (separator != -1) {
