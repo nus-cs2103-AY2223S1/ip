@@ -1,12 +1,15 @@
 package command;
 
+import exceptions.HenryException;
+
 /**
  * Responsible for deletion of tasks from the task list.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
-    private static final String MESSAGE_SUCCESS = "I'VE DELETED THIS TASK:\n: %1$s.";
+    private static final String MESSAGE_SUCCESS = "I'VE DELETED THIS TASK:\n %1$s";
+    private static final String MESSAGE_ERROR = "INDEX IS OUT OF RANGE! YOUR TASK LIST HAS %1$d ITEMS.";
     private final int index;
 
     /**
@@ -20,6 +23,9 @@ public class DeleteCommand extends Command {
 
     @Override
     public CommandResult execute() {
+        if (index > taskList.getTasks().size() - 1) {
+            throw new HenryException(String.format(MESSAGE_ERROR, taskList.getTasks().size()));
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, taskList.deleteTask(index)), taskList);
     }
 }
