@@ -6,20 +6,35 @@ import task.DukeTask;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  * A chat bot that tracks your tasks!
  */
-public class Duke {
+public class Duke extends Application {
     private Storage storage;
     private ArrayList<DukeTask> tasklist;
     private Ui ui;
+
+    public Duke() {}
 
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage();
         tasklist = new ArrayList<DukeTask>();
         Storage.setOnce(tasklist, filePath);
+    }
+
+    @Override
+    public void start(Stage stage) {
+        Label helloworld = new Label("Hi");
+        Scene scene = new Scene(helloworld);
+
+        stage.setScene(scene);
+        stage.show();
     }
 
     /**
