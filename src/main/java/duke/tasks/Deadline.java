@@ -6,6 +6,8 @@ import java.util.Optional;
 
 /**
  * Represents a task with a specific deadline.
+ *
+ * @author sikai00
  */
 public class Deadline extends Task {
     /** Task identifier used by Parser **/
@@ -33,12 +35,11 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns the task type as a String.
-     * @return Task type as a String
+     * {@inheritDoc}
      */
     @Override
-    public String getTaskType() {
-        return "Deadline";
+    public String getTaskWord() {
+        return Deadline.TASK_WORD;
     }
 
     /**

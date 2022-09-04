@@ -1,11 +1,12 @@
 package duke.commands;
 
-import duke.exceptions.DukeException;
 import duke.utils.Storage;
 import duke.utils.TaskList;
 
 /**
  * Represents an executable command that finds a Task from the specified TaskList.
+ *
+ * @author sikai00
  */
 public class FindCommand extends Command {
     /** Command identifier used by Parser **/
@@ -25,17 +26,14 @@ public class FindCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public CommandResult execute(TaskList taskList, Storage storage) throws DukeException {
+    public CommandResult execute(TaskList taskList, Storage storage) {
         TaskList results = taskList.findMatchingTasks(this.keyword);
-        String msgBegin = "Here are the matching tasks in your list:\n";
-        String msg = msgBegin;
+        String msg = "Here are the matching tasks in your list:\n";
         if (results.size() > 0) {
             msg += results.toString();
         } else {
             msg = "There are no matching tasks in your list.";
         }
-
-        CommandResult cr = new CommandResult(msg);
-        return cr;
+        return new CommandResult(msg);
     }
 }

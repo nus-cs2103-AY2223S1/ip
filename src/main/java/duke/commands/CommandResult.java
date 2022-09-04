@@ -2,6 +2,8 @@ package duke.commands;
 
 /**
  * Represents the result of an executed command.
+ *
+ * @author sikai00
  */
 public class CommandResult {
     private final String msg;
