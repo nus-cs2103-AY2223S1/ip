@@ -51,12 +51,13 @@ public class TaskList {
     private String getVenue(String input) {
         String DELIMITER = "/at ";
         int startIndex = input.indexOf("/at ") + DELIMITER.length();
-        int endIndex = input.indexOf("/p ") - 1;
+        int endIndex = input.indexOf("/p") - 1;
         if (endIndex < startIndex) {
             // For case where input is given without priority.
-            endIndex = input.length();
+            return input.substring(startIndex);
+        } else {
+            return input.substring(startIndex, endIndex);
         }
-        return input.substring(startIndex, endIndex);
     }
 
     /**
@@ -66,15 +67,17 @@ public class TaskList {
      */
     private LocalDate getDate(String input) {
         String DELIMITER = "/by ";
+        String dateString;
         int startIndex = input.indexOf("/by ") + DELIMITER.length();
-        int endIndex = input.indexOf("/p ");
+        int endIndex = input.indexOf("/p") - 1;
         if (endIndex < startIndex) {
             // For case where input is given without priority.
-            endIndex = input.length();
+            dateString = input.substring(startIndex);
+        } else {
+            dateString = input.substring(startIndex, endIndex);
         }
         DateTimeFormatter formatter =
                 DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        String dateString = input.substring(startIndex, endIndex);
         return LocalDate.parse(dateString, formatter);
     }
 

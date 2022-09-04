@@ -248,14 +248,23 @@ public class Parser {
     private void testInputForDeadline(String userInput) throws DukeException {
         Boolean hasNoSpaceAtIndexEight = userInput.indexOf(" ") != 8;
         Boolean isMissingDelimiter = userInput.indexOf("/by ") <= 9;
+        String DELIMITER = "/by ";
+        String dateString;
+        int startIndex = userInput.indexOf("/by ") + DELIMITER.length();
+        int endIndex = userInput.indexOf("/p") - 1;
+        if (endIndex < startIndex) {
+            // For case where input is given without priority.
+            dateString = userInput.substring(startIndex);
+        } else {
+            dateString = userInput.substring(startIndex, endIndex);
+        }
         if (hasNoSpaceAtIndexEight || isMissingDelimiter) {
             throw new DukeException("Wrong format! To add a new "
                     + "deadline, please enter the following:\n"
                     + "   deadline [TASK DESCRIPTION] /by [YYYY/MM/DD] "
                     + "(/p [PRIORITY])");
         }
-        String dateString =
-                userInput.substring(userInput.indexOf("/by") + 4);
+
         try {
             DateTimeFormatter formatter =
                     DateTimeFormatter.ofPattern("yyyy/MM/dd");
