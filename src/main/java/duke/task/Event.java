@@ -35,6 +35,16 @@ public class Event extends Task {
     }
 
     /**
+     * Updates the date field of certain Tasks.
+     *
+     * @param at The date to be changed to.
+     */
+    @Override
+    public void updateTaskDate(LocalDate at) {
+        this.at = at;
+    }
+
+    /**
      * Returns the at variable.
      *
      * @return The at variable.

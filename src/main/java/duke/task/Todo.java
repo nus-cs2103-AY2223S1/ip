@@ -1,5 +1,7 @@
 package duke.task;
 
+import java.time.LocalDate;
+
 import duke.DukeException;
 
 /**
@@ -33,6 +35,17 @@ public class Todo extends Task {
         if (description.isBlank()) {
             throw new DukeException("The description of a todo cannot be empty.");
         }
+    }
+
+    /**
+     * Updates the date field of certain Tasks.
+     *
+     * @param date The date to be changed to.
+     * @throws DukeException Throws DukeException if executed on Todo Task.
+     */
+    @Override
+    public void updateTaskDate(LocalDate date) throws DukeException {
+        throw new DukeException("You cannot change the date of a Todo!");
     }
 
     /**

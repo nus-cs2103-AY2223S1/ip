@@ -35,6 +35,15 @@ public class Deadline extends Task {
     }
 
     /**
+     * Updates the date field of certain Tasks.
+     *
+     * @param by The date to be changed to.
+     */
+    public void updateTaskDate(LocalDate by) {
+        this.by = by;
+    }
+
+    /**
      * Returns the by variable.
      *
      * @return The by variable.

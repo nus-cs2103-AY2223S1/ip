@@ -12,6 +12,7 @@ import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnMarkCommand;
+import duke.command.UpdateCommand;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
@@ -31,6 +32,7 @@ public class Parser {
         EVENT,
         DELETE,
         FIND,
+        UPDATE,
         ELSE
     }
 
@@ -83,6 +85,12 @@ public class Parser {
             String[] findKeys = command.replace("find ", "").split(" ");
             return new FindCommand(findKeys);
             // Fallthrough
+        case UPDATE:
+            String[] updateInfo = command.replace("update ", "").split(" ");
+            int updateNum = Integer.parseInt(updateInfo[0]);
+            LocalDate updatedDate = LocalDate.parse(updateInfo[1]);
+            return new UpdateCommand(updateNum - 1, updatedDate);
+            // Fallthrough
         default:
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
             // Fallthrough
@@ -114,6 +122,8 @@ public class Parser {
             return Inputs.DELETE;
         } else if (command.startsWith("find")) {
             return Inputs.FIND;
+        } else if (command.startsWith("update")) {
+            return Inputs.UPDATE;
         } else {
             return Inputs.ELSE;
         }

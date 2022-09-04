@@ -135,4 +135,14 @@ public class Ui {
         }
         return sb.toString();
     }
+
+    /**
+     * Returns a String message that a task's date field has been successfully updated.
+     *
+     * @param task The task to be updated.
+     * @return String message indicating the update's success.
+     */
+    public String printUpdateTask(Task task) {
+        return "OK, I have updated the task to:\n\t" + task.toString();
+    }
 }

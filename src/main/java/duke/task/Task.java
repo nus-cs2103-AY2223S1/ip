@@ -1,5 +1,9 @@
 package duke.task;
 
+import java.time.LocalDate;
+
+import duke.DukeException;
+
 /**
  * Abstract class representing a Task.
  */
@@ -28,6 +32,14 @@ public abstract class Task {
         this.description = description;
         this.isDone = isDone;
     }
+
+    /**
+     * Updates the date field of certain Tasks.
+     *
+     * @param date The date to be updated to.
+     * @throws DukeException Throws a DukeException if applied on Todo.
+     */
+    public abstract void updateTaskDate(LocalDate date) throws DukeException;
 
     /**
      * Returns the completion symbol for task.
