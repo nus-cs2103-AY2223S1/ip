@@ -4,39 +4,43 @@ import duke.command.TaskList;
 import duke.task.Task;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Handles interactions with user through command line.
  */
 public class Ui {
-    private Scanner myObj = new Scanner(System.in);
+
+    static final String WELCOME_MESSAGE = "Hello! I'm Snoopy\nWhat can I do for you?";
+    static final String GOODBYE_MESSAGE = "Bye. Hope to see you again soon!";
+    static final String LOADING_ERROR = "There was an error loading tasks from the file";
 
     public void showLoadingError() {
-        System.out.println("There was an error loading tasks from the file");
+        System.out.println(LOADING_ERROR);
     }
 
     public String printWelcomeMessage() {
-        return "Hello! I'm Snoopy\nWhat can I do for you?";
+        return WELCOME_MESSAGE;
     }
 
     public String printList(TaskList taskList) {
         ArrayList<Task> tasks = taskList.getTasks();
         int i = tasks.size();
-        String output = "Here are the tasks in your list:\n";
+        StringBuilder output = new StringBuilder("Here are the tasks in your list:\n");
         for (int a = 1; a <= i; a++) {
-            output += a + "." + tasks.get(a - 1).toString() + "\n";
+            String taskString = tasks.get(a - 1).toString();
+            output.append(a).append(".").append(taskString).append("\n");
         }
-        return output;
+        return output.toString();
     }
 
     public String printMatchingList(ArrayList<Task> tasks) {
         int i = tasks.size();
-        String output = "Here are the matching tasks in your list:\n";
+        StringBuilder output = new StringBuilder("Here are the matching tasks in your list:\n");
         for (int a = 1; a <= i; a++) {
-            output += a + "." + tasks.get(a - 1).toString() + "\n";
+            String taskString = tasks.get(a - 1).toString();
+            output.append(a).append(".").append(taskString).append("\n");
         }
-        return output;
+        return output.toString();
     }
 
     public String printDeleteMessage(TaskList taskList, int taskNumber) {
@@ -56,6 +60,6 @@ public class Ui {
     }
 
     public String printGoodbyeMessage() {
-        return "Bye. Hope to see you again soon!";
+        return GOODBYE_MESSAGE;
     }
 }

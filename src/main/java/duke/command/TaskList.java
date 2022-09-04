@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Stores list of tasks and related commands.
  */
 public class TaskList {
-    private ArrayList<Task> taskList;
+    private final ArrayList<Task> taskList;
 
     /**
      * Constructs an empty list.
