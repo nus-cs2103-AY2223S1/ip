@@ -31,9 +31,9 @@ public class FindCommand extends Command {
      * @param storage Storage object to save data after execution
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         ArrayList<Task> foundTasks = tasks.find(toFind);
-        ui.showMessage("Here are the tasks found: ");
-        ui.showList(foundTasks);
+        return "Here are the tasks found: \n" +
+                ui.showList(foundTasks);
     }
 }

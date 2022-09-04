@@ -62,8 +62,8 @@ public class TaskList {
      *
      * @param ui UI object to display tasks
      */
-    public void listTasks(Ui ui) {
-        ui.showList(tasks);
+    public String listTasks(Ui ui) {
+        return ui.showList(tasks);
     }
 
     /**
@@ -72,11 +72,10 @@ public class TaskList {
      * @param taskNumber Index of task to be marked as done
      * @param ui         UI object to display result
      */
-    public void markAsDone(int taskNumber, Ui ui) {
+    public String markAsDone(int taskNumber, Ui ui) {
         try {
-
             tasks.get(taskNumber).markAsDone();
-            ui.showMessage("Nice! I've marked this task as done:\n  " + tasks.get(taskNumber));
+            return "Nice! I've marked this task as done:\n  " + tasks.get(taskNumber);
         } catch (Exception e) {
             throw new InvalidTaskException("Please give a valid task number");
         }
@@ -88,21 +87,21 @@ public class TaskList {
      * @param taskNumber Index of task to be marked as undone
      * @param ui         UI object to display result
      */
-    public void markAsUndone(int taskNumber, Ui ui) {
+    public String markAsUndone(int taskNumber, Ui ui) {
         try {
             tasks.get(taskNumber).markAsUndone();
-            ui.showMessage("OK, I've marked this task as not done yet:\n  " + tasks.get(taskNumber));
+            return "OK, I've marked this task as not done yet:\n  " + tasks.get(taskNumber);
         } catch (Exception e) {
             throw new InvalidTaskException("Please give a valid task number");
         }
     }
 
-    private void printOnAdd(Task task, Ui ui) {
-        ui.showMessage("Got it. I've added this task:\n  "
+    private String printOnAdd(Task task, Ui ui) {
+        return "Got it. I've added this task:\n  "
                 + task
                 + "\nNow you have "
                 + tasks.size()
-                + " tasks in the list.");
+                + " tasks in the list.";
     }
 
     /**
@@ -111,17 +110,17 @@ public class TaskList {
      * @param task Task to be added to list
      * @param ui   UI object to display result
      */
-    public void addTask(Task task, Ui ui) {
+    public String addTask(Task task, Ui ui) {
         tasks.add(task);
-        printOnAdd(task, ui);
+        return printOnAdd(task, ui);
     }
 
-    private void printOnDelete(int taskNum, Ui ui) {
-        ui.showMessage("Noted. I've deleted this task:\n  "
+    private String printOnDelete(int taskNum, Ui ui) {
+        return "Noted. I've deleted this task:\n  "
                 + tasks.get(taskNum)
                 + "\nNow you have "
                 + (tasks.size() - 1)
-                + " tasks in the list.");
+                + " tasks in the list.";
     }
 
     /**
@@ -130,10 +129,11 @@ public class TaskList {
      * @param taskNumber Index of task to be deleted
      * @param ui         UI object to display result
      */
-    public void deleteTask(int taskNumber, Ui ui) {
+    public String deleteTask(int taskNumber, Ui ui) {
         if (taskNumber >= 0 && taskNumber < tasks.size()) {
-            printOnDelete(taskNumber, ui);
+            String toReturn = printOnDelete(taskNumber, ui);
             tasks.remove(taskNumber);
+            return toReturn;
         } else {
             throw new InvalidTaskException("Please give a valid task number");
         }

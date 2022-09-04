@@ -2,6 +2,7 @@ package duke.parser;
 
 import duke.command.AddCommand;
 import duke.command.Command;
+import duke.command.ModifyCommandType;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
@@ -50,7 +51,7 @@ public class Parser {
         }
     }
 
-    private static String getSecondHalf(String command) {
+    private static String getArguments(String command) {
         return command.split(" ", 2)[1];
     }
 
@@ -68,7 +69,7 @@ public class Parser {
 
     private static ModifyCommand createListCommand(String command) {
         if (command.equals("list")) {
-            return new ModifyCommand(ModifyCommand.CommandType.LIST);
+            return new ModifyCommand(ModifyCommandType.LIST);
         }
 
         throw new InvalidCommandException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
@@ -78,7 +79,7 @@ public class Parser {
     private static ModifyCommand createMarkCommand(String command) {
         try {
             int taskNumber = Integer.parseInt(command.split("\\s+")[1]) - 1;
-            return new ModifyCommand(ModifyCommand.CommandType.DONE, taskNumber);
+            return new ModifyCommand(ModifyCommandType.DONE, taskNumber);
         } catch (Exception e) {
             throw new InvalidArgumentException("☹ OOPS!!! Please provide a valid number for this command");
         }
@@ -87,7 +88,7 @@ public class Parser {
     private static ModifyCommand createUnmarkCommand(String command) {
         try {
             int taskNumber = Integer.parseInt(command.split("\\s+")[1]) - 1;
-            return new ModifyCommand(ModifyCommand.CommandType.UNDONE, taskNumber);
+            return new ModifyCommand(ModifyCommandType.UNDONE, taskNumber);
         } catch (Exception e) {
             throw new InvalidArgumentException("☹ OOPS!!! Please provide a valid number for this command");
         }
@@ -95,7 +96,7 @@ public class Parser {
 
     private static AddCommand createTodoCommand(String command) {
         try {
-            String description = getSecondHalf(command);
+            String description = getArguments(command);
             return new AddCommand(new Todo(description));
         } catch (Exception e) {
             throw new InvalidArgumentException("☹ OOPS!!! The description of a todo cannot be empty.");
@@ -104,23 +105,23 @@ public class Parser {
 
     private static AddCommand createDeadlineCommand(String command) {
         try {
-            String[] full = getDescriptionAndDate(getSecondHalf(command), " /by ");
+            String[] full = getDescriptionAndDate(getArguments(command), " /by ");
             String description = full[0];
             String deadline = full[1];
             return new AddCommand(new Deadline(description, deadline));
         } catch (Exception e) {
-            throw new InvalidArgumentException("☹ OOPS!!! Please format deadline request correctly.");
+            throw new InvalidArgumentException("☹ OOPS!!! Please format deadline request correctly. The date must be of format YYYY-MM-DD.");
         }
     }
 
     private static AddCommand createEventCommand(String command) {
         try {
-            String[] full = getDescriptionAndDate(getSecondHalf(command), " /at ");
+            String[] full = getDescriptionAndDate(getArguments(command), " /at ");
             String description = full[0];
             String at = full[1];
             return new AddCommand(new Event(description, at));
         } catch (Exception e) {
-            throw new InvalidArgumentException("☹ OOPS!!! Please format event request correctly.");
+            throw new InvalidArgumentException("☹ OOPS!!! Please format event request correctly. The date must be of format YYYY-MM-DD.");
         }
     }
 

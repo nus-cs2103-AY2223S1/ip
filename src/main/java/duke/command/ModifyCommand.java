@@ -8,14 +8,8 @@ import duke.ui.Ui;
  * Command child class that lists tasks or marks task as done/undone.
  */
 public class ModifyCommand extends Command {
-    /**
-     * Types of commands that can be executed by this class.
-     */
-    public enum CommandType {
-        LIST, UNDONE, DONE;
-    }
 
-    private static CommandType commandType;
+    private ModifyCommandType modifyCommandType;
 
     /**
      * Initialises ModifyCommand object with specified command type and index
@@ -23,18 +17,18 @@ public class ModifyCommand extends Command {
      * @param commandType Type of command specified by CommandType Enum
      * @param index       Index of Task from TaskList to be modified
      */
-    public ModifyCommand(CommandType commandType, int index) {
+    public ModifyCommand(ModifyCommandType commandType, int index) {
         super(index);
-        this.commandType = commandType;
+        modifyCommandType = commandType;
     }
 
     /**
      * Initialises ModifyCommand object with specified command type
      *
-     * @param commandType Type of command specified by CommandType Enum
+     * @param modifyCommandType Type of command specified by CommandType Enum
      */
-    public ModifyCommand(CommandType commandType) {
-        this.commandType = commandType;
+    public ModifyCommand(ModifyCommandType modifyCommandType) {
+        this.modifyCommandType = modifyCommandType;
     }
 
 
@@ -45,21 +39,23 @@ public class ModifyCommand extends Command {
      * @param ui      Ui object to show user output/errors
      * @param storage Storage object to save data after execution
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        switch (commandType) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        String toReturn = "";
+        switch (modifyCommandType) {
         case DONE:
-            tasks.markAsDone(index, ui);
+            toReturn = tasks.markAsDone(index, ui);
             break;
         case UNDONE:
-            tasks.markAsUndone(index, ui);
+            toReturn = tasks.markAsUndone(index, ui);
             break;
         case LIST:
-            tasks.listTasks(ui);
+            toReturn = tasks.listTasks(ui);
             break;
         default:
             break;
         }
 
         storage.saveToFile(tasks);
+        return toReturn;
     }
 }

@@ -77,11 +77,11 @@ public class Ui {
      *
      * @param list List of tasks to be shown to the user
      */
-    public void showList(ArrayList<Task> list) {
-        System.out.println();
+    public String showList(ArrayList<Task> list) {
+        StringBuilder toReturn = new StringBuilder();
         for (Task task : list) {
-            System.out.println(task);
+            toReturn.append(task).append("\n");
         }
-        System.out.println();
+        return toReturn.toString();
     }
 }

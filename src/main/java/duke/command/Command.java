@@ -39,8 +39,8 @@ public class Command {
      * @param ui      Ui object to show user output/errors
      * @param storage Storage object to save data after execution
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return "";
     }
 
     @Override

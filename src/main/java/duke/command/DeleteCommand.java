@@ -25,8 +25,9 @@ public class DeleteCommand extends Command {
      * @param ui      Ui object to show user output/errors
      * @param storage Storage object to save data after execution
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.deleteTask(index, ui);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        String toReturn = tasks.deleteTask(index, ui);
         storage.saveToFile(tasks);
+        return toReturn;
     }
 }

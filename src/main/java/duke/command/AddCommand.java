@@ -25,8 +25,9 @@ public class AddCommand extends Command {
      * @param ui      Ui object to show user output/errors
      * @param storage Storage object to save data after execution
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.addTask(task, ui);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        String toReturn = tasks.addTask(task, ui);
         storage.saveToFile(tasks);
+        return toReturn;
     }
 }
