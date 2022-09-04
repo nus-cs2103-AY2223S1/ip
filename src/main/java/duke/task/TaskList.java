@@ -1,6 +1,8 @@
 package duke.task;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
@@ -9,7 +11,7 @@ import java.util.stream.IntStream;
 public class TaskList {
     private static final String MESSAGE_AFTER_ADD = "Got it. I've added this task:";
     private static final String MESSAGE_AFTER_DELETE = "Noted. I've removed this task:";
-    private ArrayList<Task> taskList;
+    private List<Task> taskList;
 
     /**
      * Initialises the task list.
@@ -94,6 +96,13 @@ public class TaskList {
         }
 
         return new TaskList(list);
+    }
+
+    public TaskList sortDeadlines() {
+        List<Task> list = this.taskList.stream().filter(task -> task instanceof Deadline).map(task -> (Deadline) task)
+                .sorted((o1, o2) -> o1.getDateTime().compareTo(o2.getDateTime())).collect(Collectors.toList());
+        ArrayList<Task> arrayList = new ArrayList<>(list);
+        return new TaskList(arrayList);
     }
 
     /**

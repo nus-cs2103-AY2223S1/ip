@@ -31,6 +31,10 @@ public class Deadline extends Task {
         this.dateTime = new DateTime(by);
     }
 
+    public DateTime getDateTime() {
+        return dateTime;
+    }
+
     @Override
     public String toString() {
         return String.format("[D]%s (by: %s)", super.toString(), this.dateTime.toString());

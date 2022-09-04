@@ -12,6 +12,7 @@ import duke.command.FindCommand;
 import duke.command.HelpCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.SortCommand;
 import duke.command.TodoCommand;
 import duke.command.UnmarkCommand;
 import duke.ui.Ui;
@@ -135,6 +136,9 @@ public class Parser {
         }
         case FindCommand.COMMAND_WORD: {
             return prepareFind(argument);
+        }
+        case SortCommand.COMMAND_WORD: {
+            return new SortCommand();
         }
         case ByeCommand.COMMAND_WORD: {
             return new ByeCommand(storage);
