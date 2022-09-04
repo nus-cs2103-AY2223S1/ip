@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -84,13 +85,17 @@ public class Storage {
     private static void addLineFromFile(String data, int lineNumberInFile,
                                         TaskList taskList) {
         String[] dataArgs = data.split("\\|");
-        Boolean isValidDeadlineEntry =
-                dataArgs[0].equals("deadline") && dataArgs.length == 4;
-        Boolean isValidEventEntry =
-                dataArgs[0].equals("event") && dataArgs.length == 4;
-        Boolean isValidTodoEntry =
-                dataArgs[0].equals("todo") && dataArgs.length == 3;
-        if (isValidDeadlineEntry || isValidEventEntry || isValidTodoEntry) {
+        boolean isDeadlineEntry =
+                dataArgs[0].equals("deadline") && dataArgs.length == 5;
+        boolean isEventEntry =
+                dataArgs[0].equals("event") && dataArgs.length == 5;
+        boolean isTodoEntry =
+                dataArgs[0].equals("todo") && dataArgs.length == 4;
+        boolean hasPriority =
+                dataArgs[dataArgs.length - 1].equals("LOW")
+                || dataArgs[dataArgs.length - 1].equals("MEDIUM")
+                || dataArgs[dataArgs.length - 1].equals("HIGH");
+        if (hasPriority && (isDeadlineEntry || isEventEntry || isTodoEntry)) {
             // Only add task if format in file is correct.
             taskList.addFromFile(dataArgs);
         } else {
