@@ -27,6 +27,7 @@ public class TaskList {
      */
     public void addTask(Task task) {
         this.tasks.add(task);
+        assert this.tasks.contains(task);
     }
 
     /**
@@ -35,7 +36,8 @@ public class TaskList {
      * @param index Index of the task as printed by TaskList's toString.
      */
     public void deleteTask(int index) {
-        this.tasks.remove(index);
+        Task deletedTask = this.tasks.remove(index);
+        assert !this.tasks.contains(deletedTask);
     }
 
     /**
