@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Lab_2.iml" filepath="$PROJECT_DIR$/.idea/modules/Lab_2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Gradle/Lab_2.Gradle.iml" filepath="$PROJECT_DIR$/.idea/modules/Gradle/Lab_2.Gradle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Gradle/Lab_2.Gradle.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Gradle/Lab_2.Gradle.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Gradle/Lab_2.Gradle.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Gradle/Lab_2.Gradle.test.iml" />
+    </modules>
+  </component>
+</project>
