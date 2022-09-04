@@ -2,8 +2,6 @@ package duke.utils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import duke.tasks.Task;
 
@@ -87,13 +85,9 @@ public class TaskList {
      */
     public TaskList findMatchingTasks(String keyword) {
         TaskList result = new TaskList();
-        Pattern pattern = Pattern.compile(keyword);
-        for (Task task : this.tasks) {
-            Matcher matcher = pattern.matcher(task.getDescription());
-            if (matcher.find()) {
-                result.addTask(task);
-            }
-        }
+        this.tasks.stream()
+                .filter(task -> task.getDescription().contains(keyword))
+                .forEach(result::addTask);
         return result;
     }
 
