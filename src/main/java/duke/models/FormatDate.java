@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 
-public class formatDate {
+public class FormatDate {
     LocalDate formattedDate;
     DateTimeFormatter formats = new DateTimeFormatterBuilder()
             .appendOptional(DateTimeFormatter.ISO_LOCAL_DATE)
@@ -12,7 +12,7 @@ public class formatDate {
             .appendOptional(DateTimeFormatter.ofPattern("yyyy/MM/dd"))
             .toFormatter();
 
-    public formatDate(String date) {
+    public FormatDate(String date) {
         this.formattedDate = LocalDate.parse(date, formats);
     }
 

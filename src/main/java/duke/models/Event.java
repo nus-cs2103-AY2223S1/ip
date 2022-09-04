@@ -1,11 +1,11 @@
 package duke.models;
 
 public class Event extends Task {
-    protected formatDate date;
+    protected FormatDate date;
 
     public Event(String description, String at) {
         super(description);
-        this.date = new formatDate(at);
+        this.date = new FormatDate(at);
     }
 
     @Override

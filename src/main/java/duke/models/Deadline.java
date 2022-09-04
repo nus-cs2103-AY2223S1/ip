@@ -1,11 +1,11 @@
 package duke.models;
 
 public class Deadline extends Task {
-    protected formatDate date;
+    protected FormatDate date;
 
     public Deadline(String description, String by) {
         super(description);
-        this.date = new formatDate(by);
+        this.date = new FormatDate(by);
     }
 
     @Override

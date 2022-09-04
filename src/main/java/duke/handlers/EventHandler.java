@@ -21,7 +21,8 @@ public class EventHandler {
         String eventDescription = event[0];
         String eventTime = event[1].split(" ", 2)[1];
         taskList.add(new Event(eventDescription, eventTime));
-        dukePrint("Got it. I've added this task:\n" + taskList.get(taskList.size()-1).toString() +
-                "\nNow you have " + taskList.size() + " tasks in the list.");
+        dukePrint("Got it. I've added this task:\n"
+                + taskList.get(taskList.size()-1).toString()
+                + "\nNow you have " + taskList.size() + " tasks in the list.");
     }
 }

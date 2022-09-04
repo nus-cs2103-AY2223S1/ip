@@ -17,11 +17,12 @@ public class DeleteHandler {
         try {
             Task task = taskList.get(taskNo - 1);
             taskList.remove(taskNo - 1);
-            dukePrint("Noted. I've removed this task:\n" + task.toString() +
-                    "\nNow you have " + taskList.size() + " tasks left in the list.");
+            dukePrint("Noted. I've removed this task:\n" + task.toString()
+                    + "\nNow you have " + taskList.size() + " tasks left in the list.");
         } catch (IndexOutOfBoundsException e) {
             int taskListSize = taskList.size();
-            dukePrint(String.format("List size is (%s). Please enter a valid input", taskListSize));
+            dukePrint(String.format("List size is (%s). Please enter a valid input"
+                    , taskListSize));
         }
     }
 }

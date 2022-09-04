@@ -1,6 +1,6 @@
 package duke;
 
-import duke.Storage.Storage;
+import duke.storage.Storage;
 import duke.exceptions.DukeException;
 import duke.handlers.*;
 import duke.models.TaskList;
@@ -8,7 +8,6 @@ import duke.services.Parser;
 import duke.utils.Commands;
 
 import java.util.Scanner;
-
 import static duke.services.Ui.dukePrint;
 
 public class Duke {
@@ -40,33 +39,33 @@ public class Duke {
 
             try {
                 switch (command) {
-                    case BYE:
-                        ByeHandler.handle();
-                        break;
-                    case TODO:
-                        ToDoHandler.handle(taskList, wholeCommand[1]);
-                        break;
-                    case DEADLINE:
-                        DeadlineHandler.handle(taskList, wholeCommand[1]);
-                        break;
-                    case EVENT:
-                        EventHandler.handle(taskList, wholeCommand[1]);
-                        break;
-                    case DELETE:
-                        DeleteHandler.handle(taskList, wholeCommand[1]);
-                        break;
-                    case LIST:
-                        ListHandler.handle(taskList);
-                        break;
-                    case MARK:
-                        MarkHandler.handle(taskList, wholeCommand[1]);
-                        break;
-                    case UNMARK:
-                        UnmarkHandler.handle(taskList, wholeCommand[1]);
-                        break;
-                    default:
-                        dukePrint("Unknown command");
-                        break;
+                case BYE:
+                    ByeHandler.handle();
+                    break;
+                case TODO:
+                    ToDoHandler.handle(taskList, wholeCommand[1]);
+                    break;
+                case DEADLINE:
+                    DeadlineHandler.handle(taskList, wholeCommand[1]);
+                    break;
+                case EVENT:
+                    EventHandler.handle(taskList, wholeCommand[1]);
+                    break;
+                case DELETE:
+                    DeleteHandler.handle(taskList, wholeCommand[1]);
+                    break;
+                case LIST:
+                    ListHandler.handle(taskList);
+                    break;
+                case MARK:
+                    MarkHandler.handle(taskList, wholeCommand[1]);
+                    break;
+                case UNMARK:
+                     UnmarkHandler.handle(taskList, wholeCommand[1]);
+                     break;
+                default:
+                     dukePrint("Unknown command");
+                     break;
                 }
                 storage.save(taskList);
             } catch (DukeException e) {

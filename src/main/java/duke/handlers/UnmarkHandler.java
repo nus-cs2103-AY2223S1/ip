@@ -17,10 +17,12 @@ public class UnmarkHandler {
         try {
             Task task = taskList.get(taskNo - 1);
             task.setUndone();
-            dukePrint("OK, I've marked this task as not done yet:\n" + "[" + task.getStatusIcon() + "] " + task.getTaskName());
+            dukePrint("OK, I've marked this task as not done yet:\n"
+                    + "[" + task.getStatusIcon() + "] " + task.getTaskName());
         } catch (IndexOutOfBoundsException e) {
             int taskListSize = taskList.size();
-            dukePrint(String.format("List size is %s. Please enter a valid input.", taskListSize));
+            dukePrint(String.format("List size is %s. Please enter a valid input."
+                    , taskListSize));
         }
     }
 }

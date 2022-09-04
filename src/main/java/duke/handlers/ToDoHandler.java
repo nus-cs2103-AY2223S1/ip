@@ -18,7 +18,8 @@ public class ToDoHandler {
             throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
         }
         taskList.add(new Todo(toDo));
-        dukePrint("Got it. I've added this task:\n" + taskList.get(taskList.size()-1).toString() +
-                "\nNow you have " + taskList.size() + " tasks in the list.");
+        dukePrint("Got it. I've added this task:\n"
+                + taskList.get(taskList.size()-1).toString()
+                + "\nNow you have " + taskList.size() + " tasks in the list.");
     }
 }
