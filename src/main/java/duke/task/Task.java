@@ -54,10 +54,10 @@ public abstract class Task {
      */
     public String mark() {
         if (this.isDone) {
-            return "Duke: This task has already been marked as done.";
+            return "This task has already been marked as done.";
         }
         completeTask();
-        return "Duke: Nice! I've marked this task as done:\n" + this;
+        return "Nice! I've marked this task as done:\n" + this;
     }
 
     /**
@@ -68,10 +68,10 @@ public abstract class Task {
      */
     public String unmark() {
         if (!this.isDone) {
-            return "Duke: This task has already been marked as not done.";
+            return "This task has already been marked as not done.";
         }
         this.isDone = false;
-        return "Duke: OK, I've marked this task as not done yet:\n" + this;
+        return "OK, I've marked this task as not done yet:\n" + this;
     }
 
     /**
