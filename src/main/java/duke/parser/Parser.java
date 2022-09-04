@@ -91,6 +91,8 @@ public class Parser {
      *                       cause DateTimeException and IndexOutOfBoundsException during the process.
      */
     public static LocalDateTime extractDateTime(String filteredInput, String detailDateSplitter) throws DukeException {
+        boolean isValidSplitter = detailDateSplitter.trim().equals("/by") || detailDateSplitter.trim().equals("/at");
+        assert isValidSplitter : "invalid Splitter";
         try {
             String filterDate = splitInput(filteredInput, detailDateSplitter)[SECOND_ITEM_AFTER_SPLIT];
             String[] dateAndTime = filterDate.split(" ");
@@ -117,6 +119,8 @@ public class Parser {
      * @return String of task's detail.
      */
     public static String extractDetail(String filteredInput, String detailDateSplitter) {
+        boolean isValidSplitter = detailDateSplitter.trim().equals("/by") || detailDateSplitter.trim().equals("/at");
+        assert isValidSplitter : "invalid Splitter";
         return splitInput(filteredInput, detailDateSplitter)[FIRST_ITEM_AFTER_SPLIT];
     }
 

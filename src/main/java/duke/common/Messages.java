@@ -24,12 +24,12 @@ public class Messages {
             + "event             : event [task description] /at [YYYY-MM-DD HHmm]\n"
             + "single command    : | bye | list |\n"
             + "mark/unmark/delete: [command] [number of task in list you wish to modify]\n"
-            + "find              : find [search keyword]";
+            + "find              : find [search keyword]\n";
     public static final String MESSAGE_TASK_NOT_EXIST = "Opps! we only have %d tasks in the list :(";
     public static final String MESSAGE_REQUIRE_INTEGER = "Sorry, last character after mark/unmark/delete"
             + " command should be integer!";
     public static final String MESSAGE_INVALID_DATE_FORMAT = "Date and time format should be [YYYY-MM-DD HHmm]!\n"
-            + "(eg. 2022-08-21 1300)";
+            + "(eg. 2022-08-21 1300)\n";
     public static final String MESSAGE_FOUND_TASK = "Here you go! your matching tasks in your list";
     public static final String MESSAGE_NOT_FOUND = "Nothing in the list match your search keyword!";
     public static final String DATE_TIME_FORMAT = "MMM dd yyyy HH:mm";

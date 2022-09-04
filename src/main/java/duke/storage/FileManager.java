@@ -63,7 +63,7 @@ public class FileManager {
                     Parser.convertTime(info[DATE_TIME_POS])));
                 break;
             default:
-                System.out.println("Something when wrong while reading data!");
+                assert false : "Something when wrong while reading data!";
             }
         }
         return savedList;

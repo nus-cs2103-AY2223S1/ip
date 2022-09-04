@@ -63,7 +63,8 @@ public class AddCommand extends Command {
                 taskList.addTask(taskEvent);
                 return ui.addStatus(taskList, taskEvent);
             default:
-                return "Adding process fail!";
+                assert false : "task command does not match with any add command";
+                return "";
             }
         } catch (IndexOutOfBoundsException ex) {
             throw new DukeException(ui.invalidDateFormat());
