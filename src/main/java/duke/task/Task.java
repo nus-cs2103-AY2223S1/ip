@@ -12,12 +12,27 @@ public abstract class Task {
     public final TaskType type;
     protected String description;
     protected boolean isDone;
+    private Priority priority;
     protected Task(String description, TaskType type) {
         this.description = description;
         this.isDone = false;
         this.type = type;
+        this.priority = Priority.LOW;
     }
 
+    protected Task(String description, TaskType type, Priority priority) {
+        this.description = description;
+        this.isDone = false;
+        this.type = type;
+        this.priority = priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+    public Priority getPriority() {
+        return this.priority;
+    }
     /**
      * Marks the task as completed.
      */
@@ -73,12 +88,48 @@ public abstract class Task {
         return false;
     }
 
+    private String priorityToString() {
+        switch (priority) {
+        case LOW:
+            return "[L] ";
+        case MEDIUM:
+            return "[M] ";
+        case HIGH:
+            return "[H] ";
+        default:
+            assert false;
+            break;
+        }
+        assert false;
+        return "";
+    }
+
+    /**
+     * Encodes the priority of the task into a string for writing purposes.
+     * @return The string depicting the priority status.
+     */
+    public String priorityEncode() {
+        switch (priority) {
+        case LOW:
+            return "LOW";
+        case MEDIUM:
+            return "MEDIUM";
+        case HIGH:
+            return "HIGH";
+        default:
+            assert false;
+            break;
+        }
+        assert false;
+        return "";
+    }
+
     @Override
     public String toString() {
         if (this.isDone) {
-            return "[X] " + this.description;
+            return "[X]" + priorityToString() + this.description;
         } else {
-            return "[ ] " + this.description;
+            return "[ ]" + priorityToString() + this.description;
         }
     }
 }

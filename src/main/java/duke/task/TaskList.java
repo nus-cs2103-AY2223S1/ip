@@ -72,6 +72,20 @@ public class TaskList {
             throw new InvalidIndexException("no tasks exist at this index");
         }
     }
+    /**
+     * Sets the priority of the task located at the given index.
+     * @param index The given index for the ArrayList.
+     * @param priority The given priority for the task.
+     * @throws InvalidIndexException The exception that occurs when the index given is invalid.
+     */
+    public void setTaskPriority(int index, Priority priority) {
+        try {
+            Task selectedTask = tasks.get(index);
+            selectedTask.setPriority(priority);
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidIndexException("no tasks exist at this index");
+        }
+    }
 
     /**
      * Returns the list of tasks due/occurring at a given date.

@@ -17,6 +17,10 @@ public class ToDo extends Task {
         super(description, type);
     }
 
+    public ToDo(String description, TaskType type, Priority priority) {
+        super(description, type, priority);
+    }
+
     @Override
     public boolean isDateEqual(LocalDate date) {
         return false;

@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import duke.task.Task;
@@ -45,6 +47,16 @@ public class Ui {
     }
 
     /**
+     * Returns the message that a task has been mark as uncompleted.
+     *
+     * @param task The task that is marked as uncompleted.
+     * @return The string containing the intended message.
+     */
+    public String getPrioritySetMessage(Task task) {
+        return "OK, I've changed the priority of this task:" + "\n  " + task;
+    }
+
+    /**
      * Returns the message that a task has been deleted, along with the resultant list size.
      *
      * @param list The taskList that the task has been removed from.
@@ -77,6 +89,7 @@ public class Ui {
      */
     public String getActiveTasksMessage(TaskList list) {
         StringBuilder strBuilder = new StringBuilder("Here are the tasks in your list:");
+        list.getList().sort(Comparator.comparing(Task::getPriority));
         for (int i = 0; i < list.getListSize(); i++) {
             strBuilder.append("\n").append(i + 1).append(".").append(list.retrieveTask(i));
         }
