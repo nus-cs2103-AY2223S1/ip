@@ -7,6 +7,8 @@ import duke.tasks.Task;
 
 /**
  * Represents a List of Task.
+ *
+ * @author sikai00
  */
 public class TaskList {
     private final List<Task> tasks;
@@ -19,37 +21,39 @@ public class TaskList {
     }
 
     /**
-     * Adds a new task.
-     *
-     * @param task Task to be added.
-     */
-    public void addTask(Task task) {
-        this.tasks.add(task);
-    }
-
-    /**
-     * Deletes a task.
-     *
-     * @param index Index of the task as printed by TaskList's toString.
-     */
-    public void deleteTask(int index) {
-        this.tasks.remove(index);
-    }
-
-    /**
      * Returns the number of tasks in the task list currently.
      *
-     * @return Number of tasks in the task list.
+     * @return Number of tasks in the task list
      */
     public int size() {
         return this.tasks.size();
     }
 
     /**
+     * Adds a new task.
+     *
+     * @param task Task to be added
+     */
+    public void addTask(Task task) {
+        this.tasks.add(task);
+        assert this.tasks.contains(task);
+    }
+
+    /**
+     * Deletes a task.
+     *
+     * @param index Index of the task as printed by TaskList's toString
+     */
+    public void deleteTask(int index) {
+        Task deletedTask = this.tasks.remove(index);
+        assert !this.tasks.contains(deletedTask);
+    }
+
+    /**
      * Returns the task with the input index.
      *
-     * @param index Index of the task as printed by viewAllTask.
-     * @return Task with the input index.
+     * @param index Index of the task as printed by viewAllTask
+     * @return Task with the input index
      */
     public Task getTask(int index) {
         return this.tasks.get(index);
@@ -59,7 +63,7 @@ public class TaskList {
      * Marks a task as done.
      *
      * @param index Position of the task as indicated by TaskList's string
-     *              representation.
+     *              representation
      */
     public void markTask(int index) {
         Task task = this.tasks.get(index);
@@ -70,7 +74,7 @@ public class TaskList {
      * Marks a task as not done.
      *
      * @param index Position of the task as indicated by TaskList's string
-     *              representation.
+     *              representation
      */
     public void unmarkTask(int index) {
         Task task = this.tasks.get(index);

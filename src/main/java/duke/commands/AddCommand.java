@@ -6,6 +6,8 @@ import duke.utils.TaskList;
 
 /**
  * Represents an executable command that adds a Task to the specified TaskList.
+ *
+ * @author sikai00
  */
 public class AddCommand extends Command {
     /** Command identifier used by Parser **/
@@ -35,7 +37,6 @@ public class AddCommand extends Command {
         String msg = msgBegin + "  " + task + msgEnd;
 
         storage.appendTaskToStorage(task);
-        CommandResult cr = new CommandResult(msg);
-        return cr;
+        return new CommandResult(msg);
     }
 }

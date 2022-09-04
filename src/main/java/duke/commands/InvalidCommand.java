@@ -1,12 +1,13 @@
 package duke.commands;
 
-import duke.exceptions.DukeException;
 import duke.utils.Storage;
 import duke.utils.TaskList;
 
 /**
  * Represents an executable command that throws a DukeException.
  * This command is only used when there is an error.
+ *
+ * @author sikai00
  */
 public class InvalidCommand extends Command {
     private final String errorMsg;
@@ -24,7 +25,7 @@ public class InvalidCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public CommandResult execute(TaskList taskList, Storage storage) throws DukeException {
-        throw new DukeException(errorMsg);
+    public CommandResult execute(TaskList taskList, Storage storage) {
+        return new CommandResult(errorMsg);
     }
 }

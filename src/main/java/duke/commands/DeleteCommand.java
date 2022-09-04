@@ -1,11 +1,12 @@
 package duke.commands;
 
-import duke.exceptions.DukeException;
 import duke.utils.Storage;
 import duke.utils.TaskList;
 
 /**
  * Represents an executable command that adds a Task to the specified TaskList.
+ *
+ * @author sikai00
  */
 public class DeleteCommand extends Command {
     /** Command identifier used by Parser **/
@@ -25,10 +26,10 @@ public class DeleteCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public CommandResult execute(TaskList taskList, Storage storage) throws DukeException {
+    public CommandResult execute(TaskList taskList, Storage storage) {
         if (this.taskIndex > taskList.size() - 1 || this.taskIndex < 0) {
-            throw new DukeException("There is no such task index... "
-                    + "Try 'list' to view all the tasks and their index!");
+            String msg = "There is no such task index... Try 'list' to view all the tasks and their index!";
+            return new CommandResult(msg);
         }
         String task = taskList.getTask(taskIndex).toString();
         taskList.deleteTask(taskIndex);
@@ -36,12 +37,10 @@ public class DeleteCommand extends Command {
         int size = taskList.size();
         String taskString = size > 1 ? "tasks" : "task";
         String msgBegin = "Noted. I've removed this task:\n";
-        String msgEnd = "\nNow you have " + size + " " + taskString
-                + " in this list.";
+        String msgEnd = "\nNow you have " + size + " " + taskString + " in this list.";
         String msg = msgBegin + " " + task + msgEnd;
 
         storage.writeAllToStorage(taskList);
-        CommandResult cr = new CommandResult(msg);
-        return cr;
+        return new CommandResult(msg);
     }
 }

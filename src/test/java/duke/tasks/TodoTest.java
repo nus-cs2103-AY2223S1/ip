@@ -15,7 +15,7 @@ public class TodoTest {
     @Test
     public void taskTypeTest() {
         Todo todo = new Todo("test", true);
-        assertEquals(todo.getTaskType(), "Todo");
+        assertEquals(todo.getTaskWord(), "todo");
     }
 
     @Test

@@ -14,6 +14,8 @@ import duke.tasks.Todo;
 
 /**
  * Handles all the storage-related tasks.
+ *
+ * @author sikai00
  */
 public class Storage {
     private final String folderDirectory;
@@ -33,7 +35,7 @@ public class Storage {
      * Reads and parses the task list from persistent storage and returns it.
      * If no existing storage file is found, this method returns a new empty TaskList.
      *
-     * @return TaskList from persistent storage.
+     * @return TaskList from persistent storage
      */
     public TaskList readFromStorage() {
         TaskList taskList = new TaskList();
@@ -49,22 +51,23 @@ public class Storage {
                 boolean isTaskDone = taskStrTokens[2].equals("0") ? false : true;
 
                 switch (taskType) {
-                case "Todo":
+                case Todo.TASK_WORD:
                     Todo currTodo = new Todo(taskDescription, isTaskDone);
                     taskList.addTask(currTodo);
                     break;
-                case "Deadline":
+                case Deadline.TASK_WORD:
                     LocalDateTime by = LocalDateTime.parse(taskStrTokens[3]);
                     Deadline currDeadline = new Deadline(taskDescription, isTaskDone, by);
                     taskList.addTask(currDeadline);
                     break;
-                case "Event":
+                case Event.TASK_WORD:
                     LocalDateTime at = LocalDateTime.parse(taskStrTokens[3]);
                     Event currEvent = new Event(taskDescription, isTaskDone, at);
                     taskList.addTask(currEvent);
                     break;
                 default:
-                    // Something that cannot be recognized
+                    // TODO: Alert user data is corrupted, don't immediately replace with empty task list
+                    assert false;
                     break;
                 }
             }
@@ -74,20 +77,10 @@ public class Storage {
         return taskList;
     }
 
-    private static String taskStrRepresentation(Task task) {
-        String taskType = task.getTaskType();
-        String taskDescription = task.getDescription();
-        String taskDone = task.getDone() ? "1" : "0";
-        String taskTime = task.getTime().map(LocalDateTime::toString).orElse(" ");
-
-        String strRepresentation = taskType + "|" + taskDescription + "|" + taskDone + "|" + taskTime + "\n";
-        return strRepresentation;
-    }
-
     /**
-     * Creates a new, blank persistent storage file and writes the input duke.utils.TaskList into the file.
+     * Creates a new, blank persistent storage file and writes the input TaskList into the file.
      *
-     * @param taskList Input TaskList to read from and write into the persistent storage file.
+     * @param taskList Input TaskList to read from and write into the persistent storage file
      */
     public void writeAllToStorage(TaskList taskList) {
         File folderDirectory = new File(this.folderDirectory);
@@ -104,6 +97,8 @@ public class Storage {
             }
             fw.close();
         } catch (IOException e) {
+            // TODO: Fix, user will never see this
+            assert false;
             System.out.println("Something went wrong: " + e.getMessage());
         }
     }
@@ -122,7 +117,23 @@ public class Storage {
             fw.write(strRepresentation);
             fw.close();
         } catch (IOException e) {
+            // TODO: Fix, user will never see this
+            assert false;
             System.out.println("Something went wrong: " + e.getMessage());
         }
+    }
+
+    /**
+     * Returns a string representation of a task safe for use in persistent storage file.
+     *
+     * @param task Task to be converted into its storage-safe string representation
+     * @return Storage-safe string representation of task
+     */
+    private static String taskStrRepresentation(Task task) {
+        String taskType = task.getTaskWord();
+        String taskDescription = task.getDescription();
+        String taskDone = task.getDone() ? "1" : "0";
+        String taskTime = task.getTime().map(LocalDateTime::toString).orElse(" ");
+        return taskType + "|" + taskDescription + "|" + taskDone + "|" + taskTime + "\n";
     }
 }

@@ -9,12 +9,12 @@ import duke.tasks.Task;
  * Represents a stub for Task.
  */
 public class TaskStub extends Task {
-    public TaskStub() {
-        super("", false);
+    public TaskStub(String description) {
+        super(description, false);
     }
 
     @Override
-    public String getTaskType() {
+    public String getTaskWord() {
         return "TaskStub";
     }
 
