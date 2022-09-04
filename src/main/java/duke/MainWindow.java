@@ -24,8 +24,11 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.jpg"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.jpg"));
+    private static final String USER_IMAGE_FILE_PATH = "/images/DaUser.jpg";
+    private static final String DUKE_IMAGE_FILE_PATH = "/images/DaDuke.jpg";
+
+    private Image userImage = new Image(this.getClass().getResourceAsStream(USER_IMAGE_FILE_PATH));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream(DUKE_IMAGE_FILE_PATH));
 
     private boolean isExit = false;
 
@@ -50,7 +53,7 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
-        if (input.equals("bye")) {
+        if (input.equals(Parser.EXIT_COMMAND)) {
             isExit = true;
         }
         userInput.clear();

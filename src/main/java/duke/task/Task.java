@@ -19,6 +19,10 @@ public class Task {
     private static final int CORRECT_YEAR_LENGTH = 4;
     private static final String[] TASK_TYPES_ARRAY = new String[] {"D", "T", "E"};
     private static final ArrayList<String> TASK_TYPES_LIST = new ArrayList<>(Arrays.asList(TASK_TYPES_ARRAY));
+    public static final String LOAD_DATE_FORMAT = "MMM dd yyyy";
+    public static final String SAVE_DATE_FORMAT = "yyyy-mm-dd";
+    private static final String MARK_DONE_MARKER = "X";
+    private static final String MARK_UNDONE_MARKER = " ";
 
     private final String taskDescription;
     private boolean isDone;
@@ -110,9 +114,9 @@ public class Task {
     public String toString() {
         String marker;
         if (this.isDone) {
-            marker = "X";
+            marker = MARK_DONE_MARKER;
         } else {
-            marker = " ";
+            marker = MARK_UNDONE_MARKER;
         }
         return "[" + marker + "] " + this.taskDescription;
     }
