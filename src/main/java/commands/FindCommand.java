@@ -1,11 +1,14 @@
 package commands;
 
+import java.util.List;
+
 import data.Task;
 import data.TaskList;
 import storage.Storage;
 
-import java.util.List;
-
+/**
+ * Command to search for tasks that match a substring.
+ */
 public class FindCommand extends Command {
     private final String searchString;
 
@@ -20,7 +23,7 @@ public class FindCommand extends Command {
 
         List<Task> matchingTasks = tasks.findBySearchString(searchString);
         for (int i = 0; i < matchingTasks.size(); i++) {
-            resultStringBuilder.append(i+1).append(". ").append(matchingTasks.get(i)).append("\n");
+            resultStringBuilder.append(i + 1).append(". ").append(matchingTasks.get(i)).append("\n");
         }
         return resultStringBuilder.toString();
     }

@@ -1,14 +1,17 @@
 package storage;
 
-import data.TaskList;
-import exceptions.DukeException;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import data.TaskList;
+import exceptions.DukeException;
+
+/**
+ * Class to handle reading and writing of tasks from storage.
+ */
 public class Storage {
     private final String filePath;
 

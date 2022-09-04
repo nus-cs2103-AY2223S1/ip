@@ -2,6 +2,9 @@ package data;
 
 import java.io.Serializable;
 
+/**
+ * Abstract task that has a title and a boolean of whether it is done.
+ */
 public abstract class Task implements Serializable {
     private final String title;
     private boolean isDone;

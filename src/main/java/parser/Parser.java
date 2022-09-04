@@ -1,5 +1,8 @@
 package parser;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import commands.ByeCommand;
 import commands.Command;
 import commands.DeadlineCommand;
@@ -11,9 +14,9 @@ import commands.MarkCommand;
 import commands.ToDoCommand;
 import exceptions.DukeException;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-
+/**
+ * Class to parse user input into commands.
+ */
 public class Parser {
     /**
      * Parses a string input from the user to generate the respective command.
@@ -23,7 +26,8 @@ public class Parser {
      * @throws DukeException If input is invalid.
      */
     public static Command parse(String input) throws DukeException {
-        String command, description;
+        String command;
+        String description;
 
         String[] words = input.split(" ", 2);
         command = words[0];
