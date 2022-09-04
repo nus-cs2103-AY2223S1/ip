@@ -61,6 +61,9 @@ public class Duke {
      */
     public String getResponse(String input) {
         try {
+            assertClassReferencesPresent();
+            assertCurrentlyAcceptingInput();
+
             String[] parsedOutput = Parser.parseInput(input);
             String cmd = parsedOutput[0];
             switch (cmd) {
@@ -92,6 +95,7 @@ public class Duke {
                 return ui.getAddedTask(addedTask, tasks.getTaskCount());
             }
             case "deadline": {
+                assertArrayElementsNotNull(parsedOutput);
                 String description = parsedOutput[1];
                 String date = parsedOutput[2];
                 String time = parsedOutput[3];
@@ -99,6 +103,7 @@ public class Duke {
                 return ui.getAddedTask(addedTask, tasks.getTaskCount());
             }
             case "event": {
+                assertArrayElementsNotNull(parsedOutput);
                 String description = parsedOutput[1];
                 String dateStart = parsedOutput[2];
                 String timeStart = parsedOutput[3];
@@ -125,6 +130,21 @@ public class Duke {
             return ui.getDateTimeErrorResponse();
         } finally {
             storage.saveFile(tasks);
+        }
+    }
+
+    private void assertClassReferencesPresent() {
+        assert tasks != null : "There should be a TaskList at all times.";
+        assert ui != null : "There should be a UI at all times";
+    }
+
+    private void assertCurrentlyAcceptingInput() {
+        assert isAcceptingInput : "getResponse should not be run if not accepting input.";
+    }
+
+    private void assertArrayElementsNotNull(String[] arr) {
+        for (String i : arr) {
+            assert i != null : "The string array should not have any null elements";
         }
     }
 }
