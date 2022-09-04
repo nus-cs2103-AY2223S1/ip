@@ -81,7 +81,9 @@ public class Ui {
      * @return The list of commands prepended by a special text
      */
     public String showCommandList() {
-        return "List of available commands so far:\n" + COMMANDS_STRING;
+        return "List of available commands so far:\n"
+            + COMMANDS_STRING
+            + "\n\nFor more detail, type 'help <command>', e.g. 'help todo'";
     }
 
     /**

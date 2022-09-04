@@ -12,7 +12,7 @@ public class ExitCommand extends Command {
     public static final String KEYWORD = "bye";
     public static final String HELP_MESSAGE = KEYWORD
         + "\n\nExits the chatbot."
-        + "\n\nExample: exit";
+        + "\n\nExample: bye";
     private boolean showHelp;
 
     /**

@@ -17,6 +17,8 @@ find
 help
 delete
 bye
+
+For more detail, type 'help <command>', e.g. 'help todo'
     __________________________________________________
     ☹ BEEP BOOP BUZZ ERROR!!!
     Please don't give me an empty todo description :(
@@ -33,6 +35,7 @@ bye
     help
     delete
     bye
+    
     For more detail, type 'help <command>', e.g. 'help todo'
     __________________________________________________
     __________________________________________________
@@ -416,6 +419,7 @@ bye
     help
     delete
     bye
+    
     For more detail, type 'help <command>', e.g. 'help todo'
     __________________________________________________
     __________________________________________________
@@ -475,7 +479,7 @@ bye
     
     Exits the chatbot.
     
-    Example: exit
+    Example: bye
     __________________________________________________
     __________________________________________________
  --                                                  -++-  

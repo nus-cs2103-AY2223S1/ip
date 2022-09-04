@@ -28,7 +28,6 @@ public class HelpCommand extends Command {
      */
     @Override
     public String executeString(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        return ui.showCommandList()
-            + "\nFor more detail, type 'help <command>', e.g. 'help todo'";
+        return ui.showCommandList();
     }
 }
