@@ -2,7 +2,7 @@ package duke.command;
 
 import java.io.IOException;
 
-import duke.util.DukeIo;
+import duke.inputoutput.DukeIo;
 import duke.util.Storage;
 import duke.util.TaskList;
 
@@ -14,6 +14,7 @@ public class ByeCommand implements Command {
 
     /**
      * Returns true when asked if program should exit.
+     * 
      * @return boolean
      */
     @Override
@@ -23,6 +24,7 @@ public class ByeCommand implements Command {
 
     /**
      * {@inheritDoc} Prints goodbye message and exits program.
+     * 
      * @throws IOException raised if an error occured when saving
      */
     @Override

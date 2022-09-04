@@ -1,6 +1,6 @@
 package duke.command;
 
-import duke.util.DukeIo;
+import duke.inputoutput.DukeIo;
 import duke.util.Storage;
 import duke.util.TaskList;
 

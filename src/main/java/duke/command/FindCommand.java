@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import duke.exceptions.DukeException;
 import duke.exceptions.EmptyDescriptionException;
 import duke.task.Task;
-import duke.util.DukeIo;
+import duke.inputoutput.DukeIo;
 import duke.util.ParsedData;
 import duke.util.Storage;
 import duke.util.TaskList;
@@ -18,7 +18,7 @@ import duke.util.TaskList;
 public class FindCommand extends DataCommand {
 
     private static final String RED_TXT = "\u001B[31m$0\u001B[0m";
-    private static final String FIND_TXT = "    The search results are below: ";
+    private static final String FIND_TXT = "    The search results are below: \n";
 
     public FindCommand(ParsedData data) {
         super(data);
@@ -34,19 +34,18 @@ public class FindCommand extends DataCommand {
         searchString = String.format("(?i)(%s)",
                 Matcher.quoteReplacement(searchString));
 
+        StringBuilder sb = new StringBuilder();
         List<Task> tasks = taskList.getTasks();
 
-        io.printLine();
-        io.printTask(FIND_TXT, 0);
+        io.printTask(FIND_TXT);
         for (int i = 0; i < tasks.size(); i++) {
             String sBefore = tasks.get(i).toString();
             String sAfter = sBefore.replaceAll(searchString, RED_TXT);
             if (sAfter.length() != sBefore.length()) {
-                io.printTask(String.format("%d. %s", i + 1, sAfter), 2);
+                sb.append(String.format("%d. %s", i + 1, sAfter));
             }
         }
-        io.printLine();
-
+        io.printTask(sb.toString());
     }
 
 }

@@ -5,7 +5,7 @@ import java.io.IOException;
 import duke.exceptions.DukeException;
 import duke.task.Deadline;
 import duke.task.Task;
-import duke.util.DukeIo;
+import duke.inputoutput.DukeIo;
 import duke.util.ParsedData;
 import duke.util.Storage;
 import duke.util.TaskList;
@@ -21,6 +21,7 @@ public class DeadlineCommand extends DataCommand {
 
     /**
      * Create a instance of the deadline command.
+     * 
      * @param d ParsedData from the command input
      */
     public DeadlineCommand(ParsedData d) {
@@ -29,6 +30,7 @@ public class DeadlineCommand extends DataCommand {
 
     /**
      * {@inheritDoc} Adds a deadline task to the tasklist and prints it.
+     * 
      * @throws DukeException Thrown when invalid/missing data
      * @throws IOException Thrown when saving of data failed
      */

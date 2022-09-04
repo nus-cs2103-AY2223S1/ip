@@ -1,14 +1,11 @@
 package duke.main;
 
 import java.io.IOException;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
 import duke.command.Command;
 import duke.exceptions.DukeException;
-import duke.util.DukeIo;
+import duke.inputoutput.DukeCliIo;
+import duke.inputoutput.DukeIo;
 import duke.util.Parser;
 import duke.util.Storage;
 import duke.util.TaskList;
@@ -16,7 +13,7 @@ import duke.util.TaskList;
 /**
  * Main class for cli version of Duke
  */
-public class Duke extends Application {
+public class Duke {
     private static final String LOGO = "Welcome to\n"
             + " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
@@ -34,14 +31,13 @@ public class Duke extends Application {
 
     public Duke() {}
 
-    private Duke(TaskList tasks, Storage dukeData) {
-        userInputOutput = new DukeIo();
+    private Duke(TaskList tasks, Storage dukeData, DukeIo dukeIo) {
         this.dukeData = dukeData;
         this.tasks = tasks;
+        this.userInputOutput = dukeIo;
     }
 
-    private boolean handleInput() {
-        String txt = userInputOutput.readLine();
+    private boolean handleInput(String txt) {
         Command c = Parser.parseCommand(txt);
         try {
             c.execute(tasks, userInputOutput, dukeData);
@@ -56,80 +52,62 @@ public class Duke extends Application {
     }
 
     /**
-     * Creates a duke object using the sepecied filepath.
+     * Creates a duke cli object using the sepecied filepath.
      * 
      * @param filepath
      * @return Duke
      */
     public static Duke createApplication(String filepath) {
-        DukeIo userIO = new DukeIo();
-        userIO.printTask(LOGO, 2);
-        userIO.printTask(INTRO, 3);
+        DukeIo userIo = new DukeCliIo();
+        userIo.printTask(LOGO, 2);
+        userIo.printTask(INTRO, 3);
         Storage dukeData;
         TaskList tasks;
         try {
             dukeData = Storage.createStorage(filepath);
             tasks = new TaskList(dukeData.readFile());
         } catch (IOException e) {
-            userIO.printError(e);
-            userIO.printTask("Fatal Error! The system will exit abnormally!");
+            userIo.printError(e);
+            userIo.printTask("Fatal Error! The system will exit abnormally!");
             return null;
         }
 
-        return new Duke(tasks, dukeData);
+        return new Duke(tasks, dukeData, userIo);
     }
 
     /**
-     * Creates a Duke object with the default save path.
+     * Creates a Duke cli object with the default save path.
      * 
      * @return Duke
      */
     public static Duke createApplication() {
-        DukeIo userIO = new DukeIo();
-        userIO.printTask(LOGO, 2);
-        userIO.printTask(INTRO, 3);
+        DukeIo userIo = new DukeCliIo();
+        return Duke.createApplication(userIo);
+    }
+
+    public static Duke createApplication(DukeIo userIo) {
         Storage dukeData;
         TaskList tasks;
         try {
             dukeData = Storage.createStorage();
             tasks = new TaskList(dukeData.readFile());
         } catch (IOException e) {
-            userIO.printError(e);
-            userIO.printTask("Fatal Error! The system will exit abnormally!");
+            userIo.printError(e);
+            userIo.printTask("Fatal Error! The system will exit abnormally!");
             return null;
         }
 
-        return new Duke(tasks, dukeData);
+        return new Duke(tasks, dukeData, userIo);
     }
 
     /**
      * Initiates the running loop. Will exit when <code>handleInput</code> returns false.
      */
     public void run() {
-        while (handleInput()) {
-        }
+        String txt;
+        do {
+            txt = userInputOutput.readLine();
+        } while (handleInput(txt));
     }
 
-    /**
-     * Runs the Duke Program as an cli program
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        Duke duke = createApplication();
-        duke.run();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
-        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
-
-        primaryStage.setScene(scene); // Setting the stage to show our screen
-        primaryStage.show(); // Render the stage.
-
-    }
 }
