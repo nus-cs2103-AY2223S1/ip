@@ -70,7 +70,7 @@ public class Deadline extends Task {
      *     the Deadline task must be done.
      */
     @Override
-    public boolean onDate(LocalDate date) {
+    public boolean isOnDate(LocalDate date) {
         return date.equals(this.date);
     }
 }

@@ -52,7 +52,7 @@ public class TaskList {
      * @param keyword The specified keyword (or phrase) within the descriptions of tasks.
      * @return A new TaskList of every task which description contains a specified keyword (or phrase).
      */
-    public TaskList allContaining(String keyword) {
+    public TaskList getAllContaining(String keyword) {
         ArrayList<Task> matchingList = new ArrayList<>();
         for (Task task : tasks) {
             if (task.contains(keyword)) {
@@ -69,10 +69,10 @@ public class TaskList {
      * @param date The specified date by/at which the tasks to find occur.
      * @return A new TaskList of every task that occurs by/at a specified date.
      */
-    public TaskList allOnDate(LocalDate date) {
+    public TaskList getAllOnDate(LocalDate date) {
         ArrayList<Task> matchingList = new ArrayList<>();
         for (Task task : tasks) {
-            if (task.onDate(date)) {
+            if (task.isOnDate(date)) {
                 matchingList.add(task);
             }
         }
@@ -86,7 +86,7 @@ public class TaskList {
      * @return An array of strings representing each Task in the TaskList as data
      *     that can be stored in the hard disk.
      */
-    public String[] allToData() {
+    public String[] convertAllToData() {
         int count = tasks.size();
         String[] strings = new String[count];
         for (int i = 0; i < count; i++) {
@@ -101,7 +101,7 @@ public class TaskList {
      *
      * @return An array of strings representing each task in the TaskList.
      */
-    public String[] allToString() {
+    public String[] convertAllToString() {
         int count = tasks.size();
         String[] strings = new String[count];
         for (int i = 0; i < count; i++) {
@@ -163,7 +163,7 @@ public class TaskList {
     public Task unmark(int n) throws DukeException {
         try {
             Task task = tasks.get(n - 1);
-            task.unmarkAsDone();
+            task.markAsNotDone();
             return task;
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("The specified task does not exist.");

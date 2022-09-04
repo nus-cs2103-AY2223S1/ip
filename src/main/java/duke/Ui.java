@@ -7,6 +7,7 @@ import duke.task.TaskList;
  * The Ui class deals with interactions with the user.
  */
 public class Ui {
+    public static final String LINE = "______________________________________";
     private static final String LOGO = "  _   _                   \n"
             + " | \\ | |                  \n"
             + " |  \\| |_   _  __ _ _ __  \n"
@@ -16,64 +17,60 @@ public class Ui {
             + "         __/ |            \n"
             + "        |___/             ";
 
-    /** The ui's response to the latest user input. */
-    private String response;
-
     /**
-     * Gets the response from Duke's ui.
-     *
-     * @return the response from the ui.
-     */
-    public String getResponse() {
-        return response;
-    }
-
-    /**
-     * Sets the response message that a specified task has been added to a task list.
+     * Returns a message that a specified task has been added to a task list.
      *
      * @param task The specified task that was added.
      * @param tasks The task list that the specified task was added to.
+     * @return A message that the specified task has been added to a task list.
      */
-    public void showAdded(Task task, TaskList tasks) {
-        response = "Got it. I've added this task:\n  "
+    public String showAdded(Task task, TaskList tasks) {
+        return "Got it. I've added this task:\n  "
                 + task + "\n"
                 + tasks.getCountStatement();
     }
 
     /**
-     * Sets the response message that a specified task has been deleted from a task list.
+     * Gets a message that a specified task has been deleted from a task list.
      *
      * @param task The specified task that was deleted.
      * @param tasks The task list that the specified task was deleted from.
+     * @return A message that a specified task has been deleted from a task list.
      */
-    public void showDeleted(Task task, TaskList tasks) {
-        response = "Noted. I've removed this task:\n  "
+    public String showDeleted(Task task, TaskList tasks) {
+        return "Noted. I've removed this task:\n  "
                 + task + "\n"
                 + tasks.getCountStatement();
     }
 
     /**
-     * Sets the response message to an error message from Duke.
+     * Gets an error message from Duke.
      *
      * @param message The message that describes the error with Duke.
+     * @return An error message with the given error description.
      */
-    public void showError(String message) {
-        response = "Oh no :( " + message;
+    public String showError(String message) {
+        return "Oh no :( " + message;
     }
 
     /**
-     * Sets the response message to the exit message from Duke.
+     * Gets the exit message from Duke.
+     *
+     * @return The exit message from Duke.
      */
-    public void showExit() {
-        response = "Bye. Hope to see you again soon!";
+    public String showExit() {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
-     * Sets the response message to every task found with a keyword.
+     * Gets a message listing every task found with a keyword.
+     *
+     * @param tasks A TaskList containing the tasks found with a keyword.
+     * @return A message listing every task found with a keyword.
      */
-    public void showFound(TaskList tasks) {
+    public String showFound(TaskList tasks) {
         StringBuilder response = new StringBuilder("Here are the matching tasks in your list:");
-        String[] strings = tasks.allToString();
+        String[] strings = tasks.convertAllToString();
         if (strings.length == 0) {
             response.append("\nYou have no matching tasks!");
         } else {
@@ -81,40 +78,57 @@ public class Ui {
                 response.append("\n").append(i + 1).append(".").append(strings[i]);
             }
         }
-        this.response = response.toString();
+        return response.toString();
     }
 
     /**
-     * Sets the response message to a list of all the tasks in a specified TaskList.
+     * Gets a message listing all the tasks in a specified TaskList.
      *
      * @param tasks The specified TaskList to show the list of tasks from.
+     * @return A message listing all the tasks in a specified TaskList.
      */
-    public void showList(TaskList tasks) {
+    public String showList(TaskList tasks) {
         StringBuilder response = new StringBuilder("Here are the tasks in your list:");
-        String[] strings = tasks.allToString();
-        for (int i = 0; i < strings.length; i++) {
-            response.append("\n").append(i + 1).append(".").append(strings[i]);
+        String[] strings = tasks.convertAllToString();
+        if (strings.length == 0) {
+            response.append("\nYou have no tasks in your list! :3");
+        } else {
+            for (int i = 0; i < strings.length; i++) {
+                response.append("\n").append(i + 1).append(".").append(strings[i]);
+            }
         }
-        this.response = response.toString();
+        return response.toString();
     }
 
     /**
-     * Sets the response message that a specified task has been marked as done.
+     * Gets a message that a specified task has been marked as done.
      *
      * @param task The specified task that was marked as done.
+     * @return A message that a specified task has been marked as done.
      */
-    public void showMarked(Task task) {
-        response = "Nice! I've marked this task as done:\n  " + task;
+    public String showMarked(Task task) {
+        return "Nice! I've marked this task as done:\n  " + task;
     }
 
     /**
-     * Sets the response message to every task occurring by/at a specific date.
+     * Gets a message that a specified task has been marked as done.
+     *
+     * @param task The specified task that was marked as done.
+     * @return A message that a specified task has been marked as done.
+     */
+    public String showNotMarked(Task task) {
+        return "OK, I've marked this task as not done yet:\n  " + task;
+    }
+
+    /**
+     * Gets a message with every task occurring by/at a specific date.
      *
      * @param tasks A TaskList containing the tasks occurring by/at a specific date.
+     * @return A message with every task occurring by/at a specific date.
      */
-    public void showOnDate(TaskList tasks) {
+    public String showOnDate(TaskList tasks) {
         StringBuilder response = new StringBuilder("Here are the tasks in your list on this date:");
-        String[] strings = tasks.allToString();
+        String[] strings = tasks.convertAllToString();
         if (strings.length == 0) {
             response.append("\nYou have no tasks on this date!");
         } else {
@@ -122,22 +136,15 @@ public class Ui {
                 response.append("\n").append(i + 1).append(".").append(strings[i]);
             }
         }
-        this.response = response.toString();
+        return response.toString();
     }
 
     /**
-     * Sets the response message that a specified task has been marked as done.
+     * Gets a greeting from Duke.
      *
-     * @param task The specified task that was marked as done.
+     * @return The greeting from Duke.
      */
-    public void showNotMarked(Task task) {
-        response = "OK, I've marked this task as not done yet:\n  " + task;
-    }
-
-    /**
-     * Sets the response message to a greeting from Duke.
-     */
-    public void showWelcome() {
-        this.response = "Hello from\n" + LOGO + "\nHello! I'm Nyan Cat\nWhat can I do for you?";
+    public String showWelcome() {
+        return "Hello from\n" + LOGO + "\nHello! I'm Nyan Cat\nWhat can I do for you?";
     }
 }

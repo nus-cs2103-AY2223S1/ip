@@ -119,7 +119,7 @@ public class TaskListTest {
         expectedList.add(deadlineOnDate);
         expectedList.add(eventOnDate);
 
-        TaskList actualList = testList.allOnDate(LocalDate.parse("2022-09-01"));
+        TaskList actualList = testList.getAllOnDate(LocalDate.parse("2022-09-01"));
         assertEquals(expectedList, actualList);
     }
 
@@ -130,7 +130,7 @@ public class TaskListTest {
         testList.add(new Deadline("test", "2022-09-01"));
         testList.add(new Event("test", "noon"));
 
-        String[] actualOutput = testList.allToData();
+        String[] actualOutput = testList.convertAllToData();
         String[] expectedOutput = {"T |   | test\n", "D |   | test | Sep 1 2022\n", "E |   | test | noon\n"};
 
         for (int i = 0; i < 3; i++) {
@@ -145,7 +145,7 @@ public class TaskListTest {
         testList.add(new Deadline("test", "2022-09-01"));
         testList.add(new Event("test", "noon"));
 
-        String[] actualOutput = testList.allToString();
+        String[] actualOutput = testList.convertAllToString();
         String[] expectedOutput = {"[T][ ] test", "[D][ ] test (by: Sep 1 2022)", "[E][ ] test (at: noon)"};
 
         for (int i = 0; i < 3; i++) {
@@ -171,7 +171,7 @@ public class TaskListTest {
         expectedOutput.add(testTask2);
         expectedOutput.add(testTask4);
 
-        TaskList actualOutput = testList.allContaining("test");
+        TaskList actualOutput = testList.getAllContaining("test");
 
         assertEquals(expectedOutput, actualOutput);
     }

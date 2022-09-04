@@ -11,7 +11,7 @@ import duke.task.TaskList;
  * that adds a new task to Duke's task list.
  */
 public class AddCommand extends Command {
-    /** The task to be added to Duke */
+    /** The task to be added. */
     private final Task task;
 
     /**
@@ -29,13 +29,14 @@ public class AddCommand extends Command {
      * @param tasks The specified TaskList involved with the command.
      * @param ui The specified Ui involved with the command.
      * @param storage The specified Storage involved with the command.
+     * @return A message that a task has been added to Duke.
      * @throws DukeException when the command cannot be successfully executed.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         tasks.add(task);
         storage.writeToFile(tasks);
-        ui.showAdded(task, tasks);
+        return ui.showAdded(task, tasks);
     }
 }
 

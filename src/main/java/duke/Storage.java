@@ -59,7 +59,7 @@ public class Storage {
     public void writeToFile(TaskList tasks) throws DukeException {
         try {
             FileWriter fw = new FileWriter(filePath);
-            String[] dataStrings = tasks.allToData();
+            String[] dataStrings = tasks.convertAllToData();
             for (String s : dataStrings) {
                 fw.write(s);
             }

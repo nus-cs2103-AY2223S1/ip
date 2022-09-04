@@ -41,7 +41,7 @@ public class Todo extends Task {
      * @return false.
      */
     @Override
-    public boolean onDate(LocalDate date) {
+    public boolean isOnDate(LocalDate date) {
         return false;
     }
 }

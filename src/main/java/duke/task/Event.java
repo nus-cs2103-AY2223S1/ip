@@ -68,7 +68,7 @@ public class Event extends Task {
      * @return true if the specified date is the date at which the Event occurs.
      */
     @Override
-    public boolean onDate(LocalDate date) {
+    public boolean isOnDate(LocalDate date) {
         return date.equals(this.date);
     }
 }
