@@ -24,7 +24,7 @@ import java.util.ArrayList;
  *     <li>todo</li>
  *     <li>deadline</li>
  *     <li>event</li>
- * </ul>>
+ * </ul>
  *
  * @author Su Peigeng
  */
@@ -50,24 +50,47 @@ public class Duke {
         this.tasks = new TaskList(tasks);
     }
 
+    public Duke() {
+        this.ui = new Ui();
+        this.storage = new Storage("data/tasks.txt");
+        ArrayList<Task> tasks = new ArrayList<>();
+        try {
+            tasks = storage.load();
+        } catch (DukeException e) {
+            ui.showLoadingError();
+        }
+        this.tasks = new TaskList(tasks);
+    }
+
     /**
      * Runs Duke's chat-bot functionality.
      */
     public void run() {
-        ui.showWelcome();
+        System.out.println(ui.getWelcomeMessage());
         boolean isExit = false;
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
-                ui.showLine();
+                System.out.println(ui.getLineBreak());
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
+                System.out.println(ui.returnMessages());
                 isExit = c.isExit();
             } catch (DukeException e) {
                 ui.showError(e.getMessage());
             } finally {
-                ui.showLine();
+                System.out.println(ui.getLineBreak());
             }
+        }
+    }
+
+    public String getResponse(String input) {
+        Command c = Parser.parse(input);
+        try {
+            c.execute(tasks, ui, storage);
+            return ui.returnMessages();
+        } catch (DukeException e) {
+            return e.getMessage();
         }
     }
 

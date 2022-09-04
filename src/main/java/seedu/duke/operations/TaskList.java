@@ -55,7 +55,7 @@ public class TaskList {
      * @return          Removed Task
      */
     public Task removeTask(int index) {
-        return taskList.remove(index);
+        return taskList.remove(index - 1);
     }
 
     /**

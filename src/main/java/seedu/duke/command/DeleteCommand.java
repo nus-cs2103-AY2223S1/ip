@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.DukeException;
 import seedu.duke.operations.Storage;
 import seedu.duke.task.Task;
 import seedu.duke.operations.TaskList;
@@ -21,8 +22,8 @@ public class DeleteCommand extends TaskListCommand {
     }
 
     @Override
-    void specialisedFunction(TaskList tasks, Ui ui, Storage storage, int taskIndex) {
+    void specialisedFunction(TaskList tasks, Ui ui, Storage storage, int taskIndex){
         Task removedTask = tasks.removeTask(taskIndex);
-        ui.showRemoveTask(removedTask);
+        ui.appendMessage(ui.getRemovedTaskMessage(removedTask));
     }
 }

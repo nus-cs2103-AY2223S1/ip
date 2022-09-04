@@ -21,10 +21,10 @@ public class MarkCommand extends TaskListCommand {
     void specialisedFunction(TaskList tasks, Ui ui, Storage storage, int taskIndex){
         boolean isChecked = tasks.fetchTask(taskIndex).check();
         if (isChecked) {
-            ui.showMarked();
+            ui.appendMessage(ui.getMarkedTaskMessage());
         } else {
-            ui.showAlreadyMarked();
+            ui.appendMessage(ui.getAlreadyMarkedTaskMessage());
         }
-        System.out.println(tasks.fetchTask(taskIndex));
+        ui.appendMessage(tasks.fetchTask(taskIndex).toString());
     }
 }
