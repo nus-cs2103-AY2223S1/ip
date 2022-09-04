@@ -127,26 +127,26 @@ public class TaskList {
      * @return TaskList in writeString format, to be written into data.txt
      */
     public String getWriteString() {
-        String result = "";
+        StringBuilder result = new StringBuilder("");
         for (Task task: this.taskList) {
-            result += task.getSaveString() + "\n";
+            result.append(task.getSaveString() + "\n");
         }
-        return result;
+        return result.toString();
     }
 
     @Override
     public String toString() {
         int counter = 1;
-        String res = "Here are the tasks that you have added to the list:\n";
+        StringBuilder res = new StringBuilder("Here are the tasks that you have added to the list:\n");
         for (Task task : this.taskList) {
             if (task != null) {
-                res += counter + ". " + task;
+                res.append(counter + ". " + task);
                 if (counter != taskList.size()) {
-                    res += "\n";
+                    res.append("\n");
                 }
                 counter++;
             }
         }
-        return counter == 1 ? "There are no tasks in your task list at the moment!" : res;
+        return counter == 1 ? "There are no tasks in your task list at the moment!" : res.toString();
     }
 }

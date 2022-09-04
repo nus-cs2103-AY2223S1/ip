@@ -71,27 +71,22 @@ public class DukeParser {
         switch (this.keyword) {
         case "list":
             return this.listInstructionHandler();
-            // Intentional Fallthrough
         case "bye":
             return this.byeInstructionHandler();
-            // Intentional Fallthrough
         case "find":
             return this.findInstructionHandler();
-            // Intentional Fallthrough
         case "mark":
             // Intentional Fallthrough
         case "unmark":
             // Intentional Fallthrough
         case "delete":
             return this.numericalInstructionHandler();
-            // Intentional Fallthrough
         case "todo":
             // Intentional fallthrough
         case "event":
             // Intentional fallthrough
         case "deadline":
             return this.addTaskInstructionHandler();
-            // Intentional Fallthrough
         default:
             throw new DukeException("Command not recognised. Try again?");
         }
@@ -139,7 +134,6 @@ public class DukeParser {
                     + "number as an index?");
         }
 
-        // Actual logic
         if (instructionNum >= this.taskList.getSize() || instructionNum < 0) {
             throw new DukeException("Invalid index provided. Try again?");
         }
@@ -149,8 +143,10 @@ public class DukeParser {
             return new MarkCommand(instructionNum);
         case "unmark":
             return new UnmarkCommand(instructionNum);
-        default:
+        case "delete":
             return new DeleteCommand(instructionNum);
+        default:
+            throw new DukeException("Command not recognised. Try again?");
         }
 
     }
@@ -187,7 +183,22 @@ public class DukeParser {
             }
         }
 
-        Task newTask = null;
+        Task newTask = createNewTask(keyword, restOfInputString, divider, slashIndex);
+
+        return new AddCommand(newTask);
+    }
+
+    /**
+     * Abstract logic to create a task based on keyword.
+     * @param keyword Task keyword
+     * @param restOfInputString Rest of the task input string
+     * @param divider Divider for the input string
+     * @param slashIndex Index for required slash in rest of input string
+     * @return Task object according to keyword
+     * @throws DukeException If input string provided has invalid values
+     */
+    public Task createNewTask(String keyword, String restOfInputString, String divider, int slashIndex) throws DukeException {
+        Task newTask;
         switch (this.keyword) {
         case "todo":
             newTask = new Todo(this.restOfInputString);
@@ -217,13 +228,14 @@ public class DukeParser {
                 throw new DukeException("Oops! Deadlines must have a valid deadline, "
                         + "formatted as dd-mm-yyyy hh:mm.");
             }
-
             break;
+        default:
+            throw new DukeException("Oops! An error occurred when creating a new task.");
         }
 
         assert (newTask != null) : "addTaskInstructionHandler cannot return a null task.";
-
-        return new AddCommand(newTask);
+        
+        return newTask;
 
     }
 
