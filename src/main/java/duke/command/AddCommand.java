@@ -32,7 +32,7 @@ public class AddCommand extends Command {
         Command.storage.save(this.task);
 
         int finalTaskListSize = Command.taskList.size();
-        assert initialTaskListSize - finalTaskListSize == 1;
+        assert finalTaskListSize - initialTaskListSize == 1;
         return Ui.getAddTaskMessage(this.task, Command.taskList.size());
     }
 }

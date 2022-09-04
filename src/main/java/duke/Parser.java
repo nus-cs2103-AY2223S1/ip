@@ -48,7 +48,7 @@ public abstract class Parser {
     private static final String ERROR_MESSAGE_ARGUMENTS_NOT_FOUND = "Required arguments not found!";
     private static final String ERROR_MESSAGE_DEADLINE_FORMAT_INVALID = "Invalid format for adding deadline!";
     private static final String ERROR_MESSAGE_EVENT_FORMAT_INVALID = "Invalid format for adding event!";
-    private static final String ERROR_MESSAGE_UPDATE_FORMAT_INVALID = "Invalid format for updating task!"
+    private static final String ERROR_MESSAGE_UPDATE_FORMAT_INVALID = "Invalid format for updating task!";
 
     /**
      * Parses input into Command indicator and arguments.
@@ -64,7 +64,7 @@ public abstract class Parser {
             String arguments = parseArguments(scanner);
             return new SimpleEntry<>(indicator, arguments);
         } catch (IllegalStateException e) {
-            throw new DukeException(ERROR_MESSAGE_INPUT_READ_ERROR , e);
+            throw new DukeException(ERROR_MESSAGE_INPUT_READ_ERROR, e);
         }
     }
 
