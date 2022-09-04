@@ -12,6 +12,8 @@ public class Parser {
     private Storage storage;
     private TaskList tasks;
 
+    private static final String FILENAME = "SaveData.txt";
+
 
     /**
      * Creates an instance of a Parser object
@@ -19,7 +21,7 @@ public class Parser {
      */
     public Parser(Ui ui) {
         this.ui = ui;
-        this.storage = new Storage();
+        this.storage = new Storage(FILENAME);
         this.tasks = new TaskList(storage.read());
     }
 
@@ -86,6 +88,10 @@ public class Parser {
         String[] args;
         Task currTask;
 
+        if (item.isBlank()) {
+            throw new DukeMissingInputException(type);
+        }
+
         switch (type) {
         case "todo":
             currTask = new Todo(item);
@@ -93,6 +99,7 @@ public class Parser {
         case "deadline":
             args = item.split("/by ");
             try {
+                assert !args[0].isBlank() : "Description for Deadline is Blank";
                 currTask = new Deadline(args[0], args[1]);
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new DukeMissingInputException(type);
@@ -103,6 +110,7 @@ public class Parser {
         default:
             args = item.split("/at ");
             try {
+                assert !args[0].isBlank() : "Description for Event is Blank";
                 currTask = new Event(args[0], args[1]);
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new DukeMissingInputException(type);
