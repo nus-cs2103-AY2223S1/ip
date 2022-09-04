@@ -27,14 +27,15 @@ public class Decoder {
      * @return a new Task.
      */
     private static Task makeTask(String word, String date, char tag) {
-        Task newTask;
+        Task newTask = null;
         if (tag == 'D') {
             newTask = new Deadline(word, date);
         } else if (tag == 'E') {
             newTask = new Event(word, date);
-        } else {
+        } else if (tag == 'T'){
             newTask = new Todo(word);
         }
+        assert false;
         return newTask;
     }
 
@@ -49,14 +50,16 @@ public class Decoder {
      * @return a new Task.
      */
     private static Task makeTask(String word, String date, char tag, boolean isFinished) {
-        Task newTask;
+        Task newTask = null;
         if (tag == 'D') {
             newTask = new Deadline(word, date);
         } else if (tag == 'E') {
             newTask = new Event(word, date);
-        } else {
+        } else if (tag == 'T') {
             newTask = new Todo(word);
         }
+
+        assert newTask != null;
 
         if (isFinished) {
             newTask.markAsDone();
@@ -94,6 +97,8 @@ public class Decoder {
             } else if (splitted[0].equals("event")) {
                 throw new BadFormatException("incorrect format", splitted[0], "<LOCATION>", "/at");
             }
+            assert false;
+            return null;
         }
 
         if (splitted[0].equals("deadline")) {
@@ -124,6 +129,7 @@ public class Decoder {
         if (splitted[0].equals("E")) {
             return makeTask(splitted[2], splitted[splitted.length - 1], 'E', Boolean.parseBoolean(splitted[1]));
         }
+        assert false;
         return null;
     }
 
