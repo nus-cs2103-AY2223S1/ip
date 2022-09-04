@@ -25,7 +25,7 @@ public class TaskList {
      */
     public static void addTask(Task task) {
         tasks.add(task);
-        UI.sayLines(new String[] {
+        Ui.sayLines(new String[] {
             "Got it. I've added this task:",
             "  " + task,
             "Now you have " + tasks.size() + " task" + (tasks.size() == 1 ? "" : "s") + " in the list."
@@ -66,7 +66,7 @@ public class TaskList {
      */
     public static void markTaskAsDone(String[] words) {
         Task task = tasks.get(Parser.getTaskNumber(words) - 1).markAsDone();
-        UI.sayLines(new String[]{
+        Ui.sayLines(new String[]{
             "Nice! I've marked this task as done:",
             "  " + task
         });
@@ -79,7 +79,7 @@ public class TaskList {
      */
     public static void markTaskAsNotDone(String[] words) {
         Task task = tasks.get(Parser.getTaskNumber(words) - 1).markAsNotDone();
-        UI.sayLines(new String[]{
+        Ui.sayLines(new String[]{
             "OK, I've marked this task as not done yet:",
             "  " + task
         });
@@ -92,7 +92,7 @@ public class TaskList {
      */
     public static void deleteTask(String[] words) {
         Task removedTask = tasks.remove(Parser.getTaskNumber(words) - 1);
-        UI.sayLines(new String[]{
+        Ui.sayLines(new String[]{
             "Noted. I've removed this task:",
             "  " + removedTask,
             "Now you have " + tasks.size() + " task" + (tasks.size() == 1 ? "" : "s") + " in the list."
@@ -108,7 +108,7 @@ public class TaskList {
         for (int i = 1; i < taskDescriptions.length; ++i) {
             taskDescriptions[i] = "  " + i + "." + tasks.get(i - 1);
         }
-        UI.sayLines(taskDescriptions);
+        Ui.sayLines(taskDescriptions);
     }
 
     /**
@@ -130,6 +130,6 @@ public class TaskList {
                 matchingTasks.add("  " + (i + 1) + "." + currTask);
             }
         }
-        UI.sayLines(matchingTasks.toArray(String[]::new));
+        Ui.sayLines(matchingTasks.toArray(String[]::new));
     }
 }

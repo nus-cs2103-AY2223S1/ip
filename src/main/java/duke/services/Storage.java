@@ -69,7 +69,7 @@ public class Storage {
      */
     public static void wipeDataOnExit(boolean willWipe) {
         willWipeData = willWipe;
-        UI.sayLines(new String[] {
+        Ui.sayLines(new String[] {
             "Data will be " + (willWipe ? "wiped" : "saved") + " on exit"}
         );
     }

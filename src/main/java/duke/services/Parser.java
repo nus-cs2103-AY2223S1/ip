@@ -45,10 +45,10 @@ public class Parser {
                     } else if (words[0].equals("find")) {
                         TaskList.findTasksContainingKeyword(words);
                     } else {
-                        UI.sayLines(new String[]{"I'm sorry, I don't know what that means"});
+                        Ui.sayLines(new String[]{"I'm sorry, I don't know what that means"});
                     }
                 } catch (IllegalArgumentException e) {
-                    UI.sayLines(new String[]{e.getMessage()});
+                    Ui.sayLines(new String[]{e.getMessage()});
                 }
             }
             words = Arrays.stream(inputScanner.nextLine().strip().split(" ")).toArray(String[]::new);
@@ -82,7 +82,7 @@ public class Parser {
             throw new IllegalArgumentException("OOPS!!! Description can't be empty");
         }
 
-        return descBuilder.substring(0, descBuilder.length() - 1);
+        return descBuilder.substring(0, descBuilder.length() - 1); //remove last whitespace
     }
 
     /**
@@ -117,7 +117,7 @@ public class Parser {
      * @param inFormat The current format
      * @param outFormat The new format
      * @return The reformatted date
-     * @throws IllegalArgumentException If date is in an incorrect format
+     * @throws IllegalArgumentException If date has incorrect format
      */
     public static String reformatDate(String date, String inFormat, String outFormat) {
         DateTimeFormatter formatter = new DateTimeFormatterBuilder()
@@ -133,7 +133,7 @@ public class Parser {
      * @param inFormat The current format
      * @param outFormat The new format
      * @return The reformatted datetime
-     * @throws IllegalArgumentException If datetime is in an incorrect format
+     * @throws IllegalArgumentException If datetime has incorrect format
      */
     public static String reformatDateTime(String dateTime, String inFormat, String outFormat) {
         DateTimeFormatter formatter = new DateTimeFormatterBuilder()
