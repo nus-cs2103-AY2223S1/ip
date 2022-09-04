@@ -3,6 +3,7 @@ package duke.task;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import duke.DukeException;
 
@@ -53,12 +54,9 @@ public class TaskList {
      * @return A new TaskList of every task which description contains a specified keyword (or phrase).
      */
     public TaskList allContaining(String keyword) {
-        ArrayList<Task> matchingList = new ArrayList<>();
-        for (Task task : tasks) {
-            if (task.contains(keyword)) {
-                matchingList.add(task);
-            }
-        }
+        ArrayList<Task> matchingList = tasks.stream()
+                .filter(x -> x.contains(keyword))
+                .collect(Collectors.toCollection(ArrayList::new));
         return new TaskList(matchingList);
     }
 
@@ -70,12 +68,9 @@ public class TaskList {
      * @return A new TaskList of every task that occurs by/at a specified date.
      */
     public TaskList allOnDate(LocalDate date) {
-        ArrayList<Task> matchingList = new ArrayList<>();
-        for (Task task : tasks) {
-            if (task.onDate(date)) {
-                matchingList.add(task);
-            }
-        }
+        ArrayList<Task> matchingList = tasks.stream()
+                .filter(x -> x.onDate(date))
+                .collect(Collectors.toCollection(ArrayList::new));
         return new TaskList(matchingList);
     }
 
@@ -87,12 +82,9 @@ public class TaskList {
      *     that can be stored in the hard disk.
      */
     public String[] allToData() {
-        int count = tasks.size();
-        String[] strings = new String[count];
-        for (int i = 0; i < count; i++) {
-            strings[i] = tasks.get(i).toData();
-        }
-        return strings;
+        return tasks.stream()
+                .map(Task::toData)
+                .toArray(String[]::new);
     }
 
     /**
@@ -102,12 +94,9 @@ public class TaskList {
      * @return An array of strings representing each task in the TaskList.
      */
     public String[] allToString() {
-        int count = tasks.size();
-        String[] strings = new String[count];
-        for (int i = 0; i < count; i++) {
-            strings[i] = tasks.get(i).toString();
-        }
-        return strings;
+        return tasks.stream()
+                .map(Task::toString)
+                .toArray(String[]::new);
     }
 
     /**
