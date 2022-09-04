@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.function.BiFunction;
 
 /**
- * Defines <Code>Parser</Code> class.
+ * Defines {@code Parser} class.
  * <p>
- *  <Code>Parser</Code> class is in charge of the following:
+ *  {@code Parser} class is in charge of the following:
  *  <ul>
  *      <li>Parse user inputs given as `String`.</li>
  *      <li>Check for erroneous inputs.</li>
@@ -19,17 +19,17 @@ import java.util.function.BiFunction;
  */
 public class Parser {
     /**
-     * <Code>BiFunction</Code> to add task to `taskList`.
+     * {@code BiFunction} to add task to `taskList`.
      * <p>
      *  Accepts:
      *  <ol>
-     *     <li><Code>TaskList</Code> object of the running <Code>Duke</Code>
+     *     <li>{@code TaskList} object of the running {@code Duke}
      *     program.</li>
-     *     <li>Full <Code>String</Code> input from user.</li>
+     *     <li>Full {@code String} input from user.</li>
      *  </ol>
      *  Returns:
      *  <ol>
-     *     <li><Code>String</Code> output to be displayed to user.</li>
+     *     <li>{@code String} output to be displayed to user.</li>
      *  </ol>
      * </p>
      */
@@ -37,17 +37,17 @@ public class Parser {
             TaskList::add;
 
     /**
-     * <Code>BiFunction</Code> to delete task from <Code>taskList</Code>.
+     * {@code BiFunction} to delete task from {@code taskList}.
      * <p>
      *  Accepts:
      *  <ol>
-     *     <li><Code>TaskList</Code> object of the running <Code>Duke</Code>
+     *     <li>{@code TaskList} object of the running {@code Duke}
      *     program.</li>
-     *     <li>Full <Code>String</Code> input from user.</li>
+     *     <li>Full {@code String} input from user.</li>
      *  </ol>
      *  Returns:
      *  <ol>
-     *     <li><Code>String</Code> output to be displayed to user.</li>
+     *     <li>{@code String} output to be displayed to user.</li>
      *  </ol>
      * </p>
      */
@@ -55,17 +55,17 @@ public class Parser {
             TaskList::delete;
 
     /**
-     * <Code>BiFunction</Code> to mark task as done.
+     * {@code BiFunction} to mark task as done.
      * <p>
      *  Accepts:
      *  <ol>
-     *     <li><Code>TaskList</Code> object of the running <Code>Duke</Code>
+     *     <li>{@code TaskList} object of the running {@code Duke}
      *     program.</li>
-     *     <li>Full <Code>String</Code> input from user.</li>
+     *     <li>Full {@code String} input from user.</li>
      *  </ol>
      *  Returns:
      *  <ol>
-     *     <li><Code>String</Code> output to be displayed to user.</li>
+     *     <li>{@code String} output to be displayed to user.</li>
      *  </ol>
      * </p>
      */
@@ -76,17 +76,17 @@ public class Parser {
     };
 
     /**
-     * <Code>BiFunction</Code> to mark task as undone.
+     * {@code BiFunction} to mark task as undone.
      * <p>
      *  Accepts:
      *  <ol>
-     *     <li><Code>TaskList</Code> object of the running <Code>Duke</Code>
+     *     <li>{@code TaskList} object of the running {@code Duke}
      *     program.</li>
-     *     <li>Full <Code>String</Code> input from user.</li>
+     *     <li>Full {@code String} input from user.</li>
      *  </ol>
      *  Returns:
      *  <ol>
-     *     <li><Code>String</Code> output to be displayed to user.</li>
+     *     <li>{@code String} output to be displayed to user.</li>
      *  </ol>
      * </p>
      */
@@ -97,17 +97,17 @@ public class Parser {
     };
 
     /**
-     * <Code>BiFunction</Code> to list out all tasks in <Code>taskList</Code>.
+     * {@code BiFunction} to list out all tasks in {@code taskList}.
      * <p>
      *  Accepts:
      *  <ol>
-     *     <li><Code>TaskList</Code> object of the running <Code>Duke</Code>
+     *     <li>{@code TaskList} object of the running {@code Duke}
      *     program.</li>
-     *     <li>Full <Code>String</Code> input from user.</li>
+     *     <li>Full {@code String} input from user.</li>
      *  </ol>
      *  Returns:
      *  <ol>
-     *     <li><Code>String</Code> output to be displayed to user.</li>
+     *     <li>{@code String} output to be displayed to user.</li>
      *  </ol>
      * </p>
      */
@@ -118,17 +118,17 @@ public class Parser {
     };
 
     /**
-     * <Code>BiFunction</Code> to find word among tasks in the task list.
+     * {@code BiFunction} to find word among tasks in the task list.
      * <p>
      *  Accepts:
      *  <ol>
-     *     <li><Code>TaskList</Code> object of the running <Code>Duke</Code>
+     *     <li>{@code TaskList} object of the running {@code Duke}
      *     program.</li>
-     *     <li>Full <Code>String</Code> input from user.</li>
+     *     <li>Full {@code String} input from user.</li>
      *  </ol>
      *  Returns:
      *  <ol>
-     *     <li><Code>String</Code> output to be displayed to user.</li>
+     *     <li>{@code String} output to be displayed to user.</li>
      *  </ol>
      * </p>
      */
@@ -138,17 +138,17 @@ public class Parser {
     };
 
     /**
-     * <Code>BiFunction</Code> to exit program.
+     * {@code BiFunction} to exit program.
      * <p>
      *  Accepts:
      *  <ol>
-     *     <li><Code>TaskList</Code> object of the running <Code>Duke</Code>
+     *     <li>{@code TaskList} object of the running {@code Duke}
      *     program.</li>
-     *     <li>Full <Code>String</Code> input from user.</li>
+     *     <li>Full {@code String} input from user.</li>
      *  </ol>
      *  Returns:
      *  <ol>
-     *     <li><Code>String</Code> output to be displayed to user.</li>
+     *     <li>{@code String} output to be displayed to user.</li>
      *  </ol>
      * </p>
      */
@@ -159,8 +159,8 @@ public class Parser {
     };
 
     /**
-     * <Code>HashMap</Code> of commands that maps to their
-     * respective <Code>BiFunction</Code>s.
+     * {@code HashMap} of commands that maps to their
+     * respective {@code BiFunction}s.
      */
     private static final HashMap<String,
             BiFunction<TaskList, String, String>> commands = new HashMap<>();
@@ -177,15 +177,15 @@ public class Parser {
     }
 
     /**
-     * Points to <Code>Duke</Code>'s current taskList. Used to keep track
+     * Points to {@code Duke}'s current taskList. Used to keep track
      * of size.
      */
     private final TaskList taskList;
 
     /**
-     * Constructor for <Code>Parser</Code> object.
-     * @param taskList <Code>TaskList</Code> object belonging to
-     *                 <Code>Duke</Code>.
+     * Constructor for {@code Parser} object.
+     * @param taskList {@code TaskList} object belonging to
+     *                 {@code Duke}.
      */
     public Parser(TaskList taskList) {
         this.taskList = taskList;
@@ -193,7 +193,7 @@ public class Parser {
 
     /**
      * Handles user inputs and check for errors.
-     * @param userInput      Full <Code>String</Code> input from user.
+     * @param userInput      Full {@code String} input from user.
      * @throws DukeException Throw exception if command format is wrong.
      */
     public BiFunction<TaskList, String, String> handleUserInputs(
@@ -242,7 +242,7 @@ public class Parser {
 
     /**
      * Checks input of "deadline" commands for errors.
-     * @param userInput      Full <Code>String</Code> input from user.
+     * @param userInput      Full {@code String} input from user.
      * @throws DukeException Throw exception if command format is wrong.
      */
     private void testInputForDeadline(String userInput) throws DukeException {
@@ -251,7 +251,8 @@ public class Parser {
         if (hasNoSpaceAtIndexEight || isMissingDelimiter) {
             throw new DukeException("Wrong format! To add a new "
                     + "deadline, please enter the following:\n"
-                    + "   deadline [TASK DESCRIPTION] /by [DUE DATE]\n");
+                    + "   deadline [TASK DESCRIPTION] /by [YYYY/MM/DD] "
+                    + "(/p [PRIORITY])");
         }
         String dateString =
                 userInput.substring(userInput.indexOf("/by") + 4);
@@ -262,14 +263,14 @@ public class Parser {
         } catch (DateTimeParseException e) {
             throw new DukeException("Wrong date format! To add a new "
                     + "deadline, please enter the following:\n"
-                    + "   deadline [TASK DESCRIPTION] /by "
-                    + "[YYYY/MM/DD]\n");
+                    + "   deadline [TASK DESCRIPTION] /by [YYYY/MM/DD] "
+                    + "(/p [PRIORITY])\n");
         }
     }
 
     /**
      * Checks input of "event" commands for errors.
-     * @param userInput      Full <Code>String</Code> input from user.
+     * @param userInput      Full {@code String} input from user.
      * @throws DukeException Throw exception if command format is wrong.
      */
     private void testInputForEvent(String userInput) throws DukeException {
@@ -278,26 +279,28 @@ public class Parser {
         if (hasNoSpaceAtIndexFive || isMissingDelimiter) {
             throw new DukeException("Wrong format! To add a new "
                     + "event, please enter the following:\n"
-                    + "   event [TASK DESCRIPTION] /at [VENUE]\n");
+                    + "   event [TASK DESCRIPTION] /at [VENUE] "
+                    + "(/p [PRIORITY])");
         }
     }
 
     /**
      * Checks input of "todo" commands for errors.
-     * @param userInput      Full <Code>String</Code> input from user.
+     * @param userInput      Full {@code String} input from user.
      * @throws DukeException Throw exception if command format is wrong.
      */
     private void testInputForToDo(String userInput) throws DukeException {
         String[] args = userInput.split(" ");
         if ((args.length < 2)) {
             throw new DukeException("Wrong format! To create a "
-                    + "'todo' task, type:\n   todo [DESCRIPTION]\n");
+                    + "'todo' task, type:\n   todo [DESCRIPTION] "
+                    + "(/p [PRIORITY])\n");
         }
     }
 
     /**
      * Checks input of "delete" commands for errors.
-     * @param userInput      Full <Code>String</Code> input from user.
+     * @param userInput      Full {@code String} input from user.
      * @throws DukeException Throw exception if command format is wrong.
      */
     private void testInputForDelete(String userInput) throws DukeException {
@@ -326,7 +329,7 @@ public class Parser {
 
     /**
      * Checks input of "mark" commands for errors.
-     * @param userInput      Full <Code>String</Code> input from user.
+     * @param userInput      Full {@code String} input from user.
      * @throws DukeException Throw exception if command format is wrong.
      */
     private void testInputForMark(String userInput) throws DukeException {
@@ -355,7 +358,7 @@ public class Parser {
 
     /**
      * Checks input of "unmark" commands for errors.
-     * @param userInput      Full <Code>String</Code> input from user.
+     * @param userInput      Full {@code String} input from user.
      * @throws DukeException Throw exception if command format is wrong.
      */
     private void testInputForUnmark(String userInput) throws DukeException {
@@ -384,7 +387,7 @@ public class Parser {
 
     /**
      * Checks input of "list" commands for errors.
-     * @param userInput      Full <Code>String</Code> input from user.
+     * @param userInput      Full {@code String} input from user.
      * @throws DukeException Throw exception if command format is wrong.
      */
     private void testInputForList(String userInput) throws DukeException {
@@ -397,7 +400,7 @@ public class Parser {
 
     /**
      * Checks input of "find" commands for errors.
-     * @param userInput      Full <Code>String</Code> input from user.
+     * @param userInput      Full {@code String} input from user.
      * @throws DukeException Throw exception if command format is wrong.
      */
     private void testInputForFind(String userInput) throws DukeException {
@@ -410,7 +413,7 @@ public class Parser {
 
     /**
      * Checks input of "bye" commands for errors.
-     * @param userInput      Full <Code>String</Code> input from user.
+     * @param userInput      Full {@code String} input from user.
      * @throws DukeException Throw exception if command format is wrong.
      */
     private void testInputForBye(String userInput) throws DukeException {
