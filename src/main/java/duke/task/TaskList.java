@@ -112,51 +112,72 @@ public class TaskList {
     /**
      * Deletes a Task from the TaskList.
      *
-     * @param n The number order of the specified task to delete.
+     * @param numbers The number order of the specified task to delete.
      * @return The task that was deleted.
      * @throws DukeException when the task corresponding to the specified number does not exist.
      */
-    public Task delete(int n) throws DukeException {
+    public ArrayList<Task> delete(Integer[] numbers) throws DukeException {
+        assert numbers.length != 0 : "TaskList::delete invoked with empty array.";
+        Arrays.sort(numbers);
+        ArrayList<Task> deletedTasks = new ArrayList<>();
         try {
-            Task task = tasks.get(n - 1);
-            tasks.remove(task);
-            return task;
+            for (int i = 0; i < numbers.length; i++) {
+                Task task = tasks.get(numbers[i] - i - 1);
+                tasks.remove(task);
+                deletedTasks.add(task);
+            }
+            return deletedTasks;
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("The specified task does not exist.");
+            throw new DukeException("There's a specified task that does not exist.\n"
+                    + "The other tasks have been deleted.");
         }
     }
 
     /**
      * Marks a task as done.
      *
-     * @param n The number order of the specified task to mark as done.
-     * @return The task that was marked as done.
+     * @param numbers The numbers (in the list) of the specified tasks to mark as done.
+     * @return The tasks that were marked as done.
      * @throws DukeException when the task corresponding to the specified number does not exist.
      */
-    public Task mark(int n) throws DukeException {
+    public ArrayList<Task> mark(Integer[] numbers) throws DukeException {
+        assert numbers.length != 0 : "TaskList::mark invoked with empty array.";
+        Arrays.sort(numbers);
+        ArrayList<Task> markedTasks = new ArrayList<>();
         try {
-            Task task = tasks.get(n - 1);
-            task.markAsDone();
-            return task;
+            for (Integer number : numbers) {
+                Task task = tasks.get(number - 1);
+                task.markAsDone();
+                markedTasks.add(task);
+            }
+            return markedTasks;
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("The specified task does not exist.");
+            throw new DukeException("There's a specified task that does not exist.\n"
+                    + "The other tasks have been marked.");
         }
     }
 
     /**
      * Marks a task as not done.
      *
-     * @param n The number order of the specified task to mark as not done.
-     * @return The task that was marked as not done.
+     * @param numbers The numbers (in the list) of the specified tasks to mark as not done.
+     * @return The tasks that were marked as not done.
      * @throws DukeException when the task corresponding to the specified number does not exist.
      */
-    public Task unmark(int n) throws DukeException {
+    public ArrayList<Task> unmark(Integer[] numbers) throws DukeException {
+        assert numbers.length != 0 : "TaskList::unmark invoked with empty array.";
+        Arrays.sort(numbers);
+        ArrayList<Task> unmarkedTasks = new ArrayList<>();
         try {
-            Task task = tasks.get(n - 1);
-            task.markAsNotDone();
-            return task;
+            for (Integer number : numbers) {
+                Task task = tasks.get(number - 1);
+                task.markAsNotDone();
+                unmarkedTasks.add(task);
+            }
+            return unmarkedTasks;
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("The specified task does not exist.");
+            throw new DukeException("There's a specified task that does not exist.\n"
+                    + "The other tasks have been unmarked.");
         }
     }
 

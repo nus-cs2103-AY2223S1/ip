@@ -1,5 +1,7 @@
 package duke.command;
 
+import java.util.ArrayList;
+
 import duke.DukeException;
 import duke.Storage;
 import duke.Ui;
@@ -11,20 +13,20 @@ import duke.task.TaskList;
  * that will delete a task from Duke's task list.
  */
 public class DeleteCommand extends Command {
-    /** The number of the task to be deleted. */
-    private final int n;
+    /** The numbers of the tasks to be deleted. */
+    private final Integer[] numbers;
 
     /**
      * Constructs a new DeleteCommand.
      *
-     * @param n The number (as displayed in the full list) of the task to be deleted.
+     * @param numbers The numbers (as displayed in the full list) of the task to be deleted.
      */
-    public DeleteCommand(int n) {
-        this.n = n;
+    public DeleteCommand(Integer[] numbers) {
+        this.numbers = numbers;
     }
 
     /**
-     * Deletes a task from Duke.
+     * Deletes tasks from Duke.
      *
      * @param tasks The specified TaskList involved with the command.
      * @param ui The specified Ui involved with the command.
@@ -34,8 +36,8 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        Task task = tasks.delete(n);
+        ArrayList<Task> deletedTasks = tasks.delete(numbers);
         storage.writeToFile(tasks);
-        return ui.showDeleted(task, tasks);
+        return ui.showDeleted(deletedTasks, tasks);
     }
 }

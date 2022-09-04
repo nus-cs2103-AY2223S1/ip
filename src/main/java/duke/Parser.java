@@ -2,6 +2,7 @@ package duke;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.Arrays;
 
 import duke.command.AddCommand;
 import duke.command.Command;
@@ -120,14 +121,17 @@ public class Parser {
      */
     private static DeleteCommand parseDelete(String fullCommand) throws DukeException {
         if (fullCommand.length() == 6) {
-            throw new DukeException("Specify which task to delete with a single integer.");
+            throw new DukeException("Specify which tasks to delete with integers.");
         }
         try {
             String input = fullCommand.substring(7);
-            int n = Integer.parseInt(input);
-            return new DeleteCommand(n);
+            String[] strings = input.split(" ");
+            Integer[] numbers = Arrays.stream(strings)
+                    .map(Integer::parseInt)
+                    .toArray(Integer[]::new);
+            return new DeleteCommand(numbers);
         } catch (NumberFormatException e) {
-            throw new DukeException("Specify which task to delete with a single integer.");
+            throw new DukeException("Specify which tasks to delete with integers.");
         }
     }
 
@@ -199,14 +203,17 @@ public class Parser {
      */
     private static UnmarkCommand parseUnmark(String fullCommand) throws DukeException {
         if (fullCommand.length() == 6) {
-            throw new DukeException("Specify which task to unmark with a single integer.");
+            throw new DukeException("Specify which tasks to unmark with integers.");
         }
         try {
             String input = fullCommand.substring(7);
-            int n = Integer.parseInt(input);
-            return new UnmarkCommand(n);
+            String[] strings = input.split(" ");
+            Integer[] numbers = Arrays.stream(strings)
+                    .map(Integer::parseInt)
+                    .toArray(Integer[]::new);
+            return new UnmarkCommand(numbers);
         } catch (NumberFormatException e) {
-            throw new DukeException("Specify which task to unmark with a single integer.");
+            throw new DukeException("Specify which tasks to unmark with integers.");
         }
     }
 
@@ -219,14 +226,17 @@ public class Parser {
      */
     private static MarkCommand parseMark(String fullCommand) throws DukeException {
         if (fullCommand.length() == 4) {
-            throw new DukeException("Specify which task to mark with a single integer.");
+            throw new DukeException("Specify which tasks to mark with integers.");
         }
         try {
             String input = fullCommand.substring(5);
-            int n = Integer.parseInt(input);
-            return new MarkCommand(n);
+            String[] strings = input.split(" ");
+            Integer[] numbers = Arrays.stream(strings)
+                    .map(Integer::parseInt)
+                    .toArray(Integer[]::new);
+            return new MarkCommand(numbers);
         } catch (NumberFormatException e) {
-            throw new DukeException("Specify which task to mark with a single integer.");
+            throw new DukeException("Specify which tasks to mark with integers.");
         }
     }
 }
