@@ -8,33 +8,47 @@ import chacha.tasks.Task;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Chacha {
-    public static void main(String[] args) {
-        boolean isExit = false;
-        Ui ui = new Ui();
-        System.out.println(ui.printWelcome());
+
+    private Storage storage;
+    private TaskList taskList;
+    private Ui ui;
+
+    public Chacha(String filePath) {
         
-        TaskList taskList = new TaskList();
+        ui = new Ui();
+        storage = new Storage("data/tasks.txt");
+        try {
+            taskList = new TaskList(storage.load());
+        } catch (IOException e) {
+            ui.printError("making new file");
+            taskList = new TaskList();
+        }
+    }
+    public static void main(String[] args) {
+        new Chacha("data/tasks.txt").run();
+    }     
+
+    public void run() {
+        System.out.println(ui.printWelcome());
+        boolean isExit = false;
         while (!isExit) {
             try {
                 String fullCommand = ui.readInput();
                 Command command = Parser.parse(fullCommand);
-                command.execute(taskList, ui);
+                command.execute(taskList, ui, storage);
                 isExit = command.isExit();
             } catch (ChachaException e) {
                 ui.printError(e.getMessage());
             }
         }
-        System.out.println("Bye. Hope to see you again soon!");
-    }
-
-    private static void loadData(String filePath) throws FileNotFoundException {
-        File f = new File(filePath); // create a File for the given file path
-        Scanner s = new Scanner(f); // create a Scanner using the File as the source
-        while (s.hasNext()) {
-            //load task objects into array
-            System.out.println(s.nextLine());
+        try {
+            storage.saveToFile(taskList);
+        } catch (IOException e) {
+            System.out.println("Unable to save file");
         }
+        System.out.println("Bye. Hope to see you again soon!");
     }
 }

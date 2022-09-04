@@ -6,13 +6,13 @@ import java.time.temporal.ChronoUnit;
 
 public class Event extends Task {
     private String description;
-    private String range;
+    private String date;
     private boolean isDone;
     private String type;
 
-    public Event(String description, String range) {
+    public Event(String description, String date) {
         this.description = description;
-        this.range = range;
+        this.date = date;
         this.type = "E";
     }
 
@@ -37,12 +37,12 @@ public class Event extends Task {
     }
 
     public String getDate() {
-        return range;
+        return date;
     }
 
     @Override
     public String toString() {
-        return "[" + type + "]" + "[" + getStatusIcon() + "] " + description + "(at: " + range + ")";
+        return "[" + type + "]" + "[" + getStatusIcon() + "] " + description + " (at: " + date + ")";
     }
      
 }
