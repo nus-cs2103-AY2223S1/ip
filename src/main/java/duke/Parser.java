@@ -1,11 +1,10 @@
 
 package duke;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 
 public class Parser {
-    static ArrayList<Task> array = new ArrayList<>(100);
+    static ArrayList<Task> listOfTasks = new ArrayList<>(100);
 
     public static String startParse(String input) {
 
@@ -22,14 +21,14 @@ public class Parser {
 
 
         } else if (output.equals("list")) {
-                return ops.displayList(array);
+                return ops.displayList(listOfTasks);
 
         } else if (firstword.equals("todo")) {
             if (!Storage.fileExists()) {
                     return("File doesnt exist yet");
             }
             try {
-                return tl.todo(array, arr);
+                return tl.todo(listOfTasks, arr);
             } catch (DukeException e1) {
                     return(e1.toString());
             }
@@ -43,7 +42,7 @@ public class Parser {
 
 
 
-                return tl.deadline(array, arr2[0], arr3[0], arr3[1]);
+                return tl.deadline(listOfTasks, arr2[0], arr3[0], arr3[1]);
 
             } else if (firstword.equals("event")) {
                 if (!Storage.fileExists()) {
@@ -55,22 +54,22 @@ public class Parser {
 
 
 
-                return tl.event(array, arr2[0], arr3[0], arr3[1]);
+                return tl.event(listOfTasks, arr2[0], arr3[0], arr3[1]);
 
             } else if (firstword.equals("mark")) {
                 int num = Integer.parseInt(arr[1]);
-                return ops.mark(array, num);
+                return ops.mark(listOfTasks, num);
             } else if (firstword.equals("unmark")) {
                 int num = Integer.parseInt(arr[1]);
-                return ops.unmark(array, num);
+                return ops.unmark(listOfTasks, num);
             } else if (firstword.equals("delete")) {
                 int num = Integer.parseInt(arr[1]);
-                return tl.delete(array, num);
+                return tl.delete(listOfTasks, num);
 
 
             } else if(firstword.equals("find")) {
                 String str = arr[1];
-                return ops.findWord(str,array);
+                return ops.findWord(str, listOfTasks);
 
 
 
