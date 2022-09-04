@@ -21,6 +21,7 @@ public class DeleteCommand extends Command {
     public DeleteCommand(int index) {
         super(CommandType.DELETE);
         this.index = index - 1;
+        assert this.index >= 0;
     }
 
     /**

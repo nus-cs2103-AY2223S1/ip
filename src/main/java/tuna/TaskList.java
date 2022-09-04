@@ -31,6 +31,7 @@ public class TaskList {
      * @return task located at the specified index.
      */
     public Task getTask(int index) {
+        assert index >= 0 && index < data.size();
         return data.get(index);
     }
 
@@ -58,6 +59,7 @@ public class TaskList {
      * @param index index of the task to be deleted.
      */
     public void deleteTask(int index) {
+        assert index >= 0 && index < data.size();
         data.remove(index);
     }
 
@@ -129,6 +131,7 @@ public class TaskList {
      * @param index index of the task to be marked.
      */
     public void markItem(int index) {
+        assert index >= 0 && index < data.size();
         data.get(index).markAsDone();
     }
 
@@ -138,6 +141,7 @@ public class TaskList {
      * @param index index of the task to be un-marked.
      */
     public void unMarkItem(int index) {
+        assert index >= 0 && index < data.size();
         data.get(index).markAsNotDone();
     }
 

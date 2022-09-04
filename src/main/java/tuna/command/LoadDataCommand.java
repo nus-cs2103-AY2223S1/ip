@@ -23,6 +23,8 @@ public class LoadDataCommand extends Command {
      */
     public LoadDataCommand(String folderPath, String filePath) {
         super(CommandType.LOAD);
+        assert !folderPath.equals("");
+        assert !filePath.equals("");
         this.folderPath = folderPath;
         this.filePath = filePath;
     }
