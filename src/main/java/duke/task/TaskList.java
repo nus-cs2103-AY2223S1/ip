@@ -3,6 +3,7 @@ package duke.task;
 import duke.common.DukeException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -109,6 +110,17 @@ public class TaskList {
         filtered.sort((x, y) -> ((Deadline) x).date.compareTo(((Deadline) y).date));
 
         return new TaskList(filtered);
+    }
+
+    /**
+     * Sort the list of tasks by status then by title
+     * 
+     * @return Sorted task list
+     */
+    public TaskList sort() {
+        Collections.sort(this.list);
+
+        return this;
     }
 
     @Override

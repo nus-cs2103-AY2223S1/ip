@@ -43,6 +43,8 @@ public class Parser {
                 return new ListCommand();
             case "reminder":
                 return new ReminderCommand();
+            case "sort":
+                return new SortCommand();
             case "find":
                 return new FindCommand(inputs[1]);
             case "mark":
