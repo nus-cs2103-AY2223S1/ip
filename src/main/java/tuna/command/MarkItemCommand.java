@@ -20,6 +20,7 @@ public class MarkItemCommand extends Command {
     public MarkItemCommand(int index) {
         super(CommandType.MARK);
         this.index = index - 1;
+        assert this.index >= 0;
     }
 
     /**

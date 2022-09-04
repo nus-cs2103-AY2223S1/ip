@@ -20,6 +20,7 @@ public class UnMarkItemCommand extends Command {
     public UnMarkItemCommand(int index) {
         super(CommandType.UNMARK);
         this.index = index - 1;
+        assert this.index >= 0;
     }
 
     /**

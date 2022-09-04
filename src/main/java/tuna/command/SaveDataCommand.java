@@ -20,6 +20,7 @@ public class SaveDataCommand extends Command {
      */
     public SaveDataCommand(String filePath) {
         super(CommandType.SAVE);
+        assert !filePath.equals("");
         this.filePath = filePath;
     }
 

@@ -28,6 +28,8 @@ public class Storage {
      * @throws TunaException exception thrown when data file has incorrect formatting.
      */
     public void loadFileContents(String folderPath, String filePath, TaskList tasks) throws TunaException {
+        assert !folderPath.equals("");
+        assert !filePath.equals("");
         try {
             File directory = new File(folderPath);
             directory.mkdir();
@@ -90,6 +92,7 @@ public class Storage {
      * @throws TunaException exception thrown when error occurs in processing the tasks.
      */
     public void saveFileContents(String filePath, TaskList tasks) throws TunaException {
+        assert !filePath.equals("");
         try {
             FileWriter fw = new FileWriter(filePath);
             saveTasks(fw, tasks);
