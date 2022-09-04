@@ -27,6 +27,16 @@ public class Deadline extends Task {
     }
 
     /**
+     * Updates the date of the Deadline.
+     *
+     * @param newDate The new date for the Deadline.
+     */
+    @Override
+    public void updateDate(LocalDate newDate) {
+        by = newDate;
+    }
+
+    /**
      * Converts the Deadline into the String format required to be saved in the Storage.
      *
      * @return String formatted data of the Deadline.

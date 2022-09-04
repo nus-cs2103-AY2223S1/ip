@@ -109,4 +109,14 @@ public class Ui {
                         : String.format("\t%d.%s\n", j + 1, foundTasks.get(j)))
                 .reduce("Here are the matching task(s) in your list:\n", (x, y) -> x + y);
     }
+
+    /**
+     * Returns the update-message.
+     *
+     * @param task The Task to be updated.
+     * @return The update-message.
+     */
+    public String showUpdate(Task task) {
+        return String.format("%s%s%n", "OK, I've updated this task's date:\n", task);
+    }
 }

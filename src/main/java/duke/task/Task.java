@@ -12,7 +12,7 @@ import duke.DukeException;
  *
  */
 
-public class Task {
+public abstract class Task {
     private String description;
     private boolean isDone;
 
@@ -26,6 +26,13 @@ public class Task {
         this.description = description;
         this.isDone = isDone;
     }
+
+    /**
+     * Updates the date (if any) for the Task.
+     *
+     * @param newDate The new date for the Task.
+     */
+    public abstract void updateDate(LocalDate newDate);
 
     /**
      * Generates the status icon of the Task depending on whether it is done or not.

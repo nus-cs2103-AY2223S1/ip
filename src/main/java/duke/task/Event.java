@@ -27,6 +27,16 @@ public class Event extends Task {
     }
 
     /**
+     * Updates the date of the Event.
+     *
+     * @param newDate The new date for the Event.
+     */
+    @Override
+    public void updateDate(LocalDate newDate) {
+        at = newDate;
+    }
+
+    /**
      * Converts the Event into the String format required to be saved in the Storage.
      *
      * @return String formatted data of the Event.

@@ -13,6 +13,7 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.ToDoCommand;
 import duke.command.UnmarkCommand;
+import duke.command.UpdateCommand;
 
 /**
  * Parser deals with making sense of the user command.
@@ -25,7 +26,7 @@ import duke.command.UnmarkCommand;
 public class Parser {
 
     private enum CommandTag {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND, UPDATE
     }
 
     /**
@@ -94,6 +95,17 @@ public class Parser {
                     throw new DukeException("Please enter a keyword!");
                 } else {
                     return new FindCommand(splitInputCommand[1].split(" "));
+                }
+            case UPDATE:
+                if (splitInputCommand.length == 1) {
+                    throw new DukeException("Please enter the task number to update!");
+                } else {
+                    String[] splitDescriptionArray = splitInputCommand[1].split(" /to ");
+                    if (splitDescriptionArray.length == 1) {
+                        throw new DukeException("OOPS!!! The new date for the task cannot be empty.");
+                    }
+                    return new UpdateCommand(Integer.parseInt(splitDescriptionArray[0]) - 1 ,
+                            LocalDate.parse(splitDescriptionArray[1]));
                 }
             default:
                 throw new DukeException("ERROR...ERROR...WHAT ARE YOU DOING HERE?!");

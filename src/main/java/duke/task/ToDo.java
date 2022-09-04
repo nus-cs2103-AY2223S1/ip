@@ -1,5 +1,9 @@
 package duke.task;
 
+import java.time.LocalDate;
+
+import duke.DukeException;
+
 /**
  * ToDo is a Task that has no date.
  *
@@ -17,6 +21,17 @@ public class ToDo extends Task {
      */
     public ToDo(String description, boolean isDone) {
         super(description, isDone);
+    }
+
+
+    /**
+     * Throws a DukeException as there is no date to update for ToDo.
+     *
+     * @param newDate The new date for the Task.
+     */
+    @Override
+    public void updateDate(LocalDate newDate) {
+        throw new DukeException("You can only update Events and Deadlines!");
     }
 
     /**
