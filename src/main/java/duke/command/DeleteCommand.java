@@ -30,9 +30,12 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {
+        int size = taskList.getSize();
+        assert taskID > 0;
+        assert taskID <= size;
         Task t = taskList.getTask(taskID);
         taskList.deleteFromList(taskID);
-        return ui.showRemovingTaskMessage(t, taskList.getSize());
+        return ui.showRemovingTaskMessage(t, size - 1);
     }
 
 }

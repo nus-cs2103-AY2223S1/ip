@@ -28,6 +28,8 @@ public class MarkingCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {
+        assert taskID > 0;
+        assert taskID <= taskList.getSize();
         if (wantsToMark == true) {
             taskList.markTheTask(taskID);
             return ui.showMarkTaskMessage(taskList.getTask(taskID));
