@@ -60,7 +60,7 @@ public class Storage {
         assert tasks != null : "Storage::writeToFile invoked with null argument.";
         try {
             FileWriter fw = new FileWriter(filePath);
-            String[] dataStrings = tasks.allToData();
+            String[] dataStrings = tasks.convertAllToData();
             for (String s : dataStrings) {
                 fw.write(s);
             }

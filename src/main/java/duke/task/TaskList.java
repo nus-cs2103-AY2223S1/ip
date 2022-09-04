@@ -53,10 +53,10 @@ public class TaskList {
      * @param keyword The specified keyword (or phrase) within the descriptions of tasks.
      * @return A new TaskList of every task which description contains a specified keyword (or phrase).
      */
-    public TaskList allContaining(String keyword) {
+    public TaskList getAllContaining(String keyword) {
         ArrayList<Task> matchingList = tasks.stream()
-                .filter(x -> x.contains(keyword))
-                .collect(Collectors.toCollection(ArrayList::new));
+                    .filter(x -> x.contains(keyword))
+                    .collect(Collectors.toCollection(ArrayList::new));
         return new TaskList(matchingList);
     }
 
@@ -67,10 +67,10 @@ public class TaskList {
      * @param date The specified date by/at which the tasks to find occur.
      * @return A new TaskList of every task that occurs by/at a specified date.
      */
-    public TaskList allOnDate(LocalDate date) {
+    public TaskList getAllOnDate(LocalDate date) {
         assert date != null : "TaskList::allOnDate invoked with null argument.";
         ArrayList<Task> matchingList = tasks.stream()
-                .filter(x -> x.onDate(date))
+                .filter(x -> x.isOnDate(date))
                 .collect(Collectors.toCollection(ArrayList::new));
         return new TaskList(matchingList);
     }
@@ -94,7 +94,7 @@ public class TaskList {
      *
      * @return An array of strings representing each task in the TaskList.
      */
-    public String[] allToString() {
+    public String[] convertAllToString() {
         return tasks.stream()
                 .map(Task::toString)
                 .toArray(String[]::new);
@@ -153,7 +153,7 @@ public class TaskList {
     public Task unmark(int n) throws DukeException {
         try {
             Task task = tasks.get(n - 1);
-            task.unmarkAsDone();
+            task.markAsNotDone();
             return task;
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("The specified task does not exist.");

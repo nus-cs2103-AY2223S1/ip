@@ -68,7 +68,7 @@ public class Event extends Task {
      * @return true if the specified date is the date at which the Event occurs.
      */
     @Override
-    public boolean onDate(LocalDate date) {
+    public boolean isOnDate(LocalDate date) {
         assert date != null : "Event::onDate invoked with null argument.";
         return date.equals(this.date);
     }
