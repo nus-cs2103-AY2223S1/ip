@@ -20,6 +20,9 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDate() {
         return this.date;

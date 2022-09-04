@@ -9,7 +9,6 @@ import duke.ui.Ui;
 
 import java.io.IOException;
 
-
 /** Contains storage, tasks and ui to help interact with user and execute commands */
 public class Duke {
     private Storage storage;
@@ -51,4 +50,5 @@ public class Duke {
             return e.getMessage();
         }
     }
+
 }

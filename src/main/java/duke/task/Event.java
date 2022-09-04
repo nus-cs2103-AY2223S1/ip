@@ -19,6 +19,9 @@ public class Event extends Task {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDate() {
         return this.date;
