@@ -175,6 +175,8 @@ public class Parser {
             return new PriorityCommand(index, priority);
         } catch (IllegalArgumentException e) {
             throw new InvalidPriorityException();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new InvalidInputException();
         }
     }
 
