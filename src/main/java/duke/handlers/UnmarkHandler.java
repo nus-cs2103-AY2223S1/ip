@@ -6,6 +6,12 @@ import duke.models.TaskList;
 import static duke.services.Ui.dukePrint;
 
 public class UnmarkHandler {
+    /**
+     * Handles the UNMARK command
+     * Unmarks a task as not completed according to its index.
+     * @param taskList TaskList containing a list of tasks.
+     * @param input Contains index of the task to be marked as not completed.
+     */
     public static void handle(TaskList taskList, String input) {
         int taskNo = Integer.parseInt(input);
         try {

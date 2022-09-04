@@ -6,6 +6,12 @@ import duke.models.*;
 import static duke.services.Ui.dukePrint;
 
 public class ToDoHandler {
+    /**
+     * Handles the TODO command.
+     * Adds ToDo task to TaskList.
+     * @param taskList TaskList for the event task to be added to.
+     * @param input Event to be added to TaskList.
+     */
     public static void handle(TaskList taskList, String input) throws DukeException {
         String toDo = input;
         if (toDo.length() == 0) {

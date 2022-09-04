@@ -16,12 +16,18 @@ public class Duke {
     private final Parser parser;
     private TaskList taskList;
 
+    /**
+     * Constructor for a Duke instance.
+     */
     public Duke() {
         parser = new Parser();
         storage = new Storage();
         taskList = new TaskList();
     }
 
+    /**
+     * Run method to execute the Duke instance.
+     */
     public void run() {
         taskList = storage.load();
         Scanner s = new Scanner(System.in);
@@ -69,6 +75,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Main method. Initiates a Duke instance and runs it.
+     * @param args Command line arguments.
+     */
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.run();

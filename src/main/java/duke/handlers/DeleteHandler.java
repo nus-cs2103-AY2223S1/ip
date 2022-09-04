@@ -6,6 +6,12 @@ import duke.models.TaskList;
 import static duke.services.Ui.dukePrint;
 
 public class DeleteHandler {
+    /**
+     * Handles the DELETE command.
+     * Deletes a task from TaskList.
+     * @param taskList TaskList containing the task to be deleted.
+     * @param input Contains index of the task to be deleted.
+     */
     public static void handle(TaskList taskList, String input) {
         int taskNo = Integer.parseInt(input);
         try {

@@ -7,7 +7,12 @@ import duke.models.TaskList;
 import static duke.services.Ui.dukePrint;
 
 public class EventHandler {
-
+    /**
+     * Handles the Event command.
+     * Adds Event task to TaskList.
+     * @param taskList TaskList for the event task to be added to.
+     * @param input Event to be added to TaskList.
+     */
     public static void handle(TaskList taskList, String input) throws DukeException {
         String[] event = input.split("/", 2);
         if (event.length < 2 || event[1].trim().equals("")) {
