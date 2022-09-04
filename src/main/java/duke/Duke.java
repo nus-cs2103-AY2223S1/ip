@@ -28,6 +28,9 @@ public class Duke {
      */
     public Duke() {
         this.storage = new Storage(FILE_PATH);
+
+        assert (this.storage != null) : "Storage cannot be null";
+
         try {
             this.taskList = this.storage.load();
         } catch (Exception e) {

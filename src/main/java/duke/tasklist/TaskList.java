@@ -4,7 +4,6 @@ import duke.tasks.Task;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Locale;
 
 
 /**
@@ -39,6 +38,8 @@ public class TaskList {
         taskList.get(index).markAsDone();
         String res = "Nice! I've marked this task as having been completed:\n";
         res += taskList.get(index).toString();
+
+        assert (taskList.get(index).getStatusIcon().equals("X")) : "Task should be properly marked as complete";
         return res;
     }
 
@@ -51,6 +52,8 @@ public class TaskList {
         taskList.get(index).markAsUndone();
         String res = "Okay, I've marked this task as not done yet:\n";
         res += taskList.get(index).toString();
+
+        assert (taskList.get(index).getStatusIcon().equals(" ")) : "Task should be properly marked as incomplete";
         return res;
     }
 
@@ -63,6 +66,8 @@ public class TaskList {
         taskList.add(task);
         String res = "Got it, i've added this task to your list:\n  " + task + "\n";
         res += "You now have " + taskList.size() + " tasks in your list.";
+
+        assert (taskList.contains(task)) : "Task should be properly added to the list";
         return res;
     }
 
@@ -77,6 +82,8 @@ public class TaskList {
         String res = "Okay, I've removed this task:\n";
         res += removedTask.toString();
         res += "\nYou now have " + taskList.size() + " tasks in your list.";
+
+        assert (!taskList.contains(removedTask)) : "Task should be properly deleted from the list";
         return res;
     }
 

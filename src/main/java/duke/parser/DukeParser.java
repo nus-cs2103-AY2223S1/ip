@@ -20,7 +20,6 @@ import duke.tasklist.TaskList;
  */
 public class DukeParser {
 
-    private final String BREAK_LINES = "=================================";
 
     private TaskList taskList;
     private String keyword;
@@ -58,7 +57,6 @@ public class DukeParser {
     /**
      * Executes a loaded and parsed instruction.
      *
-     * @param st Storage that we want to save data to after the instruction has been executed
      * @throws DukeException if instruction execution fails
      */
     public Command execute() throws DukeException {
@@ -67,7 +65,6 @@ public class DukeParser {
         }
 
         if (this.keyword.equals("")) {
-            System.out.println(BREAK_LINES);
             throw new DukeException("I can't do anything based off a blank instruction!");
         }
 
@@ -143,7 +140,6 @@ public class DukeParser {
         }
 
         // Actual logic
-        System.out.println(BREAK_LINES);
         if (instructionNum >= this.taskList.getSize() || instructionNum < 0) {
             throw new DukeException("Invalid index provided. Try again?");
         }
@@ -151,13 +147,10 @@ public class DukeParser {
         switch (this.keyword) {
         case "mark":
             return new MarkCommand(instructionNum);
-            // Intentional Fallthrough
         case "unmark":
             return new UnmarkCommand(instructionNum);
-            // Intentional Fallthrough
         default:
             return new DeleteCommand(instructionNum);
-            // Intentional Fallthrough
         }
 
     }
@@ -227,6 +220,8 @@ public class DukeParser {
 
             break;
         }
+
+        assert (newTask != null) : "addTaskInstructionHandler cannot return a null task.";
 
         return new AddCommand(newTask);
 
