@@ -54,6 +54,7 @@ public class Parser {
         if (tasks.size() == 0) {
             return "you got no tasks";
         } else {
+            assert tasks.size() > 0 : "TaskList size should be positive";
             StringBuilder sb = new StringBuilder();
             sb.append("heres your tasks\n");
             for (int i = 0; i < tasks.size(); i++) {
