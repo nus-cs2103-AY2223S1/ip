@@ -9,7 +9,7 @@ import java.time.temporal.ChronoField;
 /**
  * Represents a date and time.
  */
-public class DateTime {
+public class DateTime implements Comparable<DateTime> {
     private static final DateTimeFormatter formatter = new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd")
             .optionalStart().appendPattern(" HHmm").optionalEnd().parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
             .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0).toFormatter();
@@ -32,6 +32,11 @@ public class DateTime {
                 // Try another format
             }
         }
+    }
+
+    @Override
+    public int compareTo(DateTime otherDateTime) {
+        return this.dateTime.compareTo(otherDateTime.dateTime);
     }
 
     @Override
