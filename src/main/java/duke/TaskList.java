@@ -40,12 +40,11 @@ public class TaskList {
         if (findList.size() == 0) {
             return "You have no matching search results.";
         }
-        String res = "";
-        res += "Here are the matching tasks in your list: \n";
+        String res = "Here are the matching tasks in your list: \n";
         for(int i = 0; i<findList.size(); i++) {
             res += i+1 + "." + findList.get(i) + "\n";
         }
-        assert res != "" : "listTasks returns empty string";
+        assert res != "" : "findTasks returns empty string";
         return res;
         
     }
@@ -54,17 +53,13 @@ public class TaskList {
      * List all tasks from master list
      */
     public String listTasks() {
-        String res = "";
         if (myList.size() == 0) {
             return "You have no tasks in your list.";
         }
         else {
-            res += "Here are the tasks in your list: \n";
+            String res = "Here are the tasks in your list: \n";
             for(int i = 0; i<myList.size(); i++) {
-                res += (i+1);
-                res += "."; 
-                res += myList.get(i);
-                res += "\n";
+                res += (i+1) + "." + myList.get(i) + "\n";
             }
             assert res != "" : "listTasks returns empty string";
             return res;
@@ -81,6 +76,7 @@ public class TaskList {
         res += myList.get(itemNumber).getStatusIcon();
         res += "] ";
         res += myList.get(itemNumber).getDescription();
+        assert res != "" : "markTask returns empty string"; 
         return res;
     }
 
