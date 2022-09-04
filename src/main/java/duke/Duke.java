@@ -30,40 +30,6 @@ public class Duke {
     }
 
     /**
-     * Main of the whole programme.
-     *
-     * @param args Arguments.
-     */
-/*    public static void main(String[] args) {
-        Duke duke = new Duke("data/duke.txt");
-        duke.run();
-    }*/
-
-    /**
-     * Runs the bot by taking in user input,
-     * which is then parsed into commands and executed.
-     */
-/*    public void run() {
-
-        ui.showWelcome();
-        boolean isRunning = true;
-
-        while (isRunning) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, storage);
-                isRunning = c.isRunning();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
-            }
-        }
-    }*/
-
-    /**
      * Returns a string of Duke's response to the given input.
      *
      * @param input User input.
