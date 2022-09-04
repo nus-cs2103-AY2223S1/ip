@@ -78,9 +78,9 @@ public class Ui {
      */
     public String listTasksDueOnDateMessage(LocalDate date, ArrayList<Task> tasks) {
         StringBuilder message = new StringBuilder(String.format("Here are the tasks due on %s\n", date));
-        for (Task task : tasks) {
+        tasks.stream().forEach((task) -> {
             message.append(String.format("%s\n", task.toString()));
-        }
+        });
         return message.toString();
     }
 
