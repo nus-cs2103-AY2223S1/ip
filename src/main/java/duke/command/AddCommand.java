@@ -1,11 +1,14 @@
 package duke.command;
 
+import java.util.ArrayList;
+
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import duke.task.Deadline;
 import duke.task.Event;
+import duke.task.Task;
 import duke.task.Todo;
 
 /**
@@ -17,9 +20,9 @@ import duke.task.Todo;
  */
 public class AddCommand extends Command {
 
-    private String type;
-    private String description;
-    private String date;
+    private final String type;
+    private final String description;
+    private final String date;
 
     /**
      * Instantiates the command with information of the task to be added.
@@ -54,19 +57,25 @@ public class AddCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        if (this.type.equals("todo")) {
-            Todo t = new Todo(description);
-            taskList.add(t);
-            return ui.showAdd(t, taskList.getTaskArrayList().size());
-        } else if (this.type.equals("deadline")) {
-            Deadline d = new Deadline(this.description, this.date);
-            taskList.add(d);
-            return ui.showAdd(d, taskList.getTaskArrayList().size());
-        } else {
-            Event e = new Event(this.description, this.date);
-            taskList.add(e);
-            return ui.showAdd(e, taskList.getTaskArrayList().size());
-        }
-    }
+        ArrayList<Task> list = taskList.getTaskArrayList();
+        Task task;
 
+        boolean isTodo = this.type.equals("todo");
+        boolean isDeadline = this.type.equals("deadline");
+        boolean isEvent = this.type.equals("event");
+
+        if (isTodo) {
+            task = new Todo(description);
+        } else if (isDeadline) {
+            task = new Deadline(this.description, this.date);
+        } else if (isEvent) {
+            task = new Event(this.description, this.date);
+        } else {
+            String errorMessage = "Task to be added is invalid. Please input a valid task.";
+            throw new DukeException(errorMessage);
+        }
+
+        taskList.add(task);
+        return ui.showAdd(task, list.size());
+    }
 }

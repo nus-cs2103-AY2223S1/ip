@@ -32,7 +32,9 @@ public class ShowListCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {
-        return "Here are your current tasks:\n" + taskList.printList();
+        String openingMessage = "Here are your current tasks:\n";
+        String allTasks = taskList.printList();
+        return openingMessage + allTasks;
     }
 
 }

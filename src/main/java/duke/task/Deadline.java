@@ -29,17 +29,22 @@ public class Deadline extends Task {
         try {
             this.by = LocalDate.parse(by);
         } catch (DateTimeParseException e) {
-            throw new DukeException("Wrong date/time format. Please use this format: yyyy-mm-dd");
+            String errorMessage = "Wrong date/time format. Please use this format: yyyy-mm-dd";
+            throw new DukeException(errorMessage);
         }
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + formattedDate() + ")";
+        String type = "[D]";
+        String taskDescription = super.toString();
+        String date = " (by: " + formattedDate() + ")";
+        return type + taskDescription + date;
     }
 
     private String formattedDate() {
-        return this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        DateTimeFormatter printedFormat = DateTimeFormatter.ofPattern("MMM d yyyy");
+        return this.by.format(printedFormat);
     }
 
 }
