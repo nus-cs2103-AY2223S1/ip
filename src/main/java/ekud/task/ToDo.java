@@ -15,6 +15,7 @@ public class ToDo extends Task {
      */
     @Override
     public String getFileFormat() {
+        assert this.getStatusIcon().equals("X") || this.getStatusIcon().equals(" ");
         int isDone = this.getStatusIcon() == "X" ? 1 : 0;
         return String.format("T|%d|%s", isDone, this.getDescription());
     }

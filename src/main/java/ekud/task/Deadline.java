@@ -43,6 +43,7 @@ public class Deadline extends Task {
      */
     @Override
     public String getFileFormat() {
+        assert this.getStatusIcon().equals("X") || this.getStatusIcon().equals(" ");
         int isDone = this.getStatusIcon() == "X" ? 1 : 0;
         return String.format("D|%d|%s|%s", isDone, this.getDescription(), this.dueDate.toString());
     }
