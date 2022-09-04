@@ -85,9 +85,28 @@ public class TaskList {
         return this;
     }
 
+    /**
+     * Returns the list of tasks filtered by keyword
+     * 
+     * @param keyword the keyword to be searched
+     * @return the list of tasks filtered by keyword
+     */
     public TaskList filter(String keyword) {
         List<Task> filtered = list.stream().filter(task -> task.title.contains(keyword))
                 .collect(Collectors.<Task>toList());
+
+        return new TaskList(filtered);
+    }
+
+    /**
+     * Returns the list of unfinished deadline tasks sorted by date
+     * 
+     * @return the list of unfinished deadline tasks sorted by date
+     */
+    public TaskList getDeadlineList() {
+        List<Task> filtered = list.stream().filter(task -> task instanceof Deadline && !task.status)
+                .collect(Collectors.<Task>toList());
+        filtered.sort((x, y) -> ((Deadline) x).date.compareTo(((Deadline) y).date));
 
         return new TaskList(filtered);
     }

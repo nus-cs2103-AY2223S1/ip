@@ -12,7 +12,7 @@ public class Deadline extends Task {
 
     public static final String SYMBOL = "D";
 
-    private final LocalDate date;
+    protected final LocalDate date;
 
     /**
      * Constructs a new Deadline instance
