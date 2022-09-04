@@ -74,6 +74,7 @@ public class TaskList {
      * @param task Task to be added to the list.
      */
     public void addTask(Task task) {
+        assert task != null;
         tasks.add(task);
     }
 
@@ -302,6 +303,8 @@ public class TaskList {
      * @return CaCa's response after finding the corresponding task.
      */
     public static String findTask(String keyword) {
+        assert keyword != null;
+
         List<Task> matchingTasks = new ArrayList<>();
 
         int taskCount = 1;
