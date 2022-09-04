@@ -50,9 +50,9 @@ public class DeadlineCommand extends Command {
             storage.addTaskToDisk(task.taskMemo() + System.lineSeparator());
             return ui.printAddTask(task, tasks.getTaskListSize());
         } catch (IOException e) {
-            return ("\t" + e.getMessage());
+            return (e.getMessage());
         } catch (DateTimeParseException e) {
-            return ("\tOOPS!!! Please enter a valid date format (/by yyyy-mm-dd)");
+            return ("OOPS!!! Please enter a valid date format (/by yyyy-mm-dd)");
         }
     }
 

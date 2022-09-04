@@ -36,11 +36,11 @@ public class DeleteCommand extends Command {
             storage.deleteTaskFromDisk(taskNumber);
             return ui.printDeleteTask(removedTask, tasks.getTaskListSize());
         } catch (IndexOutOfBoundsException e) {
-            return ("\tOOPS!!! Please enter a valid task number.");
+            return ("OOPS!!! Please enter a valid task number.");
         } catch (IOException e) {
-            return ("\t" + e.getMessage());
+            return (e.getMessage());
         } catch (NumberFormatException e) {
-            return ("\tOOPS!!! Please enter a valid task number.");
+            return ("OOPS!!! Please enter a valid task number.");
         }
     }
 
