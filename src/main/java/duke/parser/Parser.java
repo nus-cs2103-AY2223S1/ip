@@ -61,6 +61,13 @@ public class Parser {
             case "event":
                 String[] eventArgs = inputs[1].split("\\s+/at\\s+", 2);
                 return new AddCommand(new Event(eventArgs[0], false, eventArgs[1]));
+            case "add_note":
+                String[] addNoteArgs = inputs[1].split("\\s+/note\\s+", 2);
+                return new AddNoteCommand(addNoteArgs[0], addNoteArgs[1]);
+            case "load_note":
+                return new LoadNoteCommand(inputs[1]);
+            case "delete_note":
+                return new DeleteNoteCommand(inputs[1]);
             default:
                 throw new DukeException("Sorry, I don't know what do you mean by that.");
             }
