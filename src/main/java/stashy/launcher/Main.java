@@ -23,7 +23,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            stage.setTitle("Stashy v0.3");
+            stage.setTitle("Stashy v0.4");
             stage.setResizable(false);
             fxmlLoader.<MainWindow>getController().setStashy(stashy);
             stage.show();
