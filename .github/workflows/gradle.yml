@@ -32,7 +32,6 @@ jobs:
 
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: matrix.os == 'ubuntu-latest'
         with:
           files: |
             build/libs/duke.jar
