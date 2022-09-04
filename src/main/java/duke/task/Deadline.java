@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
     private LocalDate date;
-    private static final String TASK_TYPE = "[D]";
+    public static final String TASK_TYPE = "D";
     public static final String CONNECTOR = "by";
 
     /**
@@ -41,7 +41,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return Deadline.TASK_TYPE + super.toString() + " (by: " + this.date.format(DateTimeFormatter
+        return "[" + Deadline.TASK_TYPE + "]" + super.toString() + " (by: " + this.date.format(DateTimeFormatter
                 .ofPattern(Task.LOAD_DATE_FORMAT)) + ")";
     }
 }
