@@ -21,7 +21,7 @@ public class TaskListTest {
         try {
             taskList.add(deadline,
                     commandString,
-                    new Storage(new Ui(), "data.txt", "data"));
+                    new Storage(new Cli(), "data.txt", "data"));
         } catch (IOException e) {
             fail();
         }

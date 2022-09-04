@@ -1,6 +1,8 @@
 package duke;
 
 import duke.command.Command;
+import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -22,8 +24,8 @@ public class Duke {
      * @param fileName name of output file for task list.
      * @param directories output file path's directory names in order.
      */
-    public Duke(String fileName, String... directories) {
-        this.ui = new Ui();
+    public Duke(String fileName, Ui ui, String... directories) {
+        this.ui = ui;
         this.storage = new Storage(ui, fileName, directories);
         this.taskList = new TaskList();
         ui.showWelcome();
@@ -61,11 +63,29 @@ public class Duke {
      * @param args command line arguments.
      */
     public static void main(String[] args) {
-        new Duke(FILE_NAME, DIRECTORIES).run();
+        new Duke(FILE_NAME, new Cli(), DIRECTORIES).run();
     }
 
-    public static Duke initialiseForGui() {
-        return new Duke(FILE_NAME, DIRECTORIES);
+    public static Duke initialiseForGui(VBox dialogContainer, Image dukeImage) {
+        return new Duke(FILE_NAME, new Gui(dialogContainer, dukeImage), DIRECTORIES);
+    }
+
+    public boolean runForGui(String userInput) {
+        Scanner scanner = new Scanner(userInput);
+        boolean isExit = false;
+        while (!isExit && scanner.hasNext()) {
+            String commandString = scanner.nextLine();
+            Command command;
+            try {
+                command = Parser.parse(commandString, taskList);
+            } catch (IllegalArgumentException e) {
+                ui.println(e.getMessage());
+                continue;
+            }
+            command.execute(this.taskList, this.storage, this.ui);
+            isExit = command.getIsExit();
+        }
+        return isExit;
     }
 
     /**

@@ -19,7 +19,7 @@ public class UiTest {
 
     @Test
     public void showLoadingErrorTest() {
-        Ui ui = new Ui();
+        Ui ui = new Cli();
         ui.showLoadingError();
         assertEquals(
                 "------------------------------\nThere was a problem loading the tasks from the output file. " +
