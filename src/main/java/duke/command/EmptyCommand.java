@@ -3,7 +3,7 @@ package duke.command;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-import duke.exception.InvalidCommandException;
+import duke.exception.DukeException;
 
 
 /**
@@ -25,15 +25,11 @@ public class EmptyCommand extends Command {
      * @param taskList unused for EmptyCommand.
      * @param ui unused for EmptyCommand.
      * @param storage unused for EmptyCommand.
-     * @throws InvalidCommandException if the Command can't match Duke's available Commands.
+     * @throws DukeException if the Command can't match Duke's available Commands.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
-        try {
-            throw new InvalidCommandException();
-        } catch (InvalidCommandException ex) {
-            return "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
-        }
+    public String execute (TaskList taskList, Ui ui, Storage storage) throws DukeException {
+        throw new DukeException("I'm sorry, but I don't know what that means.");
     }
 
     /**

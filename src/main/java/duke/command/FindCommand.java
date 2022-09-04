@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.exception.DukeException;
 import duke.task.Task;
 
 /**
@@ -33,7 +34,7 @@ public class FindCommand extends Command {
      * @throws StringIndexOutOfBoundsException if the index exceeds the String length.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         ArrayList<Task> outputList = new ArrayList<Task>();
         int keywordLength = this.keyword.length();
         try {
@@ -52,7 +53,7 @@ public class FindCommand extends Command {
             TaskList outputTaskList = new TaskList(outputList);
             return ui.getList(outputTaskList);
         } catch (StringIndexOutOfBoundsException ex) {
-            return "Oops! String Index Out Of Bounds";
+            throw new DukeException("String Index Out Of Bounds");
         }
     }
 

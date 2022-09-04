@@ -3,6 +3,7 @@ package duke.command;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.exception.DukeException;
 import duke.task.Task;
 
 /**
@@ -31,11 +32,11 @@ public class MarkCommand extends Command {
      * @param taskList the TaskList where a Task to be marked or unmarked.
      * @param ui the Ui provides method to convert Task to String in a representable format.
      * @param storage the Storage to write modified Task into file.
-     * @throws ArrayIndexOutOfBoundsException if the markIndex is not provided by the user.
-     * @throws IndexOutOfBoundsException if the markIndex exceeded the current existing number of Tasks.
+     * @throws DukeException if the markIndex is not provided by the user and
+     * markIndex exceeded the current existing number of Tasks
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         try {
             if (command.equals("mark")) {
                 Task markedTask = taskList.getList().get(this.markIndex).mark();
@@ -63,9 +64,9 @@ public class MarkCommand extends Command {
                         + ui.beautyWrapTask(unmarkedTask) + "\n";
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
-            return "☹ OOPS!!! You did not specify which task to be marked/unmarked.\n";
+            throw new DukeException("You did not specify which task to be marked/unmarked.\n");
         } catch (IndexOutOfBoundsException ex) {
-            return "☹ OOPS!!! Your list only has " + taskList.getList().size() + " tasks.\n";
+            throw new DukeException("Your list only has " + taskList.getList().size() + " tasks.\n");
         }
     }
 

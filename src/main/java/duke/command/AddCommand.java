@@ -7,7 +7,7 @@ import java.time.format.DateTimeParseException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-import duke.exception.EmptyTaskException;
+import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -36,16 +36,16 @@ public class AddCommand extends Command {
      * @param taskList the TaskList to be added with new Task.
      * @param ui unused for AddCommand.
      * @param storage the Storage to write new Task into file.
-     * @throws EmptyTaskException if the task description is an empty String or null.
-     * @throws DateTimeParseException if the date or time given is in the wrong format.
+     * @throws DukeException if the task description is an empty String or null or .
+     * the date or time given is in the wrong format.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         try {
             String[] parts = fullCommand.split(" ", 0);
             String command = parts[0];
             if (parts.length == 1) {
-                throw new EmptyTaskException();
+                throw new DukeException("OOPS!!! The description of a task cannot be empty.\n");
             }
             String taskName = "";
             String dateString = "";
@@ -88,11 +88,10 @@ public class AddCommand extends Command {
 
             return "Got it. I've added this task:\n" + ui.beautyWrapTask(task)
                     + "\nNow you have " + taskList.getList().size() + " tasks in the list.\n";
-        } catch (EmptyTaskException ex) {
-            return "☹ OOPS!!! The description of a todo cannot be empty.";
+
         } catch (DateTimeParseException ex) {
-            return "Invalid date & time format. Please follow the format of date "
-                    + "as \"YYYY-MM-DD\" and time as \"HHMM\".";
+            throw new DukeException("Invalid date & time format. Please follow the format of date "
+                    + "as \"YYYY-MM-DD\" and time as \"HHMM\".");
         }
     }
 

@@ -2,6 +2,7 @@ package duke;
 
 import java.util.Scanner;
 
+import duke.exception.DukeException;
 import duke.task.Task;
 
 /**
@@ -64,12 +65,12 @@ public class Ui {
     }
 
     /**
-     * Prints the error message when exception is thrown.
+     * Gets the error message when exception is thrown.
      *
-     * @param errorMessage String provided by the exception.
+     * @param e DukeException that is thrown.
      */
-    public void showError(String errorMessage) {
-        System.out.println("Error message: " + errorMessage);
+    public String getError(DukeException e) {
+        return "Oh no! " + e.getMessage();
     }
 
     /**

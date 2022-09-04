@@ -3,6 +3,7 @@ package duke.command;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.exception.DukeException;
 
 /**
  * This abstract class provides the skeletal implementation of a user command
@@ -16,8 +17,9 @@ public abstract class Command {
      * @param taskList the specified TaskList object.
      * @param ui the specified Ui object.
      * @param storage the specified Storage object.
+     * @throws DukeException if encounter exceptions
      */
-    public abstract String execute(TaskList taskList, Ui ui, Storage storage);
+    public abstract String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException;
 
     /**
      * An abstract method to be overriden by every Command subclasses which indicating

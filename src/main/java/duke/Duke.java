@@ -58,8 +58,13 @@ public class Duke {
      * Replace this stub with your completed method.
      */
     public String getResponse(String input) {
-        Command c = Parser.parse(input);
-        String response = c.execute(taskList, ui, storage);
-        return response;
+        try {
+            Command c = Parser.parse(input);
+            String response = c.execute(taskList, ui, storage);
+            return response;
+        }
+        catch (DukeException e) {
+            return this.ui.getError(e);
+        }
     }
 }
