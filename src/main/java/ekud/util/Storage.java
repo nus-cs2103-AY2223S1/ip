@@ -54,6 +54,7 @@ public class Storage {
         default:
             throw new EkudException("Invalid txt file - all lines should begin with T,E or D");
         }
+        assert task != null;
         if (parts[1].equals("1")) {
             task.markAsDone();
         }
