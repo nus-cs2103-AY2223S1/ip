@@ -12,7 +12,7 @@ public class Event extends Task {
 
     public static final String SYMBOL = "E";
 
-    private final LocalDate date;
+    protected final LocalDate date;
 
     /**
      * Constructs a new Event instance

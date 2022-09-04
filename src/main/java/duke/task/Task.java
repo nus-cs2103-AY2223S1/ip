@@ -10,7 +10,6 @@ import java.time.format.DateTimeParseException;
  * @author Pontakorn Prasertsuk
  */
 public abstract class Task {
-
     protected final String title;
     protected boolean status;
 

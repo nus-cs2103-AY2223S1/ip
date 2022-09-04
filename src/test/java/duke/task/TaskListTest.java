@@ -52,5 +52,16 @@ public class TaskListTest {
         } catch (Exception e) {
             fail();
         }
+
+        try {
+            taskList.add(new Deadline("hello", false, "2022-09-01"));
+            taskList.add(new Deadline("hi", false, "2022-08-01"));
+            TaskList filtered = taskList.getDeadlineList();
+            assertEquals(2, filtered.getTaskList().size());
+            assertEquals("1) [D][ ] hi (by: 2022-08-01)\n2) [D][ ] hello (by: 2022-09-01)\n",
+                    filtered.toString());
+        } catch (Exception e) {
+            fail();
+        }
     }
 }
