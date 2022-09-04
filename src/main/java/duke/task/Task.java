@@ -35,7 +35,13 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Returns the task description with its mark status.
+     *
+     * @return Description of Task.
+     */
     public String toString() {
-        return "[" + getStatusIcon() + "] " + description;
+        String markStatus = "[" + getStatusIcon() + "] ";
+        return markStatus + this.description;
     }
 }

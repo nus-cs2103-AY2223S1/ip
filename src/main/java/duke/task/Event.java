@@ -35,11 +35,15 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + formattedDate() + ")";
+        String type = "[E]";
+        String taskDescription = super.toString();
+        String date = " (at: " + formattedDate() + ")";
+        return type + taskDescription + date;
     }
 
     private String formattedDate() {
-        return this.at.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        DateTimeFormatter printedFormat = DateTimeFormatter.ofPattern("MMM d yyyy");
+        return this.at.format(printedFormat);
     }
 
 }

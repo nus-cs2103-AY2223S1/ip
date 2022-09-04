@@ -1,7 +1,5 @@
 package duke;
 
-import java.util.Scanner;
-
 import duke.task.Task;
 
 /**
@@ -12,15 +10,6 @@ import duke.task.Task;
  * @author Perry Wong
  */
 public class Ui {
-
-    private Scanner sc = new Scanner(System.in);
-
-    /**
-     * Prints an error message upon failure to load data from the saved file.
-     */
-    public String showLoadingError() {
-        return "There was an error loading your file. Starting a new list...\n";
-    }
 
     /**
      * Prints a farewell message.
@@ -35,9 +24,11 @@ public class Ui {
      * @param t Task that was added to the list.
      * @param len New length of the list.
      */
-    public String showAdd(Task t, int len) {
-        return "Got it. I've added this task:\n" + t.toString() + "\n" + "Now you have " + len
-                + taskString(len) + "in the list.";
+    public String showAdd(Task t, int len) throws DukeException {
+        String openingMessage = "Got it. I've added this task:\n";
+        String taskDescription = t.toString() + "\n";
+        String closingMessage = "Now you have " + len + taskSingularOrPluralWord(len) + "in the list.";
+        return openingMessage + taskDescription + closingMessage;
     }
 
     /**
@@ -46,11 +37,11 @@ public class Ui {
      * @param t Task that was deleted from the list.
      * @param len New length of the list.
      */
-    public String showDelete(Task t, int len) {
-        String notice = "Noted. I've removed this task:\n";
-        String desc = t.toString() + "\n";
-        String tasksLeft = "Now you have " + len + taskString(len) + "in the list.";
-        return notice + desc + tasksLeft;
+    public String showDelete(Task t, int len) throws DukeException {
+        String openingMessage = "Noted. I've removed this task:\n";
+        String taskDescription = t.toString() + "\n";
+        String tasksLeft = "Now you have " + len + taskSingularOrPluralWord(len) + "in the list.";
+        return openingMessage + taskDescription + tasksLeft;
     }
 
     /**
@@ -78,11 +69,20 @@ public class Ui {
         return "Here are the matching tasks in your list:\n";
     }
 
-    private String taskString(int len) {
-        if (len <= 1) {
-            return " task ";
+    private String taskSingularOrPluralWord(int len) throws DukeException {
+        boolean isSingular = len == 0 || len == 1;
+        boolean isPlural = len >= 2;
+        String word;
+
+        if (isSingular) {
+            word = " task ";
+        } else if (isPlural) {
+            word = " tasks ";
         } else {
-            return " tasks ";
+            String errorMessage = "Length of task list must not be non-negative.";
+            throw new DukeException(errorMessage);
         }
+
+        return word;
     }
 }
