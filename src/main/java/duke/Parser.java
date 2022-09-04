@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * Deals with making sense of the user command and converting input into a format understandable by the Duke program.
@@ -8,6 +9,22 @@ import java.util.Arrays;
 public class Parser {
     private static final String SPACE_SEPARATOR = " ";
     private static final String EMPTY_STRING = "";
+
+    private static final HashMap<String, String> SHORTCUTS = initialiseShortcuts();
+
+    private static HashMap<String, String> initialiseShortcuts() {
+        HashMap<String, String> shortcuts = new HashMap<>();
+        shortcuts.put("b", "bye");
+        shortcuts.put("l", "list");
+        shortcuts.put("f", "find");
+        shortcuts.put("m", "mark");
+        shortcuts.put("um", "unmark");
+        shortcuts.put("del", "delete");
+        shortcuts.put("t", "todo");
+        shortcuts.put("d", "deadline");
+        shortcuts.put("e", "event");
+        return shortcuts;
+    }
 
     private static void fillNullElementsWithEmptyString(String[] arr) {
         for (int i = 0; i < arr.length; i++) {
@@ -50,9 +67,13 @@ public class Parser {
         // There are at most 6 parameters in an input. Status of task is assumed to be undone.
         final int PARSED_ARRAY_SIZE = 6;
         String[] parsedOutput = new String[PARSED_ARRAY_SIZE];
-        String[] str = input.split(SPACE_SEPARATOR, 2);
-        parsedOutput[0] = str[0];
-        parsedOutput[1] = str.length != 1 ? str[1] : EMPTY_STRING;
+        /*
+         Splits the input into 2 halves, one containing the command itself and the other containing the
+         rest of the string.
+         */
+        String[] commandSplitInput = input.split(SPACE_SEPARATOR, 2);
+        parsedOutput[0] = parseCommand(commandSplitInput[0]);
+        parsedOutput[1] = commandSplitInput.length != 1 ? commandSplitInput[1] : EMPTY_STRING;
 
         String cmd = parsedOutput[0];
         switch (cmd) {
@@ -77,6 +98,14 @@ public class Parser {
         }
         fillNullElementsWithEmptyString(parsedOutput);
         return parsedOutput;
+    }
+
+    private static String parseCommand(String s) {
+        String parsedString = s.toLowerCase();
+        if (SHORTCUTS.containsKey(s)) {
+            parsedString = SHORTCUTS.get(s);
+        }
+        return parsedString;
     }
 
     private static void checkForBadInput(String[] parsedOutput)
