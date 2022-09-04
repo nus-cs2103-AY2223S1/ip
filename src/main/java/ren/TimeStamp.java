@@ -51,6 +51,16 @@ public class TimeStamp {
     }
 
     /**
+     * Compares this TimeStamp to another TimeStamp.
+     *
+     * @param other The other TimeStamp to compare with.
+     * @return -1 if this TimeStamp is earlier. 1 if the other TimeStamp is earlier. 0 if both are the same.
+     */
+    public int compareTo(TimeStamp other) {
+        return this.timestamp.compareTo(other.timestamp);
+    }
+
+    /**
      * Returns String Representation of a TimeStamp.
      *
      * @return String Representation.

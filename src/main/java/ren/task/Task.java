@@ -25,6 +25,48 @@ public abstract class Task {
     public abstract String writeData();
 
     /**
+     * Compares this Task to another Task by their type of task.
+     *
+     * @param other The task to compare with.
+     * @return -1 if this task should be sorted first, 1 if the other task should be sorted first, 0 otherwise.
+     */
+    public abstract int compareType(Task other);
+
+    /**
+     * Compares this Task to another Task by their date.
+     *
+     * @param other The task to compare with.
+     * @return -1 if this task should be sorted first, 1 if the other task should be sorted first, 0 otherwise.
+     */
+    public abstract int compareDate(Task other);
+
+    /**
+     * Compares this Task to another Task by their description.
+     *
+     * @param other The task to compare with.
+     * @return -1 if this task should be sorted first, 1 if the other task should be sorted first, 0 otherwise.
+     */
+    public int compareDescription(Task other) {
+        return this.description.compareToIgnoreCase(other.description);
+    }
+
+    /**
+     * Compares this Task to another Task by their status.
+     *
+     * @param other The task to compare with.
+     * @return -1 if this task should be sorted first, 1 if the other task should be sorted first, 0 otherwise.
+     */
+    public int compareStatus(Task other) {
+        if (!this.isDone && other.isDone) {
+            return -1;
+        } else if (this.isDone && !other.isDone) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    /**
      * Sets the completion status of this task.
      *
      * @param isDone New completion status of the task.

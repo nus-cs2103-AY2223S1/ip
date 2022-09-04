@@ -54,6 +54,40 @@ public class Deadline extends Task {
     }
 
     /**
+     * Compares this Deadline to another Task by their type of task.
+     *
+     * @param other The task to compare with.
+     * @return -1 if other is an Event, 1 if the other task is a Todo, 0 if the other task is a Deadline.
+     */
+    @Override
+    public int compareType(Task other) {
+        if (other instanceof Todo) {
+            return 1;
+        } else if (other instanceof Deadline) {
+            return 0;
+        }
+        return -1;
+    }
+
+    /**
+     * Compares this Deadline to another Task by their date.
+     *
+     * @param other The task to compare with.
+     * @return -1 if this task should be sorted first, 1 if the other task should be sorted first, 0 otherwise.
+     */
+    @Override
+    public int compareDate(Task other) {
+        if (other instanceof Todo) {
+            return -1;
+        } else if (other instanceof Deadline) {
+            return this.dateTime.compareTo(((Deadline) other).dateTime);
+        } else if (other instanceof Event) {
+            return this.dateTime.compareTo(((Event) other).start);
+        }
+        return 0;
+    }
+
+    /**
      * Returns the string representation of this Deadline Task.
      *
      * @return String Representation.
