@@ -1,6 +1,8 @@
 package duke.task;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  * Class that contains all the Task in program.
@@ -78,15 +80,9 @@ public class TaskList {
      * @return Filtered Task list.
      */
     public ArrayList<Task> filterTasks(String[] keywords) {
-        ArrayList<Task> result = new ArrayList<>();
-        for (Task t : this.tasks) {
-            for (String keyword : keywords) {
-                if (t.getDescription().contains(keyword)) {
-                    result.add(t);
-                    break;
-                }
-            }
-        }
-        return result;
+        return this.tasks.stream()
+                .filter(t -> Arrays.stream(keywords)
+                .anyMatch(k -> t.getDescription().contains(k)))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 }
