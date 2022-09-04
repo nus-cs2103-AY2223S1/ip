@@ -40,6 +40,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
     testImplementation "org.testfx:testfx-core:4.0.16-alpha"
     testImplementation "org.testfx:testfx-junit5:4.0.16-alpha"
+    testImplementation "org.testfx:openjfx-monocle:jdk-11+26" // For Java 11
 
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.13.2'
 }
