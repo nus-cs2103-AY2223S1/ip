@@ -4,7 +4,7 @@ package dukepro.exceptions;
  * Class for BadTaskOperationException.
  */
 public class BadTaskOperationException extends DukeException {
-    private static String line = "_______________________________________";
+    private static final String LINE = "_______________________________________";
     private String taskType;
 
     /**
@@ -26,7 +26,7 @@ public class BadTaskOperationException extends DukeException {
      */
     @Override
     public String toString() {
-        String ret = line + "\n Please provide input that is within the length of the list.\n" + line;
+        String ret = LINE + "\n Please provide input that is within the length of the list.\n" + LINE;
         return ret;
     }
 }

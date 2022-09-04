@@ -29,11 +29,8 @@ public class TasksManager {
      * @return A String.
      */
     public String addTask(Task task) {
-        //add to the tasks
         tasks.add(task);
-        //write to file
         storage.addTask(task);
-        //return string
         String ret = "Got it. I've added this task: " + task + "\n Now you have "
                 + numTasks() + " tasks in your list";
 
@@ -76,9 +73,7 @@ public class TasksManager {
         Task doneTask = this.tasks.get(n - 1);
         doneTask.markAsDone();
 
-        // rewrite file entirely
         storage.rewriteFile(this.tasks);
-        //return string
         String ret = "Nice! I've marked this task as done:\n" + doneTask;
         return ret;
     }
@@ -91,9 +86,7 @@ public class TasksManager {
      */
     public String deleteTask(int n) {
         Task deleted = this.tasks.remove(n - 1);
-        //rewrite file entirely
         storage.rewriteFile(this.tasks);
-        //return string
         String ret = "The following task has been deleted:\n" + deleted;
         return ret;
     }

@@ -4,7 +4,7 @@ package dukepro.exceptions;
  * Class for EmptyDescException.
  */
 public class EmptyDescException extends DukeException {
-    private static String line = "_______________________________________";
+    private static final String LINE = "_______________________________________";
 
     /**
      * Creates a EmptyDescException.
@@ -23,8 +23,8 @@ public class EmptyDescException extends DukeException {
      */
     @Override
     public String toString() {
-        String ret = line + "\n" + "OHNOOOOOO!!! The description of a " + this.getMessage()
-                + " cannot be empty.\n" + line;
+        String ret = LINE + "\n" + "OHNOOOOOO!!! The description of a " + this.getMessage()
+                + " cannot be empty.\n" + LINE;
         return ret;
     }
 }
