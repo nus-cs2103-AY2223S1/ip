@@ -77,10 +77,10 @@ public abstract class TimedTask extends Task {
         public String getStorageDescription() {
             String finishedStatus = super.finished ? "finished" : "unfinished";
             if (this.eventStartTime == null || this.eventEndTime == null) {
-                return "[D], " + finishedStatus + ", " + this.taskName + ", " + this.date
+                return "[E], " + finishedStatus + ", " + this.taskName + ", " + this.date
                         + ", no time given\n";
             } else {
-                return "[D], " + finishedStatus + ", " + this.taskName + ", " + this.date + ", "
+                return "[E], " + finishedStatus + ", " + this.taskName + ", " + this.date + ", "
                         + this.eventStartTime + ", " + this.eventEndTime + "\n";
             }
         }

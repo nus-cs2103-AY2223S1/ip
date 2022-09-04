@@ -81,7 +81,7 @@ public class TimedTaskTest {
         assertEquals("[E], unfinished, read a book, 2022-01-01, 16:00, 20:00\n", eventTask.getStorageDescription());
 
         eventTask.setFinished();
-        assertEquals("[D], finished, read a book, 2022-01-01, 16:00, 20:00\n", eventTask.getStorageDescription());
+        assertEquals("[E], finished, read a book, 2022-01-01, 16:00, 20:00\n", eventTask.getStorageDescription());
 
         TimedTask.Event eventTaskWithoutTime = new TimedTask.Event("read a book",
                 localDate, null, null);
@@ -90,7 +90,7 @@ public class TimedTaskTest {
                 eventTaskWithoutTime.getStorageDescription());
 
         eventTaskWithoutTime.setFinished();
-        assertEquals("[D], finished, read a book, 2022-01-01, no time given\n",
+        assertEquals("[E], finished, read a book, 2022-01-01, no time given\n",
                 eventTaskWithoutTime.getStorageDescription());
     }
 }
