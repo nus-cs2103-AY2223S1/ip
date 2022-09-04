@@ -68,6 +68,7 @@ public class TaskList {
      * @return A new TaskList of every task that occurs by/at a specified date.
      */
     public TaskList allOnDate(LocalDate date) {
+        assert date != null : "TaskList::allOnDate invoked with null argument.";
         ArrayList<Task> matchingList = tasks.stream()
                 .filter(x -> x.onDate(date))
                 .collect(Collectors.toCollection(ArrayList::new));

@@ -30,6 +30,7 @@ public abstract class Task {
      * @throws DukeException when the string in the data file is invalid.
      */
     public static Task parseData(String s) throws DukeException {
+        assert s != null : "Task::parseData invoked with null argument.";
         try {
             String[] strings = s.split(" \\| ");
             Task task;
