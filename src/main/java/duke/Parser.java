@@ -251,7 +251,7 @@ public class Parser {
             public void run() {
                 System.exit(0);
             }
-        }, 1000l);
+        }, 1000L);
         return "bye!";
     }
 }
