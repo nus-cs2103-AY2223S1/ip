@@ -89,11 +89,9 @@ public class TaskList {
      */
     public TaskList findMatchingTasks(String keyword) {
         TaskList result = new TaskList();
-        for (Task task : this.tasks) {
-            if (task.getDescription().contains(keyword)) {
-                result.addTask(task);
-            }
-        }
+        this.tasks.stream()
+                .filter(task -> task.getDescription().contains(keyword))
+                .forEach(result::addTask);
         return result;
     }
 
