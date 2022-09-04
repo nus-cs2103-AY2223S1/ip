@@ -1,19 +1,22 @@
 package Duke.Parser;
 
-import Duke.Commands.UserCommand;
-
-import Duke.Commands.AddTaskCommand;
-import Duke.Commands.QuitCommand;
+import Duke.Commands.*;
 
 
-import Duke.Exceptions.DukeException;
-import Duke.Exceptions.InvalidCommentException;
+import Duke.Exceptions.*;
+import Duke.Tasks.Event;
 import Duke.Tasks.TaskList;
 import Duke.Tasks.ToDo;
 import Duke.Tasks.Deadline;
+import javafx.concurrent.Task;
 
 
 import javax.xml.stream.events.Comment;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
+import java.util.List;
 
 /**
  * CLIParser
@@ -22,50 +25,117 @@ import javax.xml.stream.events.Comment;
 public class CLIParser {
 
     // Like a classifier
-    public UserCommand parseCommand(String command, TaskList userTasks) throws DukeException {
-        int firstSpace = command.indexOf(" ");
+    public UserCommand parseCommand(String commandString, TaskList userTasks) throws DukeException {
+        int firstSpace = commandString.indexOf(" ");
 
         if (firstSpace == -1) {
-            if (command.equals("bye")) {
+            if (commandString.equals("bye")) {
                 return new QuitCommand();
             }
 
-            // This one means the command don't needs execute
-            throw new InvalidCommentException();
+            if (commandString.equals("list")) {
+                return new ListTasksCommand(userTasks);
+            }
 
+            if (commandString.equals("help")) {
+                return new HelpCommand();
+            }
+
+            throw new InvalidCommandException();
         }
 
-        String commandType = command.substring(0, firstSpace);
-        String commandElse = command.substring(firstSpace).strip();
+        String commandType = commandString.substring(0, firstSpace);
+        String commandElse = commandString.substring(firstSpace).strip();
 
-        if (commandType.equals("ToDo")) {
-            return parseTodoCommand(commandElse, userTasks);
+
+        switch (commandType) {
+            case "todo" :
+                System.out.println("todo");
+                return parseTodoCommand(commandElse, userTasks);
+            case "deadline" :
+                return parseDeadlineCommand(commandElse, userTasks);
+            case "event" :
+                return parseEventCommand(commandElse, userTasks);
+            case "find":
+                return parseFindTaskCommand(commandElse, userTasks);
+            case "delete":
+                return parseDeleteTaskCommand(commandElse, userTasks);
+            case "done":
+                return parseMarkDoneCommand(commandElse, userTasks);
+            default:
+                System.out.println("all");
+
         }
-
-        if (commandType.equals("Deadline")) {
-            return parseDeadlineCommand(commandElse, userTasks);
-        }
-
-        return null;
+        throw new InvalidCommandException();
     }
 
 
 
-    private AddTaskCommand parseTodoCommand(String taskName, TaskList userTask) {
-        return new AddTaskCommand(new ToDo(taskName, false), userTask);
-    }
-    private AddTaskCommand parseDeadlineCommand(String commandElse, TaskList userTask) {
 
+    private AddTaskCommand parseTodoCommand(String taskName, TaskList userTasks) {
+        return new AddTaskCommand(new ToDo(taskName, false), userTasks);
+    }
+    private AddTaskCommand parseDeadlineCommand(String commandElse, TaskList userTasks) throws DukeException {
         try {
             String[] parts = commandElse.split("/");
-            String taskName = parts[0].strip();
+            String discription = parts[0].strip();
             String[] time = parts[1].strip().split(" ");
-        } catch (Exception e) {
+
+            if (time.length == 1) {
+                LocalDate date = LocalDate.parse(time[0].strip());
+
+                // Check if it is good deadline
+                return new AddTaskCommand(
+                        new Deadline(discription, date, false),
+                        userTasks);
+            } else {
+                LocalDate date = LocalDate.parse(time[0].strip());
+                LocalTime hourMinutes = LocalTime.parse(time[1].strip());
+
+                // Check if it is good deadline
+                return new AddTaskCommand(
+                        new Deadline(discription, date, hourMinutes, false),
+                        userTasks);
+            }
+
+        } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
+            throw new DateTimeException();
 
         }
-        Deadline deadline = null;
 
-        return new AddTaskCommand(null, userTask);
+    }
+    private AddTaskCommand parseEventCommand(String comandElse, TaskList userTasks) throws DukeException {
+        try {
+            String[] parts = comandElse.split("/");
+            String discription = parts[0].strip();
+            String[] time = parts[1].strip().split(" ");
+
+            return new AddTaskCommand(
+                    new Event(discription,
+                            LocalDate.parse(time[0]),
+                            LocalTime.parse(time[1]),
+                            false),
+                    userTasks);
+        } catch (IndexOutOfBoundsException | DateTimeParseException e) {
+            throw new DateTimeException();
+        }
+    }
+    private FindTaskCommand parseFindTaskCommand(String commandElse, TaskList userTasks) {
+        return new FindTaskCommand(userTasks, commandElse.strip());
+    }
+    private DeleteTaskCommand parseDeleteTaskCommand(String commandElse, TaskList userTasks) throws TaskIndexException {
+        try {
+            return new DeleteTaskCommand(Integer.valueOf(commandElse), userTasks);
+        } catch (NumberFormatException e) {
+            throw new TaskIndexException();
+        }
     }
 
+    private MarkDoneCommand parseMarkDoneCommand(String commandElse, TaskList userTasks) throws TaskIndexException {
+        try {
+            return new MarkDoneCommand(Integer.valueOf(commandElse), userTasks);
+        } catch (NumberFormatException e) {
+            throw new TaskIndexException();
+        }
+    }
 }

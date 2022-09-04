@@ -26,7 +26,7 @@ public class TaskList {
 
     public Task markAsDone(int index) throws IndexOutOfBoundsException {
         Task doneTask = this.tasks.get(index);
-        doneTask.setIsDone(true);
+        doneTask.setIsDone(true);               // Modify the task as done, this is a pointer
         return doneTask;
     }
 
