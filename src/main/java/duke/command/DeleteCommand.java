@@ -2,7 +2,7 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
+import duke.ui.Ui;
 
 /*
  * Encapsulates a command to delete a task from the list.
@@ -27,10 +27,10 @@ public class DeleteCommand extends Command {
      * @param storage Persistent storage of task list.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         String deletedTask = tasks.delete(index);
         storage.save(tasks);
-        ui.printString("I've removed this task:\n" + deletedTask);
+        return "I've removed this task:\n" + deletedTask;
     }
 
     /**

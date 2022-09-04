@@ -2,7 +2,7 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
+import duke.ui.Ui;
 
 /*
  * Encapsulates a command to find tasks from the list.
@@ -27,12 +27,11 @@ public class FindCommand extends Command {
      * @param storage Persistent storage of task list.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         String result = tasks.find(keyword);
         if (result.isEmpty()) {
-            ui.printString("Sorry, none of your tasks match the search temrs.");
-            return;
+            return "Sorry, none of your tasks match the search terms.";
         }
-        ui.printString("Here are the matching tasks in your list:\n" + result);
+        return "Here are the matching tasks in your list:\n" + result;
     }
 }

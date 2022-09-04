@@ -2,7 +2,7 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
+import duke.ui.Ui;
 
 /*
  * Encapsulates a command to terminate Duke.
@@ -16,8 +16,8 @@ public class ExitCommand extends Command {
      * @param storage Persistent storage of task list.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.printString("bye...");
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return "bye...";
     }
 
     /**

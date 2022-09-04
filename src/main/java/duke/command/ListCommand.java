@@ -2,7 +2,7 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
+import duke.ui.Ui;
 
 /*
  * Encapsulates a command to list all tasks in the list.
@@ -16,7 +16,7 @@ public class ListCommand extends Command {
      * @param storage Persistent storage of task list.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.printString(tasks.toString());
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return tasks.toString();
     }
 }
