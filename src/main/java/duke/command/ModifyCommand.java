@@ -9,7 +9,7 @@ import duke.ui.Ui;
  */
 public class ModifyCommand extends Command {
 
-    private ModifyCommandType modifyCommandType;
+    private final ModifyCommandType modifyCommandType;
 
     /**
      * Initialises ModifyCommand object with specified command type and index

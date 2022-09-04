@@ -2,11 +2,11 @@ package duke.parser;
 
 import duke.command.AddCommand;
 import duke.command.Command;
-import duke.command.ModifyCommandType;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.ModifyCommand;
+import duke.command.ModifyCommandType;
 import duke.exceptions.InvalidArgumentException;
 import duke.exceptions.InvalidCommandException;
 import duke.task.Deadline;
@@ -110,7 +110,8 @@ public class Parser {
             String deadline = full[1];
             return new AddCommand(new Deadline(description, deadline));
         } catch (Exception e) {
-            throw new InvalidArgumentException("☹ OOPS!!! Please format deadline request correctly. The date must be of format YYYY-MM-DD.");
+            throw new InvalidArgumentException("☹ OOPS!!! Please format deadline request correctly. "
+                    + "The date must be of format YYYY-MM-DD.");
         }
     }
 
@@ -121,7 +122,8 @@ public class Parser {
             String at = full[1];
             return new AddCommand(new Event(description, at));
         } catch (Exception e) {
-            throw new InvalidArgumentException("☹ OOPS!!! Please format event request correctly. The date must be of format YYYY-MM-DD.");
+            throw new InvalidArgumentException("☹ OOPS!!! Please format event request correctly. "
+                    + "The date must be of format YYYY-MM-DD.");
         }
     }
 

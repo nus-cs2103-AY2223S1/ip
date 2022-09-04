@@ -1,25 +1,12 @@
 package duke;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
 import duke.command.Command;
 import duke.exceptions.DukeException;
+import duke.launcher.Launcher;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
-import duke.launcher.Launcher;
 
 /**
  * Creates main Duke class that runs main program
@@ -28,12 +15,10 @@ public class Duke {
 
     private static final String DIRECTORY = "./data/";
     private static final String FILENAME = "todo.txt";
-
-    private Ui ui;
+    private static final boolean isGui = true;
+    private final Ui ui;
     private Storage storage;
     private TaskList tasks;
-
-    private static final boolean isGui = true;
 
 
     /**

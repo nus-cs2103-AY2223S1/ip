@@ -11,7 +11,7 @@ import duke.ui.Ui;
  * Command child class that finds tasks with specified string.
  */
 public class FindCommand extends Command {
-    private String toFind;
+    private final String toFind;
 
     /**
      * Initialises FindCommand object with specified search query.
@@ -33,7 +33,7 @@ public class FindCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         ArrayList<Task> foundTasks = tasks.find(toFind);
-        return "Here are the tasks found: \n" +
-                ui.showList(foundTasks);
+        return "Here are the tasks found: \n"
+                + ui.showList(foundTasks);
     }
 }

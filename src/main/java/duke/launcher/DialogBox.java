@@ -10,9 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -42,10 +40,7 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         dialog.setBackground(Background.fill(Color.BLACK));
-        // dialog.setEffect(new DropShadow(+4d, +1d, +1d, Color.BLACK));
-        
         displayPicture.setFill(new ImagePattern(img));
-        // displayPicture.setEffect(new DropShadow(+4d, +1d, +1d, Color.BLACK));
     }
 
     /**
