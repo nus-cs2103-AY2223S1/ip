@@ -2,6 +2,8 @@ package duke.chatbot.data.task;
 
 import java.util.ArrayList;
 
+import duke.chatbot.util.MessageBuilder;
+
 /**
  * A list of tasks.
  *
@@ -16,10 +18,10 @@ public class TaskList extends ArrayList<Task> {
      */
     @Override
     public Task get(int entry) {
-        if (this.isInRange(entry)) {
-            return super.get(entry - 1);
+        if (!this.isInRange(entry)) {
+            return null;
         }
-        return null;
+        return super.get(entry - 1);
     }
 
     /**
@@ -49,12 +51,11 @@ public class TaskList extends ArrayList<Task> {
 
     @Override
     public String toString() {
-        String result = "";
-        for (int entry = 1; entry < this.size() + 1; entry++) {
-            result += "\t" + entry + "."
-                    + this.get(entry).toString() + "\n";
+        MessageBuilder messageBuilder = new MessageBuilder();
+        for (Integer entry = 1; entry < this.size() + 1; entry++) {
+            messageBuilder.buildLine("\t", entry.toString(), ".", this.get(entry).toString());
         }
-        return result;
+        return messageBuilder.toString();
     }
 
     /**

@@ -1,9 +1,13 @@
 package duke.chatbot.command;
 
 import static duke.chatbot.common.Message.MESSAGE_DELETED;
+import static duke.chatbot.common.Message.MESSAGE_INVALID_ARGUMENT;
+import static duke.chatbot.common.Message.MESSAGE_OUT_OF_LIST_RANGE;
 
-import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import duke.chatbot.data.exception.InvalidInputException;
 import duke.chatbot.data.task.Task;
 import duke.chatbot.util.MessageBuilder;
 
@@ -19,7 +23,14 @@ public class DeleteCommand extends Command {
      */
     public static final String COMMAND_WORD = "delete";
 
-    public DeleteCommand(List<String> arguments) {
+    /**
+     * The pattern for single integer arguments.
+     */
+    private static final Pattern SINGLE_INTEGER_ARGUMENT_FORMAT = Pattern.compile(
+            "\\d+"
+    );
+
+    public DeleteCommand(String arguments) {
         this.arguments = arguments;
     }
 
@@ -29,12 +40,18 @@ public class DeleteCommand extends Command {
      * @return The result after executing the command.
      */
     @Override
-    public CommandResult execute() {
+    public CommandResult execute() throws InvalidInputException {
+        Matcher matcher = SINGLE_INTEGER_ARGUMENT_FORMAT.matcher(arguments);
+        if (!matcher.matches()) {
+            throw new InvalidInputException(MESSAGE_INVALID_ARGUMENT);
+        }
         MessageBuilder message = new MessageBuilder();
-        int entryNo = Integer.parseInt(arguments.get(0));
+        int entryNo = Integer.parseInt(matcher.group());
         Task task = taskList.remove(entryNo);
-
-        message.addLines(MESSAGE_DELETED, task.toString());
+        if (task == null) {
+            throw new InvalidInputException(MESSAGE_OUT_OF_LIST_RANGE);
+        }
+        message.buildLines(MESSAGE_DELETED, task.toString());
         return new CommandResult(message.toString());
     }
 }

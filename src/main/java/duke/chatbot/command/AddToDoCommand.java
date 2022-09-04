@@ -1,24 +1,19 @@
 package duke.chatbot.command;
 
-import static duke.chatbot.common.Message.MESSAGE_ADDED_TASK;
-
-import java.util.List;
-
 import duke.chatbot.data.task.ToDo;
-import duke.chatbot.util.MessageBuilder;
 
 /**
  * A command that adds an instance of {@link ToDo} to the list of tasks stored in the Duke application instance.
  *
  * @author jq1836
  */
-public class AddToDoCommand extends Command {
+public class AddToDoCommand extends AddTaskCommand {
     /**
      * The command word to invoke this command
      */
     public static final String COMMAND_WORD = "todo";
 
-    public AddToDoCommand(List<String> arguments) {
+    public AddToDoCommand(String arguments) {
         this.arguments = arguments;
     }
 
@@ -30,11 +25,8 @@ public class AddToDoCommand extends Command {
      */
     @Override
     public CommandResult execute() {
-        MessageBuilder message = new MessageBuilder();
-        ToDo task = new ToDo(arguments.get(0));
-        taskList.add(task);
-
-        message.addLines(MESSAGE_ADDED_TASK, task.toString());
-        return new CommandResult(message.toString());
+        ToDo task = new ToDo(arguments);
+        addTask(task);
+        return getResult(task);
     }
 }

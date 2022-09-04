@@ -26,17 +26,12 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute() {
         MessageBuilder message = new MessageBuilder();
-
         if (taskList.isEmpty()) {
-            message.addLines(MESSAGE_EMPTY_LIST);
+            message.buildLines(MESSAGE_EMPTY_LIST);
         } else {
-            message.addLines(MESSAGE_LIST);
-            for (int entry = 1; entry <= taskList.size(); entry++) {
-                Task task = taskList.get(entry);
-                message.addLines(entry + ". " + task.toString());
-            }
+            message.buildLines(MESSAGE_LIST);
         }
-
+        message.buildLine(taskList.toString());
         return new CommandResult(message.toString());
     }
 }

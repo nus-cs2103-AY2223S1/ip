@@ -3,9 +3,6 @@ package duke.chatbot.command;
 import static duke.chatbot.common.Message.MESSAGE_EMPTY_LIST;
 import static duke.chatbot.common.Message.MESSAGE_FIND_KEYWORD;
 
-import java.util.List;
-
-import duke.chatbot.data.task.Task;
 import duke.chatbot.data.task.TaskList;
 import duke.chatbot.util.MessageBuilder;
 
@@ -20,7 +17,7 @@ public class FindCommand extends Command {
      */
     public static final String COMMAND_WORD = "find";
 
-    public FindCommand(List<String> arguments) {
+    public FindCommand(String arguments) {
         this.arguments = arguments;
     }
 
@@ -33,20 +30,13 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute() {
         MessageBuilder message = new MessageBuilder();
-        String query = arguments.get(0);
-        TaskList filteredTaskList = taskList.filterTaskListBySubstring(query);
-
+        TaskList filteredTaskList = taskList.filterTaskListBySubstring(arguments);
         if (filteredTaskList.isEmpty()) {
-            message.addLines(MESSAGE_EMPTY_LIST);
+            message.buildLine(MESSAGE_EMPTY_LIST);
         } else {
-            message.addLines(MESSAGE_FIND_KEYWORD);
+            message.buildLine(MESSAGE_FIND_KEYWORD);
         }
-
-        for (int entry = 1; entry <= filteredTaskList.size(); entry++) {
-            Task task = filteredTaskList.get(entry);
-            message.addLines(entry + ". " + task.toString());
-        }
-
+        message.buildLine(filteredTaskList.toString());
         return new CommandResult(message.toString());
     }
 }

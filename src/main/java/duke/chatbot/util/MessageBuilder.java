@@ -10,17 +10,39 @@ public class MessageBuilder {
     private final StringBuilder stringBuilder = new StringBuilder();
 
     /**
+     * Builds a line with a list of strings and appends to the stringBuilder.
+     *
+     * @param strings A list of strings to build a line with.
+     */
+    public void buildLine(String... strings) {
+        if (stringBuilder.length() > 0) {
+            stringBuilder.append("\n");
+        }
+        for (String str : strings) {
+            stringBuilder.append(str);
+        }
+    }
+
+    /**
+     * Builds a line and appends to the stringBuilder.
+     *
+     * @param line A string line to append to stringBuilder.
+     */
+    public void buildLine(String line) {
+        if (stringBuilder.length() > 0) {
+            stringBuilder.append("\n");
+        }
+        stringBuilder.append(line);
+    }
+
+    /**
      * Appends lines to the stringBuilder, with each line on a new line.
      *
      * @param lines A list of strings to be appended.
      */
-    public void addLines(String... lines) {
+    public void buildLines(String... lines) {
         for (String line : lines) {
-            if (stringBuilder.length() == 0) {
-                stringBuilder.append(line);
-            } else {
-                stringBuilder.append("\n" + line);
-            }
+            buildLine(line);
         }
     }
 

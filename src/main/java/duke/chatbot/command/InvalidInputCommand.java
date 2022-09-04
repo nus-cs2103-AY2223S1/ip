@@ -1,13 +1,15 @@
 package duke.chatbot.command;
 
-import static duke.chatbot.common.Message.MESSAGE_UNEXPECTED;
-
 /**
  * A command that prints an error message.
  *
  * @author jq1836
  */
 public class InvalidInputCommand extends Command {
+    public InvalidInputCommand(String message) {
+        arguments = message;
+    }
+
     /**
      * Returns an instance of {@link CommandResult} with a message that displays an error message.
      *
@@ -15,6 +17,6 @@ public class InvalidInputCommand extends Command {
      */
     @Override
     public CommandResult execute() {
-        return new CommandResult(MESSAGE_UNEXPECTED);
+        return new CommandResult(arguments);
     }
 }

@@ -14,6 +14,16 @@ public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "bye";
 
     /**
+     * Returns true. Used to detect whether a command results in the closing of the application.
+     *
+     * @return True
+     */
+    @Override
+    public boolean isExitCommand() {
+        return true;
+    }
+
+    /**
      * Returns an instance of {@link CommandResult} with a message that displays a farewell message.
      *
      * @return The result after executing the command.

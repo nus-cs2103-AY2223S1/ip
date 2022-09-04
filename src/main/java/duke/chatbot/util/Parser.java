@@ -1,14 +1,17 @@
 package duke.chatbot.util;
 
 import static duke.chatbot.common.DateFormat.DATE_TIME_INPUT_FORMAT;
+import static duke.chatbot.common.Message.MESSAGE_INVALID_DATE_TIME_FORMAT;
+import static duke.chatbot.common.Message.MESSAGE_TOO_MANY_ARGUMENTS;
+import static duke.chatbot.common.Message.MESSAGE_UNEXPECTED;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import duke.chatbot.command.AddDeadlineCommand;
 import duke.chatbot.command.AddEventCommand;
@@ -18,6 +21,7 @@ import duke.chatbot.command.Command;
 import duke.chatbot.command.DeleteCommand;
 import duke.chatbot.command.ExitCommand;
 import duke.chatbot.command.FindCommand;
+import duke.chatbot.command.InvalidInputCommand;
 import duke.chatbot.command.ListCommand;
 import duke.chatbot.command.MarkCommand;
 import duke.chatbot.command.UnmarkCommand;
@@ -30,97 +34,95 @@ import duke.chatbot.data.task.ToDo;
 
 /**
  * A parser class to extract information from strings.
+ *
  * @author jq1836
  */
 public class Parser {
     /**
-     * Returns an instance of Command, which contains all the arguments
-     * of the command string parsed in an instance of list of string.
-     * @param line The string to be parsed.
-     * @return An instance of Command which corresponds to the command
-     *     string parsed.
+     * A Java regex pattern for basic commands
+     */
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile(
+            "(?<commandWord>\\S+)(?<arguments>.*)"
+    );
+
+    /**
+     * Returns an instance of {@link Command}, which contains all the arguments of the command string parsed in an
+     * instance of list of string.
+     *
+     * @param userInput The string to be parsed.
+     * @return An instance of Command which corresponds to the command string parsed.
      * @throws InvalidInputException If line is not a valid command string.
      */
-    public static Command parseCommand(String line) throws InvalidInputException {
-        if (line == null) {
-            throw new InvalidInputException();
-        } else if (line.equals("bye")) {
-            return new ExitCommand();
-        } else if (line.equals("list")) {
-            return new ListCommand();
-        } else {
-            Scanner sc = new Scanner(line);
-            List<String> arguments = new ArrayList<>();
+    public static Command parseCommand(String userInput) throws InvalidInputException {
+        Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput);
+        if (!matcher.matches()) {
+            return new InvalidInputCommand(MESSAGE_UNEXPECTED);
+        }
 
-            String caseString = sc.next();
-            if ((caseString.equals("mark") || caseString.equals("unmark") || caseString.equals("delete"))
-                    && sc.hasNextInt()) {
-                arguments.add(sc.next());
-                if (!sc.hasNext()) {
-                    if (caseString.equals("mark")) {
-                        return new MarkCommand(arguments);
-                    } else if (caseString.equals("unmark")) {
-                        return new UnmarkCommand(arguments);
-                    } else {
-                        return new DeleteCommand(arguments);
-                    }
-                }
-            } else if (caseString.equals("find") && sc.hasNext()) {
-                arguments.add(sc.nextLine().substring(1));
-                return new FindCommand(arguments);
-            } else if (caseString.equals("todo") && sc.hasNext()) {
-                arguments.add(sc.nextLine().substring(1));
-                return new AddToDoCommand(arguments);
-            } else if (caseString.equals("deadline") && sc.hasNext()) {
-                sc.useDelimiter(" /by ");
-                arguments.add(sc.next().substring(1));
-                if (sc.hasNext()) {
-                    arguments.add(sc.next());
-                    if (!sc.hasNext()) {
-                        return new AddDeadlineCommand(arguments);
-                    }
-                }
-            } else if (caseString.equals("event") && sc.hasNext()) {
-                sc.useDelimiter(" /at ");
-                arguments.add(sc.next().substring(1));
-                if (sc.hasNext()) {
-                    arguments.add(sc.next());
-                    if (!sc.hasNext()) {
-                        return new AddEventCommand(arguments);
-                    }
-                }
-            } else if (caseString.equals("check") && sc.hasNext()) {
-                arguments.add(sc.nextLine().substring(1));
-                return new CheckDateCommand(arguments);
-            }
-            throw new InvalidInputException();
+        String commandWord = matcher.group("commandWord").strip();
+        String arguments = matcher.group("arguments").strip();
+
+        switch (commandWord) {
+        // Add task commands
+        case AddToDoCommand.COMMAND_WORD:
+            return new AddToDoCommand(arguments);
+        case AddDeadlineCommand.COMMAND_WORD:
+            return new AddDeadlineCommand(arguments);
+        case AddEventCommand.COMMAND_WORD:
+            return new AddEventCommand(arguments);
+
+        // Filter query commands
+        case FindCommand.COMMAND_WORD:
+            return new FindCommand(arguments);
+        case CheckDateCommand.COMMAND_WORD:
+            return new CheckDateCommand(arguments);
+
+        // Single integer argument commands
+        case MarkCommand.COMMAND_WORD:
+            return new MarkCommand(arguments);
+        case UnmarkCommand.COMMAND_WORD:
+            return new UnmarkCommand(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommand(arguments);
+
+        // No argument commands
+        case ListCommand.COMMAND_WORD:
+            return arguments.isEmpty()
+                    ? new ListCommand()
+                    : new InvalidInputCommand(MESSAGE_TOO_MANY_ARGUMENTS);
+        case ExitCommand.COMMAND_WORD:
+            return arguments.isEmpty()
+                    ? new ExitCommand()
+                    : new InvalidInputCommand(MESSAGE_TOO_MANY_ARGUMENTS);
+
+        default:
+            return new InvalidInputCommand(MESSAGE_UNEXPECTED);
         }
     }
 
     /**
-     * Returns an instance of LocalDateTime that corresponds to the
-     * string parsed.
+     * Returns an instance of LocalDateTime that corresponds to the string parsed.
+     *
      * @param dateTime A string containing date and time information.
-     * @return An instance of LocalDateTime that corresponds to the
-     *     string parsed.
+     * @return An instance of LocalDateTime that corresponds to the string parsed.
      * @throws InvalidInputException If the argument string does not
-     *     follow the format.
+     *                               follow the format.
      */
     public static LocalDateTime parseDateTime(String dateTime) throws InvalidInputException {
         try {
             return LocalDateTime.parse(dateTime, DATE_TIME_INPUT_FORMAT);
         } catch (DateTimeParseException e) {
-            throw new InvalidInputException();
+            throw new InvalidInputException(MESSAGE_INVALID_DATE_TIME_FORMAT);
         }
     }
 
     /**
-     * Returns a list of tasks that was stored in the file.
+     * Returns an instance of {@link TaskList} that was stored in the file.
+     *
      * @param file A file that contains a list of tasks.
      * @return A list of tasks that was stored in the file.
      * @throws FileNotFoundException If a file is not found.
-     * @throws InvalidInputException If the date and time portion
-     *     of the encoded task is not in the correct format.
+     * @throws InvalidInputException If the date and time portion of the encoded task is not in the correct format.
      */
     public static TaskList parseFile(File file) throws FileNotFoundException, InvalidInputException {
         Scanner fileScanner = new Scanner(file);

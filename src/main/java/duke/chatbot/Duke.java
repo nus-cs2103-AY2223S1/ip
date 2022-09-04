@@ -1,5 +1,7 @@
 package duke.chatbot;
 
+import static duke.chatbot.common.Message.MESSAGE_UNEXPECTED;
+
 import java.io.FileNotFoundException;
 
 import duke.chatbot.command.Command;
@@ -11,13 +13,18 @@ import duke.chatbot.util.Parser;
 
 /**
  * The main application logic class.
+ *
  * @author jq1836
  */
 public class Duke {
-    /** The storage which handles saving and loading of files containing list of tasks */
+    /**
+     * The storage which handles saving and loading of files containing list of tasks
+     */
     private Storage storage;
 
-    /** The runtime instance of the list of tasks */
+    /**
+     * The runtime instance of the list of tasks
+     */
     private TaskList taskList;
 
     /**
@@ -48,6 +55,7 @@ public class Duke {
 
     /**
      * Returns a string response from passing the user input through Duke's logic.
+     *
      * @param userInput A string that represents a user's input.
      * @return A string response from passing the user input through Duke's logic.
      */
@@ -55,13 +63,13 @@ public class Duke {
         try {
             Command command = Parser.parseCommand(userInput);
             command.initData(taskList);
-            if (Command.isExit(command)) {
+            if (command.isExitCommand()) {
                 save();
                 exit();
             }
             return command.execute().getMessage();
         } catch (InvalidInputException e) {
-            return new InvalidInputCommand().execute().getMessage();
+            return new InvalidInputCommand(MESSAGE_UNEXPECTED).execute().getMessage();
         }
     }
 }

@@ -1,7 +1,5 @@
 package duke.chatbot.command;
 
-import java.util.List;
-
 import duke.chatbot.data.exception.InvalidInputException;
 import duke.chatbot.data.task.TaskList;
 
@@ -19,17 +17,15 @@ public abstract class Command {
     /**
      * A list of arguments
      */
-    protected List<String> arguments;
+    protected String arguments;
 
     /**
-     * Returns true if the command argument is an instance of ExitCommand and false otherwise. Used to detect whether
-     * a command results in the closing of the application.
+     * Returns false. Used to detect whether a command results in the closing of the application.
      *
-     * @param command The command to be checked.
-     * @return boolean
+     * @return false
      */
-    public static boolean isExit(Command command) {
-        return command instanceof ExitCommand;
+    public boolean isExitCommand() {
+        return false;
     }
 
     /**
