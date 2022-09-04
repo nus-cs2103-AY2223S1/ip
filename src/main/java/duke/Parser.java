@@ -23,7 +23,10 @@ public class Parser {
                 return ops.exit();
 
         } else if (output.equals("list")) {
+
             assert firstWord.equals("list") : "command should be list";
+
+
                 return ops.displayList(listOfTasks);
 
         } else if (firstWord.equals("todo")) {
@@ -45,7 +48,13 @@ public class Parser {
                 String arr3[] = arr2[1].split(" ", 2);
                 return tl.deadline(listOfTasks, arr2[0], arr3[0], arr3[1]);
 
+
             } else if (firstWord.equals("event")) {
+                 assert firstWord.equals(event) : "this should be event"
+                return tl.deadline(listOfTasks, arr2[0], arr3[0], arr3[1]);
+
+            } else if (firstword.equals("event")) {
+
                 if (!Storage.fileExists()) {
                     return("File does not  exist yet");
                 }
@@ -53,6 +62,7 @@ public class Parser {
                 String arr2[] = arr[1].split("/at ", 2);
                 String arr3[] = arr2[1].split(" ", 2);
                 return tl.event(listOfTasks, arr2[0], arr3[0], arr3[1]);
+
 
             } else if (firstWord.equals("mark")) {
                 int num = Integer.parseInt(arr[1]);
@@ -66,6 +76,29 @@ public class Parser {
             } else if(firstWord.equals("find")) {
                 String str = arr[1];
                 return ops.findWord(str, listOfTasks);
+
+
+
+                return tl.event(listOfTasks, arr2[0], arr3[0], arr3[1]);
+
+            } else if (firstword.equals("mark")) {
+                int num = Integer.parseInt(arr[1]);
+                return ops.mark(listOfTasks, num);
+            } else if (firstword.equals("unmark")) {
+                int num = Integer.parseInt(arr[1]);
+                return ops.unmark(listOfTasks, num);
+            } else if (firstword.equals("delete")) {
+                int num = Integer.parseInt(arr[1]);
+                return tl.delete(listOfTasks, num);
+
+
+            } else if(firstword.equals("find")) {
+                String str = arr[1];
+                return ops.findWord(str, listOfTasks);
+
+
+
+
             } else {
                 try {
                     ops.randomWord(output);
