@@ -44,9 +44,9 @@ public abstract class Parser {
     /**
      * Parses input into Command indicator and arguments.
      *
-     * @param input user input.
+     * @param input User input.
      * @return A command indicator and arguments pair.
-     * @throws DukeException when error parsing input.
+     * @throws DukeException When error parsing input.
      */
     static Map.Entry<String, Optional<String>> getCommandAndArguments(String input) throws DukeException {
         Scanner scanner = new Scanner(input);
@@ -58,6 +58,7 @@ public abstract class Parser {
             throw new DukeException("Can't read input!", e);
         }
         try {
+            assert indicator.length() > 0;
             scanner.skip(scanner.delimiter());
             String arguments = scanner.nextLine();
             return new SimpleEntry<>(indicator, Optional.of(arguments));
@@ -71,7 +72,7 @@ public abstract class Parser {
     /**
      * Retrieves Optional argument or throws DukeException if Optional is empty.
      *
-     * @param argument Arugment wrapped in Optional.
+     * @param argument Argument wrapped in Optional.
      * @return Argument in the Optional.
      * @throws DukeException When argument is empty.
      */
@@ -164,7 +165,7 @@ public abstract class Parser {
      *
      * @param input command arguments.
      * @return AddCommand.
-     * @throws DukeException when command arugments are invalid.
+     * @throws DukeException when command arguments are invalid.
      */
     static Command parseDeadline(String input) throws DukeException {
         try (Scanner lineScanner = new Scanner(input)
@@ -183,7 +184,7 @@ public abstract class Parser {
      *
      * @param input command arguments.
      * @return AddCommand.
-     * @throws DukeException when command arugments are invalid.
+     * @throws DukeException when command arguments are invalid.
      */
     static Command parseEvent(String input) throws DukeException {
         try (Scanner lineScanner = new Scanner(input)
