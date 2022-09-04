@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class EventTest {
     /** Dummy event used for testing. */
     private static final Event dummyEvent = new Event(
-            "EVENT DESCRIPTION", "EVENT VENUE");
+            "EVENT DESCRIPTION", "EVENT VENUE", Level.LOW);
 
     /**
      * Tests <Code>toString</Code> method of <Code>Event</Code> class.
