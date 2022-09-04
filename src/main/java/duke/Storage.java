@@ -8,18 +8,21 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * Represents storage
+ * Represents storage.
  */
 public class Storage {
 
     private File file;
     private String directoryPath;
     private String filePath;
+    private static final String FILE_NOT_FOUND_MESSAGE = "File could not be found";
+    private static final String FILE_NOT_SAVED_MESSAGE = "File could not be saved";
+    private static final String FILE_NOT_CREATED_MESSAGE = "File could not be created";
 
     /**
-     * Constructs storage
+     * Constructs storage.
      *
-     * @param filePath file path to store data
+     * @param filePath file path to store data.
      */
     Storage(String filePath) {
         this.filePath = filePath;
@@ -30,10 +33,10 @@ public class Storage {
     }
 
     /**
-     * Loads existing file
+     * Loads existing file.
      *
-     * @return data from file
-     * @throws DukeException if file does not exist
+     * @return data from file.
+     * @throws DukeException if file does not exist.
      */
     protected String load() throws DukeException {
         try {
@@ -48,15 +51,15 @@ public class Storage {
             }
             return data.toString();
         } catch (FileNotFoundException e) {
-            throw new DukeException("File could not be found");
+            throw new DukeException(FILE_NOT_FOUND_MESSAGE);
         }
     }
 
     /**
-     * Saves data
+     * Saves data.
      *
-     * @param data Data to be saved
-     * @throws DukeException if error in saving file
+     * @param data Data to be saved.
+     * @throws DukeException if error in saving file.
      */
     public void save(String data) throws DukeException {
         try {
@@ -64,14 +67,14 @@ public class Storage {
             fileWriter.write(data);
             fileWriter.close();
         } catch (IOException e) {
-            throw new DukeException("File could not be saved");
+            throw new DukeException(FILE_NOT_SAVED_MESSAGE);
         }
     }
 
     /**
-     * Creates file
+     * Creates file.
      *
-     * @throws DukeException if error in creating file
+     * @throws DukeException if error in creating file.
      */
     protected void createFile() throws DukeException {
         try {
@@ -79,7 +82,7 @@ public class Storage {
             newDirectory.mkdirs();
             file.createNewFile();
         } catch (IOException e) {
-            throw new DukeException("File could not be created");
+            throw new DukeException(FILE_NOT_CREATED_MESSAGE);
         }
     }
 }

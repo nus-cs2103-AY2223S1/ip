@@ -8,12 +8,14 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
     private LocalDate date;
+    public static final String TASK_TYPE = "D";
+    public static final String CONNECTOR = "by";
 
     /**
-     * Constructs a deadline task
+     * Constructs a deadline task.
      *
-     * @param taskDescription Description of deadline task
-     * @param date Date of deadline task
+     * @param taskDescription Description of deadline task.
+     * @param date Date of deadline task.
      */
     public Deadline(String taskDescription, LocalDate date) {
         super(taskDescription);
@@ -21,11 +23,11 @@ public class Deadline extends Task {
     }
 
     /**
-     * Constructs a deadline task
+     * Constructs a deadline task.
      *
-     * @param taskDescription Description of deadline task
-     * @param done Status of deadline task
-     * @param date Date of deadline task
+     * @param taskDescription Description of deadline task.
+     * @param done Status of deadline task.
+     * @param date Date of deadline task.
      */
     public Deadline(String taskDescription, boolean done, LocalDate date) {
         super(taskDescription, done);
@@ -33,13 +35,13 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns deadline task
+     * Returns deadline task.
      *
-     * @return deadline task
+     * @return deadline task.
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.date.format(DateTimeFormatter
-                .ofPattern("MMM dd yyyy")) + ")";
+        return "[" + Deadline.TASK_TYPE + "]" + super.toString() + " (by: " + this.date.format(DateTimeFormatter
+                .ofPattern(Task.LOAD_DATE_FORMAT)) + ")";
     }
 }

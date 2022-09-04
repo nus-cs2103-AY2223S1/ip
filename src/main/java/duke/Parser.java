@@ -13,14 +13,15 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.task.Deadline;
 import duke.task.Event;
+import duke.task.Task;
 import duke.task.Todo;
 
 /**
- * Represents a parser
+ * Represents a parser.
  */
 public class Parser {
 
-    private static final String EXIT_COMMAND = "bye";
+    public static final String EXIT_COMMAND = "bye";
     private static final String LIST_COMMAND = "list";
     private static final String MARK_COMMAND = "mark";
     private static final String UNMARK_COMMAND = "unmark";
@@ -30,12 +31,22 @@ public class Parser {
     private static final String DELETE_COMMAND = "delete";
     private static final String FIND_COMMAND = "find";
 
+    private static final String MISSING_KEYWORD_MESSAGE = "Keyword is missing";
+    private static final String MISSING_INDEX_MESSAGE = "Index is missing";
+    private static final String MISSING_TASK_DESCRIPTION_MESSAGE = "Task description is missing";
+    private static final String MISSING_DEADLINE_CONNECTOR_MESSAGE = "/" + Deadline.CONNECTOR + " is missing";
+    private static final String MISSING_EVENT_CONNECTOR_MESSAGE = "/" + Event.CONNECTOR + " is missing";
+    private static final String MISSING_DATE_MESSAGE = "date in " + Task.SAVE_DATE_FORMAT + " format is missing";
+    private static final String INVALID_DATE_FORMAT = "date not in " + Task.SAVE_DATE_FORMAT + " format";
+    private static final String INDEX_NOT_NUMBER_MESSAGE = "Index given must be a number";
+    private static final String INVALID_COMMAND_MESSAGE = "Invalid command given";
+
     /**
-     * Parses user's input to be a recognisable command
+     * Parses user's input to be a recognisable command.
      *
-     * @param response User's input
-     * @return command
-     * @throws DukeException if User's input is in the wrong format
+     * @param response User's input.
+     * @return command.
+     * @throws DukeException if User's input is in the wrong format.
      */
     protected static Command parse(String response) throws DukeException {
         String[] cmdDescp = response.split(" ");
@@ -53,19 +64,19 @@ public class Parser {
             }
         } else if (command.equals(FIND_COMMAND)) {
             if (cmdDescp.length < 2) {
-                throw new DukeException("Keyword is missing");
+                throw new DukeException(MISSING_KEYWORD_MESSAGE);
             }
             String keyword = String.join(" ", Arrays.copyOfRange(cmdDescp, 1, cmdDescp.length));
             return new FindCommand(keyword);
         } else if (command.equals(MARK_COMMAND) || command.equals(UNMARK_COMMAND) || command.equals(DELETE_COMMAND)) {
             if (cmdDescp.length < 2) {
-                throw new DukeException("Index is missing");
+                throw new DukeException(MISSING_INDEX_MESSAGE);
             }
             int ind;
             try {
                 ind = Integer.parseInt(cmdDescp[1]);
             } catch (NumberFormatException e) {
-                throw new DukeException("Index given must be a number");
+                throw new DukeException(INDEX_NOT_NUMBER_MESSAGE);
             }
             switch (command) {
             case MARK_COMMAND:
@@ -82,7 +93,7 @@ public class Parser {
             }
         } else if (command.equals(TODO_COMMAND)) {
             if (cmdDescp.length < 2) {
-                throw new DukeException("Task description is missing");
+                throw new DukeException(MISSING_TASK_DESCRIPTION_MESSAGE);
             }
             String taskDescription = String.join(" ", Arrays.copyOfRange(cmdDescp, 1, cmdDescp.length));
             return new AddCommand(new Todo(taskDescription));
@@ -91,10 +102,10 @@ public class Parser {
             if (splitSlash.length < 2) {
                 switch (command) {
                 case DEADLINE_COMMAND:
-                    throw new DukeException("/by is missing");
+                    throw new DukeException(MISSING_DEADLINE_CONNECTOR_MESSAGE);
                     //Fallthrough
                 case EVENT_COMMAND:
-                    throw new DukeException("/at is missing");
+                    throw new DukeException(MISSING_EVENT_CONNECTOR_MESSAGE);
                     //Fallthrough
                 default:
                     break;
@@ -104,31 +115,31 @@ public class Parser {
             String action = details[0];
             switch (command) {
             case DEADLINE_COMMAND:
-                if (!action.equals("by")) {
-                    throw new DukeException("/by is missing");
+                if (!action.equals(Deadline.CONNECTOR)) {
+                    throw new DukeException(MISSING_DEADLINE_CONNECTOR_MESSAGE);
                 }
                 break;
             case EVENT_COMMAND:
-                if (!action.equals("at")) {
-                    throw new DukeException("/at is missing");
+                if (!action.equals(Event.CONNECTOR)) {
+                    throw new DukeException(MISSING_EVENT_CONNECTOR_MESSAGE);
                 }
                 break;
             default:
                 break;
             }
             if (details.length < 2) {
-                throw new DukeException("date in yyyy-mm-dd format is missing");
+                throw new DukeException(MISSING_DATE_MESSAGE);
             }
             LocalDate date;
             try {
                 String time = details[1];
                 date = LocalDate.parse(time);
             } catch (DateTimeParseException e) {
-                throw new DukeException("date not in yyyy-mm-dd format");
+                throw new DukeException(INVALID_DATE_FORMAT);
             }
             cmdDescp = splitSlash[0].split(" ");
             if (cmdDescp.length < 2) {
-                throw new DukeException("Task description is missing");
+                throw new DukeException(MISSING_TASK_DESCRIPTION_MESSAGE);
             }
             String taskDescription = String.join(" ", Arrays.copyOfRange(cmdDescp, 1, cmdDescp.length));
             switch (command) {
@@ -142,6 +153,6 @@ public class Parser {
                 break;
             }
         }
-        throw new DukeException("Invalid command given");
+        throw new DukeException(INVALID_COMMAND_MESSAGE);
     }
 }
