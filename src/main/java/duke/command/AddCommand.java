@@ -40,6 +40,9 @@ public class AddCommand extends Command {
      * @return true if the command to add tasks is valid, false otherwise.
      */
     public static boolean isCommand(String s) {
-        return s.equals("todo") || s.equals("deadline") || s.equals("event");
+        boolean isTodo = s.equals("todo");
+        boolean isDeadline = s.equals("deadline");
+        boolean isEvent = s.equals("event");
+        return isTodo || isDeadline || isEvent;
     }
 }

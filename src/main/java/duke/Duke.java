@@ -21,7 +21,6 @@ public class Duke {
         try {
             this.storage.initialiseSaveFile();
             this.taskList = storage.createTaskList();
-            this.ui.showMessage("Loading from save...\n");
         } catch (DukeException e) {
             this.ui.showError(e);
             taskList = new TaskList();

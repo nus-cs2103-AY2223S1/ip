@@ -138,6 +138,7 @@ public class Storage {
         try {
             List<String> history = Files.readAllLines(this.path);
             String[] command = history.get(id).split(" \\| ", 3);
+            assert command.length == 3 : "command from save file is not valid";
             String newLine = command[0] + " | 1 | " + command[2];
             history.set(id, newLine);
             StringBuilder sb = new StringBuilder();
@@ -160,6 +161,7 @@ public class Storage {
         try {
             List<String> history = Files.readAllLines(this.path);
             String[] command = history.get(id).split(" \\| ", 3);
+            assert command.length == 3 : "command from save file is not valid";
             String newLine = command[0] + " | 0 | " + command[2];
             history.set(id, newLine);
             StringBuilder sb = new StringBuilder();
