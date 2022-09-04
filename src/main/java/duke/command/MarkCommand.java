@@ -50,7 +50,7 @@ public class MarkCommand extends Command {
 
                 return "Nice! I've marked this task as done:\n" + ui.beautyWrapTask(markedTask) + "\n";
 
-            } else {
+            } else if (command.equals("unmark")){
                 Task unmarkedTask = taskList.getList().get(this.markIndex).unmark();
                 taskList.getList().set(this.markIndex, unmarkedTask);
 
@@ -62,6 +62,8 @@ public class MarkCommand extends Command {
 
                 return "OK, I've marked this task as not done yet:\n"
                         + ui.beautyWrapTask(unmarkedTask) + "\n";
+            } else {
+                throw new DukeException("Command is not mark/unmark.");
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
             throw new DukeException("You did not specify which task to be marked/unmarked.\n");
