@@ -22,11 +22,18 @@ bye
     Please don't give me an empty todo description :(
     __________________________________________________
     __________________________________________________
+    List of available commands so far:
+    todo
+    deadline
+    event
+    list
+    mark
+    unmark
+    find
     help
-    
-    Shows the help message for the given command.
-    
-    Example: help todo
+    delete
+    bye
+    For more detail, type 'help <command>', e.g. 'help todo'
     __________________________________________________
     __________________________________________________
     There, we have a new todo:
@@ -398,11 +405,18 @@ bye
     I have no idea what are you saying :<
     __________________________________________________
     __________________________________________________
+    List of available commands so far:
+    todo
+    deadline
+    event
+    list
+    mark
+    unmark
+    find
     help
-    
-    Shows the help message for the given command.
-    
-    Example: help todo
+    delete
+    bye
+    For more detail, type 'help <command>', e.g. 'help todo'
     __________________________________________________
     __________________________________________________
     find
