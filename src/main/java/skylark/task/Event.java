@@ -36,6 +36,25 @@ public class Event extends Task {
     }
 
     /**
+     * Returns an Event object.
+     * Throws a SkylarkException if the timing is not parsable.
+     *
+     * @param description Description of the Task
+     * @param timing Date in yyyy-MM-dd HHmm format
+     * @param tag    Tag of the Task
+     * @throws SkylarkException If date is not parsable
+     */
+    public Event(String description, String timing, String tag) throws SkylarkException {
+        super(description, tag);
+        assert timing.length() > 0 : "Timing should not be empty!";
+        try {
+            this.timing = LocalDateTime.parse(timing, DateTimeFormatter.ofPattern(inputFormat));
+        } catch (DateTimeParseException dateTimeParseException) {
+            throw new SkylarkException("Cannot parse date");
+        }
+    }
+
+    /**
      * {@inheritDoc}
      * <br><br>
      *
