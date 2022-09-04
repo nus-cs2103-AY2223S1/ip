@@ -63,7 +63,9 @@ public class TaskListTest {
             testList.delete(testArray);
             fail();
         } catch (DukeException e) {
-            assertEquals("The specified task does not exist.", e.getMessage());
+            assertEquals("There's a specified task that does not exist.\n"
+                    + "The other tasks have been deleted.",
+                    e.getMessage());
         }
     }
 
@@ -89,7 +91,9 @@ public class TaskListTest {
             testList.mark(testArray);
             fail();
         } catch (DukeException e) {
-            assertEquals("The specified task does not exist.", e.getMessage());
+            assertEquals("There's a specified task that does not exist.\n"
+                    + "The other tasks have been marked.",
+                    e.getMessage());
         }
     }
 
@@ -116,7 +120,9 @@ public class TaskListTest {
             testList.unmark(testArray);
             fail();
         } catch (DukeException e) {
-            assertEquals("The specified task does not exist.", e.getMessage());
+            assertEquals("There's a specified task that does not exist.\n"
+                    + "The other tasks have been unmarked.",
+                    e.getMessage());
         }
     }
 
