@@ -113,6 +113,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Checks if a loaded task has been marked as done.
+     *
+     * @param input the String representation of a loaded task.
+     * @return boolean true if it has been marked done. False if otherwise.
+     */
     private boolean isLoadedTaskDone(String input) {
         return input.trim().equals("X");
     }
@@ -140,13 +146,26 @@ public class Storage {
         }
     }
 
+    /**
+     * Creates a directory for the save file if the directory is non-existent.
+     *
+     * @param filePath of the saved file.
+     */
     private static void createDirectory(String filePath) {
         File dir = new File(filePath);
         if (!dir.exists()) {
             dir.mkdirs();
         }
+        assert(dir.exists());
     }
 
+    /**
+     * Creates a FileWriter object to write tasks to a file.
+     *
+     * @param filePath of the saved file.
+     * @return FileWriter object.
+     * @throws IOException when there is insufficient permission to write a file in the directory.
+     */
     private static FileWriter createFileWriter(String filePath) throws IOException {
         File textFile = new File(filePath + "/tasks.txt");
         textFile.createNewFile();
