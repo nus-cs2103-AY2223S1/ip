@@ -34,38 +34,6 @@ public class Duke {
         }
     }
 
-//    /**
-//     * Run <code>Duke</code> to start taking input
-//     */
-//    public void run() {
-//        Ui.printWelcome();
-//
-//        while (true) {
-//            try {
-//                Ui.printAskForCommand();
-//                String line = Ui.getCommand();
-//                Command c = Parser.parse(line);
-//                c.execute(this.storage);
-//            } catch (DukeUnknownCommandException e) {
-//                Ui.printError(e.getMessage());
-//            }
-//        }
-//
-//    }
-
-//    /**
-//     * Start duke.
-//     *
-//     * @param args
-//     */
-//    public static void main(String[] args) {
-//
-//        Duke duke = new Duke("data/tasks.txt");
-//
-//        duke.run();
-//
-//    }
-
     public String getResponse(String line) {
         try {
             Command command = Parser.parse(line);

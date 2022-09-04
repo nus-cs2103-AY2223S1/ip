@@ -62,10 +62,7 @@ public class Ui {
         return "Error loading file, an empty TaskList is initialised";
     }
 
-    /**
-     * Prints message asking user to input command. Deprecated now because some stupid
-     * planning by idiots to refactor 2 weeks of code
-     */
+
     public static void printAskForCommand() {
         printSeparator();
         System.out.println(ASK_FOR_COMMAND);
