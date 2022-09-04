@@ -164,6 +164,12 @@ public class TaskList {
         return tasksStrings;
     }
 
+    /**
+     * Checks if the task added is duplicated or not by comparing with the current taskList
+     *
+     * @param task
+     * @return true if it is duplicated
+     */
     public boolean isTasksDuplicated(Task task) {
         for (int i = 0; i < tasks.size(); i++) {
             if (task.toString().equals(tasks.get(i).toString())) {
