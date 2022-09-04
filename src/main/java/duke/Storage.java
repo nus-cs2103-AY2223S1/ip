@@ -95,6 +95,9 @@ public class Storage {
                     rest = rest.replaceAll("[\\[\\](){}]", "");
                     String[] arrE = rest.split(" at: ");
                     task.append(arrE[0] + " // " + arrE[1]);
+                    break;
+                default:
+                    task.append("Error retrieving this task!");
                 }
                 task.append("\n");
                 writer.write(task.toString());

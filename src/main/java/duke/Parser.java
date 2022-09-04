@@ -63,8 +63,9 @@ public class Parser {
             } catch (ArrayIndexOutOfBoundsException e) {
                 return "Please enter a word after 'find'!";
             }
+        default:
+            return "I don't know this command. Try another one!";
         }
-        return "I don't know this command. Try another one!";
     }
 
     /**
