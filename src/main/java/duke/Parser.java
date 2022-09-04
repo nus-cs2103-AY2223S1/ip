@@ -8,6 +8,7 @@ import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.MarkCommand;
+import duke.command.SearchCommand;
 import duke.command.ShowListCommand;
 import duke.command.UnmarkCommand;
 
@@ -111,6 +112,15 @@ public class Parser {
                 String s = sc.next();
                 sc.close();
                 return new FindCommand(s);
+            }
+        } else if (sc.hasNext("search")) {
+            sc.useDelimiter("search\\s*");
+            if (!sc.hasNext()) {
+                throw new DukeException(NO_TARGET);
+            } else {
+                String s = sc.next();
+                sc.close();
+                return new SearchCommand(s);
             }
         } else if (command.equals("bye")) {
             assert (command.equals("bye"));
