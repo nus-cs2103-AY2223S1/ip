@@ -1,4 +1,4 @@
-package task;
+package candice.task;
 
 public class TaskListTest {
 

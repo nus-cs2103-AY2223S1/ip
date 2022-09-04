@@ -1,6 +1,4 @@
-package task;
-
-import candice.task.TimedTask;
+package candice.task;
 
 import org.junit.jupiter.api.Test;
 

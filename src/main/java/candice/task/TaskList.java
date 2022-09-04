@@ -12,14 +12,30 @@ import java.time.LocalTime;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a list of tasks that is created by parsing the text file located in the Storage object.
+ * If no text file is located or read, an empty list is created instead.
+ */
 public class TaskList {
+    /** The storage object that will be used for parsing to create the task array list */
     private final Storage storage;
-    private ArrayList<Task> taskArrayList = new ArrayList<>();
+    /** The array task list used to store the tasks */
+    private final ArrayList<Task> taskArrayList = new ArrayList<>();
 
+    /**
+     * Constructor for a TaskList object with an empty list of tasks that can be filled in by using the Storage object
+     * provided.
+     *
+     * @param storage The storage object encapsulating the task list text needed for editing this instance of TaskList.
+     */
     public TaskList(Storage storage) {
         this.storage = storage;
     }
 
+    /**
+     * Parses the task list text using the Storage object in this instance of TaskList to add tasks to the task list in
+     * this instance of TaskList.
+     */
     public void parseTaskListText() {
         try {
             BufferedReader reader = Files.newBufferedReader(this.storage.getPath());
@@ -69,21 +85,35 @@ public class TaskList {
             }
         } catch (IOException e) {
             System.out.println(e);
-            this.taskArrayList = new ArrayList<>(); // Creates an empty taskArrayList if there is an error
         }
     }
 
-
+    /**
+     * Returns the number of tasks inside the task list encapsulated by this TaskList object.
+     *
+     * @return The number of tasks inside the task list.
+     */
     public int getLength() {
         return this.taskArrayList.size();
     }
 
+    /**
+     * Adds a task to the list of tasks in this TaskList object.
+     *
+     * @param newTask The task to add into the list of tasks.
+     */
     public void addTask(Task newTask) {
         taskArrayList.add(newTask);
         String taskDescription = newTask.getStorageDescription();
         this.storage.addTask(taskDescription);
     }
 
+    /**
+     * Checks if the task number given exists within the task list.
+     *
+     * @param taskNumber The task number to check.
+     * @throws IllegalArgumentException If the task number does not exist within this task list.
+     */
     public void checkValidTaskNumber(int taskNumber) throws IllegalArgumentException {
         if (taskNumber <= 0 || taskNumber > this.getLength()) {
             throw new IllegalArgumentException("The task number you put is wrong bro. The task must exist for " +
@@ -91,6 +121,13 @@ public class TaskList {
         }
     }
 
+    /**
+     * Removes the task corresponding to the task number given from the task list.
+     *
+     * @param taskNumber The number of the task to be removed.
+     * @return The task that was deleted.
+     * @throws IllegalArgumentException If the task number does not exist within this task list.
+     */
     public Task deleteTask(int taskNumber) throws IllegalArgumentException {
         checkValidTaskNumber(taskNumber);
         Task removedTask = taskArrayList.remove(taskNumber - 1);
@@ -98,6 +135,13 @@ public class TaskList {
         return removedTask;
     }
 
+    /**
+     * Marks the task corresponding to the task number given as finished.
+     *
+     * @param taskNumber The number of the task to be marked as finished.
+     * @return The task that was marked as finished.
+     * @throws IllegalArgumentException If the task number does not exist within this task list.
+     */
     public Task markTask(int taskNumber) throws IllegalArgumentException {
         checkValidTaskNumber(taskNumber);
         Task selectedTask = taskArrayList.get(taskNumber - 1);
@@ -106,6 +150,13 @@ public class TaskList {
         return selectedTask;
     }
 
+    /**
+     * Marks the task corresponding to the task number given as unfinished.
+     *
+     * @param taskNumber The number of the task to be marked as unfinished.
+     * @return The task that was marked as finished.
+     * @throws IllegalArgumentException If the task number does not exist within this task list.
+     */
     public Task unmarkTask(int taskNumber) throws IllegalArgumentException {
         checkValidTaskNumber(taskNumber);
         Task selectedTask = this.taskArrayList.get(taskNumber - 1);
@@ -114,6 +165,10 @@ public class TaskList {
         return selectedTask;
     }
 
+    /**
+     * Updates the task list text encapsulated by the Storage object in this instance of TaskList to match the task
+     * list in this instance of TaskList.
+     */
     private void updateStorage() {
         int taskListLength = this.getLength();
         String[] taskDescriptionArray = new String[taskListLength];
@@ -123,6 +178,12 @@ public class TaskList {
         this.storage.update(taskDescriptionArray);
     }
 
+    /**
+     * Uses the task list in this instance of TaskList to create a String representing the statuses of all the tasks in
+     * the task list using the getStatus method.
+     *
+     * @return A String representation of all the tasks in this task list.
+     */
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();
