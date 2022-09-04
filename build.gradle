@@ -16,7 +16,7 @@ repositories {
 
 javafx {
     version = "18.0.2"
-    modules = [ 'javafx.controls' ]
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
 dependencies {
