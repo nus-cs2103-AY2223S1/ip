@@ -284,8 +284,8 @@ public class Parser {
      */
     private void testInputForEvent(String userInput) throws DukeException {
         Boolean hasNoSpaceAtIndexFive = userInput.indexOf(" ") != 5;
-        Boolean isMissingdelimiter = userInput.indexOf("/at ") <= 6;
-        if (hasNoSpaceAtIndexFive || isMissingdelimiter) {
+        Boolean isMissingDelimiter = userInput.indexOf("/at ") <= 6;
+        if (hasNoSpaceAtIndexFive || isMissingDelimiter) {
             throw new DukeException("Wrong format! To add a new "
                     + "event, please enter the following:\n"
                     + "   event [TASK DESCRIPTION] /at [VENUE] "
