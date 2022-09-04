@@ -10,7 +10,6 @@ import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.framework.junit5.Start;
-import org.testfx.util.WaitForAsyncUtils;
 
 import henry.Henry;
 import javafx.scene.Node;
@@ -35,11 +34,9 @@ public class TextInputTest extends ApplicationTest {
 
     @Test
     public void testTodoCommand() {
-        WaitForAsyncUtils.waitForAsyncFx(2000, () -> {
-            FxRobot robot = new FxRobot();
-            robot.clickOn("#userInput").write("todo hello");
-            robot.clickOn("#sendButton");
-        });
+        FxRobot robot = new FxRobot();
+        robot.clickOn("#userInput").write("todo hello");
+        robot.clickOn("#sendButton");
         Set<Node> nodes = lookup("#dialog").queryAll();
         for (int i = 0; i < nodes.size(); i++) {
             if (i == 2) {
