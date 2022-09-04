@@ -34,12 +34,18 @@ public abstract class Task {
      * @return A string representing the data stored in the task.
      */
     public String parseToSaveData() {
+        assertDescriptionNotNull();
         int isDoneNum = isDone ? 1 : 0;
         return isDoneNum + "|" + description;
     }
 
     @Override
     public String toString() {
+        assertDescriptionNotNull();
         return "[" + getStatusIcon() + "] " + description;
+    }
+
+    private void assertDescriptionNotNull() {
+        assert description != null : "Description should have something";
     }
 }
