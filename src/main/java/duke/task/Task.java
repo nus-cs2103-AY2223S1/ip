@@ -8,6 +8,8 @@ package duke.task;
  * @author Tan Jia Rong
  */
 public class Task {
+    private static final String ICON_DONE = "X";
+    private static final String ICON_NOTDONE = " ";
     /** Stores the description of the task */
     protected String description;
     /** Stores the status of the task */
@@ -52,7 +54,7 @@ public class Task {
      */
     public String getStatusIcon() {
         // mark done task with X
-        return (this.isDone ? "X" : " ");
+        return (this.isDone ? ICON_DONE : ICON_NOTDONE);
     }
 
     /**
@@ -84,7 +86,7 @@ public class Task {
      * @return a string representing the task
      */
     public String stringify() {
-        return String.format("%s | %d", this.description, this.isDone ? 1 : 0);
+        return String.format("%s | %s", this.description, getStatusIcon());
     }
 
     /**
