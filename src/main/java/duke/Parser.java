@@ -204,6 +204,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Finds all tasks that contain String s and returns them.
+     *
+     * @param s String to be matched
+     * @return All tasks that match String s
+     */
     protected String find(String s) {
         try {
             String toFind = s.substring(5);
@@ -232,6 +238,12 @@ public class Parser {
             return "invalid format! try find item";
         }
     }
+
+    /**
+     * Exits the program.
+     *
+     * @return bye to signal exit of program
+     */
     protected String bye() {
         new Timer().schedule(new TimerTask() {
             @Override
