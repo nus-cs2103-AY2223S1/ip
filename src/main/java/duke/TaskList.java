@@ -10,8 +10,6 @@ import java.util.ArrayList;
  */
 public class TaskList {
     protected static ArrayList<Task> taskList = new ArrayList<Task>();
-    private Ui ui;
-    private Storage storage;
 
     /**
      * TaskList constructor.
