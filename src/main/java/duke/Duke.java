@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import java.io.IOException;
 
 public class Duke {
+
     private static final String EXIT_COMMAND = "bye";
     private static final String FILE_NAME = "dukeList.txt";
     private Storage storage;

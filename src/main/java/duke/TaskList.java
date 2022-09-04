@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.List;
 
 public class TaskList {
+
     private final List<Task> tasks;
     private final Storage storage;
+
     public TaskList(List<Task> tl, Storage s) {
         this.tasks = tl;
         this.storage = s;

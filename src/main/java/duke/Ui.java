@@ -3,6 +3,7 @@ package duke;
 import java.util.Scanner;
 
 public class Ui {
+
     private static final String LINE = "\n========================================================";
     private static final String WELCOME_MESSAGE = "Hello, my name is Duke!\nHow can I help you today?";
     private static final String EXIT_MESSAGE = LINE + "\nGoodbye! Looking forward to see you again soon!" + LINE;

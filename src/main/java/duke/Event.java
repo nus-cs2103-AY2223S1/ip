@@ -15,7 +15,8 @@ public class Event extends Task {
             LocalDateTime dtFormatted = LocalDateTime.parse(dt, parserFormats);
             this.dateTime = dtFormatted.format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm"));
         } catch (DateTimeParseException err) {
-            System.out.println("I don't recognise this time format.\nTry using this format next time: dd/MM/yyyy HHmm");
+            System.out.println("I don't recognise this time format."
+                    + "\nTry using this format next time: dd/MM/yyyy HHmm");
             this.dateTime = dt;
         }
     }

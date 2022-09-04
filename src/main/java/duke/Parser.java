@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class Parser {
+
     public static boolean parse(String input, TaskList tl, Ui ui) throws DukeException, IOException {
         String[] inputArray = input.split(" ");
         boolean isExitCommand = false;
