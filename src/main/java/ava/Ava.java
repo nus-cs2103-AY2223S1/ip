@@ -43,8 +43,6 @@ public class Ava {
         } catch (AvaException e) {
             output = e.getMessage();
         }
-        assert !output.equals("");
-        return output;
     }
 
     /**
