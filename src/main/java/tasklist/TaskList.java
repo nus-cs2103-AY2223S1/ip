@@ -1,11 +1,13 @@
 package tasklist;
 
-import exception.FredException;
-
-import task.Task;
-
 import java.util.ArrayList;
 
+import exception.FredException;
+import task.Task;
+
+/**
+ * TaskList that Fred uses to store the tasks of the current session
+ */
 public class TaskList {
 
     protected ArrayList<Task> taskList;

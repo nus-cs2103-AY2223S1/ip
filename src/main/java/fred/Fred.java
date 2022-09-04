@@ -1,15 +1,10 @@
 package fred;
 
 import commands.Command;
-
 import exception.FredException;
-
 import parser.Parser;
-
 import storage.Storage;
-
 import tasklist.TaskList;
-
 import ui.Ui;
 
 /**
@@ -22,6 +17,10 @@ public class Fred {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Create a new Fred object
+     * @param filePath filepath to data file which stores Fred's data
+     */
     public Fred(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -33,6 +32,9 @@ public class Fred {
         }
     }
 
+    /**
+     * Run Fred
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

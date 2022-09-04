@@ -1,11 +1,8 @@
 package commands;
 
 import exception.FredException;
-
 import storage.Storage;
-
 import tasklist.TaskList;
-
 import ui.Ui;
 
 /**
@@ -15,6 +12,10 @@ public class MarkCommand extends Command {
 
     protected int index;
 
+    /**
+     * Create MarkCommand
+     * @param index index of task to be marked
+     */
     public MarkCommand(int index) {
         isExit = false;
         this.index = index;

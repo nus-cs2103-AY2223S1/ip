@@ -1,13 +1,23 @@
 package task;
 
 /**
- * A Todo is a type of task that only has a description.
- *
+ * A ToDo is a type of task that only has a description.
  */
 public class ToDo extends Task {
+
+    /**
+     * Create new ToDo
+     * @param description description of todo
+     */
     public ToDo(String description) {
         super(description);
     }
+
+    /**
+     * Create new ToDo
+     * @param description description of todo
+     * @param isDone boolean that is true when todo is marked done otherwise it is false
+     */
     public ToDo(String description, boolean isDone) {
         super(description, isDone);
     }

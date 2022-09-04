@@ -1,11 +1,8 @@
 package commands;
 
 import exception.FredException;
-
 import storage.Storage;
-
 import tasklist.TaskList;
-
 import ui.Ui;
 
 /**
@@ -15,6 +12,10 @@ public class UnmarkCommand extends Command {
 
     protected int index;
 
+    /**
+     * Create UnmarkCommand
+     * @param index index of task to be unmarked
+     */
     public UnmarkCommand(int index) {
         isExit = false;
         this.index = index;

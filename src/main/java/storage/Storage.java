@@ -1,22 +1,22 @@
 package storage;
 
-import exception.FredException;
-
-import ui.Ui;
-
-import task.Deadline;
-import task.Event;
-import task.Task;
-import task.ToDo;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import exception.FredException;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.ToDo;
+import ui.Ui;
+
+/**
+ * Storage lets Fred save and load from a data file to keep data between sessions
+ */
 public class Storage {
 
     protected String filePath;

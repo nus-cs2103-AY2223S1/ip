@@ -1,9 +1,7 @@
 package commands;
 
 import storage.Storage;
-
 import tasklist.TaskList;
-
 import ui.Ui;
 
 /**
@@ -11,6 +9,9 @@ import ui.Ui;
  */
 public class ExitCommand extends Command {
 
+    /**
+     * Create ExitCommand
+     */
     public ExitCommand() {
         isExit = true;
     }

@@ -1,11 +1,8 @@
 package commands;
 
 import exception.FredException;
-
 import storage.Storage;
-
 import tasklist.TaskList;
-
 import ui.Ui;
 
 /**
@@ -15,6 +12,10 @@ public class FindCommand extends Command {
 
     protected String keyword;
 
+    /**
+     * Create FindCommand
+     * @param keyword keyword to be looked for in all tasks
+     */
     public FindCommand(String keyword) {
         isExit = false;
         this.keyword = keyword;

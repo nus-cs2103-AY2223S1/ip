@@ -1,11 +1,8 @@
 package commands;
 
 import exception.FredException;
-
 import storage.Storage;
-
 import tasklist.TaskList;
-
 import ui.Ui;
 
 /**
@@ -15,6 +12,10 @@ public class DeleteCommand extends Command {
 
     protected int index;
 
+    /**
+     * Add DeleteCommand
+     * @param index index of task to be deleted
+     */
     public DeleteCommand(int index) {
         isExit = false;
         this.index = index;

@@ -1,15 +1,12 @@
 package commands;
 
 import exception.FredException;
-
 import storage.Storage;
-
 import tasklist.TaskList;
-
 import ui.Ui;
 
 /**
- * Command abstract class that all command classes will inherit from
+ * Abstract Command class that all command classes will inherit from
  */
 public abstract class Command {
 

@@ -1,7 +1,11 @@
 package parser;
 
-import commands.Command;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import commands.AddCommand;
+import commands.Command;
 import commands.DeleteCommand;
 import commands.ExitCommand;
 import commands.FindCommand;
@@ -9,15 +13,13 @@ import commands.ListCommand;
 import commands.MarkCommand;
 import commands.SaveCommand;
 import commands.UnmarkCommand;
-
 import exception.FredException;
-
 import task.TaskType;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
+/**
+ * Parser parses through the command string given by user and returns the correct command
+ */
 public class Parser {
 
     /**

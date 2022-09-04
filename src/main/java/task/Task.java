@@ -1,14 +1,27 @@
 package task;
 
+/**
+ * Abstract Task class that all task classes will inherit from
+ */
 public abstract class Task {
+
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Create new Task
+     * @param description description of task
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
+    /**
+     * Create new task
+     * @param description description of task
+     * @param isDone boolean that is true when task is marked done otherwise it is false
+     */
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
