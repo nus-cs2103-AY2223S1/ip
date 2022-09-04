@@ -6,12 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TodoTest {
     @Test
-    public void getNameTest(){
+    public void getName_rightName(){
         assertEquals("T", new Todo("").getName());
     }
 
     @Test
-    public void getTimingTest(){
+    public void getTiming_rightNoTime(){
         assertEquals("", new Todo("").getTiming());
     }
 }

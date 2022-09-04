@@ -29,7 +29,7 @@ public class Pikachu {
     }
 
     public void run() {
-        ui.intro();
+        ui.sayHi();
         boolean isExit = false;
         while (!isExit) {
             try {

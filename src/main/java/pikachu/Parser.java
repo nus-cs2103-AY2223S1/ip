@@ -19,9 +19,9 @@ public class Parser {
             return new MarkCommand(fullCommand);
         } else if (fullCommand.startsWith("unmark ")) {
             return new UnmarkCommand(fullCommand);
-        } else if (fullCommand.startsWith("todo ") || 
-        (fullCommand.startsWith("deadline ") && fullCommand.contains(" /by ")) || 
-        (fullCommand.startsWith("event ") && fullCommand.contains(" /at "))) {
+        } else if (fullCommand.startsWith("todo ")
+                || (fullCommand.startsWith("deadline ") && fullCommand.contains(" /by "))
+                || (fullCommand.startsWith("event ") && fullCommand.contains(" /at "))) {
             return new AddCommand(fullCommand);
         } else if (fullCommand.startsWith("delete ")) {
             return new DeleteCommand(fullCommand);

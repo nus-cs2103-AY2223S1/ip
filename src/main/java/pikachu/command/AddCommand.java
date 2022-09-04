@@ -1,4 +1,5 @@
 package pikachu.command;
+
 import java.time.LocalDate;
 
 import pikachu.PikachuException;
@@ -10,7 +11,7 @@ import pikachu.task.Event;
 import pikachu.task.Todo;
 
 public class AddCommand extends Command {
-    String input;
+    private final String input;
 
     public AddCommand(String fullCommand) {
         input = fullCommand;
@@ -32,7 +33,7 @@ public class AddCommand extends Command {
             }
         } else if (input.startsWith("todo ")){ //add as tasks
             Todo newTODO = new Todo(input.substring(5));
-            if (newTODO.description.equals("")) {
+            if (newTODO.getDescription().equals("")) {
                 throw new PikachuException("Pi-cannot be empty-pi");
             } else {
                 tasks.taskList.add(newTODO);

@@ -8,7 +8,7 @@ import pikachu.task.Task;
 import pikachu.TaskList;
 
 public class MarkCommand extends Command {
-    String input;
+    private final String input;
 
     public MarkCommand(String fullCommand) {
         this.input = fullCommand;

@@ -4,10 +4,13 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import pikachu.task.Deadline;
 import pikachu.task.Event;
@@ -24,10 +27,16 @@ public class Storage {
     }
 
     public List<Task> load() throws PikachuException{
+
+        //Initialise initialTasks and currLine
         List<Task> initialTasks = new ArrayList<>();
         String currLine;
+
         try {
+            //Read the existing file
             BufferedReader reader = new BufferedReader(new FileReader(filepath));
+
+            // Load the text into the intial task list in the correct Task class
             while ((currLine = reader.readLine()) != null) {
                 if (currLine.startsWith("T")) {
                     String[] taskDetails = currLine.split(" \\| ",3);
@@ -46,19 +55,19 @@ public class Storage {
                     initialTasks.add(new Event(taskDetails[2],isDone, taskDetails[3]));
                 } 
             }
+            //Close the reader
             reader.close();
         } catch (Exception e) {
-            System.out.println(e);
+            // Print an error message for the user
             throw new PikachuException("No previous record available");
         }
-        
-
         return initialTasks;
         
     }
 
     public void save(List<Task> tasks) throws PikachuException {
         try {
+            //Get the file to save the tasks
             f = new File(filepath);
             if (!f.getParentFile().exists()) {
                 f.getParentFile().mkdirs();
@@ -66,17 +75,20 @@ public class Storage {
             if (!f.exists()) {
                 f.createNewFile();
             }
+
+            //Write the tasks to the file
             FileWriter myWriter = new FileWriter(filepath);
             for (Task taskie :tasks) {
                 String str;
 
-                if (taskie.getName() == "T") {
-                    str = String.format("%s | %d | %s \n", taskie.getName(), taskie.isDone ? 1 : 0, taskie.description);
+                if (Objects.equals(taskie.getName(), "T")) {
+                    str = String.format("%s | %d | %s \n", taskie.getName(), taskie.getDone() ? 1 : 0, taskie.getDescription());
                 } else {
-                    str = String.format("%s | %d | %s | %s \n", taskie.getName(), taskie.isDone ? 1 : 0, taskie.description, taskie.getTiming());
+                    str = String.format("%s | %d | %s | %s \n", taskie.getName(), taskie.getDone() ? 1 : 0, taskie.getDescription(), taskie.getTiming());
                 }
                 myWriter.write(str);
             }
+            //Close the writer
             myWriter.close();
         } catch (Exception e) {
             throw new PikachuException("Something wrong with the saving process! Buy a new computer!");

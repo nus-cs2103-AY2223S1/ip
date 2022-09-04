@@ -6,12 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EventTest {
     @Test
-    public void getNameTest(){
+    public void getName_rightName(){
         assertEquals("E", new Event("","").getName());
     }
 
     @Test
-    public void getTimingTest(){
+    public void getLocation_rightLocation(){
         assertEquals("RC4", new Event("","RC4").getTiming());
     }
 }

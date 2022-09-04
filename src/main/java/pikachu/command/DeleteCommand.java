@@ -8,7 +8,7 @@ import pikachu.task.Task;
 import pikachu.TaskList;
 
 public class DeleteCommand extends Command {
-    String input;
+    private final String input;
 
     public DeleteCommand(String fullCommand) {
         this.input = fullCommand;

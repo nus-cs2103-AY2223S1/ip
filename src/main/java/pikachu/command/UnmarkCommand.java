@@ -8,7 +8,7 @@ import pikachu.task.Task;
 import pikachu.TaskList;
 
 public class UnmarkCommand extends Command {
-    String input;
+    private final String input;
 
     public UnmarkCommand(String fullCommand) {
         this.input = fullCommand;
