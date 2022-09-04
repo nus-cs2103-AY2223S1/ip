@@ -6,8 +6,8 @@ package duke.types;
  * @author Aaron Tan
  */
 public abstract class Task {
-    public String description;
     protected boolean isDone;
+    private String description;
 
     /**
      * Constructor for a task. Note that Task is an
@@ -21,6 +21,14 @@ public abstract class Task {
         this.isDone = isDone;
     }
 
+    /**
+     * Returns description of current task.
+     *
+     * @return Returns description of current task.
+     */
+    public String getDescription() {
+        return description;
+    }
     /**
      * Returns "X" if task is done and "" if not.
      *

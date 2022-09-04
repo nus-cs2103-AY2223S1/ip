@@ -1,7 +1,5 @@
 package duke.types;
 
-import duke.types.Task;
-
 /**
  * Todo represents a todo for a task.
  *
@@ -26,7 +24,7 @@ public class Todo extends Task {
      */
     public String saveString() {
         return String.format("T | %s | %s\n", super.isDone ? "1" : "0",
-                super.description);
+                super.getDescription());
     }
 
     /**

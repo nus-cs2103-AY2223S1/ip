@@ -1,10 +1,10 @@
 package duke.types;
 
-import duke.DukeException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import duke.DukeException;
 
 /**
  * Represents an Event as a task.
@@ -40,7 +40,7 @@ public class Event extends Task {
      */
     public String saveString() {
         return String.format("E | %s | %s | %s\n", super.isDone ? "1" : "0",
-                super.description, dateTime.format(formatter));
+                super.getDescription(), dateTime.format(formatter));
     }
 
     /**

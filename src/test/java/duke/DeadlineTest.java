@@ -3,9 +3,9 @@ package duke;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import duke.types.Deadline;
 import org.junit.jupiter.api.Test;
 
+import duke.types.Deadline;
 
 public class DeadlineTest {
     private String invalidDate = "40/40/999";

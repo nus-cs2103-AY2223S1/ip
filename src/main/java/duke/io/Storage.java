@@ -1,18 +1,16 @@
 package duke.io;
 
-import duke.DukeException;
-import duke.io.TaskList;
-import duke.types.Deadline;
-import duke.types.Event;
-import duke.types.Task;
-import duke.types.Todo;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import duke.DukeException;
+import duke.types.Deadline;
+import duke.types.Event;
+import duke.types.Task;
+import duke.types.Todo;
 
 /**
  * Storage for the Duke chatbot, storing and restoring files into/from a save file.

@@ -1,15 +1,14 @@
 package duke.io;
 
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import duke.DukeException;
 import duke.types.Deadline;
 import duke.types.Event;
 import duke.types.Task;
 import duke.types.Todo;
-
-import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
-
 /**
  * Parses given string to operate on.
  *
@@ -223,7 +222,8 @@ public class Parser {
             ArrayList<Task> matchingTasks = new ArrayList<>();
             for (int i = 0; i < tasks.size(); i++) {
                 Task task = tasks.get(i);
-                if (task.description.contains(toFind)) {
+                String description = task.getDescription();
+                if (description.contains(toFind)) {
                     matchingTasks.add(task);
                 }
             }

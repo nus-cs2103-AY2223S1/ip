@@ -1,11 +1,10 @@
 package duke.types;
 
-import duke.DukeException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import duke.DukeException;
 /**
  * Represents a deadline for a task.
  *
@@ -40,7 +39,7 @@ public class Deadline extends Task {
      */
     public String saveString() {
         return String.format("D | %s | %s | %s\n", super.isDone ? "1" : "0",
-                super.description, date.format(formatter));
+                super.getDescription(), date.format(formatter));
     }
 
     /**

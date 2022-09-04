@@ -3,10 +3,10 @@ package duke;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import duke.types.Deadline;
-import duke.types.Event;
 import org.junit.jupiter.api.Test;
 
+import duke.types.Deadline;
+import duke.types.Event;
 
 public class EventTest {
     private String invalidDateTime = "01/01/2022 100:00";
