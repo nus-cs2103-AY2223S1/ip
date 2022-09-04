@@ -24,10 +24,14 @@ public class AddDeadLineCommand extends Command {
      * Creates a AddDeadLineCommand object.
      *
      * @param inputs String array containing the user inputs.
+     * @throws TunaException exception thrown when /by is missing.
      */
-    public AddDeadLineCommand(String[] inputs) {
+    public AddDeadLineCommand(String[] inputs) throws TunaException {
         super(CommandType.DEADLINE);
         limit = findElem(inputs, "/by");
+        if (limit == -1) {
+            throw new TunaException("Oops! Remember to include /by and the deadline after your task description");
+        }
         taskDescription = String.join(" ", Arrays.copyOfRange(inputs, 1, limit));
         by = String.join(" ", Arrays.copyOfRange(inputs, limit + 1, inputs.length));
     }
@@ -38,12 +42,8 @@ public class AddDeadLineCommand extends Command {
      * @param tasks TaskList object.
      * @param ui Ui object.
      * @param storage Storage object.
-     * @throws TunaException exception thrown when /by is missing.
      */
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws TunaException {
-        if (limit == -1) {
-            return ui.deadLineErrorMessage();
-        }
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.addDeadLine(taskDescription, by);
         return ui.taskAddedMessage(tasks.getLatestTask(), tasks.getTotalTasks());
     }

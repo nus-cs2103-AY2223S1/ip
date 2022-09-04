@@ -23,10 +23,14 @@ public class AddEventCommand extends Command {
      * Creates a AddEventCommand object.
      *
      * @param inputs String array containing the user inputs.
+     * @throws TunaException exception thrown when /at is missing.
      */
-    public AddEventCommand(String[] inputs) {
+    public AddEventCommand(String[] inputs) throws TunaException {
         super(CommandType.EVENT);
         limit = findElem(inputs, "/at");
+        if (limit == -1) {
+            throw new TunaException("Oops! Remember to include /at and the event time after your task description");
+        }
         taskDescription = String.join(" ", Arrays.copyOfRange(inputs, 1, limit));
         at = String.join(" ", Arrays.copyOfRange(inputs, limit + 1, inputs.length));
     }
@@ -37,12 +41,8 @@ public class AddEventCommand extends Command {
      * @param tasks TaskList object.
      * @param ui Ui object.
      * @param storage Storage object.
-     * @throws TunaException exception thrown when /at is missing.
      */
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws TunaException {
-        if (limit == -1) {
-            return ui.eventErrorMessage();
-        }
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.addEvent(taskDescription, at);
         return ui.taskAddedMessage(tasks.getLatestTask(), tasks.getTotalTasks());
     }

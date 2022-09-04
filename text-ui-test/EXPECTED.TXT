@@ -1,16 +1,11 @@
-Hello! I'm Duke
+Hello! I'm Tuna
 What can I do for you?
-Got it. I've added this task:
-[T][ ] borrow book
-Now you have 1 tasks in the list
-Got it. I've added this task:
-[D][ ] return book (by: 01 Sep 2022 1500hrs)
-Now you have 2 tasks in the list
-Got it. I've added this task:
-[E][ ] project meeting (at: 02 Sep 2022 1300hrs)
-Now you have 3 tasks in the list
-Nice! I've marked this task as done:
-[D][X] return book (by: 01 Sep 2022 1500hrs)
-OK, I've marked this task as not done yet:
-[D][ ] return book (by: 01 Sep 2022 1500hrs)
+Here are the tasks in your list:
+1. [D][X] return book (by: 12 Aug 2022 1500hrs)
+2. [T][ ] look for book
+3. [E][X] concert (at: 10 Sep 2022 1830hrs)
+4. [D][ ] borrow book (by: 10 Aug 2022 1200hrs)
+5. [D][X] read book (by: 11 Aug 2022 2359hrs)
+6. [T][ ] new task
+
 Bye. Hope to see you again soon!
