@@ -38,7 +38,7 @@ public class Ui {
     public static void printMessageForAddTask(Task newTask, TaskList taskList) {
         System.out.println(LINE_BREAK);
         System.out.println("I gotchu fam. Your task has been added:");
-        System.out.println("  " + newTask.getStatus());
+        System.out.println(newTask.getStatus());
         System.out.println("You have " + taskList.getLength() + " task(s). Stop procrastinating bro.");
         System.out.println(LINE_BREAK);
     }
@@ -52,7 +52,7 @@ public class Ui {
     public static void printMessageForDeleteTask(Task removedTask, TaskList taskList) {
         System.out.println(LINE_BREAK);
         System.out.println("I hope you're not deleting this just to avoid work:");
-        System.out.println("  " + removedTask.getStatus());
+        System.out.println(removedTask.getStatus());
         System.out.println("You have " + taskList.getLength() + " task(s). Stop procrastinating bro.");
         System.out.println(LINE_BREAK);
     }

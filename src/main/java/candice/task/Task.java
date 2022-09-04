@@ -6,7 +6,7 @@ package candice.task;
  */
 public abstract class Task {
     /** Boolean to represent if the task has been finished. False by default */
-    boolean finished = false;
+    boolean isFinished = false;
     /** Name of the task */
     final String taskName;
 
@@ -20,11 +20,11 @@ public abstract class Task {
     }
 
     public void setFinished() {
-        this.finished = true;
+        this.isFinished = true;
     }
 
     public void setUnfinished() {
-        this.finished = false;
+        this.isFinished = false;
     }
 
     /**
@@ -34,7 +34,7 @@ public abstract class Task {
      * the name of the task.
      */
     public String getStatus() {
-        String completed = this.finished ? "[X] " : "[ ] ";
+        String completed = this.isFinished ? "[X] " : "[ ] ";
         return completed + this.taskName;
     }
 
@@ -72,7 +72,7 @@ public abstract class Task {
          */
         @Override
         public String getStorageDescription() {
-            String finishedStatus = this.finished ? "finished" : "unfinished";
+            String finishedStatus = this.isFinished ? "finished" : "unfinished";
             return "[T], " + finishedStatus + ", " + this.taskName + "\n";
         }
     }

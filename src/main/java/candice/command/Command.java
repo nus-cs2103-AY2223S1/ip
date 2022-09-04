@@ -114,19 +114,15 @@ public abstract class Command {
          */
         @Override
         public void resolve(TaskList taskList) throws IllegalArgumentException {
-            try {
-                if (super.commandType == CommandType.DELETE) {
-                    Task deletedTask = taskList.deleteTask(this.taskNumber);
-                    Ui.printMessageForDeleteTask(deletedTask, taskList);
-                } else if (super.commandType == CommandType.MARK) {
-                    Task selectedTask = taskList.markTask(this.taskNumber);
-                    Ui.printMessageForMarkTask(selectedTask);
-                } else { // commandType == UNMARK
-                    Task selectedTask = taskList.unmarkTask(this.taskNumber);
-                    Ui.printMessageForUnmarkTask(selectedTask);
-                }
-            } catch (IllegalArgumentException e) {
-                throw e;
+            if (super.commandType == CommandType.DELETE) {
+                Task deletedTask = taskList.deleteTask(this.taskNumber);
+                Ui.printMessageForDeleteTask(deletedTask, taskList);
+            } else if (super.commandType == CommandType.MARK) {
+                Task selectedTask = taskList.markTask(this.taskNumber);
+                Ui.printMessageForMarkTask(selectedTask);
+            } else { // commandType == UNMARK
+                Task selectedTask = taskList.unmarkTask(this.taskNumber);
+                Ui.printMessageForUnmarkTask(selectedTask);
             }
         }
     }
