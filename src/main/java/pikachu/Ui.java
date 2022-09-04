@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Ui {
 
     static final String HORIZON = "____________________________________________________________\n";
-    Scanner sc = new Scanner(System.in);
+    private final Scanner sc = new Scanner(System.in);
 
     /**
      * Returns the scanner to read next line.
@@ -54,4 +54,4 @@ public class Ui {
     public void showError(String error) {
         System.out.println(error);
     }
- }
+}

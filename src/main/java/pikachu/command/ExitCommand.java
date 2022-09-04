@@ -1,6 +1,5 @@
 package pikachu.command;
 
-import pikachu.PikachuException;
 import pikachu.Storage;
 import pikachu.TaskList;
 import pikachu.Ui;

@@ -1,14 +1,18 @@
 package pikachu.command;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import pikachu.Storage;
 import pikachu.TaskList;
 import pikachu.Ui;
 import pikachu.task.Task;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class FindCommand extends Command{
+/**
+ * Represents command that find tasks. A <code>FindCommand</code> object corresponds to
+ * an instruction to find tasks e.g., <code>bye</code>.
+ */
+public class FindCommand extends Command {
     private final String input;
 
     public FindCommand(String fullCommand) {
@@ -29,7 +33,7 @@ public class FindCommand extends Command{
         List<Task> result = new ArrayList<>();
 
         //Find all the related tasks
-        for (Task taskie: tasks.taskList) {
+        for (Task taskie: tasks.getTaskList()) {
             if (taskie.getDescription().contains(keyword)) {
                 result.add(taskie);
             }
@@ -40,7 +44,7 @@ public class FindCommand extends Command{
             System.out.println("Pi...cannot find...");
         } else {
             for (Task task: result) {
-                output.append(result.indexOf(task)+1).append('.').append(task).append('\n');
+                output.append(result.indexOf(task) + 1).append('.').append(task).append('\n');
             }
             output.deleteCharAt(output.length() - 1);
             System.out.println(String.valueOf(output));

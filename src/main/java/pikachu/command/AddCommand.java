@@ -33,38 +33,39 @@ public class AddCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws PikachuException {
         String tempStr = "";
         if (input.startsWith("deadline ") && input.contains(" /by ")) {
-            String temp1 = input.split(" ",2)[1];
-            String[] temp2 = temp1.split(" /by ",2);
+            String temp1 = input.split(" ", 2)[1];
+            String[] temp2 = temp1.split(" /by ", 2);
             try {
                 LocalDate date = LocalDate.parse(temp2[1]);
-                Deadline newDDL = new Deadline(temp2[0],date);
-                tasks.taskList.add(newDDL);
-                tempStr = "Pikapi(added): " + newDDL + '\n';
-                tempStr += "Pikaaaaa: " + tasks.taskList.size() + (tasks.taskList.size() > 1 ? " tasks" : " task");
-            } catch(Exception e) {
+                Deadline newDdl = new Deadline(temp2[0], date);
+                tasks.getTaskList().add(newDdl);
+                tempStr = "Pikapi(added): " + newDdl + '\n';
+                tempStr += "Pikaaaaa: " + tasks.getTaskList().size()
+                        + (tasks.getTaskList().size() > 1 ? " tasks" : " task");
+            } catch (Exception e) {
                 throw new PikachuException("Need valid date format(yyyy-mm-dd) Pikaaaa");
             }
-        } else if (input.startsWith("todo ")){ //add as tasks
-            Todo newTODO = new Todo(input.substring(5));
-            if (newTODO.getDescription().equals("")) {
+        } else if (input.startsWith("todo ")) { //add as tasks
+            Todo newTodo = new Todo(input.substring(5));
+            if (newTodo.getDescription().equals("")) {
                 throw new PikachuException("Pi-cannot be empty-pi");
             } else {
-                tasks.taskList.add(newTODO);
-                tempStr = "Pikapi(added): " + newTODO + '\n';
-                tempStr += "Pikaaaaa: " + tasks.taskList.size() + (tasks.taskList.size() > 1 ? " tasks" : " task");
+                tasks.getTaskList().add(newTodo);
+                tempStr = "Pikapi(added): " + newTodo + '\n';
+                tempStr += "Pikaaaaa: " + tasks.getTaskList().size()
+                        + (tasks.getTaskList().size() > 1 ? " tasks" : " task");
             }
-        } else if (input.startsWith("event ") && input.contains(" /at ")){
-            String temp1 = input.split(" ",2)[1];
-            String[] temp2 = temp1.split(" /at ",2);
-            Event newEvent = new Event(temp2[0],temp2[1]);
-            tasks.taskList.add(newEvent);
+        } else if (input.startsWith("event ") && input.contains(" /at ")) {
+            String temp1 = input.split(" ", 2)[1];
+            String[] temp2 = temp1.split(" /at ", 2);
+            Event newEvent = new Event(temp2[0], temp2[1]);
+            tasks.getTaskList().add(newEvent);
             tempStr = "Pikapi(added): " + newEvent + '\n';
-            tempStr += "Pikaaaaa: " + tasks.taskList.size() + (tasks.taskList.size() > 1 ? " tasks" : " task");
-        }  
-
-        storage.save(tasks.taskList);
+            tempStr += "Pikaaaaa: " + tasks.getTaskList().size()
+                    + (tasks.getTaskList().size() > 1 ? " tasks" : " task");
+        }
+        storage.save(tasks.getTaskList());
         System.out.println(tempStr);
-        
     }
 
     /**
@@ -74,5 +75,4 @@ public class AddCommand extends Command {
     public boolean isExit() {
         return false;
     }
-    
 }

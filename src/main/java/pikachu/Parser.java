@@ -1,6 +1,13 @@
 package pikachu;
 
-import pikachu.command.*;
+import pikachu.command.AddCommand;
+import pikachu.command.Command;
+import pikachu.command.DeleteCommand;
+import pikachu.command.ExitCommand;
+import pikachu.command.FindCommand;
+import pikachu.command.ListCommand;
+import pikachu.command.MarkCommand;
+import pikachu.command.UnmarkCommand;
 
 /**
  * Represents a parser to find the command for the input. A <code>Parser</code> object corresponds to

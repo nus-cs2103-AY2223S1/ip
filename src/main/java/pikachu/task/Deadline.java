@@ -10,15 +10,21 @@ import java.time.format.FormatStyle;
  */
 public class Deadline extends Task {
 
-    protected LocalDate by;
+    private final LocalDate by;
 
+    /**
+     * Initialises deadline with default not done.
+     */
     public Deadline(String description, LocalDate by) {
         super(description);
         this.by = by;
     }
 
+    /**
+     * Initialises deadline with isDone indicated.
+     */
     public Deadline(String description, boolean isDone, LocalDate by) {
-        super(description,isDone);
+        super(description, isDone);
         this.by = by;
     }
 

@@ -6,13 +6,19 @@ package pikachu.task;
  */
 public class Event extends Task {
 
-    protected String at;
+    private final String at;
 
+    /**
+     * Initialises event with default not done.
+     */
     public Event(String description, String at) {
         super(description);
         this.at = at;
     }
 
+    /**
+     * Initialises event with isDone indicated.
+     */
     public Event(String description, boolean isDone, String at) {
         super(description, isDone);
         this.at = at;

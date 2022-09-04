@@ -4,15 +4,21 @@ package pikachu.task;
  * Represents the abstract task. A <code>Task</code> object corresponds to
  * a deadline/to do/event.
  */
-abstract public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Initialises task with isDone as default not done.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
+    /**
+     * Initialises task with isDone indicated.
+     */
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
@@ -49,8 +55,8 @@ abstract public class Task {
         this.isDone = newDone;
     }
 
-    abstract public String getName();
-    abstract public String getTiming();
+    public abstract String getName();
+    public abstract String getTiming();
 
     /**
      * Returns the general format of task in task list.

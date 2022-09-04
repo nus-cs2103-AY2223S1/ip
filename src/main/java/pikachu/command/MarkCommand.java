@@ -3,12 +3,12 @@ package pikachu.command;
 import pikachu.Pikachu;
 import pikachu.PikachuException;
 import pikachu.Storage;
+import pikachu.TaskList;
 import pikachu.Ui;
 import pikachu.task.Task;
-import pikachu.TaskList;
 
 /**
- * Represents command that marks certain tasks as completed according to index. A <code>MarkCommand</code> object corresponds to
+ * Represents command that marks tasks as completed. A <code>MarkCommand</code> object corresponds to
  * an instruction to mark completion by index e.g., <code>mark 2</code>.
  */
 public class MarkCommand extends Command {
@@ -30,15 +30,16 @@ public class MarkCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws PikachuException {
         if (!Pikachu.isNumeric(input.substring(5))) {
             throw new PikachuException("Pi-must be numbers behind-pi!");
-        } else if (Integer.parseInt(input.substring(5)) > tasks.taskList.size() || Integer.parseInt(input.substring(5)) <= 0) {
+        } else if (Integer.parseInt(input.substring(5)) > tasks.getTaskList().size()
+                || Integer.parseInt(input.substring(5)) <= 0) {
             throw new PikachuException("Pi-not within range-pi!");
         } else {
             int temp = Integer.parseInt(input.substring(5));
-            Task task = tasks.taskList.get(temp - 1);
+            Task task = tasks.getTaskList().get(temp - 1);
             task.setDone(true);
             System.out.println("Pi-ka(Done): " + task);
         }
-        storage.save(tasks.taskList);
+        storage.save(tasks.getTaskList());
     }
 
     /**
@@ -48,5 +49,4 @@ public class MarkCommand extends Command {
     public boolean isExit() {
         return false;
     }
-    
 }

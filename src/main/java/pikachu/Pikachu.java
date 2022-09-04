@@ -12,6 +12,9 @@ public class Pikachu {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Initialises Pikachu bot.
+     */
     public Pikachu(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -33,7 +36,7 @@ public class Pikachu {
         try {
             Integer.parseInt(str);
             return true;
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
     }
@@ -57,7 +60,6 @@ public class Pikachu {
                 ui.showLine();
             }
         }
-        
     }
 
     /**

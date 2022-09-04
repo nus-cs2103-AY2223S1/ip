@@ -1,16 +1,15 @@
 package pikachu.command;
 
-import pikachu.PikachuException;
 import pikachu.Storage;
+import pikachu.TaskList;
 import pikachu.Ui;
 import pikachu.task.Task;
-import pikachu.TaskList;
 
 /**
  * Represents command that lists the current task list. A <code>ListCommand</code> object corresponds to
  * an instruction to list the current task list e.g., <code>list</code>
  */
-public class ListCommand extends Command{
+public class ListCommand extends Command {
 
     /**
      * Lists the current task list.
@@ -23,8 +22,8 @@ public class ListCommand extends Command{
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         StringBuilder output = new StringBuilder();
         output.append("PikaPika (Nothing in the list)\n");
-        for (Task task: tasks.taskList) {
-            output.append(tasks.taskList.indexOf(task)+1).append('.').append(task).append('\n');
+        for (Task task: tasks.getTaskList()) {
+            output.append(tasks.getTaskList().indexOf(task) + 1).append('.').append(task).append('\n');
         }
         output.deleteCharAt(output.length() - 1);
         System.out.println(String.valueOf(output));
@@ -37,5 +36,4 @@ public class ListCommand extends Command{
     public boolean isExit() {
         return false;
     }
-    
 }
