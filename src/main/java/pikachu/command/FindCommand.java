@@ -30,7 +30,7 @@ public class FindCommand extends Command{
 
         //Find all the related tasks
         for (Task taskie: tasks.taskList) {
-            if (taskie.description.contains(keyword)) {
+            if (taskie.getDescription().contains(keyword)) {
                 result.add(taskie);
             }
         }
@@ -40,7 +40,7 @@ public class FindCommand extends Command{
             System.out.println("Pi...cannot find...");
         } else {
             for (Task task: result) {
-                output.append(tasks.taskList.indexOf(task)+1).append('.').append(task).append('\n');
+                output.append(result.indexOf(task)+1).append('.').append(task).append('\n');
             }
             output.deleteCharAt(output.length() - 1);
             System.out.println(String.valueOf(output));
