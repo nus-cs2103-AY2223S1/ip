@@ -23,15 +23,15 @@ public class MainWindow extends AnchorPane {
     /** <Code>String</Code> of all available commands and their format. */
     private static final String AVAILABLE_COMMANDS =
             "Available commands:\n"
-                    + "   deadline [TASK DESCRIPTION] /by [YYYY/MM/DD]\n"
-                    + "   event      [TASK DESCRIPTION] /at [VENUE]\n"
-                    + "   todo       [TASK DESCRIPTION]\n"
-                    + "   delete     [TASK NUMBER]\n"
-                    + "   mark       [TASK NUMBER]\n"
-                    + "   unmark   [TASK NUMBER]\n"
-                    + "   list\n"
-                    + "   find         [WORD TO SEARCH FOR]\n"
-                    + "   bye\n";
+            + "   deadline [TASK DESCRIPTION] /by [YYYY/MM/DD] (/p [PRIORITY])\n"
+            + "   event      [TASK DESCRIPTION] /at [VENUE] (/p [PRIORITY])\n"
+            + "   todo       [TASK DESCRIPTION] (/p [PRIORITY])\n"
+            + "   delete     [TASK NUMBER]\n"
+            + "   mark       [TASK NUMBER]\n"
+            + "   unmark   [TASK NUMBER]\n"
+            + "   list\n"
+            + "   find         [WORD TO SEARCH FOR]\n"
+            + "   bye\n";
 
     /** Image to represent user. */
     private final Image userImage =

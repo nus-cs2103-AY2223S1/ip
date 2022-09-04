@@ -4,38 +4,41 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Defines <Code>Deadline</Code> class
+ * Defines {@code Deadline} class.
  */
 public class Deadline extends Task {
 
-    /** Deadline of <Code>Deadline</Code> object. */
+    /** Deadline of {@code Deadline} object. */
     protected LocalDate by;
 
     /**
-     * Constructor for <Code>Deadline</Code>.
+     * Constructor for {@code Deadline}.
      * @param description Description of task.
      * @param by          Deadline of task.
+     * @param priority    Priority level of task.
      */
-    public Deadline(String description, LocalDate by) {
-        super(description);
+    public Deadline(String description, LocalDate by, Level priority) {
+        super(description, priority);
         this.by = by;
     }
 
     /**
-     * Constructor for <Code>Deadline</Code> with <Code>isDone</Code> given.
+     * Constructor for {@code Deadline} with {@code isDone} given.
      * @param description Description of task.
      * @param by          Deadline of task.
      * @param isDone      Whether task is done.
+     * @param priority    Priority level of task.
      */
-    public Deadline(String description, LocalDate by, Boolean isDone) {
-        super(description, isDone);
+    public Deadline(String description, LocalDate by, Boolean isDone,
+                    Level priority) {
+        super(description, isDone, priority);
         this.by = by;
     }
 
     /**
-     * Overrides <Code>toString</Code> to return status and description of
-     * <Code>Deadline</Code>.
-     * @return [D][COMPLETION STATUS][TASK DESCRIPTION]
+     * Overrides {@code toString} to return status and description of
+     * {@code Deadline}.
+     * @return [D][[COMPLETION STATUS]][[PRIORITY]] [TASK DESCRIPTION]
      */
     @Override
     public String toString() {
@@ -46,20 +49,21 @@ public class Deadline extends Task {
     }
 
     /**
-     * To produce a <Code>String</Code> with "|" delimiters for storing the
-     * <Code>Deadline</Code>'s data in a text file.
-     * @return "deadline|[COMPLETION STATUS]|[TASK DESCRIPTION]|[TASK DEADLINE]
+     * To produce a {@code String} with "|" delimiters for storing the
+     * {@code Deadline}'s data in a text file.
+     * @return "deadline|[COMPLETION STATUS]|[TASK DESCRIPTION]
+     *                  |[PRIORITY][TASK DEADLINE]"
      */
     public String toFileFormat() {
         return "deadline" + "|" + super.toFileFormat() + "|" + this.by;
     }
 
     /**
-     * Returns whether <Code>Deadline</Code>'s description or deadline contains
+     * Returns whether {@code Deadline}'s description or deadline contains
      * given word.
      * @param word Word to search for.
-     * @return     <Code>Boolean</Code> value of whether
-     *             <Code>Deadline</Code>'s description or date contains given
+     * @return     {@code Boolean} value of whether
+     *             {@code Deadline}'s description or date contains given
      *             word.
      */
     @Override

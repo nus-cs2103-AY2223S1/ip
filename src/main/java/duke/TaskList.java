@@ -7,22 +7,23 @@ import java.util.List;
 
 import duke.task.Deadline;
 import duke.task.Event;
+import duke.task.Level;
 import duke.task.Task;
 import duke.task.ToDo;
 
 /**
- * Defines <Code>TaskList</Code> class.
+ * Defines {@code TaskList} class.
  * <p>
- *     Stores an <Code>ArrayList</Code> of <Code>Task</Code>.
+ *     Stores an {@code ArrayList} of {@code Task}.
  * </p>
  */
 public class TaskList {
-    /** <Code>List</Code> to store <Code>String</Code> inputs given. */
+    /** {@code List} to store {@code String} inputs given. */
     private static final List<Task> taskList = new ArrayList<>();
 
     /**
-     * Gets description as <Code>String</Code> from input.
-     * @param input <Code>String</Code> of words given by user as input
+     * Gets description as {@code String} from input.
+     * @param input {@code String} of words given by user as input
      * @return      Return description of input task.
      */
     private String getDescription(String input) {
@@ -30,7 +31,11 @@ public class TaskList {
             return input.substring(9, input.indexOf("/by ") - 1);
         } else if (input.startsWith("event")) {
             return input.substring(6, input.indexOf("/at ") - 1);
-        } else if (input.startsWith("todo")) {
+        } else if (input.startsWith("todo") && input.contains("/p ")) {
+            // Case where "todo" command was given with priority.
+            return input.substring(5, input.indexOf("/p ") - 1);
+        } else if (input.startsWith("todo") && !input.contains("/p ")) {
+            // Case where "todo" command was NOT given with priority.
             return input.substring(5);
         }
         assert false : "`getDescription` method should not be called on inputs"
@@ -39,32 +44,79 @@ public class TaskList {
     }
 
     /**
-     * Gets venue as <Code>String</Code> from user input.
-     * @param input <Code>String</Code> of words given by user as input
-     * @return      Return venue of input task as <Code>String</Code>.
+     * Gets venue as {@code String} from user input.
+     * @param input {@code String} given by user as input
+     * @return      Return venue of input task as {@code String}.
      */
     private String getVenue(String input) {
-        return input.substring(input.indexOf("/at ") + 4);
+        String DELIMITER = "/at ";
+        int startIndex = input.indexOf("/at ") + DELIMITER.length();
+        int endIndex = input.indexOf("/p") - 1;
+        if (endIndex < startIndex) {
+            // For case where input is given without priority.
+            return input.substring(startIndex);
+        } else {
+            return input.substring(startIndex, endIndex);
+        }
     }
 
     /**
-     * Gets date as <Code>LocalDate</Code> from user input.
-     * @param input <Code>String</Code> of words given by user as input.
-     * @return      Return date of input task as <Code>LocalDate</Code>.
+     * Gets date as {@code LocalDate} from user input.
+     * @param input {@code String} given by user as input.
+     * @return      Return date of input task as {@code LocalDate}.
      */
     private LocalDate getDate(String input) {
+        String DELIMITER = "/by ";
+        String dateString;
+        int startIndex = input.indexOf("/by ") + DELIMITER.length();
+        int endIndex = input.indexOf("/p") - 1;
+        if (endIndex < startIndex) {
+            // For case where input is given without priority.
+            dateString = input.substring(startIndex);
+        } else {
+            dateString = input.substring(startIndex, endIndex);
+        }
         DateTimeFormatter formatter =
                 DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        String dateString = input.substring(input.indexOf("/by ") + 4);
         return LocalDate.parse(dateString, formatter);
     }
 
+
     /**
-     * Adds <Code>Task</Code> from <Code>String</Code> input into
-     * <Code>TaskList</Code>.
-     * @param input <Code>String</Code> format <Code>Task</Code> of to be
-     *              added to <Code>TaskList</Code>.
-     * @return      <Code>String</Code> output to be shown to user.
+     * Gets priority as {@code Level}from user input.
+     * @param input {@code String}given by user as input.
+     * @return      Return priority level of input task as {@code Level}.
+     */
+    public Level getPriority(String input) {
+        String DELIMITER = "/p ";
+        int index = input.indexOf(DELIMITER);
+        Boolean hasPriority = (index >= 0);
+        if (hasPriority) {
+            switch (input.substring(index + DELIMITER.length()).toLowerCase()) {
+            case "low":
+                return Level.LOW;
+            case "med":
+                return Level.MEDIUM;
+            case "high":
+                return Level.HIGH;
+            default:
+                assert false : "Priority levels should only be "
+                        + "'low', 'med' or 'high'";
+                return null;
+            }
+        } else {
+            // Tasks without priority level defined are defaulted
+            // to LOW priority.
+            return Level.LOW;
+        }
+    }
+
+    /**
+     * Adds {@code Task} from {@code String} input into
+     * {@code TaskList}.
+     * @param input {@code String} format {@code Task} of to be
+     *              added to {@code TaskList}.
+     * @return      {@code String} output to be shown to user.
      */
     public String add(String input) {
         String[] inputArr = input.split(" ");
@@ -72,15 +124,17 @@ public class TaskList {
         Task newTask = null;
         switch (inputArr[0]) {
         case "deadline":
-            newTask = new Deadline(getDescription(input), getDate(input));
+            newTask = new Deadline(
+                    getDescription(input), getDate(input), getPriority(input));
             break;
 
         case "event":
-            newTask = new Event(getDescription(input), getVenue(input));
+            newTask = new Event(
+                    getDescription(input), getVenue(input), getPriority(input));
             break;
 
         case "todo":
-            newTask = new ToDo(getDescription(input));
+            newTask = new ToDo(getDescription(input), getPriority(input));
             break;
 
         default:
@@ -97,10 +151,10 @@ public class TaskList {
 
 
     /**
-     * Deletes a <Code>Task</Code> from <Code>TaskList</Code>.
-     * @param input <Code>String</Code> user input command to delete
-     *              a <Code>Task</Code>.
-     * @return      <Code>String</Code> output to be shown to user.
+     * Deletes a {@code Task} from {@code TaskList}.
+     * @param input {@code String} user input command to delete
+     *              a {@code Task}.
+     * @return      {@code String} output to be shown to user.
      */
     public String delete(String input) {
         int index = Integer.parseInt(input.split(" ")[1]) - 1;
@@ -113,8 +167,8 @@ public class TaskList {
     }
 
     /**
-     * Overrides <Code>toString</Code> method of <Code>TaskList</Code> object.
-     * @return <Code>Task</Code> output to be shown to user.
+     * Overrides {@code toString} method of {@code TaskList} object.
+     * @return {@code Task} output to be shown to user.
      */
     @Override
     public String toString() {
@@ -127,9 +181,9 @@ public class TaskList {
     }
 
     /**
-     * Marks <Code>Task</Code> with given index as done.
+     * Marks {@code Task} with given index as done.
      * @param index Index of task to be done. 1 based indexing.
-     * @return      <Code>String</Code> output to be shown to user.
+     * @return      {@code String} output to be shown to user.
      */
     public String markDone(int index) {
         taskList.get(index - 1).markDone();
@@ -138,9 +192,9 @@ public class TaskList {
     }
 
     /**
-     * Marks <Code>Task</Code> with given index as undone.
+     * Marks {@code Task} with given index as undone.
      * @param index Index of task to be undone. 1 based indexing.
-     * @return      <Code>String</Code> output to be shown to user.
+     * @return      {@code String} output to be shown to user.
      */
     public String markUndone(int index) {
         taskList.get(index - 1).markUnDone();
@@ -150,16 +204,16 @@ public class TaskList {
     }
 
     /**
-     * Gets number of <Code>Task</Code>s in <Code>TaskList</Code>.
-     * @return Number of tasks in <Code>TaskList</Code>.
+     * Gets number of {@code Task}s in {@code TaskList}.
+     * @return Number of tasks in {@code TaskList}.
      */
     public int getSize() {
         return taskList.size();
     }
 
     /**
-     * Return <Code>TaskList</Code> as format to be saved in hard disk.
-     * @return String of <Code>TaskList</Code> as format to be saved in file.
+     * Return {@code TaskList} as format to be saved in hard disk.
+     * @return String of {@code TaskList} as format to be saved in file.
      */
     public String toFile() {
         StringBuilder res = new StringBuilder();
@@ -170,29 +224,48 @@ public class TaskList {
     }
 
     /**
-     * Adds <Code>Task</Code> from file to <Code>TaskList</Code>.
-     * @param dataArgs Array containing details of <Code>Task</Code> to be
-     *                 added to <Code>TaskList</Code>.
+     * Adds {@code Task} from file to {@code TaskList}.
+     * @param dataArgs Array containing details of {@code Task} to be
+     *                 added to {@code TaskList}.
      */
     public void addFromFile(String[] dataArgs) {
+        String command = dataArgs[0];
         Boolean isDone = dataArgs[1].equals("true");
+        String description = dataArgs[2];
+        String priority = dataArgs[3];
+        Level priorityForConstructor;
         Task newTask = null;
+        switch (priority) {
+        case "LOW":
+            priorityForConstructor = Level.LOW;
+            break;
+        case "MEDIUM":
+            priorityForConstructor = Level.MEDIUM;
+            break;
+        case "HIGH":
+            priorityForConstructor = Level.HIGH;
+            break;
+        default:
+            assert false : "Priority levels should only be "
+                    + "'low', 'med' or 'high'";
+            priorityForConstructor = null;
+        }
 
-        switch (dataArgs[0]) {
+        switch (command) {
         case ("deadline"):
-            LocalDate deadline = LocalDate.parse(dataArgs[3],
+            LocalDate deadline = LocalDate.parse(dataArgs[4],
                     DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            newTask = new Deadline(dataArgs[2], deadline, isDone);
+            newTask = new Deadline(
+                    description, deadline, isDone, priorityForConstructor);
             break;
-
         case ("event"):
-            newTask = new Event(dataArgs[2], dataArgs[3], isDone);
+            String venue = dataArgs[4];
+            newTask = new Event(
+                    description, venue, isDone, priorityForConstructor);
             break;
-
         case ("todo"):
-            newTask = new ToDo(dataArgs[2], isDone);
+            newTask = new ToDo(description, isDone, priorityForConstructor);
             break;
-
         default:
             assert false : "`addFromFile` method should not be called on "
                     + "inputs that do not start with 'deadline', 'event' "
@@ -202,9 +275,9 @@ public class TaskList {
     }
 
     /**
-     * Finds given word among the <Code>Task</Code>s in <Code>TaskList</Code>.
+     * Finds given word among the {@code Task}s in {@code TaskList}.
      * @param keyword Word to search for.
-     * @return        <Code>String</Code> with information of <Code>Task</Code>s
+     * @return        {@code String} with information of {@code Task}s
      *                containing word.
      */
     public String findWord(String keyword) {
