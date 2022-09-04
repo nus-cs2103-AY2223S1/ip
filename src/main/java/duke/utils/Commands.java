@@ -1,5 +1,5 @@
 package duke.utils;
 
 public enum Commands {
-    BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, UNKNOWN
+    BYE, DEADLINE, DELETE, EVENT, FIND, LIST, MARK, TODO, UNKNOWN, UNMARK
 }
