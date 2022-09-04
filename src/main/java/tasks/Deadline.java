@@ -1,4 +1,4 @@
-package duke;
+package tasks;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -11,16 +11,16 @@ public class Deadline extends Task {
     /**
      * Deadline object by field which indicates the deadline
      */
-    protected LocalDate by;
+    protected LocalDate byDate;
 
     /**
      * A constructor to intialize the Deadline object with the description and deadline
      * @param description The task
-     * @param by The deadline
+     * @param byDate The deadline
      */
-    public Deadline(String description, LocalDate by) {
+    public Deadline(String description, LocalDate byDate) {
         super(description);
-        this.by = by;
+        this.byDate = byDate;
     }
 
     /**
@@ -29,7 +29,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        String date = this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        String date = this.byDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
         return "[D][" + this.getStatusIcon() + "] " + super.toString() + " (by: " + date + ")";
     }
 
@@ -39,7 +39,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toFileString() {
-        String date = this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        String date = this.byDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
         return "D | " +  this.getFileStatus() + " | " + super.toString() + " | " + date;
     }
 

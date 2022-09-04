@@ -1,3 +1,2 @@
-D | 0 | return book   | Dec 12 2022
-T | 0 | hello
-T | 0 | book
+T | 1 | borrow book
+E | 1 | borrow book   | Christmas

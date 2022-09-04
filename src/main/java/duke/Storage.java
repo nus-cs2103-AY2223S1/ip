@@ -1,5 +1,10 @@
 package duke;
 
+import tasks.Deadline;
+import tasks.Event;
+import tasks.Task;
+import tasks.Todo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -66,12 +71,12 @@ public class Storage {
             String currentLine = sc.nextLine();
             String[] stringDetails = currentLine.split("\\|");
             String taskType = stringDetails[0];
-            String isMark = stringDetails[1];
+            String markStatus = stringDetails[1];
             String description = stringDetails[2];
             switch (taskType) {
                 case "T ":
                     Todo todo = new Todo(description.substring(1));
-                    if (isMark.equals(" 1 ")) {
+                    if (markStatus.equals(" 1 ")) {
                         todo.mark();
                     }
                     lst.add(todo);
@@ -81,7 +86,7 @@ public class Storage {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
                     LocalDate date = LocalDate.parse(by, formatter);
                     Deadline deadline = new Deadline(description.substring(1), date);
-                    if (isMark.equals(" 1 ")) {
+                    if (markStatus.equals(" 1 ")) {
                         deadline.mark();
                     }
                     lst.add(deadline);
@@ -90,7 +95,7 @@ public class Storage {
                 case "E ": {
                     String at = stringDetails[3];
                     Event event = new Event(description.substring(1), at.substring(1));
-                    if (isMark.equals(" 1 ")) {
+                    if (markStatus.equals(" 1 ")) {
                         event.mark();
                     }
                     lst.add(event);

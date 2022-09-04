@@ -1,4 +1,4 @@
-package duke;
+package tasks;
 
 /**
  * Task to be completed
@@ -8,7 +8,7 @@ public class Task {
      * Task object description field which indicates the task to complete
      * Task object isDone field which indicates whether the task is completed
      */
-    protected String description;
+    public String description;
     protected boolean isDone;
 
     /**

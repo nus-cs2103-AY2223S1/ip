@@ -1,23 +1,23 @@
-package duke;
+package tasks;
 
 /**
  * Task with a period of time of the task
  */
-public class Event extends Task{
+public class Event extends Task {
     /**
      * Event object at field which indicates the timings
      */
-    protected String at;
+    protected String atDate;
 
     /**
      * A constructor to initialize the Event object with the description and timings
      *
      * @param description The task
-     * @param at The timings
+     * @param atDate The timings
      */
-    public Event(String description, String at) {
+    public Event(String description, String atDate) {
         super(description);
-        this.at = at;
+        this.atDate = atDate;
     }
 
     /**
@@ -26,7 +26,7 @@ public class Event extends Task{
      */
     @Override
     public String toString() {
-        return "[E][" + this.getStatusIcon() + "] " + super.toString() + " (at: " + at + ")";
+        return "[E][" + this.getStatusIcon() + "] " + super.toString() + " (at: " + atDate + ")";
     }
 
     /**
@@ -35,6 +35,6 @@ public class Event extends Task{
      */
     @Override
     public String toFileString() {
-        return "E | " +  this.getFileStatus() + " | " + super.toString() + " | " + this.at;
+        return "E | " +  this.getFileStatus() + " | " + super.toString() + " | " + this.atDate;
     }
 }

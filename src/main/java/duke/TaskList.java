@@ -1,5 +1,7 @@
 package duke;
 
+import tasks.Task;
+
 import java.util.ArrayList;
 
 /**
@@ -43,7 +45,7 @@ public class TaskList {
      * @param index The index of the task
      * @return Task The task corresponding to the index
      */
-    public Task get(int index) {
+    public Task getTask(int index) {
         return this.lst.get(index);
     }
 
@@ -52,10 +54,10 @@ public class TaskList {
      *
      * @param index The index of the task
      */
-    public void markTask(int index) {
+    public String markTask(int index) {
         Task t = this.lst.get(index);
         t.mark();
-        System.out.println("Nice! I've marked this task as done:\n  [X] " + t.description);
+        return "Nice! I've marked this task as done:\n  [X] " + t.description;
     }
 
     /**
@@ -63,10 +65,10 @@ public class TaskList {
      *
      * @param index The index of the task
      */
-    public void unmarkTask(int index) {
+    public String unmarkTask(int index) {
         Task t = this.lst.get(index);
         t.unmark();
-        System.out.println("OK, I've marked this task as not done yet:\n  [ ] " + t.description);
+        return "OK, I've marked this task as not done yet:\n  [ ] " + t.description;
     }
 
     /**
@@ -74,7 +76,7 @@ public class TaskList {
      *
      * @param tsk The task
      */
-    public void add(Task tsk) {
+    public void addTask(Task tsk) {
         this.lst.add(tsk);
     }
 
@@ -83,7 +85,7 @@ public class TaskList {
      *
      * @param tsk The task
      */
-    public void delete(Task tsk) {
+    public void deleteTask(Task tsk) {
         this.lst.remove(tsk);
     }
 

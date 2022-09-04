@@ -1,19 +1,18 @@
 package duke;
 
 import java.io.FileNotFoundException;
-import java.util.*;
 import java.io.IOException;
 
 /**
  * The class of the Duke bot
  */
-public class Duke {
+public class Duke{
 
     /**
      * Storage object that handles loading tasks from the
      * file and saving tasks in the file
      */
-    private final Storage storage;
+    private Storage storage;
 
     /**
      * TaskLists object that contains a task list containing Task objects
@@ -37,19 +36,7 @@ public class Duke {
         }
     }
 
-    /**
-     * Method that runs the Duke bot
-     */
-    public void run() {
-        Ui.helloMessage();
-        Scanner first = new Scanner(System.in);
-        boolean canExit = false;
-        while(!canExit) {
-            canExit = Parser.parse(first.nextLine(), tasks, storage);
-        }
-    }
-
-    public static void main(String[] args) {
-        new Duke("./src/main/java/duke.txt").run();
+    String getResponse(String input) {
+        return Parser.parse(input, tasks, storage);
     }
 }

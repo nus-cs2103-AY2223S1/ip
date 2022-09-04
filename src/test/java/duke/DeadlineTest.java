@@ -1,6 +1,8 @@
 package duke;
 
 import org.junit.jupiter.api.Test;
+import tasks.Deadline;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.LocalDate;
 
