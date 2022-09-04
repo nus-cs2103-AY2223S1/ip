@@ -55,7 +55,7 @@ public class Storage {
      *
      * @throws StashyException If any (I/O) issue happens
      */
-    public void create() throws StashyException {
+    public void createFile() throws StashyException {
         try {
             String[] pathList = this.filePath.split("/");
             String currentPath = "";

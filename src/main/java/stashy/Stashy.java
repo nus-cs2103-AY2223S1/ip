@@ -31,7 +31,7 @@ public class Stashy {
         ui = new Ui();
         storage = new Storage(DATA_FILEPATH);
         try {
-            storage.create();
+            storage.createFile();
             tasks = new TaskList(storage.load());
         } catch (StashyException se) {
             ui.showLoadingError();
@@ -49,7 +49,7 @@ public class Stashy {
             try {
                 String fullCommand = ui.readCommand();
                 ui.showLine();
-                Command c = Parser.parseCommand(fullCommand);
+                Command c = Parser.parseCommand(fullCommand, false);
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
             } catch (StashyException se) {

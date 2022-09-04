@@ -11,15 +11,37 @@ import stashy.ui.Ui;
  */
 public class AddTodoCommand extends Command {
     public static final String KEYWORD = "todo";
+    public static final String HELP_MESSAGE = KEYWORD
+        + "\n\nAdds a todo task."
+        + "\n\nExample: todo buy book";
     private ToDo todo;
+    private boolean showHelp;
 
     /**
      * Constructor method.
      *
      * @param todo The todo to be added
+     * @param showHelp Whether to show help or not
+     */
+    private AddTodoCommand(ToDo todo, boolean showHelp) {
+        this.todo = todo;
+        this.showHelp = showHelp;
+    }
+
+    /**
+     * Overloaded constructor method to add a todo.
+     *
+     * @param todo The todo to be added
      */
     public AddTodoCommand(ToDo todo) {
-        this.todo = todo;
+        this(todo, false);
+    }
+
+    /**
+     * Overloaded constructor method to show help.
+     */
+    public AddTodoCommand() {
+        this(null, true);
     }
 
     @Override
@@ -33,28 +55,17 @@ public class AddTodoCommand extends Command {
      * @param tasks The list of tasks
      * @param ui The UI of this application
      * @param storage The storage used for this application
-     * @throws StashyException If any exception is caught
-     */
-    @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        tasks.add(this.todo);
-        ui.showIndented("There, we have a new todo:\n  " + tasks.get(tasks.size() - 1)
-                + "\nYou have " + tasks.size() + " task(s) in the list.");
-    }
-
-    /**
-     * Adds a Deadline task class to the task list and outputs the UI string.
-     *
-     * @param tasks The list of tasks
-     * @param ui The UI of this application
-     * @param storage The storage used for this application
      * @return The stringtified UI output
      * @throws StashyException If any exception is caught
      */
     @Override
     public String executeString(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        tasks.add(this.todo);
-        return "There, we have a new todo:\n  " + tasks.get(tasks.size() - 1)
-            + "\nYou have " + tasks.size() + " task(s) in the list.";
+        if (this.showHelp) {
+            return HELP_MESSAGE;
+        } else {
+            tasks.add(this.todo);
+            return "There, we have a new todo:\n  " + tasks.get(tasks.size() - 1)
+                + "\nYou have " + tasks.size() + " task(s) in the list.";
+        }
     }
 }

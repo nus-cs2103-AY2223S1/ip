@@ -1,6 +1,8 @@
 package stashy.ui;
 
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import stashy.data.task.TaskList;
 
@@ -15,6 +17,18 @@ public class Ui {
      * The length of the horizontal line that is printed within the chatbot UI.
      */
     private static final int HORIZONTAL_LINE_LENGTH = 50;
+
+    /*
+     * All available commands to be shown upon welcome message.
+     */
+    private static final String[] COMMANDS = {
+        "todo", "deadline", "event",
+        "list", "mark", "unmark",
+        "find", "help", "delete",
+        "bye"};
+    private static final String COMMANDS_STRING = Arrays
+        .stream(COMMANDS)
+        .collect(Collectors.joining("\n"));
 
     /**
      * Prints multiple lines, each indented by 4 spaces.
@@ -41,7 +55,7 @@ public class Ui {
                 + "/ ___)(_  _)/ _\\ / ___)/ )( \\( \\/ )\n"
                 + "\\___ \\  )( /    \\\\___ \\) __ ( )  / \n"
                 + "(____/ (__)\\_/\\_/(____/\\_)(_/(__/  \n"
-                + "\n " + showWelcomeString());
+                + "\n" + showWelcomeString());
     }
 
     /**
@@ -50,7 +64,8 @@ public class Ui {
      * @return A simple welcome message
      */
     public String showWelcomeString() {
-        return "Beep boop! Stashy here! What can I do for you?";
+        return "Beep boop! Stashy here! What can I do for you?\n\n"
+            + showCommandList();
     }
 
     /**
@@ -58,6 +73,15 @@ public class Ui {
      */
     public void showLoadingError() {
         showIndented("Issues found when loading the file, starting with an empty task list...");
+    }
+
+    /**
+     * Prints the list of commands, String version.
+     *
+     * @return The list of commands prepended by a special text
+     */
+    public String showCommandList() {
+        return "List of available commands so far:\n" + COMMANDS_STRING;
     }
 
     /**

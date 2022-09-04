@@ -11,15 +11,37 @@ import stashy.ui.Ui;
  */
 public class DeleteCommand extends Command {
     public static final String KEYWORD = "delete";
+    public static final String HELP_MESSAGE = KEYWORD
+        + "\n\nDeletes a task based on the task ID provided."
+        + "\n\nExample: delete 3";
     private int taskId;
+    private boolean showHelp;
 
     /**
      * Constructor method.
      *
      * @param taskId Task ID from the task list
+     * @param showHelp Whether to show help or not
+     */
+    private DeleteCommand(Integer taskId, boolean showHelp) {
+        this.taskId = taskId;
+        this.showHelp = showHelp;
+    }
+
+    /**
+     * Overloaded constructor method to delete a task.
+     *
+     * @param taskId Task ID from the task list
      */
     public DeleteCommand(Integer taskId) {
-        this.taskId = taskId;
+        this(taskId, false);
+    }
+
+    /**
+     * Overloaded constructor method to show help.
+     */
+    public DeleteCommand() {
+        this(Integer.MIN_VALUE, true);
     }
 
     @Override
@@ -33,38 +55,23 @@ public class DeleteCommand extends Command {
      * @param tasks The list of tasks
      * @param ui The UI of this application
      * @param storage The storage used for this application
-     * @throws StashyException If any exception is caught
-     */
-    @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        if (1 <= this.taskId && this.taskId <= tasks.size()) {
-            ui.showIndented("Task has been removed!\n  " + tasks.get(this.taskId - 1));
-            tasks.remove(this.taskId - 1);
-            ui.showIndented("You have " + tasks.size() + " task(s) in the list.");
-        } else {
-            throw new StashyException("Invalid task ID: " + this.taskId);
-        }
-    }
-
-    /**
-     * Adds a Deadline task class to the task list and outputs the UI string.
-     *
-     * @param tasks The list of tasks
-     * @param ui The UI of this application
-     * @param storage The storage used for this application
      * @return The stringtified UI output
      * @throws StashyException If any exception is caught
      */
     @Override
     public String executeString(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        if (1 <= this.taskId && this.taskId <= tasks.size()) {
-            String returnString = "";
-            returnString += "Task has been removed!\n  " + tasks.get(this.taskId - 1);
-            tasks.remove(this.taskId - 1);
-            returnString += "\nYou have " + tasks.size() + " task(s) in the list.";
-            return returnString;
+        if (this.showHelp) {
+            return HELP_MESSAGE;
         } else {
-            throw new StashyException("Invalid task ID: " + this.taskId);
+            if (1 <= this.taskId && this.taskId <= tasks.size()) {
+                String returnString = "";
+                returnString += "Task has been removed!\n  " + tasks.get(this.taskId - 1);
+                tasks.remove(this.taskId - 1);
+                returnString += "\nYou have " + tasks.size() + " task(s) in the list.";
+                return returnString;
+            } else {
+                throw new StashyException("Invalid task ID: " + this.taskId);
+            }
         }
     }
 }

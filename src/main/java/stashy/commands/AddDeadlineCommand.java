@@ -11,15 +11,38 @@ import stashy.ui.Ui;
  */
 public class AddDeadlineCommand extends Command {
     public static final String KEYWORD = "deadline";
+    public static final String HELP_MESSAGE = KEYWORD
+        + "\n\nAdds an deadline with a given date and time of deadline."
+        + "\n\nRequired: /by The delimiter to detect the date and time"
+        + "\n\nExample: deadline submit iP /by 10 Oct 2021 23:59";
     private Deadline deadline;
+    private boolean showHelp;
 
     /**
      * Constructor method.
      *
      * @param deadline The deadline to be added
+     * @param showHelp Whether to show help or not
+     */
+    private AddDeadlineCommand(Deadline deadline, boolean showHelp) {
+        this.deadline = deadline;
+        this.showHelp = showHelp;
+    }
+
+    /**
+     * Overloaded constructor method to add a deadline.
+     *
+     * @param deadline The deadline to be added
      */
     public AddDeadlineCommand(Deadline deadline) {
-        this.deadline = deadline;
+        this(deadline, false);
+    }
+
+    /**
+     * Overloaded constructor method to show help.
+     */
+    public AddDeadlineCommand() {
+        this(null, true);
     }
 
     @Override
@@ -33,28 +56,17 @@ public class AddDeadlineCommand extends Command {
      * @param tasks The list of tasks
      * @param ui The UI of this application
      * @param storage The storage used for this application
-     * @throws StashyException If any exception is caught
-     */
-    @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        tasks.add(this.deadline);
-        ui.showIndented("There, we have a new deadline:\n  " + tasks.get(tasks.size() - 1)
-                + "\nYou have " + tasks.size() + " task(s) in the list.");
-    }
-
-    /**
-     * Adds a Deadline task class to the task list and outputs the UI string.
-     *
-     * @param tasks The list of tasks
-     * @param ui The UI of this application
-     * @param storage The storage used for this application
      * @return The stringtified UI output
      * @throws StashyException If any exception is caught
      */
     @Override
     public String executeString(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        tasks.add(this.deadline);
-        return "There, we have a new deadline:\n  " + tasks.get(tasks.size() - 1)
-            + "\nYou have " + tasks.size() + " task(s) in the list.";
+        if (this.showHelp) {
+            return HELP_MESSAGE;
+        } else {
+            tasks.add(this.deadline);
+            return "There, we have a new deadline:\n  " + tasks.get(tasks.size() - 1)
+                + "\nYou have " + tasks.size() + " task(s) in the list.";
+        }
     }
 }

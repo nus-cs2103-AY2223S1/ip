@@ -10,10 +10,30 @@ import stashy.ui.Ui;
  */
 public class ExitCommand extends Command {
     public static final String KEYWORD = "bye";
+    public static final String HELP_MESSAGE = KEYWORD
+        + "\n\nExits the chatbot."
+        + "\n\nExample: exit";
+    private boolean showHelp;
+
+    /**
+     * Constructor method.
+     *
+     * @param showHelp Whether to show help or not
+     */
+    public ExitCommand(boolean showHelp) {
+        this.showHelp = showHelp;
+    }
+
+    /**
+     * Overloaded constructor method to show help.
+     */
+    public ExitCommand() {
+        this(true);
+    }
 
     @Override
     public boolean isExit() {
-        return true;
+        return !this.showHelp;
     }
 
     /**
@@ -27,12 +47,16 @@ public class ExitCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        ui.showGoodbye();
-        storage.writeTaskListToFile(tasks);
+        if (this.showHelp) {
+            ui.showIndented(HELP_MESSAGE);
+        } else {
+            storage.writeTaskListToFile(tasks);
+            ui.showGoodbye();
+        }
     }
 
     /**
-     * Adds a Deadline task class to the task list and outputs the UI string.
+     * String version of the execute method.
      *
      * @param tasks The list of tasks
      * @param ui The UI of this application
@@ -42,7 +66,11 @@ public class ExitCommand extends Command {
      */
     @Override
     public String executeString(TaskList tasks, Ui ui, Storage storage) throws StashyException {
-        storage.writeTaskListToFile(tasks);
-        return ui.showGoodbyeString();
+        if (this.showHelp) {
+            return HELP_MESSAGE;
+        } else {
+            storage.writeTaskListToFile(tasks);
+            return ui.showGoodbyeString();
+        }
     }
 }
