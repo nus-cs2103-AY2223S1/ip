@@ -207,6 +207,11 @@ public class Duke extends Application {
             System.out.println(s);
         }
 
+        public String sorted() {
+            System.out.println("sorted!");
+            return "";
+        }
+
         public String marked(Task task) {
             System.out.println("Nice! I've marked this task as done:");
             System.out.println(task.toString());
@@ -521,6 +526,45 @@ public class Duke extends Application {
         }
     }
 
+    private class SortCommand extends Command {
+        public SortCommand() { super(); }
+
+        @Override
+        public void execute() {
+
+            ArrayList<Todo> todos = new ArrayList<>();
+            ArrayList<Deadline> deadlines = new ArrayList<>();
+            ArrayList<Event> events = new ArrayList<>();
+
+            for (int i = 0; i < all.size(); i++) {
+                Task currentTask = all.get(i);
+                if (currentTask.getTaskType() == TaskType.TODO) {
+                    todos.add((Todo) currentTask);
+                } else if (currentTask.getTaskType() == TaskType.EVENT) {
+                    events.add((Event) currentTask);
+                } else {
+                    deadlines.add((Deadline) currentTask);
+                }
+            }
+            all = new ArrayList<>();
+            for (int i = 0; i < todos.size(); i++) {
+                all.add(todos.get(i));
+            }
+            for (int i = 0; i < events.size(); i++) {
+                all.add(events.get(i));
+            }
+            for (int i = 0; i < deadlines.size(); i++) {
+                all.add(deadlines.get(i));
+            }
+            ui.sorted();
+        }
+
+        @Override
+        public boolean isExit() {
+            return false;
+        }
+    }
+
     private class Parser {
         private String list;
         private String todo;
@@ -531,6 +575,7 @@ public class Duke extends Application {
         private String exit;
         private String delete;
         private String find;
+        private String sort;
 
         public Parser() {
             list = "list";
@@ -542,12 +587,15 @@ public class Duke extends Application {
             exit = "bye";
             delete = "delete";
             find = "find";
+            sort = "sort";
         }
 
         public Command parse(String s) throws DukeException {
             int space = s.indexOf(" ");
             if (s.equals(list)) {
                 return new ListCommand();
+            } else if (s.equals(sort)) {
+                return new SortCommand();
             } else if (s.equals(exit)) {
                 return new ExitCommand();
             } else if (space == -1 || s.substring(0, space) == "") {
@@ -699,6 +747,18 @@ public class Duke extends Application {
 
         public String getDescription() {
             return description;
+        }
+
+        public TaskType getTaskType() {
+            if (this.toString().indexOf(1) == 'T') {
+                return TaskType.TODO;
+            } else if (this.toString().indexOf(1) == 'E') {
+                return TaskType.EVENT;
+            } else if (this.toString().indexOf(1) == 'D') {
+                return TaskType.DEADLINE;
+            } else {
+                return null;
+            }
         }
     }
 
