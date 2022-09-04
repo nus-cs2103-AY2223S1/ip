@@ -149,11 +149,11 @@ public class TaskList {
      */
     public ArrayList<Task> find(String keyword) {
         ArrayList<Task> tasksFound = new ArrayList<Task>();
-        for (Task task : data) {
-            if (task.getDescription().contains(keyword)) {
-                tasksFound.add(task);
-            }
-        }
+        data.stream().filter((task) -> {
+            return task.getDescription().contains(keyword);
+        }).forEach((task) -> {
+            tasksFound.add(task);
+        });
         return tasksFound;
     }
 }
