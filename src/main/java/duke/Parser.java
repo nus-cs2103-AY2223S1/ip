@@ -47,7 +47,7 @@ public class Parser {
 
             } else if (firstWord.equals("event")) {
                 if (!Storage.fileExists()) {
-                    return("File doesnt exist yet");
+                    return("File does not  exist yet");
                 }
 
                 String arr2[] = arr[1].split("/at ", 2);
