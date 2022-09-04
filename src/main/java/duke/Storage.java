@@ -41,6 +41,8 @@ public class Storage {
                 case "E":
                     task = new Event(temp[2], temp[3]);
                     break;
+                default:
+                    assert false : "Task was not loaded!";
                 }
                 if (temp[1].equals("1")) {
                     task.markAsDone();
@@ -98,6 +100,7 @@ public class Storage {
                     break;
                 default:
                     task.append("Error retrieving this task!");
+                    assert false : "There was an error loading the tasks!";
                 }
                 task.append("\n");
                 writer.write(task.toString());
