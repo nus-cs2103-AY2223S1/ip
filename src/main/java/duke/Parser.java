@@ -19,7 +19,6 @@ public class Parser {
      * Constructs a Parser instance without initiating any parameter
      */
     public Parser() {
-
     }
 
     /**

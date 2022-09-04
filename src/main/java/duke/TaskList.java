@@ -28,6 +28,53 @@ public class TaskList {
     }
 
     /**
+     * Add task into the TaskList.
+     *
+     * @param task the task to be added into the TaskList.
+     */
+    public void addTask(Task task) {
+        this.taskList.add(task);
+    }
+
+    /**
+     * Remove task from the TaskList.
+     *
+     * @param task the task to be removed from the TaskList.
+     */
+    public void removeTask(int index) {
+        this.taskList.remove(index);
+    }
+
+    /**
+     * Get task from the TaskList by the index.
+     *
+     * @param index the index of Task to be retrieved from the TaskList.
+     * @return the task retrieved from the TaskList.
+     */
+    public Task getTask(int index) {
+        return this.taskList.get(index);
+    }
+
+    /**
+     * Return the size of the TaskList.
+     *
+     * @return the number of elements in the TaskList.
+     */
+    public int getSize() {
+        return this.taskList.size();
+    }
+
+    /**
+     * Assign the Task at the position of the index.
+     * 
+     * @param index the position of the task to be assigned to.
+     * @param task the Task to be assigned into the TaskList.
+     */
+    public void setTask(int index, Task task) {
+        this.taskList.set(index, task);
+    }
+
+    /**
      * Returns the status of emptiness of the current TaskList.
      *
      * @return true if and only if the TaskList consisting of zero element.

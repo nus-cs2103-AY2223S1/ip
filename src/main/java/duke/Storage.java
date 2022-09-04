@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -38,13 +39,13 @@ public class Storage {
      *
      * @param text a String consisting of the information of the Task.
      */
-    public void write(String text) {
+    public void write(String text) throws DukeException {
         try {
             FileWriter myWriter = new FileWriter(this.filePath);
             myWriter.write(text);
             myWriter.close();
         } catch (IOException e) {
-            System.out.println("Uh uh! The system cannot find the path specified. "
+            throw new DukeException("Uh uh! The system cannot find the path specified. "
                     + "Are you sure your file path is correct?");
         }
     }
@@ -54,7 +55,7 @@ public class Storage {
      *
      * @return the ArrayList of Tasks which are added into the file previously.
      */
-    public ArrayList<Task> load() {
+    public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> taskList = new ArrayList<Task>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(this.filePath));
@@ -65,7 +66,7 @@ public class Storage {
             }
             br.close();
         } catch (IOException e) {
-            System.out.println("Uh uh! The system cannot find the path specified. "
+            throw new DukeException("Uh uh! The system cannot find the path specified. "
                     + "Are you sure your file path is correct?");
         }
         return taskList;
@@ -74,7 +75,7 @@ public class Storage {
     private Task convertStringToTask(String taskString) {
         String[] parts = taskString.split(",", 0);
         String taskType = parts[0];
-        boolean isMarked = (Integer.parseInt(parts[1]) == 1) ? true : false;
+        boolean isMarked = Integer.parseInt(parts[1]) == 1;
         String taskName = parts[2];
         LocalDate date = null;
         LocalTime time = null;

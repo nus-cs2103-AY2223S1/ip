@@ -7,6 +7,7 @@ import duke.command.Command;
 import duke.exception.DukeException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -25,6 +26,8 @@ public class MainWindow extends AnchorPane {
     private TextField userInput;
     @FXML
     private Button sendButton;
+    @FXML
+    private Label label;
 
     private Duke duke;
 
@@ -77,4 +80,5 @@ public class MainWindow extends AnchorPane {
         userInput.setDisable(true);
         sendButton.setDisable(true);
     }
+
 }

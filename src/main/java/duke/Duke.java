@@ -2,18 +2,7 @@ package duke;
 
 import duke.command.Command;
 import duke.exception.DukeException;
-/*
-import duke.frontend.MainWindow;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-
-import java.io.IOException;
-
- */
 
 /**
  * Main file of Duke to be run to initiate the program.
@@ -27,7 +16,6 @@ public class Duke {
     /**
      * Constructs a Duke instance and load the previous stored TaskList from the filePath.
      *
-     * @throws DukeException the parent Exception inherited by self-created exceptions.
      */
     public Duke() {
         ui = new Ui();
@@ -67,4 +55,5 @@ public class Duke {
             return this.ui.getError(e);
         }
     }
+
 }

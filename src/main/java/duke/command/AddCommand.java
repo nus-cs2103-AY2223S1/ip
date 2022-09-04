@@ -82,7 +82,7 @@ public class AddCommand extends Command {
                 task = new Event(taskName, date, time);
                 break;
             }
-            taskList.getList().add(task);
+            taskList.addTask(task);
 
             String list = "";
             for (Task t : taskList.getList()) {
@@ -92,7 +92,7 @@ public class AddCommand extends Command {
 
             assert task != null : "Task is null.";
             return "Got it. I've added this task:\n" + ui.beautyWrapTask(task)
-                    + "\nNow you have " + taskList.getList().size() + " tasks in the list.\n";
+                    + "\nNow you have " + taskList.getSize() + " tasks in the list.\n";
 
         } catch (DateTimeParseException ex) {
             throw new DukeException("Invalid date & time format. Please follow the format of date "

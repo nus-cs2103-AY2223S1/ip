@@ -39,8 +39,8 @@ public class MarkCommand extends Command {
     public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         try {
             if (command.equals("mark")) {
-                Task markedTask = taskList.getList().get(this.markIndex).mark();
-                taskList.getList().set(this.markIndex, markedTask);
+                Task markedTask = taskList.getTask(this.markIndex).mark();
+                taskList.setTask(this.markIndex, markedTask);
 
                 String list = "";
                 for (Task t : taskList.getList()) {
@@ -51,8 +51,8 @@ public class MarkCommand extends Command {
                 return "Nice! I've marked this task as done:\n" + ui.beautyWrapTask(markedTask) + "\n";
 
             } else if (command.equals("unmark")){
-                Task unmarkedTask = taskList.getList().get(this.markIndex).unmark();
-                taskList.getList().set(this.markIndex, unmarkedTask);
+                Task unmarkedTask = taskList.getTask(this.markIndex).unmark();
+                taskList.setTask(this.markIndex, unmarkedTask);
 
                 String list = "";
                 for (Task t : taskList.getList()) {
@@ -68,7 +68,7 @@ public class MarkCommand extends Command {
         } catch (ArrayIndexOutOfBoundsException ex) {
             throw new DukeException("You did not specify which task to be marked/unmarked.\n");
         } catch (IndexOutOfBoundsException ex) {
-            throw new DukeException("Your list only has " + taskList.getList().size() + " tasks.\n");
+            throw new DukeException("Your list only has " + taskList.getSize() + " tasks.\n");
         }
     }
 

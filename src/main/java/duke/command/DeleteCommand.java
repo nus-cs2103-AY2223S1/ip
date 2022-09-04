@@ -35,8 +35,8 @@ public class DeleteCommand extends Command {
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         try {
-            Task removedTask = taskList.getList().get(this.deleteIndex);
-            taskList.getList().remove(this.deleteIndex);
+            Task removedTask = taskList.getTask(this.deleteIndex);
+            taskList.removeTask(this.deleteIndex);
 
             String list = "";
             for (Task t : taskList.getList()) {
@@ -45,9 +45,9 @@ public class DeleteCommand extends Command {
             storage.write(list);
 
             return "Noted. I've removed this task:\n " + ui.beautyWrapTask(removedTask)
-                    + "\nNow you have " + taskList.getList().size() + " tasks in the list.\n";
+                    + "\nNow you have " + taskList.getSize() + " tasks in the list.\n";
         } catch (IndexOutOfBoundsException ex) {
-            throw new DukeException("Your list only has " + taskList.getList().size() + " tasks.\n");
+            throw new DukeException("Your list only has " + taskList.getSize() + " tasks.\n");
         }
     }
 
