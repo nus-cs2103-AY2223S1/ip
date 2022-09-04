@@ -9,6 +9,11 @@ import java.io.FileWriter;
 
 
 public class Storage {
+
+    /**
+     * stores the tasklist into a file.
+     * @param array represents the list of tasks
+     */
     public static void writeToFile(ArrayList<Task> array) {
         for (int i = 0; i < array.size(); i++) {
             if (array.get(i) != null) {
@@ -24,11 +29,18 @@ public class Storage {
 
     }
 
+    /**
+     * checks if the file exists or not.
+     * @return boolean value that tells us if the file exists or not
+     */
     public static boolean fileExists() {
         File f = new File("data/duke.txt");
         return f.exists();
     }
 
+    /**
+     * clears the file of all its contents.
+     */
     public static void clearFile() {
         FileWriter fwOb = null;
         try {

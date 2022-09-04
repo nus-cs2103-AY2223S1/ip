@@ -25,12 +25,12 @@ public class Event extends Task{
 
     /**
      * String representation of an event that has been added to the list
-     *
      * @returns String representation of the event
      */
      @Override
      public String toString() {
          LocalDate d1 = LocalDate.parse(this.date);
-         return "[E]" + "[" + super.getStatusIcon() + "]" +  super.toString() + " (at: " + d1.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " " + this.timing +  ")";
+         return "[E]" + "[" + super.getStatusIcon() + "]" +  super.toString() + " (at: " +
+                 d1.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + " " + this.timing +  ")";
      }
 }

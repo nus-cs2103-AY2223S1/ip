@@ -1,4 +1,5 @@
 package duke;
+
 /**
  * Class for throwing exceptions associated with Duke program.
  */
@@ -9,7 +10,6 @@ public class DukeException extends Exception {
 
     /**
     * Returns String representing exception
-    *
     * @return String representation describing the exception thrown
     */
     @Override
