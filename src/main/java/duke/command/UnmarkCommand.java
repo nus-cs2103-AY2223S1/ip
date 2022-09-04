@@ -58,14 +58,14 @@ public class UnmarkCommand extends Command {
             throw new DukeException(errorMessage);
         }
 
-	assert (index >= 1) : "Given index must be at least 1.";
+        assert (index >= 1) : "Given index must be at least 1.";
         assert (index <= list.size()) : "Index cannot exceed length of list";
 
         Task task = list.get(index - 1);
-    	boolean isTodo = task instanceof Todo;
-    	boolean isDeadline = task instanceof Deadline;
-    	boolean isEvent = task instanceof Event;
-    	assert (isTodo || isDeadline || isEvent) : "Task is either an instance of Todo, Deadline or Event.";
+        boolean isTodo = task instanceof Todo;
+        boolean isDeadline = task instanceof Deadline;
+        boolean isEvent = task instanceof Event;
+        assert (isTodo || isDeadline || isEvent) : "Task is either an instance of Todo, Deadline or Event.";
         taskList.unmark(this.index);
         return ui.showUnmark(task);
     }

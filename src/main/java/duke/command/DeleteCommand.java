@@ -59,10 +59,10 @@ public class DeleteCommand extends Command {
 
         Task task = list.get(index - 1);
 
-	boolean isTodo = task instanceof Todo;
-	boolean isDeadline = task instanceof Deadline;
-	boolean isEvent = task instanceof Event;
-	assert (isTodo || isDeadline || isEvent) : "Task is either an instance of Todo, Deadline or Event.";
+        boolean isTodo = task instanceof Todo;
+        boolean isDeadline = task instanceof Deadline;
+        boolean isEvent = task instanceof Event;
+        assert (isTodo || isDeadline || isEvent) : "Task is either an instance of Todo, Deadline or Event.";
 
         taskList.delete(this.index);
         return ui.showDelete(task, list.size());

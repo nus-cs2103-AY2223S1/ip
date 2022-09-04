@@ -1,7 +1,5 @@
 package duke;
 
-import java.util.Scanner;
-
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -30,7 +28,7 @@ public class Ui {
      * @param len New length of the list.
      */
     public String showAdd(Task t, int len) throws DukeException {
-	boolean isTodo = t instanceof Todo;
+        boolean isTodo = t instanceof Todo;
         boolean isDeadline = t instanceof Deadline;
         boolean isEvent = t instanceof Event;
         assert (isTodo || isDeadline || isEvent) : "Task that was added must be either Todo, Deadline or Event.";
@@ -49,7 +47,7 @@ public class Ui {
      * @param len New length of the list.
      */
     public String showDelete(Task t, int len) throws DukeException {
-	boolean isTodo = t instanceof Todo;
+        boolean isTodo = t instanceof Todo;
         boolean isDeadline = t instanceof Deadline;
         boolean isEvent = t instanceof Event;
         assert (isTodo || isDeadline || isEvent) : "Task that was deleted must be either Todo, Deadline or Event.";
@@ -110,7 +108,7 @@ public class Ui {
             String errorMessage = "Length of task list must not be non-negative.";
             throw new DukeException(errorMessage);
         }
-	assert (len >= 0) : "Length of task list must be non-negative.";
+        assert (len >= 0) : "Length of task list must be non-negative.";
         return word;
     }
 }

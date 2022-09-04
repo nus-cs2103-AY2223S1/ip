@@ -63,7 +63,7 @@ public class AddCommand extends Command {
         boolean isTodo = this.type.equals("todo");
         boolean isDeadline = this.type.equals("deadline");
         boolean isEvent = this.type.equals("event");
-	assert (isTodo || isDeadline || isEvent) : "Type must be one of the three: todo, deadline, event";
+        assert (isTodo || isDeadline || isEvent) : "Type must be one of the three: todo, deadline, event";
 
         if (isTodo) {
             task = new Todo(description);

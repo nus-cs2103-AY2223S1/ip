@@ -67,7 +67,7 @@ public class Storage {
                 temp.next();
                 String markStatus = temp.next();
                 String description = temp.next();
-		boolean isTodo = taskType.equals("T");
+                boolean isTodo = taskType.equals("T");
                 boolean isDeadline = taskType.equals("D");
                 boolean isEvent = taskType.equals("E");
 
@@ -79,6 +79,7 @@ public class Storage {
                 switch (taskType) {
 
                 case "D":
+                    assert (isDeadline);
                     temp.next();
                     date = temp.next();
                     formattedDate = inputDateFormat.format(newDateFormat.parse(date));

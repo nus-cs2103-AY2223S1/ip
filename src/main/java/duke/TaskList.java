@@ -70,7 +70,7 @@ public class TaskList {
      */
     public void delete(int i) {
         assert (i >= 1) : "Given index must be at least 1.";
-        assert (i <= list.size()) : "Index cannot exceed length of list";
+        assert (i <= this.taskArrayList.size()) : "Index cannot exceed length of list";
 
         this.taskArrayList.remove(i - 1);
     }
@@ -82,7 +82,7 @@ public class TaskList {
      */
     public void mark(int i) {
         assert (i >= 1) : "Given index must be at least 1.";
-        assert (i <= list.size()) : "Index cannot exceed length of list";
+        assert (i <= this.taskArrayList.size()) : "Index cannot exceed length of list";
 
         Task t = this.taskArrayList.get(i - 1);
         t.mark();
@@ -95,7 +95,7 @@ public class TaskList {
      */
     public void unmark(int i) {
         assert (i >= 1) : "Given index must be at least 1.";
-        assert (i <= list.size()) : "Index cannot exceed length of list";
+        assert (i <= this.taskArrayList.size()) : "Index cannot exceed length of list";
 
         Task t = this.taskArrayList.get(i - 1);
         t.unmark();
