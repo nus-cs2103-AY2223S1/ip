@@ -8,24 +8,25 @@ import java.util.List;
 import java.util.Scanner;
 
 import ekud.exception.EkudException;
+import ekud.notes.Note;
 import ekud.task.Task;
 import ekud.task.Event;
 import ekud.task.ToDo;
 import ekud.task.Deadline;
 
 public class Storage {
-    private File file;
+    private File taskfile;
+    private File notefile;
 
     private void createDirectoryIfNotExists() {
         String folderPath = "./data";
         File folder = new File(folderPath);
         if (!folder.exists()) {
-            System.out.println("Here");
             folder.mkdir();
         }
     }
 
-    private void createFileIfNotExists() {
+    private void createTaskFileIfNotExists() {
         String filePath = "./data/tasks.txt";
         File tasks = new File(filePath);
         if (!tasks.exists()) {
@@ -35,7 +36,20 @@ public class Storage {
                 System.out.printf("Failed to create file: %s\n", exception.toString());
             }
         }
-        this.file = tasks;
+        this.taskfile = tasks;
+    }
+
+    private void createNoteFileIfNotExists() {
+        String filePath = "./data/notes.txt";
+        File notes = new File(filePath);
+        if (!notes.exists()) {
+            try {
+                notes.createNewFile();
+            } catch (IOException exception) {
+                System.out.printf("Failed to create file: %s\n", exception.toString());
+            }
+        }
+        this.notefile = notes;
     }
 
     private Task decodeStringToTask(String string) throws EkudException {
@@ -68,9 +82,26 @@ public class Storage {
      */
     public void writeTasksToFile(List<Task> tasks) {
         try {
-            FileWriter writer = new FileWriter(this.file);
+            FileWriter writer = new FileWriter(this.taskfile);
             for (int i = 0; i < tasks.size(); i++) {
                 writer.write(String.format("%s\n", tasks.get(i).getFileFormat()));
+            }
+            writer.close();
+        } catch (IOException exception) {
+            System.out.printf("Error occured when writing to file: %s\n", exception.toString());
+        }
+    }
+
+    /**
+     * Writes notes to local txt file.
+     *
+     * @param notes Note list containing notes to be written.
+     */
+    public void writeNotesToFile(List<Note> notes) {
+        try {
+            FileWriter writer = new FileWriter(this.notefile);
+            for (int i = 0; i < notes.size(); i++) {
+                writer.write(notes.get(i).toString());
             }
             writer.close();
         } catch (IOException exception) {
@@ -87,7 +118,7 @@ public class Storage {
     public List<Task> getTasksFromFile() throws EkudException {
         List<Task> tasks = new ArrayList<Task>();
         try {
-            Scanner reader = new Scanner(this.file);
+            Scanner reader = new Scanner(this.taskfile);
             while (reader.hasNextLine()) {
                 String line = reader.nextLine();
                 tasks.add(decodeStringToTask(line));
@@ -103,10 +134,32 @@ public class Storage {
     }
 
     /**
+     * Gets note list from local txt file.
+     *
+     * @return List of notes contained in local txt file.
+     * @throws EkudException Error that occurred.
+     */
+    public List<Note> getNotesFromFile() throws EkudException {
+        List<Note> notes = new ArrayList<Note>();
+        try {
+            Scanner reader = new Scanner(this.notefile);
+            while (reader.hasNextLine()) {
+                String line = reader.nextLine();
+                notes.add(new Note(line));
+            }
+            reader.close();
+        } catch (IOException exception) {
+            throw new EkudException(String.format("Error occured when writing to file: %s\n", exception.toString()));
+        }
+        return notes;
+    }
+
+    /**
      * Constructor that instantiates an instance of Storage.
      */
     public Storage() {
         this.createDirectoryIfNotExists();
-        this.createFileIfNotExists();
+        this.createTaskFileIfNotExists();
+        this.createNoteFileIfNotExists();
     }
 }

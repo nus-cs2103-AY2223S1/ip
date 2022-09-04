@@ -1,6 +1,7 @@
 package ekud.util;
 
 import ekud.exception.EkudException;
+import ekud.notes.NoteList;
 import ekud.task.TaskList;
 import ekud.task.TaskType;
 
@@ -19,12 +20,13 @@ public class Parser {
      * 
      * @param command Command to be parsed.
      * @param taskList Task List to be modified.
+     * @param noteList Note List to be modified.
      * @return ParseResult that contains whether program should be terminated, print
      *         message and whether
      *         the task list should be re-saved to storage.
      * @throws EkudException Error that occured.
      */
-    public ParseResult parseCommand(String command, TaskList taskList) throws EkudException {
+    public ParseResult parseCommand(String command, TaskList taskList, NoteList noteList) throws EkudException {
         String[] splitCommand = command.split(" ");
         String firstWord = splitCommand[0];
         if (command.equals("bye")) {
@@ -46,7 +48,16 @@ public class Parser {
         } else if (firstWord.equals("find")) {
             return new ParseResult(false, taskList.searchTasks(
                     String.join(" ", Arrays.copyOfRange(splitCommand, 1, splitCommand.length))), false);
-        } else {
+        } else if (firstWord.equals("note")) {
+            return new ParseResult(false,
+                    noteList.addNote(String.join(" ", Arrays.copyOfRange(splitCommand, 1, splitCommand.length))),
+                    true);
+        } else if (firstWord.equals("deletenote")) {
+            return new ParseResult(false, noteList.deleteNote(command), true);
+        } else if (firstWord.equals("listnote")) {
+            return new ParseResult(false, noteList.printNotes(), false);
+        }
+        else {
             throw new EkudException("Invalid command.");
         }
     }
