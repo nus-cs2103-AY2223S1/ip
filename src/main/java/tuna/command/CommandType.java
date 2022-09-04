@@ -16,4 +16,5 @@ public enum CommandType {
     LOAD,
     SAVE,
     FIND,
+    SORT
 }

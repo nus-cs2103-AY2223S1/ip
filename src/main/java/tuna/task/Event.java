@@ -6,11 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Represents an Event task. An Event object contains the start time of the event.
  */
-public class Event extends Task {
-
-    /** Start time of the event */
-    protected LocalDateTime at;
-
+public class Event extends TimeBasedTask {
     /**
      * Creates an event with a start time.
      *
@@ -18,17 +14,7 @@ public class Event extends Task {
      * @param at the start time of the event.
      */
     public Event(String description, String at) {
-        super(description, "E");
-        this.at = LocalDateTime.parse(at, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-    }
-
-    /**
-     * Returns the start time of the event.
-     *
-     * @return start time of the event.
-     */
-    public String getAt() {
-        return this.at.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        super(description, "E", LocalDateTime.parse(at, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
     }
 
     /**
@@ -38,6 +24,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[" + super.getTaskType() + "]" + super.toString() + " (at: " + parseDateTime(at) + ")";
+        return "[" + super.getTaskType() + "]" + super.toString() + " (at: " + parseDateTime(this.getDateTime()) + ")";
     }
 }

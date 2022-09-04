@@ -178,4 +178,20 @@ public class Ui {
     public String fileLoadedMessage() {
         return "Your data has been loaded\n";
     }
+
+    /**
+     * Returns confirmation message after tasks have been sorted.
+     *
+     * @param tasks tasks to print after sorting.
+     * @return confirmation message and the tasks after sorting.
+     */
+    public String sortTasksMessage(ArrayList<Task> tasks) {
+        StringBuilder message = new StringBuilder("Your tasks have been sorted\n");
+        int index = 1;
+        for (Task task : tasks) {
+            message.append(String.format("%d. %s\n", index, task.toString()));
+            index += 1;
+        }
+        return message.toString();
+    }
 }

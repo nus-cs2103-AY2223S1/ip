@@ -114,12 +114,13 @@ public class Storage {
             case "E":
                 Event event = (Event) task;
                 fw.write(event.getTaskType() + "|" + event.getStatusIcon() + "|" + event.getDescription()
-                        + "|/at|" + event.getAt() + System.lineSeparator());
+                        + "|/at|" + event.getStringRepresentationOfDateTime() + System.lineSeparator());
                 break;
             case "D":
                 Deadline deadline = (Deadline) task;
                 fw.write(deadline.getTaskType() + "|" + deadline.getStatusIcon() + "|"
-                        + deadline.getDescription() + "|/by|" + deadline.getBy() + System.lineSeparator());
+                        + deadline.getDescription() + "|/by|" + deadline.getStringRepresentationOfDateTime()
+                        + System.lineSeparator());
                 break;
             default:
                 throw new TunaException("Oops! Seems like something went wrong in the task list");
