@@ -1,3 +1,3 @@
-[T][ ] chores
+[T][X] chores
 [D][X] chem hw (by: May 5 2222)
-[D][ ] smth (by: Sep 9 2020)
+[E][ ] smth (at: Nov 9 2222)
