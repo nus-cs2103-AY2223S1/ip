@@ -1,0 +1,8 @@
+todo read book
+list
+deadline sell book /by 2019-05-12
+list
+event buy book /at 2022-05-12
+list
+delete 2
+list
