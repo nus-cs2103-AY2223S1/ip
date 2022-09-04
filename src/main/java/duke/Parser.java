@@ -20,6 +20,7 @@ public class Parser {
      */
     public static Command parse(String fullCommand) {
         String[] splitCommand = fullCommand.split(" ", 2);
+        assert splitCommand.length <= 2 : "The full command should be split into at most 2 sections";
         String remainingCommand = "";
         if (splitCommand.length > 1) {
             remainingCommand = splitCommand[1];
