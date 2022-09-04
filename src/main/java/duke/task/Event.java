@@ -23,7 +23,25 @@ public class Event extends Task {
      * @param type The type of task created.
      */
     public Event(String description, LocalDate at, LocalTime timeStart, LocalTime timeEnd, TaskType type) {
-        super(description, type);
+        super(description, type, Priority.LOW);
+        this.at = at;
+        this.timeStart = timeStart;
+        this.timeEnd = timeEnd;
+    }
+
+    /**
+     * Creates an event object with manually set priority upon receiving an event command from the user.
+     *
+     * @param description The description of the event.
+     * @param at The date of the event.
+     * @param timeStart The starting time of the event.
+     * @param timeEnd The ending time of the event.
+     * @param type The type of task created.
+     * @param priority The priority of the task.
+     */
+    public Event(String description, LocalDate at, LocalTime timeStart, LocalTime timeEnd,
+                 TaskType type, Priority priority) {
+        super(description, type, priority);
         this.at = at;
         this.timeStart = timeStart;
         this.timeEnd = timeEnd;
@@ -46,9 +64,9 @@ public class Event extends Task {
     @Override
     public String toString() {
         String str = "";
-        str += timeStart.format(timeFormatter) + "to ";
-        str += timeEnd.format(timeFormatter);
+        str += timeStart.format(timeFormatter) + " to ";
+        str += timeEnd.format(timeFormatter) + " ";
         str += at.format(dateFormatter);
-        return "[E]" + super.toString() + "(at: " + str + ")";
+        return "[E]" + super.toString() + " (at: " + str + ")";
     }
 }

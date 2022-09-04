@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import duke.command.Command;
 import duke.command.DeadlineCommand;
@@ -15,17 +16,21 @@ import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.PriorityCommand;
 import duke.command.ToDoCommand;
 import duke.command.UnmarkCommand;
 import duke.exception.InvalidDateException;
 import duke.exception.InvalidIndexException;
 import duke.exception.InvalidInputException;
+import duke.exception.InvalidPriorityException;
 import duke.exception.MissingDescriptionException;
 import duke.task.Deadline;
 import duke.task.Event;
+import duke.task.Priority;
 import duke.task.Task;
 import duke.task.TaskType;
 import duke.task.ToDo;
+
 
 /**
  * A component of the chatBot Duke that deciphers the user inputs.
@@ -45,7 +50,7 @@ public class Parser {
      * @throws InvalidInputException The exception that occurs when the user did not input any valid command.
      */
     public Command parse(String input) {
-        String[] str = input.split(" ", 2);
+        String[] str = input.split("\\s+", 2);
         String commandWord = str[0];
         Command command;
         if (str.length == 1 || str[1].trim().equals("")) {
@@ -75,6 +80,7 @@ public class Parser {
         case EventCommand.COMMAND_WORD:
         case DeleteCommand.COMMAND_WORD:
         case FindCommand.COMMAND_WORD:
+        case PriorityCommand.COMMAND_WORD:
             throw new MissingDescriptionException(commandWord);
         default:
             throw new InvalidInputException();
@@ -94,7 +100,7 @@ public class Parser {
             break;
         }
         case ToDoCommand.COMMAND_WORD: {
-            command = new ToDoCommand(new ToDo(str, TaskType.TODO));
+            command = prepareTasksCommand(str, TaskType.TODO);
             break;
         }
         case DeadlineCommand.COMMAND_WORD: {
@@ -117,32 +123,27 @@ public class Parser {
             command = new FindCommand(str.split("\\s+"));
             break;
         }
+        case PriorityCommand.COMMAND_WORD: {
+            command = preparePriorityCommand(str);
+            break;
+        }
         default:
             throw new InvalidInputException();
         }
         return command;
     }
 
-    private int parseIntegerString(String string) {
-        try {
-            return Integer.parseInt(string);
-        } catch (NumberFormatException e) {
-            throw new InvalidIndexException(INVALID_INTEGER_MESSAGE);
-        }
-    }
 
     private Command prepareTasksCommand(String args, TaskType type) {
         try {
-            String[] components;
-            Task task;
+            String[] components = args.split("\\s+", 2);
+            Task task = createTaskWithPriority(components[0], components[1], type);;
             switch (type) {
+            case TODO:
+                return new ToDoCommand(task);
             case DEADLINE:
-                components = args.split("/by ", 2);
-                task = createTaskWithDate(components[0], components[1], type);
                 return new DeadlineCommand(task);
             case EVENT:
-                components = args.split("/at ", 2);
-                task = createTaskWithDate(components[0], components[1], type);
                 return new EventCommand(task);
             default:
                 assert false;
@@ -157,29 +158,86 @@ public class Parser {
         throw new InvalidInputException();
     }
 
-    private Task createTaskWithDate(String description, String timePeriod, TaskType type) {
+    private Command prepareDueCommand(String input) {
+        try {
+            LocalDate date = LocalDate.parse(input);
+            return new DueCommand(date);
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateException(INVALID_FIND_DATE_MESSAGE);
+        }
+    }
+
+    private Command preparePriorityCommand(String input) {
+        try {
+            String[] components = input.split("\\s+", 2);
+            int index = parseIntegerString(components[0]);
+            Priority priority = Priority.valueOf(components[1].toUpperCase());
+            return new PriorityCommand(index, priority);
+        } catch (IllegalArgumentException e) {
+            throw new InvalidPriorityException();
+        }
+    }
+
+    private Task createTaskWithPriority(String component1, String component2, TaskType type) {
+        Task task;
+        Priority priority = null;
+        String description = "";
+        if (Priority.checkPriority(component1)) {
+            priority = Priority.valueOf(component1.toUpperCase());
+            description = component2;
+        } else {
+            description = appendDescription(component1, component2);
+        }
+        switch (type) {
+        case TODO:
+            if (priority != null) {
+                task = new ToDo(component2, TaskType.TODO, priority);
+            } else {
+                task = new ToDo(description, TaskType.TODO);
+            }
+            return task;
+        case DEADLINE:
+            String[] str = description.split(" /by ", 2);
+            task = createTaskWithDate(Objects.requireNonNullElse(priority, Priority.LOW), str[0], str[1], type);
+            return task;
+        case EVENT:
+            String[] str1 = description.split(" /at ", 2);
+            task = createTaskWithDate(Objects.requireNonNullElse(priority, Priority.LOW), str1[0], str1[1], type);
+            return task;
+        default:
+            assert false;
+            break;
+        }
+        assert false;
+        return null;
+    }
+
+    private Task createTaskWithDate(Priority priority, String description, String timePeriod, TaskType type) {
+        String[] timeComponents;
         LocalTime time = null;
         LocalDate date;
         Task task = null;
-        String[] components = timePeriod.split(" ", 2);
-        date = LocalDate.parse(components[0]);
         switch (type) {
         case DEADLINE:
-            if (components.length != 1 && !components[1].trim().equals("")) {
-                time = LocalTime.parse(components[1]);
+            timeComponents = timePeriod.split("\\s+", 2);
+            date = LocalDate.parse(timeComponents[0]);
+            if (timeComponents.length != 1 && !timeComponents[1].equals("")) {
+                time = LocalTime.parse(timeComponents[1].trim());
             }
-            task = new Deadline(description, date, time, type);
+            task = new Deadline(description, date, time, type, priority);
             break;
         case EVENT:
             LocalTime timeEnd;
-            if (components.length == 1) {
-                throw new DateTimeParseException("", components[0], 1);
+            timeComponents = timePeriod.split("\\s+", 2);
+            date = LocalDate.parse(timeComponents[0]);
+            String[] duration = timeComponents[1].split("-", 2);
+            if (duration.length == 1) {
+                throw new DateTimeParseException("", duration[0], 1);
             } else {
-                String[] duration = components[1].split("-", 2);
                 time = LocalTime.parse(duration[0]);
-                timeEnd = LocalTime.parse(duration[1]);
+                timeEnd = LocalTime.parse(duration[1].trim());
             }
-            task = new Event(description, date, time, timeEnd, type);
+            task = new Event(description, date, time, timeEnd, type, priority);
             break;
         default:
             assert false;
@@ -188,13 +246,53 @@ public class Parser {
         return task;
     }
 
-    private Command prepareDueCommand(String input) {
-        try {
-            LocalDate date = LocalDate.parse(input);
-            return new DueCommand(date);
-        } catch (DateTimeParseException e) {
-            throw new InvalidDateException(INVALID_FIND_DATE_MESSAGE);
+
+    private String appendDescription(String ... components) {
+        StringBuilder str = new StringBuilder();
+        for (String component : components) {
+            str.append(component).append(" ");
         }
+        return str.toString();
+    }
+
+    private int parseIntegerString(String string) {
+        try {
+            return Integer.parseInt(string);
+        } catch (NumberFormatException e) {
+            throw new InvalidIndexException(INVALID_INTEGER_MESSAGE);
+        }
+    }
+    /**
+     * Converts the given taskList into a list of strings to be written into a file.
+     *
+     * @param taskList The given taskList containing tasks to be saved.
+     * @return An arraylist of strings to be written.
+     */
+    public ArrayList<String> writeFileContents(ArrayList<Task> taskList) {
+        ArrayList<String> list = new ArrayList<>();
+        for (Task task : taskList) {
+            String string = task.priorityEncode() + " | "
+                    + task.getDoneStatus() + " | " + task.getDescription().trim();
+            switch (task.type) {
+            case TODO: {
+                string = "T | " + string;
+                break;
+            }
+            case DEADLINE: {
+                string = "D | " + string;
+                break;
+            }
+            case EVENT: {
+                string = "E | " + string;
+                break;
+            }
+            default:
+                assert false;
+                break;
+            }
+            list.add(string);
+        }
+        return list;
     }
 
     /**
@@ -230,53 +328,22 @@ public class Parser {
         return listOfTasks;
     }
 
-    /**
-     * Converts the given taskList into a list of strings to be written into a file.
-     *
-     * @param taskList The given taskList containing tasks to be saved.
-     * @return An arraylist of strings to be written.
-     */
-    public ArrayList<String> writeFileContents(ArrayList<Task> taskList) {
-        ArrayList<String> list = new ArrayList<>();
-        for (Task task : taskList) {
-            String string = "";
-            switch (task.type) {
-            case TODO: {
-                string = "T | " + task.getDoneStatus() + " | " + task.getDescription();
-                break;
-            }
-            case DEADLINE: {
-                string = "D | " + task.getDoneStatus() + " | " + task.getDescription();
-                break;
-            }
-            case EVENT: {
-                string = "E | " + task.getDoneStatus() + " | " + task.getDescription();
-                break;
-            }
-            default:
-                assert false;
-                break;
-            }
-            list.add(string);
-        }
-        return list;
-    }
     private Task createTaskFromFile(String input, TaskType type) {
         Task task = null;
         int taskStatus = 0;
         String[] components;
         switch (type) {
         case TODO: {
-            components = input.split(" \\| ", 2);
-            task = new ToDo(components[1], type);
-            taskStatus = Integer.parseInt(components[0]);
+            components = input.split(" \\| ", 3);
+            task = new ToDo(components[2], type, Priority.valueOf(components[0]));
+            taskStatus = Integer.parseInt(components[1]);
             break;
         }
         case DEADLINE:
         case EVENT: {
-            components = input.split(" \\| ", 3);
-            task = createTaskWithDate(components[1], components[2], type);
-            taskStatus = Integer.parseInt(components[0]);
+            components = input.split(" \\| ", 4);
+            task = createTaskWithDate(Priority.valueOf(components[0]), components[2], components[3], type);
+            taskStatus = Integer.parseInt(components[1]);
             break;
         }
         default:
