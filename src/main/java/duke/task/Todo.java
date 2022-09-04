@@ -7,6 +7,9 @@ public class Todo extends Task {
         super(description);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDate() {
         return "";

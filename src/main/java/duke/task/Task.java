@@ -24,6 +24,11 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Returns the date of the task if exists. Else, returns "".
+     *
+     * @return String.
+     */
     public abstract String getDate();
 
     /**
@@ -35,10 +40,20 @@ public abstract class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    /**
+     * Returns True if task is done. Else, False.
+     *
+     * @return boolean.
+     */
     public boolean getIsDone() {
         return this.isDone;
     }
 
+    /**
+     * Returns the task description.
+     *
+     * @return String.
+     */
     public String getDescription() {
         return this.description;
     }
