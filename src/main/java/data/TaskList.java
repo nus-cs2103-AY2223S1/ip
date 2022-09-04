@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class to hold and operate on mulitple tasks.
+ */
 public class TaskList implements Serializable {
     private final List<Task> tasks;
 
@@ -49,6 +52,11 @@ public class TaskList implements Serializable {
         return task;
     }
 
+    /**
+     * Returns all tasks that have titles containing a substring.
+     * @param searchString String to search in task titles.
+     * @return List of tasks that contain the substring in title.
+     */
     public List<Task> findBySearchString(String searchString) {
         List<Task> results = new ArrayList<>();
         for (Task t : tasks) {
@@ -72,7 +80,7 @@ public class TaskList implements Serializable {
     public String toString() {
         StringBuilder resultStringBuilder = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
-            resultStringBuilder.append(i+1).append(". ").append(tasks.get(i)).append("\n");
+            resultStringBuilder.append(i + 1).append(". ").append(tasks.get(i)).append("\n");
         }
         return resultStringBuilder.toString();
     }
