@@ -1,8 +1,8 @@
 package duke.commands;
 
+import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Represents a command to mark a task in the
@@ -28,12 +28,11 @@ public class MarkCommand extends Command {
      * as done.
      *
      * @param tasks Contains the task list.
-     * @param ui Ui to interact with the user.
      * @param storage Storage to save and load tasks from a local file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.mark(t);
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
+        return tasks.mark(t);
     }
 
 }

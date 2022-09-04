@@ -7,6 +7,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.ui.Ui;
 
@@ -61,16 +62,17 @@ public class TaskList {
     /**
      * Prints the contents of the task list to the user.
      */
-    public void printList() {
+    public String printList() {
         if (tasks.size() == 0) {
-            System.out.println(Ui.START + "your list is empty. start adding some tasks to do now!");
+            return Ui.START + "your list is empty. start adding some tasks to do now!";
         } else {
-            System.out.println(Ui.START + "these are the tasks in your list:");
+            String reply = Ui.START + "these are the tasks in your list:";
             int x = 1;
             for (Task task : tasks) {
-                System.out.println("  " + x + ". " + task.toString());
+                reply += "\n  " + x + ". " + task.toString();
                 x++;
             }
+            return reply;
         }
     }
 
@@ -79,14 +81,16 @@ public class TaskList {
      *
      * @param t Task to be added.
      */
-    public void add(Task t) {
+    public String add(Task t) {
+        String reply;
         tasks.add(t);
-        System.out.println(Ui.START + "added:\n" + "     " + t);
+        reply = Ui.START + "added:\n" + "     " + t;
         if (tasks.size() == 1) {
-            System.out.println("  you now have 1 task in the list. type list to see it!");
+            reply += "\n  you now have 1 task in the list. type list to see it!";
         } else {
-            System.out.println("  now you have " + tasks.size() + " tasks in the list. type list to view them.");
+            reply += "\n  now you have " + tasks.size() + " tasks in the list. type list to view them.";
         }
+        return reply;
     }
 
     /**
@@ -94,26 +98,25 @@ public class TaskList {
      *
      * @param i Index of the task to delete
      */
-    public void delete(int i) {
+    public String delete(int i) throws DukeException {
         if (tasks.size() == 0) {
-            System.out.println(
-                    Ui.START + "hmm, you do not have any tasks in your list to delete. add some now!"
-            );
+            return Ui.START + "hmm, you do not have any tasks in your list to delete. add some now!";
         } else {
+            String reply = "";
             try {
                 Task t = tasks.remove(i);
-                System.out.println(Ui.START + "okay! i have deleted the following task from your list:");
-                System.out.println("     " + t);
+                reply += Ui.START + "okay! i have deleted the following task from your list:";
+                reply += "\n     " + t;
                 if (tasks.size() == 0) {
-                    System.out.println("  your list is now empty. time to add some more!");
+                    reply += "\n  your list is now empty. time to add some more!";
                 } else if (tasks.size() == 1) {
-                    System.out.println("  you now have 1 task remaining in the list. type list to see it!");
+                    reply += "\n  you now have 1 task remaining in the list. type list to see it!";
                 } else {
-                    System.out.println(
-                            "  now you have " + tasks.size() + " tasks in the list. type list to view them.");
+                    reply += "\n  now you have " + tasks.size() + " tasks in the list. type list to view them.";
                 }
+                return reply;
             } catch (IndexOutOfBoundsException e) {
-                System.out.println(Ui.SAD_FACE + "please enter an integer from 1 - " + tasks.size());
+                throw new DukeException(Ui.SAD_FACE + "please enter an integer from 1 - " + tasks.size());
             }
         }
     }
@@ -124,7 +127,7 @@ public class TaskList {
      *
      * @param date Date to search for.
      */
-    public void search(LocalDate date) {
+    public String search(LocalDate date) {
         String list = "";
         int x = 1;
         for (Task task : tasks) {
@@ -134,12 +137,9 @@ public class TaskList {
             }
         }
         if (x == 1) {
-            System.out.println(
-                    Ui.START + "There are no tasks occurring on " + date + ".");
+            return Ui.START + "There are no tasks occurring on " + date + ".";
         } else {
-            System.out.println(
-                    Ui.START + "These are the tasks occurring on " + date + ":" + list
-            );
+            return Ui.START + "These are the tasks occurring on " + date + ":" + list;
         }
     }
 
@@ -149,7 +149,7 @@ public class TaskList {
      *
      * @param keyword Keyword(s) to search for.
      */
-    public void find(String keyword) {
+    public String find(String keyword) {
         String list = "";
         int x = 1;
         for (Task task : tasks) {
@@ -159,13 +159,10 @@ public class TaskList {
             }
         }
         if (x == 1) {
-            System.out.println(
-                    Ui.START + "there are no tasks matching the search term '"
-                            + keyword + "'.");
+            return Ui.START + "there are no tasks matching the search term '"
+                    + keyword + "'.";
         } else {
-            System.out.println(
-                    Ui.START + "These are the matching tasks in your list:" + list
-            );
+            return Ui.START + "These are the matching tasks in your list:" + list;
         }
     }
 
@@ -175,20 +172,18 @@ public class TaskList {
      *
      * @param t Index of the task to mark.
      */
-    public void mark(int t) {
+    public String mark(int t) throws DukeException {
         try {
             if (tasks.size() == 0) {
-                System.out.println(
-                        Ui.START + "hmm, you do not have any tasks in your list to be marked. add some now!"
-                );
+                return Ui.START + "hmm, you do not have any tasks in your list to be marked. add some now!";
             } else {
                 Task doneTask = tasks.get(t);
                 doneTask.setDone();
-                System.out.println(Ui.START + "good job! this task has been marked as done:");
-                System.out.println("     " + doneTask);
+                return Ui.START + "good job! this task has been marked as done:"
+                        + "\n     " + doneTask;
             }
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(Ui.SAD_FACE + "please enter an integer from 1 - " + tasks.size());
+            throw new DukeException(Ui.SAD_FACE + "please enter an integer from 1 - " + tasks.size());
         }
     }
 
@@ -198,18 +193,18 @@ public class TaskList {
      *
      * @param t Index of the task to unmark.
      */
-    public void unmark(int t) {
+    public String unmark(int t) throws DukeException {
         try {
             if (tasks.size() == 0) {
-                System.out.println(Ui.START + "hmm, you do not have any tasks in your list. add some now!");
+                return Ui.START + "hmm, you do not have any tasks in your list. add some now!";
             } else {
                 Task undoneTask = tasks.get(t);
                 undoneTask.setUndone();
-                System.out.println(Ui.START + "ok, i've marked this task as not done yet:");
-                System.out.println("     " + undoneTask);
+                return Ui.START + "ok, i've marked this task as not done yet:"
+                        + "\n     " + undoneTask;
             }
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(Ui.SAD_FACE + "please enter an integer from 1 - " + tasks.size());
+            throw new DukeException(Ui.SAD_FACE + "please enter an integer from 1 - " + tasks.size());
         }
     }
 

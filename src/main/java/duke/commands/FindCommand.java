@@ -2,7 +2,6 @@ package duke.commands;
 
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Represents a command to search for tasks containing the
@@ -24,7 +23,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.find(keyword);
+    public String execute(TaskList tasks, Storage storage) {
+        return tasks.find(keyword);
     }
 }
