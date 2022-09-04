@@ -202,4 +202,15 @@ public class TaskList {
             return sb.toString();
         }
     }
+
+    /**
+     * Sets the Task at the given index to high priority.
+     *
+     * @param idx Given index.
+     * @return String representation of the Task set to high priority.
+     */
+    public String setHighPriorityTask(int idx) {
+        assert idx >= 0 : "idx should be >= 0";
+        return tasks.get(idx).setHighPriority();
+    }
 }

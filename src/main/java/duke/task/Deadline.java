@@ -25,14 +25,17 @@ public class Deadline extends Task {
 
     /**
      * Constructor for Deadline with information on whether it is completed.
+     *
      * @param description Description of the Deadline.
      * @param isDone Whether the Event is completed.
+     * @param priority Level of priority of the Deadline.
      * @param by The date/time when the Deadline is due.
      */
-    public Deadline(String description, boolean isDone, LocalDate by) {
+    public Deadline(String description, boolean isDone, Priority priority, LocalDate by) {
         super(description);
         this.by = by;
         this.isDone = isDone;
+        this.priority = priority;
     }
 
     /**
@@ -42,8 +45,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)",
-                super.toString(), by.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+        return String.format("[D]%s (by: %s)", super.toString(), by.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
     }
 
     /**

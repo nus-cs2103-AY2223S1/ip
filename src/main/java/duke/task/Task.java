@@ -9,8 +9,12 @@ import java.time.LocalDate;
  * @version CS2103T AY22/23 Sem 1
  */
 public abstract class Task {
+    protected enum Priority {
+        LOW, HIGH
+    }
     protected String description;
     protected boolean isDone;
+    protected Priority priority;
 
     /**
      * Constructor for Task.
@@ -20,6 +24,7 @@ public abstract class Task {
     public Task(String description) {
         this.description = description;
         isDone = false;
+        priority = Priority.LOW;
     }
 
     /**
@@ -59,7 +64,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s] %s", (isDone ? "X" : " "), description);
+        return String.format("[%s]%s %s", isDone ? "X" : " ", priority == Priority.HIGH ? "[!]" : "", description);
     }
 
     /**
@@ -69,19 +74,20 @@ public abstract class Task {
      * @return The Task corresponding to the data.
      */
     public static Task loadTask(String data) {
-        String[] dataSplit = data.split(" \\| ", 4);
-        char c = dataSplit[0].charAt(0);
+        char c = data.charAt(0);
+        String[] dataSplit = data.split(" \\| ", c == 'T' ? 4 : 5);
         boolean isDone = dataSplit[1].equals("1");
-        String description = dataSplit[2];
-        LocalDate time = dataSplit.length == 4 ? LocalDate.parse(dataSplit[3]) : null;
+        Priority priority = dataSplit[2].equals("1") ? Priority.HIGH : Priority.LOW;
+        String description = dataSplit[3];
+        LocalDate time = dataSplit.length == 5 ? LocalDate.parse(dataSplit[4]) : null;
 
         switch (c) {
         case 'D':
-            return new Deadline(description, isDone, time);
+            return new Deadline(description, isDone, priority, time);
         case 'E':
-            return new Event(description, isDone, time);
+            return new Event(description, isDone, priority, time);
         default:
-            return new Todo(description, isDone);
+            return new Todo(description, isDone, priority);
         }
     }
 
@@ -91,6 +97,16 @@ public abstract class Task {
      * @return Data representing the Task.
      */
     public String saveTask() {
-        return String.format("%d | %s", isDone ? 1 : 0, description);
+        return String.format("%d | %d | %s", isDone ? 1 : 0, priority == Priority.HIGH ? 1 : 0, description);
+    }
+
+    /**
+     * Sets the Task to high priority.
+     *
+     * @return The String representation of the Task.
+     */
+    public String setHighPriority() {
+        priority = Priority.HIGH;
+        return toString();
     }
 }

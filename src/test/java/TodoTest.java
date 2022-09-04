@@ -29,13 +29,13 @@ public class TodoTest {
     @Test
     public void saveTodoTest() {
         Todo todo = new Todo("Tutorial 1");
-        assertEquals("T | 0 | Tutorial 1", todo.saveTask());
+        assertEquals("T | 0 | 0 | Tutorial 1", todo.saveTask());
     }
 
     @Test
     public void saveTodoTest2() {
         Todo todo = new Todo("Tutorial 1");
         todo.mark();
-        assertEquals("T | 1 | Tutorial 1", todo.saveTask());
+        assertEquals("T | 1 | 0 | Tutorial 1", todo.saveTask());
     }
 }

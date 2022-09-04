@@ -16,10 +16,12 @@ public class Todo extends Task {
      *
      * @param description Description of the Todo.
      * @param isDone Whether the Todo is completed.
+     * @param priority Level of priority of the Todo.
      */
-    public Todo(String description, boolean isDone) {
+    public Todo(String description, boolean isDone, Priority priority) {
         super(description);
         this.isDone = isDone;
+        this.priority = priority;
     }
 
     /**
