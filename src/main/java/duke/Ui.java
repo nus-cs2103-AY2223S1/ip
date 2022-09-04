@@ -24,8 +24,8 @@ public class Ui {
      * @return The Duke welcome message string with a border.
      */
     public static String getWelcomeMessage() {
-        String welcomeMsg = "Hello! I'm duke.\n" + "What can I do for you?";
-        return getMessage(welcomeMsg);
+        final String WELCOME_MSG = "Hello! I'm duke.\n" + "What can I do for you?";
+        return getMessage(WELCOME_MSG);
     }
 
     /**
@@ -34,8 +34,8 @@ public class Ui {
      * @return The Duke exit String with a border.
      */
     public String getExitMessage() {
-        String exitMsg = "Bye. Hope to see you again soon!";
-        return getMessage(exitMsg);
+        final String EXIT_MSG = "Bye. Hope to see you again soon!";
+        return getMessage(EXIT_MSG);
     }
 
     /**
@@ -45,8 +45,8 @@ public class Ui {
      * @return A String detailing the list of tasks stored with a border.
      */
     public String listTasks(ArrayList<Task> tasks) {
-        String reply = "Here are the tasks in your list:";
-        return getMessage(enumerateTasks(tasks, reply));
+        final String REPLY = "Here are the tasks in your list:";
+        return getMessage(enumerateTasks(tasks, REPLY));
     }
 
     /**
@@ -56,17 +56,18 @@ public class Ui {
      * @return A String detailing the list of tasks that matches a certain requirement with a border.
      */
     public String listFoundTasks(ArrayList<Task> tasks) {
-        String reply = "Here are the matching tasks in your list:";
-        return getMessage(enumerateTasks(tasks, reply));
+        final String REPLY = "Here are the matching tasks in your list:";
+        return getMessage(enumerateTasks(tasks, REPLY));
     }
 
     private String enumerateTasks(ArrayList<Task> tasks, String str) {
         int pointer = 1;
+        String returnedString = str;
         for (Task task : tasks) {
-            str += "\n" + pointer + "." + task;
+            returnedString += "\n" + pointer + "." + task;
             pointer++;
         }
-        return str;
+        return returnedString;
     }
 
     /**
@@ -76,7 +77,8 @@ public class Ui {
      * @return A string acknowledging the marked task with a border.
      */
     public String getMarkedTask(Task task) {
-        return getMessage("Nice! I've marked this task as done:\n" + task);
+        final String ACKNOWLEDGE_TEXT_MARKED = "Nice! I've marked this task as done:\n";
+        return getMessage(ACKNOWLEDGE_TEXT_MARKED + task);
     }
 
     /**
@@ -86,11 +88,13 @@ public class Ui {
      * @return A string acknowledging the unmarked task with a border.
      */
     public String getUnmarkedTask(Task task) {
-        return getMessage("OK, I've marked this task as not done yet:\n" + task);
+        final String ACKNOWLEDGE_TEXT_UNMARKED = "OK, I've marked this task as not done yet:\n";
+        return getMessage(ACKNOWLEDGE_TEXT_UNMARKED + task);
     }
 
     private String getTaskCountReply(int count) {
-        return "Now you have " + count + " task(s) in the list.";
+        final String REPLY = "Now you have " + count + " task(s) in the list.";
+        return REPLY;
     }
 
     /**
@@ -115,10 +119,10 @@ public class Ui {
      * @return A String acknowledging the removed task along with the number of tasks left with a border.
      */
     public String getAddedTask(Task task, int tasksCountLeft) {
-        String msg = "Got it. I've added this task:\n"
+        final String MSG = "Got it. I've added this task:\n"
                 + task + "\n"
                 + getTaskCountReply(tasksCountLeft);
-        return getMessage(msg);
+        return getMessage(MSG);
     }
 
     /**
@@ -128,8 +132,9 @@ public class Ui {
      * @return A String containing an error message with a border.
      */
     public String getBannedCharacterInputResponse(String s) {
-        return getMessage("Woah there!!! Your input contains a \"" + s
-                + "\" character which is not allowed!!");
+        final String RESPONSE = "Woah there!!! Your input contains a \"" + s
+                + "\" character which is not allowed!!";
+        return getMessage(RESPONSE);
     }
 
     /**
@@ -138,7 +143,8 @@ public class Ui {
      * @return A String containing an error message with a border.
      */
     public String getInvalidInputResponse() {
-        return getMessage("OOPS!!! I'm sorry, but I don't know what that means :-(");
+        final String RESPONSE = "OOPS!!! I'm sorry, but I don't know what that means :-(";
+        return getMessage(RESPONSE);
     }
 
     /**
@@ -148,8 +154,9 @@ public class Ui {
      * @return A String containing an error message with a border.
      */
     public String getMissingInputResponse(String s) {
-        return getMessage("OOPS!!! The description after a \""
-                + s + "\" is missing or incomplete!!");
+        final String RESPONSE = "OOPS!!! The description after a \""
+                + s + "\" is missing or incomplete!!";
+        return getMessage(RESPONSE);
     }
 
     /**
@@ -161,8 +168,9 @@ public class Ui {
      * @return A String containing an error message with a border.
      */
     public String getInputIndexOutOfBoundsResponse(String cmd, String inputNum) {
-        return getMessage("OOPS!!! You tried to " + cmd + " task " + inputNum
-                + " but it doesn't exist in the list!");
+        final String RESPONSE = "OOPS!!! You tried to " + cmd + " task " + inputNum
+                + " but it doesn't exist in the list!";
+        return getMessage(RESPONSE);
     }
 
     /**
@@ -171,7 +179,8 @@ public class Ui {
      * @return A String containing an error message with a border.
      */
     public String getDateTimeErrorResponse() {
-        return getMessage("OOPS!!! I can't recognise the date you just inputted :-(\n"
-                + "Dates should be inputted in a 'YYYY-MM-DD HH:MM' format, and events should have 2 dates.");
+        final String RESPONSE = "OOPS!!! I can't recognise the date you just inputted :-(\n"
+                + "Dates should be inputted in a 'YYYY-MM-DD HH:MM' format, and events should have 2 dates.";
+        return getMessage(RESPONSE);
     }
 }

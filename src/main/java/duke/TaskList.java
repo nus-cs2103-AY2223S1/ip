@@ -29,10 +29,6 @@ public class TaskList {
         return tasks.size();
     }
 
-    public void loadTask(Task task) {
-        tasks.add(task);
-    }
-
     /**
      * Returns an ArrayList of Tasks that contains the inputted string.
      *
@@ -83,7 +79,13 @@ public class TaskList {
         return tasks.remove(index);
     }
 
-    private Task addTask(Task task) {
+    /**
+     * Adds the Task inputted into the TaskList.
+     *
+     * @param task The task to add.
+     * @return The added Task.
+     */
+    public Task addTask(Task task) {
         tasks.add(task);
         return task;
     }
