@@ -7,7 +7,7 @@ import java.nio.file.StandardOpenOption;
 import javafx.application.Application;
 
 /**
- * Main class that calls the parsing of the user input.
+ * Main class that calls the launching of the Main class
  */
 public class Duke {
     public static void main(String[] args) {
