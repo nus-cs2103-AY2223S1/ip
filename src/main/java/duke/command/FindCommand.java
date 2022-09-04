@@ -39,21 +39,25 @@ public class FindCommand extends Command {
         int keywordLength = this.keyword.length();
         try {
             for (Task task : taskList.getList()) {
-                String taskString = task.toString();
-                int i = 0;
-                while (i < taskString.length() - keywordLength) {
-                    String taskSubstr = taskString.substring(i, i + keywordLength);
-                    if (taskSubstr.equals(this.keyword)) {
-                        outputList.add(task);
-                        break;
-                    }
-                    i++;
-                }
+                checkExistenceOfKeyword(task, outputList, keywordLength);
             }
             TaskList outputTaskList = new TaskList(outputList);
             return ui.getList(outputTaskList);
         } catch (StringIndexOutOfBoundsException ex) {
             throw new DukeException("String Index Out Of Bounds");
+        }
+    }
+
+    private void checkExistenceOfKeyword(Task task, ArrayList<Task> outputList, int keywordLength) {
+        String taskString = task.toString();
+        int i = 0;
+        while (i < taskString.length() - keywordLength) {
+            String taskSubstr = taskString.substring(i, i + keywordLength);
+            if (taskSubstr.equals(this.keyword)) {
+                outputList.add(task);
+                break;
+            }
+            i++;
         }
     }
 
