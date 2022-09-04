@@ -31,7 +31,11 @@ public class TaskList {
             return input.substring(9, input.indexOf("/by ") - 1);
         } else if (input.startsWith("event")) {
             return input.substring(6, input.indexOf("/at ") - 1);
-        } else if (input.startsWith("todo")) {
+        } else if (input.startsWith("todo") && input.contains("/p ")) {
+            // Case where "todo" command was given with priority.
+            return input.substring(5, input.indexOf("/p ") - 1);
+        } else if (input.startsWith("todo") && !input.contains("/p ")) {
+            // Case where "todo" command was NOT given with priority.
             return input.substring(5);
         }
         assert false : "`getDescription` method should not be called on inputs"
@@ -48,6 +52,10 @@ public class TaskList {
         String DELIMITER = "/at ";
         int startIndex = input.indexOf("/at ") + DELIMITER.length();
         int endIndex = input.indexOf("/p ") - 1;
+        if (endIndex < startIndex) {
+            // For case where input is given without priority.
+            endIndex = input.length();
+        }
         return input.substring(startIndex, endIndex);
     }
 
@@ -59,7 +67,11 @@ public class TaskList {
     private LocalDate getDate(String input) {
         String DELIMITER = "/by ";
         int startIndex = input.indexOf("/by ") + DELIMITER.length();
-        int endIndex = input.indexOf("/p ") - 1;
+        int endIndex = input.indexOf("/p ");
+        if (endIndex < startIndex) {
+            // For case where input is given without priority.
+            endIndex = input.length();
+        }
         DateTimeFormatter formatter =
                 DateTimeFormatter.ofPattern("yyyy/MM/dd");
         String dateString = input.substring(startIndex, endIndex);
