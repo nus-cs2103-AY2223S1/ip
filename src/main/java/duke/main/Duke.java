@@ -57,7 +57,7 @@ public class Duke {
     public String getResponse(String input) {
         Parser parser = new Parser();
         String response = parser.checkResponse(input);
-        String dukeResponse = "";
+        String dukeResponse;
             try {
                 switch (response) {
                     case "find": {
@@ -72,16 +72,19 @@ public class Duke {
                     }
                     case "mark": {
                         int taskNumber = parser.getTaskNumber();
+                        assert taskNumber > 0;
                         dukeResponse = tasks.markAsDone(taskNumber);
                         break;
                     }
                     case "unmark": {
                         int taskNumber = parser.getTaskNumber();
+                        assert taskNumber > 0;
                         dukeResponse = tasks.markNotDone(taskNumber);
                         break;
                     }
                     case "delete": {
                         int taskNumber = parser.getTaskNumber();
+                        assert (taskNumber > 0);
                         dukeResponse = ui.printDeleteMessage(tasks, taskNumber);
                         tasks.deleteTask(taskNumber);
                         break;

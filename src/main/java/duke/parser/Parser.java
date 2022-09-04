@@ -25,10 +25,12 @@ public class Parser {
      * @return Task number.
      */
     public int getTaskNumber() {
+        assert words.length > 1;
         return Integer.parseInt(words[1]);
     }
 
     public String getKeyword() {
+        assert words.length > 1;
         return words[1];
     }
 
@@ -38,6 +40,7 @@ public class Parser {
      */
     public String getDeadlineDescription() {
         int a = 2;
+        assert words.length > 1;
         StringBuilder task = new StringBuilder(words[1]);
         while (!words[a].equals("/by")) {
             task.append(" ");
@@ -53,6 +56,7 @@ public class Parser {
      */
     public LocalDate getDeadlineTime() {
         int a = 2;
+        assert words.length > 1;
         while (!words[a].equals("/by")) {
             a++;
         }
@@ -71,6 +75,7 @@ public class Parser {
      */
     public String getEventDescription() {
         int a = 2;
+        assert words.length > 1;
         StringBuilder task = new StringBuilder(words[1]);
         while (!words[a].equals("/at")) {
             task.append(" ");
@@ -86,6 +91,7 @@ public class Parser {
      */
     public String getEventTime() {
         int a = 2;
+        assert words.length > 1;
         while (!words[a].equals("/at")) {
             a++;
         }
