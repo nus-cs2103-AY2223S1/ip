@@ -204,10 +204,18 @@ public class Task {
         }
     }
 
+    /**
+     * Adds a tentative date to the Task. Only applicable for Event tasks.
+     * @param date the tentative date to be added
+     */
     public void addTentativeDate(LocalDateTime date) {
         tentativeDates.add(date);
     }
 
+    /**
+     * Confirms the tentative date of the task. Only applicable for Event tasks.
+     * @param index the index of the date chosen
+     */
     public void confirmDate(int index) {
         date = tentativeDates.get(index);
         tentativeDates.clear();
