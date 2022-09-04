@@ -20,8 +20,8 @@ import javafx.stage.Stage;
  */
 public class DukePro extends Application {
     private Interact interact;
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/buttercup.png"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/images/bubbles.png"));
 
     private ScrollPane scrollPane;
     private VBox dialogContainer;
