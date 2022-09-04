@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -92,9 +91,9 @@ public class Storage {
         boolean isTodoEntry =
                 dataArgs[0].equals("todo") && dataArgs.length == 4;
         boolean hasPriority =
-                dataArgs[dataArgs.length - 1].equals("LOW")
-                || dataArgs[dataArgs.length - 1].equals("MEDIUM")
-                || dataArgs[dataArgs.length - 1].equals("HIGH");
+                dataArgs[3].equals("LOW")
+                || dataArgs[3].equals("MEDIUM")
+                || dataArgs[3].equals("HIGH");
         if (hasPriority && (isDeadlineEntry || isEventEntry || isTodoEntry)) {
             // Only add task if format in file is correct.
             taskList.addFromFile(dataArgs);
