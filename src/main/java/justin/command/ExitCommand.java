@@ -16,14 +16,11 @@ public class ExitCommand extends Command {
      * @param list The TaskList to carry out operations.
      * @param ui The Ui to send outputs.
      * @param storage The Storage to save changes.
+     * @return The String message of the Ui.
      */
     @Override
-    public void execute(TaskList list, Ui ui, Storage storage, MainWindow mw) {
+    public String execute(TaskList list, Ui ui, Storage storage) {
         super.isExit = true;
-    }
-
-    @Override
-    public String getMessage(TaskList list, Ui ui) {
         return ui.goodbye();
     }
 }

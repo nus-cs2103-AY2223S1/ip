@@ -30,17 +30,13 @@ public class AddToDoCommand extends Command {
      * @param list The TaskList to carry out operations.
      * @param ui The Ui to send outputs.
      * @param storage The Storage to save changes.
+     * @return The String message of the Ui.
      */
     @Override
-    public void execute(TaskList list, Ui ui, Storage storage, MainWindow mw) throws DukeException {
+    public String execute(TaskList list, Ui ui, Storage storage) throws DukeException {
         Task task = new ToDo(description, isDone);
         list.addTask(task);
         storage.save(list);
-    }
-
-    @Override
-    public String getMessage(TaskList list, Ui ui) {
-        Task task = new ToDo(description, isDone);
         return ui.addMessage(task) + ui.showLine() + ui.countMessage(list);
     }
 }

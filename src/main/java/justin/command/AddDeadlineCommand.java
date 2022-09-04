@@ -50,16 +50,13 @@ public class AddDeadlineCommand extends Command {
      * @param list The TaskList to carry out operations.
      * @param ui The Ui to send outputs.
      * @param storage The Storage to save changes.
+     * @return The String message of the Ui.
      */
     @Override
-    public void execute(TaskList list, Ui ui, Storage storage, MainWindow mw) throws DukeException {
+    public String execute(TaskList list, Ui ui, Storage storage) throws DukeException {
         this.task = new Deadline(description, isDone, by, time);
         list.addTask(task);
         storage.save(list);
-    }
-
-    @Override
-    public String getMessage(TaskList list, Ui ui) {
         return ui.addMessage(task) + ui.showLine() + ui.countMessage(list);
     }
 }

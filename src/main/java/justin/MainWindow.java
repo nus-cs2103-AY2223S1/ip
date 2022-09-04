@@ -41,8 +41,7 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         try {
             Command c = Parser.parse(input);
-            c.execute(justinBot.getTasks(), justinBot.getUi(), justinBot.getStorage(), this);
-            String response = c.getMessage(justinBot.getTasks(), justinBot.getUi());
+            String response = justinBot.getResponse(input);
             DialogBox userBox = DialogBox.getUserDialog(input, user, YOUR_DESCRIPTION);
             DialogBox justinBox = DialogBox.getJustinDialog(response, justin, JUSTIN_DESCRIPTION);
             dialogContainer.getChildren().addAll(userBox, justinBox);
@@ -53,8 +52,6 @@ public class MainWindow extends AnchorPane {
             DialogBox userBox = DialogBox.getUserDialog(input, user, YOUR_DESCRIPTION);
             DialogBox justinBox = DialogBox.getJustinDialog(e.getMessage(), justin, JUSTIN_DESCRIPTION);
             dialogContainer.getChildren().addAll(userBox, justinBox);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         userInput.clear();
     }

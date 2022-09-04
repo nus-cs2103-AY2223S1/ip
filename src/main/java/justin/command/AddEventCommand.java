@@ -50,20 +50,13 @@ public class AddEventCommand extends Command {
      * @param list The TaskList to carry out operations.
      * @param ui The Ui to send outputs.
      * @param storage The Storage to store changes.
+     * @return The String message of the Ui.
      */
     @Override
-    public void execute(TaskList list, Ui ui, Storage storage, MainWindow mw) {
-        try {
-            this.task = new Event(description, isDone, at, time);
-            list.addTask(task);
-            storage.save(list);
-        } catch (DukeException e) {
-            mw.handleException(e.getMessage());
-        }
-    }
-
-    @Override
-    public String getMessage(TaskList list, Ui ui) {
+    public String execute(TaskList list, Ui ui, Storage storage) throws DukeException {
+        this.task = new Event(description, isDone, at, time);
+        list.addTask(task);
+        storage.save(list);
         return ui.addMessage(task) + ui.showLine() + ui.countMessage(list);
     }
 }

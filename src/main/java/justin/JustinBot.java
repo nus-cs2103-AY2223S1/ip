@@ -1,11 +1,5 @@
 package justin;
 
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.layout.VBox;
 import justin.command.Command;
 
 /**
@@ -36,27 +30,6 @@ public class JustinBot {
         }
     }
 
-    /**
-     * Runs the program by iterating inputs and
-     * parsing commands, which leads to actions
-     * being triggered in the program.
-     */
-//    public void run() {
-//        boolean isExit = false;
-//        while (!isExit) {
-//            try {
-//                String fullCommand = ui.readCommand();
-//                ui.showLine();
-//                Command c = Parser.parse(fullCommand);
-//                c.execute(tasks, ui, storage);
-//                isExit = c.isExit();
-//            } catch (DukeException e) {
-//                ui.showText(e.toString());
-//            } finally {
-//                ui.showLine();
-//            }
-//        }
-//    }
     public Ui getUi() {
         return this.ui;
     }
@@ -69,8 +42,15 @@ public class JustinBot {
         return this.storage;
     }
 
-    public void setMw(MainWindow mw) {
-        this.mw = mw;
+    /**
+     * Returns the response of user's input in the chat.
+     * @param input The user's message in the chat.
+     * @return The String message to be sent by the bot.
+     * @throws DukeException
+     */
+    public String getResponse(String input) throws DukeException {
+        Command c = Parser.parse(input);
+        return c.execute(tasks, ui, storage);
     }
 
 }

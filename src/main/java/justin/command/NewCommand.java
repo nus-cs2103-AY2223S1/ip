@@ -17,12 +17,10 @@ public class NewCommand extends Command {
      * @param list The TaskList to carry out operations.
      * @param ui The Ui to send outputs.
      * @param storage The Storage to save changes.
+     * @return The String message from the Ui.
      */
     @Override
-    public void execute(TaskList list, Ui ui, Storage storage, MainWindow mw) {}
-
-    @Override
-    public String getMessage(TaskList list, Ui ui) {
+    public String execute(TaskList list, Ui ui, Storage storage) {
         return ui.welcome();
     }
 }

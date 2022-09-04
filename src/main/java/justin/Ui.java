@@ -50,54 +50,52 @@ public class Ui {
     }
 
     /**
-     * Prints out the welcome message.
+     * Returns the welcome message of the bot.
+     * @return The welcome message in String.
      */
     public String welcome() {
         return WELCOME_MESSAGE;
     }
 
     /**
-     * Prints out the goodbye message.
+     * Returns the goodbye message of the bot.
+     * @return The goodbye message in String.
      */
     public String goodbye() {
         return GOODBYE_MESSAGE;
     }
 
     /**
-     * Prints out the divider.
+     * Returns a line separator.
+     * @return A line separator in String.
      */
     public String showLine() {
         return SEPARATOR;
     }
 
     /**
-     * Returns the String that is input by the user.
-     * @return String representation of input message.
-     */
-    public String readCommand() {
-        out.print("Enter command: ");
-        return in.nextLine();
-    }
-
-    /**
-     * Prints out the outputs when a Task is being unmarked.
+     * Returns the message when a Task is being unmarked.
      * @param task The Task that is to be unmarked.
+     * @return The String message when a Task is unmarked.
      */
     public String unmarkMessage(Task task) {
         return UNMARK_MESSAGE + SEPARATOR + task.toString();
     }
 
     /**
-     * Prints out the outputs when a Task is being marked.
+     * Returns the message when a Task is being marked.
      * @param task The Task that is to be marked.
+     * @return The String message when a Task is marked.
      */
     public String markMessage(Task task) {
         return MARK_MESSAGE + SEPARATOR + task.toString();
     }
 
     /**
-     * Prints out every Task in the TaskList.
+     * Returns the message when every Task in the TaskList
+     * is listed.
      * @param list The TaskList that will be enumerated.
+     * @return The String message when every Task is listed.
      */
     public String listMessage(TaskList list) {
         String res = LIST_MESSAGE;
@@ -109,25 +107,30 @@ public class Ui {
     }
 
     /**
-     * Prints out the outputs when a Task is being deleted.
+     * Returns the message when a Task is being deleted.
      * @param task The Task to be deleted.
+     * @return The String message when a Task is deleted.
      */
     public String deleteMessage(Task task) {
         return DELETE_MESSAGE + SEPARATOR + task.toString();
     }
 
     /**
-     * Prints out the outputs when a Task is being added
+     * Returns the message when a Task is being added
      * into the TaskList.
      * @param task The Task to be added.
+     * @return The String message when a Task is added.
      */
     public String addMessage(Task task) {
         return ADD_MESSAGE + SEPARATOR + task.toString();
     }
 
     /**
-     * Prints out the number of Tasks in the TaskList.
+     * Returns the message when a user wants to find
+     * the number of Tasks in the TaskList.
      * @param list The TaskList to be enumerated.
+     * @return The String message when a user wants to find
+     * out the number of Tasks in the TaskList.
      */
     public String countMessage(TaskList list) {
         int size = list.getTasks().size();
@@ -142,6 +145,14 @@ public class Ui {
         out.println(text);
     }
 
+    /**
+     * Returns the message when users want to find matching
+     * tasks with the description.
+     * @param list The TaskList of lists.
+     * @param description The keywords for finding tasks.
+     * @return The String message when users want to find
+     * tasks.
+     */
     public String findMessage(TaskList list, String description) {
         String res = FIND_MESSAGE;
         ArrayList<Task> tasks = list.getTasks();

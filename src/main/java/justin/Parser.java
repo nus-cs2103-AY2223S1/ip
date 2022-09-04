@@ -24,6 +24,7 @@ import java.util.Scanner;
  * @author Justin Cheng.
  */
 public class Parser {
+    private static Scanner sc;
 
     /**
      * Returns an AddToDoCommand through scanning the description.
@@ -32,7 +33,7 @@ public class Parser {
      * @throws DukeException if the description of the ToDo is empty.
      */
     public static Command parseToDo(String message) throws DukeException{
-        Scanner sc = new Scanner(message);
+        sc = new Scanner(message);
         if (sc.hasNext()) {
             String description = sc.nextLine();
             return new AddToDoCommand(description, false);
@@ -48,7 +49,7 @@ public class Parser {
      * @throws DukeException if the message given is invalid.
      */
     public static Command parseDeadline(String message) throws DukeException {
-        Scanner sc = new Scanner(message);
+        sc = new Scanner(message);
         try {
             String description = "";
             while (!sc.hasNext("/by")) {
@@ -71,7 +72,7 @@ public class Parser {
      * @throws DukeException if the message is invalid.
      */
     public static Command parseEvent(String message) throws DukeException {
-        Scanner sc = new Scanner(message);
+        sc = new Scanner(message);
         try {
             String description = "";
             while (!sc.hasNext("/at")) {
@@ -89,8 +90,7 @@ public class Parser {
 
 
     public static Command parseFind(String message) {
-
-        Scanner sc = new Scanner(message);
+        sc = new Scanner(message);
         String res = "";
         while (sc.hasNext()) {
             res += sc.next() + " ";
@@ -106,7 +106,7 @@ public class Parser {
      * @throws DukeException if the input is invalid.
      */
     public static Command parse(String message) throws DukeException {
-        Scanner sc = new Scanner(message);
+        sc = new Scanner(message);
         String first = sc.next();
         try {
             switch (first) {

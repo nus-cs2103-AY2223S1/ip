@@ -87,7 +87,7 @@ public class Storage {
         try {
             for (String s : strArray) {
                 Command command = Parser.parseCommand(s);
-                command.execute(tasks, ui, this, this.mw);
+                command.execute(tasks, ui, this);
             }
         } catch (DukeException e) {
             ui.showText(e.toString());

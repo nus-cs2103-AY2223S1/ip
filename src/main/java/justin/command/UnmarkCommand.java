@@ -27,16 +27,13 @@ public class UnmarkCommand extends Command {
      * @param list The TaskList to carry out operations.
      * @param ui The Ui to send outputs.
      * @param storage The Storage to save changes.
+     * @return The String message from the Ui.
      */
     @Override
-    public void execute(TaskList list, Ui ui, Storage storage, MainWindow mw) throws DukeException {
+    public String execute(TaskList list, Ui ui, Storage storage) throws DukeException {
         list.unmark(num);
         this.unmarkedTask = list.getTask(num);
         storage.save(list);
-    }
-
-    @Override
-    public String getMessage(TaskList list, Ui ui) {
         return ui.unmarkMessage(unmarkedTask);
     }
 }

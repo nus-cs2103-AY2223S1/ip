@@ -15,10 +15,10 @@ public abstract class Command {
      * @param list The TaskList to carry out operations.
      * @param ui The Ui to send outputs.
      * @param storage The Storage to save changes.
+     * @return The String message of the Ui.
      */
-    public abstract void execute(TaskList list, Ui ui, Storage storage, MainWindow mw) throws DukeException;
+    public abstract String execute(TaskList list, Ui ui, Storage storage) throws DukeException;
 
-    public abstract String getMessage(TaskList list, Ui ui);
 
     protected boolean isExit = false;
 
