@@ -11,7 +11,7 @@ import duke.ui.Ui;
  */
 public class MarkCommand extends Command {
 
-    private int taskNumber;
+    private final int taskNumber;
 
     /**
      * Constructs a new Mark Command

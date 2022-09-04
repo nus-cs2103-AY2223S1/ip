@@ -22,6 +22,7 @@ public class Ui {
     private final static String MARK_TASK_FORMAT = "Nice! I have marked this task as done:\n\n%s";
     private final static String UNMARK_TASK_FORMAT = "Okay! I have marked this task as not done:\n\n%s";
     private final static String NUMBER_OF_TASKS_LEFT_FORMAT = "\n\nNow you have %d %s in the list!";
+    private final static DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy");
 
     /**
      * Constructs a new Ui
@@ -138,14 +139,11 @@ public class Ui {
      */
     public String printList(ArrayList<Task> list, LocalDate date) {
         if (list.size() == 0) {
-            return String.format("No tasks on %s!", date.format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
+            return String.format("No tasks on %s!", date.format(DATE_FORMAT));
         }
 
         int len = list.size();
-        String formattedDate = date.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
-        String header = String.format("Your %s for %s include:\n",
-                len > 1 ? "tasks" : "task",
-                formattedDate);
+        String header = String.format("Your %s for %s include:\n", len > 1 ? "tasks" : "task", date.format(DATE_FORMAT));
         StringBuilder stringBuilder = new StringBuilder(header);
 
         for (int i = 0; i < len; i++) {

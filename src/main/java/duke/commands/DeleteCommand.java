@@ -11,7 +11,7 @@ import duke.ui.Ui;
  */
 public class DeleteCommand extends Command {
 
-    private int taskNumber;
+    private final int taskNumber;
 
     /**
      * Constructs a new Delete Command
