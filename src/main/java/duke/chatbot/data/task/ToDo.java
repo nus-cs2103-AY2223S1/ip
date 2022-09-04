@@ -22,4 +22,9 @@ public class ToDo extends Task {
     public String encode() {
         return "T" + super.encode();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj) && obj instanceof ToDo;
+    }
 }

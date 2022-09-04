@@ -70,4 +70,13 @@ public abstract class TimedTask extends Task {
     public String encode() {
         return super.encode() + ",,," + dateTime.format(DATE_TIME_INPUT_FORMAT);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj) || !(obj instanceof TimedTask)) {
+            return false;
+        }
+        TimedTask task = (TimedTask) obj;
+        return task.dateTime.equals(dateTime);
+    }
 }

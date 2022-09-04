@@ -70,4 +70,15 @@ public abstract class Task {
     public boolean hasSubstring(String substring) {
         return description.contains(substring);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Task)) {
+            return false;
+        }
+        Task task = (Task) obj;
+        boolean isSameIsDone = task.isDone == isDone;
+        boolean isSameDescription = task.description.equals(description);
+        return isSameIsDone && isSameDescription;
+    }
 }

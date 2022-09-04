@@ -19,12 +19,17 @@ public class Deadline extends TimedTask {
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: "
-                + super.getDateString() + " at "
+                + super.getDateString() + ", "
                 + super.getTimeString() + ")";
     }
 
     @Override
     public String encode() {
         return "D" + super.encode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj) && obj instanceof Deadline;
     }
 }

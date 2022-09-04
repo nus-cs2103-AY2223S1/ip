@@ -26,4 +26,9 @@ public class Event extends TimedTask {
     public String encode() {
         return "E" + super.encode();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj) && obj instanceof Event;
+    }
 }
