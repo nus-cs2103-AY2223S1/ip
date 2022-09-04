@@ -54,6 +54,7 @@ public class Parser {
         if (tasks.size() == 0) {
             return "you got no tasks";
         } else {
+            assert tasks.size() > 0 : "TaskList size should be positive";
             StringBuilder sb = new StringBuilder();
             sb.append("heres your tasks\n");
             for (int i = 0; i < tasks.size(); i++) {
@@ -203,7 +204,7 @@ public class Parser {
             return "enter a valid index";
         }
     }
-
+    
     protected String find(String s) {
         try {
             String toFind = s.substring(5);
