@@ -11,7 +11,7 @@ import henry.TaskList;
 
 public class TodoCommandTest {
 
-    private static final String MESSAGE_SUCCESS = "OK. I ADDED THIS TASK TO MY LIST:\n\t\t\t %1$s.";
+    private static final String MESSAGE_SUCCESS = "OK. I ADDED THIS TASK TO MY LIST:\n %1$s.";
 
     @Test
     public void testTodoCommand() {
