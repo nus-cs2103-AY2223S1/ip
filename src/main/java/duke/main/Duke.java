@@ -11,36 +11,14 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 import duke.ui.Ui;
-import duke.main.DialogBox;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.scene.layout.Region;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Duke {
 
-    private Storage storage;
+    private final Storage storage;
     private TaskList tasks;
-    private Ui ui;
-    private ScrollPane scrollPane;
-    private VBox dialogContainer;
-    private TextField userInput;
-    private Button sendButton;
-    private Scene scene;
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/legend.jpeg"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/snoopy.jpeg"));
-
+    private final Ui ui;
 
 
     public Duke(String filePath) {
@@ -57,7 +35,7 @@ public class Duke {
     public String getResponse(String input) {
         Parser parser = new Parser();
         String response = parser.checkResponse(input);
-        String dukeResponse = "";
+        String dukeResponse;
             try {
                 switch (response) {
                     case "find": {
