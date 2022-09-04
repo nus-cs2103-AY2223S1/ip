@@ -59,12 +59,13 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Returns the type of the task.
+     *
+     * @return type of the task.
+     */
     public String getTaskType() {
         return this.taskType;
-    }
-
-    public static String parseDateTime(LocalDateTime dateTime) {
-        return dateTime.format(DateTimeFormatter.ofPattern("dd MMM uuuu HHmm")) + "hrs";
     }
 
     /**

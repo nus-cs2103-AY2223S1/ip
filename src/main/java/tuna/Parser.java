@@ -13,6 +13,7 @@ import tuna.command.DeleteCommand;
 import tuna.command.FindCommand;
 import tuna.command.ListCommand;
 import tuna.command.MarkItemCommand;
+import tuna.command.SortCommand;
 import tuna.command.UnMarkItemCommand;
 
 /**
@@ -36,6 +37,8 @@ public class Parser {
                 return new ByeCommand();
             } else if (command.equals("list")) {
                 return new ListCommand();
+            } else if (command.equals("sort")) {
+                return new SortCommand();
             } else if (UNKNOWN_COMMANDS.contains(command)) {
                 throw new TunaException("OOPS!!! The description of a " + command + " cannot be empty.");
             }

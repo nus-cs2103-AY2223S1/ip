@@ -2,10 +2,12 @@ package tuna;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import tuna.task.Deadline;
 import tuna.task.Event;
 import tuna.task.Task;
+import tuna.task.TimeBasedTask;
 import tuna.task.Todo;
 
 /**
@@ -15,13 +17,13 @@ import tuna.task.Todo;
 public class TaskList {
 
     /** List of all the tasks */
-    private ArrayList<Task> data;
+    private ArrayList<Task> tasks;
 
     /**
      * Creates a TaskList object.
      */
     public TaskList() {
-        this.data = new ArrayList<Task>();
+        this.tasks = new ArrayList<Task>();
     }
 
     /**
@@ -31,8 +33,8 @@ public class TaskList {
      * @return task located at the specified index.
      */
     public Task getTask(int index) {
-        assert index >= 0 && index < data.size();
-        return data.get(index);
+        assert index >= 0 && index < tasks.size();
+        return tasks.get(index);
     }
 
     /**
@@ -41,7 +43,7 @@ public class TaskList {
      * @return total number of tasks.
      */
     public int getTotalTasks() {
-        return data.size();
+        return tasks.size();
     }
 
     /**
@@ -50,7 +52,7 @@ public class TaskList {
      * @return latest task to be added.
      */
     public Task getLatestTask() {
-        return data.get(data.size() - 1);
+        return tasks.get(tasks.size() - 1);
     }
 
     /**
@@ -59,8 +61,8 @@ public class TaskList {
      * @param index index of the task to be deleted.
      */
     public void deleteTask(int index) {
-        assert index >= 0 && index < data.size();
-        data.remove(index);
+        assert index >= 0 && index < tasks.size();
+        tasks.remove(index);
     }
 
     /**
@@ -69,7 +71,7 @@ public class TaskList {
      * @param taskDescription task description of the todo task.
      */
     public void addTodo(String taskDescription) {
-        data.add(new Todo(taskDescription));
+        tasks.add(new Todo(taskDescription));
     }
 
     /**
@@ -79,7 +81,7 @@ public class TaskList {
      * @param by deadline of the task.
      */
     public void addDeadLine(String taskDescription, String by) {
-        data.add(new Deadline(taskDescription, by));
+        tasks.add(new Deadline(taskDescription, by));
     }
 
     /**
@@ -89,7 +91,7 @@ public class TaskList {
      * @param at start time of the event.
      */
     public void addEvent(String taskDescription, String at) {
-        data.add(new Event(taskDescription, at));
+        tasks.add(new Event(taskDescription, at));
     }
 
     /**
@@ -98,7 +100,7 @@ public class TaskList {
      * @return ArrayList of tasks.
      */
     public ArrayList<Task> listTasks() {
-        return new ArrayList<Task>(data);
+        return new ArrayList<Task>(tasks);
     }
 
     /**
@@ -108,21 +110,23 @@ public class TaskList {
      * @return ArrayList of tasks occurring on the specified date.
      */
     public ArrayList<Task> listTasks(LocalDate date) {
-        ArrayList<Task> tasks = new ArrayList<Task>();
-        for (Task task : data) {
+        ArrayList<Task> tasksToList = new ArrayList<Task>();
+        for (Task task : tasks) {
             if (!task.getTaskType().equals("T")) {
                 if (task.getTaskType().equals("E")) {
-                    if (LocalDate.parse(((Event) task).getAt().split(" ")[0]).equals(date)) {
-                        tasks.add(task);
+                    if (LocalDate.parse(((Event) task).getStringRepresentationOfDateTime().split(" ")[0])
+                            .equals(date)) {
+                        tasksToList.add(task);
                     }
                 } else if (task.getTaskType().equals("D")) {
-                    if (LocalDate.parse(((Deadline) task).getBy().split(" ")[0]).equals(date)) {
-                        tasks.add(task);
+                    if (LocalDate.parse(((Deadline) task).getStringRepresentationOfDateTime().split(" ")[0])
+                            .equals(date)) {
+                        tasksToList.add(task);
                     }
                 }
             }
         }
-        return tasks;
+        return tasksToList;
     }
 
     /**
@@ -131,8 +135,8 @@ public class TaskList {
      * @param index index of the task to be marked.
      */
     public void markItem(int index) {
-        assert index >= 0 && index < data.size();
-        data.get(index).markAsDone();
+        assert index >= 0 && index < tasks.size();
+        tasks.get(index).markAsDone();
     }
 
     /**
@@ -141,8 +145,8 @@ public class TaskList {
      * @param index index of the task to be un-marked.
      */
     public void unMarkItem(int index) {
-        assert index >= 0 && index < data.size();
-        data.get(index).markAsNotDone();
+        assert index >= 0 && index < tasks.size();
+        tasks.get(index).markAsNotDone();
     }
 
     /**
@@ -153,11 +157,55 @@ public class TaskList {
      */
     public ArrayList<Task> find(String keyword) {
         ArrayList<Task> tasksFound = new ArrayList<Task>();
-        data.stream().filter((task) -> {
+        tasks.stream().filter((task) -> {
             return task.getDescription().contains(keyword);
         }).forEach((task) -> {
             tasksFound.add(task);
         });
         return tasksFound;
+    }
+
+    /**
+     * Sorts the tasks in the tasks list in chronological order.
+     */
+    public void sort() {
+        ArrayList<Task> todoTasks = getTodoTasks();
+        ArrayList<TimeBasedTask> timeBasedTasks = getTimeBasedTasks();
+        timeBasedTasks.sort(Comparator.comparing(TimeBasedTask::getDateTime));
+        tasks.clear();
+        tasks.addAll(timeBasedTasks);
+        tasks.addAll(todoTasks);
+    }
+
+    /**
+     * Filters out Todo tasks from the tasks list.
+     *
+     * @return list of todo tasks.
+     */
+    private ArrayList<Task> getTodoTasks() {
+        ArrayList<Task> todoTasks = new ArrayList<Task>();
+        for (Task task : tasks) {
+            String taskType = task.getTaskType();
+            if (taskType == "T") {
+                todoTasks.add(task);
+            }
+        }
+        return todoTasks;
+    }
+
+    /**
+     * Filters out time based tasks from the tasks list.
+     *
+     * @return list of time based tasks.
+     */
+    private ArrayList<TimeBasedTask> getTimeBasedTasks() {
+        ArrayList<TimeBasedTask> timeBasedTasks = new ArrayList<TimeBasedTask>();
+        for (Task task : tasks) {
+            String taskType = task.getTaskType();
+            if (taskType.equals("D") || taskType.equals("E")) {
+                timeBasedTasks.add((TimeBasedTask) task);
+            }
+        }
+        return timeBasedTasks;
     }
 }

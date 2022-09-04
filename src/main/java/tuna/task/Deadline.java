@@ -6,11 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Represents a Deadline task. A Deadline object contains the deadline of the task.
  */
-public class Deadline extends Task {
-
-    /** Deadline of the task */
-    protected LocalDateTime by;
-
+public class Deadline extends TimeBasedTask {
     /**
      * Creates a task with a deadline.
      *
@@ -18,17 +14,7 @@ public class Deadline extends Task {
      * @param by the deadline of the task.
      */
     public Deadline(String description, String by) {
-        super(description, "D");
-        this.by = LocalDateTime.parse(by, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-    }
-
-    /**
-     * Returns the deadline of the task.
-     *
-     * @return deadline of the task.
-     */
-    public String getBy() {
-        return this.by.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        super(description, "D", LocalDateTime.parse(by, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
     }
 
     /**
@@ -38,6 +24,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[" + super.getTaskType() + "]" + super.toString() + " (by: " + parseDateTime(by) + ")";
+        return "[" + super.getTaskType() + "]" + super.toString() + " (by: " + parseDateTime(this.getDateTime()) + ")";
     }
 }
