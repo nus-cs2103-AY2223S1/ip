@@ -1,4 +1,10 @@
-package duke;
+package duke.io;
+
+import duke.DukeException;
+import duke.types.Deadline;
+import duke.types.Event;
+import duke.types.Task;
+import duke.types.Todo;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -19,7 +25,7 @@ public class Parser {
      * @param s String to be processed.
      * @param tasks Task list to be operated on.
      */
-    protected String process(String s, TaskList tasks) {
+    public String process(String s, TaskList tasks) {
         this.tasks = tasks;
         String[] words = s.split(" ");
         String command = words[0];

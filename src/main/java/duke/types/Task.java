@@ -1,4 +1,4 @@
-package duke;
+package duke.types;
 
 /**
  * A task that is specified by the user.
@@ -6,7 +6,7 @@ package duke;
  * @author Aaron Tan
  */
 public abstract class Task {
-    protected String description;
+    public String description;
     protected boolean isDone;
 
     /**

@@ -1,4 +1,4 @@
-package duke;
+package duke.ui;
 
 /**
  * User interface for the Duke chatbot, creating various messages.
@@ -10,6 +10,6 @@ public class Ui {
     /**
      * Greets the user.
      */
-    protected static void introduction() {
+    public static void introduction() {
     }
 }

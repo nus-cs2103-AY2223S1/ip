@@ -1,4 +1,6 @@
-package duke;
+package duke.types;
+
+import duke.types.Task;
 
 /**
  * Todo represents a todo for a task.
@@ -13,7 +15,7 @@ public class Todo extends Task {
      * @param description Description of task.
      * @param isDone If task is done or not done.
      */
-    Todo(String description, boolean isDone) {
+    public Todo(String description, boolean isDone) {
         super(description, isDone);
     }
 

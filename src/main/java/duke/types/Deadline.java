@@ -1,4 +1,6 @@
-package duke;
+package duke.types;
+
+import duke.DukeException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +23,7 @@ public class Deadline extends Task {
      * @param dateString Date represented as a string.
      * @throws DukeException If date is given in an invalid format.
      */
-    Deadline(String description, boolean isDone, String dateString) throws DukeException {
+    public Deadline(String description, boolean isDone, String dateString) throws DukeException {
         super(description, isDone);
         try {
             formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

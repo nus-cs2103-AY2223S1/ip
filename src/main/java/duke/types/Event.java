@@ -1,4 +1,6 @@
-package duke;
+package duke.types;
+
+import duke.DukeException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +23,7 @@ public class Event extends Task {
      * @param dateTimeString Date and time represented as a string.
      * @throws DukeException If date or time is given in an invalid format.
      */
-    Event(String description, boolean isDone, String dateTimeString) throws DukeException {
+    public Event(String description, boolean isDone, String dateTimeString) throws DukeException {
         super(description, isDone);
         try {
             formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");

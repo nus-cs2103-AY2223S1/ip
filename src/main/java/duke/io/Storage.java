@@ -1,4 +1,11 @@
-package duke;
+package duke.io;
+
+import duke.DukeException;
+import duke.io.TaskList;
+import duke.types.Deadline;
+import duke.types.Event;
+import duke.types.Task;
+import duke.types.Todo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,7 +28,7 @@ public class Storage {
      *
      * @return A TaskList with data loaded from a savefile.
      */
-    protected static TaskList readData() {
+    public static TaskList readData() {
         try {
             Scanner fileScanner = new Scanner(FILE_PATH);
             TaskList tasks = new TaskList();
@@ -61,7 +68,7 @@ public class Storage {
      *
      * @param tasks TaskList to be saved.
      */
-    protected void saveData(TaskList tasks) {
+    public void saveData(TaskList tasks) {
         try {
             FileWriter fw = new FileWriter(FILE_PATH);
             for (int i = 0; i < tasks.size(); i++) {
