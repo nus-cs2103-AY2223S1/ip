@@ -285,11 +285,12 @@ public class TaskList {
      * @return The StringBuilder of all the tasks in the list.
      */
     public StringBuilder toStringBuilder() {
-        StringBuilder sb = new StringBuilder();
-        for (Task t : this.taskList) {
-            sb.append(t.toCommand() + "\n");
-        }
-        return sb;
+        StringBuilder stringBuilder = this.taskList.stream()
+                .map(s -> s.toCommand() + "\n")
+                .collect(StringBuilder::new,
+                        StringBuilder::append,
+                        StringBuilder::append);
+        return stringBuilder;
     }
 
     /**
