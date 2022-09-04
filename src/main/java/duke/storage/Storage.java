@@ -58,6 +58,7 @@ public class Storage {
             while (sc.hasNextLine()) {
                 String data = sc.nextLine();
                 String[] parsedData = data.split(",,");
+
                 if (parsedData.length != 4) {
                     throw new DukeException("Error reading from file: " + filePath + ". Perhaps " +
                             "the data is stored in an incorrect manner?");

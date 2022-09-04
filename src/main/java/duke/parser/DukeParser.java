@@ -20,7 +20,6 @@ import duke.tasklist.TaskList;
  */
 public class DukeParser {
 
-    private final String BREAK_LINES = "=================================";
 
     private TaskList taskList;
     private String keyword;
@@ -66,7 +65,6 @@ public class DukeParser {
         }
 
         if (this.keyword.equals("")) {
-            System.out.println(BREAK_LINES);
             throw new DukeException("I can't do anything based off a blank instruction!");
         }
 
@@ -234,7 +232,11 @@ public class DukeParser {
         default:
             throw new DukeException("Oops! An error occurred when creating a new task.");
         }
+
+        assert (newTask != null) : "addTaskInstructionHandler cannot return a null task.";
+        
         return newTask;
+
     }
 
 }
