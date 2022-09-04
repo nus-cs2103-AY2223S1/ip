@@ -35,4 +35,22 @@ public class Constants {
     public static final String NO_MORE_LINES = "There is no more input!";
 
     public static final String FOUND_LIST = "Here are the matching tasks in your list: \n";
+
+    public static final String INVALID_BYE_INPUT = "Not a valid input for exiting";
+
+    public static final String INVALID_LIST_INPUT = "Not a valid input for exiting";
+
+    public static final String INVALID_MARK_INPUT = "Not a valid input for marking task";
+
+    public static final String INVALID_UNMARK_INPUT = "Not a valid input for unmarking task";
+
+    public static final String INVALID_DELETE_INPUT = "Not a valid input for deleting task";
+
+    public static final String INVALID_FIND_INPUT = "Not a valid input for finding task";
+
+    public static final String INVALID_TODO_INPUT = "Not a valid input for creating a todo task";
+
+    public static final String INVALID_DEADLINE_INPUT = "Not a valid input for creating a deadline task";
+
+    public static final String INVALID_EVENT_INPUT = "Not a valid input for creating an event task";
 }
