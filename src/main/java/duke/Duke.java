@@ -61,8 +61,11 @@ public class Duke {
                     MarkHandler.handle(taskList, wholeCommand[1]);
                     break;
                 case UNMARK:
-                     UnmarkHandler.handle(taskList, wholeCommand[1]);
-                     break;
+                    UnmarkHandler.handle(taskList, wholeCommand[1]);
+                    break;
+                case FIND:
+                    FindHandler.handle(taskList, wholeCommand[1]);
+                    break;
                 default:
                      dukePrint("Unknown command");
                      break;

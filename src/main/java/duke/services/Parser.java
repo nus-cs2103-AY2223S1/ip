@@ -23,6 +23,7 @@ public class Parser {
         Commands command;
         try {
             command = Commands.valueOf(wholeCommand[0].toUpperCase());
+            System.out.println(command.toString());
         } catch (IllegalArgumentException exception) {
             command = UNKNOWN;
         }
