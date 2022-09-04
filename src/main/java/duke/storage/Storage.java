@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ public class Storage {
      * @param filePath The relative path that describes where to store the items
      */
     public Storage(String filePath) {
+        assert isPathValid(filePath) : "Invalid file path";
         this.filePath = filePath;
         try {
             File file = new File(filePath);
@@ -143,6 +146,17 @@ public class Storage {
                     System.out.println(e.getMessage());
                 }
             }
+        }
+    }
+
+    private static boolean isPathValid(String filePath) {
+        try {
+            Paths.get(filePath);
+            return true;
+        } catch (InvalidPathException e) {
+            return false;
+        } catch (NullPointerException e) {
+            return false;
         }
     }
 }
