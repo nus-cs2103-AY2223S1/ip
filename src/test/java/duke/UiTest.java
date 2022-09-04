@@ -11,13 +11,13 @@ public class UiTest {
 
     @Test
     void joinsTextWithNewLine_listOfStrings_returnTextsSeparatedWithNewLine() {
-        String expected = input.get(0) + "\n" + input.get(1);
+        String expected = input.get(0) + System.lineSeparator() + input.get(1);
         assertEquals(expected, Ui.joinTextsWithNewLine(input));
     }
 
     @Test
     void joinsTextWithNewLine_variableArguments_returnTextsSeparatedWithNewLine() {
-        String expected = input.get(0) + "\n" + input.get(1);
+        String expected = input.get(0) + System.lineSeparator() + input.get(1);
         assertEquals(expected, Ui.joinTextsWithNewLine(input.get(0), input.get(1)));
     }
 }
