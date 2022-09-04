@@ -1,6 +1,5 @@
 package tuna;
 
-
 import javafx.application.Platform;
 import tuna.command.Command;
 import tuna.command.CommandType;
@@ -68,7 +67,7 @@ public class Tuna {
                     System.out.println(command.execute(tasks, ui, storage));
                     isByeCommand = command.getType() == CommandType.BYE;
                 } catch (TunaException e) {
-                    ui.showError(e.getMessage());
+                    System.out.println(ui.showError(e.getMessage()));
                 }
             }
             new SaveDataCommand(filePath).execute(tasks, ui, storage);
