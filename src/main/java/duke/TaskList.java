@@ -48,6 +48,7 @@ public class TaskList {
         isDone = taskDetails[1].equals("1");
         if (taskDetails.length == 4) {
             String time = taskDetails[3];
+            assert Task.isCorrectFormat(time) : "date saved is not of the correct format";
             LocalDate date = LocalDate.parse(time, DateTimeFormatter.ofPattern("MMM dd yyyy"));
             if (taskDetails[0].equals("D")) {
                 return new Deadline(taskDescription, isDone, date);
@@ -62,6 +63,7 @@ public class TaskList {
         String taskDescription = task.getDescription();
         String completed = (task.isDone()) ? "1" : "0";
         String type = task.toString().substring(1, 2);
+        assert Task.isCorrectTaskType(type) : "task type was extracted incorrectly from task";
         String [] splitTime = task.toString().split(":");
         if (splitTime.length == 2) {
             String time = splitTime[1];
@@ -88,6 +90,8 @@ public class TaskList {
      */
     public Task delete(int ind) throws DukeException {
         try {
+            assert 0 <= ind : "index should be greater than 0";
+            assert ind < this.tasks.size() : "ind should be within size of TaskList";
             Task deletingTask = this.tasks.get(ind);
             this.tasks.remove(ind);
             return deletingTask;
