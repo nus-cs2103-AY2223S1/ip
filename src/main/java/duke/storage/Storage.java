@@ -19,6 +19,7 @@ import duke.task.Todo;
  * Handles loading and saving tasks in the file.
  */
 public class Storage {
+    private boolean isNewUser = false;
     private final String filePath;
 
     /**
@@ -38,7 +39,19 @@ public class Storage {
             }
             //create task.txt if it does not exist
             if (!storageFile.exists()) {
+                isNewUser = true;
                 storageFile.createNewFile();
+                //Reused from https://www.w3schools.com/java/java_files_create.asp with minor modifications
+                try {
+                    FileWriter myWriter = new FileWriter(this.filePath);
+                    myWriter.write("T|X|Feed cat\n" + "E|X|Team meeting | Mon 6pm\n"
+                            + "D| |Do assignment |2022-08-25");
+                    myWriter.close();
+                    System.out.println("Successfully wrote to the file.");
+                } catch (IOException e) {
+                    System.out.println("An error occurred.");
+                    e.printStackTrace();
+                }
             }
 
         } catch (IOException error) {
@@ -119,5 +132,13 @@ public class Storage {
         } catch (IOException error) {
             System.out.println(error.getMessage());
         }
+    }
+
+    /**
+     * Returns true if user is new and false otherwise.
+     * @return true if it is a new user.
+     */
+    public boolean checkIfNewUser() {
+        return isNewUser;
     }
 }

@@ -58,7 +58,7 @@ public class Duke {
      * @return welcome message
      */
     public String getWelcome() {
-        ui.showWelcome();
+        ui.showWelcome(storage);
         return ui.getResponse();
     }
     //@@author

@@ -16,7 +16,7 @@ public class ListCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        response = ui.listToString(taskList.getList());
+        ui.setResponse(ui.listToString(taskList.getList()));
         System.out.println(ui.listToString(taskList.getList()));
     }
 

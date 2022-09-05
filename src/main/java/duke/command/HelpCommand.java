@@ -7,16 +7,16 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 
 /**
- * Terminates the program.
+ * Prints out all commands that chatbot has.
  */
-public class ByeCommand extends Command {
-    public ByeCommand() {
+public class HelpCommand extends Command {
+    public HelpCommand() {
     }
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        ui.setResponse(Constants.BYE_MESSAGE);
-        storage.saveTasksInStorage(taskList.getList());
+        ui.setResponse(Constants.HELP_MESSAGE);
+        System.out.println(Constants.HELP_MESSAGE);
     }
 
     @Override
