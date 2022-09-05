@@ -12,6 +12,8 @@ import java.time.format.DateTimeFormatter;
  * @author Tan Jia Rong
  */
 public class Event extends Task {
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy MMM dd hh:mma");
+
     /** Stores the timing of the Event */
     protected LocalDateTime at;
 
@@ -44,8 +46,8 @@ public class Event extends Task {
      * @return Date and Time of Event.
      */
     public String printDateTime() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MMM dd hh:mma");
-        return at.format(formatter);
+        String eventDate = at.format(DATE_TIME_FORMATTER);
+        return eventDate;
     }
 
     /**

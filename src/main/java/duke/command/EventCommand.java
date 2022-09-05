@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import duke.Storage;
 import duke.Ui;
+import duke.exception.DukeException;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -25,7 +26,7 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         Task event = new Event(description, at);
         taskList.add(event);
 
