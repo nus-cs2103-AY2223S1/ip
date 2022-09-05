@@ -1,15 +1,13 @@
 package duke.command.handler;
 
+import duke.data.tasks.Task;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
 import duke.command.CommandException;
-import duke.command.response.AddTaskResponse;
-import duke.command.response.CommandResponse;
-import duke.data.TaskList;
 import duke.data.tasks.TaskTodo;
 
-public class CommandTodoHandler extends CommandHandler {
+public class CommandTodoHandler extends CommandAddTaskHandler {
 
     protected static final String INVALID_FORMAT_MESSAGE = String.join("\n",
         "Invalid `todo` command format!",
@@ -34,19 +32,9 @@ public class CommandTodoHandler extends CommandHandler {
         return INVALID_FORMAT_MESSAGE;
     }
 
-    /**
-     * Add a todo task to the task list
-     *
-     * @param taskList task list
-     * @return add task response
-     */
     @Override
-    public CommandResponse run(TaskList taskList) {
+    protected Task getTaskFromCommand() {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
-
-        TaskTodo todoTask = new TaskTodo(regexMatchResult.group(1));
-        taskList.addTask(todoTask);
-
-        return new AddTaskResponse(todoTask, taskList.size());
+        return new TaskTodo(regexMatchResult.group(1));
     }
 }

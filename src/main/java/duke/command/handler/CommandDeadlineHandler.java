@@ -4,12 +4,10 @@ import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
 import duke.command.CommandException;
-import duke.command.response.AddTaskResponse;
-import duke.command.response.CommandResponse;
-import duke.data.TaskList;
+import duke.data.tasks.Task;
 import duke.data.tasks.TaskDeadline;
 
-public class CommandDeadlineHandler extends CommandHandler {
+public class CommandDeadlineHandler extends CommandAddTaskHandler {
 
     protected static final String INVALID_FORMAT_MESSAGE = String.join("\n",
         "Invalid `deadline` command format!",
@@ -30,24 +28,13 @@ public class CommandDeadlineHandler extends CommandHandler {
         return INVALID_FORMAT_MESSAGE;
     }
 
-    /**
-     * Add a deadline event to the task list
-     *
-     * @param taskList task list
-     * @return add task response
-     * @throws CommandException if date-time for event task cannot be parsed
-     */
     @Override
-    public CommandResponse run(TaskList taskList) throws CommandException {
+    protected Task getTaskFromCommand() throws CommandException {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
 
         String deadlineTaskTitle = regexMatchResult.group(1);
         String deadlineDateTimeStr = regexMatchResult.group(2);
 
-        TaskDeadline deadlineTask = new TaskDeadline(deadlineTaskTitle,
-            parseDateTime(deadlineDateTimeStr));
-        taskList.addTask(deadlineTask);
-
-        return new AddTaskResponse(deadlineTask, taskList.size());
+        return new TaskDeadline(deadlineTaskTitle, parseDateTime(deadlineDateTimeStr));
     }
 }
