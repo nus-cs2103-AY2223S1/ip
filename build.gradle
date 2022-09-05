@@ -51,13 +51,13 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "dukeprogram.Launcher"
 }
 
 
 shadowJar {
     archiveBaseName = "duke"
-    archiveClassifier = null
+    archiveClassifier = "1.0"
 }
 
 run{

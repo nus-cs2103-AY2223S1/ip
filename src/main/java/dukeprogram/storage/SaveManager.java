@@ -22,7 +22,7 @@ public class SaveManager {
     private static final String DATA_FOLDER = System.getProperty("user.home");
     private static final java.nio.file.Path PATH = java.nio.file.Paths.get(
             DATA_FOLDER,
-            "RUIHAN",
+            "CS2103T",
             "Duke"
     );
 
