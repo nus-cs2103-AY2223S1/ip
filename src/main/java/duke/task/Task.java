@@ -71,6 +71,10 @@ public abstract class Task {
         return isDone ? 1 : 0;
     }
 
+    public LocalDateTime getLocalDateTime() {
+        return this.date;
+    }
+
     /**
      * Returns the LocalDateTime in string format
      * @return string of LocalDateTime stored in Task instance.
