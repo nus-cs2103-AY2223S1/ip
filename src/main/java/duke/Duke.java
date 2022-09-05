@@ -22,6 +22,8 @@ public class Duke extends Application {
 
     /**
      * Constructor.
+     *
+     * @param filePath
      */
     public Duke(String filePath) {
         try {
@@ -38,16 +40,19 @@ public class Duke extends Application {
     public void start(Stage stage) {
         Label helloWorld = new Label("Hello World!"); // Creating a new Label control
         Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
-
         stage.setScene(scene); // Setting the stage to show our screen
-        stage.show(); // Render the stage.
+        stage.show();
     }
 
 
-
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Handles user input.
+     * Returns response retrieved from UI class.
+     * Causes System to exit if input corresponds to exit
+     * command.
+     *
+     * @param input user input
+     * @return
      */
     public String getResponse(String input) {
         boolean isExit = false;

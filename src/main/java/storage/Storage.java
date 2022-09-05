@@ -18,8 +18,8 @@ import tasklist.TaskList;
  */
 public class Storage {
     private Path path;
-    private final StorageReader storageReader;
-    private final StorageWriter storageWriter;
+    private final StorageReader STORAGE_READER;
+    private final StorageWriter STORAGE_WRITER;
 
     /**
      * Constructor.
@@ -27,8 +27,8 @@ public class Storage {
      */
     public Storage(String filePath) {
         createFileIfDoesntExist(filePath);
-        this.storageWriter = new StorageWriter(path);
-        this.storageReader = new StorageReader(path);
+        this.STORAGE_WRITER = new StorageWriter(path);
+        this.STORAGE_READER = new StorageReader(path);
     }
 
     /**
@@ -42,18 +42,26 @@ public class Storage {
         for(String s: pathElements) {
             currPath += "\\" + s;
             tempPath = Path.of(currPath);
-            if (s.contains(".")){
+            if (isFileExtension(s)){
                 if (!Files.exists(tempPath)) {
                     Files.createFile(tempPath);
                 }
                 this.path =  tempPath;
                 break;
-            } else {
+            } else if (isFolderExtension(s)) {
                 if (!Files.exists(tempPath)) {
                     Files.createDirectory(tempPath);
                 }
             }
         }
+    }
+
+    private static boolean isFileExtension(String extension) {
+        return extension.contains(".");
+    }
+
+    private static boolean isFolderExtension(String extension) {
+        return true;
     }
 
     /**
@@ -72,24 +80,27 @@ public class Storage {
     //Define all StorageWriter methods
 
     public boolean appendLine(String s) {
-        return storageWriter.appendLine(s);
+        return STORAGE_WRITER.appendLine(s);
     }
 
     public boolean deleteLine(int index) {
-        return storageWriter.deleteLine(index);
+        return STORAGE_WRITER.deleteLine(index);
     }
 
     public boolean changeLine(int index, String newString) {
-        return storageWriter.changeLine(index, newString);
+        return STORAGE_WRITER.changeLine(index, newString);
     }
 
     //Define all StorageReader methods
 
     public TaskList syncArrayList() throws DukeException {
-        return storageReader.syncArrayList();
+        return STORAGE_READER.syncArrayList();
     }
+<<<<<<< HEAD
 
     public List<String> getAllLines() {
-        return storageReader.getAllLines();
+        return STORAGE_READER.getAllLines();
     }
+=======
+>>>>>>> master
 }
