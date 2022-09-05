@@ -1,7 +1,7 @@
 package ava.exception;
 
 /**
- * Class to represent Duke.Exception.WrongTimeFormatException
+ * Used when the input date does not follow the expected format.
  */
 public class WrongTimeFormatException extends AvaException {
     public WrongTimeFormatException() {

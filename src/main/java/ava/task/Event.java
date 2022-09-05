@@ -8,7 +8,7 @@ import ava.processor.Storage;
 import ava.processor.TaskList;
 
 /**
- * Class to represent "Events" tasks.
+ * Class to represent "Event" tasks.
  */
 public class Event extends Task {
     protected LocalDateTime time;

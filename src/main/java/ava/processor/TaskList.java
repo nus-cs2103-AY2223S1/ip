@@ -6,7 +6,7 @@ import java.util.function.Function;
 import ava.task.Task;
 
 /**
- * Class to represent the tasks lists.
+ * A wrapper class that holds the list of Tasks.
  */
 public class TaskList {
     private static ArrayList<Task> tasks;
@@ -20,6 +20,7 @@ public class TaskList {
 
     /**
      * The constructor for TaskList with an input of ArrayList.
+     * Used for constructing TaskList from storage.
      *
      * @param tasks An ArrayList of tasks.
      */
@@ -37,7 +38,7 @@ public class TaskList {
     }
 
     /**
-     * Deletes a specific task from the TaskList.
+     * Deletes a specific task from the TaskList, returns the deleted task.
      *
      * @param i Specific task's index number.
      * @return Task taskDeleted.

@@ -17,7 +17,7 @@ public class Bye extends Task {
     }
 
     /**
-     * Cleans up the UI and writes to disk.
+     * Cleans up the UI.
      *
      * @param tasks TaskList.
      * @param storage Class to write/read commands from file.

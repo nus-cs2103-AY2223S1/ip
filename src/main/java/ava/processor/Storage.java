@@ -16,7 +16,7 @@ import ava.task.Todo;
 
 
 /**
- * Class that represents storage to load tasks from file and save tasks in the file.
+ * Utility class that handles reading from and writing to device storage.
  */
 public class Storage {
     private final String FILE_PATH;
@@ -32,7 +32,8 @@ public class Storage {
     }
 
     /**
-     * Returns an ArrayList of tasks according to what it reads from the file.
+     * Loads the program file from the specified file path if the file exists, else creates the file
+     * and its directories. Returns an ArrayList of tasks constructed from data in the file.
      *
      * @return ArrayList of tasks read from the file.
      * @throws IOException If file is not found.
@@ -66,7 +67,7 @@ public class Storage {
     }
 
     /**
-     * Writes tasks with a specified format to the file.
+     * Writes tasks with a specified format to the file in the specified file path.
      *
      * @param tasks An ArrayList of tasks to write.
      */

@@ -22,10 +22,9 @@ import ava.task.Todo;
 import ava.task.Unmark;
 
 /**
- * Class to represent a parser.
+ * Utility class that handles parsing of user input to program command.
  */
 public class Parser {
-    // usage of Enum
     private enum Commands {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND
     }
@@ -36,10 +35,9 @@ public class Parser {
      * Returns a new mark task of the specified current task.
      *
      * @param chat Input from the scanner.
-     * @param tasklist ArrayList of tasks.
      * @return Task object.
      */
-    public static Task mark(String chat, TaskList tasklist) {
+    public static Task mark(String chat) {
         int num = Integer.parseInt(chat.split(" ")[1]) - 1;
         return new Mark(num);
     }
@@ -48,10 +46,9 @@ public class Parser {
      * Returns a new unmark task of the specified current task.
      *
      * @param chat Input from the scanner.
-     * @param tasklist ArrayList of tasks.
      * @return Task object.
      */
-    public static Task unmark(String chat, TaskList tasklist) {
+    public static Task unmark(String chat) {
         int num = Integer.parseInt(chat.split(" ")[1]) - 1;
         return new Unmark(num);
     }
@@ -60,12 +57,11 @@ public class Parser {
      * Returns a new task of todo, deadline, or event.
      *
      * @param chat Input from the scanner.
-     * @param tasklist ArrayList of tasks.
+     * @param taskList ArrayList of tasks.
      * @return Task object.
      * @throws AvaException If an exception is found.
      */
-    public static Task addTask(String chat, TaskList tasklist) throws AvaException {
-
+    public static Task addTask(String chat, TaskList taskList) throws AvaException {
         Commands command = Parser.Commands.valueOf(chat.toUpperCase().split(" ")[0]);
         if (chat.split(" ").length != 1) {
             switch (command) {
@@ -75,7 +71,6 @@ public class Parser {
                 } else {
                     return new Todo(chat.substring(5), false);
                 }
-
             case DEADLINE:
                 String subStringDeadline = chat.substring(9);
                 if (subStringDeadline.split(" /by ").length == 1) {
@@ -88,7 +83,6 @@ public class Parser {
                         throw new WrongTimeFormatException();
                     }
                 }
-
             case EVENT:
                 String subStringEvent = chat.substring(6);
                 if (subStringEvent.split(" /at ").length == 1) {
@@ -101,17 +95,12 @@ public class Parser {
                         throw new WrongTimeFormatException();
                     }
                 }
-
             default:
                 throw new NoCommandException();
             }
         } else {
             switch (command) {
-            case TODO:
-                throw new NoDescriptionException();
-            case DEADLINE:
-                throw new NoDescriptionException();
-            case EVENT:
+            case TODO: case DEADLINE: case EVENT:
                 throw new NoDescriptionException();
             default:
                 throw new NoCommandException();
@@ -123,13 +112,12 @@ public class Parser {
      * Returns a new delete task of the specified current task.
      *
      * @param chat Input from the scanner.
-     * @param tasklist ArrayList of tasks.
-     * @return Task object
+     * @param taskList ArrayList of tasks.
+     * @return Task object.
      * @throws AvaException If an exception is found.
      */
-    public static Task delete(String chat, TaskList tasklist) throws AvaException {
-
-        int order = tasklist.size();
+    public static Task delete(String chat, TaskList taskList) throws AvaException {
+        int order = taskList.size();
         if (chat.split(" ").length == 1) {
             throw new NoDescriptionException();
         } else {
@@ -142,11 +130,11 @@ public class Parser {
      * Returns a new find task to find task with the matching keyword
      *
      * @param chat Input from the scanner.
-     * @param tasklist ArrayList of tasks.
-     * @return Find object
-     * @throws AvaException If an exception is found;
+     * @param taskList ArrayList of tasks.
+     * @return Find object.
+     * @throws AvaException If an exception is found.
      */
-    public static Find find(String chat, TaskList tasklist) throws AvaException {
+    public static Find find(String chat, TaskList taskList) throws AvaException {
         if (chat.split(" ").length == 1) {
             throw new NoDescriptionException();
         } else {
@@ -158,11 +146,11 @@ public class Parser {
      * Parses the input and returns the task of the specified command.
      *
      * @param chat Input from the scanner.
-     * @param tasklist ArrayList of tasks.
+     * @param taskList ArrayList of tasks.
      * @return Task object.
      * @throws AvaException If an exception is found.
      */
-    public static Task parse(String chat, TaskList tasklist) throws AvaException {
+    public static Task parse(String chat, TaskList taskList) throws AvaException {
 
         Commands command;
 
@@ -179,35 +167,21 @@ public class Parser {
             switch (command) {
             case BYE:
                 return new Bye();
-
             case LIST:
                 return new List();
-
             case UNMARK:
-                return unmark(chat, tasklist);
-
+                return unmark(chat);
             case MARK:
-                return mark(chat, tasklist);
-
-            case TODO:
-                return addTask(chat, tasklist);
-
-            case DEADLINE:
-                return addTask(chat, tasklist);
-
-            case EVENT:
-                return addTask(chat, tasklist);
-
+                return mark(chat);
+            case TODO: case DEADLINE: case EVENT:
+                return addTask(chat, taskList);
             case DELETE:
-                return delete(chat, tasklist);
-
+                return delete(chat, taskList);
             case FIND:
-                return find(chat, tasklist);
-
+                return find(chat, taskList);
             default:
                 throw new UnknownCommandException(chat);
             }
-
         } catch (AvaException e) {
             throw e;
         }

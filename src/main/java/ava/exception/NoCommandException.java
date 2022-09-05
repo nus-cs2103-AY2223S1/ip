@@ -1,9 +1,7 @@
 package ava.exception;
 
-import java.time.format.DateTimeFormatter;
-
 /**
- * Class to represent Duke.Exception.NoCommandException.
+ * Used when the user's input is empty or only contains whitespace.
  */
 public class NoCommandException extends AvaException {
     public NoCommandException() {

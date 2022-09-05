@@ -1,7 +1,7 @@
 package ava.exception;
 
 /**
- * Class to represent Duke.Exception.NoDescriptionException.
+ * Used when the task description is empty.
  */
 public class NoDescriptionException extends AvaException {
     public NoDescriptionException() {
