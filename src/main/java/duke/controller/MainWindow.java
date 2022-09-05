@@ -1,4 +1,4 @@
-package duke.controllers;
+package duke.controller;
 
 import duke.Duke;
 import duke.Ui;

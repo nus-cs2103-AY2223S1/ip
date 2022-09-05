@@ -1,6 +1,7 @@
 package duke;
 
 import duke.command.Command;
+import duke.exception.DukeException;
 import duke.task.TaskList;
 
 /**
@@ -21,7 +22,6 @@ public class Duke {
         tasks = new TaskList(storage.load());
         parser = new Parser();
     }
-
 
     /**
      * Returns Duke's response based on user's input.

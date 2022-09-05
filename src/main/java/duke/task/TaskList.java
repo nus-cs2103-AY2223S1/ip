@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import duke.DukeException;
+import duke.exception.DukeException;
 import duke.Ui;
 
 /**
@@ -83,6 +83,9 @@ public class TaskList {
     }
 
     public String deleteTask(int index) {
+        if (index < 0 || index > tasks.size() - 1) {
+            throw new DukeException("Invalid task index!");
+        }
         Task deletedTask = tasks.remove(index);
         return Ui.printTaskDeletionMessage(deletedTask, tasks.size());
     }

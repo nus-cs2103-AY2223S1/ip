@@ -11,7 +11,7 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.TodoCommand;
 import duke.command.UnmarkCommand;
-import duke.task.TaskList;
+import duke.exception.DukeException;
 import duke.task.TaskType;
 
 import java.util.Arrays;
@@ -33,7 +33,7 @@ public class Parser {
                 return i;
             }
         }
-        throw new DukeException("Duke: OOPS!!! The task is missing a date property.");
+        throw new DukeException("Task description/date cannot be empty.");
     }
 
     /**
@@ -47,8 +47,8 @@ public class Parser {
      */
     private String getTaskField(String[] splitInput, int start, int end) throws DukeException {
         String field = String.join(" ", Arrays.copyOfRange(splitInput, start, end));
-        if (field.equals("")) {
-            throw new DukeException("Duke: OOPS!!! The task description/date cannot be empty.");
+        if (field.isBlank()) {
+            throw new DukeException("Task description/date cannot be empty.");
         }
         return field;
     }
@@ -135,26 +135,29 @@ public class Parser {
      */
     public Command parse(String userInput) throws DukeException {
         String[] splitInput = userInput.split(" ");
-        String cmd = splitInput[0];
+
         if (userInput.equals("bye")) {
             return new ExitCommand();
         } else if (userInput.equals("list")) {
             return new ListCommand();
-        } else if (cmd.equals("find")) {
+        }
+        String cmd = splitInput[0];
+        switch (cmd) {
+        case "find":
             return parseFind(splitInput);
-        } else if (cmd.equals("mark")) {
+        case "mark":
             return parseEdit(CommandType.MARK, splitInput);
-        } else if (cmd.equals("unmark")) {
+        case "unmark":
             return parseEdit(CommandType.UNMARK, splitInput);
-        } else if (cmd.equals("delete")) {
+        case "delete":
             return parseEdit(CommandType.DELETE, splitInput);
-        } else if (cmd.equals("todo")) {
+        case "todo":
             return parseCreateTask(TaskType.TODO, splitInput);
-        } else if (cmd.equals("deadline")) {
+        case "deadline":
             return parseCreateTask(TaskType.DEADLINE, splitInput);
-        } else if (cmd.equals("event")) {
+        case "event":
             return parseCreateTask(TaskType.EVENT, splitInput);
-        } else {
+        default:
             throw new DukeException("Sorry! I don't know what that means!");
         }
     }
