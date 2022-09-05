@@ -29,9 +29,10 @@ public class DialogBox extends HBox {
      */
     private void flip() {
         this.setAlignment(Pos.TOP_LEFT);
-        ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
-        FXCollections.reverse(tmp);
-        this.getChildren().setAll(tmp);
+        ObservableList<Node> dialogBoxElements =
+                FXCollections.observableArrayList(this.getChildren());
+        FXCollections.reverse(dialogBoxElements);
+        this.getChildren().setAll(dialogBoxElements);
     }
 
     public static DialogBox getUserDialog(Label l, ImageView iv) {
@@ -39,8 +40,8 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getDukeDialog(Label l, ImageView iv) {
-        var db = new DialogBox(l, iv);
-        db.flip();
-        return db;
+        var dialogBox = new DialogBox(l, iv);
+        dialogBox.flip();
+        return dialogBox;
     }
 }

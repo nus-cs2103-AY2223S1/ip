@@ -62,30 +62,31 @@ public class Duke extends Application {
      */
     @Override
     public void start(Stage stage) {
-        // Setting up required components
-
-        //The container for the content of the chat to scroll.
+        // Initialising up required components
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
-        scrollPane.setContent(dialogContainer);
-
-        // User input functionality
         userInput = new TextField();
         sendButton = new Button("Send");
-
         AnchorPane mainLayout = new AnchorPane();
-        mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
-
         scene = new Scene(mainLayout);
 
-        // Formatting the window
-        stage.setTitle("Duke");
-        stage.setResizable(false);
-        stage.setMinHeight(600.0);
-        stage.setMinWidth(400.0);
+        // Setting up required components
+        this.setUpMainLayout(mainLayout, scrollPane, userInput, sendButton);
+        this.setUpStage(stage);
+        this.setUpScrollPane(scrollPane, dialogContainer);
+        this.setUpDialogContainer(dialogContainer);
+        this.setUpIo(userInput, sendButton);
 
-        mainLayout.setPrefSize(400.0, 600.0);
+        // Show an automatic greeting message
+        this.showGreeting();
 
+        // Display the GUI
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
+    }
+
+    private void setUpScrollPane(ScrollPane scrollPane, VBox dialogContainer) {
+        scrollPane.setContent(dialogContainer);
         scrollPane.setPrefSize(385, 535);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
@@ -93,13 +94,36 @@ public class Duke extends Application {
         scrollPane.setVvalue(1.0);
         scrollPane.setFitToWidth(true);
 
+        AnchorPane.setTopAnchor(scrollPane, 1.0);
+    }
+
+    private void setUpStage(Stage stage) {
+        stage.setTitle("Duke");
+        stage.setResizable(false);
+        stage.setMinHeight(600.0);
+        stage.setMinWidth(400.0);
+    }
+
+    private void setUpMainLayout(AnchorPane mainLayout,
+                                 ScrollPane scrollPane,
+                                 TextField userInput,
+                                 Button sendButton) {
+        mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
+        mainLayout.setPrefSize(400.0, 600.0);
+    }
+
+    private void setUpDialogContainer(VBox dialogContainer) {
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
+        // Scroll down to the end every time dialogContainer's height changes.
+        dialogContainer.heightProperty().addListener(
+                (observable) -> scrollPane.setVvalue(1.0));
+
+    }
+
+    private void setUpIo(TextField userInput, Button sendButton) {
         userInput.setPrefWidth(325.0);
-
         sendButton.setPrefWidth(55.0);
-
-        AnchorPane.setTopAnchor(scrollPane, 1.0);
 
         AnchorPane.setBottomAnchor(sendButton, 1.0);
         AnchorPane.setRightAnchor(sendButton, 1.0);
@@ -107,18 +131,8 @@ public class Duke extends Application {
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
-        //Part 3. Add functionality to handle user input.
         sendButton.setOnMouseClicked((event) -> handleUserInput());
-
         userInput.setOnAction((event) -> handleUserInput());
-
-        // Scroll down to the end every time dialogContainer's height changes.
-        dialogContainer.heightProperty().addListener(
-                (observable) -> scrollPane.setVvalue(1.0));
-
-        this.showGreeting(); // Greet the user
-        stage.setScene(scene); // Setting the stage to show our screen
-        stage.show(); // Render the stage.
     }
 
     /**
