@@ -30,6 +30,8 @@ public class TaskList {
      * @param index index of task to be deleted from current task list
      */
     public void delete(int index) {
+        assert index >= 0;
+        assert index < this.getSize();
         this.tasks.remove(index);
     }
 
@@ -59,6 +61,8 @@ public class TaskList {
      * @param index index of task to be marked
      */
     public void markIndex(int index) {
+        assert index >= 0;
+        assert index < this.getSize();
         this.tasks.get(index).mark();
     }
 
@@ -68,6 +72,8 @@ public class TaskList {
      * @param index index of task to be unmarked
      */
     public void unmarkIndex(int index) {
+        assert index >= 0;
+        assert index < this.getSize();
         this.tasks.get(index).unmark();
     }
 
@@ -77,6 +83,8 @@ public class TaskList {
      * @param index index of task to be printed
      */
     public String getByIndex(int index) {
+        assert index >= 0;
+        assert index < this.getSize();
         return tasks.get(index).toString();
     }
 

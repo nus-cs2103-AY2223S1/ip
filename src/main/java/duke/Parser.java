@@ -60,13 +60,23 @@ public class Parser {
 
             case "mark":
                 checkParameters("mark", commandList);
-                int indexMark = Integer.parseInt(commandList[1]) - 1;
+
+                int indexMark = Integer.parseInt(commands[1]) - 1;
+                if (indexMark < 0 || indexMark >= tasks.getSize()) {
+                    throw new InvalidParameterException();
+                }
+
                 tasks.markIndex(indexMark);
                 return ui.getCorrectMessage(Ui.Commands.MARK, tasks, indexMark);
 
             case "unmark":
                 checkParameters("unmark", commandList);
-                int indexUnmark = Integer.parseInt(commandList[1]) - 1;
+
+                int indexUnmark = Integer.parseInt(commands[1]) - 1;
+                if (indexUnmark < 0 || indexUnmark >= tasks.getSize()) {
+                    throw new InvalidParameterException();
+                }
+
                 tasks.unmarkIndex(indexUnmark);
                 return ui.getCorrectMessage(Ui.Commands.UNMARK, tasks, indexUnmark);
 
@@ -89,7 +99,7 @@ public class Parser {
             case "deadline":
                 checkParameters("deadline", commandList);
                 String[] deadlineCommands = commandList[1].split(" /by ", 2);
-                checkParameters("event", deadlineCommands);
+                checkParameters("deadline", deadlineCommands);
 
                 String deadlineDescription = deadlineCommands[0];
                 String deadline = parseDate(deadlineCommands[1]);
@@ -99,7 +109,12 @@ public class Parser {
 
             case "delete":
                 checkParameters("delete", commandList);
-                int index = Integer.parseInt(commandList[1]) - 1;
+
+                int index = Integer.parseInt(commands[1]) - 1;
+                if (index < 0 || index >= tasks.getSize()) {
+                    throw new InvalidParameterException();
+                }
+
                 String response = ui.getCorrectMessage(Ui.Commands.DELETE, tasks, index);
                 tasks.delete(index);
                 return response;
@@ -111,7 +126,7 @@ public class Parser {
                 throw new UnknownCommandException();
             }
 
-        } catch (UnknownCommandException | EmptyDescriptionException e) {
+        } catch (UnknownCommandException | EmptyDescriptionException | InvalidParameterException e) {
             return ui.getErrorMessage(e.getMessage());
         } catch (DateTimeParseException e) {
             return ui.getErrorMessage("datetime");
