@@ -1,7 +1,6 @@
 package command;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import exception.DukeException;
@@ -18,7 +17,7 @@ import ui.Ui;
  * Class that adds the generated Event to the TaskList
  */
 public class AddEventCommand extends AddTaskCommand {
-    private static final String EVENT_COMMAND_REGEX = " /by ";
+    private static final String EVENT_COMMAND_REGEX = " /at ";
     private static final String EMPTY_EVENT_RANGE_ERROR_MESSAGE = "Eh you never added the event range";
     private static final String INVALID_INPUT_EVENT_ERROR_MESSAGE = "Eh you never add a proper event date! \n"
             + "Your event date should be like this lah: Jan 21 2023 04:10 AM";
@@ -44,7 +43,7 @@ public class AddEventCommand extends AddTaskCommand {
      */
     @Override
     public void execute(VBox dialogContainer, DialogBox userDialog, Storage storage) throws DukeException {
-        String[] splitEvent = input.substring(8).split(EVENT_COMMAND_REGEX, 3);
+        String[] splitEvent = input.substring(5).split(EVENT_COMMAND_REGEX, 3);
         boolean isEmptyEvent = isEmptyDescription(splitEvent);
         boolean isIncorrectEventDate = isInvalidEvent(splitEvent);
         if (isEmptyEvent) {

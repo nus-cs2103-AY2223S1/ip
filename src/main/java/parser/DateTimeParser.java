@@ -1,5 +1,6 @@
 package parser;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -9,8 +10,10 @@ import java.time.format.DateTimeFormatter;
  * LocalDateTime with an appropriate format.
  */
 public class DateTimeParser {
-    private static DateTimeFormatter parsingFormatter = java.time.format
+    private static DateTimeFormatter parsingDateTimeFormatter = java.time.format
             .DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a");
+    private static DateTimeFormatter parsingDateFormatter = java.time.format
+            .DateTimeFormatter.ofPattern("MMM d yyyy");
     private static DateTimeFormatter readingFormatter = java.time.format
             .DateTimeFormatter.ofPattern("d-MMM-yyyy hh:mm a");
 
@@ -22,7 +25,18 @@ public class DateTimeParser {
      * @return LocalDateTime parsed from the input String.
      */
     public static LocalDateTime changeStringToParsingDateTime(String str) {
-        return LocalDateTime.parse(str, DateTimeParser.parsingFormatter);
+        return LocalDateTime.parse(str, DateTimeParser.parsingDateTimeFormatter);
+    }
+
+    /**
+     * Returns the LocalDate parsed from the input String.
+     * The LocalDate has to be of the format 'MMM d yyyy'.
+     *
+     * @param str String representing the LocalDate to be returned.
+     * @return LocalDate parsed from the input String.
+     */
+    public static LocalDate changeStringToParsingDate(String str) {
+        return LocalDate.parse(str, DateTimeParser.parsingDateFormatter);
     }
 
     /**

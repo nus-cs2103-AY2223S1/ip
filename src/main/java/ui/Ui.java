@@ -1,9 +1,12 @@
 package ui;
 
+import java.time.LocalDate;
+
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import task.Task;
 import task.TaskList;
+
 
 /**
  * <h1>Ui class</h1>
@@ -148,5 +151,27 @@ public class Ui {
     public void printUnmarkedMessage(Task task, VBox dialogContainer, DialogBox userDialog) {
         appendUncleCheongResponseAndUserInput("Eh? Not done yet? Okay I change liao: \n"
                 + task, dialogContainer, userDialog);
+    }
+
+    /**
+     * Prints all the Tasks and their descriptions in the list to the Ui.
+     *
+     * @param tasks TaskList to br printed out.
+     * @param dialogContainer VBox to add the TaskList text to.
+     * @param userDialog contains the user's dialog to be added to the VBox.
+     * @param date the LocalDate at which the tasks are scheduled.
+     */
+    public void printSchedule(TaskList tasks, VBox dialogContainer, DialogBox userDialog, LocalDate date) {
+        StringBuilder stringBuilder = new StringBuilder();
+        int numberOfTasks = tasks.getSize();
+        if (numberOfTasks > 0) {
+            stringBuilder.append("Here are your tasks at " + date + "\n");
+            for (int i = 0; i < numberOfTasks; i++) {
+                stringBuilder.append(i + 1 + ". " + tasks.taskStringAtIndex(i) + "\n");
+            }
+        } else if (numberOfTasks == 0) {
+            stringBuilder.append("You have no tasks scheduled on " + date + "\n");
+        }
+        appendUncleCheongResponseAndUserInput(stringBuilder.toString(), dialogContainer, userDialog);
     }
 }

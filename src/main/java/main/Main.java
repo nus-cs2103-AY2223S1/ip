@@ -31,8 +31,8 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane mainWindow = fxmlLoader.load();
             Scene scene = new Scene(mainWindow);
-            scene.getRoot().setStyle("-fx-font-family: 'serif'");
             stage.setScene(scene);
+            stage.setResizable(false);
             fxmlLoader.<MainWindow>getController().setDuke(ui);
             stage.show();
         } catch (IOException e) {

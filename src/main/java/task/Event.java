@@ -1,6 +1,7 @@
 package task;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import parser.DateTimeParser;
 
@@ -34,5 +35,25 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + DateTimeParser.changeDateTimeFormat(eventDateTime) + ")";
+    }
+
+    public String getCommandLineFormatDateTime() {
+        return eventDateTime.toString();
+    }
+
+    public String getOutputFormatDateTime() {
+        return DateTimeParser.changeDateTimeFormat(eventDateTime);
+    }
+
+    public String getLocalDateTimeString() {
+        return eventDateTime.toString();
+    }
+
+    public String getLocalDateString() {
+        return eventDateTime.toLocalDate().toString();
+    }
+
+    public LocalTime getLocalTime() {
+        return eventDateTime.toLocalTime();
     }
 }

@@ -14,6 +14,7 @@ import command.InvalidCommand;
 import command.ListCommand;
 import command.MarkCommand;
 import command.UnmarkCommand;
+import command.ViewScheduleCommand;
 import task.TaskList;
 import ui.Ui;
 
@@ -45,28 +46,50 @@ public class Parser {
      * @return Command to be executed.
      */
     public Command parse(String input) {
-        if (input.equals("")) {
+        String commandString = getCommandKeywordFromInput(input);
+        switch (commandString) {
+        case "":
             return new EmptyCommand(tasks, ui);
-        } else if (input.equals("bye")) {
+        case "bye":
             return new ExitCommand(tasks, ui);
-        } else if (input.equals("list")) {
+        case "list":
             return new ListCommand(tasks, input, ui);
-        } else if (input.startsWith("todo")) {
+        case "todo":
             return new AddTodoCommand(tasks, input, ui);
-        } else if (input.startsWith("deadline")) {
+        case "deadline":
             return new AddDeadlineCommand(tasks, input, ui);
-        } else if (input.startsWith("event")) {
+        case "event":
             return new AddEventCommand(tasks, input, ui);
-        } else if (input.startsWith(("mark"))) {
+        case "mark":
             return new MarkCommand(tasks, input, ui);
-        } else if (input.startsWith("unmark")) {
+        case "unmark":
             return new UnmarkCommand(tasks, input, ui);
-        } else if (input.startsWith("delete")) {
+        case "delete":
             return new DeleteCommand(tasks, input, ui);
-        } else if (input.startsWith("find")) {
+        case "find":
             return new FindCommand(tasks, input, ui);
-        } else {
+        case "schedule":
+            return new ViewScheduleCommand(tasks, input, ui);
+        default:
             return new InvalidCommand(tasks, ui);
+        }
+    }
+
+    private String getCommandKeywordFromInput(String str) {
+        String[] splitString = str.split(" ", 2);
+        switch (splitString[0]) {
+        case "bye":
+            if (splitString.length > 1) {
+                return "invalid";
+            }
+            return "bye";
+        case "list":
+            if (splitString.length > 1) {
+                return "invalid";
+            }
+            return "list";
+        default:
+            return splitString[0];
         }
     }
 }

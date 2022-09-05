@@ -1,7 +1,6 @@
 package command;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import exception.DukeException;
@@ -75,6 +74,5 @@ public class AddDeadlineCommand extends AddTaskCommand {
 
     private boolean isInvalidDeadline(String[] splitDeadline) {
         return splitDeadline.length != 2 || splitDeadline[1].trim().equals("");
-
     }
 }
