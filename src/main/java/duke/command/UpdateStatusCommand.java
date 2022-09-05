@@ -2,6 +2,7 @@ package duke.command;
 
 import java.util.function.Consumer;
 
+import duke.DukeException;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.util.Storage;
@@ -34,6 +35,9 @@ public class UpdateStatusCommand extends Command {
      */
     @Override
     public void execute(Storage storage, Consumer<String> printer, TaskList tasks) {
+        if (index < 1 || index > tasks.size()) {
+            throw new DukeException("Invalid task index.");
+        }
         Task task = tasks.get(index - 1);
         task.setDone(isDone);
         storage.save(tasks);

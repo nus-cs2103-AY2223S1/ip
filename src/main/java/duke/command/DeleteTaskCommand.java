@@ -2,6 +2,7 @@ package duke.command;
 
 import java.util.function.Consumer;
 
+import duke.DukeException;
 import duke.task.TaskList;
 import duke.util.Storage;
 
@@ -30,6 +31,9 @@ public class DeleteTaskCommand extends Command {
      */
     @Override
     public void execute(Storage storage, Consumer<String> printer, TaskList tasks) {
+        if (index < 1 || index > tasks.size()) {
+            throw new DukeException("Invalid task index.");
+        }
         tasks.remove(index - 1);
         storage.save(tasks);
         printer.accept("I've removed the following task:\n\t" + tasks.get(index - 1));
