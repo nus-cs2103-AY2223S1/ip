@@ -35,14 +35,16 @@ public class Storage {
 
         try {
             File saveFile = new File(Storage.SAVEFILE);
-            if (saveFile.isFile()) {
-                Scanner saveFileScanner = new Scanner(saveFile);
-                while (saveFileScanner.hasNextLine()) {
-                    String data = saveFileScanner.nextLine();
-                    taskList.loadTask(data);
-                }
-                saveFileScanner.close();
+            if (!saveFile.isFile()) {
+                return taskList;
             }
+
+            Scanner saveFileScanner = new Scanner(saveFile);
+            while (saveFileScanner.hasNextLine()) {
+                String data = saveFileScanner.nextLine();
+                taskList.loadTask(data);
+            }
+            saveFileScanner.close();
         } catch (FileNotFoundException error) {
             System.out.println(error);
         }

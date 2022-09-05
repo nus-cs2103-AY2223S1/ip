@@ -30,10 +30,10 @@ public class Event extends Task {
         if (flagIndex == -1) {
             CarbonException invalidFlag = new InvalidFlagException(input, Task.Type.EVENT);
             throw invalidFlag;
-        } else {
-            String name = input.substring("event ".length(), flagIndex);
-            return name;
         }
+
+        String name = input.substring("event ".length(), flagIndex);
+        return name;
     }
 
     private static Temporal extractTime(String input) throws CarbonException {
@@ -42,27 +42,25 @@ public class Event extends Task {
         if (len <= flagIndex + Event.FLAG.length() + 1) {
             CarbonException invalidParam = new InvalidParamException(input);
             throw invalidParam;
-        } else {
-            String timeString = input.substring(flagIndex + Event.FLAG.length() + 1);
-            try {
-                Temporal dateTime = Event.formatTime(timeString);
-                return dateTime;
-            } catch (DateTimeParseException error) {
-                CarbonException invalidTime = new InvalidTimeException(timeString);
-                throw invalidTime;
-            }
+        }
+
+        String timeString = input.substring(flagIndex + Event.FLAG.length() + 1);
+        try {
+            Temporal dateTime = Event.formatTime(timeString);
+            return dateTime;
+        } catch (DateTimeParseException error) {
+            CarbonException invalidTime = new InvalidTimeException(timeString);
+            throw invalidTime;
         }
     }
 
     private static Temporal formatTime(String timeString) throws DateTimeParseException {
         try {
             if (timeString.length() < 11) {
-                LocalDate time = LocalDate.parse(timeString, Task.DATEFORMAT);
+                LocalDate time = LocalDate.parse(timeString, Task.DATEFORMATPARSE);
                 return time;
             } else {
-                LocalDateTime time = LocalDateTime.parse(
-                        timeString,
-                        Task.DATETIMEFORMAT);
+                LocalDateTime time = LocalDateTime.parse(timeString, Task.DATETIMEFORMATPARSE);
                 return time;
             }
         } catch (DateTimeParseException error) {
@@ -113,13 +111,13 @@ public class Event extends Task {
         if (this.dateTime instanceof LocalDate) {
             LocalDate date = (LocalDate) this.dateTime;
             timeFormatted = formatType == Task.FormatType.READ
-                    ? date.format(Task.DATEFORMAT)
+                    ? date.format(Task.DATEFORMATPARSE)
                     : date.format(Task.DATEFORMATPRINT);
         } else {
             assert this.dateTime instanceof LocalDateTime: "Unknown date or time format";
             LocalDateTime time = (LocalDateTime) this.dateTime;
             timeFormatted = formatType == Task.FormatType.READ
-                    ? time.format(Task.DATETIMEFORMAT)
+                    ? time.format(Task.DATETIMEFORMATPARSE)
                     : time.format(Task.DATETIMEFORMATPRINT);
         }
         return timeFormatted;

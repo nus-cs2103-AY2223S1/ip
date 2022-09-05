@@ -1,5 +1,7 @@
 package carbon.error;
 
+import carbon.task.Deadline;
+import carbon.task.Event;
 import carbon.task.Task;
 
 /**
@@ -19,9 +21,9 @@ public class InvalidFlagException extends CarbonException {
         super(input);
         this.type = type;
         if (type == Task.Type.DEADLINE) {
-            this.flag = "/by";
+            this.flag = Deadline.FLAG;
         } else {
-            this.flag = "/at";
+            this.flag = Event.FLAG;
         }
     }
 

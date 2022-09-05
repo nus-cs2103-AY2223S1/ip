@@ -68,26 +68,19 @@ public class TaskList {
     public String validateAndMark(String input, boolean isDone) throws CarbonException {
         int taskNumber;
         int len = input.length();
-        if (isDone) {
-            int requiredLen = "mark ".length();
-            if (len <= requiredLen) {
-                CarbonException invalidParam = new InvalidParamException(input);
-                throw invalidParam;
-            }
-            taskNumber = Integer.valueOf(input.substring(requiredLen));
-        } else {
-            int requiredLen = "unmark ".length();
-            if (len <= requiredLen) {
-                CarbonException invalidParam = new InvalidParamException(input);
-                throw invalidParam;
-            }
-            taskNumber = Integer.valueOf(input.substring(requiredLen));
+        int requiredLen = isDone ? "mark ".length() : "unmark ".length();
+
+        if (len <= requiredLen) {
+            CarbonException invalidParam = new InvalidParamException(input);
+            throw invalidParam;
         }
+        taskNumber = Integer.valueOf(input.substring(requiredLen));
 
         if (taskNumber < 1 || taskNumber > this.tasks.size()) {
             CarbonException outOfBounds = new OutOfBoundsException(taskNumber, this.tasks.size());
             throw outOfBounds;
         }
+
         String log = this.setDone(taskNumber, isDone);
         return log;
     }
@@ -149,21 +142,21 @@ public class TaskList {
         if (len <= requiredLen) {
             CarbonException invalidParam = new InvalidParamException(input);
             throw invalidParam;
-        } else {
-            int taskNumber = Integer.valueOf(input.substring(requiredLen));
-            if (taskNumber < 1 || taskNumber > this.tasks.size()) {
-                CarbonException outOfBounds = new OutOfBoundsException(taskNumber, this.tasks.size());
-                throw outOfBounds;
-            } else {
-                Task taskDeleted = this.tasks.remove(taskNumber - 1);
-                String log = String.format(
-                        "I have removed: \n    %s\n\n    We've got %s left.",
-                        taskDeleted,
-                        this.countTasks()
-                        );
-                return log;
-            }
         }
+
+        int taskNumber = Integer.valueOf(input.substring(requiredLen));
+        if (taskNumber < 1 || taskNumber > this.tasks.size()) {
+            CarbonException outOfBounds = new OutOfBoundsException(taskNumber, this.tasks.size());
+            throw outOfBounds;
+        }
+
+        Task taskDeleted = this.tasks.remove(taskNumber - 1);
+        String log = String.format(
+                "I have removed: \n    %s\n\n    We've got %s left.",
+                taskDeleted,
+                this.countTasks()
+                );
+        return log;
     }
 
     /**
@@ -179,18 +172,17 @@ public class TaskList {
         if (len <= requiredLen) {
             CarbonException invalidParam = new InvalidParamException(input);
             throw invalidParam;
-        } else {
-            String keyword = input.substring(requiredLen);
-            String log = "Here's what I could find. \n";
-            List<Task> matches = new ArrayList<>();
-            this.tasks.forEach(task -> {
-                if (task.contains(keyword)) {
-                    matches.add(task);
-                }
-            });
-            log = this.arrangeTasks(matches, log);
-            return log;
         }
+        String keyword = input.substring(requiredLen);
+        String log = "Here's what I could find. \n";
+        List<Task> matches = new ArrayList<>();
+        this.tasks.forEach(task -> {
+            if (task.contains(keyword)) {
+                matches.add(task);
+            }
+        });
+        log = this.arrangeTasks(matches, log);
+        return log;
     }
 
     /**
@@ -226,8 +218,7 @@ public class TaskList {
         int count = this.tasks.size();
         if (count == 1) {
             return String.format("%d task", count);
-        } else {
-            return String.format("%d tasks", count);
         }
+        return String.format("%d tasks", count);
     }
 }

@@ -28,7 +28,7 @@ public class Parser {
         try {
             this.taskList = this.storage.loadSaveFile();
         } catch (CorruptedSaveFileException error) {
-            // continue with empty list
+            // cannot read save file, so init with none
         }
     }
 
@@ -85,7 +85,7 @@ public class Parser {
             } else if (lowerCaseInput.startsWith("event")) {
                 log = this.taskList.addTask(input, Task.Type.EVENT);
             } else {
-                // not a command, return invalid input
+                // not a valid command
                 CarbonException invalidInput = new InvalidInputException(input);
                 throw invalidInput;
             }

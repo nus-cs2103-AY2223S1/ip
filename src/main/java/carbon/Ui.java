@@ -7,21 +7,6 @@ import java.util.Random;
  * Primarily used for the Graphical User Interface.
  */
 public class Ui {
-    // logo ascii art generated from patorjk.com
-    private static final String LOGO = "                 _ _ _ ____ _    ____ ____ _  _ ____ \n"
-        + "                 | | | |___ |    |    |  | |\\/| |___ \n"
-        + "                 |_|_| |___ |___ |___ |__| |  | |___ \n\n"
-        + "  ▄████████    ▄████████    ▄████████ ▀█████████▄   ▄██████▄  ███▄▄▄▄   \n"
-        + " ███    ███   ███    ███   ███    ███   ███    ███ ███    ███ ███▀▀▀██▄ \n"
-        + " ███    █▀    ███    ███   ███    ███   ███    ███ ███    ███ ███   ███ \n"
-        + " ███          ███    ███  ▄███▄▄▄▄██▀  ▄███▄▄▄██▀  ███    ███ ███   ███ \n"
-        + " ███        ▀███████████ ▀▀███▀▀▀▀▀   ▀▀███▀▀▀██▄  ███    ███ ███   ███ \n"
-        + " ███    █▄    ███    ███ ▀███████████   ███    ██▄ ███    ███ ███   ███ \n"
-        + " ███    ███   ███    ███   ███    ███   ███    ███ ███    ███ ███   ███ \n"
-        + " ████████▀    ███    █▀    ███    ███ ▄█████████▀   ▀██████▀   ▀█   █▀  \n"
-        + "                           ███    ███                                   \n";
-
-    // actual introduction
     private static final String INTRO = "Hey, Carbon here. ";
     private static final String[] INIT_PROMPTS = {
         "What's up?",
@@ -31,8 +16,6 @@ public class Ui {
         "Please don't talk to me.",
         "To get an A+ for CS2103T, you have t---[REDACTED]"
     };
-
-    // text for exits
     private static final String[] GOODBYES = {
         "Bye-bye, see you again soon!",
         "Farewell. Stay safe.",
@@ -61,7 +44,8 @@ public class Ui {
      * @return Greeting to the user.
      */
     public String greet() {
-        String randomPrompt = Ui.INIT_PROMPTS[this.rand.nextInt(Ui.INIT_PROMPTS.length)];
+        int randomIndex = this.rand.nextInt(Ui.INIT_PROMPTS.length);
+        String randomPrompt = Ui.INIT_PROMPTS[randomIndex];
         String greeting = Ui.INTRO + randomPrompt;
         return greeting;
     }
@@ -72,7 +56,8 @@ public class Ui {
      * @return Farewell to the user.
      */
     public String exit() {
-        String randomGoodbye = Ui.GOODBYES[this.rand.nextInt(Ui.GOODBYES.length)];
+        int randomIndex = this.rand.nextInt(Ui.GOODBYES.length);
+        String randomGoodbye = Ui.GOODBYES[randomIndex];
         return randomGoodbye;
     }
 }
