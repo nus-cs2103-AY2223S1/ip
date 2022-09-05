@@ -39,6 +39,7 @@ public abstract class Command {
      * @throws InvalidInputException If arguments passed to Command is invalid.
      */
     public CommandResult execute() throws InvalidInputException {
+        assert (taskList != null);
         return new CommandResult(buildMessage());
     }
 

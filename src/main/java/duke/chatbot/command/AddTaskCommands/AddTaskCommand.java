@@ -6,7 +6,6 @@ import duke.chatbot.command.Command;
 import duke.chatbot.command.CommandResult;
 import duke.chatbot.data.exception.InvalidInputException;
 import duke.chatbot.data.task.Task;
-import duke.chatbot.util.MessageBuilder;
 
 /**
  * Encapsulates a {@link Command} that adds a task to the application's task list.

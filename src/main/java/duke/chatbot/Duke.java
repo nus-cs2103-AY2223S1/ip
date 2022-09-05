@@ -57,14 +57,16 @@ public class Duke {
      * @return A string response from passing the user input through Duke's logic.
      */
     public String getResponse(String userInput) {
+        assert(taskList != null && storage != null);
         try {
             Command command = Parser.parseCommand(userInput);
             command.initData(taskList);
+            String response = command.execute().getMessage();
+            save();
             if (command.isExitCommand()) {
-                save();
                 exit();
             }
-            return command.execute().getMessage();
+            return response;
         } catch (InvalidInputException e) {
             return e.getMessage();
         }
