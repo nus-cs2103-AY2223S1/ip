@@ -1,3 +1,4 @@
 T|X|Feed cat
 E|X|Team meeting | Mon 6pm
-D| |Do assignment |2022-08-25
+D|X|Do assignment |2022-08-25
+T| |run

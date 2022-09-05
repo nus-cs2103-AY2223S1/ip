@@ -31,20 +31,6 @@ public class Ui {
         }
     }
 
-    String readCommand() throws DukeException {
-        Scanner sc = new Scanner(System.in);
-        String input = sc.nextLine();
-        validate(input.toLowerCase());
-        return input;
-    }
-
-    /**
-     * Prints out partition line to user interface.
-     */
-    public void showLine() {
-        System.out.println(Constants.PARTITION);
-    }
-
     /**
      * Prints out message to user interface.
      * @param message text to be printed.
@@ -74,14 +60,13 @@ public class Ui {
         return output.toString();
     }
 
-
     /**
      * Converts list containing tasks with specific text to string for printing.
      * @param list list of user's saved tasks.
      * @param text keyword to find in task description.
      * @return matching tasks in string form.
      */
-    public String listToStringWithText(List<Task> list, String text) {
+    public String matchingTasklistToString(List<Task> list, String text) {
         boolean foundMatchingTask = false;
         if (list.size() == 0) {
             response = Constants.LIST_EMPTY_MESSAGE;
@@ -143,6 +128,8 @@ public class Ui {
         if (isInvalidCommand) {
             throw new DukeException(mainCommand + Constants.INVALID_COMMAND_MESSAGE);
         }
+
+        //Check if commands that require description or date are valid
         String[] commandsWithDescription = {"todo", "deadline", "event", "find"};
         boolean commandNeedsDescription = Arrays.asList(commandsWithDescription).contains(mainCommand);
         if (commandNeedsDescription) {
@@ -157,9 +144,13 @@ public class Ui {
                 break;
             case "deadline":
                 String[] deadlineSegments = commandSegments[1].split("/by", 2);
+
+                //Handles missing date in input
                 if (deadlineSegments.length < 2) {
                     throw new DukeException(Constants.MISSING_DATE_MESSAGE);
                 }
+
+                //Handles invalid date format in input
                 String by = deadlineSegments[1].trim();
                 try {
                     LocalDate date = LocalDate.parse(by);

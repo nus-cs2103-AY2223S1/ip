@@ -75,8 +75,12 @@ public class Storage {
                 String taskType = taskSegment[0];
                 String taskStatus = taskSegment[1];
                 String taskDescription = taskSegment[2];
-                String taskDate = null;
+
+                //To store date from deadline tasks
                 LocalDate taskLocalDate = null;
+                //To store date from event tasks
+                String taskDate = null;
+
                 boolean isDeadlineTask = taskSegment.length >= 4 && taskType.equals("D");
                 boolean isEventTask = taskSegment.length >= 4 && taskType.equals("E");
                 if (isDeadlineTask) {
