@@ -23,7 +23,7 @@ public class ParserTest {
             parser.parse("todo");
             fail();
         } catch (DukeException de) {
-            assertEquals("\tHey! Did you forget to add a task name / number?", de.getMessage());
+            assertEquals("Hey! Did you forget to add a task name / number?", de.getMessage());
         }
     }
 }

@@ -30,7 +30,7 @@ public class Parser {
             }
         } catch (DukeException de) {
             throw de;
-        } catch (ArrayIndexOutOfBoundsException aioobe) {
+        } catch (ArrayIndexOutOfBoundsException e) {
             throw new DukeException("Hey! Did you forget to add a task name / number?");
         }
     }
@@ -43,39 +43,82 @@ public class Parser {
      * @throws DukeException If argument is missing or of invalid format.
      */
     private static void validateArgument(String argument) throws DukeException {
+        assert command != null : "Missing Command Type";
+
         try {
             switch (command) {
             case DEADLINE: {
-                String[] taskTokens = argument.split(" /by ");
-                String taskName = taskTokens[0];
-                String deadline = taskTokens[1]; // Throws AIOOBE
-                DateTimeFormatUtils.parseDate(deadline);
+                validateDeadlineArgument(argument);
                 break;
             }
             case EVENT: {
-                String[] taskTokens = argument.split(" /at ");
-                String taskName = taskTokens[0];
-                String duration = taskTokens[1]; // Throws AIOOBE
-                DateTimeFormatUtils.parseDuration(duration);
+                validateEventArgument(argument);
                 break;
             }
-            case MARK:
-            case UNMARK:
+            case MARK: // Fallthrough
+            case UNMARK: // Fallthrough
             case DELETE: {
-                Integer.parseInt(argument);
+                validateTaskIndex(argument);
                 break;
             }
             default: {
-                break;
+                throw new DukeException("Unexpected Error in validateArgument");
             }
             }
-        } catch (ArrayIndexOutOfBoundsException aioobe) {
-            throw new DukeException("Looks like you're missing a timing / task name for this task...");
-        } catch (NumberFormatException nfe) {
-            throw new DukeException("Sorry, that Task Number doesn't look right...");
         } catch (DukeException de) {
             throw de;
         }
+    }
+
+    /**
+     * Validates argument for Deadline Task.
+     *
+     * @param argument String to be validated.
+     * @throws DukeException If argument is invalid.
+     */
+    private static void validateDeadlineArgument(String argument) throws DukeException {
+        try {
+            String[] taskTokens = argument.split(" /by ");
+            String deadline = taskTokens[1]; // Throws AIOOBE
+            DateTimeFormatUtils.parseDate(deadline);
+        } catch (ArrayIndexOutOfBoundsException aioobe) {
+            throw new DukeException("Looks like you're missing a timing / task name for this task...");
+        } catch (DukeException de) {
+            throw de;
+        }
+    }
+
+    /**
+     * Validates argument for Event Task.
+     *
+     * @param argument String to be validated.
+     * @throws DukeException If argument is invalid.
+     */
+    private static void validateEventArgument(String argument) throws DukeException {
+        try {
+            String[] taskTokens = argument.split(" /at ");
+            String duration = taskTokens[1]; // Throws AIOOBE
+            DateTimeFormatUtils.parseDuration(duration);
+        } catch (ArrayIndexOutOfBoundsException aioobe) {
+            throw new DukeException("Looks like you're missing a timing / task name for this task...");
+        } catch (DukeException de) {
+            throw de;
+        }
+    }
+
+    /**
+     * Validates task index passed as a string.
+     *
+     * @param argument String containing task index.
+     * @throws DukeException If task index is invalid.
+     */
+    private static void validateTaskIndex(String argument) throws DukeException {
+        try {
+            Integer.parseInt(argument);
+        } catch (NumberFormatException nfe) {
+            throw new DukeException("Sorry, that Task Number doesn't look right...");
+        }
+
     }
 
     public static Keyword getCommand() {
@@ -85,4 +128,5 @@ public class Parser {
     public static String getArgument() {
         return argument;
     }
+
 }
