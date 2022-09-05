@@ -14,10 +14,10 @@ public class ListCommand extends Command {
      *
      * @param taskList a list of tasks
      * @param storage a location to store the task information
-     * @param ui an ui to handle user interactions
      */
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) {
-        ui.list(taskList);
+    public String execute(TaskList taskList, Storage storage) {
+        String response = Ui.list(taskList);
+        return response;
     }
 }

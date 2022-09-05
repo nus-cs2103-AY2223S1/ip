@@ -66,29 +66,29 @@ public class Parser {
         String[] description;
 
         switch (keyword) {
-            case BYE:
-                return new ExitCommand();
-            case LIST:
-                return new ListCommand();
-            case MARK:
-                return new MarkCommand(parseInt(input[1]));
-            case UNMARK:
-                return new UnmarkCommand(parseInt(input[1]));
-            case TODO:
-                return new AddCommand(new ToDo(input[1]));
-            case DEADLINE:
-                description = input[1].split(" /by ", 2);
-                return new AddCommand(new Deadline(description[0], description[1]));
-            case EVENT:
-                description = input[1].split(" /at ", 2);
-                String[] dates = description[1].split(" ");
-                return new AddCommand(new Event(description[0], dates[0], dates[1]));
-            case DELETE:
-                return new DeleteCommand(parseInt(input[1]));
-            case FIND:
-                return new FindCommand(input[1]);
-            default:
-                return null;
+        case BYE:
+            return new ExitCommand();
+        case LIST:
+            return new ListCommand();
+        case MARK:
+            return new MarkCommand(parseInt(input[1]));
+        case UNMARK:
+            return new UnmarkCommand(parseInt(input[1]));
+        case TODO:
+            return new AddCommand(new ToDo(input[1]));
+        case DEADLINE:
+            description = input[1].split(" /by ", 2);
+            return new AddCommand(new Deadline(description[0], description[1]));
+        case EVENT:
+            description = input[1].split(" /at ", 2);
+            String[] dates = description[1].split(" ");
+            return new AddCommand(new Event(description[0], dates[0], dates[1]));
+        case DELETE:
+            return new DeleteCommand(parseInt(input[1]));
+        case FIND:
+            return new FindCommand(input[1]);
+        default:
+            return null;
         }
     }
 }

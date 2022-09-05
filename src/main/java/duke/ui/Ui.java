@@ -12,6 +12,7 @@ public class Ui {
 
 
     private Scanner sc;
+//    private static final String DIVIDER = "\t-----------------------------------------------------";
 
     /**
      * A constructor for a Ui.
@@ -25,17 +26,17 @@ public class Ui {
     /**
      * Greets the user by printing some lines upon start-up.
      */
-    public void greetUser() {
-        this.showDivider();
-        System.out.println("\tHey there! I'm Duke!");
-        System.out.println("\tHow may I help you? :)");
+    public static String greetUser() {
+        String str = "\tHey there! I'm Duke!\n"
+                + "\tHow may I help you? :)";
+        return str;
     }
 
     /**
      * Bids farewell to the user by printing some lines before exit.
      */
-    public void sayBye() {
-        System.out.println("\tNice seeing you! Bye!");
+    public static String sayBye() {
+         return "\tNice seeing you! Bye!";
     }
 
     /**
@@ -59,10 +60,11 @@ public class Ui {
      *
      * @param task a Task that is added to the TaskList
      */
-    public void add(Task task) {
-        System.out.println("\tGot it! I've added this task!");
-        System.out.println("\t\t" + task);
-        System.out.println("\tYou now have " + Task.getNumOfTasks() + " tasks in the list!");
+    public static String add(Task task) {
+        String str = "\tGot it! I've added this task!\n"
+                + "\t\t" + task + "\n"
+                + "\tYou now have " + Task.getNumOfTasks() + " tasks in the list!";
+        return str;
     }
 
     /**
@@ -70,8 +72,8 @@ public class Ui {
      *
      * @param taskList a TaskList to be displayed
      */
-    public void list(TaskList taskList) {
-        System.out.println(taskList);
+    public static String list(TaskList taskList) {
+        return taskList.toString();
     }
 
     /**
@@ -79,9 +81,10 @@ public class Ui {
      *
      * @param task a Task that is deleted from a TaskList
      */
-    public void delete(Task task) {
-        System.out.println("\tAlright! The following task has been deleted!");
-        System.out.println("\t\t" + task);
+    public static String delete(Task task) {
+        String str = "\tAlright! The following task has been deleted!\n"
+                + "\t\t" + task;
+        return str;
     }
 
     /**
@@ -89,10 +92,10 @@ public class Ui {
      *
      * @param task a Task to be marked as done
      */
-    public void mark(Task task) {
-        System.out.println("\tAlright! Marked this task as done!");
-        System.out.println("\t\t" + task);
-
+    public static String mark(Task task) {
+        String str = "\tAlright! Marked this task as done!\n"
+                + "\t\t" + task;
+        return str;
     }
 
     /**
@@ -100,9 +103,10 @@ public class Ui {
      *
      * @param task a Task to be marked as not done
      */
-    public void unmark(Task task) {
-        System.out.println("\tOkay! Unmarked this task!");
-        System.out.println("\t\t" + task);
+    public static String unmark(Task task) {
+        String str = "\tOkay! Unmarked this task!\n"
+                + "\t\t" + task;
+        return str;
     }
 
     /**
@@ -111,16 +115,18 @@ public class Ui {
      * @param description keywords for searching the TaskList
      * @param taskList the TaskList to search in
      */
-    public void find(String description, TaskList taskList) {
-        System.out.println("\tHere are the matching tasks in your list!");
+    public static String find(String description, TaskList taskList) {
+        String str = "\tHere are the matching tasks in your list!\n";
+
         int num = 1;
         for (int i = 1; i < Task.getNumOfTasks() + 1; i++) {
             Task task = taskList.getTask(i);
             if (task.contains(description)) {
-                System.out.println("\t\t" + num + ". " + task);
+                str += "\t\t" + num + ". " + task + "\n";
                 num += 1;
             }
         }
+        return str;
     }
 
     /**

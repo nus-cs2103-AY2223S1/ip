@@ -25,12 +25,12 @@ public class MarkCommand extends Command {
      *
      * @param taskList a list of tasks
      * @param storage a location to store the task information
-     * @param ui an ui to handle user interactions
      */
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) {
+    public String execute(TaskList taskList, Storage storage) {
         taskList.mark(this.taskNumber);
         storage.save(taskList);
-        ui.mark(taskList.getTask(this.taskNumber));
+        String response = Ui.mark(taskList.getTask(this.taskNumber));
+        return response;
     }
 }
