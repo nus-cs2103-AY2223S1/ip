@@ -42,6 +42,7 @@ public class Storage {
                 String info = reader.nextLine();
                 if (info.startsWith("  [T]")) {
                     String[] infoData = info.split("] ");
+                    assert infoData.length >= 2;
                     ToDo toAdd = new ToDo(infoData[infoData.length - 1]);
                     if (isMarked(infoData[infoData.length - 2])) {
                         toAdd.mark();
@@ -49,6 +50,7 @@ public class Storage {
                     ls.add(toAdd);
                 } else if (info.startsWith("  [D]")) {
                     String[] infoData = info.split("] ");
+                    assert infoData.length >= 2;
                     String[] descBy = infoData[infoData.length - 1].split("by: ");
                     Deadline toAdd = new Deadline(descBy[0].substring(0, descBy[0].length() - 2),
                             descBy[1].substring(0, descBy[1].length() - 1));
@@ -58,6 +60,7 @@ public class Storage {
                     ls.add(toAdd);
                 } else if (info.startsWith("  [E]")) {
                     String[] infoData = info.split("] ");
+                    assert infoData.length >= 2;
                     String[] descAt = infoData[infoData.length - 1].split("at: ");
                     Event toAdd = new Event(descAt[0].substring(0, descAt[0].length() - 2),
                             descAt[1].substring(0, descAt[1].length() - 1));

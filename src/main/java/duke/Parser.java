@@ -37,32 +37,38 @@ public class Parser {
             if (info.length <= 1) {
                 throw new DukeException("OOPS!! The description of a todo cannot be empty.");
             }
+            assert info.length > 1;
             return new AddTaskCommand(tasks, new ToDo(info[1]), ui);
         } else if (input.startsWith("deadline")) {
             String[] info = input.split("deadline ");
             if (info.length <= 1) {
                 throw new DukeException("OOPS!! The description of a deadline cannot be empty.");
             }
+            assert info.length > 1;
             String[] item = info[1].split(" /by ");
             if (item.length <= 1) {
                 throw new DukeException("OOPS!! A deadline has to be set!");
             }
+            assert item.length > 1;
             return new AddTaskCommand(tasks, new Deadline(item[0], item[1]), ui);
         } else if (input.startsWith("event")) {
             String[] info = input.split("event ");
             if (info.length <= 1) {
                 throw new DukeException("OOPS!! The description of a event cannot be empty.");
             }
+            assert info.length > 1;
             String[] item = info[1].split(" /at ");
             if (item.length <= 1) {
                 throw new DukeException("OOPS!! The timing of the event has to be set!");
             }
+            assert item.length > 1;
             return new AddTaskCommand(tasks, new Event(item[0], item[1]), ui);
         } else if (input.startsWith("delete")) {
             String[] info = input.split("delete ");
             if (info.length <= 1) {
                 throw new DukeException("OOPS!! The item to be deleted has to be specified.");
             }
+            assert info.length > 1;
             int target = Integer.valueOf(info[1]) - 1;
             return new DeleteCommand(tasks, target, ui);
         } else if (input.startsWith("find")) {
@@ -70,6 +76,7 @@ public class Parser {
             if (info.length <= 1) {
                 throw new DukeException("Please specify what you would like to find.");
             }
+            assert info.length > 1;
             return new FindCommand(tasks, info[1], ui);
         } else {
             return new UnknownCommand(ui);
