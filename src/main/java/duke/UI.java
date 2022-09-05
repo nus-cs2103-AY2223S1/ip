@@ -6,23 +6,25 @@ import java.util.Scanner;
  * An input/output handler that deals with interaction with the user.
  */
 public class UI {
-    private Parser parser;
-    private final String LINE_BREAK
-            = "____________________________________________________________";
+    private static final String LINE_BREAK =
+            "____________________________________________________________";
 
-    public UI(){
+    private Parser parser;
+
+    public UI() {
         this.parser = new Parser();
     }
 
     /**
      * Starts the UI for the given Duke bot.
+     *
      * @param duke The given Duke bot.
      */
     public void run(Duke duke) {
         Scanner scanner = new Scanner(System.in);
         print("Hello! I'm Duke\nWhat can I do for you?");
         String s;
-        while(true) {
+        while (true) {
             s = scanner.nextLine();
             if (parser.parse(s)) {
                 parser.runCommand(duke);
@@ -38,6 +40,11 @@ public class UI {
         }
     }
 
+    /**
+     * Prints the given string.
+     *
+     * @param s The given string.
+     */
     public void print(String s) {
         System.out.println(LINE_BREAK);
         System.out.println(s);
@@ -45,6 +52,11 @@ public class UI {
         System.out.println();
     }
 
+    /**
+     * Prints the given error message.
+     *
+     * @param errorMessage The error message.
+     */
     public void printError(String errorMessage) {
         System.out.println(LINE_BREAK);
         System.out.println("----Error----\n" + errorMessage);
@@ -52,6 +64,12 @@ public class UI {
         System.out.println();
     }
 
+    /**
+     * Prints a header message followed by a numbered list of tasks in the list.
+     *
+     * @param tasks The task list.
+     * @param headerMessage The header message.
+     */
     public void printTasks(ArrayList<Task> tasks, String headerMessage) {
         System.out.println(LINE_BREAK);
         System.out.println(headerMessage);
@@ -62,6 +80,12 @@ public class UI {
         System.out.println();
     }
 
+    /**
+     * Prints the task that was added and the total number of tasks in the list.
+     *
+     * @param t The task added.
+     * @param count The number of tasks in the list.
+     */
     public void printTaskAdded(Task t, int count) {
         System.out.println(LINE_BREAK);
         System.out.println("Got it. I've added this task:\n"
@@ -71,6 +95,12 @@ public class UI {
         System.out.println();
     }
 
+    /**
+     * Prints the task that was deleted and the total number of tasks in the list.
+     *
+     * @param t The task deleted.
+     * @param count The number of tasks in the list.
+     */
     public void printTaskDeleted(Task t, int count) {
         System.out.println(LINE_BREAK);
         System.out.println("Noted. I've removed this task:\n"
@@ -80,6 +110,12 @@ public class UI {
         System.out.println();
     }
 
+    /**
+     * Prints the task that was marked or unmarked.
+     *
+     * @param t The task.
+     * @param b Whether the task was marked.
+     */
     public void printTaskMarked(Task t, boolean b) {
         if (b) {
             print("Nice! I've marked this task as done: \n"
