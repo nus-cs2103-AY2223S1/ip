@@ -21,6 +21,7 @@ public class MarkCommand extends Command{
     public MarkCommand(int index) {
         super();
         this.index = index;
+        assert index >= 0 : "index should be not negative";
     }
 
     /**

@@ -6,7 +6,6 @@ package duke;
 
 import duke.task.Task;
 
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -15,14 +14,16 @@ import java.util.ArrayList;
  */
 public class TaskList {
     private List<Task> memo;
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern(" d/MM/uuuu");
+    private int size;
 
     /**
      * public constructor for TaskList that takes in an ArrayList to convert to tasklist.
      * @param memo Arraylist
      */
     public TaskList(ArrayList<Task> memo) {
+        int temp = memo.size();
         this.memo = memo;
+        this.size = temp;
     }
 
     /**
@@ -31,7 +32,8 @@ public class TaskList {
      */
     public String addTask(Task t) {
         memo.add(t);
-        String note = "Now you have " + memo.size() + " tasks in the list.";
+        this.size += 1;
+        String note = "Now you have " + this.size + " tasks in the list.";
         return "Got it, I've added this task:\n      " + t.toString()
                 + "\n    " + note;
     }
@@ -68,9 +70,11 @@ public class TaskList {
      * @return String updated note.
      */
     public String deleteTask(int index) {
+        assert index >= 0 : "index should be not negative";
         String temp = this.memo.get(index - 1).toString();
         this.memo.remove(index - 1);
-        String noteUpdated = "Now you have " + memo.size() + " tasks in the list.";
+        this.size -= 1;
+        String noteUpdated = "Now you have " + this.size + " tasks in the list.";
         return "Noted. I've deleted this task:\n      " + temp
                 + "\n    " + noteUpdated;
     }
@@ -80,7 +84,8 @@ public class TaskList {
      * @return int size.
      */
     public int getSize() {
-        return this.memo.size();
+        assert this.size >= 0 : "size should be not negative";
+        return this.size;
     }
 
     /**
@@ -89,6 +94,7 @@ public class TaskList {
      * @return Task at input index.
      */
     public Task get(int index) {
+        assert index >= 0 : "index should be not negative";
         return this.memo.get(index - 1);
     }
 
@@ -98,6 +104,8 @@ public class TaskList {
      * @return list of tasks that match keywords.
      */
     public String findTask(String... keywords) {
+        assert keywords.length > 0 : "keywords should not be blank";
+
         String result = "Here are the matching tasks in your list:";
         int count = 0;
         String check;
