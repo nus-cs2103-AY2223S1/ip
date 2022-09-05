@@ -14,7 +14,11 @@ import java.util.regex.Pattern;
  */
 public class Deadline extends Task {
 
+    /** 'by' is the String the Deadline was constructed with */
     protected String by;
+    /** 'formattedTime' is the formatted version of 'by' parsed for date and time */
+    protected String formattedTime;
+
     protected LocalDate date = null;
     protected LocalTime time = null;
 
@@ -47,6 +51,7 @@ public class Deadline extends Task {
         } catch (DateTimeParseException e) {
             time = null;
         }
+        formattedTime = timeToString();
     }
 
     /**
@@ -59,12 +64,11 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns a string representation of the deadline.
+     * Returns a string representation of when the deadline is due.
      *
-     * @return a string consisting of the deadline completion status and description.
+     * @return a string consisting of the deadline's date or time if available.
      */
-    @Override
-    public String toString() {
+    private String timeToString() {
         String when;
         if (date != null && time != null) {
             when = date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ", " + time;
@@ -75,6 +79,16 @@ public class Deadline extends Task {
         } else {
             when = by;
         }
-        return "[" + id + "] " + super.toString() + " (by: " + when + ")";
+        return when;
+    }
+
+    /**
+     * Returns a string representation of the deadline.
+     *
+     * @return a string consisting of the deadline completion status and description.
+     */
+    @Override
+    public String toString() {
+        return "[" + id + "] " + super.toString() + " (by: " + formattedTime + ")";
     }
 }

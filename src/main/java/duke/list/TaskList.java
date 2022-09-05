@@ -101,7 +101,7 @@ public class TaskList {
                 .filter(t -> t.hasContent(content))
                 .map(Task::toString)
                 .toArray(String[]::new);
-    }
 
+    }
 
 }
