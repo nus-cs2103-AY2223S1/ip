@@ -257,7 +257,7 @@ public class TaskList {
         // Remove task from list and get removed task
         Task removedTask = this.tasks.remove(index - 1);
 
-        assert removedTask != null;
+        assert removedTask != null; // Check that task is not null
 
         // Print message
         String output = "Noted. I've removed this task:\n"
