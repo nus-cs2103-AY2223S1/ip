@@ -3,12 +3,9 @@ package storage;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Stream;
 
 import exceptions.DukeException;
-import task.Task;
 import tasklist.TaskList;
 import utility.StorageParser;
 
@@ -27,7 +24,7 @@ public class StorageReader {
      *
      * @return arraylist containing all the lines in the file.
      */
-    private Stream<String> getAllLines() throws IOException{
+    private Stream<String> getAllLines() throws IOException {
         return Files.lines(path);
     }
 

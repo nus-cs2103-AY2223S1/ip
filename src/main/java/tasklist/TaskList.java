@@ -4,8 +4,8 @@ package tasklist;
 import java.util.ArrayList;
 
 import task.Task;
-import task.Event;
 import task.Deadline;
+import task.Event;
 
 /**
  * Manage all interactions between Duke and UserInputHistory FILE storage.
@@ -130,7 +130,7 @@ public class TaskList<T extends Task> {
      */
     public TaskList findTasks(String keyword) {
         TaskList matchingTasks = new TaskList();
-        userInputHistory.stream().filter(currTask -> {
+        userInputHistoryList.stream().filter(currTask -> {
             String description = currTask.getDescription().toLowerCase();
             boolean isMatched = description.contains(keyword.toLowerCase());
             return isMatched;
