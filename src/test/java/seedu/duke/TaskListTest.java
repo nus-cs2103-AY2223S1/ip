@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.Task.Task;
 
 import java.time.LocalDate;
 

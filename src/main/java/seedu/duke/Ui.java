@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import seedu.duke.Task.Task;
+
 import java.util.ArrayList;
 
 /**
@@ -10,7 +12,7 @@ public class Ui {
 
     public static final String START = "Hello! I'm Duke\nWhat can I do for you?";
     public static final String END = "Bye. Hope to see you again soon!";
-    //private static final String BREAKER = "____________________________________________________________\n";
+    private static final String BREAKER = "___________________\n";
 
     private boolean isActive;
 
@@ -45,7 +47,7 @@ public class Ui {
      * @param s String to be displayed
      */
     public String msg(String s) {
-        return s + "\n";
+        return s;
     }
 
     /**
