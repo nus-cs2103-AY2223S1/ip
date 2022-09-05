@@ -84,13 +84,11 @@ public class TaskList {
      * @return String array of the descriptions of tasks in the list.
      */
     public String[] giveList() {
-        String[] list = new String[tasksLeft()];
-        for (int i = 0; i < tasksLeft(); i++) {
-            Task t = this.list.get(i);
-            list[i] = i + 1 + ". " + t;
-        }
-        return list;
+        return list.stream()
+                .map(Task::toString)
+                .toArray(String[]::new);
     }
+
 
     /**
      * Returns collection of task descriptions of matching tasks as a String array.
@@ -99,18 +97,11 @@ public class TaskList {
      * @return String array of the descriptions of the matching tasks in the list.
      */
     public String[] giveFindList(String content) {
-        assert content != null : "TaskList :: giveFindList called with null argument";
-        String[] list = new String[tasksLeft()];
-        int count = 0;
-        for (int i = 0; i < tasksLeft(); i++) {
-            Task t = this.list.get(i);
-            if (t.hasContent(content)) {
-                list[count] = count + 1 + ". " + t;
-                count++;
-            }
-        }
-        return list;
-    }
+        return list.stream()
+                .filter(t -> t.hasContent(content))
+                .map(Task::toString)
+                .toArray(String[]::new);
 
+    }
 
 }
