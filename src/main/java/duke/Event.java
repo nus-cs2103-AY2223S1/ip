@@ -18,6 +18,7 @@ public class Event extends Task{
      */
     public Event(String description, LocalDate date) {
         super(description);
+        assert date != null;
         this.date = date;
     }
 
@@ -27,6 +28,7 @@ public class Event extends Task{
      * @return Whether the event is on the date
      */
     public boolean onThisDate(LocalDate date){
+        assert date != null;
         return this.date.equals(date);
     }
 
