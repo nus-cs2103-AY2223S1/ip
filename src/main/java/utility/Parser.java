@@ -43,6 +43,7 @@ public class Parser {
         } else {
             stringCommand = userInput.substring(0, firstWhiteSpaceIndex);
         }
+        assert !stringCommand.contains(" ");
         if (stringCommand.equals("todo")) {
             return new AddTaskCommand();
         } else if (stringCommand.equals("event")) {
@@ -120,22 +121,13 @@ public class Parser {
     private static String getDescription(String commandUsed, String input) throws DukeException {
         String description;
         int startDescriptionIndex = input.indexOf(commandUsed) + commandUsed.length();
+        assert startDescriptionIndex < 0;
         int endDescriptionIndex = input.indexOf(" /");
-        if (startDescriptionIndex < 0) {
-            throw new DukeException("Command does not follow pattern <command> <description>...");
+        if ( commandUsed.equals("event") || commandUsed.equals("deadline")) {
+            assert endDescriptionIndex >= 0;
+            description = input.substring(startDescriptionIndex, endDescriptionIndex).trim();
         } else {
-            if (commandUsed.equals("event") || commandUsed.equals("deadline")) {
-                if (endDescriptionIndex < 0) {
-                    throw new DukeException("Command does not follow pattern  ... /<at/by> <date in DD-MM-YYYY>");
-                } else {
-                    description = input.substring(startDescriptionIndex, endDescriptionIndex).trim();
-                }
-            } else {
-                description = input.substring(startDescriptionIndex).trim();
-            }
-        }
-        if (description.equals("")) {
-            throw new DukeException("Empty description field");
+            description = input.substring(startDescriptionIndex).trim();
         }
         return description;
     }
