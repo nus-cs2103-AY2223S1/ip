@@ -19,7 +19,7 @@ public class InvalidFlagException extends CarbonException {
         super(input);
         this.type = type;
         if (type == Task.Type.DEADLINE) {
-            this.flag = "/by";
+            this.flag = "/by"; // TODO: abstract out flags
         } else {
             this.flag = "/at";
         }

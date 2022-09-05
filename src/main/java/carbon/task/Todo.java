@@ -19,10 +19,10 @@ public class Todo extends Task {
         if (len <= requiredLen) {
             CarbonException invalidParam = new InvalidParamException(input);
             throw invalidParam;
-        } else {
-            String name = input.substring("todo ".length());
-            return name;
         }
+
+        String name = input.substring("todo ".length());
+        return name;
     }
 
     /**
