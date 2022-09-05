@@ -17,6 +17,7 @@ public abstract class AddTaskCommand extends Command {
      * @param task The task to be added to the list.
      */
     protected void addTask(Task task) {
+        assert(taskList != null);
         taskList.add(task);
     }
 

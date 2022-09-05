@@ -24,6 +24,7 @@ public class ListCommand extends Command {
      */
     @Override
     public CommandResult execute() {
+        assert(taskList != null);
         MessageBuilder message = new MessageBuilder();
         if (taskList.isEmpty()) {
             message.buildLines(MESSAGE_EMPTY_LIST);

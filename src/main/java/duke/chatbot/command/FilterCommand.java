@@ -43,6 +43,7 @@ public abstract class FilterCommand extends Command {
 
     @Override
     public CommandResult execute() throws InvalidInputException {
+        assert(taskList != null);
         TaskList filteredTasks = taskList.filter(getCondition());
         String message = buildMessage(filteredTasks);
         return new CommandResult(message);
