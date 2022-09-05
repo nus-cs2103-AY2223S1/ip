@@ -15,7 +15,7 @@ public class DeadlineTest {
      * Tests for case where deadline task is complete.
      */
     @Test
-    public void testToString1() {
+    public void testToString_completedDeadlineTask() {
         Deadline deadline = new Deadline("Deadline Task 1", true, "22 Aug 2022 00:00");
         assertEquals("[D][X] Deadline Task 1 (by: 22 Aug 2022 00:00)", deadline.toString());
     }
@@ -25,7 +25,7 @@ public class DeadlineTest {
      * Tests for case where deadline task is incomplete.
      */
     @Test
-    public void testToString2() {
+    public void testToString_incompleteDeadlineTask() {
         Deadline deadline = new Deadline("Deadline Task 2", false, "23 Aug 2022 21:00");
         assertEquals("[D][ ] Deadline Task 2 (by: 23 Aug 2022 21:00)", deadline.toString());
     }
@@ -36,16 +36,16 @@ public class DeadlineTest {
      * does not crash.
      */
     @Test
-    public void testToString3() {
+    public void testToString_nullDeadlineTask() {
         Deadline deadline = new Deadline(null, false, "23 Aug 2022 21:00");
     }
 
     /**
-     * Test Case 1 of testToFileString1.
+     * Test Case 1 of toFileSaveString.
      * Tests for case where deadline task is complete.
      */
     @Test
-    public void testToFileSaveString1() {
+    public void testToFileSaveString_completedDeadlineTask() {
         Deadline deadline = new Deadline("Deadline Task 4", true, "24 Aug 2022 12:00");
         assertEquals("D\n"
                 + "Deadline Task 4\n"
@@ -54,11 +54,11 @@ public class DeadlineTest {
     }
 
     /**
-     * Test Case 2 of testToFileString1.
+     * Test Case 2 of toFileSaveString() method.
      * Tests for case where deadline task is incomplete.
      */
     @Test
-    public void testToFileSaveString2() {
+    public void testToFileSaveString_incompleteDeadlineTask() {
         Deadline deadline = new Deadline("Deadline Task 5", false, "8 Dec 2022 15:00");
         assertEquals("D\n"
                 + "Deadline Task 5\n"

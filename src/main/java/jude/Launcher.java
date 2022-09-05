@@ -10,6 +10,9 @@ import javafx.application.Application;
  * A launcher class to workaround classpath issues.
  */
 public class Launcher {
+    private static final String CONSOLE_MODE_FLAG = "console-test";
+    private static final String DEFAULT_CONSOLE_DATA_STORAGE_PATH = "text-ui-test/data/tasks.txt";
+
     // @@author cheeheng-reused
     // Solution below adapted from https://github.com/nus-cs2103-AY2223S1/forum/issues/129
     /**
@@ -23,10 +26,10 @@ public class Launcher {
      * @throws IOException When system I/O fails.
      */
     public static void main(String[] args) throws IOException {
-        if (args.length >= 1 && args[0].equalsIgnoreCase("console-test")) {
+        if (args.length >= 1 && args[0].equalsIgnoreCase(CONSOLE_MODE_FLAG)) {
             // The directory has been chosen to facilitate regression testing.
             if (args.length == 1 || args[1].isBlank()) {
-                new Main("text-ui-test/data/tasks.txt").runConsole();
+                new Main(DEFAULT_CONSOLE_DATA_STORAGE_PATH).runConsole();
             } else {
                 new Main(args[1].trim()).runConsole();
             }

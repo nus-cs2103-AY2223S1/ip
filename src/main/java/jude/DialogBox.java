@@ -28,6 +28,13 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
+    /**
+     * A dialog box component, which contains a profile picture representing a user, and some
+     * text which represents what the user says.
+     *
+     * @param text What the user is saying.
+     * @param img The profile picture of the user.
+     */
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -46,9 +53,9 @@ public class DialogBox extends HBox {
      * Flips the dialog box such that the ImageView is on the left and text on the right.
      */
     private void flip() {
-        ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
-        Collections.reverse(tmp);
-        getChildren().setAll(tmp);
+        ObservableList<Node> nodes = FXCollections.observableArrayList(this.getChildren());
+        Collections.reverse(nodes);
+        getChildren().setAll(nodes);
         setAlignment(Pos.TOP_LEFT);
     }
 

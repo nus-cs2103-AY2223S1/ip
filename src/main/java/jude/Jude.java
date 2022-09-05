@@ -5,7 +5,7 @@ import java.io.IOException;
 /**
  * Jude is a task tracker which appears like a command line interface. The name is a Beatles
  * reference, referring to the hit song Hey Jude.
- * There are two modes, GUI mode (default)
+ * There are two modes, GUI mode (default).
  * GUI mode shows a GUI while console mode shows a command-line interface.
  * In console mode, when > shows up, you can type a command.
  * <br>
@@ -98,19 +98,18 @@ public class Jude {
         Parser parser = new Parser(tasks, storage);
         tasks = storage.load();
         parser = new Parser(tasks, storage);
-        System.out.println(ui.showWelcome());
+        System.out.println(ui.getWelcomeMessage());
 
         while (true) {
             ui.showCommandReadReady();
             String str = ui.readCommand();
             boolean isTerminationCommand = parser.isTerminationCommand(str);
             if (isTerminationCommand) {
+                ui.showByeMessage();
                 break;
             }
             String response = parser.parse(str);
             System.out.println(response);
         }
-
-        ui.showByeMessage();
     }
 }
