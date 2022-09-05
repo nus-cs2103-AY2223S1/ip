@@ -50,6 +50,8 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = tako.getResponse(input);
+        assert response != null : "Response does not exist.";
+        assert response.equals("") : "Response is empty.";
         if (tako.isExit()) {
             Platform.exit();
         } else {
