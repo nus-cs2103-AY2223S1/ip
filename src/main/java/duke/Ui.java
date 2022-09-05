@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import duke.task.Task;
 
@@ -60,12 +62,13 @@ public class Ui {
         }
         StringBuilder output = new StringBuilder();
         output.append("Here are the tasks in your list: \n");
-        for (int i = 0; i < list.size(); i++) {
-            output.append(i + 1).append(". ").append(list.get(i)).append("\n");
-        }
-        response = output.toString();
+        String listInString = IntStream.range(0, list.size())
+                .mapToObj(i -> String.format("%d. %s", i + 1, list.get(i)))
+                .collect(Collectors.joining("\n"));
+        response = output + listInString;
         return response;
     }
+
 
     /**
      * Converts list containing tasks with specific text to string for printing.
