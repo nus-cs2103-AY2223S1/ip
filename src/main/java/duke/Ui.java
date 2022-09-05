@@ -13,7 +13,8 @@ import duke.task.Task;
  */
 public class Ui {
 
-    private static final String initText = "Hello! I'm Duke\n    What can I do for you?";
+    private static final String initText = "Hello! I'm Duke! What can I do for you? \n " +
+            "The commands I currently have are as follows: \n";
     private static final String endText = "Bye bye! Hope to see you again soon!";
 
     private static final String logo = " ____        _        \n"
@@ -21,6 +22,18 @@ public class Ui {
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
+
+    private static final String instructions = "1) hi\n" +
+            "2) bye \n" +
+            "3) list \n" +
+            "4) mark <index of task in list to mark> \n" +
+            "5) unmark <index of task in list to unmark> \n" +
+            "6) todo <description of task> \n" +
+            "7) deadline <description of task> /by <date in DD/MM/YYYY format> \n" +
+            "8) event <description of task> /at <date in DD/MM/YYYY format> \n" +
+            "9) delete <index of task in list to delete> \n" +
+            "10) find <keywords of task in list to find> \n" +
+            "11) priority <priority level> /for <index of task in list to update> (default priority level is 0)";
 
     private Scanner scan;
 
@@ -43,7 +56,7 @@ public class Ui {
      * class method to print welcome message.
      */
     public String printWelcome() {
-        return "Hello from\n" + logo + "\n" + initText;
+        return printMessage("Hello from\n" + logo + "\n" + initText + instructions);
     }
 
     /**
@@ -85,14 +98,31 @@ public class Ui {
      */
     public String printDeleteTask(Task t, int n) {
         String noteUpdated = "Now you have " + n + " tasks in the list.";
-        return printMessage("Noted. I've deleted this task:\n      " + t.toString()
-                + "\n" + noteUpdated);
+        String str = "Noted. I've deleted this task:\n      " + t.toString()
+                + "\n" + noteUpdated;
+        return printMessage(str);
     }
 
     /**
-     * class method to print message - the lines and indentation and formatting.
+     * class method to print Priority for Task Message.
+     * @param priorityLevel level of priority
+     * @param t the task to prioritize
+     * @return
      */
-    public static String printMessage(String str) {
+    public String printPriority(int priorityLevel, Task t) {
+        t.priority(priorityLevel);
+        String s = "Nice! I've marked this task to your specific priority level :) \n" +
+                "Default priority level is 0! \n      "
+                + t.toString();
+        return printMessage(s);
+    }
+
+    /**
+     * public method printMessage that helps format necessary message style if needed.
+     * @param str
+     * @return desired string formatting output.
+     */
+    public String printMessage(String str) {
         return str;
     }
 }

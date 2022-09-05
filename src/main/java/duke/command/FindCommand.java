@@ -16,7 +16,7 @@ public class FindCommand extends Command {
 
     /**
      * public constructor for FindCommand.
-     * @param keywords list of keywords.
+     * @param keywords keywirds to search.
      */
     public FindCommand(String... keywords) {
         super();

@@ -34,7 +34,7 @@ public class TaskList {
      */
     public String addTask(Task t) {
         memo.add(t);
-        this.size += 1;
+        this.size++;
         String note = "Now you have " + this.size + " tasks in the list.";
         return "Got it, I've added this task:\n      " + t.toString()
                 + "\n    " + note;
@@ -75,7 +75,7 @@ public class TaskList {
         assert index >= 0 : "index should be not negative";
         String temp = this.memo.get(index - 1).toString();
         this.memo.remove(index - 1);
-        this.size -= 1;
+        this.size--;
         String noteUpdated = "Now you have " + this.size + " tasks in the list.";
         return "Noted. I've deleted this task:\n      " + temp
                 + "\n    " + noteUpdated;

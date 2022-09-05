@@ -10,6 +10,7 @@ package duke.task;
 public abstract class Task {
     protected String task;
     protected String done;
+    protected int priorityLevel;
 
     /**
      * public constructor for Task.
@@ -18,6 +19,7 @@ public abstract class Task {
     public Task(String task) {
         this.task = task;
         this.done = "[ ]";
+        this.priorityLevel = 0; //default value for priority level.
     }
 
     /**
@@ -43,11 +45,19 @@ public abstract class Task {
     }
 
     /**
+     * public priorityLevel method to allow users set specific priority for tasks. Default value is 0.
+     * @param priorityLevel
+     */
+    public void priority(int priorityLevel) {
+        this.priorityLevel = priorityLevel;
+    }
+
+    /**
      * class method to return String representation of Task.
      * @return String.
      */
     @Override
     public String toString() {
-        return String.format("%s %s", this.done, this.task);
+        return String.format("%s %s (Priority %d)", this.done, this.task, this.priorityLevel);
     }
 }

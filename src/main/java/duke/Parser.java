@@ -4,6 +4,7 @@
  */
 package duke;
 
+import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -14,8 +15,10 @@ import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
 import duke.command.EventCommand;
 import duke.command.FindCommand;
+import duke.command.HiCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.PriorityCommand;
 import duke.command.TodoCommand;
 import duke.command.UnmarkCommand;
 
@@ -28,6 +31,7 @@ public class Parser {
      * private enum class that stores Command Cases.
      */
     private enum CommandCases {
+        HI,
         BYE,
         LIST,
         MARK,
@@ -36,7 +40,8 @@ public class Parser {
         DEADLINE,
         EVENT,
         DELETE,
-        FIND
+        FIND,
+        PRIORITY
     }
 
     //formatter for date.
@@ -63,6 +68,12 @@ public class Parser {
         try {
             if (splitString.length == 1) {
                 switch (cs) {
+                case HI:
+                    return new HiCommand();
+
+                case BYE:
+                    return new ByeCommand();
+
                 case LIST:
                     return new ListCommand();
 
@@ -84,17 +95,24 @@ public class Parser {
                 case DELETE:
                     throw new DukeException("The index to delete cannot be left empty");
 
-                case BYE:
-                    return new ByeCommand();
 
                 case FIND:
                     throw new DukeException("The keyword to find cannot be left empty");
+
+                case PRIORITY:
+                    throw new DukeException("The index to prioritize cannot be left empty");
 
                 default:
                     throw new DukeException("Invalid argument, please re enter a valid command...");
                 }
             } else {
                 switch (cs) {
+                case HI:
+                    return new HiCommand();
+
+                case BYE:
+                    return new ByeCommand();
+
                 case LIST:
                     return new ListCommand();
 
@@ -122,9 +140,21 @@ public class Parser {
                     String[] keywordSplit = splitString[1].split("\\s");
                     return new FindCommand(keywordSplit);
 
+                case PRIORITY:
+                    //command line will be priority <priority height> /for <task index>
+                    String[] parse2 = splitString[1].split(" /for ", 2);
+                    int priority = 0, index = 0;
+
+                    try {
+                        priority = Integer.parseInt(parse2[0]);
+                        index = Integer.parseInt(parse2[1]);
+                    } catch (NumberFormatException e) {
+                        throw new DukeException("Invalid argument, please re enter a valid command...");
+                    }
+                    return new PriorityCommand(priority, index);
+
                 default:
                     throw new DukeException("No such command exist... please try again");
-
                 }
             }
         } catch (DateTimeParseException e) {
