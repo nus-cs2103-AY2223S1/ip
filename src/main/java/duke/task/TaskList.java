@@ -76,8 +76,10 @@ public class TaskList {
      * @param taskNumber index of the task in the list
      */
     public void deleteTask(int taskNumber) throws InvalidInputException {
+        int intialListLength = taskCount;
         Task chosenTask = getTask(checkIndex(taskNumber));
         tasks.remove(chosenTask);
+        assert ((intialListLength - 1) == tasks.size()) : "Unable to remove task!";
         System.out.println(this);
         System.out.printf((MESSAGE_TASK_REMOVED), taskNumber);
         System.out.println(MESSAGE_OTHER_ACTIONS);
