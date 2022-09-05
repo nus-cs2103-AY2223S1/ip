@@ -8,6 +8,8 @@ import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.MassDeleteCommand;
+import duke.command.MassUnMarkCommand;
 import duke.command.UnMarkCommand;
 import duke.exception.DukeException;
 import duke.exception.EmptyArgumentException;
@@ -34,13 +36,10 @@ public class Parser {
      * @throws DukeException If the input String has an error.
      */
     public static Command parse(String input) throws DukeException {
-        String[] inputs = input.split(" ", 2);
-        String keyPhrase = inputs[0];
-        String argument = "";
+        String[] inputs = initialInputHandler(input);
         Command command;
-        if (inputs.length == 2) {
-            argument = inputs[1];
-        }
+        String keyPhrase = inputs[0];
+        String argument = inputs[1];
         switch(keyPhrase) {
         case "bye":
             command = new ExitCommand();
@@ -67,15 +66,55 @@ public class Parser {
             command = new AddCommand(event);
             break;
         case "delete":
-            command = new DeleteCommand(deleteHandler(argument));
+            command = deleteHandler(argument);
             break;
         case "find":
             command = new FindCommand(findHandler(argument));
+            break;
+        case "massunmark":
+            command = new MassUnMarkCommand(massCommandHandler(argument));
             break;
         default:
             throw new InvalidCommandException(keyPhrase);
         }
         return command;
+    }
+
+    public static Commands massCommandHandler(String input) throws DukeException {
+        if (input.isEmpty()) {
+            throw new EmptyArgumentException(Commands.All);
+        }
+        switch(input) {
+        case "deadline":
+            return Commands.Deadline;
+        case "event":
+            return Commands.Event;
+        case "todo":
+            return Commands.ToDo;
+        case "all":
+            return Commands.All;
+        default:
+            throw new InvalidArgumentException(Commands.All);
+        }
+    }
+
+    /**
+     * Handles the initial input from the user.
+     *
+     * @param input The user's input.
+     * @return An array containting the commands and arguments.
+     */
+    public static String[] initialInputHandler(String input) {
+        String[] phrases = new String[2];
+        String[] inputs = input.split(" ", 2);
+        String argument = "";
+        if (inputs.length == 2) {
+            phrases[1] = inputs[1];
+        } else {
+            phrases[1] = "";
+        }
+        phrases[0] = inputs[0];
+        return phrases;
     }
 
     /**
@@ -165,18 +204,21 @@ public class Parser {
      * @return The index of the task to be deleted in int.
      * @throws DukeException If the information provided is not a valid int.
      */
-    public static int deleteHandler(String information) throws DukeException {
+    public static Command deleteHandler(String information) throws DukeException {
         if (information.isEmpty()) {
             throw new EmptyArgumentException(Commands.Delete);
         }
-        if (!information.chars().allMatch(Character :: isDigit)) {
+        if (information.chars().allMatch(Character :: isDigit)) {
+            int index = Integer.parseInt(information) - 1;
+            if (index < 0) {
+                throw new InvalidTaskNumberException();
+            }
+            return new DeleteCommand(index);
+        } else if (information.equals("completed")) {
+            return new MassDeleteCommand();
+        } else {
             throw new InvalidArgumentException(Commands.Delete);
         }
-        int index = Integer.parseInt(information) - 1;
-        if (index < 0) {
-            throw new InvalidTaskNumberException();
-        }
-        return index;
     }
 
     /**

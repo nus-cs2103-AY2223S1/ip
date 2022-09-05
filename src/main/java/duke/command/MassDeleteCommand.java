@@ -7,26 +7,24 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+import java.util.ArrayList;
+
 /**
- * The DeleteCommand that helps the user delete tasks.
+ * The MassDeleteCommand that helps the user delete tasks.
  *
  * @author Leong Jia Hao Daniel
  */
-public class DeleteCommand extends Command {
-
-    private int index;
+public class MassDeleteCommand extends Command {
 
     /**
-     * Constructs the delete command.
-     *
-     * @param index The index of the command to be deleted.
+     * Constructs the mass delete command.
      */
-    public DeleteCommand(int index) {
-        this.index = index;
+    public MassDeleteCommand() {
+
     }
 
     /**
-     * Executes the delete task command.
+     * Executes the mass delete task command.
      *
      * @param ui The ui class which handles the user interface.
      * @param storage The storage class which deals with the file.
@@ -36,14 +34,9 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
-        if (index >= taskList.numberOfTasks()) {
-            throw new InvalidArgumentException(Commands.Delete);
-        }
-        assert index >= 0;
-        Task task = taskList.getTask(index);
-        taskList.deleteTask(index);
+        String tasks = taskList.clearCompletedTasks();
+        String message = "Noted. I've removed these tasks:\n" + tasks + taskList.tasksLeft();
         storage.saveFile(taskList);
-        String message = "Noted. I've removed this task:\n" + task + taskList.tasksLeft();
         return ui.formatMessage(message);
     }
 

@@ -21,6 +21,8 @@ public class Event extends Task {
         this.time = time;
     }
 
+    public Event() {}
+
     /**
      * Reads from the input file and returns a event based on the data
      * in the file.
