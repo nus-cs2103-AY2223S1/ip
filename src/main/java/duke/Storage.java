@@ -37,23 +37,32 @@ public class Storage {
             while (sc.hasNextLine()) {
                 String input = sc.nextLine();
                 String commandType = Parser.getCommandType(input);
-                if ((commandType.equals("MARK"))) {
+                switch(commandType) {
+                case "MARK":
                     int markIdx = Integer.parseInt(input.substring(5)) - 1;
                     ls.get(markIdx).markIsDone();
-                } else if ((commandType.equals("UNMARK"))) {
+                    break;
+                case "UNMARK":
                     int unmarkIdx = Integer.parseInt(input.substring(7)) - 1;
                     ls.get(unmarkIdx).unmarkIsDone();
-                } else if (commandType.equals("TODO")) {
+                    break;
+                case "TODO":
                     ls.add(new ToDo(input.substring(5)));
-                } else if (commandType.equals("DEADLINE")) {
+                    break;
+                case "DEADLINE":
                     String dlAction = input.substring(9, input.indexOf("/") - 1);
                     ls.add(new Deadline(dlAction, Parser.formatEventTime(input)));
-                } else if (commandType.equals("EVENT")) {
+                    break;
+                case "EVENT":
                     String eAction = input.substring(6, input.indexOf("/") - 1);
                     ls.add(new Event(eAction, Parser.formatEventTime(input)));
-                } else if (commandType.equals("DELETE")) {
+                    break;
+                case "DELETE":
                     int deleteIdx = Integer.parseInt(input.substring(7)) - 1;
                     ls.remove(deleteIdx);
+                    break;
+                default:
+                    System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
             }
             return ls;

@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * deals with making sense of the user command
+ * deals with making sense of the user command, as well as processing what needs to be done
  *
  * @author eugeneleong
  * @version 1.0
@@ -39,6 +39,57 @@ public class Parser {
         } else { // to handle unknown inputs, e.g. 'blah', 'todo'
             throw new IllegalArgumentException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
+    }
+
+    /**
+     * Processes the command to be done, and decides whether to end the job
+     * @param command description of command
+     * @param commandType type of command
+     * @param tasks current tasks to do
+     * @param ui to say bye when job is done
+     * @return boolean isExit
+     */
+    public static boolean process(String command, String commandType, TaskList tasks, Ui ui) {
+        boolean isExit = false;
+        switch(commandType) {
+        case "LIST":
+            tasks.listAll();
+            break;
+        case "MARK":
+            int markIdx = Integer.parseInt(command.substring(5)) - 1;
+            tasks.mark(markIdx);
+            break;
+        case "UNMARK":
+            int unmarkIdx = Integer.parseInt(command.substring(7)) - 1;
+            tasks.unmark(unmarkIdx);
+            break;
+        case "TODO":
+            tasks.add(new ToDo(command.substring(5)));
+            break;
+        case "DEADLINE":
+            String dlAction = command.substring(9, command.indexOf("/") - 1);
+            tasks.add(new Deadline(dlAction, formatEventTime(command)));
+            break;
+        case "EVENT":
+            String eAction = command.substring(6, command.indexOf("/") - 1);
+            tasks.add(new Event(eAction, formatEventTime(command)));
+            break;
+        case "DELETE":
+            int deleteIdx = Integer.parseInt(command.substring(7)) - 1;
+            tasks.delete(deleteIdx);
+            break;
+        case "FIND":
+            String keyword = command.substring(5);
+            tasks.findTask(keyword);
+            break;
+        case "BYE":
+            ui.sayBye();
+            isExit = true;
+            break;
+        default:
+            throw new IllegalArgumentException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        }
+        return isExit;
     }
 
     /**

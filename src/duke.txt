@@ -10,3 +10,6 @@ unmark 3
 mark 4
 deadline cs2103 lvl8 /by 25-08-2022 2359
 mark 6
+deadline eat dinner /by 01-09-2022 2200
+list
+unmark 6

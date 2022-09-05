@@ -37,6 +37,10 @@ public class Ui {
                 + line + "\n");
     }
 
+    public String showLine() {
+        return line;
+    }
+
     /**
      * Our lovely Duke takes in the commands of the user
      * @return the command, as it is
