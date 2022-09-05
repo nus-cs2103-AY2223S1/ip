@@ -1,10 +1,10 @@
 package duke.task;
 
-import duke.DukeException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import duke.DukeException;
 
 /**
  * Datastructure class to store the list of tasks.
