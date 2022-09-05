@@ -26,10 +26,6 @@ public class Task implements Serializable {
         this.taskStatus = newStatus;
     }
 
-    /**
-     * Returns the string representation of a Task.
-     * @return a string
-     */
     @Override
     public String toString() {
         if (taskStatus) {
