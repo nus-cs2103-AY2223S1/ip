@@ -17,7 +17,7 @@ public class ParserTest {
      * @throws IOException When system I/O fails.
      */
     @Test
-    public void testConvertToDate1() throws IOException {
+    public void testConvertToDate_validDateFormatDMmmYyyy_success() throws IOException {
         Parser parser = new Parser(new TaskListStub(), new StorageStub("testing.txt"));
         parser.convertToDate("1 Jan 2022");
     }
@@ -28,7 +28,7 @@ public class ParserTest {
      * @throws IOException When system I/O fails.
      */
     @Test
-    public void testConvertToDate2() throws IOException {
+    public void testConvertToDate_validDateFormatMmmDYyyy_success() throws IOException {
         Parser parser = new Parser(new TaskListStub(), new StorageStub("testing.txt"));
         parser.convertToDate("Jan 4 2022");
     }
@@ -39,7 +39,7 @@ public class ParserTest {
      * @throws IOException When system I/O fails.
      */
     @Test
-    public void testConvertToDate3() throws IOException {
+    public void testConvertToDate_validDateFormatYyyyMmDd_success() throws IOException {
         Parser parser = new Parser(new TaskListStub(), new StorageStub("testing.txt"));
         parser.convertToDate("2022-04-14");
     }
@@ -50,7 +50,7 @@ public class ParserTest {
      * @throws IOException When system I/O fails.
      */
     @Test
-    public void testConvertToDate4() throws IOException {
+    public void testConvertToDate_validDateFormatDdMmmYyyy_success() throws IOException {
         Parser parser = new Parser(new TaskListStub(), new StorageStub("testing.txt"));
         parser.convertToDate("23 Aug 2022");
     }
@@ -61,7 +61,7 @@ public class ParserTest {
      * @throws IOException When system I/O fails.
      */
     @Test
-    public void testConvertToDate5() throws IOException {
+    public void testConvertToDate_validDateFormatMmmDdYyyy_success() throws IOException {
         Parser parser = new Parser(new TaskListStub(), new StorageStub("testing.txt"));
         parser.convertToDate("Jul 15 2022");
     }
@@ -72,7 +72,7 @@ public class ParserTest {
      * @throws IOException When system I/O fails.
      */
     @Test
-    public void testConvertToDate6() throws IOException {
+    public void testConvertToDate_invalidDate32April_exceptionThrown() throws IOException {
         Parser parser = new Parser(new TaskListStub(), new StorageStub("testing.txt"));
         try {
             parser.convertToDate("Apr 32 2022");
@@ -88,7 +88,7 @@ public class ParserTest {
      * @throws IOException When system I/O fails.
      */
     @Test
-    public void testConvertToDate7() throws IOException {
+    public void testConvertToDate_invalidDateMonday_exceptionThrown() throws IOException {
         Parser parser = new Parser(new TaskListStub(), new StorageStub("testing.txt"));
         try {
             parser.convertToDate("Monday");
@@ -104,7 +104,7 @@ public class ParserTest {
      * @throws IOException When system I/O fails.
      */
     @Test
-    public void testConvertToDate8() throws IOException {
+    public void testConvertToDate_invalidDateNull_exceptionThrown() throws IOException {
         Parser parser = new Parser(new TaskListStub(), new StorageStub("testing.txt"));
         try {
             parser.convertToDate(null);
@@ -120,7 +120,7 @@ public class ParserTest {
      * @throws IOException When system I/O fails.
      */
     @Test
-    public void testConvertToDate_withTime1() throws IOException {
+    public void testConvertToDate_validDateWith12HourTime_success() throws IOException {
         Parser parser = new Parser(new TaskListStub(), new StorageStub("testing.txt"));
         parser.convertToDate("22 Aug 2022 3:01 am");
     }
@@ -131,7 +131,7 @@ public class ParserTest {
      * @throws IOException When system I/O fails.
      */
     @Test
-    public void testConvertToDate_withTime2() throws IOException {
+    public void testConvertToDate_validDateWith24HourTime_success() throws IOException {
         Parser parser = new Parser(new TaskListStub(), new StorageStub("testing.txt"));
         parser.convertToDate("2022-08-23 13:01");
     }
@@ -142,7 +142,7 @@ public class ParserTest {
      * @throws IOException When system I/O fails.
      */
     @Test
-    public void testConvertToDate_invalidTime1() throws IOException {
+    public void testConvertToDate_invalid12HourTime_exceptionThrown() throws IOException {
         Parser parser = new Parser(new TaskListStub(), new StorageStub("testing.txt"));
         try {
             parser.convertToDate("22 Aug 2022 13:01 am");
@@ -158,7 +158,7 @@ public class ParserTest {
      * @throws IOException When system I/O fails.
      */
     @Test
-    public void testConvertToDate_invalidTime2() throws IOException {
+    public void testConvertToDate_invalid24HourTime_exceptionThrown() throws IOException {
         Parser parser = new Parser(new TaskListStub(), new StorageStub("testing.txt"));
         try {
             parser.convertToDate("Aug 24 2022 24:01");
@@ -174,7 +174,7 @@ public class ParserTest {
      * @throws IOException When system I/O fails.
      */
     @Test
-    public void testConvertToDate_isoDate() throws IOException {
+    public void testConvertToDate_validIsoDate_success() throws IOException {
         Parser parser = new Parser(new TaskListStub(), new StorageStub("testing.txt"));
         parser.convertToDate("2022-02-28T22:31");
     }

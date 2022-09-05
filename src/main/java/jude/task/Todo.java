@@ -16,9 +16,9 @@ public class Todo extends Task {
     }
 
     /**
-     * The task type code of a Todo object is T. Hence, this method returns T.
+     * Returns the task type code for a {@code Todo} object, i.e. "T".
      *
-     * @return "T"
+     * @return "T".
      */
     @Override
     public String getTaskTypeCode() {

@@ -11,8 +11,8 @@ public class Event extends Task {
      * start time and the end time.
      *
      * @param description The description of the event.
-     * @param isDone      Whether the event is marked as done.
-     * @param when        The time of the event.
+     * @param isDone Whether the event is marked as done.
+     * @param when The time of the event.
      */
     public Event(String description, boolean isDone, String when) {
         super(description, isDone);
@@ -30,9 +30,9 @@ public class Event extends Task {
 
 
     /**
-     * The task type code for an {@code Event} object is "E". Hence, this method returns "E".
+     * Returns the task type code for an {@code Event} object, i.e. "E".
      *
-     * @return "E"
+     * @return "E".
      */
     @Override
     public String getTaskTypeCode() {
@@ -41,7 +41,7 @@ public class Event extends Task {
 
     /**
      * Returns the String representation of the {@code Event} object, i.e.
-     *   a string in the format "[task type code][get status icon] description (at: time of event)".
+     * a string in the format "[task type code][get status icon] description (at: time of event)".
      *
      * @return String representation of the {@code Event} object.
      */

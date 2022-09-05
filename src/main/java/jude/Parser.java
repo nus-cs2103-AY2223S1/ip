@@ -18,6 +18,7 @@ import jude.task.Todo;
  */
 public class Parser {
 
+    private static final String TERMINATION_COMMAND = "bye";
     private final TaskList tasks;
     private final Storage storage;
 
@@ -84,7 +85,10 @@ public class Parser {
                     valid = true;
                     break;
                 } catch (DateTimeParseException ignored) {
-                    // invalid date, try another format
+                    /*
+                     * The date may be in a recognised format which is different from the one being
+                     * tested.
+                     */
                 }
             }
             if (!valid) {
@@ -102,9 +106,8 @@ public class Parser {
      * @param command The user input command.
      * @return true if the command terminates the program, i.e. bye command, false otherwise.
      */
-    boolean isTerminationCommand(String command) {
-        assert(command != null);
-        return command.equals("bye");
+    public boolean isTerminationCommand(String command) {
+        return command.equals(TERMINATION_COMMAND);
     }
 
     /**
@@ -116,7 +119,7 @@ public class Parser {
      * @throws IOException When system I/O fails.
      */
     public String parse(String command) throws IOException {
-        command = command.trim(); // to remove unintended trailing spaces
+        command = command.trim();
         String[] tokens = command.split(" ", 2);
         String response = "";
         try {
@@ -126,51 +129,14 @@ public class Parser {
                 if (tokens.length == 1 || tokens[1].isBlank()) {
                     throw new IllegalCommandException(
                             String.format("Description of %s cannot be empty.", tokens[0]));
-                } else if (tokens[0].equals("todo")) {
-                    String description = tokens[1];
-                    assert(description != null);
-                    taskAdded = new Todo(description, false);
+                }
+
+                if (tokens[0].equals("todo")) {
+                    taskAdded = new Todo(tokens[1], false);
                 } else if (tokens[0].equals("deadline")) {
-                    String remText = tokens[1];
-                    String[] remTextTokens = "  ".concat(remText).split(" /by ", 2);
-                    if (remTextTokens.length == 2) {
-                        String description = remTextTokens[0].trim();
-                        String deadline = remTextTokens[1].trim();
-                        if (description.isBlank() || description.isEmpty()) {
-                            throw new IllegalCommandException(
-                                    "Description of deadline task cannot be empty.");
-                        } else if (deadline.isBlank()) {
-                            throw new IllegalCommandException("A deadline task must have a "
-                                    + "deadline.");
-                        }
-                        deadline = convertToDate(deadline);
-                        assert(description != null);
-                        assert(deadline != null);
-                        taskAdded = new Deadline(description, false, deadline);
-                    } else {
-                        throw new IllegalCommandException("A deadline task must have a "
-                                + "deadline.");
-                    }
+                    taskAdded = addDeadline(tokens[1]);
                 } else if (tokens[0].equals("event")) {
-                    String remText = tokens[1];
-                    String[] remTextTokens = "  ".concat(remText).split(" /at ", 2);
-                    if (remTextTokens.length == 2) {
-                        String description = remTextTokens[0].strip();
-                        String when = remTextTokens[1].strip();
-                        if (description.isBlank()) {
-                            throw new IllegalCommandException(
-                                    "Description of event task cannot be empty.");
-                        } else if (when.isBlank()) {
-                            throw new IllegalCommandException("An event task must have a "
-                                    + "time at which the event takes place.");
-                        }
-                        assert(description != null);
-                        assert(when != null);
-                        taskAdded = new Event(description, false, when);
-                    } else {
-                        throw new IllegalCommandException("An event task must have a time at "
-                                + "which the event takes place.");
-                    }
+                    taskAdded = addEvent(tokens[1]);
                 }
 
                 if (taskAdded != null) {
@@ -181,42 +147,16 @@ public class Parser {
                             response, tokens[0], taskAdded, tasks.size());
                 }
             } else if (tokens[0].equals("mark")) {
-                int index;
-                try {
-                    index = Integer.parseInt(tokens[1]);
-                } catch (NumberFormatException ex) {
-                    throw new IllegalCommandException("Invalid index.");
-                }
-                Task task = tasks.get(index);
-
-                // Solution below adapted from
-                // https://nus-cs2103-ay2223s1.github.io/website/schedule/week2/project.html
-                task.markAsDone();
-                storage.save(tasks);
-
+                int index = parseIndex(tokens[1]);
                 response = String.format("%sThe following task has been marked as done:\n  %s\n",
-                        response, task);
+                        response, markTask(index));
             } else if (tokens[0].equals("unmark")) {
-                int index;
-                try {
-                    index = Integer.parseInt(tokens[1]);
-                } catch (NumberFormatException ex) {
-                    throw new IllegalCommandException("Invalid index.");
-                }
-                Task task = tasks.get(index);
-
-                task.markAsUndone();
-                storage.save(tasks);
-
+                int index = parseIndex(tokens[1]);
                 response = String.format("%sThe following task has been marked as undone:\n  %s\n",
-                        response, task);
+                        response, unmarkTask(index));
             } else if (tokens[0].equals("delete")) {
                 int index = Integer.parseInt(tokens[1]);
-                Task task = tasks.get(index);
-
-                tasks.delete(index);
-                storage.save(tasks);
-
+                Task task = deleteTask(index);
                 response = String.format("%sThe following task has been removed:\n  %s\n"
                                 + "The task list now contains %d task(s).\n",
                         response, task, tasks.size());
@@ -237,6 +177,127 @@ public class Parser {
             response = String.format("%s%s\n", response, ex.getMessage());
         }
         return response;
+    }
+
+    /**
+     * Deletes the task corresponding to the specified index.
+     *
+     * @param index The index of which the corresponding task is to be deleted.
+     * @return The task which is deleted.
+     * @throws IOException When System I/O fails.
+     * @throws IllegalCommandException When index is invalid.
+     */
+    private Task deleteTask(int index) throws IOException {
+        Task task = tasks.get(index);
+
+        tasks.delete(index);
+        storage.save(tasks);
+        return task;
+    }
+
+    /**
+     * Marks the task corresponding to the specified index as incomplete (in other words, unmarks
+     * the task).
+     *
+     * @param index The index of which the corresponding task is to be marked as incomplete.
+     * @return The task which is marked as incomplete.
+     * @throws IOException When System I/O fails.
+     * @throws IllegalCommandException When index is invalid.
+     */
+    private Task unmarkTask(int index) throws IOException {
+        Task task = tasks.get(index);
+
+        task.markAsUndone();
+        storage.save(tasks);
+        return task;
+    }
+
+    /**
+     * Marks the task corresponding to the specified index as complete.
+     *
+     * @param index The index of which the corresponding task is to be marked as complete.
+     * @return The task which is marked as complete.
+     * @throws IOException When System I/O fails.
+     * @throws IllegalCommandException When index is invalid.
+     */
+    private Task markTask(int index) throws IOException {
+        Task task = tasks.get(index);
+
+        // Solution below adapted from
+        // https://nus-cs2103-ay2223s1.github.io/website/schedule/week2/project.html
+        task.markAsDone();
+        storage.save(tasks);
+        return task;
+    }
+
+    /**
+     * Processes the deadline command and returns the task created.
+     *
+     * @param args The arguments of the deadline command.
+     * @return Task created as a result of the command.
+     * @throws IllegalCommandException When command arguments are invalid.
+     */
+    private Task addDeadline(String args) {
+        String[] remTextTokens = "  ".concat(args).split(" /by ", 2);
+        if (remTextTokens.length != 2) {
+            throw new IllegalCommandException("A deadline task must have a "
+                    + "deadline.");
+        }
+
+        String description = remTextTokens[0].trim();
+        String deadline = remTextTokens[1].trim();
+        if (description.isBlank() || description.isEmpty()) {
+            throw new IllegalCommandException(
+                    "Description of deadline task cannot be empty.");
+        } else if (deadline.isBlank()) {
+            throw new IllegalCommandException("A deadline task must have a "
+                    + "deadline.");
+        }
+        deadline = convertToDate(deadline);
+        Task taskAdded = new Deadline(description, false, deadline);
+        return taskAdded;
+    }
+
+    /**
+     * Processes the event command and returns the event created.
+     *
+     * @param args The arguments of the event command.
+     * @return Task created as a result of the command.
+     * @throws IllegalCommandException When command arguments are invalid.
+     */
+    private static Task addEvent(String args) {
+        String[] remTextTokens = "  ".concat(args).split(" /at ", 2);
+        if (remTextTokens.length != 2) {
+            throw new IllegalCommandException("An event task must have a time at "
+                    + "which the event takes place.");
+        }
+
+        String description = remTextTokens[0].strip();
+        String when = remTextTokens[1].strip();
+        if (description.isBlank()) {
+            throw new IllegalCommandException(
+                    "Description of event task cannot be empty.");
+        } else if (when.isBlank()) {
+            throw new IllegalCommandException("An event task must have a "
+                    + "time at which the event takes place.");
+        }
+        Task taskAdded = new Event(description, false, when);
+        return taskAdded;
+    }
+
+    /**
+     * Attempts to parse the index as an integer and returns the integer if successful.
+     *
+     * @param index The string to parse as an integer.
+     * @return The string to parse as an integer.
+     * @throws IllegalCommandException When input is invalid.
+     */
+    private static int parseIndex(String index) {
+        try {
+            return Integer.parseInt(index);
+        } catch (NumberFormatException ex) {
+            throw new IllegalCommandException("Invalid index.");
+        }
     }
 
     /**
@@ -267,7 +328,7 @@ public class Parser {
             boolean isSubstring = false;
             String description = task.getDescription();
 
-            // substring check
+            // checks that description contains str as a substring (ignoring case)
             for (int j = 0; j <= description.length() - str.length(); j++) {
                 if (description.substring(j, j + str.length()).equalsIgnoreCase(str)) {
                     isSubstring = true;

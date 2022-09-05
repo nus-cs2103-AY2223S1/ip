@@ -12,9 +12,9 @@ public class Deadline extends Task {
      * Creates a new {@code Deadline} object with a given description, whether it has been done
      * and the corresponding deadline.
      *
-     * @param description the description of the task
-     * @param isDone      whether the task is marked as done
-     * @param deadline    the date/time by which the task should be completed
+     * @param description The description of the task.
+     * @param isDone Whether the task is marked as done.
+     * @param deadline The date/time by which the task should be completed.
      */
     public Deadline(String description, boolean isDone, String deadline) {
         super(description, isDone);
@@ -22,18 +22,18 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns the deadline of the task the {@code Deadline} object is associated with
+     * Returns the deadline of the task the {@code Deadline} object is associated with.
      *
-     * @return the deadline of the task the {@code Deadline} object is associated with
+     * @return the deadline of the task the {@code Deadline} object is associated with.
      */
     public String getDeadline() {
         return deadline;
     }
 
     /**
-     * The task type code for a {@code Deadline} object is "D". Hence, this method returns "D".
+     * Returns the task type code for an {@code Deadline} object, i.e. "D".
      *
-     * @return "D"
+     * @return "D".
      */
     @Override
     public String getTaskTypeCode() {
@@ -42,9 +42,9 @@ public class Deadline extends Task {
 
     /**
      * Returns the String representation of the {@code Deadline} object, i.e.
-     *   a string in the format "[task type code][get status icon] description (by: deadline)".
+     * a string in the format "[task type code][get status icon] description (by: deadline)".
      *
-     * @return String representation of the {@code Deadline} object
+     * @return String representation of the {@code Deadline} object.
      */
     @Override
     public String toString() {
