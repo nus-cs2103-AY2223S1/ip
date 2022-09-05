@@ -77,13 +77,17 @@ public class DeleteTaskCommand extends Command {
 
                         @Override
                         public Command onExit() {
+                            assert TaskList.current().getSize() == 0;
                             return DeleteTaskCommand.this.onExit();
                         }
                     })
             );
         } else {
+            int sizeBefore = TaskList.current().getSize();
             Task task = TaskList.current().get(index);
             currentTaskList.remove(index);
+
+            assert TaskList.current().getSize() + 1 == sizeBefore;
 
             return new InternalAction(
                     "Okay, I've removed this task as requested:\n" + task.toString(),

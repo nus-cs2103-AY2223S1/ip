@@ -46,8 +46,8 @@ public class InternalAction {
         this.runnable = Optional.of(runnable);
     }
 
-    public List<String> getAllDisplayText() {
-        return displayTexts;
+    public String[] getAllDisplayText() {
+        return displayTexts.toArray(String[]::new);
     }
 
     public void doRunnable() {

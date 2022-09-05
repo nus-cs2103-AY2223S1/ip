@@ -43,6 +43,7 @@ public class SaveManager {
      */
     @SuppressWarnings("unchecked")
     public static <T extends Serializable> T load(String header) throws KeyNotFoundException {
+        assert dataInMemory != null;
         return (T) dataInMemory.get(header);
     }
 
@@ -77,7 +78,6 @@ public class SaveManager {
             File file = new File(PATH.toString(), fileName);
 
             FileInputStream fileInputStream = new FileInputStream(file);
-            System.out.println(fileInputStream);
             ObjectInputStream objInputStream = new ObjectInputStream(
                     fileInputStream
             );
@@ -88,6 +88,7 @@ public class SaveManager {
                 System.out.println("FATAL ERROR: " + e.getMessage());
             }
 
+            assert dataInMemory != null;
             fileInputStream.close();
             return true;
         } catch (IOException e) {
