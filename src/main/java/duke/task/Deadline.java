@@ -35,6 +35,17 @@ public class Deadline extends Task {
     }
 
     /**
+     * Returns the date associated with the task.
+     *
+     * @return The date associated with the task.
+     */
+    @Override
+    public LocalDate getDate() {
+        return this.deadline;
+    }
+
+
+    /**
      * Returns the string representation of the deadline task.
      *
      * @return The string representation of the deadline task.
@@ -44,5 +55,24 @@ public class Deadline extends Task {
         String date = this.deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
         return "[D][" + super.getStatusIcon() + "] " + super.description + " (by: "
                 + date + ")";
+    }
+
+    /**
+     * Compares this task with the specified task for order.  Returns a
+     * negative integer, zero, or a positive integer as this object is less
+     * than, equal to, or greater than the specified object.
+     *
+     * @param task The task to be compared.
+     * @return A negative integer, zero, or a positive integer as this object
+     *         is less than, equal to, or greater than the specified object.
+     */
+    @Override
+    public int compareTo(Task task) {
+        LocalDate taskDate = task.getDate();
+        if (taskDate == null) {
+            return -1;
+        } else {
+            return this.deadline.compareTo(taskDate);
+        }
     }
 }

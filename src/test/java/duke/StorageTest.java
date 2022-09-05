@@ -39,7 +39,7 @@ public class StorageTest {
     public void writeTestData() {
         try {
             FileWriter file = new FileWriter("data/duke.txt", false);
-            file.write("T|1|test test\nD|0|test deadline|2019-10-15\nE|0|test duke|2019-01-20");
+            file.write("E|1|test duke|2019-01-20\nD|0|test deadline|2019-10-15\nT|0|test test");
             file.close();
         } catch (IOException e) {
             fail(new DukeException("An error occurred when writing to file"));
@@ -53,9 +53,9 @@ public class StorageTest {
             storage.loadData(taskList);
             assertEquals(3, taskList.getSize());
             Task[] tasks = {
-                new ToDo("test test"),
-                new Deadline("test deadline", LocalDate.parse("2019-10-15")),
                 new Event("test duke", LocalDate.parse("2019-01-20")),
+                new Deadline("test deadline", LocalDate.parse("2019-10-15")),
+                new ToDo("test test"),
             };
             tasks[0].markDone();
             for (int i = 0; i < tasks.length; i++) {

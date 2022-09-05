@@ -1,9 +1,11 @@
 package duke.task;
 
+import java.time.LocalDate;
+
 /**
  * An abstract class that encapsulates the task.
  */
-public abstract class Task {
+public abstract class Task implements Comparable<Task> {
     /** The description of the task */
     protected String description;
     /** The completion status of the task */
@@ -51,9 +53,21 @@ public abstract class Task {
      */
     public abstract String stringToSave();
 
+    /**
+     * Returns the description.
+     *
+     * @return The description.
+     */
     public String getDescription() {
         return this.description;
     }
+
+    /**
+     * Returns the date associated with the task.
+     *
+     * @return The date associated with the task.
+     */
+    public abstract LocalDate getDate();
 
     /**
      * Returns the string representation of the task.
