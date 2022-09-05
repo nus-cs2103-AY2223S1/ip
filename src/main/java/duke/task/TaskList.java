@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import duke.exception.DukeException;
+import duke.exception.DukeInvalidTypeException;
 import duke.exception.DukeNoMatchException;
 import duke.exception.DukeOutOfBoundException;
 
@@ -112,6 +113,74 @@ public class TaskList {
         }
 
         return new TaskList(matchedTasks);
+    }
+
+    /**
+     * Deletes multiple tasks of that type from tasklist.
+     *
+     * @param taskType Keyword to be matched.
+     */
+    public void batchTypeDelete(String taskType) throws DukeException {
+        int endIndex = tasks.size() - 1;
+        for (int i = endIndex; i >= 0; i--) {
+            deleteIfTypeMatch(taskType, i);
+        }
+    }
+
+    /**
+     * Deletes multiple tasks with specified description from tasklist.
+     *
+     * @param description description to be matched.
+     */
+    public void batchDescDelete(String description) throws DukeException {
+        int endIndex = tasks.size() - 1;
+        for (int i = endIndex; i >= 0; i--) {
+            deleteIfDescMatch(description, i);
+        }
+    }
+
+    /**
+     * Deletes Task if Task Description contains specified description.
+     *
+     * @param description Specified Description to be matched
+     * @param taskIndex The index of the task in TaskList.
+     * @throws DukeException Exception thrown when index is invalid.
+     */
+    private void deleteIfDescMatch(String description, int taskIndex) throws DukeException {
+        Task currentTask = tasks.get(taskIndex);
+        String taskDescription = currentTask.description;
+
+        if (taskDescription.contains(description)) {
+            this.delete(taskIndex);
+        }
+
+    }
+
+    /**
+     * Deletes Task if Task is of that specified Type.
+     *
+     * @param taskType Specified Type to be matched
+     * @param taskIndex The index of the task in TaskList.
+     * @throws DukeException Exception thrown when index is invalid.
+     */
+    private void deleteIfTypeMatch(String taskType, int taskIndex) throws DukeException {
+        Task currentTask = tasks.get(taskIndex);
+        String typeCompare = getTypeofTask(currentTask);
+        if (typeCompare.equals(taskType)) {
+            this.delete(taskIndex);
+        }
+    }
+
+    private String getTypeofTask(Task task) throws DukeException {
+        if (task instanceof ToDo) {
+            return "todo";
+        } else if (task instanceof Event) {
+            return "event";
+        } else if (task instanceof Deadline) {
+            return "deadline";
+        } else {
+            throw new DukeInvalidTypeException();
+        }
     }
 
     /**

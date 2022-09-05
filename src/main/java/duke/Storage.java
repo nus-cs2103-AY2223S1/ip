@@ -222,11 +222,11 @@ public class Storage {
      * @param taskData The Data read from save file.
      */
     private void addDeadline(List<Task> tasks, String[] taskData) {
-        String type = taskData[1];
-        String description = taskData[2];
+        String description = taskData[1];
+        String doneStatus = taskData[2];
         String dateTime = taskData[3];
         LocalDateTime dueDate = LocalDateTime.parse(dateTime);
-        Deadline deadlineTask = new Deadline(type, description.equals("X"), dueDate);
+        Deadline deadlineTask = new Deadline(description, doneStatus.equals("X"), dueDate);
         tasks.add(deadlineTask);
     }
 
@@ -236,11 +236,11 @@ public class Storage {
      * @param taskData The Data read from save file.
      */
     private void addEvent(List<Task> tasks, String[] taskData) {
-        String type = taskData[1];
-        String description = taskData[2];
+        String description = taskData[1];
+        String doneStatus = taskData[2];
         String dateTime = taskData[3];
         LocalDateTime eventDate = LocalDateTime.parse(dateTime);
-        Event eventTask = new Event(dateTime, description.equals("X"), eventDate);
+        Event eventTask = new Event(description, doneStatus.equals("X"), eventDate);
         tasks.add(eventTask);
     }
 
@@ -250,9 +250,9 @@ public class Storage {
      * @param taskData The Data read from save file.
      */
     private void addTodo(List<Task> tasks, String[] taskData) {
-        String type = taskData[1];
-        String description = taskData[2];
-        ToDo toDoTask = new ToDo(type, description.equals("X"));
+        String description = taskData[1];
+        String doneStatus = taskData[2];
+        ToDo toDoTask = new ToDo(description, doneStatus.equals("X"));
         tasks.add(toDoTask);
     }
 }

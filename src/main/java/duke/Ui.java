@@ -167,7 +167,7 @@ public class Ui {
      * @return true if valid list of tasks, false otherwise.
      */
     private boolean isValidTasks(String tasks) {
-        return !tasks.isEmpty();
+        return tasks != null;
     }
 
     /**
