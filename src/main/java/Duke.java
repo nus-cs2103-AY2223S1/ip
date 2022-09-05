@@ -21,62 +21,99 @@ public class Duke {
                 "    ____________________________________________________________\n";
         System.out.println(hello);
 
-        List<Task> list = new ArrayList<Task>();
+        Task[] tasks = new Task[100];
 
         Scanner sc = new Scanner(System.in);
-        String input = sc.next();
+        String input = sc.nextLine();
+        String[] inputArr = input.split(" ");
+        String action = inputArr[0];
 
-        while (!input.equals("bye")) {
-            if (input.equals("list")) {
-                for (int i = 0; i < list.size(); i++) {
-                    System.out.println(i + 1 + "." + list.get(i));
-                }
-            } else if (input.equals("mark")) {
-                int number = sc.nextInt();
-                Task task = list.get(number - 1);
-                task.markAsDone();
-                System.out.println("    ____________________________________________________________\n" +
-                        "     Nice! I've marked this task as done:\n       " +
-                        task +
-                        "\n    ____________________________________________________________");
-            } else if (input.equals("unmark")) {
-                int number = sc.nextInt();
-                Task task = list.get(number - 1);
-                task.markAsNotDone();
-                System.out.println("    ____________________________________________________________\n" +
-                        "     Nice! I've marked this task as not done yet:\n       " +
-                        task +
-                        "\n    ____________________________________________________________");
-            } else {
-                input = input + sc.nextLine();
-                System.out.println("Added: " + input);
-                Task task = new Task(input);
-                list.add(task);
+        int size = 0;
+
+        while (!action.equals("bye")) {
+            int number;
+            Task task;
+            String[] params;
+            switch (action) {
+                case "list":
+                    if (size == 0) {
+                        System.out.println("    ____________________________________________________________\n" +
+                                "     There is no pending task for you." +
+                                "\n    ____________________________________________________________");
+                    } else {
+                        System.out.println("    ____________________________________________________________\n" +
+                                "     Here are the tasks in your list:");
+                        for (int i = 0; i < size; i++) {
+                            System.out.format("     %d.%s\n", i + 1, tasks[i]);
+                        }
+                        System.out.println("    ____________________________________________________________");
+                    }
+                    break;
+                case "mark":
+                    number = Integer.parseInt(inputArr[1]);
+                    task = tasks[number - 1];
+                    task.markAsDone();
+                    System.out.println("    ____________________________________________________________\n" +
+                            "     Nice! I've marked this task as done:\n       " +
+                            task +
+                            "\n    ____________________________________________________________");
+                    break;
+                case "unmark":
+                    number = Integer.parseInt(inputArr[1]);
+                    task = tasks[number - 1];
+                    task.markAsNotDone();
+                    System.out.println("    ____________________________________________________________\n" +
+                            "     Nice! I've marked this task as not done yet:\n       " +
+                            task +
+                            "\n    ____________________________________________________________");
+                    break;
+                case "todo":
+                    task = new Todo(input.substring(5));
+                    tasks[size] = task;
+                    size++;
+                    System.out.println("    ____________________________________________________________\n" +
+                            "     Got it. I've added this task:\n       " +
+                            task);
+                    System.out.format("     Now you have %d tasks in the list.\n    ____________________________________________________________\n",
+                            size);
+                    break;
+                case "deadline":
+                    params = input.substring(9).split(" /by ");
+                    task = new Deadline(params[0], params[1]);
+                    tasks[size] = task;
+                    size++;
+                    System.out.println("    ____________________________________________________________\n" +
+                            "     Got it. I've added this task:\n       " +
+                            task);
+                    System.out.format("     Now you have %d tasks in the list.\n    ____________________________________________________________\n",
+                            size);
+                    break;
+                case "event":
+                    params = input.substring(6).split(" /at ");
+                    task = new Event(params[0], params[1]);
+                    tasks[size] = task;
+                    size++;
+                    System.out.println("    ____________________________________________________________\n" +
+                            "     Got it. I've added this task:\n       " +
+                            task);
+                    System.out.format("     Now you have %d tasks in the list.\n    ____________________________________________________________\n",
+                            size);
+                    break;
+                default:
+                    task = new Task(input);
+                    tasks[size] = task;
+                    size++;
+                    System.out.println("    ____________________________________________________________\n" +
+                            "     Got it. I've added this task:\n       " +
+                            task);
+                    System.out.format("     Now you have %d tasks in the list.\n    ____________________________________________________________\n",
+                            size);
+                    break;
             }
-            input = sc.next();
+            input = sc.nextLine();
+            inputArr = input.split(" ");
+            action = inputArr[0];
         }
-
-
-
-        String strlst = "____________________________________________________________\n" +
-                "     Here are the tasks in your list:";
-
-        System.out.println(strlst);
-
-        String todolist = "____________________________________________________________\n" +
-                "     Got it. I've added this task:";
-        System.out.println(todolist);
-
-        String todoEmpty = "____________________________________________________________\n" +
-                "     ☹ OOPS!!! The description of a todo cannot be empty.\n" +
-                "____________________________________________________________\n";
-        System.out.println(todoEmpty);
-
-        String unkown = "____________________________________________________________\n" +
-                "     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n" +
-                "____________________________________________________________\n";
-
-        System.out.println(unkown);
 
         // if("delete")
 
