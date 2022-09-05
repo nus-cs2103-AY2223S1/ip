@@ -48,17 +48,11 @@ public class Parser {
         } else {
             stringCommand = userInput.substring(0, firstWhiteSpaceIndex);
         }
-<<<<<<< HEAD
         assert !stringCommand.contains(" ");
-        if (stringCommand.equals("todo")) {
-            return new AddTaskCommand();
-        } else if (stringCommand.equals("event")) {
-=======
         switch (stringCommand) {
             case "todo":
                 return new AddTaskCommand();
         case "event":
->>>>>>> master
             return new AddEventCommand();
         case "deadline":
             return new AddDeadlineCommand();
@@ -135,15 +129,7 @@ public class Parser {
     private static String getDescription(String commandUsed, String input) throws DukeException {
         String description;
         int startDescriptionIndex = input.indexOf(commandUsed) + commandUsed.length();
-<<<<<<< HEAD
         assert startDescriptionIndex < 0;
-        int endDescriptionIndex = input.indexOf(" /");
-        if ( commandUsed.equals("event") || commandUsed.equals("deadline")) {
-            assert endDescriptionIndex >= 0;
-            description = input.substring(startDescriptionIndex, endDescriptionIndex).trim();
-        } else {
-            description = input.substring(startDescriptionIndex).trim();
-=======
         if (commandUsed.equals("event") || commandUsed.equals("deadline")) {
             int endDescriptionIndex = input.indexOf(END_OF_DESCRIPTION_MARKER);
             if (endDescriptionIndex < 0) {
@@ -157,7 +143,6 @@ public class Parser {
 
         if (description.isBlank()) {
             throw new DukeException("Empty description field");
->>>>>>> master
         }
         return description;
     }
