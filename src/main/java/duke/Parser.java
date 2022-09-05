@@ -46,13 +46,22 @@ public class Parser {
                     throw new EmptyDescriptionException("mark");
                 }
                 int indexMark = Integer.parseInt(commands[1]) - 1;
+                if (indexMark < 0 || indexMark >= tasks.getSize()) {
+                    throw new InvalidParameterException();
+                }
+
                 tasks.markIndex(indexMark);
                 return ui.getCorrectMessage(Ui.Commands.MARK, tasks, indexMark);
             case "unmark":
                 if (commands.length == 1) {
                     throw new EmptyDescriptionException("unmark");
                 }
+
                 int indexUnmark = Integer.parseInt(commands[1]) - 1;
+                if (indexUnmark < 0 || indexUnmark >= tasks.getSize()) {
+                    throw new InvalidParameterException();
+                }
+
                 tasks.unmarkIndex(indexUnmark);
                 return ui.getCorrectMessage(Ui.Commands.UNMARK, tasks, indexUnmark);
             case "todo":
@@ -97,7 +106,12 @@ public class Parser {
                 if (commands.length == 1) {
                     throw new EmptyDescriptionException("delete");
                 }
+
                 int index = Integer.parseInt(commands[1]) - 1;
+                if (index < 0 || index >= tasks.getSize()) {
+                    throw new InvalidParameterException();
+                }
+
                 String response = ui.getCorrectMessage(Ui.Commands.DELETE, tasks, index);
                 tasks.delete(index);
                 return response;
@@ -110,7 +124,7 @@ public class Parser {
                 throw new UnknownCommandException();
             }
 
-        } catch (UnknownCommandException | EmptyDescriptionException e) {
+        } catch (UnknownCommandException | EmptyDescriptionException | InvalidParameterException e) {
             return ui.getErrorMessage(e.getMessage());
         }
     }
