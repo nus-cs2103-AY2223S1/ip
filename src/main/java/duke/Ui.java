@@ -13,15 +13,15 @@ public class Ui {
     /**
      * Prints greeting message.
      */
-    public static void greet() {
-        System.out.println(INTRO);
+    public static String greet() {
+        return INTRO;
     }
 
     /**
      * Prints exit message.
      */
-    public static void bye() {
-      System.out.println(OUTRO);
+    public static String bye() {
+      return OUTRO;
     }
 
     /**
@@ -29,11 +29,12 @@ public class Ui {
      *
      * @param tasks prints the tasks in the taskList
      */
-    public static void printList(TaskList tasks) {
-        System.out.println("Here are the tasks in your list:");
+    public static String printList(TaskList tasks) {
+       String str = "Here are the tasks in your list: \n";
         for (int i = 0, d = 1; i < tasks.size(); i++, d++) {
-            System.out.println(d + ". " + tasks.get(i));
+            str += (d + ". " + tasks.get(i) + "\n");
         }
+        return str;
     }
 
     /**
@@ -41,21 +42,24 @@ public class Ui {
      * @param tasks add task into this taskList
      * @param input prints out the task added
      */
-    public static void addedTask(TaskList tasks, Task input) {
+    public static String addedTask(TaskList tasks, Task input) {
         tasks.add(input);
-        System.out.println("Got it. I've added this task:");
-        System.out.println(input);
-        System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+        String result = "Got it. I've added this task: \n";
+        result += input.toString();
+        String line = String.format("Now you have %d tasks in the list.\n", tasks.size());
+        result += line;
+        return result;
     }
 
     /**
      *  Prints tasks with specified keywords
      * @param tasks the resulting tasklist to be passed here
      */
-    public static void finderPrinter(TaskList tasks) {
-        System.out.println("Here are the matching tasks in your list: ");
+    public static String finderPrinter(TaskList tasks) {
+        String result = "Here are the matching tasks in your list: \n";
         for (int i = 0, d = 1; i < tasks.size(); i++, d++) {
-            System.out.println(d + ". " + tasks.get(i));
+            result += d + ". " + tasks.get(i) + "\n";
         }
+        return result;
     }
 }

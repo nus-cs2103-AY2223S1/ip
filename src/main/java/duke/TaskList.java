@@ -10,15 +10,17 @@ public class TaskList extends ArrayList<Task> {
      * @param task the task to be deleted
      * @param str description of the task
      */
-    public void deleteTask(String str, TaskList task) throws DukeException {
+    public String deleteTask(String str, TaskList task) throws DukeException {
         int number = Integer.parseInt(str.split(" ", 2)[1]);
         if (1 <= number && number <= task.size()) {
             Task currTask = task.get(number - 1);
             task.remove(number - 1);
-            System.out.println("Noted. I've removed this task:");
+            String result ="Noted. I've removed this task:\n";
             String checkbox = String.format("%s", currTask);
-            System.out.println(checkbox);
-            System.out.printf("Now you have %d tasks int the list. \n", task.size());
+            result += checkbox;
+            String line = String.format("Now you have %d tasks int the list. \n", task.size());
+            result += line;
+            return result;
         } else {
             throw new DukeException("Invalid task number!");
         }
@@ -30,14 +32,15 @@ public class TaskList extends ArrayList<Task> {
      * @param task the task to be marked
      * @param str description of task
      */
-    public void markTask(String str, TaskList task) throws DukeException {
+    public String markTask(String str, TaskList task) throws DukeException {
         int number = Integer.parseInt(str.split(" ", 2)[1]);
         if (1 <= number && number <= task.size()) {
             Task currTask = task.get(number - 1);
             currTask.markAsDone();
-            System.out.println("Nice! I've marked this task as done:");
+            String result = "Nice! I've marked this task as done:\n";
             String checkbox = String.format("[%s] %s", currTask.getStatusIcon(), currTask.description);
-            System.out.println(checkbox);
+            result += checkbox;
+            return result;
         } else {
             throw new DukeException("Invalid task number!");
         }
@@ -49,14 +52,15 @@ public class TaskList extends ArrayList<Task> {
      * @param task the task to be unmarked
      * @param str the description of the task
      */
-    public void unmarkTask(String str, TaskList task) throws DukeException {
+    public String unmarkTask(String str, TaskList task) throws DukeException {
         int number = Integer.parseInt(str.split(" ", 2)[1]);
         if (1 <= number && number <= task.size()) {
             Task currTask = task.get(number - 1);
             currTask.unmark();
-            System.out.println("OK, I've marked this task as not done yet:");
+            String result = "OK, I've marked this task as not done yet:\n";
             String checkbox = String.format("[%s] %s", currTask.getStatusIcon(), currTask.description);
-            System.out.println(checkbox);
+            result += checkbox;
+            return result;
         } else {
             throw new DukeException("Invalid task number!");
         }
