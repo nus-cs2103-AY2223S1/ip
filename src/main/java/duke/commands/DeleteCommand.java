@@ -2,10 +2,12 @@ package duke.commands;
 
 import java.io.IOException;
 import duke.TaskList;
-import duke.DukeException;
+import duke.exception.DukeException;
 import duke.Ui;
 import duke.Storage;
-import duke.tasks.*;
+import duke.tasks.Task;
+import duke.exception.InvalidIntegerException;
+import duke.exception.InvalidIndexException;
 
 /**
  * The DeleteCommand class encapsulates the execution of a delete command.
@@ -30,7 +32,7 @@ public class DeleteCommand extends Command{
         if (this.input.matches("\\d+")) {
             int deleteIndex = Integer.parseInt(this.input) - 1;
             if (deleteIndex < 0 || deleteIndex >= taskList.length()) {
-                throw new DukeException(String.format("There is no task with index %d", deleteIndex + 1));
+                throw new InvalidIndexException(deleteIndex + 1);
             } else {
                 Task deletedTask = taskList.index(deleteIndex);
                 taskList.remove(deleteIndex);
@@ -39,7 +41,7 @@ public class DeleteCommand extends Command{
                 return ui.print(deleteMessage, taskList);
             }
         } else {
-            throw new DukeException(this.input + " is not an integer.");
+            throw new InvalidIntegerException(this.input);
         }
     }
 }

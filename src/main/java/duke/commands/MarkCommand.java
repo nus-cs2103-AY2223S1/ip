@@ -2,10 +2,13 @@ package duke.commands;
 
 import java.io.IOException;
 import duke.TaskList;
-import duke.DukeException;
+import duke.exception.DukeException;
 import duke.Ui;
 import duke.Storage;
-import duke.tasks.*;
+import duke.exception.InvalidIndexException;
+import duke.exception.InvalidMarkException;
+import duke.exception.InvalidIntegerException;
+import duke.tasks.Task;
 
 /**
  * The MarkCommand class encapsulates the execution of a mark command.
@@ -30,19 +33,19 @@ public class MarkCommand extends Command{
         if (this.input.matches("\\d+")) {
             int markIndex = Integer.parseInt(this.input) - 1;
             if (markIndex < 0 || markIndex >= taskList.length()) {
-                throw new DukeException(String.format("There is no task with index %d", markIndex + 1));
+                throw new InvalidIndexException(markIndex + 1);
             } else {
                 Task markTask = taskList.index(markIndex);
                 if (markTask.getIsDone()) {
-                    throw new DukeException("This task is already marked as done:\n" + markTask.toString());
+                    throw new InvalidMarkException(true, markTask.toString());
                 } else {
                     markTask.markDone();
                     storage.saveTasks(taskList);
-                    return ui.print("Nice! I've marked this task as done:\n" + markTask.toString());
+                    return ui.print(true, markTask);
                 }
             }
         } else {
-            throw new DukeException(this.input + " is not an integer.");
+            throw new InvalidIntegerException(this.input);
         }
     }
 }

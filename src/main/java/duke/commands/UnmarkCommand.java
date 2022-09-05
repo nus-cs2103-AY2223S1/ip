@@ -2,10 +2,13 @@ package duke.commands;
 
 import java.io.IOException;
 import duke.TaskList;
-import duke.DukeException;
+import duke.exception.DukeException;
 import duke.Ui;
 import duke.Storage;
-import duke.tasks.*;
+import duke.tasks.Task;
+import duke.exception.InvalidIndexException;
+import duke.exception.InvalidIntegerException;
+import duke.exception.InvalidMarkException;
 
 /**
  * The UnmarkCommand class encapsulates the execution of an unmark command.
@@ -30,19 +33,19 @@ public class UnmarkCommand extends Command{
         if (this.input.matches("\\d+")) {
             int unMarkIndex = Integer.parseInt(this.input) - 1;
             if (unMarkIndex < 0 || unMarkIndex >= taskList.length()) {
-                throw new DukeException(String.format("There is no task with index %d", unMarkIndex + 1));
+                throw new InvalidIndexException(unMarkIndex + 1);
             } else {
                 Task unMarkTask = taskList.index(unMarkIndex);
                 if (!unMarkTask.getIsDone()) {
-                    throw new DukeException("This task is already marked as undone:\n" + unMarkTask.toString());
+                    throw new InvalidMarkException(false, unMarkTask.toString());
                 } else {
                     unMarkTask.markUndone();
                     storage.saveTasks(taskList);
-                    return ui.print("OK, I've marked this task as not done yet:\n" + unMarkTask.toString());
+                    return ui.print(false, unMarkTask);
                 }
             }
         } else {
-            throw new DukeException(this.input + " is not an integer.");
+            throw new InvalidIntegerException(this.input);
         }
     }
 }
