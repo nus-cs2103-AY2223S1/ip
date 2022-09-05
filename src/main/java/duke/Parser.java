@@ -20,6 +20,11 @@ import duke.exception.DukeEmptyEventException;
 import duke.exception.DukeEmptyToDoException;
 import duke.exception.DukeException;
 import duke.exception.DukeInvalidCommandException;
+import duke.exception.DukeInvalidDeadlineSeparatorException;
+import duke.exception.DukeInvalidEventSeparatorException;
+import duke.exception.DukeInvalidTimeFormatException;
+import duke.exception.DukeNoIndexException;
+import duke.exception.DukeNoKeywordException;
 
 /**
  * The Parser class that parses user commands.
@@ -29,82 +34,252 @@ import duke.exception.DukeInvalidCommandException;
  * @author Tan Jia Rong
  */
 public class Parser {
+
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    private static final String SEPARATOR_EVENT = " /at ";
+    private static final String SEPARATOR_DEADLINE = " /by ";
+
     /**
      * Executes user inputs.
      *
-     * @param command Task/Action to be executed.
-     * @param description Description of the Task/Action to be executed.
+     * @param input user Input to be parsed.
      */
-    public static Command parse(String command, String description) throws DukeException {
-        try {
-            command = command.toLowerCase();
+    public static Command parse(String input) throws DukeException {
 
-            int index;
-            String[] input;
-            String details;
-            DateTimeFormatter formatter;
+        String[] data = formatInput(input);
+        String type = data[0];
 
-            switch (command) {
-            case "list":
-                return new ListCommand();
-                // No need for break since it is unreachable
-            case "mark":
-                index = Integer.parseInt(description) - 1;
-                return new MarkCommand(index);
-                // No need for break since it is unreachable
-            case "unmark":
-                index = Integer.parseInt(description) - 1;
-                return new UnmarkCommand(index);
-                // No need for break since it is unreachable
-            case "delete":
-                index = Integer.parseInt(description) - 1;
-                return new DeleteCommand(index);
-                // No need for break since it is unreachable
-            case "todo":
-                if (description.isEmpty()) {
-                    throw new DukeEmptyToDoException();
-                }
-                return new ToDoCommand(description);
-                // No need for break since it is unreachable
-            case "deadline":
-                if (description.isEmpty()) {
-                    throw new DukeEmptyDeadlineException();
-                }
-                if (!description.contains(" /by ")) {
-                    throw new DukeInvalidCommandException();
-                }
-                input = description.split(" /by ");
-                formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-                details = input[0];
-                LocalDateTime by = LocalDateTime.parse(input[1], formatter);
-                return new DeadlineCommand(details, by);
-                // No need for break since it is unreachable
-            case "event":
-                if (description.isEmpty()) {
-                    throw new DukeEmptyEventException();
-                }
-                if (!description.contains(" /at ")) {
-                    throw new DukeInvalidCommandException();
-                }
-                input = description.split(" /at ");
-                formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-                details = input[0];
-                LocalDateTime at = LocalDateTime.parse(input[1], formatter);
-                return new EventCommand(details, at);
-                // No need for break since it is unreachable
-            case "find":
-                return new FindCommand(description);
-                // No need for break since it is unreachable
-            case "help":
-                return new HelpCommand();
-                // No need for break since it is unreachable
-            case "bye":
-                return new ExitCommand();
-            default:
-                throw new DukeInvalidCommandException();
-            }
-        } catch (DateTimeParseException e) {
-            throw new DukeException("Please format date and time in YYYY-MM-DD hhmm.");
+        switch (type) {
+        case "list":
+            return parseListCommand(data);
+            // No need for break since it is unreachable
+        case "mark":
+            return parseMarkCommand(data);
+            // No need for break since it is unreachable
+        case "unmark":
+            return parseUnmarkCommand(data);
+            // No need for break since it is unreachable
+        case "delete":
+            return parseDeleteCommand(data);
+            // No need for break since it is unreachable
+        case "todo":
+            return parseToDoCommand(data);
+            // No need for break since it is unreachable
+        case "deadline":
+            return parseDeadlineCommand(data);
+            // No need for break since it is unreachable
+        case "event":
+            return parseEventCommand(data);
+            // No need for break since it is unreachable
+        case "find":
+            return parseFindCommand(data);
+            // No need for break since it is unreachable
+        case "help":
+            return parseHelpCommand(data);
+            // No need for break since it is unreachable
+        case "bye":
+            return parseExitCommand(data);
+            // No need for break since it is unreachable
+        default:
+            throw new DukeInvalidCommandException();
         }
+    }
+
+    private static ExitCommand parseExitCommand(String[] data) {
+        return new ExitCommand();
+    }
+
+    private static HelpCommand parseHelpCommand(String[] data) {
+        return new HelpCommand();
+    }
+
+    private static ListCommand parseListCommand(String[] data) {
+        return new ListCommand();
+    }
+
+    private static MarkCommand parseMarkCommand(String[] data) throws DukeNoIndexException {
+        String description = data[1];
+
+        if (description.isEmpty()) {
+            throw new DukeNoIndexException();
+        }
+
+        int index = Integer.parseInt(description) - 1;
+        return new MarkCommand(index);
+    }
+
+    private static UnmarkCommand parseUnmarkCommand(String[] data) throws DukeNoIndexException {
+        String description = data[1];
+
+        if (description.isEmpty()) {
+            throw new DukeNoIndexException();
+        }
+        int index = Integer.parseInt(description) - 1;
+        return new UnmarkCommand(index);
+    }
+
+    private static DeleteCommand parseDeleteCommand(String[] data) throws DukeNoIndexException {
+        String description = data[1];
+
+        if (description.isEmpty()) {
+            throw new DukeNoIndexException();
+        }
+
+        int index = Integer.parseInt(description) - 1;
+        return new DeleteCommand(index);
+    }
+
+    private static ToDoCommand parseToDoCommand(String[] data) throws DukeEmptyToDoException {
+        String description = data[1];
+
+        if (description.isEmpty()) {
+            throw new DukeEmptyToDoException();
+        }
+        return new ToDoCommand(description);
+    }
+
+    private static DeadlineCommand parseDeadlineCommand(String[] data) throws DukeException {
+        String description = data[1];
+        String dateTime = data[2];
+
+        if (description.isEmpty()) {
+            throw new DukeEmptyDeadlineException();
+        }
+
+        try {
+            LocalDateTime by = LocalDateTime.parse(dateTime, DATE_TIME_FORMATTER);
+            return new DeadlineCommand(description, by);
+        } catch (DateTimeParseException e) {
+            throw new DukeInvalidTimeFormatException();
+        }
+    }
+
+    private static EventCommand parseEventCommand(String[] data) throws DukeException {
+        String description = data[1];
+        String dateTime = data[2];
+
+        if (description.isEmpty()) {
+            throw new DukeEmptyEventException();
+        }
+
+        try {
+            LocalDateTime at = LocalDateTime.parse(dateTime, DATE_TIME_FORMATTER);
+            return new EventCommand(description, at);
+        } catch (DateTimeParseException e) {
+            throw new DukeInvalidTimeFormatException();
+        }
+    }
+
+    private static FindCommand parseFindCommand(String[] data) throws DukeNoKeywordException {
+        String description = data[1];
+
+        if (description.isEmpty()) {
+            throw new DukeNoKeywordException();
+        }
+        return new FindCommand(description);
+    }
+
+    /**
+     * Format data from user input for parsing
+     *
+     * @param input user Input to be parsed.
+     * @return A String array of size 3, where 1 = type of Task, 2 = description, 3 = dateTime
+     */
+    private static String[] formatInput(String input) throws DukeException {
+        String type;
+        String description;
+        String dateTime;
+
+        boolean haveDescription = input.contains(" ");
+
+        if (!haveDescription) {
+            type = input.toLowerCase();
+            description = "";
+            dateTime = "";
+        } else {
+            String details;
+            String[] splitDetails;
+
+            int index = input.indexOf(' ');
+            type = input.substring(0, index).toLowerCase();
+            details = input.substring(index + 1);
+
+            if (isValidTodo(type, details)) {
+                description = details;
+                dateTime = "";
+            } else if (isValidEvent(type, details)) {
+                splitDetails = details.split(SEPARATOR_EVENT);
+                description = splitDetails[0];
+                dateTime = splitDetails[1];
+            } else if (isValidDeadline(type, details)) {
+                splitDetails = details.split(SEPARATOR_DEADLINE);
+                description = splitDetails[0];
+                dateTime = splitDetails[1];
+            } else {
+                // Else does not specify an error as error is dealt in parse function.
+                description = details;
+                dateTime = "";
+            }
+        }
+
+        String[] data = new String[]{type, description, dateTime};
+        return data;
+    }
+
+    /**
+     * Returns true if input provides a valid Todo input, false otherwise.
+     *
+     * @param type The type specified by user input.
+     * @param details The details specified by user input.
+     * @return true is valid ToDo input, false otherwise.
+     * @throws DukeException Exception thrown when input lacks description.
+     */
+    private static boolean isValidTodo(String type, String details) throws DukeException {
+        boolean isTodo = type.equals("todo");
+        if (isTodo && details.isEmpty()) {
+            throw new DukeEmptyToDoException();
+        }
+
+        return isTodo;
+    }
+
+    /**
+     * Returns true if input provides a valid Event input, false otherwise.
+     *
+     * @param type The type specified by user input.
+     * @param details The details specified by user input.
+     * @return true is valid Event input, false otherwise.
+     * @throws DukeException Exception thrown when input lacks description.
+     */
+    private static boolean isValidEvent(String type, String details) throws DukeException {
+        boolean isEvent = type.equals("event");
+        boolean hasEventSeparator = details.contains(SEPARATOR_EVENT);
+        if (isEvent && details.isEmpty()) {
+            throw new DukeEmptyEventException();
+        } else if (isEvent && !hasEventSeparator) {
+            throw new DukeInvalidEventSeparatorException();
+        }
+
+        return isEvent && hasEventSeparator;
+    }
+
+    /**
+     * Returns true if input provides a valid Deadline input, false otherwise.
+     *
+     * @param type The type specified by user input.
+     * @param details The details specified by user input.
+     * @return true is valid Deadline input, false otherwise.
+     * @throws DukeException Exception thrown when input lacks description.
+     */
+    private static boolean isValidDeadline(String type, String details) throws DukeException {
+        boolean isDeadline = type.equals("deadline");
+        boolean hasDeadlineSeparator = details.contains(SEPARATOR_DEADLINE);
+        if (isDeadline && details.isEmpty()) {
+            throw new DukeEmptyDeadlineException();
+        } else if (isDeadline && !hasDeadlineSeparator) {
+            throw new DukeInvalidDeadlineSeparatorException();
+        }
+
+        return isDeadline && hasDeadlineSeparator;
     }
 }

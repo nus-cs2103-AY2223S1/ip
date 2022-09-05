@@ -99,9 +99,9 @@ public class Ui {
     }
 
     /**
-     * prints help message.
+     * Prints help message.
      *
-     * @returns List of available commands.
+     * @return List of available commands.
      */
     public String printHelpList() {
         String listHelpMessage = "List: List all tasks\n"
@@ -128,13 +128,13 @@ public class Ui {
         StringBuilder sb = new StringBuilder();
 
         sb.append("Here are the list of available commands\n" + '\n');
-        sb.append(listHelpMessage + '\n');
-        sb.append(markHelpMessage + '\n');
-        sb.append(unmarkHelpMessage + '\n');
-        sb.append(deleteHelpMessage + '\n');
-        sb.append(todoHelpMessage + '\n');
-        sb.append(deadlineHelpMessage + '\n');
-        sb.append(eventHelpMessage + '\n');
+        sb.append(listHelpMessage).append('\n');
+        sb.append(markHelpMessage).append('\n');
+        sb.append(unmarkHelpMessage).append('\n');
+        sb.append(deleteHelpMessage).append('\n');
+        sb.append(todoHelpMessage).append('\n');
+        sb.append(deadlineHelpMessage).append('\n');
+        sb.append(eventHelpMessage).append('\n');
 
         return sb.toString();
     }

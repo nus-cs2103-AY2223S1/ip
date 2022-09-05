@@ -3,6 +3,8 @@ package duke.task;
 import java.util.ArrayList;
 import java.util.List;
 
+import duke.exception.DukeException;
+import duke.exception.DukeNoMatchException;
 import duke.exception.DukeOutOfBoundException;
 
 /**
@@ -45,7 +47,9 @@ public class TaskList {
      * @throws DukeOutOfBoundException Exception thrown when index is out of size of TaskList.
      */
     public Task delete(int index) throws DukeOutOfBoundException {
-        if (index >= tasks.size() || index < 0) {
+        boolean isOutOfBound = index >= tasks.size() || index < 0;
+
+        if (isOutOfBound) {
             throw new DukeOutOfBoundException();
         }
         Task task = tasks.get(index);
@@ -61,7 +65,9 @@ public class TaskList {
      * @throws DukeOutOfBoundException Exception thrown when index is out of size of TaskList.
      */
     public Task mark(int index) throws DukeOutOfBoundException {
-        if (index >= tasks.size() || index < 0) {
+        boolean isOutOfBound = index >= tasks.size() || index < 0;
+
+        if (isOutOfBound) {
             throw new DukeOutOfBoundException();
         }
         Task task = tasks.get(index);
@@ -77,7 +83,9 @@ public class TaskList {
      * @throws DukeOutOfBoundException Exception thrown when index is out of size of TaskList.
      */
     public Task unmark(int index) throws DukeOutOfBoundException {
-        if (index >= tasks.size() || index < 0) {
+        boolean isOutOfBound = index >= tasks.size() || index < 0;
+
+        if (isOutOfBound) {
             throw new DukeOutOfBoundException();
         }
         Task task = tasks.get(index);
@@ -90,12 +98,17 @@ public class TaskList {
      *
      * @param keyword Keyword to be matched.
      */
-    public TaskList findTasks(String keyword) {
+    public TaskList findTasks(String keyword) throws DukeException {
         List<Task> matchedTasks = new ArrayList<>();
+
         for (Task task : tasks) {
             if (task.match(keyword)) {
                 matchedTasks.add(task);
             }
+        }
+
+        if (matchedTasks.isEmpty()) {
+            throw new DukeNoMatchException();
         }
 
         return new TaskList(matchedTasks);
@@ -144,6 +157,7 @@ public class TaskList {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
+
         for (int i = 0; i < tasks.size(); i++) {
             String task = String.format("%d. %s\n", i + 1, tasks.get(i).toString());
             result.append(task);

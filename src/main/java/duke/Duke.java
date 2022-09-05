@@ -48,28 +48,20 @@ public class Duke {
      * @return a list of String of size 2
      */
     public String[] getResponse(String input) {
-        // Split input to its proper form
-        String command;
-        String description;
-        String[] response = new String[2];
-        if (input.contains(" ")) {
-            int index = input.indexOf(' ');
-            command = input.substring(0, index);
-            description = input.substring(index + 1);
-        } else {
-            command = input;
-            description = "";
-        }
+
+        String[] response;
 
         try {
-            Command c = Parser.parse(command, description);
+            Command command = Parser.parse(input);
 
-            response[0] = c.execute(tasks, ui, storage);
-            response[1] = c.isExit() ? "1" : "0";
+            String message = command.execute(tasks, ui, storage);
+            String exitStatus = command.isExit() ? "1" : "0";
+            response = new String[]{message, exitStatus};
             return response;
         } catch (DukeException e) {
-            response[0] = ui.printErr(e.getMessage());
-            response[1] = "0";
+            String message = ui.printErr(e.getMessage());
+            String exitStatus = "0";
+            response = new String[]{message, exitStatus};
             return response;
         }
     }

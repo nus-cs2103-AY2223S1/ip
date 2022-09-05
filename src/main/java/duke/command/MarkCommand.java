@@ -2,6 +2,7 @@ package duke.command;
 
 import duke.Storage;
 import duke.Ui;
+import duke.exception.DukeException;
 import duke.exception.DukeOutOfBoundException;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -22,7 +23,7 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         try {
             Task markedTask = taskList.mark(index);
             String message = ui.printMarkTask(markedTask) + '\n';

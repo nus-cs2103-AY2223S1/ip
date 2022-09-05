@@ -11,6 +11,8 @@ import java.time.format.DateTimeFormatter;
  * @author Tan Jia Rong
  */
 public class Deadline extends Task {
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy MMM dd hh:mma");
+
     /** Stores the due date of the Deadline. */
     protected LocalDateTime by;
 
@@ -29,7 +31,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Constructor for Deadline.
+     * Constructor for Deadline given completeness of task.
      *
      * @param description Description of the Deadline.
      * @param isDone Completeness of Deadline.
@@ -58,8 +60,8 @@ public class Deadline extends Task {
      * @return Date and Time of Deadline.
      */
     public String printDateTime() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MMM dd hh:mma");
-        return by.format(formatter);
+        String dueDate = by.format(DATE_TIME_FORMATTER);
+        return dueDate;
     }
 
     /**
