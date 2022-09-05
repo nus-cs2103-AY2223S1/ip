@@ -10,7 +10,7 @@ import duke.task.Deadline;
 /**
  * A Command which makes a Deadline object and adds it to a TaskList object when executed.
  */
-public class MakeDeadlineCommand extends Command {
+public class MakeDeadlineCommand extends MakeTaskCommand {
     private String description;
     private LocalDate time;
 
@@ -34,6 +34,10 @@ public class MakeDeadlineCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         Deadline newTask = new Deadline(this.description, this.time);
+        if (isDuplicate(newTask, taskList)) {
+            ui.showIsDuplicate();
+            return;
+        }
         taskList.addTask(newTask);
         ui.showTaskAddedOrDeleted(newTask, taskList.getTaskListLength(), true);
     }

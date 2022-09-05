@@ -8,7 +8,7 @@ import duke.task.ToDo;
 /**
  * A Command which makes a ToDo object and adds it to a TaskList object when executed.
  */
-public class MakeToDoCommand extends Command {
+public class MakeToDoCommand extends MakeTaskCommand {
     private String description;
 
     /**
@@ -29,6 +29,10 @@ public class MakeToDoCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         ToDo newTask = new ToDo(this.description);
+        if (isDuplicate(newTask, taskList)) {
+            ui.showIsDuplicate();
+            return;
+        }
         taskList.addTask(newTask);
         ui.showTaskAddedOrDeleted(newTask, taskList.getTaskListLength(), true);
     }
