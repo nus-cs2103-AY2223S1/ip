@@ -22,6 +22,11 @@ public class ByeCommand extends Command {
     }
 
 
+    /**
+     * Executes the command, and returns a String
+     * describing the execution of this Command.
+     * @return A String describing the Tasks that were saved.
+     */
     public String execute() {
         try {
             this.storage.save(tasks);
