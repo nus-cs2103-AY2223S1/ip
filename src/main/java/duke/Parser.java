@@ -39,60 +39,98 @@ public class Parser {
         case list:
             return new ListCommand();
         case mark:
-            String indexToMarkString = input.substring(4).trim();
+            String indexToMarkString = getContent(input, "mark");
             return new MarkCommand(indexToMarkString, true);
         case unmark:
-            String indexToUnmarkString = input.substring(6).trim();
+            String indexToUnmarkString = getContent(input, "unmark");
             return new MarkCommand(indexToUnmarkString, false);
         case todo:
-            String todoDescription = input.substring(4).trim();
-            if (todoDescription.length() == 0) {
-                throw new InvalidInput("The description of a todo cannot be empty.");
-            }
+            String todoDescription = getContent(input, "todo");
+            getDescription(todoDescription, true);
             return new AddCommand("T", todoDescription, null);
         case event:
-            String[] eventDetails = input.substring(5).split("/at");
-            if (eventDetails.length != 2) {
-                throw new InvalidInput("Ensure input format is correct.");
-            }
-            String eventDescription = eventDetails[0].strip();
-            if (eventDescription.length() == 0) {
-                throw new InvalidInput("The description of event cannot be empty.");
-            }
-            try {
-                LocalDate date = LocalDate.parse(eventDetails[1].strip());
-                return new AddCommand("E", eventDescription, date);
-            } catch (DateTimeParseException e) {
-                throw new InvalidInput("Date format should be yyyy-mm-dd");
-            }
+            String[] eventDetails = getContent(input, "event").split("/at");
+            checkFormat(eventDetails);
+            String eventDescription = getDescription(eventDetails[0].strip(), true);
+            LocalDate eventDate = getDate(eventDetails[1].strip());
+            return new AddCommand("E", eventDescription, eventDate);
         case deadline:
-            String[] deadlineDetails = input.substring(8).split("/by");
-            if (deadlineDetails.length != 2) {
-                throw new InvalidInput("Ensure input format is correct.");
-            }
-            String deadlineDescription = deadlineDetails[0].strip();
-            if (deadlineDescription.length() == 0) {
-                throw new InvalidInput("The description of deadline cannot be empty.");
-            }
-            try {
-                LocalDate date = LocalDate.parse(deadlineDetails[1].strip());
-                return new AddCommand("D", deadlineDescription, date);
-            } catch (DateTimeParseException e) {
-                throw new InvalidInput("Date format should be yyyy-mm-dd");
-            }
+            String[] deadlineDetails = getContent(input, "deadline").split("/by");
+            checkFormat(deadlineDetails);
+            String deadlineDescription = getDescription(deadlineDetails[0].strip(), true);
+            LocalDate deadlineDate = getDate(deadlineDetails[1].strip());
+            return new AddCommand("D", deadlineDescription, deadlineDate);
         case delete:
-            String indexString = input.substring(6).trim();
+            String indexString = getContent(input, "delete");
             return new DeleteCommand(indexString);
         case find:
-            String query = input.substring(4).trim();
-            if (query.equals("")) {
-                throw new InvalidInput("Query cannot be empty");
-            }
+            String query = getContent(input, "find");
+            getDescription(query, false);
             return new FindCommand(query);
         case bye:
             return new ExitCommand();
         default:
             throw new UnknownCommand();
+        }
+    }
+
+    /**
+     * Extracts out the content of the command from the
+     * whole user input.
+     *
+     * @param input The user input.
+     * @param command The command the user specified.
+     * @return The content of the command.
+     */
+    private String getContent(String input, String command) {
+        assert input.length() > 0;
+        return input.substring(command.length()).trim();
+    }
+
+    /**
+     * Checks the length of the description or query and returns
+     * the description.
+     *
+     * @param str The string to check the length of.
+     * @param isDescription If the string provided is a description.
+     * @return The description.
+     * @throws InvalidInput If the length of the string is 0.
+     */
+    private String getDescription(String str, boolean isDescription) throws InvalidInput {
+        if (str.length() == 0) {
+            if (isDescription) {
+                throw new InvalidInput("The description cannot be empty.");
+            } else {
+                throw new InvalidInput("Query cannot be empty.");
+            }
+        }
+        return str;
+    }
+
+    /**
+     * Checks if the format of the details provided is valid.
+     *
+     * @param details An array of string containing details of the task.
+     * @throws InvalidInput If the length of the array is not 2.
+     */
+    private void checkFormat(String[] details) throws InvalidInput {
+        if (details.length != 2) {
+            throw new InvalidInput("Ensure input format is correct.");
+        }
+    }
+
+    /**
+     * Returns the LocalDate from a given string.
+     *
+     * @param date The string containing the date.
+     * @return The date in LocalDate.
+     * @throws InvalidInput If the format of the date string is invalid.
+     */
+    private LocalDate getDate(String date) throws InvalidInput {
+        try {
+            return LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+            throw new InvalidInput("Date format should be yyyy-mm-dd");
         }
     }
 }

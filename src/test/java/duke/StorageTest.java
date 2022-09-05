@@ -51,7 +51,7 @@ public class StorageTest {
         writeTestData();
         try {
             storage.loadData(taskList);
-            assertEquals(3, taskList.size());
+            assertEquals(3, taskList.getSize());
             Task[] tasks = {
                 new ToDo("test test"),
                 new Deadline("test deadline", LocalDate.parse("2019-10-15")),
@@ -59,7 +59,7 @@ public class StorageTest {
             };
             tasks[0].markDone();
             for (int i = 0; i < tasks.length; i++) {
-                assertEquals(tasks[i].toString(), taskList.get(i).toString());
+                assertEquals(tasks[i].toString(), taskList.getTask(i).toString());
             }
         } catch (DukeException e) {
             fail(e);
@@ -70,7 +70,7 @@ public class StorageTest {
     @Test
     public void saveDataTest() {
         try {
-            taskList.add(new ToDo("test test"));
+            taskList.addTask(new ToDo("test test"));
             storage.saveData(taskList);
         } catch (DukeException e) {
             fail("Exception thrown when adding task");

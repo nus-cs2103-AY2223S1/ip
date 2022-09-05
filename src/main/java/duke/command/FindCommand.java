@@ -30,7 +30,7 @@ public class FindCommand extends Command {
     @Override
     public String execute(TaskList tasks, Storage storage) {
         TaskList result = tasks.find(query);
-        if (result.size() == 0) {
+        if (result.getSize() == 0) {
             return "No results match your search :(";
         } else {
             return "Here are the matching tasks in your list:\n" + result;

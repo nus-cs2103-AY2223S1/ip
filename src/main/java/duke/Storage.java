@@ -31,17 +31,15 @@ public class Storage {
         String home = System.getProperty("user.dir");
         Path path = Paths.get(home, "data");
         File dataDir = new File(path.toString());
-        if (!dataDir.exists()) {
-            if (!dataDir.mkdir()) {
-                throw new DukeException("Unable to create 'data' directory");
-            }
+        if (!dataDir.exists() && !dataDir.mkdir()) {
+            throw new DukeException("Unable to create 'data' directory");
         }
     }
 
     /**
      * Loads in the data from text file to the given TaskList.
      *
-     * @param data The TaskList to add the data to.
+     * @param data The TaskList to addTask the data to.
      * @throws DukeException If the text in the file is of
      *                       invalid format.
      */
@@ -54,9 +52,7 @@ public class Storage {
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
                 String[] taskData = line.split("\\|");
-                if (taskData.length < 3 || (taskData.length < 4 && !"T".equals(taskData[0]))) {
-                    throw new DukeException("File format invalid!");
-                }
+                checkFormat(taskData);
                 Task task = null;
                 switch (taskData[0]) {
                 case "T":
@@ -72,17 +68,13 @@ public class Storage {
                     break;
                 }
                 if (task != null) {
-                    data.add(task);
-                    if ("1".equals(taskData[1])) {
-                        task.markDone();
-                    } else {
-                        task.markNotDone();
-                    }
+                    data.addTask(task);
+                    setCompletion(task, taskData);
                 }
             }
             sc.close();
-        } catch (FileNotFoundException ignored) {
-            return;
+        } catch (FileNotFoundException e) {
+            throw new DukeException("Cannot read from saved data.");
         }
     }
 
@@ -95,12 +87,45 @@ public class Storage {
     public void saveData(TaskList data) throws DukeException {
         try {
             FileWriter file = new FileWriter("data/duke.txt", false);
-            for (int i = 0; i < data.size(); i++) {
-                file.write(data.get(i).stringToSave() + System.lineSeparator());
+            for (int i = 0; i < data.getSize(); i++) {
+                file.write(data.getTask(i).stringToSave() + System.lineSeparator());
             }
             file.close();
         } catch (IOException e) {
             throw new DukeException("An error occurred when writing to file");
+        }
+    }
+
+    /**
+     * Checks if the format of the task data is valid.
+     *
+     * @param taskData The data read from the saved file.
+     * @throws DukeException If the data is not valid.
+     */
+    private void checkFormat(String[] taskData) throws DukeException {
+        assert taskData != null && taskData.length > 0 && taskData.length < 5;
+        boolean isToDo = "T".equals(taskData[0]);
+        if (taskData.length < 3) {
+            throw new DukeException("File format invalid!");
+        }
+        if (taskData.length == 3 && !isToDo) {
+            throw new DukeException("File format invalid!");
+        }
+    }
+
+    /**
+     * Sets the completion status of the saved task.
+     *
+     * @param task The saved task.
+     * @param taskData The data that was saved for that task.
+     */
+    private void setCompletion(Task task, String[] taskData) {
+        assert task != null && taskData.length > 1;
+        boolean isComplete = "1".equals(taskData[1]);
+        if (isComplete) {
+            task.markDone();
+        } else {
+            task.markNotDone();
         }
     }
 }

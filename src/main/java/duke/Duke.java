@@ -24,7 +24,7 @@ public class Duke {
             storage = new Storage();
             storage.loadData(data);
         } catch (DukeException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 

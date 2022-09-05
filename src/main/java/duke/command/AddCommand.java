@@ -11,7 +11,7 @@ import duke.task.Task;
 import duke.task.ToDo;
 
 /**
- * The class that encapsulates the add command.
+ * The class that encapsulates the addTask command.
  */
 public class AddCommand extends Command {
 
@@ -39,7 +39,7 @@ public class AddCommand extends Command {
     /**
      * Handles the execution behaviour of the adding of tasks.
      *
-     * @param tasks   The list of tasks to add to.
+     * @param tasks   The list of tasks to addTask to.
      * @param storage The storage of data.
      * @return The reply of the Duke bot.
      * @throws DukeException If there is an error saving the
@@ -61,28 +61,29 @@ public class AddCommand extends Command {
         default:
             break;
         }
-        tasks.add(task);
+        tasks.addTask(task);
         storage.saveData(tasks);
-        return "Got it. I've added this task:\n" + task + "\nNow you have " + tasks.size() + " tasks.";
+        return "Got it. I've added this task:\n" + task
+                + "\nNow you have " + tasks.getSize() + " tasks.";
     }
 
     /**
      * Returns the command type.
      *
-     * @return "add".
+     * @return "addTask".
      */
     @Override
     public String getCommand() {
-        return "add";
+        return "addTask";
     }
 
     /**
-     * Returns the string representation of the add command.
+     * Returns the string representation of the addTask command.
      *
-     * @return The string representation of the add command.
+     * @return The string representation of the addTask command.
      */
     @Override
     public String toString() {
-        return "add " + taskType + " " + description + " " + date;
+        return "addTask " + taskType + " " + description + " " + date;
     }
 }

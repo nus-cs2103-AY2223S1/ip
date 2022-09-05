@@ -48,14 +48,14 @@ public class MarkCommandTest {
 
     @Test
     public void markTest_markSuccess() {
-        tasks.add(new ToDo("test test"));
+        tasks.addTask(new ToDo("test test"));
         try {
             Command commandMark = new MarkCommand("1", true);
             commandMark.execute(tasks, storage);
-            assertEquals("[T][X] test test", tasks.get(0).toString());
+            assertEquals("[T][X] test test", tasks.getTask(0).toString());
             Command commandUnmark = new MarkCommand("1", false);
             commandUnmark.execute(tasks, storage);
-            assertEquals("[T][ ] test test", tasks.get(0).toString());
+            assertEquals("[T][ ] test test", tasks.getTask(0).toString());
         } catch (DukeException e) {
             fail(e);
         }

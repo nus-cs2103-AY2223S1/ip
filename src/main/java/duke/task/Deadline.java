@@ -30,7 +30,8 @@ public class Deadline extends Task {
      */
     @Override
     public String stringToSave() {
-        return "D|" + ("X".equals(super.getStatusIcon()) ? "1|" : "0|") + super.description + "|" + this.deadline;
+        String statusString = "X".equals(super.getStatusIcon()) ? "1|" : "0|";
+        return "D|" + statusString + super.description + "|" + this.deadline;
     }
 
     /**
@@ -40,7 +41,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
+        String date = this.deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
         return "[D][" + super.getStatusIcon() + "] " + super.description + " (by: "
-                + this.deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+                + date + ")";
     }
 }
