@@ -7,7 +7,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Encapsulates parsing of user commands.
+ */
 public class Parser {
+    /**
+     * Parses user input and produces the necessary actions to take.
+     * @param s User input string
+     * @return Command
+     * @throws DukeException Invalid user input
+     */
     public static Command parse(String s) throws DukeException {
         String[] userInput = s.trim().split(" ", 2);
 

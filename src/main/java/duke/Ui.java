@@ -16,6 +16,9 @@ public class Ui {
         System.out.println("I can help you manage your tasks! :\")\n");
     }
 
+    /**
+     * Prints goodbye message upon terminating the bot.
+     */
     public void goodbye() {
         System.out.println("Bye. Hope to see you again soon!");
     }

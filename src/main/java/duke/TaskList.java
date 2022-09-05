@@ -7,9 +7,17 @@ import duke.task.Deadline;
 
 import java.util.ArrayList;
 
+/**
+ * Encapsulates the data structure storing Duke's tasks,
+ * along with its functions to manipulate said data structure.
+ */
 public class TaskList {
+    /** ArrayList to store Duke's tasks */
     private ArrayList<Task> db;
 
+    /**
+     * Constructor for empty TaskList.
+     */
     public TaskList() {
          db = new ArrayList<>(10);
     }
@@ -35,10 +43,19 @@ public class TaskList {
         }
     }
 
+    /**
+     * Returns the number of tasks in the TaskList.
+     * @return number of Tasks in TaskList
+     */
     public int getLength() {
         return db.size();
     }
 
+    /**
+     * Returns a specified Task from TaskList based on its index (1-indexed).
+     * @param i index of Task to retrieve
+     * @return Task
+     */
     public Task getTask(int i) {
         return db.get(i - 1);
     }
@@ -103,6 +120,10 @@ public class TaskList {
         return res.toString().trim();
     }
 
+    /**
+     * Returns a string representation of the Tasks in TaskList for writing to Duke's save file.
+     * @return Tasks to write to save file
+     */
     public String[] toStringWritable() {
         String[] res = new String[db.size()];
         for (int i = 0; i < db.size(); i++) {

@@ -5,14 +5,20 @@ import duke.exception.DukeException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Encapsulates writing to and reading from Duke's save file.
+ */
 public class Storage {
+    /** Contains the path to Duke's save file. */
     private String filePath;
 
+    /**
+     * Constructor for Storage.
+     * @param filePath Path to Duke's save file.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
@@ -20,7 +26,7 @@ public class Storage {
 
     /**
      * Writes the list of tasks into a save file.
-     * @param inputList Array of tasks in
+     * @param inputList Tasks to be written to file
      * @throws DukeException if error occurs while writing to file
      */
     public void write(String[] inputList) throws DukeException {
