@@ -3,7 +3,7 @@ package duke.command;
 import java.io.IOException;
 
 import duke.Storage;
-import duke.TaskList;
+import duke.task.TaskList;
 import duke.Ui;
 
 

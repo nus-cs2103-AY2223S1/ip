@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  * Main entry point to run the java app
  */
 public class Main extends Application {
-    private static final String FILE_PATH = "data/tasks.txt";
+    private static final String FILE_PATH = "data/duke.txt";
 
     private final Duke duke = new Duke(FILE_PATH);
     @Override
@@ -24,6 +24,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setTitle("ANYACHAT");
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.show();
         } catch (IOException e) {
