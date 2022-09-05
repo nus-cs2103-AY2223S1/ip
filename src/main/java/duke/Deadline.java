@@ -49,6 +49,9 @@ public class Deadline extends Task {
         if (splitSaveString.length != 3) {
             throw new DukeException("Tried to read unexpected save data.");
         }
+        assert splitSaveString[0].equals("D") : "Save data is not a deadline.";
+        assert splitSaveString[0].endsWith("1") || splitSaveString[0].endsWith("0")
+                : "Save data contains invalid isDone value.";
         String description = splitSaveString[1];
         String by = "by " + splitSaveString[2];
         boolean isDone = splitSaveString[0].endsWith("1");
