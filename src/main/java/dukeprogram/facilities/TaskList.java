@@ -57,11 +57,17 @@ public class TaskList implements Serializable {
     public void changeName(String newName) {
         this.name = newName;
 
+        try {
+            SaveManager.load("tasklist");
+        } catch (KeyNotFoundException e) {
+            assert false;
+        }
+
         SaveManager.save("tasklist", this);
     }
 
     public Task[] getAllTasks() {
-        return taskArrayList.toArray(new Task[0]);
+        return taskArrayList.toArray(Task[]::new);
     }
 
 
@@ -98,12 +104,10 @@ public class TaskList implements Serializable {
      * @return the task that was removed if the index was valid, otherwise null
      */
     public Task remove(int index) {
-        try {
-            Task removedTask = taskArrayList.remove(index);
-            SaveManager.save("tasklist", this);
-            return removedTask;
-        } catch (IndexOutOfBoundsException e) {
-            return null;
-        }
+        assert index < taskArrayList.size() && index >= 0;
+        
+        Task removedTask = taskArrayList.remove(index);
+        SaveManager.save("tasklist", this);
+        return removedTask;
     }
 }

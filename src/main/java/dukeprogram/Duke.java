@@ -2,6 +2,7 @@ package dukeprogram;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import dukeprogram.command.Command;
 import dukeprogram.command.HomePageCommand;
@@ -27,7 +28,7 @@ public class Duke {
         currentContext = new HomePageCommand();
         InternalAction internalAction = currentContext.onInvoke();
         user = ((HomePageCommand) currentContext).getUser();
-        return internalAction.getAllDisplayText().toArray(String[]::new);
+        return internalAction.getAllDisplayText();
     }
 
 
@@ -38,7 +39,7 @@ public class Duke {
      */
     public static String[] getResponses(String input) {
         InternalAction internalAction = currentContext.onParse(input);
-        responseLog.addAll(internalAction.getAllDisplayText());
+        responseLog.addAll(List.of(internalAction.getAllDisplayText()));
         internalAction.doRunnable();
         String[] responses = responseLog.stream().filter(x -> !x.equals("")).toArray(String[]::new);
         responseLog.clear();
@@ -58,7 +59,7 @@ public class Duke {
         }
         currentContext = currentContext.onExit();
         InternalAction internalAction = currentContext.onInvoke();
-        responseLog.addAll(internalAction.getAllDisplayText());
+        responseLog.addAll(List.of(internalAction.getAllDisplayText()));
         internalAction.doRunnable();
     }
 
@@ -69,7 +70,7 @@ public class Duke {
     public static void setState(Command state) {
         currentContext = state;
         InternalAction internalAction = currentContext.onInvoke();
-        responseLog.addAll(internalAction.getAllDisplayText());
+        responseLog.addAll(List.of(internalAction.getAllDisplayText()));
         internalAction.doRunnable();
     }
 

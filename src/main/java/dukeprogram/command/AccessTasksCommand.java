@@ -26,7 +26,7 @@ public class AccessTasksCommand extends Command {
     @Override
     public InternalAction onStay() {
         return new InternalAction("Input one of these command:"
-                + "\n[add | list | mark | unmark | delete]");
+                + "\n[add | list | mark | unmark | find | delete]");
     }
 
 
@@ -78,7 +78,6 @@ public class AccessTasksCommand extends Command {
     }
 
 
-    @SuppressWarnings("checkstyle:SeparatorWrap")
     private InternalAction annotateTask(String[] separatedCommands, boolean isMarking) {
         nextCommand = this;
 
