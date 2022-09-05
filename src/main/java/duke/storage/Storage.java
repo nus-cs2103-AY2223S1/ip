@@ -87,7 +87,7 @@ public class Storage {
                 case "E":
                     currentSavedTask = new Event(taskDescription, taskDate);
                     break;
-                default:
+                default: assert false : "Unknown taskType: " + taskType;
                     break;
                 }
 

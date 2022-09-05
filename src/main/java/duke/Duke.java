@@ -42,6 +42,7 @@ public class Duke {
      */
     public String getResponse(String input) {
         try {
+            ui.validate(input);
             Command c = Parser.parse(input);
             c.execute(tasks, ui, storage);
             isExit = c.isExit();

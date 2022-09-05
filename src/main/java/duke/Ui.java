@@ -45,6 +45,7 @@ public class Ui {
      * @param message text to be printed.
      */
     public void printMessage(String message) {
+        assert (message != null) : "Null message";
         response = message;
         System.out.println(response);
     }
@@ -58,6 +59,7 @@ public class Ui {
         if (list.size() == 0) {
             return "List is empty ~\n";
         }
+        assert (list.size() >= 0) : "Negative list size" + list.size();
         StringBuilder output = new StringBuilder();
         output.append("Here are the tasks in your list: \n");
         for (int i = 0; i < list.size(); i++) {
@@ -79,6 +81,7 @@ public class Ui {
             response = "List is empty ~\n";
             return response;
         }
+        assert (list.size() >= 0) : "Negative list size" + list.size();
         StringBuilder output = new StringBuilder();
         output.append("Here are the matching tasks containing \"" + text + "\":\n");
         for (int i = 0; i < list.size(); i++) {
@@ -112,6 +115,7 @@ public class Ui {
      * @param message error text to be printed.
      */
     public void showError(String message) {
+        assert (message != null) : "Null error message";
         response = message;
         System.out.println(message);
     }
