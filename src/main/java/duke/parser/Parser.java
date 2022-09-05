@@ -27,6 +27,8 @@ public class Parser {
     }
 
     public int getTaskNumber() {
+        assert inputArr.length > 1: "there is no input after the single text";
+        assert inputArr[1].matches("\\d+"): "the input is not a number";
         return Integer.parseInt(inputArr[1]);
     }
 
