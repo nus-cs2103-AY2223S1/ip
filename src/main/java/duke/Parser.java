@@ -89,6 +89,8 @@ public class Parser {
             return "Please enter a description for your task!";
         }
 
+        assert !desc.isEmpty() : "Task description is empty!";
+
         if (type.equals("todo")) {
             Todo temp = new Todo(desc);
             tasks.add(temp);
@@ -122,6 +124,7 @@ public class Parser {
                 return "Please enter a valid date!";
             }
         }
+        assert false : "This statement should not be reached.";
         return "There was a problem entering your task. Try again!";
     }
 }
