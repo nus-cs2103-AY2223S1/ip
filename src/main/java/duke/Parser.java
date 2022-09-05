@@ -83,7 +83,6 @@ public class Parser {
      * @return The content of the command.
      */
     private String getContent(String input, String command) {
-        assert input.length() > 0;
         return input.substring(command.length()).trim();
     }
 

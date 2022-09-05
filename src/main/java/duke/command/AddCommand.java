@@ -48,7 +48,6 @@ public class AddCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
-        assert tasks != null && storage != null;
         Task task = null;
         switch (taskType) {
         case "T":

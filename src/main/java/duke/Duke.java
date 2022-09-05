@@ -31,7 +31,6 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Command command = parser.parse(input);
-            assert command != null;
             return command.execute(data, storage);
         } catch (DukeException e) {
             return e.toString();
