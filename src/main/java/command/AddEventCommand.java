@@ -14,6 +14,7 @@ public class AddEventCommand extends Command {
 
     /**
      * Runs when event is to be added.
+     *
      * @param taskList TaskList to append Event to.
      * @param ui ui provides user command.
      * @param storage Storage space to append Deadline to.
@@ -32,6 +33,7 @@ public class AddEventCommand extends Command {
 
     /**
      * Returns false to allow program execution to continue.
+     *
      * @return false.
      */
     @Override

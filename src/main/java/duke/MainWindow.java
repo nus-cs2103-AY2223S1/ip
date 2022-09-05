@@ -6,6 +6,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+import java.io.InputStream;
+
 /**
  * Main window class for running Duke.
  */
@@ -18,8 +20,12 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.jpg"));
-    private Image falconImage = new Image(this.getClass().getResourceAsStream("/images/falcon.jpg"));
+    private final InputStream USER_IMAGE_PATH =
+            this.getClass().getResourceAsStream("/images/user.jpg");
+    private final InputStream FALCON_IMAGE_PATH =
+            this.getClass().getResourceAsStream("/images/falcon.jpg");
+    private Image userImage = new Image(USER_IMAGE_PATH);
+    private Image falconImage = new Image(FALCON_IMAGE_PATH);
 
     public void setDuke(Duke d) {
         duke = d;

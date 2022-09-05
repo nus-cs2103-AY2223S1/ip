@@ -15,6 +15,7 @@ public class CheckIsTodayCommand extends Command {
     /**
      * Checks if task at index n in taskList
      * is due/happening today.
+     *
      * @param taskList taskList provides access to Task.
      * @param ui ui provides user command.
      * @param storage Not needed.

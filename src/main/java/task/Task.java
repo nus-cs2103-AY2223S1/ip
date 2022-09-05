@@ -8,6 +8,7 @@ public class Task {
 
     /**
      * Constructor.
+     *
      * @param description Description of the Task.
      */
     public Task(String description) {
@@ -17,6 +18,7 @@ public class Task {
 
     /**
      * String encapsulates Task description and isDone status.
+     *
      * @return String representing Task object
      */
     @Override
@@ -32,6 +34,7 @@ public class Task {
 
     /**
      * Returns long description of the Task.
+     *
      * @return Long description of the Task.
      */
     public String longDescription() {

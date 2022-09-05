@@ -30,6 +30,7 @@ public class Parser {
     private static final int START_DATE_COMMAND_LENGTH = 3;
     private static final String EVENT_DATE_SECTION_START_STRING = "/at";
     private static final String DEADLINE_DATE_SECTION_DATE_STRING = "/by";
+
     /**
      * Returns Command object corresponding to
      * command extracted from user input.
@@ -82,6 +83,7 @@ public class Parser {
     /**
      * Converts string command for adding
      * task to corresponding Task object.
+     *
      * @param userInput User input command for creating Task.
      * @return Task object with required description.
      * @throws DukeException When no valid description is found.
@@ -94,6 +96,7 @@ public class Parser {
     /**
      * Converts string command for adding
      * event to corresponding Event object.
+     *
      * @param userInput User input command for creating Event.
      * @return Event object with required description and date.
      * @throws DukeException When no valid description or date is found.
@@ -107,6 +110,7 @@ public class Parser {
     /**
      * Converts string command for adding
      * deadline to corresponding Deadline object.
+     *
      * @param userInput User input command for creating Deadline.
      * @return Deadline object with required description and date.
      * @throws DukeException When no valid description or date is found.
@@ -120,6 +124,7 @@ public class Parser {
     /**
      * Extracts description of a task from user input.
      * Requires command type used to evaluate description.
+     *
      * @param commandUsed Command type mentioned in user input.
      * @param input User input string for performing command.
      * @return Description contained in user input.
@@ -147,6 +152,7 @@ public class Parser {
 
     /**
      * Extracts date from a date-able Task.
+     *
      * @param userInput User input command to extract date from.
      * @return LocalDate object corresponding to date mentioned.
      * @throws DukeException Throws when no valid date found.
@@ -171,6 +177,7 @@ public class Parser {
 
     /**
      * Extracts task number from user input string.
+     *
      * @param s User input string to get number from.
      * @param listSize TaskList size to check if number is valid.
      * @return Index of the task in the list plus one.
@@ -193,6 +200,7 @@ public class Parser {
 
     /**
      * Extracts keyword to user is looking up from user input.
+     * 
      * @param userInput User input to extract keyword from.
      * @return Keyword required to perform Find operation.
      */

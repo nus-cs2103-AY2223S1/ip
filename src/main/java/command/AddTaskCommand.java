@@ -14,6 +14,7 @@ public class AddTaskCommand extends Command {
 
     /**
      * Runs when task is to be added.
+     *
      * @param taskList TaskList to append Task to.
      * @param ui ui provides user command.
      * @param storage Storage space to append Task to.
@@ -32,6 +33,7 @@ public class AddTaskCommand extends Command {
 
     /**
      * Returns false to allow program execution to continue.
+     *
      * @return false.
      */
     @Override

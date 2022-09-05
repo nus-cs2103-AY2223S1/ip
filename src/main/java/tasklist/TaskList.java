@@ -14,6 +14,7 @@ public class TaskList<T extends Task> {
 
     /**
      * Adds Task to list.
+     *
      * @param t Task to add.
      */
     public void addTask(T t) {
@@ -22,6 +23,7 @@ public class TaskList<T extends Task> {
 
     /**
      * Adds Event to list.
+     *
      * @param e Event to add.
      */
     public void addEvent(T e) {
@@ -30,6 +32,7 @@ public class TaskList<T extends Task> {
 
     /**
      * Adds Deadline to list.
+     *
      * @param d Deadline to add.
      */
     public void addDeadline(T d) {
@@ -38,6 +41,7 @@ public class TaskList<T extends Task> {
 
     /**
      * Deletes task at index (n - 1) in the list.
+     *
      * @param n Index to remove.
      */
     public void deleteTask(int n) {
@@ -46,6 +50,7 @@ public class TaskList<T extends Task> {
 
     /**
      * Returns true if task at index (n - 1) has date today.
+     *
      * @param n Index of task to check date.
      * @return True if task due today.
      */
@@ -55,6 +60,7 @@ public class TaskList<T extends Task> {
 
     /**
      * Returns long description of task at index (n - 1) in the list.
+     *
      * @param n Index of task to get long description of.
      * @return Long description of the task.
      */
@@ -64,6 +70,7 @@ public class TaskList<T extends Task> {
 
     /**
      * Returns size of the list.
+     *
      * @return Size of the list.
      */
     public int getSize() {
@@ -73,6 +80,7 @@ public class TaskList<T extends Task> {
     /**
      * Returns a mutable formatting of all
      * tasks present in the list.
+     *
      * @return Mutable string containing details of all tasks.
      */
     public StringBuffer getContents() {
@@ -84,7 +92,8 @@ public class TaskList<T extends Task> {
     }
 
     /**
-     * Marks completed task at index (n - 1)
+     * Marks completed task at index (n - 1).
+     *
      * @param n Index to mark.
      */
     public void markTask(int n) {
@@ -92,7 +101,8 @@ public class TaskList<T extends Task> {
     }
 
     /**
-     * Unmarks completed task at index (n - 1)
+     * Unmarks completed task at index (n - 1).
+     *
      * @param n Index to unmark.
      */
     public void unmarkTask(int n) {
@@ -101,6 +111,7 @@ public class TaskList<T extends Task> {
 
     /**
      * Returns task at index (n - 1).
+     *
      * @param n Index to return.
      * @return Task/Event/Deadline.
      */
@@ -112,6 +123,7 @@ public class TaskList<T extends Task> {
      * Returns new TaskList containing
      * all Tasks whose description
      * includes keyword given.
+     *
      * @param keyword Keyword to look for in tasks.
      * @return TaskList of all Tasks found.
      */

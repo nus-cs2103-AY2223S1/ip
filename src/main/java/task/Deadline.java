@@ -9,6 +9,7 @@ public class Deadline extends Task {
 
     /**
      * Constructor.
+     *
      * @param description Description of the Deadline.
      * @param by Date associated with the Deadline.
      */
@@ -30,6 +31,7 @@ public class Deadline extends Task {
 
     /**
      * Check if deadline is today.
+     *
      * @return true if deadline is today.
      */
     @Override
@@ -40,6 +42,7 @@ public class Deadline extends Task {
 
     /**
      * Returns formatted description of the Deadline.
+     *
      * @return string representing formatted description.
      */
     @Override

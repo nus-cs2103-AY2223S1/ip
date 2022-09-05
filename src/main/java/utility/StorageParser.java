@@ -24,6 +24,7 @@ public class StorageParser {
 
     /**
      * Converts line in disk file to corresponding Task.
+     *
      * @param line String stored in file.
      * @return Task object.
      */
