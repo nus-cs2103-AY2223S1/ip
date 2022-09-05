@@ -1,24 +1,27 @@
-# Duke project template
+# Pikachu Task Manager ϞϞ(๑⚈ ․̫ ⚈๑)∩ 🟡
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+> "Pokémon Can Evolve Into Better Versions Of Themselves. And Now - So Can You." - Detective Pikachu
 
-## Setting up in Intellij
+With Pikachu Task Manager, you can become a better version of yourself through managing your tasks better and never going to miss any deadlines! (*PIKA!*)
 
-Prerequisites: JDK 11, update Intellij to the most recent version.
+## Type of tasks it can manage:
+* To do
+* Event
+* Deadline
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 11** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-3. After that, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+All you need to do is,
+1. download pikachu.jar from [here](https://github.com/optionalemon/ip/releases/tag/A-Jar)
+2. double-click it
+3. Add in your tasks
+4. Pikachu will be there to help (*Pikapi!*)
+
+If you are a fan of Pokémon:
+[ ] Yes, I love it!
+[ ] No, but yes Pikachu is cute!
+
+And also a Java Programmer, you can definitely make use of the <code>main</code> function in Pikachu.java:
+```java
+public static void main(String[] args) {
+        new Pikachu("you_path_to_the_database_file").run();
+    }
+```
