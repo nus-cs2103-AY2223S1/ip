@@ -1,5 +1,7 @@
 package duke.commands;
 
+import java.util.Objects;
+
 /**
  * ErrorCommand Class
  */
@@ -7,6 +9,7 @@ public class ErrorCommand implements BaseCommand {
     private final String message;
 
     public ErrorCommand(String message) {
+        assert Objects.nonNull(message);
         this.message = message;
     }
 

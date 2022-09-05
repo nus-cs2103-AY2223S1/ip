@@ -1,5 +1,7 @@
 package duke.commands.tasks;
 
+import java.util.Objects;
+
 import duke.commands.BaseCommand;
 import duke.tasklist.TaskList;
 
@@ -17,6 +19,7 @@ public abstract class BaseTaskCommand implements BaseCommand {
      * @return Formatted text
      */
     public String formatOutputString(String text) {
+        assert Objects.nonNull(text);
         String borderMessage = "______________________";
         return String.format(
                 "\n%s\n%s\n%s\n",
@@ -30,6 +33,7 @@ public abstract class BaseTaskCommand implements BaseCommand {
      *            Task List to be set
      */
     public void setTaskList(TaskList taskList) {
+        assert Objects.nonNull(taskList);
         this.taskList = taskList;
     }
 }

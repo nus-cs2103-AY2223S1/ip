@@ -1,5 +1,7 @@
 package duke.commands.tasks;
 
+import java.util.Objects;
+
 import duke.commands.CommandResult;
 import duke.domain.Task;
 import duke.exceptions.TaskNotFoundException;
@@ -16,6 +18,7 @@ public class UnmarkTaskCommand extends BaseTaskCommand {
      *
      */
     public UnmarkTaskCommand(Integer taskIndex) {
+        assert !Objects.nonNull(taskIndex);
         this.taskIndex = taskIndex;
     }
 

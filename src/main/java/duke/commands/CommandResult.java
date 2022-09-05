@@ -1,5 +1,7 @@
 package duke.commands;
 
+import java.util.Objects;
+
 /**
  * CommandResult Class
  */
@@ -7,6 +9,7 @@ public class CommandResult {
     private final String message;
 
     public CommandResult(String message) {
+        assert Objects.nonNull(message);
         this.message = message;
     }
 

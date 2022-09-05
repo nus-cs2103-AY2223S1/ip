@@ -1,5 +1,7 @@
 package duke.commands.tasks;
 
+import java.util.Objects;
+
 import duke.commands.CommandResult;
 import duke.domain.Task;
 
@@ -14,6 +16,7 @@ public class AddTaskCommand extends BaseTaskCommand {
      * AddTaskCommand Constructor
      */
     public AddTaskCommand(Task task) {
+        assert Objects.nonNull(task);
         this.task = task;
     }
 
