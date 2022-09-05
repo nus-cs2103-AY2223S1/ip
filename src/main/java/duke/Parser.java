@@ -2,6 +2,9 @@ package duke;
 
 import commands.*;
 
+/**
+ * Reads user inputs and returns the relevant Commands.
+ */
 public class Parser {
 
     private final Ui ui;
@@ -9,6 +12,13 @@ public class Parser {
     private TaskList tasks;
     private Storage storage;
     private boolean isOpen;
+
+    /**
+     * Returns a new Parser.
+     * @param ui User Interface that prints a message to the user.
+     * @param tasks The TaskList that Commands will act on.
+     * @param storage Storage on which Commands will act on.
+     */
     public Parser(Ui ui, TaskList tasks, Storage storage) {
         this.ui = ui;
         this.tasks = tasks;
@@ -20,6 +30,12 @@ public class Parser {
         return isOpen;
     }
 
+    /**
+     * Reads user inputs and returns the relevant Commands.
+     * @param input Input from users.
+     * @return A new Command corresponding to user's input.
+     * @throws DukeException In the event where erroneous input is provided.
+     */
     public Command read(String input) throws DukeException {
         if (input.equals("bye")) {
             this.isOpen = false;

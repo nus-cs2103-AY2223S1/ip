@@ -1,8 +1,10 @@
 package commands;
 
 import duke.DukeException;
-import duke.Ui;
 
+/**
+ * Abstract Command class.
+ */
 public abstract class Command {
     public abstract String execute() throws DukeException;
 

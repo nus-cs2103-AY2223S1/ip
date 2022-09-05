@@ -1,8 +1,11 @@
 package duke;
 
+//import java.lang.NumberFormatException;
 import java.time.LocalDate;
-import java.lang.NumberFormatException;
 
+/**
+ * Deadline class representing user deadlines.
+ */
 public class Deadline extends Task {
     private final LocalDate deadline;
 
@@ -19,7 +22,9 @@ public class Deadline extends Task {
             throw new DukeException("Please use format yyyy-mm-dd for your deadline!");
         }
         try {
-            this.deadline = LocalDate.of(Integer.valueOf(dateInfo[0]), Integer.valueOf(dateInfo[1]), Integer.valueOf(dateInfo[2]));
+            this.deadline = LocalDate.of(Integer.valueOf(dateInfo[0]),
+                    Integer.valueOf(dateInfo[1]),
+                    Integer.valueOf(dateInfo[2]));
         } catch (NumberFormatException e) {
             throw new DukeException("Please use format yyyy-mm-dd for your deadline, and only use numbers!");
         }
