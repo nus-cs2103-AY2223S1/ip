@@ -1,4 +1,6 @@
-T | 1 | run
 E | 0 | meeting  | Jun 10 2022
 D | 1 | hw  | Mar 5 2022
 T | 0 | yea im just testing out varargs
+T | 0 | sleep
+T | 0 | school
+T | 0 | gradle
