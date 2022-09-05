@@ -116,6 +116,7 @@ public class Event extends Task {
                     ? date.format(Task.DATEFORMAT)
                     : date.format(Task.DATEFORMATPRINT);
         } else {
+            assert this.dateTime instanceof LocalDateTime: "Unknown date or time format";
             LocalDateTime time = (LocalDateTime) this.dateTime;
             timeFormatted = formatType == Task.FormatType.READ
                     ? time.format(Task.DATETIMEFORMAT)
