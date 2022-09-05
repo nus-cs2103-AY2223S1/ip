@@ -42,6 +42,9 @@ public class Roger {
      * Save tasks to the database.
      */
     public void saveTasksToDatabase() {
+        assert tasks != null;
+        assert storage != null;
+
         try {
             List<String> newTaskStrings = this.tasks.toTaskStrings();
             storage.write(newTaskStrings);
@@ -57,6 +60,10 @@ public class Roger {
      * @return Roger's response.
      */
     public Response getResponse(String input) {
+        assert tasks != null;
+        assert parser != null;
+        assert storage != null;
+
         try {
             Command command = this.parser.parse(input);
             String message = command.execute(this.tasks, this.storage);

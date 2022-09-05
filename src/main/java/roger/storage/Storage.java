@@ -41,6 +41,8 @@ public class Storage {
      * @throws IOException Could not write to file.
      */
     public void write(List<String> lines) throws IOException {
+        assert path != null;
+
         try {
             Files.delete(path);
         } catch (IOException ignored) {
