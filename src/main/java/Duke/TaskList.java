@@ -84,7 +84,7 @@ public class TaskList {
      */
     public void markAsDone(int index) {
         this.tasks.get(index).markAsDone();
-        assert this.tasks.get(index).isDone : "Task should be marked as done";
+        assert (this.tasks.get(index).isDone) : "Task should be marked as done";
     }
 
     /**
@@ -94,6 +94,6 @@ public class TaskList {
      */
     public void markAsNotDone(int index) {
         this.tasks.get(index).markAsNotDone();
-        assert !this.tasks.get(index).isDone : "Task should be marked as not done";
+        assert (!this.tasks.get(index).isDone) : "Task should be marked as not done";
     }
 }

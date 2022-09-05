@@ -32,27 +32,6 @@ public class Ui {
     }
 
     /**
-     * Reads user input command.
-     *
-     * @return a string of user input command.
-     */
-    public String readCommand() {
-        String fullCommand = sc.nextLine();
-        return fullCommand;
-    }
-
-    /**
-     * Line divider.
-     *
-     * @return a string of line divider.
-     */
-    public String showLine() {
-        sb = new StringBuilder();
-        sb.append("____________________________________________________________");
-        return sb.toString();
-    }
-
-    /**
      * Displays list of tasks stored by user.
      *
      * @param listOfTasks containing tasks stored by user.
