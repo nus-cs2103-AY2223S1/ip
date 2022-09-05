@@ -23,6 +23,7 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String dateTime) {
         super(description);
+        assert !description.isEmpty();
         String[] details = dateTime.split(" ");
         DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("d/MM/yyyy");
         date = LocalDate.parse(details[0], inputFormat);

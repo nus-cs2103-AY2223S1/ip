@@ -17,6 +17,7 @@ public class Event extends Task {
      */
     public Event(String description, String time) {
         super(description);
+        assert !description.isEmpty();
         this.time = time;
     }
 

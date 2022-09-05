@@ -39,6 +39,7 @@ public class DeleteCommand extends Command {
         if (index >= taskList.numberOfTasks()) {
             throw new InvalidArgumentException(Commands.Delete);
         }
+        assert index >= 0;
         Task task = taskList.getTask(index);
         taskList.deleteTask(index);
         storage.saveFile(taskList);
