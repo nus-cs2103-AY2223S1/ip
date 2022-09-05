@@ -15,9 +15,4 @@ public class GetLongDescriptionCommand extends Command {
         int n = Parser.getTaskNumber(ui.getCurrentInput(), taskList.getSize());
         ui.showMessage(taskList.getLongDescription(n));
     }
-
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

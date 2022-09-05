@@ -26,18 +26,8 @@ public class AddEventCommand extends Command {
         Event eventToAdd = Parser.stringToEvent(userInput);
         taskList.addEvent(eventToAdd);
         String storableLine = eventToAdd + "\n";
-        boolean completed = storage.appendLine(storableLine);
-        assert completed;
-        ui.showMessage("Added event");
-    }
-
-    /**
-     * Returns false to allow program execution to continue.
-     *
-     * @return false.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
+        if (storage.isLineAppended(storableLine)) {
+            ui.showMessage("Added event");
+        }
     }
 }

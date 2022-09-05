@@ -24,6 +24,7 @@ public class StorageParser {
 
     /**
      * Converts line in disk file to corresponding Task.
+     *
      * @param line String stored in file.
      * @return Task object.
      */
@@ -36,13 +37,13 @@ public class StorageParser {
         Deadline d;
         Event e;
         switch(type) {
-        case 'T' :
+        case 'T':
             t = new Task(line.substring(START_OF_DESCRIPTION_IN_TASK));
             if (isMarked) {
                 t.markAsDone();
             }
             return t;
-        case 'D' :
+        case 'D':
             dateAndDescription = getDateAndDescription(line);
             date = LocalDate.parse(dateAndDescription[DATE]);
             d = new Deadline(dateAndDescription[DESCRIPTION], date);

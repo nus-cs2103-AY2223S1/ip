@@ -40,7 +40,6 @@ checkstyle {
 
 test {
     useJUnitPlatform()
-
 }
 
 application {

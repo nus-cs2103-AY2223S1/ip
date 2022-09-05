@@ -3,8 +3,6 @@ package storage;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
 
 import exceptions.DukeException;
 import tasklist.TaskList;
@@ -23,6 +21,7 @@ public class Storage {
 
     /**
      * Constructor.
+     *
      * @param filePath String representation of relative file path.
      */
     public Storage(String filePath) {
@@ -33,20 +32,21 @@ public class Storage {
 
     /**
      * Gets location of disk storage file.
+     *
      * @throws DukeException when Duke program run outside of Duke folder.
      */
     private void getPath(String pathString) throws DukeException, IOException {
         String currPath = System.getProperty("user.dir");
         String[] pathElements = pathString.split("/");
         Path tempPath;
-        for(String s: pathElements) {
+        for (String s: pathElements) {
             currPath += "\\" + s;
             tempPath = Path.of(currPath);
-            if (isFileExtension(s)){
+            if (isFileExtension(s)) {
                 if (!Files.exists(tempPath)) {
                     Files.createFile(tempPath);
                 }
-                this.path =  tempPath;
+                this.path = tempPath;
                 break;
             } else if (isFolderExtension(s)) {
                 if (!Files.exists(tempPath)) {
@@ -78,21 +78,19 @@ public class Storage {
     }
 
     //Define all StorageWriter methods
-
-    public boolean appendLine(String s) {
-        return STORAGE_WRITER.appendLine(s);
+    public boolean isLineAppended(String s) {
+        return storageWriter.appendLine(s);
     }
 
-    public boolean deleteLine(int index) {
-        return STORAGE_WRITER.deleteLine(index);
+    public boolean isLineDeleted(int index) {
+        return storageWriter.deleteLine(index);
     }
 
-    public boolean changeLine(int index, String newString) {
-        return STORAGE_WRITER.changeLine(index, newString);
+    public boolean isLineChanged(int index, String newString) {
+        return storageWriter.changeLine(index, newString);
     }
 
     //Define all StorageReader methods
-
     public TaskList syncArrayList() throws DukeException {
         return STORAGE_READER.syncArrayList();
     }

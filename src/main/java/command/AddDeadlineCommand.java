@@ -24,19 +24,10 @@ public class AddDeadlineCommand extends Command {
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
         String userInput = ui.getCurrentInput();
         Deadline deadlineToAdd = Parser.stringToDeadline(userInput);
-        String storableLine = deadlineToAdd.toString() + "\n";
-        storage.appendLine(storableLine);
-        taskList.addDeadline(deadlineToAdd);
-        ui.showMessage("added deadline");
-    }
-
-    /**
-     * Returns false to allow program execution to continue.
-     *
-     * @return false.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
+        String storableLine = deadlineToAdd + "\n";
+        if (storage.isLineAppended(storableLine)) {
+            taskList.addDeadline(deadlineToAdd);
+            ui.showMessage("added deadline");
+        }
     }
 }

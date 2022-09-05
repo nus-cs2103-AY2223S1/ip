@@ -24,19 +24,10 @@ public class AddTaskCommand extends Command {
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
         String userInput = ui.getCurrentInput();
         Task taskToAdd = Parser.stringToTask(userInput);
-        String storableLine = taskToAdd.toString() + "\n";
-        storage.appendLine(storableLine);
-        taskList.addTask(taskToAdd);
-        ui.showMessage("Added task");
-    }
-
-    /**
-     * Returns false to allow program execution to continue.
-     *
-     * @return false.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
+        String storableLine = taskToAdd + "\n";
+        if (storage.isLineAppended(storableLine)) {
+            taskList.addTask(taskToAdd);
+            ui.showMessage("Added task");
+        }
     }
 }
