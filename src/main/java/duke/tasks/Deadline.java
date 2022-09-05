@@ -30,7 +30,6 @@ public class Deadline extends Task {
      */
     public Deadline(boolean isMarked, String description, String time) {
         super(isMarked, description);
-        System.out.println(time);
         this.time = LocalDateTime.parse(time);
     }
 

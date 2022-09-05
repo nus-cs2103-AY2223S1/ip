@@ -12,7 +12,7 @@ public class Ui {
 
     private static void makeLine() {
         for (int i = 0; i < 50; i++) {
-            System.out.print("\u2015");
+            System.out.print("-");
         }
         System.out.println();
     }

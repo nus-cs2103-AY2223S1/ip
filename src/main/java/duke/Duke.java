@@ -12,11 +12,18 @@ import duke.data.Storage;
 import duke.exceptions.DukeException;
 import duke.tasks.TaskList;
 
-
 /**
  * Duke is a program that helps its user to store tasks.
  */
 public class Duke {
+
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) {
+        return "Duke heard: " + input;
+    }
 
     private void initialise() {
         wrapWithLines("Hello from\n" + LOGO);
