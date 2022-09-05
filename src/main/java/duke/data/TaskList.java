@@ -36,6 +36,8 @@ public class TaskList implements Serializable {
     }
 
     public Task deleteTask(int taskIdx) {
+        assert (taskIdx < tasks.size()) && (taskIdx >= 0) : "taskIdx is out of range!";
+
         Task deletedTask = this.getTask(taskIdx);
         this.tasks.remove(taskIdx);
         return deletedTask;

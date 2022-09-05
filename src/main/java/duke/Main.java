@@ -2,6 +2,7 @@ package duke;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.List;
 
 import duke.ui.MainWindow;
 import javafx.application.Application;
@@ -17,8 +18,12 @@ public class Main extends Application {
 
     @Override
     public void init() {
-        String applicationName = getParameters().getUnnamed().get(0);
-        String cachePath = getParameters().getUnnamed().get(1);
+        List<String> applicationParams = getParameters().getUnnamed();
+        assert applicationParams.size()
+            == 2 : "Incorrect number of parameters. Expected: 2 (applicationName, cachePath)";
+
+        String applicationName = applicationParams.get(0);
+        String cachePath = applicationParams.get(1);
         this.duke = new Duke(Paths.get(cachePath));
         this.applicationName = applicationName;
     }
