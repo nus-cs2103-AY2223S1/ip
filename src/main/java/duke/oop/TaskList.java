@@ -1,4 +1,10 @@
-package duke;
+package duke.oop;
+
+import duke.DukeException;
+import duke.task.Todo;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
 
 import java.util.ArrayList;
 

@@ -1,16 +1,16 @@
 package duke;
 
 
-import Command.Command;
+import duke.command.Command;
+import duke.oop.Parser;
+import duke.oop.Storage;
+import duke.oop.TaskList;
+import duke.oop.Ui;
 
 public class Duke {
     private TaskList tasks;
     private Ui ui;
     private Storage storage;
-
-    public Duke() {
-
-    }
 
     /**
      * Initializes the Duke chatbot.
@@ -37,9 +37,22 @@ public class Duke {
      * Starts the program
      */
     public void run() {
-       
+        ui.greetings();
+        boolean isExit = false;
+
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                Command command = Parser.parse(fullCommand);
+                System.out.println(command.execute(tasks, storage, ui));
+                isExit = command.isExit;
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
+
     public static void main(String[] args) {
-        // new Duke("src/main/java/duke.txt").run();
+        new Duke("src/main/java/duke.txt").run();
     }
 }

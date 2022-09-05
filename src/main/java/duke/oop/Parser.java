@@ -1,9 +1,10 @@
-package duke;
+package duke.oop;
 
-import Command.*;
+import duke.DukeException;
+import duke.command.*;
 
 public class Parser {
-    public static Command parse(String input) throws DukeException{
+    public static Command parse(String input) throws DukeException {
         String[] inputArray = input.split(" ");
         String inputCommand = inputArray[0];
         switch (inputCommand) {
@@ -37,7 +38,7 @@ public class Parser {
             String deadlineTime = deadlineArr[1];
             return new AddDeadlineCommand(deadlineName, deadlineTime);
         default:
-            throw new DukeException("What are you talking about??? I don't understand!!!");
+            throw new DukeException("Shindo, I am confused (T＿T)(T＿T)(T＿T)");
         }
     }
 }

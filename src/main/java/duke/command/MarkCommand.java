@@ -1,8 +1,8 @@
-package Command;
+package duke.command;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import duke.oop.Storage;
+import duke.oop.TaskList;
+import duke.oop.Ui;
 
 public class MarkCommand extends Command {
 
@@ -15,6 +15,6 @@ public class MarkCommand extends Command {
     @Override
     public String execute(TaskList taskList, Storage storage, Ui ui) {
         taskList.get(this.indexToMark).mark();
-        return "Good job! I've marked this task as done:\n" + taskList.get(indexToMark - 1).toString();
+        return "Good job! I've marked this task as done:\n" + taskList.get(indexToMark).toString();
     }
 }

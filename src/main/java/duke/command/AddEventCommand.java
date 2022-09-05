@@ -1,6 +1,9 @@
-package Command;
+package duke.command;
 
-import duke.*;
+import duke.oop.Storage;
+import duke.oop.TaskList;
+import duke.oop.Ui;
+import duke.task.Event;
 
 public class AddEventCommand extends Command{
 
@@ -17,7 +20,7 @@ public class AddEventCommand extends Command{
         Event newEvent = new Event(eventTask, eventTime);
         taskList.getTasks().add(newEvent);
         storage.update(ui.listAllItems(taskList.getTasks()));
-        return "\"Got it. I've added this task:\" + \"\\n\" + tasks.get(numOfTasks - 1).toString()\n" +
-                "                \"\\n\" + \"Now you have \" + numOfTasks + \" tasks in the list.\"";
+        return "Got it. I've added this task:\n" + newEvent.toString()
+                + "\nNow you have" + taskList.getTasks().size() + " tasks in the list.";
     }
 }
