@@ -29,11 +29,11 @@ public abstract class Task {
         PRINT
     };
 
-    protected static final DateTimeFormatter DATEFORMATREAD = DateTimeFormatter
+    protected static final DateTimeFormatter DATEFORMATPARSE = DateTimeFormatter
             .ofPattern("yyyy-MM-dd");
     protected static final DateTimeFormatter DATEFORMATPRINT = DateTimeFormatter
             .ofPattern("MMM dd yyyy");
-    protected static final DateTimeFormatter DATETIMEFORMATREAD = DateTimeFormatter
+    protected static final DateTimeFormatter DATETIMEFORMATPARSE = DateTimeFormatter
             .ofPattern("yyyy-MM-dd HHmm");
     protected static final DateTimeFormatter DATETIMEFORMATPRINT = DateTimeFormatter
             .ofPattern("MMM dd yyyy HH:mm");

@@ -1,8 +1,8 @@
 package carbon.error;
 
-import carbon.task.Task;
-import carbon.task.Event;
 import carbon.task.Deadline;
+import carbon.task.Event;
+import carbon.task.Task;
 
 /**
  * Exception Class for invalid inputs on flags for indicating date time.
