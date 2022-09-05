@@ -5,6 +5,7 @@ import java.nio.file.Path;
 
 import command.Command;
 import command.CommandResult;
+import command.TaskCommand;
 import components.MainWindow;
 import exceptions.HenryException;
 import javafx.animation.PauseTransition;
@@ -78,6 +79,12 @@ public class Henry extends Application {
     private CommandResult executeCommand(Command command) {
         try {
             assert taskList != null : "TaskList is null!";
+            if (command instanceof TaskCommand) {
+                Task tempTask = ((TaskCommand) command).getTask();
+                if (isTaskInTaskList(tempTask)) {
+                    throw new HenryException("TASK ALREADY EXISTS!");
+                }
+            }
             command.setData(taskList);
             CommandResult result = command.execute();
             if (result.getTaskList().isPresent()) {
@@ -89,5 +96,15 @@ public class Henry extends Application {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private boolean isTaskInTaskList(Task task) {
+        for (Task t : taskList.getTasks()) {
+            if (t.getDescription().equals(task.getDescription())
+                && t.getLocalDateTime().equals(task.getLocalDateTime())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

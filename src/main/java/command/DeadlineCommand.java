@@ -8,7 +8,7 @@ import henry.Task;
  * Responsible for adding Deadline tasks to the task list.
  * Deadline tasks are tasks with a deadline date and time.
  */
-public class DeadlineCommand extends Command {
+public class DeadlineCommand extends Command implements TaskCommand {
 
     public static final String COMMAND_WORD = "deadline";
     private static final String MESSAGE_SUCCESS = "OK. I ADDED THIS TASK TO MY LIST:\n %1$s";
@@ -21,6 +21,11 @@ public class DeadlineCommand extends Command {
      */
     public DeadlineCommand(String description, LocalDateTime dateTime) {
         this.task = new Task(Commands.DEADLINE, description, dateTime);
+    }
+
+    @Override
+    public Task getTask() {
+        return task;
     }
 
     @Override

@@ -10,7 +10,7 @@ import henry.Task;
  */
 public class TaskStub extends Task {
 
-    private boolean testIsDone;
+    private final boolean testIsDone;
 
     /**
      * Creates a new TaskStub object. Currently only supports testing
@@ -23,7 +23,7 @@ public class TaskStub extends Task {
     }
 
     public void setComplete(boolean status) {
-        this.isDone = status;
+        super.setComplete(status);
     }
 
     private String getStatusIcon() {

@@ -17,8 +17,8 @@ import util.TaskUtils;
  */
 public class Task {
 
-    protected String description;
-    protected boolean isDone;
+    private final String description;
+    private boolean isDone;
     private final Commands type;
     private LocalDateTime date;
     private final List<LocalDateTime> tentativeDates;
