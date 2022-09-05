@@ -2,11 +2,11 @@ package uwu.command;
 
 import uwu.exception.UwuException;
 
-import uwu.Storage;
+import uwu.uwu.Storage;
 
 import uwu.task.TaskList;
 
-import uwu.Ui;
+import uwu.uwu.Ui;
 
 /**
  * The Command class is an abstract class that represents an executable command.
@@ -20,7 +20,7 @@ public abstract class Command {
      * @param storage The task list that is stored in the user's hard disk.
      * @throws UwuException If user command is used wrongly.
      */
-    public abstract void execute (TaskList tasks, Ui ui, Storage storage) throws UwuException;
+    public abstract String execute (TaskList tasks, Ui ui, Storage storage) throws UwuException;
 
     /**
      * Returns whether the user command exits the program.

@@ -1,10 +1,10 @@
 package uwu.command;
 
-import uwu.Storage;
+import uwu.uwu.Storage;
 
 import uwu.task.TaskList;
 
-import uwu.Ui;
+import uwu.uwu.Ui;
 
 /**
  * Exits the program.
@@ -17,8 +17,8 @@ public class ExitCommand extends Command {
      * @param ui The ui to print out UwuBot's response.
      * @param storage The task list that is stored in the user's hard disk.
      */
-    public void execute (TaskList tasks, Ui ui, Storage storage) {
-        ui.leaveChat();
+    public String execute (TaskList tasks, Ui ui, Storage storage) {
+        return ui.leaveChat();
     }
 
     /**

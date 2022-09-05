@@ -1,4 +1,4 @@
-package uwu;
+package uwu.uwu;
 
 import java.io.File;
 import java.io.FileWriter;

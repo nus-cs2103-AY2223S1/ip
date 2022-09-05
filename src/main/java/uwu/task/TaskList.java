@@ -62,13 +62,13 @@ public class TaskList {
         int count = userToDoList.size();
 
         if (count == 0) {
-            return "\n\n\tyou currently have no tasks, feed me <:";
+            return "\nyou currently have no tasks, feed me <:";
         }
 
         String userToDoStr = "";
 
         for (int i = 0; i < count; i++) {
-            String listItem = "\t" + String.valueOf(i + 1) + ".\t" + userToDoList.get(i).toString();
+            String listItem = " " + String.valueOf(i + 1) + ". " + userToDoList.get(i).toString();
 
             userToDoStr = userToDoStr + "\n" + listItem;
         }

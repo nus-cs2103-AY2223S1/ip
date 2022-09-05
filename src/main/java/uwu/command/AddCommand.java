@@ -5,7 +5,7 @@ import uwu.exception.IncorrectFormatException;
 import uwu.exception.InvalidDateException;
 import uwu.exception.UwuException;
 
-import uwu.Storage;
+import uwu.uwu.Storage;
 
 import uwu.task.Deadline;
 import uwu.task.Event;
@@ -13,7 +13,7 @@ import uwu.task.Task;
 import uwu.task.TaskList;
 import uwu.task.ToDos;
 
-import uwu.Ui;
+import uwu.uwu.Ui;
 
 /**
  * Adds a task to the task list.
@@ -50,18 +50,20 @@ public class AddCommand extends Command {
      *                      If task does not contain keyword;
      *                      If date is empty for deadline and event tasks.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws UwuException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws UwuException {
         if (userCommand.replaceFirst(taskType, "").isBlank()) {
-            throw new EmptyInputException("\tyour task description is empty TT\n\t"
+            throw new EmptyInputException("your task description is empty TT\n"
                     + "feed me a task description to get started! <:");
         }
+
+        String response = "oops looks like something went wrong while adding your task TT";
 
         switch (taskType) {
         case "todo":
                 ToDos todo = new ToDos(description);
                 tasks.add(todo);
                 storage.save(tasks.taskListToStorageString());
-                ui.addTask(todo, tasks.size());
+                response = ui.addTask(todo, tasks.size());
                 break;
         case "deadline":
             // Fallthrough.
@@ -69,15 +71,15 @@ public class AddCommand extends Command {
             String descriptor = taskType.equals("deadline") ? "/by" : "/at";
 
             if (!description.contains(descriptor)) {
-                throw new IncorrectFormatException("\tplease make sure your task contains the keyword "
+                throw new IncorrectFormatException("please make sure your task contains the keyword "
                         + descriptor + " ><!");
             }
 
             if (description.trim().endsWith(descriptor)) {
-                throw new InvalidDateException("\tuwu it looks like the date is missing~"
-                        + "\n\tplease enter a date after the " + descriptor
+                throw new InvalidDateException("uwu it looks like the date is missing~"
+                        + "\nplease enter a date after the " + descriptor
                         + " in this format:" + "\n\tyyyy-mm-dd HH:mm"
-                        + "\n\tthankiew <:");
+                        + "\nthankiew <:");
                 }
 
             int startIndex = userCommand.indexOf(descriptor + " ");
@@ -85,7 +87,7 @@ public class AddCommand extends Command {
             String description = userCommand.substring(taskType.length(), startIndex).trim();
 
             if (description.isBlank()) {
-                throw new EmptyInputException("\tyour task description is empty TT\n\t"
+                throw new EmptyInputException("your task description is empty TT\n"
                         + "feed me a task description to get started! <:");
             }
 
@@ -94,9 +96,11 @@ public class AddCommand extends Command {
             Task task = taskType.equals("deadline") ? new Deadline(description, start) : new Event(description, start);
             tasks.add(task);
             storage.save(tasks.taskListToStorageString());
-            ui.addTask(task, tasks.size());
+            response = ui.addTask(task, tasks.size());
             break;
         }
+
+        return response;
     }
 
     /**

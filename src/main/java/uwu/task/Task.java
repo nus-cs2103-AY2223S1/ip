@@ -43,7 +43,7 @@ public class Task {
      * @return The string representation of a Task.
      */
     public String toString() {
-        return "[" + getStatusIcon() + "]\t" + description;
+        return "[" + getStatusIcon() + "] " + description;
     }
 
     /**

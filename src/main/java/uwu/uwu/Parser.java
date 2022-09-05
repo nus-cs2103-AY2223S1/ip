@@ -1,4 +1,4 @@
-package uwu;
+package uwu.uwu;
 
 import uwu.command.AddCommand;
 import uwu.command.Command;
@@ -37,7 +37,7 @@ public class Parser {
                 if (userCommand.trim().endsWith("todo")
                         || userCommand.trim().endsWith("deadline")
                         || userCommand.trim().endsWith("event")) {
-                    throw new EmptyInputException("\tyour task description is empty TT\n\t"
+                    throw new EmptyInputException("your task description is empty TT\n"
                             + "feed me a task description to get started! <:");
                 }
                 return new AddCommand(userCommand);
@@ -46,7 +46,7 @@ public class Parser {
             } else if (userCommand.startsWith("find")) {
                 return new FindCommand(userCommand);
             } else {
-                throw new UnknownCommandException("\tsorry >< \n\ti don't know what that means TT");
+                throw new UnknownCommandException("sorry >< \ni don't know what that means TT");
             }
     }
 }

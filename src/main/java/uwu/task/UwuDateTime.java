@@ -32,8 +32,8 @@ public class UwuDateTime {
             LocalDateTime dateTimeTemp = LocalDateTime.parse(input, formatter);
             this.dateTime = dateTimeTemp;
         } catch (DateTimeParseException e) {
-            throw new InvalidDateException("\tplease enter a valid date, using the format: \n\t\t'yyyy-mm-dd HH:mm'"
-                    + "\n\tif you do not have a time, enter the date only~");
+            throw new InvalidDateException("please enter a valid date, using the format: \n\t'yyyy-mm-dd HH:mm'"
+                    + "\nif you do not have a time, enter the date only~");
         }
     }
 
