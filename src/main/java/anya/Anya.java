@@ -25,6 +25,11 @@ public class Anya {
         }
     }
 
+    public enum Command {
+        BYE, LIST, FIND, MARK, UNMARK,
+        DELETE, TODO, DEADLINE, EVENT
+    }
+
     /**
      * Takes in a user input and runs the relevant commands.
      *
@@ -32,39 +37,40 @@ public class Anya {
      * @return A response depending on the command entered.
      */
     String getResponse(String userInput) {
-        String command = Parser.parseCommand(userInput);
+        Command command = Command.valueOf(Parser.parseCommand(userInput));
         try {
-            if (command.equals("bye")) {
+            switch (command) {
+            case BYE:
                 return exit();
-            } else if (command.equals("list")) {
+            case LIST:
                 return getList(tasks);
-            } else if (command.equals("find")) {
+            case FIND:
                 String keyword = Parser.parseKeyword(userInput);
                 return find(tasks, keyword);
-            } else if (command.equals("mark")) {
-                int index = Parser.parseCommandIndex(userInput);
-                return mark(tasks, index);
-            } else if (command.equals("unmark")) {
-                int index = Parser.parseCommandIndex(userInput);
-                return unmark(tasks, index);
-            } else if (command.equals("delete")) {
-                int index = Parser.parseCommandIndex(userInput);
-                return delete(tasks, index);
-            } else if (command.equals("todo")) {
-                String taskName = Parser.parseTaskName(userInput);
-                Task task = new Todo(taskName);
-                return addTask(tasks, task);
-            } else if (command.equals("deadline")) {
-                String taskName = Parser.parseTaskName(userInput);
+            case MARK:
+                int markIndex = Parser.parseCommandIndex(userInput);
+                return mark(tasks, markIndex);
+            case UNMARK:
+                int unmarkIndex = Parser.parseCommandIndex(userInput);
+                return unmark(tasks, unmarkIndex);
+            case DELETE:
+                int deleteIndex = Parser.parseCommandIndex(userInput);
+                return delete(tasks, deleteIndex);
+            case TODO:
+                String todoTaskName = Parser.parseTaskName(userInput);
+                Task todoTask = new Todo(todoTaskName);
+                return addTask(tasks, todoTask);
+            case DEADLINE:
+                String deadlineTaskName = Parser.parseTaskName(userInput);
                 LocalDateTime dateTime = Parser.parseDateTime(userInput);
-                Task task = new Deadline(taskName, dateTime);
-                return addTask(tasks, task);
-            } else if (command.equals("event")) {
-                String taskName = Parser.parseTaskName(userInput);
+                Task deadlineTask = new Deadline(deadlineTaskName, dateTime);
+                return addTask(tasks, deadlineTask);
+            case EVENT:
+                String eventTaskName = Parser.parseTaskName(userInput);
                 String eventDetails = Parser.parseEventDetails(userInput);
-                Task task = new Event(taskName, eventDetails);
-                return addTask(tasks, task);
-            } else {
+                Task eventTask = new Event(eventTaskName, eventDetails);
+                return addTask(tasks, eventTask);
+            default:
                 throw new AnyaException("Anya doesn't understand this command.");
             }
         } catch (AnyaException e) {
@@ -82,7 +88,6 @@ public class Anya {
      * @return A greeting message.
      */
     public String greet() {
-        // great message
         String message = this.ui.getGreetMessage();
         return message;
     }
@@ -112,14 +117,12 @@ public class Anya {
         try {
             this.ui.getSavingFileMessage();
             this.storage.saveFile(tasks);
-            message.append(this.ui.getSaveFileSuccessMessage() + "\n");
+            message.append(this.ui.getSaveFileSuccessMessage()).append("\n");
         } catch (IOException e) {
             message.append(this.ui.getErrorMessage(e.getMessage() + " Sorry, Anya is unable to save data.\n"));
         }
         message.append(this.ui.getExitMessage());
         return message.toString();
-
-        // Implement terminating of program
     }
 
     /**
@@ -133,10 +136,12 @@ public class Anya {
         // Always succeeds; has side effect of checking the size of TaskList
         int initLen = 0;
         assert (initLen = tasks.getLength()) >= 0;
+
         tasks.addTask(task);
 
         // Ensure the current size of TaskList is 1 more than initial size
         assert tasks.getLength() == initLen +1 : "Size of TaskList should be 1 more than it's initial size";
+
         return this.ui.getAddTaskMessage(task, tasks.getLength());
     }
 
@@ -163,9 +168,11 @@ public class Anya {
             Task task = tasks.getTaskFromIndex(index);
             // Ensure that task from TaskList is not null
             assert task != null: "Task cannot be null";
+
             task.markDone();
             // Ensure that task is marked as done
             assert task.getStatusIcon().equals("X"): "Task should be marked as done";
+
             return this.ui.getMarkTaskMessage(task);
         } catch (IndexOutOfBoundsException e) {
             throw new AnyaException("Invalid index. You only have " + this.tasks.getLength() + " tasks!");
@@ -183,11 +190,14 @@ public class Anya {
     public String unmark(TaskList tasks, int index) throws AnyaException {
         try {
             Task task = tasks.getTaskFromIndex(index);
+
             // Ensure that task from TaskList is not null
             assert task != null: "task cannot be null";
+
             task.markUndone();
             // Ensure that task is marked as undone
             assert task.getStatusIcon().equals(" "): "Task should be marked as undone";
+
             return this.ui.getUnmarkTaskMessage(task);
         } catch (IndexOutOfBoundsException e) {
             throw new AnyaException("Invalid index. You only have " + this.tasks.getLength() + " tasks!");
@@ -207,10 +217,12 @@ public class Anya {
             // Always succeeds; has side effect of checking the size of TaskList
             int initLen = 0;
             assert (initLen = tasks.getLength()) >= 0;
+
             Task removedTask = tasks.getTaskFromIndex(index);
             tasks.deleteTaskFromIndex(index);
             // Ensure the current size of TaskList is 1 less than initial size
             assert tasks.getLength() == initLen - 1: "Size of TaskList should be 1 less than it's initial size";
+
             return this.ui.getDeleteTaskMessage(removedTask);
         } catch (IndexOutOfBoundsException e) {
             throw new AnyaException("Invalid index. You only have " + this.tasks.getLength() + " tasks!");
