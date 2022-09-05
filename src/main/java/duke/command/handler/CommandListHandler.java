@@ -10,9 +10,12 @@ public class CommandListHandler extends CommandHandler {
 
     protected static final String INVALID_FORMAT_MESSAGE = String.join("\n",
         "Invalid `list` command format!",
-        "Expected format: list"
+        "Expected format: list [tag]",
+        "Examples:",
+        "\t- list",
+        "\t- list #CS2103"
     );
-    private static final Pattern commandRegexPattern = Pattern.compile("^list$");
+    private static final Pattern commandRegexPattern = Pattern.compile("(^list$)|(^list #(\\w+)$)");
 
     public CommandListHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
@@ -38,6 +41,11 @@ public class CommandListHandler extends CommandHandler {
             return new CommandResponse("There are no items in the task list!", false, false);
         }
 
-        return new CommandResponse(taskList.toString(), false, false);
+        String queryTag = commandRegexMatcher.group(3);
+        boolean toFilterByTag = queryTag != null;
+        TaskList filteredTaskList =
+            toFilterByTag ? taskList.filterTasks(task -> task.hasTag(queryTag)) : taskList;
+
+        return new CommandResponse(filteredTaskList.toString(), false, false);
     }
 }

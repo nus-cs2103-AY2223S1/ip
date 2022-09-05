@@ -45,6 +45,10 @@ public abstract class Task implements Serializable {
                      .trim(); // handle extra whitespace when tag is at the start/end
     }
 
+    public boolean hasTag(String queryTag) {
+        return tags.stream().anyMatch(tag -> tag.equals(queryTag));
+    }
+
     /**
      * Mark a task as completed
      */
