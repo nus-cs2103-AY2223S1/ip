@@ -48,6 +48,7 @@ public class Parser {
             log = this.ui.exit();
             break;
         case "list":
+            assert this.taskList != null: "Tasks not loaded";
             log = this.taskList.listItems();
             break;
         default:
