@@ -13,6 +13,8 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+import java.util.Arrays;
+
 /**
  * Parser helps
  */
@@ -25,6 +27,9 @@ public class Parser {
     static final int MARK_LENGTH = 5;
     static final int UNMARK_LENGTH = 7;
     static final int DEL_LENGTH = 7;
+    static final String TODO_SYNTAX = "todo";
+    static final String DEADLINE_SYNTAX = "deadline";
+    static final String EVENT_SYNTAX = "event";
     static final String EXIT_SYNTAX = "bye";
     static final String LIST_SYNTAX = "list";
     static final String DELETE_SYNTAX = "delete";
@@ -37,44 +42,30 @@ public class Parser {
         return input.split(" ")[0].toLowerCase();
     }
 
-
-    private static boolean isAddTodoCommand(String input) {
-        return getFirstWord(input).equals("todo");
-    }
-
-    private static boolean isAddEventCommand(String input) {
-        return getFirstWord(input).equals("event");
-    }
-
-    private static boolean isAddDeadlineCommand(String input) {
-        return getFirstWord(input).equals("deadline");
-    }
-
     /**
      * @param fullCommand input Command from the user.
      * @return Task object
      */
     public static Task addCommandToTask(String fullCommand) throws DukeException {
-        if (isAddTodoCommand(fullCommand)) {
-            String desc = fullCommand.substring(TLENGTH);
+        String desc;
+        String[] commandParts;
+        String time;
+        switch (getFirstWord(fullCommand)) {
+        case TODO_SYNTAX:
+            desc = fullCommand.substring(TLENGTH);
             return new Todo(desc);
-        } else if (isAddEventCommand(fullCommand)) {
-            String[] commandParts = fullCommand.substring(ELENGTH).split(" /at ");
-            if (commandParts.length != 2) {
-                throw new DukeException("Give the right syntax");
-            }
-            String desc = commandParts[0];
-            String time = commandParts[1];
+        case EVENT_SYNTAX:
+            commandParts = fullCommand.substring(ELENGTH).split(" /at ");
+            desc = commandParts[0];
+            time = commandParts[1];
             return new Event(desc, time);
-        } else if (isAddDeadlineCommand(fullCommand)) {
-            String[] commandParts = fullCommand.substring(DLENGTH).split(" /by ");
-            if (commandParts.length != 2) {
-                throw new DukeException("Give the right syntax");
-            }
-            String desc = commandParts[0];
-            String time = commandParts[1];
+        case DEADLINE_SYNTAX:
+            commandParts = fullCommand.substring(DLENGTH).split(" /by ");
+            System.out.println(Arrays.toString(commandParts));
+            desc = commandParts[0];
+            time = commandParts[1];
             return new Deadline(desc, time);
-        } else {
+        default:
             throw new DukeException("not planned task parser");
         }
     }
