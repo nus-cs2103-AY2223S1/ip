@@ -7,6 +7,7 @@ import dukepro.exceptions.BadFormatException;
 import dukepro.exceptions.BadTaskOperationException;
 import dukepro.exceptions.DukeException;
 import dukepro.exceptions.EmptyDescException;
+import dukepro.expenses.Expense;
 import dukepro.tasks.Deadline;
 import dukepro.tasks.Event;
 import dukepro.tasks.Task;
@@ -226,5 +227,34 @@ public class Decoder {
             }
         }
         return true;
+    }
+
+    public static Expense makeExpense(String input) throws DukeException {
+        String[] splitted = input.split(" ", 2);
+
+        if (splitted.length < 2) {
+            throw new EmptyDescException(splitted[0]);
+        }
+
+        String[] segmentName = splitted[1].split("/amount", 2);
+        String name = segmentName[0];
+
+        if (segmentName.length < 2) {
+            throw new EmptyDescException(splitted[0]);
+        }
+
+        String[] segmentAmt = segmentName[1].stripLeading().split("/on", 2);
+        if (segmentAmt.length < 2) {
+            throw new EmptyDescException(splitted[0]);
+        }
+        if (!isValidNum(segmentAmt[0].strip())) {
+            throw new BadFormatException("expense", "espense", "<AMOUNT> /on <DATE>", "/amount");
+        }
+        int amount = Integer.parseInt(segmentAmt[0].strip());
+        LocalDate ld = parseLD(segmentAmt[1]);
+
+        Expense expense = new Expense(name, amount, ld);
+        System.out.println(expense);
+        return expense;
     }
 }

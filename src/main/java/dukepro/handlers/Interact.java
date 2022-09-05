@@ -1,6 +1,7 @@
 package dukepro.handlers;
 
 import dukepro.exceptions.DukeException;
+import dukepro.expenses.ExpenseManager;
 
 /**
  * Class for Interact.
@@ -8,6 +9,7 @@ import dukepro.exceptions.DukeException;
 public class Interact {
     private String line = "_______________________________________";
     private TasksManager tasksManager;
+    private ExpenseManager expenseManager;
 
     /**
      * Greets the user.
@@ -16,6 +18,7 @@ public class Interact {
      */
     public String start() {
         tasksManager = new TasksManager();
+        expenseManager = new ExpenseManager();
         String logo = " ____        _\n"
                 + "|  _ \\ _   _| | _____\n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -47,6 +50,8 @@ public class Interact {
             return tasksManager.showDate(Decoder.parseLD(word));
         } else if (word.startsWith("find") || word.startsWith("Find")) {
             return tasksManager.find(Decoder.parseFind(word));
+        } else if (word.startsWith("expense") || word.startsWith("Expense")) {
+            return expenseManager.addExpense(Decoder.makeExpense(word));
         } else {
             throw new DukeException("bad input");
         }
