@@ -65,7 +65,7 @@ public class AddCommand extends Command {
         }
 
         taskList.addTask(task);
-        returnString = ui.showAddCommand(task, taskList.size());
+        returnString = ui.showAddCommand(task, taskList.getSize());
         storage.writeFile(taskList.getTaskList(),"duke.txt");
         return returnString;
     }

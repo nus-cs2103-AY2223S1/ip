@@ -52,17 +52,17 @@ public class Storage {
         char type = (data.charAt(0));
         boolean done = (data.charAt(1)) == ('Y');
         Task task = null;
-        if(type == 'T'){
+        if(type == 'T') {
             String description = data.substring(2);
             task = new Todo(description);
         }
-        else if (type == 'D'){
+        else if (type == 'D') {
             int indexOfDate = data.indexOf("/");
             String description = data.substring(2,indexOfDate);
             String date = data.substring(indexOfDate +1);
             task = new Deadline(description,getDate(date));
         }
-        else if (type == 'E'){
+        else if (type == 'E') {
             int indexOfDate = data.indexOf("/");
             String description = data.substring(2,indexOfDate);
             String date = data.substring(indexOfDate +1);

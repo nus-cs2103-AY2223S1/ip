@@ -18,42 +18,42 @@ public class Parser {
      * @param inputString the inputted string from the user
      * @return the Command to the executed from the input
      */
-    public static Command parse(String inputString) throws DukeException {
+    public static Command parseTask(String inputString) throws DukeException {
         String[] input = inputString.split(" ");
         switch (input[0]) {
             case "bye":
-                return new EndCommand();
+            return new EndCommand();
             case "list":
-                return new ListCommand();
+            return new ListCommand();
             case "todo":
-                String taskName = String.join(" ", Arrays.copyOfRange(input, 1, input.length));
-                return new AddCommand("todo",taskName);
+            String taskName = String.join(" ", Arrays.copyOfRange(input, 1, input.length));
+            return new AddCommand("todo",taskName);
             case "deadline":
-                int indexOfDateDeadline = findDate(input);
-                String nameDeadline = String.join(" ", Arrays.copyOfRange(input, 1, indexOfDateDeadline));
-                String stringDateDeadline = input[indexOfDateDeadline + 1];
-                LocalDate dateDeadline = getDate(stringDateDeadline);
-                return new AddCommand("deadline",nameDeadline,dateDeadline);
+            int indexOfDateDeadline = findDate(input);
+            String nameDeadline = String.join(" ", Arrays.copyOfRange(input, 1, indexOfDateDeadline));
+            String stringDateDeadline = input[indexOfDateDeadline + 1];
+            LocalDate dateDeadline = getDate(stringDateDeadline);
+            return new AddCommand("deadline",nameDeadline,dateDeadline);
             case "event" :
-                int indexOfDateEvent = findDate(input);
-                String nameEvent = String.join(" ", Arrays.copyOfRange(input, 1, indexOfDateEvent));
-                String stringDateEvent = input[indexOfDateEvent + 1];
-                LocalDate dateEvent = getDate(stringDateEvent);
-                return new AddCommand("event",nameEvent,dateEvent);
+            int indexOfDateEvent = findDate(input);
+            String nameEvent = String.join(" ", Arrays.copyOfRange(input, 1, indexOfDateEvent));
+            String stringDateEvent = input[indexOfDateEvent + 1];
+            LocalDate dateEvent = getDate(stringDateEvent);
+            return new AddCommand("event",nameEvent,dateEvent);
             case "mark" :
-                int indexMark = getNumber(input);
-                return new MarkCommand(indexMark);
+            int markIndex = getNumber(input);
+            return new MarkCommand(markIndex);
             case "unmark" :
-                int indexUnmark = getNumber(input);
-                return new UnmarkCommand(indexUnmark);
+            int unmarkIndex = getNumber(input);
+            return new UnmarkCommand(unmarkIndex);
             case "delete" :
-                int indexDelete = getNumber(input);
-                return new DeleteCommand(indexDelete);
+            int deleteIndex = getNumber(input);
+            return new DeleteCommand(deleteIndex);
             case "date" :
-                LocalDate date = getDate(input);
-                return new DateCommand(date);
+            LocalDate date = getDate(input);
+            return new DateCommand(date);
             case "find" :
-                return new FindCommand(input[1]);
+            return new FindCommand(input[1]);
         }
         throw new DukeException("OOPS!!! I don't understand what that means");
     }
