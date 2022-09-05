@@ -1,9 +1,9 @@
 package sky;
 
-import sky.task.Task;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import sky.task.Task;
 
 /**
  * The TaskList class contains the task list e.g., it has operations to add/delete tasks in the list.
@@ -25,7 +25,7 @@ public class TaskList {
      * Returns an empty string if the task list is empty.
      *
      * @return Tasks stored in the task list in the form of a String and respectively separated by a
-     * newline.
+     *     newline.
      */
     public String printTasks() {
         String s = "";

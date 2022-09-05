@@ -1,11 +1,11 @@
 package sky.command;
 
+import java.io.IOException;
+
 import sky.Storage;
+import sky.TaskList;
 import sky.exception.TextNoMeaningException;
 import sky.task.Task;
-import sky.TaskList;
-
-import java.io.IOException;
 
 /**
  * The DeleteCommand class deals with deleting a task from taskList.
@@ -26,14 +26,14 @@ public class DeleteCommand extends Command {
             Task task = taskList.getTask(taskNum);
             taskList.removeTask(task);
             storage.reWriteDataFile(taskList);
-            String s = "Splendid. I've removed this task: \n" +
-                    "    " + task +
-                    "\nNow you have " + taskList.getSize() +
-                    (taskList.getSize() <= 1 ? " task in the list.": " tasks in the list.");
+            String s = "Splendid. I've removed this task: \n"
+                    + "    " + task
+                    + "\nNow you have " + taskList.getSize()
+                    + (taskList.getSize() <= 1 ? " task in the list." : " tasks in the list.");
             return s;
         } catch (IndexOutOfBoundsException e) {
-           throw new TextNoMeaningException("You have either not entered any number to indicate which task I should delete, " +
-                    "or you entered an invalid task number.");
+            throw new TextNoMeaningException("You have either not entered any number to indicate which task I "
+                    + "should delete, or you entered an invalid task number.");
         } catch (NumberFormatException e) {
             throw new TextNoMeaningException("Are you new? Enter a number after typing delete.");
         }

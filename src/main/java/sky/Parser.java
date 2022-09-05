@@ -10,7 +10,7 @@ import sky.command.InvalidCommand;
 import sky.command.ListCommand;
 import sky.command.MarkCommand;
 import sky.command.TodoCommand;
-import sky.command.UnmarkCommand   ;
+import sky.command.UnmarkCommand;
 
 /**
  * The Parser class deals with making sense of the user command.

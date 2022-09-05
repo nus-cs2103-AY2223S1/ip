@@ -6,6 +6,12 @@ package sky.task;
 public class Deadline extends Task {
     protected String by;
 
+    /**
+     * Constructs a Deadline with provided description and date by.
+     *
+     * @param description Description of the task to be done.
+     * @param by Date and optionally time, in the format of yyyy/mm/dd XXXX, where XXXX is time in 24-hours.
+     */
     public Deadline(String description, String by) {
         super(description);
         this.by = by;

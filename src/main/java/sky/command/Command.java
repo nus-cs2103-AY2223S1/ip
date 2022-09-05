@@ -1,10 +1,10 @@
 package sky.command;
 
+import java.io.IOException;
+
 import sky.Storage;
 import sky.TaskList;
 import sky.exception.TextNoMeaningException;
-
-import java.io.IOException;
 
 /**
  * The abstract Command class deals with executing tasks involving TaskList, Ui, and Storage.

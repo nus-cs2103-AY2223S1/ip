@@ -11,6 +11,11 @@ public class Task {
 
     }
 
+    /**
+     * Constructs a Task with a specified decsription.
+     *
+     * @param description Description of the task in the form of a string.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;

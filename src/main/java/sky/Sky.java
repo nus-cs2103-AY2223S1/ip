@@ -1,9 +1,9 @@
 package sky;
 
+import java.io.IOException;
+
 import sky.command.Command;
 import sky.exception.TextNoMeaningException;
-
-import java.io.IOException;
 
 /**
  * The Sky class encapsulates a sky chat bot that keep tracks of tasks.
@@ -12,6 +12,9 @@ public class Sky {
     private TaskList taskList;
     private Storage storage;
 
+    /**
+     * Creates a Sky object with file path being "data/sky.txt".
+     */
     public Sky() {
         this.storage = new Storage("data/sky.txt");
         try {

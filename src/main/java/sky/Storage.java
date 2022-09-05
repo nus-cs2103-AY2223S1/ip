@@ -1,11 +1,5 @@
 package sky;
 
-import sky.exception.TextNoMeaningException;
-import sky.task.Deadline;
-import sky.task.Event;
-import sky.task.Task;
-import sky.task.ToDo;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -13,6 +7,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import sky.exception.TextNoMeaningException;
+import sky.task.Deadline;
+import sky.task.Event;
+import sky.task.Task;
+import sky.task.ToDo;
 
 /**
  * The Storage class deals with loading tasks from the file and saving tasks in the file.
