@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public abstract class Task {
 
     /**
-     * Represents the different action types the Task class can handle
+     * Represents the different action types the Task class can handle.
      */
     public enum TaskType {
         TODO,
@@ -153,7 +153,7 @@ public abstract class Task {
         }
 
         /**
-         * Checks whether task contains certain String
+         * Checks whether task contains certain String.
          * @param s String
          * @return boolean
          */
@@ -222,7 +222,7 @@ public abstract class Task {
         }
 
         /**
-         * Checks whether task contains certain String
+         * Checks whether task contains certain String.
          * @param s String
          * @return boolean
          */
@@ -291,7 +291,7 @@ public abstract class Task {
         }
 
         /**
-         * Checks whether task contains certain String
+         * Checks whether task contains certain String.
          * @param s String
          * @return boolean
          */
@@ -316,7 +316,7 @@ public abstract class Task {
     public abstract String textFileMessage();
 
     /**
-     * Checks whether task contains certain String
+     * Checks whether task contains certain String.
      * @param s String
      * @return boolean
      */
