@@ -78,7 +78,8 @@ public class TaskList {
      * Adds a task
      * @param task The task to be added
      */
-    public void addTask(Task task) throws DukeException{
+    public void addTask(Task task) {
+        assert task != null;
         taskList.add(task);
     }
 

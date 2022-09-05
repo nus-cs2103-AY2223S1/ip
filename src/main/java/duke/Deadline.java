@@ -15,6 +15,7 @@ public class Deadline extends Task{
      */
     public Deadline(String description, LocalDate date){
         super(description);
+        assert date != null;
         this.date = date;
     }
 
@@ -24,6 +25,7 @@ public class Deadline extends Task{
      * @return Whether the deadline has passed
      */
     public boolean byThisDate(LocalDate date){
+        assert date != null;
         return this.date.isBefore(date);
     }
 
