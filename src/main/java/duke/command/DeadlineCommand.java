@@ -36,7 +36,7 @@ public class DeadlineCommand extends Command {
         }
         String[] descriptionDate = this.inputArr[1].split(" /by ", 2);
         if (descriptionDate.length < 2) {
-            throw new DukeException("The date of a deadline cannot be empty.");
+            throw new DukeException("The description and date of a deadline cannot be empty.");
         }
         String task = descriptionDate[0];
         String date = descriptionDate[1];

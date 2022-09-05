@@ -23,6 +23,7 @@ public class Task {
         this.description = description;
         this.isDone = false;
     }
+
     /**
      * Returns the String representation of completion status.
      *
@@ -77,26 +78,22 @@ public class Task {
         TaskType taskType = TaskType.parse(taskSubstrings[0]);
         Task task;
 
-        switch (taskType) {
-        case DEADLINE:
-            try {
+        try {
+            switch (taskType) {
+            case DEADLINE:
                 task = new Deadline(taskSubstrings[2], taskSubstrings[3]);
-            } catch (DukeException e) {
-                throw new RuntimeException(e.getMessage());
-            }
-            break;
-        case EVENT:
-            try {
+                break;
+            case EVENT:
                 task = new Event(taskSubstrings[2], taskSubstrings[3]);
-            } catch (DukeException e) {
-                throw new RuntimeException(e.getMessage());
+                break;
+            case TODO:
+                task = new ToDo(taskSubstrings[2]);
+                break;
+            default:
+                throw new RuntimeException(String.format("Invalid task type %s.", taskType));
             }
-            break;
-        case TODO:
-            task = new ToDo(taskSubstrings[2]);
-            break;
-        default:
-            throw new RuntimeException(String.format("Invalid task type %s.", taskType));
+        } catch (DukeException e) {
+            throw new RuntimeException(e.getMessage());
         }
 
         if (taskSubstrings[1].equals(Task.DONE_STORAGE)) {

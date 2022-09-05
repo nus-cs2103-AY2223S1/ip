@@ -38,6 +38,7 @@ public class FindCommand extends Command {
             throw new DukeException("Missing keyword.");
         }
         List<Task> tasks = this.taskList.findTasks(this.inputArr[1].split(" "));
+        assert tasks != null : "Tasks cannot be null";
         int size = tasks.size();
         if (size == 0) {
             return new Response("There are no matching tasks in your list.\n");
