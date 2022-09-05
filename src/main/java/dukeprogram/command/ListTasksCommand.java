@@ -1,12 +1,15 @@
 package dukeprogram.command;
 
-import dukeprogram.InternalAction;
-import dukeprogram.facilities.TaskList;
-import dukeprogram.userinterface.Ui;
-
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import dukeprogram.InternalAction;
+import dukeprogram.facilities.TaskList;
+
+/**
+ * A ListTaskCommand specifies a command that allows the main program
+ * to list out all the tasks presently stored in the task list.
+ */
 public class ListTasksCommand extends Command {
     @Override
     protected InternalAction onEnter() {
