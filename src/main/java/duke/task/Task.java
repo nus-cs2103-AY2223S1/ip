@@ -17,6 +17,7 @@ public class Task {
      */
     public Task(String description) {
         this.description = description;
+        assert !description.isEmpty();
         this.isDone = false;
     }
 

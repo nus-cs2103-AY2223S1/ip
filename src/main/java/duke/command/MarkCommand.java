@@ -39,6 +39,7 @@ public class MarkCommand extends Command {
         if (index >= taskList.numberOfTasks()) {
             throw new InvalidArgumentException(Commands.Mark);
         }
+        assert index >= 0;
         Task task = taskList.getTask(index);
         task.markAsDone();
         storage.saveFile(taskList);
