@@ -63,12 +63,12 @@ public class Duke extends Application {
     @Override
     public void start(Stage stage) {
         // Initialising up required components
-        ScrollPane scrollPane = new ScrollPane();
-        VBox dialogContainer = new VBox();
-        TextField userInput = new TextField();
-        Button sendButton = new Button("Send");
+        scrollPane = new ScrollPane();
+        dialogContainer = new VBox();
+        userInput = new TextField();
+        sendButton = new Button("Send");
         AnchorPane mainLayout = new AnchorPane();
-        Scene scene = new Scene(mainLayout);
+        scene = new Scene(mainLayout);
 
         // Setting up required components
         this.setUpMainLayout(mainLayout, scrollPane, userInput, sendButton);
