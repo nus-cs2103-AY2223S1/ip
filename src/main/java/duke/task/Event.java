@@ -49,4 +49,20 @@ public class Event extends Task {
         return "E" + Task.SAVE_SEPARATOR + this.getIsDoneString() + Task.SAVE_SEPARATOR + this.getDescription()
                 + Task.SAVE_SEPARATOR + this.time;
     }
+
+    /**
+     * Checks if an object is equal to this Event object.
+     * @param obj Object to be checked against.
+     * @return Whether the object is equal to this Event object.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Event)) {
+            return false;
+        }
+        Event other = (Event) obj;
+        boolean doesDescriptionMatch = this.getDescription().equals(other.getDescription());
+        boolean doesTimeMatch = this.time.equals(other.time);
+        return doesDescriptionMatch && doesTimeMatch;
+    }
 }

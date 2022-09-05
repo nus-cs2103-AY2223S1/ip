@@ -10,7 +10,7 @@ import duke.task.Event;
 /**
  * A Command which makes an Event object when executed and adds it to a TaskList object when executed.
  */
-public class MakeEventCommand extends Command {
+public class MakeEventCommand extends MakeTaskCommand {
     private String description;
     private LocalDate time;
 
@@ -34,6 +34,10 @@ public class MakeEventCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         Event newTask = new Event(this.description, this.time);
+        if (isDuplicate(newTask, taskList)) {
+            ui.showIsDuplicate();
+            return;
+        }
         taskList.addTask(newTask);
         ui.showTaskAddedOrDeleted(newTask, taskList.getTaskListLength(), true);
     }

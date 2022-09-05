@@ -49,4 +49,20 @@ public class Deadline extends Task {
         return "D" + Task.SAVE_SEPARATOR + this.getIsDoneString() + Task.SAVE_SEPARATOR + this.getDescription()
                 + Task.SAVE_SEPARATOR + this.time;
     }
+
+    /**
+     * Checks if an object is equal to this Deadline object.
+     * @param obj Object to be checked against.
+     * @return Whether the object is equal to this Deadline object.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Deadline)) {
+            return false;
+        }
+        Deadline other = (Deadline) obj;
+        boolean doesDescriptionMatch = this.getDescription().equals(other.getDescription());
+        boolean doesTimeMatch = this.time.equals(other.time);
+        return doesDescriptionMatch && doesTimeMatch;
+    }
 }

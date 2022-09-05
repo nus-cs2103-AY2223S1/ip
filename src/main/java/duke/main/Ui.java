@@ -28,8 +28,10 @@ public class Ui {
     private static final String[] MISSING_INDEX = {"Please provide an index in the command."};
     private static final String[] MISSING_DESCRIPTION = {"I need a description for the task..."};
     private static final String[] MISSING_ARGUMENT = {"I need an argument for this command..."};
+
     private static final String[] NOT_A_NUMBER = {"I don't think that's a number..."};
     private static final String[] CANNOT_SAVE = {"I can't seem to save the task list..."};
+    private static final String[] IS_DUPLICATE = {"Hmmm, this task seems to be already on the list."};
 
     private static final String[] INVALID_COMMAND = {"I don't quite get what you're saying..."};
     private static final String[] INVALID_INDEX = {"Umm... I think this task number does not exist."};
@@ -198,5 +200,12 @@ public class Ui {
      */
     public void showInvalidTime() {
         this.outputMessage(INVALID_TIME[this.messageStatus]);
+    }
+
+    /**
+     * SHows the message for a duplicated task.
+     */
+    public void showIsDuplicate() {
+        this.outputMessage(IS_DUPLICATE[this.messageStatus]);
     }
 }

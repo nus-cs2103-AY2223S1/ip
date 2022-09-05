@@ -49,7 +49,6 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         dialogContainer.getChildren().add(DialogBox.getUserDialog(input, userImage));
-        System.out.println("got here");
         duke.handleInput(input);
         userInput.clear();
     }
