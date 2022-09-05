@@ -166,6 +166,7 @@ public class Duke extends Application {
      */
     private String getResponse(String input) throws IOException {
         int index = tasks.size();
+        assert input.length() > 0 : "Error! No input";
             if (parser.isBye(input)) {
                 for (int i = 0; i < tasks.size(); i++) {
                     Task task = tasks.getTasks().get(i);
