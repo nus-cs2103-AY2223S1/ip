@@ -2,10 +2,11 @@ package duke.commands;
 
 import java.io.IOException;
 import duke.TaskList;
-import duke.exception.DukeException;
 import duke.Ui;
 import duke.Storage;
 import duke.tasks.Todo;
+import duke.exception.DukeException;
+import duke.exception.DuplicateException;
 
 /**
  * The TodoCommand class encapsulates the execution of a todo command.
@@ -26,11 +27,15 @@ public class TodoCommand extends Command{
      * @throws IOException
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws IOException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
         Todo todo = new Todo(this.input);
-        taskList.append(todo);
-        String todoMessage = "added: " + todo.toString() + "\n";
-        storage.saveTasks(taskList);
-        return ui.print(todoMessage, taskList);
+        if (taskList.detectDuplicate(todo)) {
+            throw new DuplicateException();
+        } else {
+            taskList.append(todo);
+            String todoMessage = "added: " + todo.toString() + "\n";
+            storage.saveTasks(taskList);
+            return ui.print(todoMessage, taskList);
+        }
     }
 }

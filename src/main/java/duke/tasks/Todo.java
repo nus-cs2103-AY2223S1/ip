@@ -29,4 +29,13 @@ public class Todo extends Task{
     public String toString() {
         return this.getStatus() + " " + this.description;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Todo) {
+            Todo td = (Todo) obj;
+            return this.description.equals(td.description);
+        }
+        return false;
+    }
 }

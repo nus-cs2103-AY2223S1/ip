@@ -4,11 +4,12 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import duke.TaskList;
-import duke.exception.DukeException;
 import duke.Ui;
 import duke.Storage;
 import duke.tasks.Event;
+import duke.exception.DukeException;
 import duke.exception.InvalidDescriptionCommand;
+import duke.exception.DuplicateException;
 
 /**
  * The EventCommand class encapsulates the execution of an event command.
@@ -39,10 +40,14 @@ public class EventCommand extends Command{
             DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             LocalDateTime eventDateTime = LocalDateTime.parse(eventTime, format);
             Event event = new Event(eventAction, eventDateTime);
-            taskList.append(event);
-            String eventMessage = "added: " + event.toString() + "\n";
-            storage.saveTasks(taskList);
-            return ui.print(eventMessage, taskList);
+            if (taskList.detectDuplicate(event)) {
+                throw new DuplicateException();
+            } else {
+                taskList.append(event);
+                String eventMessage = "added: " + event.toString() + "\n";
+                storage.saveTasks(taskList);
+                return ui.print(eventMessage, taskList);
+            }
         }
     }
 }

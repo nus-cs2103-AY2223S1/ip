@@ -36,4 +36,13 @@ public class Deadline extends Task{
         return this.getStatus() + " " + this.description + " (by: " +
                 this.time.format(DateTimeFormatter.ofPattern("hh:mm a 'on' dd/MM/yyyy")) + ")";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Deadline) {
+            Deadline dl = (Deadline) obj;
+            return this.description.equals(dl.description) && this.time.equals(dl.time);
+        }
+        return false;
+    }
 }

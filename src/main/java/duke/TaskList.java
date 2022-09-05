@@ -45,4 +45,18 @@ public class TaskList {
     public Task index(int i) {
         return this.taskList.get(i);
     }
+
+    /**
+     * Check if a specified task already exists in the tasklist.
+     * @param task Task to be checked
+     * @return Whether specified task exists in the tasklist
+     */
+    public boolean detectDuplicate(Task task) {
+        for (int i = 0; i < this.taskList.size(); i++) {
+            if (task.equals(taskList.get(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -4,11 +4,12 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import duke.TaskList;
-import duke.exception.DukeException;
 import duke.Ui;
 import duke.Storage;
 import duke.tasks.Deadline;
+import duke.exception.DukeException;
 import duke.exception.InvalidDescriptionCommand;
+import duke.exception.DuplicateException;
 
 /**
  * The DeadlineCommand class encapsulates the execution of a deadline command.
@@ -39,10 +40,14 @@ public class DeadlineCommand extends Command{
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             LocalDateTime deadlineDateTime = LocalDateTime.parse(deadlineTime, formatter);
             Deadline deadline = new Deadline(deadlineAction, deadlineDateTime);
-            taskList.append(deadline);
-            String deadlineMessage = "added: " + deadline.toString() + "\n";
-            storage.saveTasks(taskList);
-            return ui.print(deadlineMessage, taskList);
+            if (taskList.detectDuplicate(deadline)) {
+                throw new DuplicateException();
+            } else {
+                taskList.append(deadline);
+                String deadlineMessage = "added: " + deadline.toString() + "\n";
+                storage.saveTasks(taskList);
+                return ui.print(deadlineMessage, taskList);
+            }
         }
     }
 }

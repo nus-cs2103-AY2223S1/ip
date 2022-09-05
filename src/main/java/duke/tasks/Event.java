@@ -36,4 +36,13 @@ public class Event extends Task{
         return this.getStatus() + " " + this.description + " (at: " +
                 this.time.format(DateTimeFormatter.ofPattern("hh:mm a 'on' dd/MM/yyyy")) + ")";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Event) {
+            Event e = (Event) obj;
+            return this.description.equals(e.description) && this.time.equals(e.time);
+        }
+        return false;
+    }
 }
