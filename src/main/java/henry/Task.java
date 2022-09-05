@@ -7,6 +7,7 @@ import java.util.List;
 
 import command.Commands;
 import exceptions.HenryException;
+import util.TaskUtils;
 
 /**
  * The base for tasks that can be added to the
@@ -15,8 +16,6 @@ import exceptions.HenryException;
  * into the constructor.
  */
 public class Task {
-
-    private static final String MALFORMED = "[T][ ] MALFORMED TASK";
 
     protected String description;
     protected boolean isDone;
@@ -102,10 +101,6 @@ public class Task {
         return dates;
     }
 
-    private String getStatusIcon() {
-        return isDone ? "[X]" : "[ ]"; // mark done task with X
-    }
-
     /**
      * Sets the status of this task as the input boolean.
      *
@@ -144,30 +139,7 @@ public class Task {
 
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        switch (type) {
-        case TODO:
-            return "[T]" + getStatusIcon() + " " + description;
-        case DEADLINE:
-            return "[D]" + getStatusIcon() + " " + description + " (by: "
-                   + date.format(formatter).replace("T", " ") + ")";
-        case EVENT:
-            if (tentativeDates.isEmpty()) {
-                return "[E]" + getStatusIcon() + " " + description + " (at: "
-                       + date.format(formatter).replace("T", " ") + ")";
-            } else {
-                StringBuilder sb = new StringBuilder();
-                sb.append("[E]").append(getStatusIcon()).append(" ").append(description).append(" (at: ");
-                for (LocalDateTime tentativeDate : tentativeDates) {
-                    sb.append(tentativeDate.format(formatter).replace("T", " ")).append(", ");
-                }
-                sb.delete(sb.length() - 2, sb.length());
-                sb.append(")");
-                return sb.toString();
-            }
-        default:
-            return MALFORMED;
-        }
+        return TaskUtils.toStandardString(type, isDone, description, date, tentativeDates);
     }
 
     /**
@@ -176,36 +148,13 @@ public class Task {
      *
      * @return a string representing the task as it would be written to the file
      */
-    public String toSimpleString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        description = description.trim();
-        switch (type) {
-        case TODO:
-            return "T | " + (isDone ? 1 : 0) + " | " + description;
-        case DEADLINE:
-            return "D | " + (isDone ? 1 : 0) + " | " + description + " | (by: "
-                   + date.format(formatter).replace("T", " ") + ")";
-        case EVENT:
-            if (tentativeDates.isEmpty()) {
-                return "E | " + (isDone ? 1 : 0) + " | " + description + " | (at: "
-                       + date.format(formatter).replace("T", " ") + ")";
-            } else {
-                StringBuilder sb = new StringBuilder();
-                sb.append("E | ").append(isDone ? 1 : 0).append(" | ").append(description).append(" | (at: ");
-                for (LocalDateTime tentativeDate : tentativeDates) {
-                    sb.append(tentativeDate.format(formatter).replace("T", " ")).append(", ");
-                }
-                sb.delete(sb.length() - 2, sb.length());
-                sb.append(")");
-                return sb.toString();
-            }
-        default:
-            return MALFORMED;
-        }
+    public String toFileEncodedString() {
+        return TaskUtils.getFileEncodedTask(type, isDone ? 1 : 0, description, date, tentativeDates);
     }
 
     /**
      * Adds a tentative date to the Task. Only applicable for Event tasks.
+     *
      * @param date the tentative date to be added
      */
     public void addTentativeDate(LocalDateTime date) {
@@ -214,6 +163,7 @@ public class Task {
 
     /**
      * Confirms the tentative date of the task. Only applicable for Event tasks.
+     *
      * @param index the index of the date chosen
      */
     public void confirmDate(int index) {
