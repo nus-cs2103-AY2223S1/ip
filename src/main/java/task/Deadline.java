@@ -22,7 +22,7 @@ public class Deadline extends Task {
     public String toString() {
         String status;
         if (this.isDone) {
-            status = String.format("[D][✓] %s (by: %s)", this.description, date);
+            status = String.format("[D][1] %s (by: %s)", this.description, date);
         } else {
             status = String.format("[D][ ] %s (by: %s)", this.description, date);
         }

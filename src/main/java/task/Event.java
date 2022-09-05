@@ -22,7 +22,7 @@ public class Event extends Task {
     public String toString() {
         String status;
         if (this.isDone) {
-            status = String.format("[E][✓] %s (at: %s)", this.description, date);
+            status = String.format("[E][1] %s (at: %s)", this.description, date);
         } else {
             status = String.format("[E][ ] %s (at: %s)", this.description, date);
         }
