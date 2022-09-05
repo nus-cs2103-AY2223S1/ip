@@ -40,21 +40,21 @@ public class Duke {
      * Executes the Duke chatbot logic.
      */
     public String getResponse(String input) {
-        // Helper Fields
-        boolean isExit = false;
 
-        while (!isExit) {
-
-            // Parse Input
+            // Parse Input and handles invalid input if any
             try {
                 Parser.parse(input);
             } catch (DukeException de) {
                 return ui.printErrorMessage(de);
             }
 
-            // Valid Input
+            // Retrieve command and arguments parsed from input to perform respective actions
             Keyword command = Parser.getCommand();
             String argument = Parser.getArgument();
+
+            assert command != null : "Invalid Command";
+            assert argument != null : "Invalid Argument";
+
             try {
                 switch (command) {
                 case TODO: {
@@ -98,7 +98,6 @@ public class Duke {
                     return ui.displayTaskMarkUnmarkMessage(task, command);
                 }
                 case BYE: {
-                    isExit = true;
                     return ui.sayGoodbye();
                 }
                 default: {
@@ -106,13 +105,14 @@ public class Duke {
                     break;
                 }
                 }
+
                 // Update Save File
                 storage.saveTaskListToFile(tasks);
 
             } catch (DukeException de) {
                 return ui.printErrorMessage(de);
             }
-        }
+
         return "";
     }
 

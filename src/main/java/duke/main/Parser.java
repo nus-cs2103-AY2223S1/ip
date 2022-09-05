@@ -23,6 +23,8 @@ public class Parser {
 
         try {
             command = Keyword.getKeyword(inputTokens[0]);
+
+            // List and Bye commands are not passed with arguments
             if (command != Keyword.LIST && command != Keyword.BYE) {
                 String argumentString = inputTokens[1];
                 validateArgument(argumentString);
@@ -43,6 +45,8 @@ public class Parser {
      * @throws DukeException If argument is missing or of invalid format.
      */
     private static void validateArgument(String argument) throws DukeException {
+        assert argument != null : "Missing argument string";
+
         try {
             switch (command) {
             case DEADLINE: {
@@ -59,8 +63,8 @@ public class Parser {
                 DateTimeFormatUtils.parseDuration(duration);
                 break;
             }
-            case MARK:
-            case UNMARK:
+            case MARK: // Fallthrough
+            case UNMARK: // Fallthrough
             case DELETE: {
                 Integer.parseInt(argument);
                 break;
