@@ -10,7 +10,9 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
 
+    private static final String dateFormat = "MMM d yyyy";
     protected LocalDate returnBy;
+
 
     /**
      * Constructor for Deadline.
@@ -45,7 +47,7 @@ public class Deadline extends Task {
     @Override
     public String saveStringFormat() {
         return String.format("D | %d | %s | %s", this.isDone ? 1 : 0, this.description,
-                this.returnBy.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+                this.returnBy.format(DateTimeFormatter.ofPattern(dateFormat)));
     }
 
     /**
@@ -56,7 +58,7 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return "[D] " + "[" + this.getStatusIcon() + "] " + this.description
-                + " (by: " + this.returnBy.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+                + " (by: " + this.returnBy.format(DateTimeFormatter.ofPattern(dateFormat)) + ")";
 
     }
 }

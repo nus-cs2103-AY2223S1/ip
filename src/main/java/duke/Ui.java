@@ -6,7 +6,6 @@ import java.util.Scanner;
  * The Ui class handles the output to be printed by Bob that is shown to the user.
  */
 public class Ui {
-    private static final String horizontalLine = "_____________________________________________________________";
     private Scanner sc;
 
     /**
