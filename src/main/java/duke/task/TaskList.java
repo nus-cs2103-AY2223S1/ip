@@ -22,6 +22,8 @@ public class TaskList {
      */
     public TaskList(List<Task> tasks) {
         this.tasks = tasks;
+
+        assert hasValidState() : "Construction Failed - List provided is null";
     }
 
     /**
@@ -115,6 +117,28 @@ public class TaskList {
      */
     public int size() {
         return this.tasks.size();
+    }
+
+    /**
+     * Implements the class invariant.
+     *
+     * Perform all checks on the state of the object.
+     * One may assert that this method returns true at the end
+     * of every public method.
+     * @return true if valid State, false otherwise.
+     */
+    private boolean hasValidState() {
+        return isValidList(this.tasks);
+    }
+
+    /**
+     * Returns validity of the list of tasks.
+     *
+     * @param tasks The list of tasks.
+     * @return true if valid list of tasks, false otherwise.
+     */
+    private boolean isValidList(List<Task> tasks) {
+        return tasks != null;
     }
 
     @Override

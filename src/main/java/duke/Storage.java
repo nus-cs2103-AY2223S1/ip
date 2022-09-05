@@ -38,6 +38,8 @@ public class Storage {
     public Storage(String filePath) {
         this.filePath = filePath;
         this.file = new File(this.filePath);
+
+        assert hasValidState() : "Construction Failed: Invalid state";
     }
 
     /**
@@ -124,5 +126,37 @@ public class Storage {
         } catch (IOException | DateTimeParseException e) {
             throw new DukeException("Invalid String in load file.");
         }
+    }
+
+    /**
+     * Implements the class invariant.
+     *
+     * Perform all checks on the state of the object.
+     * One may assert that this method returns true at the end
+     * of every public method.
+     * @return true if valid State, false otherwise.
+     */
+    private boolean hasValidState() {
+        return isValidFilePath(this.filePath) && isValidFile(this.file);
+    }
+
+    /**
+     * Returns validity of filePath.
+     *
+     * @param filePath The filePath to store Save File.
+     * @return true if valid filePath, false otherwise.
+     */
+    private boolean isValidFilePath(String filePath) {
+        return !filePath.isEmpty();
+    }
+
+    /**
+     * Returns validity of File.
+     *
+     * @param file The Save File.
+     * @return true if valid file, false otherwise.
+     */
+    private boolean isValidFile(File file) {
+        return file != null;
     }
 }

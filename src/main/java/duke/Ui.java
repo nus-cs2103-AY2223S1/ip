@@ -29,6 +29,7 @@ public class Ui {
      * @return Message on task completion.
      */
     public String printMarkTask(Task task) {
+        assert !isValidTask(task) : "printMarkTask Failed: Task is null";
         return "Nice! I've marked this task as done:\n" + task;
     }
 
@@ -39,6 +40,7 @@ public class Ui {
      * @return Message on task completion undo-ed.
      */
     public String printUnmarkTask(Task task) {
+        assert !isValidTask(task) : "printUnmarkTask Failed: Task is null";
         return "Ok! I've marked this task as not done yet:\n" + task;
     }
 
@@ -59,6 +61,7 @@ public class Ui {
      * @return message on current TaskList.
      */
     public String printList(String tasks) {
+        assert !isValidTasks(tasks) : "printList Failed: List of tasks is empty";
         return "Here are the tasks in your list: \n" + tasks;
     }
 
@@ -69,6 +72,7 @@ public class Ui {
      * @return message on matching tasks.
      */
     public String printMatchedList(String tasks) {
+        assert !isValidTasks(tasks) : "printMatchedTask Failed: List of tasks is empty";
         return "Here are the matching tasks in your list: \n" + tasks;
     }
 
@@ -79,6 +83,7 @@ public class Ui {
      * @return Task addition message.
      */
     public String printAddTask(Task task) {
+        assert !isValidTask(task) : "printAddTask Failed: Task is null";
         return "Got it. I've added this task:\n" + task;
     }
 
@@ -89,6 +94,7 @@ public class Ui {
      * @return Task deletion message.
      */
     public String printDeleteTask(Task task) {
+        assert !isValidTask(task) : "printDeleteTask Failed: Task is null";
         return "Noted. I've removed this task:\n" + task;
     }
 
@@ -140,6 +146,37 @@ public class Ui {
      * @return Error message
      */
     public String printErr(String message) {
+        assert !isValidMessage(message) : "printErr Failed: Message is empty";
         return message;
+    }
+
+    /**
+     * Returns validity of a task
+     *
+     * @param task The specified task
+     * @return true if valid task, false otherwise.
+     */
+    private boolean isValidTask(Task task) {
+        return task != null;
+    }
+
+    /**
+     * Returns validity of the list of tasks
+     *
+     * @param tasks The specified list of tasks
+     * @return true if valid list of tasks, false otherwise.
+     */
+    private boolean isValidTasks(String tasks) {
+        return !tasks.isEmpty();
+    }
+
+    /**
+     * Returns validity of the message
+     *
+     * @param message The specified message
+     * @return true if valid message, false otherwise.
+     */
+    private boolean isValidMessage(String message) {
+        return !message.isEmpty();
     }
 }

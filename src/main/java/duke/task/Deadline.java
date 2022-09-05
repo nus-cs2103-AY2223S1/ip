@@ -23,6 +23,9 @@ public class Deadline extends Task {
     public Deadline(String description, LocalDateTime by) {
         super(description);
         this.by = by;
+
+        //check the class invariant
+        assert hasValidDateTime() : "Construction failed - Invalid LocalDateTime.";
     }
 
     /**
@@ -35,6 +38,18 @@ public class Deadline extends Task {
     public Deadline(String description, boolean isDone, LocalDateTime by) {
         super(description, isDone);
         this.by = by;
+
+        //check the class invariant
+        assert hasValidDateTime() : "Construction failed - Invalid LocalDateTime.";
+    }
+
+    /**
+     * Returns validity of by.
+     *
+     * @return true if valid by, false otherwise.
+     */
+    private boolean hasValidDateTime() {
+        return this.by != null;
     }
 
     /**
