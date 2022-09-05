@@ -163,20 +163,24 @@ public class Ui {
      * Returns current state of the list.
      *
      * @param list String array of task descriptions.
-     * @param tasksLeft Integer representing the number of tasks left in the list.
      * @return String of message showing the state of the list and its constituent tasks.
      */
-    public String showList(String[] list, int tasksLeft) {
+    public String showList(String[] list) {
         String content;
 
-        if (tasksLeft == 0) {
+        if (list.length == 0) {
             content = "NYAAA! 00 Tasks means nap time.\n";
             return content;
         } else {
             content = "Here nya the tasks in your list:\n";
             StringBuilder builder = new StringBuilder(content);
+            int counter = 1;
             for (String s : list) {
-                builder.append(s).append("\n");
+                builder.append(counter)
+                        .append(". ")
+                        .append(s)
+                        .append("\n");
+                counter++;
             }
             return builder.toString();
         }
@@ -191,17 +195,19 @@ public class Ui {
     public String showFindList(String[] list) {
         String content;
 
-        if (list[0] == null) {
+        if (list.length == 0) {
             content = "NYAAA! 00 Tasks are found.\n";
             return content;
         } else {
             content = "Here nya the matching tasks in your list:\n";
             StringBuilder builder = new StringBuilder(content);
+            int counter = 1;
             for (String s : list) {
-                if (s == null) {
-                    break;
-                }
-                builder.append(s).append("\n");
+                builder.append(counter)
+                        .append(". ")
+                        .append(s)
+                        .append("\n");
+                counter++;
             }
             return builder.toString();
         }
