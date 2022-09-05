@@ -16,6 +16,7 @@ public class ListCommand extends Command {
     @Override
     public String execute() throws DukeException {
         String[] tasks = Command.taskList.getAllTasksInDisplayFormat().toArray(new String[0]);
+        assert tasks.length == Command.taskList.size();
         if (tasks.length == 0) {
             return Ui.formatMessages(new String[]{"No tasks"});
         } else {

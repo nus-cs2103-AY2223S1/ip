@@ -26,6 +26,7 @@ public class FindCommand extends Command {
     @Override
     public String execute() {
         TaskList tasksFound = Command.taskList.find(keyword);
+        assert tasksFound.size() <= Command.taskList.size();
         if (tasksFound.size() == 0) {
             return Ui.formatMessages(new String[]{"No tasks found with keyword: " + keyword});
         } else {
