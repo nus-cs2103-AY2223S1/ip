@@ -32,16 +32,16 @@ public class DeleteCommand extends Command {
      */
     @Override
     public Response execute() throws DukeException {
-        if (this.inputArr.length < 2) {
+        if (inputArr.length < 2) {
             throw new DukeException("Missing task number.");
         }
         try {
-            int index = Integer.parseInt(this.inputArr[1]) - 1;
-            Task task = this.taskList.deleteTask(index);
+            int index = Integer.parseInt(inputArr[1]) - 1;
+            Task task = taskList.deleteTask(index);
             assert task != null : "Task cannot be null";
             return new Response("Noted. I've removed this task:\n"
                     + task + "\n"
-                    + "Now you have " + this.taskList.getSize() + " tasks in the list.\n");
+                    + "Now you have " + taskList.getSize() + " tasks in the list.\n");
         } catch (NumberFormatException exception) {
             throw new DukeException("Invalid task number.");
         } catch (DukeException exception) {

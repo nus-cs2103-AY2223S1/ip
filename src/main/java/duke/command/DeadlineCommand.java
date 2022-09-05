@@ -31,19 +31,19 @@ public class DeadlineCommand extends Command {
      */
     @Override
     public Response execute() throws DukeException {
-        if (this.inputArr.length < 2) {
+        if (inputArr.length < 2) {
             throw new DukeException("The description of a deadline cannot be empty.");
         }
-        String[] descriptionDate = this.inputArr[1].split(" /by ", 2);
+        String[] descriptionDate = inputArr[1].split(" /by ", 2);
         if (descriptionDate.length < 2) {
             throw new DukeException("The description and date of a deadline cannot be empty.");
         }
         String task = descriptionDate[0];
         String date = descriptionDate[1];
         Deadline event = new Deadline(task, date);
-        this.taskList.addTask(event);
+        taskList.addTask(event);
         return new Response("Got it. I've added this task: \n"
                 + event + "\n"
-                + "Now you have " + this.taskList.getSize() + " tasks in the list.\n");
+                + "Now you have " + taskList.getSize() + " tasks in the list.\n");
     }
 }

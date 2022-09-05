@@ -34,10 +34,10 @@ public class FindCommand extends Command {
      */
     @Override
     public Response execute() throws DukeException {
-        if (this.inputArr.length < 2) {
+        if (inputArr.length < 2) {
             throw new DukeException("Missing keyword.");
         }
-        List<Task> tasks = this.taskList.findTasks(this.inputArr[1].split(" "));
+        List<Task> tasks = taskList.findTasks(inputArr[1].split(" "));
         assert tasks != null : "Tasks cannot be null";
         int size = tasks.size();
         if (size == 0) {
