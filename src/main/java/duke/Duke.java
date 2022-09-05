@@ -1,6 +1,5 @@
 package duke;
 import java.io.File;
-import java.util.*;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -46,61 +45,32 @@ public class Duke extends Application{
         this.parser = new Parser();
     }
 
-    /*
-     * Run method for Duke, which coordinates the storage, taskList, ui and parser.
-     */
-    public void run() {
-        this.ui.greet();
-
-        // Read file with tasks if it exists, else create a new one.
-        File taskFile = new File("./data/duke.txt");
-        if (taskFile.exists()) {
-            this.taskList = this.storage.taskListReader();
-        } else {
-            try {
-                File directory = new File("./data/");
-                if (!directory.exists()) {
-                    directory.mkdir();
-                } 
-                taskFile.createNewFile();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        //Takes in inputs and passes them to the Parser if they are neither list or bye.
-        // Scan for commands.
-        Scanner sc = new Scanner(System.in);
-        String command = sc.nextLine();
+    public static void main(String[] args) {
         
-        while (!command.toLowerCase().equals("bye")) {
-            if (command.equals("list")){
-                this.ui.printList(this.taskList);
-            } else {
-                try {
-                    this.parser.commandParser(command, taskList, ui);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            
-            command = sc.nextLine();
-        }
-
-        this.storage.taskListWriter(taskList);
-        sc.close();
-        this.ui.exit();
-    
     }
 
-    public static void main(String[] args) {
-        Duke chatNUS = new Duke();
-        chatNUS.run();
+    private void styleStage(Stage stage) {
+        stage.setTitle("Duke");
+        stage.setResizable(false);
+        stage.setMinHeight(600.0);
+        stage.setMaxHeight(600.0);
+        stage.setMinWidth(600.0);
+    }
+
+    private void styleScrollPane(ScrollPane scrollPane) {
+        scrollPane.setPrefSize(585, 535);
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        scrollPane.setVvalue(1.0);
+        scrollPane.setFitToWidth(true);
     }
 
     @Override
     public void start(Stage stage) {
+        // Read List of tasks
+        this.readTaskFile();
+
+        // Initialize the Nodes of the UI
         this.scrollPane = new ScrollPane();
         this.dialogContainer = new VBox();
         this.scrollPane.setContent(this.dialogContainer);
@@ -109,6 +79,8 @@ public class Duke extends Application{
         this.sendButton = new Button("Send");
 
         AnchorPane mainLayout = new AnchorPane();
+
+        // Add the Nodes to the AnchorPane
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
 
         this.scene = new Scene(mainLayout);
@@ -116,11 +88,8 @@ public class Duke extends Application{
         stage.setScene(this.scene);
         stage.show();
         
-        stage.setTitle("Duke");
-        stage.setResizable(false);
-        stage.setMinHeight(600.0);
-        stage.setMaxHeight(600.0);
-        stage.setMinWidth(600.0);
+        // Set the Stage Dimensions
+        this.styleStage(stage);
 
         mainLayout.setPrefSize(685, 535);
 
@@ -129,11 +98,9 @@ public class Duke extends Application{
         userInput.setPrefWidth(525.0);
         sendButton.setPrefWidth(55.0);
 
-        scrollPane.setPrefSize(585, 535);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-        scrollPane.setVvalue(1.0);
-        scrollPane.setFitToWidth(true);
+
+        // Set Dimensions for ScrollPane
+        this.styleScrollPane(scrollPane);
 
         AnchorPane.setTopAnchor(scrollPane, 1.0);
 
@@ -142,6 +109,13 @@ public class Duke extends Application{
 
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
+
+        ImageView dukeImage = new ImageView(duke);
+
+        // Begin by greeting the user.
+        dialogContainer.getChildren().add(
+            DialogBox.getDukeDialog(new Label(this.ui.greet()), dukeImage)
+        );
 
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
 
@@ -152,8 +126,6 @@ public class Duke extends Application{
         this.userInput.setOnAction((event) -> {
             handleUserInput();
         });
-
-
 
     }
 
@@ -176,7 +148,38 @@ public class Duke extends Application{
     }
 
     private String getResponse(String text) {
-        return "Duke heard: " + text;
+        if (text.equals("bye")) {
+            storage.taskListWriter(this.taskList);
+            return this.ui.exit();
+        } else {
+            try {
+                return this.parser.commandParser(text, this.taskList, this.ui);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+        
+    }
+
+    private void readTaskFile() {
+
+        // Read file with tasks if it exists, else create a new one.
+        File taskFile = new File("./data/duke.txt");
+        if (taskFile.exists()) {
+            this.taskList = this.storage.taskListReader();
+        } else {
+            try {
+                File directory = new File("./data/");
+                if (!directory.exists()) {
+                    directory.mkdir();
+                } 
+                taskFile.createNewFile();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }
