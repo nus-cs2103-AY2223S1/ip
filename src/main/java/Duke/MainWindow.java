@@ -28,11 +28,20 @@ public class MainWindow extends AnchorPane {
     private Image userImg = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImg = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
+    /**
+     * Initialises the main window of the GUI.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
+    /**
+     * Sets the duke response into dialog box.
+     *
+     * @param duke the bot object.
+     * @throws IOException if there is invalid file.
+     */
     public void setDuke(Duke duke) throws IOException {
         this.duke = duke;
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(duke.showWelcomeMessage(), dukeImg));

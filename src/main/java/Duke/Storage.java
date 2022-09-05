@@ -56,6 +56,7 @@ public class Storage {
                 String[] currLineArr = currLine.split(" \\| ");
                 if (currLineArr[0].equals("T")) {
                     Todo td = new Todo(currLineArr[2]);
+                    assert (currLineArr[1].equals("1") || currLineArr[1].equals("0")) : "Flag for done is invalid in data file!";
                     if (currLineArr[1].equals("1")) {
                         td.markAsDone();
                     }
@@ -65,6 +66,7 @@ public class Storage {
                     LocalDate date = LocalDate.parse(currLineArr[3], DateTimeFormatter.ofPattern("MMM d yyyy"));
                     String formattedDate = date.toString();
                     Deadline d = new Deadline(currLineArr[2], formattedDate);
+                    assert (currLineArr[1].equals("1") || currLineArr[1].equals("0")) : "Flag for done is invalid in data file!";
                     if (currLineArr[1].equals("1")) {
                         d.markAsDone();
                     }
@@ -74,6 +76,7 @@ public class Storage {
                     LocalDate date = LocalDate.parse(currLineArr[3], DateTimeFormatter.ofPattern("MMM d yyyy"));
                     String formattedDate = date.toString();
                     Event e = new Event(currLineArr[2], formattedDate);
+                    assert (currLineArr[1].equals("1") || currLineArr[1].equals("0")) : "Flag for done is invalid in data file!";
                     if (currLineArr[1].equals("1")) {
                         e.markAsDone();
                     }

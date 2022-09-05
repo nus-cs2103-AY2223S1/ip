@@ -31,7 +31,10 @@ public class TaskList {
      * @param task object added to list of tasks.
      */
     public void add(Task task) {
+        int initialSize = this.tasks.size();
         this.tasks.add(task);
+        int afterSize = this.tasks.size();
+        assert (afterSize - initialSize) == 1 : "Task list should increment by 1";
     }
 
     /**
@@ -40,7 +43,10 @@ public class TaskList {
      * @param index index of object removed from list of tasks.
      */
     public void remove(int index) {
+        int initialSize = this.tasks.size();
         this.tasks.remove(index - 1);
+        int afterSize = this.tasks.size();
+        assert (initialSize - afterSize) == 1 : "Task list should increment by 1";
     }
 
     /**
@@ -78,6 +84,7 @@ public class TaskList {
      */
     public void markAsDone(int index) {
         this.tasks.get(index).markAsDone();
+        assert this.tasks.get(index).isDone : "Task should be marked as done";
     }
 
     /**
@@ -87,5 +94,6 @@ public class TaskList {
      */
     public void markAsNotDone(int index) {
         this.tasks.get(index).markAsNotDone();
+        assert !this.tasks.get(index).isDone : "Task should be marked as not done";
     }
 }
