@@ -26,7 +26,12 @@ public class TaskList {
         tasks.add(task);
     }
 
-    // checks if the index range is out of bounds
+    /**
+     * Checks if the provided index is out of bounds, and throws IllegalCommandException if so.
+     *
+     * @param index The index to check.
+     * @throws IllegalCommandException If the provided index is out of bounds.
+     */
     private void checkIndex(int index) {
         if (index <= 0 || index > tasks.size()) {
             throw new IllegalCommandException("Invalid index");

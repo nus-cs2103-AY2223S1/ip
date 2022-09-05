@@ -16,7 +16,9 @@ import javafx.stage.Stage;
  * A GUI for Jude the chatbot using FXML.
  */
 public class Main extends Application {
-    private Jude jude = new Jude("data/tasks.txt");
+    private static final String DEFAULT_GUI_DATA_STORAGE_PATH = "data/tasks.txt";
+    private static final String MAIN_WINDOW_TITLE = "Jude the chatbot";
+    private Jude jude = new Jude(DEFAULT_GUI_DATA_STORAGE_PATH);
 
     /**
      * Creates a new GUI instance for Jude the chatbot.
@@ -49,7 +51,7 @@ public class Main extends Application {
             // @@author cheeheng-reused
             // Reused from https://stackoverflow.com/questions/29055792/javafx-window-settitle
             // with minor modifications.
-            stage.setTitle("Jude the chatbot");
+            stage.setTitle(MAIN_WINDOW_TITLE);
 
             stage.show();
         } catch (IOException e) {

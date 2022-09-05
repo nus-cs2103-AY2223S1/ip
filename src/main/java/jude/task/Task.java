@@ -37,23 +37,14 @@ public abstract class Task {
         return description;
     }
 
-    /**
-     * Sets whether the {@code Task} is done.
-     *
-     * @param isDone Whether the {@code Task} is done.
-     */
-    public void setIsDone(boolean isDone) {
-        this.isDone = isDone;
-    }
-
+    //@@author cheeheng-reused
+    //Reused from https://nus-cs2103-ay2223s1.github.io/website/schedule/week2/project.html
+    //with minor modifications
     /**
      * Returns the status icon depicting whether the {@code Task} has been done.
      *
      * @return 'X' if {@code Task} is done, ' ' otherwise.
      */
-    //@@author cheeheng-reused
-    //Reused from https://nus-cs2103-ay2223s1.github.io/website/schedule/week2/project.html
-    //with minor modifications
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
@@ -62,14 +53,14 @@ public abstract class Task {
      * Sets the status of the {@code Task} to 'done'.
      */
     public void markAsDone() {
-        setIsDone(true);
+        this.isDone = true;
     }
 
     /**
      * Sets the status of the {@code Task} to 'not done'.
      */
     public void markAsUndone() {
-        setIsDone(false);
+        this.isDone = false;
     }
 
     /**
@@ -82,7 +73,7 @@ public abstract class Task {
 
     /**
      * Returns the String representation of the {@code Task} object, i.e.
-     *   a string in the format "[task type code][get status icon] description".
+     * a string in the format "[task type code][get status icon] description".
      *
      * @return String representation of the {@code Task} object.
      */
