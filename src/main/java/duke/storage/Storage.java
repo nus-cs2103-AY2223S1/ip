@@ -33,13 +33,14 @@ public class Storage {
 
         String type = components[0];
 
-        if (type.equals("T")) {
+        switch (type) {
+        case "T":
             return Todo.parse(data);
-        } else if (type.equals("D")) {
+        case "D":
             return Deadline.parse(data);
-        } else if (type.equals("E")) {
+        case "E":
             return Event.parse(data);
-        } else {
+        default:
             throw new ParsingTaskException(String.format("duke.Task.Task was of unknown type: %s", type));
         }
     }
@@ -64,8 +65,7 @@ public class Storage {
                 try {
                     tasks.add(Storage.parse(data));
                 } catch (ParsingTaskException e) {
-                    System.out.println(e);
-                    continue;
+                    System.out.println(e.getMessage());
                 }
             }
 
@@ -106,7 +106,7 @@ public class Storage {
 
             System.out.println("Saved tasks list successfully!");
         } catch (Exception e) {
-            System.out.println(e + this.dataPath);
+            System.out.println(e.getMessage() + this.dataPath);
         }
     }
 }
