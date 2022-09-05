@@ -26,6 +26,9 @@ public class Event extends Task {
     public Event(String description, LocalDateTime at) {
         super(description);
         this.at = at;
+
+        //check the class invariant
+        assert hasValidDateTime() : "Construction failed - Invalid LocalDateTime.";
     }
 
     /**
@@ -38,6 +41,18 @@ public class Event extends Task {
     public Event(String description, boolean isDone, LocalDateTime at) {
         super(description, isDone);
         this.at = at;
+
+        //check the class invariant
+        assert hasValidDateTime() : "Construction failed - Invalid LocalDateTime.";
+    }
+
+    /**
+     * Returns validity of at.
+     *
+     * @return true if valid at, false otherwise.
+     */
+    private boolean hasValidDateTime() {
+        return this.at != null;
     }
 
     /**

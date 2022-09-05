@@ -24,6 +24,9 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+
+        //check the class invariant
+        assert hasValidState() : "Construction failed - not valid state.";
     }
 
     /**
@@ -35,6 +38,9 @@ public class Task {
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
+
+        //check the class invariant
+        assert hasValidState() : "Construction failed - not valid state.";
     }
 
     /**
@@ -78,6 +84,28 @@ public class Task {
      */
     public void markAsUndone() {
         this.isDone = false;
+    }
+
+    /**
+     * Implements the class invariant.
+     *
+     * Perform all checks on the state of the object.
+     * One may assert that this method returns true at the end
+     * of every public method.
+     * @return true if valid State, false otherwise.
+     */
+    private boolean hasValidState() {
+        return isValidDescription(this.description);
+    }
+
+    /**
+     * Returns validity of description.
+     *
+     * @param description The description of the task.
+     * @return true if valid description, false otherwise.
+     */
+    private boolean isValidDescription(String description) {
+        return !description.isEmpty();
     }
 
     /**

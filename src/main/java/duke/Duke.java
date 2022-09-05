@@ -18,9 +18,9 @@ import duke.task.TaskList;
  */
 public class Duke {
     // Initialise variables
-    private TaskList tasks;
-    private Storage storage;
     private Ui ui;
+    private Storage storage;
+    private TaskList tasks;
 
     /**
      * Constructor for ChatBot, Duke.
@@ -36,6 +36,7 @@ public class Duke {
             ui.printErr(e.getMessage());
             this.tasks = new TaskList(new ArrayList<>());
         }
+        assert hasValidState() : "Construction Failure: Invalid State";
     }
 
     /**
@@ -64,5 +65,47 @@ public class Duke {
             response = new String[]{message, exitStatus};
             return response;
         }
+    }
+
+    /**
+     * Implements the class invariant.
+     *
+     * Perform all checks on the state of the object.
+     * One may assert that this method returns true at the end
+     * of every public method.
+     * @return true if valid State, false otherwise.
+     */
+    private boolean hasValidState() {
+        return isValidUi(this.ui) && isValidStorage(this.storage) && isValidTaskList(this.tasks);
+    }
+
+    /**
+     * Returns validity of TaskList.
+     *
+     * @param tasks The specified TaskList.
+     * @return true if valid TaskList, false otherwise.
+     */
+    private boolean isValidTaskList(TaskList tasks) {
+        return tasks != null;
+    }
+
+    /**
+     * Returns validity of Storage.
+     *
+     * @param storage The specified Storage.
+     * @return true if valid Storage, false otherwise.
+     */
+    private boolean isValidStorage(Storage storage) {
+        return storage != null;
+    }
+
+    /**
+     * Returns validity of Ui.
+     *
+     * @param ui The specified Ui.
+     * @return true if valid Ui, false otherwise.
+     */
+    private boolean isValidUi(Ui ui) {
+        return ui != null;
     }
 }
