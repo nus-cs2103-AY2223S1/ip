@@ -2,9 +2,10 @@ package sky.command;
 
 import java.io.IOException;
 
-import sky.Storage;
 import sky.TaskList;
 import sky.exception.TextNoMeaningException;
+import sky.storage.History;
+import sky.storage.Storage;
 import sky.task.Task;
 
 /**
@@ -18,13 +19,15 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList taskList, Storage storage) throws TextNoMeaningException, IOException {
+    public String execute(TaskList taskList, Storage storage, History history)
+            throws TextNoMeaningException, IOException {
         try {
             String taskNumInString = this.fullCommand.substring(5);
             // Minus one as arrayList is zero-indexed
             int taskNum = Integer.parseInt(taskNumInString) - 1;
             Task task = taskList.getTask(taskNum);
             task.markAsDone();
+            history.addHistoryInTime(taskList);
             storage.reWriteDataFile(taskList);
             String s = "Wow... who would have thought you had it in you... I've marked this task as done: \n"
                     + "    " + task;

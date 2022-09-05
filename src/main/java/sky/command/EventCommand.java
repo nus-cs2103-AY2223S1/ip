@@ -8,9 +8,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.regex.PatternSyntaxException;
 
-import sky.Storage;
 import sky.TaskList;
 import sky.exception.TextNoMeaningException;
+import sky.storage.History;
+import sky.storage.Storage;
 import sky.task.Event;
 import sky.task.Task;
 
@@ -25,7 +26,8 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList taskList, Storage storage) throws TextNoMeaningException, IOException {
+    public String execute(TaskList taskList, Storage storage, History history)
+            throws TextNoMeaningException, IOException {
         try {
             String taskEvent = this.fullCommand.substring(6);
             String[] arrOfStrings = taskEvent.split(" /at ");
@@ -41,6 +43,7 @@ public class EventCommand extends Command {
             taskList.addTask(task);
             // Add task into data file
             storage.append(task.toString());
+            history.addHistoryInTime(taskList);
             String s = "Got it. I've added this task: \n"
                     + "    " + task
                     + "\nNow you have " + taskList.getSize()

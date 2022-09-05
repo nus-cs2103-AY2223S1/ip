@@ -7,9 +7,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.regex.PatternSyntaxException;
 
-import sky.Storage;
 import sky.TaskList;
 import sky.exception.TextNoMeaningException;
+import sky.storage.History;
+import sky.storage.Storage;
 import sky.task.Deadline;
 import sky.task.Task;
 
@@ -24,7 +25,8 @@ public class DeadlineCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList taskList, Storage storage) throws TextNoMeaningException, IOException {
+    public String execute(TaskList taskList, Storage storage, History history)
+            throws TextNoMeaningException, IOException {
         try {
             String taskDeadline = this.fullCommand.substring(9);
             String[] arrOfStrings = taskDeadline.split(" /by ");
@@ -40,6 +42,7 @@ public class DeadlineCommand extends Command {
             taskList.addTask(task);
             // Add task into data file.
             storage.append(task.toString());
+            history.addHistoryInTime(taskList);
             String s = "Got it. I've added this task: \n"
                     + "    " + task
                     + "\nNow you have " + taskList.getSize()

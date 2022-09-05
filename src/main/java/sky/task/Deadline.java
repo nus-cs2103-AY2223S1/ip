@@ -18,6 +18,12 @@ public class Deadline extends Task {
     }
 
     @Override
+    public Deadline makeACopy() {
+        Deadline copiedTask = new Deadline(super.description, this.by);
+        return copiedTask;
+    }
+
+    @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + this.by + ")";
     }
