@@ -20,6 +20,8 @@ public class Duke extends Application {
 
     /**
      * Constructor.
+     *
+     * @param filePath
      */
     public Duke(String filePath) {
         try {
@@ -34,11 +36,17 @@ public class Duke extends Application {
 
     @Override
     public void start(Stage stage) {
+
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Handles user input.
+     * Returns response retrieved from UI class.
+     * Causes System to exit if input corresponds to exit
+     * command.
+     *
+     * @param input user input
+     * @return
      */
     public String getResponse(String input) {
         boolean isExit = false;

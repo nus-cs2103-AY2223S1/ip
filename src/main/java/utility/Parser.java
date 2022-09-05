@@ -49,6 +49,7 @@ public class Parser {
         } else {
             stringCommand = userInput.substring(0, firstWhiteSpaceIndex);
         }
+        assert !stringCommand.contains(" ");
         switch (stringCommand) {
         case "todo":
             return new AddTaskCommand();
@@ -133,6 +134,7 @@ public class Parser {
     private static String getDescription(String commandUsed, String input) throws DukeException {
         String description;
         int startDescriptionIndex = input.indexOf(commandUsed) + commandUsed.length();
+        assert startDescriptionIndex < 0;
         if (commandUsed.equals("event") || commandUsed.equals("deadline")) {
             int endDescriptionIndex = input.indexOf(END_OF_DESCRIPTION_MARKER);
             if (endDescriptionIndex < 0) {
