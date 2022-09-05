@@ -73,18 +73,18 @@ public class Storage {
     public void addLineToFile(String command) {
         try {
             String[] combiStr;
-            String[] split = command.split(" ", 2);
-            if (split.length < 2) {
+            String[] splitString = command.split(" ", 2);
+            if (splitString.length < 2) {
                 throw new EmptyNameException();
             }
-            String type = split[0];
+            String type = splitString[0];
             if (type.equals(TaskTypeEnum.todo.toString())) {
-                String name = split[1];
+                String name = splitString[1];
                 combiStr = new String[]{type, "0", name};
             } else {
-                String[] split1 = split[1].split("/", 2);
-                String name = split1[0];
-                String info = split1[1];
+                String[] innerSplitString = splitString[1].split("/", 2);
+                String name = innerSplitString[0];
+                String info = innerSplitString[1];
                 if (type.equals(TaskTypeEnum.deadline.toString()) || type.equals("D")) {
                     combiStr = new String[]{type, "0", name, info};
                 } else {

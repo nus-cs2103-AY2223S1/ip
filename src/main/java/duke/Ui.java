@@ -2,7 +2,6 @@ package duke;
 
 import exceptions.UnknownCommandException;
 
-import javax.sound.midi.Soundbank;
 import java.util.Scanner;
 
 public class Ui {
@@ -45,8 +44,9 @@ public class Ui {
     }
 
     public void executeCommand(String nextCommand) throws UnknownCommandException {
+        boolean checkAddTaskCommand = nextCommand.contains(CommandsEnum.todo.toString()) || nextCommand.contains(CommandsEnum.deadline.toString()) || nextCommand.contains(CommandsEnum.event.toString());
         if (nextCommand.equals(CommandsEnum.list.toString())) {
-            taskList.displayAllTask();
+            taskList.displayAllTasks();
         } else if (nextCommand.startsWith(CommandsEnum.mark.toString())) {
             int index = convertToInt(nextCommand);
             storage.toggleDone(index, true);
@@ -55,10 +55,9 @@ public class Ui {
             int index = convertToInt(nextCommand);
             storage.toggleDone(index, false);
             taskList.setTaskAsUndone(index);
-        } else if (nextCommand.contains(CommandsEnum.todo.toString()) || nextCommand.contains(CommandsEnum.deadline.toString()) || nextCommand.contains(CommandsEnum.event.toString())) {
+        } else if (checkAddTaskCommand) {
             taskList.addTask(nextCommand);
             storage.addLineToFile(nextCommand);
-
         } else if (nextCommand.startsWith(CommandsEnum.delete.toString())) {
             int index = convertToInt(nextCommand);
             storage.deleteLine(index);
@@ -80,7 +79,7 @@ public class Ui {
             return BYE;
         }
         else if (nextCommand.equals(CommandsEnum.list.toString())) {
-            return taskList.displayAllTask();
+            return taskList.displayAllTasks();
         } else if (nextCommand.startsWith(CommandsEnum.mark.toString())) {
             int index = convertToInt(nextCommand);
             storage.toggleDone(index, true);
