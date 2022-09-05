@@ -1,8 +1,8 @@
 package duke.command;
 
 import duke.Storage;
-import duke.task.TaskList;
 import duke.Ui;
+import duke.task.TaskList;
 
 /**
  * Stores the index of the Task to be unmarked when executed.
@@ -10,7 +10,11 @@ import duke.Ui;
 public class UnmarkCommand extends Command {
     private int indexToUnmark;
 
+    /**
+     * @param number 1-indexed task to be removed
+     */
     public UnmarkCommand(int number) {
+        assert number >= 1 : "Number needs to be positive";
         this.indexToUnmark = number - 1;
     }
 

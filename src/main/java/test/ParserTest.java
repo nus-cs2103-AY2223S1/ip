@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import duke.DukeException;
 import duke.Parser;
-import duke.task.Todo;
 import duke.command.AddCommand;
+import duke.task.Todo;
 
 
 /**

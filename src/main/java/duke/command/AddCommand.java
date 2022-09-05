@@ -3,9 +3,9 @@ package duke.command;
 import duke.DukeException;
 import duke.Parser;
 import duke.Storage;
+import duke.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.Ui;
 
 /**
  * AddCommand stores the Task to be executed.
@@ -20,23 +20,6 @@ public class AddCommand extends Command {
     public AddCommand(String fullCommand) throws DukeException {
         this.task = Parser.addCommandToTask(fullCommand);
     }
-    private static String getFirstWord(String input) {
-        return input.split(" ")[0].toLowerCase();
-    }
-
-    private static boolean isTodo(String input) {
-        return getFirstWord(input).equals("todo");
-    }
-
-    private static boolean isEvent(String input) {
-
-        return getFirstWord(input).equals("event");
-    }
-
-    private static boolean isDeadline(String input) {
-        return getFirstWord(input).equals("deadline");
-    }
-
 
     /**
      * @param tasks TaskList of all Duke tasks.

@@ -1,8 +1,8 @@
 package duke.command;
 
 import duke.Storage;
-import duke.task.TaskList;
 import duke.Ui;
+import duke.task.TaskList;
 
 /**
  * Stores the index of the task to be marked when executed by MarkCommand.
@@ -14,6 +14,7 @@ public class MarkCommand extends Command {
      * @param number 1 based indexing for the Task to be marked.
      */
     public MarkCommand(int number) {
+        assert number >= 1 : "Number needs to be positive";
         this.indexToMark = number - 1;
     }
 
