@@ -4,10 +4,11 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import duke.TaskList;
-import duke.DukeException;
+import duke.exception.DukeException;
 import duke.Ui;
 import duke.Storage;
-import duke.tasks.*;
+import duke.tasks.Event;
+import duke.exception.InvalidDescriptionCommand;
 
 /**
  * The EventCommand class encapsulates the execution of an event command.
@@ -31,7 +32,7 @@ public class EventCommand extends Command{
     public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
         String[] splitDetailEvent = this.input.split("/at", 2);
         if (splitDetailEvent.length == 1) {
-            throw new DukeException("Description of event must be followed by /at then followed by time of event.");
+            throw new InvalidDescriptionCommand(true);
         } else {
             String eventAction = splitDetailEvent[0].trim();
             String eventTime = splitDetailEvent[1].trim();

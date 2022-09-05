@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-import duke.tasks.*;
+import duke.tasks.Task;
 
 /**
  * The Storage class encapsulates the loading of tasks from a hard disk and saving to of tasks to a hard disk.

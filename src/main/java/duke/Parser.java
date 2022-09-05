@@ -2,8 +2,22 @@ package duke;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import duke.commands.*;
-import duke.tasks.*;
+import duke.commands.Command;
+import duke.commands.ListCommand;
+import duke.commands.MarkCommand;
+import duke.commands.TodoCommand;
+import duke.commands.UnmarkCommand;
+import duke.commands.FindCommand;
+import duke.commands.EventCommand;
+import duke.commands.DeleteCommand;
+import duke.commands.DeadlineCommand;
+import duke.exception.DukeException;
+import duke.tasks.Task;
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Todo;
+import duke.exception.InvalidCommandException;
+import duke.exception.MissingDescriptionException;
 
 /**
  * The Parser class encapsulates the parsing of user input and file text when loading from the hard disk.
@@ -16,14 +30,14 @@ public class Parser {
      * @throws DukeException
      */
     public static Command parseInput(String input) throws DukeException{
-        String[] splitInput = input.split(" ", 2);
+        String[] splitInput = input.trim().split(" ", 2);
         String command = splitInput[0].trim();
         String detail = "";
-        Boolean description_needed = command.equals("todo") || command.equals("deadline") || command.equals("event") ||
+        Boolean hasDescription = command.equals("todo") || command.equals("deadline") || command.equals("event") ||
                 command.equals("mark") || command.equals("unmark") || command.equals("delete") || command.equals("find");
-        if (splitInput.length <= 1 && description_needed) {
-            throw new DukeException("Description of command is required.");
-        } else if (description_needed){
+        if (splitInput.length <= 1 && hasDescription) {
+            throw new MissingDescriptionException();
+        } else if (hasDescription){
             detail = splitInput[1].trim();
         }
 
@@ -45,7 +59,7 @@ public class Parser {
         case "find":
             return new FindCommand(detail);
         default:
-            throw new DukeException(command + " is an invalid command.");
+            throw new InvalidCommandException(command);
         }
     }
 
@@ -55,10 +69,10 @@ public class Parser {
      * @return Task parsed from input string.
      */
     public static Task parseFromFile(String line) {
-        String[] line_split = line.split("]", 3);
-        String type = line_split[0];
-        String status = line_split[1];
-        String rest = line_split[2];
+        String[] lineSplit = line.split("]", 3);
+        String type = lineSplit[0];
+        String status = lineSplit[1];
+        String rest = lineSplit[2];
         if (type.equals("[T")) {
             Todo todo = new Todo(rest.trim());
             if (status.equals("[X")) {
@@ -68,9 +82,9 @@ public class Parser {
         } else {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a 'on' dd/MM/yyyy");
             if (type.equals("[D")) {
-                String[] rest_split = rest.split("by:", 2);
-                String description = rest_split[0].replaceAll(".$", "").trim();
-                String time = rest_split[1].replaceAll(".$", "").trim();
+                String[] restSplit = rest.split("by:", 2);
+                String description = restSplit[0].replaceAll(".$", "").trim();
+                String time = restSplit[1].replaceAll(".$", "").trim();
                 LocalDateTime deadlineDateTime = LocalDateTime.parse(time, formatter);
                 Deadline deadline = new Deadline(description, deadlineDateTime);
                 if (status.equals("[X")) {
@@ -78,9 +92,9 @@ public class Parser {
                 }
                 return deadline;
             } else {
-                String[] rest_split = rest.split("at:", 2);
-                String description = rest_split[0].replaceAll(".$", "").trim();
-                String time = rest_split[1].replaceAll(".$", "").trim();
+                String[] restSplit = rest.split("at:", 2);
+                String description = restSplit[0].replaceAll(".$", "").trim();
+                String time = restSplit[1].replaceAll(".$", "").trim();
                 LocalDateTime eventDateTime = LocalDateTime.parse(time, formatter);
                 Event event = new Event(description, eventDateTime);
                 if (status.equals("[X")) {

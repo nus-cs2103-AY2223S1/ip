@@ -4,10 +4,11 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import duke.TaskList;
-import duke.DukeException;
+import duke.exception.DukeException;
 import duke.Ui;
 import duke.Storage;
-import duke.tasks.*;
+import duke.tasks.Deadline;
+import duke.exception.InvalidDescriptionCommand;
 
 /**
  * The DeadlineCommand class encapsulates the execution of a deadline command.
@@ -31,7 +32,7 @@ public class DeadlineCommand extends Command{
     public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
         String[] splitDetailDeadline = this.input.split("/by", 2);
         if (splitDetailDeadline.length == 1) {
-            throw new DukeException("Description of deadline must be followed by /by then followed by time of deadline.");
+            throw new InvalidDescriptionCommand(false);
         } else {
             String deadlineAction = splitDetailDeadline[0].trim();
             String deadlineTime = splitDetailDeadline[1].trim();

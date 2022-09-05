@@ -2,11 +2,12 @@ package duke.commands;
 
 import java.io.IOException;
 import duke.TaskList;
-import duke.DukeException;
+import duke.exception.DukeException;
 import duke.Ui;
 import duke.Storage;
-import duke.tasks.*;
+import duke.tasks.Task;
 import java.util.ArrayList;
+import duke.exception.NoMatchException;
 
 /**
  * The FindCommand class encapsulates the execution of a delete command.
@@ -37,7 +38,7 @@ public class FindCommand extends Command{
             }
         }
         if (hit.size() == 0) {
-            throw new DukeException("There are no matching results.");
+            throw new NoMatchException();
         } else {
             String message = "Here are the matching tasks in your list:\n";
             for (int j = 0; j < hit.size(); j++) {
