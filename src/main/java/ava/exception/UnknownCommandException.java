@@ -1,7 +1,7 @@
 package ava.exception;
 
 /**
- * Class to represent Duke.Exception.NoTimeException.
+ * Used when users type nonsense as Command.
  */
 public class UnknownCommandException extends AvaException {
     public UnknownCommandException(String input) {

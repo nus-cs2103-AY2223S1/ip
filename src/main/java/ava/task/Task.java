@@ -104,7 +104,7 @@ public abstract class Task {
     }
 
     /**
-     * Executes process of the given task.
+     * Abstract method to execute process of the given task.
      *
      * @param tasks TaskList.
      * @param ui Class to print the ui.

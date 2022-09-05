@@ -1,7 +1,7 @@
 package ava.exception;
 
 /**
- * Class to represent Duke.Exception.NoTimeException.
+ * Used when the time description is empty in Event/Deadline tasks.
  */
 public class NoTimeException extends AvaException {
     public NoTimeException() {

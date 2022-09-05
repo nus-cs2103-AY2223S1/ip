@@ -1,13 +1,13 @@
 package ava.exception;
 
 public class AvaException extends Exception {
-    /** Default DukeException constructor. */
+    /** Default AvaException constructor. */
     public AvaException() {
         super();
     }
 
     /**
-     * DukeException constructor.
+     * AvaException constructor.
      *
      * @param message The error message.
      */

@@ -11,7 +11,7 @@ public class Unmark extends Task {
     private int num;
 
     /**
-     * The constructor for Mark task.
+     * The constructor for Unmark task.
      *
      * @param num Index of the specified task.
      */
@@ -21,7 +21,7 @@ public class Unmark extends Task {
     }
 
     /**
-     * Executes input list task
+     * Executes process to mark undone the given task.
      *
      * @param tasks TaskList.
      * @param ui Class to print the ui.
