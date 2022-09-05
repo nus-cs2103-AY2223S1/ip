@@ -9,6 +9,7 @@ public class Event extends Task {
 
     /**
      * Constructor of event
+     *
      * @param description description of event task
      * @param time time of event
      */
@@ -35,6 +36,7 @@ public class Event extends Task {
 
     /**
      * Returns properly formatted string to be displayed to user
+     *
      * @return String formatted for user to read
      */
     @Override

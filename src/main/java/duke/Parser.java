@@ -19,6 +19,7 @@ public class Parser {
 
     /**
      * Constructor for parser
+     *
      * @param command user's inputted command
      */
     public Parser(String command) {
@@ -26,25 +27,40 @@ public class Parser {
         this.ui = new Ui();
     }
 
+    private void checkParameters(String command, String[] commandList) {
+        if (commandList.length == 1) {
+            throw new EmptyDescriptionException(command);
+        }
+    }
+
+    private String parseDate(String date) {
+        LocalDate dateTimeStringParsed = LocalDate.parse(date);
+        return dateTimeStringParsed.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+    }
+
     /**
      * Parses the command and matches it with the corresponding action to be taken
      * Executes the action on the task list given
+     *
      * @param tasks ArrayList of current tasks stored on the chatbot
      * @return boolean true if bye command entered and chatbot should be stopped, false otherwise
      */
     public String executeCommand(TaskList tasks, Storage storage) throws IOException {
-        String[] commands = command.strip().split(" ", 2);
+        String[] commandList = command.strip()
+                                      .split(" ", 2);
+        String command = commandList[0];
         try {
-            switch (commands[0]) {
+            switch (command) {
             case "bye":
                 storage.saveTasks(tasks);
                 return ui.showBye();
+
             case "list":
                 return ui.getCorrectMessage(Ui.Commands.LIST, tasks, 0);
+
             case "mark":
-                if (commands.length == 1) {
-                    throw new EmptyDescriptionException("mark");
-                }
+                checkParameters("mark", commandList);
+
                 int indexMark = Integer.parseInt(commands[1]) - 1;
                 if (indexMark < 0 || indexMark >= tasks.getSize()) {
                     throw new InvalidParameterException();
@@ -52,10 +68,9 @@ public class Parser {
 
                 tasks.markIndex(indexMark);
                 return ui.getCorrectMessage(Ui.Commands.MARK, tasks, indexMark);
+
             case "unmark":
-                if (commands.length == 1) {
-                    throw new EmptyDescriptionException("unmark");
-                }
+                checkParameters("unmark", commandList);
 
                 int indexUnmark = Integer.parseInt(commands[1]) - 1;
                 if (indexUnmark < 0 || indexUnmark >= tasks.getSize()) {
@@ -64,48 +79,36 @@ public class Parser {
 
                 tasks.unmarkIndex(indexUnmark);
                 return ui.getCorrectMessage(Ui.Commands.UNMARK, tasks, indexUnmark);
+
             case "todo":
-                if (commands.length == 1) {
-                    throw new EmptyDescriptionException("todo");
-                }
-                tasks.add(new Todo(commands[1]));
+                checkParameters("todo", commandList);
+                tasks.add(new Todo(commandList[1]));
                 return ui.getCorrectMessage(Ui.Commands.TASK, tasks, tasks.getSize() - 1);
+
             case "event":
-                if (commands.length == 1) {
-                    throw new EmptyDescriptionException("event");
-                }
-                String[] eventCommands = commands[1].split(" /at ", 2);
-                if (eventCommands.length == 1) {
-                    return ui.getErrorMessage("datetime");
-                }
-                try {
-                    LocalDate timeStringParsed = LocalDate.parse(eventCommands[1]);
-                    tasks.add(new Event(eventCommands[0],
-                            timeStringParsed.format(DateTimeFormatter.ofPattern("MMM dd yyyy"))));
-                    return ui.getCorrectMessage(Ui.Commands.TASK, tasks, tasks.getSize() - 1);
-                } catch (DateTimeParseException error) {
-                    return ui.getErrorMessage("datetime");
-                }
+                checkParameters("event", commandList);
+                String[] eventCommands = commandList[1].split(" /at ", 2);
+                checkParameters("event", eventCommands);
+
+                String eventDescription = eventCommands[0];
+                String event = parseDate(eventCommands[1]);
+
+                tasks.add(new Deadline(eventDescription, event));
+                return ui.getCorrectMessage(Ui.Commands.TASK, tasks, tasks.getSize() - 1);
+
             case "deadline":
-                if (commands.length == 1) {
-                    throw new EmptyDescriptionException("deadline");
-                }
-                String[] deadlineCommands = commands[1].split(" /by ", 2);
-                if (deadlineCommands.length == 1) {
-                    return ui.getErrorMessage("datetime");
-                }
-                try {
-                    LocalDate timeStringParsed = LocalDate.parse(deadlineCommands[1]);
-                    tasks.add(new Deadline(deadlineCommands[0],
-                            timeStringParsed.format(DateTimeFormatter.ofPattern("MMM dd yyyy"))));
-                    return ui.getCorrectMessage(Ui.Commands.TASK, tasks, tasks.getSize() - 1);
-                } catch (DateTimeParseException error) {
-                    return ui.getErrorMessage("datetime");
-                }
+                checkParameters("deadline", commandList);
+                String[] deadlineCommands = commandList[1].split(" /by ", 2);
+                checkParameters("deadline", deadlineCommands);
+
+                String deadlineDescription = deadlineCommands[0];
+                String deadline = parseDate(deadlineCommands[1]);
+
+                tasks.add(new Deadline(deadlineDescription, deadline));
+                return ui.getCorrectMessage(Ui.Commands.TASK, tasks, tasks.getSize() - 1);
+
             case "delete":
-                if (commands.length == 1) {
-                    throw new EmptyDescriptionException("delete");
-                }
+                checkParameters("delete", commandList);
 
                 int index = Integer.parseInt(commands[1]) - 1;
                 if (index < 0 || index >= tasks.getSize()) {
@@ -115,17 +118,18 @@ public class Parser {
                 String response = ui.getCorrectMessage(Ui.Commands.DELETE, tasks, index);
                 tasks.delete(index);
                 return response;
+
             case "find":
-                if (commands.length == 1) {
-                    throw new EmptyDescriptionException("find");
-                }
-                return ui.getCorrectMessage(Ui.Commands.FIND, tasks.find(commands[1]), 0);
+                checkParameters("find", commandList);
+                return ui.getCorrectMessage(Ui.Commands.FIND, tasks.find(commandList[1]), 0);
             default:
                 throw new UnknownCommandException();
             }
 
         } catch (UnknownCommandException | EmptyDescriptionException | InvalidParameterException e) {
             return ui.getErrorMessage(e.getMessage());
+        } catch (DateTimeParseException e) {
+            return ui.getErrorMessage("datetime");
         }
     }
 }

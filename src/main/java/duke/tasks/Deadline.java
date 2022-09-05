@@ -9,6 +9,7 @@ public class Deadline extends Task {
 
     /**
      * Constructor of deadline
+     *
      * @param description description of deadline task
      * @param deadline date signifying deadline of task
      */
@@ -35,6 +36,7 @@ public class Deadline extends Task {
 
     /**
      * Returns properly formatted string to be displayed to user
+     *
      * @return String formatted for user to read
      */
     @Override
