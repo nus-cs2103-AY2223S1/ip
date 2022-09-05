@@ -102,6 +102,9 @@ public class TaskList {
             if (taskArray.get(i).description.contains(wanted)) {
                 arrOfTaskID.add(i);
             }
+            if (taskArray.get(i).getDate().contains(wanted)) {
+                arrOfTaskID.add(i);
+            }
         }
         return arrOfTaskID;
     }

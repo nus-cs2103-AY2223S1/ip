@@ -9,7 +9,9 @@ import java.util.ArrayList;
 /** Command that helps to find tasks in the list */
 public class FindCommand extends Command {
 
-    /** A String that user wants to find */
+    /** A String that user wants to find.
+     *  A date or a keyword.
+     */
     private String wanted;
 
     public FindCommand(String wanted) {

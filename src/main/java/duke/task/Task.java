@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 /** Represents a task. */
 public abstract class Task {
+
     protected String description;
     protected boolean isDone;
     protected int day;
@@ -88,7 +89,6 @@ public abstract class Task {
         if (checkValidDate(date)) {
             return LocalDateTime.of(year, month, day, hours, minutes);
         } else {
-
             throw new DukeException("OOPS! Format must be: " + taskType
                     + " <description> " + filler + " <dd/mm/yyyy> <time> with time being 24hours.");
         }
