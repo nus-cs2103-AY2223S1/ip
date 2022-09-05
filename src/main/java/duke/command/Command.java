@@ -23,9 +23,9 @@ public abstract class Command {
     public abstract String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException;
 
     /**
-     * Returns a boolean indicating if the command is an exit one.
+     * Returns a boolean indicating the exit status.
      *
-     * @return A boolean indicating if the command is an exit one.
+     * @return A boolean indicating the exit status.
      */
     public abstract boolean isExit();
 }

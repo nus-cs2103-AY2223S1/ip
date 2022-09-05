@@ -50,7 +50,6 @@ public class Task {
      * @return true if task description contains keyword, false otherwise.
      */
     public boolean match(String keyword) {
-
         return this.description.contains(keyword);
     }
 

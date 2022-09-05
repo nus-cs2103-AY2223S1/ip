@@ -221,9 +221,51 @@ public class Parser {
                 dateTime = "";
             }
         }
-
+        assert isValidFormat(type, description, dateTime) : "Format Failure: Invalid Format";
         String[] data = new String[]{type, description, dateTime};
         return data;
+    }
+
+    /**
+     * Returns Validity of Formatted Data.
+     *
+     * @param type The formatted Type.
+     * @param description The formatted Description.
+     * @param dateTime The formatted dateTime.
+     * @return True is valid Fromatted Data, false otherwise.
+     */
+    private static boolean isValidFormat(String type, String description, String dateTime) {
+        return isValidType(type) && isValidDescription(description) && isValidDateTime(dateTime);
+    }
+
+    /**
+     * Returns validity of the dateTime.
+     *
+     * @param dateTime The specified dateTime.
+     * @return true if valid dateTime, false otherwise.
+     */
+    private static boolean isValidDateTime(String dateTime) {
+        return dateTime != null;
+    }
+
+    /**
+     * Returns validity of the description.
+     *
+     * @param description The specified description.
+     * @return true if valid description, false otherwise.
+     */
+    private static boolean isValidDescription(String description) {
+        return description != null;
+    }
+
+    /**
+     * Returns validity of the type.
+     *
+     * @param type The specified type.
+     * @return true if valid type, false otherwise.
+     */
+    private static boolean isValidType(String type) {
+        return type != null;
     }
 
     /**
@@ -282,4 +324,6 @@ public class Parser {
 
         return isDeadline && hasDeadlineSeparator;
     }
+
+
 }
