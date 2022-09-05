@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'checkstyle'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 repositories {
@@ -28,11 +29,6 @@ dependencies {
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
 }
 
-jar {
-    archiveBaseName = 'gs-gradle'
-    archiveVersion = '0.1.0'
-}
-
 run{
     standardInput = System.in
 }
@@ -47,5 +43,11 @@ test {
 }
 
 application {
-    mainClassName= "Launcher"
+    mainClassName= "duke.Launcher"
+}
+
+shadowJar {
+    archiveBaseName.set('shadow')
+    archiveClassifier.set('')
+    archiveVersion.set('')
 }
