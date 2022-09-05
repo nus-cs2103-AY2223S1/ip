@@ -2,6 +2,7 @@ package duke.ui;
 
 import duke.DukeException;
 import duke.Ui;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -16,6 +17,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -84,6 +88,7 @@ public class MainWindow extends AnchorPane {
         );
         userInput.clear();
         if (Command.isExit()) {
+            userInput.setEditable(false);
             Ui.exitProgram();
         }
     }

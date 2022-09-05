@@ -6,6 +6,7 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
+import javafx.application.Platform;
 
 /**
  * This class handles the UI
@@ -39,14 +40,18 @@ public class Ui {
         return "Hi, I am LaMDA, your personal assistant.\nHow may I assist you today?\n";
     }
 
+    /**
+     * To wait for 1.5 seconds before closing the program
+     */
     public static void exitProgram() {
-        /*try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }*/
-        javafx.application.Platform.exit();
-        System.exit(0);
+        new Thread(() -> {
+            try{
+                Thread.sleep(1500);
+            }catch(Exception e){
+            }finally{
+                Platform.exit();
+            }
+        }).start();
     }
 
     /**
@@ -61,7 +66,7 @@ public class Ui {
      * To display exit message
      */
     public String exitTask() {
-        return ("It's a great time talking with you.\nSee you next time!\n");
+        return ("It's a great time talking with you.\nSee you next time!\n\nClosing automatically after 1.5 seconds.\n");
     }
 
     /**
