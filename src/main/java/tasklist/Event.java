@@ -7,8 +7,8 @@ public class Event extends Task {
     private static final DateTimeFormatter DF = DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a");
     private final LocalDateTime time;
 
-    public Event(String description, LocalDateTime time) {
-        super(description);
+    public Event(String description, boolean isDone, LocalDateTime time) {
+        super(description, isDone);
         this.time = time;
     }
 

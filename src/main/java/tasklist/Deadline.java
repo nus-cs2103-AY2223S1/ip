@@ -7,8 +7,8 @@ public class Deadline extends Task {
     private static final DateTimeFormatter DF = DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a");
     private final LocalDateTime time;
 
-    public Deadline(String description, LocalDateTime time) {
-        super(description);
+    public Deadline(String description, boolean isDone, LocalDateTime time) {
+        super(description, isDone);
         this.time = time;
     }
 

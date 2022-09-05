@@ -15,6 +15,7 @@ public class DeleteCommand extends Command {
         this.index = index - 1;
     }
 
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {
             Task deleted = tasks.delete(this.index);

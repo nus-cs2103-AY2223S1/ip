@@ -14,19 +14,20 @@ public class AddCommand extends Command {
     private Task task;
 
     public AddCommand(String description) {
-        this.task = new Todo(description);
+        this.task = new Todo(description, false);
     }
 
     public AddCommand(String type, String description, LocalDateTime time) {
         switch (type) {
             case "deadline":
-                this.task = new Deadline(description, time);
+                this.task = new Deadline(description, false, time);
                 break;
             case "event":
-                this.task = new Event(description, time);
+                this.task = new Event(description, false, time);
         }
     }
 
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {
             TaskList.add(this.task);

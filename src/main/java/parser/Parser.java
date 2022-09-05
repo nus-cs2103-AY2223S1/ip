@@ -55,11 +55,11 @@ public class Parser {
         DateTimeFormatter DF = DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a");
         switch (commands[0]) {
             case "T":
-                return new Todo(commands[1]);
+                return new Todo(commands[1], Boolean.parseBoolean(commands[2]));
             case "D":
-                return new Deadline(commands[1], parseDateTime(commands[2], DF));
+                return new Deadline(commands[1], Boolean.parseBoolean(commands[2]), parseDateTime(commands[3], DF));
             case "E":
-                return new Event(commands[1], parseDateTime(commands[2], DF));
+                return new Event(commands[1], Boolean.parseBoolean(commands[2]), parseDateTime(commands[3], DF));
             default:
                 throw new DorisException("I have issues reading your file can save properly or not");
         }
