@@ -5,7 +5,9 @@ import java.io.IOException;
 /**
  * Jude is a task tracker which appears like a command line interface. The name is a Beatles
  * reference, referring to the hit song Hey Jude.
- * When > shows up, you can type a command.
+ * There are two modes, GUI mode (default)
+ * GUI mode shows a GUI while console mode shows a command-line interface.
+ * In console mode, when > shows up, you can type a command.
  * <br>
  *
  * There are three types of tasks, namely the todo, deadline and event.
@@ -82,5 +84,33 @@ public class Jude {
      */
     public String getResponse(String input) throws IOException {
         return parser.parse(input);
+    }
+
+    /**
+     * Runs the chatbot in console mode.
+     *
+     * @throws IOException When system I/O fails.
+     */
+    public void run() throws IOException {
+        // Overall project structure code for main class adapted from
+        // https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
+        TaskList tasks = storage.load();
+        Parser parser = new Parser(tasks, storage);
+        tasks = storage.load();
+        parser = new Parser(tasks, storage);
+        System.out.println(ui.showWelcome());
+
+        while (true) {
+            ui.showCommandReadReady();
+            String str = ui.readCommand();
+            boolean isTerminationCommand = parser.isTerminationCommand(str);
+            if (isTerminationCommand) {
+                break;
+            }
+            String response = parser.parse(str);
+            System.out.println(response);
+        }
+
+        ui.showByeMessage();
     }
 }

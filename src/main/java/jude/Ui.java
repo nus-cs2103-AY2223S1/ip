@@ -25,4 +25,48 @@ public class Ui {
         return "Hello! I'm Jude, named after the Beatles' hit song 'Hey Jude'.\n"
             + "What can I do for you?";
     }
+
+    /**
+     * Returns credits message for third-party images used in this project.
+     *
+     * @return Credits message for third-party images used in this project.
+     */
+    public String showCredits() {
+        return "Credits:\n"
+                + "Jude the chatbot's profile picture is taken from "
+                + "https://www.iconfinder.com/search?q=person&price=free (original author Bombasticon "
+                + "Studio)"
+                + "under Free for commercial use licence.\n"
+                + "User profile picture is taken from https://www.pexels"
+                + ".com/photo/man-smiling-behind-wall-220453/ "
+                + "licenced under CC0. Original author Pixabay.";
+    }
+
+    /**
+     * Prints a new empty line followed by the string "> ", indicating that the chatbot is ready
+     * to receive a response from the user. This method is for use in console mode only.
+     */
+    void showCommandReadReady() {
+        System.out.println();
+        System.out.print("> ");
+    }
+
+    /**
+     * Reads the command entered by the user and returns it.
+     *
+     * @return The command entered by the user.
+     */
+    public String readCommand() {
+        return sc.nextLine();
+    }
+
+    /**
+     * Returns the reply when bye command is executed. This method should only be called on
+     * console mode.
+     *
+     * @return Bye message of the chatbot (only shown on console mode).
+     */
+    public void showByeMessage() {
+        System.out.println("Goodbye! Have a nice day!");
+    }
 }

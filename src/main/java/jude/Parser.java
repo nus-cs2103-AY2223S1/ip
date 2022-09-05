@@ -187,9 +187,8 @@ public class Parser {
                 task.markAsDone();
                 storage.save(tasks);
 
-                response = String.format("%sThe following task has been marked as done:\n  %s\n"
-                                + "The task list now contains %d task(s).\n",
-                        response, task, tasks.size());
+                response = String.format("%sThe following task has been marked as done:\n  %s\n",
+                        response, task);
             } else if (tokens[0].equals("unmark")) {
                 int index;
                 try {
@@ -202,9 +201,8 @@ public class Parser {
                 task.markAsUndone();
                 storage.save(tasks);
 
-                response = String.format("%sThe following task has been marked as undone:\n  %s\n"
-                                + "The task list now contains %d task(s).\n",
-                        response, task, tasks.size());
+                response = String.format("%sThe following task has been marked as undone:\n  %s\n",
+                        response, task);
             } else if (tokens[0].equals("delete")) {
                 int index = Integer.parseInt(tokens[1]);
                 Task task = tasks.get(index);

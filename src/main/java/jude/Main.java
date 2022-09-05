@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  * A GUI for Jude the chatbot using FXML.
  */
 public class Main extends Application {
-    private final Jude jude = new Jude("data/tasks.txt");
+    private Jude jude = new Jude("data/tasks.txt");
 
     /**
      * Creates a new GUI instance for Jude the chatbot.
@@ -24,6 +24,17 @@ public class Main extends Application {
      * @throws IOException When system I/O fails.
      */
     public Main() throws IOException {
+    }
+
+    /**
+     * Creates a new GUI instance for Jude the chatbot, where the data is stored in the given
+     * filepath.
+     *
+     * @param filePath The storage directory of the task tracker data.
+     * @throws IOException When system I/O fails.
+     */
+    public Main(String filePath) throws IOException {
+        jude = new Jude(filePath);
     }
 
     @Override
@@ -44,5 +55,14 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Runs Jude the chatbot on console mode.
+     *
+     * @throws IOException When system I/O fails.
+     */
+    public void runConsole() throws IOException {
+        jude.run();
     }
 }
