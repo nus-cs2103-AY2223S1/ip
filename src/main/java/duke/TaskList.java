@@ -24,7 +24,7 @@ public class TaskList {
      * @param currTask to be added
      * @throws DukeException if inputs are missing or dates are incorrect
      */
-    public void listAdd(Task currTask) throws DukeException {
+    public void addTask(Task currTask) throws DukeException {
         tasks.add(currTask);
     }
 
@@ -33,7 +33,7 @@ public class TaskList {
      * @param indexString String representation of 1-indexed index
      * @throws DukeException if argument is of wrong format or OOB error
      */
-    public Task listDelete(String indexString) throws DukeException {
+    public Task deleteTask(String indexString) throws DukeException {
         int index = 0;
         try {
             index = Integer.parseInt(indexString) - 1;
@@ -53,7 +53,7 @@ public class TaskList {
      * @param indexString String representation of 1-indexed index
      * @throws DukeException if argument is of wrong format or OOB error
      */
-    public Task listToggle(String indexString) throws DukeException {
+    public Task toggleTask(String indexString) throws DukeException {
         int index = 0;
         try {
             index = Integer.parseInt(indexString) - 1;
@@ -64,7 +64,7 @@ public class TaskList {
             throw new DukeListOobException(index + 1);
         }
         Task currTask = tasks.get(index);
-        currTask.completeToggle();
+        currTask.toggleComplete();
 
         return currTask;
     }
