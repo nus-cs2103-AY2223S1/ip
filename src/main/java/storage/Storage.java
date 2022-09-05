@@ -96,8 +96,4 @@ public class Storage {
     public TaskList syncArrayList() throws DukeException {
         return storageReader.syncArrayList();
     }
-
-    public List<String> getAllLines() {
-        return storageReader.getAllLines();
-    }
 }

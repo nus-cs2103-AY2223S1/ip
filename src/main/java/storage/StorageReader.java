@@ -26,7 +26,7 @@ public class StorageReader {
      * Return contents of file history.
      * @return arraylist containing all the lines in the file.
      */
-    public List<String> getAllLines() {
+    private List<String> getAllLines() {
         List<String> list = new ArrayList<>();
         try {
             return Files.readAllLines(path);
@@ -46,7 +46,6 @@ public class StorageReader {
         TaskList userInputHistory = new TaskList();
         List<String> linesInFile = getAllLines();
         Task currTask;
-        LocalDate date;
         int n = linesInFile.size();
         int i = 0;
         for ( ; i < n; i++) {
