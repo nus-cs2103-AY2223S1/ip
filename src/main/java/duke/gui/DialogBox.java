@@ -49,10 +49,22 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Gets user input and image to be printed GUI.
+     * @param text string of user input.
+     * @param img image of user.
+     * @return DialogBox of user.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Gets chatbot response and image to be printed GUI flipped.
+     * @param text string of chatbot response
+     * @param img image of chatbot
+     * @return DialogBox of chatbot.
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
