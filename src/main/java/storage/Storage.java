@@ -16,21 +16,23 @@ import tasklist.TaskList;
  */
 public class Storage {
     private Path path;
-    private final StorageReader storageReader;
-    private final StorageWriter storageWriter;
+    private final StorageReader STORAGE_READER;
+    private final StorageWriter STORAGE_WRITER;
 
     /**
      * Constructor.
+     *
      * @param filePath String representation of relative file path.
      */
     public Storage(String filePath) {
         createFileIfDoesntExist(filePath);
-        this.storageWriter = new StorageWriter(path);
-        this.storageReader = new StorageReader(path);
+        this.STORAGE_WRITER = new StorageWriter(path);
+        this.STORAGE_READER = new StorageReader(path);
     }
 
     /**
      * Gets location of disk storage file.
+     *
      * @throws DukeException when Duke program run outside of Duke folder.
      */
     private void getPath(String pathString) throws DukeException, IOException {
@@ -76,22 +78,20 @@ public class Storage {
     }
 
     //Define all StorageWriter methods
-
     public boolean isLineAppended(String s) {
-        return storageWriter.appendLine(s);
+        return STORAGE_WRITER.appendLine(s);
     }
 
     public boolean isLineDeleted(int index) {
-        return storageWriter.deleteLine(index);
+        return STORAGE_WRITER.deleteLine(index);
     }
 
     public boolean isLineChanged(int index, String newString) {
-        return storageWriter.changeLine(index, newString);
+        return STORAGE_WRITER.changeLine(index, newString);
     }
 
     //Define all StorageReader methods
-
     public TaskList syncArrayList() throws DukeException {
-        return storageReader.syncArrayList();
+        return STORAGE_READER.syncArrayList();
     }
 }

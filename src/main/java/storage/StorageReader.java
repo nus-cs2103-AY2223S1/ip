@@ -16,13 +16,14 @@ import utility.StorageParser;
  */
 public class StorageReader {
     private Path path;
+
     public StorageReader(Path path) {
         this.path = path;
     }
 
-
     /**
      * Return contents of file history.
+     *
      * @return arraylist containing all the lines in the file.
      */
     private List<String> getAllLines() {
@@ -39,6 +40,7 @@ public class StorageReader {
      * Syncs all changes stored in disk to arrayList maintained by program, by:
      * 1. Emptying USERINPUTHISTORY arraylist,
      * 2. Copying all lines on disk to USERINPUTHISTORY
+     *
      * @throws DukeException when fileLineToTask() fails
      */
     public TaskList syncArrayList() throws DukeException {
