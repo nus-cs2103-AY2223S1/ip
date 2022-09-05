@@ -7,11 +7,7 @@ import duke.tools.Parser;
 /**
  * This class encapsulates a task with a deadline from the user.
  */
-public class Deadline extends Task {
-
-    /** Due date and time of the task. */
-    private LocalDateTime dateTime;
-
+public class Deadline extends TaskWithDateTime {
     /**
      * Constructs a Deadline task.
      *
@@ -19,17 +15,7 @@ public class Deadline extends Task {
      * @param dateTime Due date and time of the task.
      */
     public Deadline(String description, LocalDateTime dateTime) {
-        super(description, TaskType.DEADLINE);
-        this.dateTime = dateTime;
-    }
-
-    /**
-     * Gets the due date and time of the task.
-     *
-     * @return The due date and time of the task.
-     */
-    public LocalDateTime getDateTime() {
-        return dateTime;
+        super(description, TaskType.DEADLINE, dateTime);
     }
 
     /**
@@ -40,7 +26,7 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return String.format("[%s] %s (by: %s)", getTaskIcon(), super.toString(),
-                Parser.formatDateTimeToPrint(dateTime));
+                Parser.formatDateTimeToPrint(this.getDateTime()));
     }
 
     /**

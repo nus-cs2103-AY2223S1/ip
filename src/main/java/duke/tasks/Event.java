@@ -7,11 +7,7 @@ import duke.tools.Parser;
 /**
  * This class encapsulates an event from the user.
  */
-public class Event extends Task {
-
-    /** The date and time of the event. */
-    private LocalDateTime dateTime;
-
+public class Event extends TaskWithDateTime {
     /**
      * Constructs an Event task.
      *
@@ -19,17 +15,7 @@ public class Event extends Task {
      * @param dateTime The date and time of the event.
      */
     public Event(String description, LocalDateTime dateTime) {
-        super(description, TaskType.EVENT);
-        this.dateTime = dateTime;
-    }
-
-    /**
-     * Gets the date and time of the event.
-     *
-     * @return The date and time of the event.
-     */
-    public LocalDateTime getDateTime() {
-        return dateTime;
+        super(description, TaskType.EVENT, dateTime);
     }
 
     /**
@@ -40,7 +26,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         return String.format("[%s] %s (at: %s)", getTaskIcon(), super.toString(),
-                Parser.formatDateTimeToPrint(dateTime));
+                Parser.formatDateTimeToPrint(this.getDateTime()));
     }
 
     /**

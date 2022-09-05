@@ -1,10 +1,12 @@
 package duke.gui;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import duke.exceptions.DukeException;
 import duke.tasks.Task;
+import duke.tasks.TaskWithDateTime;
 import duke.tools.TaskList;
 
 /**
@@ -121,11 +123,40 @@ public class GuiText {
      */
     public static String formatFindString(TaskList taskList, String searchString) {
         List<Task> storedTasks = taskList.getStoredTasks();
-        String taskInList = storedTasks.stream()
+        String filteredTaskString = storedTasks.stream()
                 .map(task -> formatTaskWithIndexString(storedTasks.indexOf(task), task))
                 .filter(string -> string.contains(searchString))
                 .collect(Collectors.joining());
-        String output = FIND_STRING.concat(taskInList).concat(END_LISTING_STRING);
+        String output = FIND_STRING.concat(filteredTaskString).concat(END_LISTING_STRING);
+        return output;
+    }
+
+    /**
+     * Creates a String to be shown by Duke to display all the stored tasks that
+     * fall within the starting and ending date and time.
+     *
+     * @param taskList The TaskList containing all the stored tasks.
+     * @param start The starting date and time of the tasks.
+     * @param end The ending date and time of the tasks.
+     * @return A String to display all the stored tasks that start and end within
+     *         the given date and time.
+     */
+    public static String formatWithinDateTime(TaskList taskList, LocalDateTime start, LocalDateTime end) {
+        List<Task> storedTasks = taskList.getStoredTasks();
+        String filteredTaskString = storedTasks.stream()
+                .filter(task -> {
+                    Task.TaskType taskType = task.getTaskType();
+                    if (taskType == Task.TaskType.DEADLINE || taskType == Task.TaskType.EVENT) {
+                        LocalDateTime dateTime = ((TaskWithDateTime) task).getDateTime();
+                        return (dateTime.isAfter(start) || dateTime.isEqual(start))
+                                && (dateTime.isBefore(end) || dateTime.isEqual(end));
+                    } else {
+                        return false;
+                    }
+                })
+                .map(task -> formatTaskWithIndexString(storedTasks.indexOf(task), task))
+                .collect(Collectors.joining());
+        String output = FIND_STRING.concat(filteredTaskString).concat(END_LISTING_STRING);
         return output;
     }
 

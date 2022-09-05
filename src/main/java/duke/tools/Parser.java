@@ -4,16 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import duke.commands.ByeCommand;
-import duke.commands.Command;
-import duke.commands.DeadlineCommand;
-import duke.commands.DeleteCommand;
-import duke.commands.EventCommand;
-import duke.commands.FindCommand;
-import duke.commands.ListCommand;
-import duke.commands.MarkCommand;
-import duke.commands.TodoCommand;
-import duke.commands.UnmarkCommand;
+import duke.commands.*;
 import duke.exceptions.DukeException;
 
 /**
@@ -61,6 +52,8 @@ public class Parser {
                 return parseDeadlineCommand(inputLine[1].strip());
             case "event":
                 return parseEventCommand(inputLine[1].strip());
+            case "between":
+                return parseBetweenCommand(inputLine[1].strip());
             default:
                 throw new DukeException("Exception: Unknown command.");
             }
@@ -108,6 +101,24 @@ public class Parser {
         try {
             String[] descDateTime = str.split("/at", 2);
             return new EventCommand(descDateTime[0].strip(), parseDateTime(descDateTime[1].strip()));
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Exception: Insufficient command parameters.");
+        }
+    }
+
+    /**
+     * Makes sense of the user's input to create a WithinDateTimeCommand object.
+     *
+     * @param str The input String from the user specifying the starting and ending date and time to filter.
+     * @return The WithinDateTimeCommand representing the user's input.
+     * @throws DukeException
+     */
+    private static WithinDateTimeCommand parseBetweenCommand(String str) throws DukeException {
+        try {
+            String[] dateTimes = str.split(" ", 4);
+            LocalDateTime start = parseDateTime(dateTimes[0] + " " + dateTimes[1]);
+            LocalDateTime end = parseDateTime(dateTimes[2] + " " + dateTimes[3]);
+            return new WithinDateTimeCommand(start, end);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Exception: Insufficient command parameters.");
         }
