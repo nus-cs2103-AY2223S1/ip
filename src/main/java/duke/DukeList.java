@@ -41,14 +41,14 @@ public class DukeList {
         String taskType = t.getTaskType().toString().toLowerCase();
         String description = t.getDesc();
         String isDone = t.getStatus() ? "1" : "0";
-        String otherData = t.getOtherData();
+        String timeData = t.getTimeStr();
 
         String taskStr = taskType + Storage.FILE_STR_DIVIDER + isDone + Storage.FILE_STR_DIVIDER + description;
 
-        if (otherData.isEmpty()) {
+        if (timeData.isEmpty()) {
             return taskStr;
         } else {
-            return taskStr + Storage.FILE_STR_DIVIDER + otherData;
+            return taskStr + Storage.FILE_STR_DIVIDER + timeData;
         }
     }
 
@@ -154,6 +154,17 @@ public class DukeList {
             results.append("Nothing was found.");
         }
         return results.toString();
+    }
+
+    /**
+     * Sorts the task list.
+     *
+     * @param criteria The criteria to sort the task list with.
+     * @return A String representing the sorted list.
+     */
+    public String sort(String criteria) throws DukeException {
+        listItems.sort(Task.getComparator(criteria));
+        return toString();
     }
 
     /**

@@ -13,6 +13,7 @@ import duke.response.ExitResponse;
 import duke.response.FindResponse;
 import duke.response.ListResponse;
 import duke.response.MarkResponse;
+import duke.response.SortResponse;
 import duke.response.TodoResponse;
 import duke.response.UnmarkResponse;
 
@@ -41,6 +42,8 @@ public class Parser {
             return new ListResponse(list);
         case FIND:
             return new FindResponse(list, data);
+        case SORT:
+            return new SortResponse(list, data);
         case MARK:
             // Mark duke.task as done
             return new MarkResponse(list, data);
