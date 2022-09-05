@@ -8,7 +8,7 @@ import java.util.Scanner;
  * @author Kavan
  */
 public class Ui {
-    private static final String HORIZONTAL_LINE = "  ____________________________________________________________";
+    private static final String HORIZONTAL_LINE = "____________________________________________________________";
     private Scanner commands;
 
     /**
@@ -21,7 +21,7 @@ public class Ui {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        System.out.println(HORIZONTAL_LINE + "\n  Hello! I'm Duke\n  What can I do for you?\n" + HORIZONTAL_LINE);
+        System.out.println(HORIZONTAL_LINE + "\nHello! I'm Duke\nWhat can I do for you?\n" + HORIZONTAL_LINE);
         this.commands = new Scanner(System.in);
     }
 
