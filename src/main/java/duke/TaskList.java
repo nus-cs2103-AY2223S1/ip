@@ -238,7 +238,7 @@ public class TaskList {
     }
 
     /**
-     * Remove a task from the task list.
+     * Removes a task from the task list.
      *
      * @param index The index of the task to be removed.
      *

@@ -18,6 +18,8 @@ public class Deadline extends Task {
      *
      * @param description the description of the task
      * @param by the due date of the task
+     *
+     * @throws DukeException if the given date is invalid
      */
     public Deadline(String description, String by) throws DukeException {
         super(description);

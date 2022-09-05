@@ -18,6 +18,8 @@ public class Event extends Task {
      *
      * @param description the description of the event
      * @param at the time of the event
+     *
+     * @throws DukeException if the given date is invalid
      */
     public Event(String description, String at) throws DukeException {
         super(description);
