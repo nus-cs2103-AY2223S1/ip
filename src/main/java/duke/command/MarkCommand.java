@@ -5,10 +5,19 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
+/**
+ * Represents a command to mark or unmark a task as done.
+ */
 public class MarkCommand extends Command {
     private int index;
     private boolean isDone;
 
+    /**
+     * Creates a new MarkCommand.
+     *
+     * @param index
+     * @param isDone
+     */
     public MarkCommand(int index, boolean isDone) {
         super();
         this.index = index;
@@ -41,7 +50,7 @@ public class MarkCommand extends Command {
             return false;
         }
         MarkCommand that = (MarkCommand) o;
-        return index == that.index &&
-                isDone == that.isDone;
+        return index == that.index
+                && isDone == that.isDone;
     }
 }

@@ -2,13 +2,21 @@ package duke.command;
 
 import duke.DukeException;
 import duke.Storage;
+import duke.Task;
 import duke.TaskList;
 import duke.Ui;
-import duke.Task;
 
+/**
+ * Represents a command to delete a task.
+ */
 public class DeleteCommand extends Command {
     private int index;
 
+    /**
+     * Creates a new DeleteCommand.
+     *
+     * @param index the index of the task to be deleted.
+     */
     public DeleteCommand(int index) {
         super();
         this.index = index;

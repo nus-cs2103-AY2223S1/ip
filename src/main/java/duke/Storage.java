@@ -1,12 +1,13 @@
 package duke;
-import java.util.ArrayList;
+
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.Files;
-import java.nio.file.FileAlreadyExistsException;
+import java.util.ArrayList;
 
-/*
+/**
  * Handles saving and loading of tasks to and from a file.
  */
 public class Storage {
@@ -14,7 +15,7 @@ public class Storage {
 
     /**
      * Create a new Storage object to handle saving and loading of tasks.
-     * 
+     *
      * @param filePath path to the file to save and load tasks from
      */
     public Storage(String filePath) {
@@ -23,6 +24,7 @@ public class Storage {
 
     /**
      * Loads the tasks from the file.
+     *
      * @return the tasks from the file
      * @throws DukeException if there is an error reading the file
      */
@@ -55,7 +57,8 @@ public class Storage {
 
     /**
      * Saves the tasks to the file.
-     * @param taskList the tasks to save
+     *
+     * @param tasks the list of tasks to save
      * @throws DukeException if there is an error writing to the file
      */
     public void save(TaskList tasks) throws DukeException {
@@ -65,6 +68,7 @@ public class Storage {
             try {
                 Files.createFile(saveLocation);
             } catch (FileAlreadyExistsException ignored) {
+                // Save file already exists, overwrite it in the next step.
             }
             Files.write(saveLocation, tasks.toSaveData().getBytes());
         } catch (IOException e) {

@@ -5,7 +5,7 @@ import javafx.application.Application;
 import duke.command.Command;
 import duke.gui.Main;
 
-/*
+/**
  * Duke is a chatbot that helps you keep track of your tasks.
  * This is the main application class for Duke.
  */
@@ -18,7 +18,7 @@ public class Duke {
 
     /**
      * Create a new Duke application.
-     * 
+     *
      * @param filePath path to the save file
      */
     public Duke(String filePath) {
@@ -70,7 +70,7 @@ public class Duke {
 
     /**
      * Entry point for the Duke application.
-     * 
+     *
      * @param args command line arguments
      */
     public static void main(String[] args) {

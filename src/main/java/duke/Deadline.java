@@ -16,6 +16,13 @@ public class Deadline extends Task {
         this(description, by, false);
     }
 
+    /**
+     * Creates a deadline with the given description, date, and done status.
+     *
+     * @param description description of the deadline
+     * @param by          date that the deadline is due
+     * @param isDone      whether the deadline is done
+     */
     public Deadline(String description, String by, boolean isDone) {
         super(description, 'D', isDone);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -27,18 +34,19 @@ public class Deadline extends Task {
      * Converts save string data to a Deadline object.
      * The save string data is in the format:
      * <p>
+     *
      * <pre>
-     * D,"<description>","<by>"
+     * D,"&lt;description&gt;","&lt;by&gt"
      * </pre>
      * <p>
-     * 
+     *
      * @param saveString the save string data
      * @return the new Deadline object created from saveString
      * @throws DukeException
      */
     public static Deadline fromSaveString(String saveString) throws DukeException {
         String[] splitSaveString = saveString.split("(\",\")|(\",)|(,\")|\"");
-        if(splitSaveString.length != 3) {
+        if (splitSaveString.length != 3) {
             throw new DukeException("Tried to read unexpected save data.");
         }
         String description = splitSaveString[1];
@@ -47,7 +55,9 @@ public class Deadline extends Task {
         return new Deadline(description, by, isDone);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see duke.Task#toSaveData()
      */
     @Override
@@ -66,7 +76,7 @@ public class Deadline extends Task {
             return false;
         }
         Deadline deadline = (Deadline) o;
-        return super.equals(o) &&
-                by.equals(deadline.by);
+        return super.equals(o)
+                && by.equals(deadline.by);
     }
 }

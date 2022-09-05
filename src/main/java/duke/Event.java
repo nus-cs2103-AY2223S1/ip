@@ -16,6 +16,13 @@ public class Event extends Task {
         this(description, on, false);
     }
 
+    /**
+     * Creates an event with the given description, date, and done status.
+     *
+     * @param description
+     * @param on
+     * @param isDone
+     */
     public Event(String description, String on, boolean isDone) {
         super(description, 'E', isDone);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -27,18 +34,19 @@ public class Event extends Task {
      * Converts save string data to a Event object.
      * The save string data is in the format:
      * <p>
+     *
      * <pre>
-     * E,"<description>","<by>"
+     * E,"&lt;description&gt;","&lt;on&gt;"
      * </pre>
      * <p>
-     * 
+     *
      * @param saveString the save string data
      * @return the new Event object created from saveString
      * @throws DukeException
      */
     public static Event fromSaveString(String saveString) throws DukeException {
         String[] splitSaveString = saveString.split("(\",\")|(\",)|(,\")|\"");
-        if(splitSaveString.length != 3) {
+        if (splitSaveString.length != 3) {
             throw new DukeException("Tried to read unexpected save data.");
         }
         String description = splitSaveString[1];
@@ -52,7 +60,9 @@ public class Event extends Task {
         return super.toString() + " (on " + on.toString() + ")";
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see duke.Task#toSaveData()
      */
     @Override
@@ -66,7 +76,7 @@ public class Event extends Task {
             return false;
         }
         Event event = (Event) o;
-        return super.equals(o) &&
-                on.equals(event.on);
+        return super.equals(o)
+                && on.equals(event.on);
     }
 }

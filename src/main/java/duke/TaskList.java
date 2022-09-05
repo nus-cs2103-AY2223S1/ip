@@ -1,7 +1,8 @@
 package duke;
 
-import java.util.ArrayList;
 import static java.util.stream.Collectors.joining;
+
+import java.util.ArrayList;
 
 /**
  * Represents a list of tasks.
@@ -25,6 +26,7 @@ public class TaskList extends ArrayList<Task> {
      * @return list of tasks that contain the given string
      */
     public ArrayList<Task> find(String toFind) {
-        return this.stream().filter(task -> task.descriptionContains(toFind)).collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+        return this.stream().filter(task -> task.descriptionContains(toFind))
+                .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
     }
 }

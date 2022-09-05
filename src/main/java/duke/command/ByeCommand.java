@@ -4,7 +4,13 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
+/**
+ * Represents a command to exit Duke.
+ */
 public class ByeCommand extends Command {
+    /**
+     * Create a new ByeCommand.
+     */
     public ByeCommand() {
         super();
         isExit = true;
