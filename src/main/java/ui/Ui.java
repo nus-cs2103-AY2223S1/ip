@@ -1,3 +1,5 @@
+package ui;
+
 import exceptions.InvalidTaskIndexException;
 import exceptions.NoTasksException;
 import objects.Task;
@@ -74,20 +76,5 @@ public class Ui {
         } else {
             return "Now you have " + tasks.size() + " tasks in the list.";
         }
-    }
-
-    public static String printExceptionMessage(Exception e) {
-        return e.getMessage();
-    }
-
-    /**
-     * Exits the app. This will terminate the current session of the app, and the
-     * tasks in the list of Task objects will be cleared (after being written into
-     * a txt file to ensure persistent storage).
-     * 
-     * @param input scanner object
-     */
-    public static String endSession(Scanner input) {
-        return "Bye! See you next time!";
     }
 }

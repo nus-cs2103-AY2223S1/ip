@@ -1,3 +1,6 @@
+package utils;
+
+import ui.Ui;
 import exceptions.EmptyNameException;
 import exceptions.InvalidTaskIndexException;
 import exceptions.NoTasksException;

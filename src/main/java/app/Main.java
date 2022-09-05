@@ -1,3 +1,5 @@
+package app;
+
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -5,17 +7,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import ui.MainWindow;
 
 /**
- * A GUI for Duke using FXML.
+ * A GUI for app.Duke using FXML.
  */
 public class Main extends Application {
 
     private Duke duke = new Duke();
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws IOException {
         try {
+            Duke.loadDuke();
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
@@ -25,5 +29,6 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 }

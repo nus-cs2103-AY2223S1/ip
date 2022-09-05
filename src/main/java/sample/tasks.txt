@@ -1,3 +1,0 @@
-T | 0 | task1
-T | 0 | task2
-T | 0 | task 3

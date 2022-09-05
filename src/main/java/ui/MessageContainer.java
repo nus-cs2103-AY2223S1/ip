@@ -1,3 +1,5 @@
+package ui;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -52,11 +54,5 @@ public class MessageContainer extends HBox {
         var introMessageContainer = new MessageContainer(Ui.printIntroduction(), profile);
         introMessageContainer.moveLeft();
         return introMessageContainer;
-    }
-
-    public static MessageContainer getErrMsg(String message, Image profile) {
-        var errorMessageContainer = new MessageContainer(message, profile);
-        errorMessageContainer.moveLeft();
-        return errorMessageContainer;
     }
 }

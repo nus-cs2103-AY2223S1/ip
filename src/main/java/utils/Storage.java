@@ -1,3 +1,5 @@
+package utils;
+
 import objects.Deadline;
 import objects.Event;
 import objects.Task;
@@ -23,7 +25,7 @@ public class Storage {
      * @throws FileNotFoundException exception thrown when the txt file is not found
      */
     public void loadTasks(List<Task> tasks) throws IOException {
-        file.getParentFile().mkdirs();
+        file.getParentFile().mkdir();
         file.createNewFile();
         Scanner sc = new Scanner(file);
         while (sc.hasNext()) {
