@@ -11,7 +11,7 @@ import duke.data.tasks.TaskEvent;
 
 public class CommandEventHandler extends CommandHandler {
 
-    protected static final String INVALID_FORMAT_MSG = String.join("\n",
+    protected static final String INVALID_FORMAT_MESSAGE = String.join("\n",
         "Invalid `event` command format!",
         "Expected format: event <title> /at <YYYY-mm-dd HH:mm>",
         "Examples:",
@@ -27,7 +27,7 @@ public class CommandEventHandler extends CommandHandler {
 
     @Override
     protected String getInvalidFormatMessage() {
-        return INVALID_FORMAT_MSG;
+        return INVALID_FORMAT_MESSAGE;
     }
 
     /**

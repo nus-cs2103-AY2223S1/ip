@@ -9,7 +9,7 @@ import duke.data.TaskList;
 
 public class CommandFindHandler extends CommandHandler {
 
-    protected static final String INVALID_FORMAT_MSG = String.join("\n",
+    protected static final String INVALID_FORMAT_MESSAGE = String.join("\n",
         "Invalid `find` command format!",
         "Expected format: find <keyword>"
     );
@@ -21,7 +21,7 @@ public class CommandFindHandler extends CommandHandler {
 
     @Override
     protected String getInvalidFormatMessage() {
-        return INVALID_FORMAT_MSG;
+        return INVALID_FORMAT_MESSAGE;
     }
 
     @Override

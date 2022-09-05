@@ -11,7 +11,7 @@ import duke.data.tasks.TaskDeadline;
 
 public class CommandDeadlineHandler extends CommandHandler {
 
-    protected static final String INVALID_FORMAT_MSG = String.join("\n",
+    protected static final String INVALID_FORMAT_MESSAGE = String.join("\n",
         "Invalid `deadline` command format!",
         "Expected format: deadline <title> /by <YYYY-mm-dd HH:mm>",
         "Examples:",
@@ -27,7 +27,7 @@ public class CommandDeadlineHandler extends CommandHandler {
 
     @Override
     protected String getInvalidFormatMessage() {
-        return INVALID_FORMAT_MSG;
+        return INVALID_FORMAT_MESSAGE;
     }
 
     /**

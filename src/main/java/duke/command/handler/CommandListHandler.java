@@ -8,7 +8,7 @@ import duke.data.TaskList;
 
 public class CommandListHandler extends CommandHandler {
 
-    protected static final String INVALID_FORMAT_MSG = String.join("\n",
+    protected static final String INVALID_FORMAT_MESSAGE = String.join("\n",
         "Invalid `list` command format!",
         "Expected format: list"
     );
@@ -20,7 +20,7 @@ public class CommandListHandler extends CommandHandler {
 
     @Override
     protected String getInvalidFormatMessage() {
-        return INVALID_FORMAT_MSG;
+        return INVALID_FORMAT_MESSAGE;
     }
 
     /**

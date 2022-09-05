@@ -5,7 +5,7 @@ import java.io.Serializable;
 public abstract class Task implements Serializable {
 
     protected final String title;
-    protected boolean marked;
+    protected boolean isMarked;
 
     /**
      * Constructor for Task class
@@ -14,21 +14,21 @@ public abstract class Task implements Serializable {
      */
     Task(String title) {
         this.title = title;
-        this.marked = false;
+        this.isMarked = false;
     }
 
     /**
      * Mark a task as completed
      */
     public void mark() {
-        this.marked = true;
+        this.isMarked = true;
     }
 
     /**
      * Mark a task as uncompleted
      */
     public void unmark() {
-        this.marked = false;
+        this.isMarked = false;
     }
 
     public boolean containsKeyword(String keyword) {
@@ -37,6 +37,6 @@ public abstract class Task implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("[%c] %s", this.marked ? 'X' : ' ', this.title);
+        return String.format("[%c] %s", this.isMarked ? 'X' : ' ', this.title);
     }
 }

@@ -11,7 +11,7 @@ import duke.data.tasks.Task;
 
 public class CommandDeleteHandler extends CommandHandler {
 
-    protected static final String INVALID_FORMAT_MSG = String.join("\n",
+    protected static final String INVALID_FORMAT_MESSAGE = String.join("\n",
         "Invalid `delete` command format!",
         "Expected format: delete <task-number>",
         "Examples:",
@@ -25,7 +25,7 @@ public class CommandDeleteHandler extends CommandHandler {
 
     @Override
     protected String getInvalidFormatMessage() {
-        return INVALID_FORMAT_MSG;
+        return INVALID_FORMAT_MESSAGE;
     }
 
     /**
