@@ -37,15 +37,6 @@ public abstract class Task {
         return description;
     }
 
-    /**
-     * Sets whether the {@code Task} is done.
-     *
-     * @param isDone Whether the {@code Task} is done.
-     */
-    public void setIsDone(boolean isDone) {
-        this.isDone = isDone;
-    }
-
     //@@author cheeheng-reused
     //Reused from https://nus-cs2103-ay2223s1.github.io/website/schedule/week2/project.html
     //with minor modifications
@@ -62,14 +53,14 @@ public abstract class Task {
      * Sets the status of the {@code Task} to 'done'.
      */
     public void markAsDone() {
-        setIsDone(true);
+        this.isDone = true;
     }
 
     /**
      * Sets the status of the {@code Task} to 'not done'.
      */
     public void markAsUndone() {
-        setIsDone(false);
+        this.isDone = false;
     }
 
     /**
