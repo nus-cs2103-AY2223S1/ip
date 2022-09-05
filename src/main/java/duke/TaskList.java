@@ -94,6 +94,7 @@ public class TaskList {
     }
 
     public static int taskListLength() {
+        assert (taskList.size() > 0);
         return taskList.size();
     }
 
