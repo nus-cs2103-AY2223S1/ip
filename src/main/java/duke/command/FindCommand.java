@@ -46,6 +46,7 @@ public class FindCommand extends Command {
             if (indexList.size() < 1) {
                 builder.append("Could not find anything with the word '" + findWord + "' inside of the list");
             } else {
+                assert indexList.size() > 0 : "There should be tasks found within the list";
                 for (Integer index : indexList) {
                     message += (index + 1) + ": " + taskList.getTask(index).toString() + "\n";
                 }
