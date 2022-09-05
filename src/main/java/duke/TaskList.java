@@ -2,6 +2,10 @@ package duke;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a TaskList containing Tasks.
+ * @author Tan Wen Cong
+ */
 public class TaskList {
     private ArrayList<Task> tasks;
 

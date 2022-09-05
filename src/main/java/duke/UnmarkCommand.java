@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * Represents a command to mark Task in TaskList as not done.
+ * @author Tan Wen Cong
+ */
 public class UnmarkCommand extends Command {
     private int idx;
 

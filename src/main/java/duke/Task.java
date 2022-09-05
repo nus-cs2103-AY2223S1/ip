@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * Represents a general Task.
+ * @author Tan Wen Cong
+ */
 public abstract class Task {
     private boolean isDone;
     private String description;

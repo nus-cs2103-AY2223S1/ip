@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * Represents an Exception for when Duke faces an error.
+ * @author Tan Wen Cong
+ */
 public class DukeException extends Exception {
     private static final String oopsMessage = "OOPS!!!";
 

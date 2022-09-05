@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * Represents a command to delete Task from TaskList.
+ * @author Tan Wen Cong
+ */
 public class ExitCommand extends Command {
     /**
      * Exits Duke program

@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * Represents a command to delete Task from TaskList.
+ * @author Tan Wen Cong
+ */
 public class DeleteCommand extends Command {
     private int idx;
 

@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * Represents a Todo Task.
+ * @author Tan Wen Cong
+ */
 public class Todo extends Task {
     /**
      * Constructor for Todo

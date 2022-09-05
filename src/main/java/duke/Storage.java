@@ -8,8 +8,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * Represents a Storage to store TaskList.
+ * @author Tan Wen Cong
+ */
 public class Storage {
-    String filepath;
+    private String filepath;
 
     /**
      * Constructor for Storage
