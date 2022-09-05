@@ -31,12 +31,12 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public Response execute() throws DukeException {
-        if (this.inputArr.length < 2) {
+        if (inputArr.length < 2) {
             throw new DukeException("Missing task number.");
         }
         try {
-            int index = Integer.parseInt(this.inputArr[1]) - 1;
-            Task task = this.taskList.unmarkDone(index);
+            int index = Integer.parseInt(inputArr[1]) - 1;
+            Task task = taskList.unmarkDone(index);
             assert task != null : "Task cannot be null";
             return new Response("OK, I've marked this task as not done yet:\n"
                     + task + "\n");

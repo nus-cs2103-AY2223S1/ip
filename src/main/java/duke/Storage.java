@@ -18,11 +18,11 @@ public class Storage {
      * @param path The path to the file to store data in.
      */
     public Storage(String path) {
-        this.file = new File(path);
-        if (!this.file.exists()) {
-            this.file.getParentFile().mkdirs();
+        file = new File(path);
+        if (!file.exists()) {
+            file.getParentFile().mkdirs();
             try {
-                this.file.createNewFile();
+                file.createNewFile();
             } catch (IOException exception) {
                 System.out.println("Error creating data file.");
             }
@@ -37,7 +37,7 @@ public class Storage {
      */
     public String read() {
         try {
-            Scanner scanner = new Scanner(this.file);
+            Scanner scanner = new Scanner(file);
             StringBuilder fileTasks = new StringBuilder();
             if (!scanner.hasNextLine()) {
                 return null;
@@ -61,7 +61,7 @@ public class Storage {
      */
     public void write(String contents) {
         try {
-            FileWriter fileWriter = new FileWriter(this.file);
+            FileWriter fileWriter = new FileWriter(file);
             fileWriter.write(contents);
             fileWriter.close();
         } catch (FileNotFoundException exception) {

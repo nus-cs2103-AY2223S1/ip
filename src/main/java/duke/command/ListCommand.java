@@ -25,6 +25,6 @@ public class ListCommand extends Command {
      */
     @Override
     public Response execute() {
-        return new Response(this.taskList.toString());
+        return new Response(taskList.toString());
     }
 }

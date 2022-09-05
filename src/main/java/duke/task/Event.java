@@ -36,7 +36,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         return ("[E]" + super.toString() + " (at: "
-                + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")");
+                + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")");
     }
 
     /**
@@ -49,6 +49,6 @@ public class Event extends Task {
         String doneDescriptionString = super.toStorageString();
         return "E" + Task.STORAGE_DELIMITER
                 + doneDescriptionString + Task.STORAGE_DELIMITER
-                + this.date;
+                + date;
     }
 }

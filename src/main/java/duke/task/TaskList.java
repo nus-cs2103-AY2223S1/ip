@@ -20,7 +20,7 @@ public class TaskList {
      */
     public TaskList(String path) {
         this.storage = new Storage(path);
-        this.taskList = this.getSavedTasks();
+        this.taskList = getSavedTasks();
     }
     /**
      * Returns a List of the Tasks saved.
@@ -28,8 +28,8 @@ public class TaskList {
      * @return List of Tasks.
      */
     private List<Task> getSavedTasks() {
-        String storageTasks = this.storage.read();
-        return this.parse(storageTasks);
+        String storageTasks = storage.read();
+        return parse(storageTasks);
     }
 
     /**
@@ -60,14 +60,14 @@ public class TaskList {
     public void saveTasks() {
         StringBuilder storageTasks = new StringBuilder();
 
-        for (int i = 0; i < this.taskList.size(); i++) {
+        for (int i = 0; i < taskList.size(); i++) {
             if (i > 0) {
                 storageTasks.append(System.lineSeparator());
             }
-            storageTasks.append(this.taskList.get(i).toStorageString());
+            storageTasks.append(taskList.get(i).toStorageString());
         }
 
-        this.storage.write(storageTasks.toString());
+        storage.write(storageTasks.toString());
     }
 
     /**
@@ -76,7 +76,7 @@ public class TaskList {
      * @param task The task to be added.
      */
     public void addTask(Task task) {
-        this.taskList.add(task);
+        taskList.add(task);
     }
 
     /**
@@ -87,11 +87,11 @@ public class TaskList {
      * @throws DukeException If the index is out of range.
      */
     public Task deleteTask(int index) throws DukeException {
-        if (index < 0 || index >= this.getSize()) {
+        if (index < 0 || index >= getSize()) {
             throw new DukeException("Invalid task number.");
         } else {
-            Task task = this.taskList.get(index);
-            this.taskList.remove(index);
+            Task task = taskList.get(index);
+            taskList.remove(index);
             return task;
         }
     }
@@ -102,7 +102,7 @@ public class TaskList {
      * @return Current size of the list.
      */
     public int getSize() {
-        return this.taskList.size();
+        return taskList.size();
     }
 
     /**
@@ -113,10 +113,10 @@ public class TaskList {
      * @throws DukeException If the index is out of range.
      */
     public Task markDone(int index) throws DukeException {
-        if (index < 0 || index >= this.getSize()) {
+        if (index < 0 || index >= getSize()) {
             throw new DukeException("Invalid task number.");
         } else {
-            Task task = this.taskList.get(index);
+            Task task = taskList.get(index);
             task.markDone();
             return task;
         }
@@ -130,10 +130,10 @@ public class TaskList {
      * @throws DukeException If the index is out of range.
      */
     public Task unmarkDone(int index) throws DukeException {
-        if (index < 0 || index >= this.getSize()) {
+        if (index < 0 || index >= getSize()) {
             throw new DukeException("Invalid task number.");
         } else {
-            Task task = this.taskList.get(index);
+            Task task = taskList.get(index);
             task.markUndone();
             return task;
         }
@@ -146,9 +146,9 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        String[] stringList = new String[this.taskList.size()];
-        for (int i = 0; i < this.taskList.size(); i++) {
-            stringList[i] = (i + 1) + ". " + this.taskList.get(i) + "\n";
+        String[] stringList = new String[taskList.size()];
+        for (int i = 0; i < taskList.size(); i++) {
+            stringList[i] = (i + 1) + ". " + taskList.get(i) + "\n";
         }
         return String.join("", stringList);
     }
@@ -161,7 +161,7 @@ public class TaskList {
      */
     public List<Task> findTasks(String ... keywords) {
         List<Task> matchedTasks = new ArrayList<>();
-        for (Task task : this.taskList) {
+        for (Task task : taskList) {
             boolean matchAllKeywords = true;
             for (String keyword : keywords) {
                 if (!task.hasKeyword(keyword)) {

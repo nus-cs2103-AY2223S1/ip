@@ -40,21 +40,21 @@ public class Task {
      */
     @Override
     public String toString() {
-        return ("[" + this.getStatusIcon() + "] " + this.description);
+        return ("[" + getStatusIcon() + "] " + description);
     }
 
     /**
      * Marks the Task as completed.
      */
     public void markDone() {
-        this.isDone = true;
+        isDone = true;
     }
 
     /**
      * Marks the Task as uncompleted.
      */
     public void markUndone() {
-        this.isDone = false;
+        isDone = false;
     }
 
     /**
@@ -63,8 +63,8 @@ public class Task {
      * @return storage String representation of the ToDo.
      */
     public String toStorageString() {
-        String statusStorage = this.isDone ? DONE_STORAGE : NOT_DONE_STORAGE;
-        return statusStorage + Task.STORAGE_DELIMITER + this.description;
+        String statusStorage = isDone ? DONE_STORAGE : NOT_DONE_STORAGE;
+        return statusStorage + Task.STORAGE_DELIMITER + description;
     }
 
     /**
@@ -109,6 +109,6 @@ public class Task {
      * @return Boolean indicating whether the description contains the keyword.
      */
     public boolean hasKeyword(String keyword) {
-        return this.description.contains(keyword);
+        return description.contains(keyword);
     }
 }
