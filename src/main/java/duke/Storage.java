@@ -39,7 +39,7 @@ public class Storage {
             ArrayList<Task> output = new ArrayList<>();
             while (s.hasNext()) {
                 String task = s.nextLine();
-                String[] splitTask = task.split("\\|");
+                String[] splitTask = task.split(" \\| ");
                 Task toAdd;
                 if (splitTask[0].equals("T")) {
                     toAdd = new ToDo(splitTask[2]);

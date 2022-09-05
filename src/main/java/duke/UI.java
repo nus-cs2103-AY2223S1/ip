@@ -2,8 +2,6 @@ package duke;
 
 import java.util.Scanner;
 
-import duke.task.Task;
-
 /**
  * Represents the UI of Duke.
  */
@@ -24,19 +22,6 @@ public class UI {
     }
 
     /**
-     * Prints out TaskList in a form of a list.
-     * @param ls TaskList to be printed.
-     */
-    public void print(TaskList ls) {
-        print(DIVIDER);
-        print("Here are the tasks in your list:");
-        for (int i = 0; i < ls.getSize(); i++) {
-            print((i + 1) + ". " + ls.taskToString(i));
-        }
-        print(DIVIDER);
-    }
-
-    /**
      * Prints message with bottom and top divider with indentation.
      * @param message Message to be printed.
      */
@@ -44,17 +29,6 @@ public class UI {
         System.out.println("\t" + DIVIDER);
         System.out.println("\t" + message);
         System.out.println("\t" + DIVIDER);
-    }
-
-    /**
-     * Prints add message whenever a new Task has been added with indentation.
-     * @param toAdd Task to be added.
-     * @param size Size of TaskList.
-     */
-    public void printAdd(Task toAdd, int size) {
-        String mess = "Got it. I've added this task:\n\t\t" + toAdd
-                + "\n\tNow you have " + size + " tasks in the list.";
-        printWithDivider(mess);
     }
 
     /**
@@ -69,6 +43,18 @@ public class UI {
             print((i + 1) + ". " + ls.taskToString(i));
         }
         print(DIVIDER);
+    }
+    /**
+     * Returns string contains TaskList in form of a list and the given title.
+     * @param ls TaskList to be printed.
+     * @param title Title of printed TaskList.
+     */
+    public String getTaskListResponse(TaskList ls, String title) {
+        String mess = title + "\n";
+        for (int i = 0; i < ls.getSize(); i++) {
+            mess += (i + 1) + ". " + ls.taskToString(i) + "\n";
+        }
+        return mess;
     }
 
     public String readInput() {
@@ -94,6 +80,12 @@ public class UI {
     public void exit() {
         printWithDivider("Bye. Hope to see you again soon!");
         sc.close();
+    }
+    /**
+     * Returns exit message.
+     */
+    public String getExitMessage() {
+        return "Bye. Hope to see you again soon!";
     }
 
 }

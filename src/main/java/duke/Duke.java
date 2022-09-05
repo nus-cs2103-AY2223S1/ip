@@ -126,7 +126,12 @@ public class Duke extends Application {
     }
 
     public String getResponse(String input) {
-        return input;
+        try {
+            Command c = Parser.parse(input, taskList);
+            return c.getResponse(taskList, ui, storage);
+        } catch (DukeException e) {
+            return e.getMessage();
+        }
     }
 
     /**

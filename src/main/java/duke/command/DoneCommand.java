@@ -39,4 +39,10 @@ public class DoneCommand extends Command {
         String message = "Nice! I've marked this task as done:\n\t\t" + taskList.taskToString(this.indexToMarkAsDone);
         ui.printWithDivider(message);
     }
+    @Override
+    public String getResponse(TaskList taskList, UI ui, Storage storage) {
+        taskList.markAsDone(this.indexToMarkAsDone);
+        String message = "Nice! I've marked this task as done:\n\t" + taskList.taskToString(this.indexToMarkAsDone);
+        return message;
+    }
 }

@@ -22,4 +22,9 @@ public class ExitCommand extends Command {
         storage.writeFile(taskList);
         ui.exit();
     }
+    @Override
+    public String getResponse(TaskList taskList, UI ui, Storage storage) {
+        storage.writeFile(taskList);
+        return ui.getExitMessage();
+    }
 }

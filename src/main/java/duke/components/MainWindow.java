@@ -1,6 +1,7 @@
 package duke.components;
 
 import duke.Duke;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -34,6 +35,10 @@ public class MainWindow extends AnchorPane {
     }
     public void setDuke(Duke d) {
         duke = d;
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog("Hello! I'm Lily\n"
+                        + "What can I do for you?", dukeImage)
+        );
         header.getChildren().add(Header.setHeader("Lily", dukeImage, pinkVenom));
     }
     @FXML
@@ -44,6 +49,9 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
+        if (input.equals("bye")) {
+            Platform.exit();
+        }
         userInput.clear();
     }
 }
