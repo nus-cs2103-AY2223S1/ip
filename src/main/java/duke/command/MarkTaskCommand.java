@@ -39,6 +39,7 @@ public class MarkTaskCommand extends Command {
             ui.showAlreadyMarked(isDone);
             return;
         }
+        assert taskList.isValidIndex(this.index);
         ui.showStatusChange(taskList.changeStatus(index, this.isDone), this.isDone);
     }
 
