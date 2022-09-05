@@ -14,6 +14,8 @@ public class Parser {
     private Storage storage;
     private TaskList tasks;
 
+    private static final String FILENAME = "SaveData.txt";
+
     private static final ArrayList<String> ADDED_ARG_COMMANDS =
             new ArrayList<>(Arrays.asList(new String[] {"todo", "deadline", "event", "delete", "mark", "find"}));
 
@@ -23,7 +25,7 @@ public class Parser {
      */
     public Parser(Ui ui) {
         this.ui = ui;
-        this.storage = new Storage();
+        this.storage = new Storage(FILENAME);
         this.tasks = new TaskList(storage.read());
     }
 
@@ -84,10 +86,15 @@ public class Parser {
         String addedArg = "";
         Task currTask;
 
+        if (item.isBlank()) {
+            throw new DukeMissingInputException(type);
+        }
+
         if (!type.equals("todo")) {
-            args = item.split("/by ");
+            args = (type.equals("deadline")) ? item.split("/by ") : item.split("/at ");
             try {
                 description = args[0].trim();
+                assert !description.isBlank() : "Description for " + type + "is Blank";
                 addedArg = args[1];
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new DukeMissingInputException(type);

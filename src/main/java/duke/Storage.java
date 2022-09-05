@@ -10,7 +10,12 @@ import java.util.ArrayList;
 
 public class Storage {
     // Exceptions not handled
-    private static final String FILENAME = "SaveData.txt";
+    private final String filename;
+    private static final ArrayList<Task> SAMPLETASKS = new ArrayList<Task>();
+
+    public Storage(String filename) {
+        this.filename = filename;
+    }
 
     /**
      * Writes the Tasks ArrayList input to the specified save file
@@ -18,7 +23,7 @@ public class Storage {
      */
     public void save(ArrayList<Task> array) {
         try {
-            FileOutputStream writeData = new FileOutputStream(FILENAME);
+            FileOutputStream writeData = new FileOutputStream(filename);
             ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
             writeStream.writeObject(array);
             writeStream.flush();
@@ -34,9 +39,11 @@ public class Storage {
      */
     public ArrayList<Task> read() {
         try {
-            FileInputStream readData = new FileInputStream(FILENAME);
+            FileInputStream readData = new FileInputStream(filename);
             ObjectInputStream readStream = new ObjectInputStream(readData);
-            ArrayList<Task> returnVal = (ArrayList<Task>) readStream.readObject();
+            Object storedObject = readStream.readObject();
+            assert storedObject.getClass() == SAMPLETASKS.getClass();
+            ArrayList<Task> returnVal = (ArrayList<Task>) storedObject;
             readStream.close();
             return returnVal;
         } catch (FileNotFoundException e) {
