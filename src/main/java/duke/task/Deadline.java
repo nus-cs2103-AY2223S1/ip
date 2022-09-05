@@ -26,8 +26,8 @@ public class Deadline extends Task {
         assert !description.isEmpty();
         String[] details = dateTime.split(" ");
         DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        this.date = LocalDate.parse(details[0], inputFormat);
-        this.time = details[1];
+        date = LocalDate.parse(details[0], inputFormat);
+        time = details[1];
         this.dateTime = dateTime;
 
     }
@@ -58,7 +58,7 @@ public class Deadline extends Task {
     @Override
     public String toDataFormat() {
         String completed = "0";
-        if (this.getStatusIcon().equals("X")) {
+        if (getStatusIcon().equals("X")) {
             completed = "1";
         }
         return "D | " + completed + " | " + this.getDescription() + " | " + this.dateTime;

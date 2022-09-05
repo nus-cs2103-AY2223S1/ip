@@ -47,14 +47,14 @@ public class Event extends Task {
     @Override
     public String toDataFormat() {
         String completed = "0";
-        if (this.getStatusIcon().equals("X")) {
+        if (getStatusIcon().equals("X")) {
             completed = "1";
         }
         return "E | " + completed + " | " + this.getDescription() + " | " + this.time;
     }
 
     /**
-     * Override the toString() method to display the task to the user.
+     * Overrides the toString() method to display the task to the user.
      *
      * @return A String representing the event task.
      */

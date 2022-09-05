@@ -16,7 +16,7 @@ public class AddCommand extends Command {
     private Task task;
 
     /**
-     * The constructor for the AddCommand.
+     * Constructs the add command.
      *
      * @param task The task that is being added.
      */
@@ -31,7 +31,7 @@ public class AddCommand extends Command {
      * @param storage The storage class which deals with the file.
      * @param taskList The tasklist that stores the tasks.
      * @return The String that Duke will say.
-     * @throws DukeException throws if there is an error.
+     * @throws DukeException Throws if there is an error.
      */
     @Override
     public String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {

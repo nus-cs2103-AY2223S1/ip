@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import duke.task.Task;
+
 /**
  * Represents the user interface class that
  * deals with interactions with the user.

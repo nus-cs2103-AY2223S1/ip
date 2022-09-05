@@ -12,6 +12,7 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.ToDo;
+
 /**
  * Represents the duke.storage.Storage class which stores data for duke.Duke.
  *
@@ -22,9 +23,9 @@ public class Storage {
     private File currentFile;
 
     /**
-     * The Storage constructor.
+     * Constructs the storage for Duke.
      *
-     * @param filePath
+     * @param filePath The filepath that stores the data.
      */
     public Storage(String filePath) {
         this.currentFile = new File(filePath);

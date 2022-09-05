@@ -19,7 +19,7 @@ public class Duke {
     private Ui ui;
 
     /**
-     * Constructor for Duke.
+     * Constructs Duke.
      *
      * @param filePath The filepath where the data that duke
      *                 uses is stored.
@@ -35,6 +35,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Returns the response from duke to the gui.
+     *
+     * @param input The input from the gui.
+     * @return The expected output to the user.
+     */
     public String getResponse(String input) {
         try {
             Command command = Parser.parse(input);
@@ -44,6 +50,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Returns the welcome message.
+     *
+     * @return The welcome message to the user.
+     */
     public String getWelcomeMessage() {
         return ui.showWelcome();
     }
