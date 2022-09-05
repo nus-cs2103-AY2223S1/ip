@@ -25,7 +25,7 @@ public class MarkCommand extends Command {
      */
     @Override
     public String execute() {
-        String markedTask = tasklist.markTask(this.markParams);
+        String markedTask = tasklist.markTask(markParams);
         if (markedTask == null) {
             return ui.showInvalidTaskNumber(tasklist);
         }

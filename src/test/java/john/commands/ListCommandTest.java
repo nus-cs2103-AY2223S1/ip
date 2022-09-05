@@ -9,7 +9,7 @@ import john.ui.Ui;
 
 public class ListCommandTest {
     @Test
-    public void executeTestWithoutParams() {
+    public void execute_noListParams_noTaskReturned() {
         ListCommand cmd = new ListCommand("");
         TaskList tl = new TaskList();
         cmd.setData(tl, new Ui());
@@ -17,7 +17,7 @@ public class ListCommandTest {
     }
 
     @Test
-    public void executeTestWithParams() {
+    public void execute_listParams_taskReturned() {
         ListCommand cmd = new ListCommand("10/10/2010");
         TaskList tl = new TaskList();
         tl.addEvent("hello", "10/10/2010");

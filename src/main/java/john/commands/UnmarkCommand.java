@@ -25,7 +25,7 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String execute() {
-        String unmarkedTask = tasklist.unmarkTask(this.unmarkParams);
+        String unmarkedTask = tasklist.unmarkTask(unmarkParams);
         if (unmarkedTask == null) {
             return ui.showInvalidTaskNumber(tasklist);
         }

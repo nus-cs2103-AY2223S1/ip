@@ -25,7 +25,7 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String execute() {
-        String deletedTask = tasklist.deleteTask(this.deleteParams);
+        String deletedTask = tasklist.deleteTask(deleteParams);
         if (deletedTask == null) {
             return ui.showInvalidTaskNumber(tasklist);
         }

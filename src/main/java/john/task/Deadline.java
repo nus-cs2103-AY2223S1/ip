@@ -47,11 +47,10 @@ public class Deadline extends Task {
      */
     @Override
     public String toStorageFormat() {
-        return String.format(
-                "D | %d | %s | %s%s", (this.isCompleted ? 1 : 0), this.description,
-                this.date.format(Task.FORMATTER_INPUT_DATE), (this.time == null
-                        ? ""
-                        : " " + this.time.format(Task.FORMATTER_INPUT_TIME)));
+        String completionStatus = isCompleted ? "1" : "0";
+        String date = this.date.format(Task.FORMATTER_INPUT_DATE);
+        String time = this.time == null ? "" : " " + this.time.format(Task.FORMATTER_INPUT_TIME);
+        return String.format("D | %s | %s | %s%s", completionStatus, description, date, time);
     }
 
     /**
@@ -61,10 +60,9 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s][%s] %s (by: %s%s)",
-                this.getType(), (this.isCompleted ? "X" : " "), this.description,
-                this.date.format(Task.FORMATTER_OUTPUT_DATE), (this.time == null
-                        ? ""
-                        : " " + this.time.format(Task.FORMATTER_OUTPUT_TIME)));
+        String completionStatus = isCompleted ? "X" : " ";
+        String date = this.date.format(Task.FORMATTER_OUTPUT_DATE);
+        String time = this.time == null ? "" : " " + this.time.format(Task.FORMATTER_OUTPUT_TIME);
+        return String.format("[%s][%s] %s (by: %s%s)", this.getType(), completionStatus, description, date, time);
     }
 }

@@ -49,6 +49,7 @@ public class John extends Application {
             stage.setScene(scene);
             stage.setTitle("John");
             fxmlLoader.<MainWindow>getController().setJohn(john);
+            fxmlLoader.<MainWindow>getController().addGreetingDialog(ui.showGreeting());
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
