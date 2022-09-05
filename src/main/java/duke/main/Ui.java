@@ -9,6 +9,8 @@ import duke.task.Task;
  * A class to handle user input and output for the user.
  */
 public class Ui {
+    private static final String NUMBER_SEPARATOR = ". ";
+
     private static final String[] GREETING = {"Hi, I'm Duke.\nWhat can I do for you?\nI'll do my best! :)"};
     private static final String[] BYE = {"NOOOOOO... Don't send me back to the void! T_T"};
 
@@ -177,7 +179,7 @@ public class Ui {
         output.append(BEFORE_LIST[this.messageStatus]);
         int number = 1;
         for (Task task : taskList) {
-            output.append("\n" + Integer.toString(number) + ". " + task.toString());
+            output.append("\n" + number + NUMBER_SEPARATOR + task.toString());
             number++;
         }
         output.append("\n" + AFTER_LIST[this.messageStatus]);

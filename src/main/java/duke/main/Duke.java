@@ -25,12 +25,6 @@ public class Duke {
     private TaskList taskList;
     private Ui ui;
 
-    private ScrollPane scrollPane;
-    private VBox dialogContainer;
-    private TextField userInput;
-    private Button sendButton;
-    private Scene scene;
-
     private Image user = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
 
