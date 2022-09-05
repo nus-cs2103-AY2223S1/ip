@@ -26,8 +26,8 @@ public class Duke {
      * Constructor for Duke class.
      */
     public Duke() {
-        ui = new Ui();
-        storage = new Storage();
+        this.ui = new Ui();
+        this.storage = new Storage();
         try {
             tasks = new TaskList(storage.readTaskListFromFile());
         } catch (DukeException e) {
@@ -81,17 +81,17 @@ public class Duke {
                     return ui.displayTaskAddedMessage(task, tasks.size());
                 }
                 case LIST: {
-                    return tasks.displayTaskList();
+                    return tasks.display();
                 }
                 case FIND: {
-                    return tasks.searchTaskList(argument);
+                    return tasks.search(argument);
                 }
                 case DELETE: {
                     Task deletedTask = tasks.getTask(argument);
                     tasks.deleteTask(argument);
                     return ui.displayTaskDeletedMessage(deletedTask, tasks.size());
                 }
-                case MARK:
+                case MARK: // Fallthrough
                 case UNMARK: {
                     tasks.markUnmarkTask(argument, command);
                     Task task = tasks.getTask(argument);
@@ -101,7 +101,7 @@ public class Duke {
                     return ui.sayGoodbye();
                 }
                 default: {
-                    System.out.print("Unexpected Error in Run");
+                    System.out.print("Unexpected Error in Get Response");
                     break;
                 }
                 }
@@ -112,7 +112,6 @@ public class Duke {
             } catch (DukeException de) {
                 return ui.printErrorMessage(de);
             }
-
         return "";
     }
 

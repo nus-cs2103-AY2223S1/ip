@@ -40,7 +40,9 @@ public class Deadline extends Task {
     @Override
     public String convertToSaveFormat() {
         int status = isDone ? 1 : 0;
-        return String.format("%s | %d | %s | %s", "D", status, name,
-                DateTimeFormatUtils.convertToInputFormat(deadlineDate));
+        String prefix = "D";
+        String by = DateTimeFormatUtils.convertToInputFormat(deadlineDate);
+
+        return String.format("%s | %d | %s | %s", prefix, status, name, by);
     }
 }
