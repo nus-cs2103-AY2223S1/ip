@@ -47,6 +47,7 @@ public class Storage {
     public void saveTasks(ArrayList<Task> tasklist) {
         try {
             FileWriter writer = new FileWriter(this.filepath);
+            tasklist.sort(new TaskComparator());
             for (Task task : tasklist) {
                 writer.write(task.encode() + "\n");
             }
