@@ -122,6 +122,7 @@ public class TaskManager {
      * @return Task
      */
     public Task removeTask(int location) {
+        assert location >= 0 : "the task number should not be negative";
         Task task = arr.get(location);
         arr.remove(location);
         return task;
@@ -141,6 +142,7 @@ public class TaskManager {
      * @return Task
      */
     public Task markTaskComplete(int location) {
+        assert location >= 0 : "the task number should not be negative";
         Task task = arr.get(location);
         task.markComplete();
         return task;
@@ -152,6 +154,7 @@ public class TaskManager {
      * @return Task
      */
     public Task markTaskIncomplete(int location) {
+        assert location >= 0 : "the task number should not be negative";
         Task task = arr.get(location);
         task.markIncomplete();
         return task;
