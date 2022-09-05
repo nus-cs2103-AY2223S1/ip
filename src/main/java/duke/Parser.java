@@ -42,6 +42,7 @@ public class Parser {
 
     private static String byeCommand() {
         System.exit(0);
+        assert false;
         return null;
     }
 
@@ -50,13 +51,17 @@ public class Parser {
     }
 
     private static String markCommand(TaskList taskList, Ui ui, String[] command) throws DukeException {
+        assert (command.length > 1);
         int index = Integer.parseInt(command[1]) - 1;
+        assert (index >= 0 && index < taskList.getSize());
         taskList.mark(index);
         return ui.showMarked(taskList.getTask(index));
     }
 
     private static String unmarkCommand(TaskList taskList, Ui ui, String[] command) throws DukeException {
+        assert (command.length > 1);
         int index = Integer.parseInt(command[1]) - 1;
+        assert (index >= 0 && index < taskList.getSize());
         taskList.unmark(index);
         return ui.showUnmarked(taskList.getTask(index));
     }
@@ -71,27 +76,34 @@ public class Parser {
     }
 
     private static String deadlineCommand(TaskList taskList, Ui ui, String[] command) throws DukeException {
+        assert (command.length > 1);
         String[] arguments = command[1].split(" /by ", 2);
+        assert (arguments.length > 1);
         Task newTask = new Deadline(arguments[0], arguments[1]);
         taskList.add(newTask);
         return ui.showAdded(newTask, taskList.getSize());
     }
 
     private static String eventCommand(TaskList taskList, Ui ui, String[] command) throws DukeException {
+        assert (command.length > 1);
         String[] arguments = command[1].split(" /at ", 2);
+        assert (arguments.length > 1);
         Task newTask = new Event(arguments[0], arguments[1]);
         taskList.add(newTask);
         return ui.showAdded(newTask, taskList.getSize());
     }
 
     private static String deleteCommand(TaskList taskList, Ui ui, String[] command) throws DukeException {
+        assert (command.length > 1);
         int index = Integer.parseInt(command[1]) - 1;
+        assert (index >= 0 && index < taskList.getSize());
         Task task = taskList.getTask(index);
         taskList.remove(index);
         return ui.showRemoved(task, taskList.getSize());
     }
 
     private static String findCommand(TaskList taskList, Ui ui, String[] command) {
+        assert (command.length > 1);
         return ui.showResults(taskList.search(command[1]));
     }
 
