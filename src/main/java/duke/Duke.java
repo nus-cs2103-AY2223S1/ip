@@ -14,14 +14,15 @@ public class Duke {
     private final Ui ui = new Ui();
     private final Parser parser = new Parser();
 
-    private final String logo = " ____        _        \n"
+    private final String LOGO = "Hello from\n"
+                          + " ____        _        \n"
                           + "|  _ \\ _   _| | _____ \n"
                           + "| | | | | | | |/ / _ \\\n"
                           + "| |_| | |_| |   <  __/\n"
                           + "|____/ \\__,_|_|\\_\\___|\n"
                           + "Hi, I'm Duke. What can I do for you?";
     private void launch() {
-        System.out.println("Hello from\n" + logo);
+        System.out.println(LOGO);
         ui.startGreeting();
         while (true) {
             String inputText = ui.inputCommand();
@@ -38,7 +39,7 @@ public class Duke {
 
     public String getResponse(String input) {
         if (input.toLowerCase().equals("hi")) {
-            return logo;
+            return LOGO;
         }
         return parser.parse(input, controller, storage);
     }

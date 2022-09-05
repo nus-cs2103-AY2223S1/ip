@@ -2,17 +2,13 @@ package duke.task;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import duke.exception.EmptyContentException;
-import duke.exception.InvalidTimeException;
 import duke.exception.NoSuchTaskException;
 
 /**
  * Logic controller of Duke tasks
  */
 public class TasksController {
-    private ArrayList<Task> tasks;
+    private final ArrayList<Task> tasks;
 
     public TasksController(ArrayList<Task> tasks) {
         assert tasks != null : "Tasks should not be null!";
@@ -89,15 +85,10 @@ public class TasksController {
         return result;
     }
 
-    /**
-     * Stringify task list
-     * @return the string
-     */
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
-        int i;
-        for (i = 0; i < tasks.size(); ++i) {
+        for (int i = 0; i < tasks.size(); ++i) {
             s.append(i + 1).append(". ").append(tasks.get(i).toString()).append("\n");
         }
         return s.toString();
