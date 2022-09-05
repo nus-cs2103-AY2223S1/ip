@@ -4,7 +4,8 @@ package tasklist;
 import java.util.ArrayList;
 
 import task.Task;
-
+import task.Event;
+import task.Deadline;
 
 /**
  * Manage all interactions between Duke and UserInputHistory FILE storage.
@@ -128,18 +129,20 @@ public class TaskList<T extends Task> {
      * @return TaskList of all Tasks found.
      */
     public TaskList findTasks(String keyword) {
-        TaskList<T> matchingTasks = new TaskList<>();
-        T currTask;
-        String description;
-        boolean matches;
-        for (int i = 0; i < userInputHistoryList.size(); i++) {
-            currTask = userInputHistoryList.get(i);
-            description = currTask.getDescription().toLowerCase();
-            matches = description.contains(keyword.toLowerCase());
-            if (matches) {
-                matchingTasks.userInputHistoryList.add(currTask);
+        TaskList matchingTasks = new TaskList();
+        userInputHistory.stream().filter(currTask -> {
+            String description = currTask.getDescription().toLowerCase();
+            boolean isMatched = description.contains(keyword.toLowerCase());
+            return isMatched;
+        }).forEach(currTask -> {
+            if (currTask instanceof Task) {
+                matchingTasks.addTask(currTask);
+            } else if (currTask instanceof Event) {
+                matchingTasks.addEvent(currTask);
+            } else if (currTask instanceof Deadline) {
+                matchingTasks.addDeadline(currTask);
             }
-        }
+        });
         return matchingTasks;
     }
 }
