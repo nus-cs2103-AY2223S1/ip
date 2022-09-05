@@ -17,9 +17,4 @@ public class ListCommand extends Command {
         contents.append("Total: " + taskList.getSize());
         ui.showMessage(contents.toString());
     }
-
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

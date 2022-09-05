@@ -20,9 +20,4 @@ public class UnmarkCommand extends Command {
             ui.showMessage("unmarked task");
         }
     }
-
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

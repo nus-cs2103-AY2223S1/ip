@@ -30,14 +30,4 @@ public class AddTaskCommand extends Command {
             ui.showMessage("Added task");
         }
     }
-
-    /**
-     * Returns false to allow program execution to continue.
-     *
-     * @return false.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

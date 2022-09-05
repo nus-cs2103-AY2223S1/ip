@@ -30,9 +30,4 @@ public class CheckIsTodayCommand extends Command {
             ui.showMessage("No not due today");
         }
     }
-
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

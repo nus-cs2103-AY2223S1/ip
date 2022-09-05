@@ -19,6 +19,11 @@ public class DeleteTaskCommand extends Command {
         }
     }
 
+    /**
+     * Returns true to cause program termination.
+     *
+     * @return true.
+     */
     @Override
     public boolean isExit() {
         return false;

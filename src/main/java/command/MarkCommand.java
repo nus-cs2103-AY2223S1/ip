@@ -20,9 +20,4 @@ public class MarkCommand extends Command {
             ui.showMessage("marked task");
         }
     }
-
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

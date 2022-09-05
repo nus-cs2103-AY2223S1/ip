@@ -30,14 +30,4 @@ public class AddEventCommand extends Command {
             ui.showMessage("Added event");
         }
     }
-
-    /**
-     * Returns false to allow program execution to continue.
-     *
-     * @return false.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

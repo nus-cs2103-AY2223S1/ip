@@ -30,14 +30,4 @@ public class AddDeadlineCommand extends Command {
             ui.showMessage("added deadline");
         }
     }
-
-    /**
-     * Returns false to allow program execution to continue.
-     *
-     * @return false.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

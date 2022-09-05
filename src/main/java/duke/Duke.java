@@ -4,6 +4,8 @@ import command.Command;
 import exceptions.DukeException;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import storage.Storage;
 import tasklist.TaskList;
 import ui.UI;

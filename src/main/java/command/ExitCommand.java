@@ -19,9 +19,4 @@ public class ExitCommand extends Command {
             ui.showError("error parsing exit command");
         }
     }
-
-    @Override
-    public boolean isExit() {
-        return true;
-    }
 }
