@@ -28,9 +28,16 @@ public class Storage {
 
     /** The path to the directory for storing Duke data. */
     private static Path directoryPath = Paths.get(System.getProperty("user.dir"), "data");
-
     /** The path to the file storing Duke data. */
     private Path filePath;
+    /** Text icon to signify a task is done. */
+    private static final String IS_DONE_YES = "Y";
+    /** Text icon to signify a task is not done. */
+    private static final String IS_DONE_NO = "N";
+    /** Text separator for datetime of a deadline task. */
+    private static final String DEADLINE_SEPARATOR = "/by ";
+    /** Text separator for datetime of an event. */
+    private static final String EVENT_SEPARATOR = "/at ";
 
     public Storage() {
         this.filePath = directoryPath.resolve("data.txt");
@@ -138,15 +145,16 @@ public class Storage {
     private static String convertTaskToDataString(Task task) throws DukeException {
         switch (task.getTaskType()) {
         case TODO:
-            return "T " + (task.isDone() ? "Y " : "N ") + task.getDescription() + System.lineSeparator();
+            return TaskType.TODO.value + " " + (task.isDone() ? IS_DONE_YES : IS_DONE_NO) + " " +
+                    task.getDescription() + System.lineSeparator();
         case DEADLINE:
             Deadline deadline = (Deadline) task;
-            return "D " + (deadline.isDone() ? "Y " : "N ") + deadline.getDescription()
-                    + "/by " + deadline.getDateTime() + System.lineSeparator();
+            return TaskType.DEADLINE.value + " " + (deadline.isDone() ? IS_DONE_YES : IS_DONE_NO) + " " +
+                    deadline.getDescription() + DEADLINE_SEPARATOR + deadline.getDateTime() + System.lineSeparator();
         case EVENT:
             Event event = (Event) task;
-            return "E " + (event.isDone() ? "Y " : "N ") + event.getDescription()
-                    + "/at " + event.getDateTime() + System.lineSeparator();
+            return TaskType.EVENT.value + " " + (event.isDone() ? IS_DONE_YES : IS_DONE_NO) + " " +
+                    event.getDescription() + EVENT_SEPARATOR + event.getDateTime() + System.lineSeparator();
         default:
             throw new DukeException("Exception: Unknown task type.");
         }
@@ -166,21 +174,21 @@ public class Storage {
             switch (type) {
             case TODO:
                 Todo todo = new Todo(taskInfo[2]);
-                if ("Y".equals(taskInfo[1].strip())) {
+                if (IS_DONE_YES.equals(taskInfo[1].strip())) {
                     todo.setIsDone(true);
                 }
                 return todo;
             case DEADLINE:
-                String[] deadlineInfo = taskInfo[2].split("/by ", 2);
+                String[] deadlineInfo = taskInfo[2].split(DEADLINE_SEPARATOR, 2);
                 Deadline deadline = new Deadline(deadlineInfo[0].strip(), LocalDateTime.parse(deadlineInfo[1]));
-                if ("Y".equals(taskInfo[1])) {
+                if (IS_DONE_YES.equals(taskInfo[1])) {
                     deadline.setIsDone(true);
                 }
                 return deadline;
             case EVENT:
-                String[] eventInfo = taskInfo[2].split("/at ", 2);
+                String[] eventInfo = taskInfo[2].split(EVENT_SEPARATOR, 2);
                 Event event = new Event(eventInfo[0].strip(), LocalDateTime.parse(eventInfo[1]));
-                if ("Y".equals(taskInfo[1])) {
+                if (IS_DONE_YES.equals(taskInfo[1])) {
                     event.setIsDone(true);
                 }
                 return event;

@@ -53,6 +53,10 @@ public abstract class Task {
     private TaskType taskType;
     /** Completion status of the task. */
     private boolean isDone;
+    /** Icon to show a task is done. */
+    private final String DONE_ICON = "x";
+    /** Icon to show a task is not done. */
+    private final String NOT_DONE_ICON = " ";
 
     /**
      * Constructs a Task object.
@@ -108,7 +112,7 @@ public abstract class Task {
      * @return String representation of the completion status of the task.
      */
     public String getStatusIcon() {
-        return isDone ? "x" : " ";
+        return isDone ? DONE_ICON : NOT_DONE_ICON;
     }
 
     /**
