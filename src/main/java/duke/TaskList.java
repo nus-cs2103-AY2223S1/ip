@@ -27,7 +27,7 @@ public class TaskList {
     }
 
     /*
-     *  getter for task objects in the list. 
+     * getter for task objects in the list. 
      * @return List<Task>
      */
     public List<Task> getTaskList() {
@@ -39,11 +39,12 @@ public class TaskList {
      * @param number the order of the task
      * @param ui the UI Object that prints messages to the console
      */
-    public void markAsDone(int number, UI ui){
+    public String markAsDone(int number, UI ui){
         Task item = list.get(number - 1);
         item.mark();
-        ui.markedMsg(item);
+        
         list.set(number - 1, item);
+        return ui.markedMsg(item);
     }
 
     /*
@@ -51,9 +52,9 @@ public class TaskList {
      * @param number the order of the list to be removed
      * @param ui the UI object that prints to screen
      */
-    public void deleteFromList(int number, UI ui) {
-        Task removed = list.remove(number);
-        ui.rmvMsg(removed, list.size());
+    public String deleteFromList(int number, UI ui) {
+        Task removed = list.remove(number - 1);
+        return ui.rmvMsg(removed, list.size());
     }
 
     /*
@@ -61,30 +62,32 @@ public class TaskList {
      * @param number the index of the task to be unmarked
      * @param ui the UI Object that prints to screen
      */
-    public void unmarkTask(int number, UI ui) {
+    public String unmarkTask(int number, UI ui) {
         Task item = list.get(number - 1);
         item.unmark();
-        ui.unmarkedMsg(item);
+        
         list.set(number - 1, item);
+
+        return ui.unmarkedMsg(item);
     }
 
-    public void addTaskFromFile(Task newTask) {
+    protected void addTaskFromFile(Task newTask) {
         this.list.add(newTask);
     }
 
-    public void addToList(String item, UI ui){
+    public String addToList(String item, UI ui){
         try {
             Task newTask = new Task(item);
             list.add(newTask);
             int listSize = list.size();
-            ui.addToListMsg(listSize, newTask);
+            return ui.addToListMsg(listSize, newTask);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            return e.getMessage();
         }
 
     }
 
-    public void findTasksByKeyword(String keyword, UI ui) {
+    public String findTasksByKeyword(String keyword, UI ui) {
         TaskList keywordTaskList = new TaskList();
         for (Task task : this.list) {
             String taskDesc = task.description;
@@ -92,7 +95,7 @@ public class TaskList {
                 keywordTaskList.list.add(task);
             } 
         }
-        ui.printList(keywordTaskList);
+        return ui.printList(keywordTaskList);
     }
 
 }
