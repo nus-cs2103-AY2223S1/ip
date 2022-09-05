@@ -3,6 +3,11 @@ package duke.util.command;
 import duke.task.TaskList;
 import duke.util.StoredTasks;
 
+/**
+ * CommandDelete class which inherits from Command class, handles the 'delete' command
+ *
+ * @author Kavan
+ */
 public class CommandDelete extends Command {
     private static final String deleteMessage = "Noted. I've removed this task:";
 

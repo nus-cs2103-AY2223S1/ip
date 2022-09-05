@@ -3,6 +3,11 @@ package duke.util.command;
 import duke.task.TaskList;
 import duke.util.StoredTasks;
 
+/**
+ * CommandFind class which inherits from Command class, handles the 'find' command
+ *
+ * @author Kavan
+ */
 public class CommandFind extends Command {
     private static final String findMessage = "Here are the matching tasks in your list:\n";
 

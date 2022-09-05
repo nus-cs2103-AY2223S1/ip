@@ -3,6 +3,11 @@ package duke.util.command;
 import duke.task.TaskList;
 import duke.util.StoredTasks;
 
+/**
+ * CommandList class which inherits from Command class, handles the 'list' command
+ *
+ * @author Kavan
+ */
 public class CommandList extends Command {
 
     public CommandList(String command) {

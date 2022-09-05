@@ -21,4 +21,3 @@ public class Ui {
         System.out.println(HORIZONTAL_LINE + "\nHello! I'm Duke\nWhat can I do for you?\n" + HORIZONTAL_LINE);
     }
 }
-

@@ -9,6 +9,11 @@ import duke.util.StoredTasks;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * CommandTodo class which inherits from Command class, handles the 'todo' command
+ *
+ * @author Kavan
+ */
 public class CommandTodo extends Command {
     private final String todoMessage = "Got it. I've added this task:\n";
 

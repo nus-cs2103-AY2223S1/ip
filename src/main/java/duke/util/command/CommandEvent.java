@@ -9,6 +9,11 @@ import duke.util.StoredTasks;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * CommandEvent class which inherits from Command class, handles the 'event' command
+ *
+ * @author Kavan
+ */
 public class CommandEvent extends Command {
     private final String eventMessage = "Got it. I've added this task:\n";
 

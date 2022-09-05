@@ -3,6 +3,11 @@ package duke.util.command;
 import duke.task.TaskList;
 import duke.util.StoredTasks;
 
+/**
+ * CommandUnmark class which inherits from Command class, handles the 'unmark' command
+ *
+ * @author Kavan
+ */
 public class CommandUnmark extends Command {
     private static final String unmarkMessage = "OK, I've marked this task as not done yet:";
 

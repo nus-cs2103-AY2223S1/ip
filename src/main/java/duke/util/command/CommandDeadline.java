@@ -10,6 +10,11 @@ import duke.util.StoredTasks;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * CommandDeadline class which inherits from Command class, handles the 'deadline' command
+ *
+ * @author Kavan
+ */
 public class CommandDeadline extends Command {
     private final String deadlineMessage = "Got it. I've added this task:\n";
 
