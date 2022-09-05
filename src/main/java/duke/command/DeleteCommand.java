@@ -17,7 +17,7 @@ public class DeleteCommand extends Command {
     private int index;
 
     /**
-     * The delete command that delete tasks.
+     * Constructs the delete command.
      *
      * @param index The index of the command to be deleted.
      */
@@ -32,7 +32,7 @@ public class DeleteCommand extends Command {
      * @param storage The storage class which deals with the file.
      * @param taskList The tasklist that stores the tasks.
      * @return The String that duke says.
-     * @throws DukeException throws if there is an error.
+     * @throws DukeException Throws if there is an error.
      */
     @Override
     public String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {

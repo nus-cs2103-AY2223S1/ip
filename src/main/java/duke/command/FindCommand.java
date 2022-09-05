@@ -18,7 +18,7 @@ public class FindCommand extends Command {
     private String keyWord;
 
     /**
-     * The constructor for the FindCommand class.
+     * Constructs a command to find tasks in the list.
      *
      * @param keyWord The keyword to find.
      */
@@ -26,6 +26,16 @@ public class FindCommand extends Command {
         this.keyWord = keyWord;
     }
 
+    /**
+     * Executes the find command to find the tasks with similar
+     * keywords in the list.
+     *
+     * @param ui The ui class which handles the user interface.
+     * @param storage The storage class which deals with the file.
+     * @param taskList The tasklist that stores the tasks.
+     * @return The String that represents the list of tasks.
+     * @throws DukeException If there is an exception.
+     */
     @Override
     public String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         ArrayList<Task> temp = new ArrayList<Task>();
@@ -37,6 +47,11 @@ public class FindCommand extends Command {
         return ui.displayMatchingList(temp);
     }
 
+    /**
+     * Returns false if it is not an exit command.
+     *
+     * @return false.
+     */
     @Override
     public boolean isExit() {
         return false;

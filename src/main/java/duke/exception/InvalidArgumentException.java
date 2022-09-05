@@ -13,7 +13,7 @@ public class InvalidArgumentException extends DukeException {
     private Commands command;
 
     /**
-     * The constructor for the InvalidArgumentException.
+     * Constructs the invalid argument exception based on the command.
      *
      * @param commands The command that has the invalid argument exception.
      */
@@ -38,7 +38,9 @@ public class InvalidArgumentException extends DukeException {
             message += "\nPlease add a /at to declare the time the event is at.";
             break;
         case Mark:
+            //Fallthrough
         case Unmark:
+            //Fallthrough
         case Delete:
             message += "\nPlease input a integer within the range of the tasks.";
             break;

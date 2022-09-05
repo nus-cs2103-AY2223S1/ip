@@ -59,9 +59,9 @@ public class Task {
     }
 
     /**
-     * Overrides the String implementation Task
+     * Overrides the String implementation Task.
      *
-     * @return A string that shows the completion status of task
+     * @return A string that shows the completion status of task.
      */
     @Override
     public String toString() {

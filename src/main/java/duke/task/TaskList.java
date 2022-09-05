@@ -22,7 +22,7 @@ public class TaskList {
      * Another constructor for the taskList when the input file is
      * not empty.
      *
-     * @param list
+     * @param list The arraylist that stores the tasks.
      */
     public TaskList(ArrayList<Task> list) {
         this.taskList = list;

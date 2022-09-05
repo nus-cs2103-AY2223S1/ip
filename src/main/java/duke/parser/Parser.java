@@ -27,20 +27,19 @@ import duke.task.ToDo;
 public class Parser {
 
     /**
-     * The main parsing command which handles the raw input string from
-     * the user.
+     * Parses the input from the user and returns a corresponding command.
      *
      * @param input The input from the CLI.
      * @return The command to be executed.
      * @throws DukeException If the input String has an error.
      */
     public static Command parse(String input) throws DukeException {
-        String[] inputArray = input.split(" ", 2);
-        String keyPhrase = inputArray[0];
+        String[] inputs = input.split(" ", 2);
+        String keyPhrase = inputs[0];
         String argument = "";
         Command command;
-        if (inputArray.length == 2) {
-            argument = inputArray[1];
+        if (inputs.length == 2) {
+            argument = inputs[1];
         }
         switch(keyPhrase) {
         case "bye":

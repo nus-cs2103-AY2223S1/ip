@@ -13,7 +13,7 @@ import duke.ui.Ui;
 public class ExitCommand extends Command {
 
     /**
-     * The constructor for the exit command.
+     * Constructs the exit command.
      */
     public ExitCommand() {}
 
@@ -24,7 +24,7 @@ public class ExitCommand extends Command {
      * @param storage The storage class which deals with the file.
      * @param taskList The tasklist that stores the tasks.
      * @return The String that duke says.
-     * @throws DukeException throws if there is an error.
+     * @throws DukeException Throws if there is an error.
      */
     @Override
     public String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
