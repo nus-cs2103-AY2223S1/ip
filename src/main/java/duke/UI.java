@@ -18,10 +18,6 @@ public class UI {
 
     private static final String GOODBYE_MESSAGE = "Bye, Hope to see you again soon!";
 
-    private static String getLogo() {
-        return (LOGO);
-    }
-
     private static String getGoodbyeMessage() {
         return (GOODBYE_MESSAGE);
     }
