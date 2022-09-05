@@ -31,6 +31,7 @@ public class DeleteTaskCommand extends Command {
             ui.showInvalidIndex();
             return;
         }
+        assert taskList.isValidIndex(this.index);
         ui.showTaskAddedOrDeleted(taskList.deleteTask(index), taskList.getTaskListLength(), false);
     }
 
