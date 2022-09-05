@@ -29,6 +29,7 @@ public class EventCommand extends Command {
         try {
             String taskEvent = this.fullCommand.substring(6);
             String[] arrOfStrings = taskEvent.split(" /at ");
+            assert arrOfStrings.length > 0 : "arrOfStrings should not be empty.";
             if (arrOfStrings.length != 2) {
                 throw new TextNoMeaningException("Make sure you specify \"/at\" exactly once,"
                         + " and follow it up with a date and time as: \"yyyy/mm/dd XXXX-XXXX\","

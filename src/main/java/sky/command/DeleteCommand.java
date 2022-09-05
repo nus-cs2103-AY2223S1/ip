@@ -23,6 +23,8 @@ public class DeleteCommand extends Command {
             String taskNumInString = this.fullCommand.substring(7);
             // Minus one as arrayList is zero-indexed
             int taskNum = Integer.parseInt(taskNumInString) - 1;
+            assert taskNum >= 0 : "taskNum should not be a negative number as it is used for"
+                    + " array-indexing purposes.";
             Task task = taskList.getTask(taskNum);
             taskList.removeTask(task);
             storage.reWriteDataFile(taskList);

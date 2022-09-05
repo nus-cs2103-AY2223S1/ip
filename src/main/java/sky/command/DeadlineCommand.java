@@ -28,6 +28,7 @@ public class DeadlineCommand extends Command {
         try {
             String taskDeadline = this.fullCommand.substring(9);
             String[] arrOfStrings = taskDeadline.split(" /by ");
+            assert arrOfStrings.length > 0 : "arrOfStrings should not be empty.";
             if (arrOfStrings.length != 2) {
                 throw new TextNoMeaningException("Make sure you specify \"/by\" exactly once,"
                         + " and follow it up with a date and time as: \"yyyy/mm/dd XXXX\","
