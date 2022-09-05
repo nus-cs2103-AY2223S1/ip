@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
@@ -68,7 +69,7 @@ public class EventTest {
     public void hasMatchingDate_matchingDate_returnTrue() {
         String description = "Lecture";
         LocalDateTime dateTime = LocalDateTime.of(2000, 1, 1, 0, 0);
-        String date = "2000-01-01";
+        LocalDate date = LocalDate.of(2000, 1, 1);
         assertTrue(new Event(description, dateTime).hasMatchingDate(date));
     }
 
@@ -76,7 +77,7 @@ public class EventTest {
     public void hasMatchingDate_noMatchingDayOfTheMonth_returnFalse() {
         String description = "Lecture";
         LocalDateTime dateTime = LocalDateTime.of(2000, 1, 1, 0, 0);
-        String date = "2000-01-02";
+        LocalDate date = LocalDate.of(2000, 1, 2);
         assertFalse(new Event(description, dateTime).hasMatchingDate(date));
     }
 
@@ -84,7 +85,7 @@ public class EventTest {
     public void hasMatchingDate_noMatchingMonth_returnFalse() {
         String description = "Lecture";
         LocalDateTime dateTime = LocalDateTime.of(2000, 1, 1, 0, 0);
-        String date = "2000-02-01";
+        LocalDate date = LocalDate.of(2000, 2, 1);
         assertFalse(new Event(description, dateTime).hasMatchingDate(date));
     }
 
@@ -92,7 +93,7 @@ public class EventTest {
     public void hasMatchingDate_noMatchingYear_returnFalse() {
         String description = "Lecture";
         LocalDateTime dateTime = LocalDateTime.of(2000, 1, 1, 0, 0);
-        String date = "2001-01-01";
+        LocalDate date = LocalDate.of(2001, 1, 1);
         assertFalse(new Event(description, dateTime).hasMatchingDate(date));
     }
 

@@ -1,10 +1,10 @@
 package duke.chatbot.data.task;
 
-import static duke.chatbot.common.DateFormat.DATE_INPUT_FORMAT;
 import static duke.chatbot.common.DateFormat.DATE_OUTPUT_FORMAT;
 import static duke.chatbot.common.DateFormat.DATE_TIME_INPUT_FORMAT;
 import static duke.chatbot.common.DateFormat.TIME_OUTPUT_FORMAT;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
  */
 public abstract class TimedTask extends Task {
     /**
-     * The date and time associated to the task
+     * The date and time associated to the task.
      */
     private final LocalDateTime dateTime;
 
@@ -42,14 +42,14 @@ public abstract class TimedTask extends Task {
     }
 
     /**
-     * Returns true if the argument date string and the date string associated with the task are the same and false
-     * otherwise.
+     * Returns true if the argument date and the date associated with the task are the same and false otherwise.
      *
-     * @param date The date to compared dateTime with.
+     * @param date The date to compare the task date with.
      * @return A boolean that describes whether the argument date and task date are matching.
      */
-    public boolean hasMatchingDate(String date) {
-        return dateTime.toLocalDate().format(DATE_INPUT_FORMAT).equals(date);
+    public boolean hasMatchingDate(LocalDate date) {
+        LocalDate taskDate = dateTime.toLocalDate();
+        return taskDate.equals(date);
     }
 
     /**

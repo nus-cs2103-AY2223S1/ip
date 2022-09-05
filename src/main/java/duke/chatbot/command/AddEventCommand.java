@@ -1,17 +1,14 @@
 package duke.chatbot.command;
 
-import static duke.chatbot.common.Message.MESSAGE_ADDED_TASK;
 import static duke.chatbot.common.Message.MESSAGE_INVALID_ARGUMENT;
-
-import duke.chatbot.data.exception.InvalidInputException;
-import duke.chatbot.data.task.Deadline;
-import duke.chatbot.data.task.Event;
-import duke.chatbot.util.MessageBuilder;
-import duke.chatbot.util.Parser;
 
 import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import duke.chatbot.data.exception.InvalidInputException;
+import duke.chatbot.data.task.Event;
+import duke.chatbot.util.Parser;
 
 /**
  * A command that adds an instance of {@link Event} to the list of tasks stored in the Duke application instance.
@@ -20,7 +17,7 @@ import java.util.regex.Pattern;
  */
 public class AddEventCommand extends AddTaskCommand {
     /**
-     * The command word to invoke this command
+     * The command word to invoke this command.
      */
     public static final String COMMAND_WORD = "event";
 
@@ -52,6 +49,6 @@ public class AddEventCommand extends AddTaskCommand {
         LocalDateTime dateTime = Parser.parseDateTime(matcher.group("dateTime").strip());
         Event task = new Event(description, dateTime);
         addTask(task);
-        return getResult(task);
+        return new CommandResult(buildMessage(task));
     }
 }

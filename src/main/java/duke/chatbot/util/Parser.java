@@ -1,12 +1,15 @@
 package duke.chatbot.util;
 
+import static duke.chatbot.common.DateFormat.DATE_INPUT_FORMAT;
 import static duke.chatbot.common.DateFormat.DATE_TIME_INPUT_FORMAT;
+import static duke.chatbot.common.Message.MESSAGE_INVALID_DATE_FORMAT;
 import static duke.chatbot.common.Message.MESSAGE_INVALID_DATE_TIME_FORMAT;
 import static duke.chatbot.common.Message.MESSAGE_TOO_MANY_ARGUMENTS;
 import static duke.chatbot.common.Message.MESSAGE_UNEXPECTED;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
@@ -20,7 +23,7 @@ import duke.chatbot.command.CheckDateCommand;
 import duke.chatbot.command.Command;
 import duke.chatbot.command.DeleteCommand;
 import duke.chatbot.command.ExitCommand;
-import duke.chatbot.command.FindCommand;
+import duke.chatbot.command.FindKeywordCommand;
 import duke.chatbot.command.InvalidInputCommand;
 import duke.chatbot.command.ListCommand;
 import duke.chatbot.command.MarkCommand;
@@ -39,7 +42,7 @@ import duke.chatbot.data.task.ToDo;
  */
 public class Parser {
     /**
-     * A Java regex pattern for basic commands
+     * A Java regex pattern for basic commands.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile(
             "(?<commandWord>\\S+)(?<arguments>.*)"
@@ -72,8 +75,8 @@ public class Parser {
             return new AddEventCommand(arguments);
 
         // Filter query commands
-        case FindCommand.COMMAND_WORD:
-            return new FindCommand(arguments);
+        case FindKeywordCommand.COMMAND_WORD:
+            return new FindKeywordCommand(arguments);
         case CheckDateCommand.COMMAND_WORD:
             return new CheckDateCommand(arguments);
 
@@ -105,14 +108,28 @@ public class Parser {
      *
      * @param dateTime A string containing date and time information.
      * @return An instance of LocalDateTime that corresponds to the string parsed.
-     * @throws InvalidInputException If the argument string does not
-     *                               follow the format.
+     * @throws InvalidInputException If the argument string does not follow the format.
      */
     public static LocalDateTime parseDateTime(String dateTime) throws InvalidInputException {
         try {
             return LocalDateTime.parse(dateTime, DATE_TIME_INPUT_FORMAT);
         } catch (DateTimeParseException e) {
             throw new InvalidInputException(MESSAGE_INVALID_DATE_TIME_FORMAT);
+        }
+    }
+
+    /**
+     * Returns an instance of LocalDate that corresponds to the string parsed.
+     *
+     * @param date A string containing date information.
+     * @return An instance of LocalDate that corresponds to the string parsed.
+     * @throws InvalidInputException If the argument string does not follow the format.
+     */
+    public static LocalDate parseDate(String date) throws InvalidInputException {
+        try {
+            return LocalDate.parse(date, DATE_INPUT_FORMAT);
+        } catch (DateTimeParseException e) {
+            throw new InvalidInputException(MESSAGE_INVALID_DATE_FORMAT);
         }
     }
 

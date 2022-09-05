@@ -1,24 +1,38 @@
 package duke.chatbot.command;
 
-import static duke.chatbot.common.Message.MESSAGE_CHECK_DATE;
-import static duke.chatbot.common.Message.MESSAGE_EMPTY_LIST;
+import java.time.LocalDate;
+import java.util.function.Predicate;
 
-import duke.chatbot.data.task.TaskList;
-import duke.chatbot.util.MessageBuilder;
+import duke.chatbot.data.exception.InvalidInputException;
+import duke.chatbot.data.task.Task;
+import duke.chatbot.data.task.TimedTask;
+import duke.chatbot.util.Parser;
 
 /**
  * A command that prints a list of TimedTask that have the same date as the date argument input.
  *
  * @author jq1836
  */
-public class CheckDateCommand extends Command {
+public class CheckDateCommand extends FilterCommand {
     /**
-     * The command word to invoke this command
+     * The command word to invoke this command.
      */
     public static final String COMMAND_WORD = "check";
 
     public CheckDateCommand(String arguments) {
         this.arguments = arguments;
+    }
+
+    @Override
+    Predicate<Task> getCondition() throws InvalidInputException {
+        LocalDate date = Parser.parseDate(arguments);
+        return (task) -> {
+            if (!(task instanceof TimedTask)) {
+                return false;
+            }
+            TimedTask timedTask = (TimedTask) task;
+            return timedTask.hasMatchingDate(date);
+        };
     }
 
     /**
@@ -28,15 +42,7 @@ public class CheckDateCommand extends Command {
      * @return The result after executing the command.
      */
     @Override
-    public CommandResult execute() {
-        MessageBuilder message = new MessageBuilder();
-        TaskList filteredTaskList = taskList.filterTaskListByDate(arguments);
-        if (filteredTaskList.isEmpty()) {
-            message.buildLine(MESSAGE_EMPTY_LIST);
-        } else {
-            message.buildLine(MESSAGE_CHECK_DATE);
-        }
-        message.buildLine(filteredTaskList.toString());
-        return new CommandResult(message.toString());
+    public CommandResult execute() throws InvalidInputException {
+        return super.execute();
     }
 }

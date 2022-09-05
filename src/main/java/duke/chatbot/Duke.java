@@ -18,12 +18,12 @@ import duke.chatbot.util.Parser;
  */
 public class Duke {
     /**
-     * The storage which handles saving and loading of files containing list of tasks
+     * The storage which handles saving and loading of files containing list of tasks.
      */
     private Storage storage;
 
     /**
-     * The runtime instance of the list of tasks
+     * The runtime instance of the list of tasks.
      */
     private TaskList taskList;
 

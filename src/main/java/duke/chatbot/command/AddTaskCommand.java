@@ -11,13 +11,18 @@ import duke.chatbot.util.MessageBuilder;
  * @author jq1836
  */
 public abstract class AddTaskCommand extends Command {
+    /**
+     * Adds an instance of {@link Task} to the list.
+     *
+     * @param task The task to be added to the list.
+     */
     protected void addTask(Task task) {
         taskList.add(task);
     }
 
-    protected CommandResult getResult(Task task) {
+    protected String buildMessage(Task task) {
         MessageBuilder messageBuilder = new MessageBuilder();
         messageBuilder.buildLines(MESSAGE_ADDED_TASK, task.toString());
-        return new CommandResult(messageBuilder.toString());
+        return messageBuilder.toString();
     }
 }

@@ -9,7 +9,7 @@ import duke.chatbot.data.task.ToDo;
  */
 public class AddToDoCommand extends AddTaskCommand {
     /**
-     * The command word to invoke this command
+     * The command word to invoke this command.
      */
     public static final String COMMAND_WORD = "todo";
 
@@ -27,6 +27,6 @@ public class AddToDoCommand extends AddTaskCommand {
     public CommandResult execute() {
         ToDo task = new ToDo(arguments);
         addTask(task);
-        return getResult(task);
+        return new CommandResult(buildMessage(task));
     }
 }

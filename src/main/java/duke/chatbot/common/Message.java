@@ -20,8 +20,7 @@ public class Message {
     public static final String MESSAGE_MARKED = "I've gone ahead and marked this task for you:";
     public static final String MESSAGE_UNMARKED = "Alright, I've unmarked this for you:";
     public static final String MESSAGE_DELETED = "Hey! I've deleted this task as requested:";
-    public static final String MESSAGE_CHECK_DATE = "These are the tasks that correspond to the date:";
-    public static final String MESSAGE_FIND_KEYWORD = "These are the tasks that correspond to your keyword:";
+    public static final String MESSAGE_FILTERED_TASKS = "These are the tasks that correspond to your query:";
 
     public static final String MESSAGE_INVALID_ARGUMENT = "It seems you have keyed your arguments in wrongly! "
             + "Try again!";
@@ -29,8 +28,10 @@ public class Message {
             + "does not exist. Try again!";
     public static final String MESSAGE_TOO_MANY_ARGUMENTS = "It seems you have keyed in too many arguments. "
             + "Try again!";
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "It seems you have keyed the date in the wrong format. "
+            + "Try something like this '2022-01-01'!";
     public static final String MESSAGE_INVALID_DATE_TIME_FORMAT = "It seems you have keyed the date and time in the "
-            + "wrong format. Try something like this 2022-01-01 1500!";
+            + "wrong format. Try something like '2022-01-01 1500'!";
     public static final String MESSAGE_UNEXPECTED = "Sorry, I couldn't get what you said. Try again!";
     public static final String MESSAGE_INIT_FAILED = "An unexpected error has occurred, try running again or call "
             + "technical support!";
