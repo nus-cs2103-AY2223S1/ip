@@ -9,6 +9,9 @@ public class Duke {
     private Storage storage;
     private TaskList taskList;
 
+    /**
+     * Constructor for the Duke class.
+     */
     public Duke() {
         ui = new UI();
         storage = new Storage("data/nuke.txt");

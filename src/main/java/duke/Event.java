@@ -7,6 +7,13 @@ import java.time.LocalDate;
  */
 public class Event extends Task {
     private LocalDate eventDate;
+
+    /**
+     * Constructor for the Event class.
+     *
+     * @param description The task description.
+     * @param eventDate The event date.
+     */
     public Event(String description, LocalDate eventDate) {
         super(description);
         this.eventDate = eventDate;

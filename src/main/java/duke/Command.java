@@ -19,7 +19,7 @@ public enum Command {
     MARK("mark"),
     UNMARK("unmark");
 
-    private String INPUT_DATE_FORMAT = "dd-MM-yyyy";
+    private static final String INPUT_DATE_FORMAT = "dd-MM-yyyy";
 
     private final String name;
     Command(String name) {
@@ -106,6 +106,7 @@ public enum Command {
             break;
 
         case "mark":
+            // Fallthrough
 
         case "unmark":
             index = Integer.parseInt(args) - 1;
@@ -118,6 +119,9 @@ public enum Command {
             } catch (IOException e) {
                 ui.printError("Unable to write to file.");
             }
+            break;
+
+        default:
             break;
         }
     }
@@ -198,10 +202,12 @@ public enum Command {
             return true;
 
         case "mark":
+            // Fallthrough
 
         case "unmark":
             if (args.isEmpty()) {
                 ui.printError("Please specify a task number\n\n" + usage);
+                return false;
             } else {
                 try {
                     int index = Integer.parseInt(args) - 1;
@@ -218,6 +224,7 @@ public enum Command {
                     return false;
                 }
             }
+
         default:
             return false;
         }
@@ -246,7 +253,9 @@ public enum Command {
 
         case "unmark":
             return ret + "unmark [task-number]";
+
+        default:
+            return "";
         }
-        return "";
     }
 }

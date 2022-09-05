@@ -22,6 +22,7 @@ public class TaskList {
 
     /**
      * Appends task to the task list.
+     *
      * @param t Task to append.
      * @return The modified task list.
      */
