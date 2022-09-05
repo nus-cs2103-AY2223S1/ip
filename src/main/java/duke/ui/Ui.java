@@ -10,10 +10,10 @@ public class Ui {
      */
     public static void greeting() {
         String logo = "\t\t\t  ____        _        \n"
-        + "\t\t\t |  _ \\ _   _| | _____ \n"
-        + "\t\t\t | | | | | | | |/ / _ \\\n"
-        + "\t\t\t | |_| | |_| |   <  __/\n"
-        + "\t\t\t |____/ \\__,_|_|\\_\\___|\n";
+            + "\t\t\t |  _ \\ _   _| | _____ \n"
+            + "\t\t\t | | | | | | | |/ / _ \\\n"
+            + "\t\t\t | |_| | |_| |   <  __/\n"
+            + "\t\t\t |____/ \\__,_|_|\\_\\___|\n";
         System.out.println(logo);
         Ui.showLine();
         System.out.println("\tHello! I'm Duke\n \tWhat can I do for you?");

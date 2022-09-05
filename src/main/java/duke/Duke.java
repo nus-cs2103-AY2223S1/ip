@@ -1,17 +1,14 @@
 package duke;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
-import java.io.FileNotFoundException;
-
-import duke.tasklist.TaskList;
-import duke.ui.Ui;
+import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
-
-import java.io.IOException;
-
-import duke.exception.DukeException;
+import duke.tasklist.TaskList;
+import duke.ui.Ui;
 
 public class Duke {
 
@@ -38,7 +35,7 @@ public class Duke {
             System.out.println("Enter a command below:");
             String input = scanner.nextLine();
             try {
-                quit = Parser.FeedDuke(input, this.taskList);
+                quit = Parser.parseInput(input, this.taskList);
             } catch (DukeException e) {
                 Ui.showExceptionMessage(e);
                 quit = false;
