@@ -3,6 +3,7 @@ package duke;
 import exceptions.EmptyNameException;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Represents the state of the tasklist in the program.
@@ -91,6 +92,7 @@ public class TaskList {
     public String setTaskAsDone(int index) {
         Task task = taskList.get(index);
         task.markTaskAsDone();
+        assert Objects.equals(task.getStatusIcon(), "X") : "Task not marked as done";
         String ret = "Nice! I've marked this task as done: \n";
         ret += task;
         return ret;
@@ -105,6 +107,7 @@ public class TaskList {
     public String setTaskAsUndone(int index) {
         Task task = taskList.get(index);
         task.markTaskAsUndone();
+        assert Objects.equals(task.getStatusIcon(), " ") : "Task not marked as undone";
         String ret = "OK, I've marked this task as not done yet:\n";
         ret += task;
         return ret;

@@ -82,10 +82,12 @@ public class Ui {
             return taskList.displayAllTasks();
         } else if (nextCommand.startsWith(CommandsEnum.mark.toString())) {
             int index = convertToInt(nextCommand);
+            assert index > 0 : "index greater than 0";
             storage.toggleDone(index, true);
             return taskList.setTaskAsDone(index);
         } else if (nextCommand.startsWith(CommandsEnum.unmark.toString())) {
             int index = convertToInt(nextCommand);
+            assert index > 0 : "index greater than 0";
             storage.toggleDone(index, false);
             return taskList.setTaskAsUndone(index);
         } else if (nextCommand.contains(CommandsEnum.todo.toString()) || nextCommand.contains(CommandsEnum.deadline.toString()) || nextCommand.contains(CommandsEnum.event.toString())) {
@@ -94,6 +96,7 @@ public class Ui {
 
         } else if (nextCommand.startsWith(CommandsEnum.delete.toString())) {
             int index = convertToInt(nextCommand);
+            assert index > 0 : "index greater than 0";
             storage.deleteLine(index);
             return taskList.deleteTask(index);
         } else if (nextCommand.startsWith(CommandsEnum.find.toString())) {
