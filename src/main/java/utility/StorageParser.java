@@ -20,6 +20,7 @@ public class StorageParser {
     private static final int START_OF_DATE_STRING_OFFSET = 2;
     private static final int DATE_LENGTH = 10;
     private static final char UNMARKED_SYMBOL = ' ';
+    private static final int INDEX_OF_TYPE_CHAR = 1;
 
     /**
      * Converts line in disk file to corresponding Task.
@@ -27,7 +28,7 @@ public class StorageParser {
      * @return Task object.
      */
     public static Task fileLineToTask(String line) throws DukeException {
-        char type = line.charAt(1);
+        char type = line.charAt(INDEX_OF_TYPE_CHAR);
         boolean isMarked = line.charAt(MARKED_STATUS) != UNMARKED_SYMBOL;
         String[] dateAndDescription;
         LocalDate date;
