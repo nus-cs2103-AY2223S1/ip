@@ -114,7 +114,7 @@ public class Storage {
         return tasks;
     }
 
-    private void createSaveFile() throws IOException{
+    private void createSaveFile() throws IOException {
         Path parent = tasksPath.getParent();
         if (!Files.isDirectory(parent)) {
             Files.createDirectories(parent);

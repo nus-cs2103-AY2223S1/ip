@@ -1,7 +1,5 @@
 package tako;
 
-import java.util.Scanner;
-
 import tako.task.Task;
 
 /**
@@ -18,7 +16,7 @@ public class Ui {
      */
     public void showAdd(Task task, int taskCount) {
         response = String.format(
-                "added: %s\nTotal tasks: %d",task ,taskCount);
+                "added: %s\nTotal tasks: %d", task, taskCount);
     }
 
     /**
@@ -29,7 +27,7 @@ public class Ui {
      */
     public void showDelete(Task task, int taskCount) {
         response = String.format(
-                "deleted: %s\nTotal tasks: %d",task ,taskCount);
+                "deleted: %s\nTotal tasks: %d", task , taskCount);
     }
 
     /**

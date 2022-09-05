@@ -53,36 +53,36 @@ public class Parser {
 
         switch (command) {
         case BYE:
-            return CreateExitCommand(splitInput.length);
+            return createExitCommand(splitInput.length);
         case LIST:
-            return CreateListCommand(splitInput.length);
+            return createListCommand(splitInput.length);
         case MARK:
-            return CreateMarkCommand(splitInput);
+            return createMarkCommand(splitInput);
         case TODO:
-            return CreateTodoCommand(splitInput);
+            return createTodoCommand(splitInput);
         case DEADLINE:
-            return CreateDeadlineCommand(splitInput);
+            return createDeadlineCommand(splitInput);
         case EVENT:
-            return CreateEventCommand(splitInput);
+            return createEventCommand(splitInput);
         case DELETE:
-            return CreateDeleteCommand(splitInput);
+            return createDeleteCommand(splitInput);
         case FIND:
-            return CreateFindCommand(splitInput);
+            return createFindCommand(splitInput);
         default:
             assert false : "Unknown Command: " + command;
             throw new TakoException("The input is invalid.");
         }
     }
 
-    private static ExitCommand CreateExitCommand(int length) throws TakoException {
-        if(length == 1) {
+    private static ExitCommand createExitCommand(int length) throws TakoException {
+        if (length == 1) {
             return new ExitCommand();
         } else {
             throw new TakoException("The input is invalid.");
         }
     }
 
-    private static ListCommand CreateListCommand(int length) throws TakoException {
+    private static ListCommand createListCommand(int length) throws TakoException {
         if (length == 1) {
             return new ListCommand();
         } else {
@@ -90,7 +90,7 @@ public class Parser {
         }
     }
 
-    private static MarkCommand CreateMarkCommand(String[] splitInput) throws TakoException {
+    private static MarkCommand createMarkCommand(String[] splitInput) throws TakoException {
         try {
             if (splitInput.length == 1) {
                 throw new TakoException("The task number to mark cannot be empty.");
@@ -106,7 +106,7 @@ public class Parser {
         }
     }
 
-    private static AddCommand CreateTodoCommand(String[] splitInput) throws TakoException {
+    private static AddCommand createTodoCommand(String[] splitInput) throws TakoException {
         if (splitInput.length == 1) {
             throw new TakoException("The description of this todo cannot be empty.");
         }
@@ -115,7 +115,7 @@ public class Parser {
         return new AddCommand(new Todo(description));
     }
 
-    private static AddCommand CreateDeadlineCommand(String[] splitInput) throws TakoException {
+    private static AddCommand createDeadlineCommand(String[] splitInput) throws TakoException {
         if (splitInput.length == 1) {
             throw new TakoException("The description of this deadline cannot be empty.");
         }
@@ -139,7 +139,7 @@ public class Parser {
         }
     }
 
-    private static AddCommand CreateEventCommand(String[] splitInput) throws TakoException {
+    private static AddCommand createEventCommand(String[] splitInput) throws TakoException {
         if (splitInput.length == 1) {
             throw new TakoException("The description of this event cannot be empty.");
         }
@@ -163,7 +163,7 @@ public class Parser {
         }
     }
 
-    private static DeleteCommand CreateDeleteCommand(String[] splitInput) throws TakoException {
+    private static DeleteCommand createDeleteCommand(String[] splitInput) throws TakoException {
         try {
             if (splitInput.length == 1) {
                 throw new TakoException("The task number to delete cannot be empty.");
@@ -179,7 +179,7 @@ public class Parser {
         }
     }
 
-    private static FindCommand CreateFindCommand(String[] splitInput) throws TakoException {
+    private static FindCommand createFindCommand(String[] splitInput) throws TakoException {
         if (splitInput.length == 1) {
             throw new TakoException("The task to find cannot be empty.");
         } else if (splitInput.length == 2) {
