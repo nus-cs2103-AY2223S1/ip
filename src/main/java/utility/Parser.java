@@ -138,6 +138,7 @@ public class Parser {
         } else {
             description = input.substring(startDescriptionIndex);
         }
+
         if (description.isBlank()) {
             throw new DukeException("Empty description field");
         }
@@ -157,10 +158,10 @@ public class Parser {
             int m = userInput.indexOf(DEADLINE_DATE_SECTION_DATE_STRING);
             int startDateIndex = (n == -1? m: n) + START_DATE_COMMAND_LENGTH;
             date = userInput.substring(startDateIndex).trim();
-            if (date.isBlank()) {
-                throw new DukeException("Empty date field");
-            } else {
+            if (!date.isBlank()) {
                 return LocalDate.parse(date);
+            } else {
+                throw new DukeException("Empty date field");
             }
         } catch (DateTimeParseException dtpe) {
             throw new DukeException("Date is not valid, require format YYYY-MM-DD");
@@ -178,17 +179,16 @@ public class Parser {
     public static int getTaskNumber(String s, int listSize) throws DukeException {
         // credit: https://stackoverflow.com/questions/14974033/extract-digits-from-string-stringutils-java
         String numberOnly = s.replaceAll("[^0-9]", "");
-        int n;
         if (numberOnly.length() <= 0) {
             throw new DukeException("no number given");
-        } else {
-            n = Integer.parseInt(numberOnly);
-            if (n > listSize) {
-                throw new DukeException("task does not exist in list");
-            } else {
-                return n;
-            }
         }
+        int n = Integer.parseInt(numberOnly);
+        if (n < listSize) {
+            return n;
+        } else {
+            throw new DukeException("Task does not exist in list");
+        }
+
     }
 
     /**
