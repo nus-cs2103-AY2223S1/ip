@@ -23,7 +23,13 @@ public class Duke {
     }
 
     public String getResponse(String input) {
-
+        try {
+            return tasks.addATask(input);
+        } catch(DukeException e) {
+            return e.getMessage();
+        } catch(NullPointerException e) {
+            return "fuck";
+        }
     }
 
     /**
@@ -71,7 +77,6 @@ public class Duke {
 //            }
 //        }
 //    }
-
     public static void main(String[] args) {
         //new Duke("src/main/java/duke.txt").run();
     }

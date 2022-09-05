@@ -1,7 +1,13 @@
 package duke;
 
+import Command.Command;
+import Command.ExitCommand;
+
 public class Parser {
-    public static String parse(String input) {
-        return "!";
+    public static Command parse(String input) {
+        String inputCommand = input.split()
+        if (input.equals("exit")) {
+            return new ExitCommand();
+        }
     }
 }

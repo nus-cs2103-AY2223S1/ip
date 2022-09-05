@@ -55,7 +55,7 @@ public class TaskList {
      * @param item The String that needs to be parsed and add to the list
      * @throws DukeException Throws an exception
      */
-    public void addATask(String item) throws DukeException {
+    public String addATask(String item) throws DukeException {
         String[] arr = item.split(" ", 2);
         String type = arr[0];
         switch (type) {
@@ -86,11 +86,14 @@ public class TaskList {
                 throw e;
         }
 
-        Ui.printLine();
+        //Ui.printLine();
         int numOfTasks = tasks.size();
-        System.out.println("Got it. I've added this task:" + "\n" + tasks.get(numOfTasks - 1).toString() +
-                "\n" + "Now you have " + numOfTasks + " tasks in the list.");
-        Ui.printLine();
+//        System.out.println("Got it. I've added this task:" + "\n" + tasks.get(numOfTasks - 1).toString() +
+//                "\n" + "Now you have " + numOfTasks + " tasks in the list.");
+        String a = "\"Got it. I've added this task:\" + \"\\n\" + tasks.get(numOfTasks - 1).toString() +\n" +
+                "                \"\\n\" + \"Now you have \" + numOfTasks + \" tasks in the list.\"";
+        return "hahaha";
+        //Ui.printLine();
     }
 
     public void find(String str, Ui ui) {
