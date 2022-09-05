@@ -19,6 +19,10 @@ public class UnmarkTaskCommand extends Command {
      */
     public String execute(TasksController controller, String taskText, String taskTime, int taskIndex,
                           Storage storage, String ...keywords) {
+        assert taskTime.length() == 0 : "The taskTime of should not be used for UnmarkTaskCommand";
+        assert taskText.length() == 0 : "The taskText should not be used for UnmarkTaskCommand";
+        assert taskIndex != -1 : "The taskIndex should not be empty";
+        assert keywords == null : "The keywords should not be used for UnmarkTaskCommand";
         String response = "";
         try {
             controller.changeTaskStatus(taskIndex, false);

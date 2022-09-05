@@ -187,6 +187,7 @@ public class Parser {
         } catch (TooManyKeywordsException mke) {
             response = "Too many keywords. Please try again...";
         }
+        assert response != null;
         return response;
     }
 }

@@ -19,6 +19,10 @@ public class DeleteTaskCommand extends Command {
      */
     public String execute(TasksController controller, String taskText, String taskTime, int taskIndex,
                           Storage storage, String ...keywords) {
+        assert taskTime.length() == 0 : "The taskTime of should not be used for DeleteTaskCommand";
+        assert taskText.length() == 0 : "The taskText should not be used for DeleteTaskCommand";
+        assert taskIndex != -1 : "The taskIndex should not be -1";
+        assert keywords == null : "The keywords should not be used for DeleteTaskCommand";
         String response = "";
         try {
             controller.deleteFromList(taskIndex);
