@@ -18,6 +18,7 @@ import command.TentativeCommand;
 import command.TodoCommand;
 import command.UnmarkCommand;
 import exceptions.HenryException;
+import util.TextUtils;
 
 /**
  * The parser class is responsible for parsing the user input and
@@ -35,7 +36,9 @@ public class Parser {
     private static final Pattern TENTATIVE_CONFIRM_DATE_FORMAT =
         Pattern.compile("(?<index>\\d+) (--confirm) (?<chosenDateIndex>\\d+)");
 
+    // OTHER STATIC VARIABLES
     private static final String DATE_FORMATTER = "dd-MM-yyyy HH:mm";
+
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
 
     /**
@@ -52,7 +55,7 @@ public class Parser {
 
         Matcher matcher = BASIC_COMMAND_FORMAT.matcher(text.trim());
         if (!matcher.matches()) {
-            throw new HenryException("UNKNOWN COMMAND!");
+            throw new HenryException(TextUtils.EMPTY_INPUT_ERROR);
         }
 
         String command = matcher.group("command").trim();
@@ -62,10 +65,7 @@ public class Parser {
         case EchoCommand.COMMAND_WORD:
             return new EchoCommand(args);
         case FindCommand.COMMAND_WORD:
-            if (!isFindInputValid(args)) {
-                throw new HenryException("PLEASE PREFIX YOUR SEARCH TERMS WITH \"--\"!");
-            }
-            return new FindCommand(parseFindArguments(args));
+            return handleFindCommand(args);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
         case TentativeCommand.COMMAND_WORD:
@@ -81,41 +81,54 @@ public class Parser {
         case EventCommand.COMMAND_WORD:
             return handleTaskCommand(command, args);
         default:
-            throw new HenryException("UNKNOWN COMMAND!");
+            throw new HenryException(TextUtils.UNKNOWN_COMMAND_ERROR);
         }
+    }
+
+    private Command handleFindCommand(String args) {
+        if (!isFindInputValid(args)) {
+            throw new HenryException(TextUtils.FIND_COMMAND_ERROR);
+        }
+        return new FindCommand(parseFindArguments(args));
     }
 
     private Command handleTentativeCommand(String args) {
         Matcher newDateMatcher = TENTATIVE_NEW_DATE_FORMAT.matcher(args.trim());
         Matcher confirmDateMatcher = TENTATIVE_CONFIRM_DATE_FORMAT.matcher(args.trim());
+
         if (!newDateMatcher.matches() && !confirmDateMatcher.matches()) {
-            throw new HenryException("INVALID TENTATIVE COMMAND!");
+            throw new HenryException(TextUtils.TENTATIVE_COMMAND_ERROR);
         }
+
         if (newDateMatcher.matches()) {
             int index = Integer.parseInt(newDateMatcher.group("index"));
             String dateTime = newDateMatcher.group("dateTime");
+
             try {
                 LocalDateTime parsed = LocalDateTime.parse(dateTime, formatter);
-                if (isDateValid(parsed)) {
-                    return new TentativeCommand(index, parsed);
+                if (!isDateValid(parsed)) {
+                    throw new HenryException(TextUtils.DATE_IN_PAST_ERROR);
                 }
-                throw new HenryException("DATE IS IN THE PAST!");
+                return new TentativeCommand(index, parsed);
             } catch (NumberFormatException e) {
-                throw new HenryException("DATE AND TIME NUMBERS ARE OUT OF RANGE!");
+                throw new HenryException(TextUtils.DATE_FORMAT_ERROR);
             }
         } else {
             int index = Integer.parseInt(confirmDateMatcher.group("index"));
             int chosenDateIndex = Integer.parseInt(confirmDateMatcher.group("chosenDateIndex"));
+
             return new TentativeCommand(index, chosenDateIndex);
         }
     }
 
     private Command handleTaskEditCommand(String command, String args) {
-        if (!isInputValid(args)) {
-            throw new HenryException("ARGUMENT IS NOT A NUMBER!");
-        } else if (Integer.parseInt(args) < 1) {
-            throw new HenryException("ARGUMENT MUST BE A POSITIVE INTEGER!");
+        if (!isInputNumeric(args)) {
+            throw new HenryException(TextUtils.NON_NUMBER_ERROR);
         }
+        if (Integer.parseInt(args) < 1) {
+            throw new HenryException(TextUtils.MUST_BE_POSITIVE_ERROR);
+        }
+
         switch (command) {
         case MarkCommand.COMMAND_WORD:
             return new MarkCommand(Integer.parseInt(args));
@@ -124,7 +137,7 @@ public class Parser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommand(Integer.parseInt(args.trim()));
         default:
-            throw new HenryException("COMMAND IS MALFORMED!");
+            throw new HenryException(TextUtils.MALFORMED_COMMAND_ERROR);
         }
     }
 
@@ -137,7 +150,7 @@ public class Parser {
         case EventCommand.COMMAND_WORD:
             return parseDatedCommand(Commands.EVENT, args);
         default:
-            throw new HenryException("UNKNOWN COMMAND!");
+            throw new HenryException(TextUtils.UNKNOWN_COMMAND_ERROR);
         }
     }
 
@@ -151,27 +164,26 @@ public class Parser {
 
         Matcher matcher = DATE_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            throw new HenryException("ARGUMENT HAS THE WRONG FORMAT!");
+            throw new HenryException(TextUtils.ARGUMENT_SYNTAX_ERROR);
         }
 
         String description = matcher.group("desc");
         String dateTime = matcher.group("dateTime");
         try {
             LocalDateTime parsed = LocalDateTime.parse(dateTime, formatter);
-            if (isDateValid(parsed)) {
-                switch (type) {
-                case DEADLINE:
-                    return new DeadlineCommand(description, parsed);
-                case EVENT:
-                    return new EventCommand(description, parsed);
-                default:
-                    throw new HenryException("UNKNOWN COMMAND!");
-                }
-            } else {
-                throw new HenryException("DATE IS IN THE PAST!");
+            if (!isDateValid(parsed)) {
+                throw new HenryException(TextUtils.DATE_IN_PAST_ERROR);
+            }
+            switch (type) {
+            case DEADLINE:
+                return new DeadlineCommand(description, parsed);
+            case EVENT:
+                return new EventCommand(description, parsed);
+            default:
+                throw new HenryException(TextUtils.UNKNOWN_COMMAND_ERROR);
             }
         } catch (NumberFormatException e) {
-            throw new HenryException("DATE AND TIME NUMBERS ARE OUT OF RANGE!");
+            throw new HenryException(TextUtils.DATE_FORMAT_ERROR);
         }
     }
 
@@ -180,7 +192,7 @@ public class Parser {
         return args.matches("(--\\w*\\s*)+");
     }
 
-    private boolean isInputValid(String args) {
+    private boolean isInputNumeric(String args) {
         assert args != null : "Arguments are null!";
         return args.matches("\\d+");
     }

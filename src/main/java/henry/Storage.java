@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import util.TaskUtils;
+
 /**
  * Storage is responsible for loading the task list from
  * the file, and also writing any changes to the task
@@ -58,7 +60,7 @@ public class Storage {
         List<Task> tasks = new ArrayList<>();
 
         while (scanner.hasNextLine()) {
-            Task parsed = Task.parseTask(scanner.nextLine());
+            Task parsed = TaskUtils.parseTask(scanner.nextLine());
             LocalDateTime now = LocalDateTime.now();
             LocalDateTime dateTime = parsed.getLocalDateTime();
             if (!dateTime.isBefore(now)) {

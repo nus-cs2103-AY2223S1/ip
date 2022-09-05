@@ -2,9 +2,12 @@ package util;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import command.Commands;
+import exceptions.HenryException;
+import henry.Task;
 
 /**
  * Utility class containing Task-related methods
@@ -95,5 +98,60 @@ public class TaskUtils {
         default:
             return MALFORMED;
         }
+    }
+
+    /**
+     * Parses a new Task object from the given String input
+     *
+     * @param input the String to be converted into a Task
+     * @return a new Task representing the input
+     * @throws HenryException if the input is malformed
+     */
+    public static Task parseTask(String input) {
+        String[] tokens = input.split("\\|");
+        Commands type;
+        String description = tokens[2].trim();
+        LocalDateTime date;
+        boolean isComplete = tokens[1].trim().equals("1");
+        List<LocalDateTime> tentativeDates = new ArrayList<>();
+
+        String prefix;
+        String cleaned;
+        prefix = tokens[0].trim();
+
+        switch (prefix) {
+        case "T":
+            type = Commands.TODO;
+            date = LocalDateTime.MAX;
+            break;
+        case "D":
+            type = Commands.DEADLINE;
+            cleaned = tokens[3].replace("(by:", "").replace(")", "").trim();
+            date = parseDateTime(cleaned);
+            break;
+        case "E":
+            type = Commands.EVENT;
+            cleaned = tokens[3].replace("(at:", "").replace(")", "").trim();
+            tentativeDates = parseMultipleDateTimes(cleaned);
+            date = tentativeDates.get(0);
+            break;
+        default:
+            throw new HenryException("INPUT TASK IS MALFORMED!");
+        }
+        return new Task(type, description, date, isComplete, tentativeDates);
+    }
+
+    private static LocalDateTime parseDateTime(String input) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        return LocalDateTime.parse(input, formatter);
+    }
+
+    private static List<LocalDateTime> parseMultipleDateTimes(String input) {
+        List<LocalDateTime> dates = new ArrayList<>();
+        String[] tokens = input.split(",");
+        for (String token : tokens) {
+            dates.add(parseDateTime(token.trim()));
+        }
+        return dates;
     }
 }
