@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 
 public class Karen extends Application{
 
+    private static final String FILE_PATH = "./data/tasks.txt";
     private Storage storage;
     private Ui ui;
     private TaskList tasks;
@@ -25,13 +26,12 @@ public class Karen extends Application{
     private TextField userInput;
     private Button getButton;
     private Scene scene;
-
     private Image user = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image karen = new Image(this.getClass().getResourceAsStream("/images/karen.png"));
 
     public Karen() {
         ui = new Ui();
-        storage = new Storage("./data/tasks.txt");
+        storage = new Storage(FILE_PATH);
         tasks = new TaskList(storage.load());
     }
 
@@ -148,7 +148,6 @@ public class Karen extends Application{
      * @return a label with the specified input that has word wrap enabled.
      */
     private Label getDialogLabel(String input) {
-        // You will need to import `javafx.scene.control.Label`.
         Label inputToAdd = new Label(input);
         inputToAdd.setWrapText(true);
 
@@ -169,11 +168,7 @@ public class Karen extends Application{
         );
         userInput.clear();
     }
-
-    /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
-     */
+    
     private String getResponse(String input) {
         if (input.equals("bye")) {
             return ui.getByeMessage();
