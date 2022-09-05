@@ -48,6 +48,32 @@ public class Ui {
     /** Goodbye message printed when exiting duke.Duke */
     private static final String MESSAGE_GOODBYE = "Bye! See nya later!\n";
 
+    /** Help messages printed to advise command usage **/
+    private static final String HELP_INTRO = "Nyat a valid instruction! Rub my belly instead!\n";
+    private static final String HELP_TODO = "Input 'todo ABC' to add task ABC\n";
+    private static final String HELP_EVENT = "Input 'event ABC /at DATE' to add event ABC on"
+            + " DATE\n";
+    private static final String HELP_DEADLINE = "Input 'deadline ABC /by DATE' to add deadline"
+            + " ABC due by DATE\n";
+    private static final String HELP_MARK = "Input 'mark xxx' to mark task xxx as complete\n";
+    private static final String HELP_UNMARK = "Input 'unmark xxx' to mark task xxx as incomplete\n";
+    private static final String HELP_DELETE = "Input 'delete xxx' to delete task xxx from the list\n";
+    private static final String HELP_LIST = "Input 'list' for overview\n";
+    private static final String HELP_BYE = "Input 'bye' to exit.\n";
+    private static final String HELP_OUTRO = "NYAAAAAA!\n";
+
+    /** Default help message for commands */
+    private static final String HELP_MSG = HELP_INTRO
+            + "\t" + HELP_TODO
+            + "\t" + HELP_EVENT
+            + "\t" + HELP_DEADLINE
+            + "\t" + HELP_MARK
+            + "\t" + HELP_UNMARK
+            + "\t" + HELP_DELETE
+            + "\t" + HELP_LIST
+            + "\t" + HELP_BYE
+            + "\t" + HELP_OUTRO;
+
 
     /**
      * Reads and returns user input.
@@ -250,7 +276,7 @@ public class Ui {
     }
 
     /**
-     * Prints error message indicating file could not be loaded.
+     * Returns error message indicating file could not be loaded.
      *
      * @return String containing the loading error message.
      */
@@ -264,6 +290,15 @@ public class Ui {
      */
     public void showLine() {
         System.out.println(MESSAGE_BORDER);
+    }
+
+    /**
+     * Returns help message to advise command usage.
+     *
+     * @return String containing basic command formats.
+     */
+    public String showHelp() {
+        return HELP_MSG;
     }
 
 }

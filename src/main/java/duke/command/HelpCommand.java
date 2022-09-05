@@ -9,13 +9,13 @@ import duke.ui.Ui;
  *
  * @author WR3nd3
  */
-public class ListCommand extends Command {
+public class HelpCommand extends Command {
 
     /**
      * {@inheritDoc}
      */
     @Override
     public String execute(TaskList tasks, Ui ui, ListLoader storage) {
-        return ui.showList(tasks.giveList());
+        return ui.showHelp();
     }
 }

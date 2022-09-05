@@ -5,6 +5,7 @@ import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
+import duke.command.HelpCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
@@ -20,7 +21,7 @@ public class Parser {
 
     /** Commands to interact with duke.Duke program */
     public enum DukeCommand {
-        FIND, TODO, EVENT, DEADLINE, MARK, UNMARK, DELETE, LIST, BYE
+        FIND, TODO, EVENT, DEADLINE, MARK, UNMARK, DELETE, LIST, BYE, HELP
     }
 
     /**
@@ -99,10 +100,10 @@ public class Parser {
             case BYE:
                 return new ExitCommand();
             default:
-                throw new DukeException();
+                return new HelpCommand();
             }
         } catch (IllegalArgumentException e) {
-            throw new DukeException();
+            return new HelpCommand();
         }
     }
 }

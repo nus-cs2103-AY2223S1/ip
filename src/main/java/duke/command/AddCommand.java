@@ -62,7 +62,7 @@ public class AddCommand extends Command {
             task = new Deadline(content, time, false);
             break;
         default:
-            throw new DukeException();
+            throw new DukeException(ui.showHelp());
         }
         tasks.addTask(task);
         storage.appendToList(task.summary());

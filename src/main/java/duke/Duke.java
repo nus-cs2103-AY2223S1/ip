@@ -24,6 +24,8 @@ public class Duke {
     private final Ui ui;
     private String startUpMessage;
 
+    private boolean isExit = false;
+
     /**
      * Constructs duke.Duke object and its components.
      */
@@ -49,7 +51,6 @@ public class Duke {
         ui.showLine();
         System.out.println(startUpMessage);
         ui.showLine();
-        boolean isExit = false;
 
         while (!isExit) {
             String response = "";
@@ -87,15 +88,25 @@ public class Duke {
      * @return String representing the appropriate response to the input.
      */
     public String getResponse(String input) {
-        String response = "";
+        String response;
         try {
             Command c = Parser.parse(input.trim());
+            isExit = c.isExit();
             response = c.execute(tasks, ui, storage);
             return response;
         } catch (DukeException e) {
             response = ui.showError(e.getMessage());
             return response;
         }
+    }
+
+    /**
+     * Checks whether the last command primed Duke to exit.
+     *
+     * @return boolean representing whether the application will end.
+     */
+    public boolean isExit() {
+        return isExit;
     }
 
     /**
