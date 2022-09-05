@@ -2,16 +2,7 @@ package duke;
 
 import java.time.LocalDate;
 
-import duke.command.ByeCommand;
-import duke.command.Command;
-import duke.command.DeadlineCommand;
-import duke.command.DeleteCommand;
-import duke.command.EventCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.TodoCommand;
-import duke.command.UnmarkCommand;
+import duke.command.*;
 
 /**
  * Parses the user input and executes the corresponding commands.
@@ -32,6 +23,8 @@ public class Parser {
             return new ListCommand();
         case "bye":
             return new ByeCommand();
+        case "help":
+            return new HelpCommand();
         case "todo":
             assert (commandSegments[1] != null) : "Missing task name";
             return new TodoCommand(commandSegments[1].trim());

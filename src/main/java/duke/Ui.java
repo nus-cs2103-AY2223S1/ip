@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import duke.storage.Storage;
 import duke.task.Task;
 
 /**
@@ -21,9 +22,13 @@ public class Ui {
     /**
      * Creates a welcome message for chatbot
      */
-    public void showWelcome() {
-        response = Constants.WELCOME_MESSAGE;
-        //printMessage(startMessage);
+    public void showWelcome(Storage storage) {
+        boolean isNewUser = storage.checkIfNewUser();
+        if (isNewUser) {
+            setResponse(Constants.NEW_WELCOME_MESSAGE);
+        } else {
+            setResponse(Constants.WELCOME_MESSAGE);
+        }
     }
 
     String readCommand() throws DukeException {
@@ -46,8 +51,8 @@ public class Ui {
      */
     public void printMessage(String message) {
         assert (message != null) : "Null message";
-        response = message;
-        System.out.println(response);
+        setResponse(message);
+        System.out.println(message);
     }
 
     /**
@@ -65,8 +70,8 @@ public class Ui {
         String listInString = IntStream.range(0, list.size())
                 .mapToObj(i -> String.format("%d. %s", i + 1, list.get(i)))
                 .collect(Collectors.joining("\n"));
-        response = output + listInString;
-        return response;
+        output.append(listInString);
+        return output.toString();
     }
 
 
@@ -102,12 +107,15 @@ public class Ui {
     public String getResponse() {
         return response;
     }
+    public void setResponse(String response) {
+        this.response = response;
+    }
 
     /**
      * Shows error message if there is an error in loading task list.
      */
     public void showLoadingError() {
-        response = Constants.LOAD_TASK_ERROR_MESSAGE;
+        setResponse(Constants.LOAD_TASK_ERROR_MESSAGE);
         System.out.println(response);
     }
 
@@ -117,7 +125,7 @@ public class Ui {
      */
     public void showError(String message) {
         assert (message != null) : "Null error message";
-        response = message;
+        setResponse(message);
         System.out.println(message);
     }
 
@@ -130,7 +138,7 @@ public class Ui {
         String[] commandSegments = input.split(" ", 2);
         String mainCommand = commandSegments[0].toLowerCase().trim();
 
-        String[] allCommands = {"list", "bye", "todo", "deadline", "event", "mark", "unmark", "delete", "find"};
+        String[] allCommands = {"list", "bye", "todo", "deadline", "event", "mark", "unmark", "delete", "find", "help"};
         boolean isInvalidCommand = !Arrays.asList(allCommands).contains(mainCommand);
         if (isInvalidCommand) {
             throw new DukeException(mainCommand + Constants.INVALID_COMMAND_MESSAGE);
