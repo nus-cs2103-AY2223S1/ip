@@ -10,7 +10,7 @@ import task.Task;
  * Manage all interactions between Duke and UserInputHistory FILE storage.
  */
 public class TaskList<T extends Task> {
-    private ArrayList<T> userInputHistory = new ArrayList<>();
+    private final ArrayList<T> USER_INPUT_HISTORY_LIST = new ArrayList<>();
 
     /**
      * Adds Task to list.
@@ -18,7 +18,7 @@ public class TaskList<T extends Task> {
      * @param t Task to add.
      */
     public void addTask(T t) {
-        userInputHistory.add(t);
+        USER_INPUT_HISTORY_LIST.add(t);
     }
 
     /**
@@ -27,7 +27,7 @@ public class TaskList<T extends Task> {
      * @param e Event to add.
      */
     public void addEvent(T e) {
-        userInputHistory.add(e);
+        USER_INPUT_HISTORY_LIST.add(e);
     }
 
     /**
@@ -36,7 +36,7 @@ public class TaskList<T extends Task> {
      * @param d Deadline to add.
      */
     public void addDeadline(T d) {
-        userInputHistory.add(d);
+        USER_INPUT_HISTORY_LIST.add(d);
     }
 
     /**
@@ -45,7 +45,7 @@ public class TaskList<T extends Task> {
      * @param n Index to remove.
      */
     public void deleteTask(int n) {
-        userInputHistory.remove(n - 1);
+        USER_INPUT_HISTORY_LIST.remove(n - 1);
     }
 
     /**
@@ -55,7 +55,7 @@ public class TaskList<T extends Task> {
      * @return True if task due today.
      */
     public boolean checkIsToday(int n) {
-        return userInputHistory.get(n - 1).isToday();
+        return USER_INPUT_HISTORY_LIST.get(n - 1).isToday();
     }
 
     /**
@@ -65,7 +65,7 @@ public class TaskList<T extends Task> {
      * @return Long description of the task.
      */
     public String getLongDescription(int n) {
-        return userInputHistory.get(n - 1).longDescription();
+        return USER_INPUT_HISTORY_LIST.get(n - 1).longDescription();
     }
 
     /**
@@ -74,7 +74,7 @@ public class TaskList<T extends Task> {
      * @return Size of the list.
      */
     public int getSize() {
-        return userInputHistory.size();
+        return USER_INPUT_HISTORY_LIST.size();
     }
 
     /**
@@ -85,8 +85,8 @@ public class TaskList<T extends Task> {
      */
     public StringBuffer getContents() {
         StringBuffer list = new StringBuffer();
-        for (int i = 0; i < userInputHistory.size(); i++) {
-            list.append((i + 1) + ". " + userInputHistory.get(i) + "\n");
+        for (int i = 0; i < USER_INPUT_HISTORY_LIST.size(); i++) {
+            list.append((i + 1) + ". " + USER_INPUT_HISTORY_LIST.get(i) + "\n");
         }
         return list;
     }
@@ -97,7 +97,7 @@ public class TaskList<T extends Task> {
      * @param n Index to mark.
      */
     public void markTask(int n) {
-        userInputHistory.get(n - 1).markAsDone();
+        USER_INPUT_HISTORY_LIST.get(n - 1).markAsDone();
     }
 
     /**
@@ -106,7 +106,7 @@ public class TaskList<T extends Task> {
      * @param n Index to unmark.
      */
     public void unmarkTask(int n) {
-        userInputHistory.get(n - 1).markAsNotDone();
+        USER_INPUT_HISTORY_LIST.get(n - 1).markAsNotDone();
     }
 
     /**
@@ -116,7 +116,7 @@ public class TaskList<T extends Task> {
      * @return Task/Event/Deadline.
      */
     public T getTask(int n) {
-        return userInputHistory.get(n - 1);
+        return USER_INPUT_HISTORY_LIST.get(n - 1);
     }
 
     /**
@@ -132,12 +132,12 @@ public class TaskList<T extends Task> {
         T currTask;
         String description;
         boolean matches;
-        for (int i = 0; i < userInputHistory.size(); i++) {
-            currTask = userInputHistory.get(i);
+        for (int i = 0; i < USER_INPUT_HISTORY_LIST.size(); i++) {
+            currTask = USER_INPUT_HISTORY_LIST.get(i);
             description = currTask.getDescription().toLowerCase();
             matches = description.contains(keyword.toLowerCase());
             if (matches) {
-                matchingTasks.userInputHistory.add(currTask);
+                matchingTasks.USER_INPUT_HISTORY_LIST.add(currTask);
             }
         }
         return matchingTasks;

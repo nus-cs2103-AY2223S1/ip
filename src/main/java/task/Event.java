@@ -5,7 +5,7 @@ import java.time.LocalDate;
  * Event class has a date field.
  */
 public class Event extends Task {
-    protected LocalDate date;
+    private LocalDate date;
 
     /**
      * Constructor.
