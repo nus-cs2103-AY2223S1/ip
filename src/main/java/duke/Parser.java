@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import duke.command.BatchDescDeleteCommand;
 import duke.command.BatchTypeDeleteCommand;
 import duke.command.Command;
 import duke.command.DeadlineCommand;
@@ -66,6 +67,10 @@ public class Parser {
             // No need for break since it is unreachable
         case "batchtypedelete":
             return parseBatchTypeDeleteCommand(data);
+            // No need for break since it is unreachable
+        case "batchdescdelete":
+            return parseBatchDescDeleteCommand(data);
+            // No need for break since it is unreachable
         case "todo":
             return parseToDoCommand(data);
             // No need for break since it is unreachable
@@ -89,6 +94,16 @@ public class Parser {
         }
     }
 
+    private static BatchDescDeleteCommand parseBatchDescDeleteCommand(String[] data) throws DukeException {
+        String description = data[1];
+
+        if (description.isEmpty()) {
+            throw new DukeNoKeywordException();
+        }
+
+        return new BatchDescDeleteCommand(description);
+    }
+
     private static BatchTypeDeleteCommand parseBatchTypeDeleteCommand(String[] data) throws DukeException {
         String type = data[1];
 
@@ -99,22 +114,6 @@ public class Parser {
         } else {
             return new BatchTypeDeleteCommand(type);
         }
-    }
-
-    private static boolean isTaskType(String type) {
-        return isTodo(type) || isDeadline(type) || isEvent(type);
-    }
-
-    private static boolean isEvent(String type) {
-        return type.equals("event");
-    }
-
-    private static boolean isDeadline(String type) {
-        return type.equals("deadline");
-    }
-
-    private static boolean isTodo(String type) {
-        return type.equals("todo");
     }
 
     private static ExitCommand parseExitCommand(String[] data) {
@@ -355,6 +354,23 @@ public class Parser {
         }
 
         return isDeadline && hasDeadlineSeparator;
+    }
+
+
+    private static boolean isTaskType(String type) {
+        return isTodo(type) || isDeadline(type) || isEvent(type);
+    }
+
+    private static boolean isEvent(String type) {
+        return type.equals("event");
+    }
+
+    private static boolean isDeadline(String type) {
+        return type.equals("deadline");
+    }
+
+    private static boolean isTodo(String type) {
+        return type.equals("todo");
     }
 
 

@@ -3,7 +3,10 @@ package duke.task;
 import java.util.ArrayList;
 import java.util.List;
 
-import duke.exception.*;
+import duke.exception.DukeException;
+import duke.exception.DukeInvalidTypeException;
+import duke.exception.DukeNoMatchException;
+import duke.exception.DukeOutOfBoundException;
 
 /**
  * A TaskList class that stores the list of Tasks.
@@ -113,15 +116,6 @@ public class TaskList {
     }
 
     /**
-     * Deletes multiple tasks from tasklist with matching keyword.
-     *
-     * @param keyword Keyword to be matched.
-     */
-    public void batchDelete(String keyword) {
-
-    }
-
-    /**
      * Deletes multiple tasks of that type from tasklist.
      *
      * @param taskType Keyword to be matched.
@@ -129,11 +123,47 @@ public class TaskList {
     public void batchTypeDelete(String taskType) throws DukeException {
         int endIndex = tasks.size() - 1;
         for (int i = endIndex; i >= 0; i--) {
-            deleteIfMatch(taskType, i);
+            deleteIfTypeMatch(taskType, i);
         }
     }
 
-    private void deleteIfMatch(String taskType, int taskIndex) throws DukeException {
+    /**
+     * Deletes multiple tasks with specified description from tasklist.
+     *
+     * @param description description to be matched.
+     */
+    public void batchDescDelete(String description) throws DukeException {
+        int endIndex = tasks.size() - 1;
+        for (int i = endIndex; i >= 0; i--) {
+            deleteIfDescMatch(description, i);
+        }
+    }
+
+    /**
+     * Deletes Task if Task Description contains specified description.
+     *
+     * @param description Specified Description to be matched
+     * @param taskIndex The index of the task in TaskList.
+     * @throws DukeException Exception thrown when index is invalid.
+     */
+    private void deleteIfDescMatch(String description, int taskIndex) throws DukeException {
+        Task currentTask = tasks.get(taskIndex);
+        String taskDescription = currentTask.description;
+
+        if (taskDescription.contains(description)) {
+            this.delete(taskIndex);
+        }
+
+    }
+
+    /**
+     * Deletes Task if Task is of that specified Type.
+     *
+     * @param taskType Specified Type to be matched
+     * @param taskIndex The index of the task in TaskList.
+     * @throws DukeException Exception thrown when index is invalid.
+     */
+    private void deleteIfTypeMatch(String taskType, int taskIndex) throws DukeException {
         Task currentTask = tasks.get(taskIndex);
         String typeCompare = getTypeofTask(currentTask);
         if (typeCompare.equals(taskType)) {
