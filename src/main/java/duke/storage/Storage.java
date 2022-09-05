@@ -1,14 +1,14 @@
 package duke.storage;
 
-import duke.exceptions.ParsingTaskException;
-import duke.task.*;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import duke.exceptions.ParsingTaskException;
+import duke.task.*;
 
 /**
  * The interface responsible for handling the storing and loading of user data from disk.

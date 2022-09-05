@@ -1,12 +1,12 @@
 package duke.commands;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import duke.Response;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class FindCommand extends Command {
     private String keyword;

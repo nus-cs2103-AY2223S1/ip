@@ -1,11 +1,11 @@
 package duke.commands;
 
 import duke.Response;
+import java.util.List;
+
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
-
-import java.util.List;
 
 /**
  * Displays the user's current tasks in a numbered list format.

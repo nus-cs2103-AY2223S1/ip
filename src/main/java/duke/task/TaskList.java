@@ -1,8 +1,8 @@
 package duke.task;
 
-import duke.exceptions.NoSuchTaskException;
-
 import java.util.List;
+
+import duke.exceptions.NoSuchTaskException;
 
 public class TaskList {
     private List<Task> tasks;

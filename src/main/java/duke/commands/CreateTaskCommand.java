@@ -9,7 +9,7 @@ import duke.task.TaskList;
  * Creates and stores a task.
  */
 class CreateTaskCommand extends Command {
-    Task task;
+    private final Task task;
 
     /**
      * Constructor for CreateTaskCommand.
