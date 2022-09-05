@@ -20,24 +20,19 @@ public class Parser {
     public static String parse(String command, TaskList listOfTasks, Ui ui, Storage storage)
             throws IOException {
         String reply = "";
-        Response firstWord = Response.OTHERS;
         String[] response = command.split(" ");
-        try {
-            firstWord = Response.valueOf(response[0].toUpperCase());
-        } catch (Exception e) {
-            reply = "OOPS!!! I'm sorry, but I don't know what that means :-(";
-        }
+        String firstWord = response[0].toUpperCase();
 
         switch (firstWord) {
-        case BYE:
+        case "BYE":
             reply = ui.showBye();
             break;
 
-        case LIST:
+        case "LIST":
             reply = ui.showTaskList(listOfTasks);
             break;
 
-        case MARK:
+        case "MARK":
             try {
                 int taskIndex = Integer.parseInt(response[1]) - 1;
                 listOfTasks.markAsDone(taskIndex);
@@ -48,7 +43,7 @@ public class Parser {
             }
             break;
 
-        case UNMARK:
+        case "UNMARK":
             try {
                 int taskIndex = Integer.parseInt(response[1]) - 1;
                 listOfTasks.markAsNotDone(taskIndex);
@@ -59,7 +54,7 @@ public class Parser {
             }
             break;
 
-        case TODO:
+        case "TODO":
             try {
                 String toDoTaskDescription = command.substring(5);
                 Todo toDoTask = new Todo(toDoTaskDescription);
@@ -71,7 +66,7 @@ public class Parser {
             }
             break;
 
-        case DEADLINE:
+        case "DEADLINE":
             try {
                 String deadlineDescriptionWithDate = command.substring(9);
                 String deadlineDescription = deadlineDescriptionWithDate.split(" /by ")[0];
@@ -89,7 +84,7 @@ public class Parser {
             }
             break;
 
-        case EVENT:
+        case "EVENT":
             try {
                 String eventDescriptionWithDate = command.substring(6);
                 String eventDescription = eventDescriptionWithDate.split(" /at ")[0];
@@ -107,7 +102,7 @@ public class Parser {
             }
             break;
 
-        case DELETE:
+        case "DELETE":
             try {
                 int deleteIndex = Integer.parseInt(response[1]) - 1;
                 Task deletedTask = listOfTasks.getTask(deleteIndex);
@@ -119,7 +114,7 @@ public class Parser {
             }
             break;
 
-        case FIND:
+        case "FIND":
             try {
                 String keyword = response[1];
                 TaskList matchingTasks = new TaskList();
@@ -134,10 +129,11 @@ public class Parser {
             }
             break;
 
-        case OTHERS:
+        default:
+            reply = "OOPS!!! I'm sorry, but I don't know what that means :-(";
             break;
+            
         }
-
         return reply;
     }
 }
