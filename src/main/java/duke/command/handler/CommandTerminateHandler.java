@@ -8,7 +8,7 @@ import duke.data.TaskList;
 
 public class CommandTerminateHandler extends CommandHandler {
 
-    protected static final String INVALID_FORMAT_MSG = String.join("\n",
+    protected static final String INVALID_FORMAT_MESSAGE = String.join("\n",
         "Invalid `bye` command format!",
         "Expected format: bye"
     );
@@ -20,7 +20,7 @@ public class CommandTerminateHandler extends CommandHandler {
 
     @Override
     protected String getInvalidFormatMessage() {
-        return INVALID_FORMAT_MSG;
+        return INVALID_FORMAT_MESSAGE;
     }
 
     /**

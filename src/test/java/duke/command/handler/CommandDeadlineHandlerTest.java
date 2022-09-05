@@ -45,7 +45,7 @@ class CommandDeadlineHandlerTest {
                 fail();
             } catch (Exception exception) {
                 assertTrue(exception instanceof CommandException);
-                assertEquals(CommandDeadlineHandler.INVALID_FORMAT_MSG, exception.getMessage());
+                assertEquals(CommandDeadlineHandler.INVALID_FORMAT_MESSAGE, exception.getMessage());
             }
         }
     }

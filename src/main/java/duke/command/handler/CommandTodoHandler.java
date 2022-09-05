@@ -11,7 +11,7 @@ import duke.data.tasks.TaskTodo;
 
 public class CommandTodoHandler extends CommandHandler {
 
-    protected static final String INVALID_FORMAT_MSG = String.join("\n",
+    protected static final String INVALID_FORMAT_MESSAGE = String.join("\n",
         "Invalid `todo` command format!",
         "Expected format: todo <task-title>",
         "Examples:",
@@ -31,7 +31,7 @@ public class CommandTodoHandler extends CommandHandler {
 
     @Override
     protected String getInvalidFormatMessage() {
-        return INVALID_FORMAT_MSG;
+        return INVALID_FORMAT_MESSAGE;
     }
 
     /**

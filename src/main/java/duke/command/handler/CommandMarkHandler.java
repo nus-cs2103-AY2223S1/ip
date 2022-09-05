@@ -12,7 +12,7 @@ import duke.data.tasks.Task;
 
 public class CommandMarkHandler extends CommandHandler {
 
-    protected static final String INVALID_FORMAT_MSG = String.join("\n",
+    protected static final String INVALID_FORMAT_MESSAGE = String.join("\n",
         "Invalid `mark`/`unmark` command format!",
         "Expected format: mark <task-number> / unmark <task-number>",
         "Examples:",
@@ -27,7 +27,7 @@ public class CommandMarkHandler extends CommandHandler {
 
     @Override
     protected String getInvalidFormatMessage() {
-        return INVALID_FORMAT_MSG;
+        return INVALID_FORMAT_MESSAGE;
     }
 
     /**
