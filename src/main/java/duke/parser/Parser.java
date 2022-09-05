@@ -80,6 +80,13 @@ public class Parser {
         return command;
     }
 
+    /**
+     * Handles the mass command instruction.
+     *
+     * @param input The input of the mass command.
+     * @return The command corresponding to the users input.
+     * @throws DukeException If there is an exception.
+     */
     public static Commands massCommandHandler(String input) throws DukeException {
         if (input.isEmpty()) {
             throw new EmptyArgumentException(Commands.All);

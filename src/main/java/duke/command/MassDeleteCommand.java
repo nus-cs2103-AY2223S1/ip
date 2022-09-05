@@ -1,13 +1,9 @@
 package duke.command;
 
 import duke.exception.DukeException;
-import duke.exception.InvalidArgumentException;
 import duke.storage.Storage;
-import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
-
-import java.util.ArrayList;
 
 /**
  * The MassDeleteCommand that helps the user delete tasks.

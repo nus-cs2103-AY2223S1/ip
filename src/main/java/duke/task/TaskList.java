@@ -1,7 +1,5 @@
 package duke.task;
 
-import duke.command.Commands;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,6 +101,11 @@ public class TaskList {
         return tasks;
     }
 
+    /**
+     * Clears all the completed tasks.
+     *
+     * @return The string that writes all the tasks.
+     */
     public String clearCompletedTasks() {
         List<Task> tasks = new ArrayList<>();
         String displayTasks = "";
