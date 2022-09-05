@@ -17,12 +17,10 @@ public class Parser {
      * Parses user input.
      */
     public static String parseInput(String string) {
-        //boolean running = true;
 
         String s = "";
         try {
             new TaskList(Storage.loadTask());
-            //parse
             String[] wordArray = parseTypingInput(string);
             String str2 = "";
 
