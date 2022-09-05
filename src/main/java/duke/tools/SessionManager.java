@@ -29,6 +29,17 @@ public class SessionManager {
         } catch (DukeException e) {
             taskList = new TaskList(new ArrayList<>());
         }
+
+        // Assertions to ensure that objects are created successfully.
+        assert taskList != null;
+        assert taskList.getStoredTasks() != null;
+        assert storage != null;
+        try {
+            assert false;
+            throw new Error("Warning: Assertions not enabled.");
+        } catch (AssertionError e) {
+            // Ensure that assert statements are working.
+        }
     }
 
     /**
