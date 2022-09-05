@@ -5,7 +5,6 @@ import java.nio.file.Paths;
 
 import duke.response.DukeResponse;
 import duke.response.ExceptionResponse;
-import duke.response.ReadFileResponse;
 
 /**
  * Personal assistant chatbot which can read and save tasks.
@@ -31,10 +30,8 @@ public class Duke {
         this.storage = new Storage(dataPath);
         this.ui = new DukeUi();
         try {
-            new ReadFileResponse().run();
             this.list = new DukeList(this.storage.read());
         } catch (DukeException e) {
-            new ExceptionResponse(e).run();
             this.list = new DukeList();
         }
     }
@@ -47,11 +44,12 @@ public class Duke {
      */
     public String getResponse(String input) {
         DukeResponse response = this.ui.readInput(input, this.list);
-        try {
-            if (response.isExit()) {
-                this.saveData();
-            }
 
+        if (response.isExit()) {
+            this.saveData();
+        }
+
+        try {
             return response.run();
         } catch (DukeException e) {
             return new ExceptionResponse(e).run();
