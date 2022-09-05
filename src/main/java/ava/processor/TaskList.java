@@ -9,7 +9,7 @@ import ava.task.Task;
  * A wrapper class that holds the list of Tasks.
  */
 public class TaskList {
-    private static ArrayList<Task> tasks;
+    private final ArrayList<Task> tasks;
 
     /**
      * The constructor for TaskList with no parameters.

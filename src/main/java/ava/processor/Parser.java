@@ -130,11 +130,10 @@ public class Parser {
      * Returns a new find task to find task with the matching keyword
      *
      * @param chat Input from the scanner.
-     * @param taskList ArrayList of tasks.
      * @return Find object.
      * @throws AvaException If an exception is found.
      */
-    public static Find find(String chat, TaskList taskList) throws AvaException {
+    public static Find find(String chat) throws AvaException {
         if (chat.split(" ").length == 1) {
             throw new NoDescriptionException();
         } else {
@@ -161,7 +160,7 @@ public class Parser {
                 if (chat.trim().length() < 1) {
                     throw new NoCommandException();
                 } else {
-                    throw new UnknownCommandException(chat.toUpperCase().split(" ")[0]);
+                    throw new UnknownCommandException(chat.split(" ")[0]);
                 }
             }
             switch (command) {
@@ -169,6 +168,8 @@ public class Parser {
                 return new Bye();
             case LIST:
                 return new List();
+            case FIND:
+                return find(chat);
             case UNMARK:
                 return unmark(chat);
             case MARK:
@@ -177,8 +178,6 @@ public class Parser {
                 return addTask(chat, taskList);
             case DELETE:
                 return delete(chat, taskList);
-            case FIND:
-                return find(chat, taskList);
             default:
                 throw new UnknownCommandException(chat);
             }
