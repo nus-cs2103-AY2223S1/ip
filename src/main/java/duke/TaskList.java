@@ -199,7 +199,7 @@ public class TaskList {
         // Get the task to be marked
         Task selectedTask = this.tasks.get(index - 1);
 
-        assert selectedTask != null;
+        assert selectedTask != null; // Check that selected task is not null
 
         // Mark it as done
         selectedTask.mark();
@@ -277,14 +277,13 @@ public class TaskList {
      * @param key a String that is contained within the desired tasks
      */
     public void find(String key) {
-        StringBuilder output = new StringBuilder("Here are the matching tasks in your list:\n");
+        String header = "Here are the matching tasks in your list:\n";
+        String matchingTasks = this.tasks.stream()
+                .map(Task::toString)
+                .filter(task -> task.contains(key))
+                .reduce("", (prev, curr) -> prev + "\n" + curr);
 
-        for (Task task : this.tasks) {
-            if (task.toString().contains(key)) {
-                output.append(task);
-            }
-        }
-
-        this.ui.handleOutput(output.toString());
+        this.ui.handleOutput(header + matchingTasks);
     }
+
 }
