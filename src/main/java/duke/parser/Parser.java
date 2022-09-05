@@ -10,9 +10,11 @@ import duke.command.DeleteCommand;
 import duke.command.EventCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
+import duke.command.GeneralScheduleCommand;
 import duke.command.InvalidCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.RangeScheduleCommand;
 import duke.command.ToDoCommand;
 import duke.command.UnMarkCommand;
 import duke.exception.DukeException;
@@ -59,6 +61,10 @@ public class Parser {
             return executeEventCommand(command);
         case FindCommand.COMMAND_ID:
             return executeFindCommand(command);
+        case GeneralScheduleCommand.COMMAND_ID:
+            return new GeneralScheduleCommand();
+        case RangeScheduleCommand.COMMAND_ID:
+            return executeRangeScheduleCommand(command);
         default: // Invalid Command Handler
             return new InvalidCommand();
         }
@@ -158,6 +164,27 @@ public class Parser {
             assert query.isEmpty() : "Query should be empty";
             throw new DukeException(NO_QUERY_SPECIFIED);
         }
+    }
+
+    private static RangeScheduleCommand executeRangeScheduleCommand(String command) throws DukeException {
+        int lastIndexFrom = command.lastIndexOf("/from");
+        int lastIndexTo = command.lastIndexOf("/to");
+
+        if (lastIndexFrom != -1 && lastIndexTo != -1) { /* GS /from <date> /to <date> */
+            String dateStringFrom = command.substring(lastIndexFrom + 6, lastIndexTo - 1);
+            String dateStringTo = command.substring(lastIndexTo + 4);
+            LocalDateTime fromDate = LocalDateTime.parse(dateStringFrom, Parser.dateTimeFormatter);
+            LocalDateTime toDate = LocalDateTime.parse(dateStringTo, Parser.dateTimeFormatter);
+
+            return new RangeScheduleCommand(fromDate, toDate);
+        }
+        if (lastIndexFrom != -1 && lastIndexTo == -1) { /* GS /from <date> */
+            String dateStringFrom = command.substring(lastIndexFrom + 6);
+            LocalDateTime fromDate = LocalDateTime.parse(dateStringFrom, Parser.dateTimeFormatter);
+            return new RangeScheduleCommand(fromDate, LocalDateTime.MAX);
+        }
+
+        throw new DukeException("Invalid command given ! Do you mean GS /from <date> /to <date> ?");
     }
 
     private static String getFirstWord(String text) {

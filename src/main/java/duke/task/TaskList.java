@@ -1,6 +1,8 @@
 package duke.task;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,7 +25,7 @@ public class TaskList {
 
     /**
      * Constructor for a TaskList
-     * @param taskList
+     * @param taskList List of tasks
      */
     public TaskList(List<Task> taskList) {
         this.taskList = taskList;
@@ -171,5 +173,44 @@ public class TaskList {
                     lastAddedTask.toString(), getItemsLeft());
         }
         return NO_TASKS_LEFT;
+    }
+
+    /**
+     * Sorts task list by date of creation or given date.
+     * @return sorted tasks
+     */
+    public static TaskList sortTaskListByDate(List<Task> list) {
+        TaskList sortedTaskList = new TaskList(list);
+        Collections.sort(sortedTaskList.getTaskList(), new TaskDateComparator());
+        return sortedTaskList;
+    }
+
+    private boolean withinDateAndIsNotDone(LocalDateTime start, LocalDateTime end, Task task) {
+        if (task.getDoneStatus() == 1) {
+            return false;
+        }
+        if (task.getLocalDateTime().isBefore(start)) {
+            return false;
+        }
+        if (task.getLocalDateTime().isAfter(end)) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Finds the tasks of a certain date range that are undone.
+     * @return task list within specified date
+     */
+    public TaskList getTasksWithinDate(LocalDateTime start, LocalDateTime end) {
+        List<Task> tasksWithinDate = new ArrayList<>();
+
+        this.getTaskList().forEach(task -> {
+            if (withinDateAndIsNotDone(start, end, task)) {
+                tasksWithinDate.add(task);
+            }
+        });
+
+        return sortTaskListByDate(tasksWithinDate);
     }
 }
