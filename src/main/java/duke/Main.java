@@ -1,6 +1,7 @@
 package duke;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Scanner;
 
 import javafx.application.Application;
@@ -21,7 +22,8 @@ public class Main extends Application {
             Scanner sc = new Scanner(System.in);
             String filePath = sc.nextLine();
             Duke duke = new Duke(filePath);
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
+            URL mainWindowUrl = Main.class.getResource("/view/MainWindow.fxml");
+            FXMLLoader fxmlLoader = new FXMLLoader(mainWindowUrl);
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
