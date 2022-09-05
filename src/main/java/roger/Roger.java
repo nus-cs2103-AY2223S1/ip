@@ -27,7 +27,10 @@ public class Roger {
         this.parser = parser;
         this.storage = storage;
         this.tasks = new TaskList();
+        this.loadStorage();
+    }
 
+    private void loadStorage() {
         try {
             List<String> taskStrings = this.storage.load();
             for (String taskString : taskStrings) {

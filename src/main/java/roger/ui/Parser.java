@@ -31,6 +31,11 @@ public class Parser {
     private final String COMMAND_DELETE = "delete";
     private final String COMMAND_EXIT = "bye";
 
+    private final String CMD_ARG_SEPARATOR_STRING = " ";
+
+    private final String KEYWORD_DEADLINE_DATE = "/by";
+    private final String KEYWORD_EVENT_DATE = "/at";
+
     /**
      * Parses user input and return the corresponding command.
      *
@@ -39,9 +44,10 @@ public class Parser {
      * @throws RogerInvalidInputException If the command is known but the argument format is incorrect.
      */
     public Command parse(String input) throws RogerInvalidInputException {
-        int cmdArgSeparator = input.indexOf(" ");
-        String command = cmdArgSeparator < 0 ? input : input.substring(0, cmdArgSeparator);
-        String arguments = cmdArgSeparator < 0 ? "" : input.substring(cmdArgSeparator + 1);
+        int cmdArgSeparator = input.indexOf(CMD_ARG_SEPARATOR_STRING);
+        boolean argsAreProvided = cmdArgSeparator >= 0;
+        String command = argsAreProvided ? input.substring(0, cmdArgSeparator) : input;
+        String arguments = argsAreProvided ? input.substring(cmdArgSeparator + 1) : "";
 
         switch (command) {
         case COMMAND_LIST:
@@ -68,7 +74,7 @@ public class Parser {
     }
 
     private ListCommand parseListArguments(String arguments) throws RogerInvalidInputException {
-        String firstArg = arguments.split(" ")[0];
+        String firstArg = arguments.split(CMD_ARG_SEPARATOR_STRING)[0];
 
         if (firstArg.isBlank()) {
             return new ListCommand();
@@ -84,7 +90,7 @@ public class Parser {
     private MarkCommand parseMarkArguments(String arguments) throws RogerInvalidInputException {
         int taskNum;
         try {
-            String firstArg = arguments.split(" ")[0];
+            String firstArg = arguments.split(CMD_ARG_SEPARATOR_STRING)[0];
             taskNum = Integer.parseInt(firstArg);
         } catch (StringIndexOutOfBoundsException | NumberFormatException e) {
             throw new RogerInvalidInputException("Mark tasks as done with `mark <task number>`");
@@ -96,7 +102,7 @@ public class Parser {
     private UnmarkCommand parseUnmarkArguments(String arguments) throws RogerInvalidInputException {
         int taskNum;
         try {
-            String firstArg = arguments.split(" ")[0];
+            String firstArg = arguments.split(CMD_ARG_SEPARATOR_STRING)[0];
             taskNum = Integer.parseInt(firstArg);
         } catch (StringIndexOutOfBoundsException | NumberFormatException e) {
             throw new RogerInvalidInputException("Unmark tasks as done with `mark <task number>`");
@@ -125,7 +131,7 @@ public class Parser {
         String taskName;
         LocalDate date;
 
-        int dateKeywordIndex = arguments.indexOf("/by");
+        int dateKeywordIndex = arguments.indexOf(KEYWORD_DEADLINE_DATE);
         if (dateKeywordIndex < 0) {
             throw new RogerInvalidInputException("Add deadlines with `deadline <name> /by <yyyy-mm-dd>`");
         }
@@ -144,7 +150,7 @@ public class Parser {
         String taskName;
         LocalDate date;
 
-        int dateKeywordIndex = arguments.indexOf("/at");
+        int dateKeywordIndex = arguments.indexOf(KEYWORD_EVENT_DATE);
         if (dateKeywordIndex < 0) {
             throw new RogerInvalidInputException("Add events with `event <name> /at <yyyy-mm-dd>`");
         }
@@ -163,7 +169,7 @@ public class Parser {
         int taskName;
 
         try {
-            String firstArg = arguments.split(" ")[0];
+            String firstArg = arguments.split(CMD_ARG_SEPARATOR_STRING)[0];
             taskName = Integer.parseInt(firstArg);
         } catch (StringIndexOutOfBoundsException | NumberFormatException e) {
             throw new RogerInvalidInputException("Delete tasks with `delete <task number>`");
