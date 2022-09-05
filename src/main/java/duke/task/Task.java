@@ -1,5 +1,7 @@
 package duke.task;
 
+import java.time.LocalDateTime;
+
 /**
  * A Task class that stores the Description and State of the Task.
  *
@@ -15,6 +17,15 @@ public class Task {
     /** Stores the status of the task */
     protected boolean isDone;
 
+
+    /**
+     * Constructor for Dummy Task.
+     *
+     */
+    public Task() {
+        this.description = "Dummy Description";
+        this.isDone = false;
+    }
 
     /**
      * Constructor for Task.

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import duke.command.BatchTypeDeleteCommand;
 import duke.command.Command;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
@@ -23,6 +24,7 @@ import duke.exception.DukeInvalidCommandException;
 import duke.exception.DukeInvalidDeadlineSeparatorException;
 import duke.exception.DukeInvalidEventSeparatorException;
 import duke.exception.DukeInvalidTimeFormatException;
+import duke.exception.DukeInvalidTypeException;
 import duke.exception.DukeNoIndexException;
 import duke.exception.DukeNoKeywordException;
 
@@ -62,6 +64,8 @@ public class Parser {
         case "delete":
             return parseDeleteCommand(data);
             // No need for break since it is unreachable
+        case "batchtypedelete":
+            return parseBatchTypeDeleteCommand(data);
         case "todo":
             return parseToDoCommand(data);
             // No need for break since it is unreachable
@@ -83,6 +87,34 @@ public class Parser {
         default:
             throw new DukeInvalidCommandException();
         }
+    }
+
+    private static BatchTypeDeleteCommand parseBatchTypeDeleteCommand(String[] data) throws DukeException {
+        String type = data[1];
+
+        if (type.isEmpty()) {
+            throw new DukeNoKeywordException();
+        } else if (!isTaskType(type)) {
+            throw new DukeInvalidTypeException();
+        } else {
+            return new BatchTypeDeleteCommand(type);
+        }
+    }
+
+    private static boolean isTaskType(String type) {
+        return isTodo(type) || isDeadline(type) || isEvent(type);
+    }
+
+    private static boolean isEvent(String type) {
+        return type.equals("event");
+    }
+
+    private static boolean isDeadline(String type) {
+        return type.equals("deadline");
+    }
+
+    private static boolean isTodo(String type) {
+        return type.equals("todo");
     }
 
     private static ExitCommand parseExitCommand(String[] data) {

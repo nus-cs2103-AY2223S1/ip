@@ -3,9 +3,7 @@ package duke.task;
 import java.util.ArrayList;
 import java.util.List;
 
-import duke.exception.DukeException;
-import duke.exception.DukeNoMatchException;
-import duke.exception.DukeOutOfBoundException;
+import duke.exception.*;
 
 /**
  * A TaskList class that stores the list of Tasks.
@@ -112,6 +110,47 @@ public class TaskList {
         }
 
         return new TaskList(matchedTasks);
+    }
+
+    /**
+     * Deletes multiple tasks from tasklist with matching keyword.
+     *
+     * @param keyword Keyword to be matched.
+     */
+    public void batchDelete(String keyword) {
+
+    }
+
+    /**
+     * Deletes multiple tasks of that type from tasklist.
+     *
+     * @param taskType Keyword to be matched.
+     */
+    public void batchTypeDelete(String taskType) throws DukeException {
+        int endIndex = tasks.size() - 1;
+        for (int i = endIndex; i >= 0; i--) {
+            deleteIfMatch(taskType, i);
+        }
+    }
+
+    private void deleteIfMatch(String taskType, int taskIndex) throws DukeException {
+        Task currentTask = tasks.get(taskIndex);
+        String typeCompare = getTypeofTask(currentTask);
+        if (typeCompare.equals(taskType)) {
+            this.delete(taskIndex);
+        }
+    }
+
+    private String getTypeofTask(Task task) throws DukeException {
+        if (task instanceof ToDo) {
+            return "todo";
+        } else if (task instanceof Event) {
+            return "event";
+        } else if (task instanceof Deadline) {
+            return "deadline";
+        } else {
+            throw new DukeInvalidTypeException();
+        }
     }
 
     /**
