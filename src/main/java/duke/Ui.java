@@ -72,8 +72,7 @@ public class Ui {
 
 
     }
-
-
+    
     public String getResponse(String nextCommand) throws UnknownCommandException {
         if(nextCommand.equals(CommandsEnum.bye.toString())){
             return BYE;
