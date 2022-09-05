@@ -52,7 +52,7 @@ application {
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "Shiro Task Manager"
     archiveClassifier = null
 }
 

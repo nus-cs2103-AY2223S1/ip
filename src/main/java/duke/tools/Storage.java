@@ -26,10 +26,6 @@ import duke.tasks.Todo;
  */
 public class Storage {
 
-    /** The path to the directory for storing Duke data. */
-    private static Path directoryPath = Paths.get(System.getProperty("user.dir"), "data");
-    /** The path to the file storing Duke data. */
-    private Path filePath;
     /** Text icon to signify a task is done. */
     private static final String IS_DONE_YES = "Y";
     /** Text icon to signify a task is not done. */
@@ -38,6 +34,10 @@ public class Storage {
     private static final String DEADLINE_SEPARATOR = "/by ";
     /** Text separator for datetime of an event. */
     private static final String EVENT_SEPARATOR = "/at ";
+    /** The path to the directory for storing Duke data. */
+    private static Path directoryPath = Paths.get(System.getProperty("user.dir"), "data");
+    /** The path to the file storing Duke data. */
+    private Path filePath;
 
     public Storage() {
         this.filePath = directoryPath.resolve("data.txt");
@@ -145,16 +145,16 @@ public class Storage {
     private static String convertTaskToDataString(Task task) throws DukeException {
         switch (task.getTaskType()) {
         case TODO:
-            return TaskType.TODO.value + " " + (task.isDone() ? IS_DONE_YES : IS_DONE_NO) + " " +
-                    task.getDescription() + System.lineSeparator();
+            return TaskType.TODO.value + " " + (task.isDone() ? IS_DONE_YES : IS_DONE_NO) + " "
+                    + task.getDescription() + System.lineSeparator();
         case DEADLINE:
             Deadline deadline = (Deadline) task;
-            return TaskType.DEADLINE.value + " " + (deadline.isDone() ? IS_DONE_YES : IS_DONE_NO) + " " +
-                    deadline.getDescription() + DEADLINE_SEPARATOR + deadline.getDateTime() + System.lineSeparator();
+            return TaskType.DEADLINE.value + " " + (deadline.isDone() ? IS_DONE_YES : IS_DONE_NO) + " "
+                    + deadline.getDescription() + DEADLINE_SEPARATOR + deadline.getDateTime() + System.lineSeparator();
         case EVENT:
             Event event = (Event) task;
-            return TaskType.EVENT.value + " " + (event.isDone() ? IS_DONE_YES : IS_DONE_NO) + " " +
-                    event.getDescription() + EVENT_SEPARATOR + event.getDateTime() + System.lineSeparator();
+            return TaskType.EVENT.value + " " + (event.isDone() ? IS_DONE_YES : IS_DONE_NO) + " "
+                    + event.getDescription() + EVENT_SEPARATOR + event.getDateTime() + System.lineSeparator();
         default:
             throw new DukeException("Exception: Unknown task type.");
         }

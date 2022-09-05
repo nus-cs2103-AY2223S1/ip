@@ -2,7 +2,6 @@ package duke.gui;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import duke.exceptions.DukeException;
 import duke.tasks.Task;
