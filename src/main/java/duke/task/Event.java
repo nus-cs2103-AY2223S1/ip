@@ -14,7 +14,11 @@ import java.util.regex.Pattern;
  */
 public class Event extends Task {
 
+    /** 'at' is the String the Deadline was constructed with */
     protected String at;
+    /** 'formattedTime' is the formatted version of 'by' parsed for date and time */
+    protected String formattedTime;
+
     protected LocalDate date = null;
     protected LocalTime time = null;
 
@@ -48,6 +52,7 @@ public class Event extends Task {
         } catch (DateTimeParseException e) {
             time = null;
         }
+        formattedTime = timeToString();
     }
 
     /**
@@ -60,12 +65,11 @@ public class Event extends Task {
     }
 
     /**
-     * Returns a string representation of the event.
+     * Returns a string representation of when the event is.
      *
-     * @return a string consisting of the event completion status and description.
+     * @return a string consisting of the event's date or time if available.
      */
-    @Override
-    public String toString() {
+    private String timeToString() {
         String when;
         if (date != null && time != null) {
             when = date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ", " + time;
@@ -76,7 +80,16 @@ public class Event extends Task {
         } else {
             when = at;
         }
+        return when;
+    }
 
-        return "[" + id + "] " + super.toString() + " (at: " + when + ")";
+    /**
+     * Returns a string representation of the event.
+     *
+     * @return a string consisting of the event completion status and description.
+     */
+    @Override
+    public String toString() {
+        return "[" + id + "] " + super.toString() + " (at: " + formattedTime + ")";
     }
 }
