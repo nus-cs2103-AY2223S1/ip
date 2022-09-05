@@ -41,6 +41,7 @@ public class MarkCommand extends Command {
      */
     @Override
     public CommandResult execute() throws InvalidInputException {
+        assert(taskList != null);
         Matcher matcher = SINGLE_INTEGER_ARGUMENT_FORMAT.matcher(arguments);
         if (!matcher.matches()) {
             throw new InvalidInputException(MESSAGE_INVALID_ARGUMENT);
