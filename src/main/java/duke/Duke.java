@@ -49,7 +49,7 @@ public class Duke extends Application {
      * @return
      */
     public String getResponse(String input) {
-        boolean isExit = false;
+        boolean isExit;
         try {
             Command c = Parser.parse(input);
             ui.setCurrentInput(input);

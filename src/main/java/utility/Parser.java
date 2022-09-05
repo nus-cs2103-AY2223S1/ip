@@ -192,7 +192,7 @@ public class Parser {
             throw new DukeException("no number given");
         }
         int n = Integer.parseInt(numberOnly);
-        if (n < listSize) {
+        if (n <= listSize) {
             return n;
         } else {
             throw new DukeException("Task does not exist in list");

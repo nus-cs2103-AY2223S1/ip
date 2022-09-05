@@ -16,8 +16,8 @@ import tasklist.TaskList;
  */
 public class Storage {
     private Path path;
-    private final StorageReader STORAGE_READER;
-    private final StorageWriter STORAGE_WRITER;
+    private final StorageReader storageReader;
+    private final StorageWriter storageWriter;
 
     /**
      * Constructor.
@@ -26,8 +26,8 @@ public class Storage {
      */
     public Storage(String filePath) {
         createFileIfDoesntExist(filePath);
-        this.STORAGE_WRITER = new StorageWriter(path);
-        this.STORAGE_READER = new StorageReader(path);
+        this.storageWriter = new StorageWriter(path);
+        this.storageReader = new StorageReader(path);
     }
 
     /**
@@ -92,6 +92,6 @@ public class Storage {
 
     //Define all StorageReader methods
     public TaskList syncArrayList() throws DukeException {
-        return STORAGE_READER.syncArrayList();
+        return storageReader.syncArrayList();
     }
 }
