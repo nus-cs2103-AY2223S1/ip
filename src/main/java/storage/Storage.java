@@ -16,8 +16,8 @@ import tasklist.TaskList;
  */
 public class Storage {
     private Path path;
-    private final StorageReader STORAGE_READER;
-    private final StorageWriter STORAGE_WRITER;
+    private final StorageReader storageReader;
+    private final StorageWriter storageWriter;
 
     /**
      * Constructor.
@@ -26,8 +26,8 @@ public class Storage {
      */
     public Storage(String filePath) {
         createFileIfDoesntExist(filePath);
-        this.STORAGE_WRITER = new StorageWriter(path);
-        this.STORAGE_READER = new StorageReader(path);
+        this.storageWriter = new StorageWriter(path);
+        this.storageReader = new StorageReader(path);
     }
 
     /**
@@ -79,19 +79,19 @@ public class Storage {
 
     //Define all StorageWriter methods
     public boolean isLineAppended(String s) {
-        return STORAGE_WRITER.appendLine(s);
+        return storageWriter.appendLine(s);
     }
 
     public boolean isLineDeleted(int index) {
-        return STORAGE_WRITER.deleteLine(index);
+        return storageWriter.deleteLine(index);
     }
 
     public boolean isLineChanged(int index, String newString) {
-        return STORAGE_WRITER.changeLine(index, newString);
+        return storageWriter.changeLine(index, newString);
     }
 
     //Define all StorageReader methods
     public TaskList syncArrayList() throws DukeException {
-        return STORAGE_READER.syncArrayList();
+        return storageReader.syncArrayList();
     }
 }

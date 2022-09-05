@@ -200,7 +200,7 @@ public class Parser {
 
     /**
      * Extracts keyword to user is looking up from user input.
-     * 
+     *
      * @param userInput User input to extract keyword from.
      * @return Keyword required to perform Find operation.
      */
