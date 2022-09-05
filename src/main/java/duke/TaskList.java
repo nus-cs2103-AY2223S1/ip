@@ -27,7 +27,7 @@ public class TaskList {
      */
     public void remove(int index) {
         tasks.remove(index);
-        this.storage.update(tasks);
+        storage.update(tasks);
     }
 
     /**
@@ -37,7 +37,7 @@ public class TaskList {
      */
     public void add(Task task) {
         tasks.add(task);
-        this.storage.update(tasks);
+        storage.update(tasks);
     }
 
     /**
@@ -55,8 +55,8 @@ public class TaskList {
      * @param index Index of the task.
      */
     public void markTaskAsDone(int index) {
-        this.tasks.get(index).markAsDone();
-        this.storage.update(tasks);
+        tasks.get(index).markAsDone();
+        storage.update(tasks);
     }
 
     /**
@@ -65,8 +65,8 @@ public class TaskList {
      * @param index Index of the task.
      */
     public void markTaskAsUndone(int index) {
-        this.tasks.get(index).markAsUndone();
-        this.storage.update(tasks);
+        tasks.get(index).markAsUndone();
+        storage.update(tasks);
     }
 
     /**
@@ -98,7 +98,7 @@ public class TaskList {
      * @return Details of the task.
      */
     public String taskToString(int index) {
-        return this.tasks.get(index).toString();
+        return tasks.get(index).toString();
     }
 
     /**

@@ -6,7 +6,7 @@ public class Task {
 
     public Task(String description) {
         this.description = description;
-        this.isDone = false;
+        isDone = false;
     }
 
     /**
@@ -25,21 +25,21 @@ public class Task {
      * @return Boolean if the input is found.
      */
     public boolean contains(String input) {
-        return this.description.toLowerCase().contains(input.toLowerCase());
+        return description.toLowerCase().contains(input.toLowerCase());
     }
 
     /**
      * Marks task as done.
      */
     public void markAsDone() {
-        this.isDone = true;
+        isDone = true;
     }
 
     /**
      * Marks task as undone.
      */
     public void markAsUndone() {
-        this.isDone = false;
+        isDone = false;
     }
 
     /**
@@ -49,6 +49,6 @@ public class Task {
      */
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "] " + this.description;
+        return "[" + getStatusIcon() + "] " + description;
     }
 }
