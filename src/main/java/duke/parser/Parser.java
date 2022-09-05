@@ -96,6 +96,7 @@ public class Parser {
                     if (arr.length == 1) {
                         return new Argument(arr[0]);
                     } else {
+                        assert arr.length == 2 : "Argument array doesn't have the expected array length of two";
                         return new Argument(arr[0], arr[1]);
                     }
                 })
