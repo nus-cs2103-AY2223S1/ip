@@ -1,5 +1,7 @@
 package dukeprogram.userinterface;
 
+import java.util.Arrays;
+
 /**
  * Maintains the organisation of strings
  */
@@ -15,9 +17,7 @@ public class Ui {
     public static String formatTextUnderDecorators(String... textToShow) {
         StringBuilder builder = new StringBuilder();
         builder.append(DECORATOR + "\n");
-        for (String string : textToShow) {
-            builder.append(string + "\n");
-        }
+        Arrays.stream(textToShow).forEach(builder::append);
         builder.append(DECORATOR);
         return builder.toString();
     }

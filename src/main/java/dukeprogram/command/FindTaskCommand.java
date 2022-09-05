@@ -10,7 +10,7 @@ import dukeprogram.Task;
 import dukeprogram.facilities.TaskList;
 
 /**
- * Finds a task in the tasklist
+ * Finds a task in the task list
  */
 public class FindTaskCommand extends Command {
 
@@ -34,11 +34,9 @@ public class FindTaskCommand extends Command {
         );
 
         ArrayList<Task> matches = new ArrayList<>();
-        for (Task task : TaskList.current().getAllTasks()) {
-            if (pattern.matcher(task.getName()).matches()) {
-                matches.add(task);
-            }
-        }
+        Arrays.stream(TaskList.current().getAllTasks())
+                .filter(task -> pattern.matcher(task.getName()).matches())
+                .forEach(matches::add);
 
         return new InternalAction(
                 "Here are the matches that I've found:\n"
