@@ -33,8 +33,10 @@ public class Tako {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Returns Tako's reponse.
+     *
+     * @param input Input to respond to.
+     * @return Tako's response.
      */
     public String getResponse(String input) {
         try {
@@ -47,11 +49,21 @@ public class Tako {
         return ui.getResponse();
     }
 
+    /**
+     * Returns a welcome message.
+     *
+     * @return Welcome message.
+     */
     public String getWelcome() {
         ui.showWelcome();
         return ui.getResponse();
     }
 
+    /**
+     * Checks if the program can exit.
+     *
+     * @return boolean representing check result.
+     */
     public boolean isExit() {
         return isExit;
     }

@@ -20,6 +20,15 @@ public class Event extends Task {
         this.at = at;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String convertToFileFormat() {
+        int taskDoneStatus = isDone ? 1 : 0;
+        return String.format("E | %d | %s | %s", taskDoneStatus, description, at);
+    }
+
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");

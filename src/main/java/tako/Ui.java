@@ -72,7 +72,7 @@ public class Ui {
      * Informs the user that a loading error has occurred.
      */
     public void showLoadingError() {
-        response = "Tasks failed to load." + "A new task list will be used instead.";
+        response = "Tasks failed to load. A new task list will be used instead.";
     }
 
     /**
