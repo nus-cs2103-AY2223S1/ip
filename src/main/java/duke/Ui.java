@@ -135,4 +135,14 @@ public class Ui {
         System.out.println("OOPS!! I'm sorry, but I don't know what that means :-(");
         return "OOPS!! I'm sorry, but I don't know what that means :-(";
     }
+
+    /**
+     * Displays representation of the task provided.
+     * @param t Task to be described.
+     * @return String representation of the task provided.
+     */
+    public String showTask(Task t) {
+        System.out.println(t.toString());
+        return "Your newly updated task is: " + t.toString();
+    }
 }

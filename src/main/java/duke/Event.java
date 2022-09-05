@@ -6,7 +6,7 @@ package duke;
  */
 public class Event extends Task {
 
-    private final String time;
+    private String time;
 
     /**
      * Creates a new Event object with a specified description and timing.
@@ -18,6 +18,21 @@ public class Event extends Task {
         this.time = time;
     }
 
+    /**
+     * Changes the description of this Event.
+     * @param newDesc The new description of this Event.
+     */
+    public void setDescription(String newDesc) {
+        this.description = newDesc;
+    }
+
+    /**
+     * Changes the time of this Event
+     * @param newTime The new time of this Event.
+     */
+    public void setTime(String newTime) {
+        this.time = newTime;
+    }
     /**
      * String representation of this Event, with details such as its type, description,
      * timing, and whether it is completed or not.

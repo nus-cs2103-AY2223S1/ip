@@ -40,6 +40,28 @@ public class Parser {
         if (input.equals("bye")) {
             this.isOpen = false;
             return new ByeCommand(this.tasks, this.ui, this.storage);
+        } else if (input.startsWith("update")) {
+            String[] info = input.split(" ");
+            try {
+                int i = Integer.parseInt(info[1]);
+                if (i > tasks.size()) {
+                    throw new DukeException("Task #" + i + " does not exist.");
+                } else {
+                    Task toUpdate = tasks.get(i - 1);
+                    String update = "";
+                    for (int j = 2; j < info.length; j++) {
+                        if (j == info.length - 1) {
+                            update += info[j];
+                        } else {
+                            update = update + info[j] + " ";
+                        }
+                    }
+                    return new UpdateTaskCommand(toUpdate, this.ui, update);
+                }
+            } catch (NumberFormatException e) {
+                throw new DukeException("Wrong format! Please specify which Task you want to update.\n"
+                + "e.g. update 4 [new task info]");
+            }
         } else if (input.equals("list")) {
             return new ListCommand(this.tasks, this.ui);
         } else if (input.startsWith("mark")) {

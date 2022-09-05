@@ -21,4 +21,12 @@ public class ToDo extends Task {
     public String toString() {
         return "  [T] [" + this.getStatusIcon() + "] " + this.description;
     }
+
+    /**
+     * Changes the description of this ToDo.
+     * @param newDesc The new description of this ToDo.
+     */
+    public void setDescription(String newDesc) {
+        this.description = newDesc;
+    }
 }
