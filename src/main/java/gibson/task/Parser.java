@@ -18,7 +18,11 @@ public final class Parser {
      */
     public Parser() {
         storage = new Storage("data", "gibson.txt");
-        taskList = new TaskList(storage.load());
+        if (storage.hasDataToLoad()) {
+            taskList = new TaskList(storage.load());
+        } else {
+            taskList = new TaskList();
+        }
     }
 
     /**
