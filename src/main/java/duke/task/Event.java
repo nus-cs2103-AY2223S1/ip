@@ -3,6 +3,9 @@ package duke.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Encapsulates an event.
+ */
 public class Event extends Task {
     private LocalDateTime datetime;
 
@@ -16,6 +19,10 @@ public class Event extends Task {
         this.datetime = datetime;
     }
 
+    /**
+     * Overloaded constructor for Event instance
+     * @param data String passed in from Storage
+     */
     public Event(String[] data) {
         super(data[2], (data[1].equals("1")));
         this.datetime = LocalDateTime.parse(data[3]);
@@ -42,6 +49,9 @@ public class Event extends Task {
         return "[E]" + super.toString() + " (at: " + this.getDatetime() + "H)";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toStringWritable() {
         return " E |" + super.toStringWritable() + String.format("| %s ", this.datetime);

@@ -1,7 +1,7 @@
 package duke.task;
 
 /**
- * Class that encapsulates a task and tracks its completion status.
+ * Encapsulates a task and tracks its completion status.
  */
 public class Task {
     /**
@@ -11,7 +11,7 @@ public class Task {
     private String name;
 
     /**
-     * Constructor for a Task item.
+     * Constructor for a new Task item.
      * @param name Description of task
      */
     Task(String name) {
@@ -20,7 +20,7 @@ public class Task {
     }
 
     /**
-     * Constructor for a Task item.
+     * Constructor for a Task item with completion status.
      * @param name Description of task
      * @param done Whether task is done or not
      */
@@ -46,7 +46,7 @@ public class Task {
     }
 
     /**
-     * Checks if Task is completed
+     * Checks if Task is completed.
      * @return True if Task completed, False if not
      */
     public boolean isDone() {

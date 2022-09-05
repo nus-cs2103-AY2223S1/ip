@@ -3,11 +3,15 @@ package duke.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Encapsulates a deadline.
+ */
 public class Deadline extends Task {
+    /** Stores the datetime of the deadline. */
     private LocalDateTime datetime;
 
     /**
-     * Constructor for Deadline instance
+     * Overloaded constructor for Deadline instance
      * @param data String passed in from Storage
      */
     public Deadline(String[] data) {
@@ -46,6 +50,9 @@ public class Deadline extends Task {
         return "[D]" + super.toString() + " (by: " + this.getDatetime() + "H)";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toStringWritable() {
         return " D |" + super.toStringWritable() + String.format("| %s ", this.datetime);
