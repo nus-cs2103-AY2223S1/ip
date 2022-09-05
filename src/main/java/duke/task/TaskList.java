@@ -185,7 +185,10 @@ public class TaskList {
         return sortedTaskList;
     }
 
-    private boolean withinDate(LocalDateTime start, LocalDateTime end, Task task) {
+    private boolean withinDateAndIsNotDone(LocalDateTime start, LocalDateTime end, Task task) {
+        if (task.getDoneStatus() == 1) {
+            return false;
+        }
         if (task.getLocalDateTime().isBefore(start)) {
             return false;
         }
@@ -196,14 +199,14 @@ public class TaskList {
     }
 
     /**
-     * Finds the tasks of a certain date range
+     * Finds the tasks of a certain date range that are undone.
      * @return task list within specified date
      */
     public TaskList getTasksWithinDate(LocalDateTime start, LocalDateTime end) {
         List<Task> tasksWithinDate = new ArrayList<>();
 
         this.getTaskList().forEach(task -> {
-            if (withinDate(start, end, task)) {
+            if (withinDateAndIsNotDone(start, end, task)) {
                 tasksWithinDate.add(task);
             }
         });
