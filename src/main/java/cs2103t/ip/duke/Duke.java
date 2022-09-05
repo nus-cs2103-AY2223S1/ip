@@ -4,7 +4,6 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.time.LocalDate;
-
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -151,7 +150,7 @@ public class Duke extends Application {
                 DialogBox.getUserDialog(userText, new ImageView(user)),
                 DialogBox.getDukeDialog(dukeText, new ImageView(duke))
         );
-        if (userInput.getText().equals("bye")) {
+        if (parser.isBye(userInput.getText())) {
             PauseTransition delay = new PauseTransition(Duration.seconds(3));
             delay.setOnFinished(event -> Platform.exit());
             delay.play();

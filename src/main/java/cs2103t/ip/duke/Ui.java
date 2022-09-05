@@ -1,14 +1,8 @@
 package cs2103t.ip.duke;
 
-import javafx.application.Platform;
-
 public class Ui {
 
     private final String LINE = "_______________________________\n";
-
-    public String showLine() {
-        return LINE;
-    }
 
     public String showWelcome() {
         return LINE +
