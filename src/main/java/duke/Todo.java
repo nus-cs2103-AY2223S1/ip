@@ -11,6 +11,7 @@ public class Todo extends Task{
         this.isDone = isDone;
     }
 
+
     /**
      * Encodes the task to string for storage.
      * @return the encoded string

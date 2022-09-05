@@ -3,7 +3,7 @@ package duke;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Event extends Task{
+public class Event extends Task implements Snoozable{
     protected LocalDateTime at;
 
     public Event(String description, LocalDateTime at) {
@@ -15,6 +15,10 @@ public class Event extends Task{
         super(description);
         this.at = at;
         this.isDone = isDone;
+    }
+    
+    public void snooze(){
+        this.at = this.at.plusDays(1);
     }
 
     /**

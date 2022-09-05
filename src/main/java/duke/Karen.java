@@ -43,6 +43,11 @@ public class Karen extends Application{
         tasks.add(task);
         storage.save(tasks);
     }
+    
+    public void snoozeTask(Snoozable s) {
+        s.snooze();
+        storage.save(tasks);
+    }
 
     /**
      * Deletes task of the index from storage.
@@ -179,7 +184,7 @@ public class Karen extends Application{
         if (input.startsWith("mark ")) {
             int index = Integer.parseInt(input.split(" ")[1]) - 1;
             if (index < 0 || index >= tasks.size()) {
-                ui.getWrongIndexMessage();
+                return ui.getWrongIndexMessage();
             }
             mark(index);
             return ui.getMarkedMessage(tasks.get(index));
@@ -187,7 +192,7 @@ public class Karen extends Application{
         if (input.startsWith("unmark ")) {
             int index = Integer.parseInt(input.split(" ")[1]) - 1;
             if (index < 0 || index >= tasks.size()) {
-                ui.getWrongIndexMessage();
+                return ui.getWrongIndexMessage();
             }
             unmark(index);
             return ui.getUnmarkedMessage(tasks.get(index));
@@ -195,7 +200,7 @@ public class Karen extends Application{
         if (input.startsWith("todo ")) {
             String desc = input.substring(5);
             if (desc.trim().length() == 0) {
-                ui.getEmptyTaskMessage();
+                return ui.getEmptyTaskMessage();
             }
             Todo t = new Todo(desc);
             addTask(t);
@@ -204,10 +209,10 @@ public class Karen extends Application{
         if (input.startsWith("deadline ")) {
             String[] params = input.substring(9).split(" /by ");
             if (params.length < 2) {
-                ui.getFailureMessage();
+                return ui.getFailureMessage();
             }
             if (params[0].trim().length() == 0) {
-                ui.getEmptyTaskMessage();
+                return ui.getEmptyTaskMessage();
             }
 
             String[] temp = params[1].split(" ");
@@ -243,6 +248,18 @@ public class Karen extends Application{
             Task toRemove = tasks.get(index);
             deleteTask(index);
             return ui.getTaskDeletedMessage(toRemove, tasks.size());
+        }
+        if (input.startsWith("snooze ")) {
+            int index = Integer.parseInt(input.split(" ")[1]) - 1;
+            if (index < 0 || index >= tasks.size()) {
+                return ui.getWrongIndexMessage();
+            }
+            Task t = tasks.get(index);
+            if (t instanceof Todo) {
+                return ui.getCannotSnoozeMessage();
+            }
+            snoozeTask((Snoozable) t);
+            return ui.getTaskSnoozedMessage(t);
         }
         if (input.startsWith("find ")) {
             String keyword = input.substring(5);
