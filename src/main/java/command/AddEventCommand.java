@@ -25,8 +25,9 @@ public class AddEventCommand extends Command {
         Event eventToAdd = Parser.stringToEvent(userInput);
         taskList.addEvent(eventToAdd);
         String storableLine = eventToAdd.toString() + "\n";
-        storage.appendLine(storableLine);
-        ui.showMessage("Added event");
+        if (storage.isLineAppended(storableLine)) {
+            ui.showMessage("Added event");
+        }
     }
 
     /**

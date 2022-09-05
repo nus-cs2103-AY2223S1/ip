@@ -77,7 +77,7 @@ public class Storage {
 
     //Define all StorageWriter methods
 
-    public boolean appendLine(String s) {
+    public boolean isLineAppended(String s) {
         return storageWriter.appendLine(s);
     }
 
