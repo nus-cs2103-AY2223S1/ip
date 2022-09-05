@@ -47,7 +47,11 @@ public class InvalidArgumentException extends DukeException {
         case Date:
             message += "\nPlease input the date in d/MM/yyyy format e.g. 2/12/2019 1800.";
             break;
+        case All:
+            message += "\nPlease input all, event, deadline or todo!";
+            break;
         default:
+            break;
         }
         return "OOPS!!! The description of the " + this.command
                 + " is invalid!" + message;

@@ -21,6 +21,8 @@ public class Task {
         this.isDone = false;
     }
 
+    public Task() {}
+
     /**
      * Returns the completion status of the task. If the
      * task is completed return "X" else " ".

@@ -1,6 +1,9 @@
 package duke.task;
 
+import duke.command.Commands;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The TaskList which stores the users task in an ArrayList.
@@ -81,6 +84,37 @@ public class TaskList {
      */
     public Task getTask(int index) {
         return taskList.get(index);
+    }
+
+    public ArrayList<Integer> getIndexOfTasks(Task taskType) {
+        ArrayList<Integer> tasks = new ArrayList<>();
+        if (taskType == null) {
+            for (int i = 0; i < taskList.size(); i++) {
+                tasks.add(i);
+            }
+            return tasks;
+        }
+        for (int i = 0; i < taskList.size(); i++) {
+            Task task = getTask(i);
+            if (task.getClass().equals(taskType.getClass())) {
+                tasks.add(i);
+            }
+        }
+        return tasks;
+    }
+
+    public String clearCompletedTasks() {
+        List<Task> tasks = new ArrayList<>();
+        String displayTasks = "";
+        for (int i = 0; i < taskList.size(); i++) {
+            Task currentTask = taskList.get(i);
+            if (currentTask.getStatusIcon().equals("X")) {
+                tasks.add(currentTask);
+                displayTasks += currentTask + "\n";
+            }
+        }
+        taskList.removeAll(tasks);
+        return displayTasks;
     }
 
 }

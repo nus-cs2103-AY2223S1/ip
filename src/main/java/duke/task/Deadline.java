@@ -29,8 +29,9 @@ public class Deadline extends Task {
         date = LocalDate.parse(details[0], inputFormat);
         time = details[1];
         this.dateTime = dateTime;
-
     }
+
+    public Deadline() {}
 
     /**
      * Reads from the input file and returns a deadline based on the data

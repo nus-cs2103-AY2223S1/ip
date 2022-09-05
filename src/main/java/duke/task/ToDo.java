@@ -17,6 +17,8 @@ public class ToDo extends Task {
         assert !description.isEmpty();
     }
 
+    public ToDo() {}
+
     /**
      * Reads from the input file and returns a todo task based
      * on the data in the file.
