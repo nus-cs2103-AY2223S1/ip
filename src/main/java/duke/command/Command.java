@@ -1,13 +1,14 @@
 package duke.command;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskManager;
 import duke.ui.Ui;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
+
 
 /**
  * Represents a Command class
@@ -32,6 +33,7 @@ public abstract class Command {
         FIND,
         LIST,
         MARK,
+        REMIND,
         TODO,
         UNMARK,
     }
@@ -61,6 +63,8 @@ public abstract class Command {
                 return new ListCommand();
             } else if (keyword.equals("bye")) {
                 return new ExitCommand();
+            } else if (keyword.equals("reminders")) {
+                return new RemindCommand();
             } else {
                 throw new DukeException("unknown");
             }
@@ -243,7 +247,7 @@ public abstract class Command {
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) throws IOException {
             this.ongoing = false;
-            String message = tasks.craftTextMessage();
+            String message = tasks.craftTextMessageForFile();
             storage.editStorage(message);
             return ui.sayBye();
         }
@@ -271,7 +275,7 @@ public abstract class Command {
          */
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) {
-            String res = tasks.findAndCraft(this.s);
+            String res = tasks.findAndCraftTaskList(this.s);
             return ui.sendAndReturnMessage(ActionKeywords.FIND, null, "0", res);
         }
     }
@@ -346,8 +350,34 @@ public abstract class Command {
          */
         @Override
         public String execute(TaskManager tasks, Ui ui, Storage storage) {
-            String message = tasks.craftList();
+            String message = tasks.craftTaskList();
             return ui.sendAndReturnMessage(ActionKeywords.LIST, null, String.valueOf(tasks.numOfTasks()), message);
+        }
+    }
+
+    /**
+     * Represents a Remind Command class.
+     */
+    public static class RemindCommand extends Command {
+
+        /**
+         * Creates a Remind Command class through a constructor method.
+         */
+        public RemindCommand() {
+        }
+
+        /**
+         * Executes task.
+         * @param tasks list of tasks
+         * @param ui user interface being used
+         * @param storage place where text is stored
+         * @return message
+         */
+        @Override
+        public String execute(TaskManager tasks, Ui ui, Storage storage) {
+            String message = tasks.craftRemindersList();
+            return ui.sendAndReturnMessage(ActionKeywords.REMIND, null,
+                    String.valueOf(tasks.numOfTaskType(Task.TaskType.DEADLINE)), message);
         }
     }
 

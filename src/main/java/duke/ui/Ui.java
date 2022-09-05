@@ -116,16 +116,15 @@ public class Ui {
             System.out.println(msg);
             return msg;
         } else if (keyword == Command.ActionKeywords.LIST) {
+            String msg;
             if (message.equals("")) {
-                String msg = formatMessage("There are currently no tasks in your list");
-                System.out.println(msg);
-                return msg;
+                msg = formatMessage("There are currently no tasks in your list");
             } else {
-                String msg = formatMessage("Here are the task(s) in your list:\n"
+                msg = formatMessage("Here are the task(s) in your list:\n"
                         + INDENTATION + message);
-                System.out.println(msg);
-                return msg;
             }
+            System.out.println(msg);
+            return msg;
         } else if (keyword == Command.ActionKeywords.MARK) {
             String msg = formatMessage("Nice! I've marked this task as done:\n"
                     + INDENTATION + EXTRA_INDENTATION + task);
@@ -137,16 +136,25 @@ public class Ui {
             System.out.println(msg);
             return msg;
         } else if (keyword == Command.ActionKeywords.FIND) {
+            String msg;
             if (message.equals("")) {
-                String msg = formatMessage("Sorry, there are no matching tasks in your list");
-                System.out.println(msg);
-                return msg;
+                msg = formatMessage("Sorry, there are no matching tasks in your list");
             } else {
-                String msg = formatMessage("Here are the matching tasks in your list:\n"
+                msg = formatMessage("Here are the matching tasks in your list:\n"
                         + INDENTATION + message);
-                System.out.println(msg);
-                return msg;
             }
+            System.out.println(msg);
+            return msg;
+        } else if (keyword == Command.ActionKeywords.REMIND) {
+            String msg;
+            if (message.equals("")) {
+                msg = formatMessage("You have no uncompleted deadline tasks!");
+            } else {
+                msg = formatMessage("Here are the uncompleted tasks in your list:\n"
+                        + INDENTATION + message);
+            }
+            System.out.println(msg);
+            return msg;
         } else {
             return null;
         }

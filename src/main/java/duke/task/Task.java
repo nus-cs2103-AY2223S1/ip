@@ -75,6 +75,13 @@ public abstract class Task {
     }
 
     /**
+     * Checks if a task is completed.
+     */
+    public boolean checkIfCompleted() {
+        return this.completed;
+    }
+
+    /**
      * Represents the completion status to be added into the file.
      *
      * @return String representation of status
@@ -161,6 +168,15 @@ public abstract class Task {
         public boolean contains(String s) {
             return this.todo.contains(s);
         }
+
+        /**
+         * Gets the task type of task.
+         * @return TaskType
+         */
+        @Override
+        public TaskType getTaskType() {
+            return TaskType.TODO;
+        }
     }
 
     /**
@@ -229,6 +245,15 @@ public abstract class Task {
         @Override
         public boolean contains(String s) {
             return this.todo.contains(s) || this.date.toString().contains(s);
+        }
+
+        /**
+         * Gets the task type of task.
+         * @return TaskType
+         */
+        @Override
+        public TaskType getTaskType() {
+            return TaskType.DEADLINE;
         }
     }
 
@@ -299,6 +324,15 @@ public abstract class Task {
         public boolean contains(String s) {
             return this.todo.contains(s) || this.date.toString().contains(s);
         }
+
+        /**
+         * Gets the task type of task.
+         * @return TaskType
+         */
+        @Override
+        public TaskType getTaskType() {
+            return TaskType.EVENT;
+        }
     }
 
     /**
@@ -321,4 +355,10 @@ public abstract class Task {
      * @return boolean
      */
     public abstract boolean contains(String s);
+
+    /**
+     * Gets the task type of task.
+     * @return TaskType
+     */
+    public abstract TaskType getTaskType();
 }
