@@ -33,6 +33,9 @@ public class MarkCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         storage.saveToFile(tasks.saveList());
+        if (index > tasks.getSize() || index <= 0) {
+            return ui.printMessage("Index is out of range!");
+        }
         return ui.printMark(tasks.get(index));
     }
 }

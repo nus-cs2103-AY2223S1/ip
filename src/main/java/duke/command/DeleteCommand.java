@@ -31,7 +31,15 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        String temp = tasks.deleteTask(this.index);
+        if (index > tasks.getSize() || index <= 0) {
+            return ui.printMessage("Index is out of range!");
+        }
+        tasks.deleteTask(this.index);
+
+        if (tasks.getSize() == 0) {
+            return "Hooray you have no tasks left!";
+        }
+
         storage.saveToFile(tasks.saveList());
         return ui.printDeleteTask(tasks.get(this.index), tasks.getSize());
     }

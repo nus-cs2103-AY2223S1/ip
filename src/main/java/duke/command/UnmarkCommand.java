@@ -32,6 +32,9 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
+        if (index > tasks.getSize() || index <= 0) {
+            return ui.printMessage("Index is out of range!");
+        }
         storage.saveToFile(tasks.saveList());
         return ui.printUnmark(tasks.get(index));
     }

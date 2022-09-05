@@ -4,7 +4,6 @@
  */
 package duke;
 
-import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -95,7 +94,6 @@ public class Parser {
                 case DELETE:
                     throw new DukeException("The index to delete cannot be left empty");
 
-
                 case FIND:
                     throw new DukeException("The keyword to find cannot be left empty");
 
@@ -143,7 +141,8 @@ public class Parser {
                 case PRIORITY:
                     //command line will be priority <priority height> /for <task index>
                     String[] parse2 = splitString[1].split(" /for ", 2);
-                    int priority = 0, index = 0;
+                    int priority = 0;
+                    int index = 0;
 
                     try {
                         priority = Integer.parseInt(parse2[0]);

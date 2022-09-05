@@ -11,7 +11,7 @@ import duke.Ui;
 /**
  * puvlic class ListCommand that handles List Command/enumerate the tasklist.
  */
-public class ListCommand extends Command{
+public class ListCommand extends Command {
 
     /**
      * public constructor for ListCommand.

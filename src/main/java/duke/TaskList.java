@@ -110,8 +110,8 @@ public class TaskList {
 
         List<Task> result = this.memo
                 .stream()
-                .filter(task -> Arrays.stream(keywords).
-                        allMatch(word -> task.getTaskName().contains(word))) //only store task names that has keywords.
+                .filter(task -> Arrays.stream(keywords)
+                        .allMatch(word -> task.getTaskName().contains(word))) //only store task names that has keywords.
                 .collect(Collectors.toList());
 
         //break code if nothing is found to be the same.

@@ -12,6 +12,7 @@ import duke.Ui;
  * public class HiCommand to handle Welcome/Hi/CommandList command.
  */
 public class HiCommand extends Command {
+
     /**
      * public constructor for HiCommand.
      */
@@ -20,6 +21,13 @@ public class HiCommand extends Command {
         this.isExit = false;
     }
 
+    /**
+     * public method execute to execute the hi command.
+     * @param tasks
+     * @param ui
+     * @param storage
+     * @return
+     */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         return ui.printWelcome();
