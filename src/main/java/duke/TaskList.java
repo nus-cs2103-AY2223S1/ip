@@ -79,6 +79,14 @@ public class TaskList {
     }
 
     /**
+     * Adds a new generic Task.
+     * @param task Task to be added
+     */
+    public void addTask(Task task) {
+        db.add(task);
+    }
+
+    /**
      * Adds a new To-Do task.
      * @param task To-do to be added
      */

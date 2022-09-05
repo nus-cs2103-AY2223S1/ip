@@ -100,6 +100,13 @@ public class Parser {
                     return new DeleteCommand(tmp);
                 }
 
+                case "find":
+                    if (userInput.length < 2) {
+                        throw new DukeException("Missing task keyword to find.");
+                    } else {
+                        return new FindCommand(userInput[1].trim());
+                    }
+
             default:
                 throw new DukeException("Unrecognized command.");
             }
