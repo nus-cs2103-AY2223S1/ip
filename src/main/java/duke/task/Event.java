@@ -30,7 +30,8 @@ public class Event extends Task {
      */
     @Override
     public String stringToSave() {
-        return "E|" + ("X".equals(super.getStatusIcon()) ? "1|" : "0|") + super.description + "|" + this.date;
+        String statusString = "X".equals(super.getStatusIcon()) ? "1|" : "0|";
+        return "E|" + statusString + super.description + "|" + this.date;
     }
 
     /**
@@ -40,7 +41,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
+        String date = this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
         return "[E][" + super.getStatusIcon() + "] " + super.description + " (at: "
-                + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+                + date + ")";
     }
 }

@@ -72,7 +72,7 @@ public class ParserTest {
             parser.parse("todo");
             fail("An exception should be thrown");
         } catch (DukeException e) {
-            assertEquals(new InvalidInput("The description of a todo cannot be empty.").toString(), e.toString());
+            assertEquals(new InvalidInput("The description cannot be empty.").toString(), e.toString());
         }
     }
 
@@ -103,7 +103,7 @@ public class ParserTest {
             parser.parse("event /at 2019-10-15");
             fail("An exception should be thrown");
         } catch (DukeException e) {
-            assertEquals(new InvalidInput("The description of event cannot be empty.").toString(), e.toString());
+            assertEquals(new InvalidInput("The description cannot be empty.").toString(), e.toString());
         }
         // invalid date format
         try {
@@ -141,7 +141,7 @@ public class ParserTest {
             parser.parse("deadline /by 2019-10-15");
             fail("An exception should be thrown");
         } catch (DukeException e) {
-            assertEquals(new InvalidInput("The description of deadline cannot be empty.").toString(), e.toString());
+            assertEquals(new InvalidInput("The description cannot be empty.").toString(), e.toString());
         }
         // invalid date format
         try {

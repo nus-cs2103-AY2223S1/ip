@@ -24,19 +24,19 @@ public class TaskList {
     /**
      * Returns the number of tasks saved.
      *
-     * @return The size of the ArrayList.
+     * @return The getSize of the ArrayList.
      */
-    public int size() {
+    public int getSize() {
         return data.size();
     }
 
     /**
-     * Returns the tasks saved in the provided index.
+     * Returns the task saved in the provided index.
      *
      * @param index The index of the tasks of interest.
      * @return The task of interest.
      */
-    public Task get(int index) {
+    public Task getTask(int index) {
         return data.get(index);
     }
 
@@ -45,7 +45,7 @@ public class TaskList {
      *
      * @param task The new task to append.
      */
-    public void add(Task task) {
+    public void addTask(Task task) {
         data.add(task);
     }
 
@@ -55,9 +55,9 @@ public class TaskList {
      * @param res The string to check.
      * @return The valid index in Integer.
      * @throws InvalidInput If the string given is not a number or the number is
-     *                      less than 0 or more than the size of the ArrayList.
+     *                      less than 0 or more than the getSize of the ArrayList.
      */
-    public int stringIndexToInt(String res) throws InvalidInput {
+    public int formatStringIndexToInt(String res) throws InvalidInput {
         if (!res.matches("[0-9]+")) {
             throw new InvalidInput("Input is not a number");
         }
@@ -77,7 +77,7 @@ public class TaskList {
      * @throws DukeException If the provided string is not valid.
      */
     public Task setTaskCompletion(String indexString, boolean isComplete) throws DukeException {
-        int index = stringIndexToInt(indexString);
+        int index = formatStringIndexToInt(indexString);
         assert index >= 0 && index < data.size();
         Task task = data.get(index);
         if (isComplete) {
@@ -96,7 +96,7 @@ public class TaskList {
      * @throws DukeException If the provided string is not valid.
      */
     public Task deleteTask(String indexString) throws DukeException {
-        int index = stringIndexToInt(indexString);
+        int index = formatStringIndexToInt(indexString);
         assert index >= 0 && index < data.size();
         Task task = data.get(index);
         data.remove(index);
@@ -114,7 +114,7 @@ public class TaskList {
         for (Task t : data) {
             String taskDescription = t.getDescription();
             if (taskDescription.contains(query)) {
-                res.add(t);
+                res.addTask(t);
             }
         }
         return res;

@@ -38,7 +38,7 @@ public class DeleteCommand extends Command {
         assert deletedTask != null;
         storage.saveData(tasks);
         return "Noted. I've removed this task:\n" + deletedTask
-                + "\nNow you have " + tasks.size() + " tasks.";
+                + "\nNow you have " + tasks.getSize() + " tasks.";
     }
 
     /**

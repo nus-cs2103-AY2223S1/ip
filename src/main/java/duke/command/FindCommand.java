@@ -32,7 +32,7 @@ public class FindCommand extends Command {
         assert tasks != null;
         TaskList result = tasks.find(query);
         assert result != null;
-        if (result.size() == 0) {
+        if (result.getSize() == 0) {
             return "No results match your search :(";
         } else {
             return "Here are the matching tasks in your list:\n" + result;

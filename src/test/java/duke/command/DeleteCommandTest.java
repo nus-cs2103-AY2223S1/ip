@@ -26,11 +26,11 @@ public class DeleteCommandTest {
 
     @Test
     public void deleteTest() {
-        tasks.add(new ToDo("test test"));
+        tasks.addTask(new ToDo("test test"));
         try {
             Command command = new DeleteCommand("1");
             command.execute(tasks, storage);
-            assertEquals(0, tasks.size());
+            assertEquals(0, tasks.getSize());
         } catch (DukeException e) {
             fail(e);
         }
