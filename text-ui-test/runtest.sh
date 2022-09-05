@@ -26,8 +26,10 @@ then
 fi
 
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-gradlew run -p .. --args console-test -q < input.txt > ACTUAL.TXT
-gradlew run -p .. --args console-test -q < input2.txt >> ACTUAL.TXT
+# @@author cheeheng-reused
+# ./gradlew adapted from https://stackoverflow.com/questions/41700798/gradlew-command-not-found
+./gradlew run -p .. --args console-test -q < input.txt > ACTUAL.TXT
+./gradlew run -p .. --args console-test -q < input2.txt >> ACTUAL.TXT
 
 # convert to UNIX format
 cp EXPECTED.TXT EXPECTED-UNIX.TXT
