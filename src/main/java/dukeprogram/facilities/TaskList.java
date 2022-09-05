@@ -105,7 +105,6 @@ public class TaskList implements Serializable {
      */
     public Task remove(int index) {
         assert index < taskArrayList.size() && index >= 0;
-        
         Task removedTask = taskArrayList.remove(index);
         SaveManager.save("tasklist", this);
         return removedTask;
