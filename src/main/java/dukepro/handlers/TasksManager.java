@@ -110,7 +110,7 @@ public class TasksManager {
     }
 
     /**
-     * Deletes a task from the list of tasks.
+     * Returns number of tasks.
      *
      * @return An int showing number of tasks.
      */

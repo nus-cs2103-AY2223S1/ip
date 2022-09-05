@@ -52,6 +52,10 @@ public class Interact {
             return tasksManager.find(Decoder.parseFind(word));
         } else if (word.startsWith("expense") || word.startsWith("Expense")) {
             return expenseManager.addExpense(Decoder.makeExpense(word));
+        } else if (word.startsWith("showExpense")) {
+            return expenseManager.showList();
+        } else if (word.startsWith("delExpense")) {
+            return expenseManager.deleteExpense(Decoder.deleteExpense(word, expenseManager.numEx()));
         } else {
             throw new DukeException("bad input");
         }

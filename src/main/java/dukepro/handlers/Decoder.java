@@ -142,6 +142,30 @@ public class Decoder {
      * @return an integer indicating task to be deleted.
      * @throws DukeException if input is bad.
      */
+    public static int deleteExpense(String word, int len) throws DukeException {
+        String[] deleteTasks = word.split(" ");
+
+        if (deleteTasks.length != 2) {
+            throw new BadTaskOperationException("delete", "delete");
+        }
+        if (!isValidNum(deleteTasks[1])) {
+            throw new BadFormatException("delete", "delete", "<TASK ID>", "");
+        }
+        int taskNo = Integer.parseInt(deleteTasks[1]);
+        if (taskNo > len) {
+            throw new BadTaskOperationException("delete", "delete");
+        }
+        return taskNo;
+    }
+
+    /**
+     * Returns the integer of the task of be deleted.
+     *
+     * @param word the name of the task.
+     * @param len the total number of tasks.
+     * @return an integer indicating task to be deleted.
+     * @throws DukeException if input is bad.
+     */
     public static int handleDelete(String word, int len) throws DukeException {
         String[] deleteTasks = word.split(" ");
 
