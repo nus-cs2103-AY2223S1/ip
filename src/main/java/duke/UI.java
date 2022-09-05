@@ -22,10 +22,6 @@ public class UI {
         return (LOGO);
     }
 
-    private static String getLine() {
-        return LINE;
-    }
-
     private static String getGoodbyeMessage() {
         return (GOODBYE_MESSAGE);
     }
@@ -40,9 +36,12 @@ public class UI {
     public static String end() {
         return getGoodbyeMessage();
     }
-
-
-    //method to print in list format
+    
+    /**
+     * Prints current arraylist of tasks.
+     *
+     * @return string to display in GUI
+     */
     public static String printList() {
         int len = TaskList.taskListLength();
         if (len < 1) {
