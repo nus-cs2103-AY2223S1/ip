@@ -4,9 +4,6 @@ package duke.chatbot.util;
  * A MessageConstructor class to construct messages from lines of strings.
  */
 public class MessageBuilder {
-    /**
-     * A string builder to build messages
-     */
     private final StringBuilder stringBuilder = new StringBuilder();
 
     /**

@@ -1,11 +1,8 @@
 package duke.chatbot;
 
-import static duke.chatbot.common.Message.MESSAGE_UNEXPECTED;
-
 import java.io.FileNotFoundException;
 
 import duke.chatbot.command.Command;
-import duke.chatbot.command.InvalidInputCommand;
 import duke.chatbot.data.exception.InvalidInputException;
 import duke.chatbot.data.task.TaskList;
 import duke.chatbot.storage.Storage;
@@ -69,7 +66,7 @@ public class Duke {
             }
             return command.execute().getMessage();
         } catch (InvalidInputException e) {
-            return new InvalidInputCommand(MESSAGE_UNEXPECTED).execute().getMessage();
+            return e.getMessage();
         }
     }
 }

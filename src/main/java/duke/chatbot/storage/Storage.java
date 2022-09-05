@@ -14,12 +14,12 @@ import duke.chatbot.data.task.TaskList;
  */
 public class Storage {
     /**
-     * A file loader to load the list of tasks stored in the application
+     * A file loader to load the list of tasks stored in the application.
      */
     private final TaskFileLoader fileLoader;
 
     /**
-     * A file saver to save the list of tasks in a file
+     * A file saver to save the list of tasks in a file.
      */
     private final TaskFileSaver fileSaver;
 

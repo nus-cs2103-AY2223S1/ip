@@ -1,5 +1,6 @@
-package duke.chatbot.command;
+package duke.chatbot.command.AddTaskCommands;
 
+import duke.chatbot.data.task.Task;
 import duke.chatbot.data.task.ToDo;
 
 /**
@@ -17,16 +18,8 @@ public class AddToDoCommand extends AddTaskCommand {
         this.arguments = arguments;
     }
 
-    /**
-     * Adds an instance of ToDo to the list of tasks stored in the Duke application instance and returns an instance
-     * of {@link CommandResult} which contains the ToDo added.
-     *
-     * @return The result after executing the command.
-     */
     @Override
-    public CommandResult execute() {
-        ToDo task = new ToDo(arguments);
-        addTask(task);
-        return new CommandResult(buildMessage(task));
+    protected Task supplyTask() {
+        return new ToDo(arguments);
     }
 }

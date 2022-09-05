@@ -1,20 +1,13 @@
 package duke.chatbot.data.task;
 
 /**
- * A task that contains a description and a boolean
- * that indicates whether the task has been completed.
+ * A task that contains a description and a boolean that indicates whether the task has been completed.
  *
  * @author jq1836
  */
 public abstract class Task {
-    /**
-     * A description of the task
-     */
     private final String description;
 
-    /**
-     * A boolean describing whether the task is done
-     */
     private boolean isDone = false;
 
     /**
@@ -30,8 +23,7 @@ public abstract class Task {
      * Constructs a task that may be done depending on the isDone argument.
      *
      * @param description A string that describes the task.
-     * @param isDone      A boolean value that describes whether the
-     *                    task is done.
+     * @param isDone      A boolean value that describes whether the task is done.
      */
     public Task(String description, boolean isDone) {
         this(description);
@@ -63,7 +55,7 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return this.getStatusIcon() + " " + description;
+        return String.format("%s  %s", getStatusIcon(), description);
     }
 
     /**
@@ -72,10 +64,15 @@ public abstract class Task {
      * @return A string that is written onto a text file to be stored.
      */
     public String encode() {
-        return ",,," + (isDone ? 1 : 0)
-                + ",,," + description;
+        return String.format("`%d`%s`", isDone ? 1 : 0, description);
     }
 
+    /**
+     * Returns true if description contains substring.
+     *
+     * @param substring Substring to check description for.
+     * @return True if description contains substring.
+     */
     public boolean hasSubstring(String substring) {
         return description.contains(substring);
     }

@@ -67,12 +67,14 @@ public abstract class TimedTask extends Task {
      * @return A string that corresponds to the task time.
      */
     protected String getTimeString() {
-        return dateTime.format(TIME_OUTPUT_FORMAT) + "hrs";
+        String timeString = dateTime.format(TIME_OUTPUT_FORMAT);
+        return String.format("%shrs", timeString);
     }
 
     @Override
     public String encode() {
-        return super.encode() + ",,," + dateTime.format(DATE_TIME_INPUT_FORMAT);
+        String dateTimeString = dateTime.format(DATE_TIME_INPUT_FORMAT);
+        return String.format("%s%s", super.encode(), dateTimeString);
     }
 
     @Override
