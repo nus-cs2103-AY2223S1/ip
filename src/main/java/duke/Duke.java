@@ -1,14 +1,19 @@
 package duke;
+
+import java.util.Scanner;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import java.io.IOException;
-import java.util.Scanner;
 
 // ACTUAL DUKE FILE IS IN main/dukelauncher/DukePro
 // THIS IS FOR IDE INTERFACE
 
+/**
+ * Duke object that user interacts with.
+ */
+@SuppressWarnings("checkstyle:Regexp")
 public class Duke extends Application {
     private final Storage storage;
     private TaskList tasks;
@@ -16,14 +21,6 @@ public class Duke extends Application {
 
     private final Parser parser;
 
-    @Override
-    public void start(Stage stage) {
-        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
-        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
-
-        stage.setScene(scene); // Setting the stage to show our screen
-        stage.show(); // Render the stage.
-    }
 
     /**
      * Creates a Duke object with the specified file path.
@@ -39,6 +36,22 @@ public class Duke extends Application {
             tasks = new TaskList();
         }
         parser = new Parser(ui, tasks, storage);
+    }
+
+    /**
+     * Starts the scene on this stage.
+     * @param stage the primary stage for this application, onto which
+     *     the application scene can be set.
+     *     Applications may create other stages, if needed, but they will not be
+     *     primary stages.
+     */
+    @Override
+    public void start(Stage stage) {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
     }
 
     /**

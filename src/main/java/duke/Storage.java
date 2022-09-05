@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Storage class that stores information on current Tasks.
+ */
 public class Storage {
     private final File file;
 

@@ -1,6 +1,9 @@
 package duke;
 
 
+/**
+ * Event class representing user events.
+ */
 public class Event extends Task {
 
     private final String time;

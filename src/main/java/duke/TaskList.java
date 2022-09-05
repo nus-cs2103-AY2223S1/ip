@@ -1,6 +1,10 @@
 package duke;
 
 import java.util.ArrayList;
+
+/**
+ * TaskList representing user's list of tasks.
+ */
 public class TaskList {
 
     private ArrayList<Task> tasks;
@@ -57,6 +61,12 @@ public class TaskList {
         return this.get(index).getDescription().indexOf(toFind) != -1;
     }
 
+
+    /**
+     * Returns a TaskList containing Tasks that matches the String provided.
+     * @param s An identifier to filter out relevant Tasks to be returned.
+     * @return A TaskList with a list of tasks that matches the String provided.
+     */
     public TaskList find(String s) {
         ArrayList<Task> temp = new ArrayList<>();
         for (int i = 0; i < this.size(); i++) {

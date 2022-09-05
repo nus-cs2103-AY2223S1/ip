@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * Class that generates messages displayed
+ * to the user.
+ */
 public class Ui {
 
     /**
@@ -103,6 +107,13 @@ public class Ui {
         return "Your task list has been successfully saved.";
     }
 
+    /**
+     * Returns a String containing information about the tasks in
+     * the list provided.
+     *
+     * @param tasks TaskList with the relevant tasks contained in it.
+     * @return String containing information about the tasks in the list.
+     */
     public String showFound(TaskList tasks) {
         System.out.println("Here are the matching tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
@@ -115,6 +126,11 @@ public class Ui {
         return toReturn;
     }
 
+    /**
+     * Returns a String describing the program's inability to process the
+     * user's input.
+     * @return String that tells the user that their input was not understood.
+     */
     public String showUnknown() {
         System.out.println("OOPS!! I'm sorry, but I don't know what that means :-(");
         return "OOPS!! I'm sorry, but I don't know what that means :-(";
