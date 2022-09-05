@@ -29,7 +29,9 @@ public class DeadlineCommand extends Command {
             String taskDeadline = this.fullCommand.substring(9);
             String[] arrOfStrings = taskDeadline.split(" /by ");
             if (arrOfStrings.length != 2) {
-                throw new TextNoMeaningException("Make sure you specify \"/by\" exactly once.");
+                throw new TextNoMeaningException("Make sure you specify \"/by\" exactly once,"
+                        + " and follow it up with a date and time as: \"yyyy/mm/dd XXXX\","
+                        + " where XXXX is time in 24-hours. The time is optional.");
             }
             String taskDescription = arrOfStrings[0];
             String taskByUserInput = arrOfStrings[1];
@@ -44,8 +46,8 @@ public class DeadlineCommand extends Command {
                     + (taskList.getSize() <= 1 ? " task in the list." : " tasks in the list.");
             return s;
         } catch (IndexOutOfBoundsException e) {
-            throw new TextNoMeaningException("You have either not entered any text after typing deadline, \n"
-                    + "  or you have positioned your slash wrongly.");
+            throw new TextNoMeaningException("You have either not entered any text after typing deadline, "
+                    + "or you have positioned your slash wrongly.");
         } catch (PatternSyntaxException e) {
             throw new TextNoMeaningException("There is a problem with the regex expression written by the dev.");
         }

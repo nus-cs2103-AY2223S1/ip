@@ -30,7 +30,9 @@ public class EventCommand extends Command {
             String taskEvent = this.fullCommand.substring(6);
             String[] arrOfStrings = taskEvent.split(" /at ");
             if (arrOfStrings.length != 2) {
-                throw new TextNoMeaningException("  Make sure you specify \"/at\" exactly once.");
+                throw new TextNoMeaningException("Make sure you specify \"/at\" exactly once,"
+                        + " and follow it up with a date and time as: \"yyyy/mm/dd XXXX-XXXX\","
+                        + " where XXXX is time in 24-hours. The time is compulsory.");
             }
             String taskDescription = arrOfStrings[0];
             String taskDurationUserInput = arrOfStrings[1];
@@ -45,8 +47,8 @@ public class EventCommand extends Command {
                     + (taskList.getSize() <= 1 ? " task in the list." : " tasks in the list.");
             return s;
         } catch (IndexOutOfBoundsException e) {
-            throw new TextNoMeaningException("You have either not entered any text after typing event, \n"
-                    + "  or you have positioned your slash wrongly.");
+            throw new TextNoMeaningException("You have either not entered any text after typing event, "
+                    + "or you have positioned your slash wrongly.");
         } catch (PatternSyntaxException e) {
             throw new TextNoMeaningException("There is a problem with the regex expression written by the dev.");
         }

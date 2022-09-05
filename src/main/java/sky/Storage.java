@@ -58,7 +58,7 @@ public class Storage {
                     String taskBy = description.substring(indexOfBracket + 5, description.length() - 1);
                     Task task = new Deadline(taskDescription, taskBy);
                     taskList.add(task);
-                } else {
+                } else if (taskType == 'E') {
                     int indexOfBracket = -1;
                     for (int i = 0; i < description.length(); i++) {
                         if (description.charAt(i) == '(') {
