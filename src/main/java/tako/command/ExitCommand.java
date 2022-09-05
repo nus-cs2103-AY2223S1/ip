@@ -20,9 +20,7 @@ public class ExitCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) { }
 
     /**
-     * Returns true as Tako can exit after this command.
-     *
-     * @return True.
+     * {@inheritDoc}
      */
     @Override
     public boolean isExit() {

@@ -10,7 +10,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,20 +33,6 @@ public class Storage {
         this.tasksPath = Paths.get(tasksPath);
     }
 
-    private String convertToFileFormat(Task task) {
-        String s = task.toString();
-        char taskType = s.charAt(1);
-        int isDone = s.charAt(4) == ' ' ? 0 : 1;
-        String description = s.substring(7);
-        if (taskType == 'D' || taskType == 'E') {
-            description = description.substring(0, description.length() - 1);
-            description = taskType == 'D'
-                    ? description.replaceFirst("\\(by:", "|")
-                    : description.replaceFirst("\\(at:", "|");
-        }
-        return String.format("%c | %d | %s", taskType, isDone, description);
-    }
-
     /**
      * Saves the task to a file.
      *
@@ -57,7 +42,7 @@ public class Storage {
     public void saveToFile(Task task) throws IOException {
         FileWriter fw = new FileWriter(tasksPath.toString(), true);
         BufferedWriter bw = new BufferedWriter(fw);
-        bw.write(convertToFileFormat(task));
+        bw.write(task.convertToFileFormat());
         bw.newLine();
         bw.close();
     }
@@ -72,7 +57,7 @@ public class Storage {
         BufferedWriter bw = Files.newBufferedWriter(tasksPath);
         for (int i = 0; i < tasks.getSize(); i++) {
             Task task = tasks.get(i);
-            bw.write(convertToFileFormat(task));
+            bw.write(task.convertToFileFormat());
             bw.newLine();
         }
         bw.close();
@@ -81,27 +66,27 @@ public class Storage {
     private Task convertToTask(String line) {
         String[] splitLine = line.split(" \\| ");
         String taskType = splitLine[0];
+        String description = splitLine[2];
         Task task = null;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
         switch (taskType) {
         case "T":
-            task = new Todo(splitLine[2]);
+            task = new Todo(description);
             break;
         case "D":
-            LocalDateTime deadlineDateTime = LocalDateTime.parse(
-                    splitLine[3], formatter);
-            task = new Deadline(splitLine[2], deadlineDateTime);
+            LocalDateTime deadlineDateTime = LocalDateTime.parse(splitLine[3]);
+            task = new Deadline(description, deadlineDateTime);
             break;
         case "E":
-            LocalDateTime eventDateTime = LocalDateTime.parse(
-                    splitLine[3], formatter);
-            task = (new Event(splitLine[2], eventDateTime));
+            LocalDateTime eventDateTime = LocalDateTime.parse(splitLine[3]);
+            task = new Event(description, eventDateTime);
             break;
         default:
             break;
         }
         if (task != null) {
-            if (splitLine[1].equals("1")) {
+            String isTaskDoneString = splitLine[1];
+            String done = "1";
+            if (isTaskDoneString.equals(done)) {
                 task.markAsDone();
             }
         }
@@ -117,15 +102,7 @@ public class Storage {
      *                     If an error occurs while reading the file.
      */
     public List<Task> load() throws IOException {
-        Path parent = tasksPath.getParent();
-        if (!Files.isDirectory(parent)) {
-            Files.createDirectories(parent);
-        }
-        if (!Files.isRegularFile(tasksPath)) {
-            Files.createFile(tasksPath);
-        }
-        assert Files.exists(tasksPath) : "File not created";
-
+        createSaveFile();
         List<Task> tasks = new ArrayList<>();
         BufferedReader br = Files.newBufferedReader(tasksPath);
         String line = br.readLine();
@@ -135,5 +112,15 @@ public class Storage {
         }
         br.close();
         return tasks;
+    }
+
+    private void createSaveFile() throws IOException{
+        Path parent = tasksPath.getParent();
+        if (!Files.isDirectory(parent)) {
+            Files.createDirectories(parent);
+        }
+        if (!Files.isRegularFile(tasksPath)) {
+            Files.createFile(tasksPath);
+        }
     }
 }

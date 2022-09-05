@@ -37,6 +37,17 @@ public class Task {
         isDone = true;
     }
 
+
+    /**
+     * Converts this task to a suitable format for file storage.
+     *
+     * @return String representing the task in file format.
+     */
+    public String convertToFileFormat() {
+        int taskDoneStatus = isDone ? 1 : 0;
+        return String.format("T | %d | %s", taskDoneStatus, description);
+    }
+
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;

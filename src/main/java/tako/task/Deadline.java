@@ -20,6 +20,15 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String convertToFileFormat() {
+        int taskDoneStatus = isDone ? 1 : 0;
+        return String.format("D | %d | %s | %s", taskDoneStatus, description, by);
+    }
+
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");

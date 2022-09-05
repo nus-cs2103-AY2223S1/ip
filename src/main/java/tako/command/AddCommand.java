@@ -39,9 +39,7 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Returns false as Tako cannot exit after this command.
-     *
-     * @return False.
+     * {@inheritDoc}
      */
     @Override
     public boolean isExit() {
