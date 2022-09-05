@@ -1,6 +1,8 @@
 package carbon.error;
 
 import carbon.task.Task;
+import carbon.task.Event;
+import carbon.task.Deadline;
 
 /**
  * Exception Class for invalid inputs on flags for indicating date time.
@@ -19,9 +21,9 @@ public class InvalidFlagException extends CarbonException {
         super(input);
         this.type = type;
         if (type == Task.Type.DEADLINE) {
-            this.flag = "/by"; // TODO: abstract out flags
+            this.flag = Deadline.FLAG;
         } else {
-            this.flag = "/at";
+            this.flag = Event.FLAG;
         }
     }
 

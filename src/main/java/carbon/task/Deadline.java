@@ -57,10 +57,10 @@ public class Deadline extends Task {
     private static Temporal formatTime(String timeString) throws DateTimeParseException {
         try {
             if (timeString.length() < 11) {
-                LocalDate time = LocalDate.parse(timeString, Task.DATEFORMATREAD);
+                LocalDate time = LocalDate.parse(timeString, Task.DATEFORMATPARSE);
                 return time;
             } else {
-                LocalDateTime time = LocalDateTime.parse(timeString, Task.DATETIMEFORMATREAD);
+                LocalDateTime time = LocalDateTime.parse(timeString, Task.DATETIMEFORMATPARSE);
                 return time;
             }
         } catch (DateTimeParseException error) {
@@ -110,12 +110,12 @@ public class Deadline extends Task {
         if (this.dateTime instanceof LocalDate) {
             LocalDate date = (LocalDate) this.dateTime;
             timeFormatted = formatType == Task.FormatType.READ
-                    ? date.format(Task.DATEFORMATREAD)
+                    ? date.format(Task.DATEFORMATPARSE)
                     : date.format(Task.DATEFORMATPRINT);
         } else {
             LocalDateTime time = (LocalDateTime) this.dateTime;
             timeFormatted = formatType == Task.FormatType.READ
-                    ? time.format(Task.DATETIMEFORMATREAD)
+                    ? time.format(Task.DATETIMEFORMATPARSE)
                     : time.format(Task.DATETIMEFORMATPRINT);
         }
         return timeFormatted;
