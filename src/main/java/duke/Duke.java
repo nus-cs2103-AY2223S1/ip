@@ -37,11 +37,13 @@ public class Duke {
 
     //@@author alvintfl-reused
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Gets a response from chatbot to user input
+     * @param input user input
+     * @return response from chatbot
      */
     public String getResponse(String input) {
         try {
+            ui.validate(input);
             Command c = Parser.parse(input);
             c.execute(tasks, ui, storage);
             isExit = c.isExit();
