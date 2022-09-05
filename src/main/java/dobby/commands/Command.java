@@ -1,31 +1,31 @@
 package dobby.commands;
 
+import java.io.IOException;
+
 import dobby.DobbyList;
 import dobby.UserInput;
-
-import java.io.IOException;
 
 /**
  * The abstract class for all commands.
  */
 public abstract class Command {
-  protected boolean isBye;
+    protected boolean isBye;
 
-  /**
-   * Sets bye flag.
-   *
-   * @return true of bye flag is set, false otherwise.
-   */
-  public boolean isBye() {
-    return isBye;
-  }
+    /**
+     * Sets bye flag.
+     *
+     * @return true of bye flag is set, false otherwise.
+     */
+    public boolean isBye() {
+        return isBye;
+    }
 
-  /**
-   * Executes the commands.
-   *
-   * @param dl list of tasks to execute from
-   * @param ui user interface
-   * @throws IOException throws error when IOException is detected
-   */
-  public abstract void execute(DobbyList dl, UserInput ui) throws IOException;
+    /**
+     * Executes the commands.
+     *
+     * @param dl list of tasks to execute from
+     * @param ui user interface
+     * @throws IOException throws error when IOException is detected
+     */
+    public abstract void execute(DobbyList dl, UserInput ui) throws IOException;
 }

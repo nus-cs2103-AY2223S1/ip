@@ -23,69 +23,69 @@ import javafx.scene.text.TextFlow;
  * <p> Adapted from <a href="https://se-education.org/guides/tutorials/javaFxPart4.html">se-education</a> </p>
  */
 public class DialogBox extends HBox {
-  @FXML
-  private Label dialog;
-  @FXML
-  private ImageView displayPicture;
-  @FXML
-  private TextFlow textFlow;
+    @FXML
+    private Label dialog;
+    @FXML
+    private ImageView displayPicture;
+    @FXML
+    private TextFlow textFlow;
 
-  /**
-   * Creates a dialog box with the given text and image.
-   *
-   * @param text the text to be displayed in the dialog box
-   * @param img the image to be displayed in the dialog box
-   */
-  private DialogBox(String text, Image img) {
-    try {
-      FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
-      fxmlLoader.setController(this);
-      fxmlLoader.setRoot(this);
-      fxmlLoader.load();
-    } catch (IOException e) {
-      e.printStackTrace();
+    /**
+     * Creates a dialog box with the given text and image.
+     *
+     * @param text the text to be displayed in the dialog box
+     * @param img the image to be displayed in the dialog box
+     */
+    private DialogBox(String text, Image img) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
+            fxmlLoader.setController(this);
+            fxmlLoader.setRoot(this);
+            fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        dialog.setText(text);
+        displayPicture.setImage(img);
     }
 
-    dialog.setText(text);
-    displayPicture.setImage(img);
-  }
-
-  /**
-   * Flips the dialog box such that the ImageView is on the left and text on the right.
-   */
-  private void flip() {
-    ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
-    Collections.reverse(tmp);
-    getChildren().setAll(tmp);
-    setAlignment(Pos.TOP_LEFT);
-    if (textFlow.getTextAlignment() == TextAlignment.RIGHT) {
-      textFlow.setTextAlignment(TextAlignment.LEFT);
-    } else {
-      textFlow.setTextAlignment(TextAlignment.RIGHT);
+    /**
+     * Flips the dialog box such that the ImageView is on the left and text on the right.
+     */
+    private void flip() {
+        ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
+        Collections.reverse(tmp);
+        getChildren().setAll(tmp);
+        setAlignment(Pos.TOP_LEFT);
+        if (textFlow.getTextAlignment() == TextAlignment.RIGHT) {
+            textFlow.setTextAlignment(TextAlignment.LEFT);
+        } else {
+            textFlow.setTextAlignment(TextAlignment.RIGHT);
+        }
     }
-  }
 
-  /**
-   * Creates a dialog box for the user.
-   *
-   * @param text the text to be displayed
-   * @param img the image to be displayed
-   * @return a dialog box for the user
-   */
-  public static DialogBox getUserDialog(String text, Image img) {
-    return new DialogBox(text, img);
-  }
+    /**
+     * Creates a dialog box for the user.
+     *
+     * @param text the text to be displayed
+     * @param img the image to be displayed
+     * @return a dialog box for the user
+     */
+    public static DialogBox getUserDialog(String text, Image img) {
+        return new DialogBox(text, img);
+    }
 
-  /**
-   * Creates a dialog box for Duke.
-   *
-   * @param text the text to be displayed
-   * @param img the image to be displayed
-   * @return a dialog box for Duke
-   */
-  public static DialogBox getDukeDialog(String text, Image img) {
-    var db = new DialogBox(text, img);
-    db.flip();
-    return db;
-  }
+    /**
+     * Creates a dialog box for Duke.
+     *
+     * @param text the text to be displayed
+     * @param img the image to be displayed
+     * @return a dialog box for Duke
+     */
+    public static DialogBox getDukeDialog(String text, Image img) {
+        var db = new DialogBox(text, img);
+        db.flip();
+        return db;
+    }
 }
