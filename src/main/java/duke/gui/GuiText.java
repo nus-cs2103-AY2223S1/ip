@@ -1,5 +1,9 @@
 package duke.gui;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import duke.exceptions.DukeException;
 import duke.tasks.Task;
 import duke.tools.TaskList;
@@ -55,15 +59,11 @@ public class GuiText {
      * @return A String to display all the stored tasks together with their individual index.
      */
     public static String formatListString(TaskList taskList) {
-        String output = START_LISTING_STRING;
-        try {
-            for (int i = 0; i < taskList.getSize(); i++) {
-                output = output.concat(formatTaskWithIndexString(i, taskList.getTask(i)));
-            }
-            output = output.concat("\n" + END_LISTING_STRING);
-        } catch (DukeException e) {
-            output = e.getMessage();
-        }
+        List<Task> storedTasks = taskList.getStoredTasks();
+        String taskInList = storedTasks.stream()
+                .map(task -> formatTaskWithIndexString(storedTasks.indexOf(task), task))
+                .collect(Collectors.joining());
+        String output = START_LISTING_STRING.concat(taskInList);
         return output;
     }
 
@@ -121,19 +121,12 @@ public class GuiText {
      *         string, together with their individual index.
      */
     public static String formatFindString(TaskList taskList, String searchString) {
-        String output = FIND_STRING;
-        try {
-            for (int i = 0; i < taskList.getSize(); i++) {
-                Task task = taskList.getTask(i);
-                // TODO: Might consider changing this to improve abstraction
-                if (task.getDescription().contains(searchString)) {
-                    output = output.concat(formatTaskWithIndexString(i, task));
-                }
-            }
-            output = output.concat("\n" + END_LISTING_STRING);
-        } catch (DukeException e) {
-            output = e.getMessage();
-        }
+        List<Task> storedTasks = taskList.getStoredTasks();
+        String taskInList = storedTasks.stream()
+                .map(task -> formatTaskWithIndexString(storedTasks.indexOf(task), task))
+                .filter(string -> string.contains(searchString))
+                .collect(Collectors.joining());
+        String output = FIND_STRING.concat(taskInList).concat(END_LISTING_STRING);
         return output;
     }
 
