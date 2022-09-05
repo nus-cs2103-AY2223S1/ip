@@ -59,6 +59,7 @@ public class Ui {
         for (String m : messages) {
             sb.append(m);
         }
+        assert !sb.toString().isEmpty() : "String must contain something!";
         return sb.toString();
     }
 

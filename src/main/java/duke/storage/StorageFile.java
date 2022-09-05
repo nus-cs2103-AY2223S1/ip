@@ -32,7 +32,7 @@ public class StorageFile {
         try {
             File file = new File(DEFAULT_STORAGE_FILEPATH);
             if (!file.exists()) {
-                file.createNewFile();
+                assert file.createNewFile() : "File is not created!";
                 this.file = file;
             }
         } catch (IOException e) {
