@@ -20,6 +20,7 @@ public class StorageParser {
     private static final int START_OF_DATE_STRING_OFFSET = 2;
     private static final int DATE_LENGTH = 10;
     private static final char UNMARKED_SYMBOL = ' ';
+
     /**
      * Converts line in disk file to corresponding Task.
      * @param line String stored in file.
