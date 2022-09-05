@@ -1,5 +1,7 @@
 package seedu.duke;
 
+import seedu.duke.Task.Task;
+
 import java.util.ArrayList;
 
 /**
@@ -97,7 +99,7 @@ public class TaskList {
     public ArrayList<Task> filter(String s) {
         ArrayList<Task> result = new ArrayList<Task>();
         for (Task task : this.tasks) {
-            if (task.description.contains(s)) {
+            if (task.contains(s)) {
                 result.add(task);
             }
         }

@@ -1,5 +1,8 @@
 package seedu.duke;
 
+import seedu.duke.Task.Task;
+import seedu.duke.Task.TaskSorter;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -48,7 +51,7 @@ public class Storage {
 
             while (s.hasNext()) {
                 String line = s.nextLine();
-                tasks.add(new Task(line));
+                tasks.add(TaskSorter.sortTaskFromData(line));
             }
 
         } catch (FileNotFoundException e) {

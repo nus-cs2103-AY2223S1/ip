@@ -1,5 +1,9 @@
 package seedu.duke;
 
+import seedu.duke.Task.Task;
+import seedu.duke.Task.TaskSorter;
+import seedu.duke.Task.Todo;
+
 import java.io.IOException;
 import java.time.LocalDate;
 
@@ -77,46 +81,14 @@ public class Parser {
             msg = this.ui.displayList(this.tasks.filter(text));
 
         } else { // is a task, commandwords index 3-5 inclusive
-            boolean isSent = false;
-            LocalDate d = null;
-            Task t = null;
-            if (checkCommand(text, 3)) {
-                isSent = true;
-                if (text.length() <= commandWords[3].length() + 1) { //check if description exists
-                    throw new EmptyMessageException();
-                }
-
-                text = text.substring(commandWords[3].length() + 1);
-
-                t = this.tasks.add(new Task(text, commandWords[3], d));
-
-            } else if (checkCommand(text, 4)) {
-                isSent = true;
-                String[] temp = text.split("/at");
-
-                assert temp.length == 2 : "temp array should contain 2 items";
-
-                text = temp[0].strip().substring(commandWords[4].length() + 1);
-                d = LocalDate.parse(temp[1].strip());
-                t = this.tasks.add(new Task(text, commandWords[4], d));
-
-            } else if (checkCommand(text, 5)) {
-                isSent = true;
-                String[] temp = text.split("/by");
-
-                assert temp.length == 2 : "temp array should contain 2 items";
-
-                text = temp[0].strip().substring(commandWords[5].length() + 1);
-                d = LocalDate.parse(temp[1].strip());
-                t = this.tasks.add(new Task(text, commandWords[5], d));
-            }
-
-            if (!isSent) {
+            Task task = TaskSorter.sortTaskFromInput(text);
+            if (task == null) {
                 throw new InvalidCommandException();
             } else {
-                msg = this.ui.msg("Got it. I've added this task:\n " + "\t" + t + "\n" + "Now you have "
+                msg = this.ui.msg("Got it. I've added this task:\n " + "\t" + task + "\n" + "Now you have "
                         + this.tasks.size() + " tasks in the list.");
             }
+            this.tasks.add(task);
         }
 
         try {

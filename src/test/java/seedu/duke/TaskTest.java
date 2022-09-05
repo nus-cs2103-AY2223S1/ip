@@ -1,6 +1,8 @@
 package seedu.duke;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.Task.Task;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.LocalDate;
 
