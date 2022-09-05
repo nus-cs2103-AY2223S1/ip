@@ -38,6 +38,7 @@ public class DeleteCommand extends Command {
         try {
             int index = Integer.parseInt(this.inputArr[1]) - 1;
             Task task = this.taskList.deleteTask(index);
+            assert task != null : "Task cannot be null";
             return new Response("Noted. I've removed this task:\n"
                     + task + "\n"
                     + "Now you have " + this.taskList.getSize() + " tasks in the list.\n");

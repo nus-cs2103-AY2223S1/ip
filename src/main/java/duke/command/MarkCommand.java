@@ -37,6 +37,7 @@ public class MarkCommand extends Command {
         try {
             int index = Integer.parseInt(this.inputArr[1]) - 1;
             Task task = this.taskList.markDone(index);
+            assert task != null : "Task cannot be null";
             return new Response("Nice! I've marked this task as done:\n"
                     + task + "\n");
         } catch (NumberFormatException exception) {

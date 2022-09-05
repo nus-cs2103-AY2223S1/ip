@@ -37,6 +37,7 @@ public class UnmarkCommand extends Command {
         try {
             int index = Integer.parseInt(this.inputArr[1]) - 1;
             Task task = this.taskList.unmarkDone(index);
+            assert task != null : "Task cannot be null";
             return new Response("OK, I've marked this task as not done yet:\n"
                     + task + "\n");
         } catch (NumberFormatException exception) {
