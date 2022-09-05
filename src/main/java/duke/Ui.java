@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import duke.task.Task;
 
@@ -59,6 +61,7 @@ public class Ui {
         }
         assert (list.size() >= 0) : "Negative list size" + list.size();
         StringBuilder output = new StringBuilder();
+
         output.append(Constants.LIST_MESSAGE);
         for (int i = 0; i < list.size(); i++) {
             output.append(i + 1).append(". ").append(list.get(i)).append("\n");
@@ -66,6 +69,7 @@ public class Ui {
         response = output.toString();
         return response;
     }
+
 
     /**
      * Converts list containing tasks with specific text to string for printing.
