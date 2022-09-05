@@ -51,37 +51,17 @@ public class TaskList {
         }
     }
 
-    /**
-     * Adds new tasks to the end of this TaskList.
-     *
-     * @param taskType type of <code>Task</code> to be added
-     * @param taskDescription description of <code>Task</code> to be added
-     * @param date date property of <code>Task</code> of to be added
-     */
-    /*
-    public String editTaskList(String taskType, String taskDescription, String date) {
-        Task newTask = null;
-        switch (taskType) {
-        case "todo":
-            newTask = new Todo(taskDescription);
-            break;
-        case "deadline":
-            newTask = new Deadline(taskDescription, date);
-            break;
-        case "event":
-            newTask = new Event(taskDescription, date);
-            break;
-        }
-        tasks.add(newTask);
-        return Ui.printTaskCreationMessage(newTask, tasks.size());
-    }
-     */
-
     public String addTask(Task newTask) {
         tasks.add(newTask);
         return Ui.printTaskCreationMessage(newTask, tasks.size());
     }
 
+    /**
+     * Deletes <code>Task</code> at the given index from <code>TaskList</code>
+     *
+     * @param index index of task being deleted
+     * @return successful task deletion message
+     */
     public String deleteTask(int index) {
         if (index < 0 || index > tasks.size() - 1) {
             throw new DukeException("Invalid task index!");
@@ -120,6 +100,12 @@ public class TaskList {
         return editMessage;
     }
 
+    /**
+     * Marks the <code>Task</code> at the given index as done.
+     *
+     * @param index index of Task to be marked
+     * @return successful task marking message
+     */
     public String markAsDone(int index) {
         if (index >= tasks.size() || index < 0) {
             throw new DukeException("Duke: Looks like your task list currently does not have a task at this index.");
@@ -128,11 +114,18 @@ public class TaskList {
         return task.markAsDone();
     }
 
+    /**
+     * Marks the <code>Task</code> at the given index as not done.
+     *
+     * @param index index of Task to be marked
+     * @return successful task marking message
+     */
     public String markAsNotDone(int index) {
         if (index >= tasks.size() || index < 0) {
             throw new DukeException("Duke: Looks like your task list currently does not have a task at this index.");
         }
         Task task = tasks.get(index);
+        assert task != null : "Task not found";
         return task.markAsNotDone();
     }
 
