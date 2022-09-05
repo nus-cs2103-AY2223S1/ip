@@ -47,32 +47,4 @@ public class Duke {
             return e.getMessage();
         }
     }
-
-//    /**
-//     * Runs main program
-//     */
-//    public void run() {
-//        ui.showWelcome();
-//        boolean isExit = false;
-//        while (!isExit) {
-//            try {
-//                String fullCommand = ui.readCommand();
-//                Command c = Parser.parse(fullCommand);
-//                c.execute(tasks, ui, storage);
-//                isExit = c.isExit();
-//            } catch (DukeException e) {
-//                ui.showError(e.getMessage());
-//            }
-//        }
-//        ui.showBye();
-//    };
-
-//    /**
-//     * Runs main method
-//     * @param args
-//     */
-//    public static void main(String[] args) {
-//        new Duke().run();
-//    }
-
 }

@@ -56,7 +56,7 @@ public class Storage {
                 switch (separatedLines[0]) {
                 case ("T"):
                     Task todo = new ToDos(separatedLines[2]);
-                    if (separatedLines[1] == "1") {
+                    if (isDone(separatedLines[1])) {
                         todo.finished();
                     }
                     tasks.add(todo);
@@ -64,14 +64,14 @@ public class Storage {
                 case ("D"):
                     LocalDateTime by = LocalDateTime.parse(separatedLines[3]);
                     Task deadline = new Deadline(separatedLines[2], by);
-                    if (separatedLines[1] == "1") {
+                    if (isDone(separatedLines[1])) {
                         deadline.finished();
                     }
                     tasks.add(deadline);
                     break;
                 case ("E"):
                     Task event = new Events(separatedLines[2], separatedLines[3]);
-                    if (separatedLines[1] == "1") {
+                    if (isDone(separatedLines[1])) {
                         event.finished();
                     }
                     tasks.add(event);
@@ -102,5 +102,10 @@ public class Storage {
         } catch (IOException e) {
             throw new DukeException("IOException in saving" + e.getMessage());
         }
+    }
+
+    private boolean isDone(String input) {
+        //1 for done, 0 for incomplete
+        return input == "1";
     }
 }
