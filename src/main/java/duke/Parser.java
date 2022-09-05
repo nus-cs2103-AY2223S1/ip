@@ -22,6 +22,7 @@ public class Parser {
         try {
             new TaskList(Storage.loadTask());
             String[] wordArray = parseTypingInput(string);
+            assert (wordArray.length > 0);
             String str2 = "";
 
             if (wordArray.length >= 2) {
