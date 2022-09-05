@@ -14,6 +14,8 @@ public class CommandResponse {
      * @param triggerTerminate boolean to trigger a termination
      */
     public CommandResponse(String responseStr, boolean triggerSave, boolean triggerTerminate) {
+        assert !responseStr.isBlank() : "Command response should not be blank!";
+
         this.responseStr = responseStr;
         this.triggerSave = triggerSave;
         this.triggerTerminate = triggerTerminate;

@@ -32,6 +32,7 @@ public class CommandFindHandler extends CommandHandler {
 
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
         String keyword = regexMatchResult.group(1);
+        assert !keyword.isBlank() : "Keyword should not be blank/empty!";
 
         return new CommandResponse(taskList.findTasks(keyword).toString(), false, false);
     }
