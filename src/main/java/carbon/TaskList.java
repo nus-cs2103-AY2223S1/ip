@@ -117,7 +117,7 @@ public class TaskList {
         }
         default:
             // should never reach here
-            assert false: "Unknown task type";
+            assert false : "Unknown task type";
             newTask = null;
         }
         this.tasks.add(newTask);
@@ -196,7 +196,7 @@ public class TaskList {
             return log;
         }
 
-        assert this.tasks.size() > 0: "Tasks have been corrupted";
+        assert this.tasks.size() > 0 : "Tasks have been corrupted";
         String log = "Here are the tasks so far. \n";
         log = this.arrangeTasks(this.tasks, log);
         return log;

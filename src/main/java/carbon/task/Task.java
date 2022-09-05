@@ -81,7 +81,7 @@ public abstract class Task {
         Type type = typeKeys.get(typeKey);
 
         int doneIndicator = Integer.parseInt(values[1]);
-        assert doneIndicator == 0 || doneIndicator == 1: "Save file corrupted";
+        assert doneIndicator == 0 || doneIndicator == 1 : "Save file corrupted";
         boolean isDone = doneIndicator == 1;
         String name = values[2];
         String param = values.length == 4 ? values[3] : "";
@@ -98,7 +98,7 @@ public abstract class Task {
             break;
         default:
             // should never reach here
-            assert false: "Unknown task type";
+            assert false : "Unknown task type";
             decodedTask = Todo.createTask("todo _");
         }
         return decodedTask;
