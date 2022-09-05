@@ -65,6 +65,7 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getRogerDialog(response.getMessage(), rogerImage)
         );
         userInput.clear();
+
         if (response.isExit()) {
             roger.saveTasksToDatabase();
             Platform.exit();
