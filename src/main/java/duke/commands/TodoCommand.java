@@ -26,11 +26,11 @@ public class TodoCommand extends Command{
      * @throws IOException
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
         Todo todo = new Todo(this.input);
         taskList.append(todo);
         String todoMessage = "added: " + todo.toString() + "\n";
-        ui.print(todoMessage, taskList);
         storage.saveTasks(taskList);
+        return ui.print(todoMessage, taskList);
     }
 }

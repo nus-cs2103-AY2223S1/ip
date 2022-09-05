@@ -28,7 +28,7 @@ public class DeadlineCommand extends Command{
      * @throws IOException
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
         String[] splitDetailDeadline = this.input.split("/by", 2);
         if (splitDetailDeadline.length == 1) {
             throw new DukeException("Description of deadline must be followed by /by then followed by time of deadline.");
@@ -40,8 +40,8 @@ public class DeadlineCommand extends Command{
             Deadline deadline = new Deadline(deadlineAction, deadlineDateTime);
             taskList.append(deadline);
             String deadlineMessage = "added: " + deadline.toString() + "\n";
-            ui.print(deadlineMessage, taskList);
+            storage.saveTasks(taskList);
+            return ui.print(deadlineMessage, taskList);
         }
-        storage.saveTasks(taskList);
     }
 }

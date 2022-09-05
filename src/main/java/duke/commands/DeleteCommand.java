@@ -26,7 +26,7 @@ public class DeleteCommand extends Command{
      * @throws IOException
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
         if (this.input.matches("\\d+")) {
             int deleteIndex = Integer.parseInt(this.input) - 1;
             if (deleteIndex < 0 || deleteIndex >= taskList.length()) {
@@ -35,11 +35,11 @@ public class DeleteCommand extends Command{
                 Task deletedTask = taskList.index(deleteIndex);
                 taskList.remove(deleteIndex);
                 String deleteMessage = "Noted. I've removed this task:\n" + deletedTask.toString() + "\n";
-                ui.print(deleteMessage, taskList);
+                storage.saveTasks(taskList);
+                return ui.print(deleteMessage, taskList);
             }
         } else {
             throw new DukeException(this.input + " is not an integer.");
         }
-        storage.saveTasks(taskList);
     }
 }

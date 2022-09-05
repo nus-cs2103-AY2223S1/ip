@@ -27,7 +27,7 @@ public class FindCommand extends Command{
      * @throws IOException
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException{
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException{
         ArrayList<Task> hit = new ArrayList<>();
         for (int i = 0; i < taskList.length(); i++) {
             Task task = taskList.index(i);
@@ -47,7 +47,7 @@ public class FindCommand extends Command{
                     message += String.format("%d. " + hit.get(j) + "\n", j + 1);
                 }
             }
-            ui.print(message);
+            return ui.print(message);
         }
     }
 }

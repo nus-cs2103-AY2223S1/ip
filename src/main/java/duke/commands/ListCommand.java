@@ -21,7 +21,7 @@ public class ListCommand extends Command{
      * @throws IOException
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
         String message = "";
         int length = taskList.length();
         if (length == 0) {
@@ -36,6 +36,6 @@ public class ListCommand extends Command{
                 }
             }
         }
-        ui.print(message);
+        return ui.print(message);
     }
 }

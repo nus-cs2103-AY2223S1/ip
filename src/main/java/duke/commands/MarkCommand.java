@@ -26,7 +26,7 @@ public class MarkCommand extends Command{
      * @throws IOException
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
         if (this.input.matches("\\d+")) {
             int markIndex = Integer.parseInt(this.input) - 1;
             if (markIndex < 0 || markIndex >= taskList.length()) {
@@ -37,12 +37,12 @@ public class MarkCommand extends Command{
                     throw new DukeException("This task is already marked as done:\n" + markTask.toString());
                 } else {
                     markTask.markDone();
-                    ui.print("Nice! I've marked this task as done:\n" + markTask.toString());
+                    storage.saveTasks(taskList);
+                    return ui.print("Nice! I've marked this task as done:\n" + markTask.toString());
                 }
             }
         } else {
             throw new DukeException(this.input + " is not an integer.");
         }
-        storage.saveTasks(taskList);
     }
 }

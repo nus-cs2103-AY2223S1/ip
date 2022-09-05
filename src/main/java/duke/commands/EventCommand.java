@@ -28,7 +28,7 @@ public class EventCommand extends Command{
      * @throws IOException
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
         String[] splitDetailEvent = this.input.split("/at", 2);
         if (splitDetailEvent.length == 1) {
             throw new DukeException("Description of event must be followed by /at then followed by time of event.");
@@ -40,8 +40,8 @@ public class EventCommand extends Command{
             Event event = new Event(eventAction, eventDateTime);
             taskList.append(event);
             String eventMessage = "added: " + event.toString() + "\n";
-            ui.print(eventMessage, taskList);
+            storage.saveTasks(taskList);
+            return ui.print(eventMessage, taskList);
         }
-        storage.saveTasks(taskList);
     }
 }

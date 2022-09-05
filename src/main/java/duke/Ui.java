@@ -4,16 +4,14 @@ package duke;
  * The Ui class encapsulates Duke responding to a user's input.
  */
 public class Ui {
-    private static final String separator = "===================================================";
     public Ui() {}
 
     /**
      * Prints a message.
      * @param msg Message to be printed.
      */
-    public void print(String msg) {
-        System.out.println(msg);
-        System.out.println(separator);
+    public String print(String msg) {
+        return msg;
     }
 
     /**
@@ -21,24 +19,17 @@ public class Ui {
      * @param msg Message to be printed.
      * @param taskList Tasklist which number of tasks in it is to be printed.
      */
-    public void print(String msg, TaskList taskList) {
+    public String print(String msg, TaskList taskList) {
         msg += String.format("Now, you have %d task(s) in the list.", taskList.length());
-        System.out.println(msg);
-        System.out.println(separator);
+        return msg;
     }
 
     /**
      * Prints welcome message when a user logs on to Duke.
      */
-    public void printWelcomeMsg() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println(logo);
-        System.out.println("Hello! I'm Duke");
-        System.out.println("What can I do for you?");
-        System.out.println(separator);
+    public String printWelcomeMsg() {
+        String greeting = "Hello! I'm Duke\n";
+        greeting += "What can I do for you?";
+        return greeting;
     }
 }
