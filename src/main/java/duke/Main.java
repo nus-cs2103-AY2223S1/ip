@@ -41,7 +41,7 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
 // Step 2
-        stage.setTitle("Duke");
+        stage.setTitle("DUKE BOT");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
         stage.setMinWidth(400.0);
@@ -96,7 +96,7 @@ public class Main extends Application {
      * Replace this stub with your completed method.
      */
     private String getResponse(String input) {
-        return "Duke heard: " + input;
+        return "Reply: " + input;
     }
 
     private Label getDialogLabel(String text) {
