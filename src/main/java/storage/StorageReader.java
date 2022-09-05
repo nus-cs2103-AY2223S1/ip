@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import exceptions.DukeException;
 import task.Task;
@@ -26,14 +27,8 @@ public class StorageReader {
      * Return contents of file history.
      * @return arraylist containing all the lines in the file.
      */
-    private List<String> getAllLines() {
-        List<String> list = new ArrayList<>();
-        try {
-            return Files.readAllLines(path);
-        } catch (IOException e) {
-            System.out.println("IOException: " + e);
-        }
-        return list;
+    private Stream<String> getAllLines() throws IOException{
+        return Files.lines(path);
     }
 
     /**
@@ -43,17 +38,20 @@ public class StorageReader {
      * @throws DukeException when fileLineToTask() fails
      */
     public TaskList syncArrayList() throws DukeException {
-        TaskList userInputHistory = new TaskList();
-        List<String> linesInFile = getAllLines();
-        Task currTask;
-        int n = linesInFile.size();
-        int i = 0;
-        for ( ; i < n; i++) {
-            if (!linesInFile.get(i).equals("")) {
-                currTask = StorageParser.fileLineToTask(linesInFile.get(i));
-                userInputHistory.addTask(currTask);
-            }
+        try {
+            TaskList userInputHistory = new TaskList();
+            getAllLines().filter(lineInFile -> {
+                return !lineInFile.isBlank();
+            }).forEach(currTask -> {
+                try {
+                    userInputHistory.addTask(StorageParser.fileLineToTask(currTask));
+                } catch (DukeException de) {
+                    System.out.println(de);
+                }
+            });
+            return userInputHistory;
+        } catch (IOException e) {
+            throw new DukeException("Error reading file");
         }
-        return userInputHistory;
     }
 }
