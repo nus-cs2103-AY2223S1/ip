@@ -29,7 +29,9 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) {
+        assert tasks != null;
         TaskList result = tasks.find(query);
+        assert result != null;
         if (result.getSize() == 0) {
             return "No results match your search :(";
         } else {

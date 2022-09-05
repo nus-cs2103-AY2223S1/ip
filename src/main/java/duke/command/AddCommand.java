@@ -31,6 +31,7 @@ public class AddCommand extends Command {
      * @param date The date of the task to be added.
      */
     public AddCommand(String taskType, String description, LocalDate date) {
+        assert description.length() > 0;
         this.taskType = taskType;
         this.description = description;
         this.date = date;
@@ -47,6 +48,7 @@ public class AddCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
+        assert tasks != null && storage != null;
         Task task = null;
         switch (taskType) {
         case "T":
@@ -59,7 +61,7 @@ public class AddCommand extends Command {
             task = new Deadline(description, date);
             break;
         default:
-            break;
+            assert false;
         }
         tasks.addTask(task);
         storage.saveData(tasks);

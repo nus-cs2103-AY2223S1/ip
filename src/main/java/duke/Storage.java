@@ -53,7 +53,7 @@ public class Storage {
                 String line = sc.nextLine();
                 String[] taskData = line.split("\\|");
                 checkFormat(taskData);
-                Task task = null;
+                Task task;
                 switch (taskData[0]) {
                 case "T":
                     task = new ToDo(taskData[2]);
@@ -65,12 +65,11 @@ public class Storage {
                     task = new Event(taskData[2], LocalDate.parse(taskData[3]));
                     break;
                 default:
-                    break;
+                    throw new DukeException("File format invalid!");
                 }
-                if (task != null) {
-                    data.addTask(task);
-                    setCompletion(task, taskData);
-                }
+                data.addTask(task);
+                setCompletion(task, taskData);
+
             }
             sc.close();
         } catch (FileNotFoundException e) {
