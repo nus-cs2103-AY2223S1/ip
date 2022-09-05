@@ -26,6 +26,7 @@ public class Deadline extends Task {
         if (date.isBlank()) {
             throw new IllegalArgumentException("Time of deadline cannot be empty.");
         } else {
+            assert FORMATS.length > 0 : "No DateTime format provided.";
             for (int i = 0; i < FORMATS.length; i++) {
                 try {
                     this.date = LocalDateTime.parse(date, DateTimeFormatter.ofPattern(FORMATS[i]));
