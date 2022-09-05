@@ -25,7 +25,7 @@ public class FindCommand extends Command {
         assert taskTime.length() == 0 : "The taskTime of should not be used for FindCommand";
         assert taskText.length() == 0 : "The taskText should not be used for FindCommand";
         assert taskIndex == -1 : "The taskIndex should not be used for CreateEventCommand";
-        assert keywords != null : "The keywords should not be empty";
+        assert !keywords[0].equals("") : "The keywords should not be empty";
         ArrayList<Task> result = controller.findByKeyword(keywords);
         StringBuilder s = new StringBuilder();
         for (int i = 0; i < result.size(); ++i) {

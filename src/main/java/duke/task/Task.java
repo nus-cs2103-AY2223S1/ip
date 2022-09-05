@@ -1,6 +1,7 @@
 package duke.task;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * Task class encapsulate the behavior of a Duke task
@@ -41,6 +42,10 @@ public class Task implements Serializable {
      */
     public String getTaskDescription() {
         return taskDescription;
+    }
+
+    public LocalDateTime getTime() {
+        return null;
     }
 
 }

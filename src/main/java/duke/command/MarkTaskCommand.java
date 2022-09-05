@@ -21,7 +21,7 @@ public class MarkTaskCommand extends Command {
         assert taskTime.length() == 0 : "The taskTime of should not be used for MarkTaskCommand";
         assert taskText.length() == 0 : "The taskText should not be used for MarkTaskCommand";
         assert taskIndex != -1 : "The taskIndex should not be empty";
-        assert keywords == null : "The keywords should not be used for MarkTaskCommand";
+        assert keywords[0].equals("") : "The keywords should not be used for MarkTaskCommand";
         String response = "";
         try {
             controller.changeTaskStatus(taskIndex, true);

@@ -2,6 +2,8 @@ package duke.task;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+
 import duke.exception.NoSuchTaskException;
 
 /**
@@ -85,13 +87,38 @@ public class TasksController {
         return result;
     }
 
-    @Override
-    public String toString() {
+    public String getTasksString(ArrayList<Task> tasks) {
         StringBuilder s = new StringBuilder();
         for (int i = 0; i < tasks.size(); ++i) {
             s.append(i + 1).append(". ").append(tasks.get(i).toString()).append("\n");
         }
         return s.toString();
+    }
+
+    /**
+     * Sort events and deadlines by time
+     * @return sorted task list
+     */
+    public ArrayList<Task> sortTasksByTime() {
+        ArrayList<Task> sortedTasks = new ArrayList<>();
+        for(Task task: tasks) {
+            if (task instanceof Event || task instanceof Deadline) {
+                sortedTasks.add(task);
+            }
+        }
+        sortedTasks.sort(new Comparator<Task>() {
+            @Override
+            public int compare(Task o1, Task o2) {
+                if (o1.getTime().isBefore(o2.getTime())) {
+                    return -1;
+                } else if (o1.getTime().isEqual(o2.getTime())) {
+                    return 0;
+                } else {
+                    return 1;
+                }
+            }
+        });
+        return sortedTasks;
     }
 
 }

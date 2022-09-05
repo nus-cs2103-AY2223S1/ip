@@ -22,7 +22,7 @@ public class ShowTasksCommand extends Command {
         assert taskTime.length() == 0 : "The taskTime of should not be used for ShowTaskCommand";
         assert taskText.length() == 0 : "The taskText should not be used for ShowTaskCommand";
         assert taskIndex == -1 : "The taskIndex should not be used for ShowTaskCommand";
-        assert keywords == null : "The keywords should not be used for ShowTaskCommand";
-        return controller.toString();
+        assert keywords[0].equals("") : "The keywords should not be used for ShowTaskCommand";
+        return controller.getTasksString(controller.getTasks());
     }
 }

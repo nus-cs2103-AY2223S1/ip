@@ -19,6 +19,10 @@ public class Event extends Task {
         this.eventTime = LocalDateTime.parse(eventTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
+    public LocalDateTime getTime() {
+        return eventTime;
+    }
+
     @Override
     public String toString() {
         return "[E]" + super.toString() + " " + "(at: " + eventTime.format(

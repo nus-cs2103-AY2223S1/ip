@@ -22,7 +22,7 @@ public class DeleteTaskCommand extends Command {
         assert taskTime.length() == 0 : "The taskTime of should not be used for DeleteTaskCommand";
         assert taskText.length() == 0 : "The taskText should not be used for DeleteTaskCommand";
         assert taskIndex != -1 : "The taskIndex should not be -1";
-        assert keywords == null : "The keywords should not be used for DeleteTaskCommand";
+        assert keywords[0].equals("") : "The keywords should not be used for DeleteTaskCommand";
         String response = "";
         try {
             controller.deleteFromList(taskIndex);

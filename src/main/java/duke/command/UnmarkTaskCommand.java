@@ -22,7 +22,7 @@ public class UnmarkTaskCommand extends Command {
         assert taskTime.length() == 0 : "The taskTime of should not be used for UnmarkTaskCommand";
         assert taskText.length() == 0 : "The taskText should not be used for UnmarkTaskCommand";
         assert taskIndex != -1 : "The taskIndex should not be empty";
-        assert keywords == null : "The keywords should not be used for UnmarkTaskCommand";
+        assert keywords[0].equals("") : "The keywords should not be used for UnmarkTaskCommand";
         String response = "";
         try {
             controller.changeTaskStatus(taskIndex, false);

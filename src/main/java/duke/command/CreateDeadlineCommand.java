@@ -23,7 +23,7 @@ public class CreateDeadlineCommand extends Command {
         assert taskTime.length() > 0 : "Time of a deadline should not be empty";
         assert taskText.length() > 0 : "Content of a deadline should not be empty";
         assert taskIndex == -1 : "The taskIndex should not be used for CreateDeadlineCommand";
-        assert keywords == null : "The keywords should not be used for CreateDeadlineCommand";
+        assert keywords[0].equals("") : "The keywords should not be used for CreateDeadlineCommand";
         String response = "";
         Deadline ddlTask = new Deadline(taskText, taskTime);
         controller.addToList(ddlTask);

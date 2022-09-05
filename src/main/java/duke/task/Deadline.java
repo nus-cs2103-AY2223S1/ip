@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Deadline class encapsulates Duke deadlines
  */
-public class Deadline extends Task{
+public class Deadline extends Task {
     private final LocalDateTime ddlTime;
 
     /**
@@ -17,6 +17,10 @@ public class Deadline extends Task{
     public Deadline(String taskDescription, String ddlTime) {
         super(taskDescription);
         this.ddlTime = LocalDateTime.parse(ddlTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+    }
+
+    public LocalDateTime getTime() {
+        return ddlTime;
     }
 
     @Override

@@ -24,6 +24,7 @@ public class Parser {
         legalCommands.add("mark");
         legalCommands.add("unmark");
         legalCommands.add("find");
+        legalCommands.add("sort");
         legalCommands.add("exit");
 
         legalTasks.add("ToDo");
@@ -195,6 +196,10 @@ public class Parser {
                                 keywords.get(1), keywords.get(2));
                     }
                     break;
+                case "sort":
+                    command = new SortTasksCommand();
+                    response = command.execute(controller, "", "", -1, storage, "");
+                    break;
                 case "exit":
                     command = new ExitCommand();
                     response = command.execute(controller, "", "", -1, storage, "");
@@ -211,7 +216,7 @@ public class Parser {
         } catch (TooManyKeywordsException mke) {
             response = "Too many keywords. Please try again...";
         }
-        assert response != null;
+        assert !response.equals("");
         return response;
     }
 }
