@@ -26,50 +26,64 @@ import task.Task;
  * Handles all conversions required in the program.
  */
 public class Parser {
-
+    private static final String END_OF_DESCRIPTION_MARKER = " /";
+    private static final int START_DATE_COMMAND_LENGTH = 3;
+    private static final String EVENT_DATE_SECTION_START_STRING = "/at";
+    private static final String DEADLINE_DATE_SECTION_DATE_STRING = "/by";
     /**
-     * Returns Command object correspond to
+     * Returns Command object corresponding to
      * command extracted from user input.
+     * Looks for first whitespace to distinguish
+     * command used.
+     *
      * @param userInput User input string to parse into Command.
      * @return Command type object.
      * @throws DukeException When command given is invalid.
      */
     public static Command parse(String userInput) throws DukeException {
-        userInput = userInput.trim();
-        int firstWhiteSpaceIndex = userInput.indexOf(" ");
-        String stringCommand = "";
+        int firstWhiteSpaceIndex = userInput.trim().indexOf(" ");
+        String stringCommand;
         if (firstWhiteSpaceIndex < 0) {
             stringCommand = userInput;
         } else {
             stringCommand = userInput.substring(0, firstWhiteSpaceIndex);
         }
+<<<<<<< HEAD
         assert !stringCommand.contains(" ");
         if (stringCommand.equals("todo")) {
             return new AddTaskCommand();
         } else if (stringCommand.equals("event")) {
+=======
+        switch (stringCommand) {
+            case "todo":
+                return new AddTaskCommand();
+        case "event":
+>>>>>>> master
             return new AddEventCommand();
-        } else if (stringCommand.equals("deadline")) {
+        case "deadline":
             return new AddDeadlineCommand();
-        } else if (stringCommand.equals("delete")) {
+        case "delete":
             return new DeleteTaskCommand();
-        } else if (stringCommand.equals("mark")) {
+        case "mark":
             return new MarkCommand();
-        } else if (stringCommand.equals("unmark")) {
+        case "unmark":
             return new UnmarkCommand();
-        } else if (stringCommand.equals("istoday")) {
+        case "istoday":
             return new CheckIsTodayCommand();
-        } else if (stringCommand.equals("longdesc")) {
+        case "longdesc":
             return new GetLongDescriptionCommand();
-        } else if (stringCommand.equals("list")) {
+        case "list":
             return new ListCommand();
-        } else if (stringCommand.equals("bye")) {
+        case "bye":
             return new ExitCommand();
-        } else if (stringCommand.equals("help")) {
+        case "help":
             return new HelpCommand();
-        } else if (stringCommand.equals("find")) {
+        case "find":
             return new FindCommand();
+        default:
+            String message = "Command invalid. Type help for more information.";
+            throw new DukeException(message);
         }
-        throw new DukeException("Command invalid. Type help for more information.");
     }
 
     /**
@@ -121,6 +135,7 @@ public class Parser {
     private static String getDescription(String commandUsed, String input) throws DukeException {
         String description;
         int startDescriptionIndex = input.indexOf(commandUsed) + commandUsed.length();
+<<<<<<< HEAD
         assert startDescriptionIndex < 0;
         int endDescriptionIndex = input.indexOf(" /");
         if ( commandUsed.equals("event") || commandUsed.equals("deadline")) {
@@ -128,6 +143,21 @@ public class Parser {
             description = input.substring(startDescriptionIndex, endDescriptionIndex).trim();
         } else {
             description = input.substring(startDescriptionIndex).trim();
+=======
+        if (commandUsed.equals("event") || commandUsed.equals("deadline")) {
+            int endDescriptionIndex = input.indexOf(END_OF_DESCRIPTION_MARKER);
+            if (endDescriptionIndex < 0) {
+                throw new DukeException("Could not parse description");
+            } else {
+                description = input.substring(startDescriptionIndex, endDescriptionIndex);
+            }
+        } else {
+            description = input.substring(startDescriptionIndex);
+        }
+
+        if (description.isBlank()) {
+            throw new DukeException("Empty description field");
+>>>>>>> master
         }
         return description;
     }
@@ -140,16 +170,15 @@ public class Parser {
      */
     private static LocalDate getDate(String userInput) throws DukeException {
         try {
-            String date = "";
-            int startDateIndex = userInput.indexOf("/") + 3;
-            if (startDateIndex < 0) {
-                throw new DukeException("Command does not follow pattern ... /<at/by> <YYYY-MM-DD>");
-            } else {
-                date = userInput.substring(startDateIndex).trim();
-                if (date.equals("")) {
-                    throw new DukeException("Empty date field");
-                }
+            String date;
+            int n = userInput.indexOf(EVENT_DATE_SECTION_START_STRING);
+            int m = userInput.indexOf(DEADLINE_DATE_SECTION_DATE_STRING);
+            int startDateIndex = (n == -1? m: n) + START_DATE_COMMAND_LENGTH;
+            date = userInput.substring(startDateIndex).trim();
+            if (!date.isBlank()) {
                 return LocalDate.parse(date);
+            } else {
+                throw new DukeException("Empty date field");
             }
         } catch (DateTimeParseException dtpe) {
             throw new DukeException("Date is not valid, require format YYYY-MM-DD");
@@ -167,17 +196,16 @@ public class Parser {
     public static int getTaskNumber(String s, int listSize) throws DukeException {
         // credit: https://stackoverflow.com/questions/14974033/extract-digits-from-string-stringutils-java
         String numberOnly = s.replaceAll("[^0-9]", "");
-        int n;
         if (numberOnly.length() <= 0) {
             throw new DukeException("no number given");
-        } else {
-            n = Integer.parseInt(numberOnly);
-            if (n > listSize) {
-                throw new DukeException("task does not exist in list");
-            } else {
-                return n;
-            }
         }
+        int n = Integer.parseInt(numberOnly);
+        if (n < listSize) {
+            return n;
+        } else {
+            throw new DukeException("Task does not exist in list");
+        }
+
     }
 
     /**

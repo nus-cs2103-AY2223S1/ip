@@ -42,18 +42,26 @@ public class Storage {
         for(String s: pathElements) {
             currPath += "\\" + s;
             tempPath = Path.of(currPath);
-            if (s.contains(".")){
+            if (isFileExtension(s)){
                 if (!Files.exists(tempPath)) {
                     Files.createFile(tempPath);
                 }
                 this.path =  tempPath;
                 break;
-            } else {
+            } else if (isFolderExtension(s)) {
                 if (!Files.exists(tempPath)) {
                     Files.createDirectory(tempPath);
                 }
             }
         }
+    }
+
+    private static boolean isFileExtension(String extension) {
+        return extension.contains(".");
+    }
+
+    private static boolean isFolderExtension(String extension) {
+        return true;
     }
 
     /**
@@ -88,8 +96,11 @@ public class Storage {
     public TaskList syncArrayList() throws DukeException {
         return STORAGE_READER.syncArrayList();
     }
+<<<<<<< HEAD
 
     public List<String> getAllLines() {
         return STORAGE_READER.getAllLines();
     }
+=======
+>>>>>>> master
 }
