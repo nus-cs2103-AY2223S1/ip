@@ -26,6 +26,7 @@ public class Storage {
     /**
      * Loads list of tasks previously saved in hard disk
      * If no previous file exists, create a new file
+     *
      * @return ArrayList of tasks that were loaded from hard disk
      * @throws IOException
      */
@@ -59,6 +60,7 @@ public class Storage {
 
     /**
      * Saves tasks to hard disk; updates any previous file with new task list
+     *
      * @param tasks TaskList used to update the file and save new tasks onto hard disk
      * @throws IOException
      */

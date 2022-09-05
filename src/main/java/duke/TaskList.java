@@ -17,6 +17,7 @@ public class TaskList {
 
     /**
      * Adds a task to the task list
+     *
      * @param task current task list
      */
     public void add(Task task) {
@@ -25,6 +26,7 @@ public class TaskList {
 
     /**
      * Deletes a task from the task list
+     *
      * @param index index of task to be deleted from current task list
      */
     public void delete(int index) {
@@ -33,6 +35,7 @@ public class TaskList {
 
     /**
      * Returns list of all current tasks
+     *
      * @return ArrayList of all tasks
      */
     public ArrayList<Task> getTasks() {
@@ -52,6 +55,7 @@ public class TaskList {
 
     /**
      * Marks a specified task on the task list
+     *
      * @param index index of task to be marked
      */
     public void markIndex(int index) {
@@ -60,6 +64,7 @@ public class TaskList {
 
     /**
      * Unmarks a specified task on the task list
+     *
      * @param index index of task to be unmarked
      */
     public void unmarkIndex(int index) {
@@ -68,6 +73,7 @@ public class TaskList {
 
     /**
      * Prints a specified task on the task list
+     *
      * @param index index of task to be printed
      */
     public String getByIndex(int index) {
@@ -84,6 +90,7 @@ public class TaskList {
 
     /**
      * Finds all tasks in the current task list that has a description containing keyword
+     *
      * @param keyword keyword that should be searched for in tasks
      * @return TaskList task list of tasks that contain the keyword
      */

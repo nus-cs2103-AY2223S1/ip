@@ -17,14 +17,6 @@ public class Ui {
     }
 
     /**
-     * Prints welcome message to screen
-     */
-    public String showWelcome() {
-        return "Hello! I'm Jett\n"
-                + "What can I do for you?";
-    }
-
-    /**
      * Prints goodbye message
      */
     public String showBye() {
@@ -33,6 +25,7 @@ public class Ui {
 
     /**
      * Prints the corresponding output to user according to the command given
+     *
      * @param command command given by user
      * @param taskList current lists of tasks
      * @param index index of task that command should be carried out on (0 if not applicable)
@@ -60,6 +53,7 @@ public class Ui {
 
     /**
      * Prints corresponding error message
+     *
      * @param errorMessage datetime if DateTimeParseException thrown, error message itself otherwise
      * @return error message to be printed
      */
@@ -71,13 +65,5 @@ public class Ui {
         }
     }
 
-    /**
-     * Reads command from user input
-     * @return command entered by user
-     */
-    public String readCommand() {
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
-    }
 
 }
