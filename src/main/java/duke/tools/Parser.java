@@ -101,7 +101,7 @@ public class Parser {
      * Makes sense of the user's input to add an event.
      *
      * @param str The input String from the user specifying the parameters of the event.
-     * @returnThe EventCommand representing the user's input
+     * @return The EventCommand representing the user's input
      * @throws DukeException
      */
     private static EventCommand parseEventCommand(String str) throws DukeException {
