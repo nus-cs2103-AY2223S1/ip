@@ -35,12 +35,24 @@ public class Storage {
      * Gets location of disk storage file.
      * @throws DukeException when Duke program run outside of Duke folder.
      */
-    private void getPath(String pathString) throws DukeException {
+    private void getPath(String pathString) throws DukeException, IOException {
         String currPath = System.getProperty("user.dir");
-        if (currPath.contains("ip")) {
-            this.path = Paths.get(currPath, "src", "main", "java", pathString);
-        } else {
-            throw new DukeException("Cannot run from outside of ip folder of Duke");
+        String[] pathElements = pathString.split("/");
+        Path tempPath;
+        for(String s: pathElements) {
+            currPath += "\\" + s;
+            tempPath = Path.of(currPath);
+            if (s.contains(".")){
+                if (!Files.exists(tempPath)) {
+                    Files.createFile(tempPath);
+                    this.path =  tempPath;
+                    break;
+                }
+            } else {
+                if (!Files.exists(tempPath)) {
+                    Files.createDirectory(tempPath);
+                }
+            }
         }
     }
 
@@ -50,9 +62,8 @@ public class Storage {
     public void createFileIfDoesntExist(String location) {
         try {
             getPath(location);
-            if (!Files.exists(path)) {
-                Files.createFile(path);
-            }
+            Files.createFile(path);
+
         } catch (IOException e) {
             System.out.println("IOException: " + e);
         } catch (DukeException e) {

@@ -23,9 +23,8 @@ public class Duke extends Application {
     /**
      * Constructor.
      */
-    public Duke() {
+    public Duke(String filePath) {
         try {
-            String filePath = "data/tasks.txt";
             ui = new UI();
             storage = new Storage(filePath);
             tasks = storage.syncArrayList();
