@@ -1,3 +1,1 @@
-D/1/ eat/ Sun Jul 22 2001 11:59 PM
-T/1/ cry
-T/0/ hi
+T/1/eat

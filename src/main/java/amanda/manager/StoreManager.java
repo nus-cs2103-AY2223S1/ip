@@ -1,19 +1,19 @@
 package main.java.amanda.manager;
 
-import main.java.amanda.task.Task;
-import main.java.amanda.task.Todo;
-import main.java.amanda.task.Deadline;
-import main.java.amanda.task.Event;
-
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+
+import main.java.amanda.task.Deadline;
+import main.java.amanda.task.Event;
+import main.java.amanda.task.Task;
+import main.java.amanda.task.Todo;
 
 /**
  * StoreManager manages the storage of the task list.
@@ -32,9 +32,9 @@ public class StoreManager {
 
     /**
      * Load the task list stored in the storage file into a new task list.
-     * @param TaskList the new task list.
+     * @param taskList the new task list.
      */
-    public void load(TaskList TaskList) {
+    public void load(TaskList taskList) {
         if (Files.notExists(Paths.get(path))) { // if file given in the provided path in the constructor does not exist.
             File file = new File(this.path);
             file.getParentFile().mkdirs(); // create the parent directories.
@@ -67,21 +67,21 @@ public class StoreManager {
                     if (isDone) {
                         task.doTask();
                     }
-                    TaskList.getList().add(task);
+                    taskList.getList().add(task);
                 } else if (token.equals("D")) {
                     boolean isDone = tokens.nextToken().equals("1");
                     Task task = new Deadline(tokens.nextToken(), tokens.nextToken());
                     if (isDone) {
                         task.doTask();
                     }
-                    TaskList.getList().add(task);
+                    taskList.getList().add(task);
                 } else if (token.equals("E")) {
                     boolean isDone = tokens.nextToken().equals("1");
                     Task task = new Event(tokens.nextToken(), tokens.nextToken());
                     if (isDone) {
                         task.doTask();
                     }
-                    TaskList.getList().add(task);
+                    taskList.getList().add(task);
                 }
                 if (!read.hasNextLine()) {
                     break;
@@ -94,9 +94,9 @@ public class StoreManager {
 
     /**
      * Store the current task list into the storage file.
-     * @param TaskList the current task list.
+     * @param taskList the current task list.
      */
-    public void store(TaskList TaskList) {
+    public void store(TaskList taskList) {
         PrintWriter writer = null;
         try {
             writer = new PrintWriter(this.path, "UTF-8"); // create PrintWriter object to write to the storage file.
@@ -105,7 +105,7 @@ public class StoreManager {
         }
 
         // Iterate through the current task list and update the storage file with the newest state of the task list
-        for (Task t : TaskList.getList()) {
+        for (Task t : taskList.getList()) {
             String curr = t.getType() + "/" + t.getState() + "/" + t.getTask();
             if (!t.getType().equals("T")) {
                 curr += "/" + t.getTime();

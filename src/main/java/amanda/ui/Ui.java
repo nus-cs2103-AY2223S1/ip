@@ -1,8 +1,9 @@
 package main.java.amanda.ui;
 
-import main.java.amanda.task.Task;
-import main.java.amanda.manager.TaskList;
 import java.util.Scanner;
+
+import main.java.amanda.manager.TaskList;
+import main.java.amanda.task.Task;
 
 /**
  * Ui handles interactions with the user.
@@ -19,11 +20,11 @@ public class Ui {
      * Prints welcome message.
      */
     public void showWelcome() {
-        String logo ="                                           _\n"
-                +"            __ _ _ __ ___   __ _ _ __   __| | __ _\n"
-                +"           / _' | '_ ` _ \\ / _` | '_ \\ / _` |/ _` |\n"
-                +"          | (_| | | | | | | (_| | | | | (_| | (_| |\n"
-                +"           \\__,_|_| |_| |_|\\__,_|_| |_|\\__,_|\\__,_|\n";
+        String logo = "                                           _\n"
+                + "            __ _ _ __ ___   __ _ _ __   __| | __ _\n"
+                + "           / _' | '_ ` _ \\ / _` | '_ \\ / _` |/ _` |\n"
+                + "          | (_| | | | | | | (_| | | | | (_| | (_| |\n"
+                + "           \\__,_|_| |_| |_|\\__,_|_| |_|\\__,_|\\__,_|\n";
         System.out.println(logo);
         System.out.println("    ............................................................");
         System.out.println("     Urgh! It's you\n     What do you want?");

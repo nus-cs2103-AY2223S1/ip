@@ -1,9 +1,9 @@
 package main.java.amanda.command;
 
-import main.java.amanda.ui.Ui;
-import main.java.amanda.manager.TaskList;
-import main.java.amanda.manager.StoreManager;
 import main.java.amanda.exception.AmandaException;
+import main.java.amanda.manager.StoreManager;
+import main.java.amanda.manager.TaskList;
+import main.java.amanda.ui.Ui;
 
 /**
  * UnmarkCommand is a command that unmark a task that is done.

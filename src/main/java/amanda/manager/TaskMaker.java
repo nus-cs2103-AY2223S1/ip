@@ -1,16 +1,17 @@
 package main.java.amanda.manager;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.StringTokenizer;
+
 import main.java.amanda.exception.AmandaException;
-import main.java.amanda.task.Task;
-import main.java.amanda.task.Todo;
 import main.java.amanda.task.Deadline;
 import main.java.amanda.task.Event;
+import main.java.amanda.task.Task;
+import main.java.amanda.task.Todo;
 
-import java.util.StringTokenizer;
-import java.text.SimpleDateFormat;
-import java.text.DateFormat;
-import java.util.Date;
-import java.text.ParseException;
 
 /**
  * TaskMaker creates tasks.
@@ -31,8 +32,7 @@ public class TaskMaker {
     public boolean validateDate(String input) {
         DateFormat correctFormat = new SimpleDateFormat("dd-MM-yyyy-HH:mm");
         correctFormat.setLenient(false);
-        try
-        {
+        try {
             Date date = correctFormat.parse(input);
         } catch (ParseException e) {
             return false;
@@ -58,23 +58,23 @@ public class TaskMaker {
             curr = tokens.nextToken();
             if (curr.equals("/by") | curr.equals("/at")) {
                 if (!tokens.hasMoreTokens() && type.equals("deadline")) { // if user did not enter a date.
-                    throw new AmandaException("\nHow do you expect to meet a deadline " +
-                            "if you don't even know when it is?\n");
-                } else if (!tokens.hasMoreTokens() && type.equals("event")) {  // if user did not enter a date.
+                    throw new AmandaException("\nHow do you expect to meet a deadline "
+                            + "if you don't even know when it is?\n");
+                } else if (!tokens.hasMoreTokens() && type.equals("event")) { // if user did not enter a date.
                     throw new AmandaException("\nYou are gonna show up late to this event aren't you?\n");
                 } else {
                     DateFormat inputFormat = new SimpleDateFormat("dd-MM-yyyy-HH:mm");
                     DateFormat outputFormat = new SimpleDateFormat(" EEE MMM dd yyyy hh:mm aa");
                     curr = tokens.nextToken();
-                    try{
+                    try {
                         if (validateDate(curr)) { // validate the format of the date entered by the user.
                             Date date = inputFormat.parse(curr);
                             deadline = outputFormat.format(date);
                         } else {
-                            throw new AmandaException("\nPlease enter the date and time in the correct format, " +
-                                    "don't waste my time!\n");
+                            throw new AmandaException("\nPlease enter the date and time in the correct format, "
+                                    + "don't waste my time!\n");
                         }
-                    } catch(ParseException pe) {
+                    } catch (ParseException pe) {
                         pe.printStackTrace();
                     }
                 }

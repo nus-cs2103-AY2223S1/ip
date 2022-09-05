@@ -1,8 +1,8 @@
 package main.java.amanda.command;
 
-import main.java.amanda.ui.Ui;
-import main.java.amanda.manager.TaskList;
 import main.java.amanda.manager.StoreManager;
+import main.java.amanda.manager.TaskList;
+import main.java.amanda.ui.Ui;
 
 /**
  * ExitCommand is a command that print the exit message for the program.

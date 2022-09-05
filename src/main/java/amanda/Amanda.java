@@ -1,13 +1,13 @@
 package main.java.amanda;
 
+import java.util.Scanner;
+
+import main.java.amanda.command.Command;
 import main.java.amanda.exception.AmandaException;
 import main.java.amanda.manager.QueryInterpreter;
 import main.java.amanda.manager.StoreManager;
 import main.java.amanda.manager.TaskList;
 import main.java.amanda.ui.Ui;
-import main.java.amanda.command.Command;
-
-import java.util.Scanner;
 
 /**
  * Amanda is an interactive chatbot that keeps track of users tasks and deadlines.
@@ -22,7 +22,7 @@ public class Amanda {
      * Constructor of the Amanda class.
      * @param filePath Path to the storage file of main.java.amanda.
      */
-    public Amanda (String filePath) {
+    public Amanda(String filePath) {
         store = new StoreManager(filePath);
         ui = new Ui();
         tasks = new TaskList();

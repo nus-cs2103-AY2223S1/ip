@@ -1,10 +1,10 @@
 package main.java.amanda.command;
 
+import main.java.amanda.exception.AmandaException;
+import main.java.amanda.manager.StoreManager;
+import main.java.amanda.manager.TaskList;
 import main.java.amanda.task.Task;
 import main.java.amanda.ui.Ui;
-import main.java.amanda.manager.TaskList;
-import main.java.amanda.manager.StoreManager;
-import main.java.amanda.exception.AmandaException;
 
 /**
  * Command that represent a command inputted by user.

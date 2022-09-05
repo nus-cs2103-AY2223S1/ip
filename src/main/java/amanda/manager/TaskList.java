@@ -1,8 +1,8 @@
 package main.java.amanda.manager;
 
-import main.java.amanda.task.Task;
-
 import java.util.ArrayList;
+
+import main.java.amanda.task.Task;
 
 /**
  * TaskList contains a list to hold the tasks.

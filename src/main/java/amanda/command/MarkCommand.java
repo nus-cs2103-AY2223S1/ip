@@ -1,9 +1,9 @@
 package main.java.amanda.command;
 
-import main.java.amanda.ui.Ui;
-import main.java.amanda.manager.TaskList;
-import main.java.amanda.manager.StoreManager;
 import main.java.amanda.exception.AmandaException;
+import main.java.amanda.manager.StoreManager;
+import main.java.amanda.manager.TaskList;
+import main.java.amanda.ui.Ui;
 
 /**
  * MarkCommand is a command that marks a task as done
@@ -32,6 +32,6 @@ public class MarkCommand extends Command {
         }
         tasks.getList().get(taskNo - 1).doTask(); // mark the current task as done.
         store.store(tasks); // update the storage with the new state of the task.
-        ui.showMarkCommand(tasks,taskNo); // print messages for MarkCommand.
+        ui.showMarkCommand(tasks, taskNo); // print messages for MarkCommand.
     }
 }

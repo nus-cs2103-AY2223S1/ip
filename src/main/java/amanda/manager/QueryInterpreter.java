@@ -1,16 +1,15 @@
 package main.java.amanda.manager;
 
-import main.java.amanda.command.Command;
+import java.util.StringTokenizer;
+
 import main.java.amanda.command.AddCommand;
+import main.java.amanda.command.Command;
+import main.java.amanda.command.DeleteCommand;
+import main.java.amanda.command.ExitCommand;
 import main.java.amanda.command.ListCommand;
 import main.java.amanda.command.MarkCommand;
 import main.java.amanda.command.UnmarkCommand;
-import main.java.amanda.command.DeleteCommand;
-import main.java.amanda.command.ExitCommand;
 import main.java.amanda.exception.AmandaException;
-
-
-import java.util.StringTokenizer;
 
 /**
  * QueryInterpreter is interprets/parse the user input.
@@ -28,7 +27,7 @@ public class QueryInterpreter {
      * @param input one line of the user input command.
      * @return command object that can execute what is interpreted from the user input.
      * @throws AmandaException throw an exception when the user input is not in the right format
-     * and cannot be interpreted by the method.
+     *      and cannot be interpreted by the method.
      */
     public static Command interpret(String input) throws AmandaException {
 
@@ -36,22 +35,22 @@ public class QueryInterpreter {
         String type = getType(input);
 
         switch (type) {
-            case "not a command":
-                throw new AmandaException("\nI have no idea what you just said.\n");
-            case "":
-                throw new AmandaException("\nDon't call me up and say nothing!\n");
-            case "task":
-                return new AddCommand(generator.make(input));
-            case "list":
-                return new ListCommand();
-            case "mark":
-                return new MarkCommand(Integer.parseInt(getIndex(input)));
-            case "unmark":
-                return new UnmarkCommand(Integer.parseInt(getIndex(input)));
-            case "delete":
-                return new DeleteCommand(Integer.parseInt(getIndex(input)));
-            default:
-                return new ExitCommand();
+        case "not a command":
+            throw new AmandaException("\nI have no idea what you just said.\n");
+        case "":
+            throw new AmandaException("\nDon't call me up and say nothing!\n");
+        case "task":
+            return new AddCommand(generator.make(input));
+        case "list":
+            return new ListCommand();
+        case "mark":
+            return new MarkCommand(Integer.parseInt(getIndex(input)));
+        case "unmark":
+            return new UnmarkCommand(Integer.parseInt(getIndex(input)));
+        case "delete":
+            return new DeleteCommand(Integer.parseInt(getIndex(input)));
+        default:
+            return new ExitCommand();
         }
     }
 

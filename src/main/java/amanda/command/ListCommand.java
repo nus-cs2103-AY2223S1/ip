@@ -1,8 +1,8 @@
 package main.java.amanda.command;
 
-import main.java.amanda.ui.Ui;
-import main.java.amanda.manager.TaskList;
 import main.java.amanda.manager.StoreManager;
+import main.java.amanda.manager.TaskList;
+import main.java.amanda.ui.Ui;
 
 /**
  * ListCommand is a class that lists the current task in the task list.

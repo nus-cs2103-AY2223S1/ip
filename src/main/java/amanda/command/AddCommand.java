@@ -1,9 +1,9 @@
 package main.java.amanda.command;
 
+import main.java.amanda.manager.StoreManager;
+import main.java.amanda.manager.TaskList;
 import main.java.amanda.task.Task;
 import main.java.amanda.ui.Ui;
-import main.java.amanda.manager.TaskList;
-import main.java.amanda.manager.StoreManager;
 
 /**
  * AddCommand is a command that adds new tasks to the current task list.
