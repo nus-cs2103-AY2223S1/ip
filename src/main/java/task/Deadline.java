@@ -35,4 +35,16 @@ public class Deadline extends Task {
     public String toString() {
         return "[D]" + super.toString() + " (by: " + DateTimeParser.changeDateTimeFormat(deadlineDateTime) + ")";
     }
+
+    public String getCommandLineFormatDateTime() {
+        return deadlineDateTime.toString();
+    }
+
+    public String getOutputFormatDateTime() {
+        return DateTimeParser.changeDateTimeFormat(deadlineDateTime);
+    }
+
+    public String getLocalDateTimeString() {
+        return deadlineDateTime.toString();
+    }
 }
