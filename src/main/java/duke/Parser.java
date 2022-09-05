@@ -31,6 +31,8 @@ public class Parser {
             return deadlineCommand(taskList, ui, command);
         case "event":
             return eventCommand(taskList, ui, command);
+        case "recurring":
+            return recurringCommand(taskList, ui, command);
         case "delete":
             return deleteCommand(taskList, ui, command);
         case "find":
@@ -89,6 +91,15 @@ public class Parser {
         String[] arguments = command[1].split(" /at ", 2);
         assert (arguments.length > 1);
         Task newTask = new Event(arguments[0], arguments[1]);
+        taskList.add(newTask);
+        return ui.showAdded(newTask, taskList.getSize());
+    }
+
+    private static String recurringCommand(TaskList taskList, Ui ui, String[] command) throws DukeException {
+        assert (command.length > 1);
+        String[] arguments = command[1].split(" /repeats ", 2);
+        assert (arguments.length > 1);
+        Task newTask = new Recurring(arguments[0], arguments[1]);
         taskList.add(newTask);
         return ui.showAdded(newTask, taskList.getSize());
     }
