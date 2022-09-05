@@ -22,7 +22,7 @@ public class DukeException extends RuntimeException {
     private static final String TAB = "    ";
 
     /** Default error message for invalid commands */
-    private static final String defaultMsg = INTRO
+    private static final String DEFAULT_MSG = INTRO
             + TAB + TODO
             + TAB + EVENT
             + TAB + DEADLINE
@@ -37,7 +37,7 @@ public class DukeException extends RuntimeException {
      * Constructs duke.exception.DukeException object with default error message.
      */
     public DukeException() {
-        super(defaultMsg);
+        super(DEFAULT_MSG);
     }
 
     /**

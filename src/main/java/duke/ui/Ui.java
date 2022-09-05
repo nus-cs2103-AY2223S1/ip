@@ -48,7 +48,6 @@ public class Ui {
     /** Goodbye message printed when exiting duke.Duke */
     private static final String MESSAGE_GOODBYE = "Bye! See nya later!\n";
 
-    private static final String TAB = "    ";
 
     /**
      * Reads and returns user input.
@@ -130,7 +129,7 @@ public class Ui {
      * @return String of confirmation message of completing a task.
      */
     public String showMark(Task t) {
-        String content = "Nyace! One step closer to nap!\n" + TAB + t + "\n";
+        String content = "Nyace! One step closer to nap!\n" + "\t" + t + "\n";
         return content;
     }
 
@@ -141,7 +140,7 @@ public class Ui {
      * @return String of confirmation message of marking a task as incomplete.
      */
     public String showUnmark(Task t) {
-        String content = "You nyapped for too long!\n" + TAB + t + "\n";
+        String content = "You nyapped for too long!\n" + "\t" + t + "\n";
         return content;
     }
 
@@ -153,7 +152,7 @@ public class Ui {
      * @return String of message confirming a delete operation had been carried out.
      */
     public String showDelete(Task t, int tasksLeft) {
-        String content = "It's dead!! It's deadsss!\n" + TAB + t + "\n";
+        String content = "It's dead!! It's deadsss!\n" + "\t" + t + "\n";
         String end = showTasksLeft(tasksLeft);
         return content + end;
 
