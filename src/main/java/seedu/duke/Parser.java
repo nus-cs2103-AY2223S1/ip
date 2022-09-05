@@ -61,6 +61,10 @@ public class Parser {
 
         } else if (checkCommand(text, 6)) {
             int i = Integer.parseInt(text.split(" ")[1].strip());
+
+            assert i >= 0 : "index should be non-negative";
+            assert i < this.tasks.size() : "index should be valid list item";
+
             msg = this.ui.msg("Noted. I've removed this task:\n\t" + this.tasks.get(i)
                     + "\nNow you have " + (this.tasks.size() - 1) + " tasks in the list.");
             this.tasks.delete(i);
@@ -89,6 +93,9 @@ public class Parser {
             } else if (checkCommand(text, 4)) {
                 isSent = true;
                 String[] temp = text.split("/at");
+
+                assert temp.length == 2 : "temp array should contain 2 items";
+
                 text = temp[0].strip().substring(commandWords[4].length() + 1);
                 d = LocalDate.parse(temp[1].strip());
                 t = this.tasks.add(new Task(text, commandWords[4], d));
@@ -96,6 +103,9 @@ public class Parser {
             } else if (checkCommand(text, 5)) {
                 isSent = true;
                 String[] temp = text.split("/by");
+
+                assert temp.length == 2 : "temp array should contain 2 items";
+
                 text = temp[0].strip().substring(commandWords[5].length() + 1);
                 d = LocalDate.parse(temp[1].strip());
                 t = this.tasks.add(new Task(text, commandWords[5], d));
