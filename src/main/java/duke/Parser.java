@@ -61,7 +61,7 @@ public class Parser {
             case "mark":
                 checkParameters("mark", commandList);
 
-                int indexMark = Integer.parseInt(commands[1]) - 1;
+                int indexMark = Integer.parseInt(commandList[1]) - 1;
                 if (indexMark < 0 || indexMark >= tasks.getSize()) {
                     throw new InvalidParameterException();
                 }
@@ -72,7 +72,7 @@ public class Parser {
             case "unmark":
                 checkParameters("unmark", commandList);
 
-                int indexUnmark = Integer.parseInt(commands[1]) - 1;
+                int indexUnmark = Integer.parseInt(commandList[1]) - 1;
                 if (indexUnmark < 0 || indexUnmark >= tasks.getSize()) {
                     throw new InvalidParameterException();
                 }
@@ -110,7 +110,7 @@ public class Parser {
             case "delete":
                 checkParameters("delete", commandList);
 
-                int index = Integer.parseInt(commands[1]) - 1;
+                int index = Integer.parseInt(commandList[1]) - 1;
                 if (index < 0 || index >= tasks.getSize()) {
                     throw new InvalidParameterException();
                 }
@@ -121,7 +121,8 @@ public class Parser {
 
             case "find":
                 checkParameters("find", commandList);
-                return ui.getCorrectMessage(Ui.Commands.FIND, tasks.find(commandList[1]), 0);
+                String keyword = commandList[1];
+                return ui.getCorrectMessage(Ui.Commands.FIND, tasks.find(keyword), 0);
             default:
                 throw new UnknownCommandException();
             }
