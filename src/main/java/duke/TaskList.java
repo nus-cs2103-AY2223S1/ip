@@ -45,7 +45,7 @@ public class TaskList {
                 }
                 String taskStringDL = splitStringDL[0];
                 String by = splitStringDL[1];
-                //for date only
+                
                 String[] dateDeadlineOnly = by.split(" ");
                 if (dateDeadlineOnly.length == 1) {
                     throw new DukeException("Time required!");
