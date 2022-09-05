@@ -1,5 +1,7 @@
 package tako.task;
 
+import java.time.LocalDateTime;
+
 /**
  * Represents a task.
  */
@@ -31,12 +33,20 @@ public class Task {
     }
 
     /**
+     * Returns the date and time to complete the task.
+     *
+     * @return Maximum Date and Time as tasks have no deadline.
+     */
+    public LocalDateTime getDateTime() {
+        return LocalDateTime.MAX;
+    }
+
+    /**
      * Marks the task as done.
      */
     public void markAsDone() {
         isDone = true;
     }
-
 
     /**
      * Converts this task to a suitable format for file storage.

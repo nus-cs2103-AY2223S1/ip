@@ -20,6 +20,11 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    @Override
+    public LocalDateTime getDateTime() {
+        return by;
+    }
+
     /**
      * {@inheritDoc}
      */
