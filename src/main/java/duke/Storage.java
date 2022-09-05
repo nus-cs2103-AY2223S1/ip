@@ -5,18 +5,13 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Deals with loading tasks from the file and saving tasks in the file.
@@ -41,23 +36,16 @@ public class Storage {
      */
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> tasks = new ArrayList<>();
-        Path filePath = Paths.get(filePathStr);
-
-        boolean isDataFileExisting = Files.exists(filePath);
-
-        if (!isDataFileExisting) {
+        try {
             File f1 = new File(filePathStr);
-            boolean isDirsMade = f1.getParentFile().mkdirs();
-            if (!isDirsMade) {
-                System.out.println("Directories not made");
-            }
-        }
+            f1.getParentFile().mkdirs();
+            f1.createNewFile();
 
-        try (BufferedReader br = new BufferedReader(
-                new FileReader(filePathStr))) {
+            Scanner scanner = new Scanner(f1);
             String line;
-            while ((line = br.readLine()) != null) {
+            while (scanner.hasNext()) {
                 Task newTask;
+                line = scanner.nextLine();
                 // process data
                 switch (line.charAt(4)) {
                     case 'T':
@@ -75,9 +63,12 @@ public class Storage {
                 }
                 tasks.add(newTask);
             }
-        } catch (IOException | NullPointerException e) {
-            throw new DukeException("There was an error loading "
-                    + "your existing tasks, no tasks were loaded :(");
+        } catch (FileNotFoundException e) {
+            throw new DukeException("File couldn't be created. Starting Duke with no tasks loaded!");
+        } catch (NullPointerException e) {
+            throw new DukeException("Please input a file path!");
+        } catch (IOException e) {
+            throw new DukeException("There was an error loading your data!");
         }
         return tasks;
     }
@@ -86,28 +77,14 @@ public class Storage {
      * Saves the specified list of tasks.
      *
      * @param taskList The specified list of tasks.
-     * @throws DukeException If the list could not be saved.
      */
-    public void save(TaskList taskList) throws DukeException {
-        byte[] data = taskList.toString().getBytes();
-        Path filePath = Paths.get(filePathStr);
-
-        boolean isDataFileExisting = Files.exists(filePath);
-
-        if (!isDataFileExisting) {
-            File f1 = new File(filePathStr);
-            boolean isDirsMade = f1.getParentFile().mkdirs();
-            if (!isDirsMade) {
-                System.out.println("Directories not made");
-            }
-        }
-
-        try (OutputStream out = new BufferedOutputStream(
-                Files.newOutputStream(filePath))) {
-            out.write(data, 0, data.length);
-        } catch (IOException x) {
-            throw new DukeException("There was an error "
-                    + "saving your changes!");
+    public void save(TaskList taskList) {
+        try {
+            FileWriter fw = new FileWriter(filePathStr);
+            fw.write(taskList.toString());
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("There was an error saving your file, your changes were not saved!");
         }
     }
 }
