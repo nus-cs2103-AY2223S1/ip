@@ -24,6 +24,7 @@ public class Storage {
      */
     public void loadTasks(TaskList taskList) throws FileNotFoundException {
         File f = new File(this.filePath);
+        assert f.exists();
         Scanner sc = new Scanner(f);
         while (sc.hasNextLine()) {
             Task t = Parser.parseFromFile(sc.nextLine());
@@ -42,11 +43,11 @@ public class Storage {
         if (length > 0) {
             fw.write(taskList.index(0).toString() + "\n");
             fw.close();
-            FileWriter second_fw = new FileWriter(this.filePath, true);
+            FileWriter secondFw = new FileWriter(this.filePath, true);
             for (int i = 1; i < length; i++) {
-                second_fw.write(taskList.index(i).toString() + "\n");
+                secondFw.write(taskList.index(i).toString() + "\n");
             }
-            second_fw.close();
+            secondFw.close();
         } else {
             fw.write("");
             fw.close();
