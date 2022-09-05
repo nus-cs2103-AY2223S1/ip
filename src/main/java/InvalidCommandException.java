@@ -1,4 +1,4 @@
-public class InvalidTaskException extends DoemonException {
+public class InvalidCommandException extends DoemonException {
     /**
      * Returns a string representation of the exception.
      * @return a string representing the exception

@@ -1,0 +1,80 @@
+public class Parser {
+
+    /**
+     * Parses the user-input string and returns the related command.
+     * @param inputString the user-inputted string
+     * @return the command to be executed
+     * @throws EmptyTaskException if task description is empty
+     * @throws InvalidCommandException if the add task command given is invalid
+     * @throws MissingArgumentException if there is a missing argument from a deadline or event
+     */
+    public static Command parse(String inputString) throws EmptyTaskException, InvalidCommandException,
+            MissingArgumentException{
+        if (inputString.equals("bye")) {
+            return new ExitCommand();
+        }
+        // List tasks
+        if (inputString.equals("list")) {
+            return new ListCommand();
+        }
+
+        String[] inputArr = inputString.split(" ");
+
+        // Check for mark/unmark/delete
+        if (inputArr.length == 2
+                && (inputArr[0].equals("mark") || inputArr[0].equals("unmark") || inputArr[0].equals("delete"))
+                && isInteger(inputArr[1])) {
+            int taskIndex = Integer.parseInt(inputArr[1]) - 1;
+            if (inputArr[0].equals("mark")) {
+                return new MarkCommand(taskIndex);
+            } else if (inputArr[0].equals("unmark")) {
+                return new UnmarkCommand(taskIndex);
+            } else {
+                return new DeleteCommand(taskIndex);
+            }
+        }
+
+        // Add new task
+        if (inputArr[0].equals("todo")) {
+            String detail = inputString.substring(4).trim();
+            if (detail.trim().equals("")) {
+                throw new EmptyTaskException("todo");
+            }
+            return new AddCommand(new Todo(detail));
+        } else if (inputArr[0].equals("deadline")) {
+            String[] details = inputString.substring(8).trim().split(" /by ");
+            if (details[0].trim().equals("")) {
+                throw new EmptyTaskException("deadline");
+            }
+            if (details.length == 1) {
+                throw new MissingArgumentException("deadline", "/by");
+            }
+            return new AddCommand(new Deadline(details[0], details[1]));
+        } else if (inputArr[0].equals("event")) {
+            String[] details = inputString.substring(5).trim().split(" /at ");
+            if (details[0].trim().equals("")) {
+                throw new EmptyTaskException("event");
+            }
+            if (details.length == 1) {
+                throw new MissingArgumentException("event", "/at");
+            }
+            return new AddCommand(new Event(details[0], details[1]));
+        } else {
+            throw new InvalidCommandException();
+        }
+    }
+
+    /**
+     * Checks if the input string after mark/unmark is an integer.
+     * @param text the string input to be checked
+     * @return a boolean indicating if the text can be parsed into an integer
+     */
+    private static boolean isInteger(String text) {
+        try {
+            Integer.parseInt(text);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+}

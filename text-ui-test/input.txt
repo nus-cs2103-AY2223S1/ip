@@ -26,5 +26,7 @@ deadline Finish work
 event Go out and party
 list
 
+delete 1
+delete 1
 
 bye

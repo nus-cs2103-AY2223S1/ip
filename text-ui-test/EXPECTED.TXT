@@ -87,24 +87,12 @@
 	exist! Try again with a valid number.
 	____________________________________________________________
 	____________________________________________________________
-	Oh my doe!! Sorry I don't recognise that command...
-	Please try again with a valid command
-	____________________________________________________________
-	____________________________________________________________
 	Oh my doe!! Looks like you want to unmark a task that doesn't
 	exist! Try again with a valid number.
 	____________________________________________________________
 	____________________________________________________________
-	Oh my doe!! Sorry I don't recognise that command...
-	Please try again with a valid command
-	____________________________________________________________
-	____________________________________________________________
 	Oh my doe!! Looks like you want to delete a task that doesn't
 	exist! Try again with a valid number.
-	____________________________________________________________
-	____________________________________________________________
-	Oh my doe!! Sorry I don't recognise that command...
-	Please try again with a valid command
 	____________________________________________________________
 	____________________________________________________________
 	Here is what's on my bread:
@@ -145,6 +133,16 @@
 	____________________________________________________________
 	Oh my doe!! Sorry I don't recognise that command...
 	Please try again with a valid command
+	____________________________________________________________
+	____________________________________________________________
+	I used a knife to slice off this task from my bread:
+	  [T][ ] finish CS2103T Individual Project
+	There are 1 items left on my bread.
+	____________________________________________________________
+	____________________________________________________________
+	I used a knife to slice off this task from my bread:
+	  [E][ ] Family gathering (at: Some time next week)
+	There are 0 items left on my bread.
 	____________________________________________________________
 	____________________________________________________________
 	Oh my doe!! Sorry I don't recognise that command...
