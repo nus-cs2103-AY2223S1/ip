@@ -12,7 +12,7 @@ import duke.task.Todo;
 /**
  * public class TodoCommand to handle tasks to be done.
  */
-public class TodoCommand extends Command{
+public class TodoCommand extends Command {
     private String event;
 
     /**

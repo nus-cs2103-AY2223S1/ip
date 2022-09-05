@@ -4,10 +4,10 @@
  */
 package duke;
 
-import duke.task.Task;
-
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+
+import duke.task.Task;
 
 /**
  * Class TaskList to store the list of Tasks.
@@ -40,7 +40,7 @@ public class TaskList {
 
     /**
      * class method saveList to convert Arraylist of Tasks into String representation of tasks.
-     * @return Arraylist<String> containing tasks in String form.
+     * @return Arraylist containing tasks in String form.
      */
     public ArrayList<String> saveList() {
         ArrayList<String> result = new ArrayList<>();
@@ -58,7 +58,7 @@ public class TaskList {
         int count = 0;
         String str = "Here are the tasks in your list:";
         for (Task k : memo) {
-            count ++;
+            count++;
             str += "\n    " + count + ". " + k.toString();
         }
         return str;

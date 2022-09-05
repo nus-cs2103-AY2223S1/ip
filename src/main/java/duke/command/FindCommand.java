@@ -14,6 +14,10 @@ import duke.Ui;
 public class FindCommand extends Command {
     private String[] keywords;
 
+    /**
+     * public constructor for FindCommand.
+     * @param keywords list of keywords.
+     */
     public FindCommand(String... keywords) {
         super();
         this.keywords = keywords;

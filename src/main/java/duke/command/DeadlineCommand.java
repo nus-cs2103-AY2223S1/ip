@@ -14,7 +14,7 @@ import duke.task.Deadline;
 /**
  * public class DeadlineCommand that handles deadline.
  */
-public class DeadlineCommand extends Command{
+public class DeadlineCommand extends Command {
     private String event;
     private LocalDate time;
 

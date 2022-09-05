@@ -1,3 +1,7 @@
+/**
+ * Project Duke CS2103
+ * Done by Hong Jin.
+ */
 package duke;
 
 import java.io.IOException;

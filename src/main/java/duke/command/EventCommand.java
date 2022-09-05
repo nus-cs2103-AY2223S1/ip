@@ -14,7 +14,7 @@ import duke.task.Event;
 /**
  * public class EventCommand that handles the command for Event.
  */
-public class EventCommand extends Command{
+public class EventCommand extends Command {
     private String event;
     private LocalDate time;
 

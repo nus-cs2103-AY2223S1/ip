@@ -4,19 +4,19 @@
  */
 package duke;
 
-import duke.task.Task;
-
 import java.util.Scanner;
+
+import duke.task.Task;
 
 /**
  * public class Ui to handle text shown to users when command is typed in to Duke.
  */
 public class Ui {
 
-    public static final String initText = "Hello! I'm Duke\n    What can I do for you?";
-    public static final String endText = "Bye bye! Hope to see you again soon!";
+    private static final String initText = "Hello! I'm Duke\n    What can I do for you?";
+    private static final String endText = "Bye bye! Hope to see you again soon!";
 
-    public static final String logo = " ____        _        \n"
+    private static final String logo = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
@@ -86,15 +86,13 @@ public class Ui {
     public String printDeleteTask(Task t, int n) {
         String noteUpdated = "Now you have " + n + " tasks in the list.";
         return printMessage("Noted. I've deleted this task:\n      " + t.toString()
-                + "\n" + noteUpdated); //4 spaces
+                + "\n" + noteUpdated);
     }
 
     /**
      * class method to print message - the lines and indentation and formatting.
      */
-    public static String printMessage (String str){
-        //String line = "  ____________________________________________________________";
-        //return line + "\n    " + str + "\n" + line;
+    public static String printMessage(String str) {
         return str;
     }
 }

@@ -11,8 +11,7 @@ import duke.Ui;
 /**
  * public class ByeCommand to handle Exit command.
  */
-public class ByeCommand extends Command{
-
+public class ByeCommand extends Command {
     /**
      * public constructor for ByeCommand.
      */

@@ -9,7 +9,7 @@ import java.time.LocalDate;
 /**
  * class Deadline to handle Deadline Task.
  */
-public class Deadline extends Task{
+public class Deadline extends Task {
     private LocalDate date;
 
     /**

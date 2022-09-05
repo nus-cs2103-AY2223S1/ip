@@ -1,11 +1,18 @@
+/**
+ * Project Duke CS2103
+ * Done by Hong Jin.
+ */
 package duke.task;
-
-import org.junit.jupiter.api.Test;
-
-import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
+
+import org.junit.jupiter.api.Test;
+
+/**
+ * public class DeadlineTest to test for class Deadline.
+ */
 public class DeadlineTest {
     @Test
     public void test1() {

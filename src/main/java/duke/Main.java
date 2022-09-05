@@ -1,3 +1,7 @@
+/**
+ * Project Duke CS2103
+ * Done by Hong Jin.
+ */
 package duke;
 
 import java.io.IOException;
@@ -14,6 +18,10 @@ import javafx.stage.Stage;
 public class Main extends Application {
     private Duke duke = new Duke();
 
+    /**
+     * start Method to launch and kickstart the stage for GUI.
+     * @param stage stage for GUI.
+     */
     @Override
     public void start(Stage stage) {
         try {

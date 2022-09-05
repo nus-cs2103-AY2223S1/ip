@@ -11,7 +11,7 @@ import duke.Ui;
 /**
  * public class UnmarkCommand to mark the task as undone.
  */
-public class UnmarkCommand extends Command{
+public class UnmarkCommand extends Command {
     private int index;
 
     /**

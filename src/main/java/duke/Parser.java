@@ -4,20 +4,20 @@
  */
 package duke;
 
-import duke.command.Command;
-import duke.command.ListCommand;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import duke.command.ByeCommand;
+import duke.command.Command;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
 import duke.command.EventCommand;
-import duke.command.MarkCommand;
-import duke.command.UnmarkCommand;
-import duke.command.TodoCommand;
 import duke.command.FindCommand;
-
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.LocalDate;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TodoCommand;
+import duke.command.UnmarkCommand;
 
 /**
  * class Parser to parse through commands input by user.

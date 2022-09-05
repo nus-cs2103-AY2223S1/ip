@@ -9,7 +9,7 @@ import java.time.LocalDate;
 /**
  * class Event to handle Event Task.
  */
-public class Event extends Task{
+public class Event extends Task {
     private LocalDate date;
 
     /**
