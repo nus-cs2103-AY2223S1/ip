@@ -49,9 +49,9 @@ public class Storage {
             List<Task> tasks = (List<Task>) ois.readObject();
             return tasks;
         } catch (IOException e) {
-            throw new DukeException("An I/O error occurred while reading from '" + path + "'.");
+            throw new DukeException("An I/O error occurred while reading from '" + path + "'");
         } catch (ClassNotFoundException e) {
-            throw new DukeException("Failed to read '" + path + "'.");
+            throw new DukeException("Failed to read '" + path + "'");
         }
     }
 }
