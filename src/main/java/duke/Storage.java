@@ -34,6 +34,8 @@ public class Storage {
                 Scanner s = new Scanner(savedTasks);
                 while (s.hasNext()) {
                     String task = s.nextLine();
+                    char firstChar = task.charAt(0);
+                    assert firstChar == 'T' || firstChar == 'E' || firstChar == 'D';
                     switch (task.charAt(0)) {
                         case 'T':
                             tl.addTask(ToDo.taskFromSave(task));
