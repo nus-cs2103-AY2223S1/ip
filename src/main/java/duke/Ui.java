@@ -25,11 +25,11 @@ public class Ui {
     }
     
     public String getTaskDeletedMessage(Task task, int size) {
-        return "K. Removed your task:" + task + "Now you have " + size + " tasks.";
+        return "K. Removed your task:\n" + task + "\nNow you have " + size + " tasks.";
     }
     
     public String getAddedMessage(Task task, int size) {
-        return "K. Added your task:" + task + "Now you have " + size + " tasks.";
+        return "K. Added your task:\n" + task + "\nNow you have " + size + " tasks.";
     }
     
     public String getList(TaskList tl) {
