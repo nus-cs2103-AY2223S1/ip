@@ -44,8 +44,11 @@ public class Event extends Task {
     @Override
     public String convertToSaveFormat() {
         int status = isDone ? 1 : 0;
-        return String.format("%s | %d | %s | %s", "E", status, name,
-                DateTimeFormatUtils.convertToInputFormat(startDate) + " to "
-                        + DateTimeFormatUtils.convertToInputFormat(endDate));
+        String prefix = "E";
+        String start = DateTimeFormatUtils.convertToInputFormat(startDate);
+        String end = DateTimeFormatUtils.convertToInputFormat(endDate);
+        String duration = start + " to " + end;
+
+        return String.format("%s | %d | %s | %s", prefix, status, name, duration);
     }
 }

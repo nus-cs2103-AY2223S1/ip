@@ -26,8 +26,8 @@ public class Duke {
      * Constructor for Duke class.
      */
     public Duke() {
-        ui = new Ui();
-        storage = new Storage();
+        this.ui = new Ui();
+        this.storage = new Storage();
         try {
             tasks = new TaskList(storage.readTaskListFromFile());
         } catch (DukeException e) {
@@ -40,11 +40,6 @@ public class Duke {
      * Executes the Duke chatbot logic.
      */
     public String getResponse(String input) {
-        // Helper Fields
-        boolean isExit = false;
-
-        while (!isExit) {
-
             // Parse Input
             try {
                 Parser.parse(input);
@@ -81,28 +76,27 @@ public class Duke {
                     return ui.displayTaskAddedMessage(task, tasks.size());
                 }
                 case LIST: {
-                    return tasks.displayTaskList();
+                    return tasks.display();
                 }
                 case FIND: {
-                    return tasks.searchTaskList(argument);
+                    return tasks.search(argument);
                 }
                 case DELETE: {
                     Task deletedTask = tasks.getTask(argument);
                     tasks.deleteTask(argument);
                     return ui.displayTaskDeletedMessage(deletedTask, tasks.size());
                 }
-                case MARK:
+                case MARK: // Fallthrough
                 case UNMARK: {
                     tasks.markUnmarkTask(argument, command);
                     Task task = tasks.getTask(argument);
                     return ui.displayTaskMarkUnmarkMessage(task, command);
                 }
                 case BYE: {
-                    isExit = true;
                     return ui.sayGoodbye();
                 }
                 default: {
-                    System.out.print("Unexpected Error in Run");
+                    System.out.print("Unexpected Error in Get Response");
                     break;
                 }
                 }
@@ -112,7 +106,6 @@ public class Duke {
             } catch (DukeException de) {
                 return ui.printErrorMessage(de);
             }
-        }
         return "";
     }
 
