@@ -2,10 +2,11 @@ package anya;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class Parser {
     public static String parseCommand(String userInput) {
-        return userInput.split(" ")[0];
+        return userInput.split(" ")[0].toUpperCase();
     }
 
     // Non task related
