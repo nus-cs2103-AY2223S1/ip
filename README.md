@@ -1,6 +1,7 @@
 # Pikachu Task Manager ϞϞ(๑⚈ ․̫ ⚈๑)∩ 🟡
 
-> "Pokémon Can Evolve Into Better Versions Of Themselves. And Now - So Can You." - Detective Pikachu
+> "Pokémon Can Evolve Into Better Versions Of Themselves. And Now - So Can You." 
+> - Detective Pikachu
 
 With Pikachu Task Manager, you can become a better version of yourself through managing your tasks better and never going to miss any deadlines! (*PIKA!*)
 
@@ -16,12 +17,12 @@ All you need to do is,
 4. Pikachu will be there to help (*Pikapi!*)
 
 If you are a fan of Pokémon:
-[ ] Yes, I love it!
-[ ] No, but yes Pikachu is cute!
+- [ ] Yes, I love it!
+- [ ] No, but yes Pikachu is cute!
 
 And also a Java Programmer, you can definitely make use of the <code>main</code> function in Pikachu.java:
 ```java
 public static void main(String[] args) {
-        new Pikachu("you_path_to_the_database_file").run();
+        new Pikachu("you/path/to/database/file").run();
     }
 ```
