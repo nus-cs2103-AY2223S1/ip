@@ -54,18 +54,21 @@ public class Storage {
      * Saves task list
      * @param taskList the task list
      */
-    public void save(ArrayList<Task> taskList) {
+    public boolean save(ArrayList<Task> taskList) {
         File file = new File(filePath);
+        boolean saved = false;
         try {
             FileOutputStream fos = new FileOutputStream(file);
             ObjectOutputStream writer = new ObjectOutputStream(fos);
             writer.writeObject(taskList);
             fos.close();
             writer.close();
+            saved = true;
         } catch (IOException e) {
             System.out.println(e.toString());
             System.out.println("Oops! Something wrong with your personal file...");
         }
+        return saved;
     }
 
     /**

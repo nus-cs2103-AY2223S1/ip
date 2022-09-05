@@ -20,6 +20,10 @@ public class CreateDeadlineCommand extends Command {
      */
     public String execute(TasksController controller, String taskText, String taskTime, int taskIndex,
                           Storage storage, String ...keywords) {
+        assert taskTime.length() > 0 : "Time of a deadline should not be empty";
+        assert taskText.length() > 0 : "Content of a deadline should not be empty";
+        assert taskIndex == -1 : "The taskIndex should not be used for CreateDeadlineCommand";
+        assert keywords == null : "The keywords should not be used for CreateDeadlineCommand";
         String response = "";
         Deadline ddlTask = new Deadline(taskText, taskTime);
         controller.addToList(ddlTask);

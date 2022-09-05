@@ -15,22 +15,9 @@ public class TasksController {
     private ArrayList<Task> tasks;
 
     public TasksController(ArrayList<Task> tasks) {
+        assert tasks != null : "Tasks should not be null!";
         this.tasks = tasks;
     }
-
-    /**
-     * Checks if task content is empty.
-     * @param content task content
-     * @return a boolean value
-     * @throws EmptyContentException if content is empty
-     */
-    public boolean checkTaskContent(String content) throws EmptyContentException {
-        if (content.isBlank()) {
-            throw new EmptyContentException("ERROR: No empty task is allowed! Please try again.");
-        }
-        return true;
-    }
-
 
     /**
      * Return the target task.

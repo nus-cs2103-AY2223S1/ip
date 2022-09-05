@@ -19,7 +19,11 @@ public class ExitCommand extends Command {
      */
     public String execute(TasksController controller, String taskText, String taskTime, int taskIndex,
                           Storage storage, String ...keywords) {
-        storage.save(controller.getTasks());
+        assert taskTime.length() == 0 : "The taskTime of should not be used for ExitCommand";
+        assert taskText.length() == 0 : "The taskText should not be used for ExitCommand";
+        assert taskIndex == -1 : "The taskIndex should not be used for ExitCommand";
+        assert keywords == null : "The keywords should not be used for ExitCommand";
+        assert storage.save(controller.getTasks()) : "File saving should be successful";
         return "Bye. Hope to see you soon!";
     }
 }
