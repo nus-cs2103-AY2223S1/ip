@@ -31,6 +31,7 @@ public class Parser {
      * @throws DukeException for invalid commands inputted.
      */
     public static Command parse(String input) throws DukeException {
+        assert input != null : "Parser :: parse called with null argument";
         // Isolate individual strings in the input
         String[] inputArray = input.split(" ", 2);
         // The command should be the first string
