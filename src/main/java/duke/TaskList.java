@@ -228,7 +228,7 @@ public class TaskList {
         // Get the task to be marked
         Task selectedTask = this.tasks.get(index - 1);
 
-        assert selectedTask != null;
+        assert selectedTask != null; // Check if task is null
 
         // Mark it as not done
         selectedTask.unmark();
