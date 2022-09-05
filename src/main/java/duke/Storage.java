@@ -101,7 +101,6 @@ public class Storage {
      * @throws DukeException If the data is not valid.
      */
     private void checkFormat(String[] taskData) throws DukeException {
-        assert taskData.length > 0 && taskData.length < 5;
         boolean isToDo = "T".equals(taskData[0]);
         if (taskData.length < 3) {
             throw new DukeException("File format invalid!");
@@ -118,7 +117,6 @@ public class Storage {
      * @param taskData The data that was saved for that task.
      */
     private void setCompletion(Task task, String[] taskData) {
-        assert taskData.length > 1;
         boolean isComplete = "1".equals(taskData[1]);
         if (isComplete) {
             task.markDone();

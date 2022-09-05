@@ -31,7 +31,6 @@ public class AddCommand extends Command {
      * @param date The date of the task to be added.
      */
     public AddCommand(String taskType, String description, LocalDate date) {
-        assert description.length() > 0;
         this.taskType = taskType;
         this.description = description;
         this.date = date;
