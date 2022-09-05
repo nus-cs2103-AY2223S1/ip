@@ -111,6 +111,7 @@ public class TaskList {
     /**
      * Returns an array of string representation of the Tasks in the list, numbered from 1.
      *
+     * @author huizhuansam
      * @return An array of string representation of the Tasks in the list, numbered from 1.
      */
     public String[] toStringArray() {
