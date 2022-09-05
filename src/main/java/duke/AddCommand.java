@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * Represents a command to add Task to TaskList.
+ * @author Tan Wen Cong
+ */
 public class AddCommand extends Command {
     private Task task;
 

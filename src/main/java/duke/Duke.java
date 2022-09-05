@@ -13,6 +13,10 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * Represents the central program that will interact with user.
+ * @author Tan Wen Cong
+ */
 public class Duke extends Application {
     private Ui ui;
     private TaskList tasks;
@@ -148,8 +152,7 @@ public class Duke extends Application {
         String dukeText = getResponse(userInput.getText());
         dialogContainer.getChildren().addAll(
             DialogBox.getUserDialog(userText, new ImageView(user).getImage()),
-            DialogBox.getDukeDialog(dukeText, new ImageView(duke).getImage())
-        );
+            DialogBox.getDukeDialog(dukeText, new ImageView(duke).getImage()));
         userInput.clear();
     }
 
@@ -159,7 +162,7 @@ public class Duke extends Application {
      * @param input Command passed in by user
      * @return String reply from Duke
      */
-     String getResponse(String input) {
+    String getResponse(String input) {
         String s = "";
         try {
             s = Parser.parse(input).execute(tasks, ui, storage);

@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * Represents an Event Task.
+ * @author Tan Wen Cong
+ */
 public class Event extends Task {
     private String time;
 

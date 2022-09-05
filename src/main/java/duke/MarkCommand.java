@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * Represents a command to mark Task in TaskList as done.
+ * @author Tan Wen Cong
+ */
 public class MarkCommand extends Command {
     private int idx;
 

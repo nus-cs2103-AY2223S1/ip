@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * Represents a command to be executed.
+ * @author Tan Wen Cong
+ */
 public abstract class Command {
     /**
      * Executes input command by user

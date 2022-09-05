@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * Represents a command to list Tasks in TaskList.
+ * @author Tan Wen Cong
+ */
 public class ListCommand extends Command {
     /**
      * Lists all tasks in taskList

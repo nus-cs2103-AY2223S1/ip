@@ -2,6 +2,10 @@ package duke;
 
 import java.util.Set;
 
+/**
+ * Represents a parser to handle user command line input.
+ * @author Tan Wen Cong
+ */
 public class Parser {
     private static final Set<String> SET_OF_COMMANDS = Set.of(
         "bye", "list", "mark", "unmark", "delete", "find", "todo", "deadline", "event");

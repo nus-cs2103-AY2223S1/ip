@@ -2,6 +2,10 @@ package duke;
 
 import java.util.Scanner;
 
+/**
+ * Represents User Interface to interact with user.
+ * @author Tan Wen Cong
+ */
 public class Ui {
     private Scanner scanner;
 

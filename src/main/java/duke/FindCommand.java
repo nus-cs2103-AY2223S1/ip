@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * Represents a command to find Task from TaskList.
+ * @author Tan Wen Cong
+ */
 public class FindCommand extends Command {
     private String keyword;
 
