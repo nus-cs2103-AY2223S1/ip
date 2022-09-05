@@ -18,34 +18,49 @@ public class DukeException extends Exception {
      * @param message message to determine the error
      */
     public DukeException(String message) {
-        if (message.equals("todo")) {
+        switch (message) {
+        case "todo":
             this.msg = "OOPS!!! The description of a todo cannot be empty.";
-        } else if (message.equals("deadline")) {
+            break;
+        case "deadline":
             this.msg = "OOPS!!! The description of a deadline cannot be empty.";
-        } else if (message.equals("event")) {
+            break;
+        case "event":
             this.msg = "OOPS!!! The description of an event cannot be empty.";
-        } else if (message.equals("delete")) {
+            break;
+        case "delete":
             this.msg = "OOPS!!! The description of a delete cannot be empty.";
-        } else if (message.equals("mark")) {
+            break;
+        case "mark":
             this.msg = "OOPS!!! The description of a mark cannot be empty.";
-        } else if (message.equals("unmark")) {
+            break;
+        case "unmark":
             this.msg = "OOPS!!! The description of an unmark cannot be empty.";
-        } else if (message.equals("find")) {
+            break;
+        case "find":
             this.msg = "OOPS!!! The description of a find cannot be empty.";
-        } else if (message.equals("deadline format")) {
+            break;
+        case "deadline format":
             this.msg = "OOPS!!! The formatting of the deadline message is wrong (deadline 'thing' /by yyyy-mm-dd).";
-        } else if (message.equals("event format")) {
+            break;
+        case "event format":
             this.msg = "OOPS!!! The formatting of the event message is wrong (event 'event' /at yyyy-mm-dd).";
-        } else if (message.equals("unknown")) {
+            break;
+        case "unknown":
             this.msg = "OOPS!!! I'm sorry, but I don't know what that means :-(";
-        } else if (message.equals("non integer input when marking")) {
+            break;
+        case "non integer input when marking":
             this.msg = "OOPS!!! You did not give an integer for the task number :-(";
-        } else if (message.equals("non integer input when deleting")) {
+            break;
+        case "non integer input when deleting":
             this.msg = "OOPS!!! You did not give an integer for the task number :-(";
-        } else if (message.equals("index out of bounds")) {
+            break;
+        case "index out of bounds":
             this.msg = "OOPS!!! The index number is out of bounds :-(";
-        } else {
+            break;
+        default:
             this.msg = "unknown error";
+            break;
         }
     }
 
