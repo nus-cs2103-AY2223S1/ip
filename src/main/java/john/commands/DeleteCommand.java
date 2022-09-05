@@ -5,7 +5,7 @@ package john.commands;
  */
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
-    public static final String FORMAT = "delete <integer>";
+    public static final String FORMAT = "delete <positive integer>";
 
     private String deleteParams;
 

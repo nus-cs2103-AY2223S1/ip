@@ -106,21 +106,21 @@ public class Parser {
     }
 
     private Command prepareMark(String params) {
-        if (!params.matches("([0-9]+)")) {
+        if (!params.matches("0*[1-9]\\d*")) {
             return new IncorrectCommand(MarkCommand.COMMAND_WORD, MarkCommand.FORMAT);
         }
         return new MarkCommand(params);
     }
 
     private Command prepareUnmark(String params) {
-        if (!params.matches("([0-9]+)")) {
+        if (!params.matches("0*[1-9]\\d*")) {
             return new IncorrectCommand(UnmarkCommand.COMMAND_WORD, UnmarkCommand.FORMAT);
         }
         return new UnmarkCommand(params);
     }
 
     private Command prepareDelete(String params) {
-        if (!params.matches("([0-9]+)")) {
+        if (!params.matches("0*[1-9]\\d*")) {
             return new IncorrectCommand(DeleteCommand.COMMAND_WORD, DeleteCommand.FORMAT);
         }
         return new DeleteCommand(params);
