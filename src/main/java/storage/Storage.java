@@ -3,8 +3,6 @@ package storage;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
 
 import exceptions.DukeException;
 import tasklist.TaskList;
@@ -39,14 +37,14 @@ public class Storage {
         String currPath = System.getProperty("user.dir");
         String[] pathElements = pathString.split("/");
         Path tempPath;
-        for(String s: pathElements) {
+        for (String s: pathElements) {
             currPath += "\\" + s;
             tempPath = Path.of(currPath);
-            if (isFileExtension(s)){
+            if (isFileExtension(s)) {
                 if (!Files.exists(tempPath)) {
                     Files.createFile(tempPath);
                 }
-                this.path =  tempPath;
+                this.path = tempPath;
                 break;
             } else if (isFolderExtension(s)) {
                 if (!Files.exists(tempPath)) {

@@ -49,8 +49,8 @@ public class Parser {
             stringCommand = userInput.substring(0, firstWhiteSpaceIndex);
         }
         switch (stringCommand) {
-            case "todo":
-                return new AddTaskCommand();
+        case "todo":
+            return new AddTaskCommand();
         case "event":
             return new AddEventCommand();
         case "deadline":
@@ -156,7 +156,7 @@ public class Parser {
             String date;
             int n = userInput.indexOf(EVENT_DATE_SECTION_START_STRING);
             int m = userInput.indexOf(DEADLINE_DATE_SECTION_DATE_STRING);
-            int startDateIndex = (n == -1? m: n) + START_DATE_COMMAND_LENGTH;
+            int startDateIndex = (n == -1 ? m : n) + START_DATE_COMMAND_LENGTH;
             date = userInput.substring(startDateIndex).trim();
             if (!date.isBlank()) {
                 return LocalDate.parse(date);

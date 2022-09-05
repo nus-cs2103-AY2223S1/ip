@@ -18,7 +18,7 @@ public class Main extends Application {
     public void start(Stage stage) {
         try {
             System.out.println("Where would you like to store history:");
-            Scanner sc=new Scanner(System.in);
+            Scanner sc = new Scanner(System.in);
             String filePath = sc.nextLine();
             Duke duke = new Duke(filePath);
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
