@@ -96,6 +96,7 @@ public class Parser {
                         + "Aug 21 2022 or 2022-08-21.");
             }
         }
+        assert(dateObject != null);
         return dateObject.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));
     }
 

@@ -4,6 +4,7 @@ package jude;
 //Reused from https://se-education.org/guides/tutorials/javaFxPart4.html with minor modifications.
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -29,17 +30,25 @@ public class MainWindow {
     private Button sendButton;
 
     private Jude jude;
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
-    private Image chatbotImage = new Image(this.getClass().getResourceAsStream(
-            "/images/ManSmilingBehindWall.jpg"));
-    //private Image userImage = null;
-    //private Image chatbotImage = null;
+    private Image userImage;
+    private Image chatbotImage;
 
     /**
      * Initialises the MainWindow, i.e. the main GUI for Jude the chatbot.
      */
     @FXML
     public void initialize() {
+        InputStream userImageResource = this.getClass().getResourceAsStream("/images/User.png");
+        InputStream chatbotImageResource = this.getClass().getResourceAsStream("/images"
+                + "/ManSmilingBehindWall.jpg");
+        assert(userImageResource != null);
+        assert(chatbotImageResource != null);
+        userImage = new Image(userImageResource);
+        chatbotImage = new Image(chatbotImageResource);
+
+        assert(scrollPane != null);
+        assert(dialogContainer != null);
+        assert(userInput != null);
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
