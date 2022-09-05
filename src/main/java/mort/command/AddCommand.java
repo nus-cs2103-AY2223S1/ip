@@ -30,6 +30,7 @@ public class AddCommand extends Command {
     public AddCommand(TaskType taskType, String desc) {
         this.taskType = taskType;
         this.desc = desc;
+        assert !this.desc.isBlank() : "desc should not be blank";
     }
 
     /**
@@ -42,7 +43,9 @@ public class AddCommand extends Command {
         this.taskType = taskType;
         this.desc = desc;
         this.dateStr = dateStr;
+        assert !this.desc.isBlank() : "desc should not be blank";
     }
+    
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MortException {
         Task task = null;
@@ -65,12 +68,9 @@ public class AddCommand extends Command {
             }
             break;
         }
+        assert task != null : "Task should not be null";
         tasks.addTask(task);
         storage.save(tasks);
         return ui.getAddMessage(task, tasks.getSize());
-    }
-    @Override
-    public boolean isExit() {
-        return false;
     }
 }

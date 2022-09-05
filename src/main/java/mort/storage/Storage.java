@@ -39,7 +39,7 @@ public class Storage {
     public Storage() {
         this.directory = Paths.get("data");
         this.fileDirectory = new File(this.directory.toString());
-        this.filePath = Paths.get(this.directory.toString(), "duke.txt");
+        this.filePath = Paths.get(this.directory.toString(), "mort.txt");
         this.tasks = new ArrayList<>();
     }
 
