@@ -3,6 +3,7 @@ package duke.task;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.StringJoiner;
 
 import duke.DukeException;
 
@@ -55,14 +56,11 @@ public class TaskList implements Iterable<Task> {
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < tasks.size(); ++i) {
-            sb.append(String.format("\t%d. %s", i + 1, tasks.get(i)));
-            if (i + 1 < tasks.size()) {
-                sb.append("\n");
-            }
+        StringJoiner sj = new StringJoiner("\n");
+        for (int i = 0; i < this.tasks.size(); i++) {
+            sj.add(String.format("\t%d. %s", i + 1, this.tasks.get(i)));
         }
-        return sb.toString();
+        return sj.toString();
     }
 
     /**
