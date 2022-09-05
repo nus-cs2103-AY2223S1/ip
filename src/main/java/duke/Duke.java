@@ -10,6 +10,9 @@ public class Duke {
     private Parser parser;
     private boolean isEnded;
 
+    /**
+     * Generates a new Duke object
+     */
     public Duke() {
         this.ui = new Ui();
         this.parser = new Parser(ui);
@@ -24,7 +27,7 @@ public class Duke {
         while (!this.isEnded) {
             command = sc.nextLine();
             try {
-                String response = parser.handler(command);
+                String response = parser.handleInput(command);
                 if (response.equals("Bye. Hope to see you again soon!\n")) {
                     isEnded = true;
                 }
@@ -35,14 +38,23 @@ public class Duke {
         }
     }
 
+    /**
+     * Returns a single Duke output corresponding to input
+     * @param input
+     * @return String output
+     */
     public String getResponse(String input) {
         try {
-            return parser.handler(input);
+            return parser.handleInput(input);
         } catch (DukeException e) {
             return ui.printException(e);
         }
     }
 
+    /**
+     * Runs duke (invoked as main method)
+     * @param args
+     */
     public static void main(String[] args) {
         Duke instance = new Duke();
         instance.run();

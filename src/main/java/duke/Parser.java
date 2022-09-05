@@ -6,12 +6,16 @@ import duke.exceptions.DukeUnknownDateException;
 import duke.exceptions.DukeUnknownInputException;
 
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Parser {
     private Ui ui;
     private Storage storage;
     private TaskList tasks;
 
+    private static final ArrayList<String> ADDED_ARG_COMMANDS =
+            new ArrayList<>(Arrays.asList(new String[] {"todo", "deadline", "event", "delete", "mark", "find"}));
 
     /**
      * Creates an instance of a Parser object
@@ -26,15 +30,25 @@ public class Parser {
     /**
      * Accepts user input and generates duke output accordingly
      * @param input
-     * @return boolean end to determine execution finish
+     * @return String output
      * @throws DukeException when runtime errors occur
      */
-    public String handler(String input) throws DukeException {
+    public String handleInput(String input) throws DukeException {
         String[] args = input.split(" ", 2);
-        //boolean isEnded = false;
         Task currTask;
 
-        switch (args[0]) {
+        String command = args[0];
+        String addedArg = "";
+
+        if (ADDED_ARG_COMMANDS.contains(command)) {
+            try {
+                addedArg = args[1];
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new DukeMissingInputException(command);
+            }
+        }
+
+        switch (command) {
         case "list":
             return ui.listPrint(tasks.getTasks());
         case "todo":
@@ -42,74 +56,64 @@ public class Parser {
         case "deadline":
             // Fallthrough
         case "event":
-            try {
-                currTask = this.makeTask(args[0], args[1]);
-                tasks.listAdd(currTask);
-                storage.save(tasks.getTasks());
-                return ui.addTask(args[0], currTask, tasks.getSize());
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeMissingInputException(args[0]);
-            }
+            currTask = this.makeTask(command, addedArg);
+            tasks.addTask(currTask);
+            storage.save(tasks.getTasks());
+            return ui.addTask(command, currTask, tasks.getSize());
         case "delete":
-            try {
-                currTask = tasks.listDelete(args[1]);
-                storage.save(tasks.getTasks());
-                return ui.deleteTask(currTask, tasks.getSize());
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeMissingInputException(args[0]);
-            }
+            currTask = tasks.deleteTask(args[1]);
+            storage.save(tasks.getTasks());
+            return ui.deleteTask(currTask, tasks.getSize());
         case "mark":
             // mark is implemented as a toggle. note this.
-            try {
-                currTask = tasks.listToggle(args[1]);
-                storage.save(tasks.getTasks());
-                return ui.toggleTask(currTask);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeMissingInputException(args[0]);
-            }
+            currTask = tasks.toggleTask(args[1]);
+            storage.save(tasks.getTasks());
+            return ui.toggleTask(currTask);
         case "find":
-            try {
-                return ui.find(tasks.getTasks(), args[1]);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeMissingInputException(args[0]);
-            }
+            return ui.find(tasks.getTasks(), args[1]);
         case "bye":
-            //isEnded = true;
             return ui.exit();
         default:
-            throw new DukeUnknownInputException(args[0]);
+            throw new DukeUnknownInputException(command);
         }
-        //return isEnded;
     }
 
     private Task makeTask(String type, String item) throws DukeException {
         String[] args;
+        String description = "";
+        String addedArg = "";
         Task currTask;
+
+        if (!type.equals("todo")) {
+            args = item.split("/by ");
+            try {
+                description = args[0].trim();
+                addedArg = args[1];
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new DukeMissingInputException(type);
+            }
+        }
 
         switch (type) {
         case "todo":
             currTask = new Todo(item);
             break;
         case "deadline":
-            args = item.split("/by ");
             try {
-                currTask = new Deadline(args[0], args[1]);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeMissingInputException(type);
+                currTask = new Deadline(description, addedArg);
+            } catch (DateTimeParseException e) {
+                throw new DukeUnknownDateException(type);
+            }
+            break;
+        case "event":
+            try {
+                currTask = new Event(description, addedArg);
             } catch (DateTimeParseException e) {
                 throw new DukeUnknownDateException(type);
             }
             break;
         default:
-            args = item.split("/at ");
-            try {
-                currTask = new Event(args[0], args[1]);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeMissingInputException(type);
-            } catch (DateTimeParseException e) {
-                throw new DukeUnknownDateException(type);
-            }
-            break;
+            throw new DukeUnknownInputException(type);
         }
 
         return currTask;
