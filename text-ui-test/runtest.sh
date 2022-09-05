@@ -16,8 +16,6 @@ then
     rm data/tasks.txt
 fi
 
-dos2unix
-
 # compile the code into the bin folder, terminates if error occurred
 # @@author cheeheng-reused
 # Solution adapted from https://stackoverflow.com/questions/31011069/executing-a-script-from-a-parent-directory
@@ -30,8 +28,8 @@ then
 fi
 
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-./gradlew run -p .. --args console-test -q < input.txt > ACTUAL.TXT
-./gradlew run -p .. --args console-test -q < input2.txt >> ACTUAL.TXT
+./gradlew run -p .. --args console-test -q < text-ui-test/input.txt > text-ui-test/ACTUAL.TXT
+./gradlew run -p .. --args console-test -q < text-ui-test/input2.txt >> text-ui-test/ACTUAL.TXT
 
 # convert to UNIX format
 cp EXPECTED.TXT EXPECTED-UNIX.TXT
