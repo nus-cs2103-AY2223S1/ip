@@ -68,9 +68,9 @@ public class Parser {
         } else {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a 'on' dd/MM/yyyy");
             if (type.equals("[D")) {
-                String[] rest_split = rest.split("by:", 2);
-                String description = rest_split[0].replaceAll(".$", "").trim();
-                String time = rest_split[1].replaceAll(".$", "").trim();
+                String[] restSplit = rest.split("by:", 2);
+                String description = restSplit[0].replaceAll(".$", "").trim();
+                String time = restSplit[1].replaceAll(".$", "").trim();
                 LocalDateTime deadlineDateTime = LocalDateTime.parse(time, formatter);
                 Deadline deadline = new Deadline(description, deadlineDateTime);
                 if (status.equals("[X")) {
@@ -78,9 +78,9 @@ public class Parser {
                 }
                 return deadline;
             } else {
-                String[] rest_split = rest.split("at:", 2);
-                String description = rest_split[0].replaceAll(".$", "").trim();
-                String time = rest_split[1].replaceAll(".$", "").trim();
+                String[] restSplit = rest.split("at:", 2);
+                String description = restSplit[0].replaceAll(".$", "").trim();
+                String time = restSplit[1].replaceAll(".$", "").trim();
                 LocalDateTime eventDateTime = LocalDateTime.parse(time, formatter);
                 Event event = new Event(description, eventDateTime);
                 if (status.equals("[X")) {
