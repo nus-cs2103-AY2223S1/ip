@@ -18,7 +18,7 @@ public class EndCommand extends Command {
     @Override
     public String execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
         String returnString;
-        returnString = ui.goodbyeMessage();
+        returnString = ui.showGoodbyeMessage();
         return returnString;
     }
 
