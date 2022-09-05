@@ -100,11 +100,7 @@ public class Parser {
         String taskString = Parser.substringAfterToken(input, "todo");
         try {
             Task task = new Task(taskString);
-            taskList.add(task);
-            storage.save(taskList.toString());
-            return "Got it. I've added this task:\n"
-                    + task
-                    + "\nNow you have " + taskList.size() + " task(s) in the list.";
+            return processAddTask(task);
         } catch (IllegalArgumentException e) {
             return e.getMessage();
         }
@@ -115,11 +111,7 @@ public class Parser {
         String[] stringArray = Parser.substringBeforeAfterToken(taskString, "/by");
         try {
             Deadline deadline = new Deadline(stringArray[0], stringArray[1]);
-            taskList.add(deadline);
-            storage.save(taskList.toString());
-            return "Got it. I've added this task:\n"
-                    + deadline
-                    + "\nNow you have " + taskList.size() + " task(s) in the list.";
+            return processAddTask(deadline);
         } catch (IllegalArgumentException e) {
             return e.getMessage();
         }
@@ -130,11 +122,7 @@ public class Parser {
         String[] stringArray = Parser.substringBeforeAfterToken(taskString, "/at");
         try {
             Event event = new Event(stringArray[0], stringArray[1]);
-            taskList.add(event);
-            storage.save(taskList.toString());
-            return "Got it. I've added this task:\n"
-                    + event
-                    + "\nNow you have " + taskList.size() + " task(s) in the list.";
+            return processAddTask(event);
         } catch (IllegalArgumentException e) {
             return e.getMessage();
         }
@@ -166,6 +154,14 @@ public class Parser {
 
     private String processNotRecognizedCommand() {
         return "I'm sorry. I do not know what that means.";
+    }
+
+    private String processAddTask(Task task) {
+        taskList.add(task);
+        storage.save(taskList.toString());
+        return "Got it. I've added this task:\n"
+                + task
+                + "\nNow you have " + taskList.size() + " task(s) in the list.";
     }
 
     /**
