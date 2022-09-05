@@ -49,6 +49,7 @@ public class TaskList {
      * @param index The 1-based index of the task to be marked
      */
     public void markDone(Integer index) throws DukeException{
+        assert index > -1;
         Task task = getTask(index);
         task.setDone();
     }
@@ -58,6 +59,7 @@ public class TaskList {
      * @param index The 1-based index of the task to be un-marked
      */
     public void markNotDone(Integer index) throws DukeException{
+        assert index > -1;
         Task task = getTask(index);
         task.setNotDone();
     }
@@ -67,6 +69,7 @@ public class TaskList {
      * @param index The 0-based index of the task to be deleted
      */
     public void delete(Integer index) throws DukeException{
+        assert index > -1;
         Task task = getTask(index);
         taskList.remove(task);
     }
