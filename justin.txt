@@ -1,9 +1,6 @@
-T | O |  j
-E | O | meeting  | Sep 10 2022 1000PM
-T | O |  i
-T | O |  jj
-T | O |  hhh
-T | O |  nn
-T | O |  j
-T | O |  ll
-T | O |  g
+T | Done! |  i
+T | Done! |  g
+T | Done! | g
+T | Undone | h
+T | Undone | j
+T | Undone | kk

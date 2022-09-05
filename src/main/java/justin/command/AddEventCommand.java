@@ -36,7 +36,7 @@ public class AddEventCommand extends Command {
      * @param msg The array of strings which contains details of the task,
      *            such as its date and time in string format.
      */
-    public AddEventCommand(String description, String[] msg) {
+    public AddEventCommand(String description, String... msg) {
         this.description = description;
         this.isDone = false;
         this.at = msg[1];
@@ -57,6 +57,6 @@ public class AddEventCommand extends Command {
         this.task = new Event(description, isDone, at, time);
         list.addTask(task);
         storage.save(list);
-        return ui.addMessage(task) + ui.showLine() + ui.countMessage(list);
+        return ui.addMessage() + ui.showLine() + task + ui.showLine() + ui.countMessage(list);
     }
 }

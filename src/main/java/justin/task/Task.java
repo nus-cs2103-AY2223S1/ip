@@ -39,7 +39,7 @@ public class Task {
      * @return String representation of Task's completion.
      */
     public String getStatusIcon() {
-        return (isDone ? "X" : "O");
+        return (isDone ? "Done!" : "Undone");
     }
 
     /**

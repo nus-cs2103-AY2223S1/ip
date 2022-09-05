@@ -36,7 +36,8 @@ public class Parser {
         sc = new Scanner(message);
         if (sc.hasNext()) {
             String description = sc.nextLine();
-            return new AddToDoCommand(description, false);
+            String[] strArr = splitArray(description);
+            return new AddToDoCommand(false, strArr);
         } else {
             throw new DukeException("OOPS! The description of the todo should not be empty!");
         }
@@ -129,16 +130,16 @@ public class Parser {
                     return parseEvent(description);
                 }
                 case "mark": {
-                    int num = sc.nextInt();
-                    return new MarkCommand(num);
+                    String description = sc.nextLine();
+                    return new MarkCommand(splitArray(description));
                 }
                 case "unmark": {
-                    int num = sc.nextInt();
-                    return new UnmarkCommand(num);
+                    String description = sc.nextLine();
+                    return new UnmarkCommand(splitArray(description));
                 }
                 case "delete": {
-                    int num = sc.nextInt();
-                    return new DeleteCommand(num);
+                    String description = sc.nextLine();
+                    return new DeleteCommand(splitArray(description));
                 }
                 case "find": {
                     String description = sc.nextLine();
@@ -165,14 +166,14 @@ public class Parser {
             return new NewCommand();
         }
         String task = arr[0];
-        boolean isDone = arr[1] == "X" ? true : false;
+        boolean isDone = arr[1].equals("Done!") ? true : false;
         String description = arr[2];
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy hhmma");
         LocalDate ld = null;
         LocalTime lt = null;
         switch (task) {
             case "T":
-                return new AddToDoCommand(description, isDone);
+                return new AddToDoCommand(isDone, description);
             case "D":
                 ld = LocalDate.parse(arr[3], formatter);
                 lt = LocalTime.parse(arr[3], formatter);
@@ -184,5 +185,18 @@ public class Parser {
             default:
                 throw new DukeException("OOPS, looks like the file has been corrupted. Please delete the file and try again.");
         }
+    }
+
+    public static String[] splitArray(String description) {
+        String[] res = description.split(",");
+        for (int i = 0; i < res.length; i++) {
+            if (res[i].charAt(res[i].length() - 1) == ' ') { //if the last character is a space
+                res[i] = res[i].substring(0, res[i].length() - 1);
+            }
+            if (res[i].charAt(0) == ' ') {
+                res[i] = res[i].substring(1, res[i].length());
+            }
+        }
+        return res;
     }
 }

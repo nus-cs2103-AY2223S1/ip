@@ -4,21 +4,20 @@ import justin.*;
 import justin.task.Task;
 
 /**
- * Represents a command that marks a particular
- * task in the TaskList to be done.
+ * Represents a command that marks some particular
+ * tasks in the TaskList to be done.
  * @author Justin Cheng.
  */
 public class MarkCommand extends Command {
-    private int num;
-    private Task markedTask;
+    private String[] nums;
 
     /**
      * Constructor for the MarkCommand class.
-     * @param num The position of the task in the
-     *            TaskList.
+     * @param nums The array of numbers of the targeted tasks
+     *            in the TaskList.
      */
-    public MarkCommand(int num) {
-        this.num = num;
+    public MarkCommand(String... nums) {
+        this.nums = nums;
     }
 
     /**
@@ -31,9 +30,18 @@ public class MarkCommand extends Command {
      */
     @Override
     public String execute(TaskList list, Ui ui, Storage storage) throws DukeException {
-        list.mark(num);
-        this.markedTask = list.getTask(num);
+        String msg = ui.markMessage();
+        for (String s: nums) {
+            try {
+                int currNum = Integer.parseInt(s);
+                list.mark(currNum);
+                Task task = list.getTask(currNum);
+                msg += task + ui.showLine();
+            } catch (NumberFormatException e) {
+                throw new DukeException("Please include numbers only or write in a proper format!");
+            }
+        }
         storage.save(list);
-        return ui.markMessage(markedTask);
+        return msg;
     }
 }

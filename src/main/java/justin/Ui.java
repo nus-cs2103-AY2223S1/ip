@@ -19,10 +19,10 @@ public class Ui {
 
     private final static String WELCOME_MESSAGE = "Hi, I'm Justin. What do you want me to do for you?";
     private final static String GOODBYE_MESSAGE = "Bye! Hope to see you again soon.";
-    private final static String UNMARK_MESSAGE = "OK, I've marked your task as undone: ";
-    private final static String MARK_MESSAGE =  "Nice! I have marked this task as done: ";
+    private final static String UNMARK_MESSAGE = "OK, I've marked the following task(s) as undone: ";
+    private final static String MARK_MESSAGE =  "Nice! I have marked the following task(s) as done: ";
     private final static String LIST_MESSAGE = "Here are the tasks in your list: ";
-    private final static String DELETE_MESSAGE = "OK, I have removed the following task from the list: ";
+    private final static String DELETE_MESSAGE = "OK, I have removed the following task(s) from the list: ";
     private final static String ADD_MESSAGE = "Got it, I have added the following into the list: ";
     private final static String FIND_MESSAGE = "Here are the matching tasks in your list: ";
     private final static String TODO_HELP = "Type in todo <task name> to add ToDo task";
@@ -78,8 +78,8 @@ public class Ui {
      * @param task The Task that is to be unmarked.
      * @return The String message when a Task is unmarked.
      */
-    public String unmarkMessage(Task task) {
-        return UNMARK_MESSAGE + SEPARATOR + task.toString();
+    public String unmarkMessage() {
+        return UNMARK_MESSAGE + SEPARATOR;
     }
 
     /**
@@ -87,8 +87,8 @@ public class Ui {
      * @param task The Task that is to be marked.
      * @return The String message when a Task is marked.
      */
-    public String markMessage(Task task) {
-        return MARK_MESSAGE + SEPARATOR + task.toString();
+    public String markMessage() {
+        return MARK_MESSAGE + SEPARATOR;
     }
 
     /**
@@ -111,8 +111,8 @@ public class Ui {
      * @param task The Task to be deleted.
      * @return The String message when a Task is deleted.
      */
-    public String deleteMessage(Task task) {
-        return DELETE_MESSAGE + SEPARATOR + task.toString();
+    public String deleteMessage() {
+        return DELETE_MESSAGE + SEPARATOR;
     }
 
     /**
@@ -121,8 +121,8 @@ public class Ui {
      * @param task The Task to be added.
      * @return The String message when a Task is added.
      */
-    public String addMessage(Task task) {
-        return ADD_MESSAGE + SEPARATOR + task.toString();
+    public String addMessage() {
+        return ADD_MESSAGE + SEPARATOR;
     }
 
     /**

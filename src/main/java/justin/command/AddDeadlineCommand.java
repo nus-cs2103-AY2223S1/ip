@@ -36,7 +36,7 @@ public class AddDeadlineCommand extends Command {
      * @param msg This is the array of strings which contain details
      *            such as its time and date in string format.
      */
-    public AddDeadlineCommand(String description, String[] msg) {
+    public AddDeadlineCommand(String description, String... msg) {
         this.description = description;
         this.isDone = false;
         this.by = msg[1];
@@ -57,6 +57,6 @@ public class AddDeadlineCommand extends Command {
         this.task = new Deadline(description, isDone, by, time);
         list.addTask(task);
         storage.save(list);
-        return ui.addMessage(task) + ui.showLine() + ui.countMessage(list);
+        return ui.addMessage() + ui.showLine() + task + ui.showLine() + ui.countMessage(list);
     }
 }

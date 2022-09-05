@@ -9,15 +9,15 @@ import justin.task.Task;
  * @author Justin Cheng.
  */
 public class DeleteCommand extends Command {
-    private int num;
+    private String[] nums;
     private Task deletedTask;
 
     /**
      * Constructor for the DeleteCommand class.
      * @param num The position of the task in the TaskList.
      */
-    public DeleteCommand(int num) {
-        this.num = num;
+    public DeleteCommand(String... nums) {
+        this.nums = nums;
     }
 
     /**
@@ -30,9 +30,20 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String execute(TaskList list, Ui ui, Storage storage) throws DukeException {
-        this.deletedTask = list.getTask(num);
-        list.delete(num);
+        String msg = ui.deleteMessage();
+        for (String s: nums) {
+            try {
+                int num = Integer.parseInt(s);
+                Task task = list.getTask(num);
+                msg += task + ui.showLine();
+            } catch (NumberFormatException e) {
+                throw new DukeException("Please include numbers only or write in a proper format!");
+            }
+        }
+        for (String s: nums) {
+            list.delete(Integer.parseInt(s));
+        }
         storage.save(list);
-        return ui.deleteMessage(deletedTask) + ui.showLine() + ui.countMessage(list);
+        return msg + ui.countMessage(list);
     }
 }

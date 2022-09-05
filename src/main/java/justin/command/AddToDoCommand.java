@@ -10,7 +10,7 @@ import justin.task.ToDo;
  * @author Justin Cheng.
  */
 public class AddToDoCommand extends Command {
-    private String description;
+    private String[] description;
     private boolean isDone;
 
     /**
@@ -18,7 +18,7 @@ public class AddToDoCommand extends Command {
      * @param description The description of the ToDo task.
      * @param isDone The boolean value of whether the task is done.
      */
-    public AddToDoCommand(String description, boolean isDone) {
+    public AddToDoCommand(boolean isDone, String... description) {
         this.description = description;
         this.isDone = isDone;
     }
@@ -34,9 +34,13 @@ public class AddToDoCommand extends Command {
      */
     @Override
     public String execute(TaskList list, Ui ui, Storage storage) throws DukeException {
-        Task task = new ToDo(description, isDone);
-        list.addTask(task);
-        storage.save(list);
-        return ui.addMessage(task) + ui.showLine() + ui.countMessage(list);
+        String msg = ui.addMessage();
+        for (String des: description) {
+            Task task = new ToDo(des, isDone);
+            list.addTask(task);
+            storage.save(list);
+            msg += task + ui.showLine();
+        }
+        return msg + ui.countMessage(list);
     }
 }

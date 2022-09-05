@@ -4,21 +4,21 @@ import justin.*;
 import justin.task.Task;
 
 /**
- * Represents a command to unmark a particular
- * task to not be done in the TaskList.
+ * Represents a command to unmark some particular
+ * tasks to not be done in the TaskList.
  * @author Justin Cheng.
  */
 public class UnmarkCommand extends Command {
-    private int num;
+    private String[] nums;
     private Task unmarkedTask;
 
     /**
      * Constructor for the UnmarkCommand class.
-     * @param num The position of the task in the
-     *            TaskList.
+     * @param nums The array of numbers of targeted tasks
+     *            in the TaskList.
      */
-    public UnmarkCommand(int num) {
-        this.num = num;
+    public UnmarkCommand(String... nums) {
+        this.nums = nums;
     }
 
     /**
@@ -31,9 +31,18 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String execute(TaskList list, Ui ui, Storage storage) throws DukeException {
-        list.unmark(num);
-        this.unmarkedTask = list.getTask(num);
+        String msg = ui.unmarkMessage();
+        for (String s: nums) {
+            try {
+                int currNum = Integer.parseInt(s);
+                list.unmark(currNum);
+                Task task = list.getTask(currNum);
+                msg += task + ui.showLine();
+            } catch (NumberFormatException e) {
+                throw new DukeException("Please include numbers only or write in a proper format!");
+            }
+        }
         storage.save(list);
-        return ui.unmarkMessage(unmarkedTask);
+        return msg;
     }
 }
