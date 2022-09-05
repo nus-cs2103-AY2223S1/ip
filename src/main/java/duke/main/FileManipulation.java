@@ -44,13 +44,15 @@ public class FileManipulation {
                     d.mark();
                 }
                 arr.add(d);
-            } else {
+            } else if (c == 'E') {
                 String[] strings = s.substring(8).split(" \\| ");
                 Event e = new Event(strings[0], LocalDate.parse(strings[1]));
                 if (s.charAt(4) == '1') {
                     e.mark();
                 }
                 arr.add(e);
+            } else {
+                assert false;
             }
         }
         return arr;
