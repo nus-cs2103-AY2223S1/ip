@@ -130,7 +130,13 @@ public class Anya {
      * @return The task added and the current number of tasks.
      */
     public String addTask(TaskList tasks, Task task) {
+        // Always succeeds; has side effect of checking the size of TaskList
+        int initLen = 0;
+        assert (initLen = tasks.getLength()) >= 0;
         tasks.addTask(task);
+
+        // Ensure the current size of TaskList is 1 more than initial size
+        assert tasks.getLength() == initLen +1 : "Size of TaskList should be 1 more than it's initial size";
         return this.ui.getAddTaskMessage(task, tasks.getLength());
     }
 
@@ -155,7 +161,11 @@ public class Anya {
     public String mark(TaskList tasks, int index) throws AnyaException {
         try {
             Task task = tasks.getTaskFromIndex(index);
+            // Ensure that task from TaskList is not null
+            assert task != null: "Task cannot be null";
             task.markDone();
+            // Ensure that task is marked as done
+            assert task.getStatusIcon().equals("X"): "Task should be marked as done";
             return this.ui.getMarkTaskMessage(task);
         } catch (IndexOutOfBoundsException e) {
             throw new AnyaException("Invalid index. You only have " + this.tasks.getLength() + " tasks!");
@@ -173,7 +183,11 @@ public class Anya {
     public String unmark(TaskList tasks, int index) throws AnyaException {
         try {
             Task task = tasks.getTaskFromIndex(index);
+            // Ensure that task from TaskList is not null
+            assert task != null: "task cannot be null";
             task.markUndone();
+            // Ensure that task is marked as undone
+            assert task.getStatusIcon().equals(" "): "Task should be marked as undone";
             return this.ui.getUnmarkTaskMessage(task);
         } catch (IndexOutOfBoundsException e) {
             throw new AnyaException("Invalid index. You only have " + this.tasks.getLength() + " tasks!");
@@ -190,8 +204,13 @@ public class Anya {
      */
     public String delete(TaskList tasks, int index) throws AnyaException {
         try {
+            // Always succeeds; has side effect of checking the size of TaskList
+            int initLen = 0;
+            assert (initLen = tasks.getLength()) >= 0;
             Task removedTask = tasks.getTaskFromIndex(index);
             tasks.deleteTaskFromIndex(index);
+            // Ensure the current size of TaskList is 1 less than initial size
+            assert tasks.getLength() == initLen - 1: "Size of TaskList should be 1 less than it's initial size";
             return this.ui.getDeleteTaskMessage(removedTask);
         } catch (IndexOutOfBoundsException e) {
             throw new AnyaException("Invalid index. You only have " + this.tasks.getLength() + " tasks!");

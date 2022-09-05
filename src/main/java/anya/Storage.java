@@ -59,12 +59,14 @@ public class Storage {
             task = new Deadline(taskName,
                     LocalDateTime.parse(dateTimeStr, DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm")));
         } else {
+            assert taskType.equals("E"): "The taskType should be E. It is currently " + taskType;
             String taskName = arrStr[2].split(" \\| ")[0];
             String time = arrStr[2].split(" \\| ")[1];
             task = new Event(taskName, time);
         }
         if (isTaskDone) {
             task.markDone();
+            assert task.getStatusIcon().equals("X"): "Task should be marked as done";
         }
         return task;
     }
