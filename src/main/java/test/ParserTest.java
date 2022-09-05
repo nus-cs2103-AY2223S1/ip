@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import duke.DukeException;
 import duke.Parser;
-import duke.Todo;
+import duke.task.Todo;
 import duke.command.AddCommand;
 
 
@@ -21,8 +21,8 @@ class ParserTest {
      */
     @Test
     public void commandToTask() throws DukeException {
-        Assertions.assertEquals(new Todo("123"), Parser.commandToTask("todo 123"));
-        assertNotEquals(new Todo(" 123"), Parser.commandToTask("todo 123"));
+        Assertions.assertEquals(new Todo("123"), Parser.addCommandToTask("todo 123"));
+        assertNotEquals(new Todo(" 123"), Parser.addCommandToTask("todo 123"));
     }
 
     /**

@@ -3,8 +3,8 @@ package duke.command;
 import duke.DukeException;
 import duke.Parser;
 import duke.Storage;
-import duke.Task;
-import duke.TaskList;
+import duke.task.Task;
+import duke.task.TaskList;
 import duke.Ui;
 
 /**
@@ -18,7 +18,7 @@ public class AddCommand extends Command {
      * @param fullCommand the input string that the user provide through the Console.
      */
     public AddCommand(String fullCommand) throws DukeException {
-        this.task = Parser.commandToTask(fullCommand);
+        this.task = Parser.addCommandToTask(fullCommand);
     }
     private static String getFirstWord(String input) {
         return input.split(" ")[0].toLowerCase();
@@ -49,7 +49,7 @@ public class AddCommand extends Command {
             return "task in addcomand is null";
         }
         tasks.add(task);
-        return "duke.Task added: " + task;
+        return "duke.task.Task added: " + task;
     }
 
     /**

@@ -8,6 +8,10 @@ import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 
 /**
  * Parser helps
@@ -50,7 +54,7 @@ public class Parser {
      * @param fullCommand input Command from the user.
      * @return Task object
      */
-    public static Task commandToTask(String fullCommand) throws DukeException {
+    public static Task addCommandToTask(String fullCommand) throws DukeException {
         if (isAddTodoCommand(fullCommand)) {
             String desc = fullCommand.substring(TLENGTH);
             return new Todo(desc);
@@ -63,7 +67,7 @@ public class Parser {
             String time = commandParts[1];
             return new Event(desc, time);
         } else if (isAddDeadlineCommand(fullCommand)) {
-            String[] commandParts = fullCommand.substring(ELENGTH).split(" /by ");
+            String[] commandParts = fullCommand.substring(DLENGTH).split(" /by ");
             if (commandParts.length != 2) {
                 throw new DukeException("Give the right syntax");
             }
@@ -77,7 +81,7 @@ public class Parser {
 
     private static boolean isAddCommand(String fullCommand) {
         for (String addCommands : ADD_COMMANDS) {
-            if (getFirstWord(fullCommand).toLowerCase().contains(addCommands)) {
+            if (getFirstWord(fullCommand).contains(addCommands)) {
                 return true;
             }
         }

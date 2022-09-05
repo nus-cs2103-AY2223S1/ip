@@ -1,4 +1,4 @@
-package duke;
+package duke.task;
 
 /**
  * Parent class of Todo, Deadline and Event.

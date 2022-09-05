@@ -6,10 +6,10 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import duke.Deadline;
+import duke.task.Deadline;
 import duke.DukeException;
-import duke.TaskList;
-import duke.Todo;
+import duke.task.TaskList;
+import duke.task.Todo;
 
 
 class TaskListTest {
