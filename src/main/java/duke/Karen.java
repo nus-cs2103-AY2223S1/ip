@@ -215,6 +215,9 @@ public class Karen extends Application{
                 ui.getEmptyTaskMessage();
             }
 
+            String[] temp = params[1].split(" ");
+            assert temp.length == 2;
+            assert temp[0].split("/").length == 3;
             LocalDateTime dt = Parser.parseDateTime(params[1]);
             Deadline t = new Deadline(params[0], dt);
             addTask(t);
@@ -229,6 +232,9 @@ public class Karen extends Application{
                 ui.getFailureMessage();
             }
 
+            String[] temp = params[1].split(" ");
+            assert temp.length == 2;
+            assert temp[0].split("/").length == 3;
             LocalDateTime dt = Parser.parseDateTime(params[1]);
             Event t = new Event(params[0], dt);
             addTask(t);
