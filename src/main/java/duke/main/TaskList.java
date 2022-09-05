@@ -40,7 +40,8 @@ public class TaskList {
      */
     public Task getTask(String indexString) throws DukeException {
         try {
-            int index = Integer.parseInt(indexString); // Throw NFE if invalid int
+            int index = Integer.parseInt(indexString);
+            assert (index > 0 && index < tasks.size()) : "Invalid Task Number";
             Task task = this.tasks.get(index - 1); // Throws IOOBE if invalid index
             return task;
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
@@ -51,21 +52,25 @@ public class TaskList {
     /**
      * Outputs all tasks in task list.
      */
-    public String displayTaskList() {
+    public String display() {
         if (this.tasks.size() == 0) {
             return "Looks like you don't have any tasks for now!";
         }
+        return getTaskList();
+    }
+
+    /**
+     * Return string representation of tasks in task list.
+     *
+     * @return String representation of tasks in task list.
+     */
+    private String getTaskList() {
+        assert tasks.size() > 0 : "Empty task list";
 
         String taskListString = "";
         for (int i = 1; i <= tasks.size(); i++) {
             Task currTask = tasks.get(i - 1);
-
-            // Reach end of list
-            if (currTask == null) {
-                break;
-            }
-
-            taskListString += String.format("\t%d. %s\n", i, currTask);
+            taskListString += String.format("%d. %s\n", i, currTask);
         }
         return taskListString;
     }
@@ -128,26 +133,58 @@ public class TaskList {
      *
      * @param searchTerm Term to be searched for.
      */
-    public String searchTaskList(String searchTerm) {
+    public String search(String searchTerm) {
         if (this.tasks.size() == 0) {
             return "Looks like you don't have any tasks for now!";
         }
 
+        String output = searchTaskList(searchTerm);
+        return validateSearchResults(output);
+    }
+
+    /**
+     * Searches task list for tasks containing search term.
+     *
+     * @param searchTerm String to be searched.
+     * @return String containing list of matching tasks.
+     */
+    private String searchTaskList(String searchTerm) {
         int count = 1;
         String output = "";
         for (int i = 0; i < tasks.size(); i++) {
             Task currTask = tasks.get(i);
-            if (currTask.toString().contains(searchTerm)) {
+            if (isMatchingTask(currTask, searchTerm)) {
                 output += String.format("%d. %s\n", count, currTask);
                 count++;
             }
         }
-
-        // No tasks found
-        if (count == 1) {
-            return "I don't think we have that one..";
-        } else {
-            return output;
-        }
+        return output;
     }
+
+    /**
+     * Returns true if string representation of task contains search term.
+     * Return false otherwise.
+     *
+     * @param task Task to be checked.
+     * @param searchTerm String to check against.
+     * @return True if task contains search term, false otherwise.
+     */
+    private boolean isMatchingTask(Task task, String searchTerm) {
+        return task.toString().contains(searchTerm);
+    }
+
+    /**
+     * Returns error message if output string is empty.
+     * Return output string unchanged, otherwise.
+     *
+     * @param output String to be validated.
+     * @return Error message if output string is empty.
+     */
+    private String validateSearchResults(String output) {
+        if (output == "") {
+            return "I don't think we have that one..";
+        }
+        return output;
+    }
+
 }
