@@ -14,6 +14,7 @@ public class TaskList {
     private static final int INDEX_OF_TASK_STATUS = 1;
     private static final int INDEX_OF_DESCRIPTION = 2;
     private static final int INDEX_OF_DATE = 3;
+    private static final int POSITION_OF_DESCRIPTION = 7;
     private static final String OUT_OF_BOUNDS_INDEX_MESSAGE = "Index has to be between 1 and ";
 
     /**
@@ -187,6 +188,7 @@ public class TaskList {
 
     /**
      * Finds all the current tasks that contain the keyword specified by the user.
+     * This search includes keywords that are partially in the description.
      *
      * @param keyWord the keyword the user would like to search in the current tasks
      * @throws DukeException
@@ -201,14 +203,10 @@ public class TaskList {
         for (int i = 0; i < TaskList.savedTasks.size(); i++) {
             Task currentTask = TaskList.savedTasks.get(i);
 
-            String task = currentTask.getStatus();
-            String[] stringArray = task.split(" ");
+            String taskDescription = currentTask.getStatus().substring(POSITION_OF_DESCRIPTION);
 
-            for (int j = 0; j < stringArray.length; j++) {
-                if (stringArray[j].equals(keyWord)) {
-                    tasksFound.add(currentTask);
-                    break;
-                }
+            if (taskDescription.contains(keyWord)) {
+                tasksFound.add(currentTask);
             }
         }
         return "Here are the matching tasks in your list:\n" + iterateList(tasksFound);
