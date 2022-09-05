@@ -13,11 +13,15 @@ public class Task {
     private boolean completed;
 
     Task(String title) {
+        assert !title.isBlank() : "Task title cannot be empty";
+
         this.title = title;
         this.completed = false;
     }
 
     Task(String title, boolean completed) {
+        assert !title.isBlank() : "Task title cannot be empty";
+
         this.title = title;
         this.completed = completed;
     }
