@@ -31,6 +31,7 @@ dependencies {
 
 run{
     standardInput = System.in
+    enableAssertions = true
 }
 
 checkstyle {
@@ -39,7 +40,6 @@ checkstyle {
 
 test {
     useJUnitPlatform()
-
 }
 
 application {

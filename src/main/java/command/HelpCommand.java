@@ -15,9 +15,4 @@ public class HelpCommand extends Command {
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
         ui.showHelpMessage();
     }
-
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

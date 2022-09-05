@@ -5,10 +5,11 @@ import java.time.LocalDate;
  * Deadline class has a by field
  */
 public class Deadline extends Task {
-    protected LocalDate date;
+    private LocalDate date;
 
     /**
      * Constructor.
+     *
      * @param description Description of the Deadline.
      * @param by Date associated with the Deadline.
      */
@@ -21,7 +22,7 @@ public class Deadline extends Task {
     public String toString() {
         String status;
         if (this.isDone) {
-            status = String.format("[D][✓] %s (by: %s)", this.description, date);
+            status = String.format("[D][1] %s (by: %s)", this.description, date);
         } else {
             status = String.format("[D][ ] %s (by: %s)", this.description, date);
         }
@@ -30,6 +31,7 @@ public class Deadline extends Task {
 
     /**
      * Check if deadline is today.
+     *
      * @return true if deadline is today.
      */
     @Override
@@ -40,6 +42,7 @@ public class Deadline extends Task {
 
     /**
      * Returns formatted description of the Deadline.
+     *
      * @return string representing formatted description.
      */
     @Override

@@ -18,9 +18,4 @@ public class FindCommand extends Command {
         ListCommand listCommand = new ListCommand();
         listCommand.execute(matchedTasks, ui, storage);
     }
-
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

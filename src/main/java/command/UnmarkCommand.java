@@ -16,12 +16,8 @@ public class UnmarkCommand extends Command {
         int n = Parser.getTaskNumber(ui.getCurrentInput(), taskList.getSize());
         taskList.unmarkTask(n);
         String storeLine = taskList.getTask(n).toString() + "\n";
-        storage.changeLine(n, storeLine);
-        ui.showMessage("unmarked task");
-    }
-
-    @Override
-    public boolean isExit() {
-        return false;
+        if (storage.isLineChanged(n, storeLine)) {
+            ui.showMessage("unmarked task");
+        }
     }
 }

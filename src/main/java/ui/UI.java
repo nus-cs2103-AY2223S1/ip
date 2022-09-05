@@ -10,6 +10,7 @@ public class UI {
     /**
      * Prints errorMsg,
      * usually DukeException.getMessage().
+     *
      * @param errorMsg Error message to print.
      */
     public void showError(String errorMsg) {
@@ -24,7 +25,8 @@ public class UI {
     }
 
     /**
-     * Prints a general message/
+     * Prints a general message.
+     *
      * @param msg Message to be included.
      */
     public void showMessage(String msg) {
@@ -52,6 +54,7 @@ public class UI {
 
     /**
      * Returns line user has entered at System.in.
+     *
      * @return User input line.
      */
     public String getCurrentInput() {

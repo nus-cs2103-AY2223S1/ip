@@ -8,6 +8,7 @@ public class Task {
 
     /**
      * Constructor.
+     *
      * @param description Description of the Task.
      */
     public Task(String description) {
@@ -17,13 +18,14 @@ public class Task {
 
     /**
      * String encapsulates Task description and isDone status.
+     *
      * @return String representing Task object
      */
     @Override
     public String toString() {
         String status;
         if (this.isDone) {
-            status = String.format("[T][✓] %s", this.description);
+            status = String.format("[T][1] %s", this.description);
         } else {
             status = String.format("[T][ ] %s", this.description);
         }
@@ -32,6 +34,7 @@ public class Task {
 
     /**
      * Returns long description of the Task.
+     *
      * @return Long description of the Task.
      */
     public String longDescription() {

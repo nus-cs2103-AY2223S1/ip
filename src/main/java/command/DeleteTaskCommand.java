@@ -14,10 +14,16 @@ public class DeleteTaskCommand extends Command {
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
         int n = Parser.getTaskNumber(ui.getCurrentInput(), taskList.getSize());
         taskList.deleteTask(n);
-        storage.deleteLine(n);
-        ui.showMessage("Deleted task");
+        if (storage.isLineDeleted(n)) {
+            ui.showMessage("Deleted task");
+        }
     }
 
+    /**
+     * Returns true to cause program termination.
+     *
+     * @return true.
+     */
     @Override
     public boolean isExit() {
         return false;

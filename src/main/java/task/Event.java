@@ -5,10 +5,11 @@ import java.time.LocalDate;
  * Event class has a date field.
  */
 public class Event extends Task {
-    protected LocalDate date;
+    private LocalDate date;
 
     /**
      * Constructor.
+     *
      * @param description Description of the Event.
      * @param date Date associated with the Event.
      */
@@ -21,7 +22,7 @@ public class Event extends Task {
     public String toString() {
         String status;
         if (this.isDone) {
-            status = String.format("[E][✓] %s (at: %s)", this.description, date);
+            status = String.format("[E][1] %s (at: %s)", this.description, date);
         } else {
             status = String.format("[E][ ] %s (at: %s)", this.description, date);
         }
@@ -30,6 +31,7 @@ public class Event extends Task {
 
     /**
      * Check if deadline is today.
+     *
      * @return true if deadline is today.
      */
     @Override
@@ -39,6 +41,7 @@ public class Event extends Task {
 
     /**
      * Returns formatted description of the Deadline.
+     *
      * @return string representing formatted description.
      */
     @Override

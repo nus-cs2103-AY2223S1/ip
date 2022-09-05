@@ -19,6 +19,7 @@ public class StorageWriter {
 
     /**
      * Appends line to file and returns true if operation completed successfully.
+     *
      * @param s line to be appended.
      * @return true if appended successfully.
      */
@@ -35,6 +36,7 @@ public class StorageWriter {
     /**
      * Removes everything from file at path.
      * Rewrites to file from userInputHistory arraylist in DukeToStorage class.
+     *
      * @param index index of line to delete (1-indexed).
      * @return true if line deleted successfully.
      */
@@ -62,6 +64,7 @@ public class StorageWriter {
      * Changes line at index (index - 1) in storage file, by:
      * 1. deleting line at index - 1,
      * 2. appending newString to end of file.
+     *
      * @param index line to be changed.
      * @param newString new string to be added instead.
      * @return true if changed successfully.
