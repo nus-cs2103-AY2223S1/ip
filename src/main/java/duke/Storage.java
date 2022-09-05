@@ -123,6 +123,8 @@ public class Storage {
      * @throws DukeException If the data file cannot be written to.
      */
     public void write(DukeList list) throws DukeException {
+        assert list != null : "Tried to write null list to file";
+
         try {
             Files.write(this.dataPath, list.getListToDataStr(), Charset.defaultCharset());
         } catch (IOException e) {

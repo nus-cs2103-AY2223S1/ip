@@ -36,6 +36,8 @@ public class DukeList {
      * @return A String representation of the Task for storing in a file.
      */
     private String taskToDataStr(Task t) {
+        assert t != null : "Task to convert to String was null";
+
         String taskType = t.getTaskType().toString().toLowerCase();
         String description = t.getDesc();
         String isDone = t.getStatus() ? "1" : "0";
@@ -57,6 +59,8 @@ public class DukeList {
      * @return A String of the message to be displayed.
      */
     public String add(Task item) {
+        assert item != null : "Task to add to list was null";
+
         listItems.add(item);
         return "Got it. I've added this task:\n"
                 + item

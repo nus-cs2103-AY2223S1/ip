@@ -83,6 +83,8 @@ public class Parser {
      * @throws DukeException If the String contains an invalid date time format.
      */
     public static LocalDateTime strToDate(String dateTimeStr) throws DukeException {
+        assert !dateTimeStr.isEmpty() : "Date and time was empty";
+
         try {
             DateTimeFormatterBuilder formatBuilder = new DateTimeFormatterBuilder()
                     .parseCaseInsensitive()
@@ -105,6 +107,8 @@ public class Parser {
      * @return A LocalDateTime object.
      */
     public static LocalDateTime strToDateFromStorage(String dateTimeStr) {
+        assert !dateTimeStr.isEmpty() : "Date and time from file was empty";
+
         return LocalDateTime.parse(dateTimeStr);
     }
 }
