@@ -8,7 +8,7 @@ import java.util.Set;
  */
 public class Parser {
     private static final Set<String> SET_OF_COMMANDS = Set.of(
-        "bye", "list", "mark", "unmark", "delete", "find", "todo", "deadline", "event");
+        "bye", "list", "archive", "mark", "unmark", "delete", "find", "todo", "deadline", "event");
 
     /**
      * Parses input by user and returns Command object if user input is valid
@@ -33,6 +33,9 @@ public class Parser {
             break;
         case "list":
             command = new ListCommand();
+            break;
+        case "archive":
+            command = new ArchiveCommand();
             break;
         case "mark":
             command = new MarkCommand(parseIndex(getDescription(userInput)));

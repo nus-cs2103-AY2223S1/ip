@@ -127,5 +127,10 @@ public class TaskList {
         return str.toString();
     }
 
-
+    /**
+     * Removes all Tasks from TaskList
+     */
+    public void clear() {
+        tasks.clear();
+    }
 }

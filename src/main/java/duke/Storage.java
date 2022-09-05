@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -34,9 +36,17 @@ public class Storage {
     /**
      * Saves TaskList to be loaded in the next program run
      *
-     * @param taskList TaskList to be saved
      */
     public void save(TaskList taskList) {
+        save(taskList, filepath);
+    }
+
+    /**
+     * Saves TaskList to be loaded in the next program run
+     *
+     * @param taskList TaskList to be saved
+     */
+    public void save(TaskList taskList, String filepath) {
         try {
             // write over
             FileWriter fileWriter = new FileWriter(filepath);
@@ -64,5 +74,29 @@ public class Storage {
             e.printStackTrace();
         }
         return tasks;
+    }
+
+    /**
+     * Archives Tasks to a txt file to be used on another occasion
+     *
+     * @param taskList TaskList to be archived
+     */
+    public void archive(TaskList taskList) {
+        String[] temp = filepath.split("/");
+        String archiveFilePath = String.join("/", Arrays.copyOf(temp, temp.length - 1));
+
+        // generate file name using current time
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        LocalDateTime now = LocalDateTime.now();
+        archiveFilePath = archiveFilePath + "/" + dtf.format(now) + ".txt";
+        try {
+            new File(archiveFilePath).createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        save(taskList, archiveFilePath);
+        taskList.clear();
+        save(taskList);
     }
 }
