@@ -26,12 +26,12 @@ public class AddCommand extends Command {
      *
      * @param taskList a list of tasks
      * @param storage a location to store the task information
-     * @param ui an ui to handle user interactions
      */
     @Override
-    public void execute(TaskList taskList, Storage storage, Ui ui) {
+    public String execute(TaskList taskList, Storage storage) {
         taskList.add(createdTask);
         storage.save(taskList);
-        ui.add(createdTask);
+        String response = Ui.add(createdTask);
+        return response;
     }
 }
