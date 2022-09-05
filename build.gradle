@@ -51,3 +51,7 @@ shadowJar {
     archiveClassifier.set('')
     archiveVersion.set('')
 }
+
+compileJava {
+    options.compilerArgs << '-Xlint:unchecked'
+}

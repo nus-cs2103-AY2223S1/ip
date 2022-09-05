@@ -45,9 +45,9 @@ public class Storage {
             if (s.contains(".")){
                 if (!Files.exists(tempPath)) {
                     Files.createFile(tempPath);
-                    this.path =  tempPath;
-                    break;
                 }
+                this.path =  tempPath;
+                break;
             } else {
                 if (!Files.exists(tempPath)) {
                     Files.createDirectory(tempPath);
@@ -62,8 +62,6 @@ public class Storage {
     public void createFileIfDoesntExist(String location) {
         try {
             getPath(location);
-            Files.createFile(path);
-
         } catch (IOException e) {
             System.out.println("IOException: " + e);
         } catch (DukeException e) {
