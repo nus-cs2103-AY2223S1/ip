@@ -37,7 +37,9 @@ public class MarkCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
+        assert tasks != null && storage != null;
         Task task = tasks.setTaskCompletion(indexString, isComplete);
+        assert task != null;
         storage.saveData(tasks);
         if (isComplete) {
             return "Nice! I've marked this task as done:\n" + task;

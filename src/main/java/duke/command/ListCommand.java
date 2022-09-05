@@ -17,6 +17,7 @@ public class ListCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) {
+        assert tasks != null;
         return tasks.toString();
     }
 
