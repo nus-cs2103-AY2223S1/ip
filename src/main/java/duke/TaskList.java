@@ -113,7 +113,7 @@ public class TaskList {
     /**
      * Displays all tasks in the command line
      */
-    public String displayAllTask() {
+    public String displayAllTasks() {
         if(taskList.size() == 0 ) {
             return "You do not have any tasks currently";
         }

@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Parser {
+    private static final String DEADLINE_REGEX = "/by";
+    private static final String EVENT_REGEX = "/at";
     /**
      * Takes in a command from the user when the user wants to add a task and return the type of the task
      *
@@ -35,7 +37,7 @@ public class Parser {
      * @return Name of deadline task
      */
     public static String getDeadlineName(String command) {
-        return command.split("/by", 2)[0].trim().split(" ", 2)[1].trim();
+        return command.split(DEADLINE_REGEX, 2)[0].trim().split(" ", 2)[1].trim();
     }
 
     /**
@@ -45,7 +47,7 @@ public class Parser {
      * @return Date of deadline task
      */
     public static String getDeadlineDate(String command) {
-        return command.split("/by", 2)[1].trim();
+        return command.split(DEADLINE_REGEX, 2)[1].trim();
     }
 
     /**
@@ -55,7 +57,7 @@ public class Parser {
      * @return Name of event task
      */
     public static String getEventName(String command) {
-        return command.split("/at", 2)[0].trim().split(" ", 2)[1];
+        return command.split(EVENT_REGEX, 2)[0].trim().split(" ", 2)[1];
     }
 
     /**
@@ -65,7 +67,7 @@ public class Parser {
      * @return Date of event task
      */
     public static String getEventDate(String command) {
-        return command.split("/at", 2)[1].trim();
+        return command.split(EVENT_REGEX, 2)[1].trim();
     }
 
     /**
