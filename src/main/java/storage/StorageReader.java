@@ -50,7 +50,7 @@ public class StorageReader {
         int n = linesInFile.size();
         int i = 0;
         for ( ; i < n; i++) {
-            if (!linesInFile.get(i).equals("")) {
+            if (!linesInFile.get(i).isBlank()) {
                 currTask = StorageParser.fileLineToTask(linesInFile.get(i));
                 userInputHistory.addTask(currTask);
             }
