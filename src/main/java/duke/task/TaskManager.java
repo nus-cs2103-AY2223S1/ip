@@ -2,6 +2,8 @@ package duke.task;
 
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Represents a Class that manages tasks.
@@ -64,10 +66,13 @@ public class TaskManager {
      * @return message shows the matching tasks
      */
     public String findAndCraft(String s) {
+        List<Task> filteredList = arr.stream()
+                .filter(x -> x.contains(s))
+                .collect(Collectors.toList());
         int counter = 1;
         String result = "";
-        for (int i = 0; i < arr.size(); i++) {
-            Task task = arr.get(i);
+        for (int i = 0; i < filteredList.size(); i++) {
+            Task task = filteredList.get(i);
             if (task.contains(s)) {
                 if (counter == 1) {
                     result += counter + "." + task;
