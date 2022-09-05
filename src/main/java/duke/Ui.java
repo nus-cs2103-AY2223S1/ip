@@ -61,12 +61,11 @@ public class Ui {
         }
         assert (list.size() >= 0) : "Negative list size" + list.size();
         StringBuilder output = new StringBuilder();
-
         output.append(Constants.LIST_MESSAGE);
-        for (int i = 0; i < list.size(); i++) {
-            output.append(i + 1).append(". ").append(list.get(i)).append("\n");
-        }
-        response = output.toString();
+        String listInString = IntStream.range(0, list.size())
+                .mapToObj(i -> String.format("%d. %s", i + 1, list.get(i)))
+                .collect(Collectors.joining("\n"));
+        response = output + listInString;
         return response;
     }
 
