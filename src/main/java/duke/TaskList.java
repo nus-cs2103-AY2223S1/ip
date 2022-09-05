@@ -199,6 +199,7 @@ public class TaskList {
         if (i == 1) {
             return "No results found.";
         }
+        assert !response.toString().isEmpty() : "response should be not empty when finding tasks";
         return response.toString();
     }
 
@@ -218,6 +219,7 @@ public class TaskList {
         if (i == 1) {
             return "There are currently no tasks!";
         }
+        assert !response.toString().isEmpty() : "response should be not empty when printing task list";
         return response.toString();
     }
     /**
