@@ -2,65 +2,50 @@ package duke;
 
 public class Ui {
 
-    static String divider = "____________________________________________________________";
-
-    public void sendStartMessage() {
-        System.out.println("Hello I'm Karen. What do you want??\n" + divider);
+    public String getStartMessage() {
+        return "Hello I'm Karen. Can I see the manager???";
     }
-    public void sendMarkedMessage(Task task) {
-        System.out.println(divider);
-        System.out.println("Oh you did a task. Congratulations.\n" + task + "\n" + divider);
+    public String getMarkedMessage(Task task) {
+        return "Oh you did a task. Congratulations.\n" + task;
     }
     
-    public void sendUnmarkedMessage(Task task) {
-        System.out.println(divider);
-        System.out.println("Hmm make up your mind maybe??.\n" + task + "\n" + divider);
+    public String getUnmarkedMessage(Task task) {
+        return "Hmm make up your mind maybe??.\n" + task;
     }
-    public void sendFailureMessage() {
-        System.out.println(divider);
-        System.out.println("What's that??");
-        System.out.println(divider);
+    public String getFailureMessage() {
+        return "What's that??";
     }
     
-    public void sendEmptyTaskMessage() {
-        System.out.println(divider);
-        System.out.println("Empty task? Are you kidding me??");
-        System.out.println(divider);
+    public String getEmptyTaskMessage() {
+        return "Empty task? Are you kidding me??";
     }
 
-    public void sendWrongIndexMessage() {
-        System.out.println(divider);
-        System.out.println("Umm can you count?" + "\n" + divider);
+    public String getWrongIndexMessage() {
+        return "Umm can you count?" + "\n";
     }
     
-    public void sendTaskDeletedMessage(Task task, int size) {
-        System.out.println(divider);
-        System.out.println("K. Removed your task:");
-        System.out.println(task);
-        System.out.println("Now you have " + size + " tasks.");
-        System.out.println(divider);
+    public String getTaskDeletedMessage(Task task, int size) {
+        return "K. Removed your task:" + task + "Now you have " + size + " tasks.";
     }
     
-    public void sendAddedMessage(Task task, int size) {
-        System.out.println(divider);
-        System.out.println("K. Added your task:");
-        System.out.println(task);
-        System.out.println("Now you have " + size + " tasks.");
-        System.out.println(divider);
+    public String getAddedMessage(Task task, int size) {
+        return "K. Added your task:" + task + "Now you have " + size + " tasks.";
     }
     
-    public void sendList(TaskList tl) {
-        System.out.println(divider);
+    public String getList(TaskList tl) {
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < tl.size(); i++) {
             Task taskI = tl.get(i);
-            System.out.println(i+1 + ". " + taskI);
+            result.append(i+1).append(". ").append(taskI);
+            if (i != tl.size() - 1) {
+                result.append("\n");
+            }
         }
-        System.out.println(divider);
+        return result.toString();
     }
     
-    public void sendByeMessage() {
-        System.out.println(divider);
-        System.out.println("Hmm kay...\n" + divider);
+    public String getByeMessage() {
+        return "Hmm kay...\n";
     }
     
 }
