@@ -99,6 +99,7 @@ public class TaskList {
      * @return String array of the descriptions of the matching tasks in the list.
      */
     public String[] giveFindList(String content) {
+        assert content != null : "TaskList :: giveFindList called with null argument";
         String[] list = new String[tasksLeft()];
         int count = 0;
         for (int i = 0; i < tasksLeft(); i++) {
