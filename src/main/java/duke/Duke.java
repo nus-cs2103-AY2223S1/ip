@@ -3,8 +3,6 @@ package duke;
 import command.Command;
 import exceptions.DukeException;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import storage.Storage;
 import tasklist.TaskList;
