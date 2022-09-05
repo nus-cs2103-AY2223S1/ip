@@ -24,7 +24,7 @@ public class Duke {
         while (!this.isEnded) {
             command = sc.nextLine();
             try {
-                String response = parser.handler(command);
+                String response = parser.handleInput(command);
                 if (response.equals("Bye. Hope to see you again soon!\n")) {
                     isEnded = true;
                 }
@@ -37,7 +37,7 @@ public class Duke {
 
     public String getResponse(String input) {
         try {
-            return parser.handler(input);
+            return parser.handleInput(input);
         } catch (DukeException e) {
             return ui.printException(e);
         }

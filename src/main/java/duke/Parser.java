@@ -29,9 +29,8 @@ public class Parser {
      * @return boolean end to determine execution finish
      * @throws DukeException when runtime errors occur
      */
-    public String handler(String input) throws DukeException {
+    public String handleInput(String input) throws DukeException {
         String[] args = input.split(" ", 2);
-        //boolean isEnded = false;
         Task currTask;
 
         switch (args[0]) {
@@ -44,7 +43,7 @@ public class Parser {
         case "event":
             try {
                 currTask = this.makeTask(args[0], args[1]);
-                tasks.listAdd(currTask);
+                tasks.addTask(currTask);
                 storage.save(tasks.getTasks());
                 return ui.addTask(args[0], currTask, tasks.getSize());
             } catch (ArrayIndexOutOfBoundsException e) {
@@ -52,7 +51,7 @@ public class Parser {
             }
         case "delete":
             try {
-                currTask = tasks.listDelete(args[1]);
+                currTask = tasks.deleteTask(args[1]);
                 storage.save(tasks.getTasks());
                 return ui.deleteTask(currTask, tasks.getSize());
             } catch (ArrayIndexOutOfBoundsException e) {
@@ -61,7 +60,7 @@ public class Parser {
         case "mark":
             // mark is implemented as a toggle. note this.
             try {
-                currTask = tasks.listToggle(args[1]);
+                currTask = tasks.toggleTask(args[1]);
                 storage.save(tasks.getTasks());
                 return ui.toggleTask(currTask);
             } catch (ArrayIndexOutOfBoundsException e) {
@@ -74,12 +73,10 @@ public class Parser {
                 throw new DukeMissingInputException(args[0]);
             }
         case "bye":
-            //isEnded = true;
             return ui.exit();
         default:
             throw new DukeUnknownInputException(args[0]);
         }
-        //return isEnded;
     }
 
     private Task makeTask(String type, String item) throws DukeException {

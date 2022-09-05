@@ -69,7 +69,7 @@ public class Ui {
      * @param currTask Task Object
      */
     public String toggleTask(Task currTask) {
-        if (currTask.isCompleted()) {
+        if (currTask.getIsCompleted()) {
             return "Nice! I've marked this task as done:\n"
                     + "   " + currTask + "\n";
         } else {
