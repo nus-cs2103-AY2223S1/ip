@@ -1,15 +1,24 @@
 package duke.command;
 
+import duke.Deadline;
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-import duke.Deadline;
 
+/**
+ * Represents a command to add a deadline.
+ */
 public class DeadlineCommand extends Command {
     private String task;
     private String by;
 
+    /**
+     * Creates a new DeadlineCommand.
+     *
+     * @param task
+     * @param by
+     */
     public DeadlineCommand(String task, String by) {
         super();
         this.task = task;
@@ -31,7 +40,7 @@ public class DeadlineCommand extends Command {
             return false;
         }
         DeadlineCommand that = (DeadlineCommand) o;
-        return task.equals(that.task) &&
-                by.equals(that.by);
+        return task.equals(that.task)
+                && by.equals(that.by);
     }
 }

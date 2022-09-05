@@ -1,16 +1,24 @@
 package duke.command;
 
-import duke.DukeException;
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
-import duke.Task;
-
 import java.util.ArrayList;
 
+import duke.DukeException;
+import duke.Storage;
+import duke.Task;
+import duke.TaskList;
+import duke.Ui;
+
+/**
+ * Represents a command to find a task.
+ */
 public class FindCommand extends Command {
     private String toFind;
 
+    /**
+     * Creates a new FindCommand.
+     *
+     * @param toFind the string to search for in task descriptions within the task list.
+     */
     public FindCommand(String toFind) {
         super();
         this.toFind = toFind;

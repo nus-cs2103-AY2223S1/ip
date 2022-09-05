@@ -13,6 +13,7 @@ public class Ui {
 
     /**
      * Reads the next command from the user.
+     *
      * @return the command string
      */
     public String readCommand() {
@@ -21,6 +22,7 @@ public class Ui {
 
     /**
      * Prints an error message to the user.
+     *
      * @param e the error to print
      */
     public void showError(DukeException e) {
@@ -32,7 +34,7 @@ public class Ui {
      * Takes in the full task list and returns info about the
      * newly added task, together with the number of tasks in
      * the task list.
-     * 
+     *
      * @param tasks the full task list
      * @return the message to print
      */
@@ -59,7 +61,7 @@ public class Ui {
     /**
      * Fancily prints a string by wrapping them around showLine
      * and left-padding them with spaces before printing.
-     * 
+     *
      * @param toPrint string to print
      */
     public void wrapPrint(String toPrint) {

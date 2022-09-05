@@ -9,6 +9,13 @@ public class Task {
     private String description;
     private char tag;
 
+    /**
+     * Creates a new todo with the given description and done status.
+     *
+     * @param description
+     * @param tag
+     * @param isDone
+     */
     public Task(String description, char tag, boolean isDone) {
         this.description = description;
         this.tag = tag;
@@ -16,7 +23,7 @@ public class Task {
     }
 
     public Task(String description) {
-        this(description,false);
+        this(description, false);
     }
 
     private Task(String description, boolean isDone) {
@@ -28,17 +35,17 @@ public class Task {
      * The save string data is in the format:
      * <p>
      * <pre>
-     * T,"<description>"
+     * T,"&lt;description&gt;"
      * </pre>
      * <p>
-     * 
+     *
      * @param saveString the save string data
      * @return the new Task object created from saveString
      * @throws DukeException
      */
     public static Task fromSaveString(String saveString) throws DukeException {
         String[] splitSaveString = saveString.split("(\",\")|(\",)|(,\")|\"");
-        if(splitSaveString.length != 2) {
+        if (splitSaveString.length != 2) {
             throw new DukeException("Tried to read unexpected save data.");
         }
         String description = splitSaveString[1];
@@ -91,8 +98,8 @@ public class Task {
             return false;
         }
         Task task = (Task) o;
-        return isDone == task.isDone &&
-                description.equals(task.description) &&
-                tag == task.tag;
+        return isDone == task.isDone
+                && description.equals(task.description)
+                && tag == task.tag;
     }
 }

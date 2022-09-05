@@ -2,13 +2,21 @@ package duke.command;
 
 import duke.DukeException;
 import duke.Storage;
+import duke.Task;
 import duke.TaskList;
 import duke.Ui;
-import duke.Task;
 
+/**
+ * Represents a command to add a todo task.
+ */
 public class TodoCommand extends Command {
     private String task;
 
+    /**
+     * Creates a new TodoCommand.
+     *
+     * @param task
+     */
     public TodoCommand(String task) {
         super();
         this.task = task;

@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Exception class for Duke.
+ */
 public class DukeException extends RuntimeException {
     public DukeException(String s) {
         super(s);

@@ -1,17 +1,18 @@
 package duke;
 
-import duke.command.Command;
-import duke.command.TodoCommand;
-import duke.command.DeadlineCommand;
-import duke.command.EventCommand;
-import duke.command.MarkCommand;
-import duke.command.DeleteCommand;
-import duke.command.ListCommand;
-import duke.command.ByeCommand;
-
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TodoCommand;
 
 public class ParserTest {
     @Test

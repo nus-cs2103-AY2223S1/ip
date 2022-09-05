@@ -1,15 +1,15 @@
 package duke;
 
-import duke.command.Command;
+import java.util.Arrays;
+
 import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.TodoCommand;
-import duke.command.DeadlineCommand;
-import duke.command.EventCommand;
-import duke.command.DeleteCommand;
-
-import java.util.Arrays;
 
 /**
  * Parser takes in a string and returns a Command object which
@@ -18,14 +18,14 @@ import java.util.Arrays;
 public class Parser {
     /**
      * Parses a string and returns a Command object.
-     * 
+     *
      * @param input the command string
      * @return the Command object representing the command the user wants to execute
      * @throws DukeException if the command is invalid
      */
     public static Command parse(String input) throws DukeException {
         String[] inputSplit = input.split(" ");
-        switch(inputSplit[0]) {
+        switch (inputSplit[0]) {
         case "bye":
             return new ByeCommand();
         case "list":
@@ -35,11 +35,11 @@ public class Parser {
             // Error handling
             if (inputSplit.length < 2) {
                 throw new DukeException(
-                    "You did not specify what task number to mark as done. Unable to mark task.");
+                        "You did not specify what task number to mark as done. Unable to mark task.");
             } else if (!isNumeric(inputSplit[1])) {
                 throw new DukeException(
                         String.format("Invalid task number provided: %s. Unable to mark task.",
-                        inputSplit[1]));
+                                inputSplit[1]));
             }
             // Return the command
             return new MarkCommand(Integer.parseInt(inputSplit[1]) - 1,
