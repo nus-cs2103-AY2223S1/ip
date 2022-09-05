@@ -23,6 +23,7 @@ public class Launcher {
      * @throws IOException When system I/O fails.
      */
     public static void main(String[] args) throws IOException {
+        assert(args != null);
         if (args.length >= 1 && args[0].equalsIgnoreCase("console-test")) {
             // The directory has been chosen to facilitate regression testing.
             if (args.length == 1 || args[1].isBlank()) {

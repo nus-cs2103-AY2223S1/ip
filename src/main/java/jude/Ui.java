@@ -61,10 +61,8 @@ public class Ui {
     }
 
     /**
-     * Returns the reply when bye command is executed. This method should only be called on
+     * Displays the reply when bye command is executed. This method should only be called on
      * console mode.
-     *
-     * @return Bye message of the chatbot (only shown on console mode).
      */
     public void showByeMessage() {
         System.out.println("Goodbye! Have a nice day!");

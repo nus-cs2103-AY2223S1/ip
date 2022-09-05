@@ -92,6 +92,7 @@ public class Parser {
                         + "Aug 21 2022 or 2022-08-21.");
             }
         }
+        assert(dateObject != null);
         return dateObject.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));
     }
 
@@ -101,7 +102,8 @@ public class Parser {
      * @param command The user input command.
      * @return true if the command terminates the program, i.e. bye command, false otherwise.
      */
-    public boolean isTerminationCommand(String command) {
+    boolean isTerminationCommand(String command) {
+        assert(command != null);
         return command.equals("bye");
     }
 
@@ -126,6 +128,7 @@ public class Parser {
                             String.format("Description of %s cannot be empty.", tokens[0]));
                 } else if (tokens[0].equals("todo")) {
                     String description = tokens[1];
+                    assert(description != null);
                     taskAdded = new Todo(description, false);
                 } else if (tokens[0].equals("deadline")) {
                     String remText = tokens[1];
@@ -141,6 +144,8 @@ public class Parser {
                                     + "deadline.");
                         }
                         deadline = convertToDate(deadline);
+                        assert(description != null);
+                        assert(deadline != null);
                         taskAdded = new Deadline(description, false, deadline);
                     } else {
                         throw new IllegalCommandException("A deadline task must have a "
@@ -159,6 +164,8 @@ public class Parser {
                             throw new IllegalCommandException("An event task must have a "
                                     + "time at which the event takes place.");
                         }
+                        assert(description != null);
+                        assert(when != null);
                         taskAdded = new Event(description, false, when);
                     } else {
                         throw new IllegalCommandException("An event task must have a time at "

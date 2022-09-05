@@ -38,6 +38,8 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
+        assert(dialog != null);
+        assert(displayPicture != null);
         dialog.setText(text);
         displayPicture.setImage(img);
     }
@@ -46,6 +48,7 @@ public class DialogBox extends HBox {
      * Flips the dialog box such that the ImageView is on the left and text on the right.
      */
     private void flip() {
+        assert(this.getChildren() != null);
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
