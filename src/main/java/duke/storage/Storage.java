@@ -64,16 +64,16 @@ public class Storage {
                 String taskDescription = taskSegment[2];
                 String taskDate = null;
                 LocalDate taskLocalDate = null;
-                if (taskSegment.length >= 4) {
-                    if (taskType.equals("D")) {
-                        try {
-                            taskLocalDate = LocalDate.parse(taskSegment[3]);
-                        } catch (Exception ex) {
-                            System.out.println(ex.getMessage());
-                        }
-                    } else {
-                        taskDate = taskSegment[3];
+                boolean isDeadlineTask = taskSegment.length >= 4 && taskType.equals("D");
+                boolean isEventTask = taskSegment.length >= 4 && taskType.equals("E");
+                if (isDeadlineTask) {
+                    try {
+                        taskLocalDate = LocalDate.parse(taskSegment[3]);
+                    } catch (Exception ex) {
+                        System.out.println(ex.getMessage());
                     }
+                } else if (isEventTask) {
+                    taskDate = taskSegment[3];
                 }
 
                 Task currentSavedTask = null;
