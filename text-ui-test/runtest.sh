@@ -11,23 +11,22 @@ if [ -e "./ACTUAL.TXT" ]
 then
     rm ACTUAL.TXT
 fi
-if [ -e "data\tasks.txt" ]
+if [ -e "data/tasks.txt" ]
 then
-    rm data\tasks.txt
+    rm data/tasks.txt
 fi
 
 # compile the code into the bin folder, terminates if error occurred
 # @@author cheeheng-reused
 # Solution adapted from https://stackoverflow.com/questions/31011069/executing-a-script-from-a-parent-directory
-if ! (cd .. && gradlew build)
+# ./gradlew adapted from https://stackoverflow.com/questions/41700798/gradlew-command-not-found
+if ! (cd .. && ./gradlew build)
 then
     echo "********** BUILD FAILURE **********"
     exit 1
 fi
 
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-# @@author cheeheng-reused
-# ./gradlew adapted from https://stackoverflow.com/questions/41700798/gradlew-command-not-found
 ./gradlew run -p .. --args console-test -q < input.txt > ACTUAL.TXT
 ./gradlew run -p .. --args console-test -q < input2.txt >> ACTUAL.TXT
 
