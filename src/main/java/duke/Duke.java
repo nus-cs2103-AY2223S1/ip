@@ -1,23 +1,14 @@
 package duke;
 
-import java.io.File;
-
-import java.nio.file.Path;
-
-import java.util.ArrayList;
-import java.util.Scanner;
 
 import parser.Parser;
-
-
-
 
 import storage.Storage;
 
 import ui.UI;
 
 import task.TaskList;
-import task.Task;
+
 
 
 /**
@@ -32,9 +23,6 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
 
-    private File file = Path.of("data/duke.txt").toFile();
-
-    private ArrayList<Task> listOfActions = new ArrayList<Task>(100);
 
     /**
      * Creates a new Duke.
@@ -50,7 +38,6 @@ public class Duke {
             ui.showGotTask();
         } catch (DukeException e) {
             ui.showNoTask();
-
             //does nothing but instantiate a object
             this.tasks = new TaskList();
         }
@@ -60,40 +47,15 @@ public class Duke {
      * Runs Duke.
      */
 
-    public void run() {
-        String type;
-        int currentAction = this.storage.getSize();
-        int end = 0;
+    /*public void run() {
         ui.welcomeMessage();
         Scanner sc = new Scanner(System.in);
         String userInput = sc.nextLine();
-        while (end != 1) {
-            //If user wants to check the list
-            String output = list(tasks.getTaskList(), currentAction);
-            String input[] = userInput.split(" ");
+        while (true) {
             try {
-                Parser parse = new Parser(tasks, userInput);
-                if (parse.isErreneous()) {
-                    type = parse.getType();
-                    ui.showInaccurateInput();
-                } else {
-                    //change from action to getAction()
-                    if (parse.getIsAction()) {
-                        currentAction++;
-                    }
-                    type = parse.getType();
-                }
-                if (type.equals("bye")) {
-                    ui.goodByeMessage();
+                Command c = Parser.parse(tasks, userInput);
+                if (c == Command.BYE) {
                     break;
-                } else if (type.equals("list")) {
-                    ui.showList(tasks.getList());
-                } else if (type.equals("delete")) {
-                    currentAction--;
-                } else if (type.equals("find")) {
-                    //do nothing
-                } else {
-                    //do nothing
                 }
             } catch (DukeException e) {
                 ui.showInaccurateInput();
@@ -102,19 +64,25 @@ public class Duke {
         }
     }
 
+     */
+
 
     public static void main(String[] args) {
-
-        new Duke("data/duke.txt").run();
-
+        new Duke("data/duke.txt");
     }
 
-    public static String list(ArrayList<Task> listOfActions, int currentAction) {
-        String out = "";
-        for (int i = 0; i < currentAction; i++) {
-            out = out + String.format("%d", i + 1) + "." + listOfActions.get(i) + "\n";
+
+    public String getResponse(String input) {
+        try {
+            Parser parser = new Parser();
+            String returnOut = parser.parse(tasks, input);
+            if (parser.isBye()) {
+                //Do nothing
+            }
+            return returnOut;
+        } catch (DukeException e) {
+            return ui.showInaccurateInput();
         }
-        return out;
     }
 
 

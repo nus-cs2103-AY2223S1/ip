@@ -106,8 +106,6 @@ public class Storage {
         }
     }
 
-    public int getSize() {
-        return size;
-    }
+
 
 }

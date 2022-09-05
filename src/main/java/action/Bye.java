@@ -1,0 +1,35 @@
+package action;
+
+import task.Task;
+import task.TaskList;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class Bye {
+
+    public static String bye(String[] str, TaskList taskList, File file) {
+        if (str.length == 1) {
+            ArrayList<Task> listOfActions = taskList.getTaskList();
+            try {
+                FileWriter writer = new FileWriter(file.getPath());
+                for (Task t : listOfActions) {
+                    writer.write(t.toString() + System.lineSeparator());
+                }
+                writer.close();
+            } catch (IOException e) {
+                System.out.println("Oops");
+            }
+            return "hehe";
+        } else {
+            return "Errorrrrr";
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "GoodBye and All the best";
+    }
+}

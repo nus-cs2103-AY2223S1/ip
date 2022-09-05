@@ -8,8 +8,6 @@ public class TaskList {
 
     protected ArrayList<Task> taskArray;
 
-    protected String list;
-
     protected int size;
 
     /**
@@ -60,12 +58,13 @@ public class TaskList {
      * Adds the Task to the ArrayList.
      * @param task The task to be added.
      */
-    public void add(Task task) {
+    public String add(Task task) {
         this.taskArray.add(task);
-        System.out.println("----------------------\n" + "Ok Solid you got this work to do:\n" +
+        String out = "----------------------\n" + "Ok Solid you got this work to do:\n" +
                 task.toString() + String.format("\nYou have a total of %d work to do", size + 1)
-                + "\n----------------------\n");
+                + "\n----------------------\n";
         size++;
+        return out;
     }
 
     /**
@@ -82,13 +81,14 @@ public class TaskList {
      * Deletes the Task from the ArrayList.
      * @param index The index of the Task in the ArrayList to be removed.
      */
-    public void delete(int index) {
+    public String delete(int index) {
         String removed = taskArray.get(index).toString();
         taskArray.remove(index);
-        System.out.println("----------------------\n" + "Noted, The following task has been removed\n" +
+        String output = "----------------------\n" + "Noted, The following task has been removed\n" +
                 removed + String.format("\nYou have a total of %d work to do still", size - 1) +
-                "\n----------------------\n");
+                "\n----------------------\n";
         size--;
+        return output;
     }
 
     /**
@@ -99,21 +99,6 @@ public class TaskList {
     public ArrayList<Task> getTaskList() {
         return this.taskArray;
     }
-
-    /**
-     * Gets the Tasks of the ArrayList and converts to String format.
-     * @return The string of Tasks in the ArrayList.
-     */
-
-    public String getList() {
-        String out = "";
-        for (int i = 0; i < size; i++) {
-            out = out + String.format("%d", i + 1) + "." + taskArray.get(i) + "\n";
-        }
-        this.list = out;
-        return this.list;
-    }
-
 
 
 }
