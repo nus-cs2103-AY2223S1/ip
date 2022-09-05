@@ -124,4 +124,8 @@ public class Ui {
         return " Here are the matching tasks in your list:" + s;
     }
 
+    public String showNumberOfTasks(int numOfTasks, String taskType) {
+        return " There are " + numOfTasks + " " + taskType + " tasks";
+    }
+
 }

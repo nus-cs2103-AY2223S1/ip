@@ -42,6 +42,10 @@ public class Parser {
             return new MarkingCommand(true, Integer.parseInt(strInput.substring(5)));
         } else if (strInput.contains("find") && strInput.substring(0, 4).equals("find")) {
             return new FindCommand(strInput.substring(5));
+        } else if (strInput.contains("count completed") && strInput.substring(0, 15).equals("count completed")) {
+            return new CountCommand(true);
+        }else if (strInput.contains("count uncompleted") && strInput.substring(0, 17).equals("count uncompleted")) {
+            return new CountCommand(false);
         } else {
             throw new DukeException("Cannot recognise the command.");
         }

@@ -124,4 +124,22 @@ public class TaskList {
         return s.toString();
     }
 
+    public int countTasks(boolean isCountCompleted) {
+        int numOfTasks = 0;
+        if (isCountCompleted) {
+            for (int i = 0; i < taskArray.size(); i++) {
+                if (taskArray.get(i).isDone) {
+                    numOfTasks++;
+                }
+            }
+        } else {
+            for (int i = 0; i < taskArray.size(); i++) {
+                if (!taskArray.get(i).isDone) {
+                    numOfTasks++;
+                }
+            }
+        }
+        return numOfTasks;
+    }
+
 }
