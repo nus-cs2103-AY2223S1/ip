@@ -69,7 +69,6 @@ public class Storage {
                 }
                 data.addTask(task);
                 setCompletion(task, taskData);
-
             }
             sc.close();
         } catch (FileNotFoundException e) {

@@ -35,6 +35,16 @@ public class Event extends Task {
     }
 
     /**
+     * Returns the date associated with the task.
+     *
+     * @return The date associated with the task.
+     */
+    @Override
+    public LocalDate getDate() {
+        return this.date;
+    }
+
+    /**
      * Returns the string representation of the event task.
      *
      * @return The string representation of the event task.
@@ -44,5 +54,24 @@ public class Event extends Task {
         String date = this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
         return "[E][" + super.getStatusIcon() + "] " + super.description + " (at: "
                 + date + ")";
+    }
+
+    /**
+     * Compares this task with the specified task for order.  Returns a
+     * negative integer, zero, or a positive integer as this object is less
+     * than, equal to, or greater than the specified object.
+     *
+     * @param task The task to be compared.
+     * @return A negative integer, zero, or a positive integer as this object
+     *         is less than, equal to, or greater than the specified object.
+     */
+    @Override
+    public int compareTo(Task task) {
+        LocalDate taskDate = task.getDate();
+        if (taskDate == null) {
+            return -1;
+        } else {
+            return this.date.compareTo(taskDate);
+        }
     }
 }

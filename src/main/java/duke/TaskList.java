@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import duke.exception.DukeException;
 import duke.exception.InvalidInput;
@@ -47,6 +48,7 @@ public class TaskList {
      */
     public void addTask(Task task) {
         data.add(task);
+        Collections.sort(data);
     }
 
     /**
