@@ -1,10 +1,10 @@
 package duke.command.handler;
 
-import duke.data.tasks.Task;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
 import duke.command.CommandException;
+import duke.data.tasks.Task;
 import duke.data.tasks.TaskTodo;
 
 public class CommandTodoHandler extends CommandAddTaskHandler {
