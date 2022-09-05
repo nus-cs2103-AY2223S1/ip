@@ -16,8 +16,9 @@ public class MarkCommand extends Command {
         int n = Parser.getTaskNumber(ui.getCurrentInput(), taskList.getSize());
         taskList.markTask(n);
         String storeLine = taskList.getTask(n).toString() + "\n";
-        storage.changeLine(n, storeLine);
-        ui.showMessage("marked task");
+        if (storage.isLineChanged(n, storeLine)) {
+            ui.showMessage("marked task");
+        }
     }
 
     @Override
