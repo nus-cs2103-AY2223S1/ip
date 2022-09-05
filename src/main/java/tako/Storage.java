@@ -122,5 +122,6 @@ public class Storage {
         if (!Files.isRegularFile(tasksPath)) {
             Files.createFile(tasksPath);
         }
+        assert Files.exists(tasksPath) : "File not created";
     }
 }

@@ -69,6 +69,7 @@ public class Parser {
         case FIND:
             return CreateFindCommand(splitInput);
         default:
+            assert false : "Unknown Command: " + command;
             throw new TakoException("The input is invalid.");
         }
     }
@@ -110,6 +111,7 @@ public class Parser {
             throw new TakoException("The description of this todo cannot be empty.");
         }
         String description = splitInput[1];
+        assert !description.equals("") : "Empty description.";
         return new AddCommand(new Todo(description));
     }
 
@@ -122,6 +124,7 @@ public class Parser {
         if (splitDeadline.length == 2) {
             try {
                 String description = splitDeadline[0];
+                assert !description.equals("") : "Empty description.";
                 LocalDateTime dateTime = LocalDateTime.parse(
                         splitDeadline[1].replace(' ', 'T'));
                 return new AddCommand(new Deadline(description, dateTime));
@@ -145,6 +148,7 @@ public class Parser {
         if (splitEvent.length == 2) {
             try {
                 String description = splitEvent[0];
+                assert !description.equals("") : "Empty description.";
                 LocalDateTime dateTime = LocalDateTime.parse(
                         splitEvent[1].replace(' ', 'T'));
                 return new AddCommand(new Event(description, dateTime));
