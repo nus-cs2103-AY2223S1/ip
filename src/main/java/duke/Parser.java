@@ -38,6 +38,14 @@ public class Parser {
         return dateTimeStringParsed.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
     }
 
+    private int parseIndex(String indexString, int taskListSize) {
+        int index = Integer.parseInt(indexString) - 1;
+        if (index < 0 || index >= taskListSize) {
+            throw new InvalidParameterException();
+        }
+        return index;
+    }
+
     /**
      * Parses the command and matches it with the corresponding action to be taken
      * Executes the action on the task list given
@@ -61,10 +69,7 @@ public class Parser {
             case "mark":
                 checkParameters("mark", commandList);
 
-                int indexMark = Integer.parseInt(commandList[1]) - 1;
-                if (indexMark < 0 || indexMark >= tasks.getSize()) {
-                    throw new InvalidParameterException();
-                }
+                int indexMark = parseIndex(commandList[1], tasks.getSize());
 
                 tasks.markIndex(indexMark);
                 return ui.getCorrectMessage(Ui.Commands.MARK, tasks, indexMark);
@@ -72,10 +77,7 @@ public class Parser {
             case "unmark":
                 checkParameters("unmark", commandList);
 
-                int indexUnmark = Integer.parseInt(commandList[1]) - 1;
-                if (indexUnmark < 0 || indexUnmark >= tasks.getSize()) {
-                    throw new InvalidParameterException();
-                }
+                int indexUnmark = parseIndex(commandList[1], tasks.getSize());
 
                 tasks.unmarkIndex(indexUnmark);
                 return ui.getCorrectMessage(Ui.Commands.UNMARK, tasks, indexUnmark);
@@ -93,7 +95,7 @@ public class Parser {
                 String eventDescription = eventCommands[0];
                 String event = parseDate(eventCommands[1]);
 
-                tasks.add(new Deadline(eventDescription, event));
+                tasks.add(new Event(eventDescription, event));
                 return ui.getCorrectMessage(Ui.Commands.TASK, tasks, tasks.getSize() - 1);
 
             case "deadline":
@@ -110,10 +112,7 @@ public class Parser {
             case "delete":
                 checkParameters("delete", commandList);
 
-                int index = Integer.parseInt(commandList[1]) - 1;
-                if (index < 0 || index >= tasks.getSize()) {
-                    throw new InvalidParameterException();
-                }
+                int index = parseIndex(commandList[1], tasks.getSize());
 
                 String response = ui.getCorrectMessage(Ui.Commands.DELETE, tasks, index);
                 tasks.delete(index);
@@ -123,6 +122,19 @@ public class Parser {
                 checkParameters("find", commandList);
                 String keyword = commandList[1];
                 return ui.getCorrectMessage(Ui.Commands.FIND, tasks.find(keyword), 0);
+
+            case "tag":
+                checkParameters("tag", commandList);
+                String[] tagParameters = commandList[1].strip()
+                                                       .split(" ", 2);
+
+                checkParameters("tag", tagParameters);
+                int indexToTag = parseIndex(tagParameters[0], tasks.getSize());
+                String[] tags = tagParameters[1].strip()
+                                                .split(" ");
+                tasks.addTag(indexToTag, tags);
+                return ui.getCorrectMessage(Ui.Commands.TAG, tasks, indexToTag);
+
             default:
                 throw new UnknownCommandException();
             }

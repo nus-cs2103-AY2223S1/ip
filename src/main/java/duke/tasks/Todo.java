@@ -22,7 +22,7 @@ public class Todo extends Task {
      */
     @Override
     public String getAdditionalInfo() {
-        return "";
+        return " ";
     }
 
     /**
@@ -30,7 +30,8 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        return "[" + this.getLetterTag() + "][" + this.getStatusIcon() + "] " + this.description;
+        return "[" + this.getLetterTag() + "][" + this.getStatusIcon() + "] "
+                + this.description + " " + this.getTagString();
     }
 
 }

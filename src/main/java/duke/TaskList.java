@@ -112,4 +112,12 @@ public class TaskList {
         return foundTasks;
     }
 
+    public void addTag(int index, String[] tags) {
+        assert index >= 0;
+        assert index < this.getSize();
+        for (String tag : tags) {
+            this.tasks.get(index).addTag(tag);
+        }
+    }
+
 }

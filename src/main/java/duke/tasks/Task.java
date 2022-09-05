@@ -1,11 +1,14 @@
 package duke.tasks;
 
+import java.util.ArrayList;
+
 /**
  * Used to represent any type of tasks, to do, deadline, or events and their relevant information
  */
 public abstract class Task {
     protected boolean isDone;
     protected String description;
+    protected ArrayList<String> tags;
 
     /**
      * Constructor of Task
@@ -15,6 +18,7 @@ public abstract class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        this.tags = new ArrayList<String>();
     }
 
     /**
@@ -62,5 +66,31 @@ public abstract class Task {
      * @return string representing deadline for deadlines, event timings for events, "" for to do
      */
     public abstract String getAdditionalInfo();
+
+    /**
+     * Adds tag to task
+     *
+     * @param tag tag to be added
+     */
+    public void addTag(String tag) {
+        if (tag.startsWith("#")) {
+            this.tags.add(tag);
+        } else {
+            this.tags.add("#" + tag);
+        }
+    }
+
+    /**
+     * Formats the tag for the task
+     *
+     * @return Properly formatted string of tags for task
+     */
+    public String getTagString() {
+            StringBuilder tagString = new StringBuilder();
+            for (String tag : tags) {
+                tagString.append(tag).append(" ");
+            }
+            return tagString.toString();
+    }
 
 }

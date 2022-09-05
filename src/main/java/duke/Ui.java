@@ -13,7 +13,8 @@ public class Ui {
         UNMARK,
         LIST,
         TASK,
-        FIND
+        FIND,
+        TAG
     }
 
     /**
@@ -46,6 +47,8 @@ public class Ui {
             return "OK, I've marked this task as not done yet:\n" + taskList.getByIndex(index);
         case FIND:
             return "Here are the matching tasks in your list:\n" + taskList.getTaskList();
+        case TAG:
+            return "Ok, I've added the tags to this task:\n" + taskList.getByIndex(index);
         default:
             throw new UnknownCommandException();
         }

@@ -38,21 +38,30 @@ public class Storage {
         while (fileScanner.hasNext()) {
             String tempTask = fileScanner.nextLine();
             String[] loadedTask = tempTask.split("~~");
-            switch (loadedTask[0]) {
+            String taskType = loadedTask[0];
+            String taskStatus = loadedTask[1];
+            String taskDescription = loadedTask[2];
+            String[] tagsList = loadedTask[4].split(" ");
+            switch (taskType) {
             case "T":
-                tasks.add(new Todo(loadedTask[2]));
+                tasks.add(new Todo(taskDescription));
                 break;
             case "D":
-                tasks.add(new Deadline(loadedTask[2], loadedTask[3]));
+                String deadline = loadedTask[3];
+                tasks.add(new Deadline(taskDescription, deadline));
                 break;
             case "E":
-                tasks.add(new Event(loadedTask[2], loadedTask[3]));
+                String eventTime = loadedTask[3];
+                tasks.add(new Event(taskDescription, eventTime));
                 break;
             default:
                 break;
             }
-            if (loadedTask[1].equals("X")) {
+            if (taskStatus.equals("X")) {
                 tasks.get(tasks.size() - 1).mark();
+            }
+            for (String tag : tagsList) {
+                tasks.get(tasks.size() - 1).addTag(tag);
             }
         }
         return tasks;
@@ -69,7 +78,8 @@ public class Storage {
         FileWriter fileWriter = new FileWriter("tasks.txt");
         for (Task task : tasks.getTasks()) {
             fileWriter.write(task.getLetterTag() + "~~" + task.getStatusIcon() + "~~"
-                    + task.getDescription() + "~~" + task.getAdditionalInfo() + System.lineSeparator());
+                    + task.getDescription() + "~~" + task.getAdditionalInfo() + "~~"
+                    + task.getTagString() + System.lineSeparator());
         }
         fileWriter.close();
     }

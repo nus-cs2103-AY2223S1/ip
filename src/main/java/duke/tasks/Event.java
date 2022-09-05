@@ -42,7 +42,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[" + this.getLetterTag() + "][" + this.getStatusIcon() + "] "
-                + this.description + " (at: " + this.time + ")";
+                + this.description + " (at: " + this.time + ") " + this.getTagString();
     }
 
 }
