@@ -16,11 +16,14 @@ then
     rm data/tasks.txt
 fi
 
+dos2unix
+
 # compile the code into the bin folder, terminates if error occurred
 # @@author cheeheng-reused
 # Solution adapted from https://stackoverflow.com/questions/31011069/executing-a-script-from-a-parent-directory
 # ./gradlew adapted from https://stackoverflow.com/questions/41700798/gradlew-command-not-found
-if ! (cd .. && ./gradlew build)
+cd ..
+if ! (./gradlew build)
 then
     echo "********** BUILD FAILURE **********"
     exit 1
