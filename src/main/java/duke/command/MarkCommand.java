@@ -5,9 +5,17 @@ import duke.main.Storage;
 import duke.main.TaskList;
 import duke.main.Ui;
 
+/**
+ * A class to handle the marking command.
+ */
 public class MarkCommand extends Command {
     private int num;
 
+    /**
+     * A constructor for mark command.
+     *
+     * @param num the position of the task to be marked.
+     */
     public MarkCommand(int num) {
         this.num = num;
     }
@@ -30,6 +38,11 @@ public class MarkCommand extends Command {
         storage.overwrite();
     }
 
+    /**
+     * Ensures program will not exit.
+     *
+     * @return a boolean indicating that it should not exit.
+     */
     @Override
     public boolean isExit() {
         return false;

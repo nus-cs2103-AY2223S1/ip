@@ -11,9 +11,9 @@
     <children>
       <TextFlow>
          <children>
-              <Label fx:id="dialog" alignment="CENTER_RIGHT" prefHeight="319.0" prefWidth="188.0" style="-fx-background-color: #00FF00#00FF00;" text="Label" textAlignment="RIGHT" textFill="#001109" wrapText="true">
+              <Label fx:id="dialog" alignment="CENTER_RIGHT" prefHeight="319.0" prefWidth="188.0" style="-fx-background-color: #023d0c#023d0c;" text="Label" textAlignment="RIGHT" textFill="#d7d7d7" wrapText="true">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
                <opaqueInsets>
                   <Insets />

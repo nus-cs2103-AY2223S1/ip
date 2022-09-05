@@ -1,20 +1,34 @@
 package duke.main;
 
-import duke.task.Task;
-
 import java.util.ArrayList;
 
+import duke.task.Task;
+
+/**
+ * A class to handle the task list.
+ */
 public class TaskList {
     private ArrayList<Task> arr;
 
-    public TaskList(Storage storage){
-        this.arr = new ArrayList<Task>();
+    /**
+     * The constructor for Task List.
+     *
+     * @param storage The storage that stores the array of task list.
+     */
+    public TaskList(Storage storage) {
+        arr = new ArrayList<Task>();
         storage.arr = this.arr;
     }
 
+    /**
+     * The constructor for Task List.
+     *
+     * @param arr The ArrayList that contains the task list.
+     */
     public TaskList(ArrayList<Task> arr) {
         this.arr = arr;
     }
+
     /**
      * Adds a task to the array list.
      *
@@ -53,7 +67,12 @@ public class TaskList {
         return this.arr.get(i);
     }
 
+    /**
+     * Returns the array of task list.
+     *
+     * @return ArrayList of Task.
+     */
     public ArrayList<Task> getArr() {
-        return this.arr;
+        return arr;
     }
 }

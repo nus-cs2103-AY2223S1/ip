@@ -5,6 +5,9 @@ import duke.main.Storage;
 import duke.main.TaskList;
 import duke.main.Ui;
 
+/**
+ * A class to handle incomprehensible commands.
+ */
 public class IncomprehensibleCommand extends Command {
 
     /**
@@ -19,6 +22,11 @@ public class IncomprehensibleCommand extends Command {
         throw new DukeException("I'm sorry, but I don't know what that means T.T");
     }
 
+    /**
+     * Ensures program will not exit.
+     *
+     * @return a boolean indicating that it should not exit.
+     */
     @Override
     public boolean isExit() {
         return false;

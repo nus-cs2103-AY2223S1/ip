@@ -2,6 +2,11 @@ package duke.task;
 
 import java.util.ArrayList;
 import java.util.function.Function;
+
+/**
+ * A class to handle the conversion of tasks in array list to string
+ * to be placed in the text file.
+ */
 public class Formatting implements Function<ArrayList<Task>, String> {
 
     /**

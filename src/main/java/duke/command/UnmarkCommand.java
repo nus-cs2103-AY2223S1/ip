@@ -5,9 +5,17 @@ import duke.main.Storage;
 import duke.main.TaskList;
 import duke.main.Ui;
 
+/**
+ * A class to handle the unmarking command.
+ */
 public class UnmarkCommand extends Command {
     private int num;
 
+    /**
+     * A constructor for the unmark command.
+     *
+     * @param num the position of the task to be unmarked.
+     */
     public UnmarkCommand(int num) {
         this.num = num;
     }
@@ -30,6 +38,11 @@ public class UnmarkCommand extends Command {
         storage.overwrite();
     }
 
+    /**
+     * Ensures program will not exit.
+     *
+     * @return a boolean indicating that it should not exit.
+     */
     @Override
     public boolean isExit() {
         return false;

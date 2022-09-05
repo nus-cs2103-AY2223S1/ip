@@ -4,6 +4,9 @@ import duke.main.Storage;
 import duke.main.TaskList;
 import duke.main.Ui;
 
+/**
+ * A class to handle the list command.
+ */
 public class ListCommand extends Command {
 
     /**
@@ -18,6 +21,11 @@ public class ListCommand extends Command {
         ui.sayList(tasks.getArr());
     }
 
+    /**
+     * Ensures program will not exit.
+     *
+     * @return a boolean indicating that it should not exit.
+     */
     @Override
     public boolean isExit() {
         return false;

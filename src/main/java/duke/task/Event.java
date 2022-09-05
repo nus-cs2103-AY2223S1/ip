@@ -4,8 +4,18 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * A class that handles the event tasks.
+ */
 public class Event extends DatedTask {
 
+    /**
+     * A constructor for the event.
+     *
+     * @param description the description of the event.
+     * @param at the date at which the event is held at.
+     * @throws DateTimeException thrown when wrong date format is provided.
+     */
     public Event(String description, LocalDate at) throws DateTimeException {
         super(description, at);
     }

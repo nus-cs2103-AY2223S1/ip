@@ -6,9 +6,17 @@ import duke.main.TaskList;
 import duke.main.Ui;
 import duke.task.Task;
 
+/**
+ * A class that handles delete command.
+ */
 public class DeleteCommand extends Command {
     private int num;
 
+    /**
+     * A constructor for delete command.
+     *
+     * @param i the position to delete.
+     */
     public DeleteCommand(int i) {
         this.num = i;
     }
@@ -31,6 +39,11 @@ public class DeleteCommand extends Command {
         }
     }
 
+    /**
+     * Ensures that the program does not exit.
+     *
+     * @return boolean indicating not exit.
+     */
     @Override
     public boolean isExit() {
         return false;
