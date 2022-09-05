@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
  * This abstract class encapsulates a task that has a date and time.
  */
 public abstract class TaskWithDateTime extends Task {
-
     /** The date and time of the event. */
     private LocalDateTime dateTime;
 
@@ -23,11 +22,20 @@ public abstract class TaskWithDateTime extends Task {
     }
 
     /**
-     * Gets the date and time of the event.
+     * Gets the date and time of the task.
      *
-     * @return The date and time of the event.
+     * @return The date and time of the task.
      */
     public LocalDateTime getDateTime() {
         return dateTime;
+    }
+
+    /**
+     * Sets the date and time of the task.
+     *
+     * @param dateTime The new date and time of the task.
+     */
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 }

@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import duke.exceptions.DukeException;
 import duke.tasks.Task;
 import duke.tasks.TaskWithDateTime;
+import duke.tools.SessionManager;
 import duke.tools.TaskList;
 
 /**
@@ -23,6 +24,7 @@ public class GuiText {
     private static final String ADD_TASK_STRING = "Got it! I stored this task:";
     private static final String DELETE_STRING = "The following task is deleted:";
     private static final String FIND_STRING = "Here are the matching tasks in your list:";
+    private static final String SNOOZE_STRING = "The following task is snoozed!";
 
     /**
      * Creates a String to be shown by Duke to greet the user.
@@ -158,6 +160,16 @@ public class GuiText {
                 .collect(Collectors.joining());
         String output = FIND_STRING.concat(filteredTaskString).concat(END_LISTING_STRING);
         return output;
+    }
+
+    /**
+     * Creates a String to be shown by Duke to display the task that was snoozed.
+     *
+     * @param task The task that was snoozed.
+     * @return A String to show the task that was snoozed.
+     */
+    public static String formatSnooze(int index, TaskWithDateTime task) {
+        return SNOOZE_STRING + formatTaskWithIndexString(index, task);
     }
 
     /**

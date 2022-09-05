@@ -54,6 +54,8 @@ public class Parser {
                 return parseEventCommand(inputLine[1].strip());
             case "between":
                 return parseBetweenCommand(inputLine[1].strip());
+            case "snooze":
+                return parseSnoozeCommand(inputLine[1].strip());
             default:
                 throw new DukeException("Exception: Unknown command.");
             }
@@ -119,6 +121,17 @@ public class Parser {
             LocalDateTime start = parseDateTime(dateTimes[0] + " " + dateTimes[1]);
             LocalDateTime end = parseDateTime(dateTimes[2] + " " + dateTimes[3]);
             return new WithinDateTimeCommand(start, end);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Exception: Insufficient command parameters.");
+        }
+    }
+
+    private static SnoozeCommand parseSnoozeCommand(String str) throws DukeException {
+        try {
+            String[] indexAndDateTime = str.split(" ", 2);
+            int index = Parser.parseTaskIndex(indexAndDateTime[0]);
+            LocalDateTime dateTime = parseDateTime(indexAndDateTime[1]);
+            return new SnoozeCommand(index, dateTime);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Exception: Insufficient command parameters.");
         }
