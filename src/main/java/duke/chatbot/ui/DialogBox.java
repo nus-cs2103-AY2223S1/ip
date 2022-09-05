@@ -15,8 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 /**
- * A custom dialog box which composes of an ImageView to represent the speaker's
- * face and a label containing text from the speaker.
+ * A custom dialog box which composes of an ImageView to represent the speaker's face and a label containing text from
+ * the speaker.
  *
  * @author jq1836
  */

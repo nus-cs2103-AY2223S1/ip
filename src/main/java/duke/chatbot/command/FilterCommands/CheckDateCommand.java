@@ -1,4 +1,4 @@
-package duke.chatbot.command;
+package duke.chatbot.command.FilterCommands;
 
 import java.time.LocalDate;
 import java.util.function.Predicate;
@@ -24,7 +24,7 @@ public class CheckDateCommand extends FilterCommand {
     }
 
     @Override
-    Predicate<Task> getCondition() throws InvalidInputException {
+    Predicate<Task> supplyCondition() throws InvalidInputException {
         LocalDate date = Parser.parseDate(arguments);
         return (task) -> {
             if (!(task instanceof TimedTask)) {
@@ -33,16 +33,5 @@ public class CheckDateCommand extends FilterCommand {
             TimedTask timedTask = (TimedTask) task;
             return timedTask.hasMatchingDate(date);
         };
-    }
-
-    /**
-     * Returns an instance of {@link CommandResult} with a message that displays a list of TimedTask which have the
-     * same date as the argument input.
-     *
-     * @return The result after executing the command.
-     */
-    @Override
-    public CommandResult execute() throws InvalidInputException {
-        return super.execute();
     }
 }

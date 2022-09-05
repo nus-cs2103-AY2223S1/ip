@@ -7,7 +7,7 @@ package duke.chatbot.command;
  */
 public class CommandResult {
     /**
-     * A list of messages to be printed by the UI
+     * A message to be printed by the GUI.
      */
     private final String message;
 

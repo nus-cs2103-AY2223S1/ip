@@ -13,7 +13,7 @@ import duke.chatbot.data.task.TaskList;
  */
 public class TaskFileSaver {
     /**
-     * The file to save the list of tasks on
+     * The file to save the list of tasks on.
      */
     private final File file;
 

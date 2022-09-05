@@ -16,24 +16,19 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import duke.chatbot.command.AddDeadlineCommand;
-import duke.chatbot.command.AddEventCommand;
-import duke.chatbot.command.AddToDoCommand;
-import duke.chatbot.command.CheckDateCommand;
+import duke.chatbot.command.AddTaskCommands.AddDeadlineCommand;
+import duke.chatbot.command.AddTaskCommands.AddEventCommand;
+import duke.chatbot.command.AddTaskCommands.AddToDoCommand;
 import duke.chatbot.command.Command;
-import duke.chatbot.command.DeleteCommand;
 import duke.chatbot.command.ExitCommand;
-import duke.chatbot.command.FindKeywordCommand;
-import duke.chatbot.command.InvalidInputCommand;
+import duke.chatbot.command.FilterCommands.CheckDateCommand;
+import duke.chatbot.command.FilterCommands.FindKeywordCommand;
 import duke.chatbot.command.ListCommand;
-import duke.chatbot.command.MarkCommand;
-import duke.chatbot.command.UnmarkCommand;
+import duke.chatbot.command.TargetTaskCommands.DeleteCommand;
+import duke.chatbot.command.TargetTaskCommands.MarkCommand;
+import duke.chatbot.command.TargetTaskCommands.UnmarkCommand;
 import duke.chatbot.data.exception.InvalidInputException;
-import duke.chatbot.data.exception.InvalidStorageFileException;
-import duke.chatbot.data.task.Deadline;
-import duke.chatbot.data.task.Event;
 import duke.chatbot.data.task.TaskList;
-import duke.chatbot.data.task.ToDo;
 
 /**
  * A parser class to extract information from strings.
@@ -57,13 +52,8 @@ public class Parser {
      * @throws InvalidInputException If line is not a valid command string.
      */
     public static Command parseCommand(String userInput) throws InvalidInputException {
-        Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput);
-        if (!matcher.matches()) {
-            return new InvalidInputCommand(MESSAGE_UNEXPECTED);
-        }
-
-        String commandWord = matcher.group("commandWord").strip();
-        String arguments = matcher.group("arguments").strip();
+        String commandWord = getCommandWord(userInput);
+        String arguments = getArguments(userInput);
 
         switch (commandWord) {
         // Add task commands
@@ -80,7 +70,7 @@ public class Parser {
         case CheckDateCommand.COMMAND_WORD:
             return new CheckDateCommand(arguments);
 
-        // Single integer argument commands
+        // Targeted task commands
         case MarkCommand.COMMAND_WORD:
             return new MarkCommand(arguments);
         case UnmarkCommand.COMMAND_WORD:
@@ -90,16 +80,56 @@ public class Parser {
 
         // No argument commands
         case ListCommand.COMMAND_WORD:
-            return arguments.isEmpty()
-                    ? new ListCommand()
-                    : new InvalidInputCommand(MESSAGE_TOO_MANY_ARGUMENTS);
+            exceptionIfNotEmpty(arguments);
+            return new ListCommand();
         case ExitCommand.COMMAND_WORD:
-            return arguments.isEmpty()
-                    ? new ExitCommand()
-                    : new InvalidInputCommand(MESSAGE_TOO_MANY_ARGUMENTS);
+            exceptionIfNotEmpty(arguments);
+            return new ExitCommand();
 
         default:
-            return new InvalidInputCommand(MESSAGE_UNEXPECTED);
+            throw new InvalidInputException(MESSAGE_UNEXPECTED);
+        }
+    }
+
+    /**
+     * Parses the command word from the user input string.
+     *
+     * @param userInput The user input string.
+     * @return The command word in string form.
+     * @throws InvalidInputException If the user input is in the wrong format.
+     */
+    private static String getCommandWord(String userInput) throws InvalidInputException {
+        Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput);
+        if (!matcher.matches()) {
+            throw new InvalidInputException(MESSAGE_UNEXPECTED);
+        }
+        return matcher.group("commandWord").strip();
+    }
+
+    /**
+     * Parses the arguments from the user input string.
+     *
+     * @param userInput The user input string.
+     * @return The arguments in string form.
+     * @throws InvalidInputException If the user input is in the wrong format.
+     */
+    private static String getArguments(String userInput) throws InvalidInputException {
+        Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput);
+        if (!matcher.matches()) {
+            throw new InvalidInputException(MESSAGE_UNEXPECTED);
+        }
+        return matcher.group("arguments").strip();
+    }
+
+    /**
+     * Throws an exception if the argument is not empty.
+     *
+     * @param arguments The string of arguments parsed.
+     * @throws InvalidInputException If there is an argument.
+     */
+    private static void exceptionIfNotEmpty(String arguments) throws InvalidInputException {
+        if (!arguments.isEmpty()) {
+            throw new InvalidInputException(MESSAGE_TOO_MANY_ARGUMENTS);
         }
     }
 
@@ -138,40 +168,13 @@ public class Parser {
      *
      * @param file A file that contains a list of tasks.
      * @return A list of tasks that was stored in the file.
-     * @throws FileNotFoundException If a file is not found.
-     * @throws InvalidInputException If the date and time portion of the encoded task is not in the correct format.
+     * @throws FileNotFoundException If a file is not found or is in the wrong format.
      */
-    public static TaskList parseFile(File file) throws FileNotFoundException, InvalidInputException {
+    public static TaskList parseFile(File file) throws FileNotFoundException {
         Scanner fileScanner = new Scanner(file);
         TaskList result = new TaskList();
-
         while (fileScanner.hasNext()) {
-            Scanner lineScanner = new Scanner(fileScanner.nextLine());
-            lineScanner.useDelimiter(",,,");
-            String category = lineScanner.next();
-
-            if (!lineScanner.hasNextInt()) {
-                throw new InvalidStorageFileException();
-            }
-            boolean isDone = lineScanner.nextInt() == 1;
-            if (!lineScanner.hasNext()) {
-                throw new InvalidStorageFileException();
-            }
-            String description = lineScanner.next();
-
-            if (category.equals("D") && lineScanner.hasNext()) {
-                result.add(new Deadline(description, parseDateTime(lineScanner.next()), isDone));
-            } else if (category.equals("E") && lineScanner.hasNext()) {
-                result.add(new Event(description, parseDateTime(lineScanner.next()), isDone));
-            } else if (category.equals("T")) {
-                result.add(new ToDo(description, isDone));
-            } else {
-                throw new InvalidStorageFileException();
-            }
-
-            if (lineScanner.hasNext()) {
-                throw new InvalidStorageFileException();
-            }
+            result.add(TaskDecoder.decode(fileScanner.nextLine()));
         }
         return result;
     }

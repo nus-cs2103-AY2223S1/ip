@@ -3,8 +3,7 @@ package duke.chatbot.data.task;
 import java.time.LocalDateTime;
 
 /**
- * A type of task that has a date for the task to be
- * completed by.
+ * A type of task that has a date for the task to be completed by.
  *
  * @author jq1836
  */

@@ -1,4 +1,4 @@
-package duke.chatbot.command;
+package duke.chatbot.command.AddTaskCommands;
 
 import static duke.chatbot.common.Message.MESSAGE_INVALID_ARGUMENT;
 
@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import duke.chatbot.data.exception.InvalidInputException;
 import duke.chatbot.data.task.Deadline;
+import duke.chatbot.data.task.Task;
 import duke.chatbot.util.Parser;
 
 /**
@@ -25,30 +26,21 @@ public class AddDeadlineCommand extends AddTaskCommand {
      * The pattern for deadline arguments.
      */
     private static final Pattern ADD_DEADLINE_ARGUMENT_FORMAT = Pattern.compile(
-            "(?<description>.+?)\\s/by\\s(?<dateTime>)"
+            "(?<description>.*)\\s/by\\s(?<dateTime>.*)"
     );
 
     public AddDeadlineCommand(String arguments) {
         this.arguments = arguments;
     }
 
-    /**
-     * Adds an instance of Deadline to the list of tasks stored in the Duke application instance and returns an
-     * instance of {@link CommandResult} which contains the Deadline added.
-     *
-     * @return The result after executing the command.
-     * @throws InvalidInputException If arguments passed to Command is invalid.
-     */
     @Override
-    public CommandResult execute() throws InvalidInputException {
+    protected Task supplyTask() throws InvalidInputException {
         Matcher matcher = ADD_DEADLINE_ARGUMENT_FORMAT.matcher(arguments);
         if (!matcher.matches()) {
             throw new InvalidInputException(MESSAGE_INVALID_ARGUMENT);
         }
         String description = matcher.group("description").strip();
         LocalDateTime dateTime = Parser.parseDateTime(matcher.group("dateTime").strip());
-        Deadline task = new Deadline(description, dateTime);
-        addTask(task);
-        return new CommandResult(buildMessage(task));
+        return new Deadline(description, dateTime);
     }
 }

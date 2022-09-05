@@ -14,7 +14,7 @@ import duke.chatbot.util.Parser;
  */
 public class TaskFileLoader {
     /**
-     * The file to load the list of tasks from
+     * The file to load the list of tasks from.
      */
     private final File file;
 
