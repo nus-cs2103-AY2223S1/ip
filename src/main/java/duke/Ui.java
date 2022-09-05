@@ -77,7 +77,7 @@ public class Ui {
     public String printAddTask(Task t, int n) {
         String note = "Now you have " + n + " tasks in the list.";
         return printMessage("Got it, I've added this task:\n      " + t.toString()
-                + "\n    " + note);
+                + "\n" + note);
     }
 
     /**
@@ -86,14 +86,15 @@ public class Ui {
     public String printDeleteTask(Task t, int n) {
         String noteUpdated = "Now you have " + n + " tasks in the list.";
         return printMessage("Noted. I've deleted this task:\n      " + t.toString()
-                + "\n    " + noteUpdated);
+                + "\n" + noteUpdated); //4 spaces
     }
 
     /**
      * class method to print message - the lines and indentation and formatting.
      */
     public static String printMessage (String str){
-        String line = "  ____________________________________________________________";
-        return line + "\n    " + str + "\n" + line;
+        //String line = "  ____________________________________________________________";
+        //return line + "\n    " + str + "\n" + line;
+        return str;
     }
 }
