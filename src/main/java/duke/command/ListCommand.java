@@ -1,11 +1,13 @@
 package duke.command;
 
+import duke.task.Task;
 import duke.task.TaskList;
+import duke.ui.Ui;
 
 /**
  * List Command class.
  */
-public class ListCommand extends Command{
+public class ListCommand extends Command {
 
     /**
      * Prints all the tasks in tasks.
@@ -13,8 +15,18 @@ public class ListCommand extends Command{
      * @param tasks The tasks to be executed.
      */
     @Override
-    public void execute(TaskList tasks) {
-        tasks.printList();
+    public String execute(TaskList tasks) {
+//        tasks.printList();
+//        Ui.showPrintListMessage();
+        int i = 0;
+        String response = "";
+        int ListLength = tasks.getSize();
+        for (Task task : tasks.getTasks()) {
+            i = i + 1;
+            response = response + i + ". " + task + "\n";
+        }
+
+        return Ui.showPrintListMessage() + response;
     }
 
     /**

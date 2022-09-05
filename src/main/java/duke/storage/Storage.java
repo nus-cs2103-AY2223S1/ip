@@ -54,19 +54,19 @@ public class Storage {
             char taskStatus = line.charAt(4);
             if (taskType == 'T') {
                 String description = line.substring(7);
-                taskList.addTaskWithoutPrinting(new ToDo(description, taskStatus));
+                taskList.addTask(new ToDo(description, taskStatus));
             } else if (taskType == 'D') {
                 String descriptionAndDate = line.substring(7);
                 String[] arguments  = descriptionAndDate.split("\\(");
                 String description = arguments[0];
                 LocalDate date = LocalDate.parse(removeLastChar(arguments[1]));
-                taskList.addTaskWithoutPrinting(new Deadline(description, date, taskStatus));
+                taskList.addTask(new Deadline(description, date, taskStatus));
             }else if (taskType == 'E') {
                 String descriptionAndDate = line.substring(7);
                 String[] arguments  = descriptionAndDate.split("\\(");
                 String description = arguments[0];
                 LocalDate date = LocalDate.parse(removeLastChar(arguments[1]));
-                taskList.addTaskWithoutPrinting(new Event(description, date, taskStatus));
+                taskList.addTask(new Event(description, date, taskStatus));
             }
         }
         return taskList;

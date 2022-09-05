@@ -1,11 +1,16 @@
 package duke.command;
 
+import duke.storage.Storage;
+import duke.task.Task;
 import duke.task.TaskList;
+import duke.ui.Ui;
+
+import java.io.IOException;
 
 /**
  * Mark command class to mark a task as done.
  */
-public class MarkCommand extends Command{
+public class MarkCommand extends Command {
     private int taskNo;
 
     /**
@@ -23,8 +28,14 @@ public class MarkCommand extends Command{
      * @param tasks The task to be executed.
      */
     @Override
-    public void execute(TaskList tasks) {
+    public String execute(TaskList tasks) {
         tasks.markTask(taskNo);;
+        try {
+            Storage.save(tasks.getTasks());
+        } catch (IOException e) {
+            return Ui.showError(e);
+        }
+        return Ui.markTaskMessage(tasks.getTask(taskNo));
     }
 
     /**

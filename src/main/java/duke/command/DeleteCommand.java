@@ -1,11 +1,16 @@
 package duke.command;
 
+import duke.storage.Storage;
+import duke.task.Task;
 import duke.task.TaskList;
+import duke.ui.Ui;
+
+import java.io.IOException;
 
 /**
  * DeleteCommand class to delete a task
  */
-public class DeleteCommand extends Command{
+public class DeleteCommand extends Command {
     private int taskNo;
 
     /**
@@ -23,8 +28,15 @@ public class DeleteCommand extends Command{
      * @param tasks The task to be executed.
      */
     @Override
-    public void execute(TaskList tasks) {
-        tasks.deleteTask(taskNo);
+    public String execute(TaskList tasks) {
+        try {
+            Task t = tasks.getTask(taskNo);
+            tasks.deleteTask(taskNo);
+            Storage.save(tasks.getTasks());
+            return Ui.showDeleteTaskMessage(t, tasks.getSize());
+        } catch (IOException e) {
+            return Ui.showError(e);
+        }
     }
 
     /**

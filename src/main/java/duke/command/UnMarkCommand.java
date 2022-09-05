@@ -1,11 +1,15 @@
 package duke.command;
 
+import duke.storage.Storage;
 import duke.task.TaskList;
+import duke.ui.Ui;
+
+import java.io.IOException;
 
 /**
  * Mark command class to mark a task as undone.
  */
-public class UnMarkCommand extends Command{
+public class UnMarkCommand extends Command {
     private int taskNo;
 
     /**
@@ -23,8 +27,14 @@ public class UnMarkCommand extends Command{
      * @param tasks The task to be executed.
      */
     @Override
-    public void execute(TaskList tasks) {
-        tasks.unMarkTask(taskNo);;
+    public String execute(TaskList tasks) {
+        tasks.unMarkTask(taskNo);
+        try {
+            Storage.save(tasks.getTasks());
+        } catch (IOException e) {
+            return Ui.showError(e);
+        }
+        return Ui.unMarkTaskMessage(tasks.getTask(taskNo));
     }
 
     /**

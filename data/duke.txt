@@ -1,5 +1,4 @@
 [D][X] return book (2022-09-12)
 [T][X] read book
-[E][ ] attend graduation (2022-08-08)
 [E][ ] go buffet (2022-09-11)
 [D][ ] finish assignments (2022-09-11)
