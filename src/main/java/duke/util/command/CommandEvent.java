@@ -41,8 +41,6 @@ public class CommandEvent extends Command {
         String afterEventMessage =
                 eventMessage + event + "\nNow you have " + String.valueOf(taskList.size()) + " tasks " +
                         "in the list.";
-        System.out.println(
-                HORIZONTAL_LINE + "\n" + afterEventMessage + "\n" + HORIZONTAL_LINE);
         return afterEventMessage;
     }
 }

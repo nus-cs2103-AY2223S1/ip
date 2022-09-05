@@ -31,10 +31,7 @@ public class CommandTodo extends Command {
         }
         Task todo = new Todos(description.toString());
         taskList.add(todo);
-        String afterTodoMessage = todoMessage + todo + "\nNow you have " + String.valueOf(taskList.size()) + " tasks " +
+        return todoMessage + todo + "\nNow you have " + String.valueOf(taskList.size()) + " tasks " +
                 "in the list.";
-        System.out.println(
-                HORIZONTAL_LINE + "\n" + afterTodoMessage + "\n" + HORIZONTAL_LINE);
-        return afterTodoMessage;
     }
 }

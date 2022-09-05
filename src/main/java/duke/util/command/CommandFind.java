@@ -21,7 +21,6 @@ public class CommandFind extends Command {
                 findString.append(String.valueOf(counter)).append(". ").append(taskList.get(i));
             }
         }
-        System.out.println(HORIZONTAL_LINE + "\n" + findMessage + findString + "\n" + HORIZONTAL_LINE);
         return findMessage + findString;
     }
 }

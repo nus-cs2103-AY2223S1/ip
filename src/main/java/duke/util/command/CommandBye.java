@@ -12,7 +12,6 @@ public class CommandBye extends Command {
 
     @Override
     public String handleCommand(TaskList taskList, StoredTasks storedTasks) {
-        System.out.println(HORIZONTAL_LINE + "\n  " + byeMessage + "\n" + HORIZONTAL_LINE);
         storedTasks.save(taskList);
         return byeMessage;
     }

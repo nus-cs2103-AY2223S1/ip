@@ -15,12 +15,9 @@ public class CommandDelete extends Command {
         int taskNumber = Integer.parseInt(command.split(" ")[1]) - 1;
         StringBuilder beforeDeleteString = new StringBuilder();
         beforeDeleteString.append(deleteMessage + "\n").append(taskList.get(taskNumber)).append("\n");
-        System.out.println(HORIZONTAL_LINE + "\n" + beforeDeleteString);
         taskList.remove(taskNumber);
-        StringBuilder afterDeleteString = new StringBuilder();
-        afterDeleteString.append("Now you have ").append(String.valueOf(taskList.size())).append(" tasks in the list" +
-                ".\n");
-        System.out.println(afterDeleteString + "\n" + HORIZONTAL_LINE);
+        String afterDeleteString = "Now you have " + String.valueOf(taskList.size()) + " tasks in the list" +
+                ".\n";
         return beforeDeleteString.append(afterDeleteString).toString();
     }
 

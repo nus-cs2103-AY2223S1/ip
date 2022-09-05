@@ -15,9 +15,6 @@ public class CommandList extends Command {
         for (int i = 0; i < taskList.size(); i++) {
             listString.append(" ").append(String.valueOf(i + 1)).append(". ").append(taskList.get(i)).append("\n");
         }
-        System.out.println(HORIZONTAL_LINE);
-        System.out.println(listString);
-        System.out.println(HORIZONTAL_LINE);
         return listString.toString();
     }
 }

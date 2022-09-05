@@ -14,8 +14,6 @@ public class CommandMark extends Command {
     public String handleCommand(TaskList taskList, StoredTasks storedTasks) {
         int taskNumber = Integer.parseInt(this.command.split(" ")[1]) - 1;
         taskList.get(taskNumber).markAsDone();
-        System.out.println(HORIZONTAL_LINE + "\n  " + markMessage + "\n"
-                + taskList.get(taskNumber) + "\n" + HORIZONTAL_LINE);
         return markMessage + taskList.get(taskNumber);
     }
 }

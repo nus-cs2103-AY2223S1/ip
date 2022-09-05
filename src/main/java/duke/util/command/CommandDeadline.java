@@ -41,11 +41,7 @@ public class CommandDeadline extends Command {
                 DateAndTimeParser.validateAndParse(dateTime.toString()));
         taskList.add(deadline);
 
-        String afterDeadlineMessage =
-                deadlineMessage + deadline + "\nNow you have " + String.valueOf(taskList.size()) + " tasks " +
-                        "in the list.";
-        System.out.println(
-                HORIZONTAL_LINE + "\n" + afterDeadlineMessage + "\n" + HORIZONTAL_LINE);
-        return afterDeadlineMessage;
+        return deadlineMessage + deadline + "\nNow you have " + String.valueOf(taskList.size()) + " tasks " +
+                "in the list.";
     }
 }
