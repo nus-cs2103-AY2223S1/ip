@@ -38,11 +38,14 @@ public class Gui extends Application {
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DukePic.png"));
     private Image applicationIcon = new Image(this.getClass().getResourceAsStream("/images/NGNL.png"));
 
+    /**
+     * Initialize the FXML controller.
+     */
     @FXML
     public void initialize() {
         // Let scrollbar follow the last message
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        // Greets the user
+        // Let Duke create a dialogue box to greet the user
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(GuiText.formatGreetString(), dukeImage));
     }
 
@@ -66,9 +69,12 @@ public class Gui extends Application {
             stage.setResizable(false);
             stage.getIcons().add(applicationIcon);
 
-//            scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-//            scrollPane.setFitToWidth(true);
-//            dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
+            // Other possible configurations that are currently unused.
+            /*
+            scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+            scrollPane.setFitToWidth(true);
+            dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
+             */
 
             stage.show();
         } catch (IOException e) {
