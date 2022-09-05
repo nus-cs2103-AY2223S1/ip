@@ -41,7 +41,7 @@ public class TaskList {
     /**
      * searches the taskList based on taskIndex
      * and marks it as done
-     * @param taskIndex
+     * @param taskIndex Index of task to be marked
      */
     public String markTask(int taskIndex) {
         try {
@@ -91,7 +91,7 @@ public class TaskList {
     /**
      * searches the taskList based on taskIndex
      * and deletes it
-     * @param taskIndex
+     * @param taskIndex index of task to be deleted
      */
 
     public String deleteTask(int taskIndex) {
@@ -112,7 +112,7 @@ public class TaskList {
 
     /**
      * Adds a new task to the taskList
-     * @param t
+     * @param t task to be added
      */
 
     public String addTask(Task t) {
@@ -126,9 +126,9 @@ public class TaskList {
     }
 
     /**
-     * Populates a list of tasks that contain the keyword in it's description
-     * And signposts the UI to display it nicely
-     * @param keyword
+     * Populates a list of tasks that contain the keyword in it's description.
+     * And signposts the UI to display it nicely.
+     * @param keyword that will be used to match the descriptions in the String.
      */
     public String findTask(String keyword) {
         String display = "";

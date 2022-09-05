@@ -21,7 +21,8 @@ import javafx.scene.text.FontWeight;
 
 /**
  * An example of a custom control using FXML.
- * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a label
+ * This control represents a dialog box consisting of an ImageView,
+ * to represent the speaker's face and a label
  * containing text from the speaker.
  */
 public class DialogueBox extends HBox {
@@ -78,8 +79,8 @@ public class DialogueBox extends HBox {
 
     /**
      * Duke's dialogue is exactly the same as user's dialogue, just flipped
-     * @param text
-     * @param img
+     * @param text to be displayed
+     * @param img image to be displayed
      * @return
      */
     public static DialogueBox getDukeDialog(String text, Image img) {

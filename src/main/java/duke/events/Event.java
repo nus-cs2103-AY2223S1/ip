@@ -23,13 +23,14 @@ public class Event extends Task {
 
 
     public static Event readTask(String[] values) {
-        assert values.length == 4: "Save data was not parsed correctly, incorrect number of elements read";
+        assert values.length == 4 : "Save data was not parsed correctly, incorrect number of elements read";
         boolean isDone = values[1].equals("0");
         String description = values[2];
         String unformattedDate = values[3];
         return new Event(isDone, description, unformattedDate);
 
     }
+
 
     @Override
     public String savableString() {
@@ -39,7 +40,7 @@ public class Event extends Task {
     /**
      * Formats the data nicely using the LocalData library
      * And an appropriately formatted string
-     * @param ld
+     * @param ld LocalDate object passed in
      * @return Event
      */
 

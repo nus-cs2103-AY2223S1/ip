@@ -21,9 +21,11 @@ public class Ui {
      * Fetches the help page's URL
      * @return String help page URL
      */
+
     public static final String displayHelpURL() {
         return HELP_PAGE_URL;
     }
+
     public static final String ENDING_MESSAGE = "That's all? Hope to see you again soon :)";
 
     public static String welcomeMessage() {
@@ -51,7 +53,7 @@ public class Ui {
 
     /**
      * Helper method that prints out a message fed into the UI
-     * @param message
+     * @param message String to be displayed
      */
     public static String displayMessage(String message) {
         System.out.println(message);
@@ -66,7 +68,7 @@ public class Ui {
     /**
      * Given a lists of tasks.
      * Prints it out nicely with the appropriate numbering & indentation
-     * @param taskList
+     * @param taskList An arrayList of Tasks to be displayed in order
      */
 
     public static String displayOrderedList(List<Task> taskList) {

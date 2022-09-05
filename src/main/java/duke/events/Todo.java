@@ -17,7 +17,7 @@ public class Todo extends Task {
 
 
     public static Todo readTask(String[] values) {
-        assert values.length == 3: "Save data was not parsed correctly, incorrect number of elements read";
+        assert values.length == 3 : "Save data was not parsed correctly, incorrect number of elements read";
         boolean isDone = values[1].equals("0");
         String description = values[2];
         return new Todo(isDone, description);
@@ -27,6 +27,7 @@ public class Todo extends Task {
     public String savableString() {
         return "T" + super.savableString();
     }
+
     @Override
     public String toString() {
         return TYPE + super.toString();

@@ -17,20 +17,20 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * deals with loading tasks from the file and saving tasks in the file
+ * Deals with loading tasks from the file and saving tasks in a text file.
  */
 public class Storage {
 
-    private static final String DIRECTORY_NAME = "SavedData";
-    private static final String FILE_NAME = "SavedData/SaveData.txt";
     private static final String CSV_LOCATION = "SavedData/Save.txt";
 
     /**
-     * Takes in a list of items
-     * and saves it to a binary file
-     * @param saveItems is a list of savedItems
+     * Takes in a list of items and saves each item
+     * line by line into the text file.
+     * Note: The text file is human-editable
+     * @param saveItems a list of saved items
      */
-        public static void save(List<Task> saveItems) {
+
+    public static void save(List<Task> saveItems) {
         try {
             FileWriter csvWriter = new FileWriter(CSV_LOCATION, false);
 
@@ -50,27 +50,21 @@ public class Storage {
 
     }
     /**
-     * Takes in a list of items
-     * and saves it to a binary file
+     * Reads items line by line from a text file
+     * And saves it into a List to be used by the program
      * @return List<Task> saveItems
      * @throws FileNotFoundException if the file/path has not been created or initalized
      * @throws IOException if the file is unable to read for any other reason
      */
+
     public static List<Task> readItems() {
         //1) Try to create file and directory, if it does not already exist
         try {
-            File directory = new File(DIRECTORY_NAME);
-            directory.mkdir();
-            //Make CSV
+            //Attempt to make CSV in appropriate location
             File csvCreate = new File(CSV_LOCATION);
             boolean createNewCSV = csvCreate.createNewFile();
             if (createNewCSV) {
-                System.out.println("CSV doesn't exist, creating one");
-            }
-            File f = new File(FILE_NAME);
-            boolean createNewSaveFile = f.createNewFile();
-            if (createNewSaveFile) {
-                System.out.println("File doesn't exist, creating one");
+                System.out.println("CSV directory doesn't exist, creating one");
             }
         } catch (IOException exp) {
             System.out.println("IOException occurred");
@@ -107,7 +101,11 @@ public class Storage {
         }
     }
 
-
+    /**
+     * Helper method called by main function to wrap List into custom
+     * TaskList with functionalities
+     * @return A Tasklist with items loaded from file
+     */
     public static TaskList load() {
         List<Task> currItems = readItems();
         return new TaskList(currItems);
