@@ -99,10 +99,10 @@ public class Storage {
     /**
      * Creates a Duke.txt text file.
      *
-     * @return true if the text file already exists; fakse otherwise
-     * @throws DukeException if an error occured during file creation
+     * @return true if the text file already exists; false otherwise
+     * @throws DukeException if an error occurred during file creation
      */
-    public boolean createDukeTextFile() throws DukeException {
+    private boolean createDukeTextFile() throws DukeException {
         boolean isAlreadyCreated = false;
         File dataFolder = new File("data");
         File dukeFile = new File(filePath);

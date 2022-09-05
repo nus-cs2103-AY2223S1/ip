@@ -19,7 +19,7 @@ public class Parser {
      */
     public static String parseCommand(String str, TaskList tasks) throws DukeException {
         String[] splitStr = str.split(" ", 2);
-        String response = "";
+        String response;
         switch (splitStr[0]) {
         case "list":
             response = tasks.printTaskList();
@@ -60,26 +60,27 @@ public class Parser {
      */
     public static LocalDateTime parseDateTime(String str) throws DukeException {
         String[] dateTimeFormat = {
-                "yyyy/MM/dd HHmm",
-                "yyyy-MM-dd HHmm",
-                "dd/MM/yyyy HHmm",
-                "d/MM/yyyy HHmm",
-                "d/M/yyyy HHmm",
+            "yyyy/MM/dd HHmm",
+            "yyyy-MM-dd HHmm",
+            "dd/MM/yyyy HHmm",
+            "d/MM/yyyy HHmm",
+            "d/M/yyyy HHmm",
         };
         String[] dateFormat = {
-                "yyyy/MM/dd",
-                "yyyy-MM-dd",
-                "yyyy-MM-d",
-                "yyyy-M-dd",
-                "yyyy-M-d",
-                "dd/MM/yyyy",
-                "d/MM/yyyy",
-                "d/M/yyyy",
+            "yyyy/MM/dd",
+            "yyyy-MM-dd",
+            "yyyy-MM-d",
+            "yyyy-M-dd",
+            "yyyy-M-d",
+            "dd/MM/yyyy",
+            "d/MM/yyyy",
+            "d/M/yyyy",
         };
         for (String format : dateTimeFormat) {
             try {
                 return LocalDateTime.parse(str, DateTimeFormatter.ofPattern(format));
             } catch (DateTimeParseException ignored) {
+                // Proceeds to try the next format
             }
         }
         for (String format : dateFormat) {
@@ -87,6 +88,7 @@ public class Parser {
                 LocalDate date = LocalDate.parse(str, DateTimeFormatter.ofPattern(format));
                 return date.atStartOfDay();
             } catch (DateTimeParseException ignored) {
+                // Proceeds to try the next format
             }
         }
         throw new DukeException("Please specify the date and time in YYYY-MM-DD TTTT format.");

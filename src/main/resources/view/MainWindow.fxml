@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="duke.MainWindow">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="duke.MainWindow">
     <children>
         <TextField fx:id="userInput" layoutX="12.0" layoutY="561.0" onAction="#handleUserInput" prefHeight="37.0" prefWidth="301.0" style="-fx-border-color: black;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="553.0">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </TextField>
-        <Button fx:id="sendButton" layoutX="319.0" layoutY="553.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="37.0" prefWidth="71.0" style="-fx-border-color: black; -fx-background-color: lightgrey;" text="Send" textAlignment="CENTER" textFill="#6613c2" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="319.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="553.0">
+        <Button fx:id="sendButton" layoutX="319.0" layoutY="553.0" mnemonicParsing="false" onAction="#handleUserInput" prefHeight="37.0" prefWidth="71.0" style="-fx-border-color: black; -fx-background-color: lightgrey;" text="Send" textAlignment="CENTER" textFill="#4a0c90" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="319.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="553.0">
          <font>
             <Font name="Forte" size="18.0" />
          </font>

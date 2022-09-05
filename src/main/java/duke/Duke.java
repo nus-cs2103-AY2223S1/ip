@@ -5,7 +5,7 @@ package duke;
  */
 public class Duke {
     private Storage storage;
-    private TaskList tasks;
+    private TaskList taskList;
 
     enum TaskType {
         TODO,
@@ -22,9 +22,9 @@ public class Duke {
     public Duke(String filePath) {
         storage = new Storage(filePath);
         try {
-            tasks = new TaskList(storage.loadData());
+            taskList = new TaskList(storage.loadData());
         } catch (DukeException e) {
-            tasks = new TaskList();
+            taskList = new TaskList();
         }
     }
 
@@ -37,11 +37,8 @@ public class Duke {
     public String getResponse(String input) {
         String str = input.trim();
         String response;
-        if (str.equals("bye")) {
-            return "Your data is always saved,\nyou can close the application at any time.";
-        }
         try {
-            response = Parser.parseCommand(str, tasks);
+            response = Parser.parseCommand(str, taskList);
             saveData();
         } catch (DukeException e) {
             response = e.toString();
@@ -50,6 +47,6 @@ public class Duke {
     }
 
     public void saveData() throws DukeException {
-        storage.saveData(tasks.getTasks());
+        storage.saveData(taskList.getTasks());
     }
 }
