@@ -1,8 +1,8 @@
 package duke.scheduler;
 
-import duke.task.TaskList;
-
 import java.time.LocalDateTime;
+
+import duke.task.TaskList;
 
 /**
  * Scheduler class for schedules of all types of tasks between date ranges
