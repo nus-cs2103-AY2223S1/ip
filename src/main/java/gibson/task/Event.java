@@ -28,6 +28,17 @@ public class Event extends Task {
     }
 
     @Override
+    public boolean equals(Object object) {
+        if (object instanceof Event) {
+            Event event = (Event) object;
+            boolean isTaskStringSame = super.getTaskString().equals(event.getTaskString());
+            boolean isCharSame = getChar() == event.getChar();
+            boolean isStartEndSame = startEnd.equals(event.startEnd);
+            return isTaskStringSame && isCharSame && isStartEndSame;
+        }
+        return false;
+    }
+    @Override
     public String toString() {
         return super.toString() + " (at: " + startEnd + ")";
     }

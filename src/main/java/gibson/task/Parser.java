@@ -80,7 +80,7 @@ public class Parser {
             storage.save(taskList.toString());
             return "Nice! I've marked this task as done:\n" + t.toString();
         } catch (IndexOutOfBoundsException e) {
-            return "There is not task numbered as " + number + ".";
+            return "There is no task numbered as " + number + ".";
         }
     }
 
@@ -92,7 +92,7 @@ public class Parser {
             storage.save(taskList.toString());
             return "OK, I've marked this task as not done yet:\n" + t.toString();
         } catch (IndexOutOfBoundsException e) {
-            return "There is not task numbered as " + number + ".";
+            return "There is no task numbered as " + number + ".";
         }
     }
 
@@ -138,7 +138,7 @@ public class Parser {
                     + t.toString()
                     + "\nNow you have " + taskList.size() + " task(s) in the list.";
         } catch (IndexOutOfBoundsException e) {
-            return "There is not task numbered as " + number + ".";
+            return "There is no task numbered as " + number + ".";
         }
     }
 
@@ -157,11 +157,15 @@ public class Parser {
     }
 
     private String processAddTask(Task task) {
-        taskList.add(task);
-        storage.save(taskList.toString());
-        return "Got it. I've added this task:\n"
-                + task
-                + "\nNow you have " + taskList.size() + " task(s) in the list.";
+        if (!taskList.isDuplicate(task)) {
+            taskList.add(task);
+            storage.save(taskList.toString());
+            return "Got it. I've added this task:\n"
+                    + task
+                    + "\nNow you have " + taskList.size() + " task(s) in the list.";
+        } else {
+            return "Duplicate task detected! Task was not added.";
+        }
     }
 
     /**

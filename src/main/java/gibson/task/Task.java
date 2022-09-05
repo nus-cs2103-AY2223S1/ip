@@ -35,6 +35,22 @@ public class Task {
         return taskString.contains(s);
     }
 
+    public String getTaskString() {
+        return taskString;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof Task) {
+            Task task = (Task) object;
+            boolean isTaskStringSame = taskString.equals(task.taskString);
+            boolean isCharSame = getChar() == task.getChar();
+            return isTaskStringSame && isCharSame;
+        } else {
+            return false;
+        }
+    }
+
     @Override
     public String toString() {
         if (done) {
