@@ -8,15 +8,27 @@ import duke.task.Deadline;
 
 import java.time.LocalDateTime;
 
+/**
+ * Encapsulates a command to create a new deadline.
+ */
 public class DeadlineCommand extends Command {
+    /** Stores the description and datetime of the deadline. */
     String desc;
     LocalDateTime datetime;
 
+    /**
+     * Constructor for DeadlineCommand.
+     * @param desc Description of deadline
+     * @param datetime Datetime of deadline
+     */
     public DeadlineCommand(String desc, LocalDateTime datetime) {
         this.desc = desc;
         this.datetime = datetime;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Deadline tmp = new Deadline(desc, datetime);
@@ -27,7 +39,9 @@ public class DeadlineCommand extends Command {
         ui.showOutput("Now you have " + tasks.getLength() + " tasks in the list.");
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     public boolean isExit() {
         return false;
     }

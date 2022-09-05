@@ -5,13 +5,24 @@ import duke.TaskList;
 import duke.Ui;
 import duke.exception.DukeException;
 
+/**
+ * Encapsulates a command to mark a Task as incomplete.
+ */
 public class UnmarkCommand extends Command {
+    /** Stores index of Task to unmark. */
     int taskNo;
 
+    /**
+     * Constructor for UnmarkCommand.
+     * @param taskNo task index
+     */
     public UnmarkCommand(int taskNo) {
         this.taskNo = taskNo;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             tasks.unmark(taskNo);
@@ -23,6 +34,9 @@ public class UnmarkCommand extends Command {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isExit() {
         return false;
     }

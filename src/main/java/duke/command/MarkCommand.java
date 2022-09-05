@@ -5,13 +5,24 @@ import duke.TaskList;
 import duke.Ui;
 import duke.exception.DukeException;
 
+/**
+ * Encapsulates a command to mark a Task as complete.
+ */
 public class MarkCommand extends Command {
+    /** Stores index of Task to mark. */
     int taskNo;
 
+    /**
+     * Constructor for MarkCommand.
+     * @param taskNo task index
+     */
     public MarkCommand(int taskNo) {
         this.taskNo = taskNo;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             tasks.mark(taskNo);
@@ -23,6 +34,9 @@ public class MarkCommand extends Command {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isExit() {
         return false;
     }
