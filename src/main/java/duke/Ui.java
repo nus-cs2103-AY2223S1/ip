@@ -3,16 +3,18 @@ package duke;
 import java.util.Scanner;
 
 /**
- * Handles majority of user interaction and printing.
+ * Handles majority of user interaction and printing for CLI mode.
  */
 public class Ui {
     private Scanner in;
+
     public Ui() {
         in = new Scanner(System.in);
     }
 
     /**
      * Reads the next command from the user.
+     * 
      * @return the command string
      */
     public String readCommand() {
@@ -21,10 +23,11 @@ public class Ui {
 
     /**
      * Prints an error message to the user.
+     * 
      * @param e the error to print
      */
-    public void showError(DukeException e) {
-        wrapPrint("☹ OOPS!!! " + e.getLocalizedMessage());
+    public String showError(DukeException e) {
+        return "☹ OOPS!!! " + e.getLocalizedMessage();
     }
 
     /**

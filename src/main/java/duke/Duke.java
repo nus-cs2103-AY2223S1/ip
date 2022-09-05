@@ -1,6 +1,9 @@
 package duke;
 
+import javafx.application.Application;
+
 import duke.command.Command;
+import duke.gui.Main;
 
 /*
  * Duke is a chatbot that helps you keep track of your tasks.
@@ -29,9 +32,16 @@ public class Duke {
     }
 
     /**
-     * Run the Duke application.
+     * Create a new Duke application with the default save file path.
      */
-    public void run() {
+    public Duke() {
+        this(SAVE_FILE_PATH);
+    }
+
+    /**
+     * Run the Duke application in CLI mode.
+     */
+    public void runCli() {
         ui.greet();
         boolean isExit = false;
         while (!isExit) {
@@ -41,8 +51,20 @@ public class Duke {
                 ui.wrapPrint(c.execute(tasks, ui, storage));
                 isExit = c.isExit();
             } catch (DukeException e) {
-                ui.showError(e);
+                ui.wrapPrint(ui.showError(e));
             }
+        }
+    }
+
+    /**
+     * Executes a single command
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(tasks, ui, storage);
+        } catch (DukeException e) {
+            return ui.showError(e);
         }
     }
 
@@ -52,6 +74,10 @@ public class Duke {
      * @param args command line arguments
      */
     public static void main(String[] args) {
-        new Duke(SAVE_FILE_PATH).run();
+        if (args.length > 0 && args[0].equals("-cli")) {
+            new Duke().runCli();
+        } else {
+            Application.launch(Main.class, args);
+        }
     }
 }
