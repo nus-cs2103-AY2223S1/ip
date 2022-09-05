@@ -16,7 +16,10 @@ import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
 import duke.commands.TodoCommand;
 import duke.commands.UnmarkCommand;
-import duke.exceptions.DukeException;
+import duke.exceptions.UnknownCommandException;
+import duke.exceptions.WrongDeadlineFormatException;
+import duke.exceptions.WrongEventFormatException;
+
 
 public class ParserTest {
     @Test
@@ -56,7 +59,7 @@ public class ParserTest {
 
     @Test
     public void parseCommand_deadlineCommandMissingDate_errorMessage() {
-        parseCommandAndExpectException("deadline abc", DukeException.class);
+        parseCommandAndExpectException("deadline abc", WrongDeadlineFormatException.class);
     }
 
     @Test
@@ -66,7 +69,7 @@ public class ParserTest {
 
     @Test
     public void parseCommand_eventCommandMissingDate_errorMessage() {
-        parseCommandAndExpectException("event abc", DukeException.class);
+        parseCommandAndExpectException("event abc", WrongEventFormatException.class);
     }
 
     @Test
@@ -76,7 +79,7 @@ public class ParserTest {
 
     @Test
     public void parseCommand_invalidCommand_errorMessage() {
-        parseCommandAndExpectException("invalidcommand", DukeException.class);
+        parseCommandAndExpectException("invalidcommand", UnknownCommandException.class);
     }
 
     /**

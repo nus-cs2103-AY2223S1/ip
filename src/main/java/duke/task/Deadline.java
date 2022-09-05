@@ -3,17 +3,11 @@ package duke.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import duke.exceptions.DukeException;
-
 /**
  * Represents a deadline task in the Duke application.
  * Deadline is a Task that needs to be done before a specific date/time.
  */
 public class Deadline extends Task {
-    /** Exception due to wrong deadline format. */
-    public static final DukeException WRONG_FORMAT =
-        new DukeException("Wrong format for Deadline!\nShould be 'deadline <description> /by YYYY-MM-DD HHmm'.");
-
     /** Deadline of the deadline. */
     private final LocalDateTime deadline;
 

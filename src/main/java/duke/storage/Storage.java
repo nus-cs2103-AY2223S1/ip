@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+import duke.exceptions.BadDataException;
 import duke.exceptions.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
@@ -49,7 +50,7 @@ public class Storage {
             // noinspection ResultOfMethodCallIgnored because only making use of the side effect
             file.createNewFile();
         } catch (IOException e) {
-            throw DukeException.BAD_DATA;
+            throw new BadDataException();
         }
 
         return file;
@@ -76,7 +77,7 @@ public class Storage {
             task = Event.create(split[1], split[2], split[3]);
             break;
         default:
-            throw DukeException.BAD_DATA;
+            throw new BadDataException();
         }
         return task;
     }
@@ -99,8 +100,7 @@ public class Storage {
                 tasks.addTask(task);
             }
         } catch (FileNotFoundException e) {
-            // Should not happen because file is created beforehand.
-            assert false : "Should not have file not found exception because file has just been created.";
+            // File creation failed, ignore and don't load tasks.
             return tasks;
         }
 

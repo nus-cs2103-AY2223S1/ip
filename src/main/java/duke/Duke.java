@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import duke.commands.Command;
 import duke.commands.CommandResult;
 import duke.exceptions.DukeException;
+import duke.exceptions.NoUndoActionsException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
@@ -128,7 +129,7 @@ public class Duke {
         if (!result.shouldUndo()) {
             return;
         } else if (undoActions.isEmpty()) {
-            throw DukeException.NO_UNDO_ACTIONS;
+            throw new NoUndoActionsException();
         }
         UndoAction undoAction = undoActions.pop();
         assert undoAction != null : "Null action should not have been added to undoActions.";

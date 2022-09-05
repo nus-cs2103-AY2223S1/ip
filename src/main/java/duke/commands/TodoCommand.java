@@ -1,6 +1,7 @@
 package duke.commands;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.WrongTodoFormatException;
 import duke.task.Todo;
 import duke.undo.TaskUndo;
 
@@ -21,7 +22,7 @@ public class TodoCommand extends Command {
      */
     public TodoCommand(String arguments) throws DukeException {
         if (arguments.length() < 1) {
-            throw Todo.EMPTY_DESCRIPTION;
+            throw new WrongTodoFormatException();
         }
 
         todo = new Todo(arguments);

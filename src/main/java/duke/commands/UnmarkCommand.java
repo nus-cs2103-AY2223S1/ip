@@ -1,6 +1,7 @@
 package duke.commands;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.InvalidIndexException;
 import duke.task.Task;
 import duke.undo.MarkUndo;
 import duke.undo.UndoAction;
@@ -30,7 +31,7 @@ public class UnmarkCommand extends Command {
         assert tasks != null : "Should setData() before calling execute().";
         // Check if index is out of bounds.
         if (index <= 0 || index > tasks.size()) {
-            throw DukeException.INVALID_INDEX;
+            throw new InvalidIndexException();
         }
         // Subtract 1 to account for 0-index data structure.
         Task task = tasks.getTask(index - 1);

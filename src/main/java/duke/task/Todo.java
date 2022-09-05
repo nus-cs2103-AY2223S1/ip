@@ -1,15 +1,10 @@
 package duke.task;
 
-import duke.exceptions.DukeException;
-
 /**
  * Represents a todo task in the Duke application.
  * Todo is a Task without any date/time attached to it.
  */
 public class Todo extends Task {
-    /** Exception due to empty todo description. */
-    public static final DukeException EMPTY_DESCRIPTION = new DukeException("Description of Todo cannot be empty!");
-
     /**
      * Constructor for a Todo that takes in description.
      * Todo is set as "not done" when created.

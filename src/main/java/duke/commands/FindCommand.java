@@ -3,6 +3,7 @@ package duke.commands;
 import java.util.ArrayList;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.WrongFindFormatException;
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -14,8 +15,6 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
     private static final String TASK_FORMAT = "%d: %s";
     private static final String USER_MESSAGE_FORMAT = "Here are the matching tasks in your list!\n%s";
-    private static final DukeException WRONG_FORMAT =
-        new DukeException("Wrong format for Find!\nShould be 'find <keyword>'.");
     private final String keyword;
 
     /**
@@ -26,7 +25,7 @@ public class FindCommand extends Command {
      */
     public FindCommand(String arguments) throws DukeException {
         if (arguments.isEmpty()) {
-            throw WRONG_FORMAT;
+            throw new WrongFindFormatException();
         }
         keyword = arguments;
     }

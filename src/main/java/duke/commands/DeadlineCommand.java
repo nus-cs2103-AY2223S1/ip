@@ -7,6 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.InvalidDateException;
+import duke.exceptions.WrongDeadlineFormatException;
 import duke.task.Deadline;
 import duke.undo.TaskUndo;
 
@@ -35,7 +37,7 @@ public class DeadlineCommand extends Command {
             description = matcher.group("description");
             deadline = matcher.group("deadline");
         } else {
-            throw Deadline.WRONG_FORMAT;
+            throw new WrongDeadlineFormatException();
         }
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
@@ -43,7 +45,7 @@ public class DeadlineCommand extends Command {
         try {
             localDateTime = LocalDateTime.parse(deadline, formatter);
         } catch (DateTimeParseException e) {
-            throw DukeException.INVALID_DATE;
+            throw new InvalidDateException();
         }
 
         this.deadline = new Deadline(description, localDateTime);

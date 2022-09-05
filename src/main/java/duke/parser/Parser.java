@@ -15,13 +15,13 @@ import duke.commands.TodoCommand;
 import duke.commands.UndoCommand;
 import duke.commands.UnmarkCommand;
 import duke.exceptions.DukeException;
+import duke.exceptions.UnknownCommandException;
 
 /**
  * Represents a parser in the Duke application.
  */
 public class Parser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)\\s?(?<arguments>.*)");
-    private static final DukeException UNKNOWN_COMMAND = new DukeException("Unknown command!");
 
     /**
      * Parses a user input into a command.
@@ -38,7 +38,7 @@ public class Parser {
             commandWord = matcher.group("commandWord");
             arguments = matcher.group("arguments");
         } else {
-            throw Parser.UNKNOWN_COMMAND;
+            throw new UnknownCommandException();
         }
 
         Command command;
@@ -82,7 +82,7 @@ public class Parser {
             break;
         }
         default:
-            throw Parser.UNKNOWN_COMMAND;
+            throw new UnknownCommandException();
         }
 
         return command;
