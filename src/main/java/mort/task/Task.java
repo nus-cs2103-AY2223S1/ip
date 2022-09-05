@@ -3,7 +3,7 @@ package mort.task;
 /**
  * Class that represents a task.
  */
-public class Task {
+public abstract class Task {
     /** Description of the task */
     protected String desc;
     /** Completion status of the task */
@@ -14,6 +14,7 @@ public class Task {
      * Completion status is always false when task is first created.
      * @param desc The task description
      */
+    
     public Task(String desc) {
         this.desc = desc;
         this.isDone = false;
