@@ -5,7 +5,9 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import duke.task.Task;
 
@@ -106,27 +108,25 @@ public class TaskList {
     public String findTask(String... keywords) {
         assert keywords.length > 0 : "keywords should not be blank";
 
-        String result = "Here are the matching tasks in your list:";
-        int count = 0;
-        String check;
+        List<Task> result = this.memo
+                .stream()
+                .filter(task -> Arrays.stream(keywords).
+                        allMatch(word -> task.getTaskName().contains(word))) //only store task names that has keywords.
+                .collect(Collectors.toList());
 
-        for (Task t: this.memo) {
-            check = t.getTaskName();
-            boolean hasKeywords = true;
-
-            for (String keyword : keywords) {
-                if (!check.contains(keyword)) {
-                    hasKeywords = false;
-                    break;
-
-                }
-            }
-
-            if (hasKeywords) {
-                count++;
-                result += "\n    " + count + ". " + t.toString();
-            }
+        //break code if nothing is found to be the same.
+        if (result.size() == 0) {
+            return "There are no matching tasks in your list!";
         }
-        return result;
+
+        int count = 0;
+        String output = "Here are the matching tasks in your list:";
+
+        for (Task t : result) {
+            count++;
+            output += "\n    " + count + ". " + t.toString();
+        }
+
+        return output;
     }
 }
