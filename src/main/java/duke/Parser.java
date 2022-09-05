@@ -52,6 +52,7 @@ public class Parser {
             command = new AddCommand(task);
             break;
         }
+        assert command != null : "command not generated";
         return command;
     }
 
