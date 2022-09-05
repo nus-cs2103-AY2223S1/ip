@@ -10,6 +10,9 @@ public class Duke {
     private Parser parser;
     private boolean isEnded;
 
+    /**
+     * Generates a new Duke object
+     */
     public Duke() {
         this.ui = new Ui();
         this.parser = new Parser(ui);
@@ -35,6 +38,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Returns a single Duke output corresponding to input
+     * @param input
+     * @return String output
+     */
     public String getResponse(String input) {
         try {
             return parser.handleInput(input);
@@ -43,6 +51,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs duke (invoked as main method)
+     * @param args
+     */
     public static void main(String[] args) {
         Duke instance = new Duke();
         instance.run();

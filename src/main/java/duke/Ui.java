@@ -42,7 +42,7 @@ public class Ui {
     }
 
     /**
-     * Returns new Task added, and Task ArrayList size
+     * Returns string representation of new Task added, and Task ArrayList size
      * @param type Type of Task
      * @param currTask Task object
      * @param size New size of TaskList
@@ -54,7 +54,7 @@ public class Ui {
     }
 
     /**
-     * Returns the deleted Task, and Task ArrayList size
+     * Returns string representation of deleted Task, and Task ArrayList size
      * @param currTask Task object
      * @param size New size of TaskList
      */
@@ -65,7 +65,7 @@ public class Ui {
     }
 
     /**
-     * Returns the toggled Task
+     * Returns string representation the toggled Task
      * @param currTask Task Object
      */
     public String toggleTask(Task currTask) {

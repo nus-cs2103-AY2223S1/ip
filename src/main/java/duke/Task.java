@@ -12,7 +12,7 @@ public abstract class Task implements Serializable {
     }
 
     /**
-     * Toggles the completed variable between true/false
+     * Toggles the isCompleted variable between true/false
      */
     public void toggleComplete() {
         this.isCompleted = !this.isCompleted;
