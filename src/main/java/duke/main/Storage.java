@@ -18,6 +18,8 @@ import duke.task.ToDo;
  * Class encapsulating save and load logic.
  */
 public class Storage {
+    private static final String PROJECT_ROOT_PATH = System.getProperty("user.dir");
+    private static final Path SAVE_DIRECTORY_PATH = Path.of(PROJECT_ROOT_PATH,"data");
 
     /**
      * Saves given task list into save file.
@@ -27,14 +29,12 @@ public class Storage {
      * @Throws DukeException If any error occurred while saving file.
      */
     public void saveTaskListToFile(TaskList tasks) throws DukeException {
-        String projectRoot = System.getProperty("user.dir");
-        Path directoryPath = Path.of(projectRoot, "data");
-        boolean directoryExists = Files.exists(directoryPath);
+        boolean directoryExists = Files.exists(SAVE_DIRECTORY_PATH);
 
         // Create Folder if it does not exist
         if (!directoryExists) {
             try {
-                Files.createDirectory(directoryPath);
+                Files.createDirectory(SAVE_DIRECTORY_PATH);
             } catch (IOException e) {
                 throw new DukeException("Error finding your save directory!");
             }
@@ -42,7 +42,7 @@ public class Storage {
 
         // Write to save file
         try {
-            Path filePath = directoryPath.resolve("duke.txt");
+            Path filePath = SAVE_DIRECTORY_PATH.resolve("duke.txt");
 
             // Attempts to save tasks to save file
             for (int i = 1; i <= tasks.size(); i++) {
@@ -70,16 +70,13 @@ public class Storage {
         ArrayList<Task> taskList = new ArrayList<>();
 
         try {
-            String projectRoot = System.getProperty("user.dir");
-            Path directoryPath = Path.of(projectRoot, "data");
-            Path filePath = directoryPath.resolve("duke.txt");
+            Path filePath = SAVE_DIRECTORY_PATH.resolve("duke.txt");
             String[] lines = Files.lines(filePath).toArray(String[]::new);
             for (String l : lines) {
                 taskList.add(parseSaveText(l));
             }
             return taskList;
         } catch (InvalidPathException | IOException | DukeException e) {
-            taskList.clear();
             throw new DukeException("\nLooks like I can't find your old task list..."
                     + "\nGuess we'll have to start a new one!\n");
         }
@@ -97,8 +94,8 @@ public class Storage {
         String[] taskProperties = input.split(" \\| ", 4);
         try {
             String taskType = taskProperties[0];
-            String taskStatus = taskProperties[1];
-            String taskName = taskProperties[2];
+            String taskStatus = taskProperties[1]; // Throws AIOOBE
+            String taskName = taskProperties[2]; // Throws AIOOBE
             Task task = null;
 
             switch (taskType) {

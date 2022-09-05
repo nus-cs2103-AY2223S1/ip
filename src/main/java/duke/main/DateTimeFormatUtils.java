@@ -49,7 +49,7 @@ public class DateTimeFormatUtils {
             return new LocalDateTime[]{startDate, endDate};
         } catch (DateTimeParseException | ArrayIndexOutOfBoundsException e) {
             throw new DukeException("Uh Oh!!"
-                    + "\nYour deadline has to be in YYYY-MM-DD HHmm to YYYY-MM-DD HHmm format!!");
+                    + "\nYour duration has to be in YYYY-MM-DD HHmm to YYYY-MM-DD HHmm format!!");
         }
     }
 
@@ -60,6 +60,7 @@ public class DateTimeFormatUtils {
      * @return String representation of given LocalDatetime object.
      */
     public static String printDate(LocalDateTime date) {
+        assert date != null : "Missing date";
         String output = date.format(OUTPUT_FORMAT);
         return output;
     }
@@ -71,6 +72,7 @@ public class DateTimeFormatUtils {
      * @return String representation of given LocalDatetime object.
      */
     public static String convertToInputFormat(LocalDateTime date) {
+        assert date != null : "Missing date";
         String output = date.format(INPUT_FORMAT);
         return output;
     }
