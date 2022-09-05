@@ -24,9 +24,10 @@ public class AddDeadlineCommand extends Command {
         String userInput = ui.getCurrentInput();
         Deadline deadlineToAdd = Parser.stringToDeadline(userInput);
         String storableLine = deadlineToAdd.toString() + "\n";
-        storage.appendLine(storableLine);
-        taskList.addDeadline(deadlineToAdd);
-        ui.showMessage("added deadline");
+        if (storage.isLineAppended(storableLine)) {
+            taskList.addDeadline(deadlineToAdd);
+            ui.showMessage("added deadline");
+        }
     }
 
     /**

@@ -81,11 +81,11 @@ public class Storage {
         return storageWriter.appendLine(s);
     }
 
-    public boolean deleteLine(int index) {
+    public boolean isLineDeleted(int index) {
         return storageWriter.deleteLine(index);
     }
 
-    public boolean changeLine(int index, String newString) {
+    public boolean isLineChanged(int index, String newString) {
         return storageWriter.changeLine(index, newString);
     }
 

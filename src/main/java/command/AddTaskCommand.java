@@ -24,9 +24,10 @@ public class AddTaskCommand extends Command {
         String userInput = ui.getCurrentInput();
         Task taskToAdd = Parser.stringToTask(userInput);
         String storableLine = taskToAdd.toString() + "\n";
-        storage.appendLine(storableLine);
-        taskList.addTask(taskToAdd);
-        ui.showMessage("Added task");
+        if (storage.isLineAppended(storableLine)) {
+            taskList.addTask(taskToAdd);
+            ui.showMessage("Added task");
+        }
     }
 
     /**
