@@ -1,4 +1,3 @@
 TODO,,true,,a new todo task,,null
 DEADLINE,,false,,a new deadline,,01-09-2000 00:00
 EVENT,,true,,a new event,,06-10-1999 00:00
-DEADLINE,,false,,return library books,,19-01-2000 23:59

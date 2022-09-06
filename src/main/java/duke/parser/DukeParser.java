@@ -73,6 +73,8 @@ public class DukeParser {
             return this.listInstructionHandler();
         case "bye":
             return this.byeInstructionHandler();
+        case "reminders":
+            return this.reminderInstructionHandler();
         case "find":
             return this.findInstructionHandler();
         case "mark":
@@ -106,6 +108,7 @@ public class DukeParser {
 
     /**
      * Handles a list instruction by printing user's tasks to the screen.
+     * @return List command for execution.
      */
     public Command listInstructionHandler() {
         return new ListCommand();
@@ -113,9 +116,18 @@ public class DukeParser {
 
     /**
      * Handles a bye instruction by exiting Duke.
+     * @return Bye command for execution.
      */
     public Command byeInstructionHandler() {
         return new ByeCommand();
+    }
+
+    /**
+     * Handles a reminder command by printing user's reminders to the screen.
+     * @return Reminder command for execution.
+     */
+    public Command reminderInstructionHandler() {
+        return new ReminderCommand();
     }
 
     /**

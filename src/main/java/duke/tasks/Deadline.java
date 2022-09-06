@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
 
-    private LocalDateTime deadline;
 
     /**
      * Standard constructor for a deadline
@@ -13,9 +12,7 @@ public class Deadline extends Task {
      * @param deadline The deadline of the task
      */
     public Deadline(String description, String deadline) {
-        super(description);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        this.deadline = LocalDateTime.parse(deadline, formatter);
+        super(description, deadline);
     }
 
     /**
@@ -25,21 +22,19 @@ public class Deadline extends Task {
      * @param deadline The deadline of the task
      */
     public Deadline(String description, boolean isDone, String deadline) {
-        super(description, isDone);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        this.deadline = LocalDateTime.parse(deadline, formatter);
+        super(description, isDone, deadline);
     }
 
     @Override
     public String getSaveString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        return "DEADLINE,," + super.getSaveString() + this.deadline.format(formatter);
+        return "DEADLINE,," + super.getSaveString() + this.getTaskTime().format(formatter);
     }
 
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
-        String formatted = deadline.format(formatter);
+        String formatted = this.getTaskTime().format(formatter);
         return String.format("[D]%s (by: %s)", super.toString(), formatted);
     }
 }
