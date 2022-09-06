@@ -2,6 +2,7 @@ package duke.task;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * A TaskList class that encapsulates the information and actions that are performed by the task list.
@@ -106,5 +107,14 @@ public class TaskList {
         }
         return res;
     }
+
+    /**
+     * Returns a stream representation of all the tasks.
+     * @return stream
+     */
+    public Stream getStream() {
+        return tasks.stream();
+    }
+
 
 }
