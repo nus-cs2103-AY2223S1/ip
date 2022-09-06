@@ -79,25 +79,35 @@ public class Henry extends Application {
 
     private CommandResult executeCommand(Command command) {
         try {
-            assert taskList != null : "TaskList is null!";
-
-            if (command instanceof TaskCommand) {
-                Task tempTask = ((TaskCommand) command).getTask();
-                if (isTaskInTaskList(tempTask)) {
-                    throw new HenryException(TextUtils.DUPLICATE_TASK_ERROR);
-                }
-            }
-
-            command.setData(taskList);
-            CommandResult result = command.execute();
-            if (result.getTaskList().isPresent()) {
-                storage.appendToFile(result.getTaskList().get().toFileEncodedString());
-            }
-            return result;
+            performSanityChecks(command);
+            return appendResultToFile(getCommandResult(command));
         } catch (HenryException he) {
             throw he;
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private CommandResult getCommandResult(Command command) {
+        command.setData(taskList);
+        return command.execute();
+    }
+
+    private CommandResult appendResultToFile(CommandResult result) throws IOException {
+        if (result.getTaskList().isPresent()) {
+            storage.appendToFile(result.getTaskList().get().toFileEncodedString());
+        }
+        return result;
+    }
+
+    private void performSanityChecks(Command command) {
+        assert taskList != null : "TaskList is null!";
+
+        if (command instanceof TaskCommand) {
+            Task tempTask = ((TaskCommand) command).getTask();
+            if (isTaskInTaskList(tempTask)) {
+                throw new HenryException(TextUtils.DUPLICATE_TASK_ERROR);
+            }
         }
     }
 

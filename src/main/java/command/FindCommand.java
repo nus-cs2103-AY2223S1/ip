@@ -30,13 +30,14 @@ public class FindCommand extends Command {
         StringBuilder sb = new StringBuilder();
         sb.append("\n");
         final int[] i = {1};
-        taskList.forEach(task -> {
-            if (isMatch(task)) {
-                sb.append(" ").append(i[0]).append(". ").append(task).append("\n");
-                i[0]++;
-            }
-        });
+        taskList.forEach(task -> appendToStringBuilder(sb, task, i[0]++));
         return new CommandResult(String.format(MESSAGE_SUCCESS, sb.toString().trim()));
+    }
+
+    private void appendToStringBuilder(StringBuilder sb, Task task, int index) {
+        if (isMatch(task)) {
+            sb.append(" ").append(index).append(task).append("\n");
+        }
     }
 
     private boolean isMatch(Task task) {

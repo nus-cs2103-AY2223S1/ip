@@ -51,15 +51,10 @@ public class Parser {
      * @return the command corresponding to the string, or an exception if the string is malformed.
      */
     public Command parseCommand(String text) {
-        assert text != null : "Text is null!";
 
-        Matcher matcher = BASIC_COMMAND_FORMAT.matcher(text.trim());
-        if (!matcher.matches()) {
-            throw new HenryException(TextUtils.EMPTY_INPUT_ERROR);
-        }
-
-        String command = matcher.group("command").trim();
-        String args = matcher.group("args").trim();
+        String[] cleanedText = performTextGrouping(text);
+        String command = cleanedText[0];
+        String args = cleanedText[1];
 
         switch (command) {
         case EchoCommand.COMMAND_WORD:
@@ -83,6 +78,17 @@ public class Parser {
         default:
             throw new HenryException(TextUtils.UNKNOWN_COMMAND_ERROR);
         }
+    }
+
+    private String[] performTextGrouping(String text) {
+        assert text != null : "Text is null!";
+        Matcher matcher = BASIC_COMMAND_FORMAT.matcher(text.trim());
+        if (!matcher.matches()) {
+            throw new HenryException(TextUtils.EMPTY_INPUT_ERROR);
+        }
+        String command = matcher.group("command").trim();
+        String args = matcher.group("args").trim();
+        return new String[]{command, args};
     }
 
     private Command handleFindCommand(String args) {
@@ -159,7 +165,7 @@ public class Parser {
         return args.split("--");
     }
 
-    private Command parseDatedCommand(Commands type, String args) {
+    private String[] performArgumentGrouping(String args) {
         assert args != null : "Arguments are null!";
 
         Matcher matcher = DATE_FORMAT.matcher(args.trim());
@@ -169,6 +175,15 @@ public class Parser {
 
         String description = matcher.group("desc");
         String dateTime = matcher.group("dateTime");
+
+        return new String[]{description, dateTime};
+    }
+
+    private Command parseDatedCommand(Commands type, String args) {
+        String[] cleanedArgs = performArgumentGrouping(args);
+        String description = cleanedArgs[0];
+        String dateTime = cleanedArgs[1];
+        
         try {
             LocalDateTime parsed = LocalDateTime.parse(dateTime, formatter);
             if (!isDateValid(parsed)) {
