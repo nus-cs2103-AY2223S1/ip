@@ -1,5 +1,10 @@
 package duke;
 
+import duke.task.Task;
+import duke.task.TodoTask;
+import duke.task.DeadlineTask;
+import duke.task.EventTask;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -87,9 +92,9 @@ public class Storage {
                     date = Parser.parseWordDate(date);
                     if (line.length() > index + 13) {
                         String time = line.substring(index + 14);
-                        task = new Task.DeadlineTask(taskName, date, time);
+                        task = new DeadlineTask(taskName, date, time);
                     } else {
-                        task = new Task.DeadlineTask(taskName, date);
+                        task = new DeadlineTask(taskName, date);
                     }
                 } else if (line.charAt(1) == 'E') {
                     int index = line.indexOf('|');
@@ -98,13 +103,13 @@ public class Storage {
                     date = Parser.parseWordDate(date);
                     if (line.length() > index + 13) {
                         String time = line.substring(index + 14);
-                        task = new Task.DeadlineTask(taskName, date, time);
+                        task = new EventTask(taskName, date, time);
                     } else {
-                        task = new Task.DeadlineTask(taskName, date);
+                        task = new EventTask(taskName, date);
                     }
                 } else if (line.charAt(1) == 'T') {
                     String taskName = line.substring(7);
-                    task = new Task.TodoTask(taskName);
+                    task = new TodoTask(taskName);
                 } else {
                     throw new InputMismatchException();
                 }

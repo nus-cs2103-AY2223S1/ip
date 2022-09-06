@@ -9,6 +9,10 @@ public class Ui {
         System.out.println("Hi I'm duke.Duke! What may I do for you?");
     }
 
+    public void showGoodbye() {
+        System.out.println("Bye!");
+    }
+
     public void showLoadingError() {
         System.out.println("Unable to load from file. Check if the file exists and whether it was formatted properly.");
     }

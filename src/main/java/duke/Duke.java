@@ -1,5 +1,10 @@
 package duke;
 
+import duke.task.Task;
+import duke.task.TodoTask;
+import duke.task.DeadlineTask;
+import duke.task.EventTask;
+
 import java.io.IOException;
 import java.time.DateTimeException;
 import java.util.Scanner;
@@ -61,31 +66,31 @@ public class Duke {
                     String date = parsedInput.substring(3, 11);
                     String time = parsedInput.substring(11, 15);
                     String taskName = parsedInput.substring(15);
-                    Task task = new Task.DeadlineTask(taskName, date, time);
+                    Task task = new DeadlineTask(taskName, date, time);
                     tasks.add(task);
                     ui.display(String.format("Added new deadline task:%n%s%n", task));
                 } else if (parsedInput.toLowerCase().startsWith("dnt")) {
                     String date = parsedInput.substring(3, 11);
                     String taskName = parsedInput.substring(11);
-                    Task task = new Task.DeadlineTask(taskName, date);
+                    Task task = new DeadlineTask(taskName, date);
                     tasks.add(task);
                     ui.display(String.format("Added new deadline task:%n%s%n", task));
                 } else if (parsedInput.toLowerCase().startsWith("ewt")) {
                     String date = parsedInput.substring(3, 11);
                     String time = parsedInput.substring(11, 15);
                     String taskName = parsedInput.substring(15);
-                    Task task = new Task.EventTask(taskName, date, time);
+                    Task task = new EventTask(taskName, date, time);
                     tasks.add(task);
                     ui.display(String.format("Added new event task:%n%s%n", task));
                 } else if (parsedInput.toLowerCase().startsWith("ent")) {
                     String date = parsedInput.substring(3, 11);
                     String taskName = parsedInput.substring(11);
-                    Task task = new Task.EventTask(taskName, date);
+                    Task task = new EventTask(taskName, date);
                     tasks.add(task);
                     ui.display(String.format("Added new event task:%n%s%n", task));
                 } else if (parsedInput.toLowerCase().startsWith("todo")) {
                     String taskName = parsedInput.substring(4);
-                    Task task = new Task.TodoTask(taskName);
+                    Task task = new TodoTask(taskName);
                     tasks.add(task);
                     ui.display(String.format("Added new todo task:%n%s%n", task));
                 } else {
@@ -99,6 +104,7 @@ public class Duke {
             } catch (DateTimeException | IllegalArgumentException e) {
                ui.displayError(e);
             }
+            ui.showGoodbye();
         }
     }
 
