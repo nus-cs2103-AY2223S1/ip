@@ -29,6 +29,7 @@ public class Handler {
             throw new DukeEmptyDescriptionException();
         }
         int index = Integer.parseInt(String.valueOf(echo.charAt(5))) - 1;
+        assert index >= 0 : "index should at least 0";
         TaskList.taskList.get(index).markAsDone();
         return ui.printMark(index);
     }
@@ -44,6 +45,7 @@ public class Handler {
             throw new DukeEmptyDescriptionException();
         }
         int index = Integer.parseInt(String.valueOf(echo.charAt(7))) - 1;
+        assert index >= 0 : "index should at least 0";
         TaskList.taskList.get(index).unmarkAsDone();
         return ui.printUnmark(index);
     }
@@ -114,6 +116,7 @@ public class Handler {
             throw new DukeEmptyDescriptionException();
         }
         int index = Integer.parseInt(String.valueOf(echo.charAt(7))) - 1;
+        assert index >= 0 : "index should at least 0";
         Task task = TaskList.taskList.remove(index);
         return ui.printDelete(task, index);
     }
