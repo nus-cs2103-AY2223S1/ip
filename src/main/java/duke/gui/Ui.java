@@ -31,9 +31,20 @@ public class Ui {
 
     /**
      * Prints the greeting message to the console.
+     * @param isLoaded Checks to see if the save file is loaded.
      */
-    public static String greet() {
-        return UI_GREETING;
+    public static String greet(boolean isLoaded) {
+        String message = "";
+        if (isLoaded) {
+            message += "Directory located... \n"
+                    + "Previous save file located, loading contents of save file... \n";
+
+        } else {
+            message += "Creating a directory to store save file... \n"
+                    + "Creating a new save file... \n";
+        }
+
+        return message += UI_GREETING;
     }
 
     /**

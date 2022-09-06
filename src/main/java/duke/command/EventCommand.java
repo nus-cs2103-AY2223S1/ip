@@ -31,8 +31,8 @@ public class EventCommand extends Command {
     public String run(TaskList taskList, Storage storage) throws DukeException, IOException {
         try {
             String[] eventDetails = commandDetails[1].split(" /at ", 2);
-
-            if (eventDetails.length == 2) {
+            int correctArrayLength = 2;
+            if (eventDetails.length == correctArrayLength) {
                 Date date = Parser.parseDate(eventDetails[1]);
                 Event event = new Event(eventDetails[0], date);
                 return taskList.addTask(event, storage);

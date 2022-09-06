@@ -31,8 +31,8 @@ public class DeadlineCommand extends Command {
     public String run(TaskList taskList, Storage storage) throws DukeException, IOException {
         try {
             String[] deadlineDetails = commandDetails[1].split(" /by ", 2);
-
-            if (deadlineDetails.length == 2) {
+            int correctArrayLength = 2;
+            if (deadlineDetails.length == correctArrayLength) {
                 Date date = Parser.parseDate(deadlineDetails[1]);
                 Deadline deadline = new Deadline(deadlineDetails[0], date);
                 return taskList.addTask(deadline, storage);

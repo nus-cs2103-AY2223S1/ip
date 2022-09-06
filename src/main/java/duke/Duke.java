@@ -43,7 +43,8 @@ public class Duke {
      * Listens to System.in for input.
      */
     public void listen() throws DukeException, IOException {
-        String input; // initializing the input
+        // initializing the input
+        String input;
 
         // Reading user inputs
         while (scanner.hasNextLine()) {
@@ -83,18 +84,7 @@ public class Duke {
      * @return Greeting message.
      */
     public String getGreeting() {
-        String message = "";
-        if (isLoaded) {
-            message += "Directory located... \n"
-                    + "Previous save file located, loading contents of save file... \n";
-
-        } else {
-            message += "Creating a directory to store save file... \n"
-                    + "Creating a new save file... \n";
-        }
-
-        message += Ui.greet();
-        return message;
+        return Ui.greet(isLoaded);
     }
 
     /**

@@ -27,7 +27,8 @@ public class ToDoCommand extends Command {
      */
     @Override
     public String run(TaskList taskList, Storage storage) throws DukeException, IOException {
-        if (commandDetails.length >= 2) {
+        int minimumTodoCommandLength = 2;
+        if (commandDetails.length >= minimumTodoCommandLength) {
             Todo todo = new Todo(commandDetails[1]);
             return taskList.addTask(todo, storage);
         } else {
