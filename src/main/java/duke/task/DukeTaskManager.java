@@ -45,6 +45,7 @@ public class DukeTaskManager {
      * @param args Description of the task
      */
     public void dukeAddTask(DukeCommandType type, String args) {
+        assert (type == DukeCommandType.TODO || type == DukeCommandType.DEADLINE|| type == DukeCommandType.EVENT);
         if (args.isEmpty()) {
             DukeUi.dukePrint("Description cannot be empty\n");
             return;
@@ -101,6 +102,7 @@ public class DukeTaskManager {
      */
     protected String getNoOfTasksRemaining() {
         int size = getNoOfTasks();
+        assert size >= 0;
         if (size <= 1) {
             return String.format("Now you have %d task in the list\n", size);
         } else {
@@ -118,6 +120,7 @@ public class DukeTaskManager {
 
     private void dukeShowList(String description, List<Task> tasks) {
         int size = tasks.size();
+        assert size >= 0;
         int margin = String.valueOf(size).length();
         for (int i = 0; i < tasks.size(); i++) {
             description += String.format("%" + margin + "d. %s\n", i + 1, tasks.get(i));
@@ -172,6 +175,7 @@ public class DukeTaskManager {
      * @param str String representation of the index of the tasks
      * */
     public void dukeUpdateTaskStatus(DukeCommandType type, String str) {
+        assert (type == DukeCommandType.MARK || type == DukeCommandType.UNMARK || type == DukeCommandType.MARK);
         try {
             int index = Integer.parseInt(str.split(" ")[0]) - 1;
             switch (type) {
