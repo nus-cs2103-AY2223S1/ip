@@ -3,9 +3,19 @@ package duke.tasks;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+
+/**
+ * Command class for adding Events.
+ */
 public class Event extends Task {
     protected LocalDate at;
 
+    /**
+     * Constructor for Event Command.
+     *
+     * @param description Task description.
+     * @param at Time the Event occurs.
+     */
     public Event(String description, LocalDate at) {
         super(description);
         this.at = at;
