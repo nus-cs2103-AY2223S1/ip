@@ -1,12 +1,14 @@
-package Duke;
+import Duke.Duke;
 import javafx.application.Application;
 
 /**
  * A Launcher class to workaround classpath issues.
  */
-public class Lanuncher {
+public class Launcher {
 
     public static void main(String[] args) {
-            Application.launch(Duke.class, args);
+        System.out.println("Hello!");
+        Application.launch(Main.class, args);
     }
+
 }
