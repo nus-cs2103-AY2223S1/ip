@@ -44,14 +44,16 @@ public class Parser {
             return new ListCommand();
         case "mark":
             return new MarkCommand(description);
+        case "del":
         case "delete":
             return new DeleteCommand(description);
-        case "todo": {
+        case "t":
+        case "todo":
             if (description.length() == 0) {
                 throw new DukeException("The description of a todo cannot be empty.");
             }
             return new ToDoCommand(description);
-        }
+        case "d":
         case "deadline": {
             String[] splitArgs = description.split(" /by ", 2);
             if (splitArgs.length < 2) {
@@ -66,6 +68,7 @@ public class Parser {
                 throw new DukeException("Invalid date format.");
             }
         }
+        case "e":
         case "event": {
             String[] splitArgs = description.split(" /at ", 2);
             if (splitArgs.length < 2) {
@@ -80,6 +83,7 @@ public class Parser {
                 throw new DukeException("Invalid date format.");
             }
         }
+        case "f":
         case "find":
             return new FindCommand(description);
         default:
