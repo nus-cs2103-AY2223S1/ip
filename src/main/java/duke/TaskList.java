@@ -32,6 +32,7 @@ public class TaskList {
         try {
             while (sc.hasNextLine()) {
                 String[] arguments = sc.nextLine().split(",");
+                assert arguments.length > 0;
                 switch (arguments[0]) {
                 case "T":
                     this.list.add(new ToDo(arguments[1], arguments[2]));
@@ -61,7 +62,10 @@ public class TaskList {
      * @return String response after adding the new task.
      */
     public String add(Task task) {
+        int prevSize = this.list.size();
         this.list.add(task);
+        int currSize = this.list.size();
+        assert currSize == prevSize + 1; // Ensure task has been added to list.
         StringBuilder stringBuilder = new StringBuilder("Got it. I've added this task:\n");
         stringBuilder.append(task);
         stringBuilder.append(String.format("Now you have %d tasks in the list.", this.list.size()));
@@ -79,7 +83,10 @@ public class TaskList {
         if (index < 0 || index >= this.list.size()) {
             throw new DukeException("Something went wrong!\nPlease select at task to be removed within the list.");
         }
+        int prevSize = this.list.size();
         Task task = this.list.remove(index);
+        int currSize = this.list.size();
+        assert currSize == prevSize - 1; // Ensure task has been deleted from list.
         StringBuilder stringBuilder = new StringBuilder("Noted. I've removed this task:\n");
         stringBuilder.append(task);
         stringBuilder.append(String.format("Now you have %d tasks in the list.", this.list.size()));
