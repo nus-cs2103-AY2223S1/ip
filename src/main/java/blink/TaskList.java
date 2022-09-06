@@ -56,7 +56,9 @@ public class TaskList {
      * @return Number of task in TaskList
      */
     public int length() {
-        return this.tasks.size();
+        int len = this.tasks.size();
+        assert len >= 0;
+        return len;
     }
 
     /**
@@ -66,6 +68,7 @@ public class TaskList {
      * @return Task at position specified
      */
     public Task get(int pos) {
+        assert pos >= 0;
         return this.tasks.get(pos);
     }
 
