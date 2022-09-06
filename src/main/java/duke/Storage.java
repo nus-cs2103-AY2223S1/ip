@@ -42,10 +42,13 @@ public class Storage {
                 String[] splitTask = task.split(" \\| ");
                 Task toAdd;
                 if (splitTask[0].equals("T")) {
+                    assert splitTask.length == 3 : "invalid todo task";
                     toAdd = new ToDo(splitTask[2]);
                 } else if (splitTask[0].equals("E")) {
+                    assert splitTask.length == 4 : "invalid event task";
                     toAdd = new Event(splitTask[2], splitTask[3]);
                 } else {
+                    assert splitTask.length == 4 : "invalid deadline task";
                     toAdd = new Deadline(splitTask[2], splitTask[3]);
                 }
                 if (splitTask[1].equals("1")) {
