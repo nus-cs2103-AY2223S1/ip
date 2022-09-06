@@ -96,7 +96,7 @@ public class TaskList {
      * @param s User search input
      * @return ArrayList of matching tasks
      */
-    public ArrayList<Task> find(String s) {
+    public ArrayList<Task> findMatchingTasks(String s) {
         ArrayList<Task> matching = new ArrayList<>();
         for (Task t : this.taskList) {
             if (t.getDescription().contains(s)) {

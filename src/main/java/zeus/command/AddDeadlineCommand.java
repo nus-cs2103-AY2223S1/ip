@@ -16,7 +16,7 @@ public class AddDeadlineCommand extends Command {
 
     private String description;
     private String by;
-    private LocalDate ld;
+    private LocalDate localDate;
 
     /**
      * Constructor of AddDeadlineCommand class.
@@ -33,11 +33,11 @@ public class AddDeadlineCommand extends Command {
      * Constructor of AddDeadlineCommand class.
      *
      * @param description Description of Deadline task
-     * @param ld LocalDate that represents due date
+     * @param localDate LocalDate that represents due date
      */
-    public AddDeadlineCommand(String description, LocalDate ld) {
+    public AddDeadlineCommand(String description, LocalDate localDate) {
         this.description = description;
-        this.ld = ld;
+        this.localDate = localDate;
     }
 
     /**
@@ -50,14 +50,14 @@ public class AddDeadlineCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws ZeusException {
-        Deadline d;
-        if (this.ld == null) {
-            d = new Deadline(description, this.by);
+        Deadline deadline;
+        if (this.localDate == null) {
+            deadline = new Deadline(description, this.by);
         } else {
-            d = new Deadline(description, this.ld);
+            deadline = new Deadline(description, this.localDate);
         }
-        taskList.addTask(d);
-        ui.printAddTask(d, taskList.size());
+        taskList.addTask(deadline);
+        ui.printAddTask(deadline, taskList.size());
         storage.saveTasksToDisk(taskList.getTaskList());
     }
 }
