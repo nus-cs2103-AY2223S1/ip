@@ -25,6 +25,7 @@ public class Parser {
         legalCommands.add("unmark");
         legalCommands.add("find");
         legalCommands.add("sort");
+        legalCommands.add("reminder");
         legalCommands.add("exit");
 
         legalTasks.add("ToDo");
@@ -198,6 +199,10 @@ public class Parser {
                     break;
                 case "sort":
                     command = new SortTasksCommand();
+                    response = command.execute(controller, "", "", -1, storage, "");
+                    break;
+                case "reminder":
+                    command = new RemindDeadlineCommand();
                     response = command.execute(controller, "", "", -1, storage, "");
                     break;
                 case "exit":

@@ -1,5 +1,6 @@
 package duke.task;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -119,6 +120,23 @@ public class TasksController {
             }
         });
         return sortedTasks;
+    }
+
+    /**
+     * Get all upcoming deadlines.
+     * @return deadline list
+     */
+    public ArrayList<Task> getDeadlines() {
+        LocalDateTime now = LocalDateTime.now();
+        ArrayList<Task> deadlines = new ArrayList<>();
+        for(Task task: tasks) {
+            if (task instanceof Deadline) {
+                if (task.getTime().isAfter(now)) {
+                    deadlines.add(task);
+                }
+            }
+        }
+        return deadlines;
     }
 
 }

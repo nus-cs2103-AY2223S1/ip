@@ -23,7 +23,8 @@ public class ExitCommand extends Command {
         assert taskText.length() == 0 : "The taskText should not be used for ExitCommand";
         assert taskIndex == -1 : "The taskIndex should not be used for ExitCommand";
         assert keywords[0].equals("") : "The keywords should not be used for ExitCommand";
-        assert storage.save(controller.getTasks()) : "File saving should be successful";
+        boolean saved = storage.save(controller.getTasks());
+        assert saved : "File saving should be successful";
         return "Bye. Hope to see you soon!";
     }
 }
