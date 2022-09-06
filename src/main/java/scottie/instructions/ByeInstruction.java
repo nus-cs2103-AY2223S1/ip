@@ -32,13 +32,6 @@ class ByeInstruction extends Instruction {
     @Override
     public void execute(TaskList taskList, Ui ui) {
         ui.showMessages(EXIT_MESSAGE);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean endsProgram() {
-        return true;
+        ui.endProgram();
     }
 }

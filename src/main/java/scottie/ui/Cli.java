@@ -21,6 +21,8 @@ public class Cli implements Ui {
     private final Scanner in;
     private final PrintStream out;
 
+    private boolean isProgramEnded;
+
     /**
      * Constructs a CLI with the given InputStream and PrintStream.
      *
@@ -30,6 +32,7 @@ public class Cli implements Ui {
     public Cli(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
         this.out = out;
+        this.isProgramEnded = false;
     }
 
     /**
@@ -44,6 +47,7 @@ public class Cli implements Ui {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void showMessages(String... messages) {
         for (String message : messages) {
             this.out.println(message);
@@ -53,6 +57,7 @@ public class Cli implements Ui {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void showFormattedMessage(String message, Object... args) {
         this.out.printf(message, args);
     }
@@ -60,6 +65,7 @@ public class Cli implements Ui {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void showStartupMessage() {
         this.showMessages(LOGO, WELCOME_MESSAGE);
     }
@@ -74,5 +80,24 @@ public class Cli implements Ui {
             this.showFormattedMessage("%d. %s%n", i, obj);
             i++;
         }
+    }
+
+    /**
+     * Ends communication with the user.
+     */
+    @Override
+    public void endProgram() {
+        in.close();
+        out.close();
+        this.isProgramEnded = true;
+    }
+
+    /**
+     * Returns whether the program has ended.
+     *
+     * @return whether the program has ended.
+     */
+    public boolean isProgramEnded() {
+        return this.isProgramEnded;
     }
 }

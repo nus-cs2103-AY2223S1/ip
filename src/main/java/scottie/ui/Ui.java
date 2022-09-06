@@ -32,4 +32,9 @@ public interface Ui {
      * @param iterable The items to be displayed to the user.
      */
     void showOrderedList(Iterable<?> iterable);
+
+    /**
+     * Signal to this Ui that the application should be ended.
+     */
+    void endProgram();
 }

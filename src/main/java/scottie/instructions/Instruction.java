@@ -113,15 +113,6 @@ public abstract class Instruction {
      */
     public abstract void execute(TaskList taskList, Ui ui);
 
-    /**
-     * Returns whether this instruction ends the program.
-     *
-     * @return Whether this instruction ends the program.
-     */
-    public boolean endsProgram() {
-        return false;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {

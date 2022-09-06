@@ -40,7 +40,7 @@ public class Scottie {
             try {
                 Instruction instruction = Parser.parse(cli.readLine());
                 instruction.execute(this.taskList, cli);
-                if (instruction.endsProgram()) {
+                if (cli.isProgramEnded()) {
                     break;
                 }
             } catch (InvalidCommandException e) {
