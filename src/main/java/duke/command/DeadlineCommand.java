@@ -1,10 +1,10 @@
 package duke.command;
 
 import duke.Deadline;
-import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.exception.DukeException;
 
 /**
  * Represents a command to add a deadline.

@@ -3,6 +3,7 @@ package duke;
 import javafx.application.Application;
 
 import duke.command.Command;
+import duke.exception.DukeException;
 import duke.gui.Main;
 
 /**

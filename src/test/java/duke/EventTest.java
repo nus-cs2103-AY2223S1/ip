@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import duke.exception.DukeException;
+
 public class EventTest {
     @Test
     public void testCreateEvent() {

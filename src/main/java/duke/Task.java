@@ -1,5 +1,7 @@
 package duke;
 
+import duke.exception.DukeInvalidSaveDataException;
+
 /**
  * Represents a task to be completed. Has a description,
  * and can be marked as done or undone.
@@ -43,10 +45,10 @@ public class Task {
      * @return the new Task object created from saveString
      * @throws DukeException
      */
-    public static Task fromSaveString(String saveString) throws DukeException {
+    public static Task fromSaveString(String saveString) throws DukeInvalidSaveDataException {
         String[] splitSaveString = saveString.split("(\",\")|(\",)|(,\")|\"");
         if (splitSaveString.length != 2) {
-            throw new DukeException("Tried to read unexpected save data.");
+            throw new DukeInvalidSaveDataException();
         }
         String description = splitSaveString[1];
         boolean isDone = splitSaveString[0].endsWith("1");

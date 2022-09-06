@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import duke.exception.DukeInvalidSaveDataException;
+
 /**
  * Represents a deadline to be completed. Has a description, date
  * that the deadline is due, and can be marked as done or undone.
@@ -42,12 +44,12 @@ public class Deadline extends Task {
      *
      * @param saveString the save string data
      * @return the new Deadline object created from saveString
-     * @throws DukeException
+     * @throws DukeInvalidSaveDataException
      */
-    public static Deadline fromSaveString(String saveString) throws DukeException {
+    public static Deadline fromSaveString(String saveString) throws DukeInvalidSaveDataException {
         String[] splitSaveString = saveString.split("(\",\")|(\",)|(,\")|\"");
         if (splitSaveString.length != 3) {
-            throw new DukeException("Tried to read unexpected save data.");
+            throw new DukeInvalidSaveDataException();
         }
         String description = splitSaveString[1];
         String by = "by " + splitSaveString[2];

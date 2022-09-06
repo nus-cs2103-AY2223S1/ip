@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import duke.exception.DukeInvalidSaveDataException;
+
 /**
  * Represents an event that will happen. Has a description, date
  * that the event occurs, and can be marked as done or undone.
@@ -44,10 +46,10 @@ public class Event extends Task {
      * @return the new Event object created from saveString
      * @throws DukeException
      */
-    public static Event fromSaveString(String saveString) throws DukeException {
+    public static Event fromSaveString(String saveString) throws DukeInvalidSaveDataException {
         String[] splitSaveString = saveString.split("(\",\")|(\",)|(,\")|\"");
         if (splitSaveString.length != 3) {
-            throw new DukeException("Tried to read unexpected save data.");
+            throw new DukeInvalidSaveDataException();
         }
         String description = splitSaveString[1];
         String on = "on " + splitSaveString[2];
