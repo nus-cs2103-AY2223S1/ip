@@ -23,17 +23,17 @@ public class EventTaskCommand extends TaskCommand {
      */
     public EventTaskCommand(String description) throws DukeException {
         super(description);
-        String[] eventlst = description.split("/at ", 2);
+        assert description.split(" ")[0].equals("event") : "Keyword should be event for EventTaskCommand";
+        String[] eventList = description.split("/at ", 2);
 
-        if (eventlst.length < 2 || eventlst[1].equals("")) {
+        if (eventList.length < 2 || eventList[1].equals("")) {
             throw new DukeException("Alamak! Fill in when the event is at...");
         }
 
-        this.description = eventlst[0];
+        this.description = eventList[0];
 
         try {
-            LocalDate d1 = LocalDate.parse(eventlst[1]);
-            this.at = d1;
+            this.at = LocalDate.parse(eventList[1]);
         } catch (DateTimeParseException e) {
             throw new DukeException("Please fill in the date in this format yyyy-mm-dd");
         }

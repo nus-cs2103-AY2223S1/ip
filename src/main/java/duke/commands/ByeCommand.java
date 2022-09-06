@@ -9,6 +9,7 @@ import duke.tasks.TaskList;
  */
 public class ByeCommand extends Command {
 
+
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
         setExit();

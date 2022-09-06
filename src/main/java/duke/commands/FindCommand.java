@@ -25,6 +25,8 @@ public class FindCommand extends Command {
      */
     public FindCommand(String description) throws DukeException {
         String[] lst = description.split(" ", 2);
+        assert lst[0].equals("find") : "Keyword should be find for FindCommand";
+
         if (lst.length < 2) { // Guard clause
             throw new DukeException("Keyword missing!");
         }
@@ -50,7 +52,7 @@ public class FindCommand extends Command {
         } else {
             StringBuilder sb = new StringBuilder("Here are the matching tasks in your list:");
             for (int i = 0; i < filtered.size(); i++) {
-                sb.append((i + 1) + "." + filtered.get(i).toString());
+                sb.append(i + 1).append(".").append(filtered.get(i).toString());
             }
             return sb.toString();
         }
