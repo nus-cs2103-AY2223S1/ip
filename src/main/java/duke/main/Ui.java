@@ -10,6 +10,7 @@ import duke.task.Task;
  */
 public class Ui {
     private Scanner sc;
+    private MainWindow mainWindow;
 
     Ui() {
         sc = new Scanner(System.in);
@@ -21,7 +22,15 @@ public class Ui {
     public void greetingMessage() {
         String greeting = "Hello! I'm Duke\n\t"
                 + "What can I do for you?";
-        printMessage(greeting);
+        this.outputMessage(greeting);
+    }
+
+    public void setMainWindow(MainWindow window) {
+        this.mainWindow = window;
+    }
+
+    public void outputMessage(String message) {
+        mainWindow.addDukeDialog(message);
     }
 
     /**
@@ -29,33 +38,15 @@ public class Ui {
      */
     public void exitMessage() {
         String exit = "Bye. Hope to see you again soon!";
-        printMessage(exit);
-    }
-
-    /**
-     * Prints messages in the desired format.
-     *
-     * @param input message to be printed
-     */
-    public void printMessage(String input) {
-        linePrint();
-        System.out.println('\t' + input);
-        linePrint();
-    }
-
-    /**
-     * Prints a line divider.
-     */
-    public void linePrint() {
-        System.out.println("\t____________________________________________________________");
+        this.outputMessage(exit);
     }
 
     public void showLoadingError() {
-        printMessage("An error occurred when loading the file :(");
+        this.outputMessage("An error occurred when loading the file :(");
     }
 
     public void showError(String message) {
-        printMessage(message);
+        this.outputMessage(message);
     }
 
     /**
@@ -73,12 +64,12 @@ public class Ui {
      * @param tasks all tasks in the list
      */
     public void listTasks(ArrayList<Task> tasks) {
-        linePrint();
-        System.out.println("\tHere are the tasks in your list:");
+        StringBuilder output = new StringBuilder();
+        output.append("\tHere are the tasks in your list:" + "\n");
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println("\t" + (i + 1) + ". " + tasks.get(i).toString());
+            output.append("\t" + (i + 1) + ". " + tasks.get(i).toString() + "\n");
         }
-        linePrint();
+        this.outputMessage(output.toString());
     }
 
     /**
@@ -87,11 +78,11 @@ public class Ui {
      * @param tasks all tasks found in the list
      */
     public void listFoundTasks(ArrayList<Task> tasks) {
-        linePrint();
-        System.out.println("\tHere are the matching tasks in your list:");
+        StringBuilder output = new StringBuilder();
+        output.append("\tHere are the matching tasks in your list:" + "\n");
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println("\t" + (i + 1) + ". " + tasks.get(i).toString());
+            output.append("\t" + (i + 1) + ". " + tasks.get(i).toString() + "\n");
         }
-        linePrint();
+        this.outputMessage(output.toString());
     }
 }

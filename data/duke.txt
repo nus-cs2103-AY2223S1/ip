@@ -1,4 +1,3 @@
 D | 1 | do homework | no idea :-p
-E | 1 | project meeting | Mon 2-4pm
 D | 0 | return book | Sunday
-D | 0 | return book | null
+E | 0 | project meeting | Mon 2-4pm
