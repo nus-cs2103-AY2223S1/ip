@@ -38,6 +38,7 @@ public class MarkCommand extends Command {
         task.markAsDone();
         String output = " Nice! I've marked this task as done:\n";
         output += task;
+        assert output.length() > 0 : "The output of execute should always return a message.";
         return output;
     }
 

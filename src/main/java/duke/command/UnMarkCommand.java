@@ -38,6 +38,7 @@ public class UnMarkCommand extends Command {
         task.markAsNotDone();
         String output = "OK! I've marked this task as not done yet:\n";
         output += task;
+        assert output.length() > 0 : "The output of execute should always return a message.";
         return output;
     }
 

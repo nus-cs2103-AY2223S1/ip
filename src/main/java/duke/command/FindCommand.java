@@ -46,6 +46,7 @@ public class FindCommand extends Command {
             for (int i = 0; i < filteredTasks.size(); i++) {
                 output += (i + 1) + ". " + filteredTasks.get(i) + "\n";
             }
+            assert output.length() > 0 : "The output of execute should always return a message.";
             return output;
         } else {
             return "You have no matching tasks!";
