@@ -3,8 +3,11 @@ package duke.utils;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
 
+import duke.tasks.Event;
 import duke.tasks.Task;
 
 public class TaskListTest {
@@ -70,5 +73,20 @@ public class TaskListTest {
                 pairedTwoTask.getDescription(),
                 pairedResult.getTask(1).getDescription()
         );
+    }
+
+    @Test
+    public void findDatedTaskTest() {
+        Task event = new Event("test", false, LocalDateTime.parse("2022-09-07T04:20"));
+        TaskList taskList = new TaskList();
+        taskList.addTask(event);
+        LocalDateTime eventBefore = LocalDateTime.parse("2022-09-07T04:19");
+        LocalDateTime eventAfter = LocalDateTime.parse("2022-09-07T04:21");
+        Task sameEvent = taskList.findDatedTasks(eventBefore, eventAfter).getTask(0);
+        assertEquals(event, sameEvent);
+
+        // reversedTaskList should be empty
+        TaskList reversedTaskList = taskList.findDatedTasks(eventAfter, eventBefore);
+        assertEquals(0, reversedTaskList.size());
     }
 }

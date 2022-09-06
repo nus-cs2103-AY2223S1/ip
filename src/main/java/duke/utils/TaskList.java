@@ -1,5 +1,6 @@
 package duke.utils;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,7 +83,7 @@ public class TaskList {
     }
 
     /**
-     * Finds and returns a TaskList with subset of tasks with description matching the keyword.
+     * Finds and returns a TaskList with tasks with description matching the keyword.
      *
      * @param keyword String to match the descriptions
      * @return TaskList of matching tasks
@@ -93,6 +94,31 @@ public class TaskList {
                 .filter(task -> task.getDescription().contains(keyword))
                 .forEach(result::addTask);
         return result;
+    }
+
+    /**
+     * Finds and returns a TaskList with tasks with dates falling in between the given LocalDateTime parameters
+     *
+     * @param startDateRange Start of datetime range
+     * @param endDateRange End of datetime range (inclusive)
+     * @return TaskList of matching tasks
+     */
+    public TaskList findDatedTasks(LocalDateTime startDateRange, LocalDateTime endDateRange) {
+        TaskList result = new TaskList();
+        this.tasks.stream()
+                .filter(task -> task
+                        .getTime()
+                        .map(dateTime -> checkDateInRange(dateTime, startDateRange, endDateRange))
+                        .orElse(false) // Tasks that don't have time are false by default
+                ).forEach(result::addTask);
+        return result;
+    }
+
+    private boolean checkDateInRange(LocalDateTime dateTime, LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        return dateTime.isAfter(startDateTime)
+                && dateTime.isBefore(endDateTime)
+                || dateTime.isEqual(startDateTime)
+                || dateTime.isEqual(endDateTime);
     }
 
     /**

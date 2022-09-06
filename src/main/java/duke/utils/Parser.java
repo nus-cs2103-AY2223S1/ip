@@ -1,6 +1,8 @@
 package duke.utils;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
 import duke.commands.AddCommand;
@@ -12,6 +14,7 @@ import duke.commands.InvalidCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
 import duke.commands.UnmarkCommand;
+import duke.commands.ViewScheduleCommand;
 import duke.exceptions.ParseDateTimeException;
 import duke.tasks.Deadline;
 import duke.tasks.Event;
@@ -53,6 +56,8 @@ public class Parser {
             return new ListCommand();
         case FindCommand.COMMAND_WORD:
             return prepareFind(userInput);
+        case ViewScheduleCommand.COMMAND_WORD:
+            return prepareViewSchedule(userInput);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         default:
@@ -189,6 +194,41 @@ public class Parser {
     }
 
     /**
+     * Prepares and returns a new ViewScheduleCommand. However, if there are errors in the user input, a new
+     * InvalidCommand is returned instead.
+     *
+     * @param userInput Raw user input
+     * @return ViewScheduleCommand based on raw user input
+     */
+    private Command prepareViewSchedule(String userInput) {
+        String[] tokens = userInput.split(USER_INPUT_DELIMITER, 2);
+        if (tokens.length < 2) {
+            return new InvalidCommand("Oh no! Try find view <keyword>!\nYou can use the following keywords: "
+                    + "[today, tomorrow, week]");
+        }
+        String keyword = tokens[1].toLowerCase();
+        switch (keyword) {
+        case "today":
+            LocalDateTime startToday = LocalDateTime.of(LocalDate.now(), LocalTime.MIDNIGHT);
+            LocalDateTime endToday = LocalDateTime.of(LocalDate.now(), LocalTime.MAX);
+            return new ViewScheduleCommand(startToday, endToday);
+        case "tomorrow":
+            LocalDate tomorrow = LocalDate.now().plusDays(1);
+            LocalDateTime startTomorrow = LocalDateTime.of(tomorrow, LocalTime.MIDNIGHT);
+            LocalDateTime endTomorrow = LocalDateTime.of(tomorrow, LocalTime.MAX);
+            return new ViewScheduleCommand(startTomorrow, endTomorrow);
+        case "week":
+            LocalDate endOfWeek = LocalDate.now().plusDays(7);
+            LocalDateTime startWeek = LocalDateTime.of(LocalDate.now(), LocalTime.MIDNIGHT);
+            LocalDateTime endWeek = LocalDateTime.of(endOfWeek, LocalTime.MAX);
+            return new ViewScheduleCommand(startWeek, endWeek);
+        default:
+            return new InvalidCommand("You have entered an invalid keyword!\nYou can use the following "
+                    + "keywords: [today, tomorrow, week]");
+        }
+    }
+
+    /**
      * Creates and returns LocalDate objects by parsing user's input for date.
      * User input date should follow the format (yyyy-mm-dd HH:MM), in 24-hour time format.
      * The date and time can have a delimiter of a character from "-:.|/" (characters within the double quotes).
@@ -206,9 +246,9 @@ public class Parser {
         }
 
         String parsedDate = parseDateTokens(dateTextTokens[0]);
-        assert parsedDate.split(USER_INPUT_DELIMITER).length == 3;
+        assert parsedDate.split(DATETIME_DELIMITER).length == 3;
         String parsedTime = parseTimeTokens(dateTextTokens[1]);
-        assert parsedTime.split(USER_INPUT_DELIMITER).length == 2;
+        assert parsedTime.split(DATETIME_DELIMITER).length == 2;
         // Create the default toString representation (ISO-8601 format, uuuu-MM-dd'T'HH:mm) or
         // (DateTimeFormatter#ISO_LOCAL_DATE_TIME) for easier parsing and creation of LocalDateTime
         String parsedDateTime = parsedDate + "T" + parsedTime;
