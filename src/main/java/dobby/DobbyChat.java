@@ -48,7 +48,8 @@ public class DobbyChat {
                 + "\t6. delete [task number]\n"
                 + "\t7. find [keyword]\n"
                 + "\t8. date [date]\n"
-                + "\t9. bye\n");
+                + "\t9. simplify [old command] [new command]\n"
+                + "\t10. bye\n");
     }
 
     /**
@@ -106,6 +107,11 @@ public class DobbyChat {
         }
     }
 
+    public static void simplified(String oldCmd, String newCmd) {
+        String simplified = "Yes master, from now on dobby will do [" + oldCmd + "] when dobby sees [" + newCmd + "]";
+        printChat(simplified);
+    }
+
     /**
      * Error message when no date is added to deadline.
      */
@@ -124,7 +130,7 @@ public class DobbyChat {
      * Error message when false command is entered.
      */
     public static void unknown() {
-        printChat("Dobby doesn't understand what you're saying...");
+        printChat("Dobby doesn't understand what you're saying...press help if you need assistance!");
     }
 
     /**
@@ -206,6 +212,10 @@ public class DobbyChat {
 
     public static void noFileToLoadFrom() {
         printChat("Dobby can't find any previous tasks to load from");
+    }
+
+    public static void noCommandToSimplify() {
+        printChat("Please tell dobby which command you wish to simplify.");
     }
 
     /**

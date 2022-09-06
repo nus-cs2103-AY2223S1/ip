@@ -11,6 +11,7 @@ import dobby.commands.ErrorCommand;
 import dobby.commands.FindCommand;
 import dobby.commands.ListCommand;
 import dobby.commands.MarkCommand;
+import dobby.commands.SimplifyCommand;
 import dobby.commands.TaskCommand;
 import dobby.commands.UnmarkCommand;
 
@@ -19,6 +20,12 @@ import dobby.commands.UnmarkCommand;
  * Class that deals with understanding user commands.
  */
 public class Parser {
+    private static final String DESC_DATE_SEPERATOR = "/";
+    private static final String TASKTYPE_REST_SEPERATOR = " ";
+    private static final String NO_DATE_FOUND = "noDate";
+    private static final String WRONG_DATE_FORMAT = "wrongDateFormat";
+    private static final char TASK_MARKED_SYMBOL = 'X';
+    private static final String USERFILE_DESC_DATE_SEPERATOR = "|";
 
     /**
      * Parses the user input and returns the task description of input.
@@ -28,7 +35,7 @@ public class Parser {
      */
     public static String getDesc(String rest) {
         try {
-            int endIndex = rest.indexOf("/") - 1;
+            int endIndex = rest.indexOf(DESC_DATE_SEPERATOR) - 1;
             return rest.substring(0, endIndex);
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
             return "noDate";
@@ -42,19 +49,19 @@ public class Parser {
      * @return String of task date
      */
     public static String getDate(String rest) {
-        String dateFormatted = "";
+        String dateFormatted;
         try {
-            int i = rest.indexOf("/");
+            int i = rest.indexOf(DESC_DATE_SEPERATOR);
             if (i == -1) {
-                dateFormatted = "noDate";
+                dateFormatted = NO_DATE_FOUND;
             } else {
                 String dateString = rest.substring(i + 4);
                 dateFormatted = dateFormat(dateString, "yyyy-MM-dd HHmm", "MMM dd yyyy HH:mm");
             }
         } catch (DateTimeParseException e) {
-            dateFormatted = "wrongDateFormat";
+            dateFormatted = WRONG_DATE_FORMAT;
         } catch (StringIndexOutOfBoundsException e) {
-            dateFormatted = "wrongDateFormat";
+            dateFormatted = WRONG_DATE_FORMAT;
         }
         return dateFormatted;
     }
@@ -66,31 +73,49 @@ public class Parser {
      * @return String of command of user's input
      */
     public static String getTaskType(String task) {
-        return task.split(" ")[0];
+        return task.split(TASKTYPE_REST_SEPERATOR)[0];
     }
 
     /**
-     * Parses the user input and returns the input without the command.
+     * Parses the user input and returns the input without the command, aka the "rest" of the command
      *
      * @param task The user input.
      * @return String of user's input without the command
      */
     public static String getRestOfCommand(String task) {
-        int firstSpace = task.indexOf(" ");
+        int firstSpace = task.indexOf(TASKTYPE_REST_SEPERATOR);
         String rest = task.substring(firstSpace + 1);
         return rest;
     }
 
     public static String getDateType(String rest) {
         try {
-            int i = rest.indexOf("/");
+            int i = rest.indexOf(DESC_DATE_SEPERATOR);
             if (i == -1) {
-                return "noDate";
+                return NO_DATE_FOUND;
             } else {
                 return rest.substring(i + 1, i + 3);
             }
         } catch (StringIndexOutOfBoundsException e) {
-            return "noDate";
+            return NO_DATE_FOUND;
+        }
+    }
+
+    public static String getOldCommand(String rest) {
+        if (rest.isBlank()) {
+            return "";
+        } else {
+            String oldCommand = rest.split(TASKTYPE_REST_SEPERATOR)[0];
+            return oldCommand;
+        }
+    }
+
+    public static String getNewCommand(String rest) {
+        if (rest.isBlank()) {
+            return "";
+        } else {
+            String newCommand = rest.split(TASKTYPE_REST_SEPERATOR)[1];
+            return newCommand;
         }
     }
 
@@ -103,7 +128,7 @@ public class Parser {
      * @return Status of task
      */
     public static boolean getStatusTxt(String input) {
-        boolean isDone = input.charAt(5) == 'X';
+        boolean isDone = (input.charAt(5) == TASK_MARKED_SYMBOL);
         return isDone;
     }
 
@@ -136,7 +161,7 @@ public class Parser {
      * @return Task description
      */
     public static String getDescTxt(String rest) {
-        int endIndex = rest.indexOf("|") - 1;
+        int endIndex = rest.indexOf(USERFILE_DESC_DATE_SEPERATOR) - 1;
         String desc = rest.substring(0, endIndex);
         return desc;
     }
@@ -148,7 +173,7 @@ public class Parser {
      * @return Task date
      */
     public static String getDateTxt(String rest) {
-        int startIndex = rest.indexOf("|") + 2;
+        int startIndex = rest.indexOf(USERFILE_DESC_DATE_SEPERATOR) + 2;
         String date = rest.substring(startIndex);
         return date;
     }
@@ -195,6 +220,8 @@ public class Parser {
             return new TaskCommand();
         case "find":
             return new FindCommand();
+        case "simplify":
+            return new SimplifyCommand();
         default:
             return new ErrorCommand();
         }

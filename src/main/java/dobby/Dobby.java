@@ -4,7 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
 
 import dobby.commands.Command;
 
@@ -13,9 +12,8 @@ import dobby.commands.Command;
  * Dobby is a chat-bot that helps user track their daily tasks.
  */
 public class Dobby {
-    private static Scanner scanner = new Scanner(System.in);
     private static DobbyList dobbyList;
-    private static UserInput ui;
+    private UserInput ui;
     private static String filePath;
     private ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
