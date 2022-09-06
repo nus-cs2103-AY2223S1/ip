@@ -10,7 +10,6 @@ import objects.Task;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Scanner;
 
 public class Parser {
     public enum Command {
