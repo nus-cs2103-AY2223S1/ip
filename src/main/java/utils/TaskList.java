@@ -11,6 +11,7 @@ import objects.Todo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class TaskList {
     private static List<Task> tasks = new ArrayList<>();
@@ -35,6 +36,7 @@ public class TaskList {
         todoName.append(inputs[inputs.length - 1]);
 
         Todo newTodo = new Todo(todoName.toString().trim());
+        assert Objects.equals(newTodo.getName(), todoName.toString().trim());
         tasks.add(newTodo);
         return "Got it. I've added this task:\n" + "  " + newTodo + "\n" + Ui.printNumberOfTasks(tasks);
     }
@@ -71,6 +73,7 @@ public class TaskList {
         Deadline newDeadline = new Deadline(
                 deadlineName.toString().trim(),
                 endDateTime.toString().trim());
+        assert Objects.equals(newDeadline.getName(), deadlineName.toString().trim());
         tasks.add(newDeadline);
         return "Got it. I've added this task:\n" + "  "
                 + newDeadline + "\n" + Ui.printNumberOfTasks(tasks);
@@ -106,6 +109,7 @@ public class TaskList {
         }
 
         Event newEvent = new Event(eventName.toString().trim(), periodDateTime.toString().trim());
+        assert Objects.equals(newEvent.getName(), eventName.toString().trim());
         tasks.add(newEvent);
         return "Got it. I've added this task:\n" + "  "
                 + newEvent + "\n" + Ui.printNumberOfTasks(tasks);

@@ -23,6 +23,7 @@ public class Duke {
     }
 
     public static void loadDuke() throws IOException {
+        assert tasks.size() == 0;
         storage.loadTasks(tasks);
     }
 
