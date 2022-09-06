@@ -9,16 +9,19 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Encapsulates a Duke chatbot instance.
+ */
 public class Duke {
 
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
     private StringWriter stringWriter;
+    private boolean hasTerminated;
 
     /**
-     * Constructs a Duke chatbot. The TaskList will be loaded from
-     * the Storage at the specified file path during this stage.
+     * Constructs a Duke chatbot instance.
      *
      * @param filePath the specified file path parameter.
      */
@@ -26,6 +29,33 @@ public class Duke {
         stringWriter = new StringWriter();
         ui = new Ui(stringWriter);
         storage = new Storage(filePath);
+        hasTerminated = false;
+
+    }
+
+    /**
+     * Returns the String stored in the output buffer and clears the output buffer afterwards.
+     *
+     * @return a String.
+     */
+    private String readOutput() {
+        String returnValue = stringWriter.toString();
+        stringWriter.getBuffer().setLength(0);
+        return returnValue;
+    }
+
+    /**
+     * Initializes the chatbot by loading the TaskList stored in
+     * the file pointed by Storage. Then prints out a welcome message.
+     *
+     * @return The chatbot's feedback during initialization.
+     * @throws IllegalStateException if this chatbot has been initialized.
+     */
+    public String init() {
+        if (taskList != null) {
+            throw new IllegalStateException("init method called to an initialized Duke object");
+        }
+
         try {
             ui.showStorageLoadingMessage();
             taskList = storage.load();
@@ -34,42 +64,45 @@ public class Duke {
             ui.showException(e);
             taskList = new TaskList();
         }
-    }
-
-    /**
-     * Returns the String stored in the output buffer and clears the output buffer afterwards.
-     *
-     * @return a String.
-     */
-    public String readOutput() {
-        String returnValue = stringWriter.toString();
-        stringWriter.getBuffer().setLength(0);
-        return returnValue;
-    }
-
-    /**
-     * Initializes the chatbot. Currently, it only runs the welcome command.
-     */
-    public void init() {
         ui.showWelcome();
+
+        return readOutput();
     }
 
     /**
-     * Parses and executes the provided user command and prints the result to the output buffer.
-     * Returns true if and only if the executed Command is a terminating Command.
+     * Parses and executes the provided user command and returns
+     * a String containing Duke's feedback.
      *
      * @param userCommand the provided user command.
-     * @return true if and only if the Command is terminating.
+     * @return The chatbot's feedback during command execution.
+     * @throws IllegalStateException if this chatbot has not been initialized or has been terminated.
      */
-    public boolean execCommand(String userCommand) {
+    public String execCommand(String userCommand) {
+        if (taskList == null) {
+            throw new IllegalStateException("An uninitialized Duke object can't execute commands");
+        } else if (this.isTerminated()) {
+            throw new IllegalStateException("A terminated Duke object can't execute commands");
+        }
+
         try {
             Command runCommand = Parser.parse(userCommand);
-            runCommand.exec(this.taskList, this.ui, this.storage);
-            return runCommand.isTerminator();
+            runCommand.exec(taskList, ui, storage);
+            hasTerminated = runCommand.isTerminator();
         } catch (DukeException e) {
-            this.ui.showException(e);
+            ui.showException(e);
         }
-        return false;
+
+        return readOutput();
+    }
+
+    /**
+     * Returns true if and only if this Duke chatbot has terminated, i.e.
+     * by calling a terminating Command.
+     *
+     * @return true if and only if this chatbot has terminated.
+     */
+    public boolean isTerminated() {
+        return hasTerminated;
     }
 
     /**
@@ -78,22 +111,15 @@ public class Duke {
      * @param args The provided arguments.
      */
     public static void main(String[] args) {
-
         Duke duke = new Duke("data/save.txt");
         Scanner sc = new Scanner(System.in);
 
-        System.out.println(duke.readOutput());
+        System.out.println(duke.init());
 
-        duke.init();
-        System.out.println(duke.readOutput());
-
-        boolean exitCalled = false;
-
-        while (!exitCalled) {
+        while (!duke.isTerminated()) {
             System.out.print("<< ");
             String userCommand = sc.nextLine();
-            exitCalled = duke.execCommand(userCommand);
-            System.out.println(duke.readOutput());
+            System.out.println(duke.execCommand(userCommand));
         }
     }
 }
