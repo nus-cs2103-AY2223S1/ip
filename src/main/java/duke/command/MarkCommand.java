@@ -34,6 +34,7 @@ public class MarkCommand extends Command {
         try {
             task.markTask(this.toMark);
             Task taskToMark = task.getTask(toMark);
+            assert taskToMark == null : "Task to be mark done should not be empty";
             return MARK_TASK_MSG + taskToMark.taskInfo();
         } catch (IndexOutOfBoundsException e) {
             return NO_TASK_MSG;

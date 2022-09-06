@@ -86,7 +86,6 @@ public class Parser {
 
     private Command handleDeadlineParse(String input) throws MissingDeadlineDescriptionException {
         String[] deadlineSpilt = input.split("/by ", 2);
-        Command commandToReturn;
         try {
             if (deadlineSpilt.length != 2) {
                 throw new MissingDeadlineDescriptionException();
@@ -111,7 +110,7 @@ public class Parser {
 
     private Command handleEventParse(String input) throws MissingEventDescriptionException {
         String[] eventSpilt = input.split("/at ", 2);
-        if (eventSpilt.length != 2) {
+        if (eventSpilt.length == 2) {
             throw new MissingEventDescriptionException();
         } else {
             return new EventCommand(eventSpilt[0], eventSpilt[1]);
