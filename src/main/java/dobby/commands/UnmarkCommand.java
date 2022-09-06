@@ -28,8 +28,6 @@ public class UnmarkCommand extends Command {
             }
         } catch (StringIndexOutOfBoundsException e) {
             DobbyChat.noTaskNumber();
-        } catch (NumberFormatException e) {
-            DobbyChat.noNumber();
         } catch (IndexOutOfBoundsException e) {
             DobbyChat.tooLittleTasks();
         }

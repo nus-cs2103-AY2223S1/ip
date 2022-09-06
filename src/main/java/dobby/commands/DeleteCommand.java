@@ -30,8 +30,6 @@ public class DeleteCommand extends Command {
             }
         } catch (StringIndexOutOfBoundsException e) {
             DobbyChat.noTaskNumber();
-        } catch (NumberFormatException e) {
-            DobbyChat.noNumber();
         }
     }
 }
