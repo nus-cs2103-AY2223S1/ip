@@ -23,3 +23,21 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    | |_| | |  __  | |\   /| |__| |_| |___
    |_____| |_|  |_|_| \_/ |_|______|_____|
    ```
+## Commands
+
+`list`
+
+### Operations
+
+1. `mass` {operation} {ALL/numbers}
+2. `delete` {number}
+3. `mark` {number}
+4. `unmark` {number}
+5. `find` {keyword}
+
+### Creating tasks
+
+1. `todo` {description}
+2. `event` {description} `/at` {dd/MM/YYYY,HHmm}
+3. `deadline` {description} `/by` {dd/MM/YYYY,HHmm}
+4. `fixed` {description} `/takes` {duration in hours}
