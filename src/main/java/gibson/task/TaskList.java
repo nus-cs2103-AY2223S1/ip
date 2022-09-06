@@ -100,6 +100,15 @@ public class TaskList {
         return taskList.isEmpty();
     }
 
+    public boolean isDuplicate(Task task) {
+        for (int i = 0; i < taskList.size(); i++) {
+            if (task.equals(taskList.get(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Returns a TaskList populated with tasks whose taskString matches the query.
      * @param searchQuery query string to match with
