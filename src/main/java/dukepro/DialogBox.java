@@ -69,4 +69,7 @@ public class DialogBox extends HBox {
         db.flip();
         return db;
     }
+
+    public static class StorageGeneral {
+    }
 }

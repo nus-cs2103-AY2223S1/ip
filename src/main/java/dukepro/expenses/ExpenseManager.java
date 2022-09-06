@@ -1,7 +1,5 @@
 package dukepro.expenses;
 
-import dukepro.tasks.Task;
-
 import java.util.ArrayList;
 
 public class ExpenseManager {

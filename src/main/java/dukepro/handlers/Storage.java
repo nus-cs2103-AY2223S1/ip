@@ -14,8 +14,6 @@ import dukepro.tasks.Task;
  * Class for Storage.
  */
 public class Storage {
-    private String line = "_______________________________________";
-
     private File directory;
     private File tasklist;
     private FileWriter fileWriter;

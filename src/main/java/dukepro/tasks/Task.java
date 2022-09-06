@@ -1,11 +1,15 @@
 package dukepro.tasks;
 
+import dukepro.StorableObjects;
+import dukepro.exceptions.DukeException;
+import dukepro.handlers.Decoder;
+
 import java.time.LocalDate;
 
 /**
  * Class for Task.
  */
-public class Task {
+public class Task extends StorableObjects {
     private String name;
     private boolean finished = false;
 
@@ -50,6 +54,10 @@ public class Task {
      */
     public String fileForm() {
         return this.finished + "," + this.name;
+    }
+
+    public Task parseFromFile(String word) throws DukeException {
+        return Decoder.parseFromFile(word);
     }
 
     /**

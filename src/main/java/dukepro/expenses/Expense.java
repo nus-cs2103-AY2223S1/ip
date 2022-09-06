@@ -1,11 +1,15 @@
 package dukepro.expenses;
 
+import dukepro.StorableObjects;
+import dukepro.exceptions.DukeException;
+import dukepro.handlers.Decoder;
+
 import java.time.LocalDate;
 
 /**
  * Class for Expenses
  */
-public class Expense {
+public class Expense extends StorableObjects {
     String name;
     int amount;
     LocalDate localDate;
@@ -22,6 +26,15 @@ public class Expense {
         this.name = name;
         this.amount = amount;
         this.localDate = localDate;
+    }
+
+    public String fileForm() {
+        return name + "," + amount + "," + localDate;
+    }
+
+    public Expense parseFromFile(String word) throws DukeException {
+        String[] splitted = word.split(",");
+        return new Expense(splitted[0], Integer.parseInt(splitted[1]), Decoder.parseLD(splitted[2]));
     }
 
     /**
