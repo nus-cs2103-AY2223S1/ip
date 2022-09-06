@@ -213,7 +213,7 @@ public class Ui extends Application {
      * @param task The input to be received
      */
     public void printUnMarkTaskSuccessfulMsg(Task task) {
-        Label dukeText = new Label("Kk unmarked (" + task + ") already");
+        Label dukeText = new Label("OKok unmarked (" + task + ") already");
         dialogContainer.getChildren().add(
                 DialogBox.getDukeDialog(dukeText, new ImageView(duke))
         );
