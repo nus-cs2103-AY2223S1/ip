@@ -14,7 +14,7 @@ import betago.commands.ListCommand;
 import betago.commands.MarkUnmarkCommand;
 
 /**
- * Parser class that reads input from user and calls the corresponding methods accordingly.
+ * Parser class that reads respective input from user.
  */
 public class Parser {
     private final TaskList tasks;
@@ -30,7 +30,10 @@ public class Parser {
     }
 
     /**
-     * Reads input from the user and calls the corresponding methods.
+     * Reads input from the user and returns the respective command.
+     *
+     * @param input Input from the user.
+     * @return Respective command based on user input.
      */
     public Command readCommands(String input) {
         Scanner sc = new Scanner(input); //can check if can juz use input

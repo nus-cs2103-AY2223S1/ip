@@ -47,6 +47,8 @@ public class TaskList {
 
     /**
      * Returns the list of Tasks in the current TaskList.
+     *
+     * @return String representation of the items in the list.
      */
     public String listItems() {
         if (list.size() == 0) {
@@ -64,7 +66,7 @@ public class TaskList {
      * Marks or unmarks the Task in the specific index of the TaskList.
      *
      * @param str Mark or Unmark command that the user provided.
-     * @throws DukeException If there are no Tasks in the list.
+     * @throws DukeException If user inputs an empty or invalid task number.
      */
     public String markUnmarkItems(String str) throws DukeException {
         String[] inputs = str.split(" ", 2);

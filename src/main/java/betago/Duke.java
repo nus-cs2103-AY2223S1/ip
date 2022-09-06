@@ -19,6 +19,7 @@ public class Duke {
     /**
      * Constructor for Duke.
      * Initialises Storage, TaskList and Parser variable.
+     * Prints greeting statement and loads the data file.
      */
     public Duke() {
         this.tasks = new TaskList();
@@ -28,8 +29,11 @@ public class Duke {
         this.storage.loadFile();
     }
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Returns a response to the user's input by calling the appropriate command
+     * and calling execute on the command.
+     *
+     * @param input Input from the user.
+     * @return Response to the user's input
      */
     public String getResponse(String input) {
         Command command = this.commander.readCommands(input);
