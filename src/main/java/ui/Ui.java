@@ -50,18 +50,18 @@ public class Ui {
 //                + "   | |   | | | |  __ \\ /     |☁️  ️✴  ⋆\n"
 //                + "   | |__ | |_| | |  | |    | |\n"
 //                + "   |____| \\__,_|_|  |_|\\__/|_|\n";
-        String toPrint = "Hello. ⛅️ This is\n \t\t\t\t\t L   U   N   A 🌙\n";
+        String toPrint = "Hello. ⛅️ This is\n \t\t\t\t\t L \t U \t N \t A 🌙\n";
 
         // Print available commands
-//        toPrint += "\n  Luna commands"
-//                + "\n    🌸 list"
-//                + "\n    🌷 todo <task>"
-//                + "\n    🌺 deadline <task> /by <yyyy-mm-dd>"
-//                + "\n    🌹 event <event> /at <yyyy-mm-dd>"
-//                + "\n    🪷 mark <num>"
-//                + "\n    🌻 unmark <num>"
-//                + "\n    💐 find <keyword>"
-//                + "\n    🥀 bye";
+        toPrint += "\n  Luna commands"
+                + "\n    🌸 list"
+                + "\n    🌷 todo <task>"
+                + "\n    🌺 deadline <task> /by <yyyy-mm-dd>"
+                + "\n    🌹 event <event> /at <yyyy-mm-dd>"
+                + "\n    🪷 mark <num>"
+                + "\n    🌻 unmark <num>"
+                + "\n    💐 find <keyword>"
+                + "\n    🥀 bye\n";
 
         // Print items in storage
         if (!this.isLoaded) {
