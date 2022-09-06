@@ -4,6 +4,19 @@ package dobby;
  * UserInput is a class that deals with interactions with the user.
  */
 public class UserInput {
+    private static final String COMMAND_MARK = "mark";
+    private static final String COMMAND_UNMARK = "unmark";
+    private static final String COMMAND_DELETE = "delete";
+    private static final String COMMAND_TODO = "todo";
+    private static final String COMMAND_FIND = "find";
+    private static final String COMMAND_DEADLINE = "deadline";
+    private static final String COMMAND_EVENT = "event";
+    private static final String COMMAND_SIMPLIFY = "simplify";
+    private static final String NO_DATE_ERROR = "noDate";
+    private static final String WRONG_DEADLINE_FORMAT = "wrongDeadline";
+    private static final String WRONG_EVENT_FORMAT = "wrongEvent";
+    private static final String DEADLINE_COMMAND = "/by";
+    private static final String EVENT_COMMAND = "/at";
     private static String mark = "m";
     private static String unmark = "um";
     private static String delete = "del";
@@ -29,10 +42,10 @@ public class UserInput {
      */
     public String readCommand(String input) {
         try {
+
             if (!input.contains(" ")) {
-                //TODO find another more elegant way to solve this
-                if (input.contains("simplify")) {
-                    taskType = "simplify";
+                if (input.contains(COMMAND_SIMPLIFY)) {
+                    setTaskType(COMMAND_SIMPLIFY);
                     oldCmd = "";
                     newCmd = "";
                 } else {
@@ -41,47 +54,56 @@ public class UserInput {
             } else {
                 taskType = Parser.getTaskType(input);
                 rest = Parser.getRestOfCommand(input);
-                if (taskType.equals("mark") | taskType.equals(mark)) {
-                    taskType = "mark";
+                if (checkTaskType(COMMAND_MARK) | checkTaskType(mark)) {
+                    setTaskType(COMMAND_MARK);
                     ind = Integer.parseInt(rest);
-                } else if (taskType.equals("unmark") | taskType.equals(unmark)) {
-                    taskType = "unmark";
+
+                } else if (checkTaskType(COMMAND_UNMARK) | checkTaskType(unmark)) {
+                    setTaskType(COMMAND_UNMARK);
                     ind = Integer.parseInt(rest);
-                } else if (taskType.equals("delete") | taskType.equals(delete)) {
-                    taskType = "delete";
+
+                } else if (checkTaskType(COMMAND_DELETE) | checkTaskType(delete)) {
+                    setTaskType(COMMAND_DELETE);
                     ind = Integer.parseInt(rest);
-                } else if (taskType.equals("todo") | taskType.equals(todo)) {
-                    taskType = "todo";
+
+                } else if (checkTaskType(COMMAND_TODO) | checkTaskType(todo)) {
+                    setTaskType(COMMAND_TODO);
                     desc = rest;
-                } else if (taskType.equals("find") | taskType.equals(find)) {
-                    taskType = "find";
+
+                } else if (checkTaskType(COMMAND_FIND) | checkTaskType(find)) {
+                    setTaskType(COMMAND_FIND);
                     desc = rest;
-                } else if (taskType.equals("simplify") | taskType.equals(simplify)) {
-                    taskType = "simplify";
+
+                } else if (checkTaskType(COMMAND_SIMPLIFY) | checkTaskType(simplify)) {
+                    setTaskType(COMMAND_SIMPLIFY);
                     oldCmd = Parser.getOldCommand(rest);
                     newCmd = Parser.getNewCommand(rest);
-                } else if (taskType.equals("deadline") | taskType.equals(deadline)) {
-                    taskType = "deadline";
+
+                } else if (checkTaskType(COMMAND_DEADLINE) | checkTaskType(deadline)) {
+                    setTaskType(COMMAND_DEADLINE);
                     String dateType = Parser.getDateType(rest);
-                    if (dateType.equals("noDate")) {
-                        date = "noDate";
-                        desc = Parser.getDesc(rest);
-                    } else if (!(dateType.equals("by"))) {
-                        date = "wrongDeadline";
-                        desc = Parser.getDesc(rest);
+                    if (dateType.equals(NO_DATE_ERROR)) {
+                        date = NO_DATE_ERROR;
+
+                    } else if (!(dateType.equals(DEADLINE_COMMAND))) {
+                        date = WRONG_DEADLINE_FORMAT;
+
                     } else {
                         date = Parser.getDate(rest);
                         desc = Parser.getDesc(rest);
                     }
-                } else if (taskType.equals("event") | taskType.equals(event)) {
-                    taskType = "event";
+
+                } else if (checkTaskType(COMMAND_EVENT) | checkTaskType(event)) {
+                    setTaskType(COMMAND_EVENT);
                     String dateType = Parser.getDateType(rest);
-                    if (dateType.equals("noDate")) {
-                        date = "noDate";
+                    if (dateType.equals(NO_DATE_ERROR)) {
+                        date = NO_DATE_ERROR;
                         desc = Parser.getDesc(rest);
-                    } else if (!(dateType.equals("at"))) {
-                        date = "wrongEvent";
+
+                    } else if (!(dateType.equals(EVENT_COMMAND))) {
+                        date = WRONG_EVENT_FORMAT;
                         desc = Parser.getDesc(rest);
+
                     } else {
                         date = Parser.getDate(rest);
                         desc = Parser.getDesc(rest);
@@ -136,6 +158,14 @@ public class UserInput {
 
     public String getNewCmd() {
         return newCmd;
+    }
+
+    private void setTaskType(String taskType) {
+        this.taskType = taskType;
+    }
+
+    private boolean checkTaskType(String taskType) {
+        return this.taskType.equals(taskType);
     }
 
     public static void setSimplifiedCommand() {

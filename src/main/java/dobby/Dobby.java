@@ -12,9 +12,9 @@ import dobby.commands.Command;
  * Dobby is a chat-bot that helps user track their daily tasks.
  */
 public class Dobby {
+    private static String filePath;
     private static DobbyList dobbyList;
     private UserInput ui;
-    private static String filePath;
     private ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
 
@@ -47,6 +47,7 @@ public class Dobby {
     public String getResponse(String input) {
         outputStream.reset();
         try {
+            UserInput ui = new UserInput();
             String commandStr = ui.readCommand(input);
             Command command = Parser.parse(commandStr);
             command.execute(dobbyList, ui);

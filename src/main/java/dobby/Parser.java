@@ -203,23 +203,33 @@ public class Parser {
      */
     public static Command parse(String cmd) {
         switch (cmd) {
+        case "q":
         case "bye":
         case "quit":
             return new ByeCommand();
+        case "l":
         case "list":
             return new ListCommand();
+        case "m":
         case "mark":
             return new MarkCommand();
+        case "u":
         case "unmark":
             return new UnmarkCommand();
+        case "del":
         case "delete":
             return new DeleteCommand();
+        case "t":
         case "todo":
+        case "e":
         case "event":
+        case "d":
         case "deadline":
             return new TaskCommand();
+        case "f":
         case "find":
             return new FindCommand();
+        case "s":
         case "simplify":
             return new SimplifyCommand();
         default:
