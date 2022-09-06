@@ -9,8 +9,8 @@ public class Parser {
      * @throws DukeException If input is invalid.
      */
     public static String[] parseInput(String input) throws DukeException {
-        String phrases[] = input.split(" /.. ", 2); // splits sentence and removes by/at
-        String words[] = phrases[0].split(" ", 2);
+        String[] phrases = input.split(" /.. ", 2); // splits sentence and removes by/at
+        String[] words = phrases[0].split(" ", 2);
 
         if (words[0].equals("todo")) {
             if (words.length != 2) {
@@ -28,7 +28,7 @@ public class Parser {
             if (phrases.length != 2) {
                 throw new DukeException("Please add in timing information.");
             } else {
-                String output[] = new String[3];
+                String[] output = new String[3];
                 output[0] = words[0]; // type of task
                 output[1] = words[1]; // task detail
                 output[2] = phrases[1]; // task timing information

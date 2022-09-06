@@ -43,8 +43,8 @@ public class Task {
      * @return the task to print
      */
     public String markAsDone() {
-        this.isDone= true;
-        return("Nice! I've marked this task as done:\n  " + this);
+        this.isDone = true;
+        return ("Nice! I've marked this task as done:\n  " + this);
     }
 
     /**
@@ -52,13 +52,13 @@ public class Task {
      * @return the task to print
      */
     public String markAsNotDone() {
-        this.isDone= false;
-        return("OK, I've marked this task as not done yet:\n  " + this);
+        this.isDone = false;
+        return ("OK, I've marked this task as not done yet:\n  " + this);
     }
 
     @Override
     public String toString() {
-        return("[" + getStatusIcon() + "] " + this.descript);
+        return ("[" + getStatusIcon() + "] " + this.descript);
     }
 }
 

@@ -18,9 +18,9 @@ public class TaskList {
     public String findTask(String input) {
         StringBuilder str = new StringBuilder();
         str.append("Here are the matching tasks in your list: \n");
-        for(int i = 1; i <= lst.size(); i++){
-            Task task = lst.get(i-1);
-            if(task.getDescription().contains(input)){
+        for (int i = 1; i <= lst.size(); i++) {
+            Task task = lst.get(i - 1);
+            if (task.getDescription().contains(input)) {
                 str.append(i).append(". ").append(task).append(" \n");
             }
         }
@@ -33,7 +33,8 @@ public class TaskList {
      */
     public String addTask(Task t) {
         this.lst.add(t);
-        return "Got it. I've added this task: \n  " + t +" \n Now you have " + Integer.toString(lst.size()) + " tasks in the list.\n";
+        return "Got it. I've added this task: \n  " + t
+                + " \n Now you have " + Integer.toString(lst.size()) + " tasks in the list.\n";
     }
 
     /**
@@ -44,7 +45,8 @@ public class TaskList {
     public String deleteTask(int i) {
         Task removed = lst.get(i - 1);
         lst.remove(i - 1);
-        return "Noted. I've removed this task: \n  " + removed + " \nNow you have " + lst.size() + " tasks in the list.\n";
+        return "Noted. I've removed this task: \n  " + removed
+                + " \nNow you have " + lst.size() + " tasks in the list.\n";
     }
 
     /**
@@ -74,7 +76,7 @@ public class TaskList {
      * @return the list.
      */
     public String displayList() {
-        if(lst.size() == 0 ) {
+        if (lst.size() == 0) {
             return "You do not have any tasks currently";
         }
 
