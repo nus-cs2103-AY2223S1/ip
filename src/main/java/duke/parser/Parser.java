@@ -166,6 +166,9 @@ public class Parser {
             throw new DukeException("Formatting of date and time is incorrect.");
         }
 
+        assert (date.toString() + " " + time.toString()).equals(contents[1]) 
+            : "Date and time parsed is incorrect";
+
         switch(type) {
             case DEADLINE:
             return taskList.addDeadline(desc, date, time);
