@@ -34,9 +34,7 @@ public class Parser {
      *
      */
     public Parser() {
-
     }
-
 
     /**
      * Parse input to give corresponding command.
@@ -52,10 +50,10 @@ public class Parser {
         String[] arguments = Arrays.copyOfRange(splitInput, 1, splitInput.length);
 
         if (command.equals("mark")) {
-            checkMarkInputs(splitInput);
+            checkMarkingInputs(splitInput, command);
             return new MarkCommand(arguments[0]);
         } else if (command.equals("unmark")) {
-            checkUnmarkInputs(splitInput);
+            checkMarkingInputs(splitInput, command);
             return new UnmarkCommand(arguments[0]);
         } else if (command.equals("deadline")) {
             int byIndex = checkDeadlineInput(splitInput);
@@ -115,25 +113,14 @@ public class Parser {
         return t;
     }
 
-    private void checkMarkInputs(String[] command) throws DukeException {
+    private void checkMarkingInputs(String[] command, String action) throws DukeException {
         if (command.length == 1) {
-            throw new MissingInputException("index", "mark");
+            throw new MissingInputException("index", action);
         }
         if (command.length > 2) {
             throw new InvalidInputException(String.join(" ",
                     Arrays.copyOfRange(command, 1, command.length)),
-                    "mark");
-        }
-    }
-
-    private void checkUnmarkInputs(String[] command) throws DukeException {
-        if (command.length == 1) {
-            throw new MissingInputException("index", "unmark");
-        }
-        if (command.length > 2) {
-            throw new InvalidInputException(String.join(" ",
-                    Arrays.copyOfRange(command, 1, command.length)),
-                    "unmark");
+                    action);
         }
     }
 

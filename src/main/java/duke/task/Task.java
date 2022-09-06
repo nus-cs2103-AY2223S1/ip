@@ -50,7 +50,7 @@ public class Task {
      *
      * @return The task description for output text file.
      */
-    public String tofileString() {
+    public String toFileFormat() {
         return this.isDone
                 ? "1|" + this.desc
                 : "0|" + this.desc;

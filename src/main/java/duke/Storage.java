@@ -42,7 +42,7 @@ public class Storage {
             FileWriter writer = new FileWriter(filePath);
             int i = 0;
             while (i < taskList.getsize()) {
-                writer.write(taskList.get(i).tofileString());
+                writer.write(taskList.get(i).toFileFormat());
                 writer.write(System.getProperty("line.separator"));
                 i++;
             }
