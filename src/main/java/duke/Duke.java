@@ -34,10 +34,6 @@ public class Duke extends Application {
     private Button sendButton;
     private Scene scene;
 
-
-//    private Image user = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/User.png")));
-//    private Image duke = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/Duke.png")));
-
     private Image user = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/Duke.png"));
 
