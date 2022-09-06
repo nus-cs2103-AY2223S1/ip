@@ -12,26 +12,26 @@ public class EventTest {
     public void testMarkFunctionalityForEvent(){
         Task event = new Event("Concert", "Buona Vista");
         assertEquals(event.toString(), "[E][ ] Concert (at: Buona Vista)");
-        event.markAsDone();
+        event.mark();
         assertEquals(event.toString(), "[E][X] Concert (at: Buona Vista)");
     }
 
     @Test
     public void testUnmarkFunctionalityForEvent(){
         Task event = new Event("Concert", "Buona Vista");
-        event.markAsDone();
+        event.mark();
         assertEquals(event.toString(), "[E][X] Concert (at: Buona Vista)");
-        event.unmarkAsDone();
+        event.unmark();
         assertEquals(event.toString(), "[E][ ] Concert (at: Buona Vista)");
     }
 
     @Test
     public void testGetStatusIconForEvent(){
         Task event = new Event("Concert", "Buona Vista");
-        event.markAsDone();
+        event.mark();
         assertEquals(event.toString(), "[E][X] Concert (at: Buona Vista)");
         assertEquals(event.getStatusIcon(), "X");
-        event.unmarkAsDone();
+        event.unmark();
         assertEquals(event.toString(), "[E][ ] Concert (at: Buona Vista)");
         assertEquals(event.getStatusIcon(), " ");
     }

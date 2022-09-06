@@ -32,6 +32,6 @@ public class ListCommand extends Command {
     @Override
     public String execute(TaskList tasks, File file, Storage storage) {
         Ui ui = new Ui();
-        return ui.list(tasks);
+        return ui.listOut(tasks);
     }
 }

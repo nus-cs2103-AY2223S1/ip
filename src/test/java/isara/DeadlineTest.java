@@ -15,7 +15,7 @@ public class DeadlineTest {
         LocalDate date = LocalDate.parse("2022-05-12");
         Task deadline = new Deadline("Homework", date);
         assertEquals(deadline.toString(), "[D][ ] Homework (by: 2022-05-12)");
-        deadline.markAsDone();
+        deadline.mark();
         assertEquals(deadline.toString(), "[D][X] Homework (by: 2022-05-12)");
     }
 
@@ -23,9 +23,9 @@ public class DeadlineTest {
     public void testUnmarkFunctionalityForDeadline(){
         LocalDate date = LocalDate.parse("2022-05-12");
         Task deadline = new Deadline("Homework", date);
-        deadline.markAsDone();
+        deadline.mark();
         assertEquals(deadline.toString(), "[D][X] Homework (by: 2022-05-12)");
-        deadline.unmarkAsDone();
+        deadline.unmark();
         assertEquals(deadline.toString(), "[D][ ] Homework (by: 2022-05-12)");
     }
 
@@ -33,10 +33,10 @@ public class DeadlineTest {
     public void testGetStatusIconForDeadline(){
         LocalDate date = LocalDate.parse("2022-05-12");
         Task deadline = new Deadline("Homework", date);
-        deadline.markAsDone();
+        deadline.mark();
         assertEquals(deadline.toString(), "[D][X] Homework (by: 2022-05-12)");
         assertEquals(deadline.getStatusIcon(), "X");
-        deadline.unmarkAsDone();
+        deadline.unmark();
         assertEquals(deadline.toString(), "[D][ ] Homework (by: 2022-05-12)");
         assertEquals(deadline.getStatusIcon(), " ");
     }

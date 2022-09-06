@@ -43,7 +43,7 @@ public class MarkCommand extends Command {
         try {
             Ui ui = new Ui();
             Task task = tasks.getTask(taskIndex);
-            task.markAsDone();
+            task.mark();
             storage.writeAndSaveToFile(file, tasks);
             return ui.mark(task);
         } catch (Exception e) {
