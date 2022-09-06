@@ -19,7 +19,7 @@ public class InputParserTest {
                     "Empty list as input");
             fail(); // test should not reach this line
         } catch (Exception e) {
-            assertEquals("begin 0, end -1, length 0", e.getMessage());
+            assertEquals("start 0, end -1, length 0", e.getMessage());
         }
 
     }

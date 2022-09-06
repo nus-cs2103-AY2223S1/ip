@@ -17,6 +17,8 @@ public class Task {
     private Boolean completionStatus;
     private String completionIcon;
     private final InputParser parser = new InputParser();
+    private static final char SPECIAL_CHAR = '/';
+    private static final String SAVE_SEPARATOR = "|";
 
     Task(List<String> task, String taskName, String icon) throws DekuExceptions {
         if (task.size() == 0) {
@@ -34,7 +36,7 @@ public class Task {
         String output = "";
         for (int i = 0; i < taskArray.size(); i++) {
             String current = taskArray.get(i);
-            if (current.charAt(0) == '/') {
+            if (current.charAt(0) == SPECIAL_CHAR) {
                 break;
             }
             output += current + " ";
@@ -59,14 +61,16 @@ public class Task {
      */
     public boolean find_word(String word) {
         for (String storedWord: taskArray) {
+            boolean isEmpty = (storedWord.length() <= 1);
+            boolean isSpecialChar = (storedWord.charAt(0) == SPECIAL_CHAR);
             if (storedWord.equals(word)) {
                 return true;
+            } else if (!isSpecialChar || isEmpty) {
+                continue;
             }
-            if (storedWord.charAt(0) == '/' && storedWord.length() > 1) {
-                String specialChar = storedWord.substring(1, storedWord.length());
-                if (specialChar.equals(word)) {
-                    return true;
-                }
+            String specialChar = storedWord.substring(1);
+            if (specialChar.equals(word)) {
+                return true;
             }
         }
         return false;
@@ -77,7 +81,7 @@ public class Task {
         String output = "";
         for (int i = 0; i < taskArray.size(); i++) {
             String current = taskArray.get(i);
-            if (current.charAt(0) == '/') {
+            if (current.charAt(0) == SPECIAL_CHAR) {
                 output = current;
                 break;
             }
@@ -106,7 +110,17 @@ public class Task {
      */
     public String saveFormat() {
         String completionParse = (completionIcon.equals("[X]")) ? "1" : "0";
-        return icon + "|" + completionParse + "|" + getTask() + "|" + getSpecial() + "|" + getDate() + "|" + getTime();
+        return icon
+                + SAVE_SEPARATOR
+                + completionParse
+                + SAVE_SEPARATOR
+                + getTask()
+                + SAVE_SEPARATOR
+                + getSpecial()
+                + SAVE_SEPARATOR
+                + getDate()
+                + SAVE_SEPARATOR
+                + getTime();
     }
 
     @Override

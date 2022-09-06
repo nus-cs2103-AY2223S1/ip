@@ -25,54 +25,77 @@ public class InputParser {
      * @return String of friendly and readable output
      */
     public String parseTask(List<String> task) {
-        String date = "";
-        String misc = "";
-        String time = "";
-        String output = "";
-        boolean isDateTime = false;
+        StringBuilder date = new StringBuilder();
+        StringBuilder time = new StringBuilder();
+        StringBuilder misc = new StringBuilder();
+        StringBuilder output = new StringBuilder();
+        int index;
+        index = updateTillSpecialChar(output, task);
+        if (index < task.size()) {
+            updateSpecialCharOnwards(index, date, time, misc, task);
+        }
+        if (!misc.toString().equals("")) {
+            misc = new StringBuilder(misc.substring(0, misc.length() - 1));
+        }
+        if (index != task.size()) {
+            return dateTimeFormatter(output.toString(), misc.toString(), date.toString(), time.toString());
+        }
+        return output.substring(0, output.length() - 1);
+    }
+
+    // Helper method for parseTask
+    private String dateTimeFormatter(String output, String misc, String date, String time) {
+        parseDate(date);
+        if (this.date == null) {
+            return output + misc + ")";
+        }
+        output += this.date.format(DateTimeFormatter.ofPattern("d MMM yyyy"));
+        if (time.equals("")) {
+            return output + ")";
+        }
+        parseTime(time);
+        if (this.time == null) {
+            return output + " " + time + ")";
+        }
+        return output
+                + " "
+                + this.time.format(DateTimeFormatter.ofPattern("HH:mm"))
+                + ")";
+    }
+
+    // Helper method for parseTask
+    private int updateTillSpecialChar(StringBuilder output, List<String> task) {
         int index = 0;
         while (index < task.size()) {
             String top = task.get(index);
             if (top.charAt(0) == '/') {
-                isDateTime = true;
-                output += "(" + top.substring(1) + ": ";
+                output.append("(")
+                        .append(top.substring(1))
+                        .append(": ");
                 index++;
-                continue;
+                break;
             }
-            if (isDateTime) {
-                if (date.equals("")) {
-                    date = top;
-                } else {
-                    time = top;
-                }
-                misc += top + " ";
-            } else {
-                output += top + " ";
-            }
+            output.append(top).append(" ");
             index++;
         }
-        if (!misc.equals("")) {
-            misc = misc.substring(0, misc.length() - 1);
+        return index;
+    }
+
+    // Helper method for parseTask
+    private void updateSpecialCharOnwards(int index,
+                                          StringBuilder date,
+                                          StringBuilder time,
+                                          StringBuilder misc,
+                                          List<String> tasks) {
+        for (int i = index; i < tasks.size(); i++) {
+            String top = tasks.get(i);
+            if (date.length() == 0) {
+                date.append(top);
+            } else {
+                time.append(top);
+            }
+            misc.append(top).append(" ");
         }
-        if (isDateTime) {
-            parseDate(date);
-            if (this.date == null) {
-                return output + misc + ")";
-            }
-            output += this.date.format(DateTimeFormatter.ofPattern("d MMM yyyy"));
-            if (time.equals("")) {
-                return output + ")";
-            }
-            parseTime(time);
-            if (this.time == null) {
-                return output + " " + time + ")";
-            }
-            return output
-                   + " "
-                   + this.time.format(DateTimeFormatter.ofPattern("HH:mm"))
-                   + ")";
-        }
-        return output.substring(0, output.length() - 1);
     }
 
     public LocalDate getDate() {
@@ -111,14 +134,14 @@ public class InputParser {
         }
     }
 
-    String parseReply(String input, UI ui, BotList botList) {
+    String parseReply(String input, BotList botList) {
         String reply;
         List<String> separate = new ArrayList<>(List.of(input.split("\\s+")));
         KeyPhrases keyPhrase = KeyPhrases.get(separate.remove(0));
         try {
             switch (keyPhrase) {
             case BYE:
-                reply = ui.end();
+                reply = "Bye! See you next time!";
                 break;
             case LIST:
                 reply = "Current tasks are shown on the right panel!"; //botList.toString();
@@ -153,6 +176,6 @@ public class InputParser {
         } catch (DekuExceptions e) {
             reply = e.toString();
         }
-        return ui.reply(reply);
+        return "\n" + reply;
     }
 }
