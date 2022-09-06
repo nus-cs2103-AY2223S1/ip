@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Parser {
     public enum Command {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND, SORT
     }
 
     private static Ui ui = new Ui();
@@ -64,7 +64,10 @@ public class Parser {
             } else if (command.equals(Command.FIND.name().toLowerCase())) {
                 // inputs[1] is the keyword (do not accept keywords)
                 return taskList.findTasks(inputs[1]);
-            } else {
+            } else if (command.equals(Command.SORT.name().toLowerCase())) {
+                return taskList.sortByName();
+            }
+            else {
                 // when none of the commands match
                 throw new UnknownCommandException();
             }

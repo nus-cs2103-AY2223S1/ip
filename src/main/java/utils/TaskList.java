@@ -154,4 +154,9 @@ public class TaskList {
         }
         return text.toString();
     }
+
+    public String sortByName() {
+        tasks.sort((t1, t2) -> t1.getName().compareTo(t2.getName()));
+        return "Tasks are sorted successfully, quack!";
+    }
 }
