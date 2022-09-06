@@ -33,13 +33,16 @@ public class Storage {
      */
     public ArrayList<Task> loadData() throws DukeException {
         ArrayList<Task> tasks = new ArrayList<>();
+
         if (createDukeTextFile()) {
             try {
                 File dukeFile = new File(filePath);
                 Scanner myReader = new Scanner(dukeFile);
+
                 while (myReader.hasNextLine()) {
                     String data = myReader.nextLine();
                     char taskType = data.charAt(0);
+
                     switch (taskType) {
                     case 'T':
                         String[] todoSplit = data.split(" // ", 3);
@@ -86,6 +89,7 @@ public class Storage {
     public void saveData(ArrayList<Task> tasks) throws DukeException {
         try {
             FileWriter writer = new FileWriter(filePath);
+
             writer.write("");
             for (Task task : tasks) {
                 writer.append(task.getDataFormat()).append("\n");
@@ -106,6 +110,7 @@ public class Storage {
         boolean isAlreadyCreated = false;
         File dataFolder = new File("data");
         File dukeFile = new File(filePath);
+
         try {
             dataFolder.mkdirs();
             if (!dukeFile.createNewFile()) {
@@ -114,6 +119,7 @@ public class Storage {
         } catch (IOException e) {
             throw new DukeException("Something is wrong with the text file.");
         }
+
         return isAlreadyCreated;
     }
 }

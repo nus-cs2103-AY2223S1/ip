@@ -43,6 +43,7 @@ public class TaskList {
         if (splitStr.length < 2) {
             throw new DukeException("The description of a task cannot be empty.");
         }
+
         switch (type) {
         case TODO:
             tasks.add(new Todo(splitStr[1]));
@@ -75,6 +76,7 @@ public class TaskList {
         default:
             throw new DukeException("I'm sorry, but I don't know what that means!");
         }
+
         return response;
     }
 
@@ -92,18 +94,22 @@ public class TaskList {
         if (splitStr.length < 2) {
             throw new DukeException("Please specify task number to delete.");
         }
+
         int deleteNo;
+
         try {
             deleteNo = Integer.parseInt(splitStr[1]);
         } catch (NumberFormatException e) {
             throw new DukeException("Please specify task number to delete.");
         }
+
         if (deleteNo <= 0) {
             throw new DukeException("Invalid task number.");
         }
         if (deleteNo > taskCount) {
             throw new DukeException("There are not that many tasks!");
         }
+
         taskCount--;
         response = "Noted. I've removed this task:\n" + tasks.get(deleteNo - 1)
                 + "\nNow you have " + taskCount + " tasks in the list.";
@@ -124,7 +130,9 @@ public class TaskList {
         if (splitStr.length < 2) {
             throw new DukeException("Please specify task number to mark.");
         }
+
         int markNo;
+
         try {
             markNo = Integer.parseInt(splitStr[1]);
         } catch (NumberFormatException e) {
@@ -136,6 +144,7 @@ public class TaskList {
         if (markNo > taskCount) {
             throw new DukeException("There are not that many tasks!");
         }
+
         tasks.get(markNo - 1).markAsDone();
         response = "Nice! I've marked this task as done:\n" + tasks.get(markNo - 1);
         return response;
@@ -154,18 +163,22 @@ public class TaskList {
         if (splitStr.length < 2) {
             throw new DukeException("Please specify task number to unmark.");
         }
+
         int unmarkNo;
+
         try {
             unmarkNo = Integer.parseInt(splitStr[1]);
         } catch (NumberFormatException e) {
             throw new DukeException("Please specify task number to unmark.");
         }
+
         if (unmarkNo <= 0) {
             throw new DukeException("Invalid task number.");
         }
         if (unmarkNo > taskCount) {
             throw new DukeException("There are not that many tasks!");
         }
+
         tasks.get(unmarkNo - 1).markAsUnDone();
         response = "Nice! I've marked this task as not done yet:\n" + tasks.get(unmarkNo - 1);
         return response;
@@ -179,11 +192,13 @@ public class TaskList {
      * @throws DukeException if the input does not specify a keyword
      */
     public String findTasks(String[] splitStr) throws DukeException {
-        StringBuilder response = new StringBuilder();
         int i = 1;
+        StringBuilder response = new StringBuilder();
+
         if (splitStr.length < 2) {
             throw new DukeException("Please specify keyword to search.");
         }
+
         String keyword = splitStr[1].trim();
         response.append("Here are the matching tasks in your list:");
         for (Task t : tasks) {
@@ -196,10 +211,14 @@ public class TaskList {
                 }
             }
         }
+
         if (i == 1) {
-            return "No results found.";
+            response = new StringBuilder();
+            response.append("No results found.");
         }
+
         assert !response.toString().isEmpty() : "response should be not empty when finding tasks";
+
         return response.toString();
     }
 
@@ -209,17 +228,22 @@ public class TaskList {
      * @return the String representation of the response
      */
     public String printTaskList() {
-        StringBuilder response = new StringBuilder();
         int i = 1;
+        StringBuilder response = new StringBuilder();
+
         response.append("Here are the tasks in your list:");
         for (Task t : tasks) {
             response.append("\n").append(i).append(".").append(t);
             i++;
         }
+
         if (i == 1) {
-            return "There are currently no tasks!";
+            response = new StringBuilder();
+            response.append("There are currently no tasks!");
         }
+
         assert !response.toString().isEmpty() : "response should be not empty when printing task list";
+
         return response.toString();
     }
     /**

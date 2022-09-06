@@ -18,8 +18,9 @@ public class Parser {
      * @throws DukeException if command is invalid
      */
     public static String parseCommand(String str, TaskList tasks) throws DukeException {
-        String[] splitStr = str.split(" ", 2);
         String response;
+        String[] splitStr = str.split(" ", 2);
+
         switch (splitStr[0]) {
         case "list":
             response = tasks.printTaskList();
@@ -48,6 +49,7 @@ public class Parser {
         default:
             throw new DukeException("I'm sorry, but I don't know what that means!");
         }
+
         return response;
     }
 
@@ -59,6 +61,8 @@ public class Parser {
      * @throws DukeException if the given input is not in the specified format
      */
     public static LocalDateTime parseDateTime(String str) throws DukeException {
+        LocalDateTime dateTime;
+
         String[] dateTimeFormat = {
             "yyyy/MM/dd HHmm",
             "yyyy-MM-dd HHmm",
@@ -76,21 +80,26 @@ public class Parser {
             "d/MM/yyyy",
             "d/M/yyyy",
         };
+
         for (String format : dateTimeFormat) {
             try {
-                return LocalDateTime.parse(str, DateTimeFormatter.ofPattern(format));
-            } catch (DateTimeParseException ignored) {
+                dateTime = LocalDateTime.parse(str, DateTimeFormatter.ofPattern(format));
+            } catch (DateTimeParseException e) {
                 // Proceeds to try the next format
+                continue;
             }
+            return dateTime;
         }
         for (String format : dateFormat) {
             try {
-                LocalDate date = LocalDate.parse(str, DateTimeFormatter.ofPattern(format));
-                return date.atStartOfDay();
-            } catch (DateTimeParseException ignored) {
+                dateTime = LocalDate.parse(str, DateTimeFormatter.ofPattern(format)).atStartOfDay();
+            } catch (DateTimeParseException e) {
                 // Proceeds to try the next format
+                continue;
             }
+            return dateTime;
         }
+
         throw new DukeException("Please specify the date and time in YYYY-MM-DD TTTT format.");
     }
 }
