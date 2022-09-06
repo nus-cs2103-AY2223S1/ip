@@ -1,9 +1,11 @@
 package dobby;
 
-import dobby.tasks.Todo;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import dobby.tasks.Todo;
+
 
 public class TaskTest {
 

@@ -1,26 +1,25 @@
 package dobby;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
 
 public class ParserTest {
 
     @Test
-    public void getStatusFromFile_stringFromFile_TaskStatus() {
+    public void getStatusFromFile_stringFromFile_taskStatus() {
         Parser parser = new Parser();
         assertEquals(parser.getStatusTxt("E | [ ] | test1 | Feb 02 2022 00:00"), false);
     }
 
     @Test
-    public void getDateFromUser_stringFromUser_TaskDate() {
+    public void getDateFromUser_stringFromUser_taskDate() {
         Parser parser = new Parser();
         assertEquals(parser.getDate("test /at 2022-07-07 2005"), "Jul 07 2022 20:05");
     }
 
     @Test
-    public void getCmdFromUser_stringFromUser_TaskDate() {
+    public void getCmdFromUser_stringFromUser_taskDate() {
         Parser parser = new Parser();
         assertEquals(parser.getTaskType("deadline deadlineTest /by 2022-07-07 2005"), "deadline");
     }
