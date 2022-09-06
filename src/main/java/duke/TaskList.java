@@ -83,6 +83,7 @@ public class TaskList {
     public String removeTask(String num) throws DukeException {
         int index = Integer.parseInt(num);
         resetReplySupply();
+        assert replySupply.toString().equals("") : "replySupply should be empty";
         try {
             Task task = list.get(index - 1);
             replySupply.append("Ok, I have removed this task:\n" + task.toString() + "\n");
