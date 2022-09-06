@@ -29,9 +29,7 @@ public class Jean {
         TaskList tasks = null;
         try {
             File dir = new File("data");
-            if (!dir.exists()) {
-                dir.mkdirs();
-            }
+            dir.mkdirs();
             tasks = new TaskList(storage.load());
         } catch (JeanException e) {
             ui.printMessage(ui.getJeanError(e));
