@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
-public class Tasklist {
+public class TaskList {
     private ArrayList<Task> taskArray;
     private int count = 0;
 
-    public Tasklist(){
+    public TaskList(){
         this.taskArray = new ArrayList<>();
     }
 

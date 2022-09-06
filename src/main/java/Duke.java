@@ -1,63 +1,64 @@
-import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDate;
 
 public class Duke {
     private static final String horizontalBorder = "_________________________________\n";
     private static final String INVALID_TODO_INPUT = " ☹ OOPS!!! The description of a todo cannot be empty.\n";
     private static final String INVALID_DEADLINE_INPUT = "☹ OOPS!!! Please use proper deadline formatting: deadline {task} /by {time}\n";
+    private static final String INVALID_DATE_FORMAT = "☹ OOPS!!! Please indicate your date as YYYY-MM-DD (e.g 2019-12-09)\n";
     private static final String INVALID_EVENT_INPUT = "☹ OOPS!!! Please use proper event formatting: event {task} /at {time}\n";
-    private static final String INVALID_ACCESS_EMPTY_TASKLIST = "☹ OOPS!!! Task does not exist. Initialise a task first, then try again\n";
+    private static final String INVALID_ACCESS_EMPTY_TaskList = "☹ OOPS!!! Task does not exist. Initialise a task first, then try again\n";
     private static final String INVALID_USER_INPUT = "☹ OOPS!!! Please use one of these keywords: {deadline, event, todo} followed by \\\"by\\\" and \\\"at\\\" for deadline and event tasks respectively.\n";
 
-    private Tasklist tasklist;
+    private TaskList TaskList;
 
     private Duke(){
-        this.tasklist = new Tasklist();
+        this.TaskList = new TaskList();
     }
 
-    private Duke(Tasklist tasklist){
-        this.tasklist = tasklist;
+    private Duke(TaskList TaskList){
+        this.TaskList = TaskList;
     }
 
-    private static String welcomeMessage(){
+    private static String welcomeMessage() {
         return horizontalBorder + "Hello! I'm Duke\nWhat can I do for you?\n" + horizontalBorder;
     }
 
-    private static String byeMessage(){
+    private static String byeMessage() {
         return horizontalBorder + "Bye. Hope to see you again soon!\n" + horizontalBorder;
     }
 
     private String listContents(){
-        return horizontalBorder + this.tasklist + horizontalBorder;
+        return horizontalBorder + this.TaskList + horizontalBorder;
     }
 
     public String addTaskMessage(String taskString) {
-        return horizontalBorder +  "Got it. I've added this task:\n" + taskString + "\n" + "Now you have " + this.tasklist.getCount() + " tasks in the list.\n" + horizontalBorder;
+        return horizontalBorder +  "Got it. I've added this task:\n" + taskString + "\n" + "Now you have " + this.TaskList.getCount() + " tasks in the list.\n" + horizontalBorder;
     }
 
-    public String taskNotFoundMessage(){
-        return "☹ OOPS!!! Task does not exist. Try another number between 1 and " + this.tasklist.getCount() + "\n";
+    public String taskNotFoundMessage() {
+        return "☹ OOPS!!! Task does not exist. Try another number between 1 and " + this.TaskList.getCount() + "\n";
     }
 
-    private String markDoneMessage(int position) throws DukeException{
-        boolean isTaskMarked = this.tasklist.markTaskAtPos(position);
+    private String markDoneMessage(int position) throws DukeException {
+        boolean isTaskMarked = this.TaskList.markTaskAtPos(position);
         if (isTaskMarked) {
-            Task currentTask = this.tasklist.getTask(position);
+            Task currentTask = this.TaskList.getTask(position);
             return horizontalBorder + "Nice! I've marked this task as done:\n" + currentTask + "\n" + horizontalBorder;
-        } else if (this.tasklist.getCount() == 0) {
-            throw new DukeException(INVALID_ACCESS_EMPTY_TASKLIST);
+        } else if (this.TaskList.getCount() == 0) {
+            throw new DukeException(INVALID_ACCESS_EMPTY_TaskList);
         } else {
             throw new DukeException(taskNotFoundMessage());
         }
     }
 
     private String unmarkDoneMessage(int position) throws DukeException {
-        boolean isTaskUnmarked = this.tasklist.unmarkTaskAtPos(position);
+        boolean isTaskUnmarked = this.TaskList.unmarkTaskAtPos(position);
         if (isTaskUnmarked) {
-            Task currentTask = this.tasklist.getTask(position);
+            Task currentTask = this.TaskList.getTask(position);
             return horizontalBorder + "OK, I've marked this task as not done yet:\n" + currentTask + "\n" + horizontalBorder;
-        } else if (this.tasklist.getCount() == 0) {
-            throw new DukeException(INVALID_ACCESS_EMPTY_TASKLIST);
+        } else if (this.TaskList.getCount() == 0) {
+            throw new DukeException(INVALID_ACCESS_EMPTY_TaskList);
         } else {
             throw new DukeException(taskNotFoundMessage());
         }
@@ -65,11 +66,11 @@ public class Duke {
 
     private String deleteTaskMessage(int position) throws DukeException {
         try {
-            Task deletedTask = this.tasklist.deleteTaskAtPos(position);
-            return horizontalBorder + "Noted. I've removed this task:\n" + deletedTask + "\n" + "" + "Now you have " + this.tasklist.getCount() + " tasks in the list.\n" + horizontalBorder;
-        } catch (IndexOutOfBoundsException e){
-            if (this.tasklist.getCount() == 0){
-                throw new DukeException(INVALID_ACCESS_EMPTY_TASKLIST);
+            Task deletedTask = this.TaskList.deleteTaskAtPos(position);
+            return horizontalBorder + "Noted. I've removed this task:\n" + deletedTask + "\n" + "" + "Now you have " + this.TaskList.getCount() + " tasks in the list.\n" + horizontalBorder;
+        } catch (IndexOutOfBoundsException e) {
+            if (this.TaskList.getCount() == 0) {
+                throw new DukeException(INVALID_ACCESS_EMPTY_TaskList);
             } else {
                 throw new DukeException(taskNotFoundMessage());
             }
@@ -89,7 +90,7 @@ public class Duke {
         String description = input.substring("todo".length()).strip();
         if (!description.equals("")) {
             ToDo newToDo = new ToDo(description);
-            this.tasklist.add(newToDo);
+            this.TaskList.add(newToDo);
             return addTaskMessage(newToDo.toString());
         } else {
             throw new DukeException(INVALID_TODO_INPUT);
@@ -98,12 +99,15 @@ public class Duke {
 
     private String makeDeadlineFromInput(String input) throws DukeException {
         String[] stringArray = input.substring("deadline".length()).strip().split("/by");
-        if (stringArray.length > 1) {
-            Deadline newDeadline = new Deadline(stringArray[0].strip(), stringArray[1].strip());
-            this.tasklist.add(newDeadline);
+        try {
+            LocalDate deadlineDate = LocalDate.parse(stringArray[1].strip());
+            Deadline newDeadline = new Deadline(stringArray[0].strip(), deadlineDate);
+            this.TaskList.add(newDeadline);
             return addTaskMessage(newDeadline.toString());
-        } else {
+        } catch (ArrayIndexOutOfBoundsException e) {
             throw new DukeException(INVALID_DEADLINE_INPUT);
+        } catch (java.time.format.DateTimeParseException e) {
+            throw new DukeException(INVALID_DATE_FORMAT);
         }
     }
 
@@ -111,7 +115,7 @@ public class Duke {
         String[] stringArray = input.substring("event".length()).strip().split("/at");
         if (stringArray.length > 1) {
             Event newEvent = new Event(stringArray[0].strip(), stringArray[1].strip());
-            this.tasklist.add(newEvent);
+            this.TaskList.add(newEvent);
             return addTaskMessage(newEvent.toString());
         } else {
             throw new DukeException(INVALID_EVENT_INPUT);
@@ -163,7 +167,7 @@ public class Duke {
 
 
     public static void main(String[] args) {
-        Duke sampleDuke = new Duke(new Tasklist());
+        Duke sampleDuke = new Duke(new TaskList());
         sampleDuke.run();
 //        ArrayList<String> a = new ArrayList<>();
 //        a.add("lol");
