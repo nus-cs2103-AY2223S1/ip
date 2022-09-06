@@ -2,6 +2,7 @@ package duke;
 
 import duke.command.Command;
 import duke.task.TaskList;
+import duke.ui.Ui;
 
 /**
  * Duke is an automated chat-bot which can help you manage your tasks.
@@ -10,43 +11,31 @@ public class Duke {
 
     private Storage storage;
     private TaskList tasks;
-    private Ui ui;
 
     /**
      * Constructs a Duke.
-     *
-     * @param filePath String representing the file path of a save file.
      */
-    public Duke(String filePath) {
-        ui = new Ui();
-        storage = new Storage(filePath);
+    public Duke() {
+        storage = new Storage("data/tasks.txt");
+    }
+
+    public void loadTask() throws DukeException {
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
-            ui.showLoadingError();
             tasks = new TaskList();
+            throw e;
         }
     }
 
-    /**
-     * Runs duke.
-     */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            }
+    public String getResponse(String input) {
+        String res;
+        try {
+            Command c = Parser.parse(input);
+            res = c.execute(tasks, storage);
+        } catch (DukeException e) {
+            res = Ui.getErrorMessage(e.getMessage());
         }
-    }
-
-    public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
+        return res;
     }
 }

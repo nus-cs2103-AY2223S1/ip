@@ -1,7 +1,7 @@
 package duke.command;
 
 import duke.Storage;
-import duke.Ui;
+import duke.ui.Ui;
 import duke.task.TaskList;
 
 /**
@@ -17,9 +17,8 @@ public class ExitCommand implements Command {
      * @param storage Storage created when starting Duke.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.close();
-        ui.showBye();
+    public String execute(TaskList tasks, Storage storage) {
+        return Ui.getByeMessage();
     }
 
     /**
