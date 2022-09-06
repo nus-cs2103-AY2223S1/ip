@@ -1,4 +1,4 @@
-package duke.command.handler;
+package duke.command.handler.base;
 
 import java.util.regex.Pattern;
 

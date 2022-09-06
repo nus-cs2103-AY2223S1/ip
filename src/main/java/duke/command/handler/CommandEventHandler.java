@@ -4,6 +4,7 @@ import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
 import duke.command.CommandException;
+import duke.command.handler.base.CommandAddTaskHandler;
 import duke.data.tasks.Task;
 import duke.data.tasks.TaskEvent;
 

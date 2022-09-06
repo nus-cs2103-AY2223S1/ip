@@ -3,6 +3,7 @@ package duke.command.handler;
 import java.util.regex.Pattern;
 
 import duke.command.CommandException;
+import duke.command.handler.base.CommandHandler;
 import duke.command.response.CommandResponse;
 import duke.data.TaskList;
 

@@ -4,12 +4,13 @@ import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
 import duke.command.CommandException;
+import duke.command.handler.base.CommandUpdateTaskHandler;
 import duke.command.response.CommandResponse;
 import duke.command.response.DeleteTaskResponse;
 import duke.data.TaskList;
 import duke.data.tasks.Task;
 
-public class CommandDeleteHandler extends CommandHandler {
+public class CommandDeleteHandler extends CommandUpdateTaskHandler {
 
     protected static final String INVALID_FORMAT_MESSAGE = String.join("\n",
         "Invalid `delete` command format!",
@@ -28,31 +29,15 @@ public class CommandDeleteHandler extends CommandHandler {
         return INVALID_FORMAT_MESSAGE;
     }
 
-    /**
-     * Delete a task from the task list
-     *
-     * @param taskList task list
-     * @return delete task response
-     * @throws CommandException if task number given is out of range or task number string cannot be
-     *                          parsed into a number
-     */
     @Override
-    public CommandResponse run(TaskList taskList) throws CommandException {
+    protected String getSelectedTaskIdStr() {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
-        String taskIdxStr = regexMatchResult.group(1);
-        try {
-            int taskIdx = Integer.parseInt(taskIdxStr);
-            if (taskIdx <= 0 || taskIdx > taskList.size()) {
-                throw new CommandException("Invalid task selected!");
-            } else {
-                Task deletedTask = taskList.deleteTask(taskIdx - 1);
-                return new DeleteTaskResponse(deletedTask, taskList.size());
-            }
-        } catch (NumberFormatException error) {
-            throw new CommandException(String.join("\n",
-                "Task number should be a number!",
-                "Got: %s", taskIdxStr
-            ));
-        }
+        return regexMatchResult.group(1);
+    }
+
+    @Override
+    protected CommandResponse updateTask(Task task, int taskIdx, TaskList taskList) {
+        taskList.deleteTask(taskIdx);
+        return new DeleteTaskResponse(task, taskList.size());
     }
 }

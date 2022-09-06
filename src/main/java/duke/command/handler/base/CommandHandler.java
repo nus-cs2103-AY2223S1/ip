@@ -1,4 +1,4 @@
-package duke.command.handler;
+package duke.command.handler.base;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

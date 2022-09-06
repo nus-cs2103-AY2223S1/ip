@@ -4,12 +4,12 @@ import duke.command.handler.CommandDeadlineHandler;
 import duke.command.handler.CommandDeleteHandler;
 import duke.command.handler.CommandEventHandler;
 import duke.command.handler.CommandFindHandler;
-import duke.command.handler.CommandHandler;
 import duke.command.handler.CommandListHandler;
 import duke.command.handler.CommandMarkHandler;
 import duke.command.handler.CommandTagHandler;
 import duke.command.handler.CommandTerminateHandler;
 import duke.command.handler.CommandTodoHandler;
+import duke.command.handler.base.CommandHandler;
 
 public class CommandFactory {
 
