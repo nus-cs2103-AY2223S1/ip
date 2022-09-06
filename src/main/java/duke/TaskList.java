@@ -63,11 +63,12 @@ public class TaskList {
      * Adds given task into the task list.
      *
      * @param task The task to be added.
+     * @param isReplyMessage  Whether a reply message is to be generated.
      */
-    public String add(Task task, Boolean bool) {
+    public String add(Task task, Boolean isReplyMessage) {
         this.list.add(task);
         resetReplySupply();
-        if (bool) {
+        if (isReplyMessage) {
             replySupply.append("Got it. I've added this task:\n" + task.toString() + "\n");
             replySupply.append("Now you have " + this.list.size() + " tasks in the list\n");
         }

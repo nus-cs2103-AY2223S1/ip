@@ -34,8 +34,8 @@ public class Deadline extends Task {
      * @return The task description for output text file.
      */
     @Override
-    public String tofileString() {
-        return "D|" + super.tofileString() + "|" + this.getDeadlineString();
+    public String toFileFormat() {
+        return "D|" + super.toFileFormat() + "|" + this.getDeadlineString();
     }
 
     /**

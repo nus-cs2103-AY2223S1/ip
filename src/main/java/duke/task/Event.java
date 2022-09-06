@@ -23,8 +23,8 @@ public class Event extends Task {
      * @return The task description for output text file.
      */
     @Override
-    public String tofileString() {
-        return "E|" + super.tofileString() + "|" + this.date;
+    public String toFileFormat() {
+        return "E|" + super.toFileFormat() + "|" + this.date;
     }
 
     /**

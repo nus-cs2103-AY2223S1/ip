@@ -20,8 +20,8 @@ public class Todo extends Task {
      * @return The task description for output text file.
      */
     @Override
-    public String tofileString() {
-        return "T|" + super.tofileString();
+    public String toFileFormat() {
+        return "T|" + super.toFileFormat();
     }
 
     /**
