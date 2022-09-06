@@ -31,7 +31,7 @@ public class DeleteCommand extends Command {
      * @param storage Storage object of current Blink object
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage)  {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         Task temp = tasks.deleteTask(num);
         storage.save(tasks);
         return ui.deleteTask(tasks, temp);

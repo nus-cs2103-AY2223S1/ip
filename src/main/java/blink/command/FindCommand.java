@@ -1,16 +1,16 @@
 package blink.command;
 
+import java.util.ArrayList;
+
 import blink.Storage;
 import blink.TaskList;
 import blink.Ui;
 import blink.task.Task;
 
-import java.util.ArrayList;
-
 /**
  * Finds all the Tasks inside TaskList with the same keyword.
  */
-public class FindCommand extends Command{
+public class FindCommand extends Command {
 
     private String keyWord;
 

@@ -1,18 +1,18 @@
 package blink.command;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 import blink.Storage;
 import blink.TaskList;
 import blink.Ui;
 import blink.task.Task;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.time.DateTimeException;
-
 /**
  * Filter command to display all tasks of a specified date.
  */
-public class FilterCommand extends Command{
+public class FilterCommand extends Command {
 
     private LocalDate date;
 
@@ -22,7 +22,7 @@ public class FilterCommand extends Command{
      *
      * @param input Information of date
      * @throws DateTimeException Thrown if input is not of suitable
-     * date format (YYYY-MM-DD)
+     *     date format (YYYY-MM-DD)
      */
     public FilterCommand(String input) {
         LocalDate date = LocalDate.parse(input);

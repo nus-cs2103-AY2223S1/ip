@@ -9,7 +9,7 @@ import blink.task.Deadlines;
 /**
  * Deadline command to create a new deadline task.
  */
-public class DeadlineCommand extends Command{
+public class DeadlineCommand extends Command {
 
     private String desc;
     private String date;
@@ -20,7 +20,7 @@ public class DeadlineCommand extends Command{
      *
      * @param input Information of the Deadline object
      * @throws BlinkException Thrown if there is missing information
-     * of Deadline object.
+     *     of Deadline object.
      */
     public DeadlineCommand(String input) {
         String[] info = input.split("/by");

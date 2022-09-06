@@ -1,20 +1,20 @@
 package blink;
 
-import blink.task.Deadlines;
-import blink.task.Events;
-import blink.task.Task;
-import blink.task.ToDos;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import blink.task.Deadlines;
+import blink.task.Events;
+import blink.task.Task;
+import blink.task.ToDos;
 
 public class TaskListTest {
 
-    public static ArrayList<Task> tempList () {
+    public static ArrayList<Task> tempList() {
         ArrayList<Task> temp = new ArrayList<>();
         temp.add(new Deadlines("Study 1", "2022-08-23"));
         temp.add(new Events("Study 2", "2022-08-23"));

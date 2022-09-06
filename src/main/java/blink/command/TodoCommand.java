@@ -19,7 +19,7 @@ public class TodoCommand extends Command {
      *
      * @param input Description of the ToDO object
      * @throws BlinkException Thrown if information of ToDo
-     * object is missing
+     *     object is missing
      */
     public TodoCommand(String input) {
         if (input.isBlank()) {

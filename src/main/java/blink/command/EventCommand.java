@@ -20,7 +20,7 @@ public class EventCommand extends Command {
      *
      * @param input Information of the Event object
      * @throws BlinkException Thrown if there is missing information
-     * of Event object.
+     *     of Event object.
      */
     public EventCommand(String input) {
         String[] info = input.split("/at");

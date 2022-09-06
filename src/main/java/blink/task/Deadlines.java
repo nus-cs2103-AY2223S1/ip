@@ -27,11 +27,11 @@ public class Deadlines extends Task {
      * String representation of Deadlines Object.
      *
      * @return [D] to represent deadline and information indicating
-     * if its marked, description and to be done by which date
+     *     if its marked, description and to be done by which date
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: "+ this.dateString() + ")";
+        return "[D]" + super.toString() + " (by: " + this.dateString() + ")";
     }
 
     /**
@@ -53,7 +53,7 @@ public class Deadlines extends Task {
      */
     @Override
     public String saveString() {
-        return "D " + "|" + (this.isDone? 1 : 0 )
+        return "D " + "|" + (this.isDone ? 1 : 0)
                 + "| " + this.description + " | " + this.date + "\n";
     }
 

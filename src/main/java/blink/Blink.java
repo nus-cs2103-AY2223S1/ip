@@ -1,8 +1,8 @@
 package blink;
 
-import blink.command.Command;
-
 import java.time.DateTimeException;
+
+import blink.command.Command;
 
 /**
  * Main class where the Blink program runs, containing the TaskList,

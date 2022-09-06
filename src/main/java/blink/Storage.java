@@ -1,13 +1,13 @@
 package blink;
 
-import blink.task.Task;
-
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.io.File;
-import java.io.FileWriter;
 import java.util.Scanner;
+
+import blink.task.Task;
 
 /**
  * Loads the save file when the program starts and save a new
@@ -21,7 +21,7 @@ public class Storage {
      * Constructor of Storage
      *
      * @param filePath The filepath where the save file can
-     * be found.
+     *     be found.
      */
     public Storage(String filePath) {
         this.filePath = filePath;
@@ -56,7 +56,7 @@ public class Storage {
      * Creates a save file to replace the existing one.
      *
      * @param tasks TaskList containing all tasks inputted into
-     * the Blink program
+     *     the Blink program
      */
     public void save(TaskList tasks) {
         try {

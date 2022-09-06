@@ -1,17 +1,17 @@
 package blink.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DeadlinesTest {
 
     @Test
     public void addDeadline() {
         Task deadline = new Deadlines("Study", "2022-08-23");
-        assertEquals("[D][ ] Study (by: AUGUST 23 2022 TUESDAY)",deadline.toString());
+        assertEquals("[D][ ] Study (by: AUGUST 23 2022 TUESDAY)", deadline.toString());
     }
 
     @Test

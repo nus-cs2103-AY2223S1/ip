@@ -6,7 +6,7 @@ import java.time.LocalDate;
  * Events task that contains a description, boolean to indicate if
  * it has been marked and date.
  */
-public class Events extends Task{
+public class Events extends Task {
 
     protected LocalDate date;
 
@@ -27,11 +27,11 @@ public class Events extends Task{
      * String representation of Events Object.
      *
      * @return [E] to represent deadline and information indicating
-     * if its marked, description and associated date
+     *     if its marked, description and associated date
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: "+ this.dateString() + ")";
+        return "[E]" + super.toString() + " (at: " + this.dateString() + ")";
     }
 
     /**
@@ -53,7 +53,7 @@ public class Events extends Task{
      */
     @Override
     public String saveString() {
-        return "E " + "|" + (this.isDone? 1 : 0 )
+        return "E " + "|" + (this.isDone ? 1 : 0)
                 + "| " + this.description + " | " + this.date + "\n";
     }
 

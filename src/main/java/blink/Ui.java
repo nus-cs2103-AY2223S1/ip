@@ -1,9 +1,9 @@
 package blink;
 
-import blink.task.Task;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import blink.task.Task;
 
 /**
  * Ui that control logic of what is displayed on screen.
@@ -76,7 +76,7 @@ public class Ui {
         if (tasks.size() == 0) {
             return "No task found on " + date.toString();
         } else {
-            String currentSize = tasks.size() + ((tasks.size() == 1)? " task": " tasks")
+            String currentSize = tasks.size() + ((tasks.size() == 1) ? " task" : " tasks")
                     + " found";
             output += currentSize;
             for (int x = 0; x < tasks.size(); x++) {
@@ -108,7 +108,7 @@ public class Ui {
         if (tasks.size() == 0) {
             return "No tasks found with keyword: " + keyword;
         } else {
-            String currentSize = tasks.size() + ((tasks.size() == 1)? " task": " tasks")
+            String currentSize = tasks.size() + ((tasks.size() == 1) ? " task" : " tasks")
                     + " found";
             output += currentSize;
             for (int x = 0; x < tasks.size(); x++) {

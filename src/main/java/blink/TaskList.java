@@ -1,12 +1,12 @@
 package blink;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 import blink.task.Deadlines;
 import blink.task.Events;
 import blink.task.Task;
 import blink.task.ToDos;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 /**
  * TaskList contains all the task inputted into the current run of
@@ -39,7 +39,7 @@ public class TaskList {
      *
      * @param pos Number position of task to delete
      * @return Task that is deleted, with all its information before
-     * it was deleted
+     *     it was deleted
      */
     public Task deleteTask(int pos) {
         if (pos <= 0 || pos > this.length()) {
@@ -134,7 +134,7 @@ public class TaskList {
      *
      * @param date Date that tasks check equality with
      * @return ArrayList containing all tasks with same date
-     * as the one specified
+     *     as the one specified
      */
     public ArrayList<Task> filter(LocalDate date) {
         ArrayList<Task> sameDates = new ArrayList<>();
@@ -153,7 +153,7 @@ public class TaskList {
      * @param desc Description of Events object
      * @param date Date of Events object
      * @return Event object that is just added to TaskList
-     * and its information
+     *     and its information
      */
     public Events addEvent(String desc, String date) {
         Events temp = new Events(desc.strip(), date.strip());
@@ -167,7 +167,7 @@ public class TaskList {
      * @param desc Description of Deadline object
      * @param date Date of Deadline object
      * @return Deadline object that is just added to TaskList
-     * and its information
+     *     and its information
      */
     public Deadlines addDeadline(String desc, String date) {
         Deadlines temp = new Deadlines(desc.strip(), date.strip());
@@ -180,7 +180,7 @@ public class TaskList {
      *
      * @param desc Description of ToDos object
      * @return ToDos object that is just added to TaskList
-     * and its information
+     *     and its information
      */
     public ToDos addTodo(String desc) {
         ToDos temp = new ToDos(desc.strip());

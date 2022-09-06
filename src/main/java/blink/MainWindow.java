@@ -25,13 +25,16 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/UserAvatar.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/BlinkAvatar.png"));
 
+    /**
+     * Begins the gui
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         String welcomeMsg = "Hello Blink here. \n"
                 + "What can I do for you today ^-^";
         dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog(welcomeMsg,dukeImage)
+                DialogBox.getDukeDialog(welcomeMsg, dukeImage)
         );
     }
 

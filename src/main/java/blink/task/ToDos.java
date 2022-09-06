@@ -6,7 +6,7 @@ import java.time.LocalDate;
  * ToDos task that contains a description and boolean to indicate if
  * it has been marked.
  */
-public class ToDos extends Task{
+public class ToDos extends Task {
 
     /**
      * Constructor to create ToDos task object
@@ -14,14 +14,14 @@ public class ToDos extends Task{
      * @param description Description of ToDos task object.
      */
     public ToDos(String description) {
-        super (description);
+        super(description);
     }
 
     /**
      * String representation of ToDos Object.
      *
      * @return [T] to represent deadline and information indicating
-     * if its marked and description
+     *     if its marked and description
      */
     @Override
     public String toString() {
