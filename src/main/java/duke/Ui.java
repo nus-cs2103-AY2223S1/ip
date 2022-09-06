@@ -77,12 +77,12 @@ public class Ui {
      * @return string of taskList
      */
     public String showTaskList(TaskList taskList) {
-        String out = "";
+        String strOfTasks = "";
         for (int i = 0; i < taskList.getSize(); i++) {
-            out += showTask(i + 1, taskList.getTask(i));
-            out += "\n";
+            strOfTasks += showTask(i + 1, taskList.getTask(i));
+            strOfTasks += "\n";
         }
-        return out;
+        return strOfTasks;
     }
 
     /**

@@ -32,10 +32,8 @@ public class UnmarkCommand extends Command {
     @Override
     public String execute(Ui ui, TaskList taskList) {
         Task task;
-
         task = taskList.getTask(num);
         task.setUnmarked();
-
         return ui.showUnmarkMessage(task);
     }
 }

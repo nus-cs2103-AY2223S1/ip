@@ -28,7 +28,6 @@ public class ListCommand extends Command {
     @Override
     public String execute(Ui ui, TaskList taskList) {
         String output = ui.showList() + "\n";
-
         return output + ui.showTaskList(taskList);
     }
 }

@@ -27,9 +27,13 @@ public class ExitCommand extends Command {
     @Override
     public String execute(Ui ui, TaskList taskList) {
         System.out.println(ui.showExitMessage());
-        Storage storage = new Storage(ui, "./data/duke.txt");
+        Storage storage = new Storage(ui, getFilePath());
         storage.writeFile(taskList);
         javafx.application.Platform.exit();
         return ui.showExitMessage();
+    }
+
+    private String getFilePath() {
+        return "./data/duke.txt";
     }
 }

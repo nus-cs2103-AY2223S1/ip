@@ -21,8 +21,8 @@ public class Deadline extends Task {
      */
     public Deadline(TaskType taskType, String name, boolean isMarked, String timeStr) {
         super(taskType, name, isMarked);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
-                "HHmm, d/MM/yyyy");
+        String format = "HHmm, d/MM/yyyy";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
         this.byTime = LocalDateTime.parse(timeStr, formatter);
     }
 
@@ -39,8 +39,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
-                "hh:mm a, EEE, d MMM yyyy");
+        String format = "hh:mm a, EEE, d MMM yyyy";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
         return "[D]" + super.toString()
                 + " (by: " + byTime.format(formatter) + ")";
     }
