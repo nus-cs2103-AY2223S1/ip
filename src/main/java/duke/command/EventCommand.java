@@ -12,9 +12,9 @@ import duke.util.TaskList;
  * Handles the command 'event'.
  */
 public class EventCommand extends Command {
+    private static final String EVENT_ERROR_MESSAGE = "Please follow the format \n'event task /at YYYY-MM-DD'!";
     private String input;
     private String[] segments;
-    private final String EVENT_ERROR_MESSAGE = "Please follow the format \n'event task /at YYYY-MM-DD'!";
 
     /**
      * Constructor for a new Event command.
@@ -41,7 +41,7 @@ public class EventCommand extends Command {
     public void run(TaskList taskList, Response builder) throws DukeException {
         try {
             if (isValidEvent()) {
-                assert segments.length == 2 : "A event task follows the format 'event task /at YYYY-MM-DD'";
+                assert segments.length == 2 : EVENT_ERROR_MESSAGE;
                 String time = segments[1].strip();
                 LocalDate date = LocalDate.parse(time);
                 Event event = new Event(segments[0], date);

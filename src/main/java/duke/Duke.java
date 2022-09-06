@@ -13,10 +13,13 @@ import duke.util.Ui;
  * Class containing initialisation of Duke chatbot.
  */
 public class Duke {
+    private static Response response = new Response(new StringBuilder());
     private static Storage storage = new Storage("./././././data/duke.txt");
     private TaskList tasks;
-    private static Response response = new Response(new StringBuilder());
 
+    /**
+     * Constructor for a new Deadline command.
+     */
     public Duke() {
         try {
             storage.readStorage(response);
@@ -26,6 +29,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Initialises Duke and reads the input from the user.
+     * @param input The user input.
+     * @throws DukeException Duke Exception thrown from other methods.
+     */
     public String dukeExecute(String input) throws DukeException {
         while (true) {
             try {

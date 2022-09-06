@@ -3,7 +3,6 @@ package duke.command;
 import duke.DukeException;
 import duke.Response;
 import duke.util.TaskList;
-import duke.util.Ui;
 
 /**
  * Handles the command 'mark'.

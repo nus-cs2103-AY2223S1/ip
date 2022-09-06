@@ -16,7 +16,7 @@ public class Ui {
      * @param input the input
      */
     public static String formatMessage(String input) {
-        return("-------------------------------\n"
+        return ("-------------------------------\n"
             + input + "\n-------------------------------");
     }
 

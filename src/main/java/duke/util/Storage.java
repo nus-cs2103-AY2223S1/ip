@@ -21,11 +21,11 @@ import duke.task.Todo;
  * Class that deals with loading tasks from the file and saving tasks in the file.
  */
 public class Storage {
+    private static String filePath;
     private TaskList tasks = new TaskList(new ArrayList<>());
-    private static String FILE_PATH;
 
     public Storage(String filePath) {
-        FILE_PATH = filePath;
+        Storage.filePath = filePath;
     }
 
     /**
@@ -35,7 +35,7 @@ public class Storage {
      */
     public void readStorage(Response response) throws IOException {
         try {
-            File file = new File(FILE_PATH);
+            File file = new File(filePath);
             FileReader fr = new FileReader(file.getPath());
             BufferedReader br = new BufferedReader(fr);
             String line = br.readLine();
@@ -56,7 +56,7 @@ public class Storage {
                         break;
 
                     case "E":
-                        assert segments.length == 4: "An event task follows the format 'event task /at YYYY-MM-DD'";
+                        assert segments.length == 4 : "An event task follows the format 'event task /at YYYY-MM-DD'";
                         String time = segments[3];
                         LocalDate date = LocalDate.parse(time);
                         tasks.createTaskSilently(new Event(segments[2], date));
@@ -66,7 +66,8 @@ public class Storage {
                         break;
 
                     case "D":
-                        assert segments.length == 4: "A deadline task follows the format 'deadline task /by YYYY-MM-DD'";
+                        assert segments.length == 4
+                                : "A deadline task follows the format 'deadline task /by YYYY-MM-DD'";
                         String time2 = segments[3];
                         LocalDate date2 = LocalDate.parse(time2);
                         tasks.createTaskSilently(new Deadline(segments[2], date2));
@@ -106,7 +107,7 @@ public class Storage {
      */
     public static void writeStorage(TaskList tasks) {
         try {
-            File myFile = new File(FILE_PATH);
+            File myFile = new File(filePath);
             OutputStream os = new FileOutputStream(myFile);
             PrintWriter pw = new PrintWriter(os);
             for (Task task : tasks.getTaskList()) {
