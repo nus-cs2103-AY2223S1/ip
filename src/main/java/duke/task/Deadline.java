@@ -10,18 +10,18 @@ import duke.util.Parser;
  * Task with a deadline.
  */
 public class Deadline extends Task {
-    private LocalDate by;
+    private LocalDate dueDate;
 
     /**
      * Constructor for {@code Deadline}. With deadline {@code LocalDate}.
      *
      * @param description Description of the {@code Deadline} task.
      * @param isDone Completion status of the {@code Deadline} task.
-     * @param by {@code LocalDate} of deadline.
+     * @param dueDate {@code LocalDate} of deadline.
      */
-    public Deadline(String description, boolean isDone, LocalDate by) {
+    public Deadline(String description, boolean isDone, LocalDate dueDate) {
         super(description, isDone);
-        this.by = by;
+        this.dueDate = dueDate;
     }
 
     /**
@@ -29,11 +29,11 @@ public class Deadline extends Task {
      *
      * @param description Description of the {@code Deadline} task.
      * @param isDone Completion status of the {@code Deadline} task.
-     * @param by Deadline date string.
+     * @param dueDate Deadline date string.
      * @throws DukeException Checked exceptions that may occur when parsing date string.
      */
-    public Deadline(String description, boolean isDone, String by) throws DukeException {
-        this(description, isDone, Parser.parseDate(by));
+    public Deadline(String description, boolean isDone, String dueDate) throws DukeException {
+        this(description, isDone, Parser.parseDate(dueDate));
     }
 
     /**
@@ -41,15 +41,15 @@ public class Deadline extends Task {
      * And assumes completion status is {@code false}.
      *
      * @param description Description of the {@code Deadline} task.
-     * @param by Deadline date string.
+     * @param dueDate Deadline date string.
      * @throws DukeException Checked exceptions that may occur when parsing date string.
      */
-    public Deadline(String description, String by) throws DukeException {
-        this(description, false, Parser.parseDate(by));
+    public Deadline(String description, String dueDate) throws DukeException {
+        this(description, false, Parser.parseDate(dueDate));
     }
 
     String getFormattedDateString() {
-        return this.by.format(DATE_FORMATTER);
+        return this.dueDate.format(DATE_FORMATTER);
     }
 
     /**
@@ -59,7 +59,7 @@ public class Deadline extends Task {
      */
     @Override
     public String getStorageFormat() {
-        return "D | " + super.getStorageFormat() + " | " + this.by;
+        return String.format("D | %s | %s", super.getStorageFormat(), this.dueDate);
     }
 
     /**
@@ -67,6 +67,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.getFormattedDateString() + ")";
+        return String.format("[D]%s (by: %s)", super.toString(), this.getFormattedDateString());
     }
 }

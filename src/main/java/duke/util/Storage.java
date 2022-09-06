@@ -15,6 +15,9 @@ import duke.task.TaskList;
  * Class to manage file storage operations.
  */
 public class Storage {
+    private static final String ERROR_MESSAGE_NO_STORAGE_FILE = "No storage file found";
+    private static final String ERROR_MESSAGE_READ_STORAGE_FILE_ERROR = "Error reading from storage file";
+
     public final String dataPath;
     public final String storageName;
 
@@ -65,7 +68,7 @@ public class Storage {
             List<Task> tasks = new ArrayList<>();
             File file = new File(dataPath + "/" + storageName);
             if (!file.exists()) {
-                throw new DukeException("No storage file found");
+                throw new DukeException(ERROR_MESSAGE_NO_STORAGE_FILE);
             }
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
@@ -74,7 +77,7 @@ public class Storage {
             }
             return tasks;
         } catch (IOException e) {
-            throw new DukeException("Error reading from storage file");
+            throw new DukeException(ERROR_MESSAGE_READ_STORAGE_FILE_ERROR);
         }
     }
 }

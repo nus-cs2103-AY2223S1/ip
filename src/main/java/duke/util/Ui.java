@@ -8,12 +8,13 @@ import duke.task.TaskList;
  */
 public class Ui {
     private static final String INDENTATION = "     ";
+    private static final String WELCOME_MESSAGE = "Hello! I'm Duke, What can I do for you?";
 
     /**
      * Prints greeting message.
      */
     public static String showWelcome() {
-        return "Hello! I'm Duke, What can I do for you?" + System.lineSeparator();
+        return WELCOME_MESSAGE;
     }
 
     /**

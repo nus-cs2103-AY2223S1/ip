@@ -59,7 +59,7 @@ public abstract class Task {
      * Returns a String representation of the {@code Task} in storage format.
      */
     public String getStorageFormat() {
-        return this.getStatusBit() + " | " + this.description;
+        return String.format("%d | %s", isDone ? 1 : 0, this.description);
     }
 
     /**
@@ -67,13 +67,6 @@ public abstract class Task {
      */
     public boolean isDone() {
         return this.isDone;
-    }
-
-    /**
-     * Returns 1 if {@code Task} is done, otherwise 0.
-     */
-    int getStatusBit() {
-        return isDone ? 1 : 0;
     }
 
     /**
@@ -88,6 +81,6 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return this.getStatusIcon() + " " + this.description;
+        return String.format("%s %s", this.getStatusIcon() ,this.description);
     }
 }
