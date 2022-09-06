@@ -20,15 +20,11 @@ public class UnmarkCommand extends Command {
     @Override
     public String execute(TaskList taskList, Storage storage) throws TextNoMeaningException, IOException {
         try {
-            String taskNumInString = this.fullCommand.substring(7);
-            // Minus one as arrayList is zero-indexed
-            int taskNum = Integer.parseInt(taskNumInString) - 1;
+            int taskNum = generateTaskNumToUnmark();
             Task task = taskList.getTask(taskNum);
             task.markAsUndone();
             storage.reWriteDataFile(taskList);
-            String s = "Well, that's disappointing. I've marked this task as undone: \n"
-                    + "    " + task;
-            return s;
+            return generateResponse(task);
         } catch (IndexOutOfBoundsException e) {
             throw new TextNoMeaningException("You have either not entered any number to indicate which task "
                     + "I should unmark, or you entered an invalid task number.");
@@ -40,5 +36,16 @@ public class UnmarkCommand extends Command {
     @Override
     public boolean isExit() {
         return false;
+    }
+
+    private int generateTaskNumToUnmark() {
+        String taskNumInString = this.fullCommand.substring(7);
+        // Minus one as arrayList is zero-indexed
+        return Integer.parseInt(taskNumInString) - 1;
+    }
+
+    private String generateResponse(Task task) {
+        return "Well, that's disappointing. I've marked this task as undone: \n"
+                + "    " + task;
     }
 }

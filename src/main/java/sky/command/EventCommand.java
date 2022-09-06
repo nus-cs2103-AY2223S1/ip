@@ -27,13 +27,7 @@ public class EventCommand extends Command {
     @Override
     public String execute(TaskList taskList, Storage storage) throws TextNoMeaningException, IOException {
         try {
-            String taskEvent = this.fullCommand.substring(6);
-            String[] arrOfStrings = taskEvent.split(" /at ");
-            if (arrOfStrings.length != 2) {
-                throw new TextNoMeaningException("Make sure you specify \"/at\" exactly once,"
-                        + " and follow it up with a date and time as: \"yyyy/mm/dd XXXX-XXXX\","
-                        + " where XXXX is time in 24-hours. The time is compulsory.");
-            }
+            String[] arrOfStrings = generateTaskDescriptionAndUserInputDuration();
             String taskDescription = arrOfStrings[0];
             String taskDurationUserInput = arrOfStrings[1];
             String taskDuration = produceDateAndTimeForEvent(taskDurationUserInput);
@@ -41,11 +35,7 @@ public class EventCommand extends Command {
             taskList.addTask(task);
             // Add task into data file
             storage.append(task.toString());
-            String s = "Got it. I've added this task: \n"
-                    + "    " + task
-                    + "\nNow you have " + taskList.getSize()
-                    + (taskList.getSize() <= 1 ? " task in the list." : " tasks in the list.");
-            return s;
+            return generateResponse(task, taskList);
         } catch (IndexOutOfBoundsException e) {
             throw new TextNoMeaningException("You have either not entered any text after typing event, "
                     + "or you have positioned your slash wrongly.");
@@ -92,5 +82,23 @@ public class EventCommand extends Command {
         } catch (IndexOutOfBoundsException e) {
             throw new TextNoMeaningException("Provide time as: XXXX-XXXX, in 24-hours standard.");
         }
+    }
+
+    private String[] generateTaskDescriptionAndUserInputDuration() throws TextNoMeaningException {
+        String taskEvent = this.fullCommand.substring(6);
+        String[] arrOfStrings = taskEvent.split(" /at ");
+        if (arrOfStrings.length != 2) {
+            throw new TextNoMeaningException("Make sure you specify \"/at\" exactly once,"
+                    + " and follow it up with a date and time as: \"yyyy/mm/dd XXXX-XXXX\","
+                    + " where XXXX is time in 24-hours. The time is compulsory.");
+        }
+        return arrOfStrings;
+    }
+
+    private String generateResponse(Task task, TaskList taskList) {
+        return "Got it. I've added this task: \n"
+                + "    " + task
+                + "\nNow you have " + taskList.getSize()
+                + (taskList.getSize() <= 1 ? " task in the list." : " tasks in the list.");
     }
 }

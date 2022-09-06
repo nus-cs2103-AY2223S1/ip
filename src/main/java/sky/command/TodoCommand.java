@@ -26,11 +26,7 @@ public class TodoCommand extends Command {
             taskList.addTask(task);
             // Add task into data file
             storage.append(task.toString());
-            String s = "Got it. I've added this task: \n"
-                    + "    " + task
-                    + "\nNow you have " + taskList.getSize()
-                    + (taskList.getSize() <= 1 ? " task in the list." : " tasks in the list.");
-            return s;
+            return generateResponse(task, taskList);
         } catch (IndexOutOfBoundsException e) {
             throw new TextNoMeaningException("Are you new? Specify a task after typing todo.");
         }
@@ -39,5 +35,12 @@ public class TodoCommand extends Command {
     @Override
     public boolean isExit() {
         return false;
+    }
+
+    private String generateResponse(Task task, TaskList taskList) {
+        return "Got it. I've added this task: \n"
+                + "    " + task
+                + "\nNow you have " + taskList.getSize()
+                + (taskList.getSize() <= 1 ? " task in the list." : " tasks in the list.");
     }
 }

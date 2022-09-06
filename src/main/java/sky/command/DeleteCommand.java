@@ -20,17 +20,11 @@ public class DeleteCommand extends Command {
     @Override
     public String execute(TaskList taskList, Storage storage) throws TextNoMeaningException, IOException {
         try {
-            String taskNumInString = this.fullCommand.substring(7);
-            // Minus one as arrayList is zero-indexed
-            int taskNum = Integer.parseInt(taskNumInString) - 1;
+            int taskNum = generateTaskNumToDelete();
             Task task = taskList.getTask(taskNum);
             taskList.removeTask(task);
             storage.reWriteDataFile(taskList);
-            String s = "Splendid. I've removed this task: \n"
-                    + "    " + task
-                    + "\nNow you have " + taskList.getSize()
-                    + (taskList.getSize() <= 1 ? " task in the list." : " tasks in the list.");
-            return s;
+            return generateResponse(task, taskList);
         } catch (IndexOutOfBoundsException e) {
             throw new TextNoMeaningException("You have either not entered any number to indicate which task I "
                     + "should delete, or you entered an invalid task number.");
@@ -42,5 +36,18 @@ public class DeleteCommand extends Command {
     @Override
     public boolean isExit() {
         return false;
+    }
+
+    private int generateTaskNumToDelete() {
+        String taskNumInString = this.fullCommand.substring(7);
+        // Minus one as arrayList is zero-indexed
+        return Integer.parseInt(taskNumInString) - 1;
+    }
+
+    private String generateResponse(Task task, TaskList taskList) {
+        return "Splendid. I've removed this task: \n"
+                + "    " + task
+                + "\nNow you have " + taskList.getSize()
+                + (taskList.getSize() <= 1 ? " task in the list." : " tasks in the list.");
     }
 }
