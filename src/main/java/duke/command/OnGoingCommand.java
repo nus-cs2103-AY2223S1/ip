@@ -32,7 +32,7 @@ public class OnGoingCommand extends Command {
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
         taskList.unMarkDone(index);
-        String message = "OK, I've marked this task as not done yet:\n\t\t" + taskList.taskToString(this.index);
+        String message = "OK, I've marked this task as not done yet:\n" + taskList.taskToString(this.index);
         ui.printWithDivider(message);
     }
     /**
