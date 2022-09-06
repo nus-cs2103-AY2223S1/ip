@@ -68,26 +68,22 @@ public class Task {
         TaskType taskType = TaskType.parseToTaskType(storageStringArray[0]);
         Task task;
 
-        switch (taskType) {
-        case TODO:
-            task = new Todo(storageStringArray[2]);
-            break;
-        case EVENT:
-            try {
+        try {
+            switch (taskType) {
+            case TODO:
+                task = new Todo(storageStringArray[2]);
+                break;
+            case EVENT:
                 task = new Event(storageStringArray[2], storageStringArray[3]);
-            } catch (DukeException exception) {
-                throw new RuntimeException(exception.getMessage());
-            }
-            break;
-        case DEADLINE:
-            try {
+                break;
+            case DEADLINE:
                 task = new Deadline(storageStringArray[2], storageStringArray[3]);
-            } catch (DukeException exception) {
-                throw new RuntimeException(exception.getMessage());
+                break;
+            default:
+                throw new RuntimeException(String.format("Invalid task type %s.", taskType));
             }
-            break;
-        default:
-            throw new RuntimeException(String.format("Invalid task type %s.", taskType));
+        } catch (DukeException exception) {
+            throw new RuntimeException(exception.getMessage());
         }
         if (storageStringArray[1].equals(Task.STORAGE_DONE_STATUS)) {
             task.markAsDone();
