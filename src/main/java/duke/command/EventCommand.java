@@ -13,6 +13,8 @@ import duke.util.TaskList;
  */
 public class EventCommand extends Command {
     private String input;
+    private String[] segments;
+    private final String EVENT_ERROR_MESSAGE = "Please follow the format \n'event task /at YYYY-MM-DD'!";
 
     /**
      * Constructor for a new Event command.
@@ -21,6 +23,11 @@ public class EventCommand extends Command {
      */
     public EventCommand(String input) {
         this.input = input;
+        this.segments = input.split("/at");
+    }
+
+    public boolean isValidEvent() {
+        return segments.length == 2;
     }
 
     /**
@@ -32,18 +39,17 @@ public class EventCommand extends Command {
      */
     @Override
     public void run(TaskList taskList, Response builder) throws DukeException {
-        String[] segments = input.split("/at");
         try {
-            if (segments.length != 2) {
-                throw new DukeException("Please follow the format \n'event task /at YYYY-MM-DD'!");
-            } else {
+            if (isValidEvent()) {
                 String time = segments[1].strip();
                 LocalDate date = LocalDate.parse(time);
                 Event event = new Event(segments[0], date);
                 taskList.createTask(event, builder);
+            } else {
+                throw new DukeException(EVENT_ERROR_MESSAGE);
             }
         } catch (DateTimeParseException e) {
-            throw new DukeException("Please follow the format \n'event task /at YYYY-MM-DD'!");
+            throw new DukeException(EVENT_ERROR_MESSAGE);
         }
     };
 }

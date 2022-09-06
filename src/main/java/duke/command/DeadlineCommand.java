@@ -13,6 +13,8 @@ import duke.util.TaskList;
  */
 public class DeadlineCommand extends Command {
     private String input;
+    private String[] segments;
+    private final String DEADLINE_ERROR_MESSAGE = "Please follow the format \n'deadline task /by YYYY-MM-DD'!";
 
     /**
      * Constructor for a new Deadline command.
@@ -21,6 +23,11 @@ public class DeadlineCommand extends Command {
      */
     public DeadlineCommand(String input) {
         this.input = input;
+        this.segments = input.split("/by");
+    }
+
+    public boolean isValidDeadline() {
+        return segments.length == 2;
     }
 
     /**
@@ -32,18 +39,17 @@ public class DeadlineCommand extends Command {
      */
     @Override
     public void run(TaskList taskList, Response builder) throws DukeException {
-        String[] segments = input.split("/by");
         try {
-            if (segments.length != 2) {
-                throw new DukeException("Please follow the format \n'deadline task /by YYYY-MM-DD'!");
-            } else {
+            if (isValidDeadline()) {
                 String time = segments[1].strip();
                 LocalDate date = LocalDate.parse(time);
                 Deadline deadline = new Deadline(segments[0], date);
                 taskList.createTask(deadline, builder);
+            } else {
+                throw new DukeException(DEADLINE_ERROR_MESSAGE);
             }
         } catch (DateTimeParseException e) {
-            throw new DukeException("Please follow the format \n'deadline task /by YYYY-MM-DD'!");
+            throw new DukeException(DEADLINE_ERROR_MESSAGE);
         }
     };
 }

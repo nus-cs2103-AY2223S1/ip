@@ -1,12 +1,4 @@
-T>X>new
-T>X>next
-T> >what
-T> >sad
-T>X>lowqed
-T> >new
-T> >asd
-T>X>eqweq
-T> >peodsp
-T> >mvclv
-T> >pewqpe
-T>X>apsdpa
+T>X>test
+T> >dsa pda
+E>X>test >2000-01-01
+D>X>test >2000-02-02

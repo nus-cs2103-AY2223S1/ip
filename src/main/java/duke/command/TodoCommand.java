@@ -20,6 +20,10 @@ public class TodoCommand extends Command {
         this.input = input;
     }
 
+    public boolean isValidTodo() {
+        return input.strip().length() >= 1;
+    }
+
     /**
      * Runs the command 'todo'.
      * @inheritDoc
@@ -29,7 +33,7 @@ public class TodoCommand extends Command {
      */
     @Override
     public void run(TaskList taskList, Response builder) throws DukeException {
-        if (input.strip().length() >= 1) {
+        if (isValidTodo()) {
             Todo todo = new Todo(input);
             taskList.createTask(todo, builder);
         } else {
