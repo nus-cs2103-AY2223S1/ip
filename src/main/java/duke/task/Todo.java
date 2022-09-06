@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.task.Task;
+
 /**
  * Represents a todo task.
  */
