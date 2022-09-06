@@ -10,6 +10,8 @@ import duke.task.TaskList;
 public class UnmarkCommand extends Command {
 
     public static final String COMMAND_WORD = "unmark";
+    public static final String UNMARK_TASK_MSG = "Ok, I've marked this task as not done yet:\n ";
+    public static final String NO_TASK_MSG = "There is no task at this index";
     private int toUnmark;
 
     /**
@@ -32,9 +34,9 @@ public class UnmarkCommand extends Command {
         try {
             task.unmarkTask(toUnmark);
             Task taskToUnmark = task.getTask(toUnmark);
-            return "Ok, I've marked this task as not done yet:\n " + taskToUnmark.taskInfo();
+            return UNMARK_TASK_MSG + taskToUnmark.taskInfo();
         } catch (IndexOutOfBoundsException e) {
-            return "There is no task at this index";
+            return NO_TASK_MSG;
         }
     }
 
