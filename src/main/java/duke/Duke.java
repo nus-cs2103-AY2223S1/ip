@@ -1,13 +1,7 @@
 package duke;
 
-import duke.task.Task;
-import duke.task.TodoTask;
-import duke.task.DeadlineTask;
-import duke.task.EventTask;
 import duke.command.Command;
 
-import java.io.IOException;
-import java.time.DateTimeException;
 import java.util.Scanner;
 
 public class Duke {

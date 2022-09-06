@@ -1,7 +1,5 @@
 package duke.task;
 
-import duke.task.Task;
-
 public class TodoTask extends Task {
 
     public TodoTask(String name) {
