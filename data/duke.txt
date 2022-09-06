@@ -3,5 +3,4 @@ E # 0 # example of event event # Sep 10 2022
 D # 1 # cut nails # Aug 31 2022
 D # 0 # submit assignment # Aug 31 2022
 E # 0 # birthday # Aug 14 2022
-T # 1 # gahga
 T # 0 # gnadkognmadga
