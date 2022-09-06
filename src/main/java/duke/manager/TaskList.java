@@ -25,7 +25,7 @@ public class TaskList {
      *
      * @return The number of current tasks.
      */
-    public int length() {
+    public int getLength() {
         return this.list.size();
     }
 
@@ -83,14 +83,12 @@ public class TaskList {
      */
     public ArrayList<Task> findTask(String keyword) {
         ArrayList<Task> foundTasks = new ArrayList<>();
-
         for (int i = 0; i < this.list.size(); i++) {
             Task task = this.list.get(i);
             if (task.doesContainKeyword(keyword)) {
                 foundTasks.add(task);
             }
         }
-
         return foundTasks;
     }
 
@@ -117,7 +115,6 @@ public class TaskList {
         }
 
         String taskListString = "";
-
         for (int index = 1; index <= list.size(); index++) {
             Task listItem = list.get(index - 1);
             String listItemString = index + ". " + listItem.toString();
@@ -126,7 +123,6 @@ public class TaskList {
             }
             taskListString += listItemString;
         }
-
         return taskListString;
     }
 }
