@@ -49,7 +49,7 @@ public class DeadlineTask extends Task {
             wordHour = "0" + wordHour;
         }
         if (hasTime) {
-            return String.format("[D][%d] %s | %s %s %d %s%s ", completed, getTaskName(),
+            return String.format("[D][%d] %s | %s %s %d %s%s", completed, getTaskName(),
                     wordDay, wordMonth, deadline.getYear(),
                     wordHour, wordMinute);
         } else {
