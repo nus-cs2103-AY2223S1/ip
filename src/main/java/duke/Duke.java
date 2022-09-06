@@ -1,21 +1,22 @@
 package duke;
 
-import duke.task.Task;
-import duke.task.TodoTask;
-import duke.task.DeadlineTask;
-import duke.task.EventTask;
 import duke.command.Command;
-
-import java.io.IOException;
-import java.time.DateTimeException;
 import java.util.Scanner;
 
+/**
+ * Represents a ChatBot named Duke. Duke can help you track your tasks.
+ */
 public class Duke {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Creates a new ChatBot that you can interact with.
+     *
+     * @param filePath Path to the file where data of your tasks will be locally stored.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -27,6 +28,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Start the conversation with Duke.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

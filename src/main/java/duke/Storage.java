@@ -9,6 +9,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
+/**
+ * Used to read and write data between Duke and a local file.
+ */
 public class Storage {
 
     private final String filePath;
@@ -17,7 +20,12 @@ public class Storage {
         this.filePath = filePath;
     }
 
-    //read text from entire file
+    /**
+     * Reads from an entire text file.
+     *
+     * @return The contents of the text file as a single string.
+     * @throws IOException if the file cannot be located or read from.
+     */
     public String readFromFile() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         StringBuilder outputMessage = new StringBuilder();
@@ -31,12 +39,25 @@ public class Storage {
         return outputMessage.toString();
     }
 
+    /**
+     * Replaces the file's content with an input string.
+     *
+     * @param content Contents used to overwrite the file.
+     * @throws IOException if the file cannot be located or written to.
+     */
     public void writeToFile(String content) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
         writer.write(content);
         writer.close();
     }
 
+    /**
+     * Reads a single line from the file.
+     *
+     * @param lineNum The line number to read from. The first line is line 1.
+     * @return The contents of the specified line.
+     * @throws IOException if the file cannot be located or read from.
+     */
     public String readLine(int lineNum) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         String line = "INIT";
@@ -52,6 +73,14 @@ public class Storage {
         return null;
     }
 
+    /**
+     * Overwrites a single line in the file with the provided contents.
+     *
+     * @param content The new content to overwrite the line.
+     * @param lineNum The line number to overwrite.
+     * @return true if the line exists, false otherwise.
+     * @throws IOException if the file cannot be located, read from or written to.
+     */
     public boolean editLine(String content, int lineNum) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         StringBuilder outputMessage = new StringBuilder();
@@ -72,12 +101,24 @@ public class Storage {
         return lineNum <= counter;
     }
 
+    /**
+     * Adds a new line with contents to the end of the file.
+     *
+     * @param content Contents to be added to the end of the file.
+     * @throws IOException if the file cannot be located, read from or written to.
+     */
     public void addLine(String content) throws IOException {
         String fileContent = readFromFile();
         fileContent += content + "\n";
         writeToFile(fileContent);
     }
 
+    /**
+     * Load up a list of tasks from the file into Duke when he starts up.
+     *
+     * @return An ArrayList of tasks specified by the file.
+     * @throws IOException if the file cannot be located or read from.
+     */
     public ArrayList<Task> load() throws IOException {
         try {
             String line = readLine(1);

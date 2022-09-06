@@ -7,13 +7,16 @@ import duke.task.TodoTask;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 
+/**
+ * Used to interpret user inputs and match them to available commands.
+ */
 public class Parser {
 
-    public static String removeWhitespace(String input) {
+    private static String removeWhitespace(String input) {
         return input.replaceAll(" ", "");
     }
 
-    public static String removeStartingWhitespace(String input) {
+    private static String removeStartingWhitespace(String input) {
         if (input.length() == 0) {
             return "blank";
         }
@@ -26,7 +29,7 @@ public class Parser {
         return input;
     }
 
-    public static int countArguments(String input) {
+    private static int countArguments(String input) {
         String str = input;
         int count = 0;
         while(str.length() > 0) {
@@ -46,7 +49,7 @@ public class Parser {
         return count;
     }
 
-    public static String findArgument(String input, int argNum) {
+    private static String findArgument(String input, int argNum) {
         if (argNum > countArguments(input)) {
             return "NOT FOUND";
         }
@@ -73,7 +76,7 @@ public class Parser {
         }
     }
 
-    public static String parseDate(String date) {
+    private static String parseDate(String date) {
         int firstIndex;
         int secondIndex;
         if (date.contains("/")) {
@@ -137,6 +140,13 @@ public class Parser {
         return String.format("%s%s%d", wordDay, wordMonth, year);
     }
 
+    /**
+     * Converts a date from word format to ddmmyyyy format.
+     * e.g. 31 Jan 2022 will be converted to 31012022
+     *
+     * @param date Date to be converted into ddmmyy format. date should be in the format of e.g. 25 Mar 2019
+     * @return The converted date in ddmmyyyy format.
+     */
     public static String parseWordDate(String date) {
         if (date.length() != 11) {
             throw new DateTimeException("Not recognised!");
@@ -186,6 +196,13 @@ public class Parser {
         return date.substring(0, 2) + numDate + date.substring(7);
     }
 
+    /**
+     * Converts an integer between 1-12 to a 3-letter representation of the month.
+     * e.g. 5 will be converted to May, 12 will be converted to Dec.
+     *
+     * @param m Integer representation of a month, ranging from 1-12.
+     * @return A 3-letter word representation of the month.
+     */
     public static String intToWordMonth(int m) {
         switch (m) {
             case 1:
@@ -217,7 +234,7 @@ public class Parser {
         }
     }
 
-    public static String parseTime(String time) {
+    private static String parseTime(String time) {
         if (time.length() != 4) {
             throw new DateTimeException("Time should be provided as 4 digits as per the 24 hour clock");
         }
@@ -237,7 +254,14 @@ public class Parser {
         return time;
     }
 
-    public static Command parse(String input) {
+    /**
+     * Takes in a string input from the user and converts it to a command recognised by Duke.
+     *
+     * @param input String input from the user.
+     * @return A command that can be executed by Duke.
+     * @throws DukeException if the user's desired command cannot be properly performed.
+     */
+    public static Command parse(String input) throws DukeException {
         //first remove any whitespace at the start
         input = removeStartingWhitespace(input);
         if (input.equals("blank")) {

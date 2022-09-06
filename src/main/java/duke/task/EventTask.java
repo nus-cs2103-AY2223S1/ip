@@ -4,13 +4,22 @@ import duke.Parser;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents a task that will occur at a certain time.
+ */
 public class EventTask extends Task {
 
     private final LocalDateTime datetime;
     private final boolean hasTime;
 
-    public EventTask(String name, String date) {
-        super(name);
+    /**
+     * Creates a new task that will occur at a certain time.
+     *
+     * @param description Task that needs to be done.
+     * @param date Date on which task will occur.
+     */
+    public EventTask(String description, String date) {
+        super(description);
         int day = Integer.parseInt(date.substring(0, 2));
         int month = Integer.parseInt(date.substring(2, 4));
         int year = Integer.parseInt(date.substring(4));
@@ -18,8 +27,15 @@ public class EventTask extends Task {
         hasTime = false;
     }
 
-    public EventTask(String name, String date, String time) {
-        super(name);
+    /**
+     * Creates a new task that will occur at a certain time.
+     *
+     * @param description Task that needs to be done.
+     * @param date Date on which task will occur.
+     * @param time Time at which task will occur.
+     */
+    public EventTask(String description, String date, String time) {
+        super(description);
         int day = Integer.parseInt(date.substring(0, 2));
         int month = Integer.parseInt(date.substring(2, 4));
         int year = Integer.parseInt(date.substring(4));
@@ -29,6 +45,11 @@ public class EventTask extends Task {
         hasTime = true;
     }
 
+    /**
+     * Returns a string representation of the task.
+     *
+     * @return String representation of the task.
+     */
     @Override
     public String toString() {
         int completed = 0;
@@ -49,11 +70,11 @@ public class EventTask extends Task {
             wordHour = "0" + wordHour;
         }
         if (hasTime) {
-            return String.format("[E][%d] %s | %s %s %d %s%s ", completed, getTaskName(),
+            return String.format("[E][%d] %s | %s %s %d %s%s ", completed, getTaskDescription(),
                     wordDay, wordMonth, datetime.getYear(),
                     wordHour, wordMinute);
         } else {
-            return String.format("[E][%d] %s | %s %s %d", completed, getTaskName(),
+            return String.format("[E][%d] %s | %s %s %d", completed, getTaskDescription(),
                     wordDay, wordMonth, datetime.getYear());
         }
     }

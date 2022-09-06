@@ -4,13 +4,23 @@ import duke.Parser;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents a task that is to be completed by a deadline.
+ */
+
 public class DeadlineTask extends Task {
 
     private final LocalDateTime deadline;
     private final boolean hasTime;
 
-    public DeadlineTask(String name, String date) {
-        super(name);
+    /**
+     * Creates a new task with a description and a deadline.
+     *
+     * @param description Task that needs to be done.
+     * @param date Date which task should be done by.
+     */
+    public DeadlineTask(String description, String date) {
+        super(description);
         int day = Integer.parseInt(date.substring(0, 2));
         int month = Integer.parseInt(date.substring(2, 4));
         int year = Integer.parseInt(date.substring(4));
@@ -18,8 +28,15 @@ public class DeadlineTask extends Task {
         hasTime = false;
     }
 
-    public DeadlineTask(String name, String date, String time) {
-        super(name);
+    /**
+     * Creates a new task with a description and a deadline.
+     *
+     * @param description Task that needs to be done.
+     * @param date Date which task should be done by, in ddmmyyyy format.
+     * @param time Time which task should be done by in 24-hour format.
+     */
+    public DeadlineTask(String description, String date, String time) {
+        super(description);
         int day = Integer.parseInt(date.substring(0, 2));
         int month = Integer.parseInt(date.substring(2, 4));
         int year = Integer.parseInt(date.substring(4));
@@ -29,6 +46,11 @@ public class DeadlineTask extends Task {
         hasTime = true;
     }
 
+    /**
+     * Returns a string representation of the task.
+     *
+     * @return String representation of the task.
+     */
     @Override
     public String toString() {
         int completed = 0;
@@ -49,11 +71,11 @@ public class DeadlineTask extends Task {
             wordHour = "0" + wordHour;
         }
         if (hasTime) {
-            return String.format("[D][%d] %s | %s %s %d %s%s", completed, getTaskName(),
+            return String.format("[D][%d] %s | %s %s %d %s%s", completed, getTaskDescription(),
                     wordDay, wordMonth, deadline.getYear(),
                     wordHour, wordMinute);
         } else {
-            return String.format("[D][%d] %s | %s %s %d", completed, getTaskName(),
+            return String.format("[D][%d] %s | %s %s %d", completed, getTaskDescription(),
                     wordDay, wordMonth, deadline.getYear());
         }
 
