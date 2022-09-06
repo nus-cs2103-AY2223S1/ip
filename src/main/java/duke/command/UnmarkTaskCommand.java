@@ -26,12 +26,12 @@ public class UnmarkTaskCommand extends Command {
      */
     @Override
     public String run(TaskList taskList, Storage storage) throws DukeException, IOException {
-        int index = Integer.parseInt(taskIndex) - 1;
+        int formattedIndex = Integer.parseInt(taskIndex) - 1;
 
         try {
-            taskList.get(index).markAsUndone();
+            taskList.get(formattedIndex).markAsUndone();
             String message = "OK, I've marked this task as not done yet: \n  "
-                    + taskList.get(index);
+                    + taskList.get(formattedIndex);
             //Saving data
             storage.saveData(taskList.getList());
             return message;

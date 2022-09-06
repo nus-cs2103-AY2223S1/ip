@@ -26,11 +26,11 @@ public class MarkTaskCommand extends Command {
      */
     @Override
     public String run(TaskList taskList, Storage storage) throws DukeException, IOException {
-        int index = Integer.parseInt(taskIndex) - 1;
+        int formattedIndex = Integer.parseInt(taskIndex) - 1;
         try {
-            taskList.get(index).markAsDone();
+            taskList.get(formattedIndex).markAsDone();
             String message = "Nice! I've marked this task as done: \n  "
-                    + taskList.get(index);
+                    + taskList.get(formattedIndex);
             //Saving data
             storage.saveData(taskList.getList());
             return message;

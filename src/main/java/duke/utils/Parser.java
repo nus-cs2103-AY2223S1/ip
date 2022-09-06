@@ -37,7 +37,8 @@ public class Parser {
 
             return new Date(parsed);
         } catch (DateTimeParseException e) {
-            throw new DukeException("\uD83D\uDE14 OOPS!!! Please follow the Date and Time Format: yyyy-MM-dd [2000-01-01]");
+            throw new DukeException("\uD83D\uDE14 OOPS!!! Please follow the Date and Time Format: "
+                    + "yyyy-MM-dd [2000-01-01]");
         }
 
     }
@@ -91,7 +92,8 @@ public class Parser {
         case("find"):
             return new FindCommand(inputArr[1]);
         default:
-            throw new DukeException("\uD83D\uDE14 OOPS!!! I'm sorry, but I do not know what does \"" + input + "\" mean.");
+            throw new DukeException("\uD83D\uDE14 OOPS!!! I'm sorry, but I do not know what does \""
+                    + input + "\" mean.");
         }
     }
 }

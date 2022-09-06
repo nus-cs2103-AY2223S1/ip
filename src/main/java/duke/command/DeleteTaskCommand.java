@@ -28,9 +28,9 @@ public class DeleteTaskCommand extends Command {
     @Override
     public String run(TaskList taskList, Storage storage) throws DukeException, IOException {
         try {
-            int i = Integer.parseInt(taskIndex.split(" ", 2)[0]) - 1;
-            Task task = taskList.get(i);
-            taskList.deleteTask(i);
+            int formattedIndex = Integer.parseInt(taskIndex.split(" ", 2)[0]) - 1;
+            Task task = taskList.get(formattedIndex);
+            taskList.deleteTask(formattedIndex);
             int numOfTasks = taskList.size();
 
             String message = "Noted. I've removed this task: \n  "

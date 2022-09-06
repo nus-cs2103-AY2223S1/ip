@@ -27,7 +27,8 @@ public class FindCommand extends Command {
      */
     @Override
     public String run(TaskList taskList, Storage storage) throws DukeException, IOException {
-        if (keyWord.split(" ").length == 1) {
+        int correctKeyWordLength = 1;
+        if (keyWord.split(" ").length == correctKeyWordLength) {
             List<Integer> taskIndexes = new ArrayList<>(100);
             StringBuilder message = new StringBuilder();
 
