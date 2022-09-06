@@ -12,8 +12,8 @@ import duke.ui.Ui;
  */
 public class DeadlineCommand extends Command {
 
-    private String description;
-    private String by;
+    private final String description;
+    private final String by;
 
     /**
      * Construct a new Deadline Command

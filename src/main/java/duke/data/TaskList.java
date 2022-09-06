@@ -3,6 +3,7 @@ package duke.data;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.SortedMap;
 
 import duke.data.exception.DukeException;
 import duke.tasks.Task;
@@ -34,9 +35,10 @@ public class TaskList {
      * @param date Date of the tasks
      * @return A string consisting of all the tasks
      */
-    public ArrayList<Task> getTasks(String date) {
+    public ArrayList<Task> list(String date) {
         LocalDate parsedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         ArrayList<Task> list = new ArrayList<>();
+        
         for (Task task : tasks) {
             if (task.getTaskType().equals("D") || task.getTaskType().equals("E")) {
                 if (task.getDate().equals(parsedDate)) {
@@ -74,19 +76,21 @@ public class TaskList {
         if (i > this.tasks.size() || i < 0) {
             throw new DukeException("No such task exists!");
         }
+
         return this.tasks.get(i);
     }
 
     /**
      * Deletes the task at the specified index
-     * @param i The index of the task
+     * @param i The index of the task (1-based indexing)
      * @return The deleted task
      * @throws DukeException If the task does not exist
      */
     public Task deleteTask(int i) throws DukeException {
-        if (i > this.tasks.size() || i < 0) {
+        if (i > this.tasks.size() || i <= 0) {
             throw new DukeException("No such task exist!");
         }
+
         Task task = this.tasks.get(i - 1);
         this.tasks.remove(i - 1);
         return task;
@@ -99,6 +103,7 @@ public class TaskList {
      */
     public ArrayList<Task> find(String ...keywords) {
         ArrayList<Task> list = new ArrayList<>();
+
         for (Task task : this.tasks) {
             if (containsAllKeywords(task.getDescription(), keywords)) {
                 list.add(task);

@@ -72,6 +72,6 @@ public class TaskListTest {
         t.addToList(event);
         t.addToList(deadline);
         String expected = "\tYour tasks for today include:" + String.format("\n\t1. %s", deadline);
-        assertEquals(expected, t.getTasks("13/12/2022"));
+        assertEquals(expected, t.list("13/12/2022"));
     }
 }

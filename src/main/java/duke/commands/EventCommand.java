@@ -11,8 +11,8 @@ import duke.ui.Ui;
  */
 public class EventCommand extends Command {
 
-    private String description;
-    private String at;
+    private final String description;
+    private final String at;
 
     /**
      * Constructs a new Event Command
