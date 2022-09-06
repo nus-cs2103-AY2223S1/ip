@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import deku.Ui.MainWindow;
+import deku.ui.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -34,5 +34,6 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 }

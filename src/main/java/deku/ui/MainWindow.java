@@ -1,4 +1,4 @@
-package deku.Ui;
+package deku.ui;
 
 import deku.Deku;
 import javafx.application.Platform;
@@ -7,10 +7,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.image.Image;
 
+/**
+ * Setup for main display window for JavaFX
+ */
 public class MainWindow extends AnchorPane {
     @FXML
     private ScrollPane scrollPane;
@@ -35,17 +38,31 @@ public class MainWindow extends AnchorPane {
     private Image dekuImage = new Image(this.getClass().getResourceAsStream("/images/bot.png"));
     private Label previousNode;
 
+    /**
+     * Initializes the dialog panel and active list panel
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         listPane.vvalueProperty().bind(listContainer.heightProperty());
     }
 
+    /**
+     * Set the logic for the input Deku class.
+     *
+     * @param d A new instance for Deku bot class
+     */
     public void setDeku(Deku d) {
         deku = d;
         updateList(deku.getList());
     }
 
+    /**
+     * Refreshes the list panel on the right whenever user inputs a
+     * command.
+     *
+     * @param list Updated list to display to the screen
+     */
     public void updateList(String list) {
         if (previousNode != null) {
             listContainer.getChildren().remove(previousNode);
