@@ -18,7 +18,8 @@ public class TentativeCommand extends Command {
 
     /**
      * Creates a TentativeCommand with the given index and dateTime.
-     * @param givenIndex the index of the Event to be modified
+     *
+     * @param givenIndex    the index of the Event to be modified
      * @param givenDateTime the tentative date/time to be added to the Event
      */
     public TentativeCommand(int givenIndex, LocalDateTime givenDateTime) {
@@ -29,7 +30,8 @@ public class TentativeCommand extends Command {
 
     /**
      * Creates a TentativeCommand with the given index and dateIndex.
-     * @param givenIndex the index of the Event to be modified
+     *
+     * @param givenIndex     the index of the Event to be modified
      * @param givenDateIndex the index of the chosen tentative date/time to confirm
      */
     public TentativeCommand(int givenIndex, int givenDateIndex) {
@@ -37,7 +39,6 @@ public class TentativeCommand extends Command {
         this.dateToChooseIndex = givenDateIndex;
         this.dateTime = LocalDateTime.MAX;
     }
-
 
     @Override
     public CommandResult execute() {

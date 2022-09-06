@@ -11,6 +11,7 @@ public class EchoCommand extends Command {
 
     /**
      * Creates an EchoCommand.
+     *
      * @param description the message to be echoed to the user.
      */
     public EchoCommand(String description) {

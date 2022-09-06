@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import util.TextUtils;
 
 /**
  * The base class of the Henry application.
@@ -68,7 +69,7 @@ public class Henry extends Application {
             PauseTransition delay = new PauseTransition(Duration.seconds(2));
             delay.setOnFinished(event -> Platform.exit());
             delay.play();
-            return "GOODBYE! YOUR TASK LIST HAS BEEN SAVED!";
+            return TextUtils.TASKS_SAVED_MESSAGE;
         }
 
         Command parsed = parser.parseCommand(input.toLowerCase());
@@ -79,12 +80,14 @@ public class Henry extends Application {
     private CommandResult executeCommand(Command command) {
         try {
             assert taskList != null : "TaskList is null!";
+
             if (command instanceof TaskCommand) {
                 Task tempTask = ((TaskCommand) command).getTask();
                 if (isTaskInTaskList(tempTask)) {
-                    throw new HenryException("TASK ALREADY EXISTS!");
+                    throw new HenryException(TextUtils.DUPLICATE_TASK_ERROR);
                 }
             }
+
             command.setData(taskList);
             CommandResult result = command.execute();
             if (result.getTaskList().isPresent()) {
@@ -98,6 +101,13 @@ public class Henry extends Application {
         }
     }
 
+    /**
+     * A Task is considered duplicate if it shares the same
+     * description and date with another Task in the TaskList.
+     *
+     * @param task the Task to be checked
+     * @return true if the Task is a duplicate, false otherwise
+     */
     private boolean isTaskInTaskList(Task task) {
         for (Task t : taskList.getTasks()) {
             if (t.getDescription().equals(task.getDescription())

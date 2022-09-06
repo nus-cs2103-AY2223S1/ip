@@ -24,7 +24,7 @@ public class CommandResult {
      * Constructs a CommandResult with the given feedback and TaskList.
      *
      * @param inputFeedback the feedback to be displayed to the user. Usually
-     *                 a success or error message.
+     *                      a success or error message.
      * @param inputList     the TaskList modified by the Command (if applicable).
      */
     public CommandResult(String inputFeedback, TaskList inputList) {
@@ -43,6 +43,7 @@ public class CommandResult {
 
     /**
      * A CommandResult returns its feedback in its toString method.
+     *
      * @return the feedback of the CommandResult.
      */
     @Override

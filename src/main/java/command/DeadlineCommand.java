@@ -16,8 +16,9 @@ public class DeadlineCommand extends Command implements TaskCommand {
 
     /**
      * Creates a new DeadlineCommand with the given description and dateTime.
+     *
      * @param description the description of the task
-     * @param dateTime the date/time when the task is due
+     * @param dateTime    the date/time when the task is due
      */
     public DeadlineCommand(String description, LocalDateTime dateTime) {
         this.task = new Task(Commands.DEADLINE, description, dateTime);

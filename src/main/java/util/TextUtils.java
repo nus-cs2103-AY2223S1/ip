@@ -7,6 +7,7 @@ package util;
  */
 public class TextUtils {
 
+    // ERROR MESSAGES
     public static final String UNKNOWN_COMMAND_ERROR = "UNKNOWN COMMAND!";
     public static final String FIND_COMMAND_ERROR = "PLEASE PREFIX YOUR SEARCH TERMS WITH \"--\"!";
     public static final String TENTATIVE_COMMAND_ERROR = "INVALID TENTATIVE COMMAND!";
@@ -17,4 +18,9 @@ public class TextUtils {
     public static final String MALFORMED_COMMAND_ERROR = "MALFORMED COMMAND!";
     public static final String ARGUMENT_SYNTAX_ERROR = "ARGUMENT HAS THE WRONG FORMAT!";
     public static final String EMPTY_INPUT_ERROR = "INPUT CANNOT BE EMPTY!";
+    public static final String DUPLICATE_TASK_ERROR = "TASK ALREADY EXISTS!";
+
+    // OTHER MESSAGES
+    public static final String TASKS_SAVED_MESSAGE = "GOODBYE! YOUR TASK LIST HAS BEEN SAVED!";
+
 }

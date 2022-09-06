@@ -16,10 +16,11 @@ import util.TaskUtils;
 public class Task {
 
     private final String description;
-    private boolean isDone;
     private final Commands type;
-    private LocalDateTime date;
     private final List<LocalDateTime> tentativeDates;
+    private boolean isDone;
+    // date is not final as it can be changed with the Tentative command
+    private LocalDateTime date;
 
     public Task(Commands type, String description, LocalDateTime date) {
         this(type, description, date, false, new ArrayList<>());

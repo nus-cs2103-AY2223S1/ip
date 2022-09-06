@@ -17,7 +17,8 @@ public class EventCommand extends Command implements TaskCommand {
 
     /**
      * Creates an EventCommand with the given description and dateTime.
-     * @param description the description of the task
+     *
+     * @param description   the description of the task
      * @param givenDateTime the date/time when the event will occur
      */
     public EventCommand(String description, LocalDateTime givenDateTime) {

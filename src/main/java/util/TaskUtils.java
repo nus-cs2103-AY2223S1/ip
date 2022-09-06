@@ -146,12 +146,26 @@ public class TaskUtils {
         return LocalDateTime.parse(input, formatter);
     }
 
+    /**
+     * Parses a list of LocalDateTime objects from the given String input
+     * and adds them to a List. Any LocalDateTime objects in the past
+     * are not added.
+     *
+     * @param input the String to be converted into a List of LocalDateTime objects
+     * @return a List of LocalDateTime objects representing the input
+     */
     private static List<LocalDateTime> parseMultipleDateTimes(String input) {
         List<LocalDateTime> dates = new ArrayList<>();
         String[] tokens = input.split(",");
+        LocalDateTime now = LocalDateTime.now();
+
         for (String token : tokens) {
-            dates.add(parseDateTime(token.trim()));
+            LocalDateTime date = parseDateTime(token.trim());
+            if (date.isAfter(now)) {
+                dates.add(date);
+            }
         }
+
         return dates;
     }
 }

@@ -174,6 +174,7 @@ public class Parser {
             if (!isDateValid(parsed)) {
                 throw new HenryException(TextUtils.DATE_IN_PAST_ERROR);
             }
+
             switch (type) {
             case DEADLINE:
                 return new DeadlineCommand(description, parsed);
