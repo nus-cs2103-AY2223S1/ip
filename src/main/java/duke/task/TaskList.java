@@ -11,7 +11,7 @@ import duke.exception.TaskIndexOutOfBoundsException;
  * @version v0.1
  */
 public class TaskList {
-    /** List of tasks */
+    /** List of tasks. */
     private List<Task> tasks;
 
     /**
@@ -38,6 +38,7 @@ public class TaskList {
     public void add(Task task) {
         assert(task != null);
         tasks.add(task);
+        sort();
     }
 
     /**
@@ -83,6 +84,13 @@ public class TaskList {
         Task task = tasks.get(taskIndex - 1);
         task.unmarkAsDone();
         return task;
+    }
+
+    /**
+     * Sorts the list of tasks in order of ascending date and time.
+     */
+    public void sort() {
+        tasks.sort(Task::compareTo);
     }
 
     /**

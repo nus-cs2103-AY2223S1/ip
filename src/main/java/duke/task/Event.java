@@ -10,9 +10,6 @@ import java.time.format.DateTimeFormatter;
  * @version v0.1
  */
 public class Event extends Task {
-    /** Date and time of the event task. */
-    private LocalDateTime atDateTime;
-
     /**
      * Creates an Event object.
      *
@@ -20,8 +17,7 @@ public class Event extends Task {
      * @param atDateTime Date and time of the event task.
      */
     public Event(String description, LocalDateTime atDateTime) {
-        super(description);
-        this.atDateTime = atDateTime;
+        super(description, atDateTime);
     }
 
     /**
@@ -32,7 +28,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm");
-        String formattedDateTime = atDateTime.format(formatter);
+        String formattedDateTime = getDateTime().format(formatter);
         return String.format("[E]%s (by: %s)", super.toString(), formattedDateTime);
     }
 
@@ -43,6 +39,6 @@ public class Event extends Task {
      */
     @Override
     public String toFileFormatString() {
-        return "E" + super.toFileFormatString() + getDescription() + "|" + atDateTime;
+        return "E" + super.toFileFormatString() + getDescription() + "|" + getDateTime();
     }
 }

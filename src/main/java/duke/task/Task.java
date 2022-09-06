@@ -11,7 +11,7 @@ import duke.util.Parser;
  * @author njxue
  * @version v0.1
  */
-public class Task {
+public abstract class Task implements Comparable<Task> {
     /** Icon to represent that a task is completed. */
     private static final String COMPLETED_ICON = "X";
     /** Icon to represent that a task is not completed. */
@@ -21,16 +21,33 @@ public class Task {
     private String description;
     /** Describes if the task is completed or not. */
     private boolean isDone;
+    /** Date and time the task occurs or to be completed by. */
+    private LocalDateTime dateTime;
 
     /**
-     * Creates a Task object.
+     * Creates a Task object not associated with a date and time.
      *
      * @param description Description of the task.
      */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        dateTime = LocalDateTime.MAX;
     }
+
+    /**
+     * Creates a Task object associated with a date and time.
+     *
+     * @param description Description of the task.
+     * @param dateTime Date and time of the task.
+     */
+    public Task(String description, LocalDateTime dateTime) {
+        this.description = description;
+        this.isDone = false;
+        this.dateTime = dateTime;
+    }
+
+
 
     /**
      * Returns a Task object from a string.
@@ -110,12 +127,35 @@ public class Task {
     }
 
     /**
+     * Returns the deadline or time of the task.
+     *
+     * @return Deadline or time of the task.
+     */
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    /**
+     * Compares two Task objects.
+     *
+     * @param other Task object to be compared against.
+     * @return Returns -1 if the invoker, a Task object, has dateTime field before that of the Task object supplied as
+     *         the argument. Returns 0 if both dateTime fields are equal. Returns 1 otherwise.
+     */
+    @Override
+    public int compareTo(Task other) {
+        LocalDateTime thisTaskDate = this.getDateTime();
+        LocalDateTime otherTaskDate = other.getDateTime();
+        return thisTaskDate.compareTo(otherTaskDate);
+    }
+
+    /**
      * Returns the formatted task, which is to be written into the storage file.
      *
      * @return Formatted task, which is to be written into the storage file.
      */
     public String toFileFormatString() {
-        String icon = isDone ? COMPLETED_ICON : INCOMPLETE_ICON;
+        String icon = getStatusIcon();
         return "|" + icon + "|";
     }
 }
