@@ -135,13 +135,7 @@ public class TaskList<T extends Task> {
             boolean isMatched = description.contains(keyword.toLowerCase());
             return isMatched;
         }).forEach(currTask -> {
-            if (currTask instanceof Task) {
-                matchingTasks.addTask(currTask);
-            } else if (currTask instanceof Event) {
-                matchingTasks.addEvent(currTask);
-            } else if (currTask instanceof Deadline) {
-                matchingTasks.addDeadline(currTask);
-            }
+            matchingTasks.addTask(currTask);
         });
         return matchingTasks;
     }
