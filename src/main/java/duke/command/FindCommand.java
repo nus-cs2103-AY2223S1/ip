@@ -29,7 +29,7 @@ public class FindCommand extends Command {
      */
     public String execute(Ui ui, TaskList taskList) {
         assert(ui != null && taskList != null);
-        TaskList ansTaskList = new TaskList();
+        TaskList findTaskList = new TaskList();
         int count = 1;
         String output = "";
         boolean isEmpty = true;
@@ -41,7 +41,7 @@ public class FindCommand extends Command {
                     isEmpty = false;
                     output += ui.showFindMessage() + "\n";
                 }
-                ansTaskList.addTask(task);
+                findTaskList.addTask(task);
                 count++;
             }
         }
@@ -49,7 +49,7 @@ public class FindCommand extends Command {
         if (isEmpty) {
             return ui.showFindEmptyMessage();
         } else {
-            output += ui.showTaskList(ansTaskList);
+            output += ui.showTaskList(findTaskList);
             return output;
         }
     }

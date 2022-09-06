@@ -17,7 +17,8 @@ public class Duke {
      */
     public Duke() {
         ui = new Ui();
-        storage = new Storage(ui, "./data/duke.txt");
+        String filePath = "./data/duke.txt";
+        storage = new Storage(ui, filePath);
         taskList = new TaskList(storage.load());
     }
 

@@ -34,49 +34,18 @@ public class AddCommand extends Command {
     public String execute(Ui ui, TaskList taskList) {
         assert(ui != null && taskList != null);
         Task newTask;
-        String[] splitInfo = getInfo().split(" ", 2);
-        String[] splitDate;
+        String[] commands = getInfo().split(" ", 2);
 
         try {
-            switch (splitInfo[0]) {
+            switch (commands[0]) {
             case "todo":
-                if (splitInfo.length < 2 || splitInfo[1].length() == 0) {
-                    throw new DukeException("The description of a todo cannot be empty.");
-                }
-
-                newTask = new Todo(TaskType.TODO, splitInfo[1], false);
+                newTask = getTodoTask(commands);
                 break;
             case "deadline":
-                if (splitInfo.length < 2 || splitInfo[1].length() == 0) {
-                    throw new DukeException("The description of a deadline cannot be empty.");
-                }
-
-                splitDate = splitInfo[1].split(" /by ", 2);
-
-                if (splitDate.length < 2 || splitDate[0].length() == 0) {
-                    throw new DukeException("The description of a deadline cannot be empty.");
-                } else if (splitDate[1].length() == 0) {
-                    throw new DukeException("The date of a deadline cannot be empty.");
-                }
-
-                newTask = new Deadline(TaskType.DEADLINE, splitDate[0],
-                        false, splitDate[1]);
+                newTask = getDeadlineTask(commands);
                 break;
             case "event":
-                if (splitInfo.length < 2 || splitInfo[1].length() == 0) {
-                    throw new DukeException("The description of an event cannot be empty.");
-                }
-
-                splitDate = splitInfo[1].split(" /at ", 2);
-
-                if (splitDate[0].length() == 0) {
-                    throw new DukeException("The description of an event cannot be empty.");
-                } else if (splitDate[1].length() == 0) {
-                    throw new DukeException("The date of an event cannot be empty.");
-                }
-
-                newTask = new Event(TaskType.EVENT, splitDate[0],
-                        false, splitDate[1]);
+                newTask = getEventTask(commands);
                 break;
             default:
                 return ui.showUnknownMessage();
@@ -87,6 +56,56 @@ public class AddCommand extends Command {
 
         taskList.addTask(newTask);
         return ui.showAddMessage(newTask, taskList.getSize());
+    }
+
+    private Task getTodoTask(String[] commands) throws DukeException {
+        Task newTask;
+        if (commands.length < 2 || commands[1].length() == 0) {
+            throw new DukeException("The description of a todo cannot be empty.");
+        }
+
+        newTask = new Todo(TaskType.TODO, commands[1], false);
+        return newTask;
+    }
+
+    private Task getDeadlineTask(String[] commands) throws DukeException {
+        String[] splitDate;
+        Task newTask;
+        if (commands.length < 2 || commands[1].length() == 0) {
+            throw new DukeException("The description of a deadline cannot be empty.");
+        }
+
+        splitDate = commands[1].split(" /by ", 2);
+
+        if (splitDate.length < 2 || splitDate[0].length() == 0) {
+            throw new DukeException("The description of a deadline cannot be empty.");
+        } else if (splitDate[1].length() == 0) {
+            throw new DukeException("The date of a deadline cannot be empty.");
+        }
+
+        newTask = new Deadline(TaskType.DEADLINE, splitDate[0],
+                false, splitDate[1]);
+        return newTask;
+    }
+
+    private Task getEventTask(String[] commands) throws DukeException {
+        String[] splitDate;
+        Task newTask;
+        if (commands.length < 2 || commands[1].length() == 0) {
+            throw new DukeException("The description of an event cannot be empty.");
+        }
+
+        splitDate = commands[1].split(" /at ", 2);
+
+        if (splitDate[0].length() == 0) {
+            throw new DukeException("The description of an event cannot be empty.");
+        } else if (splitDate[1].length() == 0) {
+            throw new DukeException("The date of an event cannot be empty.");
+        }
+
+        newTask = new Event(TaskType.EVENT, splitDate[0],
+                false, splitDate[1]);
+        return newTask;
     }
 }
 

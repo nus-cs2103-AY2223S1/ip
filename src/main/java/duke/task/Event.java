@@ -21,8 +21,8 @@ public class Event extends Task {
      */
     public Event(TaskType taskType, String name, boolean isMarked, String timeStr) {
         super(taskType, name, isMarked);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
-                "HHmm, d/MM/yyyy");
+        String format = "HHmm, d/MM/yyyy";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
         this.atTime = LocalDateTime.parse(timeStr, formatter);
     }
 
@@ -38,8 +38,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
-                "hh:mm a, EEE, d MMM yyyy");
+        String format = "hh:mm a, EEE, d MMM yyyy";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
         return "[E]" + super.toString()
                 + " (at: " + atTime.format(formatter) + ")";
     }

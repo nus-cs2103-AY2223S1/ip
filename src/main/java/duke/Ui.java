@@ -79,12 +79,12 @@ public class Ui {
      */
     public String showTaskList(TaskList taskList) {
         assert(taskList != null);
-        String out = "";
+        String strOfTasks = "";
         for (int i = 0; i < taskList.getSize(); i++) {
-            out += showTask(i + 1, taskList.getTask(i));
-            out += "\n";
+            strOfTasks += showTask(i + 1, taskList.getTask(i));
+            strOfTasks += "\n";
         }
-        return out;
+        return strOfTasks;
     }
 
     /**
