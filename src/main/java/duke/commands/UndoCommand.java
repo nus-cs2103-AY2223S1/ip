@@ -5,25 +5,25 @@ import duke.tasks.TaskList;
 import duke.ui.UI;
 
 /**
- * DeleteAllCommand implements method for clearing the task list.
+ * UndoCommand implements method for undoing the previous command.
  *
  * @author Isaac Li Haoyang
  * @version v0.1
  */
-public class DeleteAllCommand extends Command {
+public class UndoCommand extends Command {
 
     /**
-     * Clears out the entire task list.
+     * Undoes the previous command.
      *
-     * @param taskList the task list to be cleared
-     * @param ui the ui to display message after the task list has been cleared
+     * @param taskList the task list which contains the task
+     * @param ui the ui to display message after the task is unmarked
      * @param storage the storage to handle storing of the new task list
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
-        taskList.storePrevTaskList();
-        taskList.deleteAll();
-        ui.deleteAllMessage();
+        taskList.undo();
+        ui.undoMessage();
+        taskList.printList();
         storage.store(taskList);
     }
 
@@ -37,4 +37,3 @@ public class DeleteAllCommand extends Command {
         return false;
     }
 }
-

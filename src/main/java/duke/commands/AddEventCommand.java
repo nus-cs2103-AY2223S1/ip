@@ -55,6 +55,7 @@ public class AddEventCommand extends Command {
             }
         }
         Event event = new Event(taskDesc, deadline.toString());
+        taskList.storePrevTaskList();
         taskList.addTask(event);
         ui.addTaskMessage(event, taskList.getSize());
         storage.store(taskList);

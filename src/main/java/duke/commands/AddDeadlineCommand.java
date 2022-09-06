@@ -55,6 +55,7 @@ public class AddDeadlineCommand extends Command {
             }
         }
         Deadline deadline = new Deadline(taskDesc, date.toString());
+        taskList.storePrevTaskList();
         taskList.addTask(deadline);
         ui.addTaskMessage(deadline, taskList.getSize());
         storage.store(taskList);

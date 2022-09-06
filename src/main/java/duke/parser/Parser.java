@@ -1,17 +1,6 @@
 package duke.parser;
 
-import duke.commands.AddDeadlineCommand;
-import duke.commands.AddEventCommand;
-import duke.commands.AddTodoCommand;
-import duke.commands.Command;
-import duke.commands.DeleteAllCommand;
-import duke.commands.DeleteTaskCommand;
-import duke.commands.ExitCommand;
-import duke.commands.FindTaskCommand;
-import duke.commands.IncorrectCommand;
-import duke.commands.MarkTaskCommand;
-import duke.commands.PrintListCommand;
-import duke.commands.UnmarkTaskCommand;
+import duke.commands.*;
 import duke.exceptions.DukeException;
 
 /**
@@ -42,7 +31,6 @@ public class Parser {
             return new MarkTaskCommand(input);
         }
 
-
         // Unmark a task
         if (input.startsWith("unmark")) {
             return new UnmarkTaskCommand(input);
@@ -52,7 +40,6 @@ public class Parser {
         if (input.equals("delete all")) {
             return new DeleteAllCommand();
         }
-
 
         // Delete a task
         if (input.startsWith("delete")) {
@@ -77,6 +64,11 @@ public class Parser {
         // Finds the tasks matching the given keywords
         if (input.startsWith("find")) {
             return new FindTaskCommand(input);
+        }
+
+        // Undoes the previous command
+        if (input.startsWith("undo")) {
+            return new UndoCommand();
         }
 
         // Exits program

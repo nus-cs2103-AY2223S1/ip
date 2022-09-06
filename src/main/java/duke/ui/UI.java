@@ -82,6 +82,11 @@ public class UI {
         System.out.println("     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(.");
     }
 
+    public void undoMessage() {
+        System.out.println("    OK, I've undone the previous command.");
+        System.out.println("    Here is your task list:");
+    }
+
     public void showLoadingError() {
         System.out.println("    " + " Loading error!");
     }

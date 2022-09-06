@@ -41,6 +41,7 @@ public class AddTodoCommand extends Command {
         // Index of beginning of Todo description after the "todo" keyword in command.
         String taskDesc = input.substring(5);
         Todo todo = new Todo(taskDesc);
+        taskList.storePrevTaskList();
         taskList.addTask(todo);
         ui.addTaskMessage(todo, taskList.getSize());
         storage.store(taskList);
