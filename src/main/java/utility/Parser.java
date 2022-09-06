@@ -3,6 +3,7 @@ package utility;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -73,9 +74,21 @@ public class Parser {
         case "find":
             return new FindCommand();
         default:
-            String message = "Command invalid. Type help for more information.";
+            String message = "Command invalid. Type help for more information." + stringCommand;
             throw new DukeException(message);
         }
+    }
+
+    public static void main(String[] args) {
+        try {
+            Scanner sc = new Scanner(System.in);
+            String input = sc.nextLine();
+            System.out.println("You typed: " + input);
+            System.out.println(parse(input));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
     }
 
     /**
@@ -86,16 +99,14 @@ public class Parser {
      * @param input
      * @return
      */
-    private static String extractCommand(String input) {
-        if (InputValidator.isValidCommand(input)) {
-            // At this point, we know input matches expected format
-            return convertToFormalCommand(input.substring(0, input.indexOf(" ")));
-        } else {
-            return "";
-        }
+    private static String extractCommand(String input) throws DukeException{
+        String command;
+
+
+        return command;
     }
 
-    private static String convertToFormalCommand(String command) {
+    private static String convertToFormalCommand(String command) throws DukeException{
         String[] commandList = {"todo", "list", "event", "deadline",
         "mark", "unmark", "longdesc", "istoday", "find", "bye"};
         String todoRegex = "(t|todo)";
@@ -108,18 +119,15 @@ public class Parser {
         String istodayRegex = "(istoday)";
         String findRegex = "(f|find)";
         String byeRegex = "(bye|quit|q)";
-        String[] regexes = {todoRegex, listRegex, eventRegex, deadlineRegex, markRegex, unmarkRegex, longdescRegex, istodayRegex, findRegex, byeRegex}
+        String[] regexes = {todoRegex, listRegex, eventRegex, deadlineRegex, markRegex, unmarkRegex, longdescRegex, istodayRegex, findRegex, byeRegex};
         for (int i = 0; i < commandList.length; i ++) {
-            Pattern p = Pattern.compile();
+            Pattern p = Pattern.compile(regexes[i]);
             Matcher m = p.matcher(command);
             if (m.find()) {
                 return commandList[i];
             }
         }
-    }
-
-    public static void main(String[] args) {
-
+        throw new DukeException("Could not find formal command");
     }
 
     /**
