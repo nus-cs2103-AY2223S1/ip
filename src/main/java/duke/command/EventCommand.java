@@ -35,6 +35,7 @@ public class EventCommand extends Command {
     public String execCommand(TaskList list, Ui ui, Storage storage) {
         list.addTask(this.event);
         storage.saveList(list.save());
+
         return ui.showAdd(this.event, list.getSize());
     }
 }

@@ -31,6 +31,7 @@ public class MarkCommand extends Command {
     public String execCommand(TaskList list, Ui ui, Storage storage) {
         list.getTask(this.num).markAsDone();
         storage.saveList(list.save());
+
         return ui.showMark(list.getTask(this.num));
     }
 }

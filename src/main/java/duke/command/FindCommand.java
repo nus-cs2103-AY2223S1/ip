@@ -41,6 +41,7 @@ public class FindCommand extends Command {
                 matchingTasks.add(task);
             }
         }
+
         return ui.showFind(matchingTasks);
     }
 

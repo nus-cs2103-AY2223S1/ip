@@ -66,6 +66,7 @@ public class Ui {
         for (int i = 1; i <= taskList.getSize(); i++) {
             stringBuilder.append(i).append(". ").append(taskList.getTask(i - 1)).append("\n");
         }
+
         return stringBuilder.toString();
     }
 
@@ -92,6 +93,7 @@ public class Ui {
             for (int i = 1; i <= tasks.size(); i++) {
                 stringBuilder.append(i).append(". ").append(tasks.get(i - 1)).append("\n");
             }
+
             return stringBuilder.toString();
         } else {
             return "You have no tasks on that date.";
@@ -127,6 +129,7 @@ public class Ui {
             for (int i = 1; i <= tasks.size(); i++) {
                 stringBuilder.append(i).append(". ").append(tasks.get(i - 1)).append("\n");
             }
+
             return stringBuilder.toString();
         } else {
             return "There are no tasks matching that word.";
