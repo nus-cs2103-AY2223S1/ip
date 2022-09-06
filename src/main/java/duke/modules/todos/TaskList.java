@@ -32,6 +32,7 @@ public class TaskList implements Iterable<Task> {
     public List<String> populate(Storage storage) {
         try {
             this.todos = storage.loadList();
+            assert this.todos != null : "todo is null after loading?";
         } catch (MessagefulException e) {
             this.todos = new ArrayList<>();
             return sayAsError(e.getHint());
