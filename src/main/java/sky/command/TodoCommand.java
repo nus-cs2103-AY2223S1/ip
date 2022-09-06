@@ -2,9 +2,10 @@ package sky.command;
 
 import java.io.IOException;
 
-import sky.Storage;
 import sky.TaskList;
 import sky.exception.TextNoMeaningException;
+import sky.storage.History;
+import sky.storage.Storage;
 import sky.task.Task;
 import sky.task.ToDo;
 
@@ -19,12 +20,14 @@ public class TodoCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList taskList, Storage storage) throws TextNoMeaningException, IOException {
+    public String execute(TaskList taskList, Storage storage, History history)
+            throws TextNoMeaningException, IOException {
         try {
             String taskToDo = this.fullCommand.substring(5);
             Task task = new ToDo(taskToDo);
             taskList.addTask(task);
             // Add task into data file
+            history.addHistoryInTime(taskList);
             storage.append(task.toString());
             return generateResponse(task, taskList);
         } catch (IndexOutOfBoundsException e) {

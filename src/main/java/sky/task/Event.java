@@ -18,6 +18,12 @@ public class Event extends Task {
     }
 
     @Override
+    public Event makeACopy() {
+        Event copiedTask = new Event(super.description, this.duration);
+        return copiedTask;
+    }
+
+    @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + this.duration + ")";
     }

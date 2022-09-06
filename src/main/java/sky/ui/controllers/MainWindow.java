@@ -1,7 +1,5 @@
 package sky.ui.controllers;
 
-import sky.Sky;
-
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-
+import sky.Sky;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -28,7 +26,7 @@ public class MainWindow extends AnchorPane {
     private Sky sky;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/Weed.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Schooling.png"));
+    private Image skyImage = new Image(this.getClass().getResourceAsStream("/images/Schooling.png"));
 
     /**
      * Initialize the greeting message.
@@ -36,9 +34,9 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        String greetingMessage = "Hello from Sky!\nYour heavenly chatbot to help you track your things.\n" +
-                "Type something to get started!";
-        dialogContainer.getChildren().addAll(DialogBox.getSkyDialog(greetingMessage, dukeImage));
+        String greetingMessage = "Hello from Sky!\nYour heavenly chatbot to help you track your things.\n"
+                + "Type something to get started!";
+        dialogContainer.getChildren().addAll(DialogBox.getSkyDialog(greetingMessage, skyImage));
     }
 
     public void setSky(Sky s) {
@@ -55,7 +53,7 @@ public class MainWindow extends AnchorPane {
         String response = sky.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getSkyDialog(response, dukeImage)
+                DialogBox.getSkyDialog(response, skyImage)
         );
         userInput.clear();
         if (response.equals("Bye. May all your endeavours fly high!")) {

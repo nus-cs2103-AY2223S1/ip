@@ -9,6 +9,12 @@ public class ToDo extends Task {
     }
 
     @Override
+    public ToDo makeACopy() {
+        ToDo copiedTask = new ToDo(super.description);
+        return copiedTask;
+    }
+
+    @Override
     public String toString() {
         return "[T]" + super.toString();
     }

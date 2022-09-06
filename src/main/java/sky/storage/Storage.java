@@ -1,4 +1,4 @@
-package sky;
+package sky.storage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import sky.TaskList;
 import sky.exception.TextNoMeaningException;
 import sky.task.Deadline;
 import sky.task.Event;
