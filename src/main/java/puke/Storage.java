@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -54,13 +55,13 @@ public class Storage {
                         task.markAsDone();
                     }
                 } else if (taskInArray[0].equals("D")) {
-                    Task task = new Deadline(taskInArray[2], LocalDate.parse(taskInArray[3]));
+                    Task task = new Deadline(taskInArray[2], LocalDateTime.parse(taskInArray[3]));
                     temp.add(task);
                     if (taskInArray[1].equals("1")) {
                         task.markAsDone();
                     }
                 } else if (taskInArray[0].equals("E")) {
-                    Task task = new Event(taskInArray[2], LocalDate.parse(taskInArray[3]));
+                    Task task = new Event(taskInArray[2], LocalDateTime.parse(taskInArray[3]));
                     temp.add(task);
                     if (taskInArray[1].equals("1")) {
                         task.markAsDone();

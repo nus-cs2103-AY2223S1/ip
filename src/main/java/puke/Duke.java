@@ -1,7 +1,9 @@
 package puke;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Main class
@@ -81,14 +83,16 @@ public class Duke {
             String desc = Duke.d.p.getMessage(s, "Deadline");
             String date = Duke.d.p.getDate(s);
             System.out.println(date);
-            Task newTask = new Deadline(desc, LocalDate.parse(date));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            Task newTask = new Deadline(desc, LocalDateTime.parse(date, formatter));
             Duke.d.tasklist.addIncrement(newTask);
             Duke.d.storage.saveTasks(Duke.d.tasklist.tasks);
             return Duke.d.ui.systemMessage(2, d, newTask);
         } else if (a.equals("event")) {
             String desc = Duke.d.p.getMessage(s, "Event");
             String date = Duke.d.p.getDate(s);
-            Task newTask = new Event(desc, LocalDate.parse(date));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            Task newTask = new Event(desc, LocalDateTime.parse(date, formatter));
             Duke.d.tasklist.addIncrement(newTask);
             Duke.d.storage.saveTasks(Duke.d.tasklist.tasks);
             return Duke.d.ui.systemMessage(2, d, newTask);

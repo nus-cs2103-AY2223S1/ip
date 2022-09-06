@@ -1,6 +1,7 @@
 package puke;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -10,14 +11,14 @@ public class Event extends Task {
     /**
      * Date of event, stored as LocalDate
      */
-    protected  LocalDate date;
+    protected LocalDateTime date;
 
     /**
      * Creates an Event task
      * @param description what the ask is
      * @param date LocalDate object of when the event is
      */
-    public Event (String description, LocalDate date){
+    public Event (String description, LocalDateTime date){
         super(description);
         this.date = date;
     }
@@ -28,7 +29,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at: " + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[E]" + super.toString() + "(at: " + date.format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm")) + ")";
     }
 
     /**

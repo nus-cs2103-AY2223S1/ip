@@ -1,6 +1,7 @@
 package puke;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -10,14 +11,14 @@ public class Deadline extends Task {
     /**
      * date to do task by, stored as a LocalDate
      */
-    protected LocalDate by;
+    protected LocalDateTime by;
 
     /**
      * Creates a Deadline task
      * @param description what the task is
      * @param by LocalDate object of when the deadline is
      */
-    public Deadline(String description, LocalDate by) {
+    public Deadline(String description, LocalDateTime by) {
         super(description);
         this.by = by;
     }
@@ -28,7 +29,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by: " + by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[D]" + super.toString() + "(by: " + by.format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm")) + ")";
     }
 
     /**
