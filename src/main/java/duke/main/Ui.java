@@ -1,5 +1,7 @@
 package duke.main;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
@@ -113,5 +115,10 @@ public class Ui {
         for (int i = 0; i < matchingTasks.size(); i++) {
             sc.append((i + 1) + "." + matchingTasks.get(i).toString() + "\n");
         }
+    }
+
+    public void printNextTiming(LocalDateTime duration) {
+        sc.append("Next available timing is\n");
+        sc.append(duration.format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm")));
     }
 }
