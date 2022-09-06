@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.Parser;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -32,7 +33,7 @@ public class AddCommand extends Command {
      * @throws DukeException If error saving file.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage, Parser parser) throws DukeException {
         tasks.add(task);
         String response = ui.addTaskMessage(task, tasks);
         storage.save(tasks.toString());

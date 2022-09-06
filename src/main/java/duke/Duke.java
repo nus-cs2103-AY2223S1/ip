@@ -10,6 +10,7 @@ public class Duke {
     private TaskList tasks;
     private Storage storage;
     private Ui ui;
+    private Parser parser;
 
     /**
      * Initialize duke.
@@ -19,6 +20,7 @@ public class Duke {
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
+        parser = new Parser();
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
@@ -40,8 +42,8 @@ public class Duke {
     public String getResponse(String input) {
         String response;
         try {
-            Command c = Parser.parse(input);
-            response = c.execute(tasks, ui, storage);
+            Command c = parser.parse(input);
+            response = c.execute(tasks, ui, storage, parser);
         } catch (DukeException e) {
             response = ui.showError(e.getMessage());
         }

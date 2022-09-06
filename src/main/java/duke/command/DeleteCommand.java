@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.Parser;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -31,7 +32,7 @@ public class DeleteCommand extends Command {
      * @throws DukeException If ind > tasks.size() or ind < 0 or error saving file.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage, Parser parser) throws DukeException {
         String response = ui.deleteTaskMessage(tasks.delete(ind - 1), tasks);
         storage.save(tasks.toString());
         return response;
