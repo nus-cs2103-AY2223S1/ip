@@ -11,18 +11,8 @@ import duke.parser.Parser;
 public class ParserTest {
 
     @Test
-    public void checkInput_arrayOfLengthOne_exceptionThrown() {
-        assertThrows(DukeException.class, () -> Parser.checkInput(new String[] {"swimming"}));
-    }
-
-    @Test
     public void checkDate_wrongFormat_exceptionThrown() {
         assertThrows(DukeException.class, () -> Parser.isDateValid("20 dec 2022"));
-    }
-
-    @Test
-    public void checkInput_arrayOfLengthTwo_success() {
-        assertDoesNotThrow(() -> Parser.checkInput(new String[] {"todo", "nap"}));
     }
 
     @Test

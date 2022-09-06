@@ -38,7 +38,7 @@ public class TaskList {
      * @param date Date of the tasks
      * @return A string consisting of all the tasks
      */
-    public List<Task> getTasks(String date) {
+    public List<Task> list(String date) {
         Predicate<Task> isTaskValid = task -> {
             LocalDate parsedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             boolean hasValidTaskType = task.getTaskType().equals("D") || task.getTaskType().equals("E");
@@ -83,12 +83,12 @@ public class TaskList {
 
     /**
      * Deletes the task at the specified index
-     * @param i The index of the task
+     * @param i The index of the task (1-based indexing)
      * @return The deleted task
      * @throws DukeException If the task does not exist
      */
     public Task deleteTask(int i) throws DukeException {
-        if (i > this.tasks.size() || i < 0) {
+        if (i > this.tasks.size() || i <= 0) {
             throw new DukeException("No such task exist!");
         }
 
