@@ -54,9 +54,15 @@ public class Parser {
                 int index = Integer.parseInt(split[1]);
                 return new DeleteCommand(index);
             case MARK:
+                if (split.length < 2) {
+                    throw new RoofusException("Huh?! Mark what?");
+                }
                 int index2 = Integer.parseInt(split[1]);
                 return new MarkCommand(index2);
             case UNMARK:
+                if (split.length < 2) {
+                    throw new RoofusException("Huh?! Unmark what?");
+                }
                 int index3 = Integer.parseInt(split[1]);
                 return new UnmarkCommand(index3);
             case TODO:
@@ -96,9 +102,9 @@ public class Parser {
                 }
                 return new FindCommand(split[1]);
             default:
-                break;
+                assert false : command;
             }
-        } catch (IllegalArgumentException err) {
+        } catch (IllegalArgumentException | AssertionError err) {
             throw new RoofusException("\"" + split[0] + "\" is not a command!");
         }
         throw new RoofusException("Not sure what the error is");

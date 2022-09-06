@@ -53,6 +53,7 @@ public class TaskList {
      * @param task
      */
     public void addTask(Task task) {
+        assert task != null : "task to add cannot be null";
         tasks.add(task);
     }
 
@@ -62,6 +63,8 @@ public class TaskList {
      * @param index Task number to be marked as done.
      */
     public void mark(int index) {
+        assert index >= 0 : "index should be greater than 0";
+        assert index < tasks.size() : "index should be less than list size";
         tasks.get(index - 1).mark();
     }
 
@@ -71,6 +74,8 @@ public class TaskList {
      * @param index Task number to be marked as not done.
      */
     public void unMark(int index) {
+        assert index >= 0 : "index should be greater than 0";
+        assert index < tasks.size() : "index should be less than list size";
         tasks.get(index - 1).unmark();
     }
 
@@ -80,6 +85,8 @@ public class TaskList {
      * @param index Task number to be deleted.
      */
     public void delete(int index) {
+        assert index >= 0 : "index should be greater than 0";
+        assert index < tasks.size() : "index should be less than list size";
         tasks.remove(index - 1);
     }
 
@@ -90,6 +97,8 @@ public class TaskList {
      * @return Task A specific task from TaskList.
      */
     public Task getTask(int index) {
+        assert index >= 0 : "index should be greater than 0";
+        assert index < tasks.size() : "index should be less than list size";
         return tasks.get(index);
     }
 
