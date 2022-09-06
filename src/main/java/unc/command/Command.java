@@ -8,7 +8,7 @@ import unc.UncException;
 /**
  * Abstract class of executable commands.
  */
-abstract public class Command {
+public abstract class Command {
     /**
      * Actuates the commands.
      *

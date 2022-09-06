@@ -2,9 +2,9 @@ package unc.command;
 
 import unc.Storage;
 import unc.TaskList;
-import unc.UncException;
-import unc.task.Todo;
 import unc.Ui;
+import unc.task.Todo;
+
 
 /**
  * Command that adds a new Todo to list when executed.

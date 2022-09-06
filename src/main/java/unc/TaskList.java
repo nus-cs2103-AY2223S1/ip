@@ -1,9 +1,9 @@
 package unc;
 
-import unc.task.Task;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import unc.task.Task;
 
 /**
  * List of Tasks.
@@ -82,6 +82,12 @@ public class TaskList {
         return taskList.get(index);
     }
 
+    /**
+     * Find tasks by searching for a keyword.
+     *
+     * @param keyword Keyword to look for.
+     * @return List of tasks that contains the keyword.
+     */
     public TaskList find(String keyword) {
         ArrayList<Task> temp = new ArrayList<>();
         for (Task task : taskList) {

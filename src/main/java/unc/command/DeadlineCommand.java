@@ -1,6 +1,9 @@
 package unc.command;
 
-import unc.*;
+import unc.Storage;
+import unc.TaskList;
+import unc.Ui;
+import unc.UncException;
 import unc.task.Deadline;
 
 /**
