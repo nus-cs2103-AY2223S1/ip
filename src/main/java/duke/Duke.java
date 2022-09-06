@@ -17,6 +17,7 @@ public class Duke {
      */
     public Duke() {
         storage = new Storage("data/tasks.txt");
+        this.loadTask();
     }
 
     public void loadTask() throws DukeException {

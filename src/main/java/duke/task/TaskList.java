@@ -31,16 +31,16 @@ public class TaskList {
      *
      * @return Array of String in according to the printing format.
      */
-    public String[] toPrintFormat() {
-        String[] lines = new String[tasks.size() + 1];
-        lines[0] = "Here are the tasks in your list: ";
+    public String list() {
+        StringBuilder sb = new StringBuilder(tasks.size() + 1);
+        sb.append("Here are the tasks in your list: \n");
         for (int i = 1; i < tasks.size() + 1; i++) {
-            lines[i] = tasks.get(i - 1).toStringWithIndex(i);
+            sb.append(tasks.get(i - 1).toStringWithIndex(i)).append("\n");
         }
-        if (lines.length == 1) {
-            lines[0] = "No tasks found in the list!";
+        if (tasks.size() == 0) {
+            return "No tasks found in the list!";
         }
-        return lines;
+        return sb.toString();
     }
 
     /**
@@ -49,11 +49,11 @@ public class TaskList {
      * @param index Index of the Task to be marked.
      * @return Output message of a successful mark.
      */
-    public String[] mark(int index) {
+    public String mark(int index) {
         Task task = this.tasks.get(index);
         task.mark();
-        return new String[] {"Nice! I've marked this task as done:",
-                "  " + task.toString()};
+        return "Nice! I've marked this task as done:\n" +
+                "  " + task;
     }
 
     /**
@@ -62,11 +62,11 @@ public class TaskList {
      * @param index Index of the Task to be unmarked.
      * @return Output message of a successful un-mark.
      */
-    public String[] unmark(int index) {
+    public String unmark(int index) {
         Task task = this.tasks.get(index);
         task.unmark();
-        return new String[] {"OK, I've marked this task as not done yet:",
-                "  " + task.toString()};
+        return "OK, I've marked this task as not done yet:\n" +
+                "  " + task;
     }
 
     /**
@@ -75,12 +75,12 @@ public class TaskList {
      * @param index Index of the Task to be deleted.
      * @return Output message of a successful delete.
      */
-    public String[] delete(int index) {
+    public String delete(int index) {
         Task task = this.tasks.get(index);
         this.tasks.remove(index);
-        return new String[] {"Noted. I've removed this task:",
-                "  " + task.toString(),
-                String.format("Now you have %d tasks in the list.", this.tasks.size())};
+        return "Noted. I've removed this task:\n" +
+                "  " + task.toString() + "\n" +
+                String.format("Now you have %d tasks in the list.", this.tasks.size());
     }
 
     /**
@@ -89,11 +89,11 @@ public class TaskList {
      * @param task Task to be added.
      * @return Output message after successfully adding the task.
      */
-    public String[] add(Task task) {
+    public String add(Task task) {
         this.tasks.add(task);
-        return new String[] {"Got it. I've added this task:",
-                "   " + task.toString(),
-                String.format("Now you have %d tasks in the list.", this.tasks.size())};
+        return "Got it. I've added this task:\n" +
+                "   " + task.toString() + "\n" +
+                String.format("Now you have %d tasks in the list.", this.tasks.size());
     }
 
     /**
@@ -115,15 +115,14 @@ public class TaskList {
      * @param toFind String to find.
      * @return Print format of all the tasks found.
      */
-    public String[] find(String toFind) {
-        StringBuilder res = new StringBuilder();
+    public String find(String toFind) {
+        StringBuilder sb = new StringBuilder().append("Here are the matching tasks in your list:\n");
         for (int i = 0; i < tasks.size(); i++) {
             Task curr = tasks.get(i);
             if (curr.description.contains(toFind)) {
-                res.append(curr.toStringWithIndex(i + 1)).append("\n");
+                sb.append(curr.toStringWithIndex(i + 1)).append("\n");
             }
         }
-        return new String[] {"Here are the matching tasks in your list:",
-                res.toString()};
+        return sb.toString();
     }
 }

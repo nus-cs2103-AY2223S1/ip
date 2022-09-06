@@ -25,6 +25,7 @@ public class UiTest {
         System.setOut(standardOut);
     }
 
+    /*
     @Test
     public void dukePrintTest() {
         Ui.dukePrint("hello");
@@ -43,5 +44,5 @@ public class UiTest {
                         "     Please type your date and time in this format: yyyy-mm-dd\n" +
                         "     ____________________________________________________________",
                 outputStreamCaptor.toString().trim());
-    }
+    } */
 }

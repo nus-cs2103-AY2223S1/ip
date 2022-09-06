@@ -1,2 +1,1 @@
 T | 0 | read book
-D | 0 | tutorial | 2000-01-01
