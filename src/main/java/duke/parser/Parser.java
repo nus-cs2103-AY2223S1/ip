@@ -13,7 +13,6 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.net.URI;
 import java.time.LocalDate;
 
@@ -27,7 +26,7 @@ import java.util.List;
  */
 public class Parser {
 
-
+    
     private static final List<String> PERMISSIBLE_TASKS = new ArrayList<>(
             Arrays.asList("todo", "event", "deadline"));
 
@@ -35,8 +34,8 @@ public class Parser {
     /**
      * parseData takes in a user's command as a string
      * and makes sense of the command by calling TaskList's appropriate functionality
-     * @param input
-     * @param taskList
+     * @param input a string of inputs
+     * @param taskList the TaskList's current state
      */
     public static String parseData(String input, TaskList taskList) {
 
@@ -61,15 +60,16 @@ public class Parser {
             return taskList.deleteTask(deleteIndex);
 
         case "find":
-            String[] tempArr = input.split(" ", 2); //split into 2
-            String keyword = tempArr[1]; //the remainder of the input minus whitespace
+            String[] keywords = input.split(" ", 2); //split into 2
+            String keyword = keywords[1]; //the remainder of the input minus whitespace
             return taskList.findTask(keyword);
 
         case "viewSchedule":
             String[] inputTempArr = input.split(" ", 2);
             String date = inputTempArr[1];
-            if (!(validateDate(date)).equals("Success")) { //an error occurred somewhere
-                return validateDate(date);
+            String decideValidDate = dateValidator(date);
+            if (!(decideValidDate.equals("Success"))) { //an error occurred somewhere
+                return decideValidDate;
             }
             return taskList.viewSchedule(date);
 
@@ -88,7 +88,7 @@ public class Parser {
         default:
 
             try {
-                validateTask(input);
+                taskValidator(input);
             } catch (InvalidCommandException ice) {
                 String message = "";
                 message += Ui.displayException(ice) + '\n';
@@ -112,14 +112,14 @@ public class Parser {
         }
     }
     /**
-     * helper method for input validation whenever an add task command is given
+     * Helper method for input validation whenever an add task command is given
      * @param  input of type string
      * @throws InvalidCommandException if the command is not
      * in our list of permissible tasks
      * @throws EmptyTaskException if the correct command is given
      * but not enough information is provided
      */
-    private static void validateTask(String input) throws InvalidCommandException, EmptyTaskException {
+    private static void taskValidator (String input) throws InvalidCommandException, EmptyTaskException {
         String[] tempArr = input.split(" ", 0); //splits into words
 
         //first word is invalid
@@ -134,7 +134,7 @@ public class Parser {
 
     }
 
-    private static String validateDate(String dateInput) {
+    private static String dateValidator (String dateInput) {
         try {
             LocalDate.parse(dateInput);
         } catch (DateTimeParseException e){
