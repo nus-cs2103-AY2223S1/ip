@@ -15,15 +15,15 @@ import duke.tasks.Task;
  */
 public class Storage {
     private Path path;
-    private File f;
+    private File file;
 
     /**
      * Constructor method of Storage
      * @param pathname
      */
     public Storage(String pathname) {
-        this.f = new File(pathname);
-        this.path = f.toPath();
+        this.file = new File(pathname);
+        this.path = file.toPath();
 
     }
 
@@ -32,9 +32,9 @@ public class Storage {
      * @return File object that is contained in the Storage object
      */
     public File load() {
-        if (f.exists()) {
-            this.path = f.toPath();
-            return f;
+        if (file.exists()) {
+            this.path = file.toPath();
+            return file;
         } else {
             throw new DukeException("No File Loaded");
         }

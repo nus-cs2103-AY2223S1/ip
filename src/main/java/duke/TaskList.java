@@ -16,7 +16,7 @@ import duke.tasks.Todo;
  * Represents the list of tasks that the user has keyed in.
  */
 public class TaskList {
-    private ArrayList<Task> list;
+    private ArrayList<Task> tasks;
     private int count;
 
     /**
@@ -25,7 +25,7 @@ public class TaskList {
      * @param f Save File
      */
     public TaskList(File f) {
-        list = new ArrayList<>();
+        tasks = new ArrayList<>();
 
         if (f.exists()) {
             try {
@@ -35,18 +35,18 @@ public class TaskList {
                 while (line != null) {
                     String[] task = line.split(",");
                     if (task[0].equals("T")) {
-                        list.add(new Todo(task[1].equals("X"), task[2]));
+                        tasks.add(new Todo(task[1].equals("X"), task[2]));
                     }
                     if (task[0].equals("E")) {
-                        list.add(new Event(task[1].equals("X"), task[2], task[3]));
+                        tasks.add(new Event(task[1].equals("X"), task[2], task[3]));
                     }
                     if (task[0].equals("D")) {
-                        list.add(new Deadline(task[1].equals("X"), task[2], LocalDate.parse(task[3])));
+                        tasks.add(new Deadline(task[1].equals("X"), task[2], LocalDate.parse(task[3])));
                     }
                     line = br.readLine();
                 }
 
-                this.count = list.size();
+                this.count = tasks.size();
             } catch (IOException e) {
                 System.out.println(e);
             }
@@ -57,14 +57,14 @@ public class TaskList {
      * Constructor Method for the TaskList if no save file is given
      */
     public TaskList() {
-        list = new ArrayList<>();
+        tasks = new ArrayList<>();
     }
 
     /**
      * @return ArrayList of tasks
      */
     public ArrayList<Task> getList() {
-        return this.list;
+        return this.tasks;
     }
 
     /**
@@ -72,8 +72,8 @@ public class TaskList {
      */
     public String list() {
         String s = "";
-        for (int i = 0; i < list.size(); i++) {
-            s += (i + 1 + ". " + list.get(i) + "\n");
+        for (int i = 0; i < tasks.size(); i++) {
+            s += (i + 1 + ". " + tasks.get(i) + "\n");
         }
         return s;
     }
@@ -86,10 +86,10 @@ public class TaskList {
     public String mark(int index) {
         String s = "";
         assert index >= 0;
-        assert index < list.size();
-        list.get(index).mark();
+        assert index < tasks.size();
+        tasks.get(index).mark();
         s += "I have marked this task as done: \n";
-        s += list.get(index) + "\n";
+        s += tasks.get(index) + "\n";
         return s;
     }
 
@@ -101,10 +101,10 @@ public class TaskList {
     public String add(Event e) {
         String s = "";
         try {
-            list.add(e);
-            count = list.size();
+            tasks.add(e);
+            count = tasks.size();
             s += ("Added Task \n");
-            s += list.get(count - 1);
+            s += tasks.get(count - 1);
             s += "Now you have " + count + " tasks in the list";
             return s;
         } catch (ArrayIndexOutOfBoundsException err) {
@@ -118,11 +118,11 @@ public class TaskList {
      * @param t
      */
     public String add(Todo t) {
-        list.add(t);
-        count = list.size();
+        tasks.add(t);
+        count = tasks.size();
         String s = "";
         s += "Added Task \n";
-        s += list.get(count - 1) + "\n";
+        s += tasks.get(count - 1) + "\n";
         s += "Now you have " + count + " tasks in the list\n";
         return s;
     }
@@ -134,11 +134,11 @@ public class TaskList {
      */
     public String add(Deadline d) {
         try {
-            list.add(d);
-            count = list.size();
+            tasks.add(d);
+            count = tasks.size();
             String s = "";
             s += "Added Task\n";
-            s += list.get(count - 1) + "\n";
+            s += tasks.get(count - 1) + "\n";
             s += "Now you have " + count + " tasks in the list" + "\n";
             return s;
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -153,10 +153,11 @@ public class TaskList {
      */
     public String delete(int index) {
         assert index >= 0;
-        assert index < list.size();
-        Task item = list.get(index);
-        list.remove(index);
-        count = list.size();
+        assert index < tasks.size();
+
+        Task item = tasks.get(index);
+        tasks.remove(index);
+        count = tasks.size();
         String s = ("Noted. I have removed this task: \n" + item);
         return s;
     }
@@ -168,11 +169,11 @@ public class TaskList {
      */
     public String unMark(int index) {
         assert index >= 0;
-        assert index < list.size();
-        list.get(index).unmark();
+        assert index < tasks.size();
+        tasks.get(index).unmark();
         String s = "";
         s += "I have marked this task as not done:\n";
-        s += list.get(index);
+        s += tasks.get(index);
         return s;
     }
 
@@ -183,7 +184,7 @@ public class TaskList {
      */
     public String find(String s) {
         String res = "";
-        for (Task task : list) {
+        for (Task task : tasks) {
             if (task.contains(s)) {
                 res += task + "\n";
             }
