@@ -44,10 +44,21 @@ public class TaskList {
         return this.list.size();
     }
 
+    /**
+     * Returns an arraylist of the current list of tasks.
+     *
+     * @return Arraylist of tasks.
+     */
     public ArrayList<Task> getList() {
         return this.list;
     }
 
+    /**
+     * Returns the task at the specified index.
+     *
+     * @param i Index of task.
+     * @return Task at the specified index.
+     */
     public Task getTask(int i) {
         return this.list.get(i - 1);
     }

@@ -24,6 +24,89 @@ public class Storage {
     }
 
     /**
+     * Loads the data from the specified file into an arraylist. Throws
+     * DukeException if file does not exist.
+     *
+     * @return Arraylist of tasks loaded from file.
+     * @throws DukeException if file does not exist.
+     */
+    public ArrayList<Task> load() throws DukeException {
+        File file = new File(this.filePath);
+        ArrayList<Task> tasks = new ArrayList<>(); // To be returned
+
+        try {
+            Scanner sc = new Scanner(file);
+
+            while (sc.hasNext()) {
+                String s = sc.nextLine();
+                char typeOfTask = s.charAt(1);
+                char statusIcon = s.charAt(4);
+                boolean isDone = (statusIcon == 'X');
+
+                switch (typeOfTask) {
+                case 'T':
+                    tasks.add(this.getTodo(s, isDone));
+                    break;
+                case 'D':
+                    tasks.add(this.getDeadline(s, isDone));
+                    break;
+                case 'E':
+                    tasks.add(this.getEvent(s, isDone));
+                    break;
+                default:
+                    assert false; // Execution should never reach this point!
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new DukeException();
+        }
+
+        return tasks;
+    }
+
+    private Task getTodo(String s, boolean isDone) {
+        Task t = new Todo(this.getTodoDescription(s));
+        if (isDone) {
+            t.markAsDone();
+        }
+        return t;
+    }
+
+    private Task getDeadline(String s, boolean isDone) {
+        Task t = new Deadline(this.getDescription(s), this.getTime(s));
+        if (isDone) {
+            t.markAsDone();
+        }
+        return t;
+    }
+
+    private Task getEvent(String s, boolean isDone) {
+        Task t = new Event(this.getDescription(s), this.getTime(s));
+        if (isDone) {
+            t.markAsDone();
+        }
+        return t;
+    }
+
+    private String getTodoDescription(String s) {
+        int desStartIndex = 7;
+        return s.substring(desStartIndex);
+    }
+
+    private String getDescription(String s) {
+        int desStartIndex = 7;
+        int desEndIndex = s.indexOf('(') - 1;
+        return s.substring(desStartIndex, desEndIndex);
+    }
+
+    private String getTime(String s) {
+        int timeStartIndex = s.indexOf('(') + 5;
+        int timeEndIndex = s.indexOf(')');
+        return s.substring(timeStartIndex, timeEndIndex);
+    }
+
+    /**
      * Saves the given list of tasks in the specified file.
      *
      * @param list TaskList to be saved in the file.
@@ -32,15 +115,23 @@ public class Storage {
         try {
             FileWriter fw = new FileWriter(filePath);
             fw.flush();
-            for (Task t : list.getList()) {
-                if (t.toString().charAt(1) == 'D') {
+            ArrayList<Task> currList = list.getList();
+
+            for (Task t : currList) {
+                boolean isDeadline = (t.toString().charAt(1) == 'D');
+
+                // Date of deadline saved must be in format yyyy-mm-dd; e.g. 2020-10-10
+                if (isDeadline) {
                     Deadline d = (Deadline) t;
                     fw.write(d.toStringOri() + "\n");
                     continue;
                 }
+
                 fw.write(t + "\n");
             }
+
             fw.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,9 +146,9 @@ public class Storage {
         String tempDir;
 
         while (dir.contains("/")) {
-            tempDir = dir.substring(0, filePath.indexOf('/'));
+            tempDir = dir.substring(0, filePath.indexOf('/')); // Get first directory
             Path folder = Paths.get(tempDir);
-            dir = dir.substring(dir.indexOf('/') + 1);
+            dir = dir.substring(dir.indexOf('/') + 1); // Get next directory
 
             try {
                 Files.createDirectories(folder);
@@ -79,62 +170,5 @@ public class Storage {
         } catch (IOException e) {
             System.err.println("Failed to create file!" + e.getMessage());
         }
-    }
-
-    /**
-     * Loads the data from the specified file into an arraylist. Throws
-     * DukeException if file does not exist.
-     *
-     * @return Arraylist of tasks loaded from file.
-     * @throws DukeException if file does not exist.
-     */
-    public ArrayList<Task> load() throws DukeException {
-        File file = new File(this.filePath);
-        ArrayList<Task> tasks = new ArrayList<>(); // to be returned
-
-        try {
-            Scanner sc = new Scanner(file);
-
-            while (sc.hasNext()) {
-                String s = sc.nextLine();
-                String description;
-                char task = s.charAt(1);
-                char symbol = s.charAt(4);
-                boolean isDone = (symbol == 'X');
-
-                if (task == 'T') {
-                    description = s.substring(7);
-                    Task t = new Todo(description);
-                    if (isDone) {
-                        t.markAsDone();
-                    }
-                    tasks.add(t);
-                    continue;
-                }
-
-                description = s.substring(7, s.indexOf('(') - 1);
-                String time = s.substring(s.indexOf('(') + 5, s.indexOf(')'));
-                if (task == 'D') {
-                    Task t = new Deadline(description, time);
-                    if (isDone) {
-                        t.markAsDone();
-                    }
-                    tasks.add(t);
-                    continue;
-                }
-
-                if (task == 'E') {
-                    Task t = new Event(description, time);
-                    if (isDone) {
-                        t.markAsDone();
-                    }
-                    tasks.add(t);
-                }
-
-            }
-        } catch (FileNotFoundException e) {
-            throw new DukeException();
-        }
-        return tasks;
     }
 }

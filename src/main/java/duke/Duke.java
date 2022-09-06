@@ -16,7 +16,7 @@ public class Duke {
     /**
      * Constructor for Duke.
      *
-     * @param filePath File name of file where tasks are saved.
+     * @param filePath Name of file where tasks are saved.
      */
     public Duke(String filePath) {
         ui = new Ui();
@@ -39,59 +39,54 @@ public class Duke {
     public String getResponse(String input) {
         String[] arr = new Parser().parseCommand(input);
         String action = arr[0];
-        String response = this.ui.getUnknownInputError();
+        String response;
+        Task t;
 
-        if (Objects.equals(action, "T")) {
-            Task t;
+        switch (action) {
+        case "T":
             try {
                 t = this.addAndGetTodo(arr[1]);
             } catch (DukeException e) {
                 return e.toString();
             }
             response = this.ui.getTaskAddedReply(t, this.tasks);
-        }
-
-        if (Objects.equals(action, "D")) {
-            Task t;
+            break;
+        case "D":
             try {
                 t = this.addAndGetDeadline(arr[1], arr[2]);
             } catch (DukeException e) {
                 return e.toString();
             }
             response = this.ui.getTaskAddedReply(t, this.tasks);
-        }
-
-        if (Objects.equals(action, "E")) {
-            Task t;
+            break;
+        case "E":
             try {
                 t = this.addAndGetEvent(arr[1], arr[2]);
             } catch (DukeException e) {
                 return e.toString();
             }
             response = this.ui.getTaskAddedReply(t, this.tasks);
-        }
-
-        if (Objects.equals(action, "d")) {
+            break;
+        case "d":
             int taskNum = Integer.parseInt(arr[1]);
             Task toBeDeleted = this.deleteAndGetDeletedTask(taskNum);
             response = this.ui.getTaskDeletedReply(toBeDeleted, this.tasks);
-        }
-
-        if (Objects.equals(action, "M")) {
-            Task t = this.markAndGetMarkedTask(arr[1]);
+            break;
+        case "M":
+            t = this.markAndGetMarkedTask(arr[1]);
             response = this.ui.getTaskMarkedReply(t);
-        }
-
-        if (Objects.equals(action, "L")) {
+            break;
+        case "L":
             response = this.ui.getList(this.tasks);
-        }
-
-        if (Objects.equals(action, "F")) {
+            break;
+        case "F":
             response = this.ui.getTasksWithKeyword(arr[1], this.tasks);
-        }
-
-        if (Objects.equals(action, "B")) {
+            break;
+        case "B":
             response = this.ui.getGoodbyeMessage();
+            break;
+        default:
+            response = this.ui.getUnknownInputError();
         }
 
         return response;
