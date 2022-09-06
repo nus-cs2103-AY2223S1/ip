@@ -79,18 +79,6 @@ public class Parser {
         }
     }
 
-    public static void main(String[] args) {
-        try {
-            Scanner sc = new Scanner(System.in);
-            String input = sc.nextLine();
-            System.out.println("You typed: " + input);
-            System.out.println(parse(input));
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-
-    }
-
     /**
      *
      * Extracts shortcut or formal command used and returns formal command/
@@ -100,35 +88,48 @@ public class Parser {
      * @return
      */
     private static String extractCommand(String input) throws DukeException{
+        int whiteSpaceIndex = input.indexOf(" ");
         String command;
-
-
-        return command;
-    }
-
-    private static String convertToFormalCommand(String command) throws DukeException{
-        String[] commandList = {"todo", "list", "event", "deadline",
-        "mark", "unmark", "longdesc", "istoday", "find", "bye"};
-        String todoRegex = "(t|todo)";
-        String listRegex = "(l|list)";
-        String eventRegex = "(event|e)";
-        String deadlineRegex = "(deadline|d)";
-        String markRegex = "(mark|m)";
-        String unmarkRegex = "(unmark|um)";
-        String longdescRegex = "(longdesc)";
-        String istodayRegex = "(istoday)";
-        String findRegex = "(f|find)";
-        String byeRegex = "(bye|quit|q)";
-        String[] regexes = {todoRegex, listRegex, eventRegex, deadlineRegex, markRegex, unmarkRegex, longdescRegex, istodayRegex, findRegex, byeRegex};
-        for (int i = 0; i < commandList.length; i ++) {
-            Pattern p = Pattern.compile(regexes[i]);
-            Matcher m = p.matcher(command);
-            if (m.find()) {
-                return commandList[i];
-            }
+        if (whiteSpaceIndex < 0) {
+            command = input;
+        } else {
+            command = input.substring(0, input.indexOf(" "));
         }
-        throw new DukeException("Could not find formal command");
+        if (command.equals("t") || command.equals("todo")) {
+            return "todo";
+        } else if (command.equals("l") || command.equals("list")) {
+            return "list";
+        } else if (command.equals("event") || command.equals("e")) {
+            return "event";
+        } else if (command.equals("deadline") || command.equals("d")) {
+            return "deadline";
+        } else if (command.equals("mark") || command.equals("m")) {
+            return "mark";
+        } else if (command.equals("unmark")  || command.equals("um")) {
+            return "unmark";
+        } else if (command.equals("bye") || command.equals("quit") || command.equals("q")) {
+            return "bye";
+        } else if (command.equals("find") || command.equals("f")) {
+            return "find";
+        } else if (command.equals("longdesc")) {
+            return "longdesc";
+        } else if (command.equals("istoday")) {
+            return "istoday";
+        }else {
+            return " ";
+        }
     }
+
+    public static void main(String[] args)  {
+        try {
+            Scanner sc = new Scanner(System.in);
+            String line = sc.nextLine();
+            System.out.println(extractCommand(line));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
 
     /**
      * Converts string command for adding
@@ -181,7 +182,7 @@ public class Parser {
      * @throws DukeException when no valid description is found.
      */
     private static String getDescription(String commandUsed, String input) throws DukeException {
-        return input;
+        return ;
     }
 
     /**
