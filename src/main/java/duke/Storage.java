@@ -46,9 +46,7 @@ public class Storage {
      * @return The Task stored
      */
     private Task stringToTask(String data) throws DukeException {
-        if(data.length() == 0){
-            return null;
-        }
+        assert data.length() > 0;
         char type = (data.charAt(0));
         boolean done = (data.charAt(1)) == ('Y');
         Task task = null;
@@ -95,6 +93,8 @@ public class Storage {
      * @param input
      */
     public void writeFile(List<Task> input, String location){
+        assert input != null;
+        assert location != null;
         try {
             FileWriter myWriter = new FileWriter(location);
             for(Task cur: input) {
