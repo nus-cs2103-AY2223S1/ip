@@ -51,6 +51,11 @@ test {
     }
 }
 
+
+java {
+    sourceCompatibility = "VERSION_11"
+}
+
 application {
     mainClassName = "duke.gui.Entrypoint"
 }
@@ -63,4 +68,13 @@ shadowJar {
 run {
     standardInput = System.in
     enableAssertions = true
+}
+
+//@@author parnikkapore-reused
+// Adapted from https://stackoverflow.com/questions/43937169/ and https://stackoverflow.com/questions/59245134/
+task runcli(type: JavaExec,group: 'application') {
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+    enableAssertions = true
+    main = "duke.Duke"
 }
