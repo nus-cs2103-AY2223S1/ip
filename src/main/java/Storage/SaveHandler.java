@@ -28,6 +28,9 @@ public class SaveHandler {
         } catch (IOException e) {
             throw new DaveInitFileException();
         }
+
+        assert SAVE_FILE.exists() : "The save file should exist";
+
         if (!SAVE_FILE.canRead() || !SAVE_FILE.canWrite()) {
             throw new DaveException("Oh no! You do not have permission to read and/or write to your saved files :(");
         }
@@ -66,7 +69,7 @@ public class SaveHandler {
                 TaskList tasks = (TaskList) ois.readObject();
                 fin.close();
                 return tasks;
-            } catch (IOException |ClassNotFoundException e) {
+            } catch (IOException | ClassNotFoundException e) {
 //            throw new DaveExceptions.DaveException("Oh no! An error has been encountered while loading!");
                 throw new DaveException(e.toString());
             }
