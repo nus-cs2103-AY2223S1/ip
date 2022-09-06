@@ -191,16 +191,23 @@ public class TaskList {
      * @return String containing message to be displayed
      */
     public String find(String keyword) {
-        String message = "";
+        int numberOfMatches = 0;
         ArrayList<Task> matches = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             Task task = tasks.get(i);
             if (task.contains(keyword)) {
                 matches.add(task);
+                numberOfMatches++;
             }
         }
+
+        if (numberOfMatches == 0) {
+            return "No matching tasks found.";
+        }
+
         TaskList match = new TaskList(matches);
-        String print = String.format("Here are the matching tasks in your list:\n%s", match.toString());
+        String print = String.format("Here are the matching tasks in your list:\n%s", match);
+        assert !print.isEmpty() : "Should not have empty response when searching tasks";
         return print;
     }
 
@@ -211,6 +218,10 @@ public class TaskList {
      */
     @Override
     public String toString() {
+        if (count < 1) {
+            return "There are no tasks at the moment!";
+        }
+
         String text = "";
         for (int i = 0; i < count; i++) {
             String index = String.format("%d.", i + 1);
@@ -218,6 +229,7 @@ public class TaskList {
             text += item;
             text += "\n";
         }
+        assert !text.isEmpty() : "Should not have empty response when converting list of tasks to String";
         return text;
     }
 }
