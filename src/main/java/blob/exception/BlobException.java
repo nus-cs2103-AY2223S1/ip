@@ -5,5 +5,11 @@ package blob.exception;
  * with the Blob application.
  */
 public abstract class BlobException extends Exception {
+
+    /**
+     * Returns the responses to be printed to the user due to the encountered exception.
+     *
+     * @return The responses to be printed to the user due to the encountered exception
+     */
     public abstract String[] getBlobMessages();
 }

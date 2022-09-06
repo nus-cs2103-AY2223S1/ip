@@ -7,6 +7,10 @@ import blob.common.Messages;
  * application fails to load user's saved tasks.
  */
 public class ErrorLoadingTaskException extends BlobException {
+
+    /**
+     * {@inheritDoc}
+     */
     public String[] getBlobMessages() {
         return new String[] { Messages.MESSAGE_ERROR_LOADING_TASK };
     }

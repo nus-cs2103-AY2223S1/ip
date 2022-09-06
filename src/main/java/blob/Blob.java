@@ -36,39 +36,6 @@ public class Blob {
     }
 
     /**
-     * Start the interaction with an instance of blob.Blob
-     */
-    public void start() {
-        ui.greetUser();
-        Scanner sc = new Scanner(System.in);
-        while (true) {
-            ui.promptUserInput();
-            try {
-                Command command = parser.parseUserInput(sc.nextLine());
-                CommandResult result;
-
-                if (command.isByeCommand()) {
-                    end();
-                }
-
-                if (command.isTaskCommand()) {
-                    TaskCommand taskCommand = (TaskCommand) command;
-                    taskCommand.setTaskList(taskList);
-                    result = taskCommand.execute();
-                    storage.saveTaskList(taskList);
-                } else {
-                    result = command.execute();
-                }
-
-                ui.speakToUser(result.getResultMessages());
-
-            } catch (BlobException exception) {
-                ui.speakToUser(exception.getBlobMessages());
-            }
-        }
-    }
-
-    /**
      * Ends the Blob interaction.
      */
     public void end() {
@@ -94,9 +61,7 @@ public class Blob {
             } else {
                 result = command.execute();
             }
-
             return result.getResultMessages();
-
         } catch (BlobException exception) {
             return exception.getBlobMessages();
         }

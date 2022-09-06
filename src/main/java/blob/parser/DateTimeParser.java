@@ -12,19 +12,26 @@ import java.util.Locale;
  */
 public class DateTimeParser {
 
+    /** The list of accepted date formats that the application will parse as input */
     private final String[] dateFormats = {
         "dd-MM-yyyy",
         "yyyy-MM-dd",
         "d MMM yyyy",
         "MMM d yyyy",
     };
+
+    /** The list of accepted datetime formats that the application will parse as input */
     private final String[] dateTimeFormats = {
         "dd-MM-yyyy HH:mm",
         "yyyy-MM-dd HH:mm",
         "d MMM yyyy HH:mm",
         "MMM d yyyy HH:mm",
     };
+
+    /** The formatter that will be used to convert parsed date formats into the output format */
     private final DateTimeFormatter dateFormatter;
+
+    /** The formatter that will be used to convert parsed datetime formats into the output format */
     private final DateTimeFormatter dateTimeFormatter;
 
     /**
