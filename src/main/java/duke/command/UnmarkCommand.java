@@ -31,6 +31,7 @@ public class UnmarkCommand extends Command {
     public String execCommand(TaskList list, Ui ui, Storage storage) {
         list.getTask(this.num).markAsUndone();
         storage.saveList(list.save());
+
         return ui.showUnmark(list.getTask(this.num));
     }
 }

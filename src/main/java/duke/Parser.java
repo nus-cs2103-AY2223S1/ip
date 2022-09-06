@@ -38,10 +38,6 @@ public class Parser {
         }
     }
 
-    public String getCmd() {
-        return this.cmd;
-    }
-
     public int getTaskNumber() throws DukeException {
         if (task.isEmpty()) {
             throw new DukeException("Error! No task found.");

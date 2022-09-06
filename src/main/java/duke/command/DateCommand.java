@@ -42,6 +42,7 @@ public class DateCommand extends Command {
                 matchingTasks.add(task);
             }
         }
+
         return ui.showDate(matchingTasks);
     }
 }

@@ -32,6 +32,7 @@ public class DeleteCommand extends Command {
     public String execCommand(TaskList list, Ui ui, Storage storage) {
         Task removed = list.removeTask(this.num);
         storage.saveList(list.save());
+
         return ui.showDelete(removed, list.getSize());
     }
 }

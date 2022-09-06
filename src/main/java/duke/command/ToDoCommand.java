@@ -32,6 +32,7 @@ public class ToDoCommand extends Command {
     public String execCommand(TaskList list, Ui ui, Storage storage) {
         list.addTask(this.toDo);
         storage.saveList(list.save());
+
         return ui.showAdd(this.toDo, list.getSize());
     }
 }
