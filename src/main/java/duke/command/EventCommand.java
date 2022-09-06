@@ -53,11 +53,12 @@ public class EventCommand implements Command {
 
         Task newTask = new Event(eventInfo.get(0), eventInfo.get(1));
         taskList.addTask(newTask);
+        storage.saveTasksInStorage(taskList.toStorageRepresentation());
 
         String responseMessage = "This task is successfully added:\n " + newTask
                 + "\nNow you have " + taskList.getTaskListSize() + " task(s) in the list";
         ui.printMessage(responseMessage);
-        storage.saveTasksInStorage(taskList.toStorageRepresentation());
+
         return new Pair<>(true, responseMessage);
     }
 }

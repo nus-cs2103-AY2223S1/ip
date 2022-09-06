@@ -53,11 +53,11 @@ public class DeadlineCommand implements Command {
 
         Task newTask = new Deadline(deadlineInfo.get(0), deadlineInfo.get(1));
         taskList.addTask(newTask);
+        storage.saveTasksInStorage(taskList.toStorageRepresentation());
 
         String responseMessage = "This task is successfully added:\n " + newTask
                 + "\nNow you have " + taskList.getTaskListSize() + " task(s) in the list";
         ui.printMessage(responseMessage);
-        storage.saveTasksInStorage(taskList.toStorageRepresentation());
 
         return new Pair<>(true, responseMessage);
     }

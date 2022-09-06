@@ -21,5 +21,6 @@ public interface Command {
      * @return a pair that represents system status and response message.
      * @throws DukeException If Duke fails to execute the command.
      */
-    Pair<Boolean, String> execute(Ui ui, Storage storage, TaskList taskList) throws DukeException;
+    Pair<Boolean, String> execute(Ui ui, Storage storage, TaskList taskList)
+            throws DukeException;
 }
