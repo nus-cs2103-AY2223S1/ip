@@ -7,6 +7,10 @@ import blob.common.Messages;
  * datetime does not meet the required formats.
  */
 public class InvalidDateFormatException extends BlobException {
+
+    /**
+     * {@inheritDoc}
+     */
     public String[] getBlobMessages() {
         return new String[] { Messages.MESSAGE_ERROR_INVALID_DATETIME,
             Messages.MESSAGE_USAGE_INPUT_DATETIME };

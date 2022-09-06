@@ -9,6 +9,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * The Main class wraps around the Blob application and provides user with a GUI to interact
+ * with the application.
+ */
 public class Main extends Application {
     private final Blob blob = new Blob("data/tasks.txt");
 
