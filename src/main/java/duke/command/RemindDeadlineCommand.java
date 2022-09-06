@@ -17,6 +17,10 @@ public class RemindDeadlineCommand extends Command {
      */
     public String execute(TasksController controller, String taskText, String taskTime, int taskIndex,
                           Storage storage, String ...keywords) {
+        assert taskTime.length() == 0 : "The taskTime of should not be used for RemindDeadlineCommand";
+        assert taskText.length() == 0 : "The taskText should not be used for RemindDeadlineCommand";
+        assert taskIndex == -1 : "The taskIndex should not be used for RemindDeadlineCommand";
+        assert keywords[0].equals("") : "The keywords should not be used for RemindDeadlineCommand";
 
         ArrayList<Task> deadlines = controller.getDeadlines();
         String response = "";
