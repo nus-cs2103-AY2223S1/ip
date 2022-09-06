@@ -101,6 +101,7 @@ public class Parser {
 
         case "find":
             String keyword = strArr[1];
+            assert keyword.charAt(0) != ' ': "There's a whitespace in the keyword";
             FindCommand findCommand = new FindCommand(keyword);
             return findCommand;
 

@@ -36,9 +36,11 @@ public class DeleteCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
+            int originalTotal = tasks.totalSize();
             Task task = tasks.getTaskList().get(this.number - 1);
             tasks.delete(this.number - 1);
             int total = tasks.totalSize();
+            assert total == (originalTotal - 1): "there should be an decrement of total tasks by 1";
             String message = ui.showDelete(task,total);
             storage.store(tasks.getTaskList());
             return message;
