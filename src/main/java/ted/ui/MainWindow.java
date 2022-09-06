@@ -32,8 +32,12 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setUi(UiController ui) {
-        this.ui = ui;
+    /**
+     * Set ui controller
+     * @param uiController
+     */
+    public void setUiController(UiController uiController) {
+        this.ui = uiController;
     }
 
     /**

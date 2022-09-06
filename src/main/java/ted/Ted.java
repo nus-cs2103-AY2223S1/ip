@@ -29,10 +29,10 @@ public class Ted {
 
     /**
      * Set UI controller
-     * @param ui
+     * @param uiController
      */
-    public void setUiController(UiController ui) {
-        this.uiController = ui;
+    public void setUiController(UiController uiController) {
+        this.uiController = uiController;
     }
 
     /**
