@@ -64,48 +64,63 @@ public class Storage {
 
     private static void checkTask(String str, TaskList arr) throws StringIndexOutOfBoundsException {
         //check what task
-        String t = Character.toString(str.charAt(1));
+        String task = Character.toString(str.charAt(1));
         String done = Character.toString(str.charAt(4));
-        Boolean d = !done.equals(" ");
-        //If td
+        Boolean isDone = !done.equals(" ");
 
-        if (t.equals("T")) {
-            //check done
-            if (d) {
-                Todo add = new Todo(str.substring(7));
-                add.mark();
-                arr.addStart(add);
+
+        if (isTodo(task)) {
+            if (isDone) {
+                addTaskWithMark(new Todo(str.substring(7)), arr);
+
             } else {
-                Todo add = new Todo(str.substring(7));
-                arr.addStart(add);
+                addTaskWithoutMark(new Todo(str.substring(7)), arr);
+
             }
         }
-        //If event
-        else if (t.equals("E")) {
+
+        else if (isEvent(task)) {
             int pos = str.indexOf("(") - 1;
-            if (d) {
-                Event add = new Event(str.substring(7, pos), str.substring(pos + 5, -1));
-                add.mark();
-                arr.addStart(add);
+            if (isDone) {
+                addTaskWithMark(new Event(str.substring(7, pos), str.substring(pos + 5, -1)), arr);
             } else {
-                Event add = new Event(str.substring(7, pos), str.substring(pos + 5, -1));
-                arr.addStart(add);
+                addTaskWithoutMark(new Event(str.substring(7, pos), str.substring(pos + 5, -1)), arr);
             }
         }
-        //if task.Deadline
-        else if (t.equals("D")) {
+
+        else if (isDeadline(task)) {
             int pos = str.indexOf("(") - 1;
-            if (d) {
-                Event add = new Event(str.substring(7, pos), str.substring(pos + 5, -1));
-                add.mark();
-                arr.addStart(add);
+            if (isDone) {
+                addTaskWithMark(new Event(str.substring(7, pos), str.substring(pos + 5, -1)), arr);
             } else {
-                Event add = new Event(str.substring(7, pos), str.substring(pos + 5, -1));
-                arr.addStart(add);
+                addTaskWithoutMark(new Event(str.substring(7, pos), str.substring(pos + 5, -1)), arr);
             }
         }
+    }
+
+    private static Boolean isTodo(String task) {
+        return task.equals("T");
+    }
+
+    private static Boolean isEvent(String task) {
+        return task.equals("E");
+    }
+
+    private static Boolean isDeadline(String task) {
+        return task.equals("D");
+    }
+
+    private static void addTaskWithoutMark(Task task, TaskList arr) {
+        arr.addStart(task);
+    }
+
+    private static void addTaskWithMark(Task task, TaskList arr) {
+        task.mark();
+        arr.addStart(task);
     }
 
 
 
 }
+
+
