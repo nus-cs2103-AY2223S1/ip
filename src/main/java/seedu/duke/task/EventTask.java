@@ -1,15 +1,19 @@
-package duke.task;
+package seedu.duke.task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class Deadline extends Task {
+/**
+ * Task with a time. Time is stored as LocalDate if given in YYYY-MM-DD format.
+ * Otherwise, time stored as string.
+ */
+public class EventTask extends Task {
     private LocalDate date = null;
     private String time = null;
-    private static final String TYPE = "[D]";
+    private static final String TYPE = "[E]";
 
-    public Deadline(String name, String date) {
+    public EventTask(String name, String date) {
         super(name);
         try {
             this.date = LocalDate.parse(date);
@@ -18,7 +22,13 @@ public class Deadline extends Task {
         }
     }
 
-    public Deadline(String name, String date, boolean isDone) {
+    /**
+     * Constructor only for loading task list.
+     * @param name
+     * @param date
+     * @param isDone
+     */
+    public EventTask(String name, String date, boolean isDone) {
         super(name, isDone);
         try {
             this.date = LocalDate.parse(date);
@@ -32,13 +42,17 @@ public class Deadline extends Task {
         return TYPE;
     }
 
+    /**
+     * Returns string in the form: [E] task name (on: time)
+     * @return
+     */
     @Override
     public String toString() {
         if (time == null) {
-            return TYPE + super.toString() + " (by: " +
+            return TYPE + super.toString() + " (on: " +
                     date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
         } else {
-            return TYPE + super.toString() + " (by: " + time + ")";
+            return TYPE + super.toString() + " (on: " + time + ")";
         }
     }
 }

@@ -1,10 +1,23 @@
-package duke;
+package seedu.duke;
 
-import duke.command.*;
+import seedu.duke.command.Command;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Scanner;
 
+/**
+ * Creates or loads a todo list.
+ * Accepts the following commands:
+ * todo [name of task] - adds an item to the todo list
+ * deadline [name of task] /by [date] - adds an item to the todo list
+ * event [name of event] /on [time] - adds an item to the todo list
+ * mark [item index] - marks the given item as done
+ * unmark [item index] - marks the given item as undone
+ * delete [item index] - removes the given item from list
+ * list - prints the list
+ * bye - saves the list and closes the program
+ */
 public class Duke {
     private static String logo  = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
@@ -17,10 +30,8 @@ public class Duke {
     private static Parser parser;
 
     public static void main(String[] args) throws DukeException, IOException {
-        Ui.greet();
         filePath = storage.createSave();
         list = storage.loadList(filePath);
-        System.out.println("This is your current list:\n" + list.toString());
 
         Scanner scanner = new Scanner(System.in);
         String text = scanner.nextLine();

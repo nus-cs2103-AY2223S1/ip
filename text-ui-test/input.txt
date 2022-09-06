@@ -1,7 +1,7 @@
-deadline send help /by tomorrow
+deadlineTask send help /by tomorrow
 DEADLINE Project /by wed
 eat
-event rest /on 10pm tonight
+eventTask rest /on 10pm tonight
 to-do sleep
 list
 mark 3

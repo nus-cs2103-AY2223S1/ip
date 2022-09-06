@@ -1,16 +1,24 @@
-package duke;
-
-import duke.command.*;
-import duke.task.Deadline;
+package seedu.duke;
+import seedu.duke.command.*;
 
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Parser class to parse commands inputed to Duke
+ */
 public class Parser {
     private static final String[] COMMANDS_ARRAY =
             new String[] {"mark", "unmark", "delete", "todo", "deadline", "event"};
     private static final List<String> COMMANDS = Arrays.asList(COMMANDS_ARRAY);
 
+    /**
+     * Parses the given command and returns the appropriate command to be executed.
+     * Throws an exception if command is given in the wrong format.
+     * @param inputText whatever the use has inputed
+     * @return relevant command
+     * @throws DukeException
+     */
     public static Command parse(String inputText) throws DukeException {
         inputText = inputText.toLowerCase();
         if (inputText.equals("bye")) {

@@ -1,9 +1,12 @@
-package duke.command;
+package seedu.duke.command;
 
-import duke.DukeException;
-import duke.TaskList;
-import duke.Ui;
+import seedu.duke.DukeException;
+import seedu.duke.TaskList;
+import seedu.duke.Ui;
 
+/**
+ * Class to execute unmark command
+ */
 public class UnmarkCommand extends Command {
     private int index;
 
@@ -11,6 +14,11 @@ public class UnmarkCommand extends Command {
         this.index = index;
     }
 
+    /**
+     * Marks the given task as undone
+     * @param list
+     * @throws DukeException
+     */
     @Override
     public void execute(TaskList list) throws DukeException {
         if (index > list.size()) {

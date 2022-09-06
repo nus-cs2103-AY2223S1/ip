@@ -1,7 +1,7 @@
-package duke.command;
+package seedu.duke.command;
 
-import duke.DukeException;
-import duke.TaskList;
+import seedu.duke.DukeException;
+import seedu.duke.TaskList;
 
 public class Command {
     boolean isExit = false;

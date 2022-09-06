@@ -1,9 +1,12 @@
-package duke;
+package seedu.duke;
 
-import duke.task.Task;
+import seedu.duke.task.Task;
 
 import java.util.ArrayList;
 
+/**
+ * ArrayList but it stores tasks.
+ */
 public class TaskList extends ArrayList<Task> {
     public TaskList(int initialCapacity) {
         super(initialCapacity);
@@ -12,6 +15,10 @@ public class TaskList extends ArrayList<Task> {
     public TaskList() {
     }
 
+    /**
+     * Transforms the TaskList into an ArrayList which stores strings. For saving in a text file.
+     * @return the list as an ArrayList with strings
+     */
     public ArrayList<String> toStringList() {
         ArrayList<String> stringList = new ArrayList<>();
         for (int i = 0; i < this.size(); i++) {
@@ -20,6 +27,10 @@ public class TaskList extends ArrayList<Task> {
         return stringList;
     }
 
+    /**
+     * Transforms the list into a visually pleasing list for printing.
+     * @return
+     */
     @Override
     public String toString() {
         String str = "";
