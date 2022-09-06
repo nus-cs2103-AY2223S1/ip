@@ -1,3 +1,2 @@
-T - [H] - [ ] - a
-D - [M] - [ ] - b - 15 Feb 2022
-E - [L] - [ ] - c - 16 Jan 2021
+T - [L] - [X] - assignment
+D - [L] - [ ] - assignment 1 - 08 Sep 2022
