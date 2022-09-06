@@ -50,6 +50,8 @@ public class Parser {
             return DukeCommandType.EVENT;
         case "find":
             return DukeCommandType.FIND;
+        case "update":
+            return DukeCommandType.UPDATE;
         default:
             return DukeCommandType.UNKNOWN;
         }

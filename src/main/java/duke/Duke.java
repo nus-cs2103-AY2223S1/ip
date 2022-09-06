@@ -66,6 +66,7 @@ public class Duke {
         }
         case MARK:
         case UNMARK:
+        case UPDATE:
             //Fallthrough
         case DELETE: {
             taskManager.dukeUpdateTaskStatus(commandType, args);

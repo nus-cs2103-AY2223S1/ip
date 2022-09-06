@@ -34,6 +34,13 @@ public abstract class Task implements Serializable {
     }
 
     /**
+     * Updates the description of the task
+     */
+    public void update(String args) {
+        this.name = args;
+    }
+
+    /**
      * Updates the status of the task to be completed
      */
     public void markComplete() {

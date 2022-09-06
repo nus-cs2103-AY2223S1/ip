@@ -3,6 +3,7 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -48,6 +49,23 @@ public class Deadline extends Task {
         return deadline.toString();
     }
 
+    @Override
+    public void update(String args) {
+        Pattern fullPattern = Pattern.compile("(.+)/by(.+)");
+        Pattern atPattern = Pattern.compile("/by(.+)");
+        if (Pattern.matches("(.+)/by(.+)",args)) {
+            Matcher m = fullPattern.matcher(args);
+            m.find();
+            super.update(m.group(1).trim());
+            this.by = m.group(2).trim();
+        } else if (Pattern.matches("/by(.+)",args)) {
+            Matcher m = atPattern.matcher(args);
+            m.find();
+            this.by = m.group(1).trim();
+        } else {
+            super.update(args);
+        }
+    }
     /**
      * Returns string representation of the deadline consisting of the string representation of Deadline, [D],
      * the completion status of the deadline and the deadline description

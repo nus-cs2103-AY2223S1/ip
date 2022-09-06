@@ -158,6 +158,20 @@ public class DukeTaskManager {
         }
     }
 
+    private void dukeUpdateTasks(int i, String args) {
+        if (args.isEmpty()) {
+            DukeUi.dukePrint("Description cannot be empty\n");
+            return;
+        }
+        if ((0 <= i) && (i < dukeTasks.size())) {
+            dukeTasks.get(i).update(args);
+            String str = dukeTasks.get(i).toString();
+            DukeUi.dukePrint(String.format("OK, I've updated this task:\n %s\n", str));
+        } else {
+            DukeUi.dukePrint("Error. Task is not in the list\n");
+        }
+    }
+
 
     /**
      * Shows the list of tasks containing the query
@@ -178,6 +192,7 @@ public class DukeTaskManager {
         assert (type == DukeCommandType.MARK || type == DukeCommandType.UNMARK || type == DukeCommandType.MARK);
         try {
             int index = Integer.parseInt(str.split(" ")[0]) - 1;
+            String args = str.replaceFirst(String.valueOf(index + 1), "").trim();
             switch (type) {
             case MARK: {
                 dukeMarkTask(index);
@@ -190,6 +205,9 @@ public class DukeTaskManager {
             case DELETE: {
                 dukeRemoveTask(index);
                 break;
+            }
+            case UPDATE: {
+                dukeUpdateTasks(index, args);
             }
             default: {
                 return;
