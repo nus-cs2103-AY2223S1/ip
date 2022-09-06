@@ -2,6 +2,9 @@ package utility;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import command.AddDeadlineCommand;
 import command.AddEventCommand;
@@ -43,7 +46,7 @@ public class Parser {
      */
     public static Command parse(String userInput) throws DukeException {
         String stringCommand = extractCommand(userInput);
-        assert !stringCommand.contains(" ");
+        assert !stringCommand.equals(" ");
         switch (stringCommand) {
         case "todo":
             return new AddTaskCommand();
@@ -75,15 +78,17 @@ public class Parser {
         }
     }
 
-    private String extractCommand(String input) {
-        int firstWhiteSpaceIndex = input.trim().indexOf(" ");
-        String command;
-        if (firstWhiteSpaceIndex < 0) {
-            command = input;
+    private static String extractCommand(String input) {
+        if (InputValidator.isValidCommand(input)) {
+            // At this point, we know input matches expected format
+            return input.substring(0, input.indexOf(" "));
         } else {
-            command = input.substring(0, firstWhiteSpaceIndex);
+            return " ";
         }
-        return command;
+    }
+
+    public static void main(String[] args) {
+
     }
 
     /**
@@ -137,24 +142,7 @@ public class Parser {
      * @throws DukeException when no valid description is found.
      */
     private static String getDescription(String commandUsed, String input) throws DukeException {
-        String description;
-        int startDescriptionIndex = input.indexOf(commandUsed) + commandUsed.length();
-        assert startDescriptionIndex < 0;
-        if (commandUsed.equals("event") || commandUsed.equals("deadline")) {
-            int endDescriptionIndex = input.indexOf(END_OF_DESCRIPTION_MARKER);
-            if (endDescriptionIndex < 0) {
-                throw new DukeException("Could not parse description");
-            } else {
-                description = input.substring(startDescriptionIndex, endDescriptionIndex);
-            }
-        } else {
-            description = input.substring(startDescriptionIndex);
-        }
-
-        if (description.isBlank()) {
-            throw new DukeException("Empty description field");
-        }
-        return description;
+        return input;
     }
 
     /**
