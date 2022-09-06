@@ -21,7 +21,6 @@ public class UnMarkedCommand extends Command {
      * @param number un-marks specified task based on its position in the list
      */
     public UnMarkedCommand(int number) {
-
         this.number = number;
     }
 
@@ -41,8 +40,7 @@ public class UnMarkedCommand extends Command {
             String message = ui.showUnMarked(task);
             storage.store(tasks.getTaskList());
             return message;
-        }
-        catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
 
             throw new DukeException("OH NO! You are not allowed here");
         }

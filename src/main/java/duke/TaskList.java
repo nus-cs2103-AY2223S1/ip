@@ -43,7 +43,6 @@ public class TaskList {
      * @return A list of tasks.
      */
     public ArrayList<Task> getTaskList() {
-
         return this.tasks;
     }
 
@@ -54,7 +53,6 @@ public class TaskList {
      *
      */
     public void delete(int number) {
-
         tasks.remove(number - 1);
     }
 
@@ -64,7 +62,6 @@ public class TaskList {
      * @return Total size of the list.
      */
     public int totalSize() {
-
         return tasks.size();
     }
 
@@ -75,7 +72,6 @@ public class TaskList {
      *
      */
     public void add(Task task) {
-
         this.tasks.add(task);
     }
 

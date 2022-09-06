@@ -40,12 +40,11 @@ public class DeleteCommand extends Command {
             Task task = tasks.getTaskList().get(this.number - 1);
             tasks.delete(this.number - 1);
             int total = tasks.totalSize();
-            assert total == (originalTotal - 1): "there should be an decrement of total tasks by 1";
-            String message = ui.showDelete(task,total);
+            assert total == (originalTotal - 1) : "there should be an decrement of total tasks by 1";
+            String message = ui.showDelete(task, total);
             storage.store(tasks.getTaskList());
             return message;
-        }
-        catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new DukeException("OH NO! You are not allowed here");
         }
 

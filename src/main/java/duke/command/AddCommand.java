@@ -39,8 +39,8 @@ public class AddCommand extends Command {
         int originalTotal = tasks.totalSize();
         tasks.add(task);
         int total = tasks.totalSize();
-        assert total == (originalTotal + 1): "there should be an increment of total tasks by 1";
-        String message = ui.showAdd(task,total);
+        assert total == (originalTotal + 1) : "there should be an increment of total tasks by 1";
+        String message = ui.showAdd(task, total);
         storage.store(tasks.getTaskList());
         return message;
     }
