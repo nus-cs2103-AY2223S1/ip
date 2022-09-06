@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class DukeTime {
     public static final DateTimeFormatter INPUT_DATE_TIME_FORMAT =
-            DateTimeFormatter.ofPattern("d/M/yyyy HHmm");
+            DateTimeFormatter.ofPattern("d/M/yyyy,HHmm");
 
     public static final DateTimeFormatter OUTPUT_DATE_TIME_FORMAT =
             DateTimeFormatter.ofPattern("EEE, d MMMM yyyy, h:mma");

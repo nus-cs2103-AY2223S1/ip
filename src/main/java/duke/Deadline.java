@@ -9,17 +9,17 @@ public class Deadline extends Task {
     /**
      * Constructor for the deadline class.
      *
-     * @param item Item that has a deadline.
+     * @param description The description of the task.
      * @param by The date that the item is due by.
      */
-    public Deadline(String item, String by) {
-        super(item);
+    public Deadline(String description, String by) {
+        super(description);
         this.by = DukeTime.reformatDateTime(by);
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + by + ")";
     }
 
     @Override
