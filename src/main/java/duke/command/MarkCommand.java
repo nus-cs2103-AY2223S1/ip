@@ -1,6 +1,6 @@
 package duke.command;
 
-import duke.exception.MarkException;
+import duke.exception.OutOfRangeException;
 import duke.utils.Storage;
 import duke.utils.TaskList;
 import duke.utils.UI;
@@ -25,12 +25,12 @@ public class MarkCommand extends Command {
      * @param storage {@inheritDoc}
      * @param ui {@inheritDoc}
      * @param taskList {@inheritDoc}
-     * @throws MarkException If number specified is out of range of the task list.
+     * @throws OutOfRangeException If number specified is out of range of the task list.
      */
     @Override
-    public String execute(Storage storage, UI ui, TaskList taskList) throws MarkException {
-        if (num > taskList.size() || num < 0) {
-            throw new MarkException();
+    public String execute(Storage storage, UI ui, TaskList taskList) throws OutOfRangeException {
+        if (!taskList.isInRange(num)) {
+            throw new OutOfRangeException();
         }
         taskList.getTask(num - 1).setDone(true);
         storage.save(taskList.list());
