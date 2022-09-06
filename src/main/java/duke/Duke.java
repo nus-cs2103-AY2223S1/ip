@@ -102,6 +102,7 @@ public class Duke extends Application {
                 handleUserInput();
                 userInput.clear();
             });
+            dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
         }
 
     private void handleUserInput() {
@@ -109,7 +110,6 @@ public class Duke extends Application {
         userText.setPadding(new Insets(0,7,0,7));
         Label dukeText = new Label(getResponse(userInput.getText()));
         dukeText.setPadding(new Insets(0,7,0,7));
-
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, new ImageView(userImage)),
                 DialogBox.getDukeDialog(dukeText, new ImageView(dukeImage))
@@ -124,7 +124,6 @@ public class Duke extends Application {
                 ExitCommand exitCommand = new ExitCommand();
                 exit();
                return exitCommand.execute(input, listOfTask, ui, storage);
-
             }
             Command c = parser.parse();
             return c.execute(input, listOfTask, ui, storage);
@@ -132,7 +131,7 @@ public class Duke extends Application {
            return e.toString();
         } catch (IOException e) {
             e.printStackTrace();
-            return "";
+            return "e";
         }
     }
 }
