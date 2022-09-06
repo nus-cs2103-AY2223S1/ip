@@ -28,6 +28,7 @@ public class TaskFormatter {
     public TaskFormatter(String task) {
         // Parse the task from the text format.
         String[] parsedInfo = task.split(DELIMITER);
+        assert(parsedInfo.length == 3 || parsedInfo.length == 4);
         if (parsedInfo.length >= 3) {
             // correct amount of information.
             taskType = parsedInfo[0];

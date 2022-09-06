@@ -29,6 +29,7 @@ public abstract class Command {
      */
     protected String addTaskType(Task task, Storage storage, TaskList tasks, Ui ui) {
         String output = ui.notifyUser("I've added a task into your list:\n\t\t" + task);
+        assert(tasks != null);
         tasks.addTask(task);
         saveUserTasks(storage, tasks, ui);
         return output + ui.notifyUser(String.format("You have %d task(s) in the list.", tasks.getListSize()));
