@@ -86,14 +86,13 @@ public class DobbyList {
     @Override
     public String toString() {
         String dobbyListString = "";
-        String intro = "Here are the tasks in your list:\n\t";
 
         int i = 0;
         for (Task dobbyTask : dobbyList) {
-            dobbyListString += (i + 1) + "." + dobbyTask.toString() + "\n\t";
+            dobbyListString += (i + 1) + ". " + dobbyTask.toString() + "\n\t";
             i++;
         }
-        return intro + dobbyListString;
+        return dobbyListString;
     }
 
     /**
@@ -102,7 +101,7 @@ public class DobbyList {
      * @param toFind specific string to find.
      * @return String representation of list of string of tasks containing the specific string.
      */
-    public String toFind(String toFind) {
+    public String find(String toFind) {
         String foundListString = "";
         String intro = "Here are the matching tasks in your list:\n\t";
 

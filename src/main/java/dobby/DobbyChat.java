@@ -58,7 +58,7 @@ public class DobbyChat {
      * @param s task to be marked
      */
     public static void marked(String s) {
-        String marked = "Well done master! Dobby has marked the following task as done: \n";
+        String marked = "Well done master! Dobby has marked the following task as done: \n\n\t";
         String toPrint = marked + s;
         printChat(toPrint);
     }
@@ -69,13 +69,13 @@ public class DobbyChat {
      * @param s task to be unmarked
      */
     public static void unmarked(String s) {
-        String unmarked = "OK, Dobby will take care of\n";
+        String unmarked = "OK, Dobby will take care of\n\n\t";
         String toPrint = unmarked + s;
         printChat(toPrint);
     }
 
     /**
-     * Prints message when users add tasks and shows how many tasks are in in the list.
+     * Prints message when users add tasks and shows how many tasks are in the list.
      *
      * @param task task to be added
      * @param list list where task is added to
@@ -83,8 +83,8 @@ public class DobbyChat {
     public static void added(Task task, DobbyList list) {
         String taskString = task.toString() + "\n";
 
-        String accept = "Yes master, Dobby will add the following to the list: \n";
-        String length = "\nYou now have " + list.getLength() + " task(s) left.\n";
+        String accept = "Yes master, Dobby will add the following task to the list: \n\n\t";
+        String length = "\nYou now have " + list.getLength() + " task(s) left.";
         printChat(accept + taskString + length);
     }
 
@@ -100,11 +100,22 @@ public class DobbyChat {
         } else {
             String taskString = task.toString() + "\n";
 
-            String deleted = "Task deleted! Less work for master! Dobby is HAAAAAPPY!\n\n"
-                    + "Dobby has removed this task: \n";
-            String length = "\nYou now have " + (list.getLength() - 1) + " task(s) in the list.\n";
+            String deleted = "Task deleted! Less work for master! Dobby is HAAAAAPPY!\n"
+                    + "Dobby has removed this task: \n\n\t";
+            String length = "\nYou now have " + (list.getLength() - 1) + " task(s) in the list.";
             printChat(deleted + taskString + length);
         }
+    }
+
+    /**
+     * Prints string of lists upon users' request
+     *
+     * @param list list which user wishes to print from
+     */
+    public static void list(DobbyList list) {
+        String intro = "Here are the tasks in your list:\n\n\t";
+        String listString = list.toString();
+        printChat(intro + listString);
     }
 
     /**

@@ -22,7 +22,7 @@ public class ListCommand extends Command {
         if (dl.isEmpty()) {
             DobbyChat.listEmpty();
         } else {
-            DobbyChat.echo(dl.toString());
+            DobbyChat.list(dl);
         }
     }
 }

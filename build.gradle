@@ -43,7 +43,7 @@ test {
 }
 
 application {
-    mainClassName = "dobby.Launcher"
+    mainClassName = "dobby.ui.Launcher"
 }
 
 shadowJar {
@@ -51,10 +51,10 @@ shadowJar {
     archiveClassifier = null
 }
 
-run{
+run {
     standardInput = System.in
 }
 
-checkstyle{
+checkstyle {
     toolVersion = '10.2'
 }
