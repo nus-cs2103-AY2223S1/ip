@@ -85,6 +85,8 @@ public class TaskList {
      */
     public String mark(int index) {
         String s = "";
+        assert index >= 0;
+        assert index < tasks.size();
         tasks.get(index).mark();
         s += "I have marked this task as done: \n";
         s += tasks.get(index) + "\n";
@@ -150,6 +152,9 @@ public class TaskList {
      * @param index
      */
     public String delete(int index) {
+        assert index >= 0;
+        assert index < tasks.size();
+
         Task item = tasks.get(index);
         tasks.remove(index);
         count = tasks.size();
@@ -163,6 +168,8 @@ public class TaskList {
      * @param index
      */
     public String unMark(int index) {
+        assert index >= 0;
+        assert index < tasks.size();
         tasks.get(index).unmark();
         String s = "";
         s += "I have marked this task as not done:\n";

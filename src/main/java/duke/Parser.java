@@ -62,6 +62,7 @@ public class Parser {
                 break;
             case event:
                 String[] desc = command[1].split("/at ", 2);
+                assert desc[1] != null;
                 Event e = new Event(desc[0], desc[1]);
                 result = tasks.add(e);
                 break;
