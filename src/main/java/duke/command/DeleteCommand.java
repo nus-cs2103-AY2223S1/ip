@@ -10,7 +10,9 @@ import duke.task.Task;
  * DeleteCommand is the Command when the user wants to delete a task.
  */
 public class DeleteCommand extends Command {
-
+    private static final String INVALID_INDEX = "OOPS!!! The index is invalid.";
+    private static final String DELETE_MSG = "Noted. I've removed this task:"
+            + System.lineSeparator() + "  ";
     private int index;
 
     /**
@@ -33,11 +35,10 @@ public class DeleteCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         String message;
         if (index < 0 || index >= tasks.getSize()) {
-            throw new DukeException("OOPS!!! The index is invalid.");
+            throw new DukeException(INVALID_INDEX);
         }
         Task deleted = tasks.delete(index);
-        message = "Noted. I've removed this task:" + System.lineSeparator();
-        message += "  " + deleted + System.lineSeparator();
+        message = DELETE_MSG + deleted + System.lineSeparator();
         message += "Now you have " + tasks.getSize() + " tasks in the list.";
         return message;
     }

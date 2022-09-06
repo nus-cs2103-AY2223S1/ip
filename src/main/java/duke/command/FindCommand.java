@@ -10,7 +10,10 @@ import duke.task.Task;
  * FindCommand is the Command used to find tasks with a specific keyword.
  */
 public class FindCommand extends Command {
-
+    private static final String NO_MATCH = "OOPS!!! No tasks match this keyword.";
+    private static final String HEADER_MSG = "Here are the matching tasks in your list:"
+            + System.lineSeparator();
+    private static final String SEPARATOR = ".";
     private String keyword;
 
     /**
@@ -41,12 +44,12 @@ public class FindCommand extends Command {
         }
 
         if (matchingTasks.getSize() == 0) {
-            throw new DukeException("OOPS!!! No tasks match this keyword.");
+            throw new DukeException(NO_MATCH);
         }
-        message = "Here are the matching tasks in your list:" + System.lineSeparator();
+        message = HEADER_MSG;
         for (int i = 0; i < matchingTasks.getSize(); i++) {
             Task task = matchingTasks.get(i);
-            message += (i + 1) + "." + task + System.lineSeparator();
+            message += (i + 1) + SEPARATOR + task + System.lineSeparator();
         }
         return message;
     }

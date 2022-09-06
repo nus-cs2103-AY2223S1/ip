@@ -8,6 +8,8 @@ import duke.task.Task;
  * TaskList is the list that contains the tasks.
  */
 public class TaskList {
+    private static final int INITIAL_SIZE = 0;
+    private static final int MAX_TASKS = 100;
     private ArrayList<Task> tasks;
     private int size;
 
@@ -15,8 +17,8 @@ public class TaskList {
      * Constructor for TaskList, if no past data exists.
      */
     public TaskList() {
-        this.tasks = new ArrayList<>(100);
-        this.size = 0;
+        this.tasks = new ArrayList<>(MAX_TASKS);
+        this.size = INITIAL_SIZE;
     }
 
     /**
@@ -25,7 +27,7 @@ public class TaskList {
      * @param tasks The ArrayList that contains saved tasks.
      */
     public TaskList(ArrayList<Task> tasks) {
-        this.tasks = new ArrayList<>(100);
+        this.tasks = new ArrayList<>(MAX_TASKS);
         this.tasks.addAll(tasks);
         this.size = tasks.size();
     }

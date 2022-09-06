@@ -13,7 +13,13 @@ import duke.command.UnmarkCommand;
  * Parser deals with making sense of the user command.
  */
 public class Parser {
-
+    private static final String MARK_ERROR = "OOPS!!! This mark command is invalid.";
+    private static final String UNMARK_ERROR = "OOPS!!! This unmark command is invalid.";
+    private static final String DELETE_ERROR = "OOPS!!! This delete command is invalid.";
+    private static final String FIND_ERROR = "OOPS!!! This find command is invalid.";
+    private static final String EMPTY_DESC_ERROR = "OOPS!!! The description of this task cannot be empty.";
+    private static final String UNKNOWN_COMMAND = "OOPS!!! I'm sorry, but I don't know what that means :-(";
+    private static final String INVALID_COMMAND = "OOPS!!! This command is invalid";
     /**
      * Parse the inputted user command.
      *
@@ -35,22 +41,22 @@ public class Parser {
                 return new ExitCommand();
 
             case "mark":
-                throw new DukeException("OOPS!!! This mark command is invalid.");
+                throw new DukeException(MARK_ERROR);
 
             case "unmark":
-                throw new DukeException("OOPS!!! This unmark command is invalid.");
+                throw new DukeException(UNMARK_ERROR);
 
             case "delete":
-                throw new DukeException("OOPS!!! This delete command is invalid.");
+                throw new DukeException(DELETE_ERROR);
 
             case "find":
-                throw new DukeException("OOPS!!! This find command is invalid.");
+                throw new DukeException(FIND_ERROR);
 
             default:
                 if (command.equals("todo") || command.equals("deadline") || command.equals("event")) {
-                    throw new DukeException("OOPS!!! The description of this task cannot be empty.");
+                    throw new DukeException(EMPTY_DESC_ERROR);
                 }
-                throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                throw new DukeException(UNKNOWN_COMMAND);
             }
         } else {
             String details = split[1];
@@ -81,7 +87,7 @@ public class Parser {
                 }
             } catch (Exception e) {
                 // Any exceptions related to Duke are DukeExceptions
-                throw new DukeException("OOPS!!! This command is invalid");
+                throw new DukeException(INVALID_COMMAND);
             }
         }
 

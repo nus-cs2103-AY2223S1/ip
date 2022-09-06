@@ -10,7 +10,11 @@ import duke.task.Task;
  * UnmarkCommand is the Command when the user wants to mark a task as not done.
  */
 public class UnmarkCommand extends Command {
-
+    private static final String INVALID_INDEX = "OOPS!!! The index is invalid.";
+    private static final String UNMARK_MSG = "OK, I've marked this task as not done yet:"
+            + System.lineSeparator() + "  ";
+    private static final String UNMARKED_ALREADY_MSG = "This task has not been done in the first place."
+            + System.lineSeparator() + "  ";
     private int index;
 
     /**
@@ -32,17 +36,15 @@ public class UnmarkCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         if (index < 0 || index >= tasks.getSize()) {
-            throw new DukeException("OOPS!!! The index is invalid.");
+            throw new DukeException(INVALID_INDEX);
         }
         String message;
         Task curr = tasks.get(index);
         if (curr.getStatusIcon().equals("X")) {
             curr.unmarkTask();
-            message = "OK, I've marked this task as not done yet:" + System.lineSeparator();
-            message += "  " + curr + System.lineSeparator();
+            message = UNMARK_MSG + curr + System.lineSeparator();
         } else {
-            message = "This task has not been done in the first place." + System.lineSeparator();
-            message += "  " + curr + System.lineSeparator();
+            message = UNMARKED_ALREADY_MSG + curr + System.lineSeparator();
         }
         return message;
     }

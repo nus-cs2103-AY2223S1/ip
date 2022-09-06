@@ -10,7 +10,11 @@ import duke.task.Task;
  * MarkCommand is the Command when the user wants to mark a task as done.
  */
 public class MarkCommand extends Command {
-
+    private static final String INVALID_INDEX = "OOPS!!! The index is invalid.";
+    private static final String MARK_MSG = "OK, I've marked this task as done:"
+            + System.lineSeparator() + "  ";
+    private static final String MARKED_ALREADY_MSG = "This task was already done."
+            + System.lineSeparator() + "  ";
     private int index;
 
     /**
@@ -32,17 +36,15 @@ public class MarkCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         if (index < 0 || index >= tasks.getSize()) {
-            throw new DukeException("OOPS!!! The index is invalid.");
+            throw new DukeException(INVALID_INDEX);
         }
         String message;
         Task curr = tasks.get(index);
         if (curr.getStatusIcon().equals(" ")) {
             curr.markTask();
-            message = "Nice! I've marked this task as done:" + System.lineSeparator();
-            message += "  " + curr + System.lineSeparator();
+            message = MARK_MSG + curr + System.lineSeparator();
         } else {
-            message = "This task was already done." + System.lineSeparator();
-            message += "  " + curr + System.lineSeparator();
+            message = MARKED_ALREADY_MSG + curr + System.lineSeparator();
         }
         return message;
     }

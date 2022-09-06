@@ -9,7 +9,10 @@ import duke.Ui;
  * AddCommand is a Command when the user wants to add a Task.
  */
 public class AddCommand extends Command {
-
+    private static final String UNKNOWN_COMMAND = "OOPS!!! I'm sorry, but I don't know what that means :-(";
+    private static final String TODO = "todo";
+    private static final String DEADLINE = "deadline";
+    private static final String EVENT = "event";
     private String cmd;
 
     /**
@@ -36,20 +39,20 @@ public class AddCommand extends Command {
         String description = split[1];
         String taskDescription;
         switch (type) {
-        case "todo":
+        case TODO:
             taskDescription = new AddTodoCommand(description).execute(tasks, ui, storage);
             break;
 
-        case "deadline":
+        case DEADLINE:
             taskDescription = new AddDeadlineCommand(description).execute(tasks, ui, storage);
             break;
 
-        case "event":
+        case EVENT:
             taskDescription = new AddEventCommand(description).execute(tasks, ui, storage);
             break;
 
         default:
-            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new DukeException(UNKNOWN_COMMAND);
         }
         return ui.showAddTask(tasks.getSize(), taskDescription);
     }

@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Ui deals with interactions with the user.
  */
 public class Ui {
-
+    private static final String BYE_MSG = "Bye. Hope to see you again soon!";
     private Scanner sc = new Scanner(System.in);
 
     /**
@@ -37,8 +37,7 @@ public class Ui {
      */
     public String showBye() {
         sc.close();
-        String message = "Bye. Hope to see you again soon!";
-        return message;
+        return BYE_MSG;
     }
 
 }
