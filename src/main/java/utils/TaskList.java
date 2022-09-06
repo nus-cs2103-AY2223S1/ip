@@ -109,7 +109,6 @@ public class TaskList {
         assert(size > tempSize);
 
         s = s + "\n\tNow you have " + (size) + (size == 1 ? " task" : " tasks") + " in the list.";
-        Ui.sendMessage(s);
     }
 
     /**
