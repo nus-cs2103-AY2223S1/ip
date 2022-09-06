@@ -75,6 +75,8 @@ public class DukeParser {
             return this.byeInstructionHandler();
         case "reminders":
             return this.reminderInstructionHandler();
+        case "help":
+            return this.helpInstructionHandler();
         case "find":
             return this.findInstructionHandler();
         case "mark":
@@ -128,6 +130,14 @@ public class DukeParser {
      */
     public Command reminderInstructionHandler() {
         return new ReminderCommand();
+    }
+
+    /**
+     * Handles a help command by printing user help to the screen.
+     * @return Help command for execution.
+     */
+    public Command helpInstructionHandler() {
+        return new HelpCommand();
     }
 
     /**
