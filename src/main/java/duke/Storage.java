@@ -57,6 +57,12 @@ public class Storage {
         return pastTasks;
     }
 
+    /**
+     * Generates HashMap for checking Task descriptions using the ArrayList of Tasks.
+     *
+     * @param taskList ArrayList of Tasks.
+     * @return HashMap of taskDescriptions to Tasks.
+     */
     public HashMap<String, Task> generateTaskListQuickFind(ArrayList<Task> taskList) {
         HashMap<String, Task> pastTasks = new HashMap<>();
         for (Task task : taskList) {

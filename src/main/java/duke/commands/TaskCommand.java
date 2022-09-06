@@ -5,6 +5,9 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
+/**
+ * Command class for Task commands.
+ */
 public abstract class TaskCommand extends Command {
     /**
      * Executes a Task command.

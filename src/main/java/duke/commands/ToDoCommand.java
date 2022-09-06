@@ -38,8 +38,8 @@ public class ToDoCommand extends TaskCommand {
             throw new DukeException("OOPS!!! Please enter a valid todo format (todo <description>)");
         }
         if (taskDescriptionExists(tasks, description)) {
-            throw new DukeException("OOPS!!! The task description already exists. Please use a different " +
-                    "task description.");
+            throw new DukeException("OOPS!!! The task description already exists. Please use a different "
+                    + "task description.");
         }
         try {
             Task task = new ToDo(description);

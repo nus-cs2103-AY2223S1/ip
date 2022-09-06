@@ -1,11 +1,10 @@
 package duke;
 
+import java.util.ArrayList;
+
 import duke.commands.Command;
 import duke.tasks.Task;
 import javafx.scene.image.Image;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 /**
  * duke.Duke Program for tracking Tasks.

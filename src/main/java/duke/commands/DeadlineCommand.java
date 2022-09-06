@@ -48,8 +48,8 @@ public class DeadlineCommand extends TaskCommand {
             LocalDate date = d1;
 
             if (taskDescriptionExists(tasks, description)) {
-                throw new DukeException("OOPS!!! The task description already exists. Please use a different " +
-                        "task description.");
+                throw new DukeException("OOPS!!! The task description already exists. Please use a different "
+                        + "task description.");
             }
 
             Task task = new Deadline(description, date);

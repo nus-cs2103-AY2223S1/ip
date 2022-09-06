@@ -88,8 +88,8 @@ public class TaskList {
         String taskDescription = removedTask.getDescription();
         Task taskListQuickFindRemoveReturnValue = taskListQuickFind.remove(taskDescription);
 
-        assert taskListQuickFindRemoveReturnValue != null : "Task associated with taskDescription should" +
-                "not be null";
+        assert taskListQuickFindRemoveReturnValue != null : "Task associated with taskDescription should"
+                + "not be null";
 
         return removedTask.toString();
     }
