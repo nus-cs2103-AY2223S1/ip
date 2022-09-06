@@ -22,10 +22,18 @@ public class Duke {
         parser = new Parser();
     }
 
+    /**
+     * Loads tasks from hard disk to the app.
+     * @throws IOException
+     */
     public static void loadDuke() throws IOException {
         storage.loadTasks(tasks);
     }
 
+    /**
+     * Saves tasks from the app to the hard disk.
+     * @throws IOException
+     */
     public static void saveDuke() throws IOException {
         storage.saveTasks(tasks);
     }
