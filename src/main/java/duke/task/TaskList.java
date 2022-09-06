@@ -27,6 +27,7 @@ public class TaskList {
 
     /**
      * Adds the specified Task onto this TaskList.
+     *
      * @param task the specified Task parameter.
      */
     public void addTask(Task task) {
@@ -35,6 +36,7 @@ public class TaskList {
 
     /**
      * Deletes the Task at the specified index from this TaskList.
+     *
      * @param index the specified index parameter.
      */
     public void deleteTask(int index) {
@@ -64,6 +66,7 @@ public class TaskList {
 
     /**
      * Returns the Task at the specified index in this TaskList.
+     *
      * @param index the specified index parameter.
      * @return a Task.
      */
@@ -73,6 +76,7 @@ public class TaskList {
 
     /**
      * Returns a TaskList consisting only of Tasks that satisfy the given predicate.
+     *
      * @param pred a predicate to apply to each Task to determine if it should be included
      * @return the new TaskList
      */

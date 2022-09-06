@@ -13,6 +13,7 @@ public class TodoCommand extends TaskCommand {
 
     /**
      * Constructs a TodoCommand object encapsulating the specified parameter.
+     *
      * @param newTodo the specified Todo parameter.
      */
     public TodoCommand(Todo newTodo) {
