@@ -44,20 +44,7 @@ public class Storage {
      * @param taskList The TaskList which contains all the tasks entered by the user.
      */
     public void save(TaskList taskList) {
-        // Create directory if it doesn't exist
-        File dir = new File(this.directoryPath);
-        if (!dir.exists()) {
-            dir.mkdir();
-        }
-        // Create file if it doesn't exist
-        File file = new File(filePath);
-        if (dir.exists() && !file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        File file = handleFileCreation();
 
         // Overwrite file contents with latest task data
         try {
@@ -78,7 +65,57 @@ public class Storage {
      */
     public List<Task> load() {
         List<Task> taskList = new ArrayList<>();
+        File file = handleFileCreation();
 
+        try {
+            // Load the data into the task array
+            Scanner sc = new Scanner(file);
+            while (sc.hasNext()) {
+                String[] taskData = sc.nextLine().split(" \\| ");
+                handleSaveData(taskData, taskList);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        return taskList;
+    }
+
+    private void handleSaveData(String[] taskData, List<Task> taskList) {
+        String taskType = taskData[0];
+        boolean isDone = taskData[1].equals("d");
+        String desc = taskData[2];
+        String remarks = "";
+        if (taskData.length == 4) {
+            remarks = taskData[3];
+        }
+        switch (taskType) {
+        case "todo":
+            Todo t = new Todo(desc);
+            if (isDone) {
+                t.markAsDone();
+            }
+            taskList.add(t);
+            break;
+        case "event":
+            Event e = new Event(desc, remarks);
+            if (isDone) {
+                e.markAsDone();
+            }
+            taskList.add(e);
+            break;
+        case "deadline":
+            Deadline d = new Deadline(desc, remarks);
+            if (isDone) {
+                d.markAsDone();
+            }
+            taskList.add(d);
+            break;
+        default:
+            break;
+        }
+    }
+
+    private File handleFileCreation() {
         // Check if directory and file exists
         File dir = new File(this.directoryPath);
         if (!dir.exists()) {
@@ -93,48 +130,6 @@ public class Storage {
                 System.out.println(e.getMessage());
             }
         }
-
-        try {
-            // Load the data into the task array
-            Scanner sc = new Scanner(file);
-            while (sc.hasNext()) {
-                String[] taskData = sc.nextLine().split(" \\| ");
-                String taskType = taskData[0];
-                boolean isDone = taskData[1].equals("d");
-                String desc = taskData[2];
-                String remarks = "";
-                if (taskData.length == 4) {
-                    remarks = taskData[3];
-                }
-                switch (taskType) {
-                case "todo":
-                    Todo t = new Todo(desc);
-                    if (isDone) {
-                        t.markAsDone();
-                    }
-                    taskList.add(t);
-                    break;
-                case "event":
-                    Event e = new Event(desc, remarks);
-                    if (isDone) {
-                        e.markAsDone();
-                    }
-                    taskList.add(e);
-                    break;
-                case "deadline":
-                    Deadline d = new Deadline(desc, remarks);
-                    if (isDone) {
-                        d.markAsDone();
-                    }
-                    taskList.add(d);
-                    break;
-                default:
-                    break;
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
-        return taskList;
+        return file;
     }
 }
