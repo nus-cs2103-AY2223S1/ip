@@ -124,4 +124,31 @@ public class TaskList {
         }
         return new TaskList(containingKeyWordList);
     }
+
+    /**
+     * Marks all the tasks in task list as done.
+     */
+    public void markAll() {
+        for (Task task: taskList) {
+            assert task != null;
+            task.setDone(true);
+        }
+    }
+
+    /**
+     * Marks all the tasks in task list as not done.
+     */
+    public void unMarkAll() {
+        for (Task task: taskList) {
+            assert task != null;
+            task.setDone(false);
+        }
+    }
+
+    /**
+     * Deletes all the tasks in the task list.
+     */
+    public void deleteAll() {
+        taskList.clear();
+    }
 }

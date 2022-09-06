@@ -58,6 +58,20 @@ public class Ui {
     }
 
     /**
+     * Returns a message for when all tasks are marked.
+     *
+     * @param marking The marking being done to all the tasks.
+     * @return A string of the message.
+     */
+    public String printMarkAllTaskMessage(String marking) {
+        if (marking.equals("mark")) {
+            return "Ok! I've marked all tasks as done.";
+        } else {
+            return "Ok! I've marked all tasks as undone.";
+        }
+    }
+
+    /**
      * Returns a message for when a task is deleted.
      *
      * @param task The task deleted.
@@ -66,6 +80,21 @@ public class Ui {
     public String printDeleteTaskMessage(Task task) {
         return "Ok, I've removed this task:\n  "
                 + task.toString();
+    }
+
+    /**
+     * Returns the message when all tasks are deleted.
+     *
+     * @param tasks The taskList where the tasks are being removed from.
+     * @return The removed tasks in the taskList in string form.
+     */
+    public String printRemoveAllTasksMessage(TaskList tasks) {
+        StringBuilder result = new StringBuilder("These are the tasks I have deleted:\n");
+        for (int i = 1; i <= tasks.size(); i++) {
+            Task t = tasks.getTask(i - 1);
+            result.append(i + "." + t + "\n");
+        }
+        return result.toString();
     }
 
     /**
