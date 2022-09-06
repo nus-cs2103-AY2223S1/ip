@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
  * Task with a date and time at
  */
 public class Event extends Task {
-    private static final String type = "[E]";
+    private static final String TYPE = "[E]";
     private LocalDateTime time;
 
     /**
@@ -36,7 +36,7 @@ public class Event extends Task {
         int hour = time.getHour();
         int minute = time.getMinute();
         String dateString = date + " " + month + " " + year + " " + hour + ":" + minute;
-        return type + comp + name + dateString;
+        return TYPE + comp + name + dateString;
     }
 
     /**
@@ -53,8 +53,7 @@ public class Event extends Task {
         int date = time.getDayOfMonth();
         int hour = time.getHour();
         int minute = time.getMinute();
-        String result = type + "//" + completed + "//" + name + "//"
-                + year + "-" + month + "-" + date + "//" + hour + ":" + minute;
-        return result;
+        return type + FIELD_DIVIDER + completed + FIELD_DIVIDER + name + FIELD_DIVIDER
+                + year + "-" + month + "-" + date + FIELD_DIVIDER + hour + ":" + minute;
     }
 }

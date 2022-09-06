@@ -4,7 +4,7 @@ package duke;
  * Task with only name
  */
 public class Todo extends Task {
-    private static final String type = "[T]";
+    private static final String TYPE = "[T]";
 
     /**
      * Constructor for new todo instance.
@@ -26,7 +26,7 @@ public class Todo extends Task {
         String comp = this.isCompleted
                 ? "[X]"
                 : "[ ]";
-        return type + comp + name;
+        return TYPE + comp + name;
     }
 
     /**
@@ -38,6 +38,6 @@ public class Todo extends Task {
     public String toData() {
         String type = "T";
         String completed = this.isCompleted ? "1" : "0";
-        return type + "//" + completed + "//" + name;
+        return type + FIELD_DIVIDER + completed + FIELD_DIVIDER + name;
     }
 }
