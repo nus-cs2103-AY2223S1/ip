@@ -6,6 +6,7 @@ import duke.command.AddTodoCommand;
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.NullCommand;
@@ -270,7 +271,6 @@ public class Parser {
      * @throws DukeException if the user's desired command cannot be properly performed.
      */
     public static Command parse(String input) throws DukeException {
-        //first remove any whitespace at the start
         input = removeStartingWhitespace(input);
         if (input.equals("blank")) {
             return new NullCommand();
@@ -371,8 +371,14 @@ public class Parser {
                 }
                 String taskName = findArgument(input, 2);
                 return new AddTodoCommand(taskName);
-            default:
-                return new UnrecognisedCommand();
+            case "find":
+                if (countArguments(input) != 2) {
+                    throw new IllegalArgumentException("Please enter only 1 keyword!");
+                }
+                String keyword = findArgument(input, 2);
+                return new FindCommand(keyword);
+                default:
+                    return new UnrecognisedCommand();
             }
         } catch (DateTimeException | IllegalArgumentException e) {
             throw new DukeException(e.getMessage());
