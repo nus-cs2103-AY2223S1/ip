@@ -29,6 +29,7 @@ public abstract class Task {
      * @throws InvalidTaskDataException If the string is not formatted correctly.
      */
     static Task fromEncodedString(String encodedString) throws InvalidTaskDataException {
+        assert encodedString != null && encodedString.length() > 0;
         char taskLetter = encodedString.charAt(0);
         TaskType taskType = TaskType.fromLetter(taskLetter);
         if (taskType == null) {
