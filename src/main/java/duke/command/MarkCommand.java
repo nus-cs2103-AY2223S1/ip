@@ -30,7 +30,7 @@ public class MarkCommand implements ICommand {
         int numOfMarkedTask = 0;
         for (int index : this.indexList) {
             try {
-                taskList.markDone(index - 1);
+                taskList.markDone(index);
                 numOfMarkedTask++;
             } catch (DukeException e) {
                 System.out.println(e.getMessage());

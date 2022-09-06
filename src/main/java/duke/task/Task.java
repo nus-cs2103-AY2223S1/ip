@@ -6,6 +6,7 @@ package duke.task;
 public abstract class Task {
     protected String description;
     protected boolean isDone;
+    protected boolean isDeleted;
 
     /**
      * Returns an instance of Task.
@@ -15,6 +16,7 @@ public abstract class Task {
     protected Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
+        this.isDeleted = false;
     }
 
     /**
@@ -29,6 +31,21 @@ public abstract class Task {
      */
     public void markNotDone() {
         this.isDone = false;
+    }
+
+    /**
+     * Marks task to be deleted.
+     */
+    public void markToDelete() {
+        this.isDeleted = true;
+    }
+
+    /**
+     * Return if the task is marked to be deleted.
+     * @return True if the task is marked to be deleted, else false.
+     */
+    public boolean isToBeDeleted() {
+        return this.isDeleted;
     }
 
     /**

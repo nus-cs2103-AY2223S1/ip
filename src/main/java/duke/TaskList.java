@@ -75,22 +75,26 @@ public class TaskList {
     /**
      * Deletes task at specified index in the list.
      *
-     * @param index Index of which task to be deleted in the list.
+     * @param indexList List of indexes of tasks to be deleted from the list.
      * @return String response after deleting the task.
-     * @throws DukeException If specified index is out of range of the list.
      */
-    public String delete(int index) throws DukeException {
-        if (index < 0 || index >= this.list.size()) {
-            throw new DukeException("Something went wrong!\nPlease select at task to be removed within the list.");
+    public String delete(Integer[] indexList) {
+        int numOfDeletedTask = 0;
+        for (int index : indexList) {
+            try {
+                if (index < 0 || index >= this.list.size()) {
+                    throw new DukeException(String.format("Could not delete index %d as it is not within the list.", index));
+                }
+                this.list.get(index).markToDelete();
+                numOfDeletedTask++;
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        int prevSize = this.list.size();
-        Task task = this.list.remove(index);
-        int currSize = this.list.size();
-        assert currSize == prevSize - 1; // Ensure task has been deleted from list.
-        StringBuilder stringBuilder = new StringBuilder("Noted. I've removed this task:\n");
-        stringBuilder.append(task);
-        stringBuilder.append(String.format("Now you have %d tasks in the list.", this.list.size()));
-        return stringBuilder.toString();
+        this.list.removeIf(Task::isToBeDeleted);
+        return numOfDeletedTask > 0
+                ? String.format("%d task%s been deleted.", numOfDeletedTask, numOfDeletedTask > 1 ? "s have" : " has")
+                : "Please select a task to be deleted within the list.";
     }
 
     /**
@@ -161,7 +165,7 @@ public class TaskList {
     public String toString() {
         if (this.list.size() < 1) {
             // List is empty
-            return "You have no task on your list.\n";
+            return "You have no task in your list.\n";
         }
         StringBuilder stringBuilder = new StringBuilder("Here are the tasks in your list:\n");
         for (int i = 0; i < this.list.size(); i++) {

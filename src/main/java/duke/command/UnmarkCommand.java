@@ -30,7 +30,7 @@ public class UnmarkCommand implements ICommand {
         int numOfUnmarkedTask = 0;
         for (int index : this.indexList) {
             try {
-                taskList.unmarkDone(index - 1);
+                taskList.unmarkDone(index);
                 numOfUnmarkedTask++;
             } catch (DukeException e) {
                 System.out.println(e.getMessage());

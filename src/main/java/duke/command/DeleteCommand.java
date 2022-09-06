@@ -8,15 +8,15 @@ import duke.TaskList;
  * Represents a command to delete task from the list.
  */
 public class DeleteCommand implements ICommand {
-    private int index;
+    private Integer[] indexList;
 
     /**
      * Returns an instance of DeleteCommand.
      *
-     * @param index Index of task.
+     * @param indexList List of indexes of task to be deleted.
      */
-    public DeleteCommand(int index) {
-        this.index = index;
+    public DeleteCommand(Integer[] indexList) {
+        this.indexList = indexList;
     }
 
     /**
@@ -27,11 +27,7 @@ public class DeleteCommand implements ICommand {
      */
     @Override
     public String execute(Storage storage, TaskList taskList) {
-        try {
-            return taskList.delete(index);
-        } catch (DukeException e) {
-            return e.getMessage();
-        }
+        return taskList.delete(this.indexList);
     }
 
     /**
@@ -54,7 +50,7 @@ public class DeleteCommand implements ICommand {
     public boolean equals(Object obj) {
         if (obj instanceof DeleteCommand) {
             DeleteCommand otherCmd = (DeleteCommand) obj;
-            return this.index == otherCmd.index;
+            return true;
         } else {
             return false;
         }

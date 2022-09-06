@@ -49,7 +49,7 @@ public class ParserTest {
     @Test
     public void parseMethod_deleteInput_returnDeleteCmd() {
         ICommand cmd = Parser.parse("delete 1");
-        assertEquals(cmd, new DeleteCommand(0));
+        assertEquals(cmd, new DeleteCommand(new Integer[] { 1 }));
     }
 
     @Test
