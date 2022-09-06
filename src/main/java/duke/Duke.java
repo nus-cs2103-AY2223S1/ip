@@ -133,13 +133,15 @@ public class Duke {
      * @return Returns the properly formatted response to display on the GUI.
      */
     public String getResponse(String input) {
+        assert input != null : "OOPS! Something went wrong and Duke is not reading inputs!";
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String response = "";
         try {
             String information = Parser.parseCommand(input);
             String[] infoArray = information.split("\\|");
+            String command = infoArray[0];
 
-            switch (infoArray[0]) {
+            switch (command) {
             case "hello":
                 response = this.ui.getStringDukeOpening();
                 break;
@@ -198,7 +200,7 @@ public class Duke {
         } catch (IOException e) {
             response = this.ui.getStringIoException(e);
         } catch (Exception e) {
-            response = "An unexpected exception has occurred.";
+            response = this.ui.getStringUnexpectedException();
         }
 
         return response;

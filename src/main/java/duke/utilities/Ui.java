@@ -224,6 +224,10 @@ public class Ui {
         return "All dates must be in the format (yyyy-MM-dd HH:mm)!";
     }
 
+    public String getStringUnexpectedException() {
+        return "An unexpected exception has occurred.";
+    }
+
     /**
      * Gets the string representation of the task list.
      *
