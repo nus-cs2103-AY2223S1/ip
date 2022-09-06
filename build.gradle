@@ -51,7 +51,7 @@ application {
 }
 
 shadowJar {
-    archiveBaseName = "kirby"
+    archiveBaseName = "kirby.Kirby"
     archiveClassifier = null
 }
 
