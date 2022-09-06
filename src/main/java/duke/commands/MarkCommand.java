@@ -2,7 +2,6 @@ package duke.commands;
 
 import duke.exception.DukeException;
 import duke.main.Storage;
-import duke.main.Ui;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
 
@@ -36,15 +35,20 @@ public class MarkCommand extends Command {
      * @return @inheritDoc
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         if (index <= 0 || index > tasks.size()) {
             throw new DukeException("No such tasks found");
         } else {
             Task task = tasks.get(index - 1);
             task.setDone();
             storage.save(tasks);
-            String str = "Fuyoh! I've marked this task as done:";
-            return str += task;
+            return getMessage(task);
         }
+    }
+
+    public String getMessage(Task task) {
+        String str = "Fuyoh! I've marked this task as done:";
+        str += task;
+        return str;
     }
 }

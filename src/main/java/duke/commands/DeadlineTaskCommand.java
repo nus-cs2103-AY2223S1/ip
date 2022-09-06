@@ -5,7 +5,6 @@ import java.time.format.DateTimeParseException;
 
 import duke.exception.DukeException;
 import duke.main.Storage;
-import duke.main.Ui;
 import duke.tasks.DeadlineTask;
 import duke.tasks.TaskList;
 
@@ -26,8 +25,9 @@ public class DeadlineTaskCommand extends TaskCommand {
     public DeadlineTaskCommand(String description) throws DukeException {
         super(description);
         assert description.split(" ")[0].equals("delete") : "Keyword should be delete for DeleteCommand";
+
         String[] deadlineList = description.split("/by ", 2);
-        assert (deadlineList.length > 0) : "Deadline split by keyword \\by should not be empty";
+
         if (deadlineList.length < 2 || deadlineList[1].equals("")) {
             throw new DukeException("Alamak! Fill in when the deadline is by...");
         }
@@ -45,7 +45,7 @@ public class DeadlineTaskCommand extends TaskCommand {
      * @return String to print out to user
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         DeadlineTask task = new DeadlineTask(this.description, this.by);
         tasks.add(task);
         storage.save(tasks);

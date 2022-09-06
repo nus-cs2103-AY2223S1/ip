@@ -2,7 +2,6 @@ package duke.commands;
 
 import duke.exception.DukeException;
 import duke.main.Storage;
-import duke.main.Ui;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
 
@@ -21,9 +20,11 @@ public class DeleteCommand extends Command {
      */
     public DeleteCommand(String description) throws DukeException {
         try {
+
             assert description.split(" ")[0].equals("delete") : "Keyword should be delete for DeleteCommand";
-            description = description.split(" ")[1];
-            this.index = Integer.parseInt(description);
+            String taskNumber = description.split(" ")[1];
+            this.index = Integer.parseInt(taskNumber);
+
         } catch (Exception e) {
             throw new DukeException("Invalid tasks");
         }
@@ -36,17 +37,20 @@ public class DeleteCommand extends Command {
      * @return @inheritDoc
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         if (index <= 0 || index > tasks.size()) {
             throw new DukeException("No such task found");
         } else {
             Task task = tasks.remove(index - 1);
             storage.save(tasks);
-            String str = "Noted. I've removed this task:\n";
-            str += task.toString() + '\n';
-            str += "Now you have " + tasks.size() + " task(s) in the list";
-            return str;
+            return getMessage(tasks, task);
         }
+    }
 
+    public String getMessage(TaskList tasks, Task task) {
+        String str = "Noted. I've removed this task:\n";
+        str += task.toString() + '\n';
+        str += "Now you have " + tasks.size() + " task(s) in the list";
+        return str;
     }
 }

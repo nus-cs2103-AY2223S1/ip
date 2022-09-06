@@ -2,14 +2,13 @@ package duke.commands;
 
 import duke.exception.DukeException;
 import duke.main.Storage;
-import duke.main.Ui;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
 
 /**
  * TaskCommand class is the parent class for TodoTask, DeadlineTask and EventTask
  */
-public class TaskCommand extends Command {
+public abstract class TaskCommand extends Command {
 
     protected String description;
 
@@ -27,7 +26,7 @@ public class TaskCommand extends Command {
         this.description = addlst[1];
     }
 
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         return null;
     }
 

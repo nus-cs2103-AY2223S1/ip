@@ -2,7 +2,6 @@ package duke.commands;
 
 import duke.exception.DukeException;
 import duke.main.Storage;
-import duke.main.Ui;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
 
@@ -36,15 +35,20 @@ public class UnmarkCommand extends Command {
      * @throws DukeException if task chosen is out of bounds
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         if (index <= 0 || index > tasks.size()) {
             throw new DukeException("No such tasks found");
         } else {
             Task task = tasks.get(index - 1);
             task.setUndone();
             storage.save(tasks);
-            String str = "Aiyah! I've marked this task as not done yet: \n";
-            return str += task;
+            return getMessage(task);
         }
+    }
+
+    public String getMessage(Task task) {
+        String str = "Aiyah! I've marked this task as not done yet: \n";
+        str += task;
+        return str;
     }
 }

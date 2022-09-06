@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import duke.exception.DukeException;
 import duke.main.Storage;
-import duke.main.Ui;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
 
@@ -27,7 +26,8 @@ public class FindCommand extends Command {
     public FindCommand(String description) throws DukeException {
         String[] lst = description.split(" ", 2);
         assert lst[0].equals("find") : "Keyword should be find for FindCommand";
-        if (lst.length < 2) {
+
+        if (lst.length < 2) { // Guard clause
             throw new DukeException("Keyword missing!");
         }
         this.keyword = lst[1];
@@ -40,17 +40,21 @@ public class FindCommand extends Command {
      * @return @inheritDoc
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         ArrayList<Task> filtered = tasks.find(this.keyword);
+        return getMessage(filtered);
+
+    }
+
+    public String getMessage(ArrayList<Task> filtered) {
         if (filtered.size() == 0) {
             return "No matching tasks found";
         } else {
             StringBuilder sb = new StringBuilder("Here are the matching tasks in your list:");
             for (int i = 0; i < filtered.size(); i++) {
-                sb.append((i + 1) + "." + filtered.get(i).toString());
+                sb.append(i + 1).append(".").append(filtered.get(i).toString());
             }
             return sb.toString();
         }
-
     }
 }
