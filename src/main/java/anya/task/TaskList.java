@@ -23,19 +23,19 @@ public class TaskList {
 
     // Instance methods
     /**
-     * Appends the task to end of the ArrayList.
+     * Appends the task to end of the current TaskList.
      *
-     * @param task the task to be added in the ArrayList.
+     * @param task the task to be added in the current TaskList.
      */
     public void addTask(Task task) {
         this.currentTasks.add(task);
     }
 
     /**
-     * Removes the task at the specified index of the ArrayList.
-     * The ArrayList is One-Indexed.
+     * Removes the task at the specified index of the current TaskList.
+     * The current TaskList is One-Indexed.
      *
-     * @param taskIndex the index of the task in the ArrayList to be deleted.
+     * @param taskIndex the index of the task in the current TaskList to be deleted.
      */
     public void deleteTaskFromIndex(int taskIndex) {
         Task deletedTask = this.currentTasks.remove(taskIndex - 1);
@@ -43,19 +43,19 @@ public class TaskList {
     }
 
     /**
-     * Gets the number of tasks in the ArrayList.
+     * Gets the number of tasks in the current ListList.
      *
-     * @return the length of the ArrayList
+     * @return the length of the current TaskList
      */
     public int getLength() {
         return this.currentTasks.size();
     }
 
     /**
-     * Gets the task at the specified index of the ArrayList.
-     * The ArrayList is One-Indexed.
+     * Gets the task at the specified index of the current TaskList.
+     * The current TaskList is One-Indexed.
      *
-     * @param taskIndex the index of the task in the ArrayList to retrieve.
+     * @param taskIndex the index of the task in the current TaskList to retrieve.
      * @return the task at specified index.
      */
     public Task getTaskFromIndex(int taskIndex) {
@@ -63,7 +63,7 @@ public class TaskList {
     }
 
     /**
-     * Gets a filtered ArrayList of tasks from TaskList that contains the keyword.
+     * Gets a filtered ArrayList of tasks from current TaskList that contains the keyword.
      *
      * @param keyword The word that the task must contain.
      * @return a filtered TaskList where each task contains the keyword.
@@ -80,6 +80,12 @@ public class TaskList {
         return new TaskList(filteredTasks, this.deletedTasks, this.dateCreated);
     }
 
+    /**
+     * Gets the total number of tasks from the current TaskList and the deleted TaskList that
+     * are marked as done.
+     *
+     * @return the total number of completed tasks from the current TaskList and the deleted TaskList.
+     */
     public int getNumOfAllCompletedTasks() {
         int res = 0;
         for (Task currTask : this.currentTasks) {
@@ -95,14 +101,31 @@ public class TaskList {
         return res;
     }
 
+    /**
+     * Returns the date that the TaskList is created in a String format.
+     *
+     * @return the date that the TaskList is created in a String format.
+     */
     public String getDateCreated() {
         return this.dateCreated.toString();
     }
 
+    /**
+     * Gets the number of tasks that has been deleted.
+     *
+     * @return the length of the deleted TaskList
+     */
     public int getDeletedTasksLength() {
         return this.deletedTasks.size();
     }
 
+    /**
+     * Gets the task at the specified index of the deleted TaskList.
+     * The List is One-Indexed.
+     *
+     * @param taskIndex the index of the task in the deleted TaskList to retrieve.
+     * @return the task at specified index.
+     */
     public Task getDeletedTaskFromIndex(int taskIndex) {
         return this.deletedTasks.get(taskIndex - 1);
     }

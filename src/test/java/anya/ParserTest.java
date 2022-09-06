@@ -14,7 +14,7 @@ public class ParserTest {
         String userInput = "todo test";
         String command = Parser.parseCommand(userInput);
 
-        String expected = "todo";
+        String expected = "TODO";
 
         assertEquals(expected, command);
     }

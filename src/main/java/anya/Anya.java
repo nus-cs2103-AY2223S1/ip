@@ -99,7 +99,9 @@ public class Anya {
      * @return A success message and a list of previously stored tasks; a failure message otherwise.
      */
     public String getLoadFileStatus() {
-        if ( this.tasks.getLength() == 0 && this.tasks.getDateCreated().equals(LocalDate.now().toString())) {
+        boolean isTaskListEmpty = this.tasks.getLength() == 0;
+        boolean isTaskListCreatedToday = this.tasks.getDateCreated().equals(LocalDate.now().toString());
+        if (isTaskListEmpty && isTaskListCreatedToday) {
             return this.ui.getLoadFileFailureMessage();
         } else {
             String message = this.ui.getLoadFileSuccessMessage() + "\n";
@@ -126,11 +128,22 @@ public class Anya {
         return message.toString();
     }
 
+    /**
+     * Deletes the previous TaskList and creates a new TaskList with today's date.
+     *
+     * @return A success message with the date that the TaskList was created.
+     */
     public String newList() {
         this.tasks = new TaskList();
         return this.ui.getNewListMessage(this.tasks.getDateCreated());
     }
 
+    /**
+     * Gets the total number of tasks that have been completed since the TaskList was created.
+     * The completed tasks include those that have been deleted.
+     * @param tasks A collection of Tasks
+     * @return The total number of completed tasks
+     */
     public String getStatistics(TaskList tasks) {
         int numCompletedTasks = tasks.getNumOfAllCompletedTasks();
         String dateCompleted = tasks.getDateCreated();
@@ -152,7 +165,7 @@ public class Anya {
         tasks.addTask(task);
 
         // Ensure the current size of TaskList is 1 more than initial size
-        assert tasks.getLength() == initLen +1 : "Size of TaskList should be 1 more than it's initial size";
+        assert tasks.getLength() == initLen + 1 : "Size of TaskList should be 1 more than it's initial size";
 
         return this.ui.getAddTaskMessage(task, tasks.getLength());
     }
@@ -179,11 +192,11 @@ public class Anya {
         try {
             Task task = tasks.getTaskFromIndex(index);
             // Ensure that task from TaskList is not null
-            assert task != null: "Task cannot be null";
+            assert task != null : "Task cannot be null";
 
             task.markDone();
             // Ensure that task is marked as done
-            assert task.getStatusIcon().equals("X"): "Task should be marked as done";
+            assert task.getStatusIcon().equals("X") : "Task should be marked as done";
 
             return this.ui.getMarkTaskMessage(task);
         } catch (IndexOutOfBoundsException e) {
@@ -204,11 +217,11 @@ public class Anya {
             Task task = tasks.getTaskFromIndex(index);
 
             // Ensure that task from TaskList is not null
-            assert task != null: "task cannot be null";
+            assert task != null : "task cannot be null";
 
             task.markUndone();
             // Ensure that task is marked as undone
-            assert task.getStatusIcon().equals(" "): "Task should be marked as undone";
+            assert task.getStatusIcon().equals(" ") : "Task should be marked as undone";
 
             return this.ui.getUnmarkTaskMessage(task);
         } catch (IndexOutOfBoundsException e) {
@@ -233,7 +246,7 @@ public class Anya {
             Task removedTask = tasks.getTaskFromIndex(index);
             tasks.deleteTaskFromIndex(index);
             // Ensure the current size of TaskList is 1 less than initial size
-            assert tasks.getLength() == initLen - 1: "Size of TaskList should be 1 less than it's initial size";
+            assert tasks.getLength() == initLen - 1 : "Size of TaskList should be 1 less than it's initial size";
 
             return this.ui.getDeleteTaskMessage(removedTask);
         } catch (IndexOutOfBoundsException e) {

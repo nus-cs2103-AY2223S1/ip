@@ -26,7 +26,7 @@ public class TaskListTest {
         this.tasksArrayList.add(todoTask);
         this.tasksArrayList.add(deadlineTask);
         this.tasksArrayList.add(eventTask);
-        this.tasks = new TaskList(this.tasksArrayList, LocalDate.now());
+        this.tasks = new TaskList(this.tasksArrayList, new ArrayList<Task>(), LocalDate.now());
     }
 
     @Test
