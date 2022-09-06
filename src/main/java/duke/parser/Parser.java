@@ -60,7 +60,8 @@ public class Parser {
         }
     }
 
-    public static String parseIndexCommand(String content, IndexCommands type, TaskList taskList) throws DukeException {
+    public static String parseIndexCommand(String content, IndexCommands type, TaskList taskList) 
+            throws DukeException {
         int index = -1;
         try {
             index = Integer.parseInt(content) - 1;
@@ -129,6 +130,9 @@ public class Parser {
         } catch (DateTimeParseException e) {
             throw new DukeException("Formatting of date and time is incorrect.");
         }
+
+        assert (date.toString() + " " + time.toString()).equals(contents[1]) 
+            : "Date and time parsed is incorrect";
 
         switch(type) {
             case DEADLINE:

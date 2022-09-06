@@ -24,7 +24,11 @@ public class TaskList {
 
     public String addToDo(String content) {
         ToDo task = new ToDo(content);
+        int prevListLen = this.list.size();
         this.list.add(task);
+
+        assert prevListLen == this.list.size() + 1 : "List size should have increased by 1";
+
         return "Got it. I've added this task:\n" 
                 + String.format("%s\n", task.toString()) 
                         + String.format("Now you have %d tasks in the list.", this.list.size());
@@ -32,7 +36,11 @@ public class TaskList {
 
     public String addDeadline(String content, LocalDate date, LocalTime time){
         Deadline task = new Deadline(content, date, time);
+        int prevListLen = this.list.size();
         this.list.add(task);
+
+        assert prevListLen == this.list.size() + 1 : "List size should have decreased by 1";
+
         return "Got it. I've added this task:\n" 
                 + String.format("%s\n", task.toString()) 
                         + String.format("Now you have %d tasks in the list.", this.list.size());
@@ -40,7 +48,11 @@ public class TaskList {
 
     public String addEvent(String content, LocalDate date, LocalTime time){
         Event task = new Event(content, date, time);
+        int prevListLen = this.list.size();
         this.list.add(task);
+
+        assert prevListLen == this.list.size() + 1 : "List size should have decreased by 1";
+
         return "Got it. I've added this task:\n" 
                 + String.format("%s\n", task.toString()) 
                         + String.format("Now you have %d tasks in the list.", this.list.size());
@@ -54,7 +66,12 @@ public class TaskList {
             return "Task number to be deleted does not exist.";
         }
 
+        int prevListLen = this.list.size();
+
         this.list.remove(index);
+
+        assert prevListLen == this.list.size() + 1 : "List size should have decreased by 1";
+
         return "Noted. I've removed this task:\n" 
                 + String.format("%s\n", task.toString()) 
                         + String.format("Now you have %d tasks in the list.", this.list.size());
