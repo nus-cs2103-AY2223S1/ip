@@ -1,11 +1,11 @@
 package yilia.command;
 
+import java.util.Arrays;
+
 import yilia.Storage;
 import yilia.Ui;
 import yilia.task.Task;
 import yilia.task.TaskList;
-
-import java.util.Arrays;
 
 /**
  * Represents a command to delete a task from the task list.

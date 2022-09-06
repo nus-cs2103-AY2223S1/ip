@@ -1,5 +1,7 @@
 package yilia;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,10 +14,12 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import yilia.command.Command;
-import yilia.exception.*;
+import yilia.exception.DescriptionEmptyException;
+import yilia.exception.KeywordMissingException;
+import yilia.exception.NoIndexException;
+import yilia.exception.TimeFormatException;
+import yilia.exception.YiliaException;
 import yilia.task.TaskList;
-
-import java.io.IOException;
 
 /**
  * Represents a chat box to complete given commands.
@@ -29,10 +33,17 @@ public class Yilia extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/user.jpeg"));
-    private Image yilia = new Image(this.getClass().getResourceAsStream("/images/yilia.jpg"));
-
+    private Image user;
+    private Image yilia;
+    /**
+     * Initializes Yilia.
+     *
+     */
     public Yilia() {
+        user = new Image(this.getClass().getResourceAsStream("/images/user.jpeg"));
+        yilia = new Image(this.getClass().getResourceAsStream("/images/yilia.jpg"));
+        assert user != null : "user should not be null";
+        assert yilia != null : "yilia should not be null";
         ui = new Ui();
         storage = new Storage("data/yilia.txt");
         try {

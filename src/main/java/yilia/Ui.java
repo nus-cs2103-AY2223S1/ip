@@ -1,9 +1,9 @@
 package yilia;
 
+import java.util.Scanner;
+
 import yilia.task.Task;
 import yilia.task.TaskList;
-
-import java.util.Scanner;
 
 /**
  * Represents the user interface to interact with users.

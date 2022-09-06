@@ -1,10 +1,10 @@
 package yilia.command;
 
+import java.io.IOException;
+
 import yilia.Storage;
 import yilia.Ui;
 import yilia.task.TaskList;
-
-import java.io.IOException;
 
 /**
  * Represents a command to exit the program.
