@@ -27,18 +27,18 @@ public class MarkCommand implements ICommand {
      */
     @Override
     public String execute(Storage storage, TaskList taskList) {
-        StringBuilder stringBuilder = new StringBuilder(
-                String.format("The following task%s been marked:\n", this.indexList.length > 1 ? "s have" : " has")
-        );
-        try {
-            for (int index : this.indexList) {
-                String taskInfo = taskList.markDone(index - 1);
-                stringBuilder.append(taskInfo);
+        int numOfMarkedTask = 0;
+        for (int index : this.indexList) {
+            try {
+                taskList.markDone(index - 1);
+                numOfMarkedTask++;
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
             }
-        } catch (DukeException e) {
-            stringBuilder.append(e.getMessage());
         }
-        return stringBuilder.toString();
+        return numOfMarkedTask > 0
+                ? String.format("%d task%s been marked completed.", numOfMarkedTask, numOfMarkedTask > 1 ? "s have" : " has")
+                : "Please select at task to be marked within the list.";
     }
 
     /**
