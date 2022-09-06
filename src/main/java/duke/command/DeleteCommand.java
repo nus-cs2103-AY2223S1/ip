@@ -32,7 +32,7 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
         Task toRemove = taskList.remove(this.index);
-        String message = "Noted. I've removed this task:\n\t\t" + toRemove + "\n\tNow you have "
+        String message = "Noted. I've removed this task:\n" + toRemove + "\nNow you have "
                 + taskList.getSize() + " tasks in the list.";
         ui.printWithDivider(message);
     }

@@ -37,8 +37,8 @@ public class AddCommand extends Command {
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
         taskList.add(this.toAdd);
-        String mess = "Got it. I've added this task:\n\t\t" + toAdd
-                + "\n\tNow you have " + taskList.getSize() + " tasks in the list.";
+        String mess = "Got it. I've added this task:\n" + toAdd
+                + "\nNow you have " + taskList.getSize() + " tasks in the list.";
         ui.printWithDivider(mess);
     }
 

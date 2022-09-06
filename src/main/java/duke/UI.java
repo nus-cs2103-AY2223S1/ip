@@ -18,7 +18,7 @@ public class UI {
      * @param str Message to be printed.
      */
     public void print(String str) {
-        System.out.println("\t" + str);
+        System.out.println(str);
     }
 
     /**
@@ -26,9 +26,9 @@ public class UI {
      * @param message Message to be printed.
      */
     public void printWithDivider(String message) {
-        System.out.println("\t" + DIVIDER);
-        System.out.println("\t" + message);
-        System.out.println("\t" + DIVIDER);
+        System.out.println(DIVIDER);
+        System.out.println(message);
+        System.out.println(DIVIDER);
     }
 
     /**
@@ -66,12 +66,12 @@ public class UI {
      */
     public void greet() {
         printWithDivider("Hello! I'm Lily\n"
-                + "\t" + "| |     ^^^  | |   |^|    |^|\n"
-                + "\t" + "| |     | |  | |   \\ \\   / /\n"
-                + "\t" + "| |     | |  | |    \\ \\ / /\n"
-                + "\t" + "| |___  | |  | |___   | |\n"
-                + "\t" + "|_____/ | |  |_____/  |_|\n"
-                + "\t" + "What can I do for you?");
+                 + "| |     ^^^  | |   |^|    |^|\n"
+                 + "| |     | |  | |   \\ \\   / /\n"
+                 + "| |     | |  | |    \\ \\ / /\n"
+                 + "| |___  | |  | |___   | |\n"
+                 + "|_____/ | |  |_____/  |_|\n"
+                 + "What can I do for you?");
     }
 
     /**
