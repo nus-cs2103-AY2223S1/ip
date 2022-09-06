@@ -28,11 +28,11 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "puke.Launcher"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "Launcher"
     archiveClassifier = null
 }
 
@@ -66,4 +66,4 @@ dependencies {
 
 apply plugin: 'application'
 
-mainClassName = 'puke.Duke'
+mainClassName = 'puke.Launcher'
