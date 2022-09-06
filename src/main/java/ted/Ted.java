@@ -30,11 +30,11 @@ public class Ted {
 
     /**
      * Set UI controller
-     * @param ui
+     * @param uiController
      */
-    public void setUiController(UiController ui) {
-        assert ui != null : "ui should not be null";
-        this.uiController = ui;
+    public void setUiController(UiController uiController) {
+        assert uiController != null : "ui should not be null";
+        this.uiController = uiController;
     }
 
     /**

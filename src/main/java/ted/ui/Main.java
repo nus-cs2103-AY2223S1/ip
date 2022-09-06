@@ -31,7 +31,7 @@ public class Main extends Application {
             ted.setUiController(uiController); // Ted -> UiController
             uiController.setMainWindow(mainWindow); // UiController -> MainWindow
             uiController.setTed(ted); // UiController -> Ted
-            mainWindow.setUi(uiController); // MainWindow -> UiController
+            mainWindow.setUiController(uiController); // MainWindow -> UiController
 
             stage.show();
             ted.startup();

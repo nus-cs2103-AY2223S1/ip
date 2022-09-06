@@ -22,7 +22,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-    private UiController ui;
+    private UiController uiController;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private Image tedImage = new Image(this.getClass().getResourceAsStream("/images/Ted.png"));
@@ -32,9 +32,13 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setUi(UiController ui) {
-        assert ui != null : "ui should not be null";
-        this.ui = ui;
+    /**
+     * Set ui controller
+     * @param uiController
+     */
+    public void setUiController(UiController uiController) {
+        assert uiController != null : "ui should not be null";
+        this.uiController = uiController;
     }
 
     /**
@@ -47,7 +51,7 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().add(
                 DialogBox.getUserDialog(input, userImage)
         );
-        ui.handleInput(input);
+        uiController.handleInput(input);
         userInput.clear();
     }
 
