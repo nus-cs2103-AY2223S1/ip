@@ -11,7 +11,6 @@ public class Launcher {
      * starts up the DukePro app.
      *
      * @param args user input.
-     * @return void.
      */
     public static void main(String[] args) {
         Application.launch(DukePro.class, args);

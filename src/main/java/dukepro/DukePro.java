@@ -91,12 +91,6 @@ public class DukePro extends Application {
         return "Duke heard: " + input;
     }
 
-    /**
-     * Starts up the DukePro app.
-     *
-     * @param stage A Stage.
-     * @return void.
-     */
     @Override
     public void start(Stage stage) {
         setup();

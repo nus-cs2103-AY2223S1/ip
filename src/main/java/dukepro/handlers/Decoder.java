@@ -33,7 +33,7 @@ public class Decoder {
             newTask = new Deadline(word, date);
         } else if (tag == 'E') {
             newTask = new Event(word, date);
-        } else if (tag == 'T'){
+        } else if (tag == 'T') {
             newTask = new Todo(word);
         }
         assert false;
@@ -253,6 +253,13 @@ public class Decoder {
         return true;
     }
 
+    /**
+     * Returns a new Expense based on user's
+     * String input.
+     *
+     * @param input The user's String input.
+     * @return An Expense.
+     */
     public static Expense makeExpense(String input) throws DukeException {
         String[] splitted = input.split(" ", 2);
 
@@ -282,17 +289,15 @@ public class Decoder {
         return expense;
     }
 
+    /**
+     * Returns an Expense based on what is read
+     * from the data/expenselist file.
+     *
+     * @param word The ArrayList of expenses.
+     * @return An int.
+     */
     public static Expense parseFromFileExpense(String word) {
         String[] splitted = word.split(",");
         return new Expense(splitted[0], Integer.parseInt(splitted[1]), LocalDate.parse(splitted[2]));
-    }
-
-    public static LocalDate spentDate(String word) throws DukeException {
-        String[] split = word.split(" ");
-        if (split.length < 2) {
-            throw new EmptyDescException("spentDate");
-        }
-
-        return parseLD(split[1].strip());
     }
 }

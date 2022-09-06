@@ -1,11 +1,12 @@
 package dukepro.handlers;
 
+import java.time.LocalDate;
+import java.util.function.Function;
+
 import dukepro.exceptions.DukeException;
 import dukepro.expenses.Expense;
 import dukepro.expenses.ExpenseCalculator;
 import dukepro.tasks.Task;
-
-import java.time.LocalDate;
 
 /**
  * Class for Interact.
@@ -21,10 +22,9 @@ public class Interact {
      * @return String.
      */
     public String start() {
-        tasksManager = new Manager<Task>("data", "data/tasklist.txt",
-                (str) -> Decoder.parseFromFile(str), "task");
-        expenseManager = new Manager<Expense>("data", "data/expenselist.txt",
-                (str) -> Decoder.parseFromFileExpense(str), "expense");
+        Function<String, Expense> expenseDecoder = (str) -> Decoder.parseFromFileExpense(str);
+        tasksManager = new Manager<Task>("data", "data/tasklist.txt", (str) -> Decoder.parseFromFile(str), "task");
+        expenseManager = new Manager<Expense>("data", "data/expenselist.txt", expenseDecoder, "expense");
         String logo = " ____        _\n"
                 + "|  _ \\ _   _| | _____\n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -78,8 +78,6 @@ public class Interact {
 
     /**
      * Shuts down program.
-     *
-     * @return void.
      */
     public void bye() {
         tasksManager.closePW();

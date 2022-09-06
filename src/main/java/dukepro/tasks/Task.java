@@ -1,10 +1,8 @@
 package dukepro.tasks;
 
-import dukepro.StorableObjects;
-import dukepro.exceptions.DukeException;
-import dukepro.handlers.Decoder;
-
 import java.time.LocalDate;
+
+import dukepro.StorableObjects;
 
 /**
  * Class for Task.
@@ -25,8 +23,6 @@ public class Task extends StorableObjects {
 
     /**
      * Marks this task as done.
-     *
-     * @return void.
      */
     @Override
     public void markAsDone() {

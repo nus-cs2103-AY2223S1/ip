@@ -1,13 +1,11 @@
 package dukepro.expenses;
 
-import dukepro.StorableObjects;
-import dukepro.exceptions.DukeException;
-import dukepro.handlers.Decoder;
-
 import java.time.LocalDate;
 
+import dukepro.StorableObjects;
+
 /**
- * Class for Expenses
+ * Class for Expense
  */
 public class Expense extends StorableObjects {
     private String name;
@@ -28,35 +26,49 @@ public class Expense extends StorableObjects {
         this.localDate = localDate;
     }
 
+    /**
+     * Returns String to be written to
+     * file for storage.
+     *
+     * @return A String
+     */
     public String fileForm() {
         return name + "," + amount + "," + localDate;
     }
 
+    /**
+     * Returns whether name of expense matches
+     * search query.
+     *
+     * @param search A String representing search query.
+     * @return A boolean
+     */
     public boolean getMatching(String search) {
         return name.contains(search);
     }
 
+    /**
+     * Returns whether the date of this expense
+     * matches the date in query.
+     *
+     * @param localDate The LocalDate query.
+     * @return A boolean
+     */
     public boolean compareDate(LocalDate localDate) {
         return localDate.equals(this.localDate);
     }
 
     /**
-     * Returns a string representing user's
-     * search input.
+     * Returns cost of this expense.
      *
-     * @param ld A LocalDate.
-     * @return A boolean.
+     * @return An int.
      */
-    public boolean matchDate(LocalDate ld) {
-        return ld.equals(localDate);
-    }
-
     public int spent() {
         return this.amount;
     }
 
     /**
-     * Returns a string representing an Expense
+     * Returns a string representing an Expense.
      *
      * @return A String.
      */

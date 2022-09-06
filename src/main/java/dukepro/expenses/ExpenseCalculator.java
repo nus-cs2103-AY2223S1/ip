@@ -3,7 +3,18 @@ package dukepro.expenses;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Class for ExpenseCalculator
+ */
 public class ExpenseCalculator {
+
+    /**
+     * Returns sum of all items in an ArrayList
+     * of Expenses.
+     *
+     * @param expenses The ArrayList of expenses.
+     * @return An int.
+     */
     public static int sumArrayList(ArrayList<? extends Expense> expenses) {
         int sum = 0;
         for (int i = 0; i < expenses.size(); i++) {
@@ -12,6 +23,14 @@ public class ExpenseCalculator {
         return sum;
     }
 
+    /**
+     * Returns sum of all items in an ArrayList
+     * of Expenses, for that particular date.
+     *
+     * @param expenses The ArrayList of expenses.
+     * @param localDate The LocalDate.
+     * @return An int.
+     */
     public static int spentDay(ArrayList<? extends Expense> expenses, LocalDate localDate) {
         int sum = 0;
         for (int i = 0; i < expenses.size(); i++) {

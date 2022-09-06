@@ -1,15 +1,18 @@
-import dukepro.exceptions.DukeException;
-import dukepro.handlers.Decoder;
-import dukepro.handlers.TasksManager;
-import dukepro.tasks.*;
-
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.function.Function;
+
+import org.junit.jupiter.api.Test;
+
+import dukepro.exceptions.DukeException;
+import dukepro.handlers.Decoder;
+import dukepro.handlers.Manager;
+import dukepro.tasks.Task;
+import dukepro.tasks.Todo;
+
 public class InteractTest {
-    //Decoder Tests
     @Test
-    public void handleTodoTest(){
+    public void handleTodoTest() {
         Task testTask;
         try {
             testTask = Decoder.handleTasks("todo sleep");
@@ -20,7 +23,7 @@ public class InteractTest {
     }
 
     @Test
-    public void handleDeadlineTest(){
+    public void handleDeadlineTest() {
         Task testTask;
         try {
             testTask = Decoder.handleTasks("deadline cs2103t /by 2022-10-20");
@@ -34,20 +37,22 @@ public class InteractTest {
     //TaskManager tests
     @Test
     public void addDeleteTest() {
-        TasksManager tm = new TasksManager();
-        tm.addTask(new Todo("say hello"));
-        tm.addTask(new Task("write essay"));
-        tm.deleteTask(2);
-        tm.addTask(new Task("whatever"));
-        assertEquals(tm.numTasks(), 3);
+        Function<String, Task> decoder = str -> Decoder.parseFromFile(str);
+        Manager<Task> tm = new Manager<Task>("data/test", "data/test/testTasklist", decoder, "tasks");
+        tm.add(new Todo("say hello"));
+        tm.add(new Task("write essay"));
+        tm.delete(2);
+        tm.add(new Task("whatever"));
+        assertEquals(tm.numStored(), 3);
     }
 
     @Test
     public void checkMarkDone() {
-        TasksManager tm = new TasksManager();
+        Function<String, Task> decoder = str -> Decoder.parseFromFile(str);
+        Manager<Task> tm = new Manager<Task>("data/test", "data/test/testTasklist", decoder, "tasks");
         Task test = new Todo("test");
-        tm.addTask(test);
-        tm.markTaskAsDone(1);
+        tm.add(test);
+        tm.markAsDone(1);
         String correct = "[T][/] test";
         assertEquals(correct, test.toString());
     }

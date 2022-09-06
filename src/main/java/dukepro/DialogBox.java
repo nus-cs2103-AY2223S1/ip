@@ -70,6 +70,4 @@ public class DialogBox extends HBox {
         return db;
     }
 
-    public static class StorageGeneral {
-    }
 }
