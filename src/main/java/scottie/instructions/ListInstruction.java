@@ -32,6 +32,7 @@ class ListInstruction extends Instruction {
         if (taskList.isEmpty()) {
             ui.showMessages("You have no tasks at the moment!");
         } else {
+            ui.showMessages("Ok, here are the tasks you have at the moment!");
             ui.showOrderedList(taskList);
         }
     }
