@@ -21,7 +21,7 @@ public class Handler {
      * Marks an item in the list as done and prints the necessary string message.
      *
      * @param echo task and description.
-     * @return String string from ui.printDone.
+     * @return string from ui.printDone.
      * @throws DukeEmptyDescriptionException thrown when description is empty.
      */
     public String handleMark(String echo) throws DukeEmptyDescriptionException {
@@ -36,7 +36,7 @@ public class Handler {
      * Unmarks an item in the list as done and prints the necessary string message.
      *
      * @param echo task and description.
-     * @return String string from ui.printDone.
+     * @return string returned from ui.printDone.
      * @throws DukeEmptyDescriptionException thrown when description is empty.
      */
     public String handleUnmark(String echo) throws DukeEmptyDescriptionException {
@@ -52,7 +52,7 @@ public class Handler {
      * Adds todo into the list and print the relevant todo message.
      *
      * @param echo description of todo.
-     * @return String string returned from ui.printTask.
+     * @return string returned from ui.printTask.
      * @throws DukeEmptyDescriptionException thrown when description is empty.
      */
     public String handleToDo(String echo) throws DukeEmptyDescriptionException {
@@ -64,11 +64,12 @@ public class Handler {
         TaskList.taskList.add(todo);
         return ui.printTask(todo);
     }
+
     /**
      * Adds deadline into the list and prints deadline message.
      *
      * @param echo description and due date of deadline.
-     * @return String string returned from ui.printTask.
+     * @return string returned from ui.printTask.
      * @throws DukeEmptyDescriptionException thrown when user does not input the timing required.
      *
      */
@@ -87,7 +88,7 @@ public class Handler {
      * Adds event into the list and print the relevant event message.
      *
      * @param echo full description of event, including command.
-     * @return String string returned from ui.printTask.
+     * @return string returned from ui.printTask.
      * @throws DukeEmptyDescriptionException thrown when user does not input the timing required.
      */
     public String handleEvent(String echo) throws DukeEmptyDescriptionException {
@@ -105,7 +106,7 @@ public class Handler {
      * Deletes an item from the list.
      *
      * @param echo delete command and description of type number.
-     * @return String string returned from ui.printDelete.
+     * @return string returned from ui.printDelete.
      * @throws DukeEmptyDescriptionException thrown when description is empty.
      */
     public String handleDelete(String echo) throws DukeEmptyDescriptionException {
@@ -118,8 +119,8 @@ public class Handler {
     }
 
     public String handleFind(String toEcho) {
-        String tofind = toEcho.substring(5);
-        return ui.printFind(tofind);
+        String toFind = toEcho.substring(5);
+        return ui.printFind(toFind);
     }
 
     public String addTask(Task task) {

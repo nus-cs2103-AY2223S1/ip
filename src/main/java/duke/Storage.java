@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 public class Storage {
 
-    private String path;
+    private final String path;
 
     /**
      * Creates a storage object linked to a file specified by path.
@@ -28,11 +28,11 @@ public class Storage {
     public void save() {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(path));
-            String tasks = "";
+            StringBuilder tasks = new StringBuilder();
             for (Task task : TaskList.taskList) {
-                tasks += task.storeToString() + "\n";
+                tasks.append(task.storeToString()).append("\n");
             }
-            writer.write(tasks);
+            writer.write(tasks.toString());
             writer.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -64,14 +64,14 @@ public class Storage {
             case "D":
                 int indexOfDeadline = event.lastIndexOf("|") + 1;
                 String deadline = event.substring(indexOfDeadline);
-                String deadlinedescription = event.substring(4, indexOfDeadline - 1);
-                cur = new Deadline(deadlinedescription, deadline);
+                String deadlineDescription = event.substring(4, indexOfDeadline - 1);
+                cur = new Deadline(deadlineDescription, deadline);
                 break;
             case "E":
-                int indexofdate = event.lastIndexOf("|") + 1;
-                String date = event.substring(indexofdate);
-                String eventdescription = event.substring(4, indexofdate - 1);
-                cur = new Event(eventdescription, date);
+                int indexOfDate = event.lastIndexOf("|") + 1;
+                String date = event.substring(indexOfDate);
+                String eventDescription = event.substring(4, indexOfDate - 1);
+                cur = new Event(eventDescription, date);
                 break;
             default:
                 System.out.println("error");
