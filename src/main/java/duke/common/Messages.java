@@ -22,7 +22,7 @@ public class Messages {
     public static final String MESSAGE_NO_SUCH_TASK = "No such task!";
     public static final String MESSAGE_PROVIDE_TASK_NUMBER = "Please provide a task number!";
     public static final String MESSAGE_PROVIDE_DESCRIPTION = "Please provide a task description!";
-    public static final String MESSAGE_PROVIDE_DESCRIPTION_AND_DATE = "Please provide a task description and a date!";
+    public static final String MESSAGE_PROVIDE_DESCRIPTION_AND_DATE = "Please provide a task description and date!";
     public static final String MESSAGE_PROVIDE_MORE_DETAILS = "Please provide more details!";
 
     public static final String MESSAGE_MATCHING_TASKS = "Here are the matching task(s) in your list:\n";
