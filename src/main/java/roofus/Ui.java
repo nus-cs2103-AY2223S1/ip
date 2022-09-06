@@ -68,6 +68,7 @@ public class Ui {
      * @param taskList A Tasklist that contains all tasks.
      */
     public String filterList(TaskList taskList, String key) {
+        assert key.length() > 0 : "key should not be empty";
         String finalString = "Here are the matching tasks in your list:\n";
         int count = 1;
         for (int i = 0; i < taskList.length(); i++) {

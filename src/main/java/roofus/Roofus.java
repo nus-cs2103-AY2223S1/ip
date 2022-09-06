@@ -3,6 +3,7 @@ package roofus;
 import java.io.FileNotFoundException;
 
 import roofus.command.Command;
+import javafx.application.Platform;
 
 /**
  * Roofus is a Personal Assistant Chatbot that
@@ -53,6 +54,9 @@ public class Roofus {
     public String getResponse(String fullCommand) {
         try {
             Command c = Parser.parse(fullCommand);
+            if (!c.isRunning()) {
+                Platform.exit();
+            }
             return c.execute(taskList, storage, ui);
         } catch (RoofusException err) {
             return ui.printErrMessage(err.getMessage());
