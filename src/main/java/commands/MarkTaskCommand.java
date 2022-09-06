@@ -1,7 +1,5 @@
 package commands;
 
-import java.util.List;
-
 import drivers.Storage;
 import drivers.TaskList;
 import drivers.Ui;
@@ -9,24 +7,25 @@ import exceptions.TumuException;
 import tasks.Task;
 
 /**
- * Class to be executed when a find command is issued
+ * Class to be executed when a mark command is issued
  * by the user.
- *
- * Finds all entries that contain the keyword inside the task description.
  */
-public class FindCmd extends Command {
-    private final String body;
+public class MarkTaskCommand extends Command {
+    private final int taskIndex;
 
     /**
-     * Constructor for the FindCmd class.
+     * Constructor for the MarkTaskCmd class.
      * @param body The rest of the instruction issued by the user after command.
+     * @throws NumberFormatException Exception is thrown when the String cannot be parsed
+     *                               into an integer.
      */
-    public FindCmd(String body) {
-        this.body = body;
+    public MarkTaskCommand(String body) throws NumberFormatException {
+        taskIndex = Integer.parseInt(body);
     }
 
     /**
-     * Finds entries with the keyword in body, retrieves it and sends it back to the user.
+     * Executes the command and gives the appropriate
+     * feedback to the user.
      * @param tasks TaskList containing all the tasks currently available.
      * @param ui Specifies how the program interacts with the user.
      * @param storage Stores and retrieves data from a local .txt file.
@@ -34,14 +33,12 @@ public class FindCmd extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws TumuException {
-        List<Task> wantedTasks = tasks.tasksContain(body);
+        Task task = tasks.markTask(taskIndex);
         String output = "";
-        output += ui.notifyUser("Here are the matching tasks in your list:");
-        int counter = 1;
-        for (Task task : wantedTasks) {
-            output += ui.notifyUser(String.format("%d. %s", counter, task));
-            counter++;
+        if (task != null) {
+            output += ui.notifyUser("Alright, I have marked this task as done:\n\t" + task);
         }
+        saveUserTasks(storage, tasks, ui);
         return output;
     }
 }

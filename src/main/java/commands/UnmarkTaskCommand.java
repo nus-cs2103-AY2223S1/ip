@@ -7,19 +7,17 @@ import exceptions.TumuException;
 import tasks.Task;
 
 /**
- * Class to be executed when a mark command is issued
+ * Class to be executed when a deadline command is issued
  * by the user.
  */
-public class MarkTaskCmd extends Command {
+public class UnmarkTaskCommand extends Command {
     private final int taskIndex;
 
     /**
-     * Constructor for the MarkTaskCmd class.
+     * Constructor for the UnmarkTaskCmd class.
      * @param body The rest of the instruction issued by the user after command.
-     * @throws NumberFormatException Exception is thrown when the String cannot be parsed
-     *                               into an integer.
      */
-    public MarkTaskCmd(String body) throws NumberFormatException {
+    public UnmarkTaskCommand(String body) throws NumberFormatException {
         taskIndex = Integer.parseInt(body);
     }
 
@@ -33,10 +31,10 @@ public class MarkTaskCmd extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws TumuException {
-        Task task = tasks.markTask(taskIndex);
+        Task task = tasks.unmarkTask(taskIndex);
         String output = "";
         if (task != null) {
-            output += ui.notifyUser("Alright, I have marked this task as done:\n\t" + task);
+            output += ui.notifyUser("Alright, I have unmarked this task:\n\t" + task);
         }
         saveUserTasks(storage, tasks, ui);
         return output;

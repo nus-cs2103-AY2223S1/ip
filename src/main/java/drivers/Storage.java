@@ -37,10 +37,10 @@ public class Storage {
         List<Task> userTasks = new ArrayList<>();
         try {
             Scanner sc = new Scanner(file);
-            //Each line in the file is an individual task.
+            // Each line in the file is an individual task.
             while (sc.hasNextLine()) {
                 String taskStr = sc.nextLine();
-                //Figure out what type of command this is, add back to userTasks.
+                // Figure out what type of command this is
                 Task task = new TaskFormatter(taskStr).getTask();
                 userTasks.add(task);
             }
@@ -64,7 +64,6 @@ public class Storage {
             getFile();
             FileWriter fileWriter = new FileWriter(filePath);
 
-            //Add contents to file.
             for (Task task : userTasks) {
                 fileWriter.write(task.parseToFile() + "\n");
             }
