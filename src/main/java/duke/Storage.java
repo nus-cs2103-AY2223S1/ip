@@ -19,17 +19,14 @@ import duke.tasks.ToDo;
  */
 public class Storage {
     private String filePath;
-    private String tempFilePath;
 
     /**
      * Constructor for creating Storage.
      *
      * @param filePath The filePath to the file that stores Tasks in a .txt file.
-     * @param tempFilePath The filePath for a temporary file for use when main file has to be rewritten.
      */
-    public Storage(String filePath, String tempFilePath) {
+    public Storage(String filePath) {
         this.filePath = filePath;
-        this.tempFilePath = tempFilePath;
     }
 
     /**
@@ -40,17 +37,14 @@ public class Storage {
     public ArrayList<Task> loadTaskList() {
         // Ensure file exists
         File tasksFile = new File(filePath);
-        File tempFile = new File(tempFilePath);
         try {
             tasksFile.createNewFile();
-            tempFile.createNewFile();
         } catch (IOException | SecurityException e) {
             System.out.println(e.getMessage());
         }
 
         // hardDiskTasks and tempTasks files should exist here
         assert new File(filePath).exists() : "File exists is supposed to return true";
-        assert new File(tempFilePath).exists() : "Temp file exists is supposed to return true";
 
         // Add disk info to taskList
         ArrayList<Task> pastTasks = readTaskMemoFromDisk(tasksFile);
@@ -185,20 +179,20 @@ public class Storage {
      */
     public void setTaskStatusOnDisk(int taskNumber, boolean isDone) throws IOException {
         File inputFile = new File(filePath);
-        File tempFile = new File(tempFilePath);
         Scanner s = new Scanner(inputFile);
+        String updatedTaskMemo = "";
         while (s.hasNext()) {
             String currentTaskMemo = s.nextLine();
             String newTaskMemo = changeStatusOfTaskMemo(taskNumber, isDone, currentTaskMemo);
-            appendToFile(tempFilePath, newTaskMemo + System.lineSeparator());
+            updatedTaskMemo += newTaskMemo + "\n";
             taskNumber -= 1;
         }
         s.close();
-        boolean successful = tempFile.renameTo(inputFile);
-        assert successful : "Temp file should be successfully renamed as main Memory file keep track of Tasks";
+        overwriteFile(filePath, updatedTaskMemo);
     }
 
     private String changeStatusOfTaskMemo(int taskNumber, boolean isDone, String currentTaskMemo) {
+        // X | x | description -> X | "1/0" | description
         if (taskNumber != 1) {
             return currentTaskMemo;
         }
@@ -220,20 +214,18 @@ public class Storage {
      * @throws IOException if unable to write to file.
      */
     public void deleteTaskFromDisk(int taskNumber) throws IOException {
-        File inputFile = new File(filePath);
-        File tempFile = new File(tempFilePath);
-        Scanner s = new Scanner(inputFile);
+        File taskMemoFile = new File(filePath);
+        Scanner s = new Scanner(taskMemoFile);
+        String updatedTaskMemo = "";
         while (s.hasNext()) {
             String currentLine = s.nextLine();
             if (taskNumber != 1) {
-                appendToFile(tempFilePath, currentLine + System.lineSeparator());
+                updatedTaskMemo += currentLine + "\n";
             }
             taskNumber -= 1;
         }
         s.close();
-        boolean successful = tempFile.renameTo(inputFile);
-        assert successful : "Temp file should be successfully renamed as main Memory file keep track of Tasks";
-
+        overwriteFile(filePath, updatedTaskMemo);
     }
 
     /**
@@ -245,6 +237,19 @@ public class Storage {
      */
     public void appendToFile(String file, String textToAdd) throws IOException {
         FileWriter fw = new FileWriter(file, true);
+        fw.write(textToAdd);
+        fw.close();
+    }
+
+    /**
+     * Overwrites file with String.
+     *
+     * @param file The filepath of file to be overwritten.
+     * @param textToAdd The String to overwrite file.
+     * @throws IOException if unable to write to file.
+     */
+    public void overwriteFile(String file, String textToAdd) throws IOException {
+        FileWriter fw = new FileWriter(file, false);
         fw.write(textToAdd);
         fw.close();
     }

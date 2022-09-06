@@ -23,7 +23,7 @@ public class Task {
      * @return String representing the status of Task.
      */
     public String getStatusIcon() {
-        return this.isDone ? "X" : " ";
+        return this.isDone ? "X" : "  ";
     }
 
     /**

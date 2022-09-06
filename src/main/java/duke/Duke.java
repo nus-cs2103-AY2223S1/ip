@@ -22,9 +22,9 @@ public class Duke {
      * @param filePath filePath of file to store Task information.
      * @param tempFilePath filePath of temporary file to store information for rewriting.
      */
-    public Duke(String filePath, String tempFilePath) {
+    public Duke(String filePath) {
         ui = new Ui();
-        storage = new Storage(filePath, tempFilePath);
+        storage = new Storage(filePath);
         try {
             ArrayList<Task> taskList = storage.loadTaskList();
             tasks = new TaskList(taskList, storage.generateTaskListQuickFind(taskList));

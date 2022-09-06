@@ -106,7 +106,7 @@ public class TaskList {
             assert currentTask != null : "Task should not be null";
             String taskDescription = currentTask.toString();
             message += (i
-                    + "."
+                    + ". "
                     + taskDescription);
             if (i != taskList.size()) {
                 message += "\n";
@@ -128,7 +128,7 @@ public class TaskList {
             String taskDescription = currentTask.toString();
             if (taskDescription.contains(keyword)) {
                 message += (i
-                        + "."
+                        + ". "
                         + taskDescription);
                 if (i != taskList.size()) {
                     message += "\n";
