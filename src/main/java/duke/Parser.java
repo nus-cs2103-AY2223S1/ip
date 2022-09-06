@@ -23,84 +23,121 @@ public class Parser {
      * @throws DukeException if user input is of wrong format or unknown instruction
      */
     public static Command parseInput(String input) throws DukeException {
-        Instructions instructionInput;
         if (!input.contains(" ")) {
-            try {
-                instructionInput = Instructions.valueOf(input); //parse input to Instructions
-            } catch (IllegalArgumentException e) {
-                throw new DukeException("Sorry I do not understand what that means :(");
-            }
-            switch (instructionInput) {
-            case bye:
-                return ExitCommand.of();
-            case list:
-                return ListCommand.of();
-            case mark:
-            case unmark:
-                throw new DukeException(String.format("Choose which index to %s.", input));
-            case todo:
-            case deadline:
-            case event:
-                throw new DukeException(String.format("The description of a %s cannot be empty.", input));
-            case delete:
-                throw new DukeException("Choose which index to delete.");
-            case find:
-                throw new DukeException("Input a keyword to find.");
-            }
+            return parseSingleWord(input);
         }
         String[] split = input.split(" ", 2); //Splits input into instruction word and information on task
         String instruction = split[0];
         String info = split[1];
+        return parseMultipleWords(instruction, info);
+    }
+
+    private static Command parseSingleWord(String input) throws DukeException {
+        Instructions instructionInput = convertToInstruction(input);
+        switch (instructionInput) {
+        case bye:
+            return ExitCommand.of();
+        case list:
+            return ListCommand.of();
+        case mark:
+        case unmark:
+            throw new DukeException(String.format("Choose which index to %s.", input));
+        case todo:
+        case deadline:
+        case event:
+            throw new DukeException(String.format("The description of a %s cannot be empty.", input));
+        case delete:
+            throw new DukeException("Choose which index to delete.");
+        case find:
+            throw new DukeException("Input a keyword to find.");
+        default:
+            throw new DukeException("Please input a correct command");
+        }
+    }
+
+    private static Command parseMultipleWords(String instruction, String info) throws DukeException {
+        Instructions instructionInput = convertToInstruction(instruction);
+        switch (instructionInput) {
+        case delete:
+            return parseDelete(info);
+        case mark:
+            return parseMark(info,true);
+        case unmark:
+            return parseMark(info, false);
+        case todo:
+            return parseToDo(info);
+        case deadline:
+            return parseDeadLine(info);
+        case event:
+            return parseEvent(info);
+        case find:
+            return parseFind(info);
+        default:
+            throw new DukeException("Seems like that command is not in my programming :(");
+        }
+    }
+
+    private static Instructions convertToInstruction(String instruction) throws DukeException {
         try {
-            instructionInput = Instructions.valueOf(instruction); //parse input to Instructions
+            return Instructions.valueOf(instruction);
         } catch (IllegalArgumentException e) {
             throw new DukeException("Sorry I do not understand what that means :(");
         }
-        switch (instructionInput) {
-        case delete:
-            try {
-                return new DeleteCommand(Integer.parseInt(info) - 1);
-            } catch (NumberFormatException e) {
-                throw new DukeException("Deleting requires an integer as index");
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(String.format("Index %s does not exist on the list.", info));
-            }
-        case mark:
-            try {
-                return new MarkCommand(Integer.parseInt(info) - 1);
-            } catch (NumberFormatException e) {
-                throw new DukeException("Marking requires an integer as index");
-            }
-        case unmark:
-            try {
-                return new UnMarkCommand(Integer.parseInt(info) - 1);
-            } catch (NumberFormatException e) {
-                throw new DukeException("Unmarking requires an integer as index");
-            }
-        case todo:
-            return new AddUserCommand(info);
-        case deadline:
-            if (info.contains(" /by ")) {
-                String[] taskAndDeadline = info.split(" /by ", 2);
-                String deadlineTask = taskAndDeadline[0];
-                String deadlineTiming = taskAndDeadline[1];
-                return new AddUserCommand(deadlineTask, Instructions.deadline, deadlineTiming);
-            } else {
-                throw new DukeException("Deadline does not have proper format.");
-            }
-        case event:
-            if (info.contains(" /at ")) {
-                String[] taskAndTiming = info.split(" /at ", 2);
-                String eventTask = taskAndTiming[0];
-                String eventTiming = taskAndTiming[1];
-                return new AddUserCommand(eventTask, Instructions.event, eventTiming);
-            } else {
-                throw new DukeException("Event does not have proper format.");
-            }
-        case find:
-            return new FindCommand(info);
+    }
+
+    private static Command parseDelete(String info) throws DukeException {
+        try {
+            return new DeleteCommand(Integer.parseInt(info) - 1);
+        } catch (NumberFormatException e) {
+            throw new DukeException("Deleting requires an integer as index");
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(String.format("Index %s does not exist on the list.", info));
         }
-        throw new DukeException("Seems like that command is not in my programming :(");
+    }
+
+    private static Command parseMark(String indexString, boolean isMark) throws DukeException {
+        int index;
+        try {
+            index = Integer.parseInt(indexString) - 1;
+        } catch (NumberFormatException e) {
+            throw new DukeException("Marking/Unmarking requires an integer as index");
+        }
+
+        if (isMark) {
+            return new MarkCommand(index);
+        } else {
+            return new UnMarkCommand(index);
+        }
+    }
+
+    private static Command parseToDo(String info) {
+        return new AddUserCommand(info);
+    }
+
+    private static Command parseDeadLine(String info) throws DukeException {
+        if (info.contains(" /by ")) {
+            String[] taskAndDeadline = info.split(" /by ", 2);
+            String deadlineTask = taskAndDeadline[0];
+            String deadlineTiming = taskAndDeadline[1];
+            return new AddUserCommand(deadlineTask, Instructions.deadline, deadlineTiming);
+        } else {
+            throw new DukeException("Deadline does not have proper format.");
+        }
+    }
+
+    private static Command parseEvent(String info) throws DukeException {
+        if (info.contains(" /at ")) {
+            String[] taskAndTiming = info.split(" /at ", 2);
+            String eventTask = taskAndTiming[0];
+            String eventTiming = taskAndTiming[1];
+            return new AddUserCommand(eventTask, Instructions.event, eventTiming);
+        } else {
+            throw new DukeException("Event does not have proper format.");
+        }
+    }
+
+    private static Command parseFind(String info) {
+        return new FindCommand(info);
     }
 
     /**
@@ -135,5 +172,4 @@ public class Parser {
             throw new DukeException("Saved file input format incorrect");
         }
     }
-
 }

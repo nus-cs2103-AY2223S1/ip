@@ -27,17 +27,19 @@ public class CommandOutputs {
      * Returns String of list of the tasks in Duke.
      *
      * @param taskList list of tasks.
+     * @return return String of list of the tasks in Duke.
      * @throws DukeException thrown if list is empty.
      */
     public String showListOut(TaskList taskList) throws DukeException {
         if (taskList.size() == 0) {
             throw new DukeException("You do not have any tasks in the list");
         }
-        String output = "Here are the tasks in your list:\n";
+        StringBuilder output = new StringBuilder("Here are the tasks in your list:\n");
         for (int i = 0; i < taskList.size(); i++) {
-            output = output + String.format("%d.%s\n", i + 1, taskList.get(i).toString());
+            String nextTask = String.format("%d.%s\n", i + 1, taskList.get(i).toString());
+            output.append(nextTask);
         }
-        return output;
+        return output.toString();
     }
 
     /**
@@ -45,9 +47,11 @@ public class CommandOutputs {
      *
      * @param taskList list of tasks.
      * @param deletedTask deleted task
+     *
      */
     public String showDelete(TaskList taskList, Task deletedTask) {
-        String output = String.format("Noted. I've removed this task:\n%s\n", deletedTask.toString());
+        String output = String.format("Noted. I've removed this task:\n" +
+                "%s\n", deletedTask.toString());
         return taskList.size() == 1 ? output + "Now you have 1 task in the list\n"
                                     : output + String.format("Now you have %d tasks in the list\n", taskList.size());
     }
@@ -59,7 +63,8 @@ public class CommandOutputs {
      * @param newTask new task added.
      */
     public String showAdd(TaskList taskList, Task newTask) {
-        String output = String.format("Nice! Added this task:\n%s\n", newTask.toString());
+        String output = String.format("Nice! Added this task:\n" +
+                "%s\n", newTask.toString());
         return taskList.size() == 1 ? output + "Now you have 1 task in the list\n"
                 : output + String.format("Now you have %d tasks in the list\n", taskList.size());
     }

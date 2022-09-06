@@ -27,7 +27,6 @@ public class AddSavedInputCommand extends Command {
      *             false if unmarked.
      */
     public AddSavedInputCommand(String task, boolean done) {
-        super(false);
         this.task = task;
         this.type = TODO_INSTRUCTION;
         this.timing = TODO_TIMING;
@@ -46,7 +45,6 @@ public class AddSavedInputCommand extends Command {
      *             false if unmarked.
      */
     public AddSavedInputCommand(String task, Instructions instruction, String timing, boolean done) {
-        super(false);
         this.task = task;
         this.type = instruction;
         this.timing = timing;
@@ -59,6 +57,9 @@ public class AddSavedInputCommand extends Command {
      * @param taskList task list.
      * @param commandOutputs user interface of program.
      * @param storage files storing task list.
+     *
+     * @return String response of Duke regarding user input
+     *
      * @throws DukeException if timing is of the wrong format.
      */
     @Override
@@ -75,7 +76,7 @@ public class AddSavedInputCommand extends Command {
             savedTask = new Events(task, timing, done);
             break;
         default:
-            savedTask = null; //Should never be reached
+            throw new DukeException("Unknown Error");
         }
         taskList.add(savedTask);
         return null;

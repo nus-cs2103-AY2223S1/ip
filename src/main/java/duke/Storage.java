@@ -1,5 +1,6 @@
 package duke;
 
+import duke.command.Command;
 import duke.command.CommandOutputs;
 
 import java.io.File;
@@ -81,7 +82,9 @@ public class Storage {
         try {
             Scanner s = new Scanner(save);
             while (s.hasNextLine()) {
-                Parser.parseSavedInput(s.nextLine()).execute(taskList, commandOutputs, this);
+                String nextInput = s.nextLine();
+                Command c = Parser.parseSavedInput(nextInput);
+                c.execute(taskList, commandOutputs, this);
             }
         } catch (FileNotFoundException | DukeException e) {
             throw new RuntimeException(e);

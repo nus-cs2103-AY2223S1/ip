@@ -10,13 +10,6 @@ import duke.TaskList;
 public class ListKeywordCommand extends Command {
 
     /**
-     * Constructor for ListKeywordCommand class.
-     */
-    public ListKeywordCommand() {
-        super(false);
-    }
-
-    /**
      * Communicates with user interface to print list of tasks containing the keyword.
      *
      * @param keywordList list of tasks containing the keyword.

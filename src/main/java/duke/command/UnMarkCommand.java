@@ -17,7 +17,6 @@ public class UnMarkCommand extends Command {
      * @param index index of task in task list.
      */
     public UnMarkCommand(int index) {
-        super(false);
         this.index = index;
     }
 
@@ -25,24 +24,22 @@ public class UnMarkCommand extends Command {
      * Unmarks task in task list and saves it.
      *
      * @param taskList task list.
-     * @param commandOutputs       user interface of program.
-     * @param storage  files storing task list.
+     * @param commandOutputs user interface of program.
+     * @param storage files storing task list.
      * @return
      * @throws DukeException if task is already unmarked or index does not exist.
      */
     @Override
     public String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage) throws DukeException {
         try {
-            if (taskList.get(index).getDone()) {
-                taskList.get(index).unmarkTask();
-                new SaveCommand().execute(taskList, commandOutputs, storage);
-                return commandOutputs.showUnmark(taskList, index);
-            } else {
+            if (!taskList.get(index).isDone()) { //Guard Clause
                 throw new DukeException("Task is already unmarked");
             }
+            taskList.get(index).unmarkTask();
+            new SaveCommand().execute(taskList, commandOutputs, storage);
+            return commandOutputs.showUnmark(taskList, index);
         } catch (IndexOutOfBoundsException e) {
-            //plus 1 for indexing
-            throw new DukeException(String.format("Index %d does not exist on the list.", index + 1));
+            throw new DukeException(String.format("Index %d does not exist on the list.", index + 1)); //plus 1 for indexing
         }
     }
 
