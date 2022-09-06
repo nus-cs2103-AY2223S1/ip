@@ -1,6 +1,8 @@
 package tako;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -100,6 +102,28 @@ public class TaskList {
     public TaskList find(String keyword) {
         List<Task> tasks = descriptionToTaskMap.get(keyword);
         return tasks == null ? new TaskList() : new TaskList(tasks);
+    }
+
+    /**
+     * Sorts the task list based on sort method and order.
+     *
+     * @param sortBy Valid sort method.
+     * @param isAscending Boolean for sorted in ascending order.
+     */
+    public void sort(Sort sortBy, boolean isAscending) {
+        if (sortBy == Sort.DATE) {
+            Comparator<Task> dateComparator = Comparator.comparing(Task::getDateTime);
+            tasks.sort(dateComparator);
+        } else if (sortBy == Sort.ALPHABET) {
+            Comparator<Task> alphabetComparator = Comparator.comparing(Task::getDescription);
+            tasks.sort(alphabetComparator);
+        } else {
+            assert false : "Sort Method does not exist: " + sortBy;
+        }
+
+        if (!isAscending) {
+            Collections.reverse(tasks);
+        }
     }
 
     public Task get(int i) {

@@ -11,6 +11,7 @@ import tako.command.FindCommand;
 import tako.command.ListCommand;
 import tako.command.MarkCommand;
 
+import tako.command.SortCommand;
 import tako.task.Deadline;
 import tako.task.Event;
 import tako.task.Todo;
@@ -21,7 +22,7 @@ import tako.task.Todo;
  */
 public class Parser {
     private enum Keyword {
-        BYE, LIST, MARK, TODO, DEADLINE, EVENT, DELETE, FIND;
+        BYE, LIST, MARK, TODO, DEADLINE, EVENT, DELETE, FIND, SORT;
 
         private static boolean hasKeyword(String s) {
             for (Keyword k : Keyword.values()) {
@@ -68,6 +69,8 @@ public class Parser {
             return createDeleteCommand(splitInput);
         case FIND:
             return createFindCommand(splitInput);
+        case SORT:
+            return createSortCommand(splitInput);
         default:
             assert false : "Unknown Command: " + command;
             throw new TakoException("The input is invalid.");
@@ -185,6 +188,34 @@ public class Parser {
         } else if (splitInput.length == 2) {
             String wordToFind = splitInput[1];
             return new FindCommand(wordToFind);
+        } else {
+            throw new TakoException("The input is invalid.");
+        }
+    }
+
+    // sort date desc
+    private static SortCommand createSortCommand(String[] splitInput) throws TakoException {
+        if (splitInput.length == 1) {
+            throw new TakoException("The way to sort by cannot be empty.");
+        }
+        String sortArgs = splitInput[1];
+        String[] splitSortArgs = sortArgs.split(" ");
+        boolean isAscending = isAscending(splitSortArgs);
+        String sortByString = splitSortArgs[0].toUpperCase();
+
+        if (Sort.hasSortBy(sortByString)) {
+            Sort sortBy = Sort.valueOf(sortByString);
+            return new SortCommand(sortBy, isAscending);
+        } else {
+            throw new TakoException("The input is invalid.");
+        }
+    }
+
+    private static boolean isAscending(String[] splitSortArgs) throws TakoException {
+        if (splitSortArgs.length == 1) {
+            return true;
+        } else if (splitSortArgs.length == 2 && splitSortArgs[1].equals("desc")) {
+            return false;
         } else {
             throw new TakoException("The input is invalid.");
         }

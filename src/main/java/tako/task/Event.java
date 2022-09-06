@@ -20,6 +20,11 @@ public class Event extends Task {
         this.at = at;
     }
 
+    @Override
+    public LocalDateTime getDateTime() {
+        return at;
+    }
+
     /**
      * {@inheritDoc}
      */
