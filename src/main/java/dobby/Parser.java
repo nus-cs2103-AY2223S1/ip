@@ -35,6 +35,7 @@ public class Parser {
      */
     public static String getDesc(String rest) {
         try {
+            assert rest != null;
             int endIndex = rest.indexOf(DESC_DATE_SEPERATOR) - 1;
             return rest.substring(0, endIndex);
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
@@ -51,6 +52,8 @@ public class Parser {
     public static String getDate(String rest) {
         String dateFormatted;
         try {
+            assert rest != null;
+            assert rest != null;
             int i = rest.indexOf(DESC_DATE_SEPERATOR);
             if (i == -1) {
                 dateFormatted = NO_DATE_FOUND;
@@ -73,6 +76,7 @@ public class Parser {
      * @return String of command of user's input
      */
     public static String getTaskType(String task) {
+        assert task != null;
         return task.split(TASKTYPE_REST_SEPERATOR)[0];
     }
 
@@ -83,6 +87,7 @@ public class Parser {
      * @return String of user's input without the command
      */
     public static String getRestOfCommand(String task) {
+        assert task != null;
         int firstSpace = task.indexOf(TASKTYPE_REST_SEPERATOR);
         String rest = task.substring(firstSpace + 1);
         return rest;
@@ -96,6 +101,7 @@ public class Parser {
      */
     public static String getDateType(String rest) {
         try {
+            assert rest != null;
             int i = rest.indexOf(DESC_DATE_SEPERATOR);
             if (i == -1) {
                 return NO_DATE_FOUND;
@@ -114,6 +120,7 @@ public class Parser {
      * @return default shortened command
      */
     public static String getInitialCommand(String rest) {
+        assert rest != null;
         if (rest.isBlank()) {
             return "";
         } else {
@@ -129,6 +136,7 @@ public class Parser {
      * @return default shortened command
      */
     public static String getNewCommand(String rest) {
+        assert rest != null;
         if (rest.isBlank()) {
             return "";
         } else {
@@ -146,6 +154,7 @@ public class Parser {
      * @return Status of task
      */
     public static boolean getStatusTxt(String input) {
+        assert input != null;
         boolean isDone = (input.charAt(5) == TASK_MARKED_SYMBOL);
         return isDone;
     }
@@ -157,6 +166,7 @@ public class Parser {
      * @return Status of task
      */
     public static String getTaskTypeTxt(String input) {
+        assert input != null;
         String task = Character.toString(input.charAt(0));
         return task;
     }
@@ -168,6 +178,7 @@ public class Parser {
      * @return String of task without task type
      */
     public static String getRestTxt(String input) {
+        assert input != null;
         String rest = input.substring(10);
         return rest;
     }
@@ -179,6 +190,7 @@ public class Parser {
      * @return Task description
      */
     public static String getDescTxt(String rest) {
+        assert rest != null;
         int endIndex = rest.indexOf(USERFILE_DESC_DATE_SEPERATOR) - 1;
         String desc = rest.substring(0, endIndex);
         return desc;
@@ -191,6 +203,7 @@ public class Parser {
      * @return Task date
      */
     public static String getDateTxt(String rest) {
+        assert rest != null;
         int startIndex = rest.indexOf(USERFILE_DESC_DATE_SEPERATOR) + 2;
         String date = rest.substring(startIndex);
         return date;
@@ -220,6 +233,7 @@ public class Parser {
      * @return Corresponding command object.
      */
     public static Command parse(String cmd) {
+        assert cmd != null;
         switch (cmd) {
         case "q":
         case "bye":

@@ -47,8 +47,10 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and
-     * then appends them to the dialog container. Clears the user input after processing.
+     * Creates two dialog boxes, one to contain the user's input and the other containing Dobby's reply
+     * They are then appended to the dialog container.
+     * User input is cleared after processing for future dialogs.
+     * Pause is added before closing application to allow users to see the "farewell" message from Dobby.
      */
     @FXML
     private void handleUserInput() {
@@ -57,7 +59,6 @@ public class MainWindow extends AnchorPane {
         if (response.equals("bye")) {
             response = "Byebye. Dobby will miss you!\n" + "Dobby will be leaving now....";
 
-            //Added pause before closing application to allow users to see "goodbye" message.
             PauseTransition termination = new PauseTransition(Duration.seconds(2d));
             termination.setOnFinished(event -> Platform.exit());
             termination.play();
@@ -70,7 +71,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Prints the help message.
+     * Prints the help message containing list of commands Dobby can understand.
      */
     @FXML
     private void printHelp() {
@@ -81,7 +82,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Prints the greeting message.
+     * Prints the Dobby's greetings once application is booted up.
      */
     private void printGreeting() {
         String response = dobby.getGreetings();
