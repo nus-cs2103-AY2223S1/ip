@@ -1,11 +1,11 @@
 package isara;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 import isara.task.Task;
 import isara.task.ToDo;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ToDoTest {
     @Test

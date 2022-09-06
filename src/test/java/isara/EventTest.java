@@ -26,7 +26,7 @@ public class EventTest {
     }
 
     @Test
-    public void testGetStatusIconForEvent(){
+    public void testGetStatusIconForEvent() {
         Task event = new Event("Concert", "Buona Vista");
         event.mark();
         assertEquals(event.toString(), "[E][X] Concert (at: Buona Vista)");
