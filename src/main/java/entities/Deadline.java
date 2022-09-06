@@ -47,6 +47,10 @@ public class Deadline extends Task {
         return s;
     }
 
+    public boolean hasDeadlineAfter(LocalDateTime otherDateTime) {
+        return this.dateTime.isAfter(otherDateTime);
+    }
+
     /**
      * Overrides the toString method in the parent class.
      * @return A string representing the current deadline.
@@ -62,5 +66,9 @@ public class Deadline extends Task {
      */
     public String getRemarks() {
         return this.by;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 }

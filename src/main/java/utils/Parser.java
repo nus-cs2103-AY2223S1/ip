@@ -28,21 +28,48 @@ public class Parser {
                 case "find":
                     return handleFindCase(s, arr, taskList);
                 case "mark":
-                    return handleMarkCase(s, arr, taskList, storage);
+                    return handleMarkCase(arr, taskList, storage);
                 case "unmark":
-                    return handleUnmarkCase(s, arr, taskList, storage);
+                    return handleUnmarkCase(arr, taskList, storage);
                 case "delete":
-                    return handleDeleteCase(s, arr, taskList, storage);
+                    return handleDeleteCase(arr, taskList, storage);
                 case "todo":
                     return handleTodoCase(s, arr, taskList, storage);
                 case "deadline":
-                    return handleDeadlineCase(s, arr, taskList, storage);
+                    return handleDeadlineCase(s, taskList, storage);
                 case "event":
-                    return handleEventCase(s, arr, taskList, storage);
+                    return handleEventCase(s, taskList, storage);
+                case "postpone":
+                    return handlePostponeCase(s, taskList, storage);
                 default:
                     throw new DukeException("Error. Sorry, but I don't know what that means.");
             }
         }
+    }
+
+    private static String handlePostponeCase(String s, TaskList taskList, Storage storage) throws DukeException {
+        String[] content = s.substring(8).trim().split("/to");
+        if (content.length <= 1) {
+            throw new DukeException("Usage: postpone {id} /to {new date}");
+        }
+        try {
+            int taskId = Integer.parseInt(content[0].trim()) - 1;
+            String to = content[1].trim();
+
+            if (!taskList.checkIfTaskIsDeadline(taskId)) {
+                throw new DukeException("Please enter a task ID which corresponds to a deadline.");
+            }
+            if (!to.trim().matches("(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2})(\\d{2})")) {
+                throw new DukeException("Invalid datetime entered.");
+            }
+            if (taskList.checkIfInvalidDate(taskId, to)) {
+                throw new DukeException("Date to postpone task should not be earlier than existing date.");
+            }
+            taskList.updateDeadlineDueDate(taskId, to);
+        } catch (NumberFormatException e) {
+            throw new DukeException("Please enter a valid integer for the task ID.");
+        }
+        return "Task has been postponed.";
     }
 
     private static String handleFindCase(String s, String[] arr, TaskList taskList) throws DukeException {
@@ -53,7 +80,7 @@ public class Parser {
         return taskList.getAllOccurrencesOf(desc);
     }
 
-    private static String handleMarkCase(String s, String[] arr, TaskList taskList, Storage storage) throws DukeException {
+    private static String handleMarkCase(String[] arr, TaskList taskList, Storage storage) throws DukeException {
         int i;
         if (arr.length <= 1) {
             throw new DukeException("Error. Please enter an argument after \"mark\".");
@@ -73,7 +100,7 @@ public class Parser {
         }
     }
 
-    private static String handleUnmarkCase(String s, String[] arr, TaskList taskList, Storage storage) throws DukeException {
+    private static String handleUnmarkCase(String[] arr, TaskList taskList, Storage storage) throws DukeException {
         int i;
         if (arr.length <= 1) {
             throw new DukeException("Error. Please enter an argument after \"unmark\".");
@@ -93,7 +120,7 @@ public class Parser {
         }
     }
 
-    private static String handleDeleteCase(String s, String[] arr, TaskList taskList, Storage storage) throws DukeException {
+    private static String handleDeleteCase(String[] arr, TaskList taskList, Storage storage) throws DukeException {
         int i;
         try {
             if (arr.length <= 1) {
@@ -121,7 +148,7 @@ public class Parser {
         return "Task updated in storage";
     }
 
-    private static String handleDeadlineCase(String s, String[] arr, TaskList taskList, Storage storage) throws DukeException {
+    private static String handleDeadlineCase(String s, TaskList taskList, Storage storage) throws DukeException {
         String[] deadlineBy = s.substring(8).trim().split("/by");
         if (deadlineBy.length <= 1) {
             throw new DukeException("Error. The description and due date of a deadline\n\tshould be "
@@ -140,7 +167,7 @@ public class Parser {
         return "Task updated in storage";
     }
 
-    private static String handleEventCase(String s, String[] arr, TaskList taskList, Storage storage) throws DukeException {
+    private static String handleEventCase(String s, TaskList taskList, Storage storage) throws DukeException {
         String[] eventAt = s.substring(5).trim().split("/at");
         if (eventAt.length <= 1) {
             throw new DukeException("Error. The description and time of an event\n\tshould be separated"
