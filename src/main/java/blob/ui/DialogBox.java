@@ -1,5 +1,8 @@
 package blob.ui;
 
+import java.io.IOException;
+import java.util.Arrays;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,9 +14,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-import java.io.IOException;
-import java.util.Arrays;
-
+/**
+ * The DialogBox class represents the container in which messages are displayed in the GUI.
+ */
 public class DialogBox extends HBox {
 
     @FXML
@@ -21,6 +24,13 @@ public class DialogBox extends HBox {
     @FXML
     private ImageView displayPicture;
 
+    /**
+     * Constructs a dialog box using the given display image to represent user/application
+     * messages as given.
+     *
+     * @param img The given display image.
+     * @param text The given list of messages.
+     */
     public DialogBox(Image img, String ...text) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
