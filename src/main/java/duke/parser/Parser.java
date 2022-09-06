@@ -172,6 +172,7 @@ public class Parser {
     }
 
     private static void simpleDescriptionChecking(String[] fullCommandArray) throws EmptyDescriptionException {
+        assert fullCommandArray.length > 0;
         if (fullCommandArray.length == 1) {
             throw new EmptyDescriptionException();
         }
