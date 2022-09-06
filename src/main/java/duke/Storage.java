@@ -5,9 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class Storage {
     protected String taskDataPath;
@@ -29,41 +26,44 @@ public class Storage {
             File file = new File(taskDataPath + "/" + taskDataFileName);
 
             if (path.exists() && path.isDirectory()) {
-
                 if (file.exists() && file.isFile()) {
-                    Scanner s = new Scanner(file);
-                    while (s.hasNext()) {
-                        String line = s.nextLine();
-                        String[] commands = line.split(",");
-
-                        Task newTask;
-
-                        if (commands[0].equals("T")) {
-                            newTask = new ToDo(commands[2]);
-                        } else if (commands[0].equals("D")) {
-                            newTask = new Deadline(commands[2], commands[3], commands[4]);
-                        } else {
-                            newTask = new Event(commands[2], commands[3], commands[4]);
-                        }
-
-                        if(!commands[1].equals("0")) {
-                            newTask.markAsDone();
-                        }
-                        taskList.getTaskList().add(newTask);
-                    }
+                    readTaskDataLineByLine(taskList, file);
                 } else {
                     file.createNewFile();
-                    UI.printResponse(UI.fileNotFound + UI.createFile);
+                    throw new DukeException(UI.FILE_NOT_FOUND + UI.CREATE_FILE);
                 }
             } else {
                 path.mkdirs();
                 file.createNewFile();
-                UI.printResponse(UI.fileNotFound + UI.createFile);
+                throw new DukeException(UI.FILE_NOT_FOUND + UI.CREATE_FILE);
             }
         } catch (FileNotFoundException e) {
-            throw new DukeException("FileNotFoundException error has occurred :(\n");
+            throw new DukeException(e.getMessage() + "\n");
         } catch (IOException e) {
-            throw new DukeException("IOException error has occurred :(\n");
+            throw new DukeException(e.getMessage() + "\n");
+        }
+    }
+
+    public void readTaskDataLineByLine(TaskList taskList, File file) throws FileNotFoundException {
+        Scanner s = new Scanner(file);
+        while (s.hasNext()) {
+            String line = s.nextLine();
+            String[] commands = line.split(",");
+
+            Task newTask;
+
+            if (commands[0].equals("T")) {
+                newTask = new ToDo(commands[2]);
+            } else if (commands[0].equals("D")) {
+                newTask = new Deadline(commands[2], commands[3], commands[4]);
+            } else {
+                newTask = new Event(commands[2], commands[3], commands[4]);
+            }
+
+            if(!commands[1].equals("0")) {
+                newTask.markAsDone();
+            }
+            taskList.getTaskList().add(newTask);
         }
     }
 

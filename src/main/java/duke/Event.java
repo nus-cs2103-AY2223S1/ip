@@ -22,11 +22,13 @@ public class Event extends Task {
 
     @Override
     public String toWrite() {
-        return getTaskTypeIcon() + "," + (super.isDone ? "1," : "0,") + super.description + "," + timeQualifier + "," + timeDescriptionInput + "\n";
+        return getTaskTypeIcon() + "," + (super.isDone ? "1," : "0,") + super.description + "," + timeQualifier + ","
+                + timeDescriptionInput + "\n";
     }
 
     @Override
     public String toString() {
-        return "[" + getTaskTypeIcon() + "]" + super.toString() + " (" + timeQualifier + ": " + timeDescription.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[" + getTaskTypeIcon() + "]" + super.toString() + " (" + timeQualifier + ": "
+                + timeDescription.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }
