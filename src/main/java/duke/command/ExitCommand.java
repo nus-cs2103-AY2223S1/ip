@@ -8,7 +8,7 @@ import duke.Ui;
  * ExitCommand is the Command when the user wants to exit Duke.
  */
 public class ExitCommand extends Command {
-
+    private static final String EMPTY = "";
     /**
      * Constructor for ExitCommand.
      */
@@ -30,7 +30,7 @@ public class ExitCommand extends Command {
         try {
             storage.store(tasks);
         } catch (Exception e) {
-            System.out.print("");
+            System.out.print(EMPTY);
         } finally {
             return ui.showBye();
         }

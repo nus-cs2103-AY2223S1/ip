@@ -9,6 +9,9 @@ import duke.DukeException;
  * Task stores information regarding work to be done.
  */
 public class Task {
+    private static final String STATUS_DONE = "X";
+    private static final String STATUS_NOT_DONE = " ";
+    private static final String DATE_ERROR = "OOPS!!! This date format is invalid. (YYYY-MM-DD)";
     protected String description;
     protected boolean isDone;
 
@@ -28,7 +31,7 @@ public class Task {
      * @return X if task is done, space if task is not done.
      */
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done duke.task with X
+        return (isDone ? STATUS_DONE : STATUS_NOT_DONE); // mark done duke.task with X
     }
 
     /**
@@ -65,7 +68,7 @@ public class Task {
         try {
             return LocalDate.parse(dt);
         } catch (DateTimeParseException dtpe) {
-            throw new DukeException("OOPS!!! This date format is invalid. (YYYY-MM-DD)");
+            throw new DukeException(DATE_ERROR);
         }
     }
 
