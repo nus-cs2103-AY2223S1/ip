@@ -31,21 +31,24 @@ class MarkInstruction extends Instruction {
      */
     @Override
     public void execute(TaskList taskList, Ui ui) {
-        if (this.hasMainArgument()) {
-            try {
-                int taskNum = Integer.parseInt(this.getMainArgument());
-                if (taskNum <= 0 || taskNum > taskList.size()) {
-                    ui.showFormattedMessage("Sorry, there is no task number %d.", taskNum);
-                } else {
-                    taskList.markTask(taskNum - 1);
-                    ui.showFormattedMessage("Well done! I've marked task %d as done:%n", taskNum);
-                    ui.showMessages(taskList.getTask(taskNum - 1).toString());
-                }
-            } catch (NumberFormatException e) {
-                ui.showFormattedMessage("Sorry, %s is not a valid task number.", this.getMainArgument());
-            }
-        } else {
+        if (!this.hasMainArgument()) {
             ui.showMessages("Sorry, you need to tell me which task to mark.");
+            return;
         }
+        int taskNum;
+        try {
+            taskNum = Integer.parseInt(this.getMainArgument());
+        } catch (NumberFormatException e) {
+            ui.showFormattedMessage("Sorry, %s is not a valid task number.", this.getMainArgument());
+            return;
+        }
+        if (taskNum <= 0 || taskNum > taskList.size()) {
+            ui.showFormattedMessage("Sorry, there is no task number %d.", taskNum);
+            return;
+        }
+
+        taskList.markTask(taskNum - 1);
+        ui.showFormattedMessage("Well done! I've marked task %d as done:%n", taskNum);
+        ui.showMessages(taskList.getTask(taskNum - 1).toString());
     }
 }
