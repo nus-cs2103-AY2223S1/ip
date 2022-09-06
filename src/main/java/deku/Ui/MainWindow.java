@@ -1,6 +1,7 @@
 package deku.Ui;
 
 import deku.Deku;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,9 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.image.Image;
-
-import java.rmi.dgc.Lease;
-import java.util.List;
 
 public class MainWindow extends AnchorPane {
     @FXML
@@ -63,9 +61,12 @@ public class MainWindow extends AnchorPane {
      * the dialog container. Clears the user input after processing.
      */
     @FXML
-    private void handleUserInput() {
+    private void handleUserInput() throws InterruptedException {
         String input = userInput.getText();
         String response = deku.getResponse(input);
+        if (response.contains("Bye!")) {
+            Platform.exit();
+        }
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dekuImage)

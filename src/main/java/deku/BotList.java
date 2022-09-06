@@ -3,7 +3,6 @@ package deku;
 import java.util.ArrayList;
 import java.util.List;
 
-import deku.Ui.MainWindow;
 import deku.task.Task;
 
 class BotList {
@@ -71,13 +70,18 @@ class BotList {
      * @param taskIndex task number within the list, starting from 1
      * @return String of the task deleted
      */
-    String delete(int taskIndex) {
-        Task task = userInstructions.remove(taskIndex - 1);
-        storage.save(userInstructions);
-        return "Noted.\n"
-               + task.toString()
-               + "\nhas been deleted.\n"
-               + getNoTasks();
+    String delete(int taskIndex) throws DekuExceptions {
+        try {
+            Task task = userInstructions.remove(taskIndex - 1);
+            storage.save(userInstructions);
+            return "Noted.\n"
+                    + task.toString()
+                    + "\nhas been deleted.\n"
+                    + getNoTasks();
+        } catch (IndexOutOfBoundsException e) {
+            throw new DekuExceptions("There is no task: " + taskIndex);
+        }
+
     }
 
     String find_date(String date) throws DekuExceptions {
@@ -85,7 +89,9 @@ class BotList {
         InputParser parser = new InputParser();
         for (Task task: userInstructions) {
             parser.parseDate(date);
-            if (task.getDate() != null && task.getDate().equals(parser.getDate())) {
+            boolean isEmptyDate = (task.getDate() != null);
+            boolean isEqualDate = (task.getDate().equals(parser.getDate()));
+            if (isEmptyDate && isEqualDate) {
                 containsDate.add(task);
             } else {
                 containsDate.add(null);
@@ -111,12 +117,14 @@ class BotList {
     private String outputList(String message, List<Task> array) {
         StringBuilder output = new StringBuilder(message + "\n");
         for (int i = 0; i < array.size(); i++) {
-            if (array.get(i) != null) {
-                if (output.length() != 0) {
-                    output.append("\n");
-                }
-                output.append(i + 1).append(") ").append(array.get(i));
+            if (array.get(i) == null) {
+                continue;
             }
+
+            if (output.length() != 0) {
+                output.append("\n");
+            }
+            output.append(i + 1).append(") ").append(array.get(i));
         }
         return output.toString();
     }
