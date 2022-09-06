@@ -39,6 +39,7 @@ public class EventHandler {
         this.taskList.add(tempTask);
 //        userInterface.addTaskMessage(tempTask);
         storage.save();
+        assert description.length() > 0 : "description should not be empty";
         return guiUserInterface.addTaskMessage(tempTask);
     }
 
@@ -62,6 +63,7 @@ public class EventHandler {
         this.taskList.add(tempTask);
 //        userInterface.addTaskMessage(tempTask);
         storage.save();
+        assert description.length() > 0 : "description should not be empty";
         return guiUserInterface.addTaskMessage(tempTask);
     }
 
@@ -85,6 +87,7 @@ public class EventHandler {
         this.taskList.add(tempTask);
 //        userInterface.addTaskMessage(tempTask);
         storage.save();
+        assert description.length() > 0 : "description should not be empty";
         return guiUserInterface.addTaskMessage(tempTask);
     }
 
@@ -98,6 +101,7 @@ public class EventHandler {
         taskList.get(taskIndex).markAsDone();
 //        userInterface.markTaskMessage(taskIndex);
         storage.save();
+        assert taskIndex >= 0 : "taskIndex should be >= 0";
         return guiUserInterface.markTaskMessage(taskIndex);
     }
 
@@ -111,6 +115,7 @@ public class EventHandler {
         taskList.get(taskIndex).markAsUndone();
 //        userInterface.unmarkTaskMessage(taskIndex);
         storage.save();
+        assert taskIndex >= 0 : "taskIndex should be >= 0";
         return guiUserInterface.unmarkTaskMessage(taskIndex);
 
     }
@@ -126,6 +131,7 @@ public class EventHandler {
         String temp = guiUserInterface.taskDeletedMessage(taskIndex);
         this.taskList.remove(taskIndex);
         storage.save();
+        assert taskIndex >= 0 : "taskIndex should be >= 0";
         return temp;
     }
 
@@ -138,6 +144,7 @@ public class EventHandler {
         String query = input.substring(5);
         TaskList matches = taskList.filterByKeyword(query);
 //        userInterface.printMatches(matches);
+        assert query.length() >= 0 : "keywords should not be empty";
         return guiUserInterface.printMatches(matches);
     }
 
