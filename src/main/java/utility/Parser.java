@@ -95,41 +95,31 @@ public class Parser {
         } else {
             command = input.substring(0, input.indexOf(" "));
         }
-        if (command.equals("t") || command.equals("todo")) {
+        if (command.equalsIgnoreCase("t") || command.equalsIgnoreCase("todo")) {
             return "todo";
-        } else if (command.equals("l") || command.equals("list")) {
+        } else if (command.equalsIgnoreCase("l") || command.equalsIgnoreCase("list")) {
             return "list";
-        } else if (command.equals("event") || command.equals("e")) {
+        } else if (command.equalsIgnoreCase("event") || command.equalsIgnoreCase("e")) {
             return "event";
-        } else if (command.equals("deadline") || command.equals("d")) {
+        } else if (command.equalsIgnoreCase("deadline") || command.equalsIgnoreCase("d")) {
             return "deadline";
-        } else if (command.equals("mark") || command.equals("m")) {
+        } else if (command.equalsIgnoreCase("mark") || command.equalsIgnoreCase("m")) {
             return "mark";
-        } else if (command.equals("unmark")  || command.equals("um")) {
+        } else if (command.equalsIgnoreCase("unmark")  || command.equalsIgnoreCase("um")) {
             return "unmark";
-        } else if (command.equals("bye") || command.equals("quit") || command.equals("q")) {
+        } else if (command.equalsIgnoreCase("bye") || command.equalsIgnoreCase("quit") || command.equalsIgnoreCase("q") ||
+                command.equalsIgnoreCase("b")) {
             return "bye";
-        } else if (command.equals("find") || command.equals("f")) {
+        } else if (command.equalsIgnoreCase("find") || command.equalsIgnoreCase("f")) {
             return "find";
-        } else if (command.equals("longdesc")) {
+        } else if (command.equalsIgnoreCase("longdesc")) {
             return "longdesc";
-        } else if (command.equals("istoday")) {
+        } else if (command.equalsIgnoreCase("istoday")) {
             return "istoday";
         }else {
             return " ";
         }
     }
-
-    public static void main(String[] args)  {
-        try {
-            Scanner sc = new Scanner(System.in);
-            String line = sc.nextLine();
-            System.out.println(extractCommand(line));
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
 
     /**
      * Converts string command for adding
@@ -182,7 +172,24 @@ public class Parser {
      * @throws DukeException when no valid description is found.
      */
     private static String getDescription(String commandUsed, String input) throws DukeException {
-        return ;
+        String description;
+        int startDescriptionIndex = input.indexOf(commandUsed) + commandUsed.length();
+        assert startDescriptionIndex < 0;
+        if (commandUsed.equals("event") || commandUsed.equals("deadline")) {
+            int endDescriptionIndex = input.indexOf(END_OF_DESCRIPTION_MARKER);
+            if (endDescriptionIndex < 0) {
+                throw new DukeException("Could not parse description");
+            } else {
+                description = input.substring(startDescriptionIndex, endDescriptionIndex);
+            }
+        } else {
+            description = input.substring(startDescriptionIndex);
+        }
+
+        if (description.isBlank()) {
+            throw new DukeException("Empty description field");
+        }
+        return description;
     }
 
     /**
