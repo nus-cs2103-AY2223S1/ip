@@ -8,11 +8,12 @@ import duke.tasks.TaskList;
  * ByeCommand says bye to user
  */
 public class ByeCommand extends Command {
-
+    public ByeCommand() {
+        makeTrueExit();
+    }
 
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
-        setExit();
         return getMessage();
     }
 

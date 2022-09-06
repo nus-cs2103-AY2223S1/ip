@@ -26,7 +26,7 @@ public abstract class Command {
         return this.isExit;
     }
 
-    public void setExit() {
+    public void makeTrueExit() {
         this.isExit = true;
     }
 }
