@@ -37,7 +37,8 @@ public class UnmarkCommand implements ICommand {
             }
         }
         return numOfUnmarkedTask > 0
-                ? String.format("%d task%s been marked incomplete.", numOfUnmarkedTask, numOfUnmarkedTask > 1 ? "s have" : " has")
+                ? String.format("%d task%s been marked incomplete.",
+                        numOfUnmarkedTask, numOfUnmarkedTask > 1 ? "s have" : " has")
                 : "Please select a task to be marked within the list.";
     }
 

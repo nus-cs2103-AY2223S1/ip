@@ -1,6 +1,5 @@
 package duke.command;
 
-import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 
@@ -20,7 +19,7 @@ public class DeleteCommand implements ICommand {
     }
 
     /**
-     * Executes the command by deleting specified task from the list.
+     * Executes the command by deleting tasks from the list.
      *
      * @param storage Storage object for I/O operations.
      * @param taskList TaskList object for operations on the list of tasks.

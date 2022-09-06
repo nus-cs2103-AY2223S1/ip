@@ -37,7 +37,8 @@ public class MarkCommand implements ICommand {
             }
         }
         return numOfMarkedTask > 0
-                ? String.format("%d task%s been marked completed.", numOfMarkedTask, numOfMarkedTask > 1 ? "s have" : " has")
+                ? String.format("%d task%s been marked completed.",
+                        numOfMarkedTask, numOfMarkedTask > 1 ? "s have" : " has")
                 : "Please select a task to be marked within the list.";
     }
 

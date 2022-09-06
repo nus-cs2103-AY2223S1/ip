@@ -83,7 +83,9 @@ public class TaskList {
         for (int index : indexList) {
             try {
                 if (index < 0 || index >= this.list.size()) {
-                    throw new DukeException(String.format("Could not delete index %d as it is not within the list.", index));
+                    throw new DukeException(
+                            String.format("Could not delete index %d as it is not within the list.", index)
+                    );
                 }
                 this.list.get(index).markToDelete();
                 numOfDeletedTask++;
