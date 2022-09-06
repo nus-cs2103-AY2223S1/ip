@@ -30,10 +30,10 @@ public class TaskList {
             }
         }
 
-        String response = UI.findingRelatedTask;
+        String response = UI.FINDING_RELATED_TASK;
 
         if (relatedTaskList.size() <= 0) {
-            response += UI.noRelatedTaskFound;
+            response += UI.NO_RELATED_TASK_FOUND;
         } else {
             for (int i = 1; i <= relatedTaskList.size(); ++i) {
                 response += (i + ". " + relatedTaskList.get(i - 1).toString()) + "\n";
@@ -50,17 +50,17 @@ public class TaskList {
      */
     public String add(Task task) {
         taskList.add(task);
-        return UI.addTask + task.toString() + "\n" + UI.numberOfTaskLeft + taskList.size() + "\n";
+        return UI.ADD_TASK + task.toString() + "\n" + UI.NUMBER_OF_TASK_LEFT + taskList.size() + "\n";
     }
 
     /**
      * Prints each task in the array list of tasks
      */
     public String printTaskList() {
-        String response = UI.taskListOpening;
+        String response = UI.TASK_LIST_OPENING;
 
         if (taskList.size() <= 0) {
-            response += UI.noListFound;
+            response += UI.NO_LIST_FOUND;
         } else {
             for (int i = 1; i <= taskList.size(); ++i) {
                 response += (i + ". " + taskList.get(i - 1).toString()) + "\n";
@@ -78,13 +78,13 @@ public class TaskList {
      */
     public String markTaskAsDone(int index) throws DukeException {
         if (index < 0) {
-            throw new DukeException("I cannot mark this task because your index is invalid");
+            throw new DukeException(UI.INDEX_IS_INVALID);
         } else if (index >= taskList.size()) {
-            throw new DukeException("I cannot mark this task because task does not exist");
+            throw new DukeException(UI.TASK_DOES_NOT_EXIST);
         }
 
         taskList.get(index).markAsDone();
-        return UI.markAsDone + taskList.get(index).toString();
+        return UI.MARK_AS_DONE + taskList.get(index).toString();
     }
 
     /**
@@ -95,13 +95,13 @@ public class TaskList {
      */
     public String markTaskAsNotDone(int index) throws DukeException{
         if (index < 0) {
-            throw new DukeException("I cannot unmark this task because your index is invalid");
+            throw new DukeException(UI.INDEX_IS_INVALID);
         } else if (index >= taskList.size()) {
-            throw new DukeException("I cannot unmark this task because task does not exist");
+            throw new DukeException(UI.TASK_DOES_NOT_EXIST);
         }
 
         taskList.get(index).markAsNotDone();
-        return UI.markAsNotDone + taskList.get(index).toString();
+        return UI.MARK_AS_NOT_DONE + taskList.get(index).toString();
     }
 
     /**
@@ -113,12 +113,13 @@ public class TaskList {
         String response = "";
 
         if (index < 0) {
-            throw new DukeException("I cannot delete this task because your index is invalid");
+            throw new DukeException(UI.INDEX_IS_INVALID);
         } else if (index >= taskList.size()) {
-            throw new DukeException("I cannot delete this task because task does not exist");
+            throw new DukeException(UI.TASK_DOES_NOT_EXIST);
         }
 
-        response = UI.removeTask + taskList.get(index).toString() + "\n" + UI.numberOfTaskLeft + (taskList.size() - 1) + "\n";
+        response = UI.REMOVE_TASK + taskList.get(index).toString() + "\n" + UI.NUMBER_OF_TASK_LEFT
+                + (taskList.size() - 1) + "\n";
 
         taskList.remove(index);
 
