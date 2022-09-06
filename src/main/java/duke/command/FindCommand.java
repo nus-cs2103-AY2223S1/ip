@@ -1,5 +1,7 @@
 package duke.command;
 
+import java.util.Arrays;
+
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.TaskList;
@@ -26,7 +28,11 @@ public class FindCommand implements Command {
                     + "must be a non-empty string!");
         }
 
-        this.keywords = keyword.split(",");
+        // Filter out all empty words
+        this.keywords = Arrays.stream(keyword.split(","))
+                .map(String::trim)
+                .filter(text -> !text.isEmpty())
+                .toArray(String[]::new);
     }
 
     /**

@@ -1,5 +1,6 @@
 package duke.command;
 
+import java.util.Arrays;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
@@ -25,12 +26,12 @@ public class AtCommand implements Command {
      */
     public AtCommand(String description) throws DukeException {
         try {
-            String[] candidateDates = description.split(",");
-            this.selectedDates = new LocalDate[candidateDates.length];
+            this.selectedDates = Arrays.stream(description.split(","))
+                    .map(String::trim)
+                    .filter(text -> !text.isEmpty())
+                    .map(LocalDate::parse)
+                    .toArray(LocalDate[]::new);;
 
-            for (int i = 0; i < candidateDates.length; i++) {
-                this.selectedDates[i] = LocalDate.parse(candidateDates[i].trim());
-            }
         } catch (DateTimeParseException error) {
             throw new DukeException("The time given is not a valid date. "
                     + "Try to represent the time in yyyy-mm-dd format.");
