@@ -48,6 +48,8 @@ public class Parser {
      * @return CaCa's response to user.
      */
     public String parse(String input) {
+        assert input != null;
+
         // Detect user command, where 1st element is the type of action to be done (command type),
         // 2nd element is the task description, with or without date/time.
         String[] command = input.split(" ", 2);

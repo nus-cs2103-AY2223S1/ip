@@ -96,6 +96,8 @@ public class TaskList {
     public static Task createTask(String taskType, String taskInfo) throws
             EmptyInputException, MissingDetailException, InvalidDateException {
 
+        assert taskType != null;
+
         hasDescription(taskType, taskInfo);
 
         String[] detailedCommand = new String[0];
@@ -142,6 +144,7 @@ public class TaskList {
      * @return CaCa's response after successfully adding a task to the list.
      */
     public static String addTask(Task task) {
+        assert task != null;
         tasks.add(task);
 
         String response = String.format("Got it. I've added this task:\n"
@@ -266,6 +269,8 @@ public class TaskList {
      * @return CaCa's response after finding the corresponding task.
      */
     public static String findTask(String keyword) {
+        assert keyword != null;
+
         List<Task> matchingTasks = new ArrayList<>();
 
         int taskCount = 1;
