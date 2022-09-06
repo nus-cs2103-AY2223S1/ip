@@ -20,6 +20,7 @@ public class Deadline extends Task {
 
     /**
      * Constructs a not completed Deadline with the specified description and deadline parameter.
+     *
      * @param desc the description of this Deadline.
      * @param endTime the deadline of this Deadline.
      * @throws DukeException if desc is null or empty, or if the deadline was unable to be parsed into a date.
@@ -39,6 +40,7 @@ public class Deadline extends Task {
 
     /**
      * Constructs a Deadline with the specified description, deadline, and state of completion parameter.
+     *
      * @param desc the description of this Deadline.
      * @param endTime the deadline of this Deadline.
      * @param isDone the state of completion of this Deadline.

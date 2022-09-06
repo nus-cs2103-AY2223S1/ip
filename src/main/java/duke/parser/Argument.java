@@ -40,6 +40,7 @@ public class Argument {
 
     /**
      * Returns a String representation of the user argument.
+     *
      * @return a String.
      */
     @Override

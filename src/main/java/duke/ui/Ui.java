@@ -22,7 +22,7 @@ public class Ui {
     private final PrintWriter printWriter;
 
     /**
-     * Construtor of Ui. Constructed Ui will print to System.out.
+     * Constructor of Ui. Constructed Ui will print to System.out.
      */
     public Ui() {
         sysInScanner = new Scanner(System.in);
@@ -31,6 +31,7 @@ public class Ui {
 
     /**
      * Constructs UI that will print to the provided Writer.
+     *
      * @param writer the provided Writer.
      */
     public Ui(Writer writer) {

@@ -21,6 +21,7 @@ public class Storage {
 
     /**
      * Constructs Storage with a specified File for Storage to access.
+     *
      * @param saveFile the specified File.
      */
     public Storage(File saveFile) {
@@ -29,6 +30,7 @@ public class Storage {
 
     /**
      * Constructs Storage with a specified file path for Storage to access.
+     *
      * @param filePath the specified file path.
      */
     public Storage(String filePath) {
@@ -37,6 +39,7 @@ public class Storage {
 
     /**
      * Loads tasks from the encapsulated File onto a TaskList.
+     *
      * @return TaskList.
      * @throws DukeException if unable to read from the encapsulated File.
      */
@@ -81,6 +84,7 @@ public class Storage {
 
     /**
      * Stores tasks from the specified TaskList parameter to the encapsulated File.
+     *
      * @param taskList the specified TaskList.
      * @throws DukeException if unable to write to the encapsulated File.
      */

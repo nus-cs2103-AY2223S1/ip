@@ -25,6 +25,7 @@ public class Parser {
 
     /**
      * Parses the specified String parameter into a Command object.
+     *
      * @param command the String to be parsed.
      * @return Command.
      * @throws DukeException if command is malformed.

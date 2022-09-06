@@ -26,6 +26,7 @@ public class Event extends Task {
 
     /**
      * Constructs a not completed Event with the specified description and time range parameter.
+     *
      * @param desc the description of this Event.
      * @param timeRange the time range of this Event.
      * @throws DukeException if desc is null or empty, or if the time range was unable to be parsed into a date.
@@ -40,6 +41,7 @@ public class Event extends Task {
 
     /**
      * Constructs an Event with the specified description, time range, and state of completion parameter.
+     *
      * @param desc the description of this Event.
      * @param timeRange the time range of this Event.
      * @param isDone the state of completion of this Event.
