@@ -42,11 +42,13 @@ public class Storage {
             if (line == null) {
                 response.append("Your task list is empty.");
             } else {
+                assert line != null : "Line read is empty";
                 response.append("These are the tasks you had previously:\n");
                 while (line != null) {
                     String[] segments = line.split(">");
                     switch (segments[0]) {
                     case "T":
+                        assert segments.length == 3 : "A todo task follows the format 'todo task'";
                         tasks.createTaskSilently(new Todo(segments[2]));
                         if (segments[1].equals("X")) {
                             tasks.getTask(tasks.getSize() - 1).setDone();
@@ -54,6 +56,7 @@ public class Storage {
                         break;
 
                     case "E":
+                        assert segments.length == 4: "An event task follows the format 'event task /at YYYY-MM-DD'";
                         String time = segments[3];
                         LocalDate date = LocalDate.parse(time);
                         tasks.createTaskSilently(new Event(segments[2], date));
@@ -63,6 +66,7 @@ public class Storage {
                         break;
 
                     case "D":
+                        assert segments.length == 4: "A deadline task follows the format 'deadline task /by YYYY-MM-DD'";
                         String time2 = segments[3];
                         LocalDate date2 = LocalDate.parse(time2);
                         tasks.createTaskSilently(new Deadline(segments[2], date2));
@@ -106,21 +110,26 @@ public class Storage {
             OutputStream os = new FileOutputStream(myFile);
             PrintWriter pw = new PrintWriter(os);
             for (Task task : tasks.getTaskList()) {
-                switch (task.getType()) {
+                String type = task.getType();
+                switch (type) {
 
                 case "T":
-                    pw.println(task.getType() + ">" + task.getStatusIcon() + ">" + task.getDescription());
+                    assert type == "T" : "Task must be a todo";
+                    Todo todo = (Todo) task;
+                    pw.println(type + ">" + todo.getStatusIcon() + ">" + todo.getDescription());
                     break;
 
                 case "E":
+                    assert type == "E" : "Task must be an event";
                     Event event = (Event) task;
-                    pw.println(event.getType() + ">" + event.getStatusIcon() + ">"
+                    pw.println(type + ">" + event.getStatusIcon() + ">"
                             + event.getDescription() + ">" + event.getAt());
                     break;
 
                 case "D":
+                    assert type == "D" : "Task must be a deadline";
                     Deadline deadline = (Deadline) task;
-                    pw.println(deadline.getType() + ">" + deadline.getStatusIcon() + ">"
+                    pw.println(type + ">" + deadline.getStatusIcon() + ">"
                             + deadline.getDescription() + ">" + deadline.getBy());
                     break;
 
