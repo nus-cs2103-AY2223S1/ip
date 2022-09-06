@@ -143,7 +143,7 @@ public class Ui {
         sb = new StringBuilder();
         sb.append("Here are the matching tasks in your list:\n");
         for (int index = 0; index < matchingTasks.getSize(); index++) {
-            sb.append(index + 1 + "." + matchingTasks.getTask(index).toString());
+            sb.append(index + 1 + ". " + matchingTasks.getTask(index).toString());
             sb.append(System.lineSeparator());
         }
         return sb.toString();
