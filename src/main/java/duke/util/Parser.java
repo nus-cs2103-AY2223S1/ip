@@ -67,37 +67,36 @@ public class Parser {
             args = commandAndArguments[1].strip();
         }
 
-        switch (inputCommand) {
-        case COMMAND_HELP:
+        if (COMMAND_EMPTY.equals(inputCommand)) {
+            return new EmptyCommand();
+        } else if (COMMAND_HELP.startsWith(inputCommand)) {
             return new HelpCommand();
-        case COMMAND_BYE:
+        } else if (COMMAND_BYE.startsWith(inputCommand)) {
             return new ByeCommand();
-        case COMMAND_LIST:
+        } else if (COMMAND_LIST.startsWith(inputCommand)) {
             return new ListCommand();
-        case COMMAND_MARK:
+        } else if (COMMAND_MARK.startsWith(inputCommand)) {
             verifyArgumentsIsNotEmpty(args);
             return new MarkCommand(parseTaskIndex(args));
-        case COMMAND_UNMARK:
+        } else if (COMMAND_UNMARK.startsWith(inputCommand)) {
             verifyArgumentsIsNotEmpty(args);
             return new UnmarkCommand(parseTaskIndex(args));
-        case COMMAND_TODO:
+        } else if (COMMAND_TODO.startsWith((inputCommand))) {
             verifyArgumentsIsNotEmpty(args);
             return new AddCommand(parseTodoArguments(args));
-        case COMMAND_EVENT:
+        } else if (COMMAND_EVENT.startsWith(inputCommand)) {
             verifyArgumentsIsNotEmpty(args);
             return new AddCommand(parseEventArguments(args));
-        case COMMAND_DEADLINE:
+        } else if (COMMAND_DEADLINE.startsWith(inputCommand)) {
             verifyArgumentsIsNotEmpty(args);
             return new AddCommand(parseDeadlineArguments(args));
-        case COMMAND_DELETE:
+        } else if (COMMAND_DELETE.startsWith(inputCommand)) {
             verifyArgumentsIsNotEmpty(args);
             return new DeleteCommand(parseTaskIndex(args));
-        case COMMAND_FIND:
+        } else if (COMMAND_FIND.startsWith(inputCommand)) {
             verifyArgumentsIsNotEmpty(args);
             return new FindCommand(args);
-        case COMMAND_EMPTY:
-            return new EmptyCommand();
-        default:
+        } else {
             return new UnknownCommand();
         }
     }

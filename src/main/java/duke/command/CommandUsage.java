@@ -4,16 +4,16 @@ package duke.command;
  * User commands and how to use them.
  */
 public enum CommandUsage {
-    HELP("help"),
-    BYE("bye"),
-    LIST("list"),
-    MARK("mark <task index>"),
-    UNMARK("unmark <task index>"),
-    TODO("todo <task description>"),
-    EVENT("event <event description> /at <date>"),
-    DEADLINE("deadline <task description> /by <date>"),
-    DELETE("delete <task index>"),
-    FIND("find <keyword>");
+    HELP("h / help"),
+    BYE("b / bye"),
+    LIST("l / list"),
+    MARK("m / mark <task index>"),
+    UNMARK("u / unmark <task index>"),
+    TODO("t / todo <task description>"),
+    EVENT("e / event <event description> /at <date>"),
+    DEADLINE("d / deadline <task description> /by <date>"),
+    DELETE("del / delete <task index>"),
+    FIND("f / find <keyword>");
 
     private final String usageText;
 
