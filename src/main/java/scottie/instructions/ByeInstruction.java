@@ -10,6 +10,8 @@ import scottie.ui.Ui;
  * exit the program.
  */
 class ByeInstruction extends Instruction {
+    private static final String EXIT_MESSAGE = "Ok, see you next time!";
+
     /**
      * Constructs a ByeInstruction with the given arguments.
      *
@@ -29,7 +31,7 @@ class ByeInstruction extends Instruction {
      */
     @Override
     public void execute(TaskList taskList, Ui ui) {
-        ui.showMessages("Ok, see you next time!");
+        ui.showMessages(EXIT_MESSAGE);
     }
 
     /**

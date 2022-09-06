@@ -4,6 +4,9 @@ package scottie.tasks;
  * Encapsulates a task that the user wants to record.
  */
 public abstract class Task {
+    private static final String INVALID_TASK_LETTER_MESSAGE = "Task type letter not recognised";
+    private static final String MISSING_TASK_SUBCLASS_MESSAGE = "Missing Task subclass for TaskType with letter %c";
+
     private final String description;
     private boolean isDone;
 
@@ -32,7 +35,7 @@ public abstract class Task {
         char taskLetter = encodedString.charAt(0);
         TaskType taskType = TaskType.fromLetter(taskLetter);
         if (taskType == null) {
-            throw new InvalidTaskDataException("Task type letter not recognised");
+            throw new InvalidTaskDataException(INVALID_TASK_LETTER_MESSAGE);
         }
         switch (taskType) {
         case TODO:
@@ -45,7 +48,7 @@ public abstract class Task {
             // Any invalid task type should have been handled above by the null check.
             // Only way execution can reach here is if a new scottie.TaskType was added
             // but the switch statement was not updated.
-            throw new RuntimeException(String.format("Missing Task subclass for TaskType with letter %c", taskLetter));
+            throw new RuntimeException(String.format(MISSING_TASK_SUBCLASS_MESSAGE, taskLetter));
         }
     }
 

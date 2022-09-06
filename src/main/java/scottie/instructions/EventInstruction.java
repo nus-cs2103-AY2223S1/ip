@@ -13,6 +13,10 @@ import scottie.ui.Ui;
  * add an event to the task list.
  */
 class EventInstruction extends Instruction {
+    private static final String MISSING_DESCRIPTION_MESSAGE = "Sorry, I will need a description for the event.";
+    private static final String MISSING_DATE_MESSAGE = "Sorry, I will need a date for the event.";
+    private static final String EVENT_ADDED_MESSAGE = "Got it, I've added this event:";
+
     /**
      * Constructs an EventInstruction with the given arguments.
      *
@@ -35,18 +39,18 @@ class EventInstruction extends Instruction {
     @Override
     public void execute(TaskList taskList, Ui ui) {
         if (!this.hasMainArgument()) {
-            ui.showMessages("Sorry, I will need a description for the event.");
+            ui.showMessages(MISSING_DESCRIPTION_MESSAGE);
             return;
         }
         String endDateTimeString = this.getFlagArgument("at");
         if (endDateTimeString == null) {
-            ui.showMessages("Sorry, I will need a date for the event.");
+            ui.showMessages(MISSING_DATE_MESSAGE);
             return;
         }
 
         TemporalAccessor endDateTime = DateTimeUtil.parseCompactDateTime(endDateTimeString);
         Event event = new Event(this.getMainArgument(), endDateTime);
         taskList.addTask(event);
-        ui.showMessages("Got it, I've added this event:", event.toString());
+        ui.showMessages(EVENT_ADDED_MESSAGE, event.toString());
     }
 }

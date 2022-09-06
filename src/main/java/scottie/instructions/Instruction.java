@@ -11,6 +11,8 @@ import scottie.ui.Ui;
  * performs some operation.
  */
 public abstract class Instruction {
+    private static final String MISSING_INSTRUCTION_SUBCLASS_MESSAGE = "Missing Instruction subclass for Command ";
+
     private final String mainArgument;
     private final Map<String, String> flagArgumentsMap;
 
@@ -69,7 +71,7 @@ public abstract class Instruction {
         default:
             // Only way execution can reach here is if a new Command was added
             // but the switch statement was not updated.
-            throw new RuntimeException("Missing Instruction subclass for Command " + command.name());
+            throw new RuntimeException(MISSING_INSTRUCTION_SUBCLASS_MESSAGE + command.name());
         }
     }
 

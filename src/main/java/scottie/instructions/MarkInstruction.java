@@ -10,6 +10,11 @@ import scottie.ui.Ui;
  * mark a task as done.
  */
 class MarkInstruction extends Instruction {
+    private static final String MISSING_TASK_NUMBER_MESSAGE = "Sorry, you need to tell me which task to mark.";
+    private static final String INVALID_TASK_NUMBER_MESSAGE = "Sorry, %s is not a valid task number.%n";
+    private static final String TASK_NUMBER_OUT_OF_RANGE_MESSAGE = "Sorry, there is no task number %d.%n";
+    private static final String TASK_MARKED_MESSAGE = "Well done! I've marked task %d as done:%n";
+
     /**
      * Constructs a MarkInstruction with the given arguments.
      *
@@ -32,23 +37,23 @@ class MarkInstruction extends Instruction {
     @Override
     public void execute(TaskList taskList, Ui ui) {
         if (!this.hasMainArgument()) {
-            ui.showMessages("Sorry, you need to tell me which task to mark.");
+            ui.showMessages(MISSING_TASK_NUMBER_MESSAGE);
             return;
         }
         int taskNum;
         try {
             taskNum = Integer.parseInt(this.getMainArgument());
         } catch (NumberFormatException e) {
-            ui.showFormattedMessage("Sorry, %s is not a valid task number.", this.getMainArgument());
+            ui.showFormattedMessage(INVALID_TASK_NUMBER_MESSAGE, this.getMainArgument());
             return;
         }
         if (taskNum <= 0 || taskNum > taskList.size()) {
-            ui.showFormattedMessage("Sorry, there is no task number %d.", taskNum);
+            ui.showFormattedMessage(TASK_NUMBER_OUT_OF_RANGE_MESSAGE, taskNum);
             return;
         }
 
         taskList.markTask(taskNum - 1);
-        ui.showFormattedMessage("Well done! I've marked task %d as done:%n", taskNum);
+        ui.showFormattedMessage(TASK_MARKED_MESSAGE, taskNum);
         ui.showMessages(taskList.getTask(taskNum - 1).toString());
     }
 }

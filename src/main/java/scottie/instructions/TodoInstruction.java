@@ -11,6 +11,9 @@ import scottie.ui.Ui;
  * add a todo to the task list.
  */
 class TodoInstruction extends Instruction {
+    private static final String MISSING_DESCRIPTION_MESSAGE = "Sorry, I will need a description for the to-do.";
+    private static final String TODO_ADDED_MESSAGE = "Got it, I've added this to-do:";
+
     /**
      * Constructs a TodoInstruction with the given arguments.
      *
@@ -32,11 +35,11 @@ class TodoInstruction extends Instruction {
     @Override
     public void execute(TaskList taskList, Ui ui) {
         if (!this.hasMainArgument()) {
-            ui.showMessages("Sorry, I will need a description for the to-do.");
+            ui.showMessages(MISSING_DESCRIPTION_MESSAGE);
             return;
         }
         Todo todo = new Todo(this.getMainArgument());
         taskList.addTask(todo);
-        ui.showMessages("Got it, I've added this to-do:", todo.toString());
+        ui.showMessages(TODO_ADDED_MESSAGE, todo.toString());
     }
 }
