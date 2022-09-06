@@ -27,10 +27,6 @@ public class CommandFindHandler extends CommandHandler {
 
     @Override
     public CommandResponse run(TaskList taskList) {
-        if (taskList.isEmpty()) {
-            return new CommandResponse("There are no items in the task list!", false, false);
-        }
-
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
         String keyword = regexMatchResult.group(1);
         assert !keyword.isBlank() : "Keyword should not be blank/empty!";

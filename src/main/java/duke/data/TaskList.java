@@ -51,11 +51,14 @@ public class TaskList implements Serializable {
 
     @Override
     public String toString() {
+        if (tasks.isEmpty()) {
+            return "There are no items in the task list!";
+        }
+
         List<String> taskListStr = new ArrayList<>();
         for (int taskIdx = 0; taskIdx < tasks.size(); taskIdx++) {
             taskListStr.add(String.format("%d. %s", taskIdx + 1, tasks.get(taskIdx)));
         }
-
         return String.join("\n", taskListStr);
     }
 }

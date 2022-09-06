@@ -38,10 +38,6 @@ public class CommandListHandler extends CommandHandler {
      */
     @Override
     public CommandResponse run(TaskList taskList) {
-        if (taskList.isEmpty()) {
-            return new CommandResponse("There are no items in the task list!", false, false);
-        }
-
         String queryTag = commandRegexMatcher.group(3);
         boolean toFilterByTag = queryTag != null;
         TaskList filteredTaskList =
