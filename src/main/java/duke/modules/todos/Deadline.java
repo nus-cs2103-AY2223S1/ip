@@ -1,10 +1,11 @@
 package duke.modules.todos;
 
 import duke.MessagefulException;
+import duke.util.NaturalDateParser;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ import static java.lang.String.format;
  * Deadlines - tasks with a due date.
  */
 public class Deadline extends Task {
-    private LocalDateTime deadline;
+    private Instant deadline;
 
     /**
      * Constructor
@@ -26,7 +27,7 @@ public class Deadline extends Task {
      * @param name The name of the task.
      * @param deadline The deadline of the task.
      */
-    public Deadline(String name, LocalDateTime deadline) {
+    public Deadline(String name, Instant deadline) {
         this(name, false, deadline);
     }
 
@@ -37,7 +38,7 @@ public class Deadline extends Task {
      * @param done     Whether the task is done.
      * @param deadline The deadline of the task.
      */
-    public Deadline(String name, boolean done, LocalDateTime deadline) {
+    public Deadline(String name, boolean done, Instant deadline) {
         super(name, done);
         this.deadline = deadline;
     }
@@ -60,8 +61,8 @@ public class Deadline extends Task {
             try {
                 return new Deadline(
                         match.group("name"),
-                        LocalDateTime.parse(match.group("time")));
-            } catch (DateTimeParseException e) {
+                        NaturalDateParser.parse(match.group("time")));
+            } catch (NaturalDateParser.DateNotFoundException e) {
                 throw new MessagefulException(
                         "datetime parse failure" + e,
                         e.getParsedString() + " doesn't look like a date and time to me...");
@@ -85,7 +86,7 @@ public class Deadline extends Task {
     public List<String> flatPack() {
         List<String> result = new ArrayList<>(super.flatPack());
         result.set(0, typeCode);
-        result.add(deadline.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        result.add(deadline.toString());
 
         return result;
     }
@@ -100,14 +101,19 @@ public class Deadline extends Task {
         if (!l.get(0).equals(typeCode)) {
             throw new IllegalArgumentException("Trying to hydrate non-deadline as deadline: " + l);
         }
-        this.deadline = LocalDateTime.parse(l.get(3), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        this.deadline = Instant.parse(l.get(3));
     }
 
     @Override
     public String toString() {
+        //@@author parnikkapore-reused
+        // Adapted from https://java2blog.com/format-instant-to-string-java/
+        DateTimeFormatter format = DateTimeFormatter
+                .ofLocalizedDate(FormatStyle.MEDIUM)
+                .withZone(ZoneId.systemDefault());
         return format(
                 "[D]%s (by: %s)",
                 super.toString(),
-                this.deadline.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)));
+                format.format(this.deadline));
     }
 }
