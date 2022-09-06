@@ -73,24 +73,7 @@ public class Storage {
             Scanner file = new Scanner(new File(filePath));
             while (file.hasNextLine()) {
                 List<String> line = Arrays.asList(file.nextLine().split(",", -1));
-                final Task newTask;
-                switch (line.get(0)) {
-                case Task.typeCode:
-                case Todo.typeCode:
-                    newTask = new Todo(line);
-                    break;
-                case Deadline.typeCode:
-                    newTask = new Deadline(line);
-                    break;
-                case Event.typeCode:
-                    newTask = new Event(line);
-                    break;
-                default:
-                    throw new MessagefulException(
-                            "unknown task type",
-                            "Uh oh! I cannot load the task list.");
-                }
-                todos.add(newTask);
+                todos.add(Task.fromFlatpack(line));
             }
             return todos;
         } catch (FileNotFoundException e) {

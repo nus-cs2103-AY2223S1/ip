@@ -1,5 +1,7 @@
 package duke.modules.todos;
 
+import duke.MessagefulException;
+
 import java.util.List;
 
 import static java.lang.String.format;
@@ -77,6 +79,29 @@ public abstract class Task {
             this.done = false;
         } else {
             throw new IllegalArgumentException("Invalid done value found while hydrating task: " + doneStr);
+        }
+    }
+
+    /**
+     * Unpacks the task's data into a task of the correct subtype.
+     *
+     * @param line The packed data.
+     * @return The task described by the packed data.
+     * @throws MessagefulException if something goes wrong.
+     */
+    static Task fromFlatpack(List<String> line) throws MessagefulException {
+        switch (line.get(0)) {
+        case typeCode:
+        case Todo.typeCode:
+            return new Todo(line);
+        case Deadline.typeCode:
+            return new Deadline(line);
+        case Event.typeCode:
+            return new Event(line);
+        default:
+            throw new MessagefulException(
+                    "unknown task type",
+                    "Uh oh! I cannot load the task list.");
         }
     }
 
