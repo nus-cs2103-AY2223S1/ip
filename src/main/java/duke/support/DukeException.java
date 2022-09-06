@@ -10,21 +10,24 @@ public class DukeException extends Exception {
     /**
      * todo Exception handler
      */
-    public static void todoException() {
-        System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+    public static String todoException() {
+        return "☹ OOPS!!! The description of a todo cannot be empty.";
     }
 
     /**
      * task Exception handler
+     *
+     * @return
      */
-    public static void taskException() {
-        System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+    public static String taskException() {
+        return "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
     }
 
     /**
      * date time Exception Handler
      */
-    public static void dateTimeException() {
-        System.out.println("☹ OOPS!!! Please provide a valid date in yyyy-mm-dd format");
+    public static String dateTimeException() {
+        return "☹ OOPS!!! Please provide a valid date in yyyy-mm-dd format";
     }
+
 }
