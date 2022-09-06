@@ -1,25 +1,30 @@
-package duke.Parser;
-
-import duke.Exception.DukeException;
-import duke.Storage.DukeEncoder;
-import duke.TaskList.*;
-import Ui.Constants;
-
+package duke.logic;
 import java.util.ArrayList;
 
+import duke.exception.DukeException;
+import duke.logic.task.Deadline;
+import duke.logic.task.Event;
+import duke.logic.task.Task;
+import duke.logic.task.TaskOperation;
+import duke.logic.task.ToDo;
+import duke.ui.Constants;
+
+/**
+ * Represents methods process user input into command.
+ */
 public class ProcessUserInput {
     /**
      * Converts user command.
      * @param workList
      */
     public static String process(ArrayList<Task> workList, String userInput) {
-
+        assert userInput.split("").length == 0 : "User input cannot be empty";
         // Processing
         String typeOfTask = userInput.split(" ")[0];
         int index;
         switch (typeOfTask) {
         case Constants.LIST:
-            return duke.TaskList.TaskOperation.listItems(workList);
+            return TaskOperation.listItems(workList);
         case Constants.UNMARK:
             try {
                 userInput.substring(8);
@@ -85,8 +90,8 @@ public class ProcessUserInput {
         case Constants.DELETE:
             try {
                 userInput.substring(8);
-                index =  Integer.parseInt(userInput.split(" ")[1]);
-                return TaskOperation.delete(workList.get(index-1), workList);
+                index = Integer.parseInt(userInput.split(" ")[1]);
+                return TaskOperation.delete(workList.get(index - 1), workList);
             } catch (StringIndexOutOfBoundsException e) {
                 return new DukeException.EmptyDeleteException().throwDukeException();
 
@@ -105,7 +110,7 @@ public class ProcessUserInput {
                     System.out.println(workList.get(i).toString());
                 }
             }
-
+            // Fallthrough
         default:
             return Constants.EXIT_MESSAGE;
         }

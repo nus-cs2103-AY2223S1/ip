@@ -1,7 +1,13 @@
-package duke.Exception;
+package duke.exception;
 
+/**
+ * Class for exception from user input.
+ */
 public class DukeException {
-    String message;
+    /**
+     * Error message for exception.
+     */
+    private String message;
     /**
      * Constructor for DukeException
      * @param message
@@ -45,7 +51,7 @@ public class DukeException {
      */
     public static class DeadlineWithoutByException extends DukeException {
         public DeadlineWithoutByException() {
-            super("☹ OOPS!!! A deadline must have a /by " );
+            super("☹ OOPS!!! A deadline must have a /by ");
         }
     }
 
@@ -63,7 +69,7 @@ public class DukeException {
      */
     public static class EventWithoutAtException extends DukeException {
         public EventWithoutAtException() {
-            super("☹ OOPS!!! An event must have a /at " );
+            super("☹ OOPS!!! An event must have a /at ");
         }
     }
 
