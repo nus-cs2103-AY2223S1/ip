@@ -36,8 +36,7 @@ public class Duke extends Application {
 
     private Image user = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/Duke.png"));
-
-
+    
     /** Constructor for Duke, needs to be public for Launcher to work */
     public Duke() {
         this.ui = new Ui();
