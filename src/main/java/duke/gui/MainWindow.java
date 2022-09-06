@@ -30,6 +30,9 @@ public class MainWindow extends AnchorPane {
     private final Image dukeImage = new Image(Objects.requireNonNull(
             this.getClass().getResourceAsStream("/images/Duke.png")));
 
+    /**
+     * Creates the initial output.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());

@@ -33,7 +33,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("src/main/java/duke/data/data.txt").run();
+        new Duke("data/data.txt").run();
     }
 
     /**
@@ -48,7 +48,8 @@ public class Duke {
             String action = input.nextLine();
             try {
                 Command command = parser.parseCommand(action);
-                command.execute(tasks, ui, storage);
+                String result = command.execute(tasks, ui, storage);
+                System.out.println(result);
                 isExit = command.isExit();
             } catch (DukeException e) {
                 ui.showError(e.getMessage());

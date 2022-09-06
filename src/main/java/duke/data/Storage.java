@@ -23,7 +23,12 @@ public class Storage {
     public Storage(String filePath) {
         try {
             data = new File(filePath);
-            data.createNewFile();
+            if (!data.getParentFile().exists()) {
+                data.getParentFile().mkdirs();
+            }
+            if (!data.exists()) {
+                data.createNewFile();
+            }
         } catch (IOException e) {
             ui.showError();
         }
