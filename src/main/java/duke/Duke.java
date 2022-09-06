@@ -1,24 +1,11 @@
 package duke;
 
-import java.util.Scanner;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.Region;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
 public class Duke {
-    private static String taskDataPath = "data";
-    private static String taskDataFileName = "duke.txt";
+    private static final String LOAD_STORAGE_SUCCESSFUL = "Load Storage is Successful";
+    private static final String LOAD_STORAGE_UNSUCCESSFUL = "Load Storage is NOT Successful";
+    private static final String taskDataPath = "data";
+    private static final String taskDataFileName = "duke.txt";
 
-    private static Scanner sc = new Scanner(System.in);
     private static UI UI = new UI();
     private static Parser parser = new Parser();
     private static TaskList taskList = new TaskList();
@@ -26,16 +13,20 @@ public class Duke {
 
     Duke() {
         loadStorage();
+        assertSuccessfulLoadStorage();
     }
-
 
     private static String loadStorage() {
         try {
             storage.readTaskData(taskList);
-            return "";
+            return LOAD_STORAGE_SUCCESSFUL;
         } catch (DukeException e) {
-            return e.getMessage();
+            return LOAD_STORAGE_UNSUCCESSFUL;
         }
+    }
+
+    private static void assertSuccessfulLoadStorage() {
+        assert loadStorage() == LOAD_STORAGE_SUCCESSFUL : LOAD_STORAGE_UNSUCCESSFUL;
     }
 
     /**
@@ -95,7 +86,6 @@ public class Duke {
                     response = e.toString();
                 }
         }
-
 
         return response;
     }
