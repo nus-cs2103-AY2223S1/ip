@@ -27,19 +27,19 @@ public class UserInput {
         } else {
             taskType = Parser.getTaskType(input);
             rest = Parser.getRestOfCommand(input);
-            if (taskType.equals("mark") || taskType.equals("unmark") || taskType.equals("delete")) {
+            if (taskType.equals("mark") | taskType.equals("unmark") | taskType.equals("delete")) {
                 ind = Integer.parseInt(rest);
-            } else if (taskType.equals("todo") || taskType.equals("find")) {
+            } else if (taskType.equals("todo") | taskType.equals("find")) {
                 desc = rest;
-            } else if (taskType.equals("deadline") || taskType.equals("event")) {
+            } else if (taskType.equals("deadline") | taskType.equals("event")) {
                 String dateType = Parser.getDateType(rest);
                 if (dateType.equals("noDate")) {
                     date = "noDate";
                     desc = Parser.getDesc(rest);
-                } else if (taskType.equals("deadline") && !(dateType.equals("by"))) {
+                } else if (taskType.equals("deadline") & !(dateType.equals("by"))) {
                     date = "wrongDeadline";
                     desc = Parser.getDesc(rest);
-                } else if (taskType.equals("event") && !(dateType.equals("at"))) {
+                } else if (taskType.equals("event") & !(dateType.equals("at"))) {
                     date = "wrongEvent";
                     desc = Parser.getDesc(rest);
                 } else {

@@ -208,6 +208,9 @@ public class DobbyChat {
         printChat("Dobby can't find any previous tasks to load from");
     }
 
+    /**
+     * Error message to use when debugging.
+     */
     public static void error() {
         printChat("there is an error here");
     }

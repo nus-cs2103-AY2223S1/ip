@@ -4,7 +4,6 @@ import dobby.Dobby;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -24,10 +23,6 @@ public class MainWindow extends AnchorPane {
     private VBox dialogContainer;
     @FXML
     private TextField userInput;
-    @FXML
-    private Button sendButton;
-    @FXML
-    private Button helpButton;
     private Dobby dobby;
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/harry.png"));
     private Image dobbyImage = new Image(this.getClass().getResourceAsStream("/images/dobby.png"));
@@ -62,6 +57,7 @@ public class MainWindow extends AnchorPane {
         if (response.equals("bye")) {
             response = "Byebye. Dobby will miss you!\n" + "Dobby will be leaving now....";
 
+            //Added pause before closing application to allow users to see "goodbye" message.
             PauseTransition termination = new PauseTransition(Duration.seconds(2d));
             termination.setOnFinished(event -> Platform.exit());
             termination.play();
