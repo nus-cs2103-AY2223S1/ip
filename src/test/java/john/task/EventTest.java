@@ -10,14 +10,14 @@ import org.junit.jupiter.api.Test;
 
 public class EventTest {
     @Test
-    public void eventDateTest() {
+    public void event_dateIncluded_taskReturned() {
         Event event = new Event("Event", "23/8/2022");
         assertEquals("[E][ ] Event (at: Aug 23 2022)", event.toString());
         assertEquals("E | 0 | Event | 23/8/2022", event.toStorageFormat());
     }
 
     @Test
-    public void eventDateTimeTest() {
+    public void event_dateTimeIncluded_taskReturned() {
         Event event = new Event("Event", "16/11/2000 2359");
         assertEquals("[E][ ] Event (at: Nov 16 2000 11:59 PM)", event.toString());
         assertEquals("E | 0 | Event | 16/11/2000 2359", event.toStorageFormat());

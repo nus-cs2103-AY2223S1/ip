@@ -37,7 +37,8 @@ public class Todo extends Task {
      */
     @Override
     public String toStorageFormat() {
-        return String.format("T | %d | %s", (this.isCompleted ? 1 : 0), this.description);
+        String completionStatus = isCompleted ? "1" : "0";
+        return String.format("T | %s | %s", completionStatus, description);
     }
 
     /**
@@ -47,6 +48,7 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s][%s] %s", this.getType(), (this.isCompleted ? "X" : " "), this.description);
+        String completionStatus = isCompleted ? "X" : " ";
+        return String.format("[%s][%s] %s", this.getType(), completionStatus, description);
     }
 }

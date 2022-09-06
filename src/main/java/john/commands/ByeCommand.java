@@ -23,18 +23,18 @@ public class ByeCommand extends Command {
      */
     @Override
     public String execute() {
-        setTimeout(() -> System.exit(0), 250);
+        setTimeout(() -> System.exit(0));
         return ui.showGoodbye();
     }
 
     // https://stackoverflow.com/questions/26311470/what-is-the-equivalent-of-javascript-settimeout-in-java
-    private static void setTimeout(Runnable runnable, int delay) {
+    private static void setTimeout(Runnable runnable) {
         new Thread(() -> {
             try {
-                Thread.sleep(delay);
+                Thread.sleep(250);
                 runnable.run();
-            } catch (Exception e) {
-                System.err.println(e);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }).start();
     }

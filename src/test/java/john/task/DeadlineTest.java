@@ -10,14 +10,14 @@ import org.junit.jupiter.api.Test;
 
 public class DeadlineTest {
     @Test
-    public void deadlineDateTest() {
+    public void deadline_dateIncluded_taskReturned() {
         Deadline deadline = new Deadline("Deadline", "23/8/2022");
         assertEquals("[D][ ] Deadline (by: Aug 23 2022)", deadline.toString());
         assertEquals("D | 0 | Deadline | 23/8/2022", deadline.toStorageFormat());
     }
 
     @Test
-    public void deadlineDateTimeTest() {
+    public void deadline_dateTimeIncluded_taskReturned() {
         Deadline deadline = new Deadline("Deadline", "16/11/2000 2359");
         assertEquals("[D][ ] Deadline (by: Nov 16 2000 11:59 PM)", deadline.toString());
         assertEquals("D | 0 | Deadline | 16/11/2000 2359", deadline.toStorageFormat());

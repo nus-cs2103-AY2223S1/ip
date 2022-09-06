@@ -37,13 +37,20 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        dialogContainer.getChildren().add(
-                DialogBox.getJohnDialog("Hello, I'm John. What can I do for you today?", johnImage)
-        );
     }
 
     public void setJohn(John john) {
         this.john = john;
+    }
+
+    /**
+     * Adds the initial greeting to the main window.
+     * @param greeting The greeting.
+     */
+    public void addGreetingDialog(String greeting) {
+        dialogContainer.getChildren().add(
+                DialogBox.getJohnDialog(greeting, johnImage)
+        );
     }
 
     /**
