@@ -41,14 +41,6 @@ public class Ui {
     }
 
     /**
-     * Shows that the command is not recognised.
-     */
-    public void showUnknownCommand() {
-        appendToResponse("I'm sorry, but I don't know what that means :-(",
-                    "Try HELP to find out the list of commands.");
-    }
-
-    /**
      * Shows the termination message
      */
     public void showBye() {

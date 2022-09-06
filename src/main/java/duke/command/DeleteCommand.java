@@ -25,13 +25,17 @@ public class DeleteCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Storage storage, Ui ui) throws DukeException {
-        if (indexOfTaskToDelete <= 0 || indexOfTaskToDelete > tasks.getNumOfRemainingTasks()) {
-            throw new InvalidIndexException();
-        }
+        isValidIndex(tasks);
 
         Task taskToDelete = tasks.deleteTask(indexOfTaskToDelete);
         storage.save(tasks);
         ui.showDeletedTask(taskToDelete, tasks.getNumOfRemainingTasks());
+    }
+
+    private void isValidIndex(TaskList tasks) throws InvalidIndexException {
+        if (indexOfTaskToDelete <= 0 || indexOfTaskToDelete > tasks.getNumOfRemainingTasks()) {
+            throw new InvalidIndexException();
+        }
     }
 
 }

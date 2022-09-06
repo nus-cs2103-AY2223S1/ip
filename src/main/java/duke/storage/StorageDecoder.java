@@ -21,7 +21,7 @@ import duke.task.Todo;
  */
 public class StorageDecoder {
 
-    private static final String DIVIDER = " | ";
+    private static final String DIVIDER = " ";
 
     private static final int TASK_TYPE = 0;
     private static final int TASK_STATUS = 2;
