@@ -13,6 +13,7 @@ public class Duke {
 
     /**
      * The constructor that creates a Duke object.
+     *
      * @param filePath FilePath where the data stored by Duke is located.
      */
     public Duke(String filePath) {
@@ -22,6 +23,7 @@ public class Duke {
     }
     /**
      * Gets the response of duke when the input is given.
+     *
      * @param input The input that is being read.
      * @return The response by duke to the input.
      */

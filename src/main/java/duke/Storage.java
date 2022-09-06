@@ -19,6 +19,7 @@ public class Storage {
 
     /**
      * The method which loads the file.
+     *
      * @return The list of tasks that were stored in the file.
      */
     public ArrayList<Task> load() {
@@ -36,21 +37,21 @@ public class Storage {
                         case "T":
                             Task toDo = new ToDo(taskInfo[2]);
                             if (taskInfo[1].equals("1")) {
-                                toDo.setDone();
+                                toDo.setDone(true);
                             }
                             taskList.add(toDo);
                             break;
                         case "D":
                             Task deadline = new Deadline(taskInfo[2], taskInfo[3]);
                             if (taskInfo[1].equals("1")) {
-                                deadline.setDone();
+                                deadline.setDone(true);
                             }
                             taskList.add(deadline);
                             break;
                         case "E":
                             Task event = new Event(taskInfo[2], taskInfo[3]);
                             if (taskInfo[1].equals("1")) {
-                                event.setDone();
+                                event.setDone(true);
                             }
                             taskList.add(event);
                             break;

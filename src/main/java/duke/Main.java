@@ -103,7 +103,7 @@ public class Main extends Application {
     }
 
     private void welcomeMessage() {
-        Label dukeText = new Label(duke.ui.welcome());
+        Label dukeText = new Label(duke.ui.showWelcome());
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(dukeText, new ImageView(jamie))
         );
