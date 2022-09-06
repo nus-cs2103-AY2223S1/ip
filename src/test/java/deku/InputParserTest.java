@@ -1,12 +1,13 @@
 package deku;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
 
 public class InputParserTest {
 
@@ -14,7 +15,7 @@ public class InputParserTest {
     public void parseTask_taskListEmpty_exceptionThrown() {
         List<String> testInput = new ArrayList<>();
         try {
-            assertEquals( "",
+            assertEquals("",
                     new InputParser().parseTask(testInput),
                     "Empty list as input");
             fail(); // test should not reach this line
@@ -25,7 +26,7 @@ public class InputParserTest {
     }
 
     @Test
-    public void parseTask_taskListToDo_String() {
+    public void parseTask_taskListToDo_string() {
         List<String> testInput = new ArrayList<>();
         testInput.add("test test test");
         assertEquals("test test test",
@@ -34,7 +35,7 @@ public class InputParserTest {
     }
 
     @Test
-    public void parseTask_taskListDate_String() {
+    public void parseTask_taskListDate_string() {
         List<String> testInput = new ArrayList<>();
         testInput.add("test test test");
         testInput.add("/by");
@@ -45,7 +46,7 @@ public class InputParserTest {
     }
 
     @Test
-    public void parseTask_taskListDateTime_String() {
+    public void parseTask_taskListDateTime_string() {
         List<String> testInput = new ArrayList<>();
         testInput.add("test test test");
         testInput.add("/by");
@@ -57,7 +58,7 @@ public class InputParserTest {
     }
 
     @Test
-    public void parseTask_taskListTimeOnly_String() {
+    public void parseTask_taskListTimeOnly_string() {
         List<String> testInput = new ArrayList<>();
         testInput.add("test test test");
         testInput.add("/by");
@@ -68,16 +69,12 @@ public class InputParserTest {
     }
 
     @Test
-    public void getDate_void_LocalDate() {
-        assertEquals(null,
-                new InputParser().getDate(),
-                "get empty date");
+    public void getDate_void_localDate() {
+        assertNull(new InputParser().getDate(), "get empty date");
     }
 
     @Test
-    public void getTime_void_LocalDate() {
-        assertEquals(null,
-                new InputParser().getTime(),
-                "get empty time");
+    public void getTime_void_localDate() {
+        assertNull(new InputParser().getTime(), "get empty time");
     }
 }

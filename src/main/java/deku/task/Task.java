@@ -11,14 +11,14 @@ import deku.InputParser;
  * Main parent Task class
  */
 public class Task {
+    private static final String SAVE_SEPARATOR = "|";
+    private static final char SPECIAL_CHAR = '/';
     private final List<String> taskArray;
     private final String task;
     private final String icon;
     private Boolean completionStatus;
     private String completionIcon;
     private final InputParser parser = new InputParser();
-    private static final char SPECIAL_CHAR = '/';
-    private static final String SAVE_SEPARATOR = "|";
 
     Task(List<String> task, String taskName, String icon) throws DekuExceptions {
         if (task.size() == 0) {
