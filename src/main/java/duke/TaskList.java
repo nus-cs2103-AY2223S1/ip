@@ -15,6 +15,7 @@ public class TaskList {
     }
 
     public int size() {
+        assert this.taskList.size() >= 0 : "size should be >= 0";
         return taskList.size();
     }
 
