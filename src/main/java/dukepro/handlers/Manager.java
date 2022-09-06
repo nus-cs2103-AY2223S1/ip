@@ -1,6 +1,7 @@
 package dukepro.handlers;
 
 import dukepro.StorableObjects;
+import dukepro.exceptions.DukeException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ public class Manager <T extends StorableObjects> {
     private ArrayList<T> storedObjects = new ArrayList<>();
     private String decorator;
 
-    public Manager(String dir, String pathName, Function<String, T> decoder, String decorator) {
+    public Manager(String dir, String pathName, Function<? super String, ? extends T> decoder, String decorator) {
         storage = new GeneralStorage<>(dir, pathName);
         storage.readfile(this, decoder);
         this.decorator = decorator;

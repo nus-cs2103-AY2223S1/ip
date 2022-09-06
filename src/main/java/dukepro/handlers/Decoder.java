@@ -286,4 +286,13 @@ public class Decoder {
         String[] splitted = word.split(",");
         return new Expense(splitted[0], Integer.parseInt(splitted[1]), LocalDate.parse(splitted[2]));
     }
+
+    public static LocalDate spentDate(String word) throws DukeException {
+        String[] split = word.split(" ");
+        if (split.length < 2) {
+            throw new EmptyDescException("spentDate");
+        }
+
+        return parseLD(split[1].strip());
+    }
 }

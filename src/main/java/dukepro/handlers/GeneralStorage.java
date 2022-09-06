@@ -36,7 +36,7 @@ public class GeneralStorage<T extends StorableObjects> {
         }
     }
 
-    public boolean readfile(Manager<? super T> manager, Function<String, T> decoder) {
+    public boolean readfile(Manager<? super T> manager, Function<? super String, ? extends T> decoder) {
         try {
             Scanner sc = new Scanner(this.storedList);
             while (sc.hasNextLine()) {
@@ -55,7 +55,7 @@ public class GeneralStorage<T extends StorableObjects> {
         printWriter.println(t.fileForm());
     }
 
-    public boolean rewriteFile(ArrayList<T> objects) {
+    public boolean rewriteFile(ArrayList<? extends T> objects) {
         printWriter.flush();
         try {
             printWriter = new PrintWriter(new FileWriter(this.storedList, false));

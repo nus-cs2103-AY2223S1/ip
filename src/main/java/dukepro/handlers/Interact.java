@@ -5,6 +5,8 @@ import dukepro.expenses.Expense;
 import dukepro.expenses.ExpenseCalculator;
 import dukepro.tasks.Task;
 
+import java.time.LocalDate;
+
 /**
  * Class for Interact.
  */
@@ -62,6 +64,10 @@ public class Interact {
             return expenseManager.delete(Decoder.deleteExpense(word, expenseManager.numStored()));
         } else if (word.startsWith("totalSpent")) {
             int total = expenseManager.operateOnList(arr -> ExpenseCalculator.sumArrayList(arr));
+            return "You spent a total of " + total;
+        } else if (word.startsWith("spentOn")) {
+            LocalDate ld = Decoder.parseLD(word);
+            int total = expenseManager.operateOnList(arr -> ExpenseCalculator.spentDay(arr, ld));
             return "You spent a total of " + total;
         } else {
             throw new DukeException("bad input");
