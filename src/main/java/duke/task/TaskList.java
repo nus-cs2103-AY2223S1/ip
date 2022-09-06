@@ -63,6 +63,7 @@ public class TaskList {
      * @return the newly marked Task.
      */
     public Task markTaskWithIndex(int index) {
+        assert index >= 0 : "Index should be non-negative";
         Task selectedTask = this.tasks.get(index);
         selectedTask.markAsFinished();
         return selectedTask;
@@ -75,6 +76,7 @@ public class TaskList {
      * @return the newly unmarked Task.
      */
     public Task unmarkTaskWithIndex(int index) {
+        assert index >= 0 : "Index should be non-negative";
         Task selectedTask = this.tasks.get(index);
         selectedTask.markAsNotFinished();
         return selectedTask;
@@ -87,6 +89,7 @@ public class TaskList {
      * @return the newly removed Task.
      */
     public Task removeTaskWithIndex(int index) {
+        assert index >= 0 : "Index should be non-negative";
         Task selectedTask = this.tasks.get(index);
         this.tasks.remove(index);
         return selectedTask;
@@ -113,6 +116,7 @@ public class TaskList {
      * @return the TaskList which contains all the matched Tasks.
      */
     public TaskList filterByKeyword(String ... keywords) {
+        assert keywords.length > 0 : "Keywords must be non empty";
         return new TaskList(this.tasks.stream()
                 .filter(task -> task.containsKeyword(keywords))
                 .collect(Collectors.toList()));
@@ -125,6 +129,7 @@ public class TaskList {
      * @return the TaskList which contains all the matched Tasks.
      */
     public TaskList findByDate(LocalDate ... selectedDates) {
+        assert selectedDates.length > 0 : "Dates must be non empty";
         return new TaskList(this.tasks.stream()
                 .filter(task -> task.isOnGivenDate(selectedDates))
                 .collect(Collectors.toList()));
