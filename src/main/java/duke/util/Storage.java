@@ -48,31 +48,40 @@ public class Storage {
                     String[] segments = line.split(">");
                     switch (segments[0]) {
                     case "T":
-                        assert segments.length == 3 : "A todo task follows the format 'todo task'";
+                        assert segments.length == 4 : "A todo task follows the format 'todo task'";
                         tasks.createTaskSilently(new Todo(segments[2]));
                         if (segments[1].equals("X")) {
                             tasks.getTask(tasks.getSize() - 1).setDone();
                         }
+                        if (segments[3].startsWith("#")) {
+                            tasks.getTask(tasks.getSize() - 1).setTag(segments[3]);
+                        }
                         break;
 
                     case "E":
-                        assert segments.length == 4 : "An event task follows the format 'event task /at YYYY-MM-DD'";
+                        assert segments.length == 5 : "An event task follows the format 'event task /at YYYY-MM-DD'";
                         String time = segments[3];
                         LocalDate date = LocalDate.parse(time);
                         tasks.createTaskSilently(new Event(segments[2], date));
                         if (segments[1].equals("X")) {
                             tasks.getTask(tasks.getSize() - 1).setDone();
                         }
+                        if (segments[4].startsWith("#")) {
+                            tasks.getTask(tasks.getSize() - 1).setTag(segments[4]);
+                        }
                         break;
 
                     case "D":
-                        assert segments.length == 4
+                        assert segments.length == 5
                                 : "A deadline task follows the format 'deadline task /by YYYY-MM-DD'";
                         String time2 = segments[3];
                         LocalDate date2 = LocalDate.parse(time2);
                         tasks.createTaskSilently(new Deadline(segments[2], date2));
                         if (segments[1].equals("X")) {
                             tasks.getTask(tasks.getSize() - 1).setDone();
+                        }
+                        if (segments[4].startsWith("#")) {
+                            tasks.getTask(tasks.getSize() - 1).setTag(segments[4]);
                         }
                         break;
 
@@ -117,21 +126,21 @@ public class Storage {
                 case "T":
                     assert type == "T" : "Task must be a todo";
                     Todo todo = (Todo) task;
-                    pw.println(type + ">" + todo.getStatusIcon() + ">" + todo.getDescription());
+                    pw.println(type + ">" + todo.getStatusIcon() + ">" + todo.getDescription() + ">" + todo.getTag());
                     break;
 
                 case "E":
                     assert type == "E" : "Task must be an event";
                     Event event = (Event) task;
                     pw.println(type + ">" + event.getStatusIcon() + ">"
-                            + event.getDescription() + ">" + event.getAt());
+                            + event.getDescription() + ">" + event.getAt() + ">" + event.getTag());
                     break;
 
                 case "D":
                     assert type == "D" : "Task must be a deadline";
                     Deadline deadline = (Deadline) task;
                     pw.println(type + ">" + deadline.getStatusIcon() + ">"
-                            + deadline.getDescription() + ">" + deadline.getBy());
+                            + deadline.getDescription() + ">" + deadline.getBy() + ">" + deadline.getTag());
                     break;
 
                 default:

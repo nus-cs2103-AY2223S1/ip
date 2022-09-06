@@ -9,6 +9,7 @@ import duke.command.EventCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.TagCommand;
 import duke.command.TodoCommand;
 import duke.command.UnknownCommand;
 import duke.command.UnmarkCommand;
@@ -62,6 +63,9 @@ public class Parser {
             case "find":
                 return new FindCommand(segments[1]);
             //Fallthrough
+
+            case "tag":
+                return new TagCommand(segments[1]);
 
             case "bye":
                 assert segments.length == 1 : "No further input after 'bye'";

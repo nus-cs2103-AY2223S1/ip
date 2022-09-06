@@ -16,6 +16,10 @@ public class Task {
      * String representing type of task.
      */
     protected String type = "";
+    /**
+     * String representing tag of task.
+     */
+    protected String tag = " ";
 
     /**
      * Constructor for a new task.
@@ -66,6 +70,18 @@ public class Task {
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done duke.task with X
+    }
+
+    public void setTag(String input) {
+        this.tag = input;
+    }
+
+    public String getTag() {
+        if (tag.equals("#") | tag.equals(" ")) {
+            return " ";
+        } else {
+            return this.tag;
+        }
     }
 
     @Override
