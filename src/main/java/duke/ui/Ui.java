@@ -33,6 +33,7 @@ public class Ui {
 
     /**
      * Greets the user whenever the application starts
+     * @return The welcome message
      */
     public String printWelcome() {
         return WELCOME_MESSAGE;
@@ -40,6 +41,7 @@ public class Ui {
 
     /**
      * Exits when the user chooses to stop the application
+     * @return The exit message
      */
     public String printExit() {
         this.scanner.close();
@@ -50,6 +52,7 @@ public class Ui {
      * Prints the task that is just added
      * @param addedTask The task that is just added
      * @param numOfTasks The number of tasks in the list
+     * @return A message to notify the user that a new task is added
      */
     public String printAddTask(Task addedTask, int numOfTasks) {
         String header = "Got it! I have added this task:\n\n" + addedTask;
@@ -61,6 +64,7 @@ public class Ui {
      * Prints the task that is just deleted
      * @param deletedTask The deleted task
      * @param numOfTasks The number of tasks remaining
+     * @return The message to notify user that a task has been deleted
      */
     public String printDeleteTask(Task deletedTask, int numOfTasks) {
         String msg = String.format("Noted, I have removed this task:\n\n%s", deletedTask);
@@ -71,6 +75,7 @@ public class Ui {
     /**
      * Prints the task that is marked as completed
      * @param task The task that is marked as completed
+     * @return The message to notify user that the task has been marked as completed
      */
     public String printMarkTask(Task task) {
         return String.format(MARK_TASK_FORMAT, task);
@@ -79,6 +84,7 @@ public class Ui {
     /**
      * Prints the task that is marked as not completed
      * @param task The task that is marked as not completed
+     * @return The message to notify the user that the task been marked as not completed
      */
     public String printUnmarkTask(Task task) {
         return String.format(UNMARK_TASK_FORMAT, task);
@@ -87,6 +93,7 @@ public class Ui {
     /**
      * Prints the exception's message
      * @param exception The exception thrown and caught
+     * @return The exception's message
      */
     public String printException(Exception exception) {
         return exception.getMessage();
@@ -102,6 +109,7 @@ public class Ui {
 
     /**
      * Notifies users about invalid commands
+     * @return ignore
      * @throws DukeException If the command is invalid
      */
     public String printInvalid() throws DukeException {
@@ -111,6 +119,7 @@ public class Ui {
     /**
      * Prints the list of tasks
      * @param list The list of tasks
+     * @return The list of tasks after formatting it
      */
     public String printList(ArrayList<Task> list) {
         if (list.size() == 0) {
@@ -185,7 +194,7 @@ public class Ui {
     /**
      * Prints the input
      * @param input A string to be printed
-     * @return
+     * @return The string to be printed
      */
     public String print(String input) {
         return input;

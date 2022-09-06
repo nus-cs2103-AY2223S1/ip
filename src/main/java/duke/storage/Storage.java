@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ public class Storage {
      * @param filePath The relative path that describes where to store the items
      */
     public Storage(String filePath) {
+        assert isPathValid(filePath) : "Invalid file path";
         this.filePath = filePath;
         try {
             File file = new File(filePath);
@@ -61,20 +64,25 @@ public class Storage {
                 Task task = null;
                 switch (components[0]) {
                 case "T":
+                    assert components.length == 3 : "Invalid todo information";
                     task = new ToDo(components[2]);
                     break;
                 case "D":
+                    assert components.length == 4 : "Invalid deadline information";
                     LocalDate deadlineDate = LocalDate.parse(components[3], format);
                     task = new Deadline(components[2], deadlineDate.format(formatter));
                     break;
                 case "E":
+                    assert components.length == 4 : "Invalid event information";
                     LocalDate eventDate = LocalDate.parse(components[3], format);
                     task = new Event(components[2], eventDate.format(formatter));
                     break;
                 default:
+                    assert true : "Invalid task type";
                     break;
                 }
 
+                assert task != null : "Task should not be null";
                 task.setIsDone(components[1].equals("true"));
                 tasks.add(task);
                 currentLine = reader.readLine();
@@ -100,10 +108,13 @@ public class Storage {
         String description = task.getDescription();
         String sep = System.getProperty("line.separator");
 
+        assert description != null : "Invalid description";
+
         if (taskType.equals("T")) {
             return String.format("T,%s,%s,%s", isDone, description, sep);
         } else {
             LocalDate date = task.getDate();
+            assert date != null : "Invalid date";
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
             String formattedDate = date.format(formatter);
             return String.format("%s,%s,%s,%s,%s", taskType, isDone, description, formattedDate, sep);
@@ -135,6 +146,17 @@ public class Storage {
                     System.out.println(e.getMessage());
                 }
             }
+        }
+    }
+
+    private static boolean isPathValid(String filePath) {
+        try {
+            Paths.get(filePath);
+            return true;
+        } catch (InvalidPathException e) {
+            return false;
+        } catch (NullPointerException e) {
+            return false;
         }
     }
 }
