@@ -26,4 +26,10 @@ deadline No end time
 event No time
 delete
 find
+mark 0.1
+mark 1
+unmark .1
+unmark 0
+delete one
+delete -1
 bye

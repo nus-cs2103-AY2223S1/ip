@@ -13,6 +13,7 @@ Got it, I've added this deadline:
 (D) [ ] Test deadline (by: Feb 1 2034)
 Got it, I've added this event:
 (E) [ ] Test event (at: Dec 30 2021 12:00AM)
+Ok, here are the tasks you have at the moment!
 1. (T) [ ] Test todo
 2. (D) [ ] Test deadline (by: Feb 1 2034)
 3. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
@@ -20,11 +21,13 @@ Well done! I've marked task 2 as done:
 (D) [X] Test deadline (by: Feb 1 2034)
 Well done! I've marked task 3 as done:
 (E) [X] Test event (at: Dec 30 2021 12:00AM)
+Ok, here are the tasks you have at the moment!
 1. (T) [ ] Test todo
 2. (D) [X] Test deadline (by: Feb 1 2034)
 3. (E) [X] Test event (at: Dec 30 2021 12:00AM)
 Sure, I've marked task 3 as not done:
 (E) [ ] Test event (at: Dec 30 2021 12:00AM)
+Ok, here are the tasks you have at the moment!
 1. (T) [ ] Test todo
 2. (D) [X] Test deadline (by: Feb 1 2034)
 3. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
@@ -40,6 +43,7 @@ Oops, I couldn't find any tasks matching that search.
 Ok, I've deleted this task:
 (D) [X] Test deadline (by: Feb 1 2034)
 You have 2 task(s) left in your list.
+Ok, here are the tasks you have at the moment!
 1. (T) [ ] Test todo
 2. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
 Ok, I've deleted this task:
@@ -58,4 +62,10 @@ Sorry, I will need a date for the deadline.
 Sorry, I will need a date for the event.
 Sorry, you need to tell me which task to delete.
 Sorry, you need to specify some text to search for.
+Sorry, 0.1 is not a valid task number.
+Sorry, there is no task number 1.
+Sorry, .1 is not a valid task number.
+Sorry, there is no task number 0.
+Sorry, one is not a valid task number.
+Sorry, there is no task number -1.
 Ok, see you next time!
