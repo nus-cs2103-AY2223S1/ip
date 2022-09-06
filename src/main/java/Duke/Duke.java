@@ -23,7 +23,7 @@ public class Duke {
         try {
             storage.readFromFile(taskList);
         } catch (FileNotFoundException e) {
-            ui.printfileNotFound();
+            ui.printFileNotFound();
             taskList = new TaskList();
         }
     }
