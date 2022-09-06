@@ -39,6 +39,7 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        assert (dialog != null) : "dialog is not null";
         this.setBackground(new Background(new BackgroundFill(Color.BEIGE, null , null)));
         dialog.setText(text);
         displayPicture.setImage(img);
