@@ -88,6 +88,12 @@ public class Parser {
         return rest;
     }
 
+    /**
+     * Parses date type (deadline or event) from the user input without the command.
+     *
+     * @param rest user input without command
+     * @return date type, deadline or event
+     */
     public static String getDateType(String rest) {
         try {
             int i = rest.indexOf(DESC_DATE_SEPERATOR);
@@ -101,7 +107,13 @@ public class Parser {
         }
     }
 
-    public static String getOldCommand(String rest) {
+    /**
+     * Returns default shortened command from input without the command.
+     *
+     * @param rest input without command
+     * @return default shortened command
+     */
+    public static String getInitialCommand(String rest) {
         if (rest.isBlank()) {
             return "";
         } else {
@@ -110,6 +122,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns user custom defined shortened command from input without the command.
+     *
+     * @param rest input without command
+     * @return default shortened command
+     */
     public static String getNewCommand(String rest) {
         if (rest.isBlank()) {
             return "";

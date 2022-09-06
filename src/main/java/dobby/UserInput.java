@@ -26,7 +26,7 @@ public class UserInput {
     private static String event = "e";
     private static String simplify = "s";
     private static String newCmd;
-    private static String oldCmd;
+    private static String initialCmd;
     private String taskType;
     private String rest;
     private int ind;
@@ -46,7 +46,7 @@ public class UserInput {
             if (!input.contains(" ")) {
                 if (input.contains(COMMAND_SIMPLIFY)) {
                     setTaskType(COMMAND_SIMPLIFY);
-                    oldCmd = "";
+                    initialCmd = "";
                     newCmd = "";
                 } else {
                     taskType = input;
@@ -76,7 +76,7 @@ public class UserInput {
 
                 } else if (checkTaskType(COMMAND_SIMPLIFY) | checkTaskType(simplify)) {
                     setTaskType(COMMAND_SIMPLIFY);
-                    oldCmd = Parser.getOldCommand(rest);
+                    initialCmd = Parser.getInitialCommand(rest);
                     newCmd = Parser.getNewCommand(rest);
 
                 } else if (checkTaskType(COMMAND_DEADLINE) | checkTaskType(deadline)) {
@@ -152,13 +152,24 @@ public class UserInput {
         return taskType;
     }
 
-    public String getOldCmd() {
-        return oldCmd;
+    /**
+     * Returns initial custom shortened command.
+     *
+     * @return initial custom shortened command
+     */
+    public String getInitialCmd() {
+        return initialCmd;
     }
 
+    /**
+     * Returns new user defined shortened command.
+     *
+     * @return new user defined shortened command
+     */
     public String getNewCmd() {
         return newCmd;
     }
+
 
     private void setTaskType(String taskType) {
         this.taskType = taskType;
@@ -168,8 +179,11 @@ public class UserInput {
         return this.taskType.equals(taskType);
     }
 
+    /**
+     * Simplifies the command from initialCmd to newCmd.
+     */
     public static void setSimplifiedCommand() {
-        switch (oldCmd) {
+        switch (initialCmd) {
         case "mark":
             mark = newCmd;
             break;

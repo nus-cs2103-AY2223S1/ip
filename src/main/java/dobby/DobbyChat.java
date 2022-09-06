@@ -107,6 +107,12 @@ public class DobbyChat {
         }
     }
 
+    /**
+     * Prints message when user simplifies task command to their desired custom command.
+     *
+     * @param oldCmd default custom command.
+     * @param newCmd user custom command.
+     */
     public static void simplified(String oldCmd, String newCmd) {
         String simplified = "Yes master, from now on dobby will do [" + oldCmd + "] when dobby sees [" + newCmd + "]";
         printChat(simplified);
