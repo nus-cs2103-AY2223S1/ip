@@ -1,13 +1,16 @@
 import java.util.Scanner;
+import java.time.LocalDate;
 
 public class Duke {
     private static final String SAVED_PATH = "data/duke.txt";
     private static final String HORIZONTAL_BORDER = "_________________________________\n";
     private static final String INVALID_TODO_INPUT = " ☹ OOPS!!! The description of a todo cannot be empty.\n";
     private static final String INVALID_DEADLINE_INPUT = "☹ OOPS!!! Please use proper deadline formatting: deadline {task} /by {time}\n";
+    private static final String INVALID_DATE_FORMAT = "☹ OOPS!!! Please indicate your date as YYYY-MM-DD (e.g 2019-12-09)\n";
     private static final String INVALID_EVENT_INPUT = "☹ OOPS!!! Please use proper event formatting: event {task} /at {time}\n";
     private static final String INVALID_ACCESS_EMPTY_TASKLIST = "☹ OOPS!!! Task does not exist. Initialise a task first, then try again\n";
     private static final String INVALID_USER_INPUT = "☹ OOPS!!! Please use one of these keywords: {deadline, event, todo} followed by \\\"by\\\" and \\\"at\\\" for deadline and event tasks respectively.\n";
+    private static final String INVALID_DATE_INPUT = "☹ OOPS!!! The date given should not be before today's date\n";
 
     private simpleDatabase database;
     private TaskList taskList;
@@ -109,13 +112,19 @@ public class Duke {
 
     private String makeDeadlineFromInput(String input) throws DukeException {
         String[] stringArray = input.substring("deadline".length()).strip().split("/by");
-        if (stringArray.length > 1) {
-            Deadline newDeadline = new Deadline(stringArray[0].strip(), stringArray[1].strip());
+        try {
+            LocalDate deadlineDate = LocalDate.parse(stringArray[1].strip());
+            if (deadlineDate.isBefore(LocalDate.now())){
+                throw new DukeException(INVALID_DATE_INPUT);
+            }
+            Deadline newDeadline = new Deadline(stringArray[0].strip(), deadlineDate);
             this.taskList.add(newDeadline);
             database.save(newDeadline.toSimpleString());
             return addTaskMessage(newDeadline.toString());
-        } else {
+        } catch (ArrayIndexOutOfBoundsException e) {
             throw new DukeException(INVALID_DEADLINE_INPUT);
+        } catch (java.time.format.DateTimeParseException e) {
+            throw new DukeException(INVALID_DATE_FORMAT);
         }
     }
 

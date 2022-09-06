@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.time.LocalDate;
 
 
 public class simpleDatabase {
@@ -61,7 +62,7 @@ public class simpleDatabase {
     }
 
     private Deadline makeDeadline(String markIndex, String description, String by) {
-        Deadline newDeadline = new Deadline(description, by);
+        Deadline newDeadline = new Deadline(description, LocalDate.parse(by));
         if (markIndex.strip().equals("1")) {
             newDeadline.markAsDone();
             return newDeadline;
