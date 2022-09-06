@@ -11,6 +11,10 @@ public class Ui {
      */
     public Ui() {}
 
+    public String showGreeting() {
+        return "Hello, I'm John. What can I do for you today?";
+    }
+
     /**
      * Returns a string representing the goodbye message.
      *

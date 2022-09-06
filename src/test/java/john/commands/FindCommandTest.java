@@ -9,7 +9,7 @@ import john.ui.Ui;
 
 public class FindCommandTest {
     @Test
-    public void executeTestNoResults() {
+    public void execute_emptyTaskList_noTasksReturned() {
         FindCommand cmd = new FindCommand("hello");
         TaskList tl = new TaskList();
         cmd.setData(tl, new Ui());

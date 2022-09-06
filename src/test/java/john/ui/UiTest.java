@@ -8,6 +8,11 @@ import john.data.TaskList;
 
 public class UiTest {
     @Test
+    public void showGreetingTest() {
+        assertEquals("Hello, I'm John. What can I do for you today?", new Ui().showGreeting());
+    }
+
+    @Test
     public void showGoodbyeTest() {
         assertEquals("Goodbye!", new Ui().showGoodbye());
     }

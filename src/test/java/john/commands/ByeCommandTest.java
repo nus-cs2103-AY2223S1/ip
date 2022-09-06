@@ -10,7 +10,7 @@ import john.ui.Ui;
 
 public class ByeCommandTest {
     @Test
-    public void isByeTest() {
+    public void isBye_byeCommand_trueReturned() {
         ByeCommand cmd = new ByeCommand();
         assertTrue(ByeCommand.isBye(cmd));
     }

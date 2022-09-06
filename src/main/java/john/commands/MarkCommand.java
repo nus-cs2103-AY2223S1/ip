@@ -5,7 +5,7 @@ package john.commands;
  */
 public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
-    public static final String FORMAT = "mark <integer>";
+    public static final String FORMAT = "mark <positive integer>";
 
     private String markParams;
 
@@ -25,7 +25,7 @@ public class MarkCommand extends Command {
      */
     @Override
     public String execute() {
-        String markedTask = tasklist.markTask(this.markParams);
+        String markedTask = tasklist.markTask(markParams);
         if (markedTask == null) {
             return ui.showInvalidTaskNumber(tasklist);
         }

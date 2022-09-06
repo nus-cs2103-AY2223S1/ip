@@ -25,7 +25,8 @@ public class TodoCommand extends Command {
      */
     @Override
     public String execute() {
-        String task = tasklist.addTodo(this.params);
+        String task = tasklist.addTodo(params);
+        assert task != null : "task cannot be null!";
         return ui.showAddedTask(task, tasklist);
     }
 }
