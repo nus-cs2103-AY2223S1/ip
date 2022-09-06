@@ -4,6 +4,7 @@ import duke.modules.Todos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static duke.Ui.printLines;
 import static duke.Ui.readLine;
@@ -33,10 +34,14 @@ public class Duke {
 
         boolean fExit = false;
         while (!fExit) {
-            String line = readLine();
-            ExecuteResult result = Parser.execute(line, todos);
-            printLines(result.getReply());
-            fExit = result.shouldExitAfter();
+            try {
+                String line = readLine();
+                ExecuteResult result = Parser.execute(line, todos);
+                printLines(result.getReply());
+                fExit = result.shouldExitAfter();
+            } catch (NoSuchElementException e) {
+                fExit = true;
+            }
         }
     }
 }

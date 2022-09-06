@@ -2,6 +2,7 @@ package duke;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -71,7 +72,7 @@ public class Ui {
      *
      * @return The read line of text.
      */
-    public static String readLine() {
+    public static String readLine() throws NoSuchElementException {
         return stdin.nextLine();
     }
 }
