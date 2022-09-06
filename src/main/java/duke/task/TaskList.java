@@ -41,6 +41,7 @@ public class TaskList {
      * @param index the index of the task to be deleted
      */
     public void delete(int index) {
+        assert (index >= 0) : "Oops! Please enter a valid number!";
         taskList.remove(index);
     }
 
@@ -51,6 +52,7 @@ public class TaskList {
      * @return the task in the index given
      */
     public Task getTask(int index) {
+        assert (index >= 0) : "Oops! Please enter a valid number!";
         return taskList.get(index);
     }
 
@@ -109,6 +111,7 @@ public class TaskList {
      * @param index the index of the task to be marked
      */
     public String mark(int index) {
+        assert (index >= 0) : "Oops! Please enter a valid number!";
         taskList.get(index).markAsDone();
         return Ui.mark();
     }
@@ -119,6 +122,7 @@ public class TaskList {
      * @param index the index of the task to be unmarked
      */
     public String unmark(int index) {
+        assert (index >= 0) : "Oops! Please enter a valid number!";
         taskList.get(index).markAsUndone();
         return Ui.unmark();
     }
