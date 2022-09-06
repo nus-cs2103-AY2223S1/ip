@@ -15,7 +15,6 @@ public class DukeException extends Exception {
      * @param description The error description for the exception.
      */
     public DukeException(String description) {
-
         this.description = description;
     }
 
@@ -26,7 +25,6 @@ public class DukeException extends Exception {
      */
     @Override
     public String toString() {
-
         return description;
     }
 

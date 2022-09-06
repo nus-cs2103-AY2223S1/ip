@@ -3,7 +3,6 @@ package duke;
 import java.io.IOException;
 import java.util.Collections;
 
-import duke.MainWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,7 +25,6 @@ public class DialogBox extends HBox {
     private Label dialog;
     @FXML
     private ImageView displayPicture;
-
 
 
     private DialogBox(String text, Image img) {
