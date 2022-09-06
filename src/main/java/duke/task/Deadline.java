@@ -44,5 +44,11 @@ public class Deadline extends Task {
         return "[D]" + super.toString()
                 + " (by: " + byTime.format(formatter) + ")";
     }
+
+    public void setByTime(String newByTime) {
+        String format = "HHmm, d/MM/yyyy";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+        this.byTime = LocalDateTime.parse(newByTime, formatter);
+    }
 }
 
