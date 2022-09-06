@@ -42,4 +42,13 @@ public class Event extends Task {
     public String toCommand() {
         return TaskType.E + " | " + super.toCommand() + " /at " + DateParser.parseDateToCommand(this.date);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String changeDate(String newDate) {
+        this.date = DateParser.parseStringToDate(newDate);
+        return "OK, the task has been changed to the following:\n" + this;
+    }
 }

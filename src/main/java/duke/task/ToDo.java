@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.DukeException;
+
 /**
  * Represents a ToDo task.
  */
@@ -31,5 +33,13 @@ public class ToDo extends Task {
     @Override
     public String toCommand() {
         return TaskType.T + " | " + super.toCommand();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String changeDate(String newDate) throws DukeException {
+        throw new DukeException("ToDo tasks do not have date and time!");
     }
 }

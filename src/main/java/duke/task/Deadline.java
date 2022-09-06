@@ -42,4 +42,13 @@ public class Deadline extends Task {
     public String toCommand() {
         return TaskType.D + " | " + super.toCommand() + " /by " + DateParser.parseDateToCommand(this.date);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String changeDate(String newDate) {
+        this.date = DateParser.parseStringToDate(newDate);
+        return "OK, the task has been changed to the following:\n" + this;
+    }
 }
