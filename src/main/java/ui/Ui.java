@@ -44,13 +44,13 @@ public class Ui {
      */
     public String showWelcome() {
         // Print Welcome message
-        String logo =
-                  "    _                     ★ ☁️   ⋆\n"
-                + "   | |    _   _ _____   ___ _ 🌙 ☁️\n"
-                + "   | |   | | | |  __ \\ /     |☁️  ️✴  ⋆\n"
-                + "   | |__ | |_| | |  | |    | |\n"
-                + "   |____| \\__,_|_|  |_|\\__/|_|\n";
-        String toPrint = "Hello. ⛅️\n   This is\n" + logo;
+//        String logo =
+//                  "    _                     ★ ☁️   ⋆\n"
+//                + "   | |    _   _ _____   ___ _ 🌙 ☁️\n"
+//                + "   | |   | | | |  __ \\ /     |☁️  ️✴  ⋆\n"
+//                + "   | |__ | |_| | |  | |    | |\n"
+//                + "   |____| \\__,_|_|  |_|\\__/|_|\n";
+        String toPrint = "Hello. ⛅️ This is\n \t\t\t\t\t L   U   N   A 🌙\n";
 
         // Print available commands
 //        toPrint += "\n  Luna commands"
