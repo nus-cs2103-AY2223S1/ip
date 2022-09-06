@@ -73,7 +73,11 @@ public class Jean {
 
     public String getResponse(String input) {
         try {
-            Command c = Parser.parse(input.trim(), tasks);
+            String trimmedInput = input.trim();
+            if (trimmedInput.isEmpty()) {
+                throw new JeanException("Command should not be empty!");
+            }
+            Command c = Parser.parse(trimmedInput, tasks);
             return c.execute(tasks, ui, storage);
         } catch (JeanException e) {
             return ui.getJeanError(e);

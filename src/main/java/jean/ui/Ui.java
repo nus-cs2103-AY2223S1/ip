@@ -23,8 +23,12 @@ public class Ui {
      *
      * @return User command with starting and ending spaces trimmed.
      */
-    public String readCommand() {
-        return this.sc.nextLine().trim();
+    public String readCommand() throws JeanException {
+        String command = this.sc.nextLine().trim();
+        if (command.isEmpty()) {
+            throw new JeanException("Command should not be empty!");
+        }
+        return command;
     }
 
     /**
