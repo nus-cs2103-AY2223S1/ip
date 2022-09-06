@@ -70,7 +70,6 @@ public class Parser {
             return parseIndexCommand(commands[1], IndexCommands.DELETE, taskList);
 
             case "find":
-<<<<<<< HEAD
                 String content = commands[1];
                 return taskList.find(content);
 
@@ -78,11 +77,6 @@ public class Parser {
                 String tagContent = commands[1];
                 return parseTag(tagContent, taskList);
             
-=======
-            String content = commands[1];
-            return taskList.find(content);
-
->>>>>>> 44617af5603f31cb9c3b423d930293c1c82264a3
             default:
             throw new DukeException("I'm sorry, but I don't know what that means.");
         }
@@ -97,7 +91,8 @@ public class Parser {
      * @return String representing the response after command is executed. 
      * @throws DukeException if string representation of index cannot be parsed into an integer.
      */
-    public static String parseIndexCommand(String content, IndexCommands type, TaskList taskList) throws DukeException {
+    public static String parseIndexCommand(String content, IndexCommands type, TaskList taskList) 
+            throws DukeException {
         int index = -1;
         try {
             index = Integer.parseInt(content) - 1;
@@ -129,7 +124,8 @@ public class Parser {
      * @return String representing the response after the task has been added.
      * @throws DukeException if formatting of task details is incorrect.
      */
-    public static String parseTask(String content, TaskType type, TaskList taskList) throws DukeException {
+    public static String parseTask(String content, TaskType type, TaskList taskList) 
+            throws DukeException {
         if (content.length() == 0) {
             throw new DukeException("The description of a task cannot be empty.");
         }
