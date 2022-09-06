@@ -33,63 +33,47 @@ public class Parser {
                 throw new DukeException("I'm sorry, but I don't understand that.");
             }
             CommandType type = CommandType.COMMAND_MAP.get(command);
-            ICommand cmd;
             switch (type) {
             case TODO:
                 String todoBody = sc.nextLine().trim();
                 if (todoBody.isBlank()) {
                     throw new DukeException("Something went wrong! Could not read TODO.");
-                } else {
-                    cmd = new AddCommand(CommandType.TODO, todoBody);
                 }
-                break;
+                return new AddCommand(CommandType.TODO, todoBody);
             case DEADLINE:
                 String deadlineBody = sc.nextLine().trim();
                 String[] deadlineArgs = deadlineBody.split("\\s/by\\s");
                 if (deadlineArgs.length < 2 || deadlineArgs[0].isBlank() || deadlineArgs[1].isBlank()) {
                     throw new DukeException("Something went wrong! Could not read DEADLINE.");
-                } else {
-                    cmd = new AddCommand(CommandType.DEADLINE, deadlineArgs[0], deadlineArgs[1]);
                 }
-                break;
+                return new AddCommand(CommandType.DEADLINE, deadlineArgs[0], deadlineArgs[1]);
             case EVENT:
                 String eventBody = sc.nextLine().trim();
                 String[] eventArgs = eventBody.split("\\s/at\\s");
                 if (eventArgs.length < 2 || eventArgs[0].isBlank() || eventArgs[1].isBlank()) {
                     throw new DukeException("Something went wrong! Could not read EVENT.");
-                } else {
-                    cmd = new AddCommand(CommandType.EVENT, eventArgs[0], eventArgs[1]);
                 }
-                break;
+                return new AddCommand(CommandType.EVENT, eventArgs[0], eventArgs[1]);
             case LIST:
-                cmd = new ListCommand();
-                break;
+                return new ListCommand();
             case MARK:
-                cmd = new MarkCommand(sc.nextInt() - 1);
-                break;
+                return new MarkCommand(sc.nextInt() - 1);
             case UNMARK:
-                cmd = new UnmarkCommand(sc.nextInt() - 1);
-                break;
+                return new UnmarkCommand(sc.nextInt() - 1);
             case DELETE:
-                cmd = new DeleteCommand(sc.nextInt() - 1);
-                break;
+                return new DeleteCommand(sc.nextInt() - 1);
             case SAVE:
-                cmd = new SaveCommand();
-                break;
+                return new SaveCommand();
             case FIND:
                 if (!sc.hasNext()) {
                     throw new DukeException("Something went wrong! Could not read FIND.");
-                } else {
-                    cmd = new FindCommand(sc.next());
                 }
-                break;
+                return new FindCommand(sc.next());
             case BYE:
-                cmd = new ExitCommand();
-                break;
+                return new ExitCommand();
             default:
                 throw new DukeException("I'm sorry, but I don't understand that.");
             }
-            return cmd;
         } catch (DukeException e) {
             return new WrongCommand(e.getMessage());
         } finally {
