@@ -4,8 +4,6 @@ import Duke.task.TaskList;
 import Duke.task.TaskStorage;
 import Duke.util.Ui;
 
-import java.util.Scanner;
-
 /**
  * Represents a chat-bot that can be used to manage
  * and store a list of tasks for users.
