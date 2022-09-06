@@ -8,17 +8,6 @@ import java.io.IOException;
 
 public class Duke {
 
-    enum Ability {
-        BYE,
-        LIST,
-        MARK,
-        UNMARK,
-        TODO,
-        DEADLINE,
-        EVENT,
-        DELETE
-    }
-
     private final static String HELLO = "    ____________________________________________________________\n" +
             "     Hello! I'm Duke\n" +
             "     What can I do for you?\n" +
