@@ -32,6 +32,7 @@ public class Storage {
      * @param filePath The path at which the target file can be found / should be created.
      */
     public Storage(String filePath) {
+        assert(filePath.length() != 0);
         this.filePath = filePath;
         this.directoryPath = filePath.substring(0, filePath.lastIndexOf("/"));
     }
@@ -47,13 +48,15 @@ public class Storage {
         // Create directory if it doesn't exist
         File dir = new File(this.directoryPath);
         if (!dir.exists()) {
-            dir.mkdir();
+            boolean directoryCreatedSuccessfully = dir.mkdir();
+            assert(directoryCreatedSuccessfully);
         }
         // Create file if it doesn't exist
         File file = new File(filePath);
         if (dir.exists() && !file.exists()) {
             try {
-                file.createNewFile();
+                boolean fileCreatedSuccessfully = file.createNewFile();
+                assert(fileCreatedSuccessfully);
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
@@ -82,13 +85,15 @@ public class Storage {
         // Check if directory and file exists
         File dir = new File(this.directoryPath);
         if (!dir.exists()) {
-            dir.mkdir();
+            boolean directoryCreatedSuccessfully = dir.mkdir();
+            assert(directoryCreatedSuccessfully);
         }
         // Create file if it doesn't exist
         File file = new File(filePath);
         if (dir.exists() && !file.exists()) {
             try {
-                file.createNewFile();
+                boolean fileCreatedSuccessfully = file.createNewFile();
+                assert(fileCreatedSuccessfully);
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
@@ -97,6 +102,7 @@ public class Storage {
         try {
             // Load the data into the task array
             Scanner sc = new Scanner(file);
+            int size;
             while (sc.hasNext()) {
                 String[] taskData = sc.nextLine().split(" \\| ");
                 String taskType = taskData[0];
@@ -112,21 +118,27 @@ public class Storage {
                     if (isDone) {
                         t.markAsDone();
                     }
+                    size = taskList.size();
                     taskList.add(t);
+                    assert(taskList.size() > size);
                     break;
                 case "event":
                     Event e = new Event(desc, remarks);
                     if (isDone) {
                         e.markAsDone();
                     }
+                    size = taskList.size();
                     taskList.add(e);
+                    assert(taskList.size() > size);
                     break;
                 case "deadline":
                     Deadline d = new Deadline(desc, remarks);
                     if (isDone) {
                         d.markAsDone();
                     }
+                    size = taskList.size();
                     taskList.add(d);
+                    assert(taskList.size() > size);
                     break;
                 default:
                     break;
