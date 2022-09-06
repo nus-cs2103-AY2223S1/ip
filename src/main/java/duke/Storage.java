@@ -17,8 +17,8 @@ import java.util.ArrayList;
  * and load all the tasks that were previously saved into the Chatbot.
  */
 public class Storage {
-    private final static DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-    private final static String FILEPATH = "data/Duke.txt";
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    private static final String FILEPATH = "data/Duke.txt";
 
     /**
      * Creates a Storage object.
@@ -35,21 +35,18 @@ public class Storage {
     protected ArrayList<Task> loadFromDisk() throws DukeException {
 
         ArrayList<Task> tasks = new ArrayList<>();
-        
-        try { 
+        try {
             File file = new File(FILEPATH);
             file.getParentFile().mkdirs();
             file.createNewFile();
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String line;
-            
-            while ((line = reader.readLine()) != null) { 
+            while ((line = reader.readLine()) != null) {
                 String[] words = line.split("[|]", 4);
                 String keyword = words[0];
                 boolean isDone = words[1].equals("1");
                 String taskDetails = words[2];
                 Task task = null;
-                
                 if (keyword.equals("T")) {
                     task = new ToDo(taskDetails);
                 } else {
@@ -63,7 +60,6 @@ public class Storage {
                         System.out.println("SoCCat cannot recognise the type of this task: " + keyword);
                     }
                 }
-                
                 if (task != null) {
                     if (isDone) task.markAsDone();
                     tasks.add(task);

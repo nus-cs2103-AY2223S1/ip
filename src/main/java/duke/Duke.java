@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class Duke {
 
-    private final static DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     private final Storage storage;
     private final Ui ui;
     private final Parser parser;
@@ -38,7 +38,6 @@ public class Duke {
 
     private void start() {
         ui.printWelcomeMessage();
-
         try {
             tasks = new TaskList(storage.loadFromDisk());
             repeatUntilQuit();
@@ -53,7 +52,6 @@ public class Duke {
     }
 
     private void repeatUntilQuit() {
-
         while (true) {
             String input = ui.getUserInput();
             String[] words = parser.parseInput(input);
@@ -67,13 +65,13 @@ public class Duke {
                         ui.printAllTasks(tasks.getTaskList());
                         break;
                     case "todo":
-                        createToDos(words);
+                        createToDo(words);
                         break;
                     case "deadline":
-                        createDeadlines(words);
+                        createDeadline(words);
                         break;
                     case "event":
-                        createEvents(words);
+                        createEvent(words);
                         break;
                     case "mark":
                         mark(words);
@@ -98,7 +96,6 @@ public class Duke {
 
     private void mark(String[] input) throws DukeException {
         parser.checkArg(input);
-        
         try {
             int taskIndex = parser.getTaskIndex(input);
             Task markedTask = tasks.getTask(taskIndex);
@@ -112,7 +109,6 @@ public class Duke {
 
     private void unmark(String[] input) throws DukeException {
         parser.checkArg(input);
-
         try {
             int taskIndex = parser.getTaskIndex(input);
             Task unmarkedTask = tasks.getTask(taskIndex);
@@ -124,9 +120,8 @@ public class Duke {
         }
     }
 
-    private void createToDos(String[] input) throws DukeException {
+    private void createToDo(String[] input) throws DukeException {
         parser.checkArg(input);
-
         try {
             ToDo task = new ToDo(input[1]);
             tasks.addTask(task);
@@ -137,9 +132,8 @@ public class Duke {
         }
     }
 
-    private void createDeadlines(String[] input) throws DukeException {
+    private void createDeadline(String[] input) throws DukeException {
         parser.checkArg(input);
-
         try {
             String[] taskDetails = input[1].split(" /by ", 2);
             String tasking = taskDetails[0];
@@ -156,9 +150,8 @@ public class Duke {
         }
     }
 
-    private void createEvents(String[] input) throws DukeException {
+    private void createEvent(String[] input) throws DukeException {
         parser.checkArg(input);
-
         try {
             String[] taskDetails = input[1].split(" /at ", 2);
             String tasking = taskDetails[0];
@@ -177,7 +170,6 @@ public class Duke {
 
     private void deleteTask(String[] input) throws DukeException {
         parser.checkArg(input);
-
         try {
             int taskIndex = parser.getTaskIndex(input);
             Task deletedTask = tasks.deleteTask(taskIndex);
@@ -190,7 +182,6 @@ public class Duke {
 
     private void findTask(String[] input) throws DukeException {
         parser.checkArg(input);
-
         String searchTerm = input[1];
         ArrayList<Task> results = tasks.find(searchTerm);
         ui.printMatchingTasks(results);

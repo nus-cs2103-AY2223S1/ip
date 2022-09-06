@@ -2,8 +2,10 @@ package duke;
 
 import duke.exception.DukeEmptyException;
 
+/**
+ * A Parser object which validates the input by the user.
+ */
 public class Parser {
-    
     private String[] formattedInput;
 
     /**
@@ -18,7 +20,7 @@ public class Parser {
      * @param input The full input from the user
      * @return The given input split into keyword at index 0 and the task at index 1
      */
-    protected String[] parseInput(String input)  {
+    protected String[] parseInput(String input) {
         formattedInput = input.split(" ", 2);
         return formattedInput;
     }
@@ -40,11 +42,9 @@ public class Parser {
      * @param input The task description that is retrieve from the user input
      * @return The index of the task that is required
      */
-    
     protected int getTaskIndex(String[] input) {
         return Integer.parseInt(input[1]) - 1;
     }
-    
     protected void checkArg(String[] input) throws DukeEmptyException {
         if (input.length < 2) {
             throw new DukeEmptyException(input[0]);

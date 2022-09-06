@@ -11,11 +11,11 @@ public class Task {
     protected String description;
     /** Completion status of the task */
     protected boolean isDone;
-    protected final static DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
+    protected static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
 
     /**
      * Creates a Task object.
-     * 
+     *
      * @param description the description of the task
      */
     public Task(String description) {

@@ -20,7 +20,6 @@ public class TaskList {
 
     /**
      * Returns all the current tasks.
-     * 
      * @return An ArrayList of type Task that consists of all the current tasks.
      */
     protected ArrayList<Task> getTaskList() {
@@ -40,7 +39,7 @@ public class TaskList {
      * Retrieves the task in the task list that corresponds to the given index.
      *
      * @param taskIndex the specified index of the task in the task list
-     * @return the specified Task corresponding to the given number 
+     * @return the specified Task corresponding to the given number
      */
     protected Task getTask(int taskIndex) {
         return tasks.get(taskIndex);
@@ -61,13 +60,11 @@ public class TaskList {
      * @param taskIndex the specified index of the task in the task list
      * @return the task that is to be deleted
      */
-    protected Task deleteTask(int taskIndex) { 
+    protected Task deleteTask(int taskIndex) {
         return tasks.remove(taskIndex);
     }
-    
     protected ArrayList<Task> find(String input) {
         ArrayList<Task> result = new ArrayList<>();
-        
         for (Task task : tasks) {
             if (task.getDescription().contains(input)) {
                 result.add(task);
