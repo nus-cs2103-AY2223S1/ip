@@ -32,7 +32,7 @@ public class Scottie {
     /**
      * Runs the Scottie CLI application
      */
-    private void run() {
+    void run() {
         Cli cli = new Cli(System.in, System.out);
         cli.showStartupMessage();
 

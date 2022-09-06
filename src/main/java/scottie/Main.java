@@ -1,15 +1,24 @@
 package scottie;
 
+import java.util.Arrays;
+
 import javafx.application.Application;
 
 /**
- * The launcher class is used to start the GUI for the Scottie application.
+ * The launcher class is used to start the Scottie application.
  */
 public class Main {
     /**
-     * The entry point for the Scottie application GUI
+     * The entry point for the Scottie application.
+     * By default, it launches the GUI application.
+     * If the "-cli" flag is specified, it launches the CLI
+     * version of the application instead.
      */
     public static void main(String[] args) {
-        Application.launch(MainApp.class, args);
+        if (Arrays.asList(args).contains("-cli")) {
+            new Scottie().run();
+        } else {
+            Application.launch(MainApp.class, args);
+        }
     }
 }
