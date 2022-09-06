@@ -14,7 +14,7 @@
             <Insets bottom="8.0" left="8.0" right="8.0" top="18.0" />
          </HBox.margin>
          <children>
-              <Label fx:id="dialog" style="-fx-background-color: '#009B95';" text="Label" textFill="WHITE" wrapText="true">
+              <Label fx:id="dialog" style="-fx-background-color: '#009B95';" text="Label" textFill="WHITE" wrapText="true" HBox.hgrow="ALWAYS">
                <font>
                   <Font name="monofur   bold for Powerline" size="14.0" />
                </font>
