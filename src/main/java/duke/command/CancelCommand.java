@@ -5,32 +5,32 @@ import duke.storage.TaskList;
 import duke.ui.BotUI;
 
 /**
- * Represents an exit command of task. A <code>ExitCommand</code> object
- * will allow user to exit from duke.
+ * Represents a CancelCommand.
+ * Utilizes when user reject to accept anomaly
  */
-
-public class ExitCommand extends Command {
+public class CancelCommand extends Command {
 
     /**
-     * Constructs ExitCommand object
+     * Constructs AddCommand object
      *
      * @param command command of the user input
      */
-    public ExitCommand(String command) {
+    public CancelCommand(String command) {
         super(command);
     }
+
     /**
-     * Returns the "bye" message through BotUI object.
+     * Returns a String to inform user about the cancellation of the previous command.
      *
      * @param taskList stores the list of tasks
-     * @param ui Object that responsible in returning necessary formatted String
-     *           to print on the user interface
+     * @param ui       Object that responsible in returning necessary formatted String
+     *                 to print on the user interface
      * @param anomaliesManager responsible to handle anomaly and store command with anomalies.
-     * @return String of "bye" response through BotUI object.
+     * @return String of suitable response according to the user input through BotUI object.
      */
     @Override
     public String execute(TaskList taskList, BotUI ui, AnomaliesManager anomaliesManager) {
-        return ui.sayBye();
+        return ui.cancelCommand();
     }
 
     /**
@@ -41,18 +41,18 @@ public class ExitCommand extends Command {
      */
     @Override
     public boolean isExit() {
-        return true;
+        return false;
     }
 
     /**
      * Returns the same object.
      * This is because this method is temporary used for AddCommand only.
-     * Provides flexibility to ExitCommand class for future anomaly checking.
+     * Provides flexibility to CancelCommand class for future anomaly checking.
      * @return the same object.
      * @see AddCommand class.
      */
     @Override
-    public ExitCommand resolveAnomaly() {
+    public CancelCommand resolveAnomaly() {
         return this;
     }
 }

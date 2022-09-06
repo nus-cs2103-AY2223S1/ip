@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.common.AnomaliesManager;
 import duke.storage.TaskList;
 import duke.task.Task;
 import duke.ui.BotUI;
@@ -30,12 +31,13 @@ public class MarkCommand extends Command {
      * @param taskList stores the list of tasks
      * @param ui Object that responsible in returning necessary formatted String
      *           to print on the user interface
+     * @param anomaliesManager responsible to handle anomaly and store command with anomalies.
      * @return String of suitable response according to the user input through BotUI object.
      * @throws DukeException - thrown when NumberFormatException or IndexOutOfBoundsException is
      *     catch cause by invalid user input. e.g. delete1 or delete someNonIntegerText.
      */
     @Override
-    public String execute(TaskList taskList, BotUI ui) throws DukeException {
+    public String execute(TaskList taskList, BotUI ui, AnomaliesManager anomaliesManager) throws DukeException {
         try {
             int taskIdx = Integer.parseInt(detail) - 1;
             Task currTask = taskList.get(taskIdx);
@@ -58,5 +60,17 @@ public class MarkCommand extends Command {
     @Override
     public boolean isExit() {
         return false;
+    }
+
+    /**
+     * Returns the same object.
+     * This is because this method is temporary used for AddCommand only.
+     * Provides flexibility to MarkCommand class for future anomaly checking.
+     * @return the same object.
+     * @see AddCommand class.
+     */
+    @Override
+    public MarkCommand resolveAnomaly() {
+        return this;
     }
 }

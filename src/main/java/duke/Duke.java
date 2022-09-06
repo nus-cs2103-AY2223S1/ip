@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import duke.command.Command;
+import duke.common.AnomaliesManager;
 import duke.parser.Parser;
 import duke.storage.FileManager;
 import duke.storage.TaskList;
@@ -17,6 +18,7 @@ public class Duke {
 
     private final BotUI ui;
     private final TaskList taskList;
+    private final AnomaliesManager anomaliesManger;
 
     /**
      * Constructs Duke object.
@@ -25,6 +27,7 @@ public class Duke {
      */
     public Duke() {
         this.ui = new BotUI();
+        this.anomaliesManger = new AnomaliesManager();
         TaskList temp;
         try {
             temp = FileManager.read();
@@ -44,12 +47,13 @@ public class Duke {
         while (!exitDuke) {
             try {
                 System.out.print(BotUI.userSpeak());
-                Command c = Parser.parse(ui.readCommand());
-                System.out.println(c.execute(taskList, ui));
+                Command c = Parser.parse(ui.readCommand(), anomaliesManger);
+                String output = c.execute(taskList, ui, anomaliesManger);
+                System.out.println(output);
                 FileManager.write(this.taskList);
                 exitDuke = c.isExit();
             } catch (DukeException de) {
-                System.out.print(de.getMessage());
+                System.out.println(de.getMessage());
             } catch (IOException ex) {
                 System.out.println("Error while Saving File!");
             }
@@ -72,8 +76,8 @@ public class Duke {
      */
     public String getResponse(String input) {
         try {
-            Command c = Parser.parse(input);
-            String response = c.execute(this.taskList, ui);
+            Command c = Parser.parse(input, anomaliesManger);
+            String response = c.execute(this.taskList, ui, anomaliesManger);
             FileManager.write(this.taskList);
             return response;
         } catch (DukeException de) {

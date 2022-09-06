@@ -9,12 +9,15 @@ import java.util.ArrayList;
 
 import duke.DukeException;
 import duke.command.AddCommand;
+import duke.command.CancelCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.UnknownCommand;
+import duke.common.AnomaliesManager;
 import duke.common.InputChecker;
 import duke.ui.BotUI;
 
@@ -33,6 +36,7 @@ public class Parser {
     private static final int HOURS_IN_TIME = 100;
     private static final int MINUTES_IN_TIME = 100;
 
+
     private static String[] splitInput(String input, String regex) {
         return input.split(regex, NUMBER_OF_SECTION_SPLIT);
     }
@@ -44,6 +48,19 @@ public class Parser {
     private static int extractMinutes(int time) {
         return time % MINUTES_IN_TIME;
     }
+
+    private static Command checkValidAnswer(String rawInput, AnomaliesManager anomaliesManager) {
+        String trimInput = rawInput.trim();
+        switch (trimInput) {
+        case "Y":
+            return anomaliesManager.getPrevCommand().resolveAnomaly();
+        case "N":
+            return new CancelCommand(trimInput);
+        default:
+            return new UnknownCommand(trimInput, true);
+        }
+    }
+
     /**
      * Returns different type of Command according to the user raw input.
      *
@@ -51,11 +68,15 @@ public class Parser {
      * @return Command to be executed in Duke class.
      * @throws DukeException - thrown if user command is invalid.
      */
-    public static Command parse(String rawInput) throws DukeException {
+    public static Command parse(String rawInput, AnomaliesManager anomaliesManager) throws DukeException {
         try {
+            if (anomaliesManager.isRaised()) {
+                anomaliesManager.resolveAnomalies();
+                return checkValidAnswer(rawInput, anomaliesManager);
+            }
+
             String[] commandAndDetail = rawInput.split(" ", NUMBER_OF_SECTION_SPLIT);
             String command = commandAndDetail[FIRST_ITEM_AFTER_SPLIT];
-
             if (commandAndDetail.length == MINIMUM_COMMAND_SECTION) {
                 if (command.equals("list")) {
                     return new ListCommand(command);
@@ -75,7 +96,7 @@ public class Parser {
             } else if (command.equals("find")) {
                 return new FindCommand(command, detail);
             } else {
-                throw new DukeException(UI.invalidFormat());
+                return new UnknownCommand(command);
             }
         } catch (IndexOutOfBoundsException ex) {
             throw new DukeException(UI.invalidFormat());

@@ -18,6 +18,7 @@ public class ToDo extends Task {
 
     @Override
     public LocalDateTime getTime() {
+        assert false : "Todo task time is not callable in code.";
         return LocalDateTime.now();
     }
     @Override

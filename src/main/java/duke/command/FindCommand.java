@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.common.AnomaliesManager;
 import duke.storage.TaskList;
 import duke.task.Task;
 import duke.ui.BotUI;
@@ -30,10 +31,11 @@ public class FindCommand extends Command {
      * @param taskList stores the list of tasks
      * @param ui Object that responsible in returning necessary formatted String
      *           to print on the user interface
+     * @param anomaliesManager responsible to handle anomaly and store command with anomalies.
      * @return String of suitable response according to the user input through BotUI object.
      */
     @Override
-    public String execute(TaskList taskList, BotUI ui) {
+    public String execute(TaskList taskList, BotUI ui, AnomaliesManager anomaliesManager) {
         TaskList foundList = new TaskList();
         boolean found = false;
         for (Task t : taskList.getList()) {
@@ -58,5 +60,17 @@ public class FindCommand extends Command {
     @Override
     public boolean isExit() {
         return false;
+    }
+
+    /**
+     * Returns the same object.
+     * This is because this method is temporary used for AddCommand only.
+     * Provides flexibility to FindCommand class for future anomaly checking.
+     * @return the same object.
+     * @see AddCommand class.
+     */
+    @Override
+    public FindCommand resolveAnomaly() {
+        return this;
     }
 }
