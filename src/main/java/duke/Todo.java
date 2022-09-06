@@ -4,10 +4,18 @@ public class Todo extends Task {
         super(item);
     }
 
+    @Override
+    public boolean isDated() {
+        return false;
+    }
+
     /**
      * Returns String representation of aTodo object.
      * @return String representation
      */
+
+
+
     @Override
     public String toString() {
         return "[T]" + super.toString();

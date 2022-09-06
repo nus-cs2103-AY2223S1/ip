@@ -3,7 +3,7 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Event extends Task {
+public class Event extends Task implements Dated {
     private LocalDate date;
 
     public Event(String item, String dateString) {
@@ -13,6 +13,15 @@ public class Event extends Task {
 
     private String dateFormat(LocalDate date) {
         return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    }
+
+    public boolean isBetween(LocalDate start, LocalDate end) {
+        return (this.date.isAfter(start) && this.date.isBefore(end));
+    }
+
+    @Override
+    public boolean isDated() {
+        return true;
     }
 
     /**
