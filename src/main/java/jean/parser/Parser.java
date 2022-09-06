@@ -1,5 +1,6 @@
 package jean.parser;
 
+import java.lang.invoke.CallSite;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -21,16 +22,29 @@ import jean.task.Todo;
  * A class which serves to decipher user input.
  */
 public class Parser {
+    private static final String BYE_COMMAND = "bye";
+    private static final String LIST_COMMAND = "list";
+    private static final String MARK_COMMAND = "mark";
+    private static final String UNMARK_COMMAND = "unmark";
+    private static final String TODO_COMMAND = "todo";
+    private static final String DEADLINE_COMMAND = "deadline";
+    private static final String EVENT_COMMAND = "event";
+    private static final String DELETE_COMMAND = "delete";
+    private static final String FIND_COMMAND = "find";
+
+    private static int getTaskIndex(String fullCommand, int indexOfSubstring) {
+        return Integer.parseInt(fullCommand.substring(indexOfSubstring));
+    }
 
     private static MarkCommand checkMark(String fullCommand, TaskList taskList) throws JeanException {
         if (fullCommand.length() == 4) {
             throw new JeanException("You must name a valid task to mark!"
                                      + "\nNom d'un valable tâche à marqué comme fait!");
-        } else if (Integer.parseInt(fullCommand.substring(5)) > taskList.getNumberOfTasks()
-                || Integer.parseInt(fullCommand.substring(5)) < 1) {
+        } else if (getTaskIndex(fullCommand, 5) > taskList.getNumberOfTasks()
+                || getTaskIndex(fullCommand, 5) < 1) {
             throw new JeanException("There are only " + taskList.getNumberOfTasks() + " task(s)!"
                                     + "\nIl y a seulement " + taskList.getNumberOfTasks() + " tâche(s)!");
-        } else if (taskList.getTaskList().get(Integer.parseInt(fullCommand.substring(5)) - 1)
+        } else if (taskList.getTaskList().get(getTaskIndex(fullCommand, 5) - 1)
                 .getIsDone()) {
             throw new JeanException("It is already marked!"
                                     + "\nC'est déjaà fini!");
@@ -43,11 +57,11 @@ public class Parser {
         if (fullCommand.length() == 6) {
             throw new JeanException("You must name a valid task to unmark!"
                                     + "\nNom d'une valable tâche à marqué comme défait!");
-        } else if (Integer.parseInt(fullCommand.substring(7)) > taskList.getNumberOfTasks()
-                || Integer.parseInt(fullCommand.substring(7)) < 1) {
+        } else if (getTaskIndex(fullCommand, 7) > taskList.getNumberOfTasks()
+                || getTaskIndex(fullCommand, 7) < 1) {
             throw new JeanException("There are only " + taskList.getNumberOfTasks() + " task(s)!"
                                     + "\nIl y a seulement " + taskList.getNumberOfTasks() + " tâche(s)!");
-        } else if (!taskList.getTaskList().get(Integer.parseInt(fullCommand.substring(7)) - 1)
+        } else if (!taskList.getTaskList().get(getTaskIndex(fullCommand, 7) - 1)
                 .getIsDone()) {
             throw new JeanException("It is not marked!"
                                     + "\nCe n'est pas encore fini!");
@@ -125,23 +139,23 @@ public class Parser {
      * @throws JeanException When user's input is invalid.
      */
     public static Command parse(String fullCommand, TaskList taskList) throws JeanException {
-        if (fullCommand.equals("bye")) {
+        if (fullCommand.equals(BYE_COMMAND)) {
             return new ExitCommand();
-        } else if (fullCommand.equals("list")) {
+        } else if (fullCommand.equals(LIST_COMMAND)) {
             return new ListCommand();
-        } else if (fullCommand.startsWith("mark")) {
+        } else if (fullCommand.startsWith(MARK_COMMAND)) {
             return checkMark(fullCommand, taskList);
-        } else if (fullCommand.startsWith("unmark")) {
+        } else if (fullCommand.startsWith(UNMARK_COMMAND)) {
             return checkUnmark(fullCommand, taskList);
-        } else if (fullCommand.startsWith("todo")) {
+        } else if (fullCommand.startsWith(TODO_COMMAND)) {
             return checkTodo(fullCommand);
-        } else if (fullCommand.startsWith("deadline")) {
+        } else if (fullCommand.startsWith(DEADLINE_COMMAND)) {
             return checkDeadline(fullCommand);
-        } else if (fullCommand.startsWith("event")) {
+        } else if (fullCommand.startsWith(EVENT_COMMAND)) {
             return checkEvent(fullCommand);
-        } else if (fullCommand.startsWith("delete")) {
+        } else if (fullCommand.startsWith(DELETE_COMMAND)) {
             return checkDelete(fullCommand, taskList);
-        } else if (fullCommand.startsWith("find")) {
+        } else if (fullCommand.startsWith(FIND_COMMAND)) {
             return checkFind(fullCommand);
         } else {
             throw new JeanException("No such command!");
