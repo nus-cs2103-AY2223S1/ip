@@ -31,7 +31,7 @@ public class TaskList {
         String returnString = "";
         for(int i = 0; i<taskList.size(); i++){
             Integer index = i+1;
-            returnString += (index + ". " + taskList.get(i));
+            returnString += "\n" + (index + ". " + taskList.get(i));
         }
         return returnString;
     }
