@@ -54,6 +54,7 @@ public class TaskList implements Serializable {
 
     /**
      * Returns all tasks that have titles containing a substring.
+     *
      * @param searchString String to search in task titles.
      * @return List of tasks that contain the substring in title.
      */

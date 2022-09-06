@@ -11,8 +11,9 @@ public class Event extends Task {
 
     /**
      * Creates an event.
-     * @param title Title of event.
-     * @param done If it is done.
+     *
+     * @param title  Title of event.
+     * @param done   If it is done.
      * @param dateAt Date of event.
      */
     public Event(String title, boolean done, LocalDate dateAt) {
