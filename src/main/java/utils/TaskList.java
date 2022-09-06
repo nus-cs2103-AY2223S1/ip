@@ -1,5 +1,6 @@
 package utils;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,7 +105,7 @@ public class TaskList {
 
         int tempSize = this.tasks.size();
         this.tasks.remove(index);
-        int size = tasks.size();
+        int size = this.tasks.size();
 
         assert(size > tempSize);
 
@@ -134,6 +135,32 @@ public class TaskList {
     public void markTaskAsUndone(int index) {
         this.tasks.get(index).markAsUndone();
         assert(!this.tasks.get(index).getStatus());
+    }
+
+    public boolean checkIfTaskIsDeadline(int index) throws DukeException {
+        if (index < 0 || index >= this.tasks.size()) {
+            throw new DukeException("Please enter a valid task ID.");
+        }
+        return this.tasks.get(index) instanceof Deadline;
+    }
+
+    public boolean checkIfInvalidDate(int index, String to) {
+        String date = to.split(" ")[0].trim();
+        String time = to.split(" ")[1].trim();
+        LocalDateTime dateTime = LocalDateTime.parse(date + "T" + time.substring(0, 2) + ":" + time.substring(2));
+        if (this.tasks.get(index) instanceof Deadline) {
+            return ((Deadline) this.tasks.get(index)).hasDeadlineAfter(dateTime);
+        }
+        return false;
+    }
+
+    public void updateDeadlineDueDate(int index, String to) {
+        String date = to.split(" ")[0].trim();
+        String time = to.split(" ")[1].trim();
+        LocalDateTime dateTime = LocalDateTime.parse(date + "T" + time.substring(0, 2) + ":" + time.substring(2));
+        if (this.tasks.get(index) instanceof Deadline) {
+            ((Deadline) this.tasks.get(index)).setDateTime(dateTime);
+        }
     }
 
     /**
