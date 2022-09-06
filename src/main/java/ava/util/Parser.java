@@ -1,32 +1,31 @@
-package ava.processor;
+package ava.util;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import ava.Ui;
+import ava.command.Add;
+import ava.command.Bye;
+import ava.command.Command;
+import ava.command.Delete;
+import ava.command.Find;
+import ava.command.List;
+import ava.command.Mark;
+import ava.command.Sort;
+import ava.command.Unmark;
 import ava.exception.AvaException;
 import ava.exception.NoCommandException;
 import ava.exception.NoDescriptionException;
 import ava.exception.NoTimeException;
 import ava.exception.UnknownCommandException;
 import ava.exception.WrongTimeFormatException;
-import ava.task.Bye;
-import ava.task.Deadline;
-import ava.task.Delete;
-import ava.task.Event;
-import ava.task.Find;
-import ava.task.List;
-import ava.task.Mark;
-import ava.task.Task;
-import ava.task.Todo;
-import ava.task.Unmark;
 
 /**
  * Utility class that handles parsing of user input to program command.
  */
 public class Parser {
     private enum Commands {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND, SORT
     }
     private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private static Ui ui = new Ui();
@@ -37,7 +36,7 @@ public class Parser {
      * @param chat Input from the scanner.
      * @return Task object.
      */
-    public static Task mark(String chat) {
+    public static Command mark(String chat) {
         int num = Integer.parseInt(chat.split(" ")[1]) - 1;
         return new Mark(num);
     }
@@ -48,7 +47,7 @@ public class Parser {
      * @param chat Input from the scanner.
      * @return Task object.
      */
-    public static Task unmark(String chat) {
+    public static Command unmark(String chat) {
         int num = Integer.parseInt(chat.split(" ")[1]) - 1;
         return new Unmark(num);
     }
@@ -61,7 +60,7 @@ public class Parser {
      * @return Task object.
      * @throws AvaException If an exception is found.
      */
-    public static Task addTask(String chat, TaskList taskList) throws AvaException {
+    public static Command addTask(String chat, TaskList taskList) throws AvaException {
         Commands command = Parser.Commands.valueOf(chat.toUpperCase().split(" ")[0]);
         if (chat.split(" ").length != 1) {
             switch (command) {
@@ -69,7 +68,7 @@ public class Parser {
                 if (chat.split(" ").length == 1) {
                     throw new NoDescriptionException();
                 } else {
-                    return new Todo(chat.substring(5), false);
+                    return Add.of("todo", chat.substring(5), null);
                 }
             case DEADLINE:
                 String subStringDeadline = chat.substring(9);
@@ -77,7 +76,7 @@ public class Parser {
                     throw new NoTimeException();
                 } else {
                     try {
-                        return new Deadline(subStringDeadline.split(" /by ")[0], false,
+                        return Add.of("deadline", subStringDeadline.split(" /by ")[0],
                                 LocalDateTime.parse(subStringDeadline.split(" /by ")[1], TIME_FORMAT));
                     } catch (Exception e) {
                         throw new WrongTimeFormatException();
@@ -89,7 +88,7 @@ public class Parser {
                     throw new NoTimeException();
                 } else {
                     try {
-                        return new Event(subStringEvent.split(" /at ")[0], false,
+                        return Add.of("event", subStringEvent.split(" /at ")[0],
                                 LocalDateTime.parse(subStringEvent.split(" /at ")[1], TIME_FORMAT));
                     } catch (Exception e) {
                         throw new WrongTimeFormatException();
@@ -116,7 +115,7 @@ public class Parser {
      * @return Task object.
      * @throws AvaException If an exception is found.
      */
-    public static Task delete(String chat, TaskList taskList) throws AvaException {
+    public static Command delete(String chat, TaskList taskList) throws AvaException {
         int order = taskList.size();
         if (chat.split(" ").length == 1) {
             throw new NoDescriptionException();
@@ -133,7 +132,7 @@ public class Parser {
      * @return Find object.
      * @throws AvaException If an exception is found.
      */
-    public static Find find(String chat) throws AvaException {
+    public static Command find(String chat) throws AvaException {
         if (chat.split(" ").length == 1) {
             throw new NoDescriptionException();
         } else {
@@ -149,7 +148,7 @@ public class Parser {
      * @return Task object.
      * @throws AvaException If an exception is found.
      */
-    public static Task parse(String chat, TaskList taskList) throws AvaException {
+    public static Command parse(String chat, TaskList taskList) throws AvaException {
 
         Commands command;
 
@@ -168,6 +167,8 @@ public class Parser {
                 return new Bye();
             case LIST:
                 return new List();
+            case SORT:
+                return new Sort();
             case FIND:
                 return find(chat);
             case UNMARK:

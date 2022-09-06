@@ -3,15 +3,10 @@ package ava.task;
 import java.nio.charset.Charset;
 import java.util.regex.Pattern;
 
-import ava.Ui;
-import ava.processor.Storage;
-import ava.processor.TaskList;
-
 /**
  * Abstract class to represent the tasks.
  */
-public abstract class Task {
-    protected Boolean isBye;
+public abstract class Task implements Comparable<Task> {
     protected String description;
     protected Boolean isDone;
 
@@ -21,10 +16,9 @@ public abstract class Task {
      * @param description Task description.
      * @param isDone Task state.
      */
-    public Task(String description, boolean isDone) {
+    protected Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
-        this.isBye = false;
     }
 
     /**
@@ -61,15 +55,6 @@ public abstract class Task {
     }
 
     /**
-     * Returns the description of the current task.
-     *
-     * @return String description.
-     */
-    public String getDescription() {
-        return this.description;
-    }
-
-    /**
      * Changes the format of Task to write to the file.
      *
      * @return String format to write to file.
@@ -90,30 +75,6 @@ public abstract class Task {
     }
 
     /**
-     * Changes the format of the output for listing tasklist.
-     *
-     * @param output The output from executing the commands.
-     * @return A properly formatted string.
-     */
-    protected static String formatOutput(String prefix, String...output) {
-        StringBuilder res = new StringBuilder(prefix).append("\n");
-        for (String out : output) {
-            res.append(out).append("\n");
-        }
-        return res.toString().trim();
-    }
-
-    /**
-     * Abstract method to execute process of the given task.
-     *
-     * @param tasks TaskList.
-     * @param ui Class to print the ui.
-     * @param storage Class to write/read commands from file.
-     * @return The response of the command.
-     */
-    public abstract String execute(TaskList tasks, Ui ui, Storage storage);
-
-    /**
      * Matches a keyword with the description of the Task.
      *
      * @param predicate The predicate as a string.
@@ -121,14 +82,5 @@ public abstract class Task {
      */
     public final boolean matchKeyword(String predicate) {
         return Pattern.compile(".*\\b" + predicate + "\\b.*").matcher(description).find();
-    }
-
-    /**
-     * Tests if a command is exit.
-     *
-     * @return True if isBye
-     */
-    public boolean isBye() {
-        return isBye;
     }
 }

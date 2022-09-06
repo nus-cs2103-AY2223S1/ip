@@ -1,8 +1,10 @@
-package ava.processor;
+package ava.util;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.function.Function;
 
+import ava.task.DatedTask;
 import ava.task.Task;
 
 /**
@@ -94,7 +96,7 @@ public class TaskList {
     }
 
     /**
-     * Returns a TaskList containing Task that satisfy the supplied predicate.
+     * Returns a TaskList containing task(s) that satisfy the supplied predicate.
      *
      * @param predicate The predicate to test the Task with.
      * @return A TaskList containing Task that satisfies the given predicate.
@@ -107,6 +109,18 @@ public class TaskList {
             }
         }
         return new TaskList(res);
+    }
+
+    /**
+     * Returns a TaskList containing task(s) that is sorted by date.
+     * The returned list will not contain any todo tasks as todo tasks are not DatedTask.
+     *
+     * @return A TaskList containing task(s) that is sorted by date.
+     */
+    public TaskList sort() {
+        TaskList dated = filter((task) -> task instanceof DatedTask);
+        Collections.sort(dated.tasks);
+        return dated;
     }
 
     /**

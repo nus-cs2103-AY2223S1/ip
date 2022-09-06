@@ -3,16 +3,10 @@ package ava.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import ava.Ui;
-import ava.processor.Storage;
-import ava.processor.TaskList;
-
 /**
  * Class to represent "Event" tasks.
  */
-public class Event extends Task {
-    protected LocalDateTime time;
-
+public class Event extends DatedTask {
     /**
      * The constructor for Event task.
      *
@@ -21,8 +15,7 @@ public class Event extends Task {
      * @param time Time of the event.
      */
     public Event(String description, boolean isDone, LocalDateTime time) {
-        super(description, isDone);
-        this.time = time;
+        super(description, time, isDone);
     }
 
     /**
@@ -67,20 +60,5 @@ public class Event extends Task {
     public String toString() {
         return super.toString() + " at: "
                 + this.time.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm"));
-    }
-
-    /**
-     * Executes process of given Event task.
-     *
-     * @param tasks TaskList.
-     * @param ui Class to print the ui.
-     * @param storage Class to write/read commands from file.
-     * @return The response of the command.
-     */
-    @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.add(this);
-        storage.write(tasks.getTasks());
-        return ui.showAddOnTask(tasks, (tasks.size() - 1));
     }
 }

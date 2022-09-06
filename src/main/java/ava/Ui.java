@@ -1,6 +1,7 @@
 package ava;
 
-import ava.processor.TaskList;
+import ava.command.Command;
+import ava.util.TaskList;
 import ava.task.Task;
 
 /**
@@ -60,5 +61,47 @@ public class Ui {
      */
     public String showUndoneTask(TaskList tasks, int num) {
         return "Awh I've marked this task as undone:\n" + tasks.get(num);
+    }
+
+    /**
+     * Shows the list of tasks.
+     *
+     * @param tasks TaskList.
+     * @return List of tasks
+     */
+    public String showTasks(TaskList tasks) {
+        if (tasks.size() < 1) {
+            return "No tasks yet!";
+        } else {
+            return Command.formatOutput("Here are the tasks in your list:", tasks.toStringArray())
+                    + "\n\nJiayous!";
+        }
+    }
+
+    /**
+     * Shows the list of task(s) that match the specified predicate.
+     *
+     * @param tasks TaskList.
+     * @param predicate The predicate.
+     * @return List of task(s) matching the given predicate.
+     */
+    public String showFindTasks(TaskList tasks, String predicate) {
+        return Command.formatOutput("Here are the matching tasks in your list:",
+                tasks.filter((task) -> task.matchKeyword(predicate)).toStringArray());
+    }
+
+    /**
+     * Shows the list of tasks, sorted by date.
+     *
+     * @param tasks TaskList.
+     * @return List of tasks
+     */
+    public String showSortedTasks(TaskList tasks) {
+        if (tasks.size() < 1) {
+            return "No tasks yet!";
+        } else {
+            return Command.formatOutput("Here are the tasks ordered by date:", tasks.sort().toStringArray())
+                    + "\n\nJiayous!";
+        }
     }
 }

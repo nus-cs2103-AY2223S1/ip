@@ -1,22 +1,21 @@
-package ava.task;
+package ava.command;
 
 import ava.Ui;
-import ava.processor.Storage;
-import ava.processor.TaskList;
+import ava.util.Storage;
+import ava.util.TaskList;
 
 /**
- * Class to represent "Find" tasks.
+ * Class to represent "Find" command.
  */
-public class Find extends Task {
-    protected String description;
+public class Find extends Command {
+    protected final String description;
 
     /**
-     * The constructor for Find task.
+     * The constructor for Find command.
      *
      * @param description predicate
      */
     public Find(String description) {
-        super("find", false);
         this.description = description;
     }
 
@@ -30,7 +29,16 @@ public class Find extends Task {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        return formatOutput("Here are the matching tasks in your list:",
-                tasks.filter((task) -> task.matchKeyword(description)).toStringArray());
+        return ui.showFindTasks(tasks, description);
+    }
+
+    /**
+     * Tests if a command is exit.
+     *
+     * @return False.
+     */
+    @Override
+    public boolean isBye() {
+        return false;
     }
 }

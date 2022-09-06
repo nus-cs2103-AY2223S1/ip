@@ -1,21 +1,13 @@
-package ava.task;
+package ava.command;
 
 import ava.Ui;
-import ava.processor.Storage;
-import ava.processor.TaskList;
+import ava.util.Storage;
+import ava.util.TaskList;
 
 /**
- * Class to represent "Bye" tasks.
+ * Class to represent "Bye" command.
  */
-public class Bye extends Task {
-    /**
-     * The constructor for Bye task.
-     */
-    public Bye() {
-        super("bye", false);
-        this.isBye = true;
-    }
-
+public class Bye extends Command {
     /**
      * Cleans up the UI.
      *
@@ -27,5 +19,15 @@ public class Bye extends Task {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         return ui.printExit();
+    }
+
+    /**
+     * Tests if a command is exit.
+     *
+     * @return True.
+     */
+    @Override
+    public boolean isBye() {
+        return true;
     }
 }

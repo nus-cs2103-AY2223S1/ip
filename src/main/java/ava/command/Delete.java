@@ -1,22 +1,22 @@
-package ava.task;
+package ava.command;
 
 import ava.Ui;
-import ava.processor.Storage;
-import ava.processor.TaskList;
+import ava.util.Storage;
+import ava.util.TaskList;
+import ava.task.Task;
 
 /**
  * Class to represent "Delete" tasks.
  */
-public class Delete extends Task {
-    private int num;
+public class Delete extends Command {
+    private final int num;
 
     /**
-     * The constructor for Delete task
+     * The constructor for Delete command.
      *
      * @param num Index of the task to be deleted.
      */
     public Delete(int num) {
-        super("delete", false);
         this.num = num;
     }
 
@@ -33,5 +33,15 @@ public class Delete extends Task {
         Task taskDeleted = tasks.delete(num);
         storage.write(tasks.getTasks());
         return ui.showDeleteTask(tasks, taskDeleted);
+    }
+
+    /**
+     * Tests if a command is exit.
+     *
+     * @return False.
+     */
+    @Override
+    public boolean isBye() {
+        return false;
     }
 }

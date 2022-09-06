@@ -2,11 +2,11 @@ package ava;
 
 import java.io.IOException;
 
+import ava.command.Command;
 import ava.exception.AvaException;
-import ava.processor.Parser;
-import ava.processor.Storage;
-import ava.processor.TaskList;
-import ava.task.Task;
+import ava.util.Parser;
+import ava.util.Storage;
+import ava.util.TaskList;
 
 /**
  * This is the Main Class that contains the Main method.
@@ -37,9 +37,9 @@ public class Ava {
     public String run(String input) {
         String output = "";
         try {
-            Task t = Parser.parse(input, tasks);
-            output = t.execute(tasks, ui, storage);
-            isBye = t.isBye();
+            Command c = Parser.parse(input, tasks);
+            output = c.execute(tasks, ui, storage);
+            isBye = c.isBye();
         } catch (AvaException e) {
             output = e.getMessage();
         }

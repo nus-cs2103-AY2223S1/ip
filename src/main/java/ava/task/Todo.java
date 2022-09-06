@@ -1,9 +1,5 @@
 package ava.task;
 
-import ava.Ui;
-import ava.processor.Storage;
-import ava.processor.TaskList;
-
 /**
  * Class to represent "Todo" tasks.
  */
@@ -61,17 +57,13 @@ public class Todo extends Task {
     }
 
     /**
-     * Execute process of given Todo task.
+     * Comparator method. DO NOT USE !!! Implemented to bypass abstract superclass implementing Comparable interface.
      *
-     * @param tasks TaskList.
-     * @param ui Class to print the ui.
-     * @param storage Class to write/read commands from file.
-     * @return The response of the command.
+     * @param otherTask The other task to be compared to.
+     * @return 0.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.add(this);
-        storage.write(tasks.getTasks());
-        return ui.showAddOnTask(tasks, (tasks.size() - 1));
+    public int compareTo(Task otherTask) {
+        return 0;
     }
 }

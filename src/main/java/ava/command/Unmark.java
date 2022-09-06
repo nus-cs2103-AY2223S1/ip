@@ -1,22 +1,21 @@
-package ava.task;
+package ava.command;
 
 import ava.Ui;
-import ava.processor.Storage;
-import ava.processor.TaskList;
+import ava.util.Storage;
+import ava.util.TaskList;
 
 /**
- * Class to represent "Unmark" tasks.
+ * Class to represent "Unmark" command.
  */
-public class Unmark extends Task {
-    private int num;
+public class Unmark extends Command {
+    private final int num;
 
     /**
-     * The constructor for Unmark task.
+     * The constructor for Unmark command.
      *
      * @param num Index of the specified task.
      */
     public Unmark(int num) {
-        super("unmark", false);
         this.num = num;
     }
 
@@ -33,5 +32,15 @@ public class Unmark extends Task {
         tasks.markUndone(num);
         storage.write(tasks.getTasks());
         return ui.showUndoneTask(tasks, num);
+    }
+
+    /**
+     * Tests if a command is exit.
+     *
+     * @return False.
+     */
+    @Override
+    public boolean isBye() {
+        return false;
     }
 }

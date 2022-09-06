@@ -1,22 +1,21 @@
-package ava.task;
+package ava.command;
 
 import ava.Ui;
-import ava.processor.Storage;
-import ava.processor.TaskList;
+import ava.util.Storage;
+import ava.util.TaskList;
 
 /**
- * Class to represent "Mark" tasks.
+ * Class to represent "Mark" command.
  */
-public class Mark extends Task {
-    private int num;
+public class Mark extends Command {
+    private final int num;
 
     /**
-     * The constructor for Mark task.
+     * The constructor for Mark command.
      *
      * @param num Index of the specified task.
      */
     public Mark(int num) {
-        super("mark", false);
         this.num = num;
     }
 
@@ -33,5 +32,15 @@ public class Mark extends Task {
         tasks.markDone(num);
         storage.write(tasks.getTasks());
         return ui.showDoneTask(tasks, num);
+    }
+
+    /**
+     * Tests if a command is exit.
+     *
+     * @return False.
+     */
+    @Override
+    public boolean isBye() {
+        return false;
     }
 }
