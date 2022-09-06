@@ -20,8 +20,11 @@ import duke.utilities.DukeException;
  * Storage class, handles loading and saving tasks to hard disk.
  */
 public class Storage {
+    /** The separator used to separate text in storage. */
+    private static final String SEPARATOR = "|";
     /** A File object to represent the File we read from and write to. */
     private final File file;
+
 
     /**
      * Constructor for Storage object.
@@ -56,20 +59,19 @@ public class Storage {
         FileWriter fileWriter = new FileWriter(this.file);
 
         for (Task task : tasks) {
+            StringBuilder rep = new StringBuilder();
             if (task instanceof Todo) {
-                String rep = "T|" + task.getDoneStatus() + "|" + task.getDescription();
-                fileWriter.write(rep);
+                Todo t = (Todo) task;
+                rep.append(convertTodoToStorageFormat(t));
             } else if (task instanceof Event) {
                 Event e = (Event) task;
-                String rep = "E|" + e.getDoneStatus() + "|" + e.getDescription() + "|"
-                        + e.getStart() + "|" + e.getEnd();
-                fileWriter.write(rep);
+                rep.append(convertEventToStorageFormat(e));
             } else if (task instanceof Deadline) {
                 Deadline d = (Deadline) task;
-                String rep = "D|" + d.getDoneStatus() + "|" + d.getDescription() + "|" + d.getBy();
-                fileWriter.write(rep);
+                rep.append(convertDeadlineToStorageFormat(d));
             }
 
+            fileWriter.write(rep.toString());
             fileWriter.write(System.lineSeparator());
         }
 
@@ -90,32 +92,29 @@ public class Storage {
         while (sc.hasNext()) {
             String line = sc.nextLine();
             String[] lineComponents = line.split("\\|");
-
-            String type = lineComponents[0];
-            boolean doneStatus = lineComponents[1].equals("X");
             DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-            switch (type) {
+            String taskType = lineComponents[0];
+            boolean isDone = lineComponents[1].equals("X");
+            String description = lineComponents[2];
+
+            switch (taskType) {
             case "T":
-                Todo t = new Todo(lineComponents[2]);
-                t.setDoneStatus(doneStatus);
+                Todo t = new Todo(description);
+                t.setDoneStatus(isDone);
                 tasks.add(t);
                 break;
             case "D":
-                Deadline d = new Deadline(
-                        lineComponents[2],
-                        LocalDateTime.parse(lineComponents[3], dateFormat)
-                );
-                d.setDoneStatus(doneStatus);
+                LocalDateTime by = LocalDateTime.parse(lineComponents[3], dateFormat);
+                Deadline d = new Deadline(description, by);
+                d.setDoneStatus(isDone);
                 tasks.add(d);
                 break;
             case "E":
-                Event e = new Event(
-                        lineComponents[2],
-                        LocalDateTime.parse(lineComponents[3], dateFormat),
-                        LocalDateTime.parse(lineComponents[4], dateFormat)
-                );
-                e.setDoneStatus(doneStatus);
+                LocalDateTime from = LocalDateTime.parse(lineComponents[3], dateFormat);
+                LocalDateTime to = LocalDateTime.parse(lineComponents[4], dateFormat);
+                Event e = new Event(description, to, from);
+                e.setDoneStatus(isDone);
                 tasks.add(e);
                 break;
             default:
@@ -126,5 +125,59 @@ public class Storage {
         sc.close();
 
         return tasks;
+    }
+
+    /**
+     * Converts a to-do object into it's storage String format.
+     *
+     * @param todo The todo task.
+     * @return The string format by which to store a to-do object.
+     */
+    public String convertTodoToStorageFormat(Todo todo) {
+        StringBuilder rep = new StringBuilder();
+        rep.append("T");
+        rep.append(SEPARATOR);
+        rep.append(todo.getDoneStatus());
+        rep.append(SEPARATOR);
+        rep.append(todo.getDescription());
+        return rep.toString();
+    }
+
+    /**
+     * Converts a deadline object into it's storage String format.
+     *
+     * @param deadline The deadline task.
+     * @return The string format by which to store a deadline object.
+     */
+    public String convertDeadlineToStorageFormat(Deadline deadline) {
+        StringBuilder rep = new StringBuilder();
+        rep.append("D");
+        rep.append(SEPARATOR);
+        rep.append(deadline.getDoneStatus());
+        rep.append(SEPARATOR);
+        rep.append(deadline.getDescription());
+        rep.append(SEPARATOR);
+        rep.append(deadline.getBy());
+        return rep.toString();
+    }
+
+    /**
+     * Converts an event object into it's storage String format.
+     *
+     * @param event The event task.
+     * @return The string format by which to store the event object.
+     */
+    public String convertEventToStorageFormat(Event event) {
+        StringBuilder rep = new StringBuilder();
+        rep.append("E");
+        rep.append(SEPARATOR);
+        rep.append(event.getDoneStatus());
+        rep.append(SEPARATOR);
+        rep.append(event.getDescription());
+        rep.append(SEPARATOR);
+        rep.append(event.getStart());
+        rep.append(SEPARATOR);
+        rep.append(event.getEnd());
+        return rep.toString();
     }
 }
