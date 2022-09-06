@@ -42,7 +42,7 @@ public class MainWindow extends AnchorPane {
         List<String> messages = new ArrayList<>(say("Hello, Duke here! What can I do for you?"));
 
         // initialize plugins
-        Todos todos = new Todos();
+        this.todos = new Todos();
         messages.addAll(todos.init());
 
         for (String message : messages) {
