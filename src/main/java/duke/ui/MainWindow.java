@@ -53,6 +53,10 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
+        if (userInput.getText().length() == 0) {
+            return;
+        }
+
         Label input = new Label(userInput.getText());
         Label response = new Label(duke.getResponse(userInput.getText()));
         ImageView userImageView = new ImageView(userImage);
