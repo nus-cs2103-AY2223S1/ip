@@ -31,6 +31,10 @@ public class Luna {
         tasks = new TaskList(storage.load(ui));
     }
 
+    public String getWelcomeMessage() {
+        return this.ui.showWelcome();
+    }
+
     public String getResponse(String input) {
         try {
             Command cmd = Parser.parse(input);

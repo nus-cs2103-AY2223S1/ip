@@ -9,9 +9,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
-import ui.Ui;
-import parser.Parser;
-
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -33,8 +30,11 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        Ui ui = new Ui(new Parser());
-        String welcome = ui.showWelcome();
+    }
+
+    @FXML
+    public void welcome() {
+        String welcome = luna.getWelcomeMessage();
         dialogContainer.getChildren().addAll(
                 DialogBox.getLunaDialog(welcome, lunaImage)
         );

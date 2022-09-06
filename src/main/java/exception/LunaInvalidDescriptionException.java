@@ -8,6 +8,6 @@ package exception;
 public class LunaInvalidDescriptionException extends LunaException {
     @Override
     public String toString() {
-        return "Luna wants to know what your task is about 🌷";
+        return "Luna wants to know your task 🌷";
     }
 }

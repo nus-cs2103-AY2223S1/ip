@@ -2,8 +2,9 @@ import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
@@ -23,6 +24,7 @@ public class Main extends Application {
             stage.setTitle(" ❈  ✶  ✧︎ ✱✬ ✨  l u n a  ✨ ❇︎ ✫❍   ❈ ✶  ✶ ");
             stage.setResizable(false);
             fxmlLoader.<MainWindow>getController().setLuna(luna);
+            fxmlLoader.<MainWindow>getController().welcome();
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

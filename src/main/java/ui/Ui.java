@@ -3,7 +3,9 @@ package ui;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import exception.LunaException;
@@ -18,9 +20,9 @@ import task.TaskList;
  * @author fannyjian
  */
 public class Ui {
-    private static final String SEP = "\n✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨\n";
+    private static final String SEP = "\n✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫  ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨\n";
     private static Scanner sc;
-    private boolean loaded;
+    private boolean isLoaded;
     private Parser parser;
 
     /**
@@ -28,12 +30,12 @@ public class Ui {
      */
     public Ui(Parser parser) {
         this.sc = new Scanner(System.in);
-        this.loaded = false;
+        this.isLoaded = false;
         this.parser = parser;
     }
 
     public void setLoaded() {
-        this.loaded = true;
+        this.isLoaded = true;
     }
 
     /**
@@ -62,14 +64,18 @@ public class Ui {
 //                + "\n    🥀 bye";
 
         // Print items in storage
-        if (!this.loaded) {
-            toPrint += "\n  You do not have anything to do yet!\n  Tell Luna your tasks for the day ☀️";
+        if (!this.isLoaded) {
+            toPrint += "\n  You don't have anything to do yet!\n  Tell Luna your tasks for the day ☀️";
         } else {
             try {
                 BufferedReader reader = new BufferedReader(new FileReader("data/luna.txt"));
-                Stream<String> content = reader.lines();
+                List<String> content = reader.lines()
+                                             .collect(Collectors.toList());
 
-                content.forEach(s -> System.out.println(s));
+                for (String string : content) {
+                    toPrint += "\n";
+                    toPrint += string;
+                }
             } catch (FileNotFoundException e) {
                 showError(new LunaLoadingException());
             }
@@ -157,7 +163,7 @@ public class Ui {
     public String showFound(String tasks) {
         String result = "";
         if (tasks.equals("")) {
-            result += "\nLuna did not manage to find any relevant tasks 🍂\n";
+            result += "\nLuna didn't find any relevant tasks 🍂\n";
         } else {
             result += "\n☁️ Here are the tasks Luna has found! ☁️" + tasks;
         }
