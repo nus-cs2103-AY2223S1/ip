@@ -36,6 +36,7 @@ class BotList {
     * @return String of the task marked as done
     */
     String mark(int taskIndex) {
+        assert(taskIndex >= 0);
         userInstructions
                 .get(taskIndex - 1)
                 .setCompletionStatus(true);
@@ -51,6 +52,7 @@ class BotList {
      * @return String of the task marked as undone
      */
     String unmark(int taskIndex) {
+        assert(taskIndex >= 0);
         userInstructions.get(taskIndex - 1)
                 .setCompletionStatus(false);
         storage.save(userInstructions);
@@ -72,6 +74,7 @@ class BotList {
      * @return String of the task deleted
      */
     String delete(int taskIndex) {
+        assert(taskIndex >= 0);
         Task task = userInstructions.remove(taskIndex - 1);
         storage.save(userInstructions);
         return "Noted.\n"

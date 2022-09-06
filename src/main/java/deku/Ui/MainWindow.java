@@ -43,7 +43,7 @@ public class MainWindow extends AnchorPane {
         listPane.vvalueProperty().bind(listContainer.heightProperty());
     }
 
-    public void setDuke(Deku d) {
+    public void setDeku(Deku d) {
         deku = d;
         updateList(deku.getList());
     }

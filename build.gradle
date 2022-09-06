@@ -45,7 +45,7 @@ test {
 }
 
 application {
-    mainClassName = "deku.Deku"
+    mainClassName = "deku.Launcher"
 }
 
 checkstyle {
