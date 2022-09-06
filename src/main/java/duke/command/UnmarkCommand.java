@@ -35,9 +35,11 @@ public class UnmarkCommand extends Command {
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws NullPointerException,
             IndexOutOfBoundsException, NumberFormatException {
-        Task task = taskList.getTask(index - 1);
+        int normalisedIndex = index - 1;
+        Task task = taskList.getTask(normalisedIndex);
         task.setUndone();
         storage.saveTasks(taskList);
-        return task + " unmarked";
+        String response = task + " unmarked";
+        return response;
     }
 }

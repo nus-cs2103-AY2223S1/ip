@@ -23,9 +23,11 @@ public class AddDeadlineCommand extends Command {
      * @param task
      */
     public AddDeadlineCommand(String task) throws DateTimeParseException {
-        int dateIndex = task.indexOf("by");
-        this.taskName = task.substring(9, dateIndex);
-        this.localDate = LocalDate.parse(task.substring(dateIndex + 3));
+        int byIndex = task.indexOf("by");
+        int taskIndex = 9;
+        int dateIndex = byIndex + 3;
+        this.taskName = task.substring(taskIndex, byIndex);
+        this.localDate = LocalDate.parse(task.substring(dateIndex));
     }
 
     /**
@@ -41,6 +43,7 @@ public class AddDeadlineCommand extends Command {
         Task deadline = new Deadlines(taskName, localDate);
         taskList.addTasks(deadline);
         storage.saveTasks(taskList);
-        return deadline + " added!";
+        String response = deadline + "added";
+        return response;
     }
 }

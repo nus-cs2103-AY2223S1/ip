@@ -37,8 +37,11 @@ public class Duke {
             if (command instanceof ByeCommand) {
                 isBye = true;
             }
-            return command.execute(taskList, ui, storage) + "\n\n You have "
+            String commandString = command.execute(taskList, ui, storage);
+            String numItemsString = "\n\n You have "
                     + taskList.length() + " items in the list btw! hehe";
+            String response = commandString + numItemsString;
+            return response;
         } catch (InputMismatchException | IndexOutOfBoundsException
                 | NumberFormatException | NullPointerException e) {
             return new ErrorCommand().execute(taskList, ui, storage);
