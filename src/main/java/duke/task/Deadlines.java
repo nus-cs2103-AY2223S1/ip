@@ -18,6 +18,7 @@ public class Deadlines extends Task {
     public Deadlines(String name, LocalDate byDate) {
         super(name);
         this.byDate = byDate;
+        assert isValidDate() : "Invalid Date time";
     }
 
     /**
@@ -42,5 +43,14 @@ public class Deadlines extends Task {
         int day = byDate.getDayOfMonth();
         Month month = byDate.getMonth();
         return "[D]" + super.toString() + " (by: " + day + " " + month + " " + year + ")";
+    }
+
+    /**
+     * a method that checks that date field is non null
+     *
+     * @return boolean
+     */
+    public boolean isValidDate() {
+        return this.byDate != null;
     }
 }

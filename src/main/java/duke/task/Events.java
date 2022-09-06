@@ -19,6 +19,7 @@ public class Events extends Task {
     public Events(String name, LocalDate atDate) {
         super(name);
         this.atDate = atDate;
+        assert isValidDate() : "Invalid Date time";
     }
 
     /**
@@ -43,5 +44,14 @@ public class Events extends Task {
         int day = atDate.getDayOfMonth();
         Month month = atDate.getMonth();
         return "[E]" + super.toString() + " (at: " + day + " " + month + " " + year + ")";
+    }
+
+    /**
+     * a method that checks that date field is non null
+     *
+     * @return boolean
+     */
+    public boolean isValidDate() {
+        return this.atDate != null;
     }
 }
