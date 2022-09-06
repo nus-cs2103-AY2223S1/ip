@@ -52,7 +52,6 @@ public class TaskList {
      * @return the selected Task object
      */
     public Task markTask(Integer index) {
-        index--;
         Task task = tasks.get(index);
         task.markAsDone();
         return task;
@@ -65,7 +64,6 @@ public class TaskList {
      * @return the selected Task object
      */
     public Task unmarkTask(Integer index) {
-        index--;
         Task task = tasks.get(index);
         task.unMark();
         return task;
@@ -78,7 +76,6 @@ public class TaskList {
      * @return the deleted task
      */
     public Task deleteTask(int index) {
-        index--;
         Task task = tasks.get(index);
         tasks.remove(index);
         return task;
@@ -116,5 +113,12 @@ public class TaskList {
         return tasks.stream();
     }
 
-
+    /**
+     * Reschedules the selected task to a new task
+     * @param indexOfTaskToReschedule the index of the task to be rescheduled
+     * @param rescheduledTask the new task
+     */
+    public void reschedule(int indexOfTaskToReschedule, Task rescheduledTask) {
+        tasks.set(indexOfTaskToReschedule, rescheduledTask);
+    }
 }

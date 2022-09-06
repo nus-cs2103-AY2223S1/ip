@@ -11,16 +11,19 @@ import duke.command.FindCommand;
 import duke.command.HelpCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.RescheduleCommand;
 import duke.exception.DukeException;
 import duke.exception.EmptyDateException;
 import duke.exception.EmptyDescriptionException;
 import duke.exception.EmptyIndexException;
 import duke.exception.IllegalDateFormatException;
 import duke.exception.IllegalInputException;
+import duke.exception.IllegalTaskTypeException;
 import duke.exception.InvalidCommandException;
 import duke.exception.InvalidIndexException;
 import duke.task.Deadline;
 import duke.task.Event;
+import duke.task.Task;
 import duke.task.Todo;
 
 /**
@@ -29,7 +32,7 @@ import duke.task.Todo;
 public class Parser {
 
     private static final int TASK_TYPE = 0;
-    private static final int COMMAND_DESCRIPTION = 1;
+    private static final int DESCRIPTION = 1;
 
     /***
      * Parses the user input to relevant command.
@@ -48,15 +51,18 @@ public class Parser {
             return new ListCommand();
 
         case "MARK":
-            int indexOfTaskToMark = parseToTaskIndex(arr);
+            simpleTaskIndexCheck(arr);
+            int indexOfTaskToMark = parseToTaskIndex(arr[DESCRIPTION]);
             return new MarkCommand(true, indexOfTaskToMark);
 
         case "UNMARK":
-            int indexOfTaskToUnmark = parseToTaskIndex(arr);
+            simpleTaskIndexCheck(arr);
+            int indexOfTaskToUnmark = parseToTaskIndex(arr[DESCRIPTION]);
             return new MarkCommand(false, indexOfTaskToUnmark);
 
         case "DELETE":
-            int indexOfTaskToDelete = parseToTaskIndex(arr);
+            simpleTaskIndexCheck(arr);
+            int indexOfTaskToDelete = parseToTaskIndex(arr[DESCRIPTION]);
             return new DeleteCommand(indexOfTaskToDelete);
 
         case "TODO":
@@ -71,6 +77,9 @@ public class Parser {
         case "FIND":
             return parseToFindCommand(arr);
 
+        case "RESCHEDULE":
+            return parseToRescheduleCommand(arr);
+
         case "HELP":
             return new HelpCommand();
 
@@ -80,19 +89,52 @@ public class Parser {
 
     }
 
+    private static Command parseToRescheduleCommand(String[] arr) throws DukeException {
+        simpleDescriptionChecking(arr);
+
+        String rescheduleDescription = arr[DESCRIPTION];
+        String[] newStrArr = rescheduleDescription.trim().split("\\s+", 2);
+
+        simpleDescriptionChecking(newStrArr);
+
+        int taskIndex = parseToTaskIndex(newStrArr[0]);
+
+        String newTask = newStrArr[1];
+        String[] fullCommandArray = newTask.split("\\s+", 2);
+
+        Task rescheduledTask = getRescheduledTask(fullCommandArray);
+
+        return new RescheduleCommand(taskIndex, rescheduledTask);
+
+    }
+
+    private static Task getRescheduledTask(String[] fullCommandArray) throws DukeException {
+        simpleDescriptionChecking(fullCommandArray);
+
+        String taskType = fullCommandArray[TASK_TYPE].trim().toUpperCase();
+
+        switch (taskType) {
+        case "TODO":
+            return new Todo(fullCommandArray[DESCRIPTION].trim());
+        case "DEADLINE":
+            return getDeadlineTask(fullCommandArray);
+        case "EVENT":
+            return getEventTask(fullCommandArray);
+        default:
+            throw new IllegalTaskTypeException();
+        }
+    }
+
     /**
      * Parses the string command into index if possible.
      *
-     * @param fullCommandArray user input
+     * @param commandDescription command description
      * @return the index of a task
      * @throws IllegalInputException When user did not include an index.
      */
-    public static int parseToTaskIndex(String[] fullCommandArray) throws IllegalInputException {
-        if (fullCommandArray.length == 1) {
-            throw new EmptyIndexException();
-        }
-        if (fullCommandArray[COMMAND_DESCRIPTION].matches("\\d+")) {
-            return Integer.parseInt(fullCommandArray[COMMAND_DESCRIPTION]);
+    protected static int parseToTaskIndex(String commandDescription) throws IllegalInputException {
+        if (commandDescription.matches("\\d+")) {
+            return Integer.parseInt(commandDescription);
         } else {
             throw new InvalidIndexException();
         }
@@ -107,37 +149,51 @@ public class Parser {
      */
     private static Command parseToAddTodoCommand(String[] fullCommandArray) throws EmptyDescriptionException {
         simpleDescriptionChecking(fullCommandArray);
-        return new AddCommand(new Todo(fullCommandArray[COMMAND_DESCRIPTION]));
+        return new AddCommand(new Todo(fullCommandArray[DESCRIPTION].trim()));
     }
 
     private static Command parseToAddDeadlineCommand(String[] fullCommandArray) throws IllegalInputException {
 
         simpleDescriptionChecking(fullCommandArray);
 
-        String descriptionAndDate = fullCommandArray[COMMAND_DESCRIPTION];
+        Deadline deadlineTask = getDeadlineTask(fullCommandArray);
+
+        return new AddCommand(deadlineTask);
+    }
+
+    private static Deadline getDeadlineTask(String[] fullCommandArray) throws EmptyDateException,
+                IllegalDateFormatException {
+
+        String descriptionAndDate = fullCommandArray[DESCRIPTION].trim();
         String[] descriptionAndDateArray = descriptionAndDate.split("/");
 
         simpleDescriptionAndDateChecking(descriptionAndDateArray);
 
-        String description = descriptionAndDateArray[0];
+        String description = descriptionAndDateArray[0].trim();
         LocalDate date = parseToLocalDateTime(descriptionAndDateArray[1]);
-        return new AddCommand(new Deadline(description, date));
-    }
 
+        return new Deadline(description, date);
+    }
 
 
     private static Command parseToAddEventCommand(String[] fullCommandArray) throws IllegalInputException {
 
         simpleDescriptionChecking(fullCommandArray);
 
-        String descriptionAndDate = fullCommandArray[COMMAND_DESCRIPTION];
+        Event eventTask = getEventTask(fullCommandArray);
+
+        return new AddCommand(eventTask);
+    }
+
+    private static Event getEventTask(String[] fullCommandArray) throws EmptyDateException, IllegalDateFormatException {
+        String descriptionAndDate = fullCommandArray[DESCRIPTION].trim();
         String[] descriptionAndDateArray = descriptionAndDate.split("/");
 
         simpleDescriptionAndDateChecking(descriptionAndDateArray);
 
-        String description = descriptionAndDateArray[0];
+        String description = descriptionAndDateArray[0].trim();
         LocalDate date = parseToLocalDateTime(descriptionAndDateArray[1]);
-        return new AddCommand(new Event(description, date));
+        return new Event(description, date);
     }
 
 
@@ -163,7 +219,7 @@ public class Parser {
 
         simpleDescriptionChecking(fullCommandArray);
 
-        String description = fullCommandArray[COMMAND_DESCRIPTION];
+        String description = fullCommandArray[DESCRIPTION];
         return new FindCommand(description);
     }
 
@@ -178,6 +234,12 @@ public class Parser {
         assert descriptionAndDateArray.length > 0;
         if (descriptionAndDateArray.length == 1) {
             throw new EmptyDateException();
+        }
+    }
+
+    private static void simpleTaskIndexCheck(String[] fullCommandArray) throws EmptyIndexException {
+        if (fullCommandArray.length == 1) {
+            throw new EmptyIndexException();
         }
     }
 }

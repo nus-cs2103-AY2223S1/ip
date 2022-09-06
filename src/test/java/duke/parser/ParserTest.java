@@ -14,9 +14,9 @@ import duke.exception.IllegalInputException;
 public class ParserTest {
     @Test
     public void parseToTaskIndexTest() throws IllegalInputException {
-        String[] arr = {"mark", "1"};
+        String str = "1";
         int expected = 1;
-        int actual = parseToTaskIndex(arr);
+        int actual = parseToTaskIndex(str);
         assertEquals(expected, actual);
     }
 

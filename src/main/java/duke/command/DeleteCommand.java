@@ -12,7 +12,8 @@ import duke.ui.Ui;
  */
 public class DeleteCommand extends Command {
 
-    private final int indexOfTaskToDelete;
+    private static final int OFFSET = -1;
+    private int indexOfTaskToDelete;
 
     /**
      * Constructs a DeleteCommand instance
@@ -25,6 +26,8 @@ public class DeleteCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Storage storage, Ui ui) throws DukeException {
+        indexOfTaskToDelete += OFFSET;
+
         isValidIndex(tasks);
 
         Task taskToDelete = tasks.deleteTask(indexOfTaskToDelete);

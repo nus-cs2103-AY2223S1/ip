@@ -105,6 +105,7 @@ public class Ui {
                 "Deadline {Task description}/{YYYY-MM-DD}    To add a DEADLINE task.",
                 "Event {Task description}/{YYYY-MM-DD}    To add an EVENT task.",
                 "Find {keyword} To find the task with keyword.",
+                "Reschedule {index} {TaskType} {Task Description}",
                 "Help    To see the list of commands.");
     }
 
@@ -134,5 +135,15 @@ public class Ui {
         appendToResponse(strArr);
     }
 
-
+    /**
+     * Shows successful reschedule message
+     * @param beingRescheduled task being rescheduled
+     * @param rescheduledTask the new task
+     */
+    public void showRescheduledMessage(Task beingRescheduled, Task rescheduledTask) {
+        appendToResponse("Nice! I've rescheduled this task",
+                    beingRescheduled.toString(),
+                    "To",
+                    rescheduledTask.toString());
+    }
 }

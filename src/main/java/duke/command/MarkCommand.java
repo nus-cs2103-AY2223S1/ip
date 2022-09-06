@@ -12,8 +12,10 @@ import duke.ui.Ui;
  */
 public class MarkCommand extends Command {
 
+    private static final int OFFSET = -1;
     private final boolean toMark;
-    private final int indexOfTaskToMark;
+    private int indexOfTaskToMark;
+
 
     /**
      * Constructs a MarkCommand instance.
@@ -28,6 +30,8 @@ public class MarkCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Storage storage, Ui ui) throws InvalidIndexException, FileIoException {
+        indexOfTaskToMark += OFFSET;
+
         isValidIndex(tasks);
 
         Task taskToMark = getTask(tasks);
