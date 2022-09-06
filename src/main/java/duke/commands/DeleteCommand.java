@@ -20,8 +20,8 @@ public class DeleteCommand extends Command {
      */
     public DeleteCommand(String description) throws DukeException {
         try {
-            description = description.split(" ")[1];
-            this.index = Integer.parseInt(description);
+            String taskNumber = description.split(" ")[1];
+            this.index = Integer.parseInt(taskNumber);
         } catch (Exception e) {
             throw new DukeException("Invalid tasks");
         }
@@ -40,11 +40,22 @@ public class DeleteCommand extends Command {
         } else {
             Task task = tasks.remove(index - 1);
             storage.save(tasks);
-            String str = "Noted. I've removed this task:\n";
-            str += task.toString() + '\n';
-            str += "Now you have " + tasks.size() + " task(s) in the list";
+            String str = getMessage(tasks, task);
             return str;
         }
+    }
 
+    /**
+     * Returns message to user
+     *
+     * @param tasks
+     * @param task
+     * @return
+     */
+    public String getMessage(TaskList tasks, Task task) {
+        String str = "Noted. I've removed this task:\n";
+        str += task.toString() + '\n';
+        str += "Now you have " + tasks.size() + " task(s) in the list";
+        return str;
     }
 }

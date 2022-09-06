@@ -41,8 +41,13 @@ public class UnmarkCommand extends Command {
             Task task = tasks.get(index - 1);
             task.setUndone();
             storage.save(tasks);
-            String str = "Aiyah! I've marked this task as not done yet: \n";
-            return str += task;
+            return getMessage(task);
         }
+    }
+
+    public String getMessage(Task task) {
+        String str = "Aiyah! I've marked this task as not done yet: \n";
+        str += task;
+        return str;
     }
 }

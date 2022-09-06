@@ -41,8 +41,13 @@ public class MarkCommand extends Command {
             Task task = tasks.get(index - 1);
             task.setDone();
             storage.save(tasks);
-            String str = "Fuyoh! I've marked this task as done:";
-            return str += task;
+            return getMessage(task);
         }
+    }
+
+    public String getMessage(Task task) {
+        String str = "Fuyoh! I've marked this task as done:";
+        str += task;
+        return str;
     }
 }

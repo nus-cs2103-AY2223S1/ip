@@ -25,7 +25,7 @@ public class FindCommand extends Command {
      */
     public FindCommand(String description) throws DukeException {
         String[] lst = description.split(" ", 2);
-        if (lst.length < 2) {
+        if (lst.length < 2) { // Guard clause
             throw new DukeException("Keyword missing!");
         }
         this.keyword = lst[1];
@@ -40,6 +40,11 @@ public class FindCommand extends Command {
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
         ArrayList<Task> filtered = tasks.find(this.keyword);
+        return getMessage(filtered);
+
+    }
+
+    public String getMessage(ArrayList<Task> filtered) {
         if (filtered.size() == 0) {
             return "No matching tasks found";
         } else {
@@ -49,6 +54,5 @@ public class FindCommand extends Command {
             }
             return sb.toString();
         }
-
     }
 }

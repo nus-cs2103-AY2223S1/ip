@@ -24,10 +24,13 @@ public class EventTaskCommand extends TaskCommand {
     public EventTaskCommand(String description) throws DukeException {
         super(description);
         String[] eventlst = description.split("/at ", 2);
+
         if (eventlst.length < 2 || eventlst[1].equals("")) {
             throw new DukeException("Alamak! Fill in when the event is at...");
         }
+
         this.description = eventlst[0];
+
         try {
             LocalDate d1 = LocalDate.parse(eventlst[1]);
             this.at = d1;

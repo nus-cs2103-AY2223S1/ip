@@ -16,6 +16,10 @@ public class ListCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
+        return getMessage(tasks);
+    }
+
+    public String getMessage(TaskList tasks) {
         if (tasks.size() == 0) {
             return "No task found so far.";
         } else {
@@ -25,6 +29,5 @@ public class ListCommand extends Command {
             }
             return sb.toString();
         }
-
     }
 }

@@ -9,13 +9,13 @@ import duke.tasks.TaskList;
  */
 public class ByeCommand extends Command {
 
-    public ByeCommand() {
-        setExit();
-    }
-
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
-        return "Bye. Hope to see you again soon!";
+        setExit();
+        return getMessage();
+    }
 
+    public String getMessage() {
+        return "Bye. Hope to see you again soon!";
     }
 }

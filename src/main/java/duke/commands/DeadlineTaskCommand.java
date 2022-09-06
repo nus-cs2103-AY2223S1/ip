@@ -25,13 +25,15 @@ public class DeadlineTaskCommand extends TaskCommand {
     public DeadlineTaskCommand(String description) throws DukeException {
         super(description);
         String[] eventlst = description.split("/by ", 2);
-        if (eventlst.length < 2 || eventlst[1].equals("")) {
+
+        if (eventlst.length < 2 || eventlst[1].equals("")) { // Guard clasuse
             throw new DukeException("Alamak! Fill in when the deadline is by...");
         }
+
         this.description = eventlst[0];
+
         try {
-            LocalDate d1 = LocalDate.parse(eventlst[1]);
-            this.by = d1;
+            this.by = LocalDate.parse(eventlst[1]);
         } catch (DateTimeParseException e) {
             throw new DukeException("Please fill in the date in this format yyyy-mm-dd");
         }
