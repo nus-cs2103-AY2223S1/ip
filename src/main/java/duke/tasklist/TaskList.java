@@ -134,6 +134,24 @@ public class TaskList {
         return result.toString();
     }
 
+    /**
+     * Method to get reminders for tasks that are due in 3 days.
+     * @return
+     */
+    public String getReminders() {
+        String extra = "Hey, these are some of your tasks that are due in the next 3 days:\n";
+        StringBuilder result = new StringBuilder("");
+        for (Task task: this.taskList) {
+            if (task.isWithinDeadline() && task.getStatusIcon().equals(" ")) {
+                result.append(task.toString() + "\n");
+            }
+        }
+        if (result.toString().equals("")) {
+            return "You have no upcoming tasks!";
+        }
+        return extra + result.toString().substring(0, result.length() - 1);
+    }
+
     @Override
     public String toString() {
         int counter = 1;
