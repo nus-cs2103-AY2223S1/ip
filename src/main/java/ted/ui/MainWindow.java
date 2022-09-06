@@ -33,6 +33,7 @@ public class MainWindow extends AnchorPane {
     }
 
     public void setUi(UiController ui) {
+        assert ui != null : "ui should not be null";
         this.ui = ui;
     }
 

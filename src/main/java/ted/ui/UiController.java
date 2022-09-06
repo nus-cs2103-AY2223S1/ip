@@ -19,10 +19,12 @@ public class UiController {
     private MainWindow mainWindow;
 
     public void setTed(Ted ted) {
+        assert ted != null : "ted should not be null";
         this.ted = ted;
     }
 
     public void setMainWindow(MainWindow mainWindow) {
+        assert mainWindow != null : "mainWindow should not be null";
         this.mainWindow = mainWindow;
     }
 
