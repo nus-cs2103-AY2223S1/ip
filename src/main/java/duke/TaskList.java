@@ -2,6 +2,9 @@ package duke;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import duke.task.Deadline;
 import duke.task.Event;
@@ -143,21 +146,12 @@ public class TaskList {
      * @return String representation of the list containing the tasks found.
      */
     public String findTasks(String ...wordsToFind) {
-        assert wordsToFind.length > 0 : "The length of words to find should be greater than zero";
-        ArrayList<String> foundTasks = new ArrayList<>();
-        for (Task task : taskList) {
-            boolean matchAllKeywords = true;
-            for (String keyword : wordsToFind) {
-                if (!task.containsWord(keyword)) {
-                    matchAllKeywords = false;
-                    break;
-                }
-            }
 
-            if (matchAllKeywords) {
-                foundTasks.add(task.toString());
-            }
-        }
+        assert wordsToFind.length > 0 : "The length of words to find should be greater than zero";
+        List<Task> foundTasks = taskList
+                .stream()
+                .filter(task -> Arrays.stream(wordsToFind).allMatch(word -> task.containsWord(word)))
+                .collect(Collectors.toList());
 
         if (foundTasks.size() == 0) {
             return "Sorry, there is no tasks with the keyword";
