@@ -4,7 +4,7 @@ import java.nio.file.Path;
 
 import duke.command.CommandException;
 import duke.command.CommandFactory;
-import duke.command.handler.CommandHandler;
+import duke.command.handler.base.CommandHandler;
 import duke.command.response.CommandResponse;
 import duke.data.TaskList;
 import duke.data.storage.Storage;

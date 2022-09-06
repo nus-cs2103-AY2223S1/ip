@@ -4,6 +4,7 @@ import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
 import duke.command.CommandException;
+import duke.command.handler.base.CommandHandler;
 import duke.command.response.CommandResponse;
 import duke.data.TaskList;
 
@@ -25,7 +26,7 @@ public class CommandFindHandler extends CommandHandler {
     }
 
     @Override
-    public CommandResponse run(TaskList taskList) throws CommandException {
+    public CommandResponse run(TaskList taskList) {
         if (taskList.isEmpty()) {
             return new CommandResponse("There are no items in the task list!", false, false);
         }
@@ -34,6 +35,7 @@ public class CommandFindHandler extends CommandHandler {
         String keyword = regexMatchResult.group(1);
         assert !keyword.isBlank() : "Keyword should not be blank/empty!";
 
-        return new CommandResponse(taskList.findTasks(keyword).toString(), false, false);
+        return new CommandResponse(
+            taskList.filterTasks(task -> task.containsKeyword(keyword)).toString(), false, false);
     }
 }

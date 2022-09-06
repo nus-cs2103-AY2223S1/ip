@@ -3,6 +3,7 @@ package duke.data;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import duke.data.tasks.Task;
 
@@ -43,9 +44,9 @@ public class TaskList implements Serializable {
         return deletedTask;
     }
 
-    public TaskList findTasks(String keyword) {
-        return new TaskList(this.tasks.stream().filter(task -> task.containsKeyword(keyword))
-            .collect(java.util.stream.Collectors.toList()));
+    public TaskList filterTasks(Predicate<? super Task> cond) {
+        return new TaskList(
+            this.tasks.stream().filter(cond).collect(java.util.stream.Collectors.toList()));
     }
 
     @Override
