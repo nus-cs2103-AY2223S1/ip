@@ -72,6 +72,7 @@ public class TaskList {
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("duke.task.Task number doesn't exist!");
         }
+        assert task != null;
         return task.toString();
     }
 
