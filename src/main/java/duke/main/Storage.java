@@ -45,7 +45,8 @@ public class Storage {
             int index = 0;
             String[] splitArr = filePath.split("/");
 
-            Boolean isDirectoryExist = Files.isDirectory(Paths.get(splitArr[0] + "/" + splitArr[1]));
+            Boolean isDirectoryExist = Files.isDirectory(
+                    Paths.get(splitArr[0] + "/" + splitArr[1]));
             if (!isDirectoryExist) {
                 new File(splitArr[1]).mkdir();
             }
@@ -98,6 +99,8 @@ public class Storage {
         } catch (IOException e) {
             System.out.println("error" + e);
         }
+        assert Files.exists(Paths.get(filePath)) : "The File in the path: "
+            + filePath + " does not exist";
         return taskList;
     }
 
