@@ -1,10 +1,12 @@
 package isara.command;
 
+import java.io.File;
+
 import isara.exception.IsaraException;
 import isara.processor.TaskList;
 import isara.storage.Storage;
 
-import java.io.File;
+
 
 /**
  * Class to represent commands.
