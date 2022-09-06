@@ -33,6 +33,7 @@ public class CommandOutputs {
         if (taskList.size() == 0) {
             throw new DukeException("You do not have any tasks in the list");
         }
+        assert taskList.size() > 0;
         String output = "Here are the tasks in your list:\n";
         for (int i = 0; i < taskList.size(); i++) {
             output = output + String.format("%d.%s\n", i + 1, taskList.get(i).toString());
@@ -94,6 +95,7 @@ public class CommandOutputs {
         if (taskList.size() == 0) {
             throw new DukeException("You do not have any tasks in the list that contains the keyword");
         }
+        assert taskList.size() > 0;
         String output = "Here are matching tasks in your list:\n";
         for (int i = 0; i < taskList.size(); i++) {
             output = output + String.format("%d.%s\n", i + 1, taskList.get(i).toString());
