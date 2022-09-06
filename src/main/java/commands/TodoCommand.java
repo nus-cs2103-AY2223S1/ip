@@ -3,22 +3,23 @@ package commands;
 import drivers.Storage;
 import drivers.TaskList;
 import drivers.Ui;
+import exceptions.TodoException;
 import exceptions.TumuException;
-import tasks.Task;
+import tasks.Todo;
 
 /**
- * Class to be executed when a deadline command is issued
+ * Class to be executed when a todo command is issued
  * by the user.
  */
-public class UnmarkTaskCmd extends Command {
-    private final int taskIndex;
+public class TodoCommand extends Command {
+    private final String body;
 
     /**
-     * Constructor for the UnmarkTaskCmd class.
+     * Constructor for the TodoCmd class.
      * @param body The rest of the instruction issued by the user after command.
      */
-    public UnmarkTaskCmd(String body) throws NumberFormatException {
-        taskIndex = Integer.parseInt(body);
+    public TodoCommand(String body) {
+        this.body = body;
     }
 
     /**
@@ -31,12 +32,9 @@ public class UnmarkTaskCmd extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws TumuException {
-        Task task = tasks.unmarkTask(taskIndex);
-        String output = "";
-        if (task != null) {
-            output += ui.notifyUser("Alright, I have unmarked this task:\n\t" + task);
+        if (body.isBlank()) {
+            throw new TodoException();
         }
-        saveUserTasks(storage, tasks, ui);
-        return output;
+        return addTaskType(new Todo(body), storage, tasks, ui);
     }
 }

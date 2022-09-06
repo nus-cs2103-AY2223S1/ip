@@ -10,7 +10,7 @@ import tasks.Task;
  * Class to be executed when a delete command is
  * issued by the user.
  */
-public class DeleteCmd extends Command {
+public class DeleteCommand extends Command {
     private final int taskIndex;
 
     /**
@@ -19,7 +19,7 @@ public class DeleteCmd extends Command {
      * @throws NumberFormatException Thrown when the parsed information of task cannot be converted into
      *     an integer.
      */
-    public DeleteCmd(String body) throws NumberFormatException {
+    public DeleteCommand(String body) throws NumberFormatException {
         taskIndex = Integer.parseInt(body);
     }
 

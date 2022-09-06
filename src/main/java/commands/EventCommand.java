@@ -7,20 +7,20 @@ import exceptions.DeadlineEventNoArgException;
 import exceptions.DeadlineEventNoTimingException;
 import exceptions.DeadlineEventTimingOverflowException;
 import exceptions.TumuException;
-import tasks.Deadline;
+import tasks.Event;
 
 /**
- * Class to be executed when a deadline command is issued
+ * Class to be executed when an event command is issued
  * by the user.
  */
-public class DeadlineCmd extends Command {
+public class EventCommand extends Command {
     private final String body;
 
     /**
-     * Constructor for the DeadlineCmd class.
+     * Constructor for the EventCmd class.
      * @param body The rest of the instruction issued by the user after command.
      */
-    public DeadlineCmd(String body) {
+    public EventCommand(String body) {
         this.body = body;
     }
 
@@ -34,18 +34,16 @@ public class DeadlineCmd extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws TumuException {
-        //Check for "/by", if not available then prompt user to add timing.
-        if (!body.contains("/by")) {
-            throw new DeadlineEventNoTimingException("by");
+        if (!body.contains("/at")) {
+            throw new DeadlineEventNoTimingException("at");
         } else {
-            //Parse the string. Make sure there is no multiple "/by" statements.
-            String[] parse = body.split("/by");
+            String[] parse = body.split("/at");
             if (parse.length > 2) {
                 throw new DeadlineEventTimingOverflowException();
             } else if (parse.length < 2 || parse[0].isBlank() || parse[1].isBlank()) {
                 throw new DeadlineEventNoArgException();
             } else {
-                return addTaskType(new Deadline(parse[0].trim(),
+                return addTaskType(new Event(parse[0].trim(),
                         parse[1].replaceAll("\\s+", "")), storage, tasks, ui);
             }
         }

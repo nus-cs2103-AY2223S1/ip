@@ -26,17 +26,17 @@ public class TaskFormatter {
      * @param task Task format given from the local txt file.
      */
     public TaskFormatter(String task) {
-        //Parse the task from the text format.
+        // Parse the task from the text format.
         String[] parsedInfo = task.split(DELIMITER);
         assert(parsedInfo.length == 3 || parsedInfo.length == 4);
         if (parsedInfo.length >= 3) {
-            //correct amount of information.
+            // correct amount of information.
             taskType = parsedInfo[0];
             statusIcon = parsedInfo[1];
             description = parsedInfo[2];
         }
         if (parsedInfo.length == 4) {
-            //Timing available. Remove T from toString of LocalDateTime class.
+            // Timing available.
             timing = parsedInfo[3].replace("T", "")
                     .replace(":", "");
         } else {
@@ -51,7 +51,6 @@ public class TaskFormatter {
      * @throws TumuException Parent exception for the program.
      */
     public Task getTask() throws TumuException {
-        //taskType can only be E, D, T
         switch (taskType) {
         case "E":
             Task event = new Event(description, timing);

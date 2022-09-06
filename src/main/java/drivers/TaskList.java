@@ -60,7 +60,7 @@ public class TaskList {
     public Task markTask(int oneIndexedNum) throws TumuException {
         assert(oneIndexedNum > 0 || oneIndexedNum <= userTasks.size());
         if (oneIndexedNum < 1 || oneIndexedNum > userTasks.size()) {
-            //Specified index from user is out of bounds of list.
+            // Specified index from user is out of bounds of list.
             if (userTasks.isEmpty()) {
                 throw new NoTaskException();
             } else {
@@ -82,7 +82,7 @@ public class TaskList {
     public Task unmarkTask(int oneIndexedNum) throws TumuException {
         assert(oneIndexedNum > 0 || oneIndexedNum <= userTasks.size());
         if (oneIndexedNum < 1 || oneIndexedNum > userTasks.size()) {
-            //Specified index from user is out of bounds of list.
+            // Specified index from user is out of bounds of list.
             if (userTasks.isEmpty()) {
                 throw new NoTaskException();
             } else {
@@ -104,7 +104,7 @@ public class TaskList {
     public Task deleteTask(int oneIndexedNum) throws TumuException {
         assert(oneIndexedNum > 0 || oneIndexedNum <= userTasks.size());
         if (oneIndexedNum < 1 || oneIndexedNum > userTasks.size()) {
-            //Specified index from user is out of bounds of list.
+            // Specified index from user is out of bounds of list.
             if (userTasks.isEmpty()) {
                 throw new NoTaskException();
             } else {

@@ -1,13 +1,18 @@
 package commands;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import drivers.Storage;
 import drivers.TaskList;
 import drivers.Ui;
 
 /**
- * Class to be executed when the user wants to exit the program.
+ * Class to be executed when a list command is issued
+ * by the user.
  */
-public class EndChatBotCmd extends Command {
+public class ListUserTextCommand extends Command {
+
     /**
      * Executes the command and gives the appropriate
      * feedback to the user.
@@ -17,6 +22,12 @@ public class EndChatBotCmd extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        return ui.notifyUser("Goodbye, and have a nice day ahead! :D");
+        String output = ui.notifyUser("Here are your current tasks:");
+        List<String> taskPrint = new ArrayList<>();
+        tasks.fillTaskPrint(taskPrint);
+        for (String task : taskPrint) {
+            output += ui.notifyUser(task);
+        }
+        return output;
     }
 }
