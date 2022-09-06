@@ -23,6 +23,7 @@ public class Ui {
      * @param e An {@code Exception}.
      */
     public static String showError(Exception e) {
+        assert(e != null);
         StringBuilder stringBuilder = new StringBuilder();
         String[] lines = e.getMessage().split(System.lineSeparator());
         for (String line : lines) {
