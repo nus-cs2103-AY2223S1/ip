@@ -44,10 +44,6 @@ public class TaskList {
         return tasks.size();
     }
 
-    public boolean isEmpty() {
-        return tasks.size() == 0;
-    }
-
     /**
      * Marks a task in the task list as done.
      *

@@ -76,10 +76,17 @@ public class Storage {
         Path newPath = Paths.get(currentDir, DEFAULT_STORAGE_FILE);
         File newFile = newPath.toFile();
         try {
-            newFile.createNewFile();
+            boolean hasCreated = newFile.createNewFile();
+            simpleFileCreationCheck(hasCreated);
             this.path = newPath;
         } catch (IOException e) {
             throw new FileIoException("Error creating file: " + path);
+        }
+    }
+
+    private void simpleFileCreationCheck(boolean hasCreated) throws FileIoException {
+        if (!hasCreated) {
+            throw new FileIoException("Unsuccessful in creating storage file !");
         }
     }
 

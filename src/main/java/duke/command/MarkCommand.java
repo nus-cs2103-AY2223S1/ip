@@ -28,18 +28,27 @@ public class MarkCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Storage storage, Ui ui) throws InvalidIndexException, FileIoException {
-        if (indexOfTaskToMark <= 0 || indexOfTaskToMark > tasks.getNumOfRemainingTasks()) {
-            throw new InvalidIndexException();
-        }
+        isValidIndex(tasks);
 
+        Task taskToMark = getTask(tasks);
+        storage.save(tasks);
+        ui.showTask(taskToMark);
+    }
+
+    private Task getTask(TaskList tasks) {
         Task taskToMark;
         if (toMark) {
             taskToMark = tasks.markTask(indexOfTaskToMark);
         } else {
             taskToMark = tasks.unmarkTask(indexOfTaskToMark);
         }
-        storage.save(tasks);
-        ui.showTask(taskToMark);
+        return taskToMark;
+    }
+
+    private void isValidIndex(TaskList tasks) throws InvalidIndexException {
+        if (indexOfTaskToMark <= 0 || indexOfTaskToMark > tasks.getNumOfRemainingTasks()) {
+            throw new InvalidIndexException();
+        }
     }
 
 }

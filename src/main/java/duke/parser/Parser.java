@@ -106,9 +106,7 @@ public class Parser {
      * @throws EmptyDescriptionException throws exception when the description of Todo_task is not given.
      */
     private static Command parseToAddTodoCommand(String[] fullCommandArray) throws EmptyDescriptionException {
-        if (fullCommandArray.length == 1) {
-            throw new EmptyDescriptionException();
-        }
+        simpleDescriptionChecking(fullCommandArray);
         return new AddCommand(new Todo(fullCommandArray[COMMAND_DESCRIPTION]));
     }
 
@@ -119,14 +117,14 @@ public class Parser {
         String descriptionAndDate = fullCommandArray[COMMAND_DESCRIPTION];
         String[] descriptionAndDateArray = descriptionAndDate.split("/");
 
-        if (descriptionAndDateArray.length == 1) {
-            throw new EmptyDateException();
-        }
+        simpleDescriptionAndDateChecking(descriptionAndDateArray);
 
         String description = descriptionAndDateArray[0];
         LocalDate date = parseToLocalDateTime(descriptionAndDateArray[1]);
         return new AddCommand(new Deadline(description, date));
     }
+
+
 
     private static Command parseToAddEventCommand(String[] fullCommandArray) throws IllegalInputException {
 
@@ -135,9 +133,7 @@ public class Parser {
         String descriptionAndDate = fullCommandArray[COMMAND_DESCRIPTION];
         String[] descriptionAndDateArray = descriptionAndDate.split("/");
 
-        if (descriptionAndDateArray.length == 1) {
-            throw new EmptyDateException();
-        }
+        simpleDescriptionAndDateChecking(descriptionAndDateArray);
 
         String description = descriptionAndDateArray[0];
         LocalDate date = parseToLocalDateTime(descriptionAndDateArray[1]);
@@ -175,6 +171,13 @@ public class Parser {
         assert fullCommandArray.length > 0;
         if (fullCommandArray.length == 1) {
             throw new EmptyDescriptionException();
+        }
+    }
+
+    private static void simpleDescriptionAndDateChecking(String[] descriptionAndDateArray) throws EmptyDateException {
+        assert descriptionAndDateArray.length > 0;
+        if (descriptionAndDateArray.length == 1) {
+            throw new EmptyDateException();
         }
     }
 }
