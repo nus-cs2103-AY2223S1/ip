@@ -2,9 +2,10 @@ package sky.command;
 
 import java.io.IOException;
 
-import sky.Storage;
 import sky.TaskList;
 import sky.exception.TextNoMeaningException;
+import sky.storage.History;
+import sky.storage.Storage;
 import sky.task.Task;
 
 /**
@@ -18,11 +19,15 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList taskList, Storage storage) throws TextNoMeaningException, IOException {
+    public String execute(TaskList taskList, Storage storage, History history)
+            throws TextNoMeaningException, IOException {
         try {
             int taskNum = generateTaskNumToMark();
+            assert taskNum >= 0 : "taskNum should not be a negative number as it is used for"
+                    + " array-indexing purposes.";
             Task task = taskList.getTask(taskNum);
             task.markAsDone();
+            history.addHistoryInTime(taskList);
             storage.reWriteDataFile(taskList);
             return generateResponse(task);
         } catch (IndexOutOfBoundsException e) {

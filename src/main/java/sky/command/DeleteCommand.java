@@ -2,9 +2,10 @@ package sky.command;
 
 import java.io.IOException;
 
-import sky.Storage;
 import sky.TaskList;
 import sky.exception.TextNoMeaningException;
+import sky.storage.History;
+import sky.storage.Storage;
 import sky.task.Task;
 
 /**
@@ -18,12 +19,14 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList taskList, Storage storage) throws TextNoMeaningException, IOException {
+    public String execute(TaskList taskList, Storage storage, History history)
+            throws TextNoMeaningException, IOException {
         try {
             int taskNum = generateTaskNumToDelete();
             Task task = taskList.getTask(taskNum);
             taskList.removeTask(task);
             storage.reWriteDataFile(taskList);
+            history.addHistoryInTime(taskList);
             return generateResponse(task, taskList);
         } catch (IndexOutOfBoundsException e) {
             throw new TextNoMeaningException("You have either not entered any number to indicate which task I "

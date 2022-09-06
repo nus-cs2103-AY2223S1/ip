@@ -7,9 +7,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.regex.PatternSyntaxException;
 
-import sky.Storage;
 import sky.TaskList;
 import sky.exception.TextNoMeaningException;
+import sky.storage.History;
+import sky.storage.Storage;
 import sky.task.Deadline;
 import sky.task.Task;
 
@@ -24,9 +25,11 @@ public class DeadlineCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList taskList, Storage storage) throws TextNoMeaningException, IOException {
+    public String execute(TaskList taskList, Storage storage, History history)
+            throws TextNoMeaningException, IOException {
         try {
             String[] arrOfStrings = generateTaskDescriptionAndUserInputBy();
+            assert arrOfStrings.length > 0 : "arrOfStrings should not be empty.";
             String taskDescription = arrOfStrings[0];
             String taskByUserInput = arrOfStrings[1];
             String taskBy = produceDateAndTimeForDeadline(taskByUserInput);
@@ -34,6 +37,7 @@ public class DeadlineCommand extends Command {
             taskList.addTask(task);
             // Add task into data file.
             storage.append(task.toString());
+            history.addHistoryInTime(taskList);
             return generateResponse(task, taskList);
         } catch (IndexOutOfBoundsException e) {
             throw new TextNoMeaningException("You have either not entered any text after typing deadline, "

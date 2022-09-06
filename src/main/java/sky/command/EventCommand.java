@@ -8,9 +8,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.regex.PatternSyntaxException;
 
-import sky.Storage;
 import sky.TaskList;
 import sky.exception.TextNoMeaningException;
+import sky.storage.History;
+import sky.storage.Storage;
 import sky.task.Event;
 import sky.task.Task;
 
@@ -25,9 +26,11 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList taskList, Storage storage) throws TextNoMeaningException, IOException {
+    public String execute(TaskList taskList, Storage storage, History history)
+            throws TextNoMeaningException, IOException {
         try {
             String[] arrOfStrings = generateTaskDescriptionAndUserInputDuration();
+            assert arrOfStrings.length > 0 : "arrOfStrings should not be empty.";
             String taskDescription = arrOfStrings[0];
             String taskDurationUserInput = arrOfStrings[1];
             String taskDuration = produceDateAndTimeForEvent(taskDurationUserInput);
@@ -35,6 +38,7 @@ public class EventCommand extends Command {
             taskList.addTask(task);
             // Add task into data file
             storage.append(task.toString());
+            history.addHistoryInTime(taskList);
             return generateResponse(task, taskList);
         } catch (IndexOutOfBoundsException e) {
             throw new TextNoMeaningException("You have either not entered any text after typing event, "

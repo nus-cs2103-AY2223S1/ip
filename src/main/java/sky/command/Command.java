@@ -2,9 +2,10 @@ package sky.command;
 
 import java.io.IOException;
 
-import sky.Storage;
 import sky.TaskList;
 import sky.exception.TextNoMeaningException;
+import sky.storage.History;
+import sky.storage.Storage;
 
 /**
  * The abstract Command class deals with executing tasks involving TaskList, Ui, and Storage.
@@ -19,7 +20,8 @@ public abstract class Command {
      * @return Output of the command in the form of a String.
      * @throws TextNoMeaningException If the command is an invalid one.
      */
-    public abstract String execute(TaskList taskList, Storage storage) throws TextNoMeaningException, IOException;
+    public abstract String execute(TaskList taskList, Storage storage, History history)
+            throws TextNoMeaningException, IOException;
 
     /**
      * Returns a boolean indicating if the command is an exit one.

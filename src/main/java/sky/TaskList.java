@@ -92,4 +92,23 @@ public class TaskList {
         }
         return s;
     }
+
+    /**
+     * Makes a copy of the current task list to avoid aliasing.
+     *
+     * @return The copied tasklist.
+     */
+    public TaskList makeACopy() {
+        List<Task> copiedList = new ArrayList<>();
+        // Makes a deep copy of every item in the tasklist.
+        for (int i = 0; i < this.taskList.size(); i++) {
+            Task task = this.taskList.get(i);
+            Task copiedTask = task.makeACopy();
+            if (task.getIsDone()) {
+                copiedTask.markAsDone();
+            }
+            copiedList.add(copiedTask);
+        }
+        return new TaskList(copiedList);
+    }
 }
