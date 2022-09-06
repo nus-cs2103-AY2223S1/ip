@@ -14,17 +14,16 @@ import duke.tasks.Task;
  */
 public class Ui {
 
-    private final Scanner scanner;
-    private static final String WELCOME_MESSAGE = "Hello! I'm Duke\nWhat can I do for you? ^_^";
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy");
     private static final String EXIT_MESSAGE = "Bye. Hope to see you again soon :D";
     private static final String INVALID_MESSAGE = "I don't know what this means :(";
+    private static final String MARK_TASK_FORMAT = "Nice! I have marked this task as done:\n\n%s";
     private static final String NO_TASKS_ADDED = "There are no tasks added!";
-    private final static String NO_MATCHING_TASKS = "No matching tasks!";
-    private final static String MARK_TASK_FORMAT = "Nice! I have marked this task as done:\n\n%s";
-    private final static String UNMARK_TASK_FORMAT = "Okay! I have marked this task as not done:\n\n%s";
-    private final static String NUMBER_OF_TASKS_LEFT_FORMAT = "\n\nNow you have %d %s in the list!";
-    private final static DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy");
-
+    private static final String NO_MATCHING_TASKS = "No matching tasks!";
+    private static final String NUMBER_OF_TASKS_LEFT_FORMAT = "\n\nNow you have %d %s in the list!";
+    private static final String UNMARK_TASK_FORMAT = "Okay! I have marked this task as not done:\n\n%s";
+    private static final String WELCOME_MESSAGE = "Hello! I'm Duke\nWhat can I do for you? ^_^";
+    private final Scanner scanner;
     /**
      * Constructs a new Ui
      */
@@ -153,7 +152,9 @@ public class Ui {
         }
 
         int len = list.size();
-        String header = String.format("Your %s for %s include:\n", len > 1 ? "tasks" : "task", date.format(DATE_FORMAT));
+        String header = String.format("Your %s for %s include:\n",
+                len > 1 ? "tasks" : "task",
+                date.format(DATE_FORMAT));
         StringBuilder stringBuilder = new StringBuilder(header);
 
         for (int i = 0; i < len; i++) {

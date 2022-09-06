@@ -1,9 +1,10 @@
 package duke;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,7 @@ import duke.data.exception.DukeException;
 import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.ToDo;
+import duke.ui.Ui;
 
 
 public class TaskListTest {
@@ -60,18 +62,21 @@ public class TaskListTest {
         TaskList t = new TaskList(new ArrayList<>());
         Event event = new Event("yoga", "12/12/2022");
         t.addToList(event);
-        String expected = "\tHere are the tasks in your list :D" + "\n\t1. " + event;
-        assertEquals(expected, t.list());
+        Ui ui = new Ui();
+        String expected = "Here is the task in your list :D\n\n" + "1. " + event;
+        assertEquals(expected, ui.printList(t.list()));
     }
 
     @Test
-    public void getTasks_twoTasksWithDifferentDates_success() {
+    public void list_twoTasksWithDifferentDates_success() {
         TaskList t = new TaskList(new ArrayList<>());
         Event event = new Event("yoga", "12/12/2022");
         Deadline deadline = new Deadline("submit report", "13/12/2022");
+        LocalDate date = LocalDate.parse("13/12/2022", DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        Ui ui = new Ui();
         t.addToList(event);
         t.addToList(deadline);
-        String expected = "\tYour tasks for today include:" + String.format("\n\t1. %s", deadline);
-        assertEquals(expected, t.list("13/12/2022"));
+        String expected = "Your task for 13 Dec 2022 include:" + String.format("\n\n1. %s", deadline);
+        assertEquals(expected, ui.printList(t.list("13/12/2022"), date));
     }
 }
