@@ -18,6 +18,7 @@ import duke.tasks.Todo;
  */
 public class Storage {
     private static final String FILE_PATH = "data/tasklist.txt";
+    private static final String INVALID_STORAGE_DATA = "Invalid storage data";
 
     private void createFile(File file) throws StorageException {
         new File("data").mkdir();
@@ -80,6 +81,7 @@ public class Storage {
             while (sc.hasNext()) {
                 String line = sc.nextLine();
                 String[] splitInputArray = line.split(";", 4);
+                assert splitInputArray.length == 4 : INVALID_STORAGE_DATA;
                 String type = splitInputArray[0];
                 String status = splitInputArray[1];
                 String description = splitInputArray[2];
