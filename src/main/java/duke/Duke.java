@@ -43,7 +43,7 @@ public class Duke {
             try {
                 String input = this.ui.input();
                 Command command = Parser.parse(input);
-                command.execute(this.ui, this.storage, this.tasks);
+                System.out.println(command.execute(this.ui, this.storage, this.tasks));
                 isExit = command.isExit();
             } catch (DukeException e) {
                 this.ui.printException(e);

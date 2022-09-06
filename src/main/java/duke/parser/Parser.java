@@ -86,7 +86,10 @@ public class Parser {
         if (args.equals("")) {
             return new ListCommand();
         } else {
-            isDateValid(args);
+            if (!isDateValid(args)) {
+                throw new DukeException("Invalid input!");
+            }
+
             return new ListCommand(args);
         }
     }
