@@ -41,10 +41,13 @@ public class DeadlineCommand extends Command {
     public void run(TaskList taskList, Response builder) throws DukeException {
         try {
             if (isValidDeadline()) {
+                assert segments.length == 2 : "A deadline task follows the format 'deadline task /by YYYY-MM-DD'";
                 String time = segments[1].strip();
                 LocalDate date = LocalDate.parse(time);
                 Deadline deadline = new Deadline(segments[0], date);
                 taskList.createTask(deadline, builder);
+            } else {
+                throw new DukeException("Please follow the format \n'deadline task /by YYYY-MM-DD'!");
             } else {
                 throw new DukeException(DEADLINE_ERROR_MESSAGE);
             }

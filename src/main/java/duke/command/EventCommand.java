@@ -41,6 +41,7 @@ public class EventCommand extends Command {
     public void run(TaskList taskList, Response builder) throws DukeException {
         try {
             if (isValidEvent()) {
+                assert segments.length == 2 : "A event task follows the format 'event task /at YYYY-MM-DD'";
                 String time = segments[1].strip();
                 LocalDate date = LocalDate.parse(time);
                 Event event = new Event(segments[0], date);

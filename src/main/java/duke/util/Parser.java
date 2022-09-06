@@ -27,9 +27,11 @@ public class Parser {
      */
     public static Command parseCommand(String input) throws DukeException {
         String[] segments = input.split(" ", 2);
+        String prefix = segments[0];
         try {
-            switch (segments[0]) {
+            switch (prefix) {
             case "list":
+                assert segments.length == 1 : "No further input after 'list'";
                 return new ListCommand();
             //Fallthrough
 
@@ -59,8 +61,10 @@ public class Parser {
 
             case "find":
                 return new FindCommand(segments[1]);
+            //Fallthrough
 
             case "bye":
+                assert segments.length == 1 : "No further input after 'bye'";
                 return new ByeCommand();
             //Fallthrough
 
@@ -69,7 +73,7 @@ public class Parser {
             //Fallthrough
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException("Description of a " + segments[0] + " cannot be empty");
+            throw new DukeException("Description of a " + prefix + " cannot be empty");
         }
     }
 }
