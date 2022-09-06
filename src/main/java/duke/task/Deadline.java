@@ -6,8 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Represents a deadline task. A Deadline object contains the description and deadline task is due by.
  */
-public class Deadline extends Task {
-    protected LocalDateTime by;
+public class Deadline extends TaskWithDate {
 
     /**
      * Constructor for Deadline
@@ -15,12 +14,7 @@ public class Deadline extends Task {
      * @param by LocalDateTime object giving dateline of task
      */
     public Deadline(String description, LocalDateTime by) {
-        super(description);
-        this.by = by;
-    }
-
-    private String dateToString() {
-        return by.format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm"));
+        super(description, by);
     }
 
     /**
@@ -28,7 +22,7 @@ public class Deadline extends Task {
      */
     @Override
     public String textFormat() {
-        return "D|" + (isDone ? 1 : 0) + "|" + description + "|" + by;
+        return "D|" + (isDone ? 1 : 0) + "|" + description + "|" + getTiming();
     }
 
     /**

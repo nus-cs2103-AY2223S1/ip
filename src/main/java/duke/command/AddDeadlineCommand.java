@@ -8,6 +8,7 @@ import duke.main.Ui;
 import duke.task.Deadline;
 import duke.task.Task;
 import duke.task.TaskList;
+import duke.task.TaskWithDate;
 
 /**
  * Represents a command to add deadlines. Command contains the description and when task is due.
@@ -35,7 +36,7 @@ public class AddDeadlineCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        Task task = new Deadline(description, by);
+        Deadline task = new Deadline(description, by);
         tasks.add(task);
         ui.addSuccess(task, tasks);
         storage.save(tasks);
