@@ -73,6 +73,8 @@ public class Storage {
             Scanner file = new Scanner(new File(filePath));
             while (file.hasNextLine()) {
                 List<String> line = Arrays.asList(file.nextLine().split(",", -1));
+                assert !line.isEmpty() : "Loaded an empty line from file";
+
                 final Task newTask;
                 switch (line.get(0)) {
                 case Task.typeCode:
