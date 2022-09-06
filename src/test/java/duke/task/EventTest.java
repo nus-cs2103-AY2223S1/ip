@@ -23,7 +23,7 @@ public class EventTest {
 
     @Test
     public void getOtherData_returnCorrectTime() {
-        assertEquals("2022-08-27T16:30", event.getOtherData());
+        assertEquals("2022-08-27T16:30", event.getTimeStr());
     }
 
     @Test

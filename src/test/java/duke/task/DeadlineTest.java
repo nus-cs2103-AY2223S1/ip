@@ -23,7 +23,7 @@ public class DeadlineTest {
 
     @Test
     public void getOtherData_returnCorrectTime() {
-        assertEquals("2022-08-25T18:00", deadline.getOtherData());
+        assertEquals("2022-08-25T18:00", deadline.getTimeStr());
     }
 
     @Test

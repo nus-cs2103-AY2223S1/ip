@@ -7,12 +7,13 @@ public enum DukeCommand {
     EXIT("bye"),
     LIST("list"),
     FIND("find"),
+    SORT("sortby"),
     MARK("mark"),
     UNMARK("unmark"),
     DELETE("delete"),
-    TODO("todo"),
     DEADLINE("deadline"),
     EVENT("event"),
+    TODO("todo"),
     UNKNOWN("unknown");
 
     private final String command;

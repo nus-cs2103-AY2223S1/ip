@@ -15,7 +15,7 @@ public class TodoTest {
 
     @Test
     public void getOtherData_returnNothing() {
-        assertEquals("", todo.getOtherData());
+        assertEquals("", todo.getTimeStr());
     }
 
     @Test

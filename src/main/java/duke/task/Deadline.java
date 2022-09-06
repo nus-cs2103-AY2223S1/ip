@@ -9,16 +9,14 @@ import duke.DukeCommand;
  * A Task which is a Deadline.
  */
 public class Deadline extends Task {
-    protected LocalDateTime by;
-
     /**
      * Constructor for a Deadline.
+     *
      * @param description The description of the Deadline.
-     * @param by The deadline.
+     * @param time The deadline.
      */
-    public Deadline(String description, LocalDateTime by) {
-        super(description);
-        this.by = by;
+    public Deadline(String description, LocalDateTime time) {
+        super(description, time);
     }
 
     @Override
@@ -27,13 +25,8 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String getOtherData() {
-        return this.by.toString();
-    }
-
-    @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy h:mm a");
-        return "[D]" + super.toString() + " (by: " + by.format(formatter) + ")";
+        return "[D]" + super.toString() + " (by: " + time.format(formatter) + ")";
     }
 }
