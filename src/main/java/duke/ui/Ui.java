@@ -21,7 +21,6 @@ public class Ui {
      * Fetches the help page's URL
      * @return String help page URL
      */
-
     public static final String displayHelpURL() {
         return HELP_PAGE_URL;
     }
@@ -45,7 +44,7 @@ public class Ui {
      * Used when index is out of bounds for add/delete
      * @return formatted Out of bounds message string
      */
-    public static String outOfBoundsMessage(int upperLimit, int index) {
+    public static String displayBoundaryWarning(int upperLimit, int index) {
         return "Sorry, you tried to access task " + index +
                 " while you had " + upperLimit + " tasks in the list \n" +
                 "Please " + "access " + " the tasks in their appropriate range.";

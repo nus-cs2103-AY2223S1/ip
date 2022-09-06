@@ -53,7 +53,7 @@ public class TaskList {
             Storage.save(taskList);
             return display;
         } catch (IndexOutOfBoundsException e) {
-            return e + "\n" + Ui.outOfBoundsMessage(taskList.size(), taskIndex);
+            return e + "\n" + Ui.displayBoundaryWarning(taskList.size(), taskIndex);
         }
     }
 
@@ -73,7 +73,7 @@ public class TaskList {
             Storage.save(taskList);
             return display;
         } catch (IndexOutOfBoundsException e) {
-            return e + "\n" + Ui.outOfBoundsMessage(taskList.size(), taskIndex);
+            return e + "\n" + Ui.displayBoundaryWarning(taskList.size(), taskIndex);
         }
     }
 
@@ -106,7 +106,7 @@ public class TaskList {
             Storage.save(taskList);
             return display;
         } catch (IndexOutOfBoundsException e) {
-            return e + "\n" + Ui.outOfBoundsMessage(taskList.size(), taskIndex);
+            return e + "\n" + Ui.displayBoundaryWarning(taskList.size(), taskIndex);
         }
     }
 
