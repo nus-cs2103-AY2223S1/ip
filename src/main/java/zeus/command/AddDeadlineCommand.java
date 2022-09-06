@@ -57,7 +57,7 @@ public class AddDeadlineCommand extends Command {
             deadline = new Deadline(description, this.localDate);
         }
         taskList.addTask(deadline);
-        ui.printAddTask(deadline, taskList.size());
+        ui.printAddTask(deadline, taskList.getSize());
         storage.saveTasksToDisk(taskList.getTaskList());
     }
 }

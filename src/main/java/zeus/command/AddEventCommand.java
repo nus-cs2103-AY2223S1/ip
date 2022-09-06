@@ -10,7 +10,7 @@ import zeus.task.Event;
 
 
 /**
- * Command that handles adding Deadline.
+ * Command that handles adding Event.
  */
 public class AddEventCommand extends Command {
 
@@ -57,7 +57,7 @@ public class AddEventCommand extends Command {
             e = new Event(description, this.datetime);
         }
         taskList.addTask(e);
-        ui.printAddTask(e, taskList.size());
+        ui.printAddTask(e, taskList.getSize());
         storage.saveTasksToDisk(taskList.getTaskList());
     }
 }

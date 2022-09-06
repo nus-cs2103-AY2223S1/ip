@@ -10,17 +10,17 @@ import zeus.task.Task;
  */
 public class TaskList {
 
-    private ArrayList<Task> taskList;
+    private ArrayList<Task> tasks;
 
     /**
      * Constructor of Tasklist class.
      */
     public TaskList() {
-        this.taskList = new ArrayList<>();
+        this.tasks = new ArrayList<>();
     }
 
-    public TaskList(ArrayList<Task> taskList) {
-        this.taskList = taskList;
+    public TaskList(ArrayList<Task> tasks) {
+        this.tasks = tasks;
     }
 
     /**
@@ -28,8 +28,8 @@ public class TaskList {
      *
      * @return size of task list
      */
-    public int size() {
-        return taskList.size();
+    public int getSize() {
+        return tasks.size();
     }
 
     /**
@@ -39,8 +39,8 @@ public class TaskList {
      * @return Task at the specific index in the task list
      */
     public Task getTask(int idx) {
-        assert (idx >= 0) && (idx < taskList.size());
-        return this.taskList.get(idx);
+        assert (idx >= 0) && (idx < tasks.size());
+        return this.tasks.get(idx);
     }
 
     /**
@@ -49,7 +49,7 @@ public class TaskList {
      * @return an ArrayList containing the tasks
      */
     public ArrayList<Task> getTaskList() {
-        return this.taskList;
+        return this.tasks;
     }
 
     /**
@@ -58,7 +58,7 @@ public class TaskList {
      * @param task Task to be added to task list
      */
     public void addTask(Task task) {
-        this.taskList.add(task);
+        this.tasks.add(task);
     }
 
     /**
@@ -67,8 +67,8 @@ public class TaskList {
      * @param idx Index of Task to be removed
      */
     public void removeTask(int idx) {
-        assert (idx >= 0) && (idx < taskList.size());
-        taskList.remove(idx);
+        assert (idx >= 0) && (idx < tasks.size());
+        tasks.remove(idx);
     }
 
     /**
@@ -76,8 +76,8 @@ public class TaskList {
      * @param idx Index of target Task
      */
     public void setTaskDone(int idx) {
-        assert (idx >= 0) && (idx < taskList.size());
-        this.taskList.get(idx).markAsDone();
+        assert (idx >= 0) && (idx < tasks.size());
+        this.tasks.get(idx).markAsDone();
     }
 
     /**
@@ -86,23 +86,23 @@ public class TaskList {
      * @param idx index of target Task
      */
     public void setTaskNotDone(int idx) {
-        assert (idx >= 0) && (idx < taskList.size());
-        this.taskList.get(idx).markAsNotDone();
+        assert (idx >= 0) && (idx < tasks.size());
+        this.tasks.get(idx).markAsNotDone();
     }
 
     /**
      * Returns list of Tasks that match user's search input.
      *
-     * @param s User search input
+     * @param stringToMatch User search input
      * @return ArrayList of matching tasks
      */
-    public ArrayList<Task> findMatchingTasks(String s) {
-        ArrayList<Task> matching = new ArrayList<>();
-        for (Task t : this.taskList) {
-            if (t.getDescription().contains(s)) {
-                matching.add(t);
+    public ArrayList<Task> findMatchingTasks(String stringToMatch) {
+        ArrayList<Task> matchingTasks = new ArrayList<>();
+        for (Task task : this.tasks) {
+            if (task.getDescription().contains(stringToMatch)) {
+                matchingTasks.add(task);
             }
         }
-        return matching;
+        return matchingTasks;
     }
 }

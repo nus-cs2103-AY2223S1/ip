@@ -16,7 +16,7 @@ public class TaskNotDoneCommand extends Command {
     /**
      * Constructor for TaskNotDoneCommand.
      *
-     * @param idx
+     * @param idx Index of task in task list to be marked as not done
      */
     public TaskNotDoneCommand(int idx) {
         this.idx = idx;
@@ -32,7 +32,7 @@ public class TaskNotDoneCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws ZeusException {
-        if (this.idx < 0 || this.idx >= taskList.size()) {
+        if (this.idx < 0 || this.idx >= taskList.getSize()) {
             throw new ZeusException("☹ OOPS!!! Invalid index entered");
         }
         taskList.setTaskNotDone(this.idx);

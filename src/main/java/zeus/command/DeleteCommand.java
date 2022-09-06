@@ -33,12 +33,12 @@ public class DeleteCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws ZeusException {
-        if (this.idx < 0 || this.idx >= taskList.size()) {
+        if (this.idx < 0 || this.idx >= taskList.getSize()) {
             throw new ZeusException("☹ OOPS!!! Invalid index entered");
         }
-        Task t = taskList.getTask(this.idx);
+        Task task = taskList.getTask(this.idx);
         taskList.removeTask(this.idx);
-        ui.printDeleteTask(t, taskList.size());
+        ui.printDeleteTask(task, taskList.getSize());
         storage.saveTasksToDisk(taskList.getTaskList());
     }
 }

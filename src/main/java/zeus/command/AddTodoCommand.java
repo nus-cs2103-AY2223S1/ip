@@ -33,7 +33,7 @@ public class AddTodoCommand extends Command {
     public void execute(TaskList taskList, Ui ui, Storage storage) throws ZeusException {
         Todo todo = new Todo(description);
         taskList.addTask(todo);
-        ui.printAddTask(todo, taskList.size());
+        ui.printAddTask(todo, taskList.getSize());
         storage.saveTasksToDisk(taskList.getTaskList());
     }
 }
