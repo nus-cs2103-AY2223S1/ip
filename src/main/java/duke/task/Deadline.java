@@ -8,26 +8,16 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
 
-    protected LocalDate by;
+    protected LocalDate date;
 
     /**
      * Constructor for Deadline.
      *
      * @param description The description of the task.
-     * @param by The deadline of the task.
+     * @param date The deadline of the task.
      */
-    public Deadline(String description, String by) {
-        super(description);
-        this.by = processDate(by);
-    }
-
-    /**
-     * Returns the deadline of the task.
-     *
-     * @return The LocalDate format of the task's deadline.
-     */
-    public LocalDate getBy() {
-        return this.by;
+    public Deadline(String description, String date) {
+        super(description, date);
     }
 
     /**
@@ -38,6 +28,6 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: "
-                + by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+                + super.getDate().format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }

@@ -97,10 +97,10 @@ public class Storage {
                 writer.write("T | " + status + " | " + curr.getDescription() + System.lineSeparator());
             } else if (curr instanceof Deadline) {
                 writer.write("D | " + status + " | " + curr.getDescription() + " | "
-                        + ((Deadline) curr).getBy().toString() + System.lineSeparator());
+                        + ((Deadline) curr).getDate().toString() + System.lineSeparator());
             } else if (curr instanceof Event) {
                 writer.write("E | " + status + " | " + curr.getDescription() + " | "
-                        + ((Event) curr).getAt().toString() + System.lineSeparator());
+                        + ((Event) curr).getDate().toString() + System.lineSeparator());
             }
         }
         writer.close();

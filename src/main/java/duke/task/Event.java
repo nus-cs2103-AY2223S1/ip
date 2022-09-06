@@ -8,26 +8,16 @@ import java.time.format.DateTimeFormatter;
  */
 public class Event extends Task {
 
-    protected LocalDate at;
+    protected LocalDate date;
 
     /**
      * Constructor for Event.
      *
      * @param description The description of the task.
-     * @param at The task's event time.
+     * @param date The task's event time.
      */
-    public Event(String description, String at) {
-        super(description);
-        this.at = processDate(at);
-    }
-
-    /**
-     * Returns the time of the event.
-     *
-     * @return The LocalDate format of the task's event time.
-     */
-    public LocalDate getAt() {
-        return this.at;
+    public Event(String description, String date) {
+        super(description, date);
     }
 
     /**
@@ -38,6 +28,6 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: "
-                + at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+                + super.getDate().format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }

@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import duke.task.Task;
 
@@ -10,6 +11,8 @@ import duke.task.Task;
 public class TaskList {
     private static final int INITIAL_SIZE = 0;
     private static final int MAX_TASKS = 100;
+    private static final Comparator<Task> CHRONOLOGICAL = (o1, o2) -> o1.getDate().compareTo(o2.getDate());
+    private static final Comparator<Task> REVERSE_CHRONOLOGICAL = (o1, o2) -> o2.getDate().compareTo(o1.getDate());
     private ArrayList<Task> tasks;
     private int size;
 
@@ -74,6 +77,14 @@ public class TaskList {
         Task deleted = tasks.remove(i);
         this.size--;
         return deleted;
+    }
+
+    public void sortChrono() {
+        this.tasks.sort(CHRONOLOGICAL);
+    }
+
+    public void sortReverseChrono() {
+        this.tasks.sort(REVERSE_CHRONOLOGICAL);
     }
 
 }

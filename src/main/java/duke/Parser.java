@@ -1,13 +1,6 @@
 package duke;
 
-import duke.command.AddCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.ExitCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.UnmarkCommand;
+import duke.command.*;
 
 /**
  * Parser deals with making sense of the user command.
@@ -17,6 +10,7 @@ public class Parser {
     private static final String UNMARK_ERROR = "OOPS!!! This unmark command is invalid.";
     private static final String DELETE_ERROR = "OOPS!!! This delete command is invalid.";
     private static final String FIND_ERROR = "OOPS!!! This find command is invalid.";
+    private static final String SORT_ERROR = "OOPS!!! This sort command is invalid. (sort [chrono / rchrono])";
     private static final String EMPTY_DESC_ERROR = "OOPS!!! The description of this task cannot be empty.";
     private static final String UNKNOWN_COMMAND = "OOPS!!! I'm sorry, but I don't know what that means :-(";
     private static final String INVALID_COMMAND = "OOPS!!! This command is invalid";
@@ -52,6 +46,9 @@ public class Parser {
             case "find":
                 throw new DukeException(FIND_ERROR);
 
+            case "sort":
+                throw new DukeException(SORT_ERROR);
+
             default:
                 if (command.equals("todo") || command.equals("deadline") || command.equals("event")) {
                     throw new DukeException(EMPTY_DESC_ERROR);
@@ -81,6 +78,12 @@ public class Parser {
                 case "find":
                     assert !details.equals("") && !details.equals(" ") : "keyword should not be empty";
                     return new FindCommand(details);
+
+                case "sort":
+                    assert details.equalsIgnoreCase("chrono")
+                            || details.equalsIgnoreCase("rChrono")
+                            : "Sort specification should be chrono or rChrono";
+                    return new SortCommand(details);
 
                 default:
                     return new AddCommand(fullCommand);

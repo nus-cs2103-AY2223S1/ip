@@ -14,14 +14,16 @@ public class Task {
     private static final String DATE_ERROR = "OOPS!!! This date format is invalid. (YYYY-MM-DD)";
     protected String description;
     protected boolean isDone;
+    private LocalDate date;
 
     /**
      * Constructor for Task.
      *
      * @param description The description of the task.
      */
-    public Task(String description) {
+    public Task(String description, String date) {
         this.description = description;
+        this.date = processDate(date);
         this.isDone = false;
     }
 
@@ -42,6 +44,16 @@ public class Task {
     public String getDescription() {
         assert !description.equals("") : "description cannot be empty";
         return this.description;
+    }
+
+    /**
+     * Returns the date of the task.
+     *
+     * @return Date of the task.
+     */
+    public LocalDate getDate() {
+        assert date != null : "date cannot be null";
+        return this.date;
     }
 
     /**
