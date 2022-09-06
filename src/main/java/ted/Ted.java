@@ -17,7 +17,7 @@ public class Ted {
 
     private Storage storage;
 
-    private UiController ui;
+    private UiController uiController;
 
     /**
      * To construct a Ted instance
@@ -27,8 +27,12 @@ public class Ted {
         this.storage = storage;
     }
 
-    public void setUi(UiController ui) {
-        this.ui = ui;
+    /**
+     * Set UI controller
+     * @param ui
+     */
+    public void setUiController(UiController ui) {
+        this.uiController = ui;
     }
 
     /**
@@ -36,12 +40,12 @@ public class Ted {
      * load tasks from storage
      */
     public void startup() {
-        this.ui.showGreeting();
+        this.uiController.showGreeting();
         try {
             this.tasks = storage.loadTasks();
-            this.ui.showTaskLoadSuccess(this.tasks.size());
+            this.uiController.showTaskLoadSuccess(this.tasks.size());
         } catch (InvalidEncodingException e) {
-            this.ui.showTaskLoadError();
+            this.uiController.showTaskLoadError();
         }
     }
 
@@ -53,14 +57,10 @@ public class Ted {
     public void handleInput(String input) {
         try {
             Command command = Parser.parse(input);
-            command.run(tasks, ui, storage);
+            command.run(tasks, uiController, storage);
         } catch (TedException e) {
-            this.ui.showInputError(e);
+            this.uiController.showInputError(e);
         }
-    }
-
-    public String getResponse(String input) {
-        return "Test";
     }
 
     /**

@@ -28,7 +28,7 @@ public class Main extends Application {
             MainWindow mainWindow = fxmlLoader.<MainWindow>getController();
 
             // Ted <-> UiController <-> MainWindow
-            ted.setUi(uiController); // Ted -> UiController
+            ted.setUiController(uiController); // Ted -> UiController
             uiController.setMainWindow(mainWindow); // UiController -> MainWindow
             uiController.setTed(ted); // UiController -> Ted
             mainWindow.setUi(uiController); // MainWindow -> UiController
