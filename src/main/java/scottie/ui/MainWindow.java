@@ -2,6 +2,7 @@ package scottie.ui;
 
 import java.util.Objects;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -17,6 +18,7 @@ import scottie.Scottie;
 public class MainWindow extends AnchorPane implements Ui {
     private static final String WELCOME_MESSAGE = "Hello there! I'm Scottie!\n"
             + "How can I help you?";
+    private static final int END_PROGRAM_DELAY = 2000;
 
     @FXML
     private ScrollPane scrollPane;
@@ -28,6 +30,7 @@ public class MainWindow extends AnchorPane implements Ui {
     private Button sendButton;
 
     private Scottie scottie;
+    private boolean isProgramEnded = false;
 
     private final Image userImage = new Image(
             Objects.requireNonNull(this.getClass().getResourceAsStream("/images/user.png")));
@@ -51,6 +54,10 @@ public class MainWindow extends AnchorPane implements Ui {
      */
     @FXML
     private void handleUserInput() {
+        if (this.isProgramEnded) {
+            // Ignore inputs from user while program is about to be closed.
+            return;
+        }
         String input = this.userInput.getText();
         this.dialogContainer.getChildren().add(DialogBox.getUserDialog(input, this.userImage));
         this.userInput.clear();
@@ -103,5 +110,21 @@ public class MainWindow extends AnchorPane implements Ui {
             i++;
         }
         this.showMessage(sb.toString());
+    }
+
+    /**
+     * Closes the GUI after a short delay.
+     */
+    @Override
+    public void endProgram() {
+        this.isProgramEnded = true;
+        new Thread(() -> {
+            try {
+                Thread.sleep(END_PROGRAM_DELAY);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Platform.exit();
+        }).start();
     }
 }
