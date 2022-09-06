@@ -58,6 +58,7 @@ public class TaskList implements Serializable {
      * @return List of tasks that contain the substring in title.
      */
     public List<Task> findBySearchString(String searchString) {
+        assert !searchString.isEmpty();
         List<Task> results = new ArrayList<>();
         for (Task t : tasks) {
             if (t.contains(searchString)) {

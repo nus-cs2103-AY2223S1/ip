@@ -19,6 +19,8 @@ public class Deadline extends Task {
     public Deadline(String title, boolean done, LocalDate dateBy) {
         super(title, done);
         this.dateBy = dateBy;
+        assert !title.isEmpty();
+        assert dateBy != null;
     }
 
     @Override
