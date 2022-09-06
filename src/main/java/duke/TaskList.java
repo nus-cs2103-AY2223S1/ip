@@ -21,11 +21,12 @@ public class TaskList {
      * This method prints out all the
      * tasks in the user's task list.
      */
-    public void printList() {
-        System.out.println("Here are the tasks in your list:");
+    public String printList() {
+        String str = "Here are the tasks in your list:\n";
         for (int i = 1; i <= taskList.size(); i++) {
-            System.out.println(i + "." + taskList.get(i - 1));
+            str += i + "." + taskList.get(i - 1) + "\n";
         }
+        return str;
     }
 
     /**

@@ -13,16 +13,15 @@ import java.util.Scanner;
  */
 
 public class Duke {
-
+static final String filePath = "tasks.txt";
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
 
     /**
      * Constructor for Duke program
-     * @param filePath File path to txt file that stores task list data
      */
-    public Duke(String filePath) {
+    public Duke() {
         this.storage = new Storage(filePath);
         this.taskList = new TaskList(storage.load());
         this.ui = new Ui();
@@ -39,10 +38,10 @@ public class Duke {
         ui.greet();
         ui.start(sc, this.storage, this.taskList);
     }
-    public static void main(String[] args) {
-        new Duke("tasks.txt").run();
+
+    protected String getResponse(String input) {
+        String str = Parser.parseCommand(input,this.taskList,this.ui);
+        this.storage.save(this.taskList.getList());
+        return str;
     }
-
-
-
 }

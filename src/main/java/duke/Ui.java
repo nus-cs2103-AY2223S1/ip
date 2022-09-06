@@ -16,16 +16,16 @@ public class Ui {
      * This method prints out the greeting message
      * when the user starts the Duke program
      */
-    public void greet() {
-        System.out.print("Hello I'm duke.Duke\nWhat can I do for you?\n");
+    public String greet() {
+        return "Hello I'm duke.Duke\nWhat can I do for you?\n";
     }
 
     /**
      * This method prints out the quitting message
      * when the user exits the Duke program
      */
-    public void quit() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String quit() {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
@@ -51,8 +51,8 @@ public class Ui {
      * in the user's task list
      * @param tasks List of tasks to be printed out
      */
-    public void listOutTasks(TaskList tasks) {
-        tasks.printList();
+    public String listOutTasks(TaskList tasks) {
+        return tasks.printList();
     }
 
     /**
@@ -60,9 +60,9 @@ public class Ui {
      * prints out a message
      * @param taskToMark The task from the list to be marked
      */
-    public void markTask(Task taskToMark) {
+    public String markTask(Task taskToMark) {
         taskToMark.mark();
-        System.out.println("Nice! I've marked this task as done:\n  " + taskToMark);
+        return "Nice! I've marked this task as done:\n  " + taskToMark;
     }
 
     /**
@@ -70,9 +70,9 @@ public class Ui {
      * prints out a message
      * @param taskToMark The task from the list to be unmarked
      */
-    public void unmarkTask(Task taskToMark) {
+    public String unmarkTask(Task taskToMark) {
         taskToMark.unmark();
-        System.out.println("OK, I've marked this task as not done yet:\n  " + taskToMark);
+        return "OK, I've marked this task as not done yet:\n  " + taskToMark;
     }
 
     /**
@@ -82,10 +82,10 @@ public class Ui {
      * @param taskList TaskList of the user
      * @param taskToAdd The new task to be added to user's task list
      */
-    public void addTask(TaskList taskList, Task taskToAdd) {
+    public String addTask(TaskList taskList, Task taskToAdd) {
         taskList.addTask(taskToAdd);
-        System.out.println("Got it. I've added this task:\n  " + taskToAdd + "\nNow you have "
-                + taskList.getSize() + " tasks in the list.");
+        return "Got it. I've added this task:\n  " + taskToAdd + "\nNow you have "
+                + taskList.getSize() + " tasks in the list.";
     }
 
     /**
@@ -95,10 +95,10 @@ public class Ui {
      * @param taskList TaskList of the user
      * @param taskToDelete The task from the user's task list to be deleted
      */
-    public void deleteTask(TaskList taskList, Task taskToDelete) {
+    public String deleteTask(TaskList taskList, Task taskToDelete) {
         taskList.deleteTask(taskToDelete);
-        System.out.println("Noted. I've removed this task:\n  " + taskToDelete + "\nNow you have "
-                + taskList.getSize() + " tasks in the list");
+        return "Noted. I've removed this task:\n  " + taskToDelete + "\nNow you have "
+                + taskList.getSize() + " tasks in the list";
     }
 
     /**
@@ -106,10 +106,11 @@ public class Ui {
      * with the user's search keyword
      * @param taskListWithKeyword List of tasks containing user's search keyword
      */
-    public void printTasksWithKeyword(List<Task> taskListWithKeyword) {
-        System.out.println("Here are the matching tasks in your list:");
+    public String printTasksWithKeyword(List<Task> taskListWithKeyword) {
+        String str = "Here are the matching tasks in your list:\n";
         for (int i = 1; i <= taskListWithKeyword.size(); i++) {
-            System.out.println(i + "." + taskListWithKeyword.get(i - 1));
+            str += i + "." + taskListWithKeyword.get(i - 1) + "\n";
         }
+        return str;
     }
 }

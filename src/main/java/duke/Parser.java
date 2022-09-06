@@ -37,12 +37,12 @@ public class Parser {
      * @param taskList This is the user's current list of tasks
      * @param ui This is for the Duke program to interact/print outputs to the user
      */
-    public static void parseCommand(String command, TaskList taskList, Ui ui) {
+    public static String parseCommand(String command, TaskList taskList, Ui ui) {
         try {
             if (command.equals("bye")) {
-                ui.quit();
+                return ui.quit();
             } else if (command.equals("list")) {
-                ui.listOutTasks(taskList);
+                return ui.listOutTasks(taskList);
             } else {
                 String[] splitStr = command.split(" ");
                 Task taskToMark = getTaskToMark(splitStr, taskList);
@@ -52,23 +52,24 @@ public class Parser {
                 if (taskToMark != null) {
                     String action = splitStr[0];
                     if (action.equals("mark")) {
-                        ui.markTask(taskToMark);
+                        return ui.markTask(taskToMark);
                     } else {
-                        ui.unmarkTask(taskToMark);
+                        return ui.unmarkTask(taskToMark);
                     }
                 } else if (taskToAdd != null) {
-                    ui.addTask(taskList, taskToAdd);
+                    return ui.addTask(taskList, taskToAdd);
                 } else if (taskToDelete != null) {
-                    ui.deleteTask(taskList, taskToDelete);
+                    return ui.deleteTask(taskList, taskToDelete);
                 } else if (taskListWithKeyWord.size() != 0) {
-                    ui.printTasksWithKeyword(taskListWithKeyWord);
+                    return ui.printTasksWithKeyword(taskListWithKeyWord);
                 } else {
-                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n");
+                    return "OOPS!!! I'm sorry, but I don't know what that means :-(\n";
                 }
             }
         } catch (DukeException de) {
             System.out.println(de);
         }
+        return "";
     }
 
     /**
@@ -93,7 +94,7 @@ public class Parser {
             if (validIndex && validAction) {
                 return taskList.getTask(index - 1);
             } else if (validAction && !validIndex) {
-                throw new DukeException("☹ OOPS!!! Please enter a valid task number to delete");
+                throw new DukeException("OOPS!!! Please enter a valid task number to delete");
             }
             return null;
         } catch (NumberFormatException e) {
