@@ -42,7 +42,7 @@ public class DeadlineCommand extends Command {
         Deadline currDeadline = new Deadline(this.description, this.localDate, this.localTime);
         task.addTask(currDeadline);
         return "Got it. I've added this task:\n " + currDeadline.taskInfo()
-                + "\nNow you have"  + task.getTaskSize() + " tasks in the list.";
+                + "\nNow you have "  + task.getTaskSize() + " tasks in the list.";
     }
 
 }

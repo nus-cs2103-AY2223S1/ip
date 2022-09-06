@@ -39,31 +39,33 @@ public class Parser {
         Command commandToReturn = null;
         String[] inputSpilt = input.split(" ", 2);
         if (inputSpilt.length == 2) {
-            if (inputSpilt[0].equals(MarkCommand.COMMAND_WORD)) {
+            String firstChar = inputSpilt[0];
+            if (firstChar.equals(MarkCommand.COMMAND_WORD)) {
                 commandToReturn = new MarkCommand(handleParseInt(inputSpilt[1], "mark as done"));
-            } else if (inputSpilt[0].compareTo(UnmarkCommand.COMMAND_WORD) == 0) {
+            } else if (firstChar.compareTo(UnmarkCommand.COMMAND_WORD) == 0) {
                 commandToReturn = new UnmarkCommand(handleParseInt(inputSpilt[1], "mark as not done"));
-            } else if (inputSpilt[0].compareTo(DeleteCommand.COMMAND_WORD) == 0) {
+            } else if (firstChar.compareTo(DeleteCommand.COMMAND_WORD) == 0) {
                 commandToReturn = new DeleteCommand(handleParseInt(inputSpilt[1], "delete"));
-            } else if (inputSpilt[0].compareTo(ToDoCommand.COMMAND_WORD) == 0) {
+            } else if (firstChar.compareTo(ToDoCommand.COMMAND_WORD) == 0) {
                 commandToReturn = new ToDoCommand(inputSpilt[1]);
-            } else if (inputSpilt[0].compareTo(DeadlineCommand.COMMAND_WORD) == 0) {
+            } else if (firstChar.compareTo(DeadlineCommand.COMMAND_WORD) == 0) {
                 commandToReturn = handleDeadlineParse(inputSpilt[1]);
-            } else if (inputSpilt[0].compareTo(EventCommand.COMMAND_WORD) == 0) {
+            } else if (firstChar.compareTo(EventCommand.COMMAND_WORD) == 0) {
                 commandToReturn = handleEventParse(inputSpilt[1]);
-            } else if (inputSpilt[0].compareTo(FindCommand.COMMAND_WORD) == 0) {
+            } else if (firstChar.compareTo(FindCommand.COMMAND_WORD) == 0) {
                 commandToReturn = new FindCommand(inputSpilt[1]);
             } else {
                 throw new InvalidInputException();
             }
         } else if (inputSpilt.length == 1) {
-            if (inputSpilt[0].compareTo(ByeCommand.COMMAND_WORD) == 0) {
+            String firstChar = inputSpilt[0];
+            if (firstChar.compareTo(ByeCommand.COMMAND_WORD) == 0) {
                 commandToReturn = new ByeCommand();
-            } else if (inputSpilt[0].compareTo(ListCommand.COMMAND_WORD) == 0) {
+            } else if (firstChar.compareTo(ListCommand.COMMAND_WORD) == 0) {
                 commandToReturn = new ListCommand();
-            } else if (inputSpilt[0].compareTo(ToDoCommand.COMMAND_WORD) == 0
-                    || inputSpilt[0].compareTo(DeadlineCommand.COMMAND_WORD) == 0
-                    || inputSpilt[0].compareTo(EventCommand.COMMAND_WORD) == 0) {
+            } else if (firstChar.compareTo(ToDoCommand.COMMAND_WORD) == 0
+                    || firstChar.compareTo(DeadlineCommand.COMMAND_WORD) == 0
+                    || firstChar.compareTo(EventCommand.COMMAND_WORD) == 0) {
                 throw new MissingDescriptionException(inputSpilt[0]);
             } else {
                 throw new InvalidInputException();
