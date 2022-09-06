@@ -1,7 +1,5 @@
 package duke.task;
 
-import duke.ui.DukeUi;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,12 +24,12 @@ public class Event extends Task {
     public void update(String args) {
         Pattern fullPattern = Pattern.compile("(.+)/at(.+)");
         Pattern atPattern = Pattern.compile("/at(.+)");
-        if (Pattern.matches("(.+)/at(.+)",args)) {
+        if (Pattern.matches("(.+)/at(.+)", args)) {
             Matcher m = fullPattern.matcher(args);
             m.find();
             super.update(m.group(1).trim());
             this.at = m.group(2).trim();
-        } else if (Pattern.matches("/at(.+)",args)) {
+        } else if (Pattern.matches("/at(.+)", args)) {
             Matcher m = atPattern.matcher(args);
             m.find();
             this.at = m.group(1).trim();

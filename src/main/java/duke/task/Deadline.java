@@ -53,12 +53,12 @@ public class Deadline extends Task {
     public void update(String args) {
         Pattern fullPattern = Pattern.compile("(.+)/by(.+)");
         Pattern atPattern = Pattern.compile("/by(.+)");
-        if (Pattern.matches("(.+)/by(.+)",args)) {
+        if (Pattern.matches("(.+)/by(.+)", args)) {
             Matcher m = fullPattern.matcher(args);
             m.find();
             super.update(m.group(1).trim());
             this.by = m.group(2).trim();
-        } else if (Pattern.matches("/by(.+)",args)) {
+        } else if (Pattern.matches("/by(.+)", args)) {
             Matcher m = atPattern.matcher(args);
             m.find();
             this.by = m.group(1).trim();
