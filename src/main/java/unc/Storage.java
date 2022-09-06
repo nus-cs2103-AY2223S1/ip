@@ -1,16 +1,17 @@
 package unc;
 
-import unc.task.Deadline;
-import unc.task.Event;
-import unc.task.Task;
-import unc.task.Todo;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import unc.task.Deadline;
+import unc.task.Event;
+import unc.task.Task;
+import unc.task.Todo;
+
 
 /**
  * Class that handles reading from and writing to files.

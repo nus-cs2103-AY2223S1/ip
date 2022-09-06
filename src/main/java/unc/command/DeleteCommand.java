@@ -1,9 +1,9 @@
 package unc.command;
 
 import unc.Storage;
-import unc.task.Task;
 import unc.TaskList;
 import unc.Ui;
+import unc.task.Task;
 
 /**
  * Command that deletes a task from list when executed.

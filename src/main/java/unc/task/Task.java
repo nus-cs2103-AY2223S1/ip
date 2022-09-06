@@ -1,5 +1,8 @@
 package unc.task;
 
+/**
+ * Abstract class for all variations of tasks.
+ */
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -49,7 +52,7 @@ public abstract class Task {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
     }
 
@@ -59,7 +62,14 @@ public abstract class Task {
      * @return Reformatted task.
      */
     public abstract String toStorageString();
-    public boolean hasKeyword(String keyword){
+
+    /**
+     * Helper function that decided whether a keyword is contained in task description.
+     *
+     * @param keyword The keyword to look for.
+     * @return Whether a keyword is contained in task description.
+     */
+    public boolean hasKeyword(String keyword) {
         String[] words = this.toString().split("\\s+");
         boolean isFound = false;
         for (String word : words) {

@@ -1,12 +1,15 @@
 package unc.command;
 
-import unc.*;
+import unc.Storage;
+import unc.TaskList;
+import unc.Ui;
+import unc.UncException;
 import unc.task.Event;
 
 /**
  * Command that adds a new Event to list when executed.
  */
-public class EventCommand extends Command{
+public class EventCommand extends Command {
     private final String description;
 
     /**

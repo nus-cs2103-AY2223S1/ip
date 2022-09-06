@@ -1,11 +1,12 @@
 package unc;
 
+import java.util.Scanner;
+
 import unc.task.Deadline;
 import unc.task.Event;
 import unc.task.Task;
 import unc.task.Todo;
 
-import java.util.Scanner;
 
 /**
  * Handles input and output.
@@ -71,9 +72,9 @@ public class Ui {
      * @param taskList List.
      * @param todo Added task.
      */
-    public void addTodo (TaskList taskList, Todo todo) {
-        System.out.println("added: \n " + todo + "\nNow you have " + taskList.size() +
-                " tasks on the list.");
+    public void addTodo(TaskList taskList, Todo todo) {
+        System.out.println("added: \n " + todo + "\nNow you have " + taskList.size()
+                + " tasks on the list.");
     }
 
     /**
@@ -82,9 +83,9 @@ public class Ui {
      * @param taskList List.
      * @param event Added task.
      */
-    public void addEvent (TaskList taskList, Event event) {
-        System.out.println("added: \n " + event + "\nNow you have " + taskList.size() +
-                " tasks on the list.");
+    public void addEvent(TaskList taskList, Event event) {
+        System.out.println("added: \n " + event + "\nNow you have " + taskList.size()
+                + " tasks on the list.");
     }
 
     /**
@@ -93,9 +94,9 @@ public class Ui {
      * @param taskList List.
      * @param deadline Added task.
      */
-    public void addDeadline (TaskList taskList, Deadline deadline) {
-        System.out.println("added: \n " + deadline + "\nNow you have " + taskList.size() +
-                " tasks on the list.");
+    public void addDeadline(TaskList taskList, Deadline deadline) {
+        System.out.println("added: \n " + deadline + "\nNow you have " + taskList.size()
+                + " tasks on the list.");
     }
 
     /**
@@ -104,7 +105,7 @@ public class Ui {
      * @param taskList List.
      * @param index The index of newly marked task.
      */
-    public void mark (TaskList taskList, int index) {
+    public void mark(TaskList taskList, int index) {
         System.out.println("Marked as done: \n" + taskList.get(index));
     }
 
@@ -114,7 +115,7 @@ public class Ui {
      * @param taskList List.
      * @param index The index of newly unmarked task.
      */
-    public void unmark (TaskList taskList, int index) {
+    public void unmark(TaskList taskList, int index) {
         System.out.println("Marked as not done: \n" + taskList.get(index));
     }
 
@@ -124,9 +125,9 @@ public class Ui {
      * @param task The recently removed task.
      * @param size The new size of list.
      */
-    public void delete (Task task, int size) {
-        System.out.println("Deleted: \n" + task + "\nNow you have " + size +
-                " tasks on the list.");
+    public void delete(Task task, int size) {
+        System.out.println("Deleted: \n" + task + "\nNow you have " + size
+                + " tasks on the list.");
     }
 
     public void displayFoundList(TaskList taskList) {

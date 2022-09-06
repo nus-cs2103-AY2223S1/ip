@@ -1,10 +1,10 @@
 package unc.task;
 
-import unc.UncException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import unc.UncException;
 
 /**
  * A type of Task that needs to be done before a specific date/time.

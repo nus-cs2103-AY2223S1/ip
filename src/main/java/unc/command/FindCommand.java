@@ -4,9 +4,11 @@ import unc.Storage;
 import unc.TaskList;
 import unc.Ui;
 import unc.UncException;
-import unc.task.Deadline;
 
-public class FindCommand extends Command{
+/**
+ * Command that finds tasks containing a keyword when executed.
+ */
+public class FindCommand extends Command {
     private final String keyword;
 
     public FindCommand(String input) {

@@ -15,7 +15,7 @@ import unc.command.UnmarkCommand;
  * Class to create commands from input strings.
  */
 public class Parser {
-    private enum validInput {
+    private enum ValidInput {
         LIST,
         MARK,
         UNMARK,
@@ -36,7 +36,7 @@ public class Parser {
      */
     public static Command parse(String input) {
         String[] words = input.split("\\s+", 2);
-        validInput verb = validInput.valueOf(words[0].toUpperCase());
+        ValidInput verb = ValidInput.valueOf(words[0].toUpperCase());
         switch (verb) {
         case LIST:
             return new ListCommand();
