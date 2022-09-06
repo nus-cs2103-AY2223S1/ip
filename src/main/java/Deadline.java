@@ -1,13 +1,19 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 // import java.time.temporal.ChronoUnit;
 
 public class Deadline extends Task {
     protected LocalDate by;
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, String by) throws DukeException{
         super(description);
-        this.by = LocalDate.parse(by);
+        try {
+            this.by = LocalDate.parse(by);
+        } catch (DateTimeParseException err) {
+            throw new DukeException("The date format should be: yyyy-MM-dd");
+        }
+
         // this.by = LocalDate.parse(by, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 

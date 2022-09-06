@@ -1,13 +1,19 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 // import java.time.temporal.ChronoUnit;
 
 public class Event extends Task {
     protected LocalDate at;
 
-    public Event(String description, String at) {
+    public Event(String description, String at) throws DukeException {
         super(description);
-        this.at = LocalDate.parse(at);
+        try {
+            this.at = LocalDate.parse(at);
+        } catch (DateTimeParseException err) {
+            throw new DukeException("The date format should be: yyyy-MM-dd");
+        }
+
         // this.at = LocalDate.parse(at, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
