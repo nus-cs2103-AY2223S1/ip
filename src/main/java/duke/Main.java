@@ -1,17 +1,30 @@
 package duke;
-import java.io.File;
 
-/**
- * Entry point of the Duke application.
- * Initialises Duke and creates the directory to store the task list.
- *
- * The String path is the location of the stored task list that Duke will retrieve and write to.
- */
-public class Main {
-    public static void main(String[] args) {
-        String path = "data/duke.txt";
-        new File("data").mkdir();
-        Duke duke = new Duke(path);
-        duke.runDuke();
+import java.io.IOException;
+
+import duke.ui.MainWindow;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+public class Main extends Application {
+
+    private Duke duke = new Duke("data/duke.txt");
+
+    @Override
+    public void start(Stage stage) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
+            AnchorPane ap = fxmlLoader.load();
+            Scene scene = new Scene(ap);
+            stage.setScene(scene);
+            fxmlLoader.<MainWindow>getController().setDuke(duke);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 }

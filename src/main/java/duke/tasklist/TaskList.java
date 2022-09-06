@@ -3,12 +3,12 @@ package duke.tasklist;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
-import duke.ui.Ui;
 
 public class TaskList {
 
@@ -22,66 +22,75 @@ public class TaskList {
         this.list.add(task);
     }
 
-    public void addToDo(String content) {
+    public String addToDo(String content) {
         ToDo task = new ToDo(content);
         this.list.add(task);
-        Ui.addTaskMessage(task.toString(), this.list.size());
+        return "Got it. I've added this task:\n" 
+                + String.format("%s\n", task.toString()) 
+                        + String.format("Now you have %d tasks in the list.", this.list.size());
     }
 
-    public void addDeadline(String content, LocalDate date, LocalTime time) {
+    public String addDeadline(String content, LocalDate date, LocalTime time){
         Deadline task = new Deadline(content, date, time);
         this.list.add(task);
-        Ui.addTaskMessage(task.toString(), this.list.size());
+        return "Got it. I've added this task:\n" 
+                + String.format("%s\n", task.toString()) 
+                        + String.format("Now you have %d tasks in the list.", this.list.size());
     }
 
-    public void addEvent(String content, LocalDate date, LocalTime time) {
+    public String addEvent(String content, LocalDate date, LocalTime time){
         Event task = new Event(content, date, time);
         this.list.add(task);
-        Ui.addTaskMessage(task.toString(), this.list.size());
+        return "Got it. I've added this task:\n" 
+                + String.format("%s\n", task.toString()) 
+                        + String.format("Now you have %d tasks in the list.", this.list.size());
     }
 
-    public void deleteTask(int index) {
+    public String deleteTask(int index) {
         Task task = null;
         try {
             task = this.list.get(index);
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("\tTask number to be deleted does not exist.");
-            return;
+            return "Task number to be deleted does not exist.";
         }
+
         this.list.remove(index);
-        Ui.removeTaskMessage(task.toString(), this.list.size());
+        return "Noted. I've removed this task:\n" 
+                + String.format("%s\n", task.toString()) 
+                        + String.format("Now you have %d tasks in the list.", this.list.size());
     }
 
-    public void unMarkTask(int index) {
+    public String unMarkTask(int index) {
         try {
             this.list.get(index).unMarkComplete();
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("\tTask number to be unmarked does not exist.");
-            return;
+            return "Task number to be unmarked does not exist.";
         }
-        Ui.unmarkTaskMessage(this.list.get(index).toString());
+
+        return "OK, I've marked this task as not done yet:\n" + this.list.get(index).toString();
     }
 
-    public void markTask(int index) {
+    public String markTask(int index) {
         try {
             this.list.get(index).markComplete();
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("\tTask number to be marked does not exist.");
-            return;
+            return "Task number to be marked does not exist.";
         }
-        Ui.markTaskMessage(this.list.get(index).toString());
+
+        return "Nice! I've marked this task as done:\n" + this.list.get(index).toString();
     }
 
-    public void printList() {
-        Ui.showLine();
-        System.out.println("\tHere are the tasks in your list:");
+    public String printList() {
+        StringBuilder taskList = new StringBuilder("Here are the tasks in your list:\n");
+
         for (int i = 0; i < this.list.size(); i++) {
-            System.out.println(String.format("\t%d.%s", i + 1, this.list.get(i).toString()));
+            taskList.append(String.format("%d.%s\n", i + 1, this.list.get(i).toString()));
         }
-        Ui.showLine();
+
+        return taskList.toString();
     }
 
-    public ArrayList<String> produceWriteList() {
+    public List<String> produceWriteList() {
         ArrayList<String> writeList = new ArrayList<>();
         for (int i = 0; i < this.list.size(); i++) {
             writeList.add(this.list.get(i).toFileData());
@@ -89,7 +98,7 @@ public class TaskList {
         return writeList;
     }
 
-    public void find(String content) {
+    public String find(String content) {
         ArrayList<Task> matchList = new ArrayList<>();
         for (int i = 0; i < this.list.size(); i++) {
             if (this.list.get(i).toString().toLowerCase().contains(content.toLowerCase())) {
@@ -97,11 +106,11 @@ public class TaskList {
             }
         }
 
-        Ui.showLine();
-        System.out.println("\tHere are the matching tasks in your list:");
+        StringBuilder matches = new StringBuilder("Here are the matching tasks in your list:\n");
         for (int i = 0; i < matchList.size(); i++) {
-            System.out.println(String.format("\t%d.%s", i + 1, matchList.get(i).toString()));
+            matches.append(String.format("%d.%s\n", i + 1, matchList.get(i).toString()));
         }
-        Ui.showLine();
+
+        return matches.toString();
     }
 }

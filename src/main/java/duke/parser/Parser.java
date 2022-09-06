@@ -9,116 +9,136 @@ import duke.tasklist.TaskList;
 
 public class Parser {
 
-    public static Boolean parseInput(String input, TaskList taskList) throws DukeException {
+    public enum TaskType {
+        TODO, DEADLINE, EVENT;
+    }
+
+    public enum IndexCommands {
+        UNMARK, MARK, DELETE
+    }
+
+    public static String parseInput(String input, TaskList taskList) throws DukeException {
         String[] commands = input.split(" ", 2);
-        String command = commands[0].toUpperCase();
+        String command = commands[0];
         int numCommandArgs = commands.length;
 
         if (command.equals("bye")) {
-            return true;
-
-        } else if (command.equals("list") && numCommandArgs == 2) {
-            taskList.printList();
-            return false;
-
-        } else if (command.equals("unmark") && numCommandArgs == 2) {
-            int index = -1;
-            try {
-                index = Integer.parseInt(commands[1]) - 1;
-                taskList.unMarkTask(index);
-            } catch (NumberFormatException e) {
-                throw new DukeException("\tPlease enter a valid task number to unmark.");
-            }
-            return false;
-
-        } else if (command.equals("mark") && numCommandArgs == 2) {
-            int index = -1;
-            try {
-                index = Integer.parseInt(commands[1]) - 1;
-                taskList.markTask(index);
-            } catch (NumberFormatException e) {
-                throw new DukeException("\tPlease enter a valid task number to mark.");
-            }
-            return false;
-
-        } else if (command.equals("todo") && numCommandArgs == 2) {
-            String content = commands[1];
-            if (content.length() == 0) {
-                throw new DukeException("\tThe description of a todo cannot be empty.");
-            }
-            taskList.addToDo(content);
-            return false;
-
-        } else if (command.equals("deadline") && numCommandArgs == 2) {
-            if (!commands[1].contains(" by ")) {
-                throw new DukeException("\tFormatting of deadline is incorrect.");
-            }
-
-            String[] contents = input.replace("deadline", "").split(" by ", 2);
-            String desc = contents[0];
-
-            if (desc.length() == 0 || contents[1].length() == 0) {
-                throw new DukeException("\tThe description of a deadline cannot be empty.");
-            }
-
-            String[] dateTimeSplit = contents[1].trim().split(" ", 2);
-            LocalDate date = LocalDate.now();
-            LocalTime time = LocalTime.now();
-            try {
-                date = LocalDate.parse(dateTimeSplit[0]);
-                time = LocalTime.parse(dateTimeSplit[1]);
-            } catch (DateTimeParseException e) {
-                throw new DukeException("\tFormatting of date and time is incorrect.");
-            }
-
-            taskList.addDeadline(desc, date, time);
-            return false;
-
-        } else if (command.equals("event") && numCommandArgs == 2) {
-            if (!commands[1].contains(" at ")) {
-                throw new DukeException("\tFormatting of event is incorrect.");
-            }
-
-            String[] contents = input.replace("event", "").split(" at ", 2);
-            String desc = contents[0];
-
-            if (desc.length() == 0 || contents[1].length() == 0) {
-                throw new DukeException("\tThe description of an event cannot be empty.");
-            }
-
-            String[] dateTimeSplit = contents[1].trim().split(" ", 2);
-            LocalDate date = LocalDate.now();
-            LocalTime time = LocalTime.now();
-
-            try {
-                date = LocalDate.parse(dateTimeSplit[0]);
-                time = LocalTime.parse(dateTimeSplit[1]);
-            } catch (DateTimeParseException e) {
-                throw new DukeException("\tFormatting of date and time is incorrect.");
-            }
-
-            taskList.addDeadline(desc, date, time);
-            return false;
-
-        } else if (command.equals("delete") && numCommandArgs == 2) {
-            int index = -1;
-            try {
-                index = Integer.parseInt(commands[1]) - 1;
-                taskList.deleteTask(index);
-            } catch (NumberFormatException e) {
-                throw new DukeException("\tPlease enter a valid task number to delete.");
-            }
-            return false;
-
-        } else if (command.equals("find") && numCommandArgs == 2) {
-            String desc = commands[1];
-            if (desc.length() == 0) {
-                throw new DukeException("\tThe description of a find command cannot be empty.");
-            }
-            taskList.find(desc);
-            return false;
+            return "Bye. Hope to see you again soon!";
+        }
+        if (command.equals("list")) {
+            return taskList.printList();
         }
 
-        throw new DukeException("\tI'm sorry, but I don't know what that means.");
+        if (numCommandArgs < 2) {
+            throw new DukeException("Invalid number of arguments.");
+        }
+        switch (command) {
+            case "unmark":
+                return parseIndexCommand(commands[1], IndexCommands.UNMARK, taskList);
+
+            case "mark":
+                return parseIndexCommand(commands[1], IndexCommands.MARK, taskList);
+
+            case "todo":
+                return parseTask(commands[1], TaskType.TODO, taskList);
+
+            case "deadline":
+                return parseTask(commands[1], TaskType.DEADLINE, taskList);
+
+            case "event":
+                return parseTask(commands[1], TaskType.EVENT, taskList);
+
+            case "delete":
+                return parseIndexCommand(commands[1], IndexCommands.DELETE, taskList);
+
+            case "find":
+                String content = commands[1];
+                return taskList.find(content);
+            
+            default:
+                throw new DukeException("I'm sorry, but I don't know what that means.");
+        }
+    }
+
+    public static String parseIndexCommand(String content, IndexCommands type, TaskList taskList) throws DukeException {
+        int index = -1;
+        try {
+            index = Integer.parseInt(content) - 1;
+        } catch (NumberFormatException e) {
+            throw new DukeException("Please enter a valid task number.");
+        }
+
+        switch(type) {
+            case UNMARK:
+                return taskList.unMarkTask(index);
+
+            case MARK:
+                return taskList.markTask(index);
+
+            case DELETE:
+                return taskList.deleteTask(index);
+
+            default: 
+                throw new DukeException("I'm sorry, but I don't know what that means.");
+        }
+    }
+
+    public static String parseTask(String content, TaskType type, TaskList taskList) throws DukeException {
+        if (content.length() == 0) {
+            throw new DukeException("The description of a task cannot be empty.");
+        }
+
+        String[] contents;
+        switch (type) {
+            case TODO:
+                return taskList.addToDo(content);
+
+            case DEADLINE:
+                if (!content.contains(" by ")) {
+                    throw new DukeException("Formatting of deadline is incorrect.");
+                }
+                contents = content.split(" by ", 2);
+                break;
+
+            case EVENT:
+                if (!content.contains(" at ")) {
+                    throw new DukeException("Formatting of event is incorrect.");
+                }
+                contents = content.split(" at ", 2);
+                break;
+
+            default:
+                throw new DukeException("Formatting of task is incorrect.");
+        }
+
+        String desc = contents[0];
+        if (desc.length() == 0 || contents[1].length() == 0) {
+            throw new DukeException("The description of a task cannot be empty.");
+        }
+
+        String[] dateTimeSplit = contents[1].split(" ");
+        if (dateTimeSplit.length < 2) {
+            throw new DukeException("Formatting of date and time is incorrect.");
+        }
+        
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+        try {
+            date = LocalDate.parse(dateTimeSplit[0]);
+            time = LocalTime.parse(dateTimeSplit[1]);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Formatting of date and time is incorrect.");
+        }
+
+        switch(type) {
+            case DEADLINE:
+                return taskList.addDeadline(desc, date, time);
+
+            case EVENT:
+                return taskList.addEvent(desc, date, time);
+
+            default:
+                throw new DukeException("Something went wrong here.");
+        }        
     }
 }

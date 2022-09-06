@@ -2,13 +2,11 @@ package duke;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Scanner;
 
 import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.tasklist.TaskList;
-import duke.ui.Ui;
 
 public class Duke {
 
@@ -18,38 +16,28 @@ public class Duke {
     public Duke(String path) {
         this.path = path;
         this.taskList = new TaskList();
-    }
-
-    public void runDuke() {
-        Ui.greeting();
         try {
             Storage.loadData(this.taskList, this.path);
-            System.out.println("\tYour previous tasks have been loaded!");
         } catch (FileNotFoundException e) {
-            System.out.println("\tWelcome new user!");
+            System.out.println(e.getMessage());
         }
+    }
 
-        boolean quit = false;
-        Scanner scanner = new Scanner(System.in);
-        while (!quit) {
-            System.out.println("Enter a command below:");
-            String input = scanner.nextLine();
+    public String getResponse(String input) {
+        String response = "";
+        try {
+            response = Parser.parseInput(input, this.taskList);
+        } catch (DukeException e) {
+            return e.getMessage();
+        }
+        if (response.equals("Bye. Hope to see you again soon!")) {
             try {
-                quit = Parser.parseInput(input, this.taskList);
-            } catch (DukeException e) {
-                Ui.showExceptionMessage(e);
-                quit = false;
+                Storage.writeData(this.taskList, this.path);
+            } catch (IOException e) {
+                response += "Unfortunately, saving of data has failed.";
             }
         }
-
-        try {
-            Storage.writeData(this.taskList, this.path);
-        } catch (IOException e) {
-            Ui.showExceptionMessage(e);
-            System.out.println("\t☹ OOPS!!! I'm sorry, saving of tasks has failed :-(");
-        }
-        scanner.close();
-        Ui.goodbye();
+        return response;
     }
 }
 
