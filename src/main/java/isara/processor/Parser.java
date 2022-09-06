@@ -58,9 +58,14 @@ public class Parser {
      * @return A boolean value that states whether the command exists or not.
      */
     public static boolean isCommand(String input) {
-        return input.equals("bye") || input.equals("mark")
-                || input.equals("unmark") || input.equals("delete")
-                || input.equals("list") || input.equals("find");
+        boolean isInputBye = input.equals("bye");
+        boolean isInputMark = input.equals("mark");
+        boolean isInputUnmark = input.equals("unmark");
+        boolean isInputDelete = input.equals("delete");
+        boolean isInputList = input.equals("list");
+        boolean isInputFind = input.equals("find");
+        return isInputBye || isInputMark || isInputUnmark
+                || isInputDelete || isInputList || isInputFind;
     }
 
     /**
@@ -100,6 +105,50 @@ public class Parser {
         }
     }
 
+
+    /**
+     * Parses the input into taskName and date;
+     * returns a new Deadline task with those details.
+     *
+     * @param input The user input.
+     * @return The Deadline task.
+     */
+    public static Task parseDeadline(String input) {
+        String taskName = input.substring(input.indexOf(" ") + 1, input.indexOf("/") - 1);
+        String by = input.split("/by")[1].trim();
+        LocalDate date = LocalDate.parse(by);
+        return new Deadline(taskName, date);
+    }
+
+    /**
+     * Parses the input into a taskName and the event details;
+     * returns a new Event task with those details.
+     *
+     * @param input The user input.
+     * @return The Event task.
+     */
+    public static Task parseEvent(String input) {
+        String taskName = input.substring(input.indexOf(" ") + 1, input.indexOf("/") - 1);
+        String at = input.split("/at")[1].trim();
+        return new Event(taskName, at);
+    }
+
+    /**
+     * Parses the ToDo task to a task name and returns
+     * the ToDo event with those details.
+     *
+     * @param input The user input.
+     * @return The ToDo event.
+     */
+    public static Task parseToDo(String input) {
+        if (input.split(" ")[1] != null) {
+            String taskName = input.substring(input.indexOf(" ") + 1);
+            return new ToDo(taskName);
+        } else {
+            return null;
+        }
+    }
+
     /**
      * Parses the user input if it is categorized as a task.
      *
@@ -115,37 +164,26 @@ public class Parser {
         switch (typeOfTask) {
         case TODO:
             try {
-                if (input.split(" ")[1] != null) {
-                    String taskName = input.substring(input.indexOf(" ") + 1);
-                    return new ToDo(taskName);
-                }
+                return parseToDo(input);
             } catch (Exception e) {
                 throw new IsaraException("☹ OOPS!!! Please specify what you want to do!");
             }
-            break;
         case EVENT:
             try {
-                String taskName = input.substring(input.indexOf(" ") + 1, input.indexOf("/") - 1);
-                String at = input.split("/at")[1].trim();
-                return new Event(taskName, at);
+                return parseEvent(input);
             } catch (Exception e) {
                 throw new IsaraException("☹ OOPS!!! The description of an event cannot be empty.");
             }
         case DEADLINE:
             try {
-                String taskName = input.substring(input.indexOf(" ") + 1, input.indexOf("/") - 1);
-                String by = input.split("/by")[1].trim();
-                LocalDate date = LocalDate.parse(by);
-                return new Deadline(taskName, date);
+                return parseDeadline(input);
             } catch (DateTimeParseException e) {
                 throw new IsaraException("☹ OOPS!! Date is invalid! Hint: Make it YYYY-MM-DD.");
             } catch (Exception e) {
                 throw new IsaraException("☹ OOPS!!! The description of a deadline cannot be empty.");
             }
-
         default:
             throw new IsaraException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
-        return null;
     }
 }

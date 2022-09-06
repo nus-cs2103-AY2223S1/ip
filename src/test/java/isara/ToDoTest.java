@@ -12,26 +12,26 @@ public class ToDoTest {
     public void testMarkFunctionalityForToDo(){
         Task toDo = new ToDo("Run in the Morning");
         assertEquals(toDo.toString(), "[T][ ] Run in the Morning");
-        toDo.markAsDone();
+        toDo.mark();
         assertEquals(toDo.toString(), "[T][X] Run in the Morning");
     }
 
     @Test
     public void testUnmarkFunctionalityForToDo(){
         Task toDo = new ToDo("Run in the Morning");
-        toDo.markAsDone();
+        toDo.mark();
         assertEquals(toDo.toString(), "[T][X] Run in the Morning");
-        toDo.unmarkAsDone();
+        toDo.unmark();
         assertEquals(toDo.toString(), "[T][ ] Run in the Morning");
     }
 
     @Test
     public void testGetStatusIconForToDo(){
         Task toDo = new ToDo("Run in the Morning");
-        toDo.markAsDone();
+        toDo.mark();
         assertEquals(toDo.toString(), "[T][X] Run in the Morning");
         assertEquals(toDo.getStatusIcon(), "X");
-        toDo.unmarkAsDone();
+        toDo.unmark();
         assertEquals(toDo.toString(), "[T][ ] Run in the Morning");
         assertEquals(toDo.getStatusIcon(), " ");
     }

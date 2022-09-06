@@ -43,7 +43,7 @@ public class UnmarkCommand extends Command {
         try {
             Ui ui = new Ui();
             Task task = tasks.getTask(taskIndex);
-            task.unmarkAsDone();
+            task.unmark();
             storage.writeAndSaveToFile(file, tasks);
             return ui.unmark(task);
         } catch (Exception e) {

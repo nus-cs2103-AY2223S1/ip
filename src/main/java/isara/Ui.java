@@ -33,7 +33,7 @@ public class Ui {
      * @param tasks The list of tasks in the list.
      * @return Message that shows that the task has been added to the list.
      */
-    public String list(TaskList tasks) {
+    public String listOut(TaskList tasks) {
         int numberOfTasks = tasks.getNumberOfTasks();
         String output = "";
         if (numberOfTasks != 0) {
