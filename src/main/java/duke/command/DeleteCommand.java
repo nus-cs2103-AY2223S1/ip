@@ -38,8 +38,6 @@ public class DeleteCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
-            int i = Integer.parseInt(this.index);
-            Task task = tasks.get(i - 1);
             String reply = tasks.removeTask(this.index);
             return reply;
         } catch (IndexOutOfBoundsException e) {

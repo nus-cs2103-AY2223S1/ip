@@ -46,6 +46,7 @@ public class Duke {
                 System.out.println(e);
             }
         }
+        assert isExit : "You should be exiting the program";
         storage.writeToTaskList(filePath, tasks);
     }
 
