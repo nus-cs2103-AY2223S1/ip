@@ -12,8 +12,7 @@ public class TaskList extends ArrayList<Task> {
         super(initialCapacity);
     }
 
-    public TaskList() {
-    }
+    public TaskList() {}
 
     /**
      * Transforms the TaskList into an ArrayList which stores strings. For saving in a text file.

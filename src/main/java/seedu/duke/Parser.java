@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Parser {
     private static final String[] COMMANDS_ARRAY =
-            new String[] {"mark", "unmark", "delete", "todo", "deadline", "event"};
+            new String[] {"mark", "unmark", "delete", "todo", "deadline", "event", "find"};
     private static final List<String> COMMANDS = Arrays.asList(COMMANDS_ARRAY);
 
     /**
@@ -76,6 +76,8 @@ public class Parser {
                         throw new DukeException("I'll need more information than that, Master.");
                     }
 
+                } else if (commandWord.equals("find")) {
+                    return new FindCommand(details);
                 }
             } else {
                 throw new DukeException("Sorry, Master, I don't understand what that means.");

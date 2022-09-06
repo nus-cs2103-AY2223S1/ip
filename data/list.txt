@@ -2,3 +2,5 @@
 [E][ ] eat (on: 5pm)
 [D][ ] eat (by: 5pm)
 [D][ ] eat (by: 7pm)
+[D][ ] eat (by: 10pm)
+[T][ ] eat apple

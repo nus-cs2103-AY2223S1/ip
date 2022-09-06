@@ -113,4 +113,19 @@ public class Ui {
         System.out.println("I have added " + task.toString() + " to the list, Master.");
     }
 
+    public static void found(String searchString, TaskList foundList) {
+        if (foundList.size() == 1) {
+            System.out.println("I have found the following task matching \"" + searchString + "\"");
+            System.out.println(foundList);
+        } else {
+            System.out.println("I have found the following tasks matching \"" + searchString + "\"");
+            System.out.println(foundList);
+        }
+    }
+
+    public static void notFound(String searchString) {
+        System.out.println("Sorry, Master." +
+                "I was not able to find any tasks matching \"" + searchString + "\"");
+    }
+
 }
