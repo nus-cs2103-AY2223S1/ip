@@ -19,6 +19,7 @@ public abstract class TaskCommand extends Command {
 
     /**
      * Constructs TaskCommand with the specified Task.
+     *
      * @param newTask the specified Task parameter.
      */
     public TaskCommand(Task newTask) {

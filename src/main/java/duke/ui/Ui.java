@@ -2,12 +2,11 @@ package duke.ui;
 
 import java.io.PrintWriter;
 import java.io.Writer;
-import java.util.Scanner;
 
 import duke.DukeException;
 
 /**
- * This class encapsulates I/O logic.
+ * This class handles formatting of Duke's responses.
  */
 public class Ui {
 
@@ -18,23 +17,14 @@ public class Ui {
     private static final String REPLY_HEADER = ">>";
     private static final String EXCEPTION_HEADER = "!>>";
 
-    private final Scanner sysInScanner;
     private final PrintWriter printWriter;
 
     /**
-     * Construtor of Ui. Constructed Ui will print to System.out.
-     */
-    public Ui() {
-        sysInScanner = new Scanner(System.in);
-        printWriter = new PrintWriter(System.out);
-    }
-
-    /**
      * Constructs UI that will print to the provided Writer.
+     *
      * @param writer the provided Writer.
      */
     public Ui(Writer writer) {
-        sysInScanner = new Scanner(System.in);
         printWriter = new PrintWriter(writer);
     }
 
@@ -125,17 +115,4 @@ public class Ui {
     public void showStorageLoadingMessage() {
         this.showReply(Ui.STORAGE_LOADING_MESSAGE);
     }
-
-    /**
-     * Reads a Command String from the user.
-     *
-     * @return the command String
-     */
-    public String readCommand() {
-        printWriter.print("<< ");
-        printWriter.flush();
-        return sysInScanner.nextLine();
-    }
-
-
 }

@@ -9,6 +9,7 @@ import java.util.Scanner;
 import duke.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
+import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.Todo;
 
@@ -21,6 +22,7 @@ public class Storage {
 
     /**
      * Constructs Storage with a specified File for Storage to access.
+     *
      * @param saveFile the specified File.
      */
     public Storage(File saveFile) {
@@ -29,6 +31,7 @@ public class Storage {
 
     /**
      * Constructs Storage with a specified file path for Storage to access.
+     *
      * @param filePath the specified file path.
      */
     public Storage(String filePath) {
@@ -37,6 +40,7 @@ public class Storage {
 
     /**
      * Loads tasks from the encapsulated File onto a TaskList.
+     *
      * @return TaskList.
      * @throws DukeException if unable to read from the encapsulated File.
      */
@@ -45,27 +49,15 @@ public class Storage {
             Scanner sc = new Scanner(this.saveFile);
             TaskList ret = new TaskList();
             while (sc.hasNext()) {
-                String[] curTask = sc.nextLine().split(" / ");
-                // duke.task.Task type saved in the third parameter
-                switch (curTask[2]) {
-                case "T":
-                    ret.addTask(new Todo(curTask[0], curTask[1].equals("true")));
-                    break;
-                case "D":
-                    ret.addTask(new Deadline(curTask[0], curTask[3], curTask[1].equals("true")));
-                    break;
-                case "E":
-                    ret.addTask(new Event(curTask[0], curTask[3], curTask[1].equals("true")));
-                    break;
-                default:
-                    throw new DukeException("Invalid save file data. Will ignore save file.");
-                }
+                ret.addTask(parseTaskString(sc.nextLine()));
             }
             return ret;
         } catch (FileNotFoundException e) {
             try {
                 this.saveFile.getParentFile().mkdirs();
                 this.saveFile.createNewFile();
+                throw new DukeException(String.format("No save file found. A new save file is generated at %s.",
+                        this.saveFile.getPath()));
             } catch (IOException e1) {
                 throw new DukeException(String.format("Unable to create save-file at %s.", this.saveFile.getPath()),
                         e1);
@@ -74,13 +66,27 @@ public class Storage {
                         String.format("Write access denied to save file. Please make sure TedBot has access to %s.",
                                 this.saveFile.getPath()), e2);
             }
-            throw new DukeException(String.format("No save file found. A new save file is generated at %s.",
-                    this.saveFile.getPath()));
+        }
+    }
+
+    private Task parseTaskString(String taskString) throws DukeException {
+        String[] curTask = taskString.split(" / ");
+        // Task type saved in the third parameter
+        switch (curTask[2]) {
+        case "T":
+            return new Todo(curTask[0], curTask[1].equals("true"));
+        case "D":
+            return new Deadline(curTask[0], curTask[3], curTask[1].equals("true"));
+        case "E":
+            return new Event(curTask[0], curTask[3], curTask[1].equals("true"));
+        default:
+            throw new DukeException("Save file data is corrupted or malformed. Save file will be ignored.");
         }
     }
 
     /**
      * Stores tasks from the specified TaskList parameter to the encapsulated File.
+     *
      * @param taskList the specified TaskList.
      * @throws DukeException if unable to write to the encapsulated File.
      */
