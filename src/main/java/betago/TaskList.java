@@ -54,7 +54,7 @@ public class TaskList {
         }
         String output = "Here are the tasks in your list:\n";
         for (int i = 0; i < this.list.size(); i++) {
-            output = output + (i + 1) + ". " + this.list.get(i).toString();
+            output = output + (i + 1) + ". " + this.list.get(i).toString() + "\n";
         }
         output += ("\n");
         return output;
@@ -80,11 +80,13 @@ public class TaskList {
                     this.list.get(marker - 1).markAsDone();
                     output = "Nice! I've marked this task as done:\n"
                             + this.list.get(marker - 1).toString() + "\n";
+                    output += ("\n");
                     return output;
                 } else {
                     this.list.get(marker - 1).markAsNotDone();
                     output = "Nice! I've marked this task as not done yet:\n"
                             + this.list.get(marker - 1).toString() + "\n";
+                    output += ("\n");
                     return output;
                 }
             } catch (NumberFormatException ex) {
@@ -187,7 +189,7 @@ public class TaskList {
                     output = "Please indicate a valid task number.\n";
                     return output;
                 } else {
-                    output = "Noted. I have removed this task:\n" + this.list.get(marker - 1).toString();
+                    output = "Noted. I have removed this task:\n" + this.list.get(marker - 1).toString() + "\n";
                     this.list.remove(marker - 1);
                     output += "Now you have " + this.list.size() + " tasks in the list.\n";
                     return output;
@@ -330,7 +332,7 @@ public class TaskList {
                 for (int i = 0; i < matched.size(); i++) {
                     output = output + (i + 1) + ". " + matched.get(i).toString() + "\n";
                 }
-                return output;
+                return output + "\n";
             }
         }
     }
