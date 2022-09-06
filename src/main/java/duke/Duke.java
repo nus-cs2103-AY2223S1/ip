@@ -120,18 +120,10 @@ public class Duke extends Application {
     private String getResponse(String input) {
         try {
             Parser parser = new Parser(input);
-            if (parser.isSubStringForExitCommand()) {
-                ExitCommand exitCommand = new ExitCommand();
-                exit();
-               return exitCommand.execute(input, listOfTask, ui, storage);
-            }
             Command c = parser.parse();
             return c.execute(input, listOfTask, ui, storage);
         } catch (DukeException e) {
            return e.toString();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "e";
         }
     }
 }

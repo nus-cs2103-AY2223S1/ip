@@ -12,7 +12,7 @@ public class Task {
      * @param name Name of the task.
      * @param isDone Status of whether task is marked as done or not.
      */
-    Task(String name, boolean isDone){
+    Task(String name, boolean isDone) {
         this.name = name;
         this.isDone = isDone;
     }
