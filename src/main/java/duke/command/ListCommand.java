@@ -11,13 +11,6 @@ public class ListCommand extends Command {
     private static final ListCommand LIST_COMMAND = new ListCommand();
 
     /**
-     * Constructor for ListCommand class.
-     */
-    private ListCommand() {
-        super(false);
-    }
-
-    /**
      * Returns the list command.
      *
      * @return list command.

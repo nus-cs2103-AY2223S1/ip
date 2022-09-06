@@ -10,13 +10,6 @@ public class ExitCommand extends Command {
     private static final ExitCommand EXIT_COMMAND = new ExitCommand();
 
     /**
-     * Constructor for ExitCommand class.
-     */
-    private ExitCommand() {
-        super(true);
-    }
-
-    /**
      * Returns the exit command.
      *
      * @return exit command.

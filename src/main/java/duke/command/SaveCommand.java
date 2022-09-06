@@ -9,13 +9,6 @@ import duke.TaskList;
 public class SaveCommand extends Command {
 
     /**
-     * Constructor for SaveCommand class.
-     */
-    public SaveCommand() {
-        super(false);
-    }
-
-    /**
      * Saves tasks in task list to save file.
      *
      * @param taskList task list.

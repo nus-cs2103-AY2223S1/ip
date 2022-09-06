@@ -16,7 +16,6 @@ public class MarkCommand extends Command {
      * @param index index of task in task list.
      */
     public MarkCommand(int index) {
-        super(false);
         assert index >= 0;
         this.index = index;
     }
@@ -33,16 +32,14 @@ public class MarkCommand extends Command {
     @Override
     public String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage) throws DukeException {
         try {
-            if (!taskList.get(index).getDone()) {
-                taskList.get(index).markTask();
-                new SaveCommand().execute(taskList, commandOutputs, storage);
-                return commandOutputs.showMark(taskList, index);
-            } else {
+            if (taskList.get(index).isDone()) { //Guard Clause
                 throw new DukeException("Task is already marked");
             }
+            taskList.get(index).markTask();
+            new SaveCommand().execute(taskList, commandOutputs, storage);
+            return commandOutputs.showMark(taskList, index);
         } catch (IndexOutOfBoundsException e) {
-            //plus 1 for indexing
-            throw new DukeException(String.format("Index %d does not exist on the list.", index + 1));
+            throw new DukeException(String.format("Index %d does not exist on the list.", index + 1)); //plus 1 for indexing
         }
     }
 }

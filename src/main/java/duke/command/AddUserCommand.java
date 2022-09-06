@@ -22,7 +22,6 @@ public class AddUserCommand extends Command {
      * @param task task in String.
      */
     public AddUserCommand(String task) {
-        super(false);
         this.task = task;
         this.type = Instructions.todo;
         this.timing = TODO_TIMING;
@@ -36,7 +35,6 @@ public class AddUserCommand extends Command {
      * @param timing timing in String.
      */
     public AddUserCommand(String task, Instructions instruction, String timing) {
-        super(false);
         this.task = task;
         this.type = instruction;
         this.timing = timing;
@@ -46,9 +44,9 @@ public class AddUserCommand extends Command {
      * Adds new task into task list and saves it in save file.
      *
      * @param taskList task list.
-     * @param commandOutputs       user interface of program.
-     * @param storage  files storing task list.
-     * @return
+     * @param commandOutputs user interface of program.
+     * @param storage files storing task list.
+     * @return String response of Duke regarding user input.
      * @throws DukeException if timing is of the wrong format.
      */
     @Override
@@ -65,7 +63,7 @@ public class AddUserCommand extends Command {
             newTask = new Events(task, timing, NOT_DONE);
             break;
         default:
-            newTask = null; //Should never be reached
+            throw new DukeException("Unknown Error");
         }
         taskList.add(newTask);
         new SaveCommand().execute(taskList, commandOutputs, storage);

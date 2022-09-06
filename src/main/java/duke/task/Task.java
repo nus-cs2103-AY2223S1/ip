@@ -36,7 +36,7 @@ public abstract class Task {
         isDone = false;
     }
 
-    public boolean getDone() {
+    public boolean isDone() {
         return isDone;
     }
 
@@ -51,7 +51,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        if (isDone) {
+        if (isDone()) {
             return "[X] " + task;
         }
         return "[ ] " + task;
@@ -63,7 +63,7 @@ public abstract class Task {
      * @return String representation of the task in save file format.
      */
     public String toSaveString() {
-        int d = isDone ? 1 : 0;
+        int d = isDone() ? 1 : 0;
         return String.format("%d %s", d, task);
     }
 
