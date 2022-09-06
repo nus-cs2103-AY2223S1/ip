@@ -58,12 +58,14 @@ public class Isara {
                 Task task = Parser.parseTask(userInput);
                 tasks.addTask(task);
                 int amountOfTasks = tasks.getNumberOfTasks();
+                assert amountOfTasks > 0;
                 storage.writeAndSaveToFile(dukeFile, tasks);
                 return ui.addTask(task, amountOfTasks);
             } else if (Parser.isCommand(commandLine)) {
                 Command command = Parser.parseCommand(userInput);
                 output = command.execute(tasks, dukeFile, storage);
                 hasExit = command.getExitStatus();
+                assert !output.equals("");
                 return output;
             } else {
                 return ui.commandDoesNotExist();
