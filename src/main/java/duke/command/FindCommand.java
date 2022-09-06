@@ -38,7 +38,8 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
-        ArrayList<Task> filteredTasks = taskList.getTasks().stream().filter(task -> task.contains(keyword))
+        ArrayList<Task> filteredTasks = taskList.getTasks().stream()
+                .filter(task -> task.contains(keyword))
                 .collect(Collectors.toCollection(ArrayList::new));
         if (filteredTasks.size() > 0) {
             String output = "Here are the matching tasks in your list:\n";
