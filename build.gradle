@@ -7,6 +7,8 @@ plugins {
 
 checkstyle {
     toolVersion = '10.2'
+    checkstyleTest.enabled = false
+    checkstyleMain.enabled = false
 }
 
 repositories {
@@ -58,4 +60,5 @@ shadowJar {
 
 run{
     standardInput = System.in
+    enableAssertions = true
 }

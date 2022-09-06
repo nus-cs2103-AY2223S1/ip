@@ -29,6 +29,7 @@ public class Duke {
         } catch (DukeException e) {
             ui.showLoadingError();
             tasks = new TaskList();
+            assert true: "should not experience an error here";
         }
     }
 
