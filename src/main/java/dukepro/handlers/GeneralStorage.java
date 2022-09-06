@@ -1,12 +1,13 @@
-package dukepro;
+package dukepro.handlers;
 
-import dukepro.exceptions.DukeException;
-import dukepro.handlers.Decoder;
-import dukepro.handlers.Storage;
-import dukepro.handlers.TasksManager;
-import dukepro.tasks.Task;
+import dukepro.StorableObjects;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.FileNotFoundException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.function.Function;
@@ -17,7 +18,7 @@ public class GeneralStorage<T extends StorableObjects> {
     private FileWriter fileWriter;
     private PrintWriter printWriter;
 
-    public GeneralStorage(String dir, String pathName) { // creates new files if needed
+    public GeneralStorage(String dir, String pathName) {
         try {
             directory = new File(dir);
             if (!directory.exists()) {

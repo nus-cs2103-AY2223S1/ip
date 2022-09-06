@@ -1,7 +1,6 @@
-package dukepro;
+package dukepro.handlers;
 
 import dukepro.StorableObjects;
-import dukepro.handlers.Storage;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,17 +9,19 @@ import java.util.function.Function;
 public class Manager <T extends StorableObjects> {
     private GeneralStorage<T> storage;
     private ArrayList<T> storedObjects = new ArrayList<>();
+    private String decorator;
 
-    public Manager(String dir, String pathName, Function<String, T> decoder) {
+    public Manager(String dir, String pathName, Function<String, T> decoder, String decorator) {
         storage = new GeneralStorage<>(dir, pathName);
         storage.readfile(this, decoder);
+        this.decorator = decorator;
     }
 
     public String add(T t) {
         storedObjects.add(t);
-        //storage.addTask(task);
-        String ret = "Got it. I've added this task: " + t + "\n Now you have "
-                + numStored() + " tasks in your list";
+        storage.add(t);
+        String ret = "Got it. I've added this " + decorator + ": " + t + "\n Now you have "
+                + numStored() + " " + decorator + " in your list";
 
         return ret;
     }
@@ -30,7 +31,7 @@ public class Manager <T extends StorableObjects> {
     }
 
     public String showList() {
-        String ret = "Here are the items in your list: \n";
+        String ret = "Here are the " + decorator + " in your list: \n";
         for (int i = 0; i < storedObjects.size(); i++) {
             int counter = i + 1;
             ret = ret + counter + ". " + storedObjects.get(i) + "\n";

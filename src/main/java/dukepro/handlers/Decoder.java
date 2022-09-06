@@ -272,7 +272,7 @@ public class Decoder {
             throw new EmptyDescException(splitted[0]);
         }
         if (!isValidNum(segmentAmt[0].strip())) {
-            throw new BadFormatException("expense", "espense", "<AMOUNT> /on <DATE>", "/amount");
+            throw new BadFormatException("expense", "expense", "<AMOUNT> /on <DATE>", "/amount");
         }
         int amount = Integer.parseInt(segmentAmt[0].strip());
         LocalDate ld = parseLD(segmentAmt[1]);
@@ -282,8 +282,8 @@ public class Decoder {
         return expense;
     }
 
-    public Expense parseFromFileExpense(String word) throws DukeException {
+    public static Expense parseFromFileExpense(String word) {
         String[] splitted = word.split(",");
-        return new Expense(splitted[0], Integer.parseInt(splitted[1]), Decoder.parseLD(splitted[2]));
+        return new Expense(splitted[0], Integer.parseInt(splitted[1]), LocalDate.parse(splitted[2]));
     }
 }

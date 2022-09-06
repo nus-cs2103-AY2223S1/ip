@@ -1,11 +1,8 @@
 package dukepro.handlers;
 
-import dukepro.Manager;
 import dukepro.exceptions.DukeException;
-import dukepro.expenses.ExpenseManager;
+import dukepro.expenses.Expense;
 import dukepro.tasks.Task;
-
-import java.util.function.Function;
 
 /**
  * Class for Interact.
@@ -13,7 +10,7 @@ import java.util.function.Function;
 public class Interact {
     private String line = "_______________________________________";
     private Manager<Task> tasksManager;
-    private ExpenseManager expenseManager;
+    private Manager<Expense> expenseManager;
 
     /**
      * Greets the user.
@@ -21,8 +18,10 @@ public class Interact {
      * @return String.
      */
     public String start() {
-        tasksManager = new Manager<Task>("data", "data/tasklist.txt", (str) -> Decoder.parseFromFile(str));
-        expenseManager = new ExpenseManager();
+        tasksManager = new Manager<Task>("data", "data/tasklist.txt",
+                (str) -> Decoder.parseFromFile(str), "task");
+        expenseManager = new Manager<Expense>("data", "data/expenselist.txt",
+                (str) -> Decoder.parseFromFileExpense(str), "expense");
         String logo = " ____        _\n"
                 + "|  _ \\ _   _| | _____\n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -55,11 +54,11 @@ public class Interact {
         } else if (word.startsWith("find") || word.startsWith("Find")) {
             return tasksManager.find(Decoder.parseFind(word));
         } else if (word.startsWith("expense") || word.startsWith("Expense")) {
-            return expenseManager.addExpense(Decoder.makeExpense(word));
+            return expenseManager.add(Decoder.makeExpense(word));
         } else if (word.startsWith("showExpense")) {
             return expenseManager.showList();
         } else if (word.startsWith("delExpense")) {
-            return expenseManager.deleteExpense(Decoder.deleteExpense(word, expenseManager.numEx()));
+            return expenseManager.delete(Decoder.deleteExpense(word, expenseManager.numStored()));
         } else {
             throw new DukeException("bad input");
         }
@@ -74,6 +73,7 @@ public class Interact {
      */
     public void bye() {
         tasksManager.closePW();
+        expenseManager.closePW();
         System.out.println(line);
         System.out.println("Bye. Hope to see you again soon!");
         System.out.println(line);

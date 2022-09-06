@@ -33,11 +33,11 @@ public class Expense extends StorableObjects {
     }
 
     public boolean getMatching(String search) {
-        return true;
+        return name.contains(search);
     }
 
     public boolean compareDate(LocalDate localDate) {
-        return true;
+        return localDate.equals(this.localDate);
     }
 
     /**
