@@ -106,6 +106,7 @@ public class DukeHandler {
         } catch (DukeException e) {
             response = ui.showError(e.getMessage());
         }
+        assert response != "" : "Response should not be empty";
         return response;
     }
 }
