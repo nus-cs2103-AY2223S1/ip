@@ -32,6 +32,7 @@ public class Storage {
      * @param filePath The path at which the target file can be found / should be created.
      */
     public Storage(String filePath) {
+        assert(filePath.length() != 0);
         this.filePath = filePath;
         this.directoryPath = filePath.substring(0, filePath.lastIndexOf("/"));
     }
@@ -119,13 +120,15 @@ public class Storage {
         // Check if directory and file exists
         File dir = new File(this.directoryPath);
         if (!dir.exists()) {
-            dir.mkdir();
+            boolean directoryCreatedSuccessfully = dir.mkdir();
+            assert (directoryCreatedSuccessfully);
         }
         // Create file if it doesn't exist
         File file = new File(filePath);
         if (dir.exists() && !file.exists()) {
             try {
-                file.createNewFile();
+                boolean fileCreatedSuccessfully = file.createNewFile();
+                assert (fileCreatedSuccessfully);
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }

@@ -15,6 +15,11 @@ public class Parser {
      * @throws DukeException A custom exception for handling errors unique to Duke.
      */
     public static String decide(String s, String[] arr, TaskList taskList, Storage storage) throws DukeException {
+        assert(s.length() != 0);
+        assert(taskList != null);
+        assert(storage != null);
+        int size;
+
         if (arr.length == 0) {
             return "Please enter a valid command.";
         } else {
