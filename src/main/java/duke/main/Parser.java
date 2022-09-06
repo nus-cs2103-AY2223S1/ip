@@ -31,6 +31,7 @@ public class Parser {
     public Command parse(String input) {
         String [] inputs = input.split(" ");
         String command = inputs[0];
+        assert command instanceof String : "Not a String!";
         try {
             if (command.equals("list")) {
                 return new ListCommand();
@@ -38,7 +39,6 @@ public class Parser {
                 return new ByeCommand();
             } else {
                 String task = inputs[1];
-
                 if (command.equals("mark")) {
                     return new MarkCommand(task);
                 } else if (command.equals("unmark")) {
@@ -50,7 +50,7 @@ public class Parser {
                 } else if (command.equals("event")) {
                     return new AddEventsCommand(input);
                 } else if (command.equals("delete")) {
-                    return new DeleteCommand(inputs[1]);
+                    return new DeleteCommand(task);
                 } else if (command.equals("find")) {
                     return new FindCommand(input);
                 } else {
