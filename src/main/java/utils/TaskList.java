@@ -147,12 +147,11 @@ public class TaskList {
 
     public String getAllOccurrencesOf(String s) {
         String result = "Here are the matching tasks in your list:\n";
-        for (int i = 0; i < this.tasks.size(); i++) {
-            if (this.tasks.get(i).toString().toLowerCase().contains(s)) {
-                result = result + "\n\t" + this.tasks.get(i);
-            }
-        }
-        return result;
+        return result + "\n\t" + this.tasks.stream()
+                .map(Task::toString)
+                .filter(str -> str.toLowerCase().contains(s))
+                .reduce((x, y) -> x + "\n\t" + y)
+                .orElse("No matching tasks found.");
     }
 
     /**
