@@ -2,6 +2,7 @@ package dukepro.handlers;
 
 import dukepro.exceptions.DukeException;
 import dukepro.expenses.Expense;
+import dukepro.expenses.ExpenseCalculator;
 import dukepro.tasks.Task;
 
 /**
@@ -59,6 +60,9 @@ public class Interact {
             return expenseManager.showList();
         } else if (word.startsWith("delExpense")) {
             return expenseManager.delete(Decoder.deleteExpense(word, expenseManager.numStored()));
+        } else if (word.startsWith("totalSpent")) {
+            int total = expenseManager.operateOnList(arr -> ExpenseCalculator.sumArrayList(arr));
+            return "You spent a total of " + total;
         } else {
             throw new DukeException("bad input");
         }

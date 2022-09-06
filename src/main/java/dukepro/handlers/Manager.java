@@ -20,7 +20,7 @@ public class Manager <T extends StorableObjects> {
     public String add(T t) {
         storedObjects.add(t);
         storage.add(t);
-        String ret = "Got it. I've added this " + decorator + ": " + t + "\n Now you have "
+        String ret = "Got it. I've added this " + decorator + ": \n" + t + "\n Now you have "
                 + numStored() + " " + decorator + " in your list";
 
         return ret;
@@ -81,5 +81,9 @@ public class Manager <T extends StorableObjects> {
             }
         }
         return ret;
+    }
+
+    public <S> S operateOnList(Function<? super ArrayList<? extends T>, ? extends S> func) {
+        return func.apply(storedObjects);
     }
 }

@@ -10,9 +10,9 @@ import java.time.LocalDate;
  * Class for Expenses
  */
 public class Expense extends StorableObjects {
-    String name;
-    int amount;
-    LocalDate localDate;
+    private String name;
+    private int amount;
+    private LocalDate localDate;
 
     /**
      * Constructor for Expense class
@@ -49,6 +49,10 @@ public class Expense extends StorableObjects {
      */
     public boolean matchDate(LocalDate ld) {
         return ld.equals(localDate);
+    }
+
+    public int spent() {
+        return this.amount;
     }
 
     /**
