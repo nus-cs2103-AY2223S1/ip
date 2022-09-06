@@ -12,15 +12,15 @@ import zeus.task.Task;
  */
 public class FindCommand extends Command {
 
-    private String s;
+    private String stringToMatch;
 
-    public FindCommand(String s) {
-        this.s = s;
+    public FindCommand(String stringToMatch) {
+        this.stringToMatch = stringToMatch;
     }
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
-        ArrayList<Task> tasks = taskList.find(this.s);
+        ArrayList<Task> tasks = taskList.findMatchingTasks(this.stringToMatch);
         ui.printMatchingTasks(tasks);
     }
 }
