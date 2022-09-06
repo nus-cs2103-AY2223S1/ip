@@ -49,6 +49,42 @@ public class Ui {
         return sc.nextLine();
     }
 
+    public String printTasks(TaskList tasks) {
+        return "Here are the tasks in your list:\n" + tasks;
+    }
+
+    public String printMarked(Task task) {
+        return "Nice! I've marked this task as done:\n" + task;
+    }
+
+    public String printUnmarked(Task task) {
+        return "OK, I've marked this task as not done yet:\n" + task;
+    }
+
+    /**
+     * Informs user of the added task description and size of current TaskList
+     * @param task description of added task
+     * @param size size of current TaskList
+     * @return task description and size of current TaskList
+     */
+    public String printAddedTask(Task task, int size) {
+        return "Got it. I've added this task:\n"
+                + task + "\n"
+                + "Now you have " + size + " tasks in the list.\n";
+    }
+
+    /**
+     * Informs user of the removed task description and size of current TaskList
+     * @param task description of removed task
+     * @param size size of current TaskList
+     * @return task description and size of current TaskList
+     */
+    public String printDeletedTask(Task task, int size) {
+        return "Noted. I've removed this task:\n"
+                + task + "\n"
+                + "Now you have " + size + " tasks in the list.\n";
+    }
+
     /**
      * Just in case someone keys in the wrong filename...
      * @exception FileNotFoundException if the file cannot be found

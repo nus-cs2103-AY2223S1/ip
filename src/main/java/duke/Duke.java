@@ -1,7 +1,7 @@
 package duke;
 
-//import java.io.FileNotFoundException;
-//import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -23,30 +23,26 @@ import javafx.stage.Stage;
  * @version 1.0
  */
 
+@SuppressWarnings("checkstyle:Regexp")
 public class Duke extends Application {
 
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private final Image user = new Image(this.getClass().getResourceAsStream("/images/NotSoPoliteCat.png"));
+    private final Image duke = new Image(this.getClass().getResourceAsStream("/images/PoliteCat.png"));
     private ScrollPane scrollPane;
     private VBox dialogContainer;
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    /*
-    private Storage storage;
+    private final Storage storage;
     private TaskList tasks;
-    private Ui ui;
-*/
-    /*
+    private final Ui ui;
     /**
      * Loads Duke up with the appropriate list of tasks
-     * @param filePath denoting the source of the file
      * @throws FileNotFoundException if the filePath is typed incorrectly
      */
-    /*
-    public Duke(String filePath) throws FileNotFoundException {
+    public Duke() throws FileNotFoundException {
         ui = new Ui();
-        storage = new Storage(filePath);
+        storage = new Storage("./src/duke.txt");
         try {
             tasks = new TaskList(storage.load());
         } catch (FileNotFoundException de) {
@@ -54,56 +50,9 @@ public class Duke extends Application {
             tasks = new TaskList();
         }
     }
-*/
-    /*
-    /**
-     * Main method to drive the program
-     * @param args empty
-     */
-    /*
-    public static void main(String[] args) {
-        try {
-            new Duke("./src/duke.txt").run();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }*/
-
-    /**
-     * The crux of the pain our dear chatbot, Duke, has to go through
-     */
-    /*
-    public void run() {
-        ui.sayHi();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                String commandType = Parser.getCommandType(fullCommand);
-                isExit = Parser.process(fullCommand, commandType, tasks, ui);
-                if (!isExit) { // i.e. when not saying bye to Duke
-                    storage.saveToFile(fullCommand);
-                }
-            } catch (IllegalArgumentException iae) {
-                System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-            } catch (IOException e) {
-                System.out.println("Your input cannot be saved. Sorry! :(");
-            }
-        }
-    }*/
 
     @Override
     public void start(Stage stage) {
-
-        /* For Hello World
-        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
-        helloWorld.setFont(new Font("Arial", 120));
-        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
-
-        stage.setScene(scene); // Setting the stage to show our screen
-        stage.show(); // Render the stage.
-         */
-
         //Step 1. Setting up required components
 
         //The container for the content of the chat to scroll.
@@ -122,7 +71,7 @@ public class Duke extends Application {
         scene.getRoot().setStyle("-fx-font-family: 'serif'");
         stage.setScene(scene);
         stage.show();
-        //Step 2. Formatting the window to look as expected
+        // Step 2. Formatting the window to look as expected
         stage.setTitle("Duke");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
@@ -156,7 +105,6 @@ public class Duke extends Application {
         sendButton.setOnMouseClicked((event) -> {
             handleUserInput();
         });
-
         userInput.setOnAction((event) -> {
             handleUserInput();
         });
@@ -184,8 +132,20 @@ public class Duke extends Application {
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
-    private String getResponse(String input) {
-        return "Duke heard: " + input;
+    public String getResponse(String fullCommand) {
+        String output;
+        try {
+            String commandType = Parser.getCommandType(fullCommand);
+            output = Parser.process(fullCommand, commandType, tasks, ui);
+            if (!fullCommand.equals("bye")) { // i.e. when not saying bye to Duke
+                storage.saveToFile(fullCommand);
+            }
+        } catch (IllegalArgumentException iae) {
+            return "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
+        } catch (IOException e) {
+            return "Your input cannot be saved. Sorry! :(";
+        }
+        return output;
     }
 }
 

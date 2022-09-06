@@ -49,47 +49,46 @@ public class Parser {
      * @param ui to say bye when job is done
      * @return boolean isExit
      */
-    public static boolean process(String command, String commandType, TaskList tasks, Ui ui) {
-        boolean isExit = false;
+    public static String process(String command, String commandType, TaskList tasks, Ui ui) {
         switch(commandType) {
         case "LIST":
-            tasks.listAll();
-            break;
+            return ui.printTasks(tasks);
         case "MARK":
             int markIdx = Integer.parseInt(command.substring(5)) - 1;
             tasks.mark(markIdx);
-            break;
+            return ui.printMarked(tasks.getTask(markIdx));
         case "UNMARK":
             int unmarkIdx = Integer.parseInt(command.substring(7)) - 1;
             tasks.unmark(unmarkIdx);
-            break;
+            return ui.printUnmarked(tasks.getTask(unmarkIdx));
         case "TODO":
-            tasks.add(new ToDo(command.substring(5)));
-            break;
+            Task tD = new ToDo(command.substring(5));
+            tasks.add(tD);
+            return ui.printAddedTask(tD, tasks.getSize());
         case "DEADLINE":
             String dlAction = command.substring(9, command.indexOf("/") - 1);
-            tasks.add(new Deadline(dlAction, formatEventTime(command)));
-            break;
+            Task dl = new Deadline(dlAction, formatEventTime(command));
+            tasks.add(dl);
+            return ui.printAddedTask(dl, tasks.getSize());
         case "EVENT":
             String eAction = command.substring(6, command.indexOf("/") - 1);
-            tasks.add(new Event(eAction, formatEventTime(command)));
-            break;
+            Task ev = new Event(eAction, formatEventTime(command));
+            tasks.add(ev);
+            return ui.printAddedTask(ev, tasks.getSize());
         case "DELETE":
             int deleteIdx = Integer.parseInt(command.substring(7)) - 1;
+            Task taskToDelete = tasks.getTask(deleteIdx);
             tasks.delete(deleteIdx);
-            break;
+            return ui.printDeletedTask(taskToDelete, tasks.getSize());
         case "FIND":
             String keyword = command.substring(5);
-            tasks.findTask(keyword);
-            break;
+            return tasks.findTask(keyword);
         case "BYE":
-            ui.sayBye();
-            isExit = true;
-            break;
+            System.exit(0);
+            return null;
         default:
             throw new IllegalArgumentException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
-        return isExit;
     }
 
     /**
