@@ -61,6 +61,7 @@ public class Duke {
      */
     public String getResponse(String input) {
         try {
+            assert(Parser.parseCommand(input) instanceof Command);
             Command c = Parser.parseCommand(input);
             if (c instanceof ExitCommand) {
                 isExit = true;

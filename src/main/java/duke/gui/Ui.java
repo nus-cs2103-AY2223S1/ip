@@ -24,6 +24,7 @@ public class Ui {
      * @param message Message to be printed.
      */
     public static void printMessage(String message) {
+        assert(message != null);
         System.out.println("____________________________________________________________\n"
                 + message
                 + "____________________________________________________________\n");
