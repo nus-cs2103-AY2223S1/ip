@@ -48,7 +48,7 @@ public class Ui {
                 + "   | |   | | | |  __ \\ /     |☁️  ️✴  ⋆\n"
                 + "   | |__ | |_| | |  | |    | |\n"
                 + "   |____| \\__,_|_|  |_|\\__/|_|\n";
-        String toPrint = SEP + "\nHello. ⛅️\n   This is\n" + logo;
+        String toPrint = "Hello. ⛅️\n   This is\n" + logo;
 
         // Print available commands
 //        toPrint += "\n  Luna commands"
@@ -76,7 +76,7 @@ public class Ui {
         }
 
         // Print final separation line
-        return toPrint + "\n" + SEP;
+        return addLine(toPrint);
     }
 
     /**
@@ -84,11 +84,10 @@ public class Ui {
      */
     public String farewell() {
         return "\n . ❍  ❃ ☆  ✶ ❅  🌙 Goodbye from Luna 🌙  ❅ ✶  ☆ ❃  ❍  .\n";
-//        sc.close();
     }
 
-    public String showLine() {
-        return SEP;
+    public String addLine(String message) {
+        return SEP + "\n" + message + "\n" + SEP;
     }
 
     /**
@@ -97,7 +96,7 @@ public class Ui {
      * @param e An Exception to be displayed to user
      */
     public String showError(LunaException e) {
-        return showLine() + "\n" + e.toString() + "\n" + showLine();
+        return addLine(e.toString());
     }
 
     /**
@@ -107,8 +106,8 @@ public class Ui {
      * @param task Current task added.
      */
     public String showAdded(TaskList tasks, Task task) {
-        return showLine() + "\n Luna has added:\n" + task.toString()
-                + "\n" + tasks.size() + " task(s) left in your list 🌻\n" + showLine();
+        return addLine("Luna has added:\n" + task.toString()
+                + "\n" + tasks.size() + " task(s) left in your list 🌻");
     }
 
     /**
@@ -118,8 +117,8 @@ public class Ui {
      * @param task Task deleted.
      */
     public String showDeleted(TaskList tasks, Task task) {
-        return showLine() + "\nLuna has removed:\n" + task.toString()
-                + "\n" + tasks.size() + " task(s) left in your list 🌻)\n" + showLine();
+        return addLine("Luna has removed:\n" + task.toString()
+                + "\n" + tasks.size() + " task(s) left in your list 🌻");
 
     }
 
@@ -129,7 +128,7 @@ public class Ui {
      * @param tasks List of tasks added by user.
      */
     public String showList(TaskList tasks) {
-        return showLine() + "\n\n☀️ Stuff you have to do! ☀️\n\n" + tasks + "\n" + showLine();
+        return addLine("\n☀️ Stuff you have to do! ☀️\n\n" + tasks);
     }
 
     /**
@@ -138,7 +137,7 @@ public class Ui {
      * @param task Task marked as completed.
      */
     public String showMark(Task task) {
-        return showLine() + "\nMarked as completed 🌈️\n" + task.toString() + "\n" + showLine();
+        return addLine("Marked as completed 🌈️\n" + task.toString());
     }
 
     /**
@@ -147,7 +146,7 @@ public class Ui {
      * @param task Task marked as uncompleted.
      */
     public String showUnmark(Task task) {
-        return showLine() + "\nMarked as uncompleted 🌩\n" + task.toString() + "\n" + showLine();
+        return addLine("Marked as uncompleted 🌩\n" + task.toString());
     }
 
     /**
@@ -156,13 +155,13 @@ public class Ui {
      * @param tasks String representation of relevant tasks.
      */
     public String showFound(String tasks) {
-        String result = showLine();
+        String result = "";
         if (tasks.equals("")) {
             result += "\nLuna did not manage to find any relevant tasks 🍂\n";
         } else {
             result += "\n☁️ Here are the tasks Luna has found! ☁️" + tasks;
         }
-        return result + "\n" + showLine();
+        return addLine(result);
     }
 
     /**
