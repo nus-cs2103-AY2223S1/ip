@@ -21,14 +21,13 @@ public class Duke {
                 "    ____________________________________________________________\n";
         System.out.println(hello);
 
-        Task[] tasks = new Task[100];
+        ArrayList<Task> tasks = new ArrayList<>();
 
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
         String[] inputArr = input.split(" ");
         String action = inputArr[0];
 
-        int size = 0;
 
         while (!action.equals("bye")) {
             int number;
@@ -37,15 +36,15 @@ public class Duke {
             try {
                 switch (action) {
                     case "list":
-                        if (size == 0) {
+                        if (tasks.size() == 0) {
                             System.out.println("    ____________________________________________________________\n" +
                                     "     There is no pending task for you." +
                                     "\n    ____________________________________________________________");
                         } else {
                             System.out.println("    ____________________________________________________________\n" +
                                     "     Here are the tasks in your list:");
-                            for (int i = 0; i < size; i++) {
-                                System.out.format("     %d.%s\n", i + 1, tasks[i]);
+                            for (int i = 0; i < tasks.size(); i++) {
+                                System.out.format("     %d.%s\n", i + 1, tasks.get(i));
                             }
                             System.out.println("    ____________________________________________________________");
                         }
@@ -55,10 +54,10 @@ public class Duke {
                             throw new DukeException("The format should be: mark <number>!");
                         }
                         number = Integer.parseInt(inputArr[1]);
-                        if (number > size) {
+                        if (number > tasks.size()) {
                             throw new DukeException("The index is invalid!");
                         }
-                        task = tasks[number - 1];
+                        task = tasks.get(number - 1);
                         task.markAsDone();
                         System.out.println("    ____________________________________________________________\n" +
                                 "     Nice! I've marked this task as done:\n       " +
@@ -67,13 +66,13 @@ public class Duke {
                         break;
                     case "unmark":
                         if (inputArr.length > 2 || inputArr.length == 1) {
-                            throw new DukeException("The format should be: mark <number>!");
+                            throw new DukeException("The format should be: unmark <number>!");
                         }
                         number = Integer.parseInt(inputArr[1]);
-                        if (number > size) {
+                        if (number > tasks.size()) {
                             throw new DukeException("The index is invalid!");
                         }
-                        task = tasks[number - 1];
+                        task = tasks.get(number - 1);
                         task.markAsNotDone();
                         System.out.println("    ____________________________________________________________\n" +
                                 "     Nice! I've marked this task as not done yet:\n       " +
@@ -85,13 +84,12 @@ public class Duke {
                             throw new DukeException("The description of a todo cannot be empty.");
                         }
                         task = new Todo(input.substring(5));
-                        tasks[size] = task;
-                        size++;
+                        tasks.add(task);
                         System.out.println("    ____________________________________________________________\n" +
                                 "     Got it. I've added this task:\n       " +
                                 task);
                         System.out.format("     Now you have %d tasks in the list.\n    ____________________________________________________________\n",
-                                size);
+                                tasks.size());
 
                         break;
                     case "deadline":
@@ -103,13 +101,12 @@ public class Duke {
                         }
                         params = input.substring(9).split(" /by ");
                         task = new Deadline(params[0], params[1]);
-                        tasks[size] = task;
-                        size++;
+                        tasks.add(task);
                         System.out.println("    ____________________________________________________________\n" +
                                 "     Got it. I've added this task:\n       " +
                                 task);
                         System.out.format("     Now you have %d tasks in the list.\n    ____________________________________________________________\n",
-                                size);
+                                tasks.size());
 
                         break;
                     case "event":
@@ -121,13 +118,27 @@ public class Duke {
                         }
                         params = input.substring(6).split(" /at ");
                         task = new Event(params[0], params[1]);
-                        tasks[size] = task;
-                        size++;
+                        tasks.add(task);
                         System.out.println("    ____________________________________________________________\n" +
                                 "     Got it. I've added this task:\n       " +
                                 task);
                         System.out.format("     Now you have %d tasks in the list.\n    ____________________________________________________________\n",
-                                size);
+                                tasks.size());
+                        break;
+                    case "delete":
+                        if (inputArr.length > 2 || inputArr.length == 1) {
+                            throw new DukeException("The format should be: delete <number>!");
+                        }
+                        number = Integer.parseInt(inputArr[1]);
+                        if (number > tasks.size()) {
+                            throw new DukeException("The index is invalid!");
+                        }
+                        task = tasks.get(number - 1);
+                        tasks.remove(number - 1);
+                        System.out.println("    ____________________________________________________________\n" +
+                                "     Okay! I've removed this task from the list:\n       " +
+                                task +
+                                "\n    ____________________________________________________________");
                         break;
                     default:
                         throw new DukeException("I'm sorry, but I don't know what that means :-(");
