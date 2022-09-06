@@ -21,6 +21,7 @@ public class Duke {
      */
     public Duke(String filePath) {
         storage = new Storage(filePath);
+
         try {
             taskList = new TaskList(storage.loadData());
         } catch (DukeException e) {
@@ -35,14 +36,16 @@ public class Duke {
      * @return a string representation of the response to the given input
      */
     public String getResponse(String input) {
-        String str = input.trim();
         String response;
+        String str = input.trim();
+
         try {
             response = Parser.parseCommand(str, taskList);
             saveData();
         } catch (DukeException e) {
             response = e.toString();
         }
+
         return response;
     }
 
