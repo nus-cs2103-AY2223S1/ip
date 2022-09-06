@@ -63,6 +63,15 @@ public class TaskList {
         }
     }
 
+    public TaskList filter(String keyword) {
+        TaskList filteredTaskList = new TaskList();
+        for (Task task : taskList) {
+            if (task.getTaskName().contains(keyword)) {
+                filteredTaskList.add(task);
+            }
+        }
+        return filteredTaskList;
+    }
 
 }
 

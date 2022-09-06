@@ -238,7 +238,6 @@ public class Parser {
     }
 
     public static Command parse(String input) {
-        //first remove any whitespace at the start
         input = removeStartingWhitespace(input);
         if (input.equals("blank")) {
             return new NullCommand();
@@ -339,6 +338,12 @@ public class Parser {
                     }
                     String taskName = findArgument(input, 2);
                     return new AddTodoCommand(taskName);
+            case "find":
+                if (countArguments(input) != 2) {
+                    throw new IllegalArgumentException("Please enter only 1 keyword!");
+                }
+                String keyword = findArgument(input, 2);
+                return new FindCommand(keyword);
                 default:
                     return new UnrecognisedCommand();
             }
