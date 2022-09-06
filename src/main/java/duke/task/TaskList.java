@@ -115,10 +115,10 @@ public class TaskList {
      * @param keywords the strings of keyword.
      * @return the TaskList which contains all the matched Tasks.
      */
-    public TaskList filterByKeyWord(String ... keywords) {
+    public TaskList filterByKeyword(String ... keywords) {
         assert keywords.length > 0 : "Keywords must be non empty";
         return new TaskList(this.tasks.stream()
-                .filter(task -> task.isContainKeyWord(keywords))
+                .filter(task -> task.containsKeyword(keywords))
                 .collect(Collectors.toList()));
     }
 

@@ -44,10 +44,12 @@ public class ToDoCommand implements Command {
 
         Task newTask = new ToDo(this.description);
         taskList.addTask(newTask);
+        storage.saveTasksInStorage(taskList.toStorageRepresentation());
+
         String responseMessage = "This task is successfully added:\n " + newTask
                 + "\nNow you have " + taskList.getTaskListSize() + " task(s) in the list";
         ui.printMessage(responseMessage);
-        storage.saveTasksInStorage(taskList.toStorageRepresentation());
+
         return new Pair<>(true, responseMessage);
     }
 }

@@ -12,22 +12,21 @@ import javafx.util.Pair;
  * @author Farrel Dwireswara Salim
  */
 public class FindCommand implements Command {
-    private final String[] keyWords;
+    private final String[] keywords;
 
     /**
      * Constructs a new FindCommand instance based on keyword.
      *
-     * @param keyWord the keyword string.
+     * @param keyword the keyword string.
      * @throws DukeException If the keyword string is empty.
      */
-    public FindCommand(String keyWord) throws DukeException {
-        if (keyWord == null || keyWord == "") {
+    public FindCommand(String keyword) throws DukeException {
+        if (keyword == null || keyword == "") {
             throw new DukeException("The keyword after find command "
                     + "must be a non-empty string!");
         }
 
-
-        this.keyWords = keyWord.split(",");
+        this.keywords = keyword.split(",");
     }
 
     /**
@@ -40,13 +39,14 @@ public class FindCommand implements Command {
      */
     @Override
     public Pair<Boolean, String> execute(Ui ui, Storage storage, TaskList taskList) {
-        TaskList filteredTasks = taskList.filterByKeyWord(this.keyWords);
+        TaskList filteredTasks = taskList.filterByKeyword(this.keywords);
 
         String responseMessage = filteredTasks.isEmpty()
                 ? "There are no task that match the keyword"
                 : "Here are the tasks in your list that match the keyword\n"
                 + filteredTasks;
         ui.printMessage(responseMessage);
+
         return new Pair<>(true, responseMessage);
     }
 }

@@ -30,6 +30,7 @@ public class ListCommand implements Command {
                 ? "You have no tasks at the moment."
                 : "Here are the tasks in your list\n" + taskList;
         ui.printMessage(responseMessage);
+
         return new Pair<>(true, responseMessage);
     }
 }

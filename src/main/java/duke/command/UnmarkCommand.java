@@ -43,10 +43,12 @@ public class UnmarkCommand implements Command {
             throws DukeException {
         try {
             Task unmarkedTask = taskList.unmarkTaskWithIndex(index);
+            storage.saveTasksInStorage(taskList.toStorageRepresentation());
+
             String responseMessage = "This task has been marked as not done yet:\n "
                     + unmarkedTask;
             ui.printMessage(responseMessage);
-            storage.saveTasksInStorage(taskList.toStorageRepresentation());
+
             return new Pair<>(true, responseMessage);
         } catch (IndexOutOfBoundsException error) {
             throw new DukeException();
