@@ -32,17 +32,6 @@ public class TextUi {
     }
 
     /**
-     * Returns true if the user input should be ignored by the application.
-     * Inputs should be ignored if they are empty or whitespaces.
-     *
-     * @param userInput the user input to check for
-     * @return true if user input should be input
-     */
-    private boolean shouldIgnoreInput(String userInput) {
-        return userInput.trim().isEmpty();
-    }
-
-    /**
      * Prints the user prompt to prompt user for input
      */
     public void promptUserInput() {
@@ -62,7 +51,6 @@ public class TextUi {
     public void sayGoodbyeToUser() {
         speakToUser(Messages.MESSAGE_GOODBYE_1, Messages.MESSAGE_GOODBYE_2);
     }
-
 
     /**
      * Prints a sequence of strings to the user, encapsulated in a message instance.

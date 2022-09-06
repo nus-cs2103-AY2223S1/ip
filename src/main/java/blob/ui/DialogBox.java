@@ -33,7 +33,6 @@ public class DialogBox extends HBox {
 
         dialog.setText(Arrays.stream(text).reduce("", (res, line) -> res + line + "\n"));
         displayPicture.setImage(img);
-
     }
 
     /**
