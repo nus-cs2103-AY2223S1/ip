@@ -22,7 +22,8 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, TaskList archiveTaskList, Storage storage,
+                          Storage archiveStorage, Ui ui) {
         String output = "";
         for (int i = 0; i < taskList.length(); i++) {
             String taskString = taskList.getTask(i).toString();

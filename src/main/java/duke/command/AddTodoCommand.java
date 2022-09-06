@@ -32,11 +32,12 @@ public class AddTodoCommand extends Command {
      * @param storage
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, TaskList archiveTaskList, Storage storage,
+                          Storage archiveStorage, Ui ui) {
         Task todo = new Todo(taskName);
         taskList.addTasks(todo);
         storage.saveTasks(taskList);
-        String response = todo + "added";
+        String response = todo + " added";
         return response;
     }
 

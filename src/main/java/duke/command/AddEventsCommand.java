@@ -38,11 +38,12 @@ public class AddEventsCommand extends Command {
      * @param storage
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, TaskList archiveTaskList, Storage storage,
+                          Storage archiveStorage, Ui ui) {
         Task event = new Events(taskName, localDate);
         taskList.addTasks(event);
         storage.saveTasks(taskList);
-        String response = event + "added";
+        String response = event + " added";
         return response;
     }
 }
