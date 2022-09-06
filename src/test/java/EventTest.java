@@ -20,7 +20,7 @@ public class EventTest {
     public void toString_description_stringIsFormatted() {
         String str = "2022-10-11";
         Events event = new Events("Event", LocalDate.parse(str));
-        assertEquals("[E][] Event (at: 11 OCTOBER 2022)", event.toString());
+        assertEquals("[E][ ] Event (at: 11 OCTOBER 2022)", event.toString());
     }
 
     /**

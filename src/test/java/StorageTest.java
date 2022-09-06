@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import duke.main.Storage;
 import duke.task.Task;
-
+import duke.task.Todo;
 
 
 /**
@@ -23,8 +23,9 @@ public class StorageTest {
     public void load_loadingOneTask_dataLoaded() throws IOException {
         Storage storage = new Storage(filePath);
         TaskListStub taskList = new TaskListStub(storage.loadTasks());
+        taskList.addTasks(new Todo("todoTest"));
         Task task = taskList.getTask(0);
 
-        assertEquals("[T][] help", task.toString());
+        assertEquals("[T][ ] todoTest", task.toString());
     }
 }
