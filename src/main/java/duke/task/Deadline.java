@@ -5,8 +5,7 @@ import java.time.LocalDateTime;
 /**
  * A Deadline object that is a type of Task, but contains the date and time on top of the task description.
  */
-public class Deadline extends Task{
-    
+public class Deadline extends Task {
     /** Datetime of the deadline */
     protected LocalDateTime by;
 
@@ -20,7 +19,6 @@ public class Deadline extends Task{
         super(description);
         this.by = by;
     }
-    
     /**
      * Returns the LocalDateTime of this Deadline instance.
      *

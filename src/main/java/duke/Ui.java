@@ -12,15 +12,15 @@ import java.util.Scanner;
  */
 public class Ui {
 
-    private final Scanner in;
-    private final PrintStream out;
+    public final Scanner in;
+    public final PrintStream out;
     /**
      * Creates a Ui object.
      */
     public Ui() {
         this(System.in, System.out);
     }
-    public Ui(InputStream in, PrintStream out) {
+    protected Ui(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
         this.out = out;
     }
@@ -40,7 +40,7 @@ public class Ui {
      * Displays a farewell message to the user.
      */
     protected void printGoodbyeMessage() {
-        out.println("Bye. SoCCat wishes to see you again soon!");
+        out.println("Goodbye! SoCCat wishes to see you again soon!");
     }
 
     /**
