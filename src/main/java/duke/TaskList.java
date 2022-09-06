@@ -10,6 +10,7 @@ public class TaskList {
 
     /**
      * The constructor of the TaskList class.
+     *
      * @param taskList A list of tasks.
      */
     public TaskList(ArrayList<Task> taskList) {
@@ -18,6 +19,7 @@ public class TaskList {
 
     /**
      * Gets the size of the task list.
+     *
      * @return Size of task list.
      */
     public int size() {
@@ -26,6 +28,7 @@ public class TaskList {
 
     /**
      * Gets the task from the task list with the given index.
+     *
      * @param index Index of the task wanted.
      * @return Task with the index.
      */
@@ -35,6 +38,7 @@ public class TaskList {
 
     /**
      * Add a task into the task list.
+     *
      * @param task The task that is being added.
      */
     public void addTask(Task task) {
@@ -43,6 +47,7 @@ public class TaskList {
 
     /**
      * Deletes a task from the task list.
+     *
      * @param num The number of the task that is being deleted.
      * @return The task that was deleted.
      * @throws DukeException If num > taskList.size() || num <= 0
@@ -58,6 +63,7 @@ public class TaskList {
 
     /**
      * Marks the task as done.
+     *
      * @param number The number of the task that is being marked.
      * @throws DukeException If number > taskList.size() || number <= 0
      */
@@ -67,11 +73,13 @@ public class TaskList {
         }
         Task taskToMark = taskList.get(number - 1);
         assert taskToMark != null;
-        taskToMark.setDone();
+        taskToMark.setDone(true);
+
     }
 
     /**
      * Marks the task as not done.
+     *
      * @param number The number of the task that is being unmarked.
      * @throws DukeException If number > taskList.size() || number <= 0
      */
@@ -81,11 +89,12 @@ public class TaskList {
         }
         Task taskToUnmark = taskList.get(number - 1);
         assert taskToUnmark != null;
-        taskToUnmark.setUnDone();
+        taskToUnmark.setUnDone(false);
     }
 
     /**
      * Converts the taskList to a string that can be inputted into the text file.
+     *
      * @return String of tasks
      */
     public String taskListToText() {
@@ -98,6 +107,7 @@ public class TaskList {
 
     /**
      * Returns a list of tasks that contains the keyword.
+     *
      * @param keyWord Keyword that is being searched for.
      * @return A taskList containing tasks that contain the keyword.
      * @throws DukeException If the new taskList is empty.

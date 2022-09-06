@@ -17,6 +17,7 @@ public class DialogBox extends HBox {
 
     /**
      * Constructor for the DialogBox class.
+     *
      * @param l The text in the dialog box.
      * @param iv The display picture in the dialog box.
      */
