@@ -18,6 +18,8 @@ public class Ui {
 
     /**
      * Display goodbye message when Blink program ends.
+     *
+     * @return Goodbye message
      */
     public String showBye() {
         return "Bye bye~ Glad to be of service :D";
@@ -27,6 +29,7 @@ public class Ui {
      * Display all the Tasks in TaskList.
      *
      * @param tasks TaskList which tasks are to be displayed.
+     * @return String of all Task in TaskList
      */
     public String showList(TaskList tasks) {
         return tasks.listTask();
@@ -61,7 +64,7 @@ public class Ui {
      * @param task Task that is deleted
      */
     public String deleteTask(TaskList tasks, Task task) {
-        return "Blink.Task has been deleted successfully.\n" + task
+        return "Task has been deleted successfully.\n" + task
                + "\n" + tasks.toStringAfterDelete();
     }
 
@@ -119,5 +122,18 @@ public class Ui {
             }
         }
         return output;
+    }
+
+    /**
+     * Displays the task that has been tagged.
+     *
+     * @param index Position of Task to tag in TaskList
+     * @param tasks TaskList containing the task
+     * @return Success message of tagging and Task that is tagged
+     */
+    public String showTag(int index, TaskList tasks) {
+        Task task = tasks.getTask(index - 1);
+        String successMsg = "Tag added successfully \n";
+        return successMsg + task.toString();
     }
 }

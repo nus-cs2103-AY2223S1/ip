@@ -25,7 +25,7 @@ public class ToDos extends Task {
      */
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return "[T]" + super.toString() + this.tagToString();
     }
 
     /**
@@ -36,7 +36,7 @@ public class ToDos extends Task {
     @Override
     public String saveString() {
         String taskMark = "|" + (this.isDone ? 1 : 0) + "| ";
-        return "T " + taskMark + this.description + "\n";
+        return "T " + taskMark + this.description + this.saveTagString() + "\n";
     }
 
     /**
