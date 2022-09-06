@@ -1,6 +1,9 @@
 package neo;
 import java.io.IOException;
 
+/**
+ * Unmark command class.
+ */
 public class UnMarkCommand extends Command{
 
     private TaskList arrayLL;
@@ -10,11 +13,11 @@ public class UnMarkCommand extends Command{
     Task task;
 
     /**
-     * unmark command constructor
+     * Unmark command constructor.
      *
      * @param ui ui
      * @param stor instance of storage class
-     * @param arrayLL arraylist to stor tasks
+     * @param arrayLL arraylist to store tasks
      */
     public UnMarkCommand(Ui ui, Storage stor, TaskList arrayLL) {
         this.ui = ui;
@@ -23,7 +26,7 @@ public class UnMarkCommand extends Command{
     }
 
     /**
-     * un mark task as completed
+     * Un mark task as completed.
      *
      * @param tempi user input string
      * @throws NeoException

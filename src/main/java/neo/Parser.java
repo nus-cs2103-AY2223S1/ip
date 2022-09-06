@@ -1,6 +1,9 @@
 package neo;
 import java.io.IOException;
 
+/**
+ * Parser class.
+ */
 public class Parser {
     private AddCommand add;
     private DeleteCommand delete;
@@ -13,7 +16,7 @@ public class Parser {
     private int type;
 
     /**
-     * parser constructor
+     * Parser constructor.
      *
      * @param ui ui
      * @param stor instance of storage class
@@ -26,7 +29,7 @@ public class Parser {
     }
 
     /**
-     * Function to make sense of user input
+     * Function to make sense of user input.
      *
      * @param userText string containing user input
      * @throws NeoException excpetion neo

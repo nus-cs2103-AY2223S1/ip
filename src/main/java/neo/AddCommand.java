@@ -1,5 +1,9 @@
 package neo;
 import java.io.IOException;
+
+/**
+ * Class to Add user Command.
+ */
 public class AddCommand extends Command {
 
     private TaskList arrayLL;
@@ -8,7 +12,7 @@ public class AddCommand extends Command {
     private int type;
 
     /**
-     * AddCommand constructor
+     * AddCommand constructor.
      *
      * @param ui ui
      * @param stor instance of storage class
@@ -23,7 +27,7 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Adds task to array depending on type of task
+     * Adds task to array depending on type of task.
      *
      * @param tempi user input string
      * @throws NeoException

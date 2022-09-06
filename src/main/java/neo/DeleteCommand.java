@@ -1,6 +1,9 @@
 package neo;
 import java.io.IOException;
 
+/**
+ * Class to delete user command.
+ */
 public class DeleteCommand extends Command {
 
     private TaskList arrayLL;
@@ -10,7 +13,7 @@ public class DeleteCommand extends Command {
     Task task;
 
     /**
-     * Constructor of delete comand
+     * Constructor of delete command.
      *
      * @param ui ui
      * @param stor instance of storage class
@@ -23,7 +26,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * delete task from array
+     * Delete task from array.
      *
      * @param tempi user input string
      * @throws NeoException

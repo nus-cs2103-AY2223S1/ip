@@ -14,7 +14,7 @@ public class MarkCommand extends Command {
      *
      * @param ui ui
      * @param stor instance of storage class
-     * @param arrayLL arraylist to stor tasks
+     * @param arrayLL arraylist to store tasks
      */
     public MarkCommand(Ui ui, Storage stor, TaskList arrayLL) {
         this.ui = ui;

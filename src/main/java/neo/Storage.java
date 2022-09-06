@@ -5,17 +5,31 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Storage class
+ */
 public class Storage {
     protected String inp;
+
+    /**
+     * Constructor for storage class.
+     */
     public Storage() {
     }
+
+    /**
+     * Constructor for storage class with parameter inp.
+     *
+     * @param inp stores user input string
+     */
     public Storage(String inp) {
         this.inp = inp;
     }
+
     private Task task;
 
     /**
-     * prints tasks in file
+     * Prints tasks in file.
      *
      * @param filePath stores path of file
      * @throws FileNotFoundException
@@ -29,7 +43,7 @@ public class Storage {
     }
 
     /**
-     * writes task to file
+     * Writes task to file.
      *
      * @param filePath stores path of file
      * @param textToAppend string representation of task
@@ -42,7 +56,7 @@ public class Storage {
     }
 
     /**
-     * adds task to file
+     * Adds task to file.
      *
      * @param filePath stores path of file
      * @param textToAppend string representation of task
@@ -57,7 +71,7 @@ public class Storage {
     File f = new File("/Users/richavm/Documents/NUS/Y2S1/CS2103T/data/Neo.txt");
 
     /**
-     * calls appendToFile to add to file
+     * Calls appendToFile to add to file.
      *
      * @param task task
      * @throws IOException input output exception
@@ -73,7 +87,7 @@ public class Storage {
     }
 
     /**
-     * calls WriteToFile to write task to file
+     * Calls WriteToFile to write task to file.
      *
      * @param task task
      * @throws IOException input output exception

@@ -3,19 +3,24 @@ import neo.*;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * Main class neo.
+ */
 public class Neo {
     private Storage stor;
     private Ui ui;
     private TaskList arrayLL;
     private Parser parser;
 
+    /**
+     * Constructor for neo class.
+     */
     public Neo() {
         this.stor = new Storage();
         this.ui = new Ui();
         this.arrayLL = new TaskList();
         this.parser = new Parser(ui, stor, arrayLL);
     }
-
 
     public static void main(String[] args) throws NeoException, IOException {
 

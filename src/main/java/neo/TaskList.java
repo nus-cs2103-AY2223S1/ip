@@ -2,6 +2,9 @@ package neo;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class to keep tasks in array list.
+ */
 public class TaskList {
     List<Task> arrayL;
 
@@ -10,7 +13,7 @@ public class TaskList {
     }
 
     /**
-     * adds task to ArrayList
+     * Adds task to ArrayList.
      *
      * @param t task
      */
@@ -19,7 +22,7 @@ public class TaskList {
     }
 
     /**
-     * gets task from ArrayList
+     * Gets task from ArrayList.
      *
      * @param i integer
      * @return Task
@@ -29,7 +32,7 @@ public class TaskList {
     }
 
     /**
-     * removes task from ArrayList
+     * Removes task from ArrayList.
      *
      * @param in integer
      */
