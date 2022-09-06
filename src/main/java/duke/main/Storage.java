@@ -12,6 +12,7 @@ import duke.task.Deadline;
 import duke.task.Events;
 import duke.task.Task;
 import duke.task.TaskList;
+import duke.task.TaskWithDate;
 import duke.task.ToDos;
 
 /**
@@ -63,7 +64,7 @@ public class Storage {
                     break;
                 case ("D"):
                     LocalDateTime by = LocalDateTime.parse(separatedLines[3]);
-                    Task deadline = new Deadline(separatedLines[2], by);
+                    TaskWithDate deadline = new Deadline(separatedLines[2], by);
                     if (isDone(separatedLines[1])) {
                         deadline.finished();
                     }
@@ -71,7 +72,7 @@ public class Storage {
                     break;
                 case ("E"):
                     LocalDateTime on = LocalDateTime.parse(separatedLines[3]);
-                    Task event = new Events(separatedLines[2], on);
+                    TaskWithDate event = new Events(separatedLines[2], on);
                     if (isDone(separatedLines[1])) {
                         event.finished();
                     }

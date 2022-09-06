@@ -12,6 +12,7 @@ import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
+import duke.command.FindNearestTimeCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
@@ -58,6 +59,9 @@ public class Parser {
         } else if (isDeleteCommand(splitReply)) {
             int index = validateIndex(userReply);
             return new DeleteCommand(index);
+        } else if (isNextAvailableTiming(splitReply)){
+            long index = validateIndex(userReply);
+            return new FindNearestTimeCommand(index);
         } else {
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
@@ -96,6 +100,10 @@ public class Parser {
 
     private static boolean isFindCommand(String[] splitReply) {
         return splitReply[0].equals("find");
+    }
+
+    private static boolean isNextAvailableTiming(String[] splitReply) {
+        return splitReply[0].equals("next");
     }
 
     private static int validateIndex(String userReply) throws DukeException {
@@ -157,7 +165,7 @@ public class Parser {
         try {
             String[] durationArray = Arrays.copyOfRange(splitReply, by + 1, splitReply.length);
             String duration = String.join(" ", durationArray);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HHmm");
             return LocalDateTime.parse(duration, formatter);
         } catch (DateTimeParseException e) {
             throw new DukeException("error in validate date time");
