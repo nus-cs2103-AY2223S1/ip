@@ -9,10 +9,8 @@ public class Duke {
     private static final String taskDataPath = "data";
     private static final String taskDataFileName = "duke.txt";
     private static final String memoryDataFileName = "memory.txt";
-
     private static UI UI = new UI();
     private static Parser parser = new Parser();
-
     private static Storage storage = new Storage(taskDataPath, taskDataFileName, memoryDataFileName);
     private TaskList taskList;
 
