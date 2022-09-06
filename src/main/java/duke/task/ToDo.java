@@ -1,6 +1,4 @@
-package task;
-
-import task.Task;
+package duke.task;
 
 public class ToDo extends Task {
     private static final String TYPE = "[T]";

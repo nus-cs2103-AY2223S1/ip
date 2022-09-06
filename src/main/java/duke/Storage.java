@@ -1,9 +1,8 @@
-package storage;
+package duke;
 
-import task.Deadline;
-import task.Event;
-import task.ToDo;
-import tasklist.TaskList;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.ToDo;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -37,7 +36,7 @@ public class Storage {
     public void saveList(TaskList list, Path file) throws IOException {
         try {
             Files.write(file, list.toStringList());
-            System.out.println("I have saved your list:" + list.toStringList());
+            System.out.println("I have saved your list:\n" + list.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -60,13 +59,13 @@ public class Storage {
                         break;
                     }
                     case 'D': {
-                        String[] taskDesc = taskString.substring(7, taskString.length()).split("\\(by:");
+                        String[] taskDesc = taskString.substring(7, taskString.length() - 1).split(" \\(by: ");
                         Deadline deadline = new Deadline(taskDesc[0], taskDesc[1], isDone);
                         list.add(deadline);
                         break;
                     }
                     case 'E': {
-                        String[] taskDesc = taskString.substring(7, taskString.length()).split("\\(on:");
+                        String[] taskDesc = taskString.substring(7, taskString.length() - 1).split(" \\(on: ");
                         Event event = new Event(taskDesc[0], taskDesc[1], isDone);
                         list.add(event);
                         break;

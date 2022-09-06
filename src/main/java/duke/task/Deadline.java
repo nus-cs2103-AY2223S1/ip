@@ -1,15 +1,15 @@
-package task;
+package duke.task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class Event extends Task {
+public class Deadline extends Task {
     private LocalDate date = null;
     private String time = null;
-    private static final String TYPE = "[E]";
+    private static final String TYPE = "[D]";
 
-    public Event(String name, String date) {
+    public Deadline(String name, String date) {
         super(name);
         try {
             this.date = LocalDate.parse(date);
@@ -18,7 +18,7 @@ public class Event extends Task {
         }
     }
 
-    public Event(String name, String date, boolean isDone) {
+    public Deadline(String name, String date, boolean isDone) {
         super(name, isDone);
         try {
             this.date = LocalDate.parse(date);
@@ -35,10 +35,10 @@ public class Event extends Task {
     @Override
     public String toString() {
         if (time == null) {
-            return TYPE + super.toString() + " (on: " +
+            return TYPE + super.toString() + " (by: " +
                     date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
         } else {
-            return TYPE + super.toString() + " (on: " + time + ")";
+            return TYPE + super.toString() + " (by: " + time + ")";
         }
     }
 }
