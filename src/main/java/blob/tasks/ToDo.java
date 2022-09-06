@@ -1,12 +1,14 @@
 package blob.tasks;
 
+import blob.exception.InvalidPriorityException;
+
 /**
  * The ToDo class encapsulates a type of task to be done.
  * A ToDo task is a task without any date/time attached to it.
  */
 public class ToDo extends Task {
-    public ToDo(String description) {
-        super(description, TaskType.TODO);
+    public ToDo(String description, String priority) throws InvalidPriorityException {
+        super(description, TaskType.TODO, priority);
     }
 
     /**

@@ -3,6 +3,7 @@ package blob.tasks;
 import java.time.format.DateTimeParseException;
 
 import blob.exception.InvalidDateFormatException;
+import blob.exception.InvalidPriorityException;
 import blob.parser.DateTimeParser;
 
 /**
@@ -13,14 +14,16 @@ public class Deadline extends Task {
     private String by;
 
     /**
-     * Constructs a Deadline task with the given description and by date.
+     * Constructs a Deadline task with the given description, by date and priority.
      *
      * @param description The given task description.
      * @param by The string representation of the given deadline of the task.
+     * @param priority The string representing priority to assign to the task.
      * @throws InvalidDateFormatException
      */
-    public Deadline(String description, String by) throws InvalidDateFormatException {
-        super(description, TaskType.DEADLINE);
+    public Deadline(String description, String by, String priority) throws InvalidDateFormatException,
+            InvalidPriorityException {
+        super(description, TaskType.DEADLINE, priority);
         try {
             this.by = new DateTimeParser().parse(by);
         } catch (DateTimeParseException exception) {

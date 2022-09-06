@@ -1,5 +1,8 @@
 package blob.tasks;
 
+import blob.exception.InvalidPriorityException;
+import blob.parser.PriorityParser;
+
 /**
  * The Task class encapsulates a task.
  * A task has a string description describing the task to be done, and a boolean indicator to represent
@@ -9,17 +12,20 @@ public abstract class Task {
     protected String description;
     protected boolean isDone;
     protected TaskType type;
+    protected Priority priority;
 
     /**
-     * Returns a Task given a description and a Tasktype.
+     * Returns a Task given a description, TaskType and priority
      *
      * @param description The given task description.
      * @param type The given TaskType.
+     * @param priority The given priority.
      */
-    public Task(String description, TaskType type) {
+    public Task(String description, TaskType type, String priority) throws InvalidPriorityException {
         this.description = description;
         this.type = type;
         this.isDone = false;
+        this.priority = new PriorityParser().parse(priority);
     }
 
     /**

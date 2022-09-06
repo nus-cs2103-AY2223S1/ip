@@ -3,6 +3,7 @@ package blob.tasks;
 import java.time.format.DateTimeParseException;
 
 import blob.exception.InvalidDateFormatException;
+import blob.exception.InvalidPriorityException;
 import blob.parser.DateTimeParser;
 
 /**
@@ -13,14 +14,15 @@ public class Event extends Task {
     private String at;
 
     /**
-     * Constructs an Event task with the given description and at date.
+     * Constructs an Event task with the given description, at date and priority.
      *
      * @param description The given task description.
      * @param at The string representation of the given date or datetime of the task.
      * @throws InvalidDateFormatException
      */
-    public Event(String description, String at) throws InvalidDateFormatException {
-        super(description, TaskType.EVENT);
+    public Event(String description, String at, String priority) throws InvalidDateFormatException,
+            InvalidPriorityException {
+        super(description, TaskType.EVENT, priority);
         try {
             this.at = new DateTimeParser().parse(at);
         } catch (DateTimeParseException exception) {

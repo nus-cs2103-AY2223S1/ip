@@ -15,7 +15,7 @@ public class Messages {
             + "\t<yyyy-MM-dd>, <dd-MM-yyyy>, <d MMM yyyy>, <MMM d yyyy> \n "
             + "\tOptionally include time as <HH:mm> ";
     public static final String MESSAGE_ERROR_MISSING_TASK_DESCRIPTION = "Blob needs to know details of task...";
-    public static final String MESSAGE_USAGE_TASK_COMMAND = "USAGE: todo/event/deadline <description> (...)";
+    public static final String MESSAGE_USAGE_TASK_COMMAND = "USAGE: todo/event/deadline <priority> <description> (...)";
     public static final String MESSAGE_ERROR_INVALID_DEADLINE = "Blob needs to know deadline of your task...";
     public static final String MESSAGE_USAGE_DEADLINE_COMMAND = "USAGE: deadline <description> /by <deadline>";
     public static final String MESSAGE_ERROR_INVALID_EVENT = "Blob needs to know time of your task...";
@@ -33,4 +33,8 @@ public class Messages {
     public static final String MESSAGE_TASKS_FOUND = "Blob found %d tasks...";
     public static final String MESSAGE_ERROR_MISSING_FIND_KEYWORD = "Blob needs to know what to find...";
     public static final String MESSAGE_USAGE_FIND_COMMAND = "USAGE: find <keyword>";
+    public static final String MESSAGE_ERROR_INVALID_PRIO = "Blob does not understand input priority...";
+    public static final String MESSAGE_USAGE_INPUT_PRIO = "USAGE: Priorities have to be in the following formats: \n"
+        + "\t //h (high), //m (medium), //l (low)";
+
 }
