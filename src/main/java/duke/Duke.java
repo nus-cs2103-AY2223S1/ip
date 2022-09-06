@@ -9,11 +9,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Duke {
-    private final static String PATH = "data/duke.txt";
+    private final static String PATH = "../data/duke.txt";
 
-    private Storage storage;
+    private final Storage storage;
     private TaskList tasks;
-    private Ui ui;
+    private final Ui ui;
 
     public Duke(String filePath) {
         this.ui = new Ui();
@@ -37,10 +37,4 @@ public class Duke {
         storage.save(this.tasks);
         ui.farewell();
     }
-
-
-
-
-
-
 }
