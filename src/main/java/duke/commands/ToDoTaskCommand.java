@@ -21,6 +21,7 @@ public class ToDoTaskCommand extends TaskCommand {
      */
     public ToDoTaskCommand(String description) throws DukeException {
         super(description);
+        assert description.split(" ")[0].equals("todo") : "Keyword should be todo for ToDoTaskCommand";
     }
 
     /**

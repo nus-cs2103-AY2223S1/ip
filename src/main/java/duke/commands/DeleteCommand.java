@@ -21,6 +21,7 @@ public class DeleteCommand extends Command {
      */
     public DeleteCommand(String description) throws DukeException {
         try {
+            assert description.split(" ")[0].equals("delete") : "Keyword should be delete for DeleteCommand";
             description = description.split(" ")[1];
             this.index = Integer.parseInt(description);
         } catch (Exception e) {

@@ -21,6 +21,7 @@ public class UnmarkCommand extends Command {
      */
     public UnmarkCommand(String description) throws DukeException {
         try {
+            assert description.split(" ")[0].equals("unmark") : "Keyword should be unmark for UnmarkCommand";
             description = description.split(" ")[1];
             this.index = Integer.parseInt(description);
         } catch (Exception e) {

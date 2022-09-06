@@ -26,6 +26,7 @@ public class FindCommand extends Command {
      */
     public FindCommand(String description) throws DukeException {
         String[] lst = description.split(" ", 2);
+        assert lst[0].equals("find") : "Keyword should be find for FindCommand";
         if (lst.length < 2) {
             throw new DukeException("Keyword missing!");
         }
