@@ -4,7 +4,6 @@ import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-import duke.task.Task;
 
 /**
  * SortCommand is the Command used to specify the order of the tasks to be listed.
@@ -17,7 +16,7 @@ public class SortCommand extends Command {
     private String order;
 
     /**
-     * Constructor for FindCommand.
+     * Constructor for SortCommand.
      *
      * @param order The order in which the list should be ordered.
      */
@@ -26,7 +25,7 @@ public class SortCommand extends Command {
     }
 
     /**
-     * Finds a list of tasks that contains the keyword.
+     * Sorts the tasks based on its date in chronological or reverse chronological order
      *
      * @param tasks The list of tasks.
      * @param ui The class that deals with interactions with the user.

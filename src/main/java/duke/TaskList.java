@@ -79,10 +79,16 @@ public class TaskList {
         return deleted;
     }
 
+    /**
+     * Sorts the tasks in the list by its date in chronological order.
+     */
     public void sortChrono() {
         this.tasks.sort(CHRONOLOGICAL);
     }
 
+    /**
+     * Sorts the tasks in the list by its date in reverse chronological order.
+     */
     public void sortReverseChrono() {
         this.tasks.sort(REVERSE_CHRONOLOGICAL);
     }
