@@ -8,6 +8,7 @@ import john.commands.DeadlineCommand;
 import john.commands.DeleteCommand;
 import john.commands.EventCommand;
 import john.commands.FindCommand;
+import john.commands.HelpCommand;
 import john.commands.IncorrectCommand;
 import john.commands.ListCommand;
 import john.commands.MarkCommand;
@@ -62,6 +63,9 @@ public class Parser {
 
         case FindCommand.COMMAND_WORD:
             return prepareFind(params);
+
+        case HelpCommand.COMMAND_WORD:
+            return prepareHelp();
 
         case ByeCommand.COMMAND_WORD:
             return new ByeCommand();
@@ -131,5 +135,9 @@ public class Parser {
             return new IncorrectCommand(FindCommand.COMMAND_WORD, FindCommand.FORMAT);
         }
         return new FindCommand(params);
+    }
+
+    private Command prepareHelp() {
+        return new HelpCommand();
     }
 }

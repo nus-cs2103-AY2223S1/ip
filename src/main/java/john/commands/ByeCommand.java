@@ -5,6 +5,7 @@ package john.commands;
  */
 public class ByeCommand extends Command {
     public static final String COMMAND_WORD = "bye";
+    public static final String FORMAT = "bye";
 
     /**
      * Returns true if the command is an instance of ByeCommand, false otherwise.

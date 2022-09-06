@@ -1,5 +1,14 @@
 package john.ui;
 
+import john.commands.ByeCommand;
+import john.commands.DeadlineCommand;
+import john.commands.DeleteCommand;
+import john.commands.EventCommand;
+import john.commands.FindCommand;
+import john.commands.ListCommand;
+import john.commands.MarkCommand;
+import john.commands.TodoCommand;
+import john.commands.UnmarkCommand;
 import john.data.TaskList;
 
 /**
@@ -136,5 +145,28 @@ public class Ui {
     public String showIncorrectCommandWithFormat(String command, String format) {
         return String.format(
                 "This is an invalid %s format.%nThe correct format is '%s'.", command.toUpperCase(), format);
+    }
+
+    /**
+     * Returns a string showing all the available commands in the chatbot.
+     *
+     * @return A string showing all the available commands in the chatbot.
+     */
+    public String showHelp() {
+        return "Here's the list of commands that I know! The commands are not case-sensitive.\n\n"
+                + "Creating Tasks\n"
+                + String.format("1. %s: Add a todo task\n", TodoCommand.FORMAT)
+                + String.format("2. %s: Add a deadline task\n", DeadlineCommand.FORMAT)
+                + String.format("3. %s: Add a event task\n\n", EventCommand.FORMAT)
+                + "Editing Tasks\n"
+                + String.format("1. %s: Mark task as done\n", MarkCommand.FORMAT)
+                + String.format("2. %s: Unmark task\n\n", UnmarkCommand.FORMAT)
+                + "Deleting Tasks\n"
+                + String.format("1. %s: Delete specified task\n\n", DeleteCommand.FORMAT)
+                + "Showing Tasks\n"
+                + String.format("1. %s: Lists tasks (on a specific date)\n", ListCommand.FORMAT)
+                + String.format("2. %s: Find tasks by keyword\n\n", FindCommand.FORMAT)
+                + "Exiting\n"
+                + String.format("1. %s: Exiting the application\n", ByeCommand.FORMAT);
     }
 }
