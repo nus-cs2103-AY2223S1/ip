@@ -16,7 +16,8 @@ import duke.exception.DukeException;
 public class Parser {
 
     /**
-     * Parse input of users and analysing which command is used
+     * Parse input of users and analysing which command is used.
+     *
      * @param input User input
      * @return Command referred to the user input
      * @throws DukeException If invalid commands or arguments

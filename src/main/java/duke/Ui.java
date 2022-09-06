@@ -8,7 +8,7 @@ import duke.task.Task;
  */
 public class Ui {
     /**
-     * Show unknown command messages
+     * Show unknown command messages.
      */
     public String showUnknownMessage() {
         return ("I'm sorry, "
@@ -16,7 +16,7 @@ public class Ui {
     }
 
     /**
-     * Show add messages
+     * Show add messages.
      *
      * @param task Task added
      * @param size Size of TaskList
@@ -71,7 +71,7 @@ public class Ui {
     }
 
     /**
-     * Show the details of taskList
+     * Show the details of taskList.
      *
      * @param taskList TaskList to print
      * @return string of taskList

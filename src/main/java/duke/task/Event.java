@@ -12,7 +12,7 @@ public class Event extends Task {
     private LocalDateTime atTime;
 
     /**
-     * Constructor for Event
+     * Constructor for Event.
      *
      * @param taskType TaskType of event
      * @param name Description of the event

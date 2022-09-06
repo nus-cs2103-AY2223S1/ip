@@ -23,7 +23,7 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * Execute the unmark operation by changing
+     * Executes the unmark operation by changing
      * boolean isMarked of task at index num to false.
      *
      * @param ui Ui to show unmark operation messages

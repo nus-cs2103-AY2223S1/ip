@@ -13,8 +13,7 @@ public class Duke {
     private Ui ui;
 
     /**
-     * Constructor of Duke to initialise ui for showing messages and storage to store tasks
-     *
+     * Constructor of Duke to initialise ui for showing messages and storage to store tasks.
      */
     public Duke() {
         ui = new Ui();
@@ -23,8 +22,7 @@ public class Duke {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Gets response from the user input through the parser and execute commands.
      */
     public String getResponse(String input) {
         return Parser.parse(input).execute(ui, taskList);

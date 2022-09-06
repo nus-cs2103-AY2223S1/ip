@@ -22,7 +22,7 @@ public class FindCommand extends Command {
     }
     
     /**
-     * Execute find command
+     * Executes find command
      *
      * @param ui Ui to show find messages.
      * @param taskList TaskList to find tasks with name that has keywords in it.

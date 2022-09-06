@@ -18,7 +18,7 @@ public class ListCommand extends Command {
     }
 
     /**
-     * Execute the list command by going through
+     * Executes the list command by going through
      * the TaskList one by one and passing it
      * through UI to show the details of tasks.
      *

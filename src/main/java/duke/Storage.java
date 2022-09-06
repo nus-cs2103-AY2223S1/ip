@@ -27,7 +27,7 @@ public class Storage {
     private Ui ui;
 
     /**
-     * Constructor of Storage
+     * Constructor of Storage.
      *
      * @param ui Ui to show read and write messages
      * @param filePath Path of text file
@@ -38,7 +38,7 @@ public class Storage {
     }
 
     /**
-     * Load the file and save tasks into ArrayList
+     * Load the file and save tasks into ArrayList.
      *
      * @return ArrayList with task read from the text file
      * @throws DukeException If invalid commands or arguments
@@ -51,6 +51,7 @@ public class Storage {
     /**
      * Read the file and create directory or file if either one is missing.
      * If the file is not missing, read the file and add task into ArrayList.
+     *
      * @throws DukeException If there is invalid task in text file
      */
     public void readFile() {

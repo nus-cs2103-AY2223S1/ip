@@ -27,7 +27,7 @@ public abstract class Command {
     }
 
     /**
-     * Execute commands entered by users.
+     * Executes commands entered by users.
      *
      * @param ui Ui to show operation messages
      * @param taskList TaskList to execute command

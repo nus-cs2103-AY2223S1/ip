@@ -12,7 +12,7 @@ public class Deadline extends Task {
     private LocalDateTime byTime;
 
     /**
-     * Constructor for Deadline
+     * Constructor for Deadline.
      *
      * @param taskType TaskType of deadline
      * @param name Description of the deadline

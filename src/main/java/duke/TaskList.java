@@ -19,6 +19,7 @@ public class TaskList {
 
     /**
      * Constructor of a TaskList given by an ArrayList of task.
+     *
      * @param tasks ArrayList of task
      */
     public TaskList(ArrayList<Task> tasks) {
@@ -48,7 +49,8 @@ public class TaskList {
     }
 
     /**
-     * Add a new task into the TaskList
+     * Add a new task into the TaskList.
+     *
      * @param newTask new task added
      */
     public void addTask(Task newTask) {
@@ -56,7 +58,8 @@ public class TaskList {
     }
 
     /**
-     * Remove a task at index num in the TaskList
+     * Remove a task at index num in the TaskList.
+     *
      * @param num Index of task
      */
     public void removeTask(int num) {

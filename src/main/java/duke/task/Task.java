@@ -43,14 +43,14 @@ public class Task {
     }
 
     /**
-     * Mark the task as done
+     * Marks the task as done
      */
     public void setMarked() {
         isMarked = true;
     }
 
     /**
-     * Unmark the task as done
+     * Unmarks the task as done
      */
     public void setUnmarked() {
         isMarked = false;
@@ -59,6 +59,7 @@ public class Task {
     /**
      * String of task with information about the TaskType, description of task, isMarked
      * and time if the task type is Deadline or Event.
+     *
      * @return String to show details of task
      */
     @Override

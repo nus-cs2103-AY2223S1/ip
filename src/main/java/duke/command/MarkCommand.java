@@ -23,7 +23,7 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Execute the mark command by changing the boolean isMarked
+     * Executes the mark command by changing the boolean isMarked
      * for task at index num to true.
      *
      * @param ui Ui to show mark operation messages
