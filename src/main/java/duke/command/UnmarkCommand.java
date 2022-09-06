@@ -1,10 +1,20 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.task.Task;
 
-public abstract class UnmarkCommand extends Command {
+import java.io.IOException;
+
+public class UnmarkCommand extends Command {
+
+    private final int taskNum;
+
+    public UnmarkCommand(int taskNum) {
+        this.taskNum = taskNum;
+    }
 
     @Override
     public boolean isExit() {
@@ -14,7 +24,15 @@ public abstract class UnmarkCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
-
+        try {
+            Task task = taskList.mark(taskNum);
+            storage.writeToFile(taskList.list());
+            ui.display(String.format("I've marked this task as complete:%n%s%n", task));
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("No such task!");
+        } catch (IOException e) {
+            throw new DukeException("Could not write to file");
+        }
     }
 
 }

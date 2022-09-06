@@ -1,10 +1,21 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.task.Task;
+import duke.task.TodoTask;
 
-public abstract class AddTodoCommand extends Command {
+import java.io.IOException;
+
+public class AddTodoCommand extends Command {
+
+    private final Task todoTask;
+
+    public AddTodoCommand(String taskName) {
+        todoTask = new TodoTask(taskName);
+    }
 
     @Override
     public boolean isExit() {
@@ -14,7 +25,13 @@ public abstract class AddTodoCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
-
+        try {
+            taskList.add(todoTask);
+            storage.writeToFile(taskList.list());
+            ui.display(String.format("Added new todo task:%n%s%n", todoTask));
+        } catch (IOException e) {
+            throw new DukeException("Could not write to file");
+        }
     }
 
 }

@@ -1,5 +1,9 @@
 package duke;
 
+import duke.command.*;
+import duke.task.DeadlineTask;
+import duke.task.TodoTask;
+
 import java.time.DateTimeException;
 import java.time.LocalDate;
 
@@ -82,10 +86,10 @@ public class Parser {
             firstIndex = date.indexOf(".");
             secondIndex = date.substring(firstIndex + 1).indexOf(".") + firstIndex + 1;
         } else {
-            throw new DateTimeException("Not a valid date format(1)");
+            throw new DateTimeException("Not a valid date format");
         }
         if (secondIndex == -1) {
-            throw new DateTimeException("Not a valid date format(2)");
+            throw new DateTimeException("Not a valid date format");
         }
         int year;
         int month;
@@ -100,7 +104,7 @@ public class Parser {
                 month = Integer.parseInt(date.substring(2, 4));
                 year = Integer.parseInt(date.substring(5, 9));
             } else {
-                throw new DateTimeException("Not a valid date format(3)");
+                throw new DateTimeException("Not a valid date format");
             }
         } else if (firstIndex == 2) {
             if (secondIndex == 4) {
@@ -112,10 +116,10 @@ public class Parser {
                 month = Integer.parseInt(date.substring(3, 5));
                 year = Integer.parseInt(date.substring(6, 10));
             } else {
-                throw new DateTimeException("Not a valid date format(4)");
+                throw new DateTimeException("Not a valid date format");
             }
         } else {
-            throw new DateTimeException("Not a valid date format(5)");
+            throw new DateTimeException("Not a valid date format");
         }
         try {
             LocalDate.of(year, month, day);
@@ -233,112 +237,113 @@ public class Parser {
         return time;
     }
 
-    public static String parse(String input) {
+    public static Command parse(String input) {
         //first remove any whitespace at the start
         input = removeStartingWhitespace(input);
         if (input.equals("blank")) {
-            return "blank";
+            return new NullCommand();
         }
-        String command = findArgument(input, 1).toLowerCase();
-        switch (command) {
-            case "bye":
-                if (countArguments(input) != 1) {
-                    throw new IllegalArgumentException("Who is that?");
+        try {
+            String command = findArgument(input, 1).toLowerCase();
+            switch (command) {
+                case "bye":
+                    if (countArguments(input) != 1) {
+                        throw new IllegalArgumentException("Who is that?");
+                    }
+                    return new ByeCommand();
+                case "list":
+                    if (countArguments(input) != 1) {
+                        throw new IllegalArgumentException("Just use 'list'!");
+                    }
+                    return new ListCommand();
+                case "mark":
+                    if (countArguments(input) != 2) {
+                        throw new IllegalArgumentException("Incorrect number of arguments for command mark");
+                    }
+                    try {
+                        input = (removeWhitespace(input));
+                        int taskNum = Integer.parseInt(input.substring(4));
+                        return new MarkCommand(taskNum);
+                    } catch (NumberFormatException e) {
+                        throw new IllegalArgumentException("Must input a number!");
+                    }
+                case "unmark":
+                    if (countArguments(input) != 2) {
+                        throw new IllegalArgumentException("Incorrect number of arguments for command unmark");
+                    }
+                    try {
+                        input = (removeWhitespace(input));
+                        int taskNum = Integer.parseInt(input.substring(6));
+                        return new UnmarkCommand(taskNum);
+                    } catch (NumberFormatException e) {
+                        throw new IllegalArgumentException("Must input a number!");
+                    }
+                case "delete":
+                    if (countArguments(input) != 2) {
+                        throw new IllegalArgumentException("Incorrect number of arguments for command delete");
+                    }
+                    try {
+                        input = (removeWhitespace(input));
+                        int taskNum = Integer.parseInt(input.substring(6));
+                        return new DeleteCommand(taskNum);
+                    } catch (NumberFormatException e) {
+                        throw new IllegalArgumentException("Must input a number!");
+                    }
+                case "deadline": {
+                    if (countArguments(input) < 4) {
+                        String message = "To add a deadline task, enter a task name followed by /by and then a deadline";
+                        throw new IllegalArgumentException(message);
+                    }
+                    if (countArguments(input) > 5) {
+                        throw new IllegalArgumentException("Incorrect number of arguments for command deadline");
+                    }
+                    if (!findArgument(input, 3).equalsIgnoreCase("/by")) {
+                        throw new IllegalArgumentException("You need to include /by to specify the deadline");
+                    }
+                    String taskName = findArgument(input, 2);
+                    String date = findArgument(input, 4);
+                    date = parseDate(date);
+                    if (countArguments(input) == 5) {
+                        String time = findArgument(input, 5);
+                        time = parseTime(time);
+                        return new AddDeadlineCommand(taskName, date, time);
+                    } else {
+                        return new AddDeadlineCommand(taskName, date);
+                    }
                 }
-                return "bye";
-            case "list":
-                if (countArguments(input) != 1) {
-                    throw new IllegalArgumentException("Just use 'list'!");
+                case "event": {
+                    if (countArguments(input) < 4) {
+                        String message = "To add an event task, enter a task name followed by /at and then the event datetime";
+                        throw new IllegalArgumentException(message);
+                    }
+                    if (countArguments(input) > 5) {
+                        throw new IllegalArgumentException("Incorrect number of arguments for command deadline");
+                    }
+                    if (!findArgument(input, 3).equalsIgnoreCase("/at")) {
+                        throw new IllegalArgumentException("You need to include /at to specify the datetime");
+                    }
+                    String taskName = findArgument(input, 2);
+                    String date = findArgument(input, 4);
+                    date = parseDate(date);
+                    if (countArguments(input) == 5) {
+                        String time = findArgument(input, 5);
+                        time = parseTime(time);
+                        return new AddEventCommand(taskName, date, time);
+                    } else {
+                        return new AddEventCommand(taskName, date);
+                    }
                 }
-                return "list";
-            case "mark":
-                if (countArguments(input) != 2) {
-                    throw new IllegalArgumentException("Incorrect number of arguments for command mark");
-                }
-                input = removeWhitespace(input);
-                try {
-                    Integer.parseInt(input.substring(4));
-                } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("Must input a number!");
-                }
-                return input;
-            case "unmark":
-                if (countArguments(input) != 2) {
-                    throw new IllegalArgumentException("Incorrect number of arguments for command unmark");
-                }
-                input = removeWhitespace(input);
-                try {
-                    Integer.parseInt(input.substring(6));
-                } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("Must input a number!");
-                }
-                return input;
-
-            case "delete":
-                if (countArguments(input) != 2) {
-                    throw new IllegalArgumentException("Incorrect number of arguments for command delete");
-                }
-                input = removeWhitespace(input);
-                try {
-                    Integer.parseInt(input.substring(6));
-                } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("Must input a number!");
-                }
-                return input;
-
-            case "deadline":
-            {
-                if (countArguments(input) < 4) {
-                    String message = "To add a deadline task, enter a task name followed by /by and then a deadline";
-                    throw new IllegalArgumentException(message);
-                }
-                if (countArguments(input) > 5) {
-                    throw new IllegalArgumentException("Incorrect number of arguments for command deadline");
-                }
-                if (!findArgument(input, 3).equalsIgnoreCase("/by")) {
-                    throw new IllegalArgumentException("You need to include /by to specify the deadline");
-                }
-                String date = findArgument(input, 4);
-                date = parseDate(date);
-                String task_name = findArgument(input, 2);
-                if (countArguments(input) == 5) {
-                    String time = findArgument(input, 5);
-                    time = parseTime(time);
-                    return String.format("dwt%s%s%s", date, time, task_name);
-                } else {
-                    return String.format("dnt%s%s", date, task_name);
-                }
+                case "todo":
+                    if (countArguments(input) != 2) {
+                        throw new IllegalArgumentException("Incorrect number of arguments for command todo");
+                    }
+                    String taskName = findArgument(input, 2);
+                    return new AddTodoCommand(taskName);
+                default:
+                    return new UnrecognisedCommand();
             }
-            case "event":
-            {
-                if (countArguments(input) < 4) {
-                    String message = "To add an event task, enter a task name followed by /at and then the event datetime";
-                    throw new IllegalArgumentException(message);
-                }
-                if (countArguments(input) > 5) {
-                    throw new IllegalArgumentException("Incorrect number of arguments for command deadline");
-                }
-                if (!findArgument(input, 3).equalsIgnoreCase("/at")) {
-                    throw new IllegalArgumentException("You need to include /at to specify the datetime");
-                }
-                String date = findArgument(input, 4);
-                date = parseDate(date);
-                String task_name = findArgument(input, 2);
-                if (countArguments(input) == 5) {
-                    String time = findArgument(input, 5);
-                    time = parseTime(time);
-                    return String.format("ewt%s%s%s", date, time, task_name);
-                } else {
-                    return String.format("ent%s%s", date, task_name);
-                }
-            }
-            case "todo":
-                if (countArguments(input) != 2) {
-                    throw new IllegalArgumentException("Incorrect number of arguments for command todo");
-                }
-                return removeWhitespace(input);
-            default:
-                return "invalid";
+        } catch (DateTimeException | IllegalArgumentException e) {
+            throw new DukeException(e.getMessage());
         }
     }
 }

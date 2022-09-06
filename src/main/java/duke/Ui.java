@@ -6,7 +6,7 @@ public class Ui {
 
 
     public void showWelcome() {
-        System.out.println("Hi I'm duke.Duke! What may I do for you?");
+        System.out.println("Hi I'm Duke! What may I do for you?");
     }
 
     public void showGoodbye() {
@@ -18,7 +18,7 @@ public class Ui {
     }
 
     public void showWritingError() {
-        System.out.println("Unable to find file to write to");
+        System.out.println("Unable to write to file. Check if the file exists.");
     }
 
     public void display(String output) {
