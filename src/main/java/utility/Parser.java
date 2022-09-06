@@ -42,13 +42,7 @@ public class Parser {
      * @throws DukeException When command given is invalid.
      */
     public static Command parse(String userInput) throws DukeException {
-        int firstWhiteSpaceIndex = userInput.trim().indexOf(" ");
-        String stringCommand;
-        if (firstWhiteSpaceIndex < 0) {
-            stringCommand = userInput;
-        } else {
-            stringCommand = userInput.substring(0, firstWhiteSpaceIndex);
-        }
+        String stringCommand = extractCommand(userInput);
         assert !stringCommand.contains(" ");
         switch (stringCommand) {
         case "todo":
@@ -79,6 +73,17 @@ public class Parser {
             String message = "Command invalid. Type help for more information.";
             throw new DukeException(message);
         }
+    }
+
+    private String extractCommand(String input) {
+        int firstWhiteSpaceIndex = input.trim().indexOf(" ");
+        String command;
+        if (firstWhiteSpaceIndex < 0) {
+            command = input;
+        } else {
+            command = input.substring(0, firstWhiteSpaceIndex);
+        }
+        return command;
     }
 
     /**
