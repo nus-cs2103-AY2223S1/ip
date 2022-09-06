@@ -3,7 +3,9 @@ package duke;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
+/**
+ * DeadlineTest class to test the methods within the Deadline class.
+ */
 public class DeadlineTest {
     @Test
     public void DeadlineStringTest() throws DukeException {

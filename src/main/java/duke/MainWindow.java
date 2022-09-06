@@ -62,7 +62,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() throws DukeException {
         String input = userInput.getText();
-        //get the response from duke which is the parsing
+        //duke loads the saved file and parses user input before sending it to response
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
