@@ -11,7 +11,7 @@ import duke.tasks.TaskList;
 public class ByeCommand extends Command {
 
     public ByeCommand() {
-        makeTrueExit();
+        setExit();
     }
 
     @Override

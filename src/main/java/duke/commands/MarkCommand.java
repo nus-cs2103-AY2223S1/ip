@@ -21,6 +21,7 @@ public class MarkCommand extends Command {
      */
     public MarkCommand(String description) throws DukeException {
         try {
+            assert description.split(" ")[0].equals("mark") : "Keyword should be mark for MarkCommand";
             description = description.split(" ")[1];
             this.index = Integer.parseInt(description);
         } catch (Exception e) {

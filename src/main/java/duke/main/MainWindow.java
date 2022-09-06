@@ -25,12 +25,13 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
     private Duke duke;
 
-
+    /**
+     * Initialise empty MainWindow
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        // Disable empty user input
-        this.sendButton.setDisable(this.userInput.getText().length() == 0);
+
     }
 
     public void setDuke(Duke d) {

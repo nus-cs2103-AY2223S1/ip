@@ -24,6 +24,7 @@ public class EventTaskCommand extends TaskCommand {
      */
     public EventTaskCommand(String description) throws DukeException {
         super(description);
+        assert description.split(" ")[0].equals("event") : "Keyword should be event for EventTaskCommand";
         String[] eventlst = description.split("/at ", 2);
         if (eventlst.length < 2 || eventlst[1].equals("")) {
             throw new DukeException("Alamak! Fill in when the event is at...");
