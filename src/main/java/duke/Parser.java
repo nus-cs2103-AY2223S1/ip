@@ -65,12 +65,17 @@ public class Parser {
     }
 
     private static String parseDelete(String str, TaskList taskList) throws DukeException {
-        Ui ui = new Ui(taskList);
-        str = str.split(" ", 2)[1].trim();
-        int index = Integer.valueOf(str) - 1;
-        String msg = taskList.getTask(index).toString();
-        taskList.removeTask(index);
-        return (ui.printRemovedTask(msg));
+        try {
+            Ui ui = new Ui(taskList);
+            str = str.split(" ", 2)[1].trim();
+            int index = Integer.valueOf(str) - 1;
+            String msg = taskList.getTask(index).toString();
+            taskList.removeTask(index);
+            return (ui.printRemovedTask(msg));
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(("OOPS!!! You are trying to delete a task with an index that" +
+                    " does not exist!"));
+        }
     }
 
     private static String parseFind(String str, TaskList taskList) throws DukeException {

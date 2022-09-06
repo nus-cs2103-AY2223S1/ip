@@ -69,7 +69,6 @@ public class Duke extends Application {
                 System.out.println("new file created!");
             } else {
                storage.readAndSaveFile(dukeFile, taskList);
-                //System.out.println("updated file");
             }
         } catch (IOException e) {
             System.out.println("Error in creating file");

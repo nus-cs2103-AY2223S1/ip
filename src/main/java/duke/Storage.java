@@ -32,52 +32,43 @@ public class Storage {
         Scanner scanner = new Scanner(file);
 
         while (scanner.hasNext()) {
-            //this is for formating
+            //this is for splitting the read task from the file into different components.
             String[] task = scanner.nextLine().split("[\\[||\\]]");
-            String taskContentHelper = task[4].split(" ", 2)[1];//the task and time without the brackets
-            String taskContent = taskContentHelper.split("\\(")[0].trim();//just the task
-            //System.out.println("task main content" + taskContentHelper);
-            //System.out.println("task1 " + taskContent);
-            String taskMark = task[3];
+            String taskContentHelper = task[4].split(" ", 2)[1];//the task and time without the brackets.
+            String taskContent = taskContentHelper.split("\\(")[0].trim();//just the task.
+            String taskMark = task[3];//the X mark of the task.
             String taskType = task[1];
             Task newTask;
-            // System.out.println("the mark:" + taskMark);
 
             if (taskType.equals("T")) {
-                //System.out.println("todo parsed");
                 newTask = new ToDo(taskContent);
                 if (taskMark.equals("X")) {
                     newTask.setDone();
                 }
                 inputs.addTask(newTask);
             } else if (taskType.equals("D")) {
-                //System.out.println("event parsed");
-                String[] timingContent = taskContentHelper.split("[\\(||\\)]");//this is to split up and obtain time segment
+                String[] timingContent = taskContentHelper.split("[\\(||\\)]");//this is to split up and obtain time segment.
                 System.out.println("timingContent: " + timingContent[1]);
-                //small problem where the user may not specify porperly
-                String time[] = timingContent[1].split(" ");//array of the elements in the time
-                String dateHelper = "";// the specific date
+                String time[] = timingContent[1].split(" ");//array of the elements in the time segment.
+                String dateHelper = "";// the specific date.
                 for (int i = 1; i < time.length; i++) {
                     dateHelper += time[i] + " ";
                 }
                 String date = dateHelper.trim();
-                //System.out.println(date + "no");
                 newTask = new Deadline(taskContent, date);
                 if (taskMark.equals("X")) {
                     newTask.setDone();
                 }
                 inputs.addTask(newTask);
             } else {
-                String[] timingContent = taskContentHelper.split("[\\(||\\)]");//this is to split up and obtain time segment
+                String[] timingContent = taskContentHelper.split("[\\(||\\)]");//this is to split up and obtain time segment.
                 //System.out.println("timingContent: " + timingContent[1]);
-                //small problem where the user may not specify porperly
-                String time[] = timingContent[1].split(" ");//array of the elements in the time
-                String dateHelper = "";// the specific date
+                String time[] = timingContent[1].split(" ");//array of the elements in the time segment.
+                String dateHelper = "";// the specific date.
                 for (int i = 1; i < time.length; i++) {
                     dateHelper += time[i] + " ";
                 }
                 String date = dateHelper.trim();
-                //System.out.println(date + "no");
                 newTask = new Event(taskContent, date);
                 if (taskMark.equals("X")) {
                     newTask.setDone();
@@ -118,6 +109,4 @@ public class Storage {
             e.printStackTrace();
         }
     }
-
-
 }
