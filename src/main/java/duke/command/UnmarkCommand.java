@@ -32,6 +32,7 @@ public class UnmarkCommand extends Command {
         try {
             task.unmarkTask(toUnmark);
             Task taskToUnmark = task.getTask(toUnmark);
+            assert taskToUnmark == null : "Task to be mark not done should not be empty";
             return "Ok, I've marked this task as not done yet:\n " + taskToUnmark.taskInfo();
         } catch (IndexOutOfBoundsException e) {
             return "There is no task at this index";
