@@ -43,6 +43,11 @@ public class AddCommand extends Command {
         }
     }
 
+    /**
+     * Checks if this command will result in the bot to stop running.
+     *
+     * @return a boolean value.
+     */
     @Override
     public boolean isRunning() {
         return true;

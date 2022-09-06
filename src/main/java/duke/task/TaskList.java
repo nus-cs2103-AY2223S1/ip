@@ -13,14 +13,14 @@ public class TaskList {
     private ArrayList<Task> tasks;
 
     /**
-     * Constructor for TaskList.
+     * Constructor for TaskList when duke.txt is empty.
      */
     public TaskList() {
         this.tasks = new ArrayList<Task>();
     }
 
     /**
-     * Constructor for TaskList.
+     * Constructor for TaskList when duke.txt is not empty.
      *
      * @param tasks Takes in an ArrayList of tasks.
      */

@@ -1,5 +1,8 @@
 package duke.gui;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import duke.Duke;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -9,9 +12,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -60,12 +60,11 @@ public class MainWindow extends AnchorPane {
 
         if (response.equals("Bye. Hope to see you again soon!")) {
             new Timer().schedule(new TimerTask() {
-                 @Override
-                 public void run() {
-                     Platform.exit();
-                 }
-             },
-                    2000);
+                @Override
+                public void run() {
+                    Platform.exit();
+                }
+            }, 2000);
         }
     }
 }
