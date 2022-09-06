@@ -69,6 +69,7 @@ public class Storage {
             }
         }
 
+        assert !f.exists() : "File does not exist!";
         return taskList;
     }
 

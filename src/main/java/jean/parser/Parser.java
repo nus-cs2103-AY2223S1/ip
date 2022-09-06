@@ -124,7 +124,7 @@ public class Parser {
     private static FindCommand checkFind(String fullCommand) throws JeanException {
         if (fullCommand.length() == 4) {
             throw new JeanException("You must give a word to search!"
-                    + "\nVous devez donner un mot à chercher!");
+                                    + "\nVous devez donner un mot à chercher!");
         } else {
             return new FindCommand(fullCommand.substring(5));
         }
@@ -139,6 +139,8 @@ public class Parser {
      * @throws JeanException When user's input is invalid.
      */
     public static Command parse(String fullCommand, TaskList taskList) throws JeanException {
+        assert !fullCommand.isEmpty() : "Command should not be empty!";
+
         if (fullCommand.equals(BYE_COMMAND)) {
             return new ExitCommand();
         } else if (fullCommand.equals(LIST_COMMAND)) {
