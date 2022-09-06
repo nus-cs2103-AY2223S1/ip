@@ -14,7 +14,7 @@ public class Parser {
     }
 
     public enum IndexCommands {
-        UNMARK, MARK, DELETE
+        UNMARK, MARK, DELETE, TAG
     }
 
     public static String parseInput(String input, TaskList taskList) throws DukeException {
@@ -54,6 +54,10 @@ public class Parser {
             case "find":
                 String content = commands[1];
                 return taskList.find(content);
+
+            case "tag":
+                String tagContent = commands[1];
+                return parseTag(tagContent, taskList);
             
             default:
                 throw new DukeException("I'm sorry, but I don't know what that means.");
@@ -144,5 +148,26 @@ public class Parser {
             default:
                 throw new DukeException("Something went wrong here.");
         }        
+    }
+
+    public static String parseTag(String content, TaskList taskList) throws DukeException {
+        String[] tagSplit = content.split(" ", 2);
+        if (tagSplit.length < 2) {
+            throw new DukeException("Formatting of tag command is incorrect.");
+        }
+
+        String tag = tagSplit[1];
+        if (tag.length() == 0) {
+            throw new DukeException("Tag description cannot be empty.");
+        }
+
+        int index = -1;
+        try {
+            index = Integer.parseInt(tagSplit[0]) - 1;
+        } catch (NumberFormatException e) {
+            throw new DukeException("Please enter a valid task number.");
+        }
+
+        return taskList.tagTask(index, tag);
     }
 }

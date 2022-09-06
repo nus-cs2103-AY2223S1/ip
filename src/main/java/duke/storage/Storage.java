@@ -32,41 +32,48 @@ public class Storage {
 
         while (scanner.hasNext()) {
             String task = scanner.nextLine();
+            boolean status = task.charAt(4) == '1';
+
             if (task.charAt(0) == 'T') {
-                boolean status = task.charAt(4) == '1';
-                String content = task.substring(8).trim();
+                String[] split = task.substring(8).split(" \\| ", 2);
+                String content = split[0];
+                String tag = split[1];
                 ToDo toDo = new ToDo(content);
+                toDo.loadTag(tag);
                 if (status) {
                     toDo.markComplete();
                 }
                 taskList.addTask(toDo);
 
             } else if (task.charAt(0) == 'D') {
-                boolean status = task.charAt(4) == '1';
-                String[] split = task.substring(8).split(" \\| ");
-                String content = split[0].trim();
-                String[] dateTimeSplit = split[1].trim().split(" ");
+                String[] split = task.substring(8).split(" \\| ", 3);
+                String tag = split[2];
+                String content = split[0];
+                String[] dateTimeSplit = split[1].split(" ", 2);
                 LocalDate date = LocalDate.parse(dateTimeSplit[0]);
                 LocalTime time = LocalTime.parse(dateTimeSplit[1]);
                 Deadline deadline = new Deadline(content, date, time);
+                deadline.loadTag(tag);
                 if (status) {
                     deadline.markComplete();
                 }
                 taskList.addTask(deadline);
 
             } else if (task.charAt(0) == 'E') {
-                boolean status = task.charAt(4) == '1';
-                String[] split = task.substring(8).split(" \\| ");
-                String content = split[0].trim();
-                String[] dateTimeSplit = split[1].trim().split(" ");
+                String[] split = task.substring(8).split(" \\| ", 3);
+                String tag = split[2];
+                String content = split[0];
+                String[] dateTimeSplit = split[1].split(" ", 2);
                 LocalDate date = LocalDate.parse(dateTimeSplit[0]);
                 LocalTime time = LocalTime.parse(dateTimeSplit[1]);
                 Event event = new Event(content, date, time);
+                event.loadTag(tag);
                 if (status) {
                     event.markComplete();
                 }
                 taskList.addTask(event);
             }
+
         }
         scanner.close();
     }

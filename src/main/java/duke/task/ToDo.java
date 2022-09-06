@@ -10,7 +10,7 @@ public class ToDo extends Task {
 
     @Override
     public String toString() {
-        return String.format("[T]%s", super.toString());
+        return String.format("[T]%s %s", super.toString(), this.tag);
     }
 
     /**
@@ -19,6 +19,6 @@ public class ToDo extends Task {
      */
     @Override
     public String toFileData() {
-        return String.format("T | %d | %s", this.status ? 1 : 0, this.content);
+        return String.format("T | %d | %s | %s", this.status ? 1 : 0, this.content, this.tag);
     }
 }

@@ -8,10 +8,12 @@ package duke.task;
 public abstract class Task {
     protected String content;
     protected boolean status;
+    protected String tag;
 
     protected Task(String content) {
         this.content = content;
         this.status = false;
+        this.tag = "";
     }
 
     /**
@@ -23,6 +25,14 @@ public abstract class Task {
 
     public void unMarkComplete() {
         this.status = false;
+    }
+
+    public void addTag(String tag) {
+        this.tag = '#' + tag;
+    }
+
+    public void loadTag(String tag) {
+        this.tag = tag;
     }
 
     /**

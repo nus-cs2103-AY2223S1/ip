@@ -19,9 +19,10 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s %s)", super.toString(),
+        return String.format("[E]%s (at: %s %s) %s", super.toString(),
                 this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")),
-                        this.time.format(DateTimeFormatter.ofPattern("hh:mm a")));
+                        this.time.format(DateTimeFormatter.ofPattern("hh:mm a")),
+                                this.tag);
     }
 
     /**
@@ -30,7 +31,7 @@ public class Event extends Task {
      */
     @Override
     public String toFileData() {
-        return String.format("E | %d | %s | %s %s", this.status ? 1 : 0, this.content,
-                this.date.toString(), this.time.toString());
+        return String.format("E | %d | %s | %s %s | %s", this.status ? 1 : 0, this.content,
+                this.date.toString(), this.time.toString(), this.tag);
     }
 }

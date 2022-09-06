@@ -130,4 +130,13 @@ public class TaskList {
 
         return matches.toString();
     }
+
+    public String tagTask(int index, String tag) {
+        try {
+            this.list.get(index).addTag(tag);
+        } catch (IndexOutOfBoundsException e) {
+            return "Task number to be tagged does not exist.";
+        }
+        return "Nice! I've tagged this task:\n" + this.list.get(index).toString();
+    }
 }
