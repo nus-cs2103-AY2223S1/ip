@@ -23,7 +23,7 @@ public class FindCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         TaskList filteredTaskList = taskList.filter(keyword);
-        String output = taskList.list();
+        String output = filteredTaskList.list();
         ui.display(output);
     }
 }

@@ -377,8 +377,8 @@ public class Parser {
                 }
                 String keyword = findArgument(input, 2);
                 return new FindCommand(keyword);
-                default:
-                    return new UnrecognisedCommand();
+            default:
+                return new UnrecognisedCommand();
             }
         } catch (DateTimeException | IllegalArgumentException e) {
             throw new DukeException(e.getMessage());
