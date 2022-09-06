@@ -1,18 +1,24 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
-    protected String at;
+    protected LocalDate at;
 
     public Event(String description, String at) {
         super(description);
-        this.at = at;
+        this.at = LocalDate.parse(at);
+        // this.at = LocalDate.parse(at, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at: " + this.at + ")";
+        return "[E]" + super.toString() + "(at: "
+                + this.at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     @Override
     public String toSave() {
-        return "E | " + (this.isDone ? "1 | " : "0 | ") + this.description + " | " + this.at + "\n";
+        return "E | " + (this.isDone ? "1 | " : "0 | ") + this.description +
+                " | " + this.at.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "\n";
     }
 }
