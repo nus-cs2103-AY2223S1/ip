@@ -30,6 +30,7 @@ public class Ui {
 
     private void outputString(String out, String header) {
         String[] splitOut = out.split("\n");
+        assert splitOut.length >= 1 : "Output is all line breaks. This shouldn't happen.";
         printWriter.print(header + " ");
         printWriter.println(splitOut[0]);
         for (int i = 1; i < splitOut.length; i++) {
