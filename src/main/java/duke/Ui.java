@@ -123,4 +123,12 @@ public class Ui {
         }
         return response;
     }
+
+    public String addAlias(String alias, String originalCommand) {
+        return "Add alias: " + alias + " for " + originalCommand;
+    }
+
+    public String deleteAlias(String alias) {
+        return "Delete alias: " + alias;
+    }
 }

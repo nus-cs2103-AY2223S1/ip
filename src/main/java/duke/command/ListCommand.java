@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.Parser;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -19,7 +20,7 @@ public class ListCommand extends Command {
      * @return duke's response.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage, Parser parser) throws DukeException {
         String response = ui.displayTasks(tasks);
         return response;
     }

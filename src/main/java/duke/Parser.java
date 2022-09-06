@@ -3,14 +3,18 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.ArrayList;
 
 import duke.command.AddCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
+import duke.command.FriendlyCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.UnfriendlyCommand;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -30,6 +34,15 @@ public class Parser {
     private static final String EVENT_COMMAND = "event";
     private static final String DELETE_COMMAND = "delete";
     private static final String FIND_COMMAND = "find";
+    private static final String FRIENDLY_COMMAND = "friendly";
+    private static final String UNFRIENDLY_COMMAND = "unfriendly";
+    private static final String[] ARRAY_ORIGINAL_COMMANDS = new String[]{EXIT_COMMAND, LIST_COMMAND, MARK_COMMAND,
+            UNMARK_COMMAND, TODO_COMMAND, DEADLINE_COMMAND, EVENT_COMMAND, DELETE_COMMAND, FIND_COMMAND,
+            FRIENDLY_COMMAND, UNFRIENDLY_COMMAND};
+    private static final ArrayList<String> LIST_ORIGINAL_COMMANDS = new ArrayList<>(Arrays.
+            asList(ARRAY_ORIGINAL_COMMANDS));
+    private final ArrayList<String> newCommands;
+    private final HashMap<String, String> commands;
 
     private static final String MISSING_KEYWORD_MESSAGE = "Keyword is missing";
     private static final String MISSING_INDEX_MESSAGE = "Index is missing";
@@ -40,6 +53,19 @@ public class Parser {
     private static final String INVALID_DATE_FORMAT = "date not in " + Task.SAVE_DATE_FORMAT + " format";
     private static final String INDEX_NOT_NUMBER_MESSAGE = "Index given must be a number";
     private static final String INVALID_COMMAND_MESSAGE = "Invalid command given";
+    private static final String ALIAS_EXIST_MESSAGE = "Alias already exist";
+    private static final String INVALID_ORIGINAL_COMMAND_MESSAGE = "Invalid original command given";
+    private static final String ALIAS_DOES_NOT_EXIST_MESSAGE = "Alias does not exist";
+
+    Parser() {
+        this.newCommands = new ArrayList<>();
+        this.commands = new HashMap<>();
+        for (String command : LIST_ORIGINAL_COMMANDS) {
+            this.commands.put(command, command);
+        }
+    }
+
+
 
     /**
      * Parses user's input to be a recognisable command.
@@ -48,9 +74,13 @@ public class Parser {
      * @return command.
      * @throws DukeException if User's input is in the wrong format.
      */
-    protected static Command parse(String response) throws DukeException {
+    protected Command parse(String response) throws DukeException {
         String[] cmdDescp = response.split(" ");
-        String command = cmdDescp[0];
+        String commandInput = cmdDescp[0];
+        if (!this.commands.containsKey(commandInput)) {
+            throw new DukeException(INVALID_COMMAND_MESSAGE);
+        }
+        String command = this.commands.get(commandInput);
         if (command.equals(EXIT_COMMAND) || command.equals(LIST_COMMAND)) {
             switch (command) {
             case EXIT_COMMAND:
@@ -152,7 +182,33 @@ public class Parser {
             default:
                 break;
             }
+        } else if (command.equals(FRIENDLY_COMMAND)) {
+            String originalCommand = cmdDescp[1];
+            String alias = cmdDescp[2];
+            if (!LIST_ORIGINAL_COMMANDS.contains(originalCommand)) {
+                throw new DukeException(INVALID_ORIGINAL_COMMAND_MESSAGE);
+            }
+            if (LIST_ORIGINAL_COMMANDS.contains(alias) || this.newCommands.contains(alias)) {
+                throw new DukeException(ALIAS_EXIST_MESSAGE);
+            }
+            return new FriendlyCommand(alias, originalCommand);
+        } else if (command.equals(UNFRIENDLY_COMMAND)) {
+            String alias = cmdDescp[1];
+            if (!this.newCommands.contains(alias)) {
+                throw new DukeException(ALIAS_DOES_NOT_EXIST_MESSAGE);
+            }
+            return new UnfriendlyCommand(alias);
         }
         throw new DukeException(INVALID_COMMAND_MESSAGE);
+    }
+
+    public void addAlias(String alias, String originalCommand) {
+        this.newCommands.add(alias);
+        this.commands.put(alias, originalCommand);
+    }
+
+    public void deleteAlias(String alias) {
+        this.newCommands.remove(alias);
+        this.commands.remove(alias);
     }
 }

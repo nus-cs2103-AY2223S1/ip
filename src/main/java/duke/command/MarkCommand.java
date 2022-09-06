@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.Parser;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -35,7 +36,7 @@ public class MarkCommand extends Command {
      * @throws DukeException If ind > tasks.size() or ind < 0 or error saving file or task is already done / not done.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage, Parser parser) throws DukeException {
         Task current = tasks.get(ind - 1);
         String response;
         if (toMark) {
