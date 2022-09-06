@@ -25,14 +25,14 @@ public class Task {
     }
 
     /**
-     * Set the isDone to true.
+     * Sets the isDone to true.
      */
     public void setDone() {
         this.isDone = true;
     }
 
     /**
-     * Set the isDone to false.
+     * Sets the isDone to false.
      */
     public void setUndone() {
         this.isDone = false;

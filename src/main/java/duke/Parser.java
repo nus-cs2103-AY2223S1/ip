@@ -1,8 +1,6 @@
 package duke;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * A Parser class to read the user instructions and make send of them.
@@ -52,7 +50,7 @@ public class Parser {
     private static String parseEvent(String str, TaskList taskList) throws DukeException {
         Ui ui = new Ui(taskList);
         try {
-            //splits away event
+            //splits away event into its description and date
             str = str.split(" ", 2)[1];
             String desc = str.split("/at")[0].trim();
             String at = str.split("/at")[1].trim();
@@ -71,20 +69,19 @@ public class Parser {
         str = str.split(" ", 2)[1].trim();
         int index = Integer.valueOf(str) - 1;
         String msg = taskList.getTask(index).toString();
-        //i shifted the remove here, not sure if this will show the wrong one or not
         taskList.removeTask(index);
         return (ui.printRemovedTask(msg));
     }
 
     private static String parseFind(String str, TaskList taskList) throws DukeException {
         Ui ui = new Ui(taskList);
-        String find = str.split(" ")[1].trim();
+        String wantedTask = str.split(" ")[1].trim();
         String msg = "";
         int counter = 1;
         for (int i = 0; i < taskList.getSize(); i++) {
             String task = taskList.getTask(i).toString();
             //this index is for labelling in duke
-            if (task.contains(find)) {
+            if (task.contains(wantedTask)) {
                 String foundTask = counter + "." + task;
                 msg += foundTask + "\n";
                 counter++;
@@ -105,7 +102,6 @@ public class Parser {
     public String parseInstruction(Storage storage, TaskList taskList, String str) throws DukeException {
         Ui ui = new Ui(taskList);
         String response = "";
-        //Scanner sc = new Scanner(System.in);
         try {
             if (str.equals("bye")) {
                 //exits the application

@@ -49,8 +49,9 @@ public class Duke extends Application {
         ui = new Ui(taskList);
         storage = new Storage("data/duke.txt");
         parser = new Parser();
+        //Initialises the saved file into the taskList.
         //load the file ONLY in the constructor so that multiple calls in parse
-        //will not duplicate it via updateFile
+        //will not duplicate it via updateFile.
         storage.inputSavedFile(taskList);
     }
 
@@ -61,32 +62,31 @@ public class Duke extends Application {
      */
     public void run() throws DukeException {
         System.out.println(ui.getHello());
-        try{
+        try {
             File dukeFile = new File("data/duke.txt");
             dukeFile.getParentFile().mkdirs();//create the directory
-            if(dukeFile.createNewFile()){
+            if (dukeFile.createNewFile()){
                 System.out.println("new file created!");
             } else {
                storage.readAndSaveFile(dukeFile, taskList);
                 //System.out.println("updated file");
             }
-        }catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Error in creating file");
         }
-        //parser.parseInstruction(storage, taskList);
         System.out.println(ui.goodbye());
     }
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
 
         storage.inputSavedFile(taskList);
 
-        //for reading the file
+        //for reading the file.
         Label helloWorld = new Label("Hello World!"); // Creating a new Label control
         Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
 
-        stage.setScene(scene); // Setting the stage to show our screen
+        stage.setScene(scene); // Setting the stage to show our screen.
         stage.show(); // Render the stage.
 
         stage.setTitle("Duke");
@@ -204,7 +204,7 @@ public class Duke extends Application {
      * Replace this stub with your completed method.
      */
     String getResponse(String input) throws DukeException {
-        //initialise or read the file here
+        //parses the user input and store the input accordingly in storage and taskList.
         return parser.parseInstruction(storage, taskList, input);
     }
 

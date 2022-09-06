@@ -30,7 +30,6 @@ public class Storage {
     public void readAndSaveFile(File file, TaskList inputs) throws FileNotFoundException, DukeException {
 
         Scanner scanner = new Scanner(file);
-        //System.out.println("parsing activated");
 
         while (scanner.hasNext()) {
             //this is for formating

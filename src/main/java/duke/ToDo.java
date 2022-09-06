@@ -5,7 +5,7 @@ package duke;
  * Inherits from the Task class.
  *
  */
-public class   ToDo extends Task {
+public class ToDo extends Task {
     protected String description;
     protected boolean isDone;
 

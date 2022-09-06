@@ -3,7 +3,9 @@ package duke;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
-
+/**
+ * ToDoTest class to test the methods within the ToDo class.
+ */
 public class ToDoTest {
 
     @Test
