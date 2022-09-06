@@ -3,6 +3,7 @@ package duke.parser;
 import java.util.stream.Stream;
 
 import duke.DukeException;
+import duke.command.ArchiveCommand;
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeadlineCommand;
@@ -72,6 +73,10 @@ public class Parser {
             return new FindCommand(args[0].getBody());
         }
 
+        case ArchiveCommand.COMMAND_NAME: {
+            return parseArchiveArgs(args);
+        }
+
         default: {
             return new UnknownCommand();
         }
@@ -120,7 +125,7 @@ public class Parser {
             }
             return indexValue;
         } catch (NumberFormatException e) {
-            if (idx == null) {
+            if (idx == null || idx.equals("")) {
                 throw new DukeException("You must pass an index value.", e);
             } else {
                 throw new DukeException("You must pass an integer value. " + idx + " is not an integer.", e);
@@ -145,6 +150,15 @@ public class Parser {
     private static DeadlineCommand parseDeadlineArgs(Argument[] args) throws DukeException {
         String byParam = getArgBody(args, "by");
         return new DeadlineCommand(new Deadline(args[0].getBody(), byParam));
+    }
+
+    private static ArchiveCommand parseArchiveArgs(Argument[] args) {
+        String forceParam = getArgBody(args, "force");
+        if (args[0].getBody() != null && !args[0].getBody().equals("")) {
+            return new ArchiveCommand(args[0].getBody(), forceParam != null);
+        } else {
+            return new ArchiveCommand(forceParam != null);
+        }
     }
 
 }

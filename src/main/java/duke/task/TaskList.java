@@ -15,7 +15,7 @@ public class TaskList {
      * Constructs an empty TaskList.
      */
     public TaskList() {
-        this.taskList = new ArrayList<>();
+        taskList = new ArrayList<>();
     }
 
     /**
@@ -31,7 +31,7 @@ public class TaskList {
      * @param task the specified Task parameter.
      */
     public void addTask(Task task) {
-        this.taskList.add(task);
+        taskList.add(task);
     }
 
     /**
@@ -40,7 +40,14 @@ public class TaskList {
      * @param index the specified index parameter.
      */
     public void deleteTask(int index) {
-        this.taskList.remove(index);
+        taskList.remove(index);
+    }
+
+    /**
+     * Clears this TaskList.
+     */
+    public void clear() {
+        taskList.clear();
     }
 
     /**
@@ -50,7 +57,7 @@ public class TaskList {
      * @return a String[].
      */
     public String[] toStringList() {
-        return this.taskList.stream()
+        return taskList.stream()
                 .map(Task::toString)
                 .toArray(String[]::new);
     }
@@ -61,7 +68,7 @@ public class TaskList {
      * @return length of the list.
      */
     public int getLength() {
-        return this.taskList.size();
+        return taskList.size();
     }
 
     /**
@@ -71,7 +78,7 @@ public class TaskList {
      * @return a Task.
      */
     public Task getTask(int index) {
-        return this.taskList.get(index);
+        return taskList.get(index);
     }
 
     /**
@@ -81,6 +88,6 @@ public class TaskList {
      * @return the new TaskList
      */
     public TaskList filter(Predicate<? super Task> pred) {
-        return new TaskList(this.taskList.stream().filter(pred).toArray(Task[]::new));
+        return new TaskList(taskList.stream().filter(pred).toArray(Task[]::new));
     }
 }

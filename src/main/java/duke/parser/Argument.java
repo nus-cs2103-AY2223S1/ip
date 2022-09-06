@@ -16,7 +16,7 @@ public class Argument {
      */
     public Argument(String name) {
         this.name = name;
-        this.body = null;
+        this.body = "";
     }
 
     /**

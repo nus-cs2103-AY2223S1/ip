@@ -104,4 +104,13 @@ public class Storage {
                             this.saveFile.getPath()), e);
         }
     }
+
+    /**
+     * Returns the file path of the save file for this Storage object.
+     *
+     * @return the file path.
+     */
+    public String getFilePath() {
+        return saveFile.getPath();
+    }
 }
