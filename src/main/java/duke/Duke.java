@@ -1,6 +1,8 @@
 package duke;
 
 import duke.command.Command;
+import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -10,6 +12,8 @@ import java.util.Scanner;
  * This task list is stored in an output file, and loaded on program start.
  */
 public class Duke {
+    public static final String FILE_NAME = "data.txt";
+    public static final String[] DIRECTORIES = new String[]{"data"};
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
@@ -20,8 +24,8 @@ public class Duke {
      * @param fileName name of output file for task list.
      * @param directories output file path's directory names in order.
      */
-    public Duke(String fileName, String... directories) {
-        this.ui = new Ui();
+    public Duke(String fileName, Ui ui, String... directories) {
+        this.ui = ui;
         this.storage = new Storage(ui, fileName, directories);
         this.taskList = new TaskList();
         ui.showWelcome();
@@ -59,6 +63,36 @@ public class Duke {
      * @param args command line arguments.
      */
     public static void main(String[] args) {
-        new Duke("data.txt", "data").run();
+        new Duke(FILE_NAME, new Cli(), DIRECTORIES).run();
+    }
+
+    public static Duke initialiseForGui(VBox dialogContainer, Image dukeImage) {
+        return new Duke(FILE_NAME, new Gui(dialogContainer, dukeImage), DIRECTORIES);
+    }
+
+    public boolean runForGui(String userInput) {
+        Scanner scanner = new Scanner(userInput);
+        boolean isExit = false;
+        while (!isExit && scanner.hasNext()) {
+            String commandString = scanner.nextLine();
+            Command command;
+            try {
+                command = Parser.parse(commandString, taskList);
+            } catch (IllegalArgumentException e) {
+                ui.println(e.getMessage());
+                continue;
+            }
+            command.execute(this.taskList, this.storage, this.ui);
+            isExit = command.getIsExit();
+        }
+        return isExit;
+    }
+
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    protected String getResponse(String input) {
+        return "Duke heard: " + input;
     }
 }

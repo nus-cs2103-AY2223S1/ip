@@ -111,7 +111,6 @@ public class Storage {
             }
             ui.println("Successfully read previous tasks.");
             ui.printDivider();
-            ui.println("");
             new ListCommand("list").execute(taskList, this, ui);
         }
     }
