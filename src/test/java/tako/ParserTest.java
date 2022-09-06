@@ -11,6 +11,7 @@ import tako.command.ExitCommand;
 import tako.command.FindCommand;
 import tako.command.ListCommand;
 import tako.command.MarkCommand;
+import tako.command.SortCommand;
 
 public class ParserTest {
     @Test
@@ -25,6 +26,9 @@ public class ParserTest {
                 Parser.parse("event sleep /at 2022-11-11 11:11").getClass());
         assertEquals(DeleteCommand.class, Parser.parse("delete 1").getClass());
         assertEquals(FindCommand.class, Parser.parse("find this").getClass());
+        assertEquals(SortCommand.class, Parser.parse("sort date").getClass());
+        assertEquals(SortCommand.class, Parser.parse("sort alphabet").getClass());
+        assertEquals(SortCommand.class, Parser.parse("sort date desc").getClass());
     }
 
     @Test
@@ -168,6 +172,36 @@ public class ParserTest {
             fail();
         } catch (TakoException e) {
             assertEquals("The task number to delete is invalid.", e.getMessage());
+        }
+    }
+
+    @Test
+    public void parse_emptySortMethod_exceptionThrown() {
+        try {
+            Parser.parse("sort");
+            fail();
+        } catch (TakoException e) {
+            assertEquals("The way to sort by cannot be empty.", e.getMessage());
+        }
+    }
+
+    @Test
+    public void parse_invalidSortMethod_exceptionThrown() {
+        try {
+            Parser.parse("sort this");
+            fail();
+        } catch (TakoException e) {
+            assertEquals("The input is invalid.", e.getMessage());
+        }
+    }
+
+    @Test
+    public void parse_invalidSortDesc_exceptionThrown() {
+        try {
+            Parser.parse("sort date today");
+            fail();
+        } catch (TakoException e) {
+            assertEquals("The input is invalid.", e.getMessage());
         }
     }
 }
