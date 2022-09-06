@@ -33,6 +33,7 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Command command = parser.parse(input);
+            assert command instanceof Command : "Not a command!";
             if (command instanceof ByeCommand) {
                 isBye = true;
             }
