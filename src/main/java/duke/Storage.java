@@ -4,15 +4,18 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Storage {
-    protected String taskDataPath;
-    protected String taskDataFileName;
+    private String dataPath;
+    private String taskDataFileName;
+    private String memoryDataFileName;
     protected static UI UI;
-    Storage(String taskDataPath, String taskDataFileName) {
-        this.taskDataPath = taskDataPath;
+    Storage(String dataPath, String taskDataFileName, String memoryDataFileName) {
+        this.dataPath = dataPath;
         this.taskDataFileName = taskDataFileName;
+        this.memoryDataFileName = memoryDataFileName;
     }
 
     /**
@@ -20,21 +23,26 @@ public class Storage {
      *
      * @param taskList
      */
-    public void readTaskData(TaskList taskList) throws DukeException {
+    public void readTaskAndMemoryData(TaskList taskList, HashMap<String, String> memory) throws DukeException {
         try {
-            File path = new File(taskDataPath);
-            File file = new File(taskDataPath + "/" + taskDataFileName);
+            File path = new File(dataPath);
+            File taskDataFile = new File(dataPath + "/" + taskDataFileName);
+            File memoryDataFile = new File(dataPath + "/" + memoryDataFileName);
 
             if (path.exists() && path.isDirectory()) {
-                if (file.exists() && file.isFile()) {
-                    readTaskDataLineByLine(taskList, file);
+                if (taskDataFile.exists() &&
+                        taskDataFile.isFile() &&
+                        memoryDataFile.exists() &&
+                        memoryDataFile.isFile()) {
+                    readTaskDataLineByLine(taskList, taskDataFile);
+                    readMemoryLineByLine(memory, memoryDataFile);
                 } else {
-                    file.createNewFile();
+                    taskDataFile.createNewFile();
                     throw new DukeException(UI.FILE_NOT_FOUND + UI.CREATE_FILE);
                 }
             } else {
                 path.mkdirs();
-                file.createNewFile();
+                taskDataFile.createNewFile();
                 throw new DukeException(UI.FILE_NOT_FOUND + UI.CREATE_FILE);
             }
         } catch (FileNotFoundException e) {
@@ -67,20 +75,47 @@ public class Storage {
         }
     }
 
+    public void readMemoryLineByLine(HashMap<String, String> memory, File file) throws FileNotFoundException {
+        Scanner s = new Scanner(file);
+        while (s.hasNext()) {
+            String line = s.nextLine();
+            String[] commands = line.split(",");
+
+            memory.put(commands[0], commands[1]);
+        }
+    }
+
+    public void updateTaskAndMemoryData(TaskList taskList, HashMap<String, String> memory) throws DukeException {
+        updateTaskData(taskList);
+        updateMemoryData(memory);
+    }
+
     /**
      * Saves task list data based on inputted TaskList object
      *
      * @param taskList
      */
-    public void updateTaskData(TaskList taskList) {
+    public void updateTaskData(TaskList taskList) throws DukeException {
         try {
-            FileWriter fw = new FileWriter(taskDataPath + "/" + taskDataFileName);
+            FileWriter fw = new FileWriter(dataPath + "/" + taskDataFileName);
             for (int i = 0; i < taskList.getTaskList().size(); ++i) {
                 fw.write(taskList.getTaskList().get(i).toWrite());
             }
             fw.close();
         } catch (IOException e) {
-            UI.printResponse("Something went wrong: " + e.getMessage() + "\n");
+            throw new DukeException("Something went wrong: " + e.getMessage() + "\n");
+        }
+    }
+
+    public void updateMemoryData(HashMap<String, String> memory) throws DukeException {
+        try {
+            FileWriter fw = new FileWriter(dataPath + "/" + memoryDataFileName);
+            for (String i : memory.keySet()) {
+                fw.write(i + "," + memory.get(i) + "\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            throw new DukeException("Something went wrong: " + e.getMessage() + "\n");
         }
     }
 }

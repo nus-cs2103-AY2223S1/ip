@@ -1,32 +1,42 @@
 package duke;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Duke {
     private static final String LOAD_STORAGE_SUCCESSFUL = "Load Storage is Successful";
     private static final String LOAD_STORAGE_UNSUCCESSFUL = "Load Storage is NOT Successful";
     private static final String taskDataPath = "data";
     private static final String taskDataFileName = "duke.txt";
+    private static final String memoryDataFileName = "memory.txt";
 
     private static UI UI = new UI();
     private static Parser parser = new Parser();
-    private static TaskList taskList = new TaskList();
-    private static Storage storage = new Storage(taskDataPath, taskDataFileName);
+
+    private static Storage storage = new Storage(taskDataPath, taskDataFileName, memoryDataFileName);
+    private TaskList taskList;
+
+    private HashMap<String, String> memory;
+
 
     Duke() {
-        loadStorage();
+        taskList = new TaskList();
+        memory = new HashMap<>();
+        loadStorage(taskList, memory);
         assertSuccessfulLoadStorage();
     }
 
-    private static String loadStorage() {
+    private String loadStorage(TaskList taskList, HashMap<String, String> memory) {
         try {
-            storage.readTaskData(taskList);
+            storage.readTaskAndMemoryData(taskList, memory);
             return LOAD_STORAGE_SUCCESSFUL;
         } catch (DukeException e) {
             return LOAD_STORAGE_UNSUCCESSFUL;
         }
     }
 
-    private static void assertSuccessfulLoadStorage() {
-        assert loadStorage() == LOAD_STORAGE_SUCCESSFUL : LOAD_STORAGE_UNSUCCESSFUL;
+    private void assertSuccessfulLoadStorage() {
+        assert loadStorage(taskList, memory) == LOAD_STORAGE_SUCCESSFUL : LOAD_STORAGE_UNSUCCESSFUL;
     }
 
     /**
@@ -40,16 +50,25 @@ public class Duke {
             response = taskList.printTaskList();
         } else if (input.equals("bye") || input.equals("bye\n")) {
             response = UI.GOODBYE;
-            storage.updateTaskData(taskList);
+            try {
+                storage.updateTaskAndMemoryData(taskList, memory);
+            } catch (DukeException e) {
+                response = e.getMessage();
+            }
         } else {
-            response = generateTaskRelatedCommandFromInput(input);
+            response = processComplexInput(input);
         }
 
         return response;
     }
 
-    private String generateTaskRelatedCommandFromInput(String input) {
+    private String processComplexInput(String input) {
         String response = "";
+
+        if (memory.containsKey(input)) {
+            return memory.get(input);
+        }
+
         try {
             String[] commands = input.split(" ");
 
@@ -72,6 +91,19 @@ public class Duke {
             } else if (commands[0].equals("find")) {
                 String description = commands[1];
                 response = taskList.find(description);
+            } else if (commands[0].equals("teach")) {
+                input = input.substring(6);
+                commands = input.split("/");
+
+                if (commands.length < 2) {
+                    throw new DukeException(UI.DO_NOT_UNDERSTAND_COMMAND);
+                }
+
+                String question = commands[0];
+                String answer = commands[1];
+
+                memory.put(question, answer);
+                response = UI.COMMAND_MEMORIZED;
             } else {
                 Task newTask;
                 if (commands[0].equals("todo")) {
