@@ -45,7 +45,7 @@ public class DukeTaskManager {
      * @param args Description of the task
      */
     public void dukeAddTask(DukeCommandType type, String args) {
-        assert (type == DukeCommandType.TODO || type == DukeCommandType.DEADLINE|| type == DukeCommandType.EVENT);
+        assert (type == DukeCommandType.TODO || type == DukeCommandType.DEADLINE || type == DukeCommandType.EVENT);
         if (args.isEmpty()) {
             DukeUi.dukePrint("Description cannot be empty\n");
             return;

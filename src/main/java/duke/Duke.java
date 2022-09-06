@@ -1,12 +1,12 @@
 package duke;
 
-import javafx.application.Platform;
-import javafx.stage.Stage;
-
 import duke.command.Command;
 import duke.command.DukeCommandType;
 import duke.task.DukeTaskManager;
 import duke.ui.DukeUi;
+import javafx.application.Platform;
+import javafx.stage.Stage;
+
 
 /**
  * Duke is a Personal Assistant Chatbot that helps users to organise their tasks using a command line interface
