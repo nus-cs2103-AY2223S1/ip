@@ -47,6 +47,8 @@ public class Parser {
             return find(s);
         case "bye":
             return bye();
+        case "remind":
+            return reminder();
         default:
             return "sorry, I don't understand you";
         }
@@ -259,5 +261,30 @@ public class Parser {
             }
         }, 1000L);
         return "bye!";
+    }
+
+    protected String reminder() {
+        ArrayList<Task> reminders = new ArrayList<>();
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
+            String type = task.getClass().getName();
+            if (type.equals("duke.types.Deadline") || type.equals("duke.types.Event")) {
+                reminders.add(task);
+            }
+            System.out.println(task.getClass());
+        }
+
+        if (reminders.isEmpty()) {
+            return "\tyou have no reminders!";
+        } else {
+            StringBuilder sb = new StringBuilder();
+            int count = 1;
+            sb.append("\there are your reminders:\n");
+            for (Task task : reminders) {
+                sb.append(String.format("\t%d. %s\n", count, task));
+                count++;
+            }
+            return sb.toString();
+        }
     }
 }
