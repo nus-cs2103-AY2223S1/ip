@@ -5,7 +5,7 @@ package john.commands;
  */
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
-    public static final String FORMAT = "unmark <integer>";
+    public static final String FORMAT = "unmark <positive integer>";
 
     private String unmarkParams;
 
