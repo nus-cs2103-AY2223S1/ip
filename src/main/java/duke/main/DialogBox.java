@@ -30,7 +30,8 @@ public class DialogBox extends HBox {
     private ImageView displayPicture;
 
     private DialogBox(String text, Image img) {
-        Circle circle = new Circle(50, 50, 50);
+        int imgParams = 50;
+        Circle circle = new Circle(imgParams, imgParams, imgParams);
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
