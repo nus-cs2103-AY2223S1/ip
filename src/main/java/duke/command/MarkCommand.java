@@ -8,15 +8,15 @@ import duke.TaskList;
  * Represents a command to mark task as complete in the list.
  */
 public class MarkCommand implements ICommand {
-    private int index;
+    private Integer[] indexList;
 
     /**
      * Returns an instance of MarkCommand.
      *
-     * @param index Index of task.
+     * @param indexList Index of task.
      */
-    public MarkCommand(int index) {
-        this.index = index;
+    public MarkCommand(Integer[] indexList) {
+        this.indexList = indexList;
     }
 
     /**
@@ -27,11 +27,18 @@ public class MarkCommand implements ICommand {
      */
     @Override
     public String execute(Storage storage, TaskList taskList) {
+        StringBuilder stringBuilder = new StringBuilder(
+                String.format("The following task%s been marked:\n", this.indexList.length > 1 ? "s have" : " has")
+        );
         try {
-            return taskList.markDone(index);
+            for (int index : this.indexList) {
+                String taskInfo = taskList.markDone(index - 1);
+                stringBuilder.append(taskInfo);
+            }
         } catch (DukeException e) {
-            return e.getMessage();
+            stringBuilder.append(e.getMessage());
         }
+        return stringBuilder.toString();
     }
 
     /**
@@ -53,7 +60,7 @@ public class MarkCommand implements ICommand {
     public boolean equals(Object obj) {
         if (obj instanceof MarkCommand) {
             MarkCommand otherCmd = (MarkCommand) obj;
-            return this.index == otherCmd.index;
+            return true;
         } else {
             return false;
         }

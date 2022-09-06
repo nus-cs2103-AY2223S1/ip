@@ -1,5 +1,6 @@
 package duke;
 
+import java.util.HashSet;
 import java.util.Scanner;
 
 import duke.command.AddCommand;
@@ -57,7 +58,11 @@ public class Parser {
             case LIST:
                 return new ListCommand();
             case MARK:
-                return new MarkCommand(sc.nextInt() - 1);
+                HashSet<Integer> indexList = new HashSet<>();
+                while (sc.hasNextInt()) {
+                    indexList.add(sc.nextInt());
+                }
+                return new MarkCommand(indexList.toArray(new Integer[0]));
             case UNMARK:
                 return new UnmarkCommand(sc.nextInt() - 1);
             case DELETE:

@@ -37,7 +37,7 @@ public class ParserTest {
     @Test
     public void parseMethod_markInput_returnMarkCmd() {
         ICommand cmd = Parser.parse("mark 1");
-        assertEquals(cmd, new MarkCommand(0));
+        assertEquals(cmd, new MarkCommand(new Integer[] { 1 }));
     }
 
     @Test
