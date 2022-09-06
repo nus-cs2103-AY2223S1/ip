@@ -28,7 +28,7 @@ public abstract class Task {
      * @return A checkmark icon (✓) if the task is done, and " " otherwise
      */
     public String getStatusIcon() {
-        return (isDone ? "✓" : " ");
+        return (isDone ? "\u2713" : " ");
     }
 
     /**

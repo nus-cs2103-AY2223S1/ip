@@ -48,7 +48,7 @@ checkstyle {
 }
 
 application {
-    mainClassName = "blob.Blob"
+    mainClassName = "blob.Launcher"
 }
 
 shadowJar {
