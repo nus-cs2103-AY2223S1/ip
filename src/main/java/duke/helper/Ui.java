@@ -89,4 +89,11 @@ public class Ui {
     public static String noTaskFound() {
         return "Ohno I could not find any tasks fitting the keywords...";
     }
+
+    /**
+     * Method to return invalid command message
+     */
+    public static String invalidCommand() {
+        return "Invalid command, please try again.";
+    }
 }
