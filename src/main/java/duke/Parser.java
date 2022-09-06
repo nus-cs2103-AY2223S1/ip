@@ -1,6 +1,11 @@
 package duke;
 
 public class Parser {
+    private static final String ASSERTION_INPUT_TOO_SHORT = "Invalid Input: Input is too short";
+
+    private static void assertValidInput(String input) {
+        assert input.length() > 0: ASSERTION_INPUT_TOO_SHORT;
+    }
     /**
      * Returns a ToDo object based on parsed input
      *
@@ -8,6 +13,7 @@ public class Parser {
      * @return
      */
     public static ToDo generateToDoFromInput(String input) {
+        assertValidInput(input);
         String[] commands = input.split(" ");
         String description = "";
         for (int i = 1; i < commands.length; ++i) {
@@ -24,6 +30,7 @@ public class Parser {
      * @return
      */
     public static Deadline generateDeadlineFromInput(String input) {
+        assertValidInput(input);
         String[] commands = input.split(" ");
         String description = "";
         String timeQualifier = "";
@@ -58,6 +65,7 @@ public class Parser {
      * @return
      */
     public static Event generateEventFromInput(String input) {
+        assertValidInput(input);
         String[] commands = input.split(" ");
         String description = "";
         String timeQualifier = "";
