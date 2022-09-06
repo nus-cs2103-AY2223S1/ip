@@ -6,7 +6,9 @@ import java.util.List;
 import deku.task.Task;
 
 class BotList {
-    private final List<Task> userInstructions;
+    private List<Task> userInstructions;
+    private List<Task> storedList;
+    private boolean hasUndo = false;
     private final Storage storage;
 
     BotList(List<Task> userInstructions, Storage storage) {
@@ -115,6 +117,20 @@ class BotList {
         }
         return outputList("Here are the tasks containing the word: "
                 + word, containsWord);
+    }
+
+    String undo() {
+        if (hasUndo) {
+            userInstructions = new ArrayList<>(storedList);
+            hasUndo = false;
+            return "I have undo-ed your last command";
+        }
+        return "I cannot undo that!";
+    }
+
+    void overwriteUndo() {
+        storedList = new ArrayList<>(userInstructions);
+        hasUndo = true;
     }
 
     private String outputList(String message, List<Task> array) {

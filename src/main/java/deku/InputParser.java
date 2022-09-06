@@ -147,21 +147,27 @@ public class InputParser {
                 reply = "Current tasks are shown on the right panel!"; //botList.toString();
                 break;
             case MARK:
+                botList.overwriteUndo();
                 reply = botList.mark(Integer.parseInt(separate.get(0)));
                 break;
             case UNMARK:
+                botList.overwriteUndo();
                 reply = botList.unmark(Integer.parseInt(separate.get(0)));
                 break;
             case DELETE:
+                botList.overwriteUndo();
                 reply = botList.delete(Integer.parseInt(separate.get(0)));
                 break;
             case DEADLINE:
+                botList.overwriteUndo();
                 reply = botList.add(new Deadline(separate));
                 break;
             case EVENT:
+                botList.overwriteUndo();
                 reply = botList.add(new Event(separate));
                 break;
             case TODO:
+                botList.overwriteUndo();
                 reply = botList.add(new ToDo(separate));
                 break;
             case FIND_DATE:
@@ -169,6 +175,9 @@ public class InputParser {
                 break;
             case FIND_WORD:
                 reply = botList.find_word(separate.get(0));
+                break;
+            case UNDO:
+                reply = botList.undo();
                 break;
             default:
                 throw new DekuExceptions("I have no idea what that means. (T _ T)");

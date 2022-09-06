@@ -14,6 +14,7 @@ public enum KeyPhrases {
     TODO("todo"),
     FIND_DATE("find_date"),
     FIND_WORD("find_word"),
+    UNDO("undo"),
     OTHERS("");
 
     private String commandPhrase;
