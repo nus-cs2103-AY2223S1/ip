@@ -36,8 +36,8 @@ public class FindCommand extends Command {
      * Lists matching tasks with descriptions containing the specified keyword.
      */
     @Override
-    public void run() {
-        System.out.println("Here are the matching tasks in your list:");
-        System.out.print(this.taskList.search(this.keyword).toString());
+    public String get() {
+        return "Here are the matching tasks in your list:\n"
+                + this.taskList.search(this.keyword).toString();
     }
 }

@@ -2,6 +2,7 @@ package duke.logic;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.function.Supplier;
 import java.util.HashMap;
 
 import duke.command.ByeCommand;
@@ -55,7 +56,7 @@ public class Parser {
      * @param response the user input.
      * @return the command based on the user input.
      */
-    public Runnable parse(String response) {
+    public Supplier<String> parse(String response) {
         //strip() to allow for any (unintentional) whitespaces before or after
         response = response.strip();
         //for any caps commands
@@ -111,13 +112,9 @@ public class Parser {
                 return new FindCommand(taskList, response.substring(5).stripLeading());
             }
         } catch (NumberFormatException | IllegalTaskException e) {
-            return () -> {
-                System.out.println(" ☹ OOPS!!! The task number you have inputted does not exist or is invalid.");
-            };
+            return () -> "I'm sorry, but the task number you have inputted does not exist or is invalid.";
         } catch (IllegalKeywordException e) {
-            return () -> {
-                System.out.println(" ☹ OOPS!!! You have not specified a keyword.");
-            };
+            return () -> "I'm sorry, but you have not specified a keyword.";
         }
 
         try {
@@ -196,21 +193,13 @@ public class Parser {
                 return new EventCommand(taskList, description, Parser.parseTime(time));
             }
         } catch (IllegalDescriptionException e) {
-            return () -> {
-                System.out.println(" ☹ OOPS!!! The description cannot be empty.");
-            };
+            return () -> "I'm sorry, but the description cannot be empty.";
         } catch (IllegalTimeException e) {
-            return () -> {
-                System.out.println(" ☹ OOPS!!! The time specified is either invalid or empty.");
-            };
+            return () -> "I'm sorry, but the time specified is either invalid or empty.";
         } catch (IllegalTokenException e) {
-            return () -> {
-                System.out.println(" ☹ OOPS!!! You are mising the \"/by\" or \"/at\" token.");
-            };
+            return () -> "I'm sorry, but you are mising the \"/by\" or \"/at\" token.";
         }
-        return () -> {
-            System.out.println(" ☹ OOPS!!! I'm sorry, but I don't know what that means. :-(");
-        };
+        return () -> "I'm sorry, but I don't know what that means.";
     }
 
     /**

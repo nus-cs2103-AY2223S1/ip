@@ -1,0 +1,7 @@
+.label
+{
+    -fx-background-color: #3e6189;
+    -fx-text-fill: white;
+    -fx-background-radius: 0.5em;
+    -fx-padding: 10 10 10 10
+}

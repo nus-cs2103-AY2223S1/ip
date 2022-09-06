@@ -31,13 +31,10 @@ public class DeleteCommand extends Command {
         }
     }
 
-    /**
-     * Removes the specified task.
-     */
     @Override
-    public void run() {
-        System.out.println("Noted. I've removed this task:");
-        System.out.println(taskList.remove(query).toString());
-        System.out.println(String.format("Now you have %d tasks in the list.", taskList.size()));
+    public String get() {
+        return "Noted. I've removed this task:\n"
+                + taskList.remove(query).toString() + "\n"
+                + String.format("Now you have %d tasks in the list.", taskList.size());
     }
 }
