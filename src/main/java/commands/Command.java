@@ -10,6 +10,7 @@ import tasks.Task;
  * Parent class for executing commands.
  */
 public abstract class Command {
+
     /**
      * Executes the command and gives the appropriate
      * feedback to the user.

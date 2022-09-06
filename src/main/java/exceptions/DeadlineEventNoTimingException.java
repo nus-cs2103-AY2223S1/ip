@@ -5,6 +5,7 @@ package exceptions;
  * or event command is issued.
  */
 public class DeadlineEventNoTimingException extends TumuException {
+
     /**
      * Constructor for the DENoTimingException class.
      * @param command Command for either deadline (/by) or

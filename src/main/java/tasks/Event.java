@@ -23,7 +23,7 @@ public class Event extends Task {
     public Event(String taskDescription, String timing) throws UnrecognisedDateTimeException {
         super(taskDescription);
         try {
-            //Alter the timing so that it can be properly added in.
+            // Alter the timing so that it can be properly added in.
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-ddHHmm");
             this.timing = LocalDateTime.parse(timing, formatter);
         } catch (DateTimeParseException e) {

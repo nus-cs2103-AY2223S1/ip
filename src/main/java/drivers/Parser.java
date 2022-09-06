@@ -1,15 +1,15 @@
 package drivers;
 
 import commands.Command;
-import commands.DeadlineCmd;
-import commands.DeleteCmd;
-import commands.EndChatBotCmd;
-import commands.EventCmd;
-import commands.FindCmd;
-import commands.ListUserTextCmd;
-import commands.MarkTaskCmd;
-import commands.TodoCmd;
-import commands.UnmarkTaskCmd;
+import commands.DeadlineCommand;
+import commands.DeleteCommand;
+import commands.EndChatBotCommand;
+import commands.EventCommand;
+import commands.FindCommand;
+import commands.ListUserTextCommand;
+import commands.MarkTaskCommand;
+import commands.TodoCommand;
+import commands.UnmarkTaskCommand;
 import exceptions.TumuException;
 import exceptions.UnrecognisedCommandException;
 
@@ -44,23 +44,23 @@ public class Parser {
 
         switch (command) {
         case END_CHAT_BOT_CMD:
-            return new EndChatBotCmd();
+            return new EndChatBotCommand();
         case LIST_USER_TEXT_CMD:
-            return new ListUserTextCmd();
+            return new ListUserTextCommand();
         case MARK_CMD:
-            return new MarkTaskCmd(body);
+            return new MarkTaskCommand(body);
         case UNMARK_CMD:
-            return new UnmarkTaskCmd(body);
+            return new UnmarkTaskCommand(body);
         case TODO_CMD:
-            return new TodoCmd(body);
+            return new TodoCommand(body);
         case DEADLINE_CMD:
-            return new DeadlineCmd(body);
+            return new DeadlineCommand(body);
         case EVENT_CMD:
-            return new EventCmd(body);
+            return new EventCommand(body);
         case DELETE_CMD:
-            return new DeleteCmd(body);
+            return new DeleteCommand(body);
         case FIND_CMD:
-            return new FindCmd(body);
+            return new FindCommand(body);
         default:
             throw new UnrecognisedCommandException(command);
         }
