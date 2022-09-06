@@ -33,7 +33,8 @@ public class Deadline extends Task {
      * @return Returns the deadline by which the event must be completed in string format.
      */
     public String getBy() {
-        return this.by.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return this.by.format(pattern);
     }
 
     /**
@@ -43,7 +44,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: "
-                + this.by.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm")) + ")";
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+        return "[D]" + super.toString() + " (by: " + this.by.format(pattern) + ")";
     }
 }

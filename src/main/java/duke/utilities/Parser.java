@@ -51,6 +51,7 @@ public class Parser {
             String target = splitString.length == 2
                     ? splitString[1]
                     : "";
+
             return "find|" + target;
         case "todo":
             String[] descTodo = Arrays.copyOfRange(splitString, 1, splitString.length);

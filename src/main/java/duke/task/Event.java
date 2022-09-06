@@ -38,7 +38,8 @@ public class Event extends Task {
      * @return Returns the date of the event in String format.
      */
     public String getStart() {
-        return this.start.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return this.start.format(pattern);
     }
 
     /**
@@ -47,7 +48,8 @@ public class Event extends Task {
      * @return Returns the date of the event in String format.
      */
     public String getEnd() {
-        return this.end.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return this.end.format(pattern);
     }
 
     /**
@@ -57,8 +59,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
         return "[E]" + super.toString() + " (at: "
-                + this.start.format(format) + " to " + this.end.format(format) + ")";
+                + this.start.format(pattern) + " to " + this.end.format(pattern) + ")";
     }
 }

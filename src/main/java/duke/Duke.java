@@ -127,7 +127,7 @@ public class Duke {
     }
 
     /**
-     * Method for the GUI Duke Program.
+     * Gets responses from the Duke program to display on the GUI.
      *
      * @param input The input text from which to get a response.
      * @return Returns the properly formatted response to display on the GUI.
@@ -172,19 +172,15 @@ public class Duke {
                 response = this.ui.getStringAddTask(todo, this.taskList);
                 break;
             case "deadline":
-                Task deadline = new Deadline(
-                        infoArray[1],
-                        LocalDateTime.parse(infoArray[2], dateTimeFormatter)
-                );
+                LocalDateTime by = LocalDateTime.parse(infoArray[2], dateTimeFormatter);
+                Task deadline = new Deadline(infoArray[1], by);
                 taskList.addTask(deadline);
                 response = this.ui.getStringAddTask(deadline, this.taskList);
                 break;
             case "event":
-                Task event = new Event(
-                        infoArray[1],
-                        LocalDateTime.parse(infoArray[2], dateTimeFormatter),
-                        LocalDateTime.parse(infoArray[3], dateTimeFormatter)
-                );
+                LocalDateTime from = LocalDateTime.parse(infoArray[2], dateTimeFormatter);
+                LocalDateTime to = LocalDateTime.parse(infoArray[3], dateTimeFormatter);
+                Task event = new Event(infoArray[1], from, to);
                 taskList.addTask(event);
                 response = this.ui.getStringAddTask(event, this.taskList);
                 break;
