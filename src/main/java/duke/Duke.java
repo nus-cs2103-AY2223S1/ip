@@ -6,6 +6,8 @@ import duke.manager.Parser;
 import duke.manager.Storage;
 import duke.manager.TaskList;
 
+import javafx.application.Application;
+
 /**
  * The Duke program to manage the user's tasks.
  */
@@ -49,5 +51,9 @@ public class Duke {
         } catch (DukeException e) {
             return e.getMessage();
         }
+    }
+
+    public static void main(String[] args) {
+        Application.launch(Main.class, args);
     }
 }
