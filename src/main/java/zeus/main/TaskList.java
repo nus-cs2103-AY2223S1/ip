@@ -39,6 +39,7 @@ public class TaskList {
      * @return Task at the specific index in the task list
      */
     public Task getTask(int idx) {
+        assert (idx >= 0) && (idx < taskList.size());
         return this.taskList.get(idx);
     }
 
@@ -66,6 +67,7 @@ public class TaskList {
      * @param idx Index of Task to be removed
      */
     public void removeTask(int idx) {
+        assert (idx >= 0) && (idx < taskList.size());
         taskList.remove(idx);
     }
 
@@ -74,19 +76,22 @@ public class TaskList {
      * @param idx Index of target Task
      */
     public void setTaskDone(int idx) {
+        assert (idx >= 0) && (idx < taskList.size());
         this.taskList.get(idx).markAsDone();
     }
 
     /**
      * Sets the task at the given index as not done.
+     *
      * @param idx index of target Task
      */
     public void setTaskNotDone(int idx) {
+        assert (idx >= 0) && (idx < taskList.size());
         this.taskList.get(idx).markAsNotDone();
     }
 
     /**
-     * Returns list of Tasks that match user's search input
+     * Returns list of Tasks that match user's search input.
      *
      * @param s User search input
      * @return ArrayList of matching tasks
