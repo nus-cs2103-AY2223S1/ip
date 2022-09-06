@@ -45,6 +45,8 @@ public abstract class Instruction {
      */
     public static Instruction of(String commandName, String mainArgument, Map<String, String> flagArgumentsMap)
             throws InvalidCommandException {
+        // Instructions with no flag arguments should still have an empty Map object rather than null
+        assert flagArgumentsMap != null;
         Command command = Command.fromName(commandName);
         if (command == null) {
             throw new InvalidCommandException(commandName);
