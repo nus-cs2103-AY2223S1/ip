@@ -39,6 +39,8 @@ public class Roofus {
 
     /**
      * Formats and returns Roofus's greetings.
+     * 
+     * @return String Returns Roofus's greetings in a string.
      */
     public String greet() {
         return ui.greet();

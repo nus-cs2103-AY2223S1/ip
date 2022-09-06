@@ -10,13 +10,6 @@ import roofus.task.Task;
 public class Ui {
 
     /**
-     * Constructs an instance of Storage with a Scanner instance.
-     */
-    public Ui() {
-//        sc = new Scanner(System.in);
-    }
-
-    /**
      * Formats and prints Roofus's greetings.
      */
     public String greet() {

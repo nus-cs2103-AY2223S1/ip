@@ -39,12 +39,4 @@ public class UnmarkCommand extends Command {
         }
         return ui.unmark(taskList.getTask(index - 1));
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isRunning() {
-        return true;
-    }
 }
