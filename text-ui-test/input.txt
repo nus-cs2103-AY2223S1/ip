@@ -1,4 +1,4 @@
-list
+dealmmlist
 todo read book
 deadline return book /by 2022-08-23 18:00
 event library event /from 2022-08-23 18:00 /to 2022-08-24 18:00
@@ -15,4 +15,6 @@ event
 mark
 unmark
 delete
+remind deadline
+remind event
 bye
