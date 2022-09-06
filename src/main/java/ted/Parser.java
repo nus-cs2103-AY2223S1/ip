@@ -1,16 +1,6 @@
 package ted;
 
-import ted.command.ByeCommand;
-import ted.command.Command;
-import ted.command.DeadlineCommand;
-import ted.command.DeleteCommand;
-import ted.command.EventCommand;
-import ted.command.FindCommand;
-import ted.command.ListCommand;
-import ted.command.MarkCommand;
-import ted.command.TodoCommand;
-import ted.command.UnknownCommand;
-import ted.command.UnmarkCommand;
+import ted.command.*;
 import ted.exception.TedException;
 
 /**
@@ -23,7 +13,7 @@ public class Parser {
      * used by users
      */
     enum CommandEnum {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND;
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND, HELP;
 
         public static CommandEnum fromString(String command) {
             for (CommandEnum value : CommandEnum.values()) {
@@ -84,6 +74,9 @@ public class Parser {
                 break;
             case FIND:
                 command = new FindCommand(args);
+                break;
+            case HELP:
+                command = new HelpCommand(args);
                 break;
             default:
                 command = new UnknownCommand(args);
