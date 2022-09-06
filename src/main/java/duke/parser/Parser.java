@@ -25,7 +25,6 @@ public class Parser {
         } else {
             Action action = Action.parseCommand(fullCommand);
 
-            String[] components = fullCommand.split(" ");
             String contents = fullCommand.substring(action.label.length()).trim();
 
             try {
@@ -38,6 +37,15 @@ public class Parser {
                     return new DeleteTaskCommand(Integer.parseInt(contents) - 1);
                 case Find:
                     return new FindCommand(contents);
+                case Tag:
+                    String[] components = contents.split(" ");
+                    if (components.length != 2 || !components[1].trim().startsWith("#")) {
+                        throw new InvalidCommandException("Invalid tag command. Tag tasks with the following syntax: 'tag 1 #fun'.");
+                    } else {
+                        int index = Integer.parseInt(components[0]) - 1;
+                        String tag = components[1].replaceAll("#", "");
+                        return new TagTaskCommand(index, tag);
+                    }
                 case Todo:
                     if (contents.isBlank()) {
                         throw new EmptyTitleException();

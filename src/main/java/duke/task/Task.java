@@ -2,6 +2,8 @@ package duke.task;
 
 import java.io.File;
 import java.time.format.FormatStyle;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * An object representing a task in a checklist. This is the application's primary class.
@@ -11,6 +13,8 @@ public class Task {
     private static final String DATA_PATH = new File("").getAbsolutePath() + "/data/duke.txt";
     private String title;
     private boolean completed;
+
+    private List<String> tags = new ArrayList<>();
 
     Task(String title) {
         assert !title.isBlank() : "Task title cannot be empty";
@@ -40,6 +44,14 @@ public class Task {
 
     public void markAsIncomplete() {
         this.completed = false;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public final void addTag(String tag) {
+        this.tags.add(tag);
     }
 
     private String getStatusIcon() {

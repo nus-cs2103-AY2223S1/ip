@@ -13,7 +13,8 @@ public enum Action {
     Mark("mark"),
     Unmark("unmark"),
     Delete("delete"),
-    Find("find");
+    Find("find"),
+    Tag("tag");
 
     public final String label;
 
