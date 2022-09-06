@@ -13,7 +13,7 @@ public class MarkCommand implements ICommand {
     /**
      * Returns an instance of MarkCommand.
      *
-     * @param indexList Index of task.
+     * @param indexList List of indexes of task to be marked.
      */
     public MarkCommand(Integer[] indexList) {
         this.indexList = indexList;
@@ -38,7 +38,7 @@ public class MarkCommand implements ICommand {
         }
         return numOfMarkedTask > 0
                 ? String.format("%d task%s been marked completed.", numOfMarkedTask, numOfMarkedTask > 1 ? "s have" : " has")
-                : "Please select at task to be marked within the list.";
+                : "Please select a task to be marked within the list.";
     }
 
     /**

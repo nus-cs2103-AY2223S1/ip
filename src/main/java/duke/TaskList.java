@@ -102,7 +102,7 @@ public class TaskList {
      */
     public String markDone(int index) throws DukeException {
         if (index < 0 || index >= this.list.size()) {
-            throw new DukeException(String.format("Index %d is not within the list.", index));
+            throw new DukeException(String.format("Could not mark index %d as it is not within the list.", index));
         }
         this.list.get(index).markDone();
         return this.list.get(index).toString();
@@ -117,7 +117,7 @@ public class TaskList {
      */
     public String unmarkDone(int index) throws DukeException {
         if (index < 0 || index >= this.list.size()) {
-            throw new DukeException("Something went wrong!\nPlease select at task to be unmarked within the list.");
+            throw new DukeException(String.format("Could not unmark index %d as it is not within the list.", index));
         }
         this.list.get(index).markNotDone();
         return this.list.get(index).toString();

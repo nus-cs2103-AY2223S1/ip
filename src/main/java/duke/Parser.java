@@ -58,13 +58,17 @@ public class Parser {
             case LIST:
                 return new ListCommand();
             case MARK:
-                HashSet<Integer> indexList = new HashSet<>();
+                HashSet<Integer> indexesToMark = new HashSet<>();
                 while (sc.hasNextInt()) {
-                    indexList.add(sc.nextInt());
+                    indexesToMark.add(sc.nextInt());
                 }
-                return new MarkCommand(indexList.toArray(new Integer[0]));
+                return new MarkCommand(indexesToMark.toArray(new Integer[0]));
             case UNMARK:
-                return new UnmarkCommand(sc.nextInt() - 1);
+                HashSet<Integer> indexesToUnmark = new HashSet<>();
+                while (sc.hasNextInt()) {
+                    indexesToUnmark.add(sc.nextInt());
+                }
+                return new UnmarkCommand(indexesToUnmark.toArray(new Integer[0]));
             case DELETE:
                 return new DeleteCommand(sc.nextInt() - 1);
             case SAVE:

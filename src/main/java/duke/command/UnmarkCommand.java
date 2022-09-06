@@ -8,15 +8,15 @@ import duke.TaskList;
  * Represents a command to mark task as incomplete in the list.
  */
 public class UnmarkCommand implements ICommand {
-    private int index;
+    private Integer[] indexList;
 
     /**
      * Returns an instance of UnmarkCommand.
      *
-     * @param index Index of task.
+     * @param indexList List of indexes of task to be unmarked.
      */
-    public UnmarkCommand(int index) {
-        this.index = index;
+    public UnmarkCommand(Integer[] indexList) {
+        this.indexList = indexList;
     }
 
     /**
@@ -27,11 +27,18 @@ public class UnmarkCommand implements ICommand {
      */
     @Override
     public String execute(Storage storage, TaskList taskList) {
-        try {
-            return taskList.unmarkDone(index);
-        } catch (DukeException e) {
-            return e.getMessage();
+        int numOfUnmarkedTask = 0;
+        for (int index : this.indexList) {
+            try {
+                taskList.unmarkDone(index - 1);
+                numOfUnmarkedTask++;
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
+            }
         }
+        return numOfUnmarkedTask > 0
+                ? String.format("%d task%s been marked incomplete.", numOfUnmarkedTask, numOfUnmarkedTask > 1 ? "s have" : " has")
+                : "Please select a task to be marked within the list.";
     }
 
     /**
@@ -54,7 +61,7 @@ public class UnmarkCommand implements ICommand {
     public boolean equals(Object obj) {
         if (obj instanceof UnmarkCommand) {
             UnmarkCommand otherCmd = (UnmarkCommand) obj;
-            return this.index == otherCmd.index;
+            return true;
         } else {
             return false;
         }

@@ -43,7 +43,7 @@ public class ParserTest {
     @Test
     public void parseMethod_unMarkInput_returnUnmarkCmd() {
         ICommand cmd = Parser.parse("unmark 1");
-        assertEquals(cmd, new UnmarkCommand(0));
+        assertEquals(cmd, new UnmarkCommand(new Integer[] { 1 }));
     }
 
     @Test
