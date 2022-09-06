@@ -12,6 +12,10 @@ import scottie.ui.Ui;
  * find a task which matches the searched text.
  */
 public class FindInstruction extends Instruction {
+    private static final String MISSING_SEARCH_TERM_MESSAGE = "Sorry, you need to specify some text to search for.";
+    private static final String NO_MATCHES_MESSAGE = "Oops, I couldn't find any tasks matching that search.";
+    private static final String TASKS_FOUND_MESSAGE = "Ok, I've found these tasks in your list:";
+
     /**
      * Constructs a FindInstruction with the given arguments.
      *
@@ -37,14 +41,14 @@ public class FindInstruction extends Instruction {
     @Override
     public void execute(TaskList taskList, Ui ui) {
         if (!this.hasMainArgument()) {
-            ui.showMessages("Sorry, you need to specify some text to search for.");
+            ui.showMessages(MISSING_SEARCH_TERM_MESSAGE);
             return;
         }
         List<Task> matchingTasks = taskList.filterTasks(this.getMainArgument());
         if (matchingTasks.size() == 0) {
-            ui.showMessages("Oops, I couldn't find any tasks matching that search.");
+            ui.showMessages(NO_MATCHES_MESSAGE);
         } else {
-            ui.showMessages("Ok, I've found these tasks in your list:");
+            ui.showMessages(TASKS_FOUND_MESSAGE);
             ui.showOrderedList(matchingTasks);
         }
     }

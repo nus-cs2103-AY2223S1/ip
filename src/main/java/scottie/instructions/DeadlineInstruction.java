@@ -13,6 +13,10 @@ import scottie.ui.Ui;
  * add a deadline to the task list.
  */
 class DeadlineInstruction extends Instruction {
+    private static final String MISSING_DESCRIPTION_MESSAGE = "Sorry, I will need a description for the deadline.";
+    private static final String MISSING_DATE_MESSAGE = "Sorry, I will need a date for the deadline.";
+    private static final String DEADLINE_ADDED_MESSAGE = "Got it, I've added this deadline:";
+
     /**
      * Constructs a DeadlineInstruction with the given arguments.
      *
@@ -35,18 +39,18 @@ class DeadlineInstruction extends Instruction {
     @Override
     public void execute(TaskList taskList, Ui ui) {
         if (!this.hasMainArgument()) {
-            ui.showMessages("Sorry, I will need a description for the deadline.");
+            ui.showMessages(MISSING_DESCRIPTION_MESSAGE);
             return;
         }
         String endDateTimeString = this.getFlagArgument("by");
         if (endDateTimeString == null) {
-            ui.showMessages("Sorry, I will need a date for the deadline.");
+            ui.showMessages(MISSING_DATE_MESSAGE);
             return;
         }
 
         TemporalAccessor endDateTime = DateTimeUtil.parseCompactDateTime(endDateTimeString);
         Deadline deadline = new Deadline(this.getMainArgument(), endDateTime);
         taskList.addTask(deadline);
-        ui.showMessages("Got it, I've added this deadline:", deadline.toString());
+        ui.showMessages(DEADLINE_ADDED_MESSAGE, deadline.toString());
     }
 }

@@ -10,6 +10,9 @@ import scottie.ui.Ui;
  * display the list of tasks.
  */
 class ListInstruction extends Instruction {
+    private static final String NO_TASKS_MESSAGE = "You have no tasks at the moment!";
+    private static final String LIST_TASKS_MESSAGE = "Ok, here are the tasks you have at the moment!";
+
     /**
      * Constructs a ListInstruction with the given arguments.
      *
@@ -30,9 +33,9 @@ class ListInstruction extends Instruction {
     @Override
     public void execute(TaskList taskList, Ui ui) {
         if (taskList.isEmpty()) {
-            ui.showMessages("You have no tasks at the moment!");
+            ui.showMessages(NO_TASKS_MESSAGE);
         } else {
-            ui.showMessages("Ok, here are the tasks you have at the moment!");
+            ui.showMessages(LIST_TASKS_MESSAGE);
             ui.showOrderedList(taskList);
         }
     }

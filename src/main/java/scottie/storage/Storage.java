@@ -24,10 +24,9 @@ public class Storage {
         try {
             if (Files.exists(this.filePath)) {
                 return Files.readAllLines(this.filePath);
-            } else {
-                Files.createDirectories(this.filePath.getParent());
-                Files.createFile(this.filePath);
             }
+            Files.createDirectories(this.filePath.getParent());
+            Files.createFile(this.filePath);
         } catch (IOException e) {
             e.printStackTrace();
         }

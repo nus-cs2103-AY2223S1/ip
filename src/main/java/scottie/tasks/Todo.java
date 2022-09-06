@@ -4,6 +4,8 @@ package scottie.tasks;
  * Encapsulates a regular task with no extra information.
  */
 public class Todo extends Task {
+    private static final String INVALID_DATA_FORMAT_MESSAGE = "The data for this to-do is not formatted correctly.";
+
     /**
      * Constructs a Todo with the given description.
      * The Todo defaults to being not done.
@@ -34,7 +36,7 @@ public class Todo extends Task {
     static Todo fromEncodedString(String encodedString) throws InvalidTaskDataException {
         String[] splitTaskData = encodedString.split("\\|");
         if (splitTaskData.length < 3) {
-            throw new InvalidTaskDataException("The data for this to-do is not formatted correctly.");
+            throw new InvalidTaskDataException(INVALID_DATA_FORMAT_MESSAGE);
         }
         String description = splitTaskData[2];
         boolean isDone = splitTaskData[1].equals("1");

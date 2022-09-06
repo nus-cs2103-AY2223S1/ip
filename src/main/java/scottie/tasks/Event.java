@@ -8,6 +8,8 @@ import scottie.common.DateTimeUtil;
  * Encapsulates a task which is an event that takes place at a date and time.
  */
 public class Event extends Task {
+    private static final String INVALID_DATA_FORMAT_MESSAGE = "The data for this event is not formatted correctly.";
+
     private final TemporalAccessor dateTime;
 
     /**
@@ -43,7 +45,7 @@ public class Event extends Task {
     static Event fromEncodedString(String encodedString) throws InvalidTaskDataException {
         String[] splitTaskData = encodedString.split("\\|");
         if (splitTaskData.length < 4) {
-            throw new InvalidTaskDataException("The data for this event is not formatted correctly.");
+            throw new InvalidTaskDataException(INVALID_DATA_FORMAT_MESSAGE);
         }
         String description = splitTaskData[2];
         boolean isDone = splitTaskData[1].equals("1");
