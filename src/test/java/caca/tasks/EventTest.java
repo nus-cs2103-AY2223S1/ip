@@ -3,6 +3,7 @@ package caca.tasks;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import caca.TaskList;
 import org.junit.jupiter.api.Test;
 
 import caca.exceptions.InvalidDateException;
@@ -14,6 +15,29 @@ import caca.exceptions.InvalidDateException;
  * @version CS2103T AY22/23 Semester 1, iP
  */
 public class EventTest {
+
+    /**
+     * Tests the behaviour of adding an event with duplicates.
+     *
+     * @throws InvalidDateException If date entered by user is not in the specified format.
+     */
+    @Test
+    public void addEventTest_withDuplicate_warning() throws InvalidDateException {
+        TaskList eventList = new TaskList(null);
+
+        Event event = new Event("book fair", "23/09/2022 1400");
+        TaskList.addTask(event);
+        assertEquals(1, eventList.getTasks().size());
+
+        Event duplicateEvent = new Event("book fair", "23/09/2022 1400");
+        String addDuplicateEvent = TaskList.addTask(duplicateEvent);
+        assertEquals(1,eventList.getTasks().size());
+
+        assertEquals("OOPS!!!\n"
+                        + "Your task list already contains [E][ ] book fair (at: Sep 23 2022 14:00)!\n"
+                        + "This is not added again.",
+                addDuplicateEvent);
+    }
 
     /**
      * Tests the behaviour of adding an event with a valid date and time.

@@ -2,6 +2,7 @@ package caca.tasks;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import caca.TaskList;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -13,13 +14,34 @@ import org.junit.jupiter.api.Test;
 public class TodoTest {
 
     /**
-     * Tests the behaviour of adding a todo.
+     * Tests the behaviour of adding a todo without duplicates.
      */
     @Test
-    public void addTodoTest() {
+    public void addTodoTest_withoutDuplicate_success() {
         Todo todo = new Todo("read book");
         assertEquals("[T][ ] read book",
                 todo.toString());
+    }
+
+    /**
+     * Tests the behaviour of adding a todo with duplicates.
+     */
+    @Test
+    public void addTodoTest_withDuplicate_warning() {
+        TaskList todoList = new TaskList(null);
+
+        Todo todo = new Todo("revision");
+        TaskList.addTask(todo);
+        assertEquals(1, todoList.getTasks().size());
+
+        Todo duplicateTodo = new Todo("revision");
+        String addDuplicateTodo = TaskList.addTask(duplicateTodo);
+        assertEquals(1, todoList.getTasks().size());
+
+        assertEquals("OOPS!!!\n"
+                + "Your task list already contains [T][ ] revision!\n"
+                + "This is not added again.",
+                addDuplicateTodo);
     }
 
     /**
