@@ -16,17 +16,6 @@ public class Ui {
     private Scanner myScanner = new Scanner(System.in);
 
     /**
-     * Prints welcome message to user
-     */
-
-    public String showWelcome() {
-        String logo =  "Hello from\n" +
-                "How may I assist you?\n";
-        return logo;
-
-    }
-
-    /**
      * Prints LoadingError if file cannot load
      */
     public String showLoadingError() {
