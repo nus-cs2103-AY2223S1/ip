@@ -1,5 +1,6 @@
 package duke;
 
+import duke.exceptions.EndProgramException;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -24,9 +25,26 @@ public class Ui extends AnchorPane {
     private Scene scene;
     private Duke duke;
 
+    private InputParser parser = new InputParser();
+    private Storage storage;
+    private TaskList taskList;
+
     private Image userImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/user.png")));
     private Image dukeImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/duke.png")));
 
+    public Ui() {
+        storage = new Storage("./tasks.txt");
+        try {
+            taskList = storage.load();
+        } catch (Exception e) {
+            taskList = new TaskList();
+        }
+    }
+
+    public Ui(Storage s, TaskList t) {
+        storage = s;
+        taskList = t;
+    }
 
     @FXML
     public void initialize() {
@@ -52,6 +70,14 @@ public class Ui extends AnchorPane {
      * Replace this stub with your completed method.
      */
     private String getResponse(String input) {
-        return "Duke heard: " + input;
+        String response = "";
+
+        try {
+            response = parser.parse(input, taskList, storage);;
+        } catch (Exception e) {
+            response = e.toString();
+        }
+
+        return response;
     }
 }

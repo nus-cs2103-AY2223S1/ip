@@ -26,27 +26,13 @@ public class Duke extends Application {
      * @param filepath where tasks are stored in persistent memory.
      */
     public Duke(String filepath) {
-        ui = new Ui();
         storage = new Storage(filepath);
         try {
             tasks = storage.load();
         } catch (Exception e) {
             tasks = new TaskList();
         }
-    }
-
-    /**
-     * Begins operation of the Duke chatbot.
-     */
-    public void run() {
-    }
-
-    /**
-     * Begins operation of the Duke chatbot.
-     * @param args Not used.
-     */
-    public static void main(String[] args) {
-        new Duke("./tasks.txt").run();
+        ui = new Ui(storage, tasks);
     }
 
     @Override

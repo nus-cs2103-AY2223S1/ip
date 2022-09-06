@@ -38,62 +38,74 @@ class TaskList {
         return arrayList;
     }
 
-    void find(String query) {
-        System.out.println("Here are the matching tasks in your list:");
+    String find(String query) {
+        String[] response = new String[]{"Here are the matching tasks in your list:\n"};
         tasks.stream().filter(x -> x.getName().contains(query))
-                .forEach(System.out::println);
+                .forEach(x -> response[0] += x + "\n");
+        return response[0];
     }
 
     List<Task> getTasks() {
         return tasks;
     }
 
-    void list() {
-        System.out.println("Here are the tasks in your list: ");
-        tasks.forEach(System.out::println);
+    String list() {
+        String[] response = new String[]{"Here are the tasks in your list: \n"};
+        tasks.forEach(x -> response[0] += x + "\n");
+        return response[0];
     }
 
-    void mark(int id, boolean done) {
+    String mark(int id, boolean done) {
+        String response = "";
         Task task = tasks.get(id - 1);
         if (done) {
             task.setDone();
-            System.out.println("Nice! I've marked this task as done: ");
+            response += "Nice! I've marked this task as done: \n";
         } else {
             task.setNotDone();
-            System.out.println("OK, I've marked this task as not done yet: ");
+            response += "OK, I've marked this task as not done yet: \n";
         }
-        System.out.println(task);
+        response += task;
+        return response;
     }
 
-    void event(String name, String eventDate) {
+    String event(String name, String eventDate) {
+        String response = "";
         Event event = new Event(tasks.size() + 1, name, eventDate);
         tasks.add(event);
-        System.out.println("Got it. I've added this task: ");
-        System.out.println(event);
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+        response += "Got it. I've added this task: \n";
+        response += event + "\n";
+        response += "Now you have " + tasks.size() + " tasks in the list.";
+        return response;
     }
 
-    void deadline(String name, String deadline) {
+    String deadline(String name, String deadline) {
+        String response = "";
         Deadline deadlineEvent = new Deadline(tasks.size() + 1, name, deadline);
         tasks.add(deadlineEvent);
-        System.out.println("Got it. I've added this task: ");
-        System.out.println(deadlineEvent);
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+        response += "Got it. I've added this task: \n";
+        response += deadlineEvent + "\n";
+        response += "Now you have " + tasks.size() + " tasks in the list.";
+        return response;
     }
 
-    void todo(String task) {
+    String todo(String task) {
+        String response = "";
         Todo todo = new Todo(tasks.size() + 1, task);
         tasks.add(todo);
-        System.out.println("Got it. I've added this task: ");
-        System.out.println(todo);
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+        response += "Got it. I've added this task: \n";
+        response += todo + "\n";
+        response += "Now you have " + tasks.size() + " tasks in the list.";
+        return response;
     }
 
-    void delete(int id) {
+    String delete(int id) {
+        String response = "";
         Task toRemove = tasks.remove(id - 1);
-        System.out.println("Noted. I've removed this task: ");
-        System.out.println(toRemove);
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+        response += "Noted. I've removed this task: \n";
+        response += toRemove + "\n";
+        response += "Now you have " + tasks.size() + " tasks in the list.";
+        return response;
     }
 
 }
