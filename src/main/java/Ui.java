@@ -3,6 +3,11 @@ import java.io.InputStreamReader;
 
 public class Ui {
     private static String SPACING = "-----------------------------------------";
+    BufferedReader br;
+
+    public Ui() {
+        this.br = new BufferedReader(new InputStreamReader(System.in));
+    }
 
     public void greet() {
         System.out.println(SPACING);
@@ -11,21 +16,19 @@ public class Ui {
         System.out.println(SPACING + "\n");
     }
 
+    public void printFrontSpacing() {
+        System.out.println("\n  " + SPACING);
+    }
+
+    public void printBackSpacing() {
+        System.out.println("  " + SPACING + "\n");
+    }
+
     public void sayBye() {
-        System.out.println("\n" + SPACING);
-        System.out.println("Goobye, see you again!\n");
-        System.out.println(SPACING + "\n");
-        return;
+        System.out.println("    Goobye, see you again!\n");
     } 
 
-    public void getInput() throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        Parser parser = new Parser();
-        boolean terminate = false;
-        while (!terminate) {
-            String input = br.readLine();
-            terminate = parser.parse(input);
-        }
-        this.sayBye();
+    public String getInput() throws Exception {
+        return br.readLine();
     }
 }
