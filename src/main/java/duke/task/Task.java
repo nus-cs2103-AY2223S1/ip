@@ -1,9 +1,17 @@
 package duke.task;
 
+/**
+ * Represents a <code>Task</code>.
+ */
 public abstract class Task {
     private String taskDescription;
     private boolean isDone;
 
+    /**
+     * Creates a <code>Task</code> object.
+     *
+     * @param description task description
+     */
     public Task(String description) {
         this.taskDescription = description;
         this.isDone = false;

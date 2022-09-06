@@ -92,8 +92,8 @@ public class TaskList {
             break;
         case "delete":
             tasks.remove(index);
-            editMessage = "Noted. I've removed this task:\n "+ t.toString()
-                    + "\nNow you have " + tasks.size() + " tasks in the list";
+            editMessage = String.format("Noted. I've removed this task:\n %s\nNow you have %d tasks in the list",
+                    t, tasks.size());
             break;
         }
         System.out.println(editMessage);

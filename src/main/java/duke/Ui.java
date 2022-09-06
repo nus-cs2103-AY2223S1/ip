@@ -14,8 +14,8 @@ public abstract class Ui {
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
-    private static final String GREET_WELCOME = "Hello there! I am\n" + LOGO + "your personal task tracking assistant!\nWhat can I do for you today?\n";
-    private static final String GREET_EXIT = "Bye. Hope to see you again soon!\n";
+    private static final String GREET_WELCOME = "Hello ! I am Duke, your task tracking assistant!";
+    private static final String GREET_EXIT = "Bye. Hope to see you again soon!";
 
     /**
      * Prints a welcome message.
@@ -34,7 +34,7 @@ public abstract class Ui {
         if (taskList.isEmpty()) {
             header = "You have no tasks in your list.";
         } else {
-            header = "My List Of Tasks :D";
+            header = "My List Of Tasks :>";
         }
         return header + "\n" + taskList;
     }
@@ -58,9 +58,8 @@ public abstract class Ui {
      * @return successful task deletion message
      */
     public static String printTaskDeletionMessage(Task deletedTask, int noOfTasks) {
-        String deletedTaskMessage = "Noted. I've removed this task:\n "+ deletedTask
-                + "\nNow you have " + noOfTasks + " tasks in the list";
-        return deletedTaskMessage;
+        return String.format("Noted. I've removed this task:\n %s\nNow you have %d tasks in the list",
+                deletedTask, noOfTasks);
     }
 
     /**
@@ -70,7 +69,7 @@ public abstract class Ui {
      */
     public static String printTaskSearch(String match) {
         String output;
-        if (match == "") {
+        if (match.isBlank()) {
             output = "Duke: Sorry! Cannot find any matching tasks in your list.";
         } else {
             output = "Here are the matching tasks in your list:\n" + match;
