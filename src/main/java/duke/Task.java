@@ -22,10 +22,10 @@ public class Task {
             return ToDo.fromString(data);
         }
         switch (data.charAt(1)) {
-            case 'T':
-                return ToDo.fromString(data);
-            case 'D':
-                return Deadline.fromString(data);
+        case 'T':
+            return ToDo.fromString(data);
+        case 'D':
+            return Deadline.fromString(data);
         }
         return new Task("fromStringExample");
     }

@@ -37,46 +37,6 @@ public class Duke  {
         new Duke("data/tasks.txt");
     }
 
-//    public void run() throws DukeException {
-//        ArrayList<Task> myList = new ArrayList<>();
-//        boolean bye = false;
-//        Scanner scanner = new Scanner(System.in);
-//        EventHandler handler = new EventHandler(this.taskList, this.userInterface);
-//        System.out.println("Hello I am Duke!");
-//
-//        while (!bye) {
-//            String input = scanner.nextLine();
-//            if (input.equals("bye")) {
-//                bye = true;
-//
-//                userInterface.sayBye();
-//            } else if (input.equals("list")) {
-//                userInterface.printList();
-//            } else if (input.startsWith("mark")) {
-//                handler.markTask(input);
-//            } else if (input.startsWith("unmark")) {
-//                handler.unmarkTask(input);
-//            } else if (input.startsWith("delete")) {
-//                int taskIndex = Integer.parseInt(input.substring(7)) - 1;
-//                handler.deleteTask(taskIndex);
-//            } else if (input.startsWith("todo")) {
-//                handler.addTodo(input);
-//            } else if (input.startsWith("deadline")) {
-//                handler.addDeadline(input);
-//            } else if (input.startsWith("event")) {
-//                handler.addEvent(input);
-//            } else if (input.startsWith("find")) {
-//                handler.find(input);
-//            } else {
-//                throw new DukeUnknownCommandException();
-//            }
-//            storage.save();
-//
-//        }
-//
-//        scanner.close();
-//    }
-
     /**
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
