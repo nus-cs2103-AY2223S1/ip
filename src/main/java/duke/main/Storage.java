@@ -136,7 +136,7 @@ public class Storage {
      */
     public void saveTasks(TaskList taskList) {
         try {
-            File myFile = new File("./data/duke.main.Duke.txt");
+            File myFile = new File(filePath);
             OutputStream os = new FileOutputStream(myFile);
             PrintWriter pw = new PrintWriter(os);
 

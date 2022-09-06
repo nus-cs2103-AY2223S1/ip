@@ -33,7 +33,8 @@ public class MarkCommand extends Command {
      * @throws NumberFormatException
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws NullPointerException,
+    public String execute(TaskList taskList, TaskList archiveTaskList, Storage storage,
+                          Storage archiveStorage, Ui ui) throws NullPointerException,
             IndexOutOfBoundsException, NumberFormatException {
         int normalisedIndex = index - 1;
         Task task = taskList.getTask(normalisedIndex);
