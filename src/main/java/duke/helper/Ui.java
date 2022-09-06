@@ -11,10 +11,10 @@ public class Ui {
      * Method to return welcome message
      */
     public static String welcome() {
-       return "-------------------------------------------\n"
+        return "-------------------------------------------\n"
                 + "Hello from Phil\n"
-                        + "How may I assist you on this fine day?\n" +
-                                "-------------------------------------------\n";
+                        + "How may I assist you on this fine day?\n"
+                                + "-------------------------------------------\n";
     }
 
     /**

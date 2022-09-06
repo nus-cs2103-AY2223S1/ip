@@ -1,7 +1,6 @@
 package duke.gui;
 
 import java.io.IOException;
-import java.net.URL;
 
 import duke.Duke;
 import javafx.application.Application;
