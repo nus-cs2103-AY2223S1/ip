@@ -15,7 +15,6 @@ import john.commands.MarkCommand;
 import john.commands.TodoCommand;
 import john.commands.UnmarkCommand;
 
-
 /**
  * Represents a parser to parse user input.
  */
