@@ -1,6 +1,7 @@
 package duke.task;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import duke.utilities.DukeException;
 
@@ -94,16 +95,13 @@ public class TaskList {
      * @return Returns a new ArrayList of tasks containing the matching tasks.
      */
     public ArrayList<Task> findMatchingTasks(String target) {
-        ArrayList<Task> filtered = new ArrayList<>();
         if (target.equals("")) {
             return this.tasks;
         }
 
-        for (Task task : this.tasks) {
-            if (task.getDescription().contains(target)) {
-                filtered.add(task);
-            }
-        }
+        ArrayList<Task> filtered = this.tasks.stream()
+                .filter(task -> task.getDescription().contains(target))
+                .collect(Collectors.toCollection(ArrayList::new));
 
         return filtered;
     }
