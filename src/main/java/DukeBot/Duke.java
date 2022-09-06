@@ -10,7 +10,7 @@ public class Duke {
     private static Storage storage;
     private static TaskList tasks = new TaskList();
     private Parser p;
-    boolean isExit;
+    private boolean isExit = false;
 
     public Duke() {
         storage = new Storage("src/main/tasks.txt");
