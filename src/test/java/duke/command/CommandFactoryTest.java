@@ -40,6 +40,10 @@ class CommandFactoryTest {
         assertEquals(Command.DELETE, CommandFactory.parseCommand("delete 1"));
         assertEquals(Command.DELETE, CommandFactory.parseCommand("delete"));
         assertEquals(Command.DELETE, CommandFactory.parseCommand("delete abc"));
+        // `tag` command
+        assertEquals(Command.TAG, CommandFactory.parseCommand("tag #cs2103 1"));
+        assertEquals(Command.TAG, CommandFactory.parseCommand("tag"));
+        assertEquals(Command.TAG, CommandFactory.parseCommand("tag abc"));
     }
 
     @Test
