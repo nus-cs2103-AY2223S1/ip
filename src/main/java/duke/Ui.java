@@ -1,5 +1,8 @@
 package duke;
 
+import duke.task.Task;
+import duke.task.TaskList;
+
 /**
  * Creates a Ui object.
  */
@@ -7,59 +10,54 @@ public class Ui {
 
     private static final String LINE_DIVIDER = "____________________________________________________________";
 
+    public static String messageWithLine(String message) {
+        return LINE_DIVIDER + "\n" + message + "\n" + LINE_DIVIDER;
+    }
     /**
      * Prints intro interface.
      */
-    public void printIntro() {
-        System.out.println(LINE_DIVIDER);
-        System.out.println("Wassup la I'm Duke\nWhat you want?\n" + LINE_DIVIDER);
+    public String printIntro() {
+        return "Wassup la I'm Duke\nWhat you want?";
     }
 
     /**
      * Prints goodbye message.
      */
-    public void printGoodByeMessage() {
-        System.out.println(LINE_DIVIDER + "\nBye. Zai Jian!\n" + LINE_DIVIDER);
+    public String printGoodByeMessage() {
+        return "Bye. Zai Jian!";
     }
 
     /**
      * Prints task list.
      * @param tl TaskList to be printed
      */
-    public void printList(TaskList tl) {
-        System.out.println(LINE_DIVIDER);
+    public String printList(TaskList tl) {
+        StringBuilder message = new StringBuilder();
         if (tl.size() == 0) {
-            System.out.println("List is empty la");
-            System.out.println(LINE_DIVIDER);
-            return;
+            message.append("List is empty la");
+            return message.toString();
         }
-        System.out.println("Here are your tasks la:");
+        message.append("Here are your tasks la:");
         for (int j = 0; j < tl.size(); j++) {
-            System.out.println(j + 1 + "." + tl.get(j).toString());
+            message.append("\n").append(j + 1).append(".").append(tl.get(j).toString());
         }
-        System.out.println(LINE_DIVIDER);
+        return message.toString();
     }
 
     /**
      * Ui for marking tasks.
      * @param task to be marked
      */
-    public void printMarkedMsg(Task task) {
-        System.out.println(LINE_DIVIDER);
-        System.out.println("Ok ticked this already");
-        System.out.println(task.toString());
-        System.out.println(LINE_DIVIDER);
+    public String printMarkedMsg(Task task) {
+        return "Ok ticked this already\n" + task.toString();
     }
 
     /**
      * Ui for unmarking tasks.
      * @param task to be unmarked
      */
-    public void printUnmarkedMsg(Task task) {
-        System.out.println(LINE_DIVIDER);
-        System.out.println("Ok not done yet ah");
-        System.out.println(task.toString());
-        System.out.println(LINE_DIVIDER);
+    public String printUnmarkedMsg(Task task) {
+        return "Ok not done yet ah\n" + task.toString();
     }
 
     /**
@@ -67,28 +65,22 @@ public class Ui {
      * @param removedTask String of removed task
      * @param size of TaskList
      */
-    public void printDeleteMsg(String removedTask, int size) {
-        System.out.println(LINE_DIVIDER);
-        System.out.println("I remove this ah:");
-        System.out.println();
-        System.out.println("Now " + size + " tasks only");
-        System.out.println(LINE_DIVIDER);
+    public String printDeleteMsg(String removedTask, int size) {
+        return "I remove this ah:\n" + removedTask + "\nNow " + size + " tasks only";
     }
 
     /**
      * Ui for index inputs that are out of bounds.
      */
-    public void printOutOfBoundsMsg() {
-        System.out.println(LINE_DIVIDER);
-        System.out.println("Out of bounds lah, try again");
-        System.out.println(LINE_DIVIDER);
+    public String printOutOfBoundsMsg() {
+        return "Out of bounds lah, try again\n";
     }
 
     /**
      * Ui for no task input errors.
      */
-    public void printNoTaskInputMsg() {
-        System.out.println("☹ OOPS!!! Why empty");
+    public String printNoTaskInputMsg() {
+        return "☹ OOPS!!! Why empty";
     }
 
     /**
@@ -96,50 +88,45 @@ public class Ui {
      * @param task that was added
      * @param size of TaskList
      */
-    public void printTaskAddedMsg(Task task, int size) {
-        System.out.println(LINE_DIVIDER);
-        System.out.println("Ok I add your task already:");
-        System.out.println(task + "\nNow " + size + " tasks already");
-        System.out.println(LINE_DIVIDER);
+    public String printTaskAddedMsg(Task task, int size) {
+        return "Ok I add your task already:\n" + task + "\nNow " + size + " tasks already";
     }
 
     /**
      * Ui for general errors.
      */
-    public void printError() {
-        System.out.println(LINE_DIVIDER);
-        System.out.println("☹ Walao what do you mean");
-        System.out.println(LINE_DIVIDER);
+    public String printError() {
+        return "☹ Walao what do you mean";
     }
 
     /**
      * Ui for clearing whole TaskList.
      */
-    public void printClearMsg() {
-        System.out.println(LINE_DIVIDER);
-        System.out.println("CLEAR ALL LIAO");
-        System.out.println(LINE_DIVIDER);
+    public String printClearMsg() {
+        return "CLEAR ALL LIAO";
     }
 
-    public void printFilteredList(TaskList tl) {
-        System.out.println(LINE_DIVIDER);
+    /**
+     * Returns the message for filtered list.
+     * @param tl Filtered TaskList.
+     * @return message to be printed.
+     */
+    public String printFilteredList(TaskList tl) {
         if (tl.size() == 0) {
-            System.out.println("List is empty la");
-            System.out.println(LINE_DIVIDER);
-            return;
+            return "List is empty la";
         }
-        System.out.println("Matching one:");
+        StringBuilder message = new StringBuilder("Matching one:");
         for (int j = 0; j < tl.size(); j++) {
-            System.out.println(j + 1 + ":" + tl.get(j).toString());
+            message.append("\n").append(j + 1).append(":").append(tl.get(j).toString());
         }
-        System.out.println(LINE_DIVIDER);
+        return message.toString();
     }
 
-    public void printIncompleteEvent() {
-        System.out.println("Why not complete event?");
+    public String printIncompleteEvent() {
+        return "Why not complete event?";
     }
 
-    public void printIncompleteDeadline() {
-        System.out.println("Why not complete deadline?");
+    public String printIncompleteDeadline() {
+        return "Why not complete deadline?";
     }
 }
