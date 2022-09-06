@@ -23,9 +23,11 @@ public class AddEventsCommand extends Command {
      * @param task
      */
     public AddEventsCommand(String task) throws DateTimeParseException {
-        int dateIndex = task.indexOf("at");
-        this.taskName = task.substring(6, dateIndex);
-        this.localDate = LocalDate.parse(task.substring(dateIndex + 3));
+        int atIndex = task.indexOf("at");
+        int taskIndex = 6;
+        int dateIndex = atIndex + 3;
+        this.taskName = task.substring(taskIndex, atIndex);
+        this.localDate = LocalDate.parse(task.substring(dateIndex));
     }
     /**
      * Execute method that is used to add an Event task to a tasklist, save the event
@@ -40,6 +42,7 @@ public class AddEventsCommand extends Command {
         Task event = new Events(taskName, localDate);
         taskList.addTasks(event);
         storage.saveTasks(taskList);
-        return event + " added!";
+        String response = event + "added";
+        return response;
     }
 }

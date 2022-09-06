@@ -19,7 +19,8 @@ public class AddTodoCommand extends Command {
      * @param task
      */
     public AddTodoCommand(String task) {
-        this.taskName = task.substring(5);
+        int taskIndex = 5;
+        this.taskName = task.substring(taskIndex);
     }
 
     /**
@@ -35,7 +36,8 @@ public class AddTodoCommand extends Command {
         Task todo = new Todo(taskName);
         taskList.addTasks(todo);
         storage.saveTasks(taskList);
-        return todo + " added!";
+        String response = todo + "added";
+        return response;
     }
 
 }

@@ -11,8 +11,14 @@ import duke.main.Ui;
 public class FindCommand extends Command {
     private String input;
 
+    /**
+     * Constructor for the FindCommand
+     *
+     * @param input
+     */
     public FindCommand(String input) {
-        this.input = input.substring(5);
+        int taskIndex = 5;
+        this.input = input.substring(taskIndex);
     }
 
     @Override
