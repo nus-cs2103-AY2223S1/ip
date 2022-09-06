@@ -2,7 +2,12 @@ package duke.task;
 
 import duke.exceptions.InvalidInputException;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static duke.common.Messages.*;
 
@@ -101,20 +106,9 @@ public class TaskList {
         System.out.printf(MESSAGE_TASK_MARKED, taskNumber);
     }
 
-//    public void findTask(String taskSubstring) {
-//        StringBuilder sb = new StringBuilder();
-//        for (Task task : tasks) {
-//            if (task.toString().contains(taskSubstring)) {
-//                sb.append(task).append("\n");
-//            }
-//        }
-//
-//        if (sb.toString().isEmpty()) {
-//            System.out.println(MESSAGE_NO_TASK_FOUND);
-//        } else {
-//            System.out.println(sb);
-//        }
-//    }
+    public void sortTasks() {
+        Collections.sort(tasks);
+    }
 
     public String findTask(String taskSubstring) {
         StringBuilder sb = new StringBuilder();

@@ -19,6 +19,7 @@ public class Messages {
             "If you want to mark another duke.task as complete, please type 'mark' again.\n" +
             "Else, you can input a new task!\n";
     public static final String MESSAGE_FIND_TASK = "What task are you looking for? Enter a keyword: ";
+    public static final String MESSAGE_TASK_UPDATED = "Task specified has been updated.";
 
     public static final String MESSAGE_INVALID_TASK_NUMBER = "Are you sure this number corresponds to a task?\n";
     public static final String MESSAGE_INVALID_DATE_INPUT = "Please follow the date formate of YYYY-MM-DD!";
@@ -27,5 +28,4 @@ public class Messages {
     public static final String MESSAGE_NO_TASK_FOUND = "No tasks matching keyword found!";
 
     public static final String MESSAGE_OTHER_ACTIONS = "What else would you like to do?\n";
-
 }

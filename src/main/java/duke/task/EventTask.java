@@ -31,4 +31,5 @@ public class EventTask extends Task {
         String taskStatus = this.isDone ? "Done" : "Undone";
         return String.format("D | %s | %s | %s", taskStatus, this.description, this.eventDate);
     }
+
 }

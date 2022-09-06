@@ -40,6 +40,8 @@ public class Parser {
             return new ListCommand();
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+        case SortCommand.COMMAND_WORD:
+            return new SortCommand();
         default:
             return new InvalidCommand(Messages.MESSAGE_INVALID_COMMAND);
         }
@@ -175,4 +177,5 @@ public class Parser {
             return new InvalidCommand(e.getMessage());
         }
     }
+
 }
