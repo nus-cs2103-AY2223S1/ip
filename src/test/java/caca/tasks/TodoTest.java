@@ -2,8 +2,9 @@ package caca.tasks;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import caca.TaskList;
 import org.junit.jupiter.api.Test;
+
+import caca.TaskList;
 
 /**
  * Test class for Todo.

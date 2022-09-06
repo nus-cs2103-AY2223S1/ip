@@ -112,8 +112,12 @@ public class TaskList {
             break;
         case "event":
             detailedCommand = taskInfo.split(" /at ", 2);
+            break;
+        default:
+            // The method will not be called if the task type does not match any of the above cases.
+            // Hence, will never reach default case. This is added for checkstyle to work.
+            taskToCreate = null;
         }
-        
         boolean isDetailMissing = detailedCommand.length < 2;
         if (isDetailMissing) {
             String errorMessage = String.format("OOPS!!! Details missing as "
@@ -129,10 +133,10 @@ public class TaskList {
         }
 
         String taskDescription = detailedCommand[0];
-        String DateTime = detailedCommand[1];
+        String dateTime = detailedCommand[1];
         taskToCreate = taskType.equals("deadline")
-                ? new Deadline(taskDescription, DateTime)
-                : new Event(taskDescription, DateTime);
+                ? new Deadline(taskDescription, dateTime)
+                : new Event(taskDescription, dateTime);
 
         return taskToCreate;
     }

@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import caca.exceptions.CaCaException;
 import caca.exceptions.EmptyInputException;
-import caca.ui.Ui;
 import caca.tasks.Task;
+import caca.ui.Ui;
 
 /**
  * This class deals with making sense of the user command.
@@ -68,7 +68,7 @@ public class Parser {
                 response = ui.bye();
                 break;
 
-            case "list" :
+            case "list":
                 response = TaskList.listTasks();
                 break;
 
@@ -84,7 +84,7 @@ public class Parser {
             // These are the cases involving changing the status of a task using its task index.
             case "mark":
             case "unmark":
-            case "delete" :
+            case "delete":
                 response = TaskList.indexOperation(taskType, taskInfo);
                 storage.updateFile(tasks);
                 break;

@@ -3,9 +3,9 @@ package caca.tasks;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import caca.TaskList;
 import org.junit.jupiter.api.Test;
 
+import caca.TaskList;
 import caca.exceptions.InvalidDateException;
 
 /**
@@ -31,7 +31,7 @@ public class EventTest {
 
         Event duplicateEvent = new Event("book fair", "23/09/2022 1400");
         String addDuplicateEvent = TaskList.addTask(duplicateEvent);
-        assertEquals(1,eventList.getTasks().size());
+        assertEquals(1, eventList.getTasks().size());
 
         assertEquals("OOPS!!!\n"
                         + "Your task list already contains [E][ ] book fair (at: Sep 23 2022 14:00)!\n"

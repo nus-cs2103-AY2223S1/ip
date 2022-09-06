@@ -3,9 +3,9 @@ package caca.tasks;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import caca.TaskList;
 import org.junit.jupiter.api.Test;
 
+import caca.TaskList;
 import caca.exceptions.InvalidDateException;
 
 /**
@@ -31,7 +31,7 @@ public class DeadlineTest {
 
         Deadline duplicateDeadline = new Deadline("revision", "23/09/2022 2359");
         String addDuplicateDeadline = TaskList.addTask(duplicateDeadline);
-        assertEquals(1,deadlineList.getTasks().size());
+        assertEquals(1, deadlineList.getTasks().size());
 
         assertEquals("OOPS!!!\n"
                         + "Your task list already contains [D][ ] revision (by: Sep 23 2022 23:59)!\n"
