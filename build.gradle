@@ -48,7 +48,7 @@ test {
 }
 
 application {
-    mainClassName = "scottie.Scottie"
+    mainClassName = "scottie.Main"
 }
 
 shadowJar {
