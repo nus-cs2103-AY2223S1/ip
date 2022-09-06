@@ -36,7 +36,7 @@ public class DukeOperations {
     * @param array arraylist of all the tasks so far.
     * @param number integer value of the task to be marked as done.
     */
-    public String mark(ArrayList<Task> array, int number) {
+    public String markTaskAsDone(ArrayList<Task> array, int number) {
         array.get(number-1).markAsDone();
         String result = "";
         result = result + "Nice! I've marked this task as done:" + "\n";
@@ -52,7 +52,7 @@ public class DukeOperations {
      * @param number integer value of the task to be unmarked as not done.
      * @return String value showing which item has been unmarked
      * */
-     public String unMark(ArrayList<Task>array, int number) {
+     public String unMarkTask(ArrayList<Task>array, int number) {
          array.get(number-1).markAsNotDone();
          String result = "";
          result = result + "OK, I've marked this task as not done yet:" +  "\n" ;
@@ -67,7 +67,7 @@ public class DukeOperations {
      * @param word word entered by the user.
      * @exception DukeException exception thrown when random word input by user.
      * */
-     public void randomWord(String word) throws DukeException{
+     public void randomWordFromInput(String word) throws DukeException{
          throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
      }
 

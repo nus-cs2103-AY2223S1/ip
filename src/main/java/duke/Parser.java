@@ -62,10 +62,10 @@ public class Parser {
 
         } else if (firstWord.equals("mark")) {
                 int num = Integer.parseInt(arr[1]);
-                return ops.mark(listOfTasks, num);
+                return ops.markTaskAsDone(listOfTasks, num);
             } else if (firstWord.equals("unmark")) {
                 int num = Integer.parseInt(arr[1]);
-                return ops.unMark(listOfTasks, num);
+                return ops.unMarkTask(listOfTasks, num);
             } else if (firstWord.equals("delete")) {
                 int num = Integer.parseInt(arr[1]);
                 return tl.delete(listOfTasks, num);
@@ -75,12 +75,9 @@ public class Parser {
                 String str = arr[1];
                 return ops.findWord(str, listOfTasks);
 
-
-
-
             } else {
                 try {
-                    ops.randomWord(output);
+                    ops.randomWordFromInput(output);
                 } catch (DukeException e2) {
                     return(e2.toString());
                 }
