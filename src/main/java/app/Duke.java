@@ -27,6 +27,7 @@ public class Duke {
      * @throws IOException
      */
     public static void loadDuke() throws IOException {
+        assert tasks.size() == 0;
         storage.loadTasks(tasks);
     }
 
