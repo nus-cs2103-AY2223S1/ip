@@ -45,6 +45,7 @@ public class TaskList {
      * @return Task at index num
      */
     public Task getTask(int num) {
+        assert(num >= 0);
         return tasks.get(num);
     }
 
@@ -54,6 +55,7 @@ public class TaskList {
      * @param newTask new task added
      */
     public void addTask(Task newTask) {
+        assert(newTask != null);
         tasks.add(newTask);
     }
 
@@ -63,6 +65,7 @@ public class TaskList {
      * @param num Index of task
      */
     public void removeTask(int num) {
+        assert(num >= 0);
         tasks.remove(num);
     }
 }

@@ -28,6 +28,7 @@ public class FindCommand extends Command {
      * @param taskList TaskList to find tasks with name that has keywords in it.
      */
     public String execute(Ui ui, TaskList taskList) {
+        assert(ui != null && taskList != null);
         TaskList findTaskList = new TaskList();
         int count = 1;
         String output = "";

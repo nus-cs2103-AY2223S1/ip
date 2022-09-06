@@ -62,6 +62,7 @@ public class Storage {
             BufferedReader br;
 
             file = new File("./data/");
+            assert(file != null);
             if (!file.exists()) {
                 file.mkdir();
             }
@@ -84,6 +85,7 @@ public class Storage {
                 }
 
                 String[] info = line.split(" / ", 4);
+                assert(info.length >= 3);
                 switch (info[0]) {
                 case "T":
                     tasks.add(new Todo(TaskType.TODO, info[2], info[1].equals("1")));
@@ -114,6 +116,7 @@ public class Storage {
     public void writeFile(TaskList taskList) {
         try {
             File writeF = new File("./data/duke.txt");
+            assert(writeF != null);
             if (!writeF.exists()) {
                 writeF.createNewFile();
             }

@@ -32,6 +32,7 @@ public class AddCommand extends Command {
      */
     @Override
     public String execute(Ui ui, TaskList taskList) {
+        assert(ui != null && taskList != null);
         Task newTask;
         String[] commands = getInfo().split(" ", 2);
 

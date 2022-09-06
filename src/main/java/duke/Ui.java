@@ -67,6 +67,7 @@ public class Ui {
      * @param task Task to print
      */
     public String showTask(int index, Task task) {
+        assert(index > 0);
         return (index + "." + task.toString());
     }
 
@@ -77,6 +78,7 @@ public class Ui {
      * @return string of taskList
      */
     public String showTaskList(TaskList taskList) {
+        assert(taskList != null);
         String strOfTasks = "";
         for (int i = 0; i < taskList.getSize(); i++) {
             strOfTasks += showTask(i + 1, taskList.getTask(i));
