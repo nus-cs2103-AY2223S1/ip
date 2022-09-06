@@ -6,11 +6,12 @@ import java.time.temporal.ChronoUnit;
 
 public class Event extends Task{
 
-    protected String at;
+    protected final LocalDate at;
+
 
     public Event(String description) {
         super(description.substring(6, description.indexOf('/') - 1));
-        this.at = description.substring(description.indexOf('/') + 3);
+        this.at = LocalDate.parse(description.substring(description.indexOf('/') + 3));
     }
 
     @Override
@@ -20,6 +21,7 @@ public class Event extends Task{
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at:" + at + ")";
+        return "[E]" + super.toString() + " (at:" + at.format(DateTimeFormatter.ofPattern("dd MMM yyyy")) + ")";
+
     }
 }
