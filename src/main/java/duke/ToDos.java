@@ -1,6 +1,5 @@
 package duke;
 
-// todos work the same as tasks
 public class ToDos extends Task {
 
     public ToDos(String taskName) {

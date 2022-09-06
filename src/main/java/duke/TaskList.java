@@ -1,5 +1,4 @@
 package duke;
-
 import java.util.ArrayList;
 
 public class TaskList {
@@ -16,17 +15,10 @@ public class TaskList {
 
     public void add(Task task) {
         taskList.add(task);
-        // printOnAdd(task);
     }
 
     public void addFromStorage(Task task) {
         taskList.add(task);
-    }
-
-    public void printOnAdd(Task task) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println(" " + task.toString());
-        System.out.println("Now you have " + taskList.size() + " task" + (taskList.size() == 1 ? " " : "s ") + "in the list");
     }
 
     public Task delete(int i) {
@@ -34,11 +26,6 @@ public class TaskList {
         return toDelete;
     }
 
-    public void printOnDelete(Task task) {
-        System.out.println("Noted. I've removed this task:");
-        System.out.println(" " + task.toString());
-        System.out.println("Now you have " + taskList.size() + " task" + (taskList.size() == 1 ? " " : "s ") + "in the list");
-    }
     public Task mark(int index) {
         Task toMark = taskList.get(index - 1);
         toMark.markAsDone();

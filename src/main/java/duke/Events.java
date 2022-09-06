@@ -1,6 +1,5 @@
 package duke;
 
-// events have extra location feature
 public class Events extends Task {
     protected String location;
 

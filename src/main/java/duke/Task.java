@@ -1,6 +1,5 @@
 package duke;
 
-
 public class Task {
     protected String name;
     protected boolean isDone;
@@ -11,9 +10,8 @@ public class Task {
         isDone = false;
     }
 
-    // getStatusIcon taken from cs2103 module website
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : " ");
     }
 
     @Override
