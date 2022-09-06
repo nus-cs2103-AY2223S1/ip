@@ -3,14 +3,8 @@ package myduke;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
-import exception.MarkException;
-import exception.MissingDateException;
-import exception.MissingDescriptionException;
-import exception.MissingKeyWordException;
-import exception.MissingTaskIndexException;
-import exception.OutOfBoundIndexException;
-import exception.UnMarkException;
-import exception.WrongCommandException;
+import exception.DukeException;
+import javafx.application.Platform;
 import task.Deadline;
 import task.Event;
 import task.Task;
@@ -42,46 +36,36 @@ public class Ui {
     /**
      * This prints the welcome message.
      */
-    public void welcome() {
+    public String welcome() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println(wrapper(logo + "Hello! I'm Duke\nWhat can I do for you?"));
+        return (wrapper(logo + "Hello! I'm Duke\nWhat can I do for you?"));
     }
 
     /**
      * This handles how the Duke will respond based on user input.
      *
      * @param input what the user typed into the terminal.
-     * @throws DateTimeParseException      Date entered is not following ISO-8601 format.
-     * @throws MarkException               thrown when trying to mark an already marked task.
-     * @throws MissingDateException        thrown when date of task is missing.
-     * @throws MissingDescriptionException thrown when description of task is missing.
-     * @throws MissingKeyWordException     thrown when user forgets to include keyword to find with.
-     * @throws MissingTaskIndexException   thrown when index for task to be edited is missing.
-     * @throws OutOfBoundIndexException    thrown when index entered is out of bound.
-     * @throws WrongCommandException       thrown when user input is not a valid command.
-     * @throws UnMarkException             thrown when trying to unmark an already unmarked task.
+     * @throws DateTimeParseException  Date entered is not following ISO-8601 format.
+     * @throws exception.DukeException
      */
-    public void response(String input) throws DateTimeParseException, MarkException,
-            MissingTaskIndexException, MissingDescriptionException, MissingDateException,
-            MissingKeyWordException, OutOfBoundIndexException, WrongCommandException, UnMarkException {
+    public String response(String input) throws DateTimeParseException, DukeException {
         String done = "Got it. I've added this task:\n";
         //if command is bye
         if (input.equals("bye")) {
-            //stops the chat bot
-            Duke.stop();
-
-            System.out.println(wrapper("Bye. Hope to see you again soon!"));
+            String message = wrapper("Bye. Hope to see you again soon!");
+            Platform.exit();
+            return "Bye. Hope to see you again soon!";
         } else if (input.equals("list")) {
             //if command is list
-            System.out.println(wrapper(taskList.toString()));
+            return wrapper(taskList.toString());
         } else if (input.startsWith("mark")) {
             //if command is mark
             if (input.length() == 4) {
-                throw new MissingTaskIndexException();
+                throw new DukeException("Task cannot be empty!");
             }
             String indexString = input.substring(5);
             //index of task
@@ -95,11 +79,11 @@ public class Ui {
             storage.saveToFile(taskList);
 
             String content = "Nice! I've marked this task as done:\n" + current.toString();
-            System.out.println(wrapper(content));
+            return wrapper(content);
         } else if (input.startsWith("unmark")) {
             //if command is unmark
             if (input.length() == 6) {
-                throw new MissingTaskIndexException();
+                throw new DukeException("Task cannot be empty!");
             }
             String indexString = input.substring(7);
             //index of task
@@ -113,11 +97,11 @@ public class Ui {
             storage.saveToFile(taskList);
 
             String content = "OK, I've marked this task as not done yet:\n" + current.toString();
-            System.out.println(wrapper(content));
+            return wrapper(content);
         } else if (input.startsWith("delete")) {
             //if command is delete
             if (input.length() == 6) {
-                throw new MissingTaskIndexException();
+                throw new DukeException("Task cannot be empty!");
             }
             String indexString = input.substring(7);
             //index of task
@@ -131,11 +115,11 @@ public class Ui {
 
             String content = "Noted. I've removed this task:\n" + deletedTask.toString()
                     + "\nNow you have " + taskList.getNumOfTask() + " tasks in the list.";
-            System.out.println(wrapper(content));
+            return wrapper(content);
         } else if (input.startsWith("todo")) {
             //if command is to-do
             if (input.length() == 4) {
-                throw new MissingDescriptionException("todo");
+                throw new DukeException("Description cannot be empty!");
             }
             Task todo = new ToDo(input.substring(5), false);
 
@@ -146,14 +130,14 @@ public class Ui {
             storage.saveToFile(taskList);
 
             String message = done + "  " + todo + taskList.numOfTaskToString();
-            System.out.println(wrapper(message));
+            return wrapper(message);
         } else if (input.startsWith("deadline")) {
             //if command is deadline
             if (input.length() == 8) {
-                throw new MissingDescriptionException("deadline");
+                throw new DukeException("Description cannot be empty!");
             }
             if (!input.contains("/") || input.length() == input.indexOf("/") + 1) {
-                throw new MissingDateException();
+                throw new DukeException("Date cannot be missing!");
             }
             int divider = input.indexOf("/");
 
@@ -168,14 +152,14 @@ public class Ui {
             storage.saveToFile(taskList);
 
             String message = done + "  " + deadline + taskList.numOfTaskToString();
-            System.out.println(wrapper(message));
+            return wrapper(message);
         } else if (input.startsWith("event")) {
             //if command is event
             if (input.length() == 5) {
-                throw new MissingDescriptionException("event");
+                throw new DukeException("Description cannot be empty!");
             }
             if (!input.contains("/") || input.length() == input.indexOf("/") + 1) {
-                throw new MissingDateException();
+                throw new DukeException("Date cannot be missing!");
             }
             int divider = input.indexOf("/");
             Task event = new Event(input.substring(6, divider), false, input.substring(divider + 4));
@@ -187,21 +171,21 @@ public class Ui {
             storage.saveToFile(taskList);
 
             String message = done + "  " + event + taskList.numOfTaskToString();
-            System.out.println(wrapper(message));
+            return wrapper(message);
         } else if (input.startsWith("find")) {
             //if command is find
             if (input.length() == 4) {
-                throw new MissingKeyWordException();
+                throw new DukeException("Keyword cannot be missing");
             }
             //getting keyword
             String keyword = input.substring(5);
 
             //filter taskList with keyword
             TaskList tempTaskList = taskList.findTask(keyword);
-
-            System.out.println(wrapper(tempTaskList.toString()));
+            String message = wrapper(tempTaskList.toString());
+            return message;
         } else {
-            throw new WrongCommandException();
+            throw new DukeException("Invalid command!");
         }
     }
 }

@@ -24,8 +24,8 @@ public class Storage {
      *
      * @param filepath file path of the storage file.
      */
-    public Storage(String filepath) {
-        storageFile = new File(filepath);
+    public Storage(File filepath) {
+        storageFile = filepath;
     }
 
     /**

@@ -2,9 +2,7 @@ package myduke;
 
 import java.util.ArrayList;
 
-import exception.MarkException;
-import exception.OutOfBoundIndexException;
-import exception.UnMarkException;
+import exception.DukeException;
 import task.Task;
 
 /**
@@ -57,23 +55,22 @@ public class TaskList {
      * Marks the task as completed.
      *
      * @param index given index of the task.
-     * @throws MarkException            thrown when task is already marked.
-     * @throws OutOfBoundIndexException thrown when index is out of bound.
+     * @throws DukeException thrown when index is out of bound or task is already marked.
      */
-    public void markTask(int index) throws MarkException, OutOfBoundIndexException {
+    public void markTask(int index) throws DukeException {
         if (checkValidIndex(index)) {
             //getting the task
             Task current = taskLists.get(index);
 
             //if already marked, throw exception
             if (current.getStatus()) {
-                throw new MarkException();
+                throw new DukeException("Task is already marked!");
             }
 
             //else mark it
             current.markAsDone();
         } else {
-            throw new OutOfBoundIndexException();
+            throw new DukeException("Index given is out of bounds!");
         }
     }
 
@@ -81,23 +78,22 @@ public class TaskList {
      * Marks the task as incomplete.
      *
      * @param index given index of the task.
-     * @throws UnMarkException          thrown when task is already unmarked.
-     * @throws OutOfBoundIndexException thrown when index is out of bound.
+     * @throws DukeException thrown when task is already unmarked or index is out of bounds.
      */
-    public void unMarkTask(int index) throws UnMarkException, OutOfBoundIndexException {
+    public void unMarkTask(int index) throws DukeException {
         if (checkValidIndex(index)) {
             //getting the task
             Task current = taskLists.get(index);
 
             //if already unmarked, throw exception
             if (!current.getStatus()) {
-                throw new UnMarkException();
+                throw new DukeException("Task is already not marked!");
             }
 
             //else unmark task
             current.markAsNotDone();
         } else {
-            throw new OutOfBoundIndexException();
+            throw new DukeException("Index given is out of bounds!");
         }
     }
 
@@ -106,9 +102,9 @@ public class TaskList {
      *
      * @param index given index.
      * @return the deleted task.
-     * @throws OutOfBoundIndexException thrown when index is out of bound.
+     * @throws DukeException thrown when index is out of bound.
      */
-    public Task deleteTask(int index) throws OutOfBoundIndexException {
+    public Task deleteTask(int index) throws DukeException {
         if (checkValidIndex(index)) {
             //get the task
             Task task = taskLists.get(index);
@@ -117,7 +113,7 @@ public class TaskList {
             taskLists.remove(index);
             return task;
         } else {
-            throw new OutOfBoundIndexException();
+            throw new DukeException("Index given is out of bounds!");
         }
     }
 
