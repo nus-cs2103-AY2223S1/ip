@@ -32,10 +32,18 @@ class UnmarkInstruction extends Instruction {
     @Override
     public void execute(TaskList taskList, Ui ui) {
         if (this.hasMainArgument()) {
-            int taskNum = Integer.parseInt(this.getMainArgument());
-            taskList.unmarkTask(taskNum - 1);
-            ui.showFormattedMessage("Sure, I've marked task %d as not done:%n", taskNum);
-            ui.showMessages(taskList.getTask(taskNum - 1).toString());
+            try {
+                int taskNum = Integer.parseInt(this.getMainArgument());
+                if (taskNum <= 0 || taskNum > taskList.size()) {
+                    ui.showFormattedMessage("Sorry, there is no task number %d.", taskNum);
+                } else {
+                    taskList.unmarkTask(taskNum - 1);
+                    ui.showFormattedMessage("Sure, I've marked task %d as not done:%n", taskNum);
+                    ui.showMessages(taskList.getTask(taskNum - 1).toString());
+                }
+            } catch (NumberFormatException e) {
+                ui.showFormattedMessage("Sorry, %s is not a valid task number.", this.getMainArgument());
+            }
         } else {
             ui.showMessages("Sorry, you need to tell me which task to unmark.");
         }

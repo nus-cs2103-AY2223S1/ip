@@ -33,14 +33,23 @@ class DeleteInstruction extends Instruction {
     @Override
     public void execute(TaskList taskList, Ui ui) {
         if (this.hasMainArgument()) {
-            int taskId = Integer.parseInt(this.getMainArgument()) - 1;
-            Task task = taskList.getTask(taskId);
-            ui.showMessages("Ok, I've deleted this task:", task.toString());
-            taskList.deleteTask(taskId);
-            if (taskList.isEmpty()) {
-                ui.showMessages("You have no more tasks left in your list!");
-            } else {
-                ui.showFormattedMessage("You have %d task(s) left in your list.%n", taskList.size());
+            try {
+                int taskNum = Integer.parseInt(this.getMainArgument());
+                if (taskNum <= 0 || taskNum > taskList.size()) {
+                    ui.showFormattedMessage("Sorry, there is no task number %d.", taskNum);
+                } else {
+                    int taskId = taskNum - 1;
+                    Task task = taskList.getTask(taskId);
+                    ui.showMessages("Ok, I've deleted this task:", task.toString());
+                    taskList.deleteTask(taskId);
+                    if (taskList.isEmpty()) {
+                        ui.showMessages("You have no more tasks left in your list!");
+                    } else {
+                        ui.showFormattedMessage("You have %d task(s) left in your list.%n", taskList.size());
+                    }
+                }
+            } catch (NumberFormatException e) {
+                ui.showFormattedMessage("Sorry, %s is not a valid task number.", this.getMainArgument());
             }
         } else {
             ui.showMessages("Sorry, you need to tell me which task to delete.");
