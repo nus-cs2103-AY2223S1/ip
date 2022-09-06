@@ -78,12 +78,43 @@ public class Parser {
         }
     }
 
+    /**
+     *
+     * Extracts shortcut or formal command used and returns formal command/
+     * If input does not follow valid format, return empty string.
+     *
+     * @param input
+     * @return
+     */
     private static String extractCommand(String input) {
         if (InputValidator.isValidCommand(input)) {
             // At this point, we know input matches expected format
-            return input.substring(0, input.indexOf(" "));
+            return convertToFormalCommand(input.substring(0, input.indexOf(" ")));
         } else {
-            return " ";
+            return "";
+        }
+    }
+
+    private static String convertToFormalCommand(String command) {
+        String[] commandList = {"todo", "list", "event", "deadline",
+        "mark", "unmark", "longdesc", "istoday", "find", "bye"};
+        String todoRegex = "(t|todo)";
+        String listRegex = "(l|list)";
+        String eventRegex = "(event|e)";
+        String deadlineRegex = "(deadline|d)";
+        String markRegex = "(mark|m)";
+        String unmarkRegex = "(unmark|um)";
+        String longdescRegex = "(longdesc)";
+        String istodayRegex = "(istoday)";
+        String findRegex = "(f|find)";
+        String byeRegex = "(bye|quit|q)";
+        String[] regexes = {todoRegex, listRegex, eventRegex, deadlineRegex, markRegex, unmarkRegex, longdescRegex, istodayRegex, findRegex, byeRegex}
+        for (int i = 0; i < commandList.length; i ++) {
+            Pattern p = Pattern.compile();
+            Matcher m = p.matcher(command);
+            if (m.find()) {
+                return commandList[i];
+            }
         }
     }
 
