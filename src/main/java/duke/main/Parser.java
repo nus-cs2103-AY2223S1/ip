@@ -120,7 +120,7 @@ public class Parser {
 
     private static String validateTodo(String[] splitReply) throws DukeException {
         if (splitReply.length == 1) {
-            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+            throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
         }
         String[] descriptionArray = Arrays.copyOfRange(splitReply, 1, splitReply.length);
         String description = String.join(" ", descriptionArray);
@@ -174,7 +174,7 @@ public class Parser {
 
     private static String validateFind(String[] splitReply) throws DukeException {
         if (splitReply.length != 2) {
-            throw new DukeException("☹ OOPS!!! Only one keyword allowed for find");
+            throw new DukeException("OOPS!!! Only one keyword allowed for find");
         }
         String[] keywordArray = Arrays.copyOfRange(splitReply, 1, splitReply.length);
         String keyword = String.join(" ", keywordArray);

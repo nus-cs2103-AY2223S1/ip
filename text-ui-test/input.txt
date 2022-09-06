@@ -1,4 +1,2 @@
 todo borrow book
 list
-deadline return book /by
-event project meeting /at Mon 2-4pm
