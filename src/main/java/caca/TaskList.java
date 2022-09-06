@@ -138,13 +138,24 @@ public class TaskList {
     }
 
     /**
-     * Adds a task to the list.
+     * Adds a task to the list; recognises any duplicate tasks and warn the user.
      *
      * @param task Task to be added to the list.
-     * @return CaCa's response after successfully adding a task to the list.
+     * @return CaCa's response after successfully adding a task to the list; or a warning for duplicates.
      */
     public static String addTask(Task task) {
         assert task != null;
+
+        // Adapted from https://stackabuse.com/java-check-if-array-contains-value-or-element/
+        boolean hasDuplicate = tasks.stream()
+                .anyMatch(taskToCheck -> taskToCheck.toString().equals(task.toString()));
+        if (hasDuplicate) {
+            String duplicateWarning = String.format("OOPS!!!\n"
+                    + "Your task list already contains %s!\n"
+                    + "This is not added again.", task);
+            return duplicateWarning;
+        }
+
         tasks.add(task);
 
         String response = String.format("Got it. I've added this task:\n"
