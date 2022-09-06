@@ -26,6 +26,7 @@ public class ExitCommand extends Command {
      */
     @Override
     public String execute(Ui ui, TaskList taskList) {
+        assert(ui != null && taskList != null);
         System.out.println(ui.showExitMessage());
         Storage storage = new Storage(ui, "./data/duke.txt");
         storage.writeFile(taskList);

@@ -22,6 +22,7 @@ public class Parser {
      * @return Command referred to the user input
      */
     public static Command parse(String... inputs) {
+        assert(inputs != null);
         String input = inputs[0];
         String[] cmd = input.split(" ", 2);
         int index;
