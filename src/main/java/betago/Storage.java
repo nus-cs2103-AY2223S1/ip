@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-import betago.exceptions.InvalidDataFileException;
 import betago.tasks.Task;
 
 /**
@@ -60,7 +59,7 @@ public class Storage {
             Ui.printFileNotFoundError();
         } catch (IOException e) {
             Ui.printInputOutputError();
-        } catch (InvalidDataFileException e) {
+        } catch (DukeException e) {
             Ui.printLoadFileError();
         }
     }

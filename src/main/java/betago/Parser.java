@@ -2,10 +2,16 @@ package betago;
 
 import java.util.Scanner;
 
-import betago.exceptions.EmptyListException;
-import betago.exceptions.InvalidCommandException;
-
-
+import betago.commands.AddDeadlineCommand;
+import betago.commands.AddEventCommand;
+import betago.commands.AddTodoCommand;
+import betago.commands.ByeCommand;
+import betago.commands.Command;
+import betago.commands.DeleteCommand;
+import betago.commands.FindCommand;
+import betago.commands.InvalidCommand;
+import betago.commands.ListCommand;
+import betago.commands.MarkUnmarkCommand;
 
 /**
  * Parser class that reads input from user and calls the corresponding methods accordingly.
@@ -26,66 +32,28 @@ public class Parser {
     /**
      * Reads input from the user and calls the corresponding methods.
      */
-    public void readCommands() {
-
-        Scanner sc = new Scanner(System.in);
+    public Command readCommands(String input) {
+        Scanner sc = new Scanner(input); //can check if can juz use input
         String str = sc.nextLine();
         String[] inputs = str.split(" ", 2);
-
-        while (!str.equalsIgnoreCase("bye")) {
-            if (str.equalsIgnoreCase("list")) {
-                try {
-                    this.tasks.listItems();
-                } catch (EmptyListException e) {
-                    Ui.printEmptyList();
-                }
-            } else if (inputs[0].equalsIgnoreCase("mark") || inputs[0].equalsIgnoreCase("unmark")) {
-                try {
-                    this.tasks.markUnmarkItems(str);
-                    this.storage.saveItems();
-                } catch (InvalidCommandException e) {
-                    Ui.printInvalidMarkerError();
-                }
-            } else if (inputs[0].equalsIgnoreCase("todo")) {
-                try {
-                    this.tasks.addTodo(str);
-                    this.storage.saveItems();
-                } catch (InvalidCommandException e) {
-                    Ui.printInvalidTodoDescriptionError();
-                }
-            } else if (inputs[0].equalsIgnoreCase("deadline")) {
-                try {
-                    this.tasks.addDeadline(str);
-                    this.storage.saveItems();
-                } catch (InvalidCommandException e) {
-                    Ui.printInvalidDeadlineDescriptionError();
-                }
-            } else if (inputs[0].equalsIgnoreCase("event")) {
-                try {
-                    this.tasks.addEvent(str);
-                    this.storage.saveItems();
-                } catch (InvalidCommandException e) {
-                    Ui.printInvalidEventDescriptionError();
-                }
-            } else if (inputs[0].equalsIgnoreCase("delete")) {
-                try {
-                    this.tasks.deleteItems(str);
-                    this.storage.saveItems();
-                } catch (InvalidCommandException e) {
-                    Ui.printInvalidMarkerError();
-                }
-            } else if (inputs[0].equalsIgnoreCase("find")) {
-                try {
-                    this.tasks.findTasks(str);
-                } catch (InvalidCommandException e) {
-                    Ui.printNoFindKeywordError();
-                }
-
-            } else {
-                Ui.printInvalidCommands();
-            }
-            str = sc.nextLine();
-            inputs = str.split(" ", 2);
+        if (str.equalsIgnoreCase("list")) {
+            return new ListCommand();
+        } else if (inputs[0].equalsIgnoreCase("mark") || inputs[0].equalsIgnoreCase("unmark")) {
+            return new MarkUnmarkCommand();
+        } else if (inputs[0].equalsIgnoreCase("todo")) {
+            return new AddTodoCommand();
+        } else if (inputs[0].equalsIgnoreCase("deadline")) {
+            return new AddDeadlineCommand();
+        } else if (inputs[0].equalsIgnoreCase("event")) {
+            return new AddEventCommand();
+        } else if (inputs[0].equalsIgnoreCase("delete")) {
+            return new DeleteCommand();
+        } else if (inputs[0].equalsIgnoreCase("find")) {
+            return new FindCommand();
+        } else if (str.equalsIgnoreCase("bye")) {
+            return new ByeCommand();
+        } else {
+            return new InvalidCommand("Apologies Human. I do not understand that command.");
         }
     }
 

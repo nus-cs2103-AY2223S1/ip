@@ -7,9 +7,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
-import betago.exceptions.EmptyListException;
-import betago.exceptions.InvalidCommandException;
-import betago.exceptions.InvalidDataFileException;
 import betago.tasks.Deadline;
 import betago.tasks.Event;
 import betago.tasks.Task;
@@ -50,47 +47,48 @@ public class TaskList {
 
     /**
      * Returns the list of Tasks in the current TaskList.
-     *
-     * @throws EmptyListException If there are no Tasks in the list.
      */
-    public void listItems() throws EmptyListException {
+    public String listItems() {
         if (list.size() == 0) {
-            throw new EmptyListException("There are no items in the list.");
+            return "Your list is currently empty.\n";
         }
-        System.out.print("Here are the tasks in your list:\n");
+        String output = "Here are the tasks in your list:\n";
         for (int i = 0; i < this.list.size(); i++) {
-            System.out.print(i + 1);
-            System.out.println(". " + this.list.get(i).toString());
+            output = output + (i + 1) + ". " + this.list.get(i).toString();
         }
-        System.out.print("\n");
+        output += ("\n");
+        return output;
     }
 
     /**
      * Marks or unmarks the Task in the specific index of the TaskList.
      *
      * @param str Mark or Unmark command that the user provided.
-     * @throws InvalidCommandException If there are no Tasks in the list.
+     * @throws DukeException If there are no Tasks in the list.
      */
-    public void markUnmarkItems(String str) throws InvalidCommandException {
+    public String markUnmarkItems(String str) throws DukeException {
         String[] inputs = str.split(" ", 2);
+        String output;
         if (inputs.length != 2) {
-            throw new InvalidCommandException("No task number indicated.");
+            throw new DukeException("Please indicate the task number that you want to mark/unmark.");
         } else {
             try {
                 int marker = Integer.valueOf(inputs[1]);
                 if (marker < 1 || marker > this.list.size()) {
-                    Ui.printInvalidMarkerError();
+                    throw new DukeException("Please indicate a valid task number that you want to mark/unmark.");
                 } else if (inputs[0].equalsIgnoreCase("mark")) {
                     this.list.get(marker - 1).markAsDone();
-                    System.out.println("Nice! I've marked this task as done:");
-                    System.out.println(this.list.get(marker - 1).toString() + "\n");
+                    output = "Nice! I've marked this task as done:\n"
+                            + this.list.get(marker - 1).toString() + "\n";
+                    return output;
                 } else {
                     this.list.get(marker - 1).markAsNotDone();
-                    System.out.println("Nice! I've marked this task as not done yet:");
-                    System.out.println(this.list.get(marker - 1).toString() + "\n");
+                    output = "Nice! I've marked this task as not done yet:\n"
+                            + this.list.get(marker - 1).toString() + "\n";
+                    return output;
                 }
             } catch (NumberFormatException ex) {
-                throw new InvalidCommandException("Invalid item to be marked.");
+                throw new DukeException("Please indicate a valid task number.");
             }
         }
     }
@@ -99,17 +97,19 @@ public class TaskList {
      * Adds a Todo Task in the ArrayList.
      *
      * @param str Add todo command that the user provided.
-     * @throws InvalidCommandException If no description is provided.
+     * @throws DukeException If no description is provided.
      */
-    public void addTodo(String str) throws InvalidCommandException {
+    public String addTodo(String str) throws DukeException {
         String[] inputs = str.split(" ", 2);
+        String output;
         if (inputs.length != 2) {
-            throw new InvalidCommandException("No description stated.");
+            throw new DukeException("Please indicate a task description in this format: 'todo (description)' \n");
         } else {
             Todo temp = new Todo(inputs[1]);
             this.list.add(temp);
-            System.out.println("Got it. I've added this Todo task:\n" + temp.toString());
-            System.out.println("Now you have " + this.list.size() + " tasks in the list.\n");
+            output = "Got it. I've added this Todo task:\n" + temp.toString() + "\n"
+                    + "Now you have " + this.list.size() + " tasks in the list.\n";
+            return output;
         }
     }
 
@@ -117,25 +117,27 @@ public class TaskList {
      * Adds a Deadline Task in the ArrayList.
      *
      * @param str Add deadline command that the user provided.
-     * @throws InvalidCommandException If no description or deadline provided.
+     * @throws DukeException If no description or deadline provided.
      */
-    public void addDeadline(String str) throws InvalidCommandException {
+    public String addDeadline(String str) throws DukeException {
         String[] inputs = str.split(" ", 2);
+        String output;
         if (inputs.length != 2) {
-            throw new InvalidCommandException("No description stated.");
+            throw new DukeException("Please indicate a task description for your Deadline task"
+                    + " in this format: 'deadline (description) /by (date) (time)'\n");
         } else {
             String[] when = inputs[1].split(" /by ", 2);
             if (when.length != 2) {
-                throw new InvalidCommandException("No deadline stated.");
+                throw new DukeException("Please indicate a valid deadline for your Deadline task "
+                        + "in this format: 'deadline (description) /by (date) (time)'\n"
+                        + "Please enter the date in one of the following format:"
+                        + " yyyy-MM-dd, dd-MMM-yyyy, dd/MM/yyyy\n");
             } else {
-                try {
-                    Deadline temp = new Deadline(when[0], when[1]);
-                    this.list.add(temp);
-                    System.out.println("Got it. I've added this Deadline task:\n" + temp.toString());
-                    System.out.println("Now you have " + this.list.size() + " tasks in the list.\n");
-                } catch (InvalidCommandException e) {
-                    System.out.println(e.getMessage());
-                }
+                Deadline temp = new Deadline(when[0], when[1]);
+                this.list.add(temp);
+                output = "Got it. I've added this Deadline task:\n" + temp.toString() + "\n"
+                        + "Now you have " + this.list.size() + " tasks in the list.\n";
+                return output;
             }
         }
     }
@@ -144,21 +146,25 @@ public class TaskList {
      * Adds an Event Task in the ArrayList.
      *
      * @param str Add event command that the user provided.
-     * @throws InvalidCommandException If no description or location provided.
+     * @throws DukeException If no description or location provided.
      */
-    public void addEvent(String str) throws InvalidCommandException {
+    public String addEvent(String str) throws DukeException {
         String[] inputs = str.split(" ", 2);
+        String output;
         if (inputs.length != 2) {
-            throw new InvalidCommandException("No description stated.");
+            throw new DukeException("Please indicate a task description for your Event task"
+                    + " in this format: 'deadline (description) /at (location)'\n");
         } else {
             String[] where = inputs[1].split(" /at ", 2);
             if (where.length != 2) {
-                throw new InvalidCommandException("No location of event stated.");
+                throw new DukeException("Please indicate a valid date and time for your Event task!\n"
+                        + "Do enter the command in this format: 'deadline (description) /at (date) (time)'\n");
             } else {
                 Event temp = new Event(where[0], where[1]);
                 this.list.add(temp);
-                System.out.println("Got it. I've added this Event task:\n" + temp.toString());
-                System.out.println("Now you have " + this.list.size() + " tasks in the list.\n");
+                output = "Got it. I've added this Event task:\n" + temp.toString() + "\n"
+                        + "Now you have " + this.list.size() + " tasks in the list.\n";
+                return output;
             }
         }
     }
@@ -167,24 +173,27 @@ public class TaskList {
      * Deletes the Task in the specific index of the ArrayList.
      *
      * @param str Delete command that the user provided.
-     * @throws InvalidCommandException If no task number is provided or task number is out of range.
+     * @throws DukeException If no task number is provided or task number is out of range.
      */
-    public void deleteItems(String str) throws InvalidCommandException {
+    public String deleteItems(String str) throws DukeException {
         String[] inputs = str.split(" ", 2);
+        String output;
         if (inputs.length != 2) {
-            throw new InvalidCommandException("No task number indicated.");
+            throw new DukeException("Please indicate the task number that you want to delete.");
         } else {
             try {
                 int marker = Integer.valueOf(inputs[1]);
                 if (marker < 1 || marker > this.list.size()) {
-                    System.out.println("Please indicate a valid task number!\n");
+                    output = "Please indicate a valid task number.\n";
+                    return output;
                 } else {
-                    System.out.println("Noted. I have removed this task:\n" + this.list.get(marker - 1).toString());
+                    output = "Noted. I have removed this task:\n" + this.list.get(marker - 1).toString();
                     this.list.remove(marker - 1);
-                    System.out.println("Now you have " + this.list.size() + " tasks in the list.\n");
+                    output += "Now you have " + this.list.size() + " tasks in the list.\n";
+                    return output;
                 }
             } catch (NumberFormatException ex) {
-                throw new InvalidCommandException("Invalid item to be marked.");
+                throw new DukeException("Please indicate a valid task number.");
             }
         }
     }
@@ -193,13 +202,13 @@ public class TaskList {
      * Read todo task from the data file and add a todo task accordingly into the TaskList.
      *
      * @param str Line of text from the data file to load task.
-     * @throws InvalidDataFileException If marker is not 1 or 0, or str is of the wrong format.
+     * @throws DukeException If marker is not 1 or 0, or str is of the wrong format.
      */
-    public void loadTodo(String str) throws InvalidDataFileException {
+    public void loadTodo(String str) throws DukeException {
         String[] inputs = str.split(" , ", 3);
+        String output;
         if (inputs.length != 3) {
-            System.out.println("Input length incorrect");
-            throw new InvalidDataFileException("Invalid Input from Data File: Insufficient details");
+            throw new DukeException("Invalid Input from Data File: Insufficient details");
         } else {
             Todo temp = new Todo(inputs[2]);
             if (inputs[1].equalsIgnoreCase("1")) {
@@ -207,7 +216,7 @@ public class TaskList {
             } else if (inputs[1].equalsIgnoreCase("0")) {
                 temp.markAsNotDone();
             } else {
-                throw new InvalidDataFileException("Invalid Input from Data File: Incorrect marker");
+                throw new DukeException("Invalid Input from Data File: Incorrect marker");
             }
             this.list.add(temp);
         }
@@ -217,12 +226,12 @@ public class TaskList {
      * Read deadline task from the data file and add a deadline task accordingly into the TaskList.
      *
      * @param str Line of text from the data file to load task.
-     * @throws InvalidDataFileException If marker is not 1 or 0, or str is of the wrong format.
+     * @throws DukeException If marker is not 1 or 0, or str is of the wrong format.
      */
-    public void loadDeadline(String str) throws InvalidDataFileException {
+    public void loadDeadline(String str) throws DukeException {
         String[] inputs = str.split(" , ", 4);
         if (inputs.length != 4) {
-            throw new InvalidDataFileException("Invalid Input from Data File: Insufficient details");
+            throw new DukeException("Invalid Input from Data File: Insufficient details");
         } else {
             try {
                 String[] dateTime = inputs[3].split(",", 2);
@@ -234,22 +243,24 @@ public class TaskList {
                         deadlineDateTime = deadlineDateTime + dateTime[1];
                         temp = new Deadline(inputs[2], deadlineDateTime);
                     } else {
-                        temp = new Deadline(inputs[2], dateTime[0]);
+                        LocalDate d = LocalDate.parse(dateTime[0], DateTimeFormatter.ofPattern("MMM d yyyy"));
+                        String deadlineDateTime = d.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                        temp = new Deadline(inputs[2], deadlineDateTime);
                     }
                     if (inputs[1].equalsIgnoreCase("1")) {
                         temp.markAsDone();
                     } else if (inputs[1].equalsIgnoreCase("0")) {
                         temp.markAsNotDone();
                     } else {
-                        throw new InvalidDataFileException("Invalid Input from Data File: Incorrect marker");
+                        throw new DukeException("Invalid Input from Data File: Incorrect marker");
                     }
                     this.list.add(temp);
                 } catch (DateTimeParseException e) {
                     //Need to check this
                 }
-            } catch (InvalidCommandException e) {
-                throw new InvalidDataFileException(
-                        "Invalid Input from Data File: Invalid BetaGo.Tasks.Deadline BetaGo.Tasks.Task");
+            } catch (DukeException e) {
+                throw new DukeException(
+                        "Invalid Input from Data File: Invalid Deadline Task");
             }
 
         }
@@ -259,12 +270,12 @@ public class TaskList {
      * Read event task from the data file and add an event task accordingly into the TaskList.
      *
      * @param str Line of text from the data file to load task.
-     * @throws InvalidDataFileException If marker is not 1 or 0, or str is of the wrong format.
+     * @throws DukeException If marker is not 1 or 0, or str is of the wrong format.
      */
-    public void loadEvent(String str) throws InvalidDataFileException {
+    public void loadEvent(String str) throws DukeException {
         String[] inputs = str.split(" , ", 4);
         if (inputs.length != 4) {
-            throw new InvalidDataFileException("Invalid Input from Data File: Insufficient details");
+            throw new DukeException("Invalid input from data file: Insufficient details");
         } else {
             Event temp = new Event(inputs[2], inputs[3]);
             if (inputs[1].equalsIgnoreCase("1")) {
@@ -272,7 +283,7 @@ public class TaskList {
             } else if (inputs[1].equalsIgnoreCase("0")) {
                 temp.markAsNotDone();
             } else {
-                throw new InvalidDataFileException("Invalid Input from Data File: Incorrect marker");
+                throw new DukeException("Invalid Input from Data File: Incorrect marker");
             }
             this.list.add(temp);
         }
@@ -297,12 +308,13 @@ public class TaskList {
      * Find tasks that match the keyword inputted by user.
      *
      * @param str Line of text command from user including keyword to search.
-     * @throws InvalidCommandException If no keyword is provided.
+     * @throws DukeException If no keyword is provided.
      */
-    public void findTasks(String str) throws InvalidCommandException {
+    public String findTasks(String str) throws DukeException {
         String[] inputs = str.split(" ", 2);
+        String output;
         if (inputs.length != 2) {
-            throw new InvalidCommandException("No keyword input");
+            throw new DukeException("Please indicate a keyword to search in this format: 'find (keyword)'\n");
         } else {
             ArrayList<Task> matched = new ArrayList<>();
             for (int i = 0; i < this.list.size(); i++) {
@@ -311,14 +323,14 @@ public class TaskList {
                 }
             }
             if (matched.size() == 0) {
-                System.out.println("There are no matching tasks found.\n");
+                output = "There are no matching tasks found.\n";
+                return output;
             } else {
-                System.out.println("Here are the matching tasks in your list:");
+                output = "Here are the matching tasks in your list:\n";
                 for (int i = 0; i < matched.size(); i++) {
-                    System.out.print(i + 1);
-                    System.out.println(". " + matched.get(i).toString());
+                    output = output + (i + 1) + ". " + matched.get(i).toString() + "\n";
                 }
-                System.out.print("\n");
+                return output;
             }
         }
     }

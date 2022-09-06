@@ -1,15 +1,12 @@
 package betago;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
-
+import betago.commands.Command;
 /**
  * Duke class that contains the main program and initialises the various objects used such as
  * TaskList, Parser and Storage.
  */
-public class Duke extends Application {
+public class Duke {
+
     /** Storage variable to load and save tasks from data file */
     private final Storage storage;
 
@@ -27,31 +24,16 @@ public class Duke extends Application {
         this.tasks = new TaskList();
         this.storage = new Storage(this.tasks);
         this.commander = new Parser(this.tasks, this.storage);
-    }
-
-    /**
-     * Runs the program by printing welcome message (by calling the Ui greet method),
-     * loading date file (by calling Storage loadFile method),
-     * get input from users and executing the commands (by calling Parser readCommands method),
-     * and terminate by printing goodbye message (by calling the Ui goodbye method).
-     */
-    public void run() {
         Ui.greet();
         this.storage.loadFile();
-        this.commander.readCommands();
-        Ui.goodbye();
+    }
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) {
+        Command command = this.commander.readCommands(input);
+        return command.execute(this.tasks, this.storage, input);
     }
 
-    @Override
-    public void start(Stage stage) {
-        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
-        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
-
-        stage.setScene(scene); // Setting the stage to show our screen
-        stage.show(); // Render the stage.
-    }
-
-    public static void main(String[] args) {
-        new Duke().run();
-    }
 }
