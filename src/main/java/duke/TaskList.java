@@ -1,6 +1,8 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class TaskList {
 
@@ -59,5 +61,9 @@ public class TaskList {
         for (int i = 0; i < taskList.size(); i++) {
             System.out.println((i + 1) + "." + taskList.get(i).toString());
         }
+    }
+
+    public List<Task> find(String toFind) {
+        return taskList.stream().filter(t -> t.toString().contains(toFind)).collect(Collectors.toList());
     }
 }

@@ -1,7 +1,7 @@
 package duke;
 
 import java.time.format.DateTimeParseException;
-
+import java.util.List;
 public class Parser {
 
     public static void parseInput(String input, Ui ui, Storage storage, TaskList taskList) {
@@ -73,6 +73,10 @@ public class Parser {
                 int idx = Integer.parseInt(breakitdown[1]);
                 Task toDelete = taskList.delete(idx);
                 ui.printOnDelete(toDelete, taskList);
+            } else if (command.equals("find")) {
+                String toFind = breakitdown[1];
+                List<Task> found = taskList.find(toFind);
+                ui.printOnFind(found);
             } else {
                 throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
