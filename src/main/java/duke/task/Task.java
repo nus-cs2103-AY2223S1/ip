@@ -37,6 +37,7 @@ public class Task {
      * @return Description of the task.
      */
     public String getDescription() {
+        assert !description.equals("") : "description cannot be empty";
         return this.description;
     }
 
