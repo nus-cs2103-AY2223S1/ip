@@ -36,6 +36,62 @@ public class Storage {
     }
 
     /**
+     * checks if a file exists
+     *
+     * @return boolean
+     */
+    public boolean isExistingFile() {
+        return Files.isRegularFile(Paths.get(this.filePath));
+    }
+
+    /**
+     * checks if a directory exists
+     *
+     * @return boolean
+     */
+    public boolean isExistingDir() {
+        String[] splitArr = filePath.split("/");
+        return Files.isDirectory(
+                Paths.get(splitArr[0] + "/" + splitArr[1]));
+    }
+
+    /**
+     * taskParser that decides what kind of tasks are initialised
+     *
+     * @param line
+     * @return Task
+     * @throws IOException
+     */
+    public Task taskParser(String line) throws IOException {
+        String[] split = line.split("#");
+        String type = split[0];
+        String done = split[1];
+        String name = split[2];
+        LocalDate date;
+        Task task = null;
+        switch (type) {
+        case ("T"):
+            task = new Todo(name);
+            break;
+        case ("D"):
+            date = LocalDate.parse(split[3]);
+            task = new Deadlines(name, date);
+            break;
+        case ("E"):
+            date = LocalDate.parse(split[3]);
+            task = new Events(name, date);
+            break;
+        default:
+            throw new IOException("Loading Error");
+        }
+
+        if (done.equals("1")) {
+            task.setDone();
+        }
+        return task;
+    }
+
+    /**
      * loadTasks method that checks and loads all task from a text file
      *
      * @return ArrayList of Tasks
@@ -44,18 +100,12 @@ public class Storage {
         try {
             int index = 0;
             String[] splitArr = filePath.split("/");
-
-            Boolean isDirectoryExist = Files.isDirectory(
-                    Paths.get(splitArr[0] + "/" + splitArr[1]));
-            if (!isDirectoryExist) {
+            if (!isExistingDir()) {
                 new File(splitArr[1]).mkdir();
             }
-
-            Boolean isFileExist = Files.isRegularFile(Paths.get(this.filePath));
-            if (!isFileExist) {
+            if (!isExistingFile()) {
                 new File(this.filePath).createNewFile();
             }
-
             FileReader fr = new FileReader(this.filePath);
             BufferedReader br = new BufferedReader(fr);
 
@@ -63,32 +113,7 @@ public class Storage {
             System.out.println("These are the tasks that you had previously!");
 
             while (line != null) {
-                String[] split = line.split("#");
-                String type = split[0];
-                String done = split[1];
-                String name = split[2];
-                LocalDate date;
-
-                Task task = null;
-                switch (type) {
-                case ("T"):
-                    task = new Todo(name);
-                    break;
-                case ("D"):
-                    date = LocalDate.parse(split[3]);
-                    task = new Deadlines(name, date);
-                    break;
-                case ("E"):
-                    date = LocalDate.parse(split[3]);
-                    task = new Events(name, date);
-                    break;
-                default:
-                    throw new IOException("Loading Error");
-                }
-
-                if (done.equals("1")) {
-                    task.setDone();
-                }
+                Task task = taskParser(line);
                 taskList.add(index, task);
                 index++;
                 line = br.readLine();
