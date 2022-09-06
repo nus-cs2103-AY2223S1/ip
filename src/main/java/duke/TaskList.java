@@ -56,7 +56,9 @@ public class TaskList {
         if (num > taskList.size() || num <= 0) {
             throw new DukeException("");
         }
-        return taskList.remove(num - 1);
+        Task deletedTask = taskList.remove(num - 1);
+        assert deletedTask != null;
+        return deletedTask;
     }
 
     /**
@@ -69,7 +71,10 @@ public class TaskList {
         if (number > taskList.size() || number <= 0) {
             throw new DukeException("");
         }
-        taskList.get(number - 1).setDone(true);
+        Task taskToMark = taskList.get(number - 1);
+        assert taskToMark != null;
+        taskToMark.setDone(true);
+
     }
 
     /**
@@ -82,7 +87,9 @@ public class TaskList {
         if (number > taskList.size() || number <= 0) {
             throw new DukeException("");
         }
-        taskList.get(number - 1).setDone(false);
+        Task taskToUnmark = taskList.get(number - 1);
+        assert taskToUnmark != null;
+        taskToUnmark.setUnDone(false);
     }
 
     /**
