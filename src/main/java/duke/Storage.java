@@ -173,4 +173,27 @@ public class Storage {
             throw new DukeException("I/O Error occurred when reading from save file!");
         }
     }
+
+    /**
+     * Edits the given task in the save file.
+     *
+     * @param id The id of the task to edit.
+     * @param task The new task in the save file.
+     * @throws DukeException if error occurs while reading from or writing to save file.
+     */
+    public void editTaskInSave(int id, Task task) throws DukeException {
+        try {
+            List<String> history = Files.readAllLines(this.path);
+            history.set(id, task.toCommand());
+            String saveResult = history.stream()
+                    .map(s -> s + "\n")
+                    .collect(StringBuilder::new,
+                            StringBuilder::append,
+                            StringBuilder::append)
+                    .toString();
+            Files.write(this.path, saveResult.getBytes());
+        } catch (IOException e) {
+            throw new DukeException("I/O Error occurred when reading from save file!");
+        }
+    }
 }

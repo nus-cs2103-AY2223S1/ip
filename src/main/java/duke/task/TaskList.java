@@ -118,7 +118,7 @@ public class TaskList {
             return result.toString();
         } catch (DateTimeException e) {
             throw new DukeException("Uh oh! Please enter your date/time in this format:\n"
-                    + "dd mm yyyy hh:mm(optional)");
+                    + "DD MM YYYY HH:mm(optional)");
         }
     }
 
@@ -157,7 +157,7 @@ public class TaskList {
             return result.toString();
         } catch (DateTimeException e) {
             throw new DukeException("Uh oh! Please enter your date/time in this format:\n"
-                    + "dd mm yyyy hh:mm(optional)");
+                    + "DD MM YYYY HH:mm(optional)");
         }
     }
 
@@ -362,6 +362,95 @@ public class TaskList {
             return "Here are the matching tasks in your list:" + result.toString();
         } else {
             return "Hm...I found no matching task in your list.";
+        }
+    }
+
+    /**
+     * Edits the specified task's description or date/time.
+     *
+     * @param command The command represented by an array of Strings.
+     * @return The String message for successfully editing a task.
+     * @throws DukeException if the edit command is invalid.
+     */
+    public String editTask(String[] command, Storage storage) throws DukeException {
+        assert command.length > 0 : "String array command must not be empty.";
+        if (command.length == 1) {
+            throw new DukeException("Please specify the task to be edited:\n"
+                    + "To edit the description: `editD <id> <new_description>`\n"
+                    + "To edit the time: `editT <id> <new_date/time>");
+        }
+        assert command[0].equals("editT") || command[0].equals("editD") : "command must be editT or editD";
+        if (command[0].equals("editD")) {
+            String[] editDescriptionCommand = command[1].split(" ", 2);
+            return editTaskDescription(editDescriptionCommand, storage);
+        } else if (command[0].equals("editT")) {
+            String[] editTimeCommand = command[1].split(" ", 2);
+            return editTaskTime(editTimeCommand, storage);
+        } else {
+            return "";
+        }
+    }
+
+    /**
+     * Edits the specified task's description.
+     *
+     * @param command The command represented by an array of Strings.
+     * @return The String message for successfully editing a task.
+     * @throws DukeException if the edit command is invalid.
+     */
+    public String editTaskDescription(String[] command, Storage storage) throws DukeException {
+        if (command.length != 2) {
+            throw new DukeException("Please specify the new description for this task!");
+        }
+        String idString = command[0];
+        String newDescription = command[1];
+        try {
+            int id = Integer.parseInt(idString);
+            int len = this.taskList.size();
+            if (id <= 0 || id > len) {
+                throw new DukeException("Invalid task id!");
+            }
+            String result = this.taskList.get(id - 1).changeDescription(newDescription);
+            storage.editTaskInSave(id - 1, this.taskList.get(id - 1));
+            return result;
+        } catch (NumberFormatException e) {
+            throw new DukeException("Please specify the task to edit by its integer id:\n"
+                    + "editT <id> <new_description");
+        } catch (DukeException e) {
+            throw e;
+        }
+    }
+
+    /**
+     * Edits the specified task's date/time.
+     *
+     * @param command The command represented by an array of Strings.
+     * @return The String message for successfully editing a task.
+     * @throws DukeException if the edit command is invalid.
+     */
+    public String editTaskTime(String[] command, Storage storage) throws DukeException {
+        if (command.length != 2) {
+            throw new DukeException("Please specify the new date/time for this task!");
+        }
+        String idString = command[0];
+        String newDate = command[1];
+        try {
+            int id = Integer.parseInt(idString);
+            int len = this.taskList.size();
+            if (id <= 0 || id > len) {
+                throw new DukeException("Invalid task id!");
+            }
+            String result = this.taskList.get(id - 1).changeDate(newDate);
+            storage.editTaskInSave(id - 1, this.taskList.get(id - 1));
+            return result;
+        } catch (NumberFormatException e) {
+            throw new DukeException("Please specify the task to edit by its integer id:\n"
+                    + "editT <id> <new_description");
+        } catch (DateTimeException e) {
+            throw new DukeException("Uh oh! Please enter your date/time in this format:\n"
+                    + "DD MM YYYY HH:mm(optional)");
+        } catch (DukeException e) {
+            throw e;
         }
     }
 }

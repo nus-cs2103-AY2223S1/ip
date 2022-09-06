@@ -3,16 +3,7 @@ package duke.parser;
 import duke.DukeException;
 import duke.Storage;
 import duke.Ui;
-import duke.command.AddCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.ExitCommand;
-import duke.command.FindCommand;
-import duke.command.HelpCommand;
-import duke.command.InvalidCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.UnmarkCommand;
+import duke.command.*;
 import duke.task.TaskList;
 
 /**
@@ -47,6 +38,8 @@ public class Parser {
             return new FindCommand(taskList, words);
         } else if (HelpCommand.isCommand(command)) {
             return new HelpCommand();
+        } else if (EditCommand.isCommand(words[0])) {
+            return new EditCommand(taskList, storage, words);
         }
         return new InvalidCommand();
     }

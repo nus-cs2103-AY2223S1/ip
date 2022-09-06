@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.DukeException;
+
 /**
  * Represents a Task with a description and a completion status.
  */
@@ -83,4 +85,24 @@ public abstract class Task {
     public boolean hasKeyword(String keyword) {
         return this.description.contains(keyword);
     }
+
+    /**
+     * Edits the description of this task with the given new description.
+     *
+     * @param newDescription The new description of this task.
+     * @return The String message for successfully editing the description.
+     */
+    public String changeDescription(String newDescription) {
+        this.description = newDescription;
+        return "OK, the task has been changed to the following:\n" + this;
+    }
+
+    /**
+     * Edits the time of this task with the given new time.
+     *
+     * @param newTime The String representing the new Date/time
+     * @return The String message for successfully editing the time.
+     * @throws DukeException if the Task type is ToDo because it has no date/time.
+     */
+    public abstract String changeDate(String newTime) throws DukeException;
 }
