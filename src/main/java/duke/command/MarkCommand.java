@@ -24,22 +24,13 @@ public class MarkCommand implements Command{
      * Refreshes the storage to write the new changes.
      *
      * @param tasks TaskList which contains all the tasks Duke currently has.
-     * @param ui Ui created when starting Duke.
      * @param storage Storage created when starting Duke.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        Ui.dukePrint(tasks.mark(TO_MARK));
+    public String execute(TaskList tasks, Storage storage) {
+        String res = tasks.mark(TO_MARK);
         storage.refresh(tasks);
-    }
 
-    /**
-     * Returns whether this command is an exit command.
-     *
-     * @return False since this is not an exit.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
+        return res;
     }
 }
