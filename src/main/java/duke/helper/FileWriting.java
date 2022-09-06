@@ -24,13 +24,4 @@ public class FileWriting {
             e.printStackTrace();
         }
     }
-
-    /**
-     * Method to clear all task in the .txt of the filePath
-     *
-     * @param filePath the path of the file to be cleared
-     */
-    public void clear(String filePath) {
-        update(filePath, new TaskList());
-    }
 }

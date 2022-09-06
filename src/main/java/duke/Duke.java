@@ -11,6 +11,7 @@ import duke.task.TaskList;
 public class Duke {
     private TaskList list;
     private Storage storage;
+    private String filePath;
 
     /**
      * Constructor of the duke.Duke class given a filepath
@@ -19,6 +20,7 @@ public class Duke {
     public Duke(String filePath) {
         storage = new Storage(filePath);
         list = new TaskList(storage.load());
+        this.filePath = filePath;
     }
 
     /**
@@ -29,7 +31,7 @@ public class Duke {
     }
 
     public String getResponse(String input) {
-        return Parser.parse(input, list);
+        return Parser.parse(input, list, filePath);
     }
 
     public static void main(String[] args) {
