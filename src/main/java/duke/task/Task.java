@@ -5,7 +5,7 @@ package duke.task;
  *
  * @author totsukatomofumi
  */
-abstract public class Task {
+public abstract class Task {
     /** Description of the task. */
     private String description;
 
@@ -56,7 +56,7 @@ abstract public class Task {
         case NOTDONE:
             return "[ ] " + this.description;
         default:
-            return "";  //should not come here
+            return ""; //should not come here
         }
     }
 
@@ -73,7 +73,7 @@ abstract public class Task {
         case NOTDONE:
             return "0" + this.description.length() + "_" + this.description;
         default:
-            return "";  //should not come here
+            return ""; //should not come here
         }
     }
 

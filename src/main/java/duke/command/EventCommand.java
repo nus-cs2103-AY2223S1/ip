@@ -1,10 +1,10 @@
 package duke.command;
 
+import java.time.LocalDate;
+
 import duke.exception.IllegalDescriptionException;
 import duke.logic.TaskList;
 import duke.task.Event;
-
-import java.time.LocalDate;
 
 /**
  * EventCommand is a command for Duke to remember an event.

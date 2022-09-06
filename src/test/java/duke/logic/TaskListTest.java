@@ -1,11 +1,10 @@
-package duke.logic;
-
-import org.junit.jupiter.api.Test;
+package du
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 public class TaskListTest {
     private static Storage storage = new Storage("./test/tasklisttest.txt");

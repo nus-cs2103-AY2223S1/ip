@@ -1,7 +1,7 @@
 package duke.command;
 
-import duke.logic.TaskList;
 import duke.exception.IllegalDescriptionException;
+import duke.logic.TaskList;
 import duke.task.ToDo;
 
 /**

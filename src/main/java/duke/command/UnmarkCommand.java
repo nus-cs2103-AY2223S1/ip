@@ -1,7 +1,7 @@
 package duke.command;
 
-import duke.logic.TaskList;
 import duke.exception.IllegalTaskException;
+import duke.logic.TaskList;
 
 /**
  * UnmarkCommand is a command for Duke to unmark a task.

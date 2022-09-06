@@ -1,7 +1,7 @@
 package duke.command;
 
-import duke.logic.TaskList;
 import duke.exception.IllegalTaskException;
+import duke.logic.TaskList;
 
 /**
  * MarkCommand is a command for Duke to mark a task.
