@@ -1,17 +1,17 @@
 package isara;
 
-import isara.task.Task;
-import isara.task.Deadline;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import isara.task.Deadline;
+import isara.task.Task;
 
 public class DeadlineTest {
     @Test
-    public void testMarkFunctionalityForDeadline(){
+    public void testMarkFunctionalityForDeadline() {
         LocalDate date = LocalDate.parse("2022-05-12");
         Task deadline = new Deadline("Homework", date);
         assertEquals(deadline.toString(), "[D][ ] Homework (by: 2022-05-12)");
@@ -20,7 +20,7 @@ public class DeadlineTest {
     }
 
     @Test
-    public void testUnmarkFunctionalityForDeadline(){
+    public void testUnmarkFunctionalityForDeadline() {
         LocalDate date = LocalDate.parse("2022-05-12");
         Task deadline = new Deadline("Homework", date);
         deadline.mark();
@@ -30,7 +30,7 @@ public class DeadlineTest {
     }
 
     @Test
-    public void testGetStatusIconForDeadline(){
+    public void testGetStatusIconForDeadline() {
         LocalDate date = LocalDate.parse("2022-05-12");
         Task deadline = new Deadline("Homework", date);
         deadline.mark();

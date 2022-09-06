@@ -1,15 +1,15 @@
 package isara;
 
+import org.junit.jupiter.api.Test;
+
 import isara.task.Task;
 import isara.task.ToDo;
-
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ToDoTest {
     @Test
-    public void testMarkFunctionalityForToDo(){
+    public void testMarkFunctionalityForToDo() {
         Task toDo = new ToDo("Run in the Morning");
         assertEquals(toDo.toString(), "[T][ ] Run in the Morning");
         toDo.mark();
@@ -17,7 +17,7 @@ public class ToDoTest {
     }
 
     @Test
-    public void testUnmarkFunctionalityForToDo(){
+    public void testUnmarkFunctionalityForToDo() {
         Task toDo = new ToDo("Run in the Morning");
         toDo.mark();
         assertEquals(toDo.toString(), "[T][X] Run in the Morning");
@@ -26,7 +26,7 @@ public class ToDoTest {
     }
 
     @Test
-    public void testGetStatusIconForToDo(){
+    public void testGetStatusIconForToDo() {
         Task toDo = new ToDo("Run in the Morning");
         toDo.mark();
         assertEquals(toDo.toString(), "[T][X] Run in the Morning");
