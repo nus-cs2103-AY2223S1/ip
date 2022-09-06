@@ -88,27 +88,25 @@ public class Ui {
     /**
      * Returns a string representing the tasks to display.
      *
+     * @param taskList The task list to search in.
+     * @param params The search parameters, if any.
      * @param tasks The tasks to display.
      * @return A string representing the tasks to display.
      */
-    public String showTasks(String ... tasks) {
+    public String showTasks(TaskList taskList, String params, String ... tasks) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < tasks.length; ++i) {
             if (tasks[i] != null) {
                 sb.append(String.format("%d. %s%n", i + 1, tasks[i]));
             }
         }
+        if (sb.length() == 0) {
+            return showNoTasks(taskList, params);
+        }
         return sb.toString();
     }
 
-    /**
-     * Returns a string showing that there are no tasks for the find or list query.
-     *
-     * @param taskList The task list containing the tasks.
-     * @param params The parameters of the query.
-     * @return A string showing that there are no tasks for the query.
-     */
-    public String showNoTasks(TaskList taskList, String params) {
+    private String showNoTasks(TaskList taskList, String params) {
         return taskList.getNumberOfTasks() == 0
                 ? "There are no tasks in your list."
                 : "There are no tasks found for '" + params + "'.";

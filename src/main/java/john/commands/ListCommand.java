@@ -26,9 +26,6 @@ public class ListCommand extends Command {
     @Override
     public String execute() {
         String[] tasksToShow = tasklist.listTasks(this.listParams);
-        if (tasksToShow == null) {
-            return ui.showNoTasks(tasklist, this.listParams);
-        }
-        return ui.showTasks(tasksToShow);
+        return ui.showTasks(tasklist, listParams, tasksToShow);
     }
 }

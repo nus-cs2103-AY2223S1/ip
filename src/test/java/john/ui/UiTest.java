@@ -43,18 +43,23 @@ public class UiTest {
     }
 
     @Test
-    public void showTasksTest() {
-        assertEquals("1. hello\n2. world\n", new Ui().showTasks("hello", "world"));
+    public void showTasks_noInputTasks_noTasksInListReturned() {
+        assertEquals("There are no tasks in your list.",
+                new Ui().showTasks(new TaskList(), "12/12/2022"));
     }
 
     @Test
-    public void showNoTasksTest() {
-        assertEquals("There are no tasks in your list.",
-                new Ui().showNoTasks(new TaskList(), null));
+    public void showTasks_noFoundTasks_noTasksFoundReturned() {
         TaskList taskList = new TaskList();
         taskList.addTodo("hello");
-        assertEquals("There are no tasks found for 'test'.",
-                new Ui().showNoTasks(taskList, "test"));
+        assertEquals("There are no tasks found for '12/12/2022'.",
+                new Ui().showTasks(taskList, "12/12/2022"));
+    }
+
+    @Test
+    public void showTasks_inputTasks_tasksReturned() {
+        assertEquals("1. hello\n2. world\n",
+                new Ui().showTasks(new TaskList(), "12/12/2022", "hello", "world"));
     }
 
     @Test

@@ -26,9 +26,6 @@ public class FindCommand extends Command {
     @Override
     public String execute() {
         String[] tasksToShow = tasklist.findTasks(this.findParams);
-        if (tasksToShow == null) {
-            return ui.showNoTasks(tasklist, this.findParams);
-        }
-        return ui.showTasks(tasksToShow);
+        return ui.showTasks(tasklist, findParams, tasksToShow);
     }
 }

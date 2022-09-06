@@ -58,28 +58,16 @@ public class TaskList {
      * @return An array containing the string representation of the tasks in the task list.
      */
     public String[] listTasks(String params) {
-        String[] tasksToShow = new String[tasks.size()];
-        if (tasks.size() == 0) {
-            return null;
-        } else if (params.equals("")) {
-            for (int i = 0; i < tasks.size(); i++) {
-                tasksToShow[i] = tasks.get(i).toString();
-            }
-        } else {
+        if (!params.equals("")) {
             LocalDate date = LocalDate.parse(params,
                     DateTimeFormatter.ofPattern("d/M/yyyy"));
-            boolean hasTask = false;
-            for (int i = 0; i < tasks.size(); i++) {
-                if (tasks.get(i).isEqualDate(date)) {
-                    hasTask = true;
-                    tasksToShow[i] = tasks.get(i).toString();
-                }
-            }
-            if (!hasTask) {
-                return null;
-            }
+            return tasks.stream()
+                    .map(t -> t.isEqualDate(date) ? t.toString() : null)
+                    .toArray(String[]::new);
         }
-        return tasksToShow;
+        return tasks.stream()
+                .map(Object::toString)
+                .toArray(String[]::new);
     }
 
     /**
@@ -89,21 +77,9 @@ public class TaskList {
      * @return An array containing the string representation of the tasks with matching keywords.
      */
     public String[] findTasks(String params) {
-        if (tasks.size() == 0) {
-            return null;
-        }
-        boolean hasTask = false;
-        String[] tasksToShow = new String[tasks.size()];
-        for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).isMatchingKeyword(params)) {
-                hasTask = true;
-                tasksToShow[i] = tasks.get(i).toString();
-            }
-        }
-        if (!hasTask) {
-            return null;
-        }
-        return tasksToShow;
+        return tasks.stream()
+                .map(t -> t.isMatchingKeyword(params) ? t.toString() : null)
+                .toArray(String[]::new);
     }
 
     /**
