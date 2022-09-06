@@ -1,6 +1,6 @@
 package duke;
 
-import duke.exceptions.ImproperFormatException;
+import duke.exceptions.DukeException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,7 +17,7 @@ public class EventTest {
             String markedTestExpected = "[E] [X] markedEvent (at: Oct 10 2022, 6:00 PM)";
             assertEquals(unmarkedTestExpected, unmarkedTest.toString(), "toString an unmarked event.");
             assertEquals(markedTestExpected, markedTest.toString(), "toString a marked event.");
-        } catch (ImproperFormatException e) {
+        } catch (DukeException e) {
             System.out.println(e);
         }
     }
@@ -32,7 +32,7 @@ public class EventTest {
             String markedTestExpected = "E|1|markedEvent| 2022-10-10 18:00\n";
             assertEquals(unmarkedTestExpected, unmarkedTest.toSaveVersion(), "toSaveVersion an unmarked event.");
             assertEquals(markedTestExpected, markedTest.toSaveVersion(), "toSaveVersion a marked event.");
-        } catch (ImproperFormatException e) {
+        } catch (DukeException e) {
             System.out.println(e);
         }
     }

@@ -4,88 +4,93 @@ import duke.command.*;
 import duke.exceptions.*;
 
 public class Parser {
-
     public static Command parse(String input) throws DukeException {
+        if (input.isBlank()) {
+            throw new BlankCommandException();
+        }
         String[] inputArr = input.split(" ", 2);
-        String inputKeyword = inputArr[0];
+        // inputArr: ["keyword", "description"]
+        String keyword = inputArr[0];
+        if (inputArr.length < 2) {
+            return parseSimpleCommand(keyword);
+        }
+        if (inputArr[1].isBlank()) {
+            throw new BlankDescriptionException();
+        }
+        String description = inputArr[1];
+        return parseComplexCommand(keyword, description);
+    }
 
-        switch (inputKeyword) {
-            case (""):
-                throw new BlankCommandException();
+    private static Command parseSimpleCommand(String keyword) throws CommandNotFoundException {
+        switch (keyword) {
             case ("bye"):
                 return new ExitCommand();
 
             case ("list"):
                 return new ListCommand();
+            default:
+                throw new CommandNotFoundException(keyword);
+        }
+    }
 
+    private static Command parseComplexCommand(String keyword, String description) throws DukeException {
+        switch (keyword) {
             case ("find"):
-                return new FindCommand(inputArr[1]);
+                return new FindCommand(description);
             case ("todo"):
-                if (inputArr.length < 1 || inputArr[1].equals("")) {
-                    throw new BlankContentException();
-                }
-                return new AddCommand(new ToDo(inputArr[1]));
-
+                ToDo toDo = new ToDo(description);
+                return new AddCommand(toDo);
             case ("deadline"):
-                if (inputArr.length < 2) {
-                    throw new BlankContentException();
-                }
-                String[] deadlineArr = inputArr[1].split(" /by", 2);
+                // description: "(deadlineTask) /by (by)
+                String[] deadlineArr = description.split(" /by", 2);
+                // deadlineArr: ["deadlineTask", " by"]
                 if (deadlineArr.length == 1) {
-                    throw new ImproperFormatException();
+                    throw new ImproperDeadlineFormatException();
                 }
-                if (deadlineArr[1].equals("")) {
+                String deadlineTask = deadlineArr[0];
+                String by = deadlineArr[1];
+                if (by.isBlank()) {
                     throw new NoDateException();
                 }
-                return new AddCommand(new Deadline(deadlineArr[0], deadlineArr[1]));
-
+                Deadline deadline = new Deadline(deadlineTask, by);
+                return new AddCommand(deadline);
             case ("event"):
-                if (inputArr.length < 2) {
-                    throw new BlankContentException();
-                }
-                String[] eventArr = inputArr[1].split(" /at", 2);
+                // description: "(EventTask) /at (at)"
+                String[] eventArr = description.split(" /at", 2);
+                // eventArr: ["eventTask", "at"]
                 if (eventArr.length == 1) {
-                    throw new ImproperFormatException();
+                    throw new ImproperEventFormatException();
                 }
-                if (eventArr[1].equals("")) {
+                String evenTask = eventArr[0];
+                String at = eventArr[1];
+                if (at.isBlank()) {
                     throw new NoDateException();
                 }
-                return new AddCommand(new Event(eventArr[0], eventArr[1]));
-
+                Event event = new Event(evenTask, at);
+                return new AddCommand(event);
             case ("mark"):
-                if (inputArr.length < 2) {
-                    throw new BlankContentException();
-                }
                 try {
-                    int x = Integer.valueOf(inputArr[1]);
+                    int x = Integer.valueOf(description);
                     return new MarkStatusCommand(x);
                 } catch (NumberFormatException e) {
                     throw new InvalidNumberException();
                 }
-
             case ("unmark"):
-                if (inputArr.length < 2) {
-                    throw new BlankContentException();
-                }
                 try {
-                    int x = Integer.valueOf(inputArr[1]);
+                    int x = Integer.valueOf(description);
                     return new UnmarkStatusCommand(x);
                 } catch (NumberFormatException e) {
                     throw new InvalidNumberException();
                 }
-
             case ("delete"):
-                if (inputArr.length < 2) {
-                    throw new BlankContentException();
-                }
                 try {
-                    int x = Integer.valueOf(inputArr[1]);
+                    int x = Integer.valueOf(description);
                     return new DeleteCommand(x);
                 } catch (NumberFormatException e) {
                     throw new InvalidNumberException();
                 }
             default:
-                throw new CommandNotFoundException(inputKeyword);
+                throw new CommandNotFoundException(description);
         }
     }
 }
