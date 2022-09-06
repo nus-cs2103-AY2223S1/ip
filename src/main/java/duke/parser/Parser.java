@@ -26,14 +26,35 @@ import java.util.List;
  */
 public class Parser {
 
-    
+    /**
+     * TaskIndicator is an enumerator used to store
+     * valid Task indicators
+     * Each taskValue is encapsulated by a String
+     */
+     enum TaskIndicator {
+        TODO("todo"),
+        EVENT("event"),
+        DEADLINE("deadline");
+
+        private final String taskValue;
+        TaskIndicator (String val) {
+            taskValue = val;
+        }
+        public String getTask() {
+            return taskValue;
+        }
+
+    }
+
+    private static final int MINIMUM_DESCRIPTION_LENGTH = 1;
     private static final List<String> PERMISSIBLE_TASKS = new ArrayList<>(
             Arrays.asList("todo", "event", "deadline"));
 
     private static final String ENDING_MESSAGE = "That's all? Hope to see you again soon :)";
     /**
      * parseData takes in a user's command as a string
-     * and makes sense of the command by calling TaskList's appropriate functionality
+     * and makes sense of the command by calling
+     * TaskList's appropriate functionality
      * @param input a string of inputs
      * @param taskList the TaskList's current state
      */
@@ -120,15 +141,16 @@ public class Parser {
      * but not enough information is provided
      */
     private static void taskValidator (String input) throws InvalidCommandException, EmptyTaskException {
-        String[] tempArr = input.split(" ", 0); //splits into words
+        String taskIndicator = input.split(" ", 0)[1]; //splits into words
+        String[] descriptionInformation = input.split(" ", 0);
 
-        //first word is invalid
-        if (! PERMISSIBLE_TASKS.contains(tempArr[0])) {
+        //taskIndicator is invalid
+        if (! PERMISSIBLE_TASKS.contains(taskIndicator)) {
             throw new InvalidCommandException("I'm sorry, I don't understand what that means \n"
                     + "Please enter a valid response in the future");
         }
 
-        if (tempArr.length <= 1) {
+        if (descriptionInformation.length <= MINIMUM_DESCRIPTION_LENGTH) {
             throw new EmptyTaskException("The description of a task cannot be empty.");
         }
 
@@ -146,18 +168,21 @@ public class Parser {
 
     //changed to public for testing, TODO: change private after validation
     public static Task generateTask(String input) {
-        String[] tempArr = input.split(" ", 2);
-        if (input.startsWith("todo")) {
-            return new Todo(tempArr[1]);
-        } else if (input.startsWith("deadline")) {
-            int firstSplit = tempArr[1].indexOf("/by");
-            String eventName = tempArr[1].substring(0, firstSplit);
-            String date = tempArr[1].substring(firstSplit + 4);
+        String taskIndicator = input.split(" ", 2)[0];
+        String descriptionInfo = input.split(" ", 2)[1];
+        //Logic for splitting based on TaskIndicator's Enums
+
+        if (taskIndicator.equals(TaskIndicator.TODO.getTask())) {
+            return new Todo(descriptionInfo);
+        } else if (taskIndicator.equals(TaskIndicator.DEADLINE.getTask())) {
+            int deliminatorSplitIndex = descriptionInfo.indexOf("/by");
+            String eventName = descriptionInfo.substring(0, deliminatorSplitIndex);
+            String date = descriptionInfo.substring(deliminatorSplitIndex + 4);
             return new Deadline(eventName, date);
         } else { //must be Event
-            int firstSplit = tempArr[1].indexOf("/at");
-            String eventName = tempArr[1].substring(0, firstSplit);
-            String date = tempArr[1].substring(firstSplit + 4);
+            int deliminatorSplitIndex = descriptionInfo.indexOf("/at");
+            String eventName = descriptionInfo.substring(0, deliminatorSplitIndex);
+            String date = descriptionInfo.substring(deliminatorSplitIndex + 4);
             return new Event(eventName, date);
         }
     }

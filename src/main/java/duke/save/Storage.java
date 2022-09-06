@@ -53,7 +53,7 @@ public class Storage {
      * Reads items line by line from a text file
      * And saves it into a List to be used by the program
      * @return List<Task> saveItems
-     * @throws FileNotFoundException if the file/path has not been created or initalized
+     * @throws FileNotFoundException if the file/path has not been created or initialized
      * @throws IOException if the file is unable to read for any other reason
      */
 
@@ -61,9 +61,9 @@ public class Storage {
         //1) Try to create file and directory, if it does not already exist
         try {
             //Attempt to make CSV in appropriate location
-            File csvCreate = new File(CSV_LOCATION);
-            boolean createNewCSV = csvCreate.createNewFile();
-            if (createNewCSV) {
+            File csvFile = new File(CSV_LOCATION);
+            boolean isCreatedSuccessfully = csvFile.createNewFile();
+            if (isCreatedSuccessfully) {
                 System.out.println("CSV directory doesn't exist, creating one");
             }
         } catch (IOException exp) {
@@ -74,20 +74,21 @@ public class Storage {
 
         try {
 
-            String line = "";
-            BufferedReader bf = new BufferedReader(new FileReader(CSV_LOCATION));
-            ArrayList<Task> readTaskList = new ArrayList<>();
-            while ((line = bf.readLine()) != null) {
-                String[] values = line.split("//");
-                if (values[0].equals("T")) {
-                    readTaskList.add(Todo.readTask(values));
-                } else if (values[0].equals("E")) {
-                    readTaskList.add(Event.readTask(values));
+            String currentLine = "";
+            BufferedReader reader = new BufferedReader(new FileReader(CSV_LOCATION));
+            ArrayList<Task> readTasksList = new ArrayList<>();
+            while ((currentLine = reader.readLine()) != null) {
+                String[] readValues = currentLine.split("//");
+                String taskType = readValues[0];
+                if (taskType.equals("T")) {
+                    readTasksList.add(Todo.readTask(readValues));
+                } else if (taskType.equals("E")) {
+                    readTasksList.add(Event.readTask(readValues));
                 } else {
-                    readTaskList.add(Deadline.readTask(values));
+                    readTasksList.add(Deadline.readTask(readValues));
                 }
             }
-            return readTaskList;
+            return readTasksList;
 
 
 
