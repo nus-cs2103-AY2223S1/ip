@@ -24,6 +24,7 @@ public class FindCommandTest {
         tl.addTodo("hello world");
         tl.addTodo("goodbye");
         tl.addTodo("~~ hello ~~");
-        assertEquals("1. [T][ ] hello world\n3. [T][ ] ~~ hello ~~\n", cmd.execute());
+        String sep = System.lineSeparator();
+        assertEquals("1. [T][ ] hello world" + sep + "3. [T][ ] ~~ hello ~~" + sep, cmd.execute());
     }
 }

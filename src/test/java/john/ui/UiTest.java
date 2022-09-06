@@ -19,31 +19,36 @@ public class UiTest {
 
     @Test
     public void showAddedTaskTest() {
-        assertEquals("I've added this task!\ntask\nYou have 0 tasks in your list.",
+        String sep = System.lineSeparator();
+        assertEquals("I've added this task!" + sep + "task" + sep + "You have 0 tasks in your list.",
                 new Ui().showAddedTask("task", new TaskList()));
     }
 
     @Test
     public void showDeletedTaskTest() {
-        assertEquals("I've deleted this task!\ntask\nYou have 0 tasks in your list.",
+        String sep = System.lineSeparator();
+        assertEquals("I've deleted this task!" + sep + "task" + sep + "You have 0 tasks in your list.",
                 new Ui().showDeletedTask("task", new TaskList()));
     }
 
     @Test
     public void showUnmarkedTaskTest() {
-        assertEquals("I've unmarked this task!\ntask",
+        String sep = System.lineSeparator();
+        assertEquals("I've unmarked this task!" + sep + "task",
                 new Ui().showUnmarkedTask("task"));
     }
 
     @Test
     public void showMarkedTaskTest() {
-        assertEquals("I've marked this task as complete!\ntask",
+        String sep = System.lineSeparator();
+        assertEquals("I've marked this task as complete!" + sep + "task",
                 new Ui().showMarkedTask("task"));
     }
 
     @Test
     public void showInvalidTaskNumberTest() {
-        assertEquals("This is an invalid task number.\nYou have 0 tasks in your list.",
+        String sep = System.lineSeparator();
+        assertEquals("This is an invalid task number." + sep + "You have 0 tasks in your list.",
                 new Ui().showInvalidTaskNumber(new TaskList()));
     }
 
@@ -63,7 +68,8 @@ public class UiTest {
 
     @Test
     public void showTasks_inputTasks_tasksReturned() {
-        assertEquals("1. hello\n2. world\n",
+        String sep = System.lineSeparator();
+        assertEquals("1. hello" + sep + "2. world" + sep,
                 new Ui().showTasks(new TaskList(), "12/12/2022", "hello", "world"));
     }
 
@@ -75,7 +81,8 @@ public class UiTest {
 
     @Test
     public void showIncorrectCommandWithFormatTest() {
-        assertEquals("This is an invalid HELLO format.\nThe correct format is 'world'.",
+        String sep = System.lineSeparator();
+        assertEquals("This is an invalid HELLO format." + sep + "The correct format is 'world'.",
                 new Ui().showIncorrectCommandWithFormat("hello", "world"));
     }
 

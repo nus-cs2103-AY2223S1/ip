@@ -22,6 +22,7 @@ public class ListCommandTest {
         TaskList tl = new TaskList();
         tl.addEvent("hello", "10/10/2010");
         cmd.setData(tl, new Ui());
-        assertEquals("1. [E][ ] hello (at: Oct 10 2010)\n", cmd.execute());
+        String sep = System.lineSeparator();
+        assertEquals("1. [E][ ] hello (at: Oct 10 2010)" + sep, cmd.execute());
     }
 }

@@ -14,7 +14,8 @@ public class DeleteCommandTest {
         tl.addTodo("hello world");
         DeleteCommand cmd = new DeleteCommand("1");
         cmd.setData(tl, new Ui());
-        assertEquals("I've deleted this task!\n[T][ ] hello world\n"
+        String sep = System.lineSeparator();
+        assertEquals("I've deleted this task!" + sep + "[T][ ] hello world" + sep
                 + "You have 0 tasks in your list.", cmd.execute());
     }
 }

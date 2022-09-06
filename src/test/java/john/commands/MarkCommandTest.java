@@ -14,6 +14,7 @@ public class MarkCommandTest {
         TaskList tl = new TaskList();
         tl.addTodo("hello");
         cmd.setData(tl, new Ui());
-        assertEquals("I've marked this task as complete!\n[T][X] hello", cmd.execute());
+        String sep = System.lineSeparator();
+        assertEquals("I've marked this task as complete!" + sep + "[T][X] hello", cmd.execute());
     }
 }

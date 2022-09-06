@@ -14,6 +14,7 @@ public class UnmarkCommandTest {
         TaskList tl = new TaskList();
         tl.addTodo("hello");
         cmd.setData(tl, new Ui());
-        assertEquals("I've unmarked this task!\n[T][ ] hello", cmd.execute());
+        String sep = System.lineSeparator();
+        assertEquals("I've unmarked this task!" + sep + "[T][ ] hello", cmd.execute());
     }
 }
