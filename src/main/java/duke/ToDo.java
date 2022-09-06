@@ -17,7 +17,7 @@ public class ToDo extends Task {
     @Override
     public String toLine() {
         String line = "T";
-        if (this.done) {
+        if (this.isDone) {
             line += ("*1*" + this.item);
         } else {
             line += ("*0*" + this.item);

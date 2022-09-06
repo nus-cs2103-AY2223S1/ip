@@ -25,7 +25,7 @@ public class Event extends Task {
     @Override
     public String toLine() {
         String line = "E";
-        if (this.done) {
+        if (this.isDone) {
             line += ("*1*" + this.item + "*" + DukeTime.undoReformatDateTime(this.at));
         } else {
             line += ("*0*" + this.item + "*" + DukeTime.undoReformatDateTime(this.at));
