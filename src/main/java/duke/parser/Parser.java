@@ -23,6 +23,13 @@ import duke.task.ToDo;
  * @author Bryan Ng Zi Hao
  */
 public abstract class Parser {
+    public static final String ERROR_INVALID_MARK_NUMBER = "OOPS!!! You need to mark a number.";
+    public static final String ERROR_INVALID_UNMARK_NUMBER = "OOPS!!! You need to unmark a number.";
+    public static final String ERROR_EMPTY_DESCRIPTION = "OOPS!!! The description cannot be empty.";
+    public static final String ERROR_EMPTY_DATE = "OOPS!!! The date is missing.";
+    public static final String ERROR_DATE_FORMAT = "Invalid date format (yyyy-mm-dd).";
+    public static final String ERROR_UNKOWN_MESSAGE = "OOPS!!! I'm sorry, but I don't know what that means :-(";
+    public static final String ERROR_DELETE_NUMBER = "OOPS!!! You need to delete a number.";
 
     /**
      * Parses the users input to check which command should be run.
@@ -44,95 +51,95 @@ public abstract class Parser {
                 command = new ExitCommand();
                 return command;
             } else {
-                throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                throw new DukeException(Parser.ERROR_UNKOWN_MESSAGE);
             }
         case "list":
             if (inputArray.length == 1) {
                 command = new ListCommand();
                 return command;
             } else {
-                throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                throw new DukeException(Parser.ERROR_UNKOWN_MESSAGE);
             }
         case "mark":
             if (secondWord.length() == 0) {
-                throw new DukeException("OOPS!!! You need to mark a number");
+                throw new DukeException(Parser.ERROR_INVALID_MARK_NUMBER);
             }
             try {
                 command = new MarkCommand(Integer.parseInt((inputArray[1])));
                 return command;
             } catch (NumberFormatException e) {
-                throw new DukeException("OOPS!!! You need to mark a number");
+                throw new DukeException(Parser.ERROR_INVALID_MARK_NUMBER);
             }
         case "unmark":
             if (secondWord.length() == 0) {
-                throw new DukeException("OOPS!!! You need to unmark a number");
+                throw new DukeException(Parser.ERROR_INVALID_UNMARK_NUMBER);
             }
             try {
                 command = new UnMarkCommand(Integer.parseInt((inputArray[1])));
                 return command;
             } catch (NumberFormatException e) {
-                throw new DukeException("OOPS!!! You need to unmark a number");
+                throw new DukeException(Parser.ERROR_INVALID_UNMARK_NUMBER);
             }
         case "todo":
             if (secondWord.length() == 0) {
-                throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
+                throw new DukeException(Parser.ERROR_EMPTY_DESCRIPTION);
             }
             command = new AddCommand(new ToDo(secondWord));
             return command;
         case "deadline":
             try {
                 if (secondWord.length() == 0) {
-                    throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
+                    throw new DukeException(Parser.ERROR_EMPTY_DESCRIPTION);
                 }
                 String[] dArray = secondWord.split(" /by ", 2);
                 if (dArray.length == 1) {
-                    throw new DukeException("OOPS!!! You need to add a deadline.");
+                    throw new DukeException(Parser.ERROR_EMPTY_DATE);
                 }
                 String description = dArray[0];
                 String by = dArray[1];
                 command = new AddCommand(new Deadline(description, LocalDate.parse(by)));
                 return command;
             } catch (DateTimeParseException e) {
-                throw new DukeException("Invalid date format (yyyy-mm-dd)");
+                throw new DukeException(Parser.ERROR_DATE_FORMAT);
             }
         case "event":
             try {
                 if (secondWord.length() == 0) {
-                    throw new DukeException("OOPS!!! The description of a event cannot be empty.");
+                    throw new DukeException(Parser.ERROR_EMPTY_DESCRIPTION);
                 }
                 String[] eArray = secondWord.split(" /at ", 2);
                 if (eArray.length == 1) {
-                    throw new DukeException("OOPS!!! You need to add a duration.");
+                    throw new DukeException(Parser.ERROR_EMPTY_DATE);
                 }
                 String description = eArray[0];
                 String at = eArray[1];
                 command = new AddCommand(new Event(description, LocalDate.parse(at)));
                 return command;
             } catch (DateTimeParseException e) {
-                throw new DukeException("Invalid date format (yyyy-mm-dd)");
+                throw new DukeException(Parser.ERROR_DATE_FORMAT);
             }
         case "delete":
             if (secondWord.length() == 0) {
-                throw new DukeException("OOPS!!! You need to delete a number");
+                throw new DukeException(Parser.ERROR_DELETE_NUMBER);
             }
             try {
                 command = new DeleteCommand(Integer.parseInt(secondWord));
                 return command;
             } catch (NumberFormatException e) {
-                throw new DukeException("OOPS!!! You need to delete a number");
+                throw new DukeException(Parser.ERROR_DELETE_NUMBER);
             }
         case "on":
             try {
                 command = new OnDateCommand(LocalDate.parse(secondWord));
                 return command;
             } catch (DateTimeParseException e) {
-                throw new DukeException("Please enter a valid date (yyyy-mm-dd).");
+                throw new DukeException(Parser.ERROR_DATE_FORMAT);
             }
         case "find":
             command = new FindCommand(secondWord);
             return command;
         default:
-            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new DukeException(Parser.ERROR_UNKOWN_MESSAGE);
         }
     }
 }
