@@ -36,8 +36,9 @@ public class TaskList {
      *
      * @param index index of task to mark, in 1 indexing.
      */
-    public void mark(int index) {
+    public String mark(int index) {
         tasks.get(index - 1).mark();
+        return "Nice! I've marked this task as done:\n" + getString(index);
     }
 
     /**
@@ -45,94 +46,102 @@ public class TaskList {
      *
      * @param index index of task to unmark, in 1 indexing.
      */
-    public void unmark(int index) {
+    public String unmark(int index) {
         tasks.get(index - 1).unmark();
+        return "Okay, I've marked this task as undone:\n" + getString(index);
     }
 
     /**
-     * Adds new task into arraylist.
+     * Adds new Todo into arraylist
      *
-     * @param str command input by user with information.
-     * @param type enum of task type.
-     * @return String containing message to be displayed
+     * @param command input by user
+     * @return message to be displayed
      */
-    public String add(String str, Duke.Type type) {
-        String message = "";
-        // add new todo task
-        if (type.equals(Duke.Type.TODO)) {
-            try {
-                tasks.add(new Todo(str));
-                count++;
-                message = String.format("Got it. I've added this task:\n"
-                                + "%s\n"
-                                + "Now you have %d tasks in the list.",
-                        tasks.get(count - 1).toString(),
-                        count);
+    public String addTodo(String command) {
+        try {
+            String description = command.replace("todo", "");
+            tasks.add(new Todo(description));
+            count++;
+            return String.format("Got it. I've added this task:\n"
+                            + "%s\n"
+                            + "Now you have %d tasks in the list.",
+                    tasks.get(count - 1).toString(),
+                    count);
 
             // missing name
-            } catch (MissingDescriptionException err) {
-                message = err.toString();
-            }
+        } catch (MissingDescriptionException err) {
+            return err.toString();
+        }
+    }
 
-        // add new deadline task
-        } else if (type.equals(Duke.Type.DEADLINE)) {
-            try {
-                String[] input = str.split("/by ");
-                String name = input[0].replace("deadline", "");
-                LocalDate date = LocalDate.parse(input[1]);
-                tasks.add(new Deadline(name, date));
-                count++;
-                message = String.format("Got it. I've added this task:\n"
-                                + "%s\n"
-                                + "Now you have %d tasks in the list.",
-                        tasks.get(count - 1).toString(),
-                        count);
+    /**
+     * Adds new Deadline into arraylist
+     *
+     * @param command input by user
+     * @return message to be displayed
+     */
+    public String addDeadline(String command) {
+        try {
+            String[] input = command.split("/by ");
+            String name = input[0].replace("deadline", "");
+            LocalDate date = LocalDate.parse(input[1]);
+            tasks.add(new Deadline(name, date));
+            count++;
+            return String.format("Got it. I've added this task:\n"
+                            + "%s\n"
+                            + "Now you have %d tasks in the list.",
+                    tasks.get(count - 1).toString(),
+                    count);
             // missing name
-            } catch (MissingDescriptionException err) {
-                message = "OOPS!!! The description of a deadline cannot be empty.";
+        } catch (MissingDescriptionException err) {
+            return "OOPS!!! The description of a deadline cannot be empty.";
 
             // missing end date
-            } catch (ArrayIndexOutOfBoundsException e) {
-                message = "OOPS!!! The end date of a deadline cannot be empty.";
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return "OOPS!!! The end date of a deadline cannot be empty.";
 
             // date in wrong format
-            } catch (DateTimeParseException e) {
-                message = "input date in YYYY-MM-DD format!";
-            }
+        } catch (DateTimeParseException e) {
+            return "input date in YYYY-MM-DD format!";
+        }
+    }
 
-        // add new event task
-        } else if (type.equals(Duke.Type.EVENT)) {
-            try {
-                String[] input = str.split("/at ");
-                String name = input[0].replace("event", "");
-                String[] end = input[1].split(" ");
-                String date = end[0];
-                LocalDate dateParsed = LocalDate.parse(date);
-                String time = end[1];
-                LocalTime timeParsed = LocalTime.parse(time);
-                LocalDateTime dateTime = LocalDateTime.of(dateParsed, timeParsed);
-                tasks.add(new Event(name, dateTime));
-                count++;
-                message = String.format("Got it. I've added this task:\n"
-                                + "%s\n"
-                                + "Now you have %d tasks in the list.",
-                        tasks.get(count - 1).toString(),
-                        count);
+    /**
+     * Adds new Event into arraylist
+     *
+     * @param command input by user
+     * @return message to be displayed
+     */
+    public String addEvent(String command) {
+        try {
+            String[] input = command.split("/at ");
+            String name = input[0].replace("event", "");
+            String[] end = input[1].split(" ");
+            String date = end[0];
+            LocalDate dateParsed = LocalDate.parse(date);
+            String time = end[1];
+            LocalTime timeParsed = LocalTime.parse(time);
+            LocalDateTime dateTime = LocalDateTime.of(dateParsed, timeParsed);
+            tasks.add(new Event(name, dateTime));
+            count++;
+            return String.format("Got it. I've added this task:\n"
+                            + "%s\n"
+                            + "Now you have %d tasks in the list.",
+                    tasks.get(count - 1).toString(),
+                    count);
 
             // missing name
-            } catch (MissingDescriptionException err) {
-                message = "OOPS!!! The description of an event cannot be empty.";
+        } catch (MissingDescriptionException err) {
+            return "OOPS!!! The description of an event cannot be empty.";
 
             // missing date or time
-            } catch (ArrayIndexOutOfBoundsException e) {
-                message = "OOPS!!! The time of an event cannot be empty.";
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return "OOPS!!! The time of an event cannot be empty.";
 
             // date or time in wrong format
-            } catch (DateTimeParseException e) {
-                message = "Input date in YYYY-MM-DD and time in HH:MM format";
-            }
+        } catch (DateTimeParseException e) {
+            return "Input date in YYYY-MM-DD and time in HH:MM format";
         }
-        return message;
     }
 
     /**
@@ -142,22 +151,19 @@ public class TaskList {
      * @return String containing message to be displayed
      */
     public String delete(String command) {
-        String message = "";
         try {
             int index = Integer.valueOf(command.split(" ")[1]);
             Task task = tasks.remove(index - 1);
             count--;
-            String str = String.format("Noted. I've removed this task:\n"
+            return String.format("Noted. I've removed this task:\n"
                             + "%s\n"
                             + "Now you have %d tasks in the list.",
                     task.toString(),
                     count);
-            message = str;
         // no task found
         } catch (IndexOutOfBoundsException e) {
-            message = "OOPS!!! No such task exists.";
+            return "OOPS!!! No such task exists.";
         }
-        return message;
     }
 
     /**
@@ -187,12 +193,17 @@ public class TaskList {
     /**
      * Searches and prints out matching tasks.
      *
-     * @param keyword word to search in tasks.
+     * @param command input by user
      * @return String containing message to be displayed
      */
-    public String find(String keyword) {
-        int numberOfMatches = 0;
+    public String find(String command) {
+        String keyword = command.replace("find", "").strip();
+
+        if (keyword.equals("") || keyword.equals(" ")) {
+            return "Please input a keyword!";
+        }
         ArrayList<Task> matches = new ArrayList<>();
+        int numberOfMatches = 0;
         for (int i = 0; i < count; i++) {
             Task task = tasks.get(i);
             if (task.contains(keyword)) {
@@ -209,6 +220,7 @@ public class TaskList {
         String print = String.format("Here are the matching tasks in your list:\n%s", match);
         assert !print.isEmpty() : "Should not have empty response when searching tasks";
         return print;
+
     }
 
     /**

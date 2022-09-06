@@ -4,6 +4,7 @@ package duke;
  * item used in Duke
  */
 public class Task {
+    protected static final String FIELD_DIVIDER = "/%&#@.,/";
     protected boolean isCompleted;
     protected String name;
 

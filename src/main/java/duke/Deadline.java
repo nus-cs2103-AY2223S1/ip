@@ -5,14 +5,14 @@ import java.time.LocalDate;
  * Class for tasks that have a deadline
  */
 public class Deadline extends Task {
-    private static final String type = "[D]";
+    private static final String TYPE = "[D]";
     private LocalDate date;
 
     /**
      * Constructor for new deadline instance.
      *
      * @param name name of task
-     * @param date date of deadline, in LocalDate type
+     * @param date date of deadline, in LocalDate TYPE
      * @throws MissingDescriptionException missing name
      */
     public Deadline(String name, LocalDate date) throws MissingDescriptionException {
@@ -23,7 +23,7 @@ public class Deadline extends Task {
     /**
      * Returns string representation of task.
      *
-     * @return string with type, completed or not, name, and date time(if applicable)
+     * @return string with TYPE, completed or not, name, and date time(if applicable)
      */
     @Override
     public String toString() {
@@ -31,7 +31,7 @@ public class Deadline extends Task {
                 ? "[X]"
                 : "[ ]";
         String dateString = date.getDayOfMonth() + " " + date.getMonth().toString() + " " + date.getYear();
-        return type + comp + name + dateString;
+        return TYPE + comp + name + dateString;
     }
 
     /**
@@ -44,7 +44,7 @@ public class Deadline extends Task {
         String type = "D";
         String completed = this.isCompleted ? "1" : "0";
         String dateString = date.toString();
-        return type + "//" + completed + "//" + name + "//" + dateString;
+        return type + FIELD_DIVIDER + completed + FIELD_DIVIDER + name + FIELD_DIVIDER + dateString;
     }
 
 }
