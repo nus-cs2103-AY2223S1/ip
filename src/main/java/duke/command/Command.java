@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.common.AnomaliesManager;
 import duke.storage.TaskList;
 import duke.ui.BotUI;
 
@@ -23,7 +24,9 @@ public abstract class Command {
         return this.command;
     }
 
-    public abstract String execute(TaskList taskList, BotUI ui) throws DukeException;
+    public abstract String execute(TaskList taskList, BotUI ui, AnomaliesManager anomaliesManager) throws DukeException;
 
     public abstract boolean isExit();
+
+    public abstract Command resolveAnomaly();
 }
