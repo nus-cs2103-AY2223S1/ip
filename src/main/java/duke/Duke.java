@@ -36,13 +36,14 @@ public class Duke {
      */
     public String getResponse(String input) {
         String str = input.trim();
-        String response;
+        String response = "";
         try {
             response = Parser.parseCommand(str, taskList);
             saveData();
         } catch (DukeException e) {
             response = e.toString();
         }
+        assert !response.isEmpty() : "response should be not empty";
         return response;
     }
 
