@@ -52,8 +52,8 @@ public class Storage {
             reader.close();
         } catch (FileNotFoundException e) {
             // Create the empty file if there is no existing file.
-            File file = new File(filePath);
             try {
+                File file = new File(filePath);
                 file.getParentFile().mkdirs();
                 file.createNewFile();
             } catch (IOException ex) {
@@ -74,17 +74,21 @@ public class Storage {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
             for (int i = 0; i < tasks.size(); i++) {
+                final int TASK_TYPE = 1;
+                final int DONE = 4;
+                final int DETAILS = 7;
+
                 String str = tasks.get(i).toString();
                 StringBuilder task = new StringBuilder();
-                task.append(str.charAt(1) + " // ");
-                if (str.charAt(4) == 'X') {
+                task.append(str.charAt(TASK_TYPE) + " // ");
+                if (str.charAt(DONE) == 'X') {
                     task.append("1 // ");
                 } else {
                     task.append("0 // ");
                 }
 
-                String rest = str.substring(7);
-                switch(str.charAt(1)) {
+                String rest = str.substring(DETAILS);
+                switch(str.charAt(TASK_TYPE)) {
                 case('T'):
                     task.append(rest);
                     break;
