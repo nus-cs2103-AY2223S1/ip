@@ -49,6 +49,10 @@ public abstract class Task implements Serializable {
         return tags.stream().anyMatch(tag -> tag.equals(queryTag));
     }
 
+    public void addTag(String newTag) {
+        tags.add(newTag);
+    }
+
     /**
      * Mark a task as completed
      */
