@@ -16,9 +16,13 @@ public class Ui {
     }
 
     public String showError(String errMessage) {
+        assert !errMessage.isBlank(): "error message should not be blank";
         return errMessage;
     }
     public String addSuccess(Task task, String numOfTask) {
+        assert !task.toString().isBlank(): "task content should not be blank";
+        assert !numOfTask.isBlank(): "number of task should not be blank";
+
         return "Added: " + task.toString() +"\n" + numOfTask;
     }
 
@@ -32,6 +36,7 @@ public class Ui {
     }
 
     public String showToggleSuccess(Task task) {
+        assert !task.toString().isBlank(): "task content should not be blank";
         if (!task.isDone()) {
             return "I HAVE CHANGED:\n" + task.toString();
         } else {
@@ -40,6 +45,7 @@ public class Ui {
     }
 
     public String showDeleteSuccess(Task task, String numOfTask) {
+        assert !task.toString().isBlank(): "task content should not be blank";
         return "Deleted: " + task.toString() + "\n" + numOfTask;
     }
 }

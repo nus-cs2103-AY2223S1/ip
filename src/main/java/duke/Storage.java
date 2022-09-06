@@ -28,6 +28,7 @@ public class Storage {
         }
     }
     public void load(TaskList taskList) throws FileNotFoundException, ImproperFormatException {
+        assert taskList.size() == 0: "task list should be empty before loading existing data";
         Scanner reader = new Scanner(this.storageFile);
         while (reader.hasNext()) {
             String curr = reader.nextLine();
@@ -65,7 +66,9 @@ public class Storage {
             }
         }
     }
+
     public void save(String task) throws DukeException {
+        assert !task.isBlank(): "empty task should not be saved";
         try {
             FileWriter saver = new FileWriter(this.storageFile);
             saver.write(task);
@@ -82,8 +85,5 @@ public class Storage {
         } catch (IOException e) {
             System.out.println("CANNOT SAVE");
         }
-    }
-    public void update(String task) {
-
     }
 }
