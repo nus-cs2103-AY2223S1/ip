@@ -58,43 +58,31 @@ class TaskList {
     String mark(int id, boolean done) {
         String response = "";
         Task task = tasks.get(id - 1);
+        task.setStatus(done);
         if (done) {
-            task.setDone();
             response += "Nice! I've marked this task as done: \n";
         } else {
-            task.setNotDone();
             response += "OK, I've marked this task as not done yet: \n";
         }
         response += task;
         return response;
     }
 
-    String event(String name, String eventDate) {
+    String addTask(String name, String type, String additional) {
         String response = "";
-        Event event = new Event(tasks.size() + 1, name, eventDate);
-        tasks.add(event);
+        Task newTask;
+        if (type.equals("T")) {
+            newTask = new Todo(tasks.size() + 1, name);
+        } else if (type.equals("D")) {
+            newTask = new Deadline(tasks.size() + 1, name, additional);
+        } else if (type.equals("E")) {
+            newTask = new Event(tasks.size() + 1, name, additional);
+        } else {
+            return "Unknown task type";
+        }
+        tasks.add(newTask);
         response += "Got it. I've added this task: \n";
-        response += event + "\n";
-        response += "Now you have " + tasks.size() + " tasks in the list.";
-        return response;
-    }
-
-    String deadline(String name, String deadline) {
-        String response = "";
-        Deadline deadlineEvent = new Deadline(tasks.size() + 1, name, deadline);
-        tasks.add(deadlineEvent);
-        response += "Got it. I've added this task: \n";
-        response += deadlineEvent + "\n";
-        response += "Now you have " + tasks.size() + " tasks in the list.";
-        return response;
-    }
-
-    String todo(String task) {
-        String response = "";
-        Todo todo = new Todo(tasks.size() + 1, task);
-        tasks.add(todo);
-        response += "Got it. I've added this task: \n";
-        response += todo + "\n";
+        response += newTask + "\n";
         response += "Now you have " + tasks.size() + " tasks in the list.";
         return response;
     }
