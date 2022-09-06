@@ -46,6 +46,8 @@ public class Duke {
             response = e.toString();
         }
 
+        assert !response.isEmpty() : "response should be not empty";
+
         return response;
     }
 
