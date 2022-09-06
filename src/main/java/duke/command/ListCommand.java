@@ -25,6 +25,7 @@ public class ListCommand extends Command {
     public String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         if (taskList.size() > 0) {
             String output = "Here are your tasks in your list:\n";
+            assert output.length() > 0 : "The output of execute should always return a message.";
             return output + taskList.printString();
         } else {
             return ui.formatMessage("You do not have any tasks.");
