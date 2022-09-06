@@ -6,6 +6,7 @@ import duke.exceptions.DukeException;
 import duke.exceptions.DukeListOobException;
 import duke.exceptions.DukeWrongInputException;
 
+/** Represents a TaskList class. Handles the Tasks ArrayList. */
 public class TaskList {
 
     private ArrayList<Task> tasks;

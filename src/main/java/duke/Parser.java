@@ -1,15 +1,15 @@
 package duke;
 
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import duke.exceptions.DukeException;
 import duke.exceptions.DukeMissingInputException;
 import duke.exceptions.DukeUnknownDateException;
 import duke.exceptions.DukeUnknownInputException;
 
-import java.time.format.DateTimeParseException;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-
+/** Represents Parser object. Handles user input */
 public class Parser {
     private Ui ui;
     private Storage storage;

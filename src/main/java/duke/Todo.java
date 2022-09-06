@@ -1,4 +1,6 @@
 package duke;
+
+/** Represents a Todo class. Supports description. */
 public class Todo extends Task {
     public Todo(String item) {
         super(item);

@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+/** Represents a Storage class. Handles reading and writing to a Save File */
 public class Storage {
     // Exceptions not handled
     private final String filename;

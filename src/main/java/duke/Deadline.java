@@ -3,10 +3,19 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a Deadline object.
+ * A Deadline object supports a description and a by-date.
+ */
 public class Deadline extends Task implements Dated {
 
     private LocalDate date;
 
+    /**
+     * Constructs a Deadline object.
+     * @param item description
+     * @param dateString by-date in String
+     */
     public Deadline(String item, String dateString) {
         super(item);
         this.date = LocalDate.parse(dateString);

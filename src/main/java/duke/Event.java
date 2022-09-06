@@ -3,9 +3,18 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents an Event object.
+ * An Event object supports a description and an at-date.
+ */
 public class Event extends Task implements Dated {
     private LocalDate date;
 
+    /**
+     * Constructs an Event object.
+     * @param item description
+     * @param dateString at-date in String
+     */
     public Event(String item, String dateString) {
         super(item);
         this.date = LocalDate.parse(dateString);

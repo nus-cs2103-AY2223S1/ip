@@ -5,12 +5,11 @@ import java.util.ArrayList;
 
 import duke.exceptions.DukeException;
 
+/** Represents a Ui object. Handles response strings. */
 public class Ui {
     private static final String DIVIDER = "-------------------------------------\n";
 
-    /**
-     * Returns greeting message
-     */
+    /** Returns greeting message */
     public static String greet() {
 
         String message = "Hello! I'm Duke\n"
@@ -19,9 +18,7 @@ public class Ui {
         return message;
     }
 
-    /**
-     * Returns exit message
-     */
+    /** Returns exit message */
     public String exit() {
         return "Bye. Hope to see you again soon!\n";
     }
@@ -51,9 +48,9 @@ public class Ui {
      * @return String
      */
     public String addTask(String type, Task currTask, int size) {
-        return "OK, I've added this " + type + ":\n" + "   " +
-                currTask + "\n" + "Number of tasks in list: " +
-                size + "\n";
+        return "OK, I've added this " + type + ":\n" + "   "
+                + currTask + "\n" + "Number of tasks in list: "
+                + size + "\n";
     }
 
     /**
@@ -63,9 +60,9 @@ public class Ui {
      * @return String
      */
     public String deleteTask(Task currTask, int size) {
-        return "OK, I've removed this task:\n" + "   " +
-                currTask + "\n" + "Number of tasks in list: " +
-                size + "\n";
+        return "OK, I've removed this task:\n" + "   "
+                + currTask + "\n" + "Number of tasks in list: "
+                + size + "\n";
     }
 
     /**
@@ -101,8 +98,7 @@ public class Ui {
     public String find(ArrayList<Task> input, String regex) {
         if (input.isEmpty()) {
             return "List is empty\n";
-        }
-        else {
+        } else {
             boolean hasValues = false;
             String returnVal = "Here are the list items matching " + regex + "\n";
 
@@ -131,8 +127,7 @@ public class Ui {
 
         if (input.isEmpty()) {
             return "List is empty\n";
-        }
-        else {
+        } else {
             boolean hasValues = false;
             String returnVal = "Here are tasks due in the next two weeks:\n";
 

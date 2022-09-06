@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import duke.exceptions.DukeException;
 
-
+/** Represents a Duke Object */
 public class Duke {
     private Ui ui;
     private Parser parser;

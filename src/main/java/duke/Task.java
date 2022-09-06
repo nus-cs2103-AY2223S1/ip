@@ -1,11 +1,17 @@
 package duke;
 
 import java.io.Serializable;
+
+/** Represents a Task abstract class. Supports a description and the isCompleted boolean */
 public abstract class Task implements Serializable {
 
     private String item;
     private boolean isCompleted;
 
+    /**
+     * Abstract constructor for Task object (invoked through subclasses)
+     * @param item description
+     */
     public Task(String item) {
         this.item = item;
         this.isCompleted = false;
