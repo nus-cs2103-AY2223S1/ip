@@ -1,4 +1,5 @@
 package yilia.task;
+
 import java.util.ArrayList;
 
 /**
@@ -41,5 +42,17 @@ public class TaskList {
      */
     public Task remove(int index) {
         return tasks.remove(index - 1);
+    }
+    /**
+     * Filters the task list to generate a new one.
+     *
+     * @return The task list generated.
+     */
+    public TaskList filter(String content) {
+        TaskList newList = new TaskList();
+        tasks.stream()
+             .filter(task -> task.contains(content))
+             .forEach(task -> newList.add(task));
+        return newList;
     }
 }
