@@ -47,6 +47,7 @@ public class OnDateCommand extends Command {
             for (int i = 0; i < filteredTasks.size(); i++) {
                 output += (i + 1) + ". " + filteredTasks.get(i) + "\n";
             }
+            assert output.length() > 0 : "The output of execute should always return a message.";
             return output;
         } else {
             return String.format("You have no tasks on %s", formattedDate);
