@@ -1,6 +1,5 @@
 package jean.parser;
 
-import java.lang.invoke.CallSite;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -11,6 +10,7 @@ import jean.command.ExitCommand;
 import jean.command.FindCommand;
 import jean.command.ListCommand;
 import jean.command.MarkCommand;
+import jean.command.SortCommand;
 import jean.command.UnmarkCommand;
 import jean.exception.JeanException;
 import jean.task.Deadline;
@@ -31,6 +31,7 @@ public class Parser {
     private static final String EVENT_COMMAND = "event";
     private static final String DELETE_COMMAND = "delete";
     private static final String FIND_COMMAND = "find";
+    private static final String SORT_COMMAND = "sort";
 
     private static int getTaskIndex(String fullCommand, int indexOfSubstring) {
         return Integer.parseInt(fullCommand.substring(indexOfSubstring));
@@ -159,6 +160,8 @@ public class Parser {
             return checkDelete(fullCommand, taskList);
         } else if (fullCommand.startsWith(FIND_COMMAND)) {
             return checkFind(fullCommand);
+        } else if (fullCommand.startsWith(SORT_COMMAND)) {
+            return new SortCommand();
         } else {
             throw new JeanException("No such command!");
         }
