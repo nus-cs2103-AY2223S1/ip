@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import duke.exception.DukeException;
 import duke.main.Storage;
-import duke.main.Ui;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
 
@@ -39,7 +38,7 @@ public class FindCommand extends Command {
      * @return @inheritDoc
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         ArrayList<Task> filtered = tasks.find(this.keyword);
         if (filtered.size() == 0) {
             return "No matching tasks found";

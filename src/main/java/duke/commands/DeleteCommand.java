@@ -2,7 +2,6 @@ package duke.commands;
 
 import duke.exception.DukeException;
 import duke.main.Storage;
-import duke.main.Ui;
 import duke.tasks.Task;
 import duke.tasks.TaskList;
 
@@ -35,7 +34,7 @@ public class DeleteCommand extends Command {
      * @return @inheritDoc
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         if (index <= 0 || index > tasks.size()) {
             throw new DukeException("No such task found");
         } else {

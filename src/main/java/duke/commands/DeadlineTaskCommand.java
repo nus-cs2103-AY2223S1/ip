@@ -5,7 +5,6 @@ import java.time.format.DateTimeParseException;
 
 import duke.exception.DukeException;
 import duke.main.Storage;
-import duke.main.Ui;
 import duke.tasks.DeadlineTask;
 import duke.tasks.TaskList;
 
@@ -44,7 +43,7 @@ public class DeadlineTaskCommand extends TaskCommand {
      * @return String to print out to user
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         DeadlineTask task = new DeadlineTask(this.description, this.by);
         tasks.add(task);
         storage.save(tasks);

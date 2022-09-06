@@ -9,14 +9,12 @@ import duke.tasks.TaskList;
  */
 public class Duke {
 
-    protected final Ui ui;
     protected final Storage storage;
+    public boolean isExit = false;
     /**
      * The tasklist keeps track of all the tasks added
      */
     protected TaskList tasks;
-
-    protected boolean isExit = false;
 
     /**
      * Initialises TaskList based on whether data file specified in filePath is valid
@@ -24,13 +22,10 @@ public class Duke {
      * @param filePath Filepath where data file is stored in
      */
     public Duke(String filePath) {
-        ui = new Ui();
         storage = new Storage(filePath);
         try {
             this.tasks = new TaskList(storage.load());
         } catch (DukeException e) {
-            ui.showError(e.getMessage());
-            ui.showLoadingError();
             tasks = new TaskList();
         }
     }
@@ -39,7 +34,7 @@ public class Duke {
         try {
             Command c = Parser.parse(input);
             this.isExit = c.isExit();
-            return c.execute(tasks, ui, storage);
+            return c.execute(tasks, storage);
         } catch (IllegalArgumentException e) {
             return "Unknown command received...";
         } catch (DukeException e) {

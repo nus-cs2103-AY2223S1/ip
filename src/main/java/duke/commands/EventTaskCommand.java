@@ -5,7 +5,6 @@ import java.time.format.DateTimeParseException;
 
 import duke.exception.DukeException;
 import duke.main.Storage;
-import duke.main.Ui;
 import duke.tasks.EventTask;
 import duke.tasks.TaskList;
 
@@ -43,7 +42,7 @@ public class EventTaskCommand extends TaskCommand {
      * @return @inheritDoc
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         EventTask task = new EventTask(this.description, this.at);
         tasks.add(task);
         storage.save(tasks);

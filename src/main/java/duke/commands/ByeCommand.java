@@ -2,7 +2,6 @@ package duke.commands;
 
 import duke.exception.DukeException;
 import duke.main.Storage;
-import duke.main.Ui;
 import duke.tasks.TaskList;
 
 /**
@@ -11,11 +10,11 @@ import duke.tasks.TaskList;
 public class ByeCommand extends Command {
 
     public ByeCommand() {
-        makeTrueExit();
+        setExit();
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         return "Bye. Hope to see you again soon!";
 
     }
