@@ -18,12 +18,4 @@ public class ListCommand extends Command {
             TaskList taskList, Storage storage, Ui ui) {
         return ui.list(taskList);
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isRunning() {
-        return true;
-    }
 }

@@ -31,12 +31,4 @@ public class DeadlineCommand extends Command {
         }
         return ui.addTask(task, taskList.length());
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isRunning() {
-        return true;
-    }
 }

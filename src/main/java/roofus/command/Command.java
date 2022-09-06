@@ -22,8 +22,9 @@ public abstract class Command {
     /**
      * Checks if Roofus should still be running after command is executed
      *
-     * @return boolean Boolean representing whether current instance of
-     *     Roofus should terminate.
+     * @return boolean Returns true if Roofus is currently running otherwise false.
      */
-    public abstract boolean isRunning();
+    public boolean isRunning() {
+        return true;   
+    }
 }

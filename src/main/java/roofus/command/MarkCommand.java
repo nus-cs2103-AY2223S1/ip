@@ -39,12 +39,4 @@ public class MarkCommand extends Command {
             return ui.printErrMessage(err.getMessage());
         }
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isRunning() {
-        return true;
-    }
 }
