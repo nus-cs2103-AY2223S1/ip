@@ -33,8 +33,8 @@ public class Yilia extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    private Image user;
-    private Image yilia;
+    private final Image user;
+    private final Image yilia;
     /**
      * Initializes Yilia.
      *
@@ -92,10 +92,10 @@ public class Yilia extends Application {
                 DialogBox.getYiliaDialog(ui.showWelcome(), yilia)
         );
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
-        sendButton.setOnMouseClicked((event) -> {
+        sendButton.setOnMouseClicked(event -> {
             handleUserInput();
         });
-        userInput.setOnAction((event) -> {
+        userInput.setOnAction(event -> {
             handleUserInput();
         });
     }
