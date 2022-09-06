@@ -1,6 +1,7 @@
 package jean.task;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import jean.ui.Ui;
 
@@ -180,5 +181,19 @@ public class TaskList {
             }
         }
         return message.toString();
+    }
+
+    /**
+     * Sorts list of task.
+     *
+     * @param ui The ui object that prints feedback to the user interface.
+     * @return The string to be printed.
+     */
+    public String sortTask(Ui ui) {
+        Collections.sort(this.taskList);
+        String message = ("The list has been sorted!"
+                          + "\nLa liste a été triée!");
+        ui.printMessage(message);
+        return message;
     }
 }

@@ -3,7 +3,7 @@ package jean.task;
 /**
  * An abstract class which encapsulates a task object.
  */
-public abstract class Task {
+public abstract class Task implements Comparable<Task> {
     protected static int numberOfTasks = 0;
     protected String description;
     protected boolean isDone;
@@ -46,5 +46,10 @@ public abstract class Task {
     @Override
     public String toString() {
         return ("[" + this.getStatusIcon() + "] " + this.description);
+    }
+
+    @Override
+    public int compareTo(Task task) {
+        return this.description.compareTo(task.description);
     }
 }
