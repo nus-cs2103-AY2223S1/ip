@@ -32,9 +32,12 @@ public class Expense extends StorableObjects {
         return name + "," + amount + "," + localDate;
     }
 
-    public Expense parseFromFile(String word) throws DukeException {
-        String[] splitted = word.split(",");
-        return new Expense(splitted[0], Integer.parseInt(splitted[1]), Decoder.parseLD(splitted[2]));
+    public boolean getMatching(String search) {
+        return true;
+    }
+
+    public boolean compareDate(LocalDate localDate) {
+        return true;
     }
 
     /**

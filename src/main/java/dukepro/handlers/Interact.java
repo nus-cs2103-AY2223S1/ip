@@ -1,14 +1,18 @@
 package dukepro.handlers;
 
+import dukepro.Manager;
 import dukepro.exceptions.DukeException;
 import dukepro.expenses.ExpenseManager;
+import dukepro.tasks.Task;
+
+import java.util.function.Function;
 
 /**
  * Class for Interact.
  */
 public class Interact {
     private String line = "_______________________________________";
-    private TasksManager tasksManager;
+    private Manager<Task> tasksManager;
     private ExpenseManager expenseManager;
 
     /**
@@ -17,7 +21,7 @@ public class Interact {
      * @return String.
      */
     public String start() {
-        tasksManager = new TasksManager();
+        tasksManager = new Manager<Task>("data", "data/tasklist.txt", (str) -> Decoder.parseFromFile(str));
         expenseManager = new ExpenseManager();
         String logo = " ____        _\n"
                 + "|  _ \\ _   _| | _____\n"
@@ -41,11 +45,11 @@ public class Interact {
         } else if (word.startsWith("list") || word.startsWith("List")) {
             return tasksManager.showList();
         } else if (word.startsWith("done") || word.startsWith("Done")) {
-            return tasksManager.markTaskAsDone(Decoder.handleDone(word, tasksManager.numTasks()));
+            return tasksManager.markAsDone(Decoder.handleDone(word, tasksManager.numStored()));
         } else if (word.startsWith("delete") || word.startsWith("Delete")) {
-            return tasksManager.deleteTask(Decoder.handleDelete(word, tasksManager.numTasks()));
+            return tasksManager.delete(Decoder.handleDelete(word, tasksManager.numStored()));
         } else if (word.startsWith("todo") || word.startsWith("deadline") || word.startsWith("event")) {
-            return tasksManager.addTask(Decoder.handleTasks(word));
+            return tasksManager.add(Decoder.handleTasks(word));
         } else if (word.startsWith("date") || word.startsWith("Date")) {
             return tasksManager.showDate(Decoder.parseLD(word));
         } else if (word.startsWith("find") || word.startsWith("Find")) {

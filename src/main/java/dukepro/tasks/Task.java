@@ -28,6 +28,7 @@ public class Task extends StorableObjects {
      *
      * @return void.
      */
+    @Override
     public void markAsDone() {
         finished = true;
     }
@@ -54,10 +55,6 @@ public class Task extends StorableObjects {
      */
     public String fileForm() {
         return this.finished + "," + this.name;
-    }
-
-    public Task parseFromFile(String word) throws DukeException {
-        return Decoder.parseFromFile(word);
     }
 
     /**

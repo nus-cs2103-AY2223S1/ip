@@ -281,4 +281,9 @@ public class Decoder {
         System.out.println(expense);
         return expense;
     }
+
+    public Expense parseFromFileExpense(String word) throws DukeException {
+        String[] splitted = word.split(",");
+        return new Expense(splitted[0], Integer.parseInt(splitted[1]), Decoder.parseLD(splitted[2]));
+    }
 }
