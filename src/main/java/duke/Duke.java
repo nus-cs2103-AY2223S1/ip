@@ -20,7 +20,6 @@ public class Duke {
     public Duke() {
         ui = new Ui();
         String filePath = "data/tasks.txt";
-
         try {
             storage = new Storage(filePath);
             tasks = new TaskList(storage.load());

@@ -42,7 +42,7 @@ public class Storage {
                 }
 
             } catch (IOException e) {
-                System.out.println(e.getMessage());
+                throw new DukeException(e.getMessage());
             }
         }
         this.file = newFile;

@@ -36,8 +36,10 @@ public class AddCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        int originalTotal = tasks.totalSize();
         tasks.add(task);
         int total = tasks.totalSize();
+        assert total == (originalTotal + 1): "there should be an increment of total tasks by 1";
         String message = ui.showAdd(task,total);
         storage.store(tasks.getTaskList());
         return message;
