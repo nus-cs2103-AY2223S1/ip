@@ -111,6 +111,7 @@ public class TaskList {
         return matchingTasks;
     }
 
+    //assumptions => tasks due in the past removed, each task has no duration
     public LocalDateTime findTiming(long duration) {
         ArrayList<TaskWithDate> dateTasks = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
