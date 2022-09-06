@@ -1,9 +1,13 @@
 package duke.manager;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import duke.exception.DukeException;
+import duke.task.Deadline;
 import duke.task.Task;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
  * Represents the list of current tasks.
@@ -106,6 +110,28 @@ public class TaskList {
             tasksString += taskItem;
         }
         return tasksString;
+    }
+
+    public String getTaskReminders(long maxDaysTo) {
+        if (list.isEmpty()) {
+            return "";
+        }
+
+        String remindersString = "Your reminders:\n";
+        LocalDate today = LocalDate.now();
+        for (int index = 1; index <= list.size(); index++) {
+            Task listItem = list.get(index - 1);
+            if (!(listItem instanceof Deadline)) {
+                continue;
+            }
+
+            Deadline currentTask = (Deadline) listItem;
+            long daysRemaining = currentTask.getDaysToDeadlineFrom(today);
+            if (daysRemaining <= maxDaysTo) {
+                remindersString += String.format("%d days left: %s\n", daysRemaining, currentTask);
+            }
+        }
+        return remindersString;
     }
 
     @Override

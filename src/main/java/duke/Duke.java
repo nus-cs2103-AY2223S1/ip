@@ -37,6 +37,16 @@ public class Duke {
     }
 
     /**
+     * Returns the upcoming deadlines.
+     *
+     * @return The upcoming deadlines to remind the user of.
+     */
+    public String getReminders() {
+        long maxDaysTo = 7;
+        return this.tasks.getTaskReminders(maxDaysTo);
+    }
+
+    /**
      * Returns the text to be displayed to the user through the GUI.
      *
      * @param input The input entered by the user.

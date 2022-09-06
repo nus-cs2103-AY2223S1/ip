@@ -3,6 +3,8 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+
 /**
  * Represents the user's task, specifically a deadline to be completed before a specific date.
  */
@@ -18,6 +20,10 @@ public class Deadline extends Task {
     public Deadline(boolean done, String description, LocalDate endDate) {
         super(done, description);
         this.endDate = endDate;
+    }
+
+    public long getDaysToDeadlineFrom(LocalDate today) {
+        return DAYS.between(today, this.endDate);
     }
 
     @Override
