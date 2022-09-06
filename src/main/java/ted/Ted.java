@@ -24,6 +24,7 @@ public class Ted {
      * @param storage
      */
     public Ted(Storage storage) {
+        assert storage != null : "storage should not be null";
         this.storage = storage;
     }
 
@@ -32,6 +33,7 @@ public class Ted {
      * @param ui
      */
     public void setUiController(UiController ui) {
+        assert ui != null : "ui should not be null";
         this.uiController = ui;
     }
 

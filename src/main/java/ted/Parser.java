@@ -91,6 +91,8 @@ public class Parser {
             }
         }
 
+        assert command != null : "command should not be null";
+
         return command;
     }
 }
