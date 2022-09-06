@@ -106,6 +106,7 @@ public class Ui {
     public void printMatchingTasks(ArrayList<Task> tasks) {
         System.out.println(line);
         System.out.println("Here are the matching tasks in your list:");
+
         for (int i = 0; i < tasks.size(); i++) {
             Task current = tasks.get(i);
             System.out.println((i + 1) + "." + current.toString());
