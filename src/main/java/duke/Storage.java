@@ -41,20 +41,28 @@ public class Storage {
                 String task = s.nextLine();
                 String[] splitTask = task.split(" \\| ");
                 Task toAdd;
-                if (splitTask[0].equals("T")) {
+                switch (splitTask[0]) {
+                case "T":
                     assert splitTask.length == 3 : "invalid todo task";
                     toAdd = new ToDo(splitTask[2]);
-                } else if (splitTask[0].equals("E")) {
+                    break;
+                case "E":
                     assert splitTask.length == 4 : "invalid event task";
                     toAdd = new Event(splitTask[2], splitTask[3]);
-                } else {
+                    break;
+                case "D":
                     assert splitTask.length == 4 : "invalid deadline task";
                     toAdd = new Deadline(splitTask[2], splitTask[3]);
+                    break;
+                default:
+                    toAdd = null;
                 }
-                if (splitTask[1].equals("1")) {
+                if (splitTask[1].equals("1") && toAdd != null) {
                     toAdd.markDone();
                 }
-                output.add(toAdd);
+                if (toAdd != null) {
+                    output.add(toAdd);
+                }
             }
             return output;
         } catch (FileNotFoundException e) {

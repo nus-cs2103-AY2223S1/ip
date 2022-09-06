@@ -51,8 +51,8 @@ public class AddCommand extends Command {
     @Override
     public String getResponse(TaskList taskList, UI ui, Storage storage) {
         taskList.add(this.toAdd);
-        String mess = "Got it. I've added this task:\n\t" + toAdd
+        String responseMessage = "Got it. I've added this task:\n\t" + toAdd
                 + "\nNow you have " + taskList.getSize() + " tasks in the list.";
-        return mess;
+        return responseMessage;
     }
 }

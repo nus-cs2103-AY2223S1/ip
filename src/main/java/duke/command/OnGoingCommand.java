@@ -44,7 +44,7 @@ public class OnGoingCommand extends Command {
     @Override
     public String getResponse(TaskList taskList, UI ui, Storage storage) {
         taskList.unMarkDone(index);
-        String message = "OK, I've marked this task as not done yet:\n\t" + taskList.taskToString(this.index);
-        return message;
+        String responseMessage = "OK, I've marked this task as not done yet:\n\t" + taskList.taskToString(this.index);
+        return responseMessage;
     }
 }
