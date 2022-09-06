@@ -46,7 +46,8 @@ public class Parser {
         if (task.isEmpty()) {
             throw new DukeException("Error! No task found.");
         } else {
-            return Integer.parseInt(task.get()) - 1;
+            int num = Integer.parseInt(task.get()) - 1;
+            assert num >= 0 : "Input should be larger than 0";
         }
     }
 

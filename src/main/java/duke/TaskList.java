@@ -33,6 +33,7 @@ public class TaskList {
     }
 
     public Task getTask(int num) {
+        assert num >= 0 : "Input should be at least 0";
         return this.list.get(num);
     }
 
@@ -41,6 +42,7 @@ public class TaskList {
     }
 
     public Task removeTask(int num) {
+        assert num >= 0 : "Input should be at least 0";
         return this.list.remove(num);
     }
 
