@@ -9,18 +9,18 @@ import duke.util.Parser;
  * Event task.
  */
 public class Event extends Task {
-    private LocalDate at;
+    private LocalDate startTime;
 
     /**
      * Constructor for {@code Event}. With event time {@code LocalDate}.
      *
      * @param description Description of the {@code Event} task.
      * @param isDone Completion status of the {@code Event} task.
-     * @param at {@code LocalDate} of event.
+     * @param startTime {@code LocalDate} of event.
      */
-    public Event(String description, boolean isDone, LocalDate at) {
+    public Event(String description, boolean isDone, LocalDate startTime) {
         super(description, isDone);
-        this.at = at;
+        this.startTime = startTime;
     }
 
     /**
@@ -28,11 +28,11 @@ public class Event extends Task {
      *
      * @param description Description of the {@code Event} task.
      * @param isDone Completion status of the {@code Event} task.
-     * @param at Event date string.
+     * @param startTime Event date string.
      * @throws DukeException Checked exceptions that may occur when parsing date string.
      */
-    public Event(String description, boolean isDone, String at) throws DukeException {
-        this(description, isDone, Parser.parseDate(at));
+    public Event(String description, boolean isDone, String startTime) throws DukeException {
+        this(description, isDone, Parser.parseDate(startTime));
     }
 
     /**
@@ -40,15 +40,15 @@ public class Event extends Task {
      * And assumes completion status is {@code false}.
      *
      * @param description Description of the {@code Event} task.
-     * @param at Event date string.
+     * @param startTime Event date string.
      * @throws DukeException Checked exceptions that may occur when parsing date string.
      */
-    public Event(String description, String at) throws DukeException {
-        this(description, false, Parser.parseDate(at));
+    public Event(String description, String startTime) throws DukeException {
+        this(description, false, Parser.parseDate(startTime));
     }
 
     String getFormattedDateString() {
-        return this.at.format(DATE_FORMATTER);
+        return this.startTime.format(DATE_FORMATTER);
     }
 
     /**
@@ -58,7 +58,7 @@ public class Event extends Task {
      */
     @Override
     public String getStorageFormat() {
-        return "E | " + super.getStorageFormat() + " | " + this.at;
+        return String.format("E | %s | %s", super.getStorageFormat(), this.startTime);
     }
 
     /**
@@ -66,6 +66,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.getFormattedDateString() + ")";
+        return String.format("[E]%s (at: %s)", super.toString(), this.getFormattedDateString());
     }
 }

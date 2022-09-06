@@ -10,6 +10,23 @@ import duke.task.Todo;
  * Class to parse string representation of task in storage.
  */
 public class StorageParser {
+    private static final String TASK_STRING_DELIMITER = " \\| ";
+    private static final String TASK_TYPE_DELIMITER = " | ";
+
+    private static final String ERROR_MESSAGE_TASK_UNRECOGNIZED =
+            "Failed to parse task from storage, task not recognized";
+    private static final String ERROR_MESSAGE_PARSE_TODO_ERROR = "Failed to parse todo from storage";
+    private static final String ERROR_MESSAGE_PARSE_EVENT_ERROR = "Failed to parse event from storage";
+    private static final String ERROR_MESSAGE_PARSE_DEADLINE_ERROR = "Failed to parse deadline from storage";
+
+    private static final int NUMBER_OF_ARGUMENTS_TODO = 2;
+    private static final int NUMBER_OF_ARGUMENTS_EVENT = 3;
+    private static final int NUMBER_OF_ARGUMENTS_DEADLINE = 3;
+
+    private static final int INDEX_OF_TASK_TYPE = 0;
+    private static final int INDEX_OF_DONE_ARGUMENT = 0;
+    private static final int INDEX_OF_DESCRIPTION_ARGUMENT = 1;
+    private static final int INDEX_OF_TIME_ARGUMENT = 2;
 
     /**
      * Parses a task string from storage into a {@code Task} object.
@@ -19,8 +36,10 @@ public class StorageParser {
      * @throws DukeException Checked exceptions that may occur when parsing task string into {@code Task}.
      */
     public static Task parseTaskString(String taskString) throws DukeException {
-        Character taskType = taskString.charAt(0);
-        String[] arguments = taskString.substring(taskString.indexOf(" | ") + 3).split(" \\| ");
+        Character taskType = taskString.charAt(INDEX_OF_TASK_TYPE);
+        String[] arguments = taskString
+                .substring(taskString.indexOf(TASK_TYPE_DELIMITER) + TASK_TYPE_DELIMITER.length())
+                .split(TASK_STRING_DELIMITER);
         switch (taskType) {
         case 'T':
             return parseToDo(arguments);
@@ -29,18 +48,18 @@ public class StorageParser {
         case 'E':
             return parseEvent(arguments);
         default:
-            throw new DukeException("Failed to parse task from storage");
+            throw new DukeException(ERROR_MESSAGE_TASK_UNRECOGNIZED);
         }
     }
 
     private static Todo parseToDo(String[] arguments) throws DukeException {
-        String parseErrorMessage = "Failed to parse todo from storage";
-        if (arguments.length != 2) {
+        String parseErrorMessage = ERROR_MESSAGE_PARSE_TODO_ERROR;
+        if (arguments.length != NUMBER_OF_ARGUMENTS_TODO) {
             throw new DukeException(parseErrorMessage);
         }
         try {
-            boolean isDone = Integer.parseInt(arguments[0]) == 1 ? true : false;
-            String description = arguments[1];
+            boolean isDone = Integer.parseInt(arguments[INDEX_OF_DONE_ARGUMENT]) == 1 ? true : false;
+            String description = arguments[INDEX_OF_DESCRIPTION_ARGUMENT];
             return new Todo(description, isDone);
         } catch (NumberFormatException e) {
             throw new DukeException(parseErrorMessage);
@@ -48,14 +67,14 @@ public class StorageParser {
     }
 
     private static Event parseEvent(String[] arguments) throws DukeException {
-        String parseErrorMessage = "Failed to parse event from storage";
-        if (arguments.length != 3) {
+        String parseErrorMessage = ERROR_MESSAGE_PARSE_EVENT_ERROR;
+        if (arguments.length != NUMBER_OF_ARGUMENTS_EVENT) {
             throw new DukeException(parseErrorMessage);
         }
         try {
-            boolean isDone = Integer.parseInt(arguments[0]) == 1 ? true : false;
-            String description = arguments[1];
-            String time = arguments[2];
+            boolean isDone = Integer.parseInt(arguments[INDEX_OF_DONE_ARGUMENT]) == 1 ? true : false;
+            String description = arguments[INDEX_OF_DESCRIPTION_ARGUMENT];
+            String time = arguments[INDEX_OF_TIME_ARGUMENT];
             return new Event(description, isDone, time);
         } catch (NumberFormatException e) {
             throw new DukeException(parseErrorMessage);
@@ -63,14 +82,14 @@ public class StorageParser {
     }
 
     private static Deadline parseDeadline(String[] arguments) throws DukeException {
-        String parseErrorMessage = "Failed to parse deadline from storage";
-        if (arguments.length != 3) {
+        String parseErrorMessage = ERROR_MESSAGE_PARSE_DEADLINE_ERROR;
+        if (arguments.length != NUMBER_OF_ARGUMENTS_DEADLINE) {
             throw new DukeException(parseErrorMessage);
         }
         try {
-            boolean isDone = Integer.parseInt(arguments[0]) == 1 ? true : false;
-            String description = arguments[1];
-            String time = arguments[2];
+            boolean isDone = Integer.parseInt(arguments[INDEX_OF_DONE_ARGUMENT]) == 1 ? true : false;
+            String description = arguments[INDEX_OF_DESCRIPTION_ARGUMENT];
+            String time = arguments[INDEX_OF_TIME_ARGUMENT];
             return new Deadline(description, isDone, time);
         } catch (NumberFormatException e) {
             throw new DukeException(parseErrorMessage);
