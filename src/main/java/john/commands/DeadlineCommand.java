@@ -29,6 +29,7 @@ public class DeadlineCommand extends Command {
     @Override
     public String execute() {
         String task = tasklist.addDeadline(description, timing);
+        assert task != null : "task cannot be null!";
         return ui.showAddedTask(task, tasklist);
     }
 }

@@ -149,7 +149,8 @@ public class TaskList {
      */
     public String markTask(String params) {
         int pos = Integer.parseInt(params) - 1;
-        if (pos < 0 || tasks.size() <= pos) {
+        assert pos >= 0 : "Position should be at least 1";
+        if (tasks.size() <= pos) {
             return null;
         }
         tasks.get(pos).markAsDone();
@@ -164,7 +165,8 @@ public class TaskList {
      */
     public String unmarkTask(String params) {
         int pos = Integer.parseInt(params) - 1;
-        if (pos < 0 || tasks.size() <= pos) {
+        assert pos >= 0 : "Position should be at least 1";
+        if (tasks.size() <= pos) {
             return null;
         }
         tasks.get(pos).markAsUndone();
@@ -179,7 +181,8 @@ public class TaskList {
      */
     public String deleteTask(String params) {
         int pos = Integer.parseInt(params) - 1;
-        if (pos < 0 || tasks.size() <= pos) {
+        assert pos >= 0 : "Position should be at least 1";
+        if (tasks.size() <= pos) {
             return null;
         }
         String removedTask = tasks.get(pos).toString();

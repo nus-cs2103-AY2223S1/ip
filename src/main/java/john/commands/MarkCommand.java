@@ -5,7 +5,7 @@ package john.commands;
  */
 public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
-    public static final String FORMAT = "mark <integer>";
+    public static final String FORMAT = "mark <positive integer>";
 
     private String markParams;
 
