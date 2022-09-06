@@ -111,6 +111,10 @@ public class Duke {
         }
     }
 
+    public String greet() {
+        return ui.greeting();
+    }
+
     public static void main(String[] args) {
         new Duke().run();
     }
