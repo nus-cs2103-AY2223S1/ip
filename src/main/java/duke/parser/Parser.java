@@ -91,6 +91,7 @@ public class Parser {
         if (atIndex == -1) {
             throw new DukeException("An event must have a at clause dummy!");
         }
+
         String desc = input.substring(firstSpaceIndex + 1, atIndex);
         if (desc.trim().equals("")) {
             throw new DukeException("Description of an event cannot be empty dummy!");
@@ -103,6 +104,7 @@ public class Parser {
         if (atIndex == -1) {
             throw new DukeException("An event must have a at clause dummy!");
         }
+
         String at = input.substring(atIndex + 4);
         String[] atArr = at.split(" ");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
