@@ -51,6 +51,10 @@ public class Parser {
             assert this.taskList != null : "Tasks not loaded";
             log = this.taskList.listItems();
             break;
+        case "undo":
+            this.taskList = this.storage.loadUndoFile();
+            log = this.taskList.listItems();
+            break;
         default:
             // unable to process as a simple command, pass to next handler
             log = this.processAdvancedCommand(input);
@@ -70,6 +74,7 @@ public class Parser {
         String lowerCaseInput = input.toLowerCase();
         String log;
         try {
+            this.storage.writeUndoTasks(this.taskList);
             if (lowerCaseInput.startsWith("mark")) {
                 log = this.taskList.validateAndMark(input, true);
             } else if (lowerCaseInput.startsWith("unmark")) {
@@ -89,7 +94,7 @@ public class Parser {
                 CarbonException invalidInput = new InvalidInputException(input);
                 throw invalidInput;
             }
-            this.storage.saveTasks(this.taskList);
+            this.storage.writeSaveTasks(this.taskList);
             return log;
         } catch (CarbonException error) {
             throw error;
