@@ -65,8 +65,7 @@ public class Duke {
         String input = sc.nextLine();
         String[] inputArr = input.split(" ");
         String action = inputArr[0];
-
-
+        
         while (!action.equals("bye")) {
             int number;
             Task task;
