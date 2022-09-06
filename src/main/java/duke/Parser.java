@@ -18,11 +18,11 @@ public class Parser {
     /**
      * Parse input of users and analysing which command is used.
      *
-     * @param input User input
+     * @param inputs User input
      * @return Command referred to the user input
-     * @throws DukeException If invalid commands or arguments
      */
-    public static Command parse(String input) {
+    public static Command parse(String... inputs) {
+        String input = inputs[0];
         String[] cmd = input.split(" ", 2);
         int index;
 
@@ -58,10 +58,7 @@ public class Parser {
             default:
                 return new AddCommand(input);
             }
-        } catch (DukeException e) {
-            System.out.println(e.getMessage());
-            return null;
-        } catch (IndexOutOfBoundsException e) {
+        } catch (DukeException | IndexOutOfBoundsException e) {
             System.out.println(e.getMessage());
             return null;
         }
