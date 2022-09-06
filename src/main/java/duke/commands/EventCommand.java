@@ -30,12 +30,6 @@ public class EventCommand extends Command {
         this.eventDate = eventDate;
     }
 
-//    @Override
-//    public void execute(TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException {
-//        taskList.addEventTask(description, eventDate);
-//        storage.saveList(taskList);
-//    }
-
     @Override
     public String execute(TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException {
         taskList.addEventTask(description, eventDate);

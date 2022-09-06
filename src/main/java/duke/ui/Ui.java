@@ -17,13 +17,6 @@ public class Ui {
     public static final String END_PROGRAM = "Bye. Hope to see you again soon!";
     private static final PrintStream out = System.out;
 
-    /**
-     * Constructor for UI.
-     */
-//    public Ui() {
-//        this.scanner = new Scanner(System.in);
-//    }
-
     public void showWelcomeMessage() {
         System.out.println(GREETING);
     }
@@ -40,9 +33,6 @@ public class Ui {
         out.print("What would you like to do: ");
         return scanner.nextLine();
     }
-    public static String readNextLine() {
-        return scanner.nextLine();
-    }
 
     /**
      * Shows the list of messages.
@@ -54,6 +44,11 @@ public class Ui {
         }
     }
 
+    /**
+     * Returns the list of messages for JavaFX processing.
+     * @param messages the list of messages
+     * @return message to the user in JavaFX
+     */
     public String returnMessages(String... messages) {
         StringBuilder sb = new StringBuilder();
         for (String m : messages) {

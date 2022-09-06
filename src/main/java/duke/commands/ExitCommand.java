@@ -15,11 +15,6 @@ public class ExitCommand extends Command {
             + ": Exits Duke.\n"
             + "\tEx. " + COMMAND_WORD;
 
-//    @Override
-//    public void execute(TaskList taskList, Ui ui, StorageFile storage) {
-//        ui.showMessages(MESSAGE_EXIT_ACKNOWLEDGEMENT);
-//    }
-
     @Override
     public String execute(TaskList taskList, Ui ui, StorageFile storage) {
         return MESSAGE_EXIT_ACKNOWLEDGEMENT;

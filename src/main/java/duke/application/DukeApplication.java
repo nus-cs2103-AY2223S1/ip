@@ -1,6 +1,13 @@
 package duke.application;
 
-import duke.commands.*;
+import duke.commands.Command;
+import duke.commands.DeadlineCommand;
+import duke.commands.DeleteCommand;
+import duke.commands.FindCommand;
+import duke.commands.EventCommand;
+import duke.commands.TodoCommand;
+import duke.commands.MarkCommand;
+
 import duke.exceptions.EmptyBodyException;
 import duke.exceptions.InvalidInputException;
 import duke.exceptions.UnableToSaveException;
@@ -10,19 +17,15 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class DukeApplication extends Application {
@@ -146,23 +149,9 @@ public class DukeApplication extends Application {
     }
 
     /**
-     * Iteration 1:
-     * Creates a label with the specified text and adds it to the dialog container.
-     * @param text String containing text to add
-     * @return a label with the specified text that has word wrap enabled.
-     */
-    private Label getDialogLabel(String text) {
-        // You will need to import `javafx.scene.control.Label`.
-        Label textToAdd = new Label(text);
-        textToAdd.setWrapText(true);
-
-        return textToAdd;
-    }
-
-    /**
-     * Iteration 2:
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
+     * Creates two dialog boxes, one echoing user input and the other containing
+     * Duke's reply and then appends them to the dialog container.
+     * Clears the user input after processing.
      */
     private void handleUserInput() {
         String input = userInput.getText();
@@ -179,10 +168,6 @@ public class DukeApplication extends Application {
         userInput.clear();
     }
 
-    /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
-     */
     private String getResponse(String input) {
         try {
             if ((input.equals(TodoCommand.COMMAND_WORD.toLowerCase()))

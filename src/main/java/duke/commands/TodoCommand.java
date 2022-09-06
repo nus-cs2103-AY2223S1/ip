@@ -27,12 +27,6 @@ public class TodoCommand extends Command {
         this.description = description;
     }
 
-//    @Override
-//    public void execute(TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException {
-//        taskList.addTodoTask(description);
-//        storage.saveList(taskList);
-//    }
-
     @Override
     public String execute(TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException {
         taskList.addTodoTask(description);

@@ -8,7 +8,6 @@ import duke.common.Messages;
 
 import duke.exceptions.EmptyBodyException;
 import duke.exceptions.InvalidInputException;
-import duke.ui.Ui;
 
 /**
  * Parses user input.
@@ -21,9 +20,9 @@ public class Parser {
     private static final Pattern NUMBER_FORMAT = Pattern.compile("\\d+");
 
     /**
-     * Parses user input into command for execution.
+     * Parses single user input into command for execution.
      *
-     * @param userInput full user input string
+     * @param userInput user input string
      * @return the command based on the user input
      */
     public Command parseCommand(String userInput) {
@@ -46,6 +45,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses two user inputs into command for execution.
+     * Specifically for Todo, Mark, Delete and Find commands.
+     *
+     * @param userInput command word
+     * @param secondInput description or index of task
+     * @return the command based on the user input
+     */
     public Command parseTwoArgsCommand(String userInput, String secondInput) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
@@ -68,6 +75,15 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses three user inputs into command for execution.
+     * Specifically for Event and Deadline commands.
+     *
+     * @param userInput command word
+     * @param secondInput description of task
+     * @param thirdInput date of task
+     * @return the command based on the user input
+     */
     public Command parseThreeArgsCommand(String userInput, String secondInput, String thirdInput) {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
@@ -86,63 +102,60 @@ public class Parser {
         }
     }
 
-    private Command prepareTodoTask(String secondInput) {
+    private Command prepareTodoTask(String taskDescription) {
         try {
-            final String description = secondInput;
-            if (description.equals("")) {
+            if (taskDescription.equals("")) {
                 throw new EmptyBodyException();
             }
-            return new TodoCommand(description);
+            return new TodoCommand(taskDescription);
         } catch (EmptyBodyException e) {
             return new InvalidCommand(e.getMessage());
         }
     }
 
-    private Command prepareEventTask(String secondInput, String thirdInput) {
+    private Command prepareEventTask(String taskDescription, String taskDate) {
         try {
-            if (secondInput.equals("")) {
+            if (taskDescription.equals("")) {
                 throw new EmptyBodyException();
             }
-            if (!thirdInput.matches(String.valueOf(DATE_FORMAT))) {
+            if (!taskDate.matches(String.valueOf(DATE_FORMAT))) {
                 throw new InvalidInputException(Messages.MESSAGE_INVALID_DATE_INPUT);
             }
-            return new EventCommand(secondInput, thirdInput);
+            return new EventCommand(taskDescription, taskDate);
         } catch (EmptyBodyException | InvalidInputException e) {
             return new InvalidCommand(e.getMessage());
         }
     }
 
-    private Command prepareDeadlineTask(String secondInput, String thirdInput) {
+    private Command prepareDeadlineTask(String taskDescription, String taskDate) {
         try {
-            if (secondInput.equals("")) {
+            if (taskDescription.equals("")) {
                 throw new EmptyBodyException();
             }
 
-            if (!thirdInput.matches(String.valueOf(DATE_FORMAT))) {
+            if (!taskDate.matches(String.valueOf(DATE_FORMAT))) {
                 throw new InvalidInputException(Messages.MESSAGE_INVALID_DATE_INPUT);
             }
 
-            return new DeadlineCommand(secondInput, thirdInput);
+            return new DeadlineCommand(taskDescription, taskDate);
         } catch (EmptyBodyException | InvalidInputException e) {
             return new InvalidCommand(e.getMessage());
         }
     }
 
-    private Command prepareMark(String secondInput) {
+    private Command prepareMark(String taskIndex) {
         try {
-            final String taskNumber = secondInput;
-            if (!taskNumber.matches(String.valueOf(NUMBER_FORMAT))) {
+            if (!taskIndex.matches(String.valueOf(NUMBER_FORMAT))) {
                 throw new InvalidInputException(Messages.MESSAGE_INVALID_TASK_NUMBER);
             }
-            return new MarkCommand(Integer.parseInt(taskNumber));
+            return new MarkCommand(Integer.parseInt(taskIndex));
         } catch (Exception e) {
             return new InvalidCommand(e.getMessage());
         }
     }
 
-    private Command prepareFindTask(String secondInput) {
+    private Command prepareFindTask(String taskSubstring) {
         try {
-            final String taskSubstring = secondInput;
             if (taskSubstring.equals("")) {
                 throw new EmptyBodyException();
             }
@@ -152,13 +165,12 @@ public class Parser {
         }
     }
 
-    private Command prepareDelete(String secondInput) {
+    private Command prepareDelete(String taskIndex) {
         try {
-            final String taskNumber = secondInput;
-            if (!taskNumber.matches(String.valueOf(NUMBER_FORMAT))) {
+            if (!taskIndex.matches(String.valueOf(NUMBER_FORMAT))) {
                 throw new InvalidInputException(Messages.MESSAGE_INVALID_TASK_NUMBER);
             }
-            return new DeleteCommand(Integer.parseInt(taskNumber));
+            return new DeleteCommand(Integer.parseInt(taskIndex));
         } catch (Exception e) {
             return new InvalidCommand(e.getMessage());
         }

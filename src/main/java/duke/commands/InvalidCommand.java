@@ -21,11 +21,6 @@ public class InvalidCommand extends Command {
         this.errorMessage = errorMessage;
     }
 
-//    @Override
-//    public void execute(TaskList taskList, Ui ui, StorageFile storage) {
-//        ui.showMessages(errorMessage);
-//    }
-
     @Override
     public String execute(TaskList taskList, Ui ui, StorageFile storage) {
         return Messages.MESSAGE_INVALID_COMMAND;

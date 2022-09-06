@@ -28,13 +28,6 @@ public class MarkCommand extends Command {
         this.taskNumber = taskNumber;
     }
 
-//    @Override
-//    public void execute(
-//            TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException, InvalidInputException {
-//        taskList.markTask(taskNumber);
-//        storage.saveList(taskList);
-//    }
-
     @Override
     public String execute(
             TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException, InvalidInputException {
