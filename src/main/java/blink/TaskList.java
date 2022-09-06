@@ -42,7 +42,8 @@ public class TaskList {
      *     it was deleted
      */
     public Task deleteTask(int pos) {
-        if (pos <= 0 || pos > this.length()) {
+        int minIndex = 1;
+        if (pos < minIndex || pos > this.length()) {
             throw new BlinkException("Invalid number input");
         }
         Task temp = this.tasks.get(pos - 1);
@@ -65,7 +66,7 @@ public class TaskList {
      * @param pos Number position of task to get
      * @return Task at position specified
      */
-    public Task get(int pos) {
+    public Task getTask(int pos) {
         return this.tasks.get(pos);
     }
 
@@ -85,7 +86,7 @@ public class TaskList {
             display = "There is a total of " + this.length() + " tasks currently:";
         }
         for (int x = 0; x < this.length(); x++) {
-            display = display + "\n" + (x + 1) + ": " + this.get(x);
+            display = display + "\n" + (x + 1) + ": " + this.getTask(x);
         }
         return display;
     }
@@ -96,7 +97,8 @@ public class TaskList {
      * @param num Number position of task to mark
      */
     public void mark(int num) {
-        if (num <= 0 || num > this.length()) {
+        int minIndex = 1;
+        if (num <= minIndex || num > this.length()) {
             throw new BlinkException("Invalid number input");
         }
         this.tasks.get(num - 1).mark();
@@ -108,7 +110,8 @@ public class TaskList {
      * @param num Number position of task to unmark
      */
     public void unMark(int num) {
-        if (num <= 0 || num > this.length()) {
+        int minIndex = 1;
+        if (num <= minIndex || num > this.length()) {
             throw new BlinkException("Invalid number input");
         }
         this.tasks.get(num - 1).unMark();
@@ -119,7 +122,7 @@ public class TaskList {
      *
      * @return String containing number of remaining task in TaskList
      */
-    public String deleted() {
+    public String toStringAfterDelete() {
         if (this.length() == 0) {
             return "No tasks remaining";
         } else if (this.length() == 1) {
@@ -139,7 +142,7 @@ public class TaskList {
     public ArrayList<Task> filter(LocalDate date) {
         ArrayList<Task> sameDates = new ArrayList<>();
         for (int x = 0; x < this.length(); x++) {
-            Task temp = this.get(x);
+            Task temp = this.getTask(x);
             if (temp.checkDate(date)) {
                 sameDates.add(temp);
             }
@@ -197,7 +200,7 @@ public class TaskList {
     public ArrayList<Task> find(String keyword) {
         ArrayList<Task> temp = new ArrayList<>();
         for (int x = 0; x < this.length(); x++) {
-            Task task = this.get(x);
+            Task task = this.getTask(x);
             if (task.hasKeyword(keyword)) {
                 temp.add(task);
             }

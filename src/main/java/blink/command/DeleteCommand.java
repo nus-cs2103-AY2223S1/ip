@@ -36,14 +36,4 @@ public class DeleteCommand extends Command {
         storage.save(tasks);
         return ui.deleteTask(tasks, temp);
     }
-
-    /**
-     * DeleteCommand does not end the program thus returns false.
-     *
-     * @return False.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

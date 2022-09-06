@@ -46,14 +46,4 @@ public class EventCommand extends Command {
         storage.save(tasks);
         return ui.showAddTask(tasks, event);
     }
-
-    /**
-     * Event command will not end the program.
-     *
-     * @return False
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

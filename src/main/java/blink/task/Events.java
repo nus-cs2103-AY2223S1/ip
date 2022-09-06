@@ -53,8 +53,9 @@ public class Events extends Task {
      */
     @Override
     public String saveString() {
-        return "E " + "|" + (this.isDone ? 1 : 0)
-                + "| " + this.description + " | " + this.date + "\n";
+        String taskMark = "|" + (this.isDone ? 1 : 0) + "| ";
+        String info = this.description + " | " + this.date;
+        return "E " + taskMark + info + "\n";
     }
 
     private String dateString() {

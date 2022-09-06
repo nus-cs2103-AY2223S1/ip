@@ -63,7 +63,7 @@ public class Storage {
             new File(this.filePath).getParentFile().mkdirs();
             FileWriter fw = new FileWriter(this.filePath);
             for (int x = 0; x < tasks.length(); x++) {
-                Task temp = tasks.get(x);
+                Task temp = tasks.getTask(x);
                 fw.write(temp.saveString());
             }
             fw.close();

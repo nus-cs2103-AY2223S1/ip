@@ -36,14 +36,4 @@ public class UnmarkCommand extends Command {
         storage.save(tasks);
         return ui.unMark(tasks, num);
     }
-
-    /**
-     * Unmark command does not end the program thus returns false.
-     *
-     * @return False
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }
