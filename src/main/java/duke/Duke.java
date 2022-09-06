@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.concurrent.ConcurrentMap;
 
 import duke.command.Command;
 import duke.command.ExitCommand;
@@ -61,6 +62,7 @@ public class Duke {
      */
     public String getResponse(String input) {
         try {
+            assert(Parser.parseCommand(input) instanceof Command);
             Command c = Parser.parseCommand(input);
             if (c instanceof ExitCommand) {
                 isExit = true;
