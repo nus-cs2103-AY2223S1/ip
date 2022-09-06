@@ -10,6 +10,7 @@ import duke.ui.Ui;
 public class ByeCommand extends Command {
 
     public static final String COMMAND_WORD = "bye";
+    public static final String BYE_MESSAGE = "Bye. Hope to see you again soon!";
 
     /**
      * Save the current list of tasks into a text file for future reference and
@@ -21,7 +22,7 @@ public class ByeCommand extends Command {
     @Override
     public String execute(TaskList tasks, Storage storage) {
         storage.saveTaskToFile(tasks.getListOfTasks());
-        return "Bye. Hope to see you again soon!";
+        return BYE_MESSAGE;
     }
 
 }

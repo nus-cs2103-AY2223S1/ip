@@ -10,6 +10,8 @@ import duke.task.TaskList;
 public class MarkCommand extends Command {
 
     public static final String COMMAND_WORD = "mark";
+    public static final String MARK_TASK_MSG = "Nice! I've marked this task as done:\n ";
+    public static final String NO_TASK_MSG = "There is no task at this index";
     private int toMark;
 
     /**
@@ -33,9 +35,9 @@ public class MarkCommand extends Command {
             task.markTask(this.toMark);
             Task taskToMark = task.getTask(toMark);
             assert taskToMark == null : "Task to be mark done should not be empty";
-            return "Nice! I've marked this task as done:\n " + taskToMark.taskInfo();
+            return MARK_TASK_MSG + taskToMark.taskInfo();
         } catch (IndexOutOfBoundsException e) {
-            return "There is no task at this index";
+            return NO_TASK_MSG;
         }
 
     }

@@ -11,6 +11,8 @@ import duke.ui.Ui;
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
+    public static final String REMOVE_TASK_MSG = "Noted. I've removed this task:\n ";
+    public static final String NO_TASK_MSG = "There is no task at this index";
     private int toDelete;
 
     /**
@@ -34,9 +36,9 @@ public class DeleteCommand extends Command {
             Task taskToDelete = task.getTask(toDelete);
             assert taskToDelete == null : "Task to be deleted should not be empty";
             task.deleteTask(toDelete);
-            return "Noted. I've removed this task:\n " + taskToDelete.taskInfo();
+            return REMOVE_TASK_MSG + taskToDelete.taskInfo();
         } catch (IndexOutOfBoundsException e) {
-            return "There is no task at this index";
+            return NO_TASK_MSG;
         }
     }
 
