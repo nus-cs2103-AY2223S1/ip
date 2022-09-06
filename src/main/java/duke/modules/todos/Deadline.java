@@ -4,7 +4,6 @@ import duke.MessagefulException;
 import duke.util.NaturalDateParser;
 
 import java.time.Instant;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -60,7 +59,7 @@ public class Deadline extends Task {
                 return new Deadline(
                         match.group("name"),
                         NaturalDateParser.parse(match.group("time")));
-            } catch (DateTimeParseException e) {
+            } catch (NaturalDateParser.DateNotFoundException e) {
                 throw new MessagefulException(
                         "datetime parse failure" + e,
                         e.getParsedString() + " doesn't look like a date and time to me...");
