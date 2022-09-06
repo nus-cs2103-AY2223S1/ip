@@ -3,6 +3,7 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '5.1.0'
     id 'application'
     id 'checkstyle'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
 }
 
 group 'org.example'

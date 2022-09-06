@@ -15,7 +15,7 @@ public class Storage {
      * @param taskList
      * @param filePath
      */
-    public Storage(TaskList taskList, String filePath) throws IOException {
+    public Storage(TaskList taskList, String filePath) {
         saveFile(taskList, filePath);
     }
 
@@ -29,7 +29,7 @@ public class Storage {
      *                 of task in.
      * @throws IOException
      */
-    public static void saveFile(TaskList taskList, String pathname) throws IOException {
+    public static void saveFile(TaskList taskList, String pathname) {
 
         try {
             Task[] taskArr = taskList.getTaskArr();
