@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import duke.tasks.Deadline;
@@ -36,7 +37,7 @@ public class Storage {
      *
      * @return An ArrayList of Tasks added previously.
      */
-    public ArrayList<Task> load() {
+    public ArrayList<Task> loadTaskList() {
         // Ensure file exists
         File tasksFile = new File(filePath);
         File tempFile = new File(tempFilePath);
@@ -53,6 +54,17 @@ public class Storage {
 
         // Add disk info to taskList
         ArrayList<Task> pastTasks = readTaskMemoFromDisk(tasksFile);
+        return pastTasks;
+    }
+
+    public HashMap<String, Task> generateTaskListQuickFind(ArrayList<Task> taskList) {
+        HashMap<String, Task> pastTasks = new HashMap<>();
+        for (Task task : taskList) {
+            String taskDescription = task.getDescription();
+            Task putReturnValue = pastTasks.put(taskDescription, task);
+
+            assert putReturnValue == null : "There should not be duplicate Task descriptions";
+        }
         return pastTasks;
     }
 

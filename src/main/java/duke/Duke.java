@@ -1,7 +1,11 @@
 package duke;
 
 import duke.commands.Command;
+import duke.tasks.Task;
 import javafx.scene.image.Image;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /**
  * duke.Duke Program for tracking Tasks.
@@ -23,7 +27,8 @@ public class Duke {
         ui = new Ui();
         storage = new Storage(filePath, tempFilePath);
         try {
-            tasks = new TaskList(storage.load());
+            ArrayList<Task> taskList = storage.loadTaskList();
+            tasks = new TaskList(taskList, storage.generateTaskListQuickFind(taskList));
         } catch (DukeException e) {
             ui.printError(e);
             tasks = new TaskList();

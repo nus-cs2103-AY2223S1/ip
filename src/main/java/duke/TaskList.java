@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import duke.tasks.Task;
 
@@ -8,15 +9,17 @@ import duke.tasks.Task;
  * Deals with keeping track of Tasks added.
  */
 public class TaskList {
-    protected static ArrayList<Task> taskList = new ArrayList<Task>();
+    protected ArrayList<Task> taskList;
+    protected HashMap<String, Task> taskListQuickFind;
 
     /**
      * TaskList constructor.
      *
      * @param taskList ArrayList to store Tasks.
      */
-    public TaskList(ArrayList<Task> taskList) {
+    public TaskList(ArrayList<Task> taskList, HashMap<String, Task> taskListQuickFind) {
         this.taskList = taskList;
+        this.taskListQuickFind = taskListQuickFind;
     }
 
     /**
@@ -24,6 +27,7 @@ public class TaskList {
      */
     public TaskList() {
         this.taskList = new ArrayList<>();
+        this.taskListQuickFind = new HashMap<>();
     }
 
     /**
@@ -31,9 +35,12 @@ public class TaskList {
      *
      * @param task Task to be added.
      */
-    public void addTask(Task task) {
+    public void addTask(Task task, String taskDescription) {
         boolean successful = taskList.add(task);
+        Object taskListQuickFindPutReturnValue = taskListQuickFind.put(taskDescription, task);
+
         assert successful : "Task should be added successfully";
+        assert taskListQuickFindPutReturnValue == null : "Task should be added to an empty mapping";
     }
 
     /**
@@ -75,7 +82,15 @@ public class TaskList {
      */
     public String deleteTask(int taskNumber) {
         Task removedTask = taskList.remove(taskNumber);
+
         assert removedTask != null : "Task should not be null";
+
+        String taskDescription = removedTask.getDescription();
+        Task taskListQuickFindRemoveReturnValue = taskListQuickFind.remove(taskDescription);
+
+        assert taskListQuickFindRemoveReturnValue != null : "Task associated with taskDescription should" +
+                "not be null";
+
         return removedTask.toString();
     }
 
@@ -121,5 +136,9 @@ public class TaskList {
             }
         }
         return message;
+    }
+
+    public boolean taskDescriptionExists(String taskDescription) {
+        return taskListQuickFind.containsKey(taskDescription);
     }
 }

@@ -25,4 +25,8 @@ public class Task {
         int status = this.isDone ? 1 : 0;
         return String.format(" | %d | %s", status, this.description);
     }
+
+    public String getDescription() {
+        return this.description;
+    }
 }
