@@ -41,7 +41,7 @@ public class Duke extends Application {
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/gigachad.jpg"));
 
     /**
-     * Constructor of the duke class.
+     * Constructor of the duke class and loads the saved file into the storage.
      *
      */
     public Duke()  {
