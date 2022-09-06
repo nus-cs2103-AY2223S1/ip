@@ -51,7 +51,7 @@ public class TaskList {
     }
 
     /**
-     * Number of tasks curently within TaskList.
+     * Number of tasks currently within TaskList.
      *
      * @return Number of task in TaskList
      */
@@ -191,7 +191,7 @@ public class TaskList {
     /**
      * Searches for all Tasks inside TaskList that contains the keyword specified.
      *
-     * @param keyword Keyword to seach for in all Tasks in TaskList
+     * @param keyword Keyword to search for in all Tasks in TaskList
      * @return ArrayList of Tasks that contain the keyword
      */
     public ArrayList<Task> find(String keyword) {

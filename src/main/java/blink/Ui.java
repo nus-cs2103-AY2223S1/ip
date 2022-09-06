@@ -4,31 +4,16 @@ import blink.task.Task;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Ui that control logic of what is displayed on screen.
  */
 public class Ui {
 
-    private static final String SPACING = "--------------------------------------";
-    private Scanner sc;
-
     /**
      * Constructor for Ui.
      */
     public Ui() {
-        this.sc = new Scanner(System.in);
-    }
-
-    /**
-     * Displays welcome message to user when Blink program starts.
-     */
-    public void showWelcome() {
-        System.out.println(Ui.SPACING + "\n"
-                + "Hello! Blink.Blink here\n"
-                + "What can I do for you today?\n"
-                + Ui.SPACING);
     }
 
     /**
@@ -36,31 +21,6 @@ public class Ui {
      */
     public String showBye() {
         return "Bye bye~ Glad to be of service :D";
-    }
-
-    /**
-     * Displays the SPACING constant between lines.
-     */
-    public void showLine() {
-        System.out.println(Ui.SPACING);
-    }
-
-    /**
-     * Shows the user input error found.
-     *
-     * @param errMessage Error message of exceptions caught
-     */
-    public void showError(String errMessage) {
-        System.out.println("Error found: " + errMessage);
-    }
-
-    /**
-     * Reads the next line of user input.
-     *
-     * @return Next time of user input
-     */
-    public String readCommand() {
-        return sc.nextLine();
     }
 
     /**

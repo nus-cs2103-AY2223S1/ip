@@ -12,8 +12,6 @@ import blink.command.MarkCommand;
 import blink.command.TodoCommand;
 import blink.command.UnmarkCommand;
 
-import java.time.DateTimeException;
-
 /**
  * Reads the user input to figure out the command written.
  */
@@ -31,7 +29,6 @@ public class Parser {
     public static Command parse(String input) {
         String[] info = input.split(" ", 2);
         String command = info[0].strip().toUpperCase();
-        try {
             switch (command) {
                 case "BYE":
                     return new ByeCommand();
@@ -58,7 +55,7 @@ public class Parser {
                     return new FilterCommand(info[1].strip());
                 case "FIND":
                     if (info.length == 1) {
-                        throw new BlinkException("Missing keyword inut");
+                        throw new BlinkException("Missing keyword input");
                     }
                     return new FindCommand(info[1].strip().toLowerCase());
                 case "LIST":
@@ -81,17 +78,8 @@ public class Parser {
                     int val = Integer.parseInt(info[1].strip());
                     return new UnmarkCommand(val);
                 default:
-                    if (info[0].isBlank()) {
-                        throw new BlinkException("Missing command input");
-                    } else {
-                        throw new BlinkException("Unknown command found");
-                    }
+                    throw new BlinkException("Unknown command inputted");
             }
-        } catch (NumberFormatException e) {
-            throw new BlinkException("Number input expected");
-        } catch (DateTimeException e) {
-            throw new BlinkException("Invalid date input, proper format YYYY-MM-DD");
-        }
     }
 
 }

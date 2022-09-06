@@ -48,7 +48,7 @@ test {
 }
 
 application {
-    mainClassName = "blink.Blink"
+    mainClassName = "blink.Launcher"
 }
 
 shadowJar {

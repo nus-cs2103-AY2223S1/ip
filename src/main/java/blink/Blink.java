@@ -39,11 +39,16 @@ public class Blink {
      * are suitable commands and act upon them if they are.
      */
     public String getResponse(String input) {
+        String err = "Error found: ";
         try {
             Command command = Parser.parse(input);
             return command.execute(this.tasks, this.ui, this.storage);
         } catch (BlinkException e) {
-            return "Error found:" + e.getMessage();
+            return err + e.getMessage();
+        } catch (NumberFormatException e) {
+            return err + "Number input expected";
+        } catch (DateTimeException e) {
+            return err + "Invalid date input, proper format is YYYY-MM-DD (2022-09-22)";
         }
     }
 
