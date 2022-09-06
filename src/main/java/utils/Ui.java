@@ -51,16 +51,6 @@ public class Ui {
         }
     }
 
-    /**
-     * Utility function for Duke to print responses to the user.
-     * @param s The string to be formatted and indented within the enclosing border.
-     */
-    public static void sendMessage(String s) {
-        System.out.println("\t_________________________________________________");
-        System.out.println("\t" + s);
-        System.out.println("\t_________________________________________________");
-        System.out.println();
-    }
 
     public static void printErrorWithoutFormatting(Exception e) {
         System.out.print(e.getMessage());

@@ -37,7 +37,7 @@ public class TaskList {
             throw new DukeException("No cached tasks.");
         } else {
             this.tasks = taskList;
-            Ui.sendMessage("Tasks loaded from cache.");
+            // Ui.sendMessage("Tasks loaded from cache.");
         }
     }
 
@@ -57,28 +57,41 @@ public class TaskList {
      */
     public void add(String description, Duke.TaskType type, String remarks) {
         String s = "Got it. I've added this task:\n\t";
+        int size;
         switch (type) {
         case TODO:
             Todo t = new Todo(description);
+
+            size = this.tasks.size();
             this.tasks.add(t);
+            assert(this.tasks.size() > size);
+
             s = s + "  " + t;
             break;
         case DEADLINE:
             Deadline d = new Deadline(description, remarks);
+
+            size = this.tasks.size();
             this.tasks.add(d);
+            assert(this.tasks.size() > size);
+
             s = s + "  " + d;
             break;
         case EVENT:
             Event e = new Event(description, remarks);
+
+            size = this.tasks.size();
             this.tasks.add(e);
+            assert(this.tasks.size() > size);
+
             s = s + "  " + e;
             break;
         default:
             break;
         }
-        int size = tasks.size();
-        s = s + "\n\tNow you have " + (size) + (size == 1 ? " task" : " tasks") + " in the list.";
-        Ui.sendMessage(s);
+        int actualSize = tasks.size();
+        s = s + "\n\tNow you have " + (actualSize) + (actualSize == 1 ? " task" : " tasks") + " in the list.";
+        // Ui.sendMessage(s);
     }
 
     /**
@@ -88,8 +101,13 @@ public class TaskList {
     public void delete(int index) {
         String s = "Got it. I've removed this task:\n\t";
         s = s + this.tasks.get(index);
+
+        int tempSize = this.tasks.size();
         this.tasks.remove(index);
         int size = tasks.size();
+
+        assert(size > tempSize);
+
         s = s + "\n\tNow you have " + (size) + (size == 1 ? " task" : " tasks") + " in the list.";
         Ui.sendMessage(s);
     }
@@ -98,7 +116,7 @@ public class TaskList {
      * Prints all tasks in the list.
      */
     public String listTasks() {
-        return Ui.getTasks(this.tasks);
+        return Ui.getTasks(this.tasks); //TODO: Refactor
     }
 
     /**
@@ -107,6 +125,7 @@ public class TaskList {
      */
     public void markTaskAsDone(int index) {
         this.tasks.get(index).markAsDone();
+        assert(this.tasks.get(index).getStatus());
     }
 
     /**
@@ -115,6 +134,7 @@ public class TaskList {
      */
     public void markTaskAsUndone(int index) {
         this.tasks.get(index).markAsUndone();
+        assert(!this.tasks.get(index).getStatus());
     }
 
     /**
@@ -124,20 +144,6 @@ public class TaskList {
      */
     public String getTaskAsString(int index) {
         return this.tasks.get(index).toString();
-    }
-
-    /**
-     * Search for a matching task descriptions based on a given keyword/phrase/
-     * @param s A keyword or phrase to search for in the task list.
-     */
-    public void findAndPrintAllOccurrencesOf(String s) {
-        String result = "Here are the matching tasks in your list:\n";
-        for (int i = 0; i < this.tasks.size(); i++) {
-            if (this.tasks.get(i).toString().toLowerCase().contains(s)) {
-                result = result + "\n\t" + this.tasks.get(i);
-            }
-        }
-        Ui.sendMessage(result);
     }
 
     public String getAllOccurrencesOf(String s) {

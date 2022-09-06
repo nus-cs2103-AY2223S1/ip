@@ -14,6 +14,11 @@ public class Parser {
      * @throws DukeException A custom exception for handling errors unique to Duke.
      */
     public static String decide(String s, String[] arr, TaskList taskList, Storage storage) throws DukeException {
+        assert(s.length() != 0);
+        assert(taskList != null);
+        assert(storage != null);
+        int size;
+
         if (arr.length == 0) {
             return "Please enter a valid command.";
         } else {
@@ -66,7 +71,9 @@ public class Parser {
                     }
                     i = Integer.parseInt(arr[1]) - 1;
                     if (i >= 0 && i < taskList.getSize()) {
+                        size = taskList.getSize();
                         taskList.delete(i);
+                        assert(taskList.getSize() < size);
                         storage.save(taskList);
                         return "Task updated in storage";
                     } else {
@@ -80,7 +87,11 @@ public class Parser {
                     throw new DukeException("Error. The description of a todo cannot be empty.");
                 }
                 String todo = s.substring(4).trim();
+
+                size = taskList.getSize();
                 taskList.add(todo, Duke.TaskType.TODO, "");
+                assert (taskList.getSize() > size);
+
                 storage.save(taskList);
                 return "Task updated in storage";
             case "deadline":
@@ -92,12 +103,19 @@ public class Parser {
                 String deadline = deadlineBy[0].trim();
                 String by = deadlineBy[1].trim();
 
+                assert(deadline.length() != 0);
+                assert(by.length() != 0);
+
                 // Regex adapted from:
                 // stackoverflow.com/questions/37732/what-is-the-regex-pattern-for-datetime-2008-09-01-123545
                 if (!by.trim().matches("(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2})(\\d{2})")) {
                     throw new DukeException("Invalid datetime entered.");
                 }
+
+                size = taskList.getSize();
                 taskList.add(deadline, Duke.TaskType.DEADLINE, by);
+                assert(taskList.getSize() > size);
+
                 storage.save(taskList);
                 return "Task updated in storage";
             case "event":
@@ -108,7 +126,14 @@ public class Parser {
                 }
                 String event = eventAt[0].trim();
                 String at = eventAt[1].trim();
+
+                assert(event.length() != 0);
+                assert(at.length() != 0);
+
+                size = taskList.getSize();
                 taskList.add(event, Duke.TaskType.EVENT, at);
+                assert(taskList.getSize() > size);
+
                 storage.save(taskList);
                 return "Task updated in storage";
             default:
