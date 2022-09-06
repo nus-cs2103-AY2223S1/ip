@@ -81,23 +81,23 @@ public class Storage {
     public void saveData(TaskList list) {
         try {
             FileWriter fw = new FileWriter(this.filePath);
-            for (int i = 0; i < list.getSize(); i++) {
-                Task t = list.getTask(i);
+            for (int i = 1; i < list.getSize() + 1; i++) {
+                Task task = list.getTask(i);
                 StringBuilder taskString = new StringBuilder();
-                taskString.append(t.getTaskType() + " | ");
-                if (t.getStatus()) {
+                taskString.append(task.getTaskType() + " | ");
+                if (task.getStatus()) {
                     taskString.append("1 | ");
                 } else {
                     taskString.append("0 | ");
                 }
-                if (t instanceof Todo) {
-                    taskString.append(((Todo) t).getDescription() + "\n");
-                } else if (t instanceof Event) {
-                    taskString.append(((Event) t).getDescription()
-                            + " | " + ((Event) t).getEventAt() + "\n");
+                if (task instanceof Todo) {
+                    taskString.append(task.getDescription() + "\n");
+                } else if (task instanceof Event) {
+                    taskString.append(task.getDescription()
+                            + " | " + ((Event) task).getEventAt() + "\n");
                 } else {
-                    taskString.append(((Deadline) t).getDescription()
-                            + " | " + ((Deadline) t).getDeadlineBy() + "\n");
+                    taskString.append(task.getDescription()
+                            + " | " + ((Deadline) task).getDeadlineBy() + "\n");
                 }
                 fw.write(taskString.toString());
             }

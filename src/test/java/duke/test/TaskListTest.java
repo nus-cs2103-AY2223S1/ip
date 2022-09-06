@@ -17,7 +17,7 @@ public class TaskListTest {
         Task item1 = new Todo("first item");
         temp.add(item1);
         TaskList list = new TaskList(temp);
-        assertEquals(item1, list.getTask(0));
+        assertEquals(item1, list.getTask(1));
     }
 
     @Test
