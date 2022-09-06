@@ -12,7 +12,7 @@
     <children>
         <Label fx:id="dialog" style="-fx-background-color: #FFB6C1#FFB6C1;" text="Label" textFill="#1b1a1a" wrapText="true">
          <font>
-            <Font name="Chalkboard SE Light" size="16.0" />
+            <Font name="Chalkboard SE Light" size="12.0" />
          </font>
          <effect>
             <ColorAdjust />
@@ -20,13 +20,12 @@
          <padding>
             <Insets left="2.0" right="2.0" top="2.0" />
          </padding>
-         <HBox.margin>
-            <Insets right="5.0" />
-         </HBox.margin></Label>
+      </Label>
         <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true">
          <viewport>
             <Rectangle2D />
-         </viewport></ImageView>
+         </viewport>
+      </ImageView>
     </children>
     <padding>
         <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
