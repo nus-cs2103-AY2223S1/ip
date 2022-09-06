@@ -21,11 +21,11 @@ public class ListCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        String message = "";
+        StringBuilder message = new StringBuilder();
         for (int i = 1; i <= tasks.size(); i++) {
-            message += ui.showTask(i, tasks);
-            message += "\n";
+            message.append(ui.showTask(i, tasks));
+            message.append("\n");
         }
-        return message;
+        return message.toString();
     }
 }

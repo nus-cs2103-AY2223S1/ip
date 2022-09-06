@@ -58,8 +58,7 @@ public class AddCommand extends Command {
             }
         } catch (Exception e) {
             throw new TimeFormatException();
-        } finally {
-            return ui.showAddStatus(tasks);
         }
+        return ui.showAddStatus(tasks);
     }
 }

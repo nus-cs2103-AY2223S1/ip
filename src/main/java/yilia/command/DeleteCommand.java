@@ -32,16 +32,16 @@ public class DeleteCommand extends Command {
             indices[i] = indices[indices.length - 1 - i];
             indices[indices.length - 1 - i] = temp;
         }
-        String message = "";
-        for (int i = 0; i < indices.length; i++) {
+        StringBuilder message = new StringBuilder();
+        for (int index : indices) {
             try {
-                Task task = tasks.remove(indices[i]);
-                message += ui.showDeleteStatus(task, tasks);
+                Task task = tasks.remove(index);
+                message.append(ui.showDeleteStatus(task, tasks));
             } catch (IndexOutOfBoundsException e) {
-                message += ui.showIndexOutOfBounds(indices[i]);
-                message += "\n";
+                message.append(ui.showIndexOutOfBounds(index));
+                message.append("\n");
             }
         }
-        return message;
+        return message.toString();
     }
 }
