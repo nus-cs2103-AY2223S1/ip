@@ -1,5 +1,6 @@
 package duke;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -78,8 +79,13 @@ public class TaskList {
      * Adds a task
      * @param task The task to be added
      */
-    public void addTask(Task task) {
+    public void addTask(Task task) throws DukeException {
         assert task != null;
+        for(int i = 0; i<taskList.size(); i++){
+            if(Objects.equals(task.toString(), taskList.get(i).toString())) {
+                throw new DukeException("OOPS!!! You've added that task.");
+            };
+        }
         taskList.add(task);
     }
 
