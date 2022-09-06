@@ -17,6 +17,7 @@ public class UnMarkCommand extends Command {
      * @param index index of task in task list.
      */
     public UnMarkCommand(int index) {
+        assert index >= 0;
         this.index = index;
     }
 

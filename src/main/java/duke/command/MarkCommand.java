@@ -16,6 +16,7 @@ public class MarkCommand extends Command {
      * @param index index of task in task list.
      */
     public MarkCommand(int index) {
+        assert index >= 0;
         this.index = index;
     }
 
