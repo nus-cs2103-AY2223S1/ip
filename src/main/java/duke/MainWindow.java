@@ -12,6 +12,10 @@ import javafx.scene.layout.VBox;
  */
 public class MainWindow extends AnchorPane {
 
+    private Duke duke;
+
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/paimon.jpg"));
+    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/gigachad.jpg"));
 
     @FXML
     private ScrollPane scrollPane;
@@ -31,17 +35,14 @@ public class MainWindow extends AnchorPane {
                 + "|____/ \\,_|_|\\_\\___|\n";
         String intro = "Hello I'm\n" + logo + "What can I do for you?\n";
 
+        assert userImage != null : "userImage cannot be null!";
+        assert dukeImage != null : "dukeImage cannot be null!";
 
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(intro, dukeImage)
         );
         userInput.clear();
     }
-
-    private Duke duke;
-
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/paimon.jpg"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/gigachad.jpg"));
 
     @FXML
     public void initialize() {

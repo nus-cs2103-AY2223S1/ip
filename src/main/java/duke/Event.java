@@ -26,6 +26,7 @@ public class Event extends Task {
         //event breakfast /at 2022-12-12
         super(description);
         this.at = at;
+        assert at != null : "at cannot be null!";
         try {
             //reverts the format for file reading
             //not good to use exceptions as conditions though...

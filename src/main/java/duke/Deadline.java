@@ -26,6 +26,7 @@ public class Deadline extends Task {
         //deadline breakfast /by 2022-12-12
         super(description);
         this.date = date;
+        assert date != null : "date cannot be null!";
         try {
             //reverts the format for file reading
             //not good to use exceptions as conditions though...
