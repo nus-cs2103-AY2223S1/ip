@@ -12,9 +12,9 @@ import DaveExceptions.DaveInitFileException;
 
 public class SaveHandler {
 
-    private final String SAVE_FILE_DIR = System.getProperty("user.dir") + "/save.txt";
+    private static final String SAVE_FILE_DIR = System.getProperty("user.dir") + "/save.txt";
 
-    private final File SAVE_FILE = new File(SAVE_FILE_DIR);
+    private static final File SAVE_FILE = new File(SAVE_FILE_DIR);
 
     /**
      * Initalises the save file handler. Ensures that the save file exists by creating it if necessary,

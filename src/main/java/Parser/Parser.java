@@ -13,9 +13,16 @@ public class Parser {
 
     private static final DateTimeFormatter slashFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
     private static final DateTimeFormatter dashFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    private final String eventBreak = "/at ";
-    private final String deadlineBreak = "/by ";
 
+    /**
+     * Calls the appropriate command given the input command word.
+     *
+     * @param command String representation of command to be called
+     * @param args Arguments for the command
+     * @param tasks List of tasks that is required for the command
+     * @return The command to be called
+     * @throws DaveException throws an exception if the command is not recognisable
+     */
     public static Command dispatch(String command, String args, TaskList tasks) throws DaveException {
         switch (command) {
         case "bye":
@@ -40,6 +47,14 @@ public class Parser {
             throw new DaveException("(｡╯︵╰｡) OOPS!!! I'm sowwy, but I don't know what that means ｡･ﾟﾟ*(>д<)*ﾟﾟ･｡");
         }
     }
+
+
+    /**
+     * Splits the raw input into the command and its arguments.
+     *
+     * @param input Raw input containing a command and its arguments
+     * @return Pair containing a command and its arguments
+     */
     public static Pair<String, String> splitInputIntoCommand(String input) {
         String[] splitInput = input.trim().split(" ", 2);
         String command = splitInput[0].toLowerCase();
@@ -52,6 +67,14 @@ public class Parser {
         return new Pair<String, String>(command, args);
     }
 
+    /**
+     * Parses the String input representing an Event or Deadline by checking its validity and returning
+     * a pair containing the string representation of the task and its time if valid.
+     *
+     * @param input String representation of an Event or Deadline
+     * @return Pair containing the string representation of the task and its time
+     * @throws DaveException throws an exception if the input is invalid
+     */
     public static Pair<String, LocalDateTime> parseTask(String input) throws DaveException {
         if (input.equals("")) {
             throw new DaveException("( ; ω ; ) Oh nyo!!! The description of an event cannot be empty!");
