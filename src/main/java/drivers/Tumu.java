@@ -57,6 +57,7 @@ public class Tumu extends Application {
         String fullCommand = input;
         try {
             Command c = Parser.parse(fullCommand, ui);
+            assert(c != null);
             output = c.execute(tasks, ui, storage);
         } catch (TumuException e) {
             output += ui.notifyUser(e.toString());
