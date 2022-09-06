@@ -1,4 +1,3 @@
-
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -23,5 +22,9 @@ public class Task {
     @Override
     public String toString(){
         return "[" + getStatusIcon() + "] " + this.description;
+    }
+
+    public String toSimpleString() {
+        return (getStatusIcon().equals("X") ? "1" : "0") + " | " + this.description;
     }
 }

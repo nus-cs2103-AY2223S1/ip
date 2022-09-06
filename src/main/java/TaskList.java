@@ -1,11 +1,15 @@
 import java.util.ArrayList;
 
-public class Tasklist {
+public class TaskList {
     private ArrayList<Task> taskArray;
     private int count = 0;
 
-    public Tasklist(){
+    public TaskList(){
         this.taskArray = new ArrayList<>();
+    }
+
+    public TaskList(ArrayList<Task> taskArray) {
+        this.taskArray = taskArray;
     }
 
     public void add(Task task){
@@ -46,6 +50,14 @@ public class Tasklist {
         this.taskArray.remove(position - 1);
         this.count -= 1;
         return deletedTask;
+    }
+
+    public String toSimpleStrings() {
+        String stringedList = "";
+        for (int i = 0; i < this.count; i++) {
+            stringedList += getTask(i + 1).toSimpleString() + "\n";
+        }
+        return stringedList;
     }
 
     @Override
