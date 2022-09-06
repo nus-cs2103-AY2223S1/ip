@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
  * @author Eugene Tan
  */
 public class Event extends Task {
+    private static final String dateFormat = "MMM d yyyy";
     protected LocalDate eventTime;
 
     /**
@@ -44,7 +45,7 @@ public class Event extends Task {
     @Override
     public String saveStringFormat() {
         return String.format("E | %d | %s | %s", this.isDone ? 1 : 0, this.description,
-                this.eventTime.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+                this.eventTime.format(DateTimeFormatter.ofPattern(dateFormat)));
     }
 
     /**
@@ -55,6 +56,6 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E] " + "[" + this.getStatusIcon() + "] " + this.description
-                + " (at: " + this.eventTime.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+                + " (at: " + this.eventTime.format(DateTimeFormatter.ofPattern(dateFormat)) + ")";
     }
 }

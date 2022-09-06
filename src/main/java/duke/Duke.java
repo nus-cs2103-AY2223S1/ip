@@ -48,6 +48,7 @@ public class Duke {
         try {
             Command command = RequestHandler.handleRequest(userInputCommand);
             String bobResponse = command.run(tasks, ui, storage);
+            assert bobResponse != null : "bobResponse should be a valid string";
             isExit = command.isExit();
             if (isExit) {
                 System.exit(0);

@@ -44,7 +44,6 @@ public class TaskList {
      * @return Current size of list.
      */
     public int getSize() {
-
         return this.taskList.size();
     }
 
@@ -55,6 +54,7 @@ public class TaskList {
      * @return String representation of marked task.
      */
     public String markTask(int index) {
+        assert index > 0 : "Task index must be greater than 0";
         this.taskList.get(index - 1).markDone();
         return this.taskList.get(index - 1).toString();
     }
@@ -66,6 +66,7 @@ public class TaskList {
      * @return String representation of  unmarked task.
      */
     public String unMarkTask(int index) {
+        assert index > 0 : "Task to add index must be greater than 0";
         this.taskList.get(index - 1).markUndone();
         return this.taskList.get(index - 1).toString();
     }
@@ -77,6 +78,7 @@ public class TaskList {
      * @return String representation of the ToDo.
      */
     public String addToDo(String description) {
+        assert description.length() > 0 : "Todo description should not be empty";
         ToDo todo = new ToDo(description);
         taskList.add(todo);
         return todo.toString();
@@ -103,6 +105,8 @@ public class TaskList {
      * @return String representation of deadline.
      */
     public String addDeadline(String description, LocalDate returnBy) {
+        assert description.length() > 0 : "Deadline description should not be empty";
+        assert returnBy != null : "The deadline date should not be null";
         Deadline deadline = new Deadline(description, returnBy);
         taskList.add(deadline);
         return deadline.toString();
@@ -116,6 +120,8 @@ public class TaskList {
      * @return String representation of the Event.
      */
     public String addEvent(String description, LocalDate at) {
+        assert description.length() > 0 : "Event description should not be empty";
+        assert at != null : "The event date should not be null";
         Event event = new Event(description, at);
         taskList.add(event);
         return event.toString();
@@ -128,6 +134,7 @@ public class TaskList {
      * @return String representation of deleted task.
      */
     public String deleteTask(int index) {
+        assert index > 0 : "Task to delete index must be greater than 0";
         Task toDelete = taskList.remove(index - 1);
         return toDelete.toString();
     }
@@ -139,6 +146,8 @@ public class TaskList {
      * @return String representation of the list containing the tasks found.
      */
     public String findTasks(String ...wordsToFind) {
+
+        assert wordsToFind.length > 0 : "The length of words to find should be greater than zero";
         List<Task> foundTasks = taskList
                 .stream()
                 .filter(task -> Arrays.stream(wordsToFind).allMatch(word -> task.containsWord(word)))
