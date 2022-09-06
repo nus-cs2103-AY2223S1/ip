@@ -8,6 +8,11 @@ import java.util.Scanner;
 
 public class Storage {
 
+    /**
+     * Reads data from storage and stores in taskList.
+     * @param taskList taskList to store data read from storage
+     * @throws IOException input errors
+     */
     public static void read(TaskList taskList) throws IOException {
 
         File directory = new File("data");
@@ -22,7 +27,7 @@ public class Storage {
                     String task = taskStr.substring(7);
                     if (type == 'T') {
                         ToDos todo = new ToDos(task);
-                        taskList.addFromStorage(todo);
+                        taskList.add(todo);
                     } else if (type == 'D') {
                         String[] taskNameBy = task.split(" \\(by: ");
                         String taskName = taskNameBy[0];
@@ -32,7 +37,7 @@ public class Storage {
                             if (done == 'X') {
                                 deadline.markAsDone();
                             }
-                            taskList.addFromStorage(deadline);
+                            taskList.add(deadline);
                         } catch (DateTimeParseException e){
                             System.out.println("OOPS!!! Please enter date in YYYY-MM-DD format");
                         }
@@ -44,7 +49,7 @@ public class Storage {
                         if (done == 'X') {
                             event.markAsDone();
                         }
-                        taskList.addFromStorage(event);
+                        taskList.add(event);
                     }
                 }
             } else {
@@ -57,6 +62,10 @@ public class Storage {
 
     }
 
+    /**
+     * Stores data from taskList into storage.
+     * @param taskList taskList to be stored into storage.
+     */
     public static void write(TaskList taskList) {
         try {
             FileWriter fw = new FileWriter("data/duke.txt");

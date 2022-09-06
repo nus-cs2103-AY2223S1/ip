@@ -4,6 +4,13 @@ import java.io.*;
 
 import java.util.Scanner;
 
+/**
+ * The Duke program implements an application that
+ * allows users to input tasks, mark tasks as done/undone,
+ * and delete tasks.
+ *
+ * @author Ying Ting Tan
+ */
 public class Duke {
 
     private TaskList taskList;
@@ -11,6 +18,9 @@ public class Duke {
     private Ui ui;
     private Parser parser;
 
+    /**
+     * Constructor. Initialises Ui, Parser, Storage and TaskList.
+     */
     public Duke() {
         ui = new Ui();
         parser = new Parser();
@@ -18,6 +28,9 @@ public class Duke {
         taskList = new TaskList();
     }
 
+    /**
+     * Loads task list from storage and passes user input into parser.
+     */
     public void run() {
         Scanner sc = new Scanner(System.in);
         ui.start();
@@ -32,6 +45,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Creates new Duke object and runs program.
+     * @param args
+     */
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.run();
