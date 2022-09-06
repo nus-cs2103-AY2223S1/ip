@@ -12,6 +12,12 @@ import utility.Parser;
  * Returns true if the task is due today.
  */
 public class CheckIsTodayCommand extends Command {
+
+    private String actualCommandUsedToInvoke;
+
+    public CheckIsTodayCommand(String actualCommandUsed) {
+        this.actualCommandUsedToInvoke = actualCommandUsed;
+    }
     /**
      * Checks if task at index n in taskList
      * is due/happening today.

@@ -2,10 +2,6 @@ package utility;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.Locale;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import command.AddDeadlineCommand;
 import command.AddEventCommand;
@@ -46,33 +42,33 @@ public class Parser {
      * @throws DukeException When command given is invalid.
      */
     public static Command parse(String userInput) throws DukeException {
-        String stringCommand = extractCommand(userInput);
-        assert !stringCommand.equals(" ");
-        switch (stringCommand) {
+        String[] stringCommand = extractCommand(userInput);
+        assert !stringCommand[0].equals(" ");
+        switch (stringCommand[0]) {
         case "todo":
-            return new AddTaskCommand();
+            return new AddTaskCommand(stringCommand[1]);
         case "event":
-            return new AddEventCommand();
+            return new AddEventCommand(stringCommand[1]);
         case "deadline":
-            return new AddDeadlineCommand();
+            return new AddDeadlineCommand(stringCommand[1]);
         case "delete":
-            return new DeleteTaskCommand();
+            return new DeleteTaskCommand(stringCommand[1]);
         case "mark":
-            return new MarkCommand();
+            return new MarkCommand(stringCommand[1]);
         case "unmark":
-            return new UnmarkCommand();
+            return new UnmarkCommand(stringCommand[1]);
         case "istoday":
-            return new CheckIsTodayCommand();
+            return new CheckIsTodayCommand(stringCommand[1]);
         case "longdesc":
-            return new GetLongDescriptionCommand();
+            return new GetLongDescriptionCommand(stringCommand[1]);
         case "list":
-            return new ListCommand();
+            return new ListCommand(stringCommand[1]);
         case "bye":
-            return new ExitCommand();
+            return new ExitCommand(stringCommand[1]);
         case "help":
-            return new HelpCommand();
+            return new HelpCommand(stringCommand[1]);
         case "find":
-            return new FindCommand();
+            return new FindCommand(stringCommand[1]);
         default:
             String message = "Command invalid. Type help for more information." + stringCommand;
             throw new DukeException(message);
@@ -87,7 +83,7 @@ public class Parser {
      * @param input
      * @return
      */
-    private static String extractCommand(String input) throws DukeException{
+    private static String[] extractCommand(String input) throws DukeException{
         int whiteSpaceIndex = input.indexOf(" ");
         String command;
         if (whiteSpaceIndex < 0) {
@@ -96,28 +92,26 @@ public class Parser {
             command = input.substring(0, input.indexOf(" "));
         }
         if (command.equalsIgnoreCase("t") || command.equalsIgnoreCase("todo")) {
-            return "todo";
+            return new String[]{"todo", command};
         } else if (command.equalsIgnoreCase("l") || command.equalsIgnoreCase("list")) {
-            return "list";
-        } else if (command.equalsIgnoreCase("event") || command.equalsIgnoreCase("e")) {
-            return "event";
+            return new String[]{"list", command};
         } else if (command.equalsIgnoreCase("deadline") || command.equalsIgnoreCase("d")) {
-            return "deadline";
+            return new String[]{"deadline", command};
         } else if (command.equalsIgnoreCase("mark") || command.equalsIgnoreCase("m")) {
-            return "mark";
+            return new String[]{"mark", command};
         } else if (command.equalsIgnoreCase("unmark")  || command.equalsIgnoreCase("um")) {
-            return "unmark";
+            return new String[]{"unmark", command};
         } else if (command.equalsIgnoreCase("bye") || command.equalsIgnoreCase("quit") || command.equalsIgnoreCase("q") ||
-                command.equalsIgnoreCase("b")) {
-            return "bye";
+                command.equalsIgnoreCase("b") || command.equalsIgnoreCase("exit")){
+            return new String[]{"bye", command};
         } else if (command.equalsIgnoreCase("find") || command.equalsIgnoreCase("f")) {
-            return "find";
+            return new String[]{"find", command};
         } else if (command.equalsIgnoreCase("longdesc")) {
-            return "longdesc";
+            return new String[]{"longdesc", command};
         } else if (command.equalsIgnoreCase("istoday")) {
-            return "istoday";
+            return new String[]{"istoday", command};
         }else {
-            return " ";
+            return new String[]{" ", command};
         }
     }
 
@@ -172,24 +166,7 @@ public class Parser {
      * @throws DukeException when no valid description is found.
      */
     private static String getDescription(String commandUsed, String input) throws DukeException {
-        String description;
-        int startDescriptionIndex = input.indexOf(commandUsed) + commandUsed.length();
-        assert startDescriptionIndex < 0;
-        if (commandUsed.equals("event") || commandUsed.equals("deadline")) {
-            int endDescriptionIndex = input.indexOf(END_OF_DESCRIPTION_MARKER);
-            if (endDescriptionIndex < 0) {
-                throw new DukeException("Could not parse description");
-            } else {
-                description = input.substring(startDescriptionIndex, endDescriptionIndex);
-            }
-        } else {
-            description = input.substring(startDescriptionIndex);
-        }
 
-        if (description.isBlank()) {
-            throw new DukeException("Empty description field");
-        }
-        return description;
     }
 
     /**

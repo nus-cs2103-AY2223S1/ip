@@ -11,6 +11,11 @@ import utility.Parser;
  * status in TaskList and Storage.
  */
 public class UnmarkCommand extends Command {
+    private String actualCommandUsedToInvoke;
+
+    public UnmarkCommand(String actualCommandUsed) {
+        this.actualCommandUsedToInvoke = actualCommandUsed;
+    }
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
         int n = Parser.getTaskNumber(ui.getCurrentInput(), taskList.getSize());

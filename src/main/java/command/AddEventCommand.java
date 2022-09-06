@@ -11,6 +11,11 @@ import utility.Parser;
  * Command that handles adding Event to TaskList and Storage.
  */
 public class AddEventCommand extends Command {
+    private String actualCommandUsedToInvoke;
+
+    public AddEventCommand(String actualCommandUsed) {
+        this.actualCommandUsedToInvoke = actualCommandUsed;
+    }
 
     /**
      * Runs when event is to be added.

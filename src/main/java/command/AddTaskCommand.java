@@ -11,7 +11,11 @@ import utility.Parser;
  * Command that handles adding Task to TaskList and Storage.
  */
 public class AddTaskCommand extends Command {
+    private String actualCommandUsedToInvoke;
 
+    public AddTaskCommand(String actualCommandUsed) {
+        this.actualCommandUsedToInvoke = actualCommandUsed;
+    }
     /**
      * Runs when task is to be added.
      *

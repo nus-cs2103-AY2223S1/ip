@@ -11,8 +11,12 @@ import utility.Parser;
  * Command that handles adding Deadline to TaskList and Storage.
  */
 public class AddDeadlineCommand extends Command {
+    private String actualCommandUsedToInvoke;
 
-    /**
+    public AddDeadlineCommand(String actualCommandUsed) {
+        this.actualCommandUsedToInvoke = actualCommandUsed;
+    }
+     /**
      * Runs when deadline is to be added.
      *
      * @param taskList TaskList to append Deadline to.
