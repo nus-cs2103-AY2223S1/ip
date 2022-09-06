@@ -24,7 +24,7 @@ class TaskList {
             String task;
             if (type == 'D' || type == 'E') {
                 task = x.substring(9, x.indexOf("(") - 1);
-                String additional = x.substring(x.indexOf("(") + 5);
+                String additional = x.substring(x.indexOf("(") + 6, x.indexOf(')'));
                 if (type == 'D') {
                     arrayList.add(new Deadline(id, task, additional, done));
                 } else {
