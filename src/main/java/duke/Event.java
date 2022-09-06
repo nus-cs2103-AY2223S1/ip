@@ -33,10 +33,11 @@ public class Event extends Task {
         int year = time.getYear();
         String month = time.getMonth().toString();
         int date = time.getDayOfMonth();
-        int hour = time.getHour();
-        int minute = time.getMinute();
+        String hour = String.format("%02d", time.getHour());
+        String minute = String.format("%02d", time.getMinute());
         String dateString = date + " " + month + " " + year + " " + hour + ":" + minute;
-        return TYPE + comp + name + dateString;
+        String priorityLevel = this.priority + " priority";
+        return TYPE + comp + name + dateString + " " + priorityLevel.toLowerCase();
     }
 
     /**
@@ -49,11 +50,11 @@ public class Event extends Task {
         String type = "E";
         String completed = this.isCompleted ? "1" : "0";
         int year = time.getYear();
-        int month = time.getMonthValue();
-        int date = time.getDayOfMonth();
-        int hour = time.getHour();
-        int minute = time.getMinute();
-        return type + FIELD_DIVIDER + completed + FIELD_DIVIDER + name + FIELD_DIVIDER
-                + year + "-" + month + "-" + date + FIELD_DIVIDER + hour + ":" + minute;
+        String month = String.format("%02d", time.getMonthValue());
+        String date = String.format("%02d", time.getDayOfMonth());
+        String hour = String.format("%02d", time.getHour());
+        String minute = String.format("%02d", time.getMinute());
+        return type + FIELD_DIVIDER + completed + FIELD_DIVIDER + name + FIELD_DIVIDER + priority
+                + FIELD_DIVIDER + year + "-" + month + "-" + date + FIELD_DIVIDER + hour + ":" + minute ;
     }
 }

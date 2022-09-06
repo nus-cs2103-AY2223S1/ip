@@ -39,6 +39,10 @@ public class Parser {
 
         } else if (command.equals("bye")) {
             return storage.save(tasks);
+
+        } else if (command.startsWith("priority")) {
+            return tasks.setPriority(command);
+
         } else {
             throw new UnknownInputException();
         }

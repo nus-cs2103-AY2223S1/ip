@@ -26,7 +26,8 @@ public class Todo extends Task {
         String comp = this.isCompleted
                 ? "[X]"
                 : "[ ]";
-        return TYPE + comp + name;
+        String priorityLevel = this.priority + " priority";
+        return TYPE + comp + name + " " + priorityLevel.toLowerCase();
     }
 
     /**
@@ -38,6 +39,6 @@ public class Todo extends Task {
     public String toData() {
         String type = "T";
         String completed = this.isCompleted ? "1" : "0";
-        return type + FIELD_DIVIDER + completed + FIELD_DIVIDER + name;
+        return type + FIELD_DIVIDER + completed + FIELD_DIVIDER + name + FIELD_DIVIDER + priority;
     }
 }

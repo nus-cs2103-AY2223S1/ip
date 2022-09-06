@@ -7,6 +7,13 @@ public class Task {
     protected static final String FIELD_DIVIDER = "/%&#@.,/";
     protected boolean isCompleted;
     protected String name;
+    protected Priority priority;
+
+    enum Priority {
+        LOW,
+        MEDIUM,
+        HIGH
+    }
 
     /**
      * Constructor for new task
@@ -21,6 +28,7 @@ public class Task {
         } else {
             this.name = name;
             this.isCompleted = false;
+            this.priority = Priority.MEDIUM;
         }
 
     }
@@ -47,6 +55,31 @@ public class Task {
      */
     public boolean contains(String keyword) {
         return this.name.contains(keyword);
+    }
+
+    /**
+     * Sets the priority level of the task.
+     *
+     * @param priority the level user input
+     * @throws DukeException unknown priority level
+     */
+    public void setPriority(String priority) throws DukeException {
+        switch (priority) {
+        case "low":
+            this.priority = Priority.LOW;
+            break;
+
+        case "medium":
+            this.priority = Priority.MEDIUM;
+            break;
+
+        case "high":
+            this.priority = Priority.HIGH;
+            break;
+
+        default:
+            throw new DukeException("Unknown priority level!");
+        }
     }
 
     /**

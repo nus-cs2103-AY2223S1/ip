@@ -224,6 +224,34 @@ public class TaskList {
     }
 
     /**
+     * sets the priority of the task in the given index to the input level.
+     *
+     * @param command input by user
+     * @return message to be displayed to the user
+     */
+    public String setPriority(String command) {
+        try {
+            String info = command.replace("priority ", "");
+            String[] instructions = info.split(" ", 2);
+
+            if (info.equals("") || info.equals("priority") || instructions.length != 2) {
+                return "Input index of task and priority level! e.g. priority 1 high";
+            }
+
+            int index = Integer.parseInt(instructions[0].strip());
+            String level = instructions[1].strip();
+            tasks.get(index - 1).setPriority(level);
+            return "Okay, I've set the priority of this task to:\n" + tasks.get(index - 1);
+
+        } catch (DukeException e) {
+            return e.toString();
+
+        } catch (IndexOutOfBoundsException err) {
+            return "OOPS!! Task does not exist!";
+        }
+    }
+
+    /**
      * Returns string representation of all tasks with indexing.
      *
      * @return string representation of all tasks.

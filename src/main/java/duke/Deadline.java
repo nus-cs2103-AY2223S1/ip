@@ -31,7 +31,8 @@ public class Deadline extends Task {
                 ? "[X]"
                 : "[ ]";
         String dateString = date.getDayOfMonth() + " " + date.getMonth().toString() + " " + date.getYear();
-        return TYPE + comp + name + dateString;
+        String priorityLevel = this.priority + " priority";
+        return TYPE + comp + name + dateString + " " + priorityLevel.toLowerCase();
     }
 
     /**
@@ -44,7 +45,8 @@ public class Deadline extends Task {
         String type = "D";
         String completed = this.isCompleted ? "1" : "0";
         String dateString = date.toString();
-        return type + FIELD_DIVIDER + completed + FIELD_DIVIDER + name + FIELD_DIVIDER + dateString;
+        return type + FIELD_DIVIDER + completed + FIELD_DIVIDER + name + FIELD_DIVIDER + priority
+                + FIELD_DIVIDER + dateString;
     }
 
 }

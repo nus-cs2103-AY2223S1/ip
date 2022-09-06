@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -63,6 +64,7 @@ public class Storage {
         String type = info[0];
         String done = info[1];
         String name = info[2];
+        String priorityLevel = info[3];
         Task task;
 
         switch (type) {
@@ -71,12 +73,12 @@ public class Storage {
             break;
 
         case "D":
-            task = new Deadline(name, LocalDate.parse(info[3]));
+            task = new Deadline(name, LocalDate.parse(info[4]));
             break;
 
         case "E":
-            String date = info[3];
-            String time = info[4];
+            String date = info[4];
+            String time = info[5];
             String dateTime = date + " " + time;
             task = new Event(name, LocalDateTime.parse(dateTime,
                     DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
@@ -89,6 +91,8 @@ public class Storage {
         if (done.equals("1")) {
             task.mark();
         }
+
+        task.setPriority(priorityLevel.toLowerCase());
 
         return task;
     }
