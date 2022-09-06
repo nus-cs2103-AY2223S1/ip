@@ -35,6 +35,8 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     public void initialize() {
+        assert userImage != null : "OOPS! Something went wrong and user image is not present!";
+        assert dukeImage != null : "OOPS! Something went wrong and duke image is not present!";
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog("hello", userImage),
@@ -48,6 +50,7 @@ public class MainWindow extends AnchorPane {
      * @param d The Duke object d.
      */
     public void setDuke(Duke d) {
+        assert d != null : "OOPS! Something went horribly wrong.";
         duke = d;
     }
 
