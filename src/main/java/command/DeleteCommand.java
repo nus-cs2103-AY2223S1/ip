@@ -24,8 +24,8 @@ public class DeleteCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        if (index > taskList.getTasks().size() - 1) {
-            throw new HenryException(String.format(MESSAGE_ERROR, taskList.getTasks().size()));
+        if (index > taskList.size() - 1) {
+            throw new HenryException(String.format(MESSAGE_ERROR, taskList.size()));
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, taskList.deleteTask(index)), taskList);
     }

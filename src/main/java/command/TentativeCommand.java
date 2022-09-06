@@ -42,17 +42,17 @@ public class TentativeCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        Task task = taskList.getTasks().get(index);
+        Task task = taskList.get(index);
         if (task.getType() != Commands.EVENT) {
             throw new HenryException("TASK IS NOT AN EVENT!");
         }
         if (dateToChooseIndex == -1) {
             task.addTentativeDate(dateTime);
-            taskList.getTasks().set(index, task);
+            taskList.set(index, task);
             return new CommandResult(String.format(MESSAGE_ADD_DATE_SUCCESS, task), taskList);
         } else {
             task.confirmDate(dateToChooseIndex);
-            taskList.getTasks().set(index, task);
+            taskList.set(index, task);
             return new CommandResult(String.format(MESSAGE_CONFIRM_DATE_SUCCESS, task), taskList);
         }
     }

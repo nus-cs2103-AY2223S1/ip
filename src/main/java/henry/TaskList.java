@@ -1,12 +1,13 @@
 package henry;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
  * TaskList represents the actual list to which tasks
  * can be added, removed or modified.
  */
-public class TaskList {
+public class TaskList implements Iterable<Task> {
 
     private final List<Task> tasks;
 
@@ -36,12 +37,32 @@ public class TaskList {
     }
 
     /**
-     * Gets the entire task list as a List of Tasks.
+     * Gets the size of the TaskList
      *
-     * @return the task list
+     * @return the number of Tasks in this TaskList
      */
-    public List<Task> getTasks() {
-        return tasks;
+    public int size() {
+        return tasks.size();
+    }
+
+    /**
+     * Gets the Task in the TaskList at the given index.
+     *
+     * @param index the index of the Task to be retrieved
+     * @return the Task at the given index
+     */
+    public Task get(int index) {
+        return tasks.get(index);
+    }
+
+    /**
+     * Sets the Task in the TaskList at the given index to the given Task.
+     *
+     * @param index the index of the Task to be set
+     * @param task  the Task to be set
+     */
+    public void set(int index, Task task) {
+        tasks.set(index, task);
     }
 
     @Override
@@ -71,5 +92,10 @@ public class TaskList {
         }
 
         return sb.toString().trim();
+    }
+
+    @Override
+    public Iterator<Task> iterator() {
+        return tasks.iterator();
     }
 }

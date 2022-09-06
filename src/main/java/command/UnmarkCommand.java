@@ -18,9 +18,9 @@ public class UnmarkCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        Task task = taskList.getTasks().get(indexToUnmark);
+        Task task = taskList.get(indexToUnmark);
         task.setComplete(false);
-        taskList.getTasks().set(indexToUnmark, task);
+        taskList.set(indexToUnmark, task);
         return new CommandResult(String.format(MESSAGE_SUCCESS, task));
     }
 }

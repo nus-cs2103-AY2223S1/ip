@@ -81,11 +81,6 @@ public class Task {
         return type;
     }
 
-    @Override
-    public String toString() {
-        return TaskUtils.toStandardString(type, isDone, description, date, tentativeDates);
-    }
-
     /**
      * Returns the file-formatted version of the task. This is different from
      * the toString() method, in that it is simpler and thus easier to parse.
@@ -113,5 +108,29 @@ public class Task {
     public void confirmDate(int index) {
         date = tentativeDates.get(index);
         tentativeDates.clear();
+    }
+
+    /**
+     * Custom equals method to check if two tasks are equal.
+     * Checks if the type, description, date and completion status are the same.
+     *
+     * @param o the object to be compared to
+     * @return true if the two tasks are equal, false otherwise
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Task) {
+            Task other = (Task) o;
+            return other.type == type
+                   && other.description.equals(description)
+                   && other.date.equals(date)
+                   && other.isDone == isDone;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return TaskUtils.toStandardString(type, isDone, description, date, tentativeDates);
     }
 }

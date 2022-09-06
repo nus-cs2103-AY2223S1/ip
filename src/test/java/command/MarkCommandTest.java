@@ -17,7 +17,7 @@ public class MarkCommandTest {
     public void testMarkCommand() {
         TaskListStub taskList = new TaskListStub(new ArrayList<>());
         TaskStub stub = new TaskStub(false);
-        taskList.getTasks().add(stub);
+        taskList.addTask(stub);
 
         MarkCommand command = new MarkCommand(0);
         command.setData(taskList);

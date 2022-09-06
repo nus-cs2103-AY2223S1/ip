@@ -109,9 +109,8 @@ public class Henry extends Application {
      * @return true if the Task is a duplicate, false otherwise
      */
     private boolean isTaskInTaskList(Task task) {
-        for (Task t : taskList.getTasks()) {
-            if (t.getDescription().equals(task.getDescription())
-                && t.getLocalDateTime().equals(task.getLocalDateTime())) {
+        for (Task t : taskList) {
+            if (t.equals(task)) {
                 return true;
             }
         }

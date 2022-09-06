@@ -1,7 +1,5 @@
 package command;
 
-import java.util.List;
-
 import henry.Task;
 
 /**
@@ -29,11 +27,10 @@ public class FindCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        List<Task> tasks = taskList.getTasks();
         StringBuilder sb = new StringBuilder();
         sb.append("\n");
         final int[] i = {1};
-        tasks.forEach(task -> {
+        taskList.forEach(task -> {
             if (isMatch(task)) {
                 sb.append(" ").append(i[0]).append(". ").append(task).append("\n");
                 i[0]++;

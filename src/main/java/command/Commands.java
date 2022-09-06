@@ -10,6 +10,6 @@ public enum Commands {
      * Todo, Deadline and Event tasks.
      * Dummy is for testing purposes.
      */
-    DUMMY, TODO, DEADLINE, EVENT;
+    DUMMY, TODO, DEADLINE, EVENT
 
 }

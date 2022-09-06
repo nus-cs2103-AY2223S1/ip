@@ -19,9 +19,9 @@ public class MarkCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        Task task = taskList.getTasks().get(indexToMark);
+        Task task = taskList.get(indexToMark);
         task.setComplete(true);
-        taskList.getTasks().set(indexToMark, task);
+        taskList.set(indexToMark, task);
         return new CommandResult(String.format(MESSAGE_SUCCESS, task));
     }
 }
