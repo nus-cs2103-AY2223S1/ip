@@ -29,10 +29,10 @@ public class Duke {
         }
     }
 
-
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Gets the response from the Duke bot.
+     * @param input command.
+     * @return the response from the Duke bot.
      */
     public String getResponse(String input) {
         try {
@@ -67,9 +67,7 @@ public class Duke {
         } catch (DukeException e) {
             return e.getMessage();
         }
-
     }
-
 
     /**
      * Run Duke programme
