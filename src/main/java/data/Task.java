@@ -16,6 +16,7 @@ public abstract class Task implements Serializable {
      * @param isDone Whether task is done.
      */
     public Task(String title, boolean isDone) {
+        assert !title.isEmpty();
         this.title = title;
         this.isDone = isDone;
     }
