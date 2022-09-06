@@ -211,4 +211,19 @@ public class TaskList {
         }
         return temp;
     }
+
+    /**
+     * Tags the task inside TaskList with the specified input
+     *
+     * @param index Position of task to tag in TaskList
+     * @param tag String input for the tag content
+     */
+    public void tagTask(int index, String tag) {
+        int minIndex = 1;
+        if (index < minIndex || index > this.length()) {
+            throw new BlinkException("Invalid number input");
+        }
+        Task task = this.getTask(index - 1);
+        task.addTag(tag);
+    }
 }

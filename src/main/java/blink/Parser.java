@@ -1,16 +1,6 @@
 package blink;
 
-import blink.command.ByeCommand;
-import blink.command.Command;
-import blink.command.DeadlineCommand;
-import blink.command.DeleteCommand;
-import blink.command.EventCommand;
-import blink.command.FilterCommand;
-import blink.command.FindCommand;
-import blink.command.ListCommand;
-import blink.command.MarkCommand;
-import blink.command.TodoCommand;
-import blink.command.UnmarkCommand;
+import blink.command.*;
 
 /**
  * Reads the user input to figure out the command written.
@@ -66,6 +56,11 @@ public class Parser {
             }
             int num = Integer.parseInt(info[1].strip());
             return new MarkCommand(num);
+        case "TAG":
+            if (info.length == 1) {
+                throw new BlinkException("Missing inputs for tag command");
+            }
+            return new TagCommand(info[1].strip());
         case "TODO":
             if (info.length == 1) {
                 throw new BlinkException("Missing description for todo");

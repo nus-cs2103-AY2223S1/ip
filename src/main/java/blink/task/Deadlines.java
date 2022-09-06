@@ -32,7 +32,8 @@ public class Deadlines extends Task {
     @Override
     public String toString() {
         String date = " (by: " + this.dateString() + ")";
-        return "[D]" + super.toString() + date;
+        String tags = this.tagToString();
+        return "[D]" + super.toString() + date + tags;
     }
 
     /**
@@ -56,7 +57,7 @@ public class Deadlines extends Task {
     public String saveString() {
         String taskMark = "|" + (this.isDone ? 1 : 0) + "| ";
         String info = this.description + " | " + this.date;
-        return "D " + taskMark + info + "\n";
+        return "D " + taskMark + info + this.saveTagString() + "\n";
     }
 
     private String dateString() {

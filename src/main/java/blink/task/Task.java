@@ -1,6 +1,7 @@
 package blink.task;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import blink.BlinkException;
 
@@ -12,6 +13,7 @@ public abstract class Task {
 
     protected String description;
     protected boolean isDone;
+    private ArrayList<String> tags = new ArrayList<>();
 
     /**
      * Constructor of Task to set description and set not marked
@@ -37,23 +39,33 @@ public abstract class Task {
         String[] info = input.split("\\|", 3);
         switch(info[0].strip()) {
         case "T":
-            ToDos todo = new ToDos(info[2].strip());
+            String[] todoInfo = info[2].split("\\|");
+            Task todo = new ToDos(todoInfo[0].strip());
             if (info[1].strip().equals("1")) {
                 todo.isDone = true;
+            }
+            if (todoInfo.length == 2) {
+                todo.addSavedTags(todoInfo[1].strip());
             }
             return todo;
         case "D":
             String[] desc = info[2].split("\\|");
-            Deadlines deadline = new Deadlines(desc[0].strip(), desc[1].strip());
+            Task deadline = new Deadlines(desc[0].strip(), desc[1].strip());
             if (info[1].strip().equals("1")) {
                 deadline.isDone = true;
+            }
+            if (desc.length == 3) {
+                deadline.addSavedTags(desc[2].strip());
             }
             return deadline;
         case "E":
             String[] temp = info[2].split("\\|");
-            Events event = new Events(temp[0].strip(), temp[1].strip());
+            Task event = new Events(temp[0].strip(), temp[1].strip());
             if (info[1].strip().equals("1")) {
                 event.isDone = true;
+            }
+            if (temp.length == 3) {
+                event.addSavedTags(temp[2].strip());
             }
             return event;
         default:
@@ -138,7 +150,7 @@ public abstract class Task {
         for (int x = 0; x < allWords.length; x++) {
             String word = allWords[x].toLowerCase();
             if (x != 0) {
-                word = word.replaceAll("[-+.<>?/:;',()]", "");
+                word = word.replaceAll("[-+.<>?/:;',()#]", "");
             }
             if (word.equals(keyword)) {
                 isFound = true;
@@ -146,5 +158,48 @@ public abstract class Task {
             }
         }
         return isFound;
+    }
+
+    public void addTag(String tag) {
+        this.tags.add(tag);
+    }
+
+    /**
+     * Make string format for all the tags of a task.
+     *
+     * @return String for all tags of task
+     */
+    public String tagToString() {
+        String str = "";
+        for (int x = 0; x < this.tags.size(); x++) {
+            String tag = " #" + this.tags.get(x);
+            str += tag;
+        }
+        return str;
+    }
+
+    /**
+     * String format for all tags of a task to be recorded down into save file.
+     *
+     * @return String format for all tags of a task into save file
+     */
+    public String saveTagString() {
+        String tagString = " | ";
+        for (int x = 0; x < this.tags.size(); x++) {
+            String tag = "#" + this.tags.get(x) + " ";
+            tagString += tag;
+        }
+        return tagString;
+    }
+
+    private void addSavedTags(String input) {
+        if (input.isBlank()) {
+            return;
+        }
+        String[] tags = input.split("#");
+        for (int x = 1; x < tags.length; x++) {
+            String tag = tags[x].strip().replace("#", "");
+            this.tags.add(tag);
+        }
     }
 }

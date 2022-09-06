@@ -21,6 +21,7 @@ public class Events extends Task {
         super(description);
         LocalDate date = LocalDate.parse(at);
         this.date = date;
+
     }
 
     /**
@@ -31,7 +32,9 @@ public class Events extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.dateString() + ")";
+        String date = " (at: " + this.dateString() + ")";
+        String tags = this.tagToString();
+        return "[E]" + super.toString() + date + tags;
     }
 
     /**
@@ -55,7 +58,7 @@ public class Events extends Task {
     public String saveString() {
         String taskMark = "|" + (this.isDone ? 1 : 0) + "| ";
         String info = this.description + " | " + this.date;
-        return "E " + taskMark + info + "\n";
+        return "E " + taskMark + info + this.saveTagString() + "\n";
     }
 
     private String dateString() {
