@@ -26,6 +26,7 @@ public class MainWindow extends AnchorPane {
     private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private final Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Duke.png"));
 
+
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -35,6 +36,9 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     private void dukeIntro() {
+
+        assert userImage != null : "User image is null";
+        assert dukeImage != null : "Duke image is null";
 
         String intro = "Hello! Welcome to Duke!";
 
