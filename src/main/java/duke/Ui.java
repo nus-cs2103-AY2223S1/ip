@@ -22,7 +22,7 @@ public class Ui {
      * Prints the ending message
      * @return
      */
-    public String goodbyeMessage() {
+    public String showGoodbyeMessage() {
         return "Bye. Hope to see you again soon!";
     }
 

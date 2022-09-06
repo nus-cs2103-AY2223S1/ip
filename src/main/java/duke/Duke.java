@@ -14,7 +14,7 @@ public class Duke {
 
     public String getResponse(String input) {
         try {
-            Command c = Parser.parse(input);
+            Command c = Parser.parseTask(input);
             return c.execute(taskList, storage, ui);
         } catch (DukeException e) {
             return e.getMessage();
