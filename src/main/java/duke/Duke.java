@@ -1,13 +1,25 @@
 package duke;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
 /**
  * Main class for running the Duke chatbot.
  */
-public class Duke {
+public class Duke extends Application {
     private final Storage storage;
     private TaskList tasks;
     private final Ui ui;
 
+
+    public Duke() {
+        this("./tasks.txt");
+    }
 
     /**
      * Initialises the Duke chatbot, loads tasks from specified filepath if found.
@@ -27,7 +39,6 @@ public class Duke {
      * Begins operation of the Duke chatbot.
      */
     public void run() {
-        ui.run(tasks, storage);
     }
 
     /**
@@ -36,5 +47,19 @@ public class Duke {
      */
     public static void main(String[] args) {
         new Duke("./tasks.txt").run();
+    }
+
+    @Override
+    public void start(Stage stage) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Duke.class.getResource("/view/Ui.fxml"));
+            AnchorPane ap = fxmlLoader.load();
+            Scene scene = new Scene(ap);
+            stage.setScene(scene);
+            fxmlLoader.<Ui>getController().setDuke(new Duke());
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
