@@ -26,7 +26,6 @@ public class Blink {
         this.ui = new Ui();
         this.storage = new Storage(System.getProperty("user.home")
                 + "/blink/blink.txt");
-
         try {
             tasks = new TaskList(storage.load());
         } catch (BlinkException e) {

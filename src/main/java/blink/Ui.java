@@ -61,7 +61,7 @@ public class Ui {
      * @param task Task that is deleted
      */
     public String deleteTask(TaskList tasks, Task task) {
-        return "Blink.Task has been deleted successfully.\n" + task
+        return "Task has been deleted successfully.\n" + task
                + "\n" + tasks.deleted();
     }
 
