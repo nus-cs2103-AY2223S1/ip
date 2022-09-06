@@ -39,12 +39,4 @@ public class DeleteCommand extends Command {
         return ui.delete(taskList.getTask(index - 1).toString(),
                 taskList.length());
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isRunning() {
-        return true;
-    }
 }

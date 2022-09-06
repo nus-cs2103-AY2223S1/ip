@@ -23,12 +23,4 @@ public class FindCommand extends Command {
             TaskList taskList, Storage storage, Ui ui) {
         return ui.filterList(taskList, key);
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isRunning() {
-        return true;
-    }
 }

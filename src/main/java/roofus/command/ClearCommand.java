@@ -26,12 +26,4 @@ public class ClearCommand extends Command {
         }
         return ui.clearStorage();
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isRunning() {
-        return true;
-    }
 }
