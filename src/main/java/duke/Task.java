@@ -3,6 +3,7 @@ package duke;
 /**
  * Represents a task. A <code>Task</code> object has two attributes: task name and if the task is done.
  */
+
 public class Task {
     protected String name;
     protected boolean isDone;
