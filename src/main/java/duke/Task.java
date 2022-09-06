@@ -7,6 +7,9 @@ import duke.exception.DukeInvalidSaveDataException;
  * and can be marked as done or undone.
  */
 public class Task {
+    private static final char DEFAULT_TAG = 'T';
+    private static final char DONE_SYMBOL = 'X';
+
     private boolean isDone;
     private String description;
     private char tag;
@@ -29,7 +32,7 @@ public class Task {
     }
 
     private Task(String description, boolean isDone) {
-        this(description, 'T', isDone);
+        this(description, DEFAULT_TAG, isDone);
     }
 
     /**
@@ -88,7 +91,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return String.format("[%s][%s] %s", this.tag, this.isDone ? 'X' : ' ', this.description);
+        return String.format("[%s][%s] %s", this.tag, this.isDone ? DONE_SYMBOL : ' ', this.description);
     }
 
     @Override

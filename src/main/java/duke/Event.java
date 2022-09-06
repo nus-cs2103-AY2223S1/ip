@@ -12,6 +12,7 @@ import duke.exception.DukeInvalidSaveDataException;
  * that the event occurs, and can be marked as done or undone.
  */
 public class Event extends Task {
+    private static final char EVENT_TAG = 'E';
     protected LocalDate on;
 
     public Event(String description, String on) {
@@ -26,7 +27,7 @@ public class Event extends Task {
      * @param isDone
      */
     public Event(String description, String on, boolean isDone) {
-        super(description, 'E', isDone);
+        super(description, EVENT_TAG, isDone);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.on = LocalDate.parse(Arrays.stream(on.split(" ")).skip(1)
                 .collect(Collectors.joining("")), formatter);

@@ -12,6 +12,7 @@ import duke.exception.DukeInvalidSaveDataException;
  * that the deadline is due, and can be marked as done or undone.
  */
 public class Deadline extends Task {
+    private static final char DEADLINE_TAG = 'D';
     protected LocalDate by;
 
     public Deadline(String description, String by) {
@@ -26,7 +27,7 @@ public class Deadline extends Task {
      * @param isDone      whether the deadline is done
      */
     public Deadline(String description, String by, boolean isDone) {
-        super(description, 'D', isDone);
+        super(description, DEADLINE_TAG, isDone);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.by = LocalDate.parse(Arrays.stream(by.split(" ")).skip(1)
                 .collect(Collectors.joining("")), formatter);
