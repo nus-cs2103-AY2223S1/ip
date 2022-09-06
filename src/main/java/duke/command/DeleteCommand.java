@@ -28,11 +28,14 @@ public class DeleteCommand extends Command {
      */
     @Override
     public void run(TaskList taskList, Response builder) throws DukeException {
-        int index = Integer.parseInt(input) - 1;
+
         try {
+            int index = Integer.parseInt(input) - 1;
             taskList.deleteTask(index, builder);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Index is out of bounds");
+        } catch (NumberFormatException e) {
+            throw new DukeException("A number should be provided after the command 'delete'");
         }
     }
 }

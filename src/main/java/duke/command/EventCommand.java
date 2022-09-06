@@ -37,6 +37,7 @@ public class EventCommand extends Command {
             if (segments.length != 2) {
                 throw new DukeException("Please follow the format \n'event task /at YYYY-MM-DD'!");
             } else {
+                assert segments.length == 2 : "A deadline task follows the format 'deadline task /by YYYY-MM-DD'";
                 String time = segments[1].strip();
                 LocalDate date = LocalDate.parse(time);
                 Event event = new Event(segments[0], date);
