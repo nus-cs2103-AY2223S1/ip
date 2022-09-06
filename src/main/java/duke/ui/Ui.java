@@ -147,7 +147,7 @@ public class Ui {
      * @param date Date of the tasks
      * @return A string consisting of the tasks
      */
-    public String printList(ArrayList<Task> list, LocalDate date) {
+    public String printList(List<Task> list, LocalDate date) {
         if (list.size() == 0) {
             return String.format("No tasks on %s!", date.format(DATE_FORMAT));
         }
@@ -173,7 +173,7 @@ public class Ui {
      * @param list List of tasks to print
      * @return A string of the tasks
      */
-    public String printFind(ArrayList<Task> list) {
+    public String printFind(List<Task> list) {
         if (list.size() == 0) {
             return NO_MATCHING_TASKS;
         }
