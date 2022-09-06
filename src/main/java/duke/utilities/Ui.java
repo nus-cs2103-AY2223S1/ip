@@ -1,9 +1,15 @@
 package duke.utilities;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
+import duke.task.Deadline;
+import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -310,6 +316,58 @@ public class Ui {
             response.append("  " + task.toString() + "\n");
         }
         return response.toString();
+    }
+
+    public String getReminders(TaskList taskList, String type) {
+        StringBuilder response = new StringBuilder();
+        String reminder = "Here are the " + type.toLowerCase() + "s you want reminders for:\n";
+        response.append(reminder);
+
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+        ArrayList<Task> deadlines = taskList.getTasks().stream()
+                .filter(task -> task instanceof Deadline)
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        ArrayList<Task> events = taskList.getTasks().stream()
+                .filter(task -> task instanceof Event)
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        if (type.equalsIgnoreCase("deadline")) {
+            for (int i = 0; i < deadlines.size(); i++) {
+                Task current = deadlines.get(i);
+                Deadline deadline = (Deadline) current;
+
+                LocalDateTime by = LocalDateTime.parse(deadline.getBy(), pattern);
+                long between = getTimeFromNowUntil(by);
+                String reminderMessage = "- Deadline " + (i + 1) + " due in " + between + " hours.\n";
+
+                response.append((i + 1) + "." + current.toString() + "\n");
+                response.append(reminderMessage);
+            }
+        }
+
+        if (type.equalsIgnoreCase("event")) {
+            for (int i = 0; i < events.size(); i++) {
+                Task current = events.get(i);
+                Event event = (Event) current;
+
+                LocalDateTime start = LocalDateTime.parse(event.getStart(), pattern);
+                long between = getTimeFromNowUntil(start);
+                String reminderMessage = "- Event " + (i + 1) + " coming up in " + between + " hours.\n";
+
+                response.append((i + 1) + "." + current.toString() + "\n");
+                response.append(reminderMessage);
+            }
+        }
+
+        return response.toString();
+    }
+
+    public long getTimeFromNowUntil(LocalDateTime localDateTime) {
+        LocalDateTime now = LocalDateTime.now();
+        Duration timeBetween = Duration.between(now, localDateTime);
+        return timeBetween.toHours();
     }
 
 }

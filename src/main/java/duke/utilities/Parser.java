@@ -53,6 +53,16 @@ public class Parser {
                     : "";
 
             return "find|" + target;
+        case "remind":
+            String type = splitString.length == 2
+                    ? splitString[1]
+                    : "";
+
+            if (!(type.equalsIgnoreCase("deadline") || type.equalsIgnoreCase("event"))) {
+                throw new DukeException("You can only get reminders for deadline or event tasks!");
+            }
+
+            return "remind|" + type;
         case "todo":
             String[] descTodo = Arrays.copyOfRange(splitString, 1, splitString.length);
             if (descTodo.length == 0) {

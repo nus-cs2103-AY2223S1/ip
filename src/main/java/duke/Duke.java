@@ -168,6 +168,9 @@ public class Duke {
                 ArrayList<Task> targetTasks = this.taskList.findMatchingTasks(infoArray[1]);
                 response = this.ui.getStringMatchingTasks(targetTasks);
                 break;
+            case "remind":
+                response = this.ui.getReminders(taskList, infoArray[1]);
+                break;
             case "todo":
                 Task todo = new Todo(infoArray[1]);
                 taskList.addTask(todo);
