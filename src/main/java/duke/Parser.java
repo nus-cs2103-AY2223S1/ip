@@ -23,11 +23,11 @@ import static java.lang.Integer.parseInt;
  */
 public class Parser {
 
-    private boolean isInteger(String str) {
+    private static boolean isInteger(String str) {
         return str.chars().allMatch(Character::isDigit);
     }
 
-    private int getDateIndex(String[] splitInput) throws DukeException {
+    private static int getDateIndex(String[] splitInput) throws DukeException {
         for (int i = 0; i < splitInput.length; i++) {
             if (splitInput[i].equals("/by") || splitInput[i].equals("/at")) {
                 return i;
@@ -45,7 +45,7 @@ public class Parser {
      * @return task field
      * @throws DukeException if task description or date field is empty
      */
-    private String getTaskField(String[] splitInput, int start, int end) throws DukeException {
+    private static String getTaskField(String[] splitInput, int start, int end) throws DukeException {
         String field = String.join(" ", Arrays.copyOfRange(splitInput, start, end));
         if (field.isBlank()) {
             throw new DukeException("Task description/date cannot be empty.");
@@ -61,7 +61,7 @@ public class Parser {
      * @return <code>command</code> to edit tasks in <code>TaskList</code>
      * @throws DukeException if the index is out of range of the <code>TaskList</code>
      */
-    private Command parseEdit(CommandType cmd, String[] splitInput) throws DukeException {
+    private static Command parseEdit(CommandType cmd, String[] splitInput) throws DukeException {
         int len = splitInput.length;
         if (len != 2 || !isInteger(splitInput[1])) {
             throw new DukeException("Please indicate the index of the task using an integer!");
@@ -86,7 +86,7 @@ public class Parser {
      * @return <code>command</code> to create <code>Task</code>
      * @throws DukeException if user input is invalid
      */
-    private Command parseCreateTask(TaskType taskType, String[] splitInput) throws DukeException {
+    private static Command parseCreateTask(TaskType taskType, String[] splitInput) throws DukeException {
         int len = splitInput.length;
         String taskDescription;
         String date;
@@ -117,7 +117,7 @@ public class Parser {
      * @return <code>command</code> to find task
      * @throws DukeException if user input does not have a keyword
      */
-    private Command parseFind(String[] splitInput) throws DukeException {
+    private static Command parseFind(String[] splitInput) throws DukeException {
         int len = splitInput.length;
         if (len == 1) {
             throw new DukeException("Enter a keyword to search for tasks");
@@ -133,7 +133,7 @@ public class Parser {
      * @return <code>command</code> to be executed
      * @throws DukeException if command does not follow the format
      */
-    public Command parse(String userInput) throws DukeException {
+    public static Command parse(String userInput) throws DukeException {
         if (userInput.equals("bye")) {
             return new ExitCommand();
         } else if (userInput.equals("list")) {
