@@ -48,11 +48,13 @@ public class AtCommand implements Command {
     @Override
     public Pair<Boolean, String> execute(Ui ui, Storage storage, TaskList taskList) {
         TaskList filteredTasks = taskList.findByDate(this.selectedDates);
+
         String responseMessage = filteredTasks.isEmpty()
                 ? "There are no task that match the keyword"
                 : "Here are the tasks in your list that match the keyword\n"
                 + filteredTasks;
         ui.printMessage(responseMessage);
+
         return new Pair<>(true, responseMessage);
     }
 

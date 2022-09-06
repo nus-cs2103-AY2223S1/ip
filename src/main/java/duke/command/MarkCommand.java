@@ -43,10 +43,12 @@ public class MarkCommand implements Command {
             throws DukeException {
         try {
             Task markedTask = taskList.markTaskWithIndex(this.index);
+            storage.saveTasksInStorage(taskList.toStorageRepresentation());
+
             String responseMessage = "This task has been marked as done:\n "
                     + markedTask;
             ui.printMessage(responseMessage);
-            storage.saveTasksInStorage(taskList.toStorageRepresentation());
+
             return new Pair<>(true, responseMessage);
         } catch (IndexOutOfBoundsException error) {
             throw new DukeException();

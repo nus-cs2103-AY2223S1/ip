@@ -64,7 +64,7 @@ public abstract class Task {
      * @param keyWords the strings of keyword.
      * @return true if Task matches the keyword, false otherwise.
      */
-    public boolean isContainKeyWord(String ... keyWords) {
+    public boolean containsKeyword(String ... keyWords) {
         for (int i = 0; i < keyWords.length; i++) {
             if (this.description.contains(keyWords[i].trim())) {
                 return true;

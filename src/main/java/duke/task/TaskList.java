@@ -109,12 +109,12 @@ public class TaskList {
     /**
      * Filters current TaskList to get all Tasks that matches the keyword.
      *
-     * @param keyWords the strings of keyword.
+     * @param keywords the strings of keyword.
      * @return the TaskList which contains all the matched Tasks.
      */
-    public TaskList filterByKeyWord(String ... keyWords) {
+    public TaskList filterByKeyword(String ... keywords) {
         return new TaskList(this.tasks.stream()
-                .filter(task -> task.isContainKeyWord(keyWords))
+                .filter(task -> task.containsKeyword(keywords))
                 .collect(Collectors.toList()));
     }
 

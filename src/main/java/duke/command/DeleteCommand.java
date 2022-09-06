@@ -43,10 +43,12 @@ public class DeleteCommand implements Command {
             throws DukeException {
         try {
             Task deletedTask = taskList.removeTaskWithIndex(this.index);
+            storage.saveTasksInStorage(taskList.toStorageRepresentation());
+
             String responseMessage = "Noted. I've removed this task:\n " + deletedTask
                     + "\nNow you have " + taskList.getTaskListSize() + " task(s) in the list";
             ui.printMessage(responseMessage);
-            storage.saveTasksInStorage(taskList.toStorageRepresentation());
+
             return new Pair<>(true, responseMessage);
         } catch (IndexOutOfBoundsException error) {
             throw new DukeException();
