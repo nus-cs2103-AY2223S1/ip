@@ -84,12 +84,12 @@ public class Storage {
      * @param tasks list of tasks to be saved
      * @throws DukeException  If there is an error.
      */
-    public void save(ArrayList<Task> tasks) throws DukeException {
+    public void save(TaskList tasks) throws DukeException {
         try {
             File file = new File(filePath);
 
             FileWriter fw = new FileWriter(filePath);
-            for (Task task : tasks) {
+            for (Task task : tasks.getAllTasks()) {
                 fw.write(task.getOutput() + "\n");
             }
             fw.close();

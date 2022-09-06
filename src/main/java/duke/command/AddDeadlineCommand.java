@@ -48,10 +48,10 @@ public class AddDeadlineCommand extends Command {
         }
 
         tasks.add(deadline);
-        ui.printMessage("\tGot it. I've added this task:\n\t"
+        ui.outputMessage("\tGot it. I've added this task:\n\t"
                 + deadline.toString()
                 + "\n\tNow you have " + tasks.size()
                 + " tasks in the list.");
-        storage.save(tasks.getAllTasks());
+        storage.save(tasks);
     }
 }

@@ -1,7 +1,6 @@
 package duke.main;
 
-import java.io.File;
-import java.io.IOException;
+import javafx.scene.image.Image;
 
 import duke.command.Command;
 import duke.exception.DukeException;
@@ -10,9 +9,16 @@ import duke.exception.DukeException;
  * Starts the duke chatbot.
  */
 public class Duke {
+
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    private Parser parser;
+
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/user.png"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
+
+    private static final String filePath = "data/duke.txt";
 
     /**
      * Initializes the chatbot.
@@ -30,51 +36,37 @@ public class Duke {
         }
     }
 
-    /**
-     * Initializes the chatbot and the file to store its data.
-     *
-     * @param args arguments.
-     * @throws IOException i the ile does not exist.
-     */
-    public static void main(String[] args) throws IOException {
-        File dir = new File("data/");
-        if (!dir.exists()) {
-            dir.mkdir();
+    public Duke() {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        try {
+            tasks = new TaskList(storage.load());
+        } catch (DukeException e) {
+            ui.showLoadingError();
+            tasks = new TaskList();
         }
-
-        File saved = new File("data/duke.txt");
-        if (!saved.exists()) {
-            saved.createNewFile();
-        }
-
-        new Duke("data/duke.txt").runBot();
     }
 
     /**
-     * Starts the chatbot.
+     * Handles input for Duke.
+     * @param input Input to be handled.
      */
-    public void runBot() {
+    public void handleInput(String input) {
         try {
-            storage.load();
+            Command c = Parser.parse(input);
+            c.execute(this.tasks, this.ui, this.storage);
         } catch (DukeException e) {
-            ui.printMessage(e.getMessage());
+            this.ui.outputMessage("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
 
-        ui.greetingMessage();
-
-        boolean exitBot = false;
-        while (!exitBot) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.linePrint(); // show the divider line ("_______")
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                exitBot = c.exitBot();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.linePrint();
-            }
+        try {
+            this.storage.save(this.tasks);
+        } catch (DukeException e) {
+            this.ui.showLoadingError();
         }
+    }
+
+    public Ui getUi() {
+        return this.ui;
     }
 }

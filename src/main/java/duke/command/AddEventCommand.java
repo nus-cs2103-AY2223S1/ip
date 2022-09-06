@@ -29,10 +29,10 @@ public class AddEventCommand extends Command {
         Event event;
         event = new Event(description, time);
         tasks.add(event);
-        ui.printMessage("\tGot it. I've added this task:\n\t"
+        ui.outputMessage("\tGot it. I've added this task:\n\t"
                 + event.toString()
                 + "\n\tNow you have " + tasks.size()
                 + " tasks in the list.");
-        storage.save(tasks.getAllTasks());
+        storage.save(tasks);
     }
 }
