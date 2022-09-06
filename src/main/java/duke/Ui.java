@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.List;
+
 public class Ui {
 
     public void start() {
@@ -42,4 +44,14 @@ public class Ui {
         }
     }
 
+    public void printOnFind(List<Task> found) {
+        if (found.size() == 0) {
+            System.out.println("There are no matching tasks in your list.");
+        } else {
+            System.out.println("Here are the matching tasks in your list:");
+            for (int i = 0; i < found.size(); i++) {
+                System.out.println(i + 1 + "." + found.get(0).toString());
+            }
+        }
+    }
 }
