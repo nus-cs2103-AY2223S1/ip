@@ -12,6 +12,7 @@ import duke.util.Ui;
  */
 public class FindCommand extends Command {
     private String findWord;
+    private String[] segments;
 
     /**
      * Constructor for a new Find command.
@@ -20,6 +21,11 @@ public class FindCommand extends Command {
      */
     public FindCommand(String findWord) {
         this.findWord = findWord;
+        this.segments = findWord.split(" ");
+    }
+
+    public boolean isValidFind() {
+        return segments.length == 1;
     }
 
     /**
@@ -31,10 +37,9 @@ public class FindCommand extends Command {
      */
     @Override
     public void run(TaskList taskList, Response builder) throws DukeException {
-        String[] segments = findWord.split(" ");
         String message = "Here are the matching tasks in your list:\n";
 
-        if (segments.length == 1) {
+        if (isValidFind()) {
             ArrayList<Integer> indexList = new ArrayList<>();
 
             for (int i = 0; i < taskList.getSize(); i++) {
