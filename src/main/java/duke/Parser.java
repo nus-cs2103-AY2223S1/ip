@@ -19,10 +19,34 @@ public class Parser {
     public String parse(String input) {
         String[] commands = input.split(" ");
         int numOfCommands = commands.length;
-        String output;
+        String output = "";
         switch (commands[0]) {
         case "list":
             output = duke.ui.printTaskList(duke.tasks);
+            break;
+        case "mass":
+            if (commands[2].equals("ALL")) {
+                switch (commands[1]) {
+                case "mark":
+                    duke.tasks.markAll();
+                    output = duke.ui.printMarkAllTaskMessage("mark");
+                    break;
+                case "unmark":
+                    duke.tasks.unMarkAll();
+                    output = duke.ui.printMarkAllTaskMessage("mark");
+                    break;
+                case "delete":
+                    output = duke.ui.printRemoveAllTasksMessage(duke.tasks);
+                    duke.tasks.deleteAll();
+                    break;
+                default:
+                    return duke.ui.printInvalidCommandError();
+                }
+            } else {
+                for (int i = numOfCommands - 1; i > 1; i--) {
+                    output += parse(commands[1] + " " + commands[i]) + "\n";
+                }
+            }
             break;
         case "mark":
             try {
