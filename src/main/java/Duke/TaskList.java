@@ -35,6 +35,7 @@ public class TaskList {
      */
     public void addTaskWithoutOutput(Task task) {
         list.add(task);
+        assert this.list.size() <= 100: "Task Overflow!";
     }
 
     /**
@@ -44,6 +45,7 @@ public class TaskList {
      */
     public void addTask(Task task) {
         list.add(task);
+        assert this.list.size() <= 100: "Task Overflow!";
     }
 
     /**
