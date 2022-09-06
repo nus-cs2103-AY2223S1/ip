@@ -8,7 +8,7 @@ import duke.util.Ui;
  * Command to unmark a {@code Task} from a {@code TaskList} as done.
  */
 public class UnmarkCommand extends Command {
-    private int taskIndex;
+    private final int taskIndex;
 
     /**
      * Constructor for {@code UnmarkCommand}.
@@ -27,6 +27,7 @@ public class UnmarkCommand extends Command {
     @Override
     public String execute() throws DukeException {
         Task unmarkedTask = Command.taskList.unmarkTask(this.taskIndex);
+        assert !unmarkedTask.isDone();
         return Ui.formatMessages(new String[]{"Ok, I've marked this task as not done yet:", unmarkedTask.toString()});
     }
 }

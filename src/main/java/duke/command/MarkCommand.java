@@ -8,7 +8,7 @@ import duke.util.Ui;
  * Command to mark a {@code Task} from a {@code TaskList} as done.
  */
 public class MarkCommand extends Command {
-    private int taskIndex;
+    private final int taskIndex;
 
     /**
      * Constructor for {@code MarkCommand}.
@@ -27,6 +27,7 @@ public class MarkCommand extends Command {
     @Override
     public String execute() throws DukeException {
         Task markedTask = Command.taskList.markTask(this.taskIndex);
+        assert markedTask.isDone();
         return Ui.formatMessages(new String[]{"Nice! I've marked this task as done:", markedTask.toString()});
     }
 }
