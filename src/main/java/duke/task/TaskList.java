@@ -79,6 +79,7 @@ public class TaskList {
         String line = String.format("\nNow you have %d task%s in the list.",
                 len, len != 1 ? "s" : "");
         result.append(line);
+        // Add task to the save file
         storage.addTaskToSave(newTask);
         return result.toString();
     }
@@ -114,6 +115,7 @@ public class TaskList {
             String line = String.format("\nNow you have %d task%s in the list.",
                     len, len != 1 ? "s" : "");
             result.append(line);
+            // Add task to the save file
             storage.addTaskToSave(newTask);
             return result.toString();
         } catch (DateTimeException e) {
@@ -153,6 +155,7 @@ public class TaskList {
             String line = String.format("\nNow you have %d task%s in the list.",
                     len, len != 1 ? "s" : "");
             result.append(line);
+            // Add task to the save file
             storage.addTaskToSave(newTask);
             return result.toString();
         } catch (DateTimeException e) {
@@ -170,7 +173,7 @@ public class TaskList {
         StringBuilder result = new StringBuilder();
         result.append("Here are the tasks in your list:\n");
         if (isEmpty()) {
-            return result.toString() + "*No tasks! ^_^*";
+            return result + "*No tasks! ^_^*";
         }
         assert this.taskList.size() > 0 : "TaskList should not be empty here.";
         for (int i = 0; i < taskList.size(); i++) {
@@ -201,6 +204,7 @@ public class TaskList {
             if (id <= 0 || id > len) {
                 throw new DukeException("Invalid task id!");
             }
+            // Mark the task in the save file
             storage.markTaskInSave(id - 1);
             return this.taskList.get(id - 1).mark();
         } catch (NumberFormatException e) {
@@ -232,6 +236,7 @@ public class TaskList {
             if (id <= 0 || id > len) {
                 throw new DukeException("Invalid task id!");
             }
+            // Unmark the task in the save file
             storage.unmarkTaskInSave(id - 1);
             return this.taskList.get(id - 1).unmark();
         } catch (NumberFormatException e) {
@@ -271,6 +276,7 @@ public class TaskList {
             String line = String.format("Now you have %d task%s in the list.",
                     len - 1, len - 1 != 1 ? "s" : "");
             result.append(line);
+            // Remove the task from the save file
             storage.deleteTaskFromSave(id - 1);
             return result.toString();
         } catch (NumberFormatException e) {
@@ -381,9 +387,11 @@ public class TaskList {
         }
         assert command[0].equals("editT") || command[0].equals("editD") : "command must be editT or editD";
         if (command[0].equals("editD")) {
+            // Edit the description of the task
             String[] editDescriptionCommand = command[1].split(" ", 2);
             return editTaskDescription(editDescriptionCommand, storage);
         } else if (command[0].equals("editT")) {
+            // Edit the date/time of the task (only deadline/event)
             String[] editTimeCommand = command[1].split(" ", 2);
             return editTaskTime(editTimeCommand, storage);
         } else {
@@ -411,6 +419,7 @@ public class TaskList {
                 throw new DukeException("Invalid task id!");
             }
             String result = this.taskList.get(id - 1).changeDescription(newDescription);
+            // Update the task in the save file
             storage.editTaskInSave(id - 1, this.taskList.get(id - 1));
             return result;
         } catch (NumberFormatException e) {
@@ -441,6 +450,7 @@ public class TaskList {
                 throw new DukeException("Invalid task id!");
             }
             String result = this.taskList.get(id - 1).changeDate(newDate);
+            // Update the task in the save file
             storage.editTaskInSave(id - 1, this.taskList.get(id - 1));
             return result;
         } catch (NumberFormatException e) {

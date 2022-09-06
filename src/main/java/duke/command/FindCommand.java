@@ -26,7 +26,7 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute() throws DukeException {
-        return taskList.findTask(command) + "\n";
+        return this.taskList.findTask(command) + "\n";
     }
 
     /**

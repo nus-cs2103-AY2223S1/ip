@@ -30,7 +30,7 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String execute() throws DukeException {
-        return taskList.unmarkTask(command, storage) + "\n";
+        return this.taskList.unmarkTask(command, storage) + "\n";
     }
 
     /**

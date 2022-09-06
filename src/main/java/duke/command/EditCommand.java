@@ -30,7 +30,7 @@ public class EditCommand extends Command {
      */
     @Override
     public String execute() throws DukeException {
-        return taskList.editTask(this.command, this.storage) + "\n";
+        return this.taskList.editTask(this.command, this.storage) + "\n";
     }
 
     /**
