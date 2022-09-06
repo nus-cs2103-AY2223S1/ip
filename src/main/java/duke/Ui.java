@@ -17,12 +17,12 @@ public class Ui {
      * Creates a new Ui object.
      */
     public Ui() {
-        System.out.println("               __\n" +
-                "              / _)\n" +
-                "     _.----._/ /\n" +
-                "    /         /\n" +
-                " __/ (  | (  |\n" +
-                "/__.-'|_|--|_|\n");
+        System.out.println("               __\n"
+                + "              / _)\n"
+                + "     _.----._/ /\n"
+                + "    /         /\n"
+                + " __/ (  | (  |\n"
+                + "/__.-'|_|--|_|\n");
 
         System.out.println(LINE
                 + "\tHello! I'm Dino\n"
@@ -66,7 +66,7 @@ public class Ui {
      * @throws DukeException
      *          Thrown when task is invalid.
      */
-    public void invalidTask() throws DukeException {
+    public static void invalidTask() throws DukeException {
         throw new DukeException("RAWR! Invalid task.");
     }
 

@@ -2,7 +2,7 @@ package duke;
 
 import duke.command.Command;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -48,6 +48,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Main class of Duke
+     */
     public static void main(String[] args) throws DukeException {
 
         new Duke("tasks.txt").run();

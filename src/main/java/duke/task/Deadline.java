@@ -38,7 +38,9 @@ public class Deadline extends Task {
      *
      * @return The deadline of the task.
      */
-    public String getBy() { return BY; }
+    public String getBy() {
+        return BY;
+    }
 
     @Override
     public String toString() {

@@ -39,10 +39,13 @@ public class Event extends Task {
      *
      * @return The date and time of the task.
      */
-    public String getAt() { return AT; }
+    public String getAt() {
+        return AT;
+    }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + DATE.format(DateTimeFormatter.ofPattern("MMM d yyyy hh:mma")) + ")";
+        return "[E]" + super.toString()
+                + " (at: " + DATE.format(DateTimeFormatter.ofPattern("MMM d yyyy hh:mma")) + ")";
     }
 }

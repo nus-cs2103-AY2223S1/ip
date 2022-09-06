@@ -49,29 +49,31 @@ public class Storage {
                         String[] str = current.split("\\|", 3);
                         Commands myTask = Commands.valueOf(str[0].toUpperCase(Locale.ROOT));
                         switch (myTask) {
-                            case DEADLINE:
-                                String[] dl = str[2].split("\\|", 2);
-                                Task deadline = new Deadline(dl[0], dl[1]);
-                                ls.add(deadline);
-                                if (Objects.equals(str[1], "1")) {
-                                    deadline.markAsDone();
-                                }
-                                break;
-                            case TODO:
-                                Task todo = new ToDo(str[2]);
-                                ls.add(todo);
-                                if (Objects.equals(str[1], "1")) {
-                                    todo.markAsDone();
-                                }
-                                break;
-                            case EVENT:
-                                String[] evnt = str[2].split("\\|", 2);
-                                Task event = new Event(evnt[0], evnt[1]);
-                                ls.add(event);
-                                if (Objects.equals(str[1], "1")) {
-                                    event.markAsDone();
-                                }
-                                break;
+                        case DEADLINE:
+                            String[] dl = str[2].split("\\|", 2);
+                            Task deadline = new Deadline(dl[0], dl[1]);
+                            ls.add(deadline);
+                            if (Objects.equals(str[1], "1")) {
+                                deadline.markAsDone();
+                            }
+                            break;
+                        case TODO:
+                            Task todo = new ToDo(str[2]);
+                            ls.add(todo);
+                            if (Objects.equals(str[1], "1")) {
+                                todo.markAsDone();
+                            }
+                            break;
+                        case EVENT:
+                            String[] evnt = str[2].split("\\|", 2);
+                            Task event = new Event(evnt[0], evnt[1]);
+                            ls.add(event);
+                            if (Objects.equals(str[1], "1")) {
+                                event.markAsDone();
+                            }
+                            break;
+                        default:
+                            Ui.invalidTask();
                         }
                         current = br.readLine();
                     }

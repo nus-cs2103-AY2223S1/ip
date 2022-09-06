@@ -42,14 +42,18 @@ public class Task {
      *
      * @return A String where "1" means that the task is complete and "0" means that the task is incomplete.
      */
-    public String getStatus() { return (isDone ? "1" : "0"); }
+    public String getStatus() {
+        return (isDone ? "1" : "0");
+    }
 
     /**
      * Gets the name of the task.
      *
      * @return The String specifying the name of the task.
      */
-    public String getDescription() { return DESCRIPTION; }
+    public String getDescription() {
+        return DESCRIPTION;
+    }
 
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + DESCRIPTION;

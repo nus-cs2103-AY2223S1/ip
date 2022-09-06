@@ -11,17 +11,17 @@ import java.util.ArrayList;
  */
 public class TaskList {
 
-    private final ArrayList<Task> TASKS;
+    private final ArrayList<Task> MY_TASKS;
     public TaskList(ArrayList<Task> tasks) {
-        this.TASKS = tasks;
+        this.MY_TASKS = tasks;
     }
 
     /**
      * Prints out all tasks in the list.
      */
     public void list() {
-        for (int i = 0; i < TASKS.size(); i++) {
-            System.out.println("\t" + (i + 1) + ". " + TASKS.get(i).toString());
+        for (int i = 0; i < MY_TASKS.size(); i++) {
+            System.out.println("\t" + (i + 1) + ". " + MY_TASKS.get(i).toString());
         }
     }
 
@@ -31,7 +31,7 @@ public class TaskList {
      * @param task The specified task to be added.
      */
     public void add(Task task) {
-        TASKS.add(task);
+        MY_TASKS.add(task);
     }
 
     /**
@@ -41,7 +41,7 @@ public class TaskList {
      * @return The task at index i.
      */
     public Task get(int i) {
-        return TASKS.get(i);
+        return MY_TASKS.get(i);
     }
 
     /**
@@ -50,7 +50,7 @@ public class TaskList {
      * @param i The index of the task to be removed.
      */
     public void remove(int i) {
-        TASKS.remove(i);
+        MY_TASKS.remove(i);
     }
 
     /**
@@ -59,12 +59,12 @@ public class TaskList {
      * @return The number of items in the list.
      */
     public int size() {
-        return TASKS.size();
+        return MY_TASKS.size();
     }
 
     public ArrayList<Task> find(String match) {
         ArrayList<Task> matches = new ArrayList<>();
-        for (Task task : tasks) {
+        for (Task task : MY_TASKS) {
             if (task.getDescription().contains(match)) {
                 matches.add(task);
             }

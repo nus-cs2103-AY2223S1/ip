@@ -67,23 +67,26 @@ public class AddCommand extends Command {
             try {
                 myTask = new ToDo(STR[1]);
             } catch (Exception e) {
-                throw new DukeException("Oops! The description of a todo cannot be empty!");
+                ui.emptyDescription();
             }
             break;
 
         case EVENT:
-            String[] evnt;
+            String[] evnt = new String[0];
             try {
                 evnt = STR[1].split(" /at ");
             } catch (Exception e) {
-                throw new DukeException("Oops! The description of an event cannot be empty!");
+                ui.emptyDescription();
             }
 
             try {
                 myTask = new Event(evnt[0], evnt[1]);
             } catch (Exception e) {
-                throw new DukeException("Oops! When is the event?");
+                ui.emptyDescription();
             }
+            break;
+        default:
+            ui.invalidTask();
             break;
         }
         tasks.add(myTask);
