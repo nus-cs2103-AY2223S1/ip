@@ -1,25 +1,16 @@
 package duke.storage;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
 import java.util.Scanner;
 
 import duke.task.Deadline;
 import duke.task.Event;
-import duke.task.ToDo;
-import duke.tasklist.TaskList;
-
-import java.util.ArrayList;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.FileNotFoundException;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
 import duke.task.ToDo;
 import duke.tasklist.TaskList;
 
@@ -92,7 +83,7 @@ public class Storage {
         clearFw.write("");
         clearFw.close();
         FileWriter fw = new FileWriter(path, true);
-        ArrayList<String> writeList = taskList.produceWriteList();
+        List<String> writeList = taskList.produceWriteList();
         for (int i = 0; i < writeList.size(); i++) {
             fw.write(writeList.get(i));
             fw.write(System.lineSeparator());

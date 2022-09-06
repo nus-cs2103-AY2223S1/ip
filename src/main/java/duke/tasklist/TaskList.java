@@ -3,6 +3,7 @@ package duke.tasklist;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import duke.task.Deadline;
 import duke.task.Event;
@@ -86,10 +87,10 @@ public class TaskList {
             taskList.append(String.format("%d.%s\n", i + 1, this.list.get(i).toString()));
         }
 
-        return list.toString();
+        return taskList.toString();
     }
 
-    public ArrayList<String> produceWriteList() {
+    public List<String> produceWriteList() {
         ArrayList<String> writeList = new ArrayList<>();
         for (int i = 0; i < this.list.size(); i++) {
             writeList.add(this.list.get(i).toFileData());

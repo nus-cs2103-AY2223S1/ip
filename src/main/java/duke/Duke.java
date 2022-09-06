@@ -19,13 +19,14 @@ public class Duke {
         try {
             Storage.loadData(this.taskList, this.path);
         } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
         }
     }
 
     public String getResponse(String input) {
         String response = "";
         try {
-            response = Parser.feedDuke(input, this.taskList);
+            response = Parser.parseInput(input, this.taskList);
         } catch (DukeException e) {
             return e.getMessage();
         }
