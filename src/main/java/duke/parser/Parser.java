@@ -46,18 +46,18 @@ public class Parser {
             return Ui.displayMessage(ENDING_MESSAGE);
 
         case "mark":
-            int taskIndex = Integer.valueOf(input.split(" ", 0)[1]) - 1;
+            int taskIndex = Integer.parseInt(input.split(" ", 0)[1]) - 1;
             return taskList.markTask(taskIndex);
 
         case "unmark":
-            int unmarkIndex = Integer.valueOf(input.split(" ", 0)[1]) - 1;
+            int unmarkIndex = Integer.parseInt(input.split(" ", 0)[1]) - 1;
             return taskList.unmarkTask(unmarkIndex);
 
         case "list":
             return taskList.list();
 
         case "delete":
-            int deleteIndex = Integer.valueOf(input.split(" ", 0)[1]) - 1;
+            int deleteIndex = Integer.parseInt(input.split(" ", 0)[1]) - 1;
             return taskList.deleteTask(deleteIndex);
 
         case "find":
@@ -78,7 +78,7 @@ public class Parser {
                 Desktop.getDesktop().browse(new URI(Ui.displayHelpURL()));
 
             } catch (MalformedURLException | URISyntaxException e) {
-                System.out.println("Test");
+                return "This shouldn't happen, the server side URL is broken.";
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
