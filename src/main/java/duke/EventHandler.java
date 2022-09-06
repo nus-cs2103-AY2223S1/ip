@@ -15,6 +15,7 @@ public class EventHandler {
      *
      * @param taskList      TaskList for EventHandler to handle.
      * @param userInterface UserInterface that EventHandler uses.
+     * @return The response from the Duke bot
      */
     public EventHandler(TaskList taskList, UserInterface userInterface,
                         GuiUserInterface guiUserInterface, Storage storage) {
@@ -28,6 +29,7 @@ public class EventHandler {
      * Adds a ToDo into taskList.
      *
      * @param input User input
+     * @return The response from the Duke bot
      * @throws DukeNoDescriptionException Thrown when description is empty.
      */
     public String addTodo(String input) throws DukeNoDescriptionException {
@@ -46,6 +48,7 @@ public class EventHandler {
      * Adds a Deadline into taskList.
      *
      * @param input User input
+     * @return The response from the Duke bot
      * @throws DukeNoDescriptionException Thrown when description is empty.
      */
     public String addDeadline(String input) throws DukeNoDescriptionException {
@@ -53,9 +56,9 @@ public class EventHandler {
             throw new DukeNoDescriptionException();
         }
 
-        int endAt = input.indexOf("/");
-        String description = input.substring(9, endAt);
-        String by = input.substring(endAt + 4);
+        int endIndex = input.indexOf("/");
+        String description = input.substring(9, endIndex);
+        String by = input.substring(endIndex + 4);
 
         Deadline tempTask = new Deadline(description, by);
 
@@ -69,6 +72,7 @@ public class EventHandler {
      * Adds an Event into taskList.
      *
      * @param input User input.
+     * @return The response from the Duke bot
      * @throws DukeNoDescriptionException Thrown when description is empty.
      */
     public String addEvent(String input) throws DukeNoDescriptionException {
@@ -76,9 +80,9 @@ public class EventHandler {
             throw new DukeNoDescriptionException();
         }
 
-        int endAt = input.indexOf("/");
-        String description = input.substring(6, endAt);
-        String at = input.substring(endAt + 4);
+        int endIndex = input.indexOf("/");
+        String description = input.substring(6, endIndex);
+        String at = input.substring(endIndex + 4);
 
         Event tempTask = new Event(description, at);
 
@@ -92,6 +96,7 @@ public class EventHandler {
      * Marks an item in taskList as done and prints the required message.
      *
      * @param input User input.
+     * @return The response from the Duke bot
      */
     public String markTask(String input) {
         int taskIndex = Integer.parseInt(input.substring(5)) - 1;
@@ -105,6 +110,7 @@ public class EventHandler {
      * Unmarks an item in taskList as undone and prints the required message.
      *
      * @param input User input.
+     * @return The response from the Duke bot
      */
     public String unmarkTask(String input) {
         int taskIndex = Integer.parseInt(input.substring(7)) - 1;
@@ -119,6 +125,7 @@ public class EventHandler {
      * Deletes an item from taskList and prints the required message.
      *
      * @param input User input.
+     * @return The response from the Duke bot
      */
     public String deleteTask(String input) {
         int taskIndex = Integer.parseInt(input.substring(7)) - 1;
@@ -133,6 +140,7 @@ public class EventHandler {
      * Finds Tasks in taskList that match the description and prints them out using userInterface.
      *
      * @param input User input.
+     * @return The response from the Duke bot
      */
     public String find(String input) {
         String query = input.substring(5);
