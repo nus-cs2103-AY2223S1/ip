@@ -1,5 +1,8 @@
 package duke.main;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import duke.command.Command;
 import duke.errors.DukeException;
 import duke.task.TaskList;
@@ -37,11 +40,19 @@ public class Duke {
             String response = ui.getOutput();
             ui.resetOutput();
             if (isExit) {
+                TimerTask task = new TimerTask() {
+                    @Override
+                    public void run() {
+                        System.exit(0);
+                    }
+                };
+                Timer timer = new Timer();
+                timer.schedule(task, 800);
                 ui.showBye();
                 response = ui.getOutput();
                 ui.resetOutput();
                 return response;
-            }
+                }
             return response;
         } catch (DukeException e) {
             return e.getMessage();

@@ -1,5 +1,7 @@
 package duke.command;
 
+import java.time.LocalDateTime;
+
 import duke.errors.DukeException;
 import duke.main.Storage;
 import duke.main.Ui;
@@ -12,14 +14,14 @@ import duke.task.TaskList;
  */
 public class AddEventCommand extends Command {
     private String description;
-    private String by;
+    private LocalDateTime by;
 
     /**
      * Constructor for AddEventCommand
      * @param description String describing the task
      * @param by String describing when task happens
      */
-    public AddEventCommand(String description, String by) {
+    public AddEventCommand(String description, LocalDateTime by) {
         this.description = description;
         this.by = by;
     }

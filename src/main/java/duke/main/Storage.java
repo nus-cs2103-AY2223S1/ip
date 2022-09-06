@@ -70,7 +70,8 @@ public class Storage {
                     tasks.add(deadline);
                     break;
                 case ("E"):
-                    Task event = new Events(separatedLines[2], separatedLines[3]);
+                    LocalDateTime on = LocalDateTime.parse(separatedLines[3]);
+                    Task event = new Events(separatedLines[2], on);
                     if (isDone(separatedLines[1])) {
                         event.finished();
                     }
