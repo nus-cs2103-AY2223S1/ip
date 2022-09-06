@@ -5,6 +5,7 @@ import data.TaskList;
 import exceptions.DukeException;
 import parser.Parser;
 import storage.Storage;
+import utils.Pair;
 
 /**
  * Duke class to encapsulate all logic involving the chatbot.
@@ -31,8 +32,8 @@ public class Duke {
         return "Hello my name is Duke\nWhat can I do for you?";
     }
 
-    public String getResponse(String input) throws DukeException {
+    public Pair<String, Boolean> getResponse(String input) throws DukeException {
         Command c = Parser.parse(input);
-        return c.execute(tasks, storage);
+        return new Pair<>(c.execute(tasks, storage), c.isExit());
     }
 }

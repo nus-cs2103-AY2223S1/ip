@@ -5,12 +5,13 @@ import java.util.Objects;
 import duke.Duke;
 import exceptions.DukeException;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import utils.Pair;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -29,8 +30,6 @@ public class MainWindow extends AnchorPane {
     private VBox dialogContainer;
     @FXML
     private TextField userInput;
-    @FXML
-    private Button sendButton;
     private Duke duke;
 
     /**
@@ -55,11 +54,17 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         try {
-            String response = duke.getResponse(input);
+            Pair<String, Boolean> response = duke.getResponse(input);
+            String responseString = response.getFirst();
+            boolean isExit = response.getSecond();
             dialogContainer.getChildren().addAll(
                     DialogBox.getUserDialog(input, userImage),
-                    DialogBox.getDukeDialog(response, dukeImage)
+                    DialogBox.getDukeDialog(responseString, dukeImage)
             );
+            if (isExit) {
+                Stage stage = (Stage) userInput.getScene().getWindow();
+                stage.close();
+            }
         } catch (DukeException e) {
             dialogContainer.getChildren().addAll(
                     DialogBox.getUserDialog(input, userImage),
