@@ -30,7 +30,7 @@ public class MainWindow extends AnchorPane {
 
     public void setDuke(DukeApplication d) {
         this.duke = d;
-        this.dialogContainer.getChildren().add(DialogBox.getDukeDialog("How may I help you?"));
+        this.dialogContainer.getChildren().add(DialogBox.getDukeDialog("Hey there, I am Duke!\nHow may I help you?"));
     }
 
     /**
