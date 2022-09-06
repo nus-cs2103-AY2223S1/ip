@@ -18,6 +18,7 @@ public class UnMarkCommand extends Command {
      */
     public UnMarkCommand(int index) {
         super(false);
+        assert index >= 0;
         this.index = index;
     }
 

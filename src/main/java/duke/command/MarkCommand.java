@@ -17,6 +17,7 @@ public class MarkCommand extends Command {
      */
     public MarkCommand(int index) {
         super(false);
+        assert index >= 0;
         this.index = index;
     }
 
