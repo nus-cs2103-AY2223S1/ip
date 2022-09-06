@@ -1,7 +1,5 @@
 package duke;
 
-import duke.command.*;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -11,6 +9,12 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
+
+import duke.command.AddDeadlineCommand;
+import duke.command.AddEventCommand;
+import duke.command.AddTodoCommand;
+import duke.command.Command;
+import duke.command.ListCommand;
 
 /**
  * Interacts with output file that saves the task list.
@@ -84,7 +88,7 @@ public class Storage {
                     commandWord = Command.Commands.valueOf(commandArr[0]);
                 } catch (IllegalArgumentException e) {
                     ui.println(String.format("Error reading command in output file: %s", commandString));
-                    break;  // move to next command if error reading this line
+                    break; // move to next command if error reading this line
                 }
 
                 Command command = null;

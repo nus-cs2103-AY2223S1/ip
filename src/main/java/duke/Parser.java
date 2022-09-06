@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.Objects;
+
 import duke.command.AddDeadlineCommand;
 import duke.command.AddEventCommand;
 import duke.command.AddTodoCommand;
@@ -10,8 +12,6 @@ import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.UpdateMarkCommand;
 import duke.command.UpdateUnmarkCommand;
-
-import java.util.Objects;
 
 /**
  * Contains methods to parse user input.
@@ -38,33 +38,35 @@ public abstract class Parser {
 
         if (!Objects.isNull(commandWord)) {
             switch(commandWord) {
-                case mark:
-                    command = UpdateMarkCommand.of(commandString, taskList);
-                    break;
-                case unmark:
-                    command = UpdateUnmarkCommand.of(commandString, taskList);
-                    break;
-                case todo:
-                    command = AddTodoCommand.of(commandString);
-                    break;
-                case deadline:
-                    command = AddDeadlineCommand.of(commandString);
-                    break;
-                case event:
-                    command = AddEventCommand.of(commandString);
-                    break;
-                case delete:
-                    command = DeleteCommand.of(commandString, taskList);
-                    break;
-                case bye:
-                    command = new ByeCommand(commandString);
-                    break;
-                case list:
-                    command = new ListCommand(commandString);
-                    break;
-                case find:
-                    command = FindCommand.of(commandString);
-                    break;
+            case mark:
+                command = UpdateMarkCommand.of(commandString, taskList);
+                break;
+            case unmark:
+                command = UpdateUnmarkCommand.of(commandString, taskList);
+                break;
+            case todo:
+                command = AddTodoCommand.of(commandString);
+                break;
+            case deadline:
+                command = AddDeadlineCommand.of(commandString);
+                break;
+            case event:
+                command = AddEventCommand.of(commandString);
+                break;
+            case delete:
+                command = DeleteCommand.of(commandString, taskList);
+                break;
+            case bye:
+                command = new ByeCommand(commandString);
+                break;
+            case list:
+                command = new ListCommand(commandString);
+                break;
+            case find:
+                command = FindCommand.of(commandString);
+                break;
+            default:
+                break; // should not occur, since commandWord can only be null or Commands
             }
         }
 
@@ -83,7 +85,7 @@ public abstract class Parser {
         String[] commandArr = command.split(" ");
         try {
             i = Integer.parseInt(commandArr[1]);
-        } catch (NumberFormatException e) {     // if second word not integer
+        } catch (NumberFormatException e) { // if second word not integer
             throw new IllegalArgumentException();
         }
 

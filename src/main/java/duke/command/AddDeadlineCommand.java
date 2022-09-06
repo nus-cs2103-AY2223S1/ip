@@ -1,10 +1,10 @@
 package duke.command;
 
-import duke.task.Deadline;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import duke.task.Deadline;
 
 /**
  * A command that adds a Deadline to the task list.
@@ -40,7 +40,8 @@ public class AddDeadlineCommand extends AddCommand {
             try {
                 timeObj = LocalDateTime.parse(time, DateTimeFormatter.ofPattern("dd/MM/yy HHmm"));
             } catch (DateTimeParseException e) {
-                throw new IllegalArgumentException("🙁 OOPS!!! Provide a valid time (dd/MM/yy HHmm) for the deadline.\n");
+                throw new IllegalArgumentException(
+                        "🙁 OOPS!!! Provide a valid time (dd/MM/yy HHmm) for the deadline.\n");
             }
             return new AddDeadlineCommand(command, new Deadline(isDone, text, timeObj));
         }
