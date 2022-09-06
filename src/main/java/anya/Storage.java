@@ -3,6 +3,7 @@ package anya;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -23,8 +24,8 @@ public class Storage {
     }
 
     // Instance methods
-    public ArrayList<Task> loadFile() throws IOException {
-        ArrayList<Task> tasks = new ArrayList<>();
+    public ArrayList<Task> loadCurrentTasksFromFile() throws IOException {
+        ArrayList<Task> currentTasks = new ArrayList<>();
 
         File dir = new File("data/");
         if (!dir.exists()) {
@@ -38,11 +39,70 @@ public class Storage {
 
         Scanner sc = new Scanner(savedTask);
         while (sc.hasNextLine()) {
-            String line = sc.nextLine();
-            tasks.add(readEntry(line));
+            if (sc.hasNext("Current")) {
+                String line = sc.nextLine();
+                String entry = line.split(" ", 2)[1];
+                currentTasks.add(readEntry(entry));
+            } else {
+                sc.nextLine();
+            }
         }
 
-        return tasks;
+        return currentTasks;
+    }
+
+    public ArrayList<Task> loadDeletedTasksFromFile() throws IOException {
+        ArrayList<Task> deletedTasks = new ArrayList<>();
+
+        File dir = new File("data/");
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+
+        File savedTask = new File(this.filePath);
+        if (!savedTask.exists()) {
+            savedTask.createNewFile();
+        }
+
+        Scanner sc = new Scanner(savedTask);
+        while (sc.hasNextLine()) {
+            if (sc.hasNext("Deleted")) {
+                String line = sc.nextLine();
+                String entry = line.split(" ", 2)[1];
+                deletedTasks.add(readEntry(entry));
+            } else {
+                sc.nextLine();
+            }
+        }
+        return deletedTasks;
+    }
+
+    // TODO extract out the directory and file
+    public LocalDate loadDateCreatedFromFile() throws IOException {
+        LocalDate dateCreated = LocalDate.now();
+        File dir = new File("data/");
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+
+        File savedTask = new File(this.filePath);
+        if (!savedTask.exists()) {
+            savedTask.createNewFile();
+        }
+
+        Scanner sc = new Scanner(savedTask);
+        // Get date stored in database if database exists; get today's date otherwise
+        while (sc.hasNextLine()) {
+            if (sc.hasNext("Date")) {
+                String line = sc.nextLine();
+                String date = line.split(" ", 2)[1];
+                dateCreated = LocalDate.parse(date);
+                break;
+            } else {
+                sc.nextLine();
+            }
+        }
+        return dateCreated;
     }
 
     public Task readEntry(String line) {
@@ -73,9 +133,19 @@ public class Storage {
 
     public void saveFile(TaskList tasks) throws IOException {
         FileWriter saveTask = new FileWriter(this.filePath);
+        // Store TaskList created date on first line
+        saveTask.write("Date " + tasks.getDateCreated() + "\n");
+
+        // Store current tasks in subsequent lines
         for (int i = 0; i < tasks.getLength(); i++) {
             Task task = tasks.getTaskFromIndex(i + 1);
-            saveTask.write(task.toSaveFormat() + "\n");
+            saveTask.write( "Current "+ task.toSaveFormat() + "\n");
+        }
+
+        // Store deleted tasks in subsequent lines
+        for (int i = 0; i < tasks.getDeletedTasksLength(); i++) {
+            Task task = tasks.getDeletedTaskFromIndex(i + 1);
+            saveTask.write("Deleted " + task.toSaveFormat() + "\n");
         }
         saveTask.close();
     }

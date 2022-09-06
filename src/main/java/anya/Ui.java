@@ -3,6 +3,9 @@ package anya;
 import anya.task.Task;
 import anya.task.TaskList;
 
+import java.time.LocalDate;
+import java.util.Collections;
+
 public class Ui {
 
     public String getGreetMessage() {
@@ -87,5 +90,35 @@ public class Ui {
             }
             return message.toString();
         }
+    }
+
+    public String getStatisticsMessage(int numCompletedTasks, String dateCompleted) {
+        String formattedDate = formatDate(dateCompleted);
+        if (numCompletedTasks == 0) {
+            return "You have not completed any tasks since " + formattedDate + ".\n" + "It's okay, Anya is cheering you on!";
+        } else if (numCompletedTasks == 1) {
+            return "You have completed 1 task since " + formattedDate + ".\n" + "Keep it up, Anya is cheering you on!";
+        } else {
+            assert numCompletedTasks > 1;
+            return "You have completed " + numCompletedTasks + " tasks since " + formattedDate + ".\n" +
+                    "Anya is so proud of you!";
+        }
+    }
+
+    public String formatDate(String dateCompleted) {
+        String[] dateArr = dateCompleted.split("-");
+        StringBuilder date = new StringBuilder();
+        for (int i = dateArr.length - 1; i >= 0; i--) {
+            date.append(dateArr[i]);
+            if (i != 0) {
+                date.append("/");
+            }
+        }
+        return date.toString();
+    }
+
+    public String getNewListMessage(String dateCreated) {
+        String formattedDate = formatDate(dateCreated);
+        return "Anya is clearing the previous list...\nDone! Anya has created a new list on " + formattedDate + ".";
     }
 }

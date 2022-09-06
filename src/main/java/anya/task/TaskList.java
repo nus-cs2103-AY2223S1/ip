@@ -1,28 +1,34 @@
 package anya.task;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TaskList {
-    private ArrayList<Task> tasks;
+    private ArrayList<Task> currentTasks;
+    private ArrayList<Task> deletedTasks;
+    private LocalDate dateCreated;
 
     // Constructor
     public TaskList() {
-        this.tasks = new ArrayList<>();
+        this.currentTasks = new ArrayList<>();
+        this.deletedTasks = new ArrayList<>();
+        this.dateCreated = LocalDate.now();
     }
 
-    public TaskList(ArrayList<Task> tasks) {
-        this.tasks = tasks;
+    public TaskList(ArrayList<Task> currentTasks, ArrayList<Task> deletedTasks, LocalDate dateCreated) {
+        this.currentTasks = currentTasks;
+        this.deletedTasks = deletedTasks;
+        this.dateCreated = dateCreated;
     }
 
     // Instance methods
-
     /**
      * Appends the task to end of the ArrayList.
      *
      * @param task the task to be added in the ArrayList.
      */
     public void addTask(Task task) {
-        this.tasks.add(task);
+        this.currentTasks.add(task);
     }
 
     /**
@@ -32,7 +38,8 @@ public class TaskList {
      * @param taskIndex the index of the task in the ArrayList to be deleted.
      */
     public void deleteTaskFromIndex(int taskIndex) {
-        this.tasks.remove(taskIndex - 1);
+        Task deletedTask = this.currentTasks.remove(taskIndex - 1);
+        this.deletedTasks.add(deletedTask);
     }
 
     /**
@@ -41,7 +48,7 @@ public class TaskList {
      * @return the length of the ArrayList
      */
     public int getLength() {
-        return this.tasks.size();
+        return this.currentTasks.size();
     }
 
     /**
@@ -52,7 +59,7 @@ public class TaskList {
      * @return the task at specified index.
      */
     public Task getTaskFromIndex(int taskIndex) {
-        return this.tasks.get(taskIndex - 1);
+        return this.currentTasks.get(taskIndex - 1);
     }
 
     /**
@@ -64,12 +71,39 @@ public class TaskList {
     public TaskList getMatchingTasks(String keyword) {
         ArrayList<Task> filteredTasks = new ArrayList<>();
 
-        for (Task task: this.tasks) {
+        for (Task task: this.currentTasks) {
             if (task.doesNameContains(keyword)) {
                 filteredTasks.add(task);
             }
         }
 
-        return new TaskList(filteredTasks);
+        return new TaskList(filteredTasks, this.deletedTasks, this.dateCreated);
+    }
+
+    public int getNumOfAllCompletedTasks() {
+        int res = 0;
+        for (Task currTask : this.currentTasks) {
+            if (currTask.isDone) {
+                res++;
+            }
+        }
+        for (Task currTask : this.deletedTasks) {
+            if (currTask.isDone) {
+                res++;
+            }
+        }
+        return res;
+    }
+
+    public String getDateCreated() {
+        return this.dateCreated.toString();
+    }
+
+    public int getDeletedTasksLength() {
+        return this.deletedTasks.size();
+    }
+
+    public Task getDeletedTaskFromIndex(int taskIndex) {
+        return this.deletedTasks.get(taskIndex - 1);
     }
 }

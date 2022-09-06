@@ -1,6 +1,7 @@
 package anya;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
@@ -19,15 +20,11 @@ public class Anya {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
         try {
-            this.tasks = new TaskList(storage.loadFile());
+            this.tasks = new TaskList(storage.loadCurrentTasksFromFile(),
+                    storage.loadDeletedTasksFromFile(), storage.loadDateCreatedFromFile());
         } catch (IOException e) {
             this.tasks = new TaskList();
         }
-    }
-
-    public enum Command {
-        BYE, LIST, FIND, MARK, UNMARK,
-        DELETE, TODO, DEADLINE, EVENT
     }
 
     /**
@@ -37,35 +34,39 @@ public class Anya {
      * @return A response depending on the command entered.
      */
     String getResponse(String userInput) {
-        Command command = Command.valueOf(Parser.parseCommand(userInput));
         try {
+            String command = Parser.parseCommand(userInput);
             switch (command) {
-            case BYE:
+            case "BYE":
                 return exit();
-            case LIST:
+            case "NEW":
+                return newList();
+            case "LIST":
                 return getList(tasks);
-            case FIND:
+            case "FIND":
                 String keyword = Parser.parseKeyword(userInput);
                 return find(tasks, keyword);
-            case MARK:
+            case "MARK":
                 int markIndex = Parser.parseCommandIndex(userInput);
                 return mark(tasks, markIndex);
-            case UNMARK:
+            case "UNMARK":
                 int unmarkIndex = Parser.parseCommandIndex(userInput);
                 return unmark(tasks, unmarkIndex);
-            case DELETE:
+            case "DELETE":
                 int deleteIndex = Parser.parseCommandIndex(userInput);
                 return delete(tasks, deleteIndex);
-            case TODO:
+            case "STATISTICS":
+                return getStatistics(tasks);
+            case "TODO":
                 String todoTaskName = Parser.parseTaskName(userInput);
                 Task todoTask = new Todo(todoTaskName);
                 return addTask(tasks, todoTask);
-            case DEADLINE:
+            case "DEADLINE":
                 String deadlineTaskName = Parser.parseTaskName(userInput);
                 LocalDateTime dateTime = Parser.parseDateTime(userInput);
                 Task deadlineTask = new Deadline(deadlineTaskName, dateTime);
                 return addTask(tasks, deadlineTask);
-            case EVENT:
+            case "EVENT":
                 String eventTaskName = Parser.parseTaskName(userInput);
                 String eventDetails = Parser.parseEventDetails(userInput);
                 Task eventTask = new Event(eventTaskName, eventDetails);
@@ -98,7 +99,7 @@ public class Anya {
      * @return A success message and a list of previously stored tasks; a failure message otherwise.
      */
     public String getLoadFileStatus() {
-        if (this.tasks.getLength() == 0) {
+        if ( this.tasks.getLength() == 0 && this.tasks.getDateCreated().equals(LocalDate.now().toString())) {
             return this.ui.getLoadFileFailureMessage();
         } else {
             String message = this.ui.getLoadFileSuccessMessage() + "\n";
@@ -123,6 +124,17 @@ public class Anya {
         }
         message.append(this.ui.getExitMessage());
         return message.toString();
+    }
+
+    public String newList() {
+        this.tasks = new TaskList();
+        return this.ui.getNewListMessage(this.tasks.getDateCreated());
+    }
+
+    public String getStatistics(TaskList tasks) {
+        int numCompletedTasks = tasks.getNumOfAllCompletedTasks();
+        String dateCompleted = tasks.getDateCreated();
+        return this.ui.getStatisticsMessage(numCompletedTasks, dateCompleted);
     }
 
     /**

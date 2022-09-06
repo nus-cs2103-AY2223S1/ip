@@ -3,12 +3,12 @@ package anya.task;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertLinesMatch;
 
 public class TaskListTest {
 
@@ -26,7 +26,7 @@ public class TaskListTest {
         this.tasksArrayList.add(todoTask);
         this.tasksArrayList.add(deadlineTask);
         this.tasksArrayList.add(eventTask);
-        this.tasks = new TaskList(this.tasksArrayList);
+        this.tasks = new TaskList(this.tasksArrayList, LocalDate.now());
     }
 
     @Test
