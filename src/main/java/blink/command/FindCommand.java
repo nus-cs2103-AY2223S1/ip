@@ -36,14 +36,4 @@ public class FindCommand extends Command {
         ArrayList<Task> findList = tasks.find(this.keyWord);
         return ui.showFind(findList, this.keyWord);
     }
-
-    /**
-     * Find command will not end the program.
-     *
-     * @return False
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

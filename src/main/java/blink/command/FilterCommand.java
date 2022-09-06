@@ -42,14 +42,4 @@ public class FilterCommand extends Command {
         ArrayList<Task> filteredList = tasks.filter(date);
         return ui.showFilter(filteredList, this.date);
     }
-
-    /**
-     * Filter command will not end the program.
-     *
-     * @return False
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

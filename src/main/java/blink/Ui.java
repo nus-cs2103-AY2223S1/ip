@@ -39,7 +39,7 @@ public class Ui {
      * @param num Number position of Task to mark
      */
     public String mark(TaskList tasks, int num) {
-        Task task = tasks.get(num - 1);
+        Task task = tasks.getTask(num - 1);
         return "This task has been marked as done\n" + task;
     }
 
@@ -50,7 +50,7 @@ public class Ui {
      * @param num Number position of Task to unmark
      */
     public String unMark(TaskList tasks, int num) {
-        Task task = tasks.get(num - 1);
+        Task task = tasks.getTask(num - 1);
         return "This task has been marked as done\n" + task;
     }
 
@@ -61,8 +61,8 @@ public class Ui {
      * @param task Task that is deleted
      */
     public String deleteTask(TaskList tasks, Task task) {
-        return "Task has been deleted successfully.\n" + task
-               + "\n" + tasks.deleted();
+        return "Blink.Task has been deleted successfully.\n" + task
+               + "\n" + tasks.toStringAfterDelete();
     }
 
     /**
@@ -108,8 +108,10 @@ public class Ui {
         if (tasks.size() == 0) {
             return "No tasks found with keyword: " + keyword;
         } else {
-            String currentSize = tasks.size() + ((tasks.size() == 1) ? " task" : " tasks")
-                    + " found";
+            String str = (tasks.size() == 1)
+                    ? " task"
+                    : " tasks";
+            String currentSize = tasks.size() + str + " found";
             output += currentSize;
             for (int x = 0; x < tasks.size(); x++) {
                 String taskInfo = "\n" + tasks.get(x);

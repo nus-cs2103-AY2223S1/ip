@@ -36,14 +36,4 @@ public class MarkCommand extends Command {
         storage.save(tasks);
         return ui.mark(tasks, num);
     }
-
-    /**
-     * Mark command does not end the program thus returns false.
-     *
-     * @return False
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

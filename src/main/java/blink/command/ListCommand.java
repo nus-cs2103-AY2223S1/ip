@@ -20,14 +20,4 @@ public class ListCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         return ui.showList(tasks);
     }
-
-    /**
-     * List command does not end the program thus returns false.
-     *
-     * @return False
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

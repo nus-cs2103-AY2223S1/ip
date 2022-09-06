@@ -47,13 +47,4 @@ public class DeadlineCommand extends Command {
         return ui.showAddTask(tasks, event);
     }
 
-    /**
-     * Deadline command will not end the program.
-     *
-     * @return False
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

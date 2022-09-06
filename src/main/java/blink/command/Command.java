@@ -16,11 +16,4 @@ public abstract class Command {
      * @param storage Storage object of current Blink object
      */
     public abstract String execute(TaskList tasks, Ui ui, Storage storage);
-
-    /**
-     * Checks if the command run will cause the program to terminate.
-     *
-     * @return True if ending and false if it's not
-     */
-    public abstract boolean isExit();
 }

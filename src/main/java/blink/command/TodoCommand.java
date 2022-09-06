@@ -43,14 +43,4 @@ public class TodoCommand extends Command {
         storage.save(tasks);
         return ui.showAddTask(tasks, event);
     }
-
-    /**
-     * Todo command does not end the program thus returns false.
-     *
-     * @return False
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }
