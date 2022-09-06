@@ -6,9 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import duke.common.Messages;
+import duke.common.exceptions.StorageException;
 import duke.data.TaskList;
-import duke.data.exception.DukeException;
 import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.Task;
@@ -21,12 +20,12 @@ public class Storage {
     private static final String FILE_PATH = "data/tasklist.txt";
     private static final String INVALID_STORAGE_DATA = "Invalid storage data";
 
-    private void createFile(File file) throws DukeException {
+    private void createFile(File file) throws StorageException {
         new File("data").mkdir();
         try {
             file.createNewFile();
         } catch (IOException e) {
-            throw new DukeException(Messages.MESSAGE_STORAGE_ERROR);
+            throw new StorageException();
         }
     }
 
@@ -41,9 +40,9 @@ public class Storage {
     /**
      * Saves the list of tasks to a file.
      * @param taskList The list of tasks to be saved.
-     * @throws DukeException If there is an IOException saving the list of tasks to the file.
+     * @throws StorageException If there is an IOException saving the list of tasks to the file.
      */
-    public void save(TaskList taskList) throws DukeException {
+    public void save(TaskList taskList) throws StorageException {
         int numTasks = taskList.numTasks();
         FileWriter writer = null;
 
@@ -54,13 +53,13 @@ public class Storage {
                 writer.write(formatTask(task));
             }
         } catch (IOException e) {
-            throw new DukeException(Messages.MESSAGE_STORAGE_ERROR);
+            throw new StorageException();
         } finally {
             if (writer != null) {
                 try {
                     writer.close();
                 } catch (IOException e) {
-                    throw new DukeException(Messages.MESSAGE_STORAGE_ERROR);
+                    throw new StorageException();
                 }
             }
         }
@@ -69,9 +68,9 @@ public class Storage {
     /**
      * Reads and returns the list of tasks from the file.
      * @return The list of tasks from the file.
-     * @throws DukeException If there is an IOException reading the list of tasks from the file.
+     * @throws StorageException If there is an IOException reading the list of tasks from the file.
      */
-    public ArrayList<Task> load() throws DukeException {
+    public ArrayList<Task> load() throws StorageException {
         ArrayList<Task> tasks = new ArrayList<>();
         File file = new File(FILE_PATH);
         createFile(file);
@@ -101,7 +100,7 @@ public class Storage {
             }
             return tasks;
         } catch (IOException e) {
-            throw new DukeException(Messages.MESSAGE_STORAGE_ERROR);
+            throw new StorageException();
         } finally {
             if (sc != null) {
                 sc.close();

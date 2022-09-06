@@ -15,15 +15,23 @@ import duke.commands.MarkCommand;
 import duke.commands.TodoCommand;
 import duke.commands.UnmarkCommand;
 import duke.common.Messages;
-import duke.data.exception.DukeException;
+import duke.common.exceptions.DukeException;
+import duke.common.exceptions.InvalidCommandException;
+import duke.common.exceptions.InvalidDateException;
+import duke.common.exceptions.MissingUserInputException;
 
 /**
  * Identifies user input as invalid or translates them into commands that can be executed.
  */
 public class Parser {
     private static final String DATE_INPUT_FORMAT = "yyyy-MM-dd";
+
+    private static final String DEADLINE_DATE_INDICATOR = " /by ";
+    private static final String EVENT_DATE_INDICATOR = " /at ";
+
     private static final String NO_USER_INPUT = "No user input";
     private static final String INVALID_USER_INPUT = "Invalid user input";
+
 
     private enum MissingDetails {
         TASK_NUMBER, DESCRIPTION, DESCRIPTION_AND_DATE, KEYWORD
@@ -59,7 +67,7 @@ public class Parser {
         case FindCommand.COMMAND_WORD:
             return prepareFind(splitInputArray);
         default:
-            throw new DukeException(Messages.MESSAGE_INVALID_COMMAND);
+            throw new InvalidCommandException();
         }
     }
 
@@ -72,57 +80,57 @@ public class Parser {
         return LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_INPUT_FORMAT));
     }
 
-    private static void verifyInput(String[] splitInputArray, MissingDetails details) throws DukeException {
+    private static void verifyInput(String[] splitInputArray, MissingDetails details) throws MissingUserInputException {
         if (splitInputArray.length < 2) {
             switch (details) {
             case TASK_NUMBER:
-                throw new DukeException(Messages.MESSAGE_PROVIDE_TASK_NUMBER);
+                throw new MissingUserInputException(Messages.MESSAGE_PROVIDE_TASK_NUMBER);
             case DESCRIPTION:
-                throw new DukeException(Messages.MESSAGE_PROVIDE_DESCRIPTION);
+                throw new MissingUserInputException(Messages.MESSAGE_PROVIDE_DESCRIPTION);
             case DESCRIPTION_AND_DATE:
-                throw new DukeException(Messages.MESSAGE_PROVIDE_DESCRIPTION_AND_DATE);
+                throw new MissingUserInputException(Messages.MESSAGE_PROVIDE_DESCRIPTION_AND_DATE);
             case KEYWORD:
-                throw new DukeException(Messages.MESSAGE_PROVIDE_KEYWORD);
+                throw new MissingUserInputException(Messages.MESSAGE_PROVIDE_KEYWORD);
             default:
-                throw new DukeException(Messages.MESSAGE_PROVIDE_MORE_DETAILS);
+                throw new MissingUserInputException(Messages.MESSAGE_PROVIDE_MORE_DETAILS);
             }
         }
     }
 
-    private static int getTaskNumber(String taskNum) throws DukeException {
+    private static int getTaskNumber(String taskNum) throws MissingUserInputException {
         try {
             return Integer.parseInt(taskNum);
         } catch (NumberFormatException e) {
-            throw new DukeException(Messages.MESSAGE_PROVIDE_TASK_NUMBER);
+            throw new MissingUserInputException(Messages.MESSAGE_PROVIDE_TASK_NUMBER);
         }
     }
 
-    private static Command prepareMark(String[] splitInputArray) throws DukeException {
+    private static Command prepareMark(String[] splitInputArray) throws MissingUserInputException {
         verifyInput(splitInputArray, MissingDetails.TASK_NUMBER);
         assert splitInputArray.length == 2 : INVALID_USER_INPUT;
         int taskNum = getTaskNumber(splitInputArray[1]);
         return new MarkCommand(taskNum);
     }
 
-    private static Command prepareUnmark(String[] splitInputArray) throws DukeException {
+    private static Command prepareUnmark(String[] splitInputArray) throws MissingUserInputException {
         verifyInput(splitInputArray, MissingDetails.TASK_NUMBER);
         assert splitInputArray.length == 2 : INVALID_USER_INPUT;
         int taskNum = getTaskNumber(splitInputArray[1]);
         return new UnmarkCommand(taskNum);
     }
 
-    private static Command prepareTodo(String[] splitInputArray) throws DukeException {
+    private static Command prepareTodo(String[] splitInputArray) throws MissingUserInputException {
         verifyInput(splitInputArray, MissingDetails.DESCRIPTION);
         assert splitInputArray.length == 2 : INVALID_USER_INPUT;
         String description = splitInputArray[1];
         return new TodoCommand(description);
     }
 
-    private static void verifyDateFormat(String date) throws DukeException {
+    private static void verifyDateFormat(String date) throws InvalidDateException {
         try {
             LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_INPUT_FORMAT));
         } catch (DateTimeParseException e) {
-            throw new DukeException(String.format(Messages.MESSAGE_INVALID_DATE_FORMAT, DATE_INPUT_FORMAT));
+            throw new InvalidDateException(DATE_INPUT_FORMAT);
         }
     }
 
@@ -131,7 +139,7 @@ public class Parser {
         assert splitInputArray.length == 2 : INVALID_USER_INPUT;
         String details = splitInputArray[1];
         boolean isDeadline = type.equals("deadline");
-        String[] splitDetailsArray = details.split(isDeadline ? " /by " : " /at ", 2);
+        String[] splitDetailsArray = details.split(isDeadline ? DEADLINE_DATE_INDICATOR : EVENT_DATE_INDICATOR, 2);
         verifyInput(splitDetailsArray, MissingDetails.DESCRIPTION_AND_DATE);
         assert splitDetailsArray.length == 2 : INVALID_USER_INPUT;
         String date = splitDetailsArray[1];
@@ -140,14 +148,14 @@ public class Parser {
         return isDeadline ? new DeadlineCommand(description, date) : new EventCommand(description, date);
     }
 
-    private static Command prepareDelete(String[] splitInputArray) throws DukeException {
+    private static Command prepareDelete(String[] splitInputArray) throws MissingUserInputException {
         verifyInput(splitInputArray, MissingDetails.TASK_NUMBER);
         assert splitInputArray.length == 2 : INVALID_USER_INPUT;
         int taskNum = getTaskNumber(splitInputArray[1]);
         return new DeleteCommand(taskNum);
     }
 
-    private static Command prepareFind(String[] splitInputArray) throws DukeException {
+    private static Command prepareFind(String[] splitInputArray) throws MissingUserInputException {
         verifyInput(splitInputArray, MissingDetails.KEYWORD);
         assert splitInputArray.length == 2 : INVALID_USER_INPUT;
         String[] keywords = splitInputArray[1].split(" ");

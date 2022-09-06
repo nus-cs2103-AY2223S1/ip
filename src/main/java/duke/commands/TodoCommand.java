@@ -1,7 +1,7 @@
 package duke.commands;
 
+import duke.common.exceptions.StorageException;
 import duke.data.TaskList;
-import duke.data.exception.DukeException;
 import duke.storage.Storage;
 import duke.tasks.Todo;
 import duke.ui.Ui;
@@ -28,10 +28,10 @@ public class TodoCommand extends Command {
      * @param ui Shows the Task added and the total number of tasks on the list.
      * @param storage Saves the modified list of tasks.
      * @return The message indicating that the Todo task has been added and the number of tasks on the list.
-     * @throws DukeException If there is an error saving the modified list of tasks.
+     * @throws StorageException If there is an error saving the modified list of tasks.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws StorageException {
         Todo todo = new Todo(description);
         taskList.addTask(todo);
         storage.save(taskList);

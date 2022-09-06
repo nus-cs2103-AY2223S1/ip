@@ -1,6 +1,6 @@
 package duke.ui;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -103,7 +103,7 @@ public class Ui {
      * @param matchingTasks The list of matching tasks.
      * @return A message indicating all matching tasks on the list.
      */
-    public String showMatchingTasks(ArrayList<Task> matchingTasks) {
+    public String showMatchingTasks(List<Task> matchingTasks) {
         int size = matchingTasks.size();
         if (size != 0) {
             StringBuilder sb = new StringBuilder(Messages.MESSAGE_MATCHING_TASKS);
