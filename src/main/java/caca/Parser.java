@@ -5,6 +5,7 @@ import java.io.IOException;
 import caca.exceptions.CaCaException;
 import caca.exceptions.EmptyInputException;
 import caca.ui.Ui;
+import caca.tasks.Task;
 
 /**
  * This class deals with making sense of the user command.
@@ -52,51 +53,48 @@ public class Parser {
         // Detect user command, where 1st element is the type of action to be done (command type),
         // 2nd element is the task description, with or without date/time.
         String[] command = input.split(" ", 2);
-        String commandType = command[0];
+        String taskType = command[0];
+        String taskInfo = command.length == 2 ? command[1] : null;
 
         String response = "";
 
         try {
-            if (commandType.isBlank()) {
+            if (taskType.isBlank()) {
                 throw new EmptyInputException("OOPS!!! You have entered an empty input.");
+            }
 
-            } else if (commandType.equals("bye")) {
-                return ui.bye();
+            switch (taskType) {
+            case "bye":
+                response = ui.bye();
+                break;
 
-            } else if (commandType.equals("todo")) {
-                response = TaskList.addToDo(command);
+            case "list" :
+                response = TaskList.listTasks();
+                break;
+
+            // These are the cases involving creating and adding a task to the list.
+            case "todo":
+            case "deadline":
+            case "event":
+                Task taskToAdd = TaskList.createTask(taskType, taskInfo);
+                response = TaskList.addTask(taskToAdd);
                 storage.updateFile(tasks);
+                break;
 
-            } else if (commandType.equals("deadline")) {
-                response = TaskList.addDeadline(command);
+            // These are the cases involving changing the status of a task using its task index.
+            case "mark":
+            case "unmark":
+            case "delete" :
+                response = TaskList.indexOperation(taskType, taskInfo);
                 storage.updateFile(tasks);
+                break;
 
-            } else if (commandType.equals("event")) {
-                response = TaskList.addEvent(command);
-                storage.updateFile(tasks);
+            case "find":
+                response = TaskList.findTask(taskInfo);
+                break;
 
-            } else if (commandType.equals("list")) {
-                return TaskList.listTasks();
-
-            } else if (commandType.equals("mark")) {
-                response = TaskList.markTask(command[1]);
-                storage.updateFile(tasks);
-
-            } else if (commandType.equals("unmark")) {
-                response = TaskList.unmarkTask(command[1]);
-                storage.updateFile(tasks);
-
-            } else if (commandType.equals("delete")) {
-                response = TaskList.deleteTask(command[1]);
-                storage.updateFile(tasks);
-
-            } else if (commandType.equals("find")) {
-                return TaskList.findTask(command[1]);
-
-            } else {
-                // Invalid input.
-                return "OOPS!!! I'm sorry, but I don't know what that means :-(";
-
+            default:
+                response = "OOPS!!! I'm sorry, but I don't know what that means :-(";
             }
 
         } catch (CaCaException | IOException e) {
