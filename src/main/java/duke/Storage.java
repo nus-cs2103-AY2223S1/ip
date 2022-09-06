@@ -26,10 +26,13 @@ public class Storage {
             if (!fileDir.exists()) {
                 fileDir.mkdir();
             }
+            assert fileDir.isDirectory() : "Unable to create a directory for data storage";
             this.dataFile = new File(filePath + "/" + FILENAME);
             if (!dataFile.exists()) {
                 dataFile.createNewFile();
             }
+            assert dataFile.isFile() && dataFile.canRead() && dataFile.canWrite()
+                    : "Unable to create a file to store data";
         } catch (IOException e) {
             throw new DukeException("Unable to create data file!");
         }

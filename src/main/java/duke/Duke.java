@@ -19,8 +19,9 @@ public class Duke {
      */
     public Duke(String filePath) {
         storage = new Storage(filePath);
+        assert storage != null : "Unable to find data file";
         tasks = new TaskList(storage.load());
-        parser = new Parser();
+        assert tasks != null : "Unable to load data file";
     }
 
     /**
@@ -32,7 +33,8 @@ public class Duke {
     public String getResponse(String userInput) {
         String dukeResponse;
         try {
-            Command c = parser.parse(userInput);
+            Command c = Parser.parse(userInput);
+            assert c != null : "Unable to parse command";
             dukeResponse = c.execute(tasks);
             storage.saveData(tasks);
             return dukeResponse;
