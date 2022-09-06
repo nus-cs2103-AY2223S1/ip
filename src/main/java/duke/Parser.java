@@ -134,13 +134,12 @@ public class Parser {
      * @throws DukeException if command does not follow the format
      */
     public Command parse(String userInput) throws DukeException {
-        String[] splitInput = userInput.split(" ");
-
         if (userInput.equals("bye")) {
             return new ExitCommand();
         } else if (userInput.equals("list")) {
             return new ListCommand();
         }
+        String[] splitInput = userInput.split(" ");
         String cmd = splitInput[0];
         switch (cmd) {
         case "find":

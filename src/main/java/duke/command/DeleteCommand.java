@@ -10,7 +10,6 @@ public class DeleteCommand extends Command {
         this.index = index;
     }
 
-
     /**
      * Executes the command.
      *
