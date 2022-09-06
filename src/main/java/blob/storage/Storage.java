@@ -58,6 +58,7 @@ public class Storage {
                     }
 
                     if (Objects.equals(done, "1")) {
+                        assert task != null;
                         task.markAsDone();
                     }
 
