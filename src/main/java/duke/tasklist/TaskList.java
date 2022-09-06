@@ -25,7 +25,7 @@ public class TaskList {
      * @return Number of tasks in task list
      */
     public int getSize() {
-        return this.list.size();
+        return list.size();
     }
 
     /**
@@ -35,7 +35,8 @@ public class TaskList {
      * @return Task at the index
      */
     public Task getTask(int index) {
-        return this.list.get(index);
+        //-1 because of 0 indexing
+        return list.get(index - 1);
     }
 
     /**
@@ -44,7 +45,7 @@ public class TaskList {
      * @param task Task to be added
      */
     public void addTask(Task task) {
-        this.list.add(task);
+        list.add(task);
     }
 
     /**
@@ -53,12 +54,13 @@ public class TaskList {
      * @param index Index of the element to delete from the task list
      */
     public void removeTask(int index) {
-        this.list.remove(index);
+        //-1 because of 0 indexing
+        list.remove(index - 1);
     }
 
     public TaskList findRelatedTask(String keyword) {
         ArrayList<Task> newList = new ArrayList<>();
-        for (Task task : this.list) {
+        for (Task task : list) {
             if (task.getDescription().contains(keyword)) {
                 newList.add(task);
             }
