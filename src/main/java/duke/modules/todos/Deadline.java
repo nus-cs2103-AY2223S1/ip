@@ -4,6 +4,9 @@ import duke.MessagefulException;
 import duke.util.NaturalDateParser;
 
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -103,9 +106,14 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
+        //@@author parnikkapore-reused
+        // Adapted from https://java2blog.com/format-instant-to-string-java/
+        DateTimeFormatter format = DateTimeFormatter
+                .ofLocalizedDate(FormatStyle.MEDIUM)
+                .withZone(ZoneId.systemDefault());
         return format(
                 "[D]%s (by: %s)",
                 super.toString(),
-                this.deadline.toString());
+                format.format(this.deadline));
     }
 }
