@@ -68,7 +68,7 @@ public class Storage {
                 }
                 tasks.addTask(currEvent);
             } else {
-                System.out.println("error");
+                assert false;
                 continue;
             }
         }

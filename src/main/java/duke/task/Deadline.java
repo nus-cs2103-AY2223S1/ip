@@ -24,11 +24,13 @@ public class Deadline extends Task {
         if (deadlineTime == null) {
             return "[D] [" + getStatusIcon() + "] " + description + " (by:"
                     + deadlineDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
-        } else {
+        } else if (deadlineDate != null && deadlineTime != null) {
             return "[D] [" + getStatusIcon() + "] " + description + " (by:"
                     + deadlineDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + " " + deadlineTime + ")";
+        } else {
+            assert false : "No time and date for Deadline!";
+            return "";
         }
-
     }
 
     @Override

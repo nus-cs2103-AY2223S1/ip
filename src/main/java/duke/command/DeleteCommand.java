@@ -32,6 +32,7 @@ public class DeleteCommand extends Command {
     public String execute(TaskList task, Storage storage) {
         try {
             Task taskToDelete = task.getTask(toDelete);
+            assert taskToDelete == null : "Task to be deleted should not be empty";
             task.deleteTask(toDelete);
             return "Noted. I've removed this task:\n " + taskToDelete.taskInfo();
         } catch (IndexOutOfBoundsException e) {
