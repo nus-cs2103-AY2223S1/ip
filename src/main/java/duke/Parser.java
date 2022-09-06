@@ -54,19 +54,26 @@ public class Parser {
             }
         } else {
             String details = split[1];
-
+            int index;
             try {
                 switch (command) {
                 case "mark":
-                    return new MarkCommand(Integer.parseInt(details) - 1);
+                    index = Integer.parseInt(details) - 1;
+                    assert index >= 0 : "index should be greater than or equal to 0";
+                    return new MarkCommand(index);
 
                 case "unmark":
-                    return new UnmarkCommand(Integer.parseInt(details) - 1);
+                    index = Integer.parseInt(details) - 1;
+                    assert index >= 0 : "index should be greater than or equal to 0";
+                    return new UnmarkCommand(index);
 
                 case "delete":
-                    return new DeleteCommand(Integer.parseInt(details) - 1);
+                    index = Integer.parseInt(details) - 1;
+                    assert index >= 0 : "index should be greater than or equal to 0";
+                    return new DeleteCommand(index);
 
                 case "find":
+                    assert !details.equals("") && !details.equals(" ") : "keyword should not be empty";
                     return new FindCommand(details);
 
                 default:

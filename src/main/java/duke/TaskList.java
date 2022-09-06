@@ -36,6 +36,7 @@ public class TaskList {
      * @return Size of TaskList.
      */
     public int getSize() {
+        assert size >= 0 : "size should be greater than or equal to 0";
         return this.size;
     }
 
@@ -56,6 +57,7 @@ public class TaskList {
      * @return The task corresponding to the index.
      */
     public Task get(int i) {
+        assert i >= 0 : "i should be greater than or equal to 0";
         return this.tasks.get(i);
     }
 
@@ -66,8 +68,10 @@ public class TaskList {
      * @return The deleted task.
      */
     public Task delete(int i) {
+        assert i >= 0 : "i should be greater than or equal to 0";
+        Task deleted = tasks.remove(i);
         this.size--;
-        return this.tasks.remove(i);
+        return deleted;
     }
 
 }
