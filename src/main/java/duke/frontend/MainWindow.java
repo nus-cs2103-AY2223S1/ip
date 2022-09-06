@@ -2,6 +2,7 @@ package duke.frontend;
 
 import duke.Duke;
 import duke.Parser;
+import duke.Reminder;
 import duke.Ui;
 import duke.command.Command;
 import duke.exception.DukeException;
@@ -42,11 +43,13 @@ public class MainWindow extends AnchorPane {
      * Initialize the program with a new window pop-up launching
      */
     @FXML
-    public void initialize() {
+    public void initialize() throws DukeException {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         String greetingMessage = new Ui().getGreetingMessage();
-        dialogContainer.getChildren().add(
-                DialogBox.getDukeDialog(greetingMessage, dukeImage)
+        String reminder = new Reminder().getReminder();
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(greetingMessage, dukeImage),
+                DialogBox.getDukeDialog(reminder, dukeImage)
         );
     }
 
