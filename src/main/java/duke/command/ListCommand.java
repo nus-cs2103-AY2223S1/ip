@@ -27,8 +27,8 @@ public class ListCommand extends Command {
      */
     @Override
     public String execute(Ui ui, TaskList taskList) {
+        assert(ui != null && taskList != null);
         String output = ui.showList() + "\n";
-
         return output + ui.showTaskList(taskList);
     }
 }

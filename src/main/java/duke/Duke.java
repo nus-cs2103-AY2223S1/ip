@@ -25,6 +25,7 @@ public class Duke {
      * Gets response from the user input through the parser and execute commands.
      */
     public String getResponse(String input) {
+        assert(ui != null && taskList != null && input != null);
         return Parser.parse(input).execute(ui, taskList);
     }
 
