@@ -23,7 +23,7 @@ public class Duke {
         String command;
         Scanner sc = new Scanner(System.in);
 
-        ui.greet();
+        System.out.println(ui.greet());
         while (!this.isEnded) {
             command = sc.nextLine();
             try {
@@ -52,7 +52,7 @@ public class Duke {
     }
 
     /**
-     * Runs duke (invoked as main method)
+     * Runs GUIless Duke (invoked as main method)
      * @param args
      */
     public static void main(String[] args) {

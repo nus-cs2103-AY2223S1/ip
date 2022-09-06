@@ -26,6 +26,8 @@ public abstract class Task implements Serializable {
         return this.isCompleted;
     }
 
+    public abstract boolean isDated();
+
     /**
      * Returns String representation of a task. This is built on by subclasses
      * @return String representation

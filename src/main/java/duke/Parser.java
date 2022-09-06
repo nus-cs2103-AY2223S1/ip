@@ -6,6 +6,7 @@ import duke.exceptions.DukeUnknownDateException;
 import duke.exceptions.DukeUnknownInputException;
 
 import java.time.format.DateTimeParseException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -75,6 +76,8 @@ public class Parser {
             return ui.find(tasks.getTasks(), args[1]);
         case "bye":
             return ui.exit();
+        case "remind":
+            return ui.remind(tasks.getTasks());
         default:
             throw new DukeUnknownInputException(command);
         }
@@ -94,7 +97,7 @@ public class Parser {
             args = (type.equals("deadline")) ? item.split("/by ") : item.split("/at ");
             try {
                 description = args[0].trim();
-                assert !description.isBlank() : "Description for " + type + "is Blank";
+                assert !description.isBlank() : "Description for " + type + " is Blank";
                 addedArg = args[1];
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new DukeMissingInputException(type);

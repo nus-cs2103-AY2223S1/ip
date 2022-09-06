@@ -1,5 +1,6 @@
 package duke;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import duke.exceptions.DukeException;
@@ -28,6 +29,7 @@ public class Ui {
     /**
      * Returns Task ArrayList in string format
      * @param input
+     * @return String
      */
     public String listPrint(ArrayList<Task> input) {
         if (input.isEmpty()) {
@@ -46,6 +48,7 @@ public class Ui {
      * @param type Type of Task
      * @param currTask Task object
      * @param size New size of TaskList
+     * @return String
      */
     public String addTask(String type, Task currTask, int size) {
         return "OK, I've added this " + type + ":\n" + "   " +
@@ -57,6 +60,7 @@ public class Ui {
      * Returns string representation of deleted Task, and Task ArrayList size
      * @param currTask Task object
      * @param size New size of TaskList
+     * @return String
      */
     public String deleteTask(Task currTask, int size) {
         return "OK, I've removed this task:\n" + "   " +
@@ -67,6 +71,7 @@ public class Ui {
     /**
      * Returns string representation the toggled Task
      * @param currTask Task Object
+     * @return String
      */
     public String toggleTask(Task currTask) {
         if (currTask.getIsCompleted()) {
@@ -81,6 +86,7 @@ public class Ui {
     /**
      * Returns any exception message handled by Parser
      * @param e Exception
+     * @return String
      */
     public String printException(DukeException e) {
         return e.getMessage();
@@ -90,11 +96,13 @@ public class Ui {
      * Returns tasks matching regex in pretty UI
      * @param input Tasks ArrayList
      * @param regex
+     * @return String
      */
     public String find(ArrayList<Task> input, String regex) {
         if (input.isEmpty()) {
             return "List is empty\n";
-        } else {
+        }
+        else {
             boolean hasValues = false;
             String returnVal = "Here are the list items matching " + regex + "\n";
 
@@ -107,6 +115,40 @@ public class Ui {
             }
             if (!hasValues) {
                 return "List has no elements containing " + regex;
+            }
+            return returnVal;
+        }
+    }
+
+    /**
+     * Returns Deadlines due/ Events occurring within 2 weeks of current day
+     * @param input
+     * @return String
+     */
+    public String remind(ArrayList<Task> input) {
+        LocalDate now = LocalDate.now().minusDays(1);
+        LocalDate end = now.plusWeeks(2).plusDays(2);
+
+        if (input.isEmpty()) {
+            return "List is empty\n";
+        }
+        else {
+            boolean hasValues = false;
+            String returnVal = "Here are tasks due in the next two weeks:\n";
+
+            for (int i = 0; i < input.size(); i++) {
+                Task currTask = input.get(i);
+                if (!currTask.isDated()) {
+                    break;
+                }
+                Dated datedTask = (Dated) currTask;
+                if (datedTask.isBetween(now, end)) {
+                    hasValues = true;
+                    returnVal += (i + 1) + ". " + currTask.toString() + "\n";
+                }
+            }
+            if (!hasValues) {
+                return "There are no tasks due between the next two weeks.\n";
             }
             return returnVal;
         }
