@@ -3,9 +3,8 @@ package duke.parser;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import duke.DukeException;
-import duke.Parser;
-import duke.TaskList;
+import duke.exception.DukeException;
+import duke.tasklist.TaskList;
 
 public class ParserTest {
     @Test

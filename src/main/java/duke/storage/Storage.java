@@ -1,6 +1,12 @@
-package duke;
+package duke.storage;
 
 import java.util.Scanner;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.ToDo;
+import duke.tasklist.TaskList;
+
 import java.util.ArrayList;
 
 import java.io.File;
@@ -10,6 +16,12 @@ import java.io.FileNotFoundException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
+import duke.tasklist.TaskList;
 
 /**
  * Class containing static methods for loading and writing the task list to a storage text file.

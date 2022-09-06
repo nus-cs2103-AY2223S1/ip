@@ -3,6 +3,11 @@ package duke;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import duke.exception.DukeException;
+import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.tasklist.TaskList;
+
 public class Duke {
 
     private TaskList taskList;
