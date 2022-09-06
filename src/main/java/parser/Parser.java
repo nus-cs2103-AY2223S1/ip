@@ -32,10 +32,6 @@ import task.Todo;
  */
 public class Parser {
 
-    public static String getCommandWord(String command) {
-        return command.split(" ", 2)[0];
-    }
-
     /**
      * Takes in a string of user command and creates a new instance of Command
      * according to the keyword.
@@ -46,50 +42,50 @@ public class Parser {
      */
     public static Command parse(String cmd) throws LunaException {
         String[] cmdSplit = cmd.split(" ", 2);
-        Command c;
+        Command command;
         switch (cmdSplit[0]) {
         case "todo":
             if (cmd.length() <= 5) {
                 throw new LunaInvalidDescriptionException();
             }
-            c = new AddCommand(cmdSplit[1]);
+            command = new AddCommand(cmdSplit[1]);
             break;
         case "deadline":
             if (cmd.length() <= 9) {
                 throw new LunaInvalidDescriptionException();
             }
             String[] desSplit = cmdSplit[1].split(" /by ");
-            c = new AddCommand("deadline", desSplit[0], parseDate(desSplit[1]));
+            command = new AddCommand("deadline", desSplit[0], parseDate(desSplit[1]));
             break;
         case "event":
             if (cmd.length() <= 6) {
                 throw new LunaInvalidDescriptionException();
             }
             String[] split = cmdSplit[1].split(" /at ");
-            c = new AddCommand("event", split[0], parseDate(split[1]));
+            command = new AddCommand("event", split[0], parseDate(split[1]));
             break;
         case "list":
-            c = new ListCommand();
+            command = new ListCommand();
             break;
         case "bye":
-            c = new ExitCommand();
+            command = new ExitCommand();
             break;
         case "delete":
-            c = new DeleteCommand(parseNum(cmdSplit[1]));
+            command = new DeleteCommand(parseNum(cmdSplit[1]));
             break;
         case "mark":
-            c = new UpdateCommand("mark", parseNum(cmdSplit[1]));
+            command = new UpdateCommand("mark", parseNum(cmdSplit[1]));
             break;
         case "unmark":
-            c = new UpdateCommand("unmark", parseNum(cmdSplit[1]));
+            command = new UpdateCommand("unmark", parseNum(cmdSplit[1]));
             break;
         case "find":
-            c = new FindCommand(cmdSplit[1].toLowerCase());
+            command = new FindCommand(cmdSplit[1].toLowerCase());
             break;
         default:
             throw new LunaInvalidCommandException();
         }
-        return c;
+        return command;
     }
 
     /**
@@ -100,22 +96,22 @@ public class Parser {
      * @return A Task instance.
      */
     public static Task parseSaved(String tasks) {
-        String txt = tasks.substring(7);
-        if (txt.startsWith("[T]")) {
+        String text = tasks.substring(7);
+        if (text.startsWith("[T]")) {
             // Abstract task description
-            String[] split = txt.split("] ");
+            String[] split = text.split("] ");
 
             // Create new Todo
-            Task tsk = new Todo(split[1]);
+            Task task = new Todo(split[1]);
 
             // Update status
             if (split[0].substring(3).equals("[✧")) {
-                tsk.setStatusIcon(true);
+                task.setStatusIcon(true);
             }
-            return tsk;
-        } else if (txt.startsWith("[D]")) {
+            return task;
+        } else if (text.startsWith("[D]")) {
             // Abstract task description and date
-            String[] split = txt.split("] ");
+            String[] split = text.split("] ");
             String [] desSplit = split[1].split(" BY ");
             String des = desSplit[0];
             String by = desSplit[1].substring(0, 11);
@@ -124,16 +120,16 @@ public class Parser {
             LocalDate date = LocalDate.parse(by, DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
 
             // Create new Deadline
-            Task tsk = new Deadline(des, date);
+            Task task = new Deadline(des, date);
 
             // Update status
             if (split[0].substring(3).equals("[✧")) {
-                tsk.setStatusIcon(true);
+                task.setStatusIcon(true);
             }
-            return tsk;
-        } else if (txt.startsWith("[E]")) {
+            return task;
+        } else if (text.startsWith("[E]")) {
             // Abstract task description and date
-            String[] split = txt.split("] ");
+            String[] split = text.split("] ");
             String [] desSplit = split[1].split(" AT ");
             String des = desSplit[0];
             String at = desSplit[1].substring(0, 11);
@@ -142,13 +138,13 @@ public class Parser {
             LocalDate date = LocalDate.parse(at, DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
 
             // Create new Event
-            Task tsk = new Event(des, date);
+            Task task = new Event(des, date);
 
             // Update status
             if (split[0].substring(3).equals("[✧")) {
-                tsk.setStatusIcon(true);
+                task.setStatusIcon(true);
             }
-            return tsk;
+            return task;
         } else {
             return null;
         }

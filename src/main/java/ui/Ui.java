@@ -73,8 +73,7 @@ public class Ui {
                                              .collect(Collectors.toList());
 
                 for (String string : content) {
-                    toPrint += "\n";
-                    toPrint += string;
+                    toPrint += "\n" + string;
                 }
             } catch (FileNotFoundException e) {
                 showError(new LunaLoadingException());
@@ -88,7 +87,7 @@ public class Ui {
     /**
      *  Bids the user farewell before exiting the chatbot.
      */
-    public String farewell() {
+    public String showFarewell() {
         return "\n . ❍  ❃ ☆  ✶ ❅  🌙 Goodbye from Luna 🌙  ❅ ✶  ☆ ❃  ❍  .\n";
     }
 
@@ -168,14 +167,5 @@ public class Ui {
             result += "\n☁️ Here are the tasks Luna has found! ☁️" + tasks;
         }
         return addLine(result);
-    }
-
-    /**
-     * Scans the next command entered by user.
-     *
-     * @return Command entered by user.
-     */
-    public String readCommand() {
-        return sc.nextLine();
     }
 }

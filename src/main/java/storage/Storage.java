@@ -45,9 +45,9 @@ public class Storage {
             // Read and process lines
             Stream<String> content = reader.lines();
             content.forEach(s -> {
-                Task tsk = Parser.parseSaved(s);
-                if (tsk != null) {
-                    tasks.add(tsk);
+                Task task = Parser.parseSaved(s);
+                if (task != null) {
+                    tasks.add(task);
                 }
             });
 
@@ -77,7 +77,7 @@ public class Storage {
             FileWriter writer = new FileWriter(storageFile);
 
             String content = "  Luna finds the following items saved in your list 🍃";
-            content = content.concat(tasks.stored());
+            content = content.concat(tasks.getStoredString());
 
             writer.write(content);
             writer.close();
