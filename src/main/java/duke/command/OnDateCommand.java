@@ -12,7 +12,7 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 
 /**
- * Checks if there are any tasks on the current date.
+ * Checks if there are any tasks on the date given.
  *
  * @author Bryan Ng Zi Hao
  */

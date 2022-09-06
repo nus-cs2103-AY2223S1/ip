@@ -132,7 +132,7 @@ public abstract class Parser {
             try {
                 command = new OnDateCommand(LocalDate.parse(secondWord));
                 return command;
-            } catch (DateTimeParseException e) {
+            } catch (DateTimeParseException exception) {
                 throw new DukeException(Parser.ERROR_DATE_FORMAT);
             }
         case "find":
