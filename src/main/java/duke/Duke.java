@@ -43,29 +43,6 @@ public class Duke {
         }
     }
 
-    /**
-     * Runs Duke.
-     */
-
-    /*public void run() {
-        ui.welcomeMessage();
-        Scanner sc = new Scanner(System.in);
-        String userInput = sc.nextLine();
-        while (true) {
-            try {
-                Command c = Parser.parse(tasks, userInput);
-                if (c == Command.BYE) {
-                    break;
-                }
-            } catch (DukeException e) {
-                ui.showInaccurateInput();
-            }
-            userInput = sc.nextLine();
-        }
-    }
-
-     */
-
 
     public static void main(String[] args) {
         new Duke("data/duke.txt");
