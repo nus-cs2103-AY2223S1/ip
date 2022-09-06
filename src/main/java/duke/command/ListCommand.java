@@ -23,6 +23,7 @@ public class ListCommand extends Command {
      */
     @Override
     public Response execute() {
+        assert this.tasksList != null : "The taskslist should not be null";
         return new Response(this.tasksList.toString());
     }
 }

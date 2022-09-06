@@ -35,7 +35,9 @@ public class DeleteCommand extends Command {
         }
         try {
             int taskNumber = Integer.parseInt(this.inputArray[1]);
+            assert this.tasksList != null : "The taskslist should not be null";
             Task deletedTask = this.tasksList.deleteTask(taskNumber);
+            assert deletedTask != null : "Deleted task should not be null";
             StringBuilder sb = new StringBuilder();
             sb.append(DeleteCommand.DELETE_MSG + deletedTask + "\n" + "Now you have ");
             if (this.tasksList.getLength() <= 1) {

@@ -38,6 +38,7 @@ public class ToDoCommand extends Command {
         // create a ToDo object
         Todo todo = new Todo(description);
 
+        assert this.tasksList != null : "The taskslist should not be null";
         this.tasksList.addToList(todo);
         StringBuilder sb = new StringBuilder();
         sb.append(ToDoCommand.TO_DO_MSG + todo + "\n" + "Now you have ");
