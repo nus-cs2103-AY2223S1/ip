@@ -1,6 +1,9 @@
 package duke.data;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import duke.common.Messages;
 import duke.data.exception.DukeException;
@@ -91,16 +94,10 @@ public class TaskList {
      * @param keywords The keyword(s) to check each Task's description for.
      * @return A list of tasks whose description contains any of the given keyword(s).
      */
-    public ArrayList<Task> getMatchingTasks(String ... keywords) {
-        ArrayList<Task> matchingTasks = new ArrayList<>();
-        for (Task task : tasks) {
-            for (String keyword : keywords) {
-                if (!keyword.isEmpty() && task.hasKeyword(keyword)) {
-                    matchingTasks.add(task);
-                    break;
-                }
-            }
-        }
-        return matchingTasks;
+    public List<Task> getMatchingTasks(String ... keywords) {
+        return tasks
+            .stream()
+            .filter(task -> Arrays.stream(keywords).anyMatch(keyword -> !keyword.isEmpty() && task.hasKeyword(keyword)))
+            .collect(Collectors.toList());
     }
 }
