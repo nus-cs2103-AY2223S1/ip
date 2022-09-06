@@ -1,13 +1,18 @@
 public class Event extends Task {
-    protected String timing;
+    protected String at;
 
-    public Event(String description, String timing) {
+    public Event(String description, String at) {
         super(description);
-        this.timing = timing;
+        this.at = at;
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at: " + timing + ")";
+        return "[E]" + super.toString() + "(at: " + this.at + ")";
+    }
+
+    @Override
+    public String toSave() {
+        return "E | " + (this.isDone ? "1 | " : "0 | ") + this.description + " | " + this.at + "\n";
     }
 }

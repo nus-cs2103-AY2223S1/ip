@@ -8,11 +8,7 @@ public class Task {
     }
 
     public String getStatus() {
-        if (isDone) {
-            return "X";
-        } else {
-            return " ";
-        }
+        return (this.isDone ? "X" : " ");
     }
 
     public void markAsDone() {
@@ -26,5 +22,9 @@ public class Task {
     @Override
     public String toString() {
         return "[" + getStatus() + "] " + this.description;
+    }
+
+    public String toSave() {
+        return "";
     }
 }
