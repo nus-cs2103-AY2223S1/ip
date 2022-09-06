@@ -59,6 +59,8 @@ public class Duke extends Application {
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setParser(this.parser);
+            stage.setResizable(false);
+            stage.setTitle("Duke");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

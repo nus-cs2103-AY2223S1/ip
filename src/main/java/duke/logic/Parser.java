@@ -93,9 +93,9 @@ public class Parser {
                 return new FindCommand(taskList, response.substring(5).stripLeading()); //ensure no leading whitespaces
             }
         } catch (NumberFormatException | IllegalTaskException e) {
-            return () -> " ☹ OOPS!!! The task number you have inputted does not exist or is invalid.";
+            return () -> "I'm sorry, but the task number you have inputted does not exist or is invalid.";
         } catch (IllegalKeywordException e) {
-            return () -> " ☹ OOPS!!! You have not specified a keyword.";
+            return () -> "I'm sorry, but you have not specified a keyword.";
         }
 
         try {
@@ -168,13 +168,13 @@ public class Parser {
                 return new EventCommand(taskList, description, Parser.parseTime(time));
             }
         } catch (IllegalDescriptionException e) {
-            return () -> " ☹ OOPS!!! The description cannot be empty.";
+            return () -> "I'm sorry, but the description cannot be empty.";
         } catch (IllegalTimeException e) {
-            return () -> " ☹ OOPS!!! The time specified is either invalid or empty.";
+            return () -> "I'm sorry, but the time specified is either invalid or empty.";
         } catch (IllegalTokenException e) {
-            return () -> " ☹ OOPS!!! You are mising the \"/by\" or \"/at\" token.";
+            return () -> "I'm sorry, but you are mising the \"/by\" or \"/at\" token.";
         }
-        return () -> " ☹ OOPS!!! I'm sorry, but I don't know what that means. :-(";
+        return () -> "I'm sorry, but I don't know what that means.";
     }
     
     /**
