@@ -75,7 +75,7 @@ public class Storage {
                     task = new Event(data[2], data[3]);
                     break;
                 default:
-                    System.out.println("something is wrong with your file storage");
+                    System.out.println("something is wrong with the strings in file storage");
                 }
 
                 if (task == null) {

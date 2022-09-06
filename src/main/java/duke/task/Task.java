@@ -3,7 +3,7 @@ package duke.task;
 /**
  * Parent class of Todo, Deadline and Event.
  */
-public abstract class Task {
+public abstract class Task implements Comparable<Task> {
     protected String description;
     protected boolean isDone;
 
@@ -48,4 +48,24 @@ public abstract class Task {
      * @return String for storage in file.
      */
     public abstract String toFileString();
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Task) {
+            return this.toFileString().equals(((Task) o).toFileString());
+        }
+        return false;
+    }
+
+    @Override
+    public int compareTo(Task t) {
+        if (this instanceof Todo && t instanceof Todo) {
+            return this.toFileString().compareTo(t.toFileString());
+        } else if (this instanceof Todo) {
+            return -1;
+        } else if (t instanceof Todo) {
+            return 1;
+        }
+        return this.compareTo(t);
+    }
 }

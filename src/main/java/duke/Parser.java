@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.Arrays;
+
 import duke.command.AddCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
@@ -12,8 +14,6 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
-
-import java.util.Arrays;
 
 /**
  * Parser helps
@@ -55,7 +55,9 @@ public class Parser {
             desc = fullCommand.substring(TLENGTH);
             return new Todo(desc);
         case EVENT_SYNTAX:
+            System.out.println("debugging event: " + fullCommand);
             commandParts = fullCommand.substring(ELENGTH).split(" /at ");
+            System.out.println(Arrays.toString(commandParts));
             desc = commandParts[0];
             time = commandParts[1];
             return new Event(desc, time);

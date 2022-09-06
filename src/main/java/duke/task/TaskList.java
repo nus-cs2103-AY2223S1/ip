@@ -33,6 +33,7 @@ public class TaskList {
      */
     public void add(Task task) {
         this.tasks.add(task);
+        this.sort();
     }
 
     /**
@@ -74,6 +75,23 @@ public class TaskList {
                 .map(task -> task.toString())
                 .collect(Collectors.joining("\n"));
         return filtered;
+    }
+
+    /**
+     *
+     */
+    public void sort() {
+        tasks.sort((t1, t2) -> {
+            if (t1 instanceof Todo && t2 instanceof Todo) {
+                return t1.compareTo(t2);
+            } else if (t1 instanceof Todo) {
+                return -1;
+            } else if (t2 instanceof Todo) {
+                return 1;
+            } else {
+                return t1.compareTo(t2);
+            }
+        });
     }
 
     /**

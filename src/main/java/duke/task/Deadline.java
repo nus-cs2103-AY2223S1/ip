@@ -1,24 +1,18 @@
 package duke.task;
 
-import java.time.LocalDate;
-
 /**
  * Deadline Task.
  * Deadline date is marked through the user input with the "/by" keyword.
  */
-public class Deadline extends Task {
+public class Deadline extends TimedTask {
 
-    protected String by;
-    protected LocalDate localDate;
 
     /**
      * @param description description of the deadline.
      * @param by YYYY-MM-DD format of the deadline.
      */
     public Deadline(String description, String by) {
-        super(description);
-        this.by = by;
-        this.localDate = LocalDate.parse(by);
+        super(description, by);
     }
 
     /**
@@ -26,7 +20,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + super.by + ")";
     }
 
     /**
@@ -34,6 +28,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toFileString() {
-        return String.format("D | %s | %s | %s", getStatusIcon(), this.description, by);
+        return String.format("D | %s | %s | %s", getStatusIcon(), super.description, super.by);
     }
+
 }
