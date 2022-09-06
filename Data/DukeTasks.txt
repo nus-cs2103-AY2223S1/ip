@@ -1,9 +1,7 @@
 E*1*testing *12/12/2000 1212
-T*0*play
 D*1*homework *12/12/1212 1212
-T*0*read
-T*1*play
-D*0*2103t *1/9/2022 2359
-D*1*testing *12/12/1212 1212
 T*1*read
+T*1*play
+D*1*2103t *1/9/2022 2359
+D*1*testing *12/12/1212 1212
 T*1*read
