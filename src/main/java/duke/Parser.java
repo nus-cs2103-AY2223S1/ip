@@ -17,85 +17,115 @@ public class Parser {
      * @return The appropriate response to the input.
      */
     public String parse(String input) {
-        if (input.equals("list")) {
-            return duke.ui.printTaskList(duke.tasks);
-        } else if (input.startsWith("mark ")) {
+        String[] commands = input.split(" ");
+        int numOfCommands = commands.length;
+        String output;
+        switch (commands[0]) {
+        case "list":
+            output = duke.ui.printTaskList(duke.tasks);
+            break;
+        case "mark":
             try {
-                int number = Integer.parseInt(input.substring(5));
+                int number = Integer.parseInt(commands[1]);
                 duke.tasks.mark(number);
-                return duke.ui.printMarkTaskMessage("mark", duke.tasks.getTask(number - 1));
+                output = duke.ui.printMarkTaskMessage("mark", duke.tasks.getTask(number - 1));
             } catch (DukeException e) {
                 return duke.ui.printNoSuchTaskError();
-            } catch (StringIndexOutOfBoundsException e) {
+            } catch (Exception e) {
                 return duke.ui.printMissingNumberAfterCommandError("mark");
             }
-        } else if (input.startsWith("unmark ")) {
+            break;
+        case "unmark":
             try {
-                int number = Integer.parseInt(input.substring(7));
+                int number = Integer.parseInt(commands[1]);
                 duke.tasks.unMark(number);
-                return duke.ui.printMarkTaskMessage("unmark", duke.tasks.getTask(number - 1));
+                output = duke.ui.printMarkTaskMessage("unmark", duke.tasks.getTask(number - 1));
             } catch (DukeException e) {
                 return duke.ui.printNoSuchTaskError();
-            } catch (StringIndexOutOfBoundsException e) {
+            } catch (Exception e) {
                 return duke.ui.printMissingNumberAfterCommandError("unmark");
             }
-        } else if (input.startsWith("todo ")) {
-            try {
-                input = input.substring(5);
-            } catch (StringIndexOutOfBoundsException e) {
-                return duke.ui.printSomethingMissingError("todo");
+            break;
+        case "todo":
+            StringBuilder todoDescription = new StringBuilder();
+            for (int i = 1; i < numOfCommands; i++) {
+                todoDescription.append(commands[i]).append(" ");
             }
-            ToDo toDo = new ToDo(input);
+            if (todoDescription.toString().equals("")) {
+                return duke.ui.printSomethingMissingError(commands[0]);
+            }
+            ToDo toDo = new ToDo(todoDescription.toString());
             duke.tasks.addTask(toDo);
-            return duke.ui.printAddTaskMessage(toDo) + duke.ui.printNumberOfTasksMessage(duke.tasks);
-        } else if (input.startsWith("deadline ")) {
-            int end = input.indexOf("/by ");
-            String textInput;
-            String byInput;
-            try {
-                textInput = input.substring(9, end);
-                byInput = input.substring(end + 4);
-            } catch (StringIndexOutOfBoundsException e) {
-                return duke.ui.printSomethingMissingError("deadline");
+            output = duke.ui.printAddTaskMessage(toDo) + duke.ui.printNumberOfTasksMessage(duke.tasks);
+            break;
+        case "deadline":
+            StringBuilder deadlineDescription = new StringBuilder();
+            for (int i = 1; i <= numOfCommands - 3; i++) {
+                deadlineDescription.append(commands[i]).append(" ");
             }
-            Deadline deadline = new Deadline(textInput, byInput);
+            if (!commands[numOfCommands - 2].equals("/by")
+                    || deadlineDescription.toString().equals("") || commands[numOfCommands - 1].equals("")) {
+                return duke.ui.printSomethingMissingError(commands[0]);
+            }
+            Deadline deadline = new Deadline(deadlineDescription.toString(), commands[numOfCommands - 1]);
             duke.tasks.addTask(deadline);
-            return duke.ui.printAddTaskMessage(deadline) + duke.ui.printNumberOfTasksMessage(duke.tasks);
-        } else if (input.startsWith("event ")) {
-            int end = input.indexOf("/at ");
-            String textInput;
-            String atInput;
-            try {
-                textInput = input.substring(6, end);
-                atInput = input.substring(end + 4);
-            } catch (StringIndexOutOfBoundsException e) {
-                return duke.ui.printSomethingMissingError("event");
+            output = duke.ui.printAddTaskMessage(deadline) + duke.ui.printNumberOfTasksMessage(duke.tasks);
+            break;
+        case "event":
+            StringBuilder description = new StringBuilder();
+            for (int i = 1; i <= numOfCommands - 3; i++) {
+                description.append(commands[i]).append(" ");
             }
-            Event event = new Event(textInput, atInput);
+            if (!commands[numOfCommands - 2].equals("/at")
+                    || description.toString().equals("") || commands[numOfCommands - 1].equals("")) {
+                return duke.ui.printSomethingMissingError(commands[0]);
+            }
+            Event event = new Event(description.toString(), commands[numOfCommands - 1]);
             duke.tasks.addTask(event);
-            return duke.ui.printAddTaskMessage(event) + duke.ui.printNumberOfTasksMessage(duke.tasks);
-        } else if (input.startsWith("delete ")) {
+            output = duke.ui.printAddTaskMessage(event) + duke.ui.printNumberOfTasksMessage(duke.tasks);
+            break;
+        case "fixed":
+            StringBuilder fixedTaskDescription = new StringBuilder();
+            for (int i = 1; i <= numOfCommands - 3; i++) {
+                fixedTaskDescription.append(commands[i]).append(" ");
+            }
+            if (!commands[numOfCommands - 2].equals("/takes")
+                    || fixedTaskDescription.toString().equals("") || commands[numOfCommands - 1].equals("")) {
+                return duke.ui.printSomethingMissingError(commands[0]);
+            }
+            FixedDurationTask fixedDurationTask = new FixedDurationTask(fixedTaskDescription.toString(),
+                    Integer.parseInt(commands[numOfCommands - 1]));
+            duke.tasks.addTask(fixedDurationTask);
+            output = duke.ui.printAddTaskMessage(fixedDurationTask) + duke.ui.printNumberOfTasksMessage(duke.tasks);
+            break;
+        case "delete":
             try {
                 int number = Integer.parseInt(input.substring(7));
                 Task removed = duke.tasks.deleteTask(number);
-                return duke.ui.printDeleteTaskMessage(removed) + duke.ui.printNumberOfTasksMessage(duke.tasks);
+                output = duke.ui.printDeleteTaskMessage(removed) + duke.ui.printNumberOfTasksMessage(duke.tasks);
             } catch (DukeException e) {
                 return duke.ui.printNoSuchTaskError();
             } catch (StringIndexOutOfBoundsException e) {
                 return duke.ui.printMissingNumberAfterCommandError("delete");
             }
-        } else if (input.startsWith("find ")) {
+            break;
+        case "find":
             try {
                 String keyWord = input.substring(5);
                 TaskList tempList = duke.tasks.find(keyWord);
-                return duke.ui.printTaskList(tempList);
+                output = duke.ui.printTaskList(tempList);
             } catch (DukeException e) {
                 return duke.ui.printNoSuchTaskError();
             }
-        } else {
+            break;
+        default:
             return duke.ui.printInvalidCommandError();
         }
-    }
+        return output;
 
+    }
 }
+
+
+
 

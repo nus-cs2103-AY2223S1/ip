@@ -9,17 +9,17 @@ public class Event extends Task {
     /**
      * Constructor for the deadline class.
      *
-     * @param item The item that would be happening.
+     * @param description The description of the task.
      * @param at The date that the item is at.
      */
-    public Event(String item, String at) {
-        super(item);
+    public Event(String description, String at) {
+        super(description);
         this.at = DukeTime.reformatDateTime(at);
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at: " + this.at + ")";
+        return "[E]" + super.toString() + " (at: " + this.at + ")";
     }
 
     @Override

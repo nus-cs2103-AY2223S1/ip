@@ -104,7 +104,7 @@ public class Ui {
      * @return A string of the error message.
      */
     public String printSomethingMissingError(String task) {
-        return "Something is missing in the description of this + " + task + "! >:(";
+        return "Something is missing in the description of this " + task + " task! >:(";
     }
 
     /**

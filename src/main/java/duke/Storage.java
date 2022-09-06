@@ -55,6 +55,13 @@ public class Storage {
                             }
                             taskList.add(event);
                             break;
+                        case "F":
+                            Task fixedDurationTask = new FixedDurationTask(taskInfo[2], Integer.parseInt(taskInfo[3]));
+                            if (taskInfo[1].equals("1")) {
+                                fixedDurationTask.setDone(true);
+                            }
+                            taskList.add(fixedDurationTask);
+                            break;
                         default:
                             break;
                         }

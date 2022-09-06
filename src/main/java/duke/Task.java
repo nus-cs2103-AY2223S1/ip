@@ -10,10 +10,10 @@ public abstract class Task {
     /**
      * The constructor of the Task class.
      *
-     * @param item The item that the task contains.
+     * @param description The description of the task.
      */
-    public Task(String item) {
-        this.item = item;
+    public Task(String description) {
+        this.item = description;
         this.isDone = false;
     }
     @Override

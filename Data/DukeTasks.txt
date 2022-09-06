@@ -1,7 +1,20 @@
-E*1*testing *12/12/2000 1212
-D*1*homework *12/12/1212 1212
+D*0*homework *12/12/1212,1212
 T*1*read
 T*1*play
-D*1*2103t *1/9/2022 2359
-D*1*testing *12/12/1212 1212
+D*1*2103t *1/9/2022,2359
+D*0*testing *12/12/1212,1212
 T*1*read
+T*1*123
+E*0*test*12/12/1212,1212
+E*0*h*12/12/1212,2359
+F*1*test*2
+F*0*testing*3
+E*0*test*12/12/1212,1212
+E*0*block*12/12/1212,1212
+E*0*block*12/12/1212,1212
+E*0*block*12/12/1212,1212
+E*0*block a *12/12/1212,1212
+T*0*asd asd asd asd 
+F*0*123 123 123 *123
+E*0*abd abd block event *12/12/1212,1212
+D*0*testing deadline length ok *12/12/1212,1212

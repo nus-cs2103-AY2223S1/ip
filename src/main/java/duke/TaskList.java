@@ -89,7 +89,7 @@ public class TaskList {
         }
         Task taskToUnmark = taskList.get(number - 1);
         assert taskToUnmark != null;
-        taskToUnmark.setUnDone(false);
+        taskToUnmark.setDone(false);
     }
 
     /**
