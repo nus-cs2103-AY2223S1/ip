@@ -2,9 +2,10 @@ package sky.command;
 
 import java.io.IOException;
 
-import sky.Storage;
 import sky.TaskList;
 import sky.exception.TextNoMeaningException;
+import sky.storage.History;
+import sky.storage.Storage;
 import sky.task.Task;
 
 /**
@@ -18,7 +19,8 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList taskList, Storage storage) throws TextNoMeaningException, IOException {
+    public String execute(TaskList taskList, Storage storage, History history)
+            throws TextNoMeaningException, IOException {
         try {
             String taskNumInString = this.fullCommand.substring(7);
             // Minus one as arrayList is zero-indexed
@@ -27,6 +29,7 @@ public class UnmarkCommand extends Command {
                     + " array-indexing purposes.";
             Task task = taskList.getTask(taskNum);
             task.markAsUndone();
+            history.addHistoryInTime(taskList);
             storage.reWriteDataFile(taskList);
             String s = "Well, that's disappointing. I've marked this task as undone: \n"
                     + "    " + task;

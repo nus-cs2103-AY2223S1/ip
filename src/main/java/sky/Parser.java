@@ -10,6 +10,7 @@ import sky.command.InvalidCommand;
 import sky.command.ListCommand;
 import sky.command.MarkCommand;
 import sky.command.TodoCommand;
+import sky.command.UndoCommand;
 import sky.command.UnmarkCommand;
 
 /**
@@ -41,6 +42,8 @@ public class Parser {
             return new DeleteCommand(fullCommand);
         } else if (fullCommand.startsWith("find")) {
             return new FindCommand(fullCommand);
+        } else if (fullCommand.startsWith("undo")) {
+            return new UndoCommand(fullCommand);
         } else {
             return new InvalidCommand();
         }

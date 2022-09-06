@@ -3,7 +3,7 @@ package sky.task;
 /**
  * The Task class encapsulates a Task.
  */
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -42,6 +42,21 @@ public class Task {
      */
     public void markAsUndone() {
         this.isDone = false;
+    }
+
+    /**
+     * Makes a copy of the current task to avoid aliasing.
+     * @return The copied task.
+     */
+    public abstract Task makeACopy();
+
+    /**
+     * Returns a boolean indicating if the task is completed.
+     *
+     * @return Boolean indicating if the task is completed.
+     */
+    public boolean getIsDone() {
+        return this.isDone;
     }
 
     /**

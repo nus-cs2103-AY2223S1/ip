@@ -2,9 +2,10 @@ package sky.command;
 
 import java.io.IOException;
 
-import sky.Storage;
 import sky.TaskList;
 import sky.exception.TextNoMeaningException;
+import sky.storage.History;
+import sky.storage.Storage;
 import sky.task.Task;
 
 /**
@@ -18,7 +19,8 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList taskList, Storage storage) throws TextNoMeaningException, IOException {
+    public String execute(TaskList taskList, Storage storage, History history)
+            throws TextNoMeaningException, IOException {
         try {
             String taskNumInString = this.fullCommand.substring(7);
             // Minus one as arrayList is zero-indexed
@@ -28,6 +30,7 @@ public class DeleteCommand extends Command {
             Task task = taskList.getTask(taskNum);
             taskList.removeTask(task);
             storage.reWriteDataFile(taskList);
+            history.addHistoryInTime(taskList);
             String s = "Splendid. I've removed this task: \n"
                     + "    " + task
                     + "\nNow you have " + taskList.getSize()
