@@ -1,5 +1,8 @@
 package duke.main;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import duke.command.Command;
 import duke.errors.DukeException;
 import duke.task.TaskList;
@@ -26,6 +29,7 @@ public class Duke {
         } catch (DukeException e) {
             ui.showLoadingError();
             tasks = new TaskList();
+            assert true: "should not experience an error here";
         }
     }
 
@@ -37,42 +41,22 @@ public class Duke {
             String response = ui.getOutput();
             ui.resetOutput();
             if (isExit) {
+                TimerTask task = new TimerTask() {
+                    @Override
+                    public void run() {
+                        System.exit(0);
+                    }
+                };
+                Timer timer = new Timer();
+                timer.schedule(task, 800);
                 ui.showBye();
                 response = ui.getOutput();
                 ui.resetOutput();
                 return response;
-            }
+                }
             return response;
         } catch (DukeException e) {
             return e.getMessage();
         }
     }
-
-//    /**
-//     * Runs main program
-//     */
-//    public void run() {
-//        ui.showWelcome();
-//        boolean isExit = false;
-//        while (!isExit) {
-//            try {
-//                String fullCommand = ui.readCommand();
-//                Command c = Parser.parse(fullCommand);
-//                c.execute(tasks, ui, storage);
-//                isExit = c.isExit();
-//            } catch (DukeException e) {
-//                ui.showError(e.getMessage());
-//            }
-//        }
-//        ui.showBye();
-//    };
-
-//    /**
-//     * Runs main method
-//     * @param args
-//     */
-//    public static void main(String[] args) {
-//        new Duke().run();
-//    }
-
 }

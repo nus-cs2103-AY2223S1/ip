@@ -53,7 +53,7 @@ public class Parser {
         } else if (isEventCommand(splitReply)) {
             int by = validateAt(splitReply);
             String description = validateDescription(splitReply, by);
-            String duration = validateDuration(splitReply, by);
+            LocalDateTime duration = validateDateTime(splitReply, by);
             return new AddEventCommand(description, duration);
         } else if (isDeleteCommand(splitReply)) {
             int index = validateIndex(userReply);
