@@ -2,6 +2,9 @@ package hazell;
 
 import hazell.exceptions.TaskDescriptionEmpty;
 
+/**
+ * A task that can be done anytime.
+ */
 public class ToDo extends Task {
     private static final String typeIcon = "T";
 

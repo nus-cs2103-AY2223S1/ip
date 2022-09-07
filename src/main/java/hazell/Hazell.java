@@ -21,6 +21,7 @@ public class Hazell {
 
     /**
      * Create a new instance of the chatbot.
+     *
      * @param filePath Path to store chatbot data for persistence
      */
     public Hazell(String filePath) {

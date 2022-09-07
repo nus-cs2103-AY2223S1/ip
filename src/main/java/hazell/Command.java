@@ -1,7 +1,11 @@
 package hazell;
 
 import hazell.exceptions.KwargNotFound;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Command {
     /**
@@ -26,6 +30,7 @@ public class Command {
 
     /**
      * Factory method for creating instances of the Command object.
+     *
      * @param str Userinput
      * @return A Command object
      */
@@ -44,6 +49,7 @@ public class Command {
 
     /**
      * Checks whether the first arg matches `word`.
+     *
      * @param word The first word in the command.
      * @return True or false
      */
@@ -53,6 +59,7 @@ public class Command {
 
     /**
      * Get arguments excluding the first argument.
+     *
      * @return Arguments excluding first argument.
      */
     public List<String> getTrailingArgs() {

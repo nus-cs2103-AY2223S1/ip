@@ -6,6 +6,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+
+/**
+ * A task that needs to be done by a specific time.
+ */
 public class Deadline extends Task {
     private static final String typeIcon = "D";
     private String time;

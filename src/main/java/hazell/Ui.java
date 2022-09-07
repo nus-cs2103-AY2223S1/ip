@@ -17,6 +17,7 @@ public class Ui {
 
     /**
      * Check if user has entered a new command.
+     *
      * @return Whether user has entered a new command
      */
     public boolean hasNextCommand() {
@@ -25,6 +26,7 @@ public class Ui {
 
     /**
      * Get the next command from user.
+     *
      * @return A parsed Command object
      */
     public Command getNextCommand() {
@@ -33,6 +35,7 @@ public class Ui {
 
     /**
      * Replies user in a formatted way.
+     *
      * @param msg The message to be pretty-printed to user
      */
     public void reply(String msg) {

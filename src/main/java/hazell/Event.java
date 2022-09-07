@@ -2,6 +2,9 @@ package hazell;
 
 import hazell.exceptions.TaskDescriptionEmpty;
 
+/**
+ * A task that should be done at a specific time.
+ */
 public class Event extends Task {
     private static final String typeIcon = "E";
     private String time;

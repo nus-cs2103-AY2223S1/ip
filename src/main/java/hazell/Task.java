@@ -20,6 +20,7 @@ public abstract class Task {
 
     /**
      * Checks whether fields are valid. To be called when creating Task via factory methods.
+     *
      * @throws TaskDescriptionEmpty
      */
     protected void validate() throws TaskDescriptionEmpty {
@@ -46,6 +47,7 @@ public abstract class Task {
 
     /**
      * Factory method that unserialises data.
+     *
      * @param s Input string to parse data from
      * @return
      */

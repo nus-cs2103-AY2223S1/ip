@@ -31,6 +31,7 @@ public class Storage {
 
     /**
      * Load from local storage.
+     *
      * @return List of tasks, unserialised
      * @throws IOException
      */
@@ -46,6 +47,7 @@ public class Storage {
 
     /**
      * Store tasks to local storage.
+     *
      * @param tasks Lists of tasks to be serialised
      * @throws IOException
      */

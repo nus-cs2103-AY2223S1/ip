@@ -31,6 +31,7 @@ public class TaskList {
 
     /**
      * Retrieves a specified task using an index (1-indexed).
+     *
      * @param index The index
      * @return The `index`-th task
      */
@@ -60,6 +61,7 @@ public class TaskList {
 
     /**
      * Deletes a task in the store.
+     *
      * @param index The index for which the (index)-th task to delete
      * @return A response string
      * @throws NoSuchTask If task cannot be found
@@ -83,6 +85,7 @@ public class TaskList {
 
     /**
      * Marks a task in the store as done.
+     *
      * @param index The index for which the (index)-th task to mark
      * @return A response string
      * @throws NoSuchTask If task cannot be found
@@ -100,6 +103,7 @@ public class TaskList {
 
     /**
      * Marks a task in the store as undone.
+     *
      * @param index The index for which the (index)-th task to mark
      * @return A response string
      * @throws NoSuchTask If task cannot be found
@@ -118,6 +122,7 @@ public class TaskList {
     /**
      * Returns a Path object pointing to the file used to store Hazell data locally.
      * Before doing so, it ensures that the folder exists.
+     *
      * @return Path to file used by Hazell chatbot
      * @throws IOException When error getting file
      */
@@ -136,6 +141,7 @@ public class TaskList {
 
     /**
      * Find tasks with descriptions matching `keyword`.
+     *
      * @param keyword The search string
      * @return Response string
      */
@@ -160,6 +166,7 @@ public class TaskList {
 
     /**
      * List detailed information about all tasks in this store.
+     *
      * @return String Details
      */
     @Override
