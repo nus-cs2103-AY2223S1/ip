@@ -21,6 +21,7 @@ public abstract class AddCommand extends Command {
      */
     public AddCommand(String command, Task task) {
         super(command);
+        assert(!command.isEmpty());
         this.task = task;
     }
 

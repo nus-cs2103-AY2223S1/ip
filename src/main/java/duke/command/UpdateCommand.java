@@ -18,6 +18,7 @@ public abstract class UpdateCommand extends Command {
      */
     public UpdateCommand(String command, Task task, int taskIndex) {
         super(command);
+        assert(!command.isEmpty());
         this.task = task;
         this.taskIndex = taskIndex;
     }

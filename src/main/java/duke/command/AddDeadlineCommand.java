@@ -12,6 +12,7 @@ import duke.task.Deadline;
 public class AddDeadlineCommand extends AddCommand {
     private AddDeadlineCommand(String command, Deadline deadline) {
         super(command, deadline);
+        assert(command.startsWith("deadline"));
     }
 
     /**
@@ -24,6 +25,8 @@ public class AddDeadlineCommand extends AddCommand {
      * @throws IllegalArgumentException if input string from user is invalid.
      */
     public static AddDeadlineCommand of(String command) throws IllegalArgumentException {
+        assert(command.startsWith("deadline"));
+
         boolean isDone = command.contains("/done");
         if (isDone) {
             command = command.replace("/done", "");

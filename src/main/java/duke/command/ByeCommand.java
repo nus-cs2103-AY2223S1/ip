@@ -15,6 +15,7 @@ public class ByeCommand extends Command {
      */
     public ByeCommand(String command) {
         super(command);
+        assert(command == "bye");
     }
 
     @Override

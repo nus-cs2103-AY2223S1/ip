@@ -15,6 +15,7 @@ public class ListCommand extends Command {
      */
     public ListCommand(String command) {
         super(command);
+        assert(command == "list");
     }
 
     @Override
