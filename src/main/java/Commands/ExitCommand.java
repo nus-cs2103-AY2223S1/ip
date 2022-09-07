@@ -8,8 +8,7 @@ import UI.UI;
  * Encapsulates the Exit or "bye" command
  */
 public class ExitCommand extends Commands{
-    public ExitCommand(){
-    }
+    public ExitCommand() {}
 
     /**
      * writes the items from the list to the storage,

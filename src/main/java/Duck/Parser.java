@@ -42,28 +42,28 @@ public class Parser {
                 String command = arr[0];
                 String arguments = arr[1];
                 switch (command.toUpperCase()) {
-                    case "TODO":
-                        Todo newTodo = new Todo(arguments, false);
-                        return new AddCommand(newTodo);
-                    case "DEADLINE":
-                        String[] deadlineArgs = arguments.split("/by");
-                        Deadline newDeadline = new Deadline(deadlineArgs[0].trim(), false, Duck.dateStorageConverter(deadlineArgs[1].trim()));
-                        return new AddCommand(newDeadline);
-                    case "EVENT":
-                        String[] eventArgs = arguments.split("/at");
-                        Event newEvent = new Event(eventArgs[0].trim(), false, Duck.dateStorageConverter(eventArgs[1].trim()));
-                        return new AddCommand(newEvent);
-                    case "MARK":
-                        return new MarkCommand(Integer.parseInt(arguments) - 1);
-                    case "UNMARK":
-                        return new UnmarkCommand(Integer.parseInt(arguments) - 1);
-                    case "DELETE":
-                        return new DeleteCommand(Integer.parseInt(arguments) - 1);
-                    case "FIND":
-                        return new FindCommand(arguments);
-                    default:
-                        ui.sendTextToUi("Quack! What does that even mean ?!?!?");
-                        break;
+                case "TODO":
+                    Todo newTodo = new Todo(arguments, false);
+                    return new AddCommand(newTodo);
+                case "DEADLINE":
+                    String[] deadlineArgs = arguments.split("/by");
+                    Deadline newDeadline = new Deadline(deadlineArgs[0].trim(), false, Duck.dateStorageConverter(deadlineArgs[1].trim()));
+                    return new AddCommand(newDeadline);
+                case "EVENT":
+                    String[] eventArgs = arguments.split("/at");
+                    Event newEvent = new Event(eventArgs[0].trim(), false, Duck.dateStorageConverter(eventArgs[1].trim()));
+                    return new AddCommand(newEvent);
+                case "MARK":
+                    return new MarkCommand(Integer.parseInt(arguments) - 1);
+                case "UNMARK":
+                    return new UnmarkCommand(Integer.parseInt(arguments) - 1);
+                case "DELETE":
+                    return new DeleteCommand(Integer.parseInt(arguments) - 1);
+                case "FIND":
+                    return new FindCommand(arguments);
+                default:
+                    ui.sendTextToUi("Quack! What does that even mean ?!?!?");
+                    break;
                 }
             }
         } catch (ArrayIndexOutOfBoundsException a) {

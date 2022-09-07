@@ -7,7 +7,6 @@ import UI.UI;
 /**
  * Super class of Commands
  */
-
 public abstract class Commands {
 
     public Commands(){

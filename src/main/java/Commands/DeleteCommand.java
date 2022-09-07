@@ -11,9 +11,9 @@ public class DeleteCommand extends Commands{
     private int index;
 
     /**
-     *
      * @param index index of item to be deleted
      */
+
     public DeleteCommand(int index){
         this.index = index;
     }

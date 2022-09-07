@@ -1,5 +1,4 @@
 package Commands;
-
 import Duck.Storage;
 import Duck.TaskList;
 import UI.UI;
@@ -30,7 +29,7 @@ public class FindCommand extends Commands{
     public void execute(TaskList<Todo> list, Storage storage, UI ui) throws IndexOutOfBoundsException {
         boolean foundAny = false;
         String s = "";
-        for (int i = 0; i < list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getTitle().contains(search)) {
                 foundAny = true;
                 s = s.concat(list.get(i).toString() + "\n");
