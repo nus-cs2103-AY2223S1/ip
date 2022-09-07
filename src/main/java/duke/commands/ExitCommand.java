@@ -22,13 +22,4 @@ public class ExitCommand extends Command {
         return MESSAGE_SUCCESS;
     }
 
-    /**
-     * Stops the programme.
-     *
-     * @return False.
-     */
-    @Override
-    public boolean isRunning() {
-        return false;
-    }
 }

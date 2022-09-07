@@ -23,13 +23,4 @@ public class ListCommand extends Command {
         return successMessage;
     }
 
-    /**
-     * Keeps the programme running.
-     *
-     * @return True.
-     */
-    @Override
-    public boolean isRunning() {
-        return true;
-    }
 }

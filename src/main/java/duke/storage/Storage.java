@@ -79,11 +79,11 @@ public class Storage {
     public List<Task> load() throws DukeException {
         try {
             File file = new File(filePath);
-            Scanner s = new Scanner(file);
+            Scanner scanner = new Scanner(file);
             List<Task> tasks = new ArrayList<>();
-            while (s.hasNext()) {
-                String str = s.nextLine();
-                Task task = fileInterpreter(str);
+            while (scanner.hasNext()) {
+                String str = scanner.nextLine();
+                Task task = interpretFileContent(str);
                 tasks.add(task);
             }
             return tasks;
@@ -101,7 +101,7 @@ public class Storage {
      * @return A task instance.
      * @throws DukeException If information in the local file cannot be understood.
      */
-    public Task fileInterpreter(String str) throws DukeException {
+    public Task interpretFileContent(String str) throws DukeException {
         Task task;
         String description = str.split("] ", 2)[1];
         if (str.contains("[T]")) {

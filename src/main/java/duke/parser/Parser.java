@@ -71,12 +71,13 @@ public class Parser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
         default:
-            throw new DukeException("☹ I'm sorry, but I don't know what that means :-(");
+            String errorMessage = "☹ I'm sorry, but I don't know what that means :-(";
+            throw new DukeException(errorMessage);
         }
     }
 
     /**
-     * Process the task to be added and specifies which type of Task it is,
+     * Processes the task to be added and specifies which type of Task it is,
      * and returns an AddCommand instance.
      * It throws a DukeException if the description of the task is null.
      *
@@ -88,8 +89,7 @@ public class Parser {
     public static Command prepareAdd(String commandWord, String description) throws DukeException {
         if (description == null) {
             throw new DukeException("☹ Description of a duke.task cannot be empty!");
-        }
-        if (commandWord.equals(AddCommand.COMMAND_WORD_TODO)) {
+        } else if (commandWord.equals(AddCommand.COMMAND_WORD_TODO)) {
             return new AddCommand(new ToDo(description));
         } else {
             return parseDate(commandWord, description);
@@ -115,19 +115,22 @@ public class Parser {
                 LocalDate date = parseDateFormats(arr[1]);
                 return new AddCommand(new Deadline(message, date));
             } else {
-                throw new DukeException(
-                        "☹ Please follow the format <deadline description /by date>");
+                String errorMessage = "☹ Please follow the format <deadline description /by date>";
+                throw new DukeException(errorMessage);
             }
-        default:
+        case AddCommand.COMMAND_WORD_EVENT:
             if (description.contains(" /at ")) {
                 String[] arr = description.split(" /at ", 2);
                 String message = arr[0];
                 LocalDate date = parseDateFormats(arr[1]);
                 return new AddCommand(new Event(message, date));
             } else {
-                throw new DukeException(
-                        "☹ Please follow the format <event description /at date>");
+                String errorMessage = "☹ Please follow the format <event description /at date>";
+                throw new DukeException(errorMessage);
             }
+        default:
+            String errorMessage = "☹ Wrong type of command detected.";
+            throw new DukeException(errorMessage);
         }
     }
 
@@ -177,7 +180,8 @@ public class Parser {
                 return new UnmarkCommand(index);
             }
         } catch (NumberFormatException nfe) {
-            throw new DukeException("☹ Please enter an index of a task!");
+            String errorMessage = "☹ Please enter an index of a task!";
+            throw new DukeException(errorMessage);
         }
     }
 
