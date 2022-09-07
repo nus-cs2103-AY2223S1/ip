@@ -4,21 +4,21 @@ package duke.command;
  * Supported commands along with their argument counts.
  */
 public enum CommandType {
-    HELP(0),
-    LIST(0),
-    CHECK(1),
-    UNCHECK(1),
-    TODO(1),
-    DEADLINE(2),
-    EVENT(2),
-    FIND(1),
-    DELETE(1),
-    EXIT(0);
+    HELP(1),
+    LIST(1),
+    CHECK(2),
+    UNCHECK(2),
+    TODO(2),
+    DEADLINE(3),
+    EVENT(3),
+    FIND(2),
+    DELETE(2),
+    EXIT(1);
 
-    private final int argsCount;
+    private final int argCount;
 
-    CommandType(int argsCount) {
-        this.argsCount = argsCount;
+    CommandType(int argCount) {
+        this.argCount = argCount;
     }
 
     /**
@@ -29,6 +29,6 @@ public enum CommandType {
      */
     public boolean isCompatible(String... args) {
         assert args != null;
-        return this.argsCount == args.length;
+        return this.argCount == args.length;
     }
 }

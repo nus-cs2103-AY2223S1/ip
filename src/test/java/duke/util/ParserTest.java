@@ -188,7 +188,7 @@ public class ParserTest {
             Parser.parseTask("");
             fail();
         } catch (ParseException e) {
-            assertEquals("Parsing error: ", e.getMessage());
+            assertEquals("Parsing error:  (unknown task symbol)", e.getMessage());
         }
     }
 
@@ -198,7 +198,7 @@ public class ParserTest {
             Parser.parseTask("# | 0 | Task Description");
             fail();
         } catch (ParseException e) {
-            assertEquals("Parsing error: # | 0 | Task Description", e.getMessage());
+            assertEquals("Parsing error: # | 0 | Task Description (unknown task symbol)", e.getMessage());
         }
     }
 
@@ -208,7 +208,8 @@ public class ParserTest {
             Parser.parseTask("T |0|Task Description");
             fail();
         } catch (ParseException e) {
-            assertEquals("Parsing error: T |0|Task Description", e.getMessage());
+            // The whole thing gets treated as task symbol, since no " | " found.
+            assertEquals("Parsing error: T |0|Task Description (unknown task symbol)", e.getMessage());
         }
     }
 
@@ -218,7 +219,7 @@ public class ParserTest {
             Parser.parseTask("T | 0   | Task Description");
             fail();
         } catch (ParseException e) {
-            assertEquals("Parsing error: T | 0   | Task Description", e.getMessage());
+            assertEquals("Parsing error: 0  ", e.getMessage());
         }
     }
 
@@ -228,7 +229,24 @@ public class ParserTest {
             Parser.parseTask("T | 0 description");
             fail();
         } catch (ParseException e) {
-            assertEquals("Parsing error: T | 0 description", e.getMessage());
+            assertEquals("Parsing error: T | 0 description (wrong number of arguments provided)", e.getMessage());
+        }
+    }
+
+    @Test
+    public void parseTask_invalidIsDone_throwsException() {
+        try {
+            Parser.parseTask("T | 2 | Task Description");
+            fail();
+        } catch (ParseException e) {
+            assertEquals("Parsing error: T | 2 | Task Description (invalid isDone value)", e.getMessage());
+        }
+
+        try {
+            Parser.parseTask("T | 1.3 | Task Description");
+            fail();
+        } catch (ParseException e) {
+            assertEquals("Parsing error: 1.3", e.getMessage());
         }
     }
 

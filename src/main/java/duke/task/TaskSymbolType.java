@@ -4,14 +4,16 @@ package duke.task;
  * Supported task symbols in display and save formats.
  */
 public enum TaskSymbolType {
-    T("\uD83D\uDCDD"),
-    D("⏰"),
-    E("\uD83D\uDCC5");
+    T("\uD83D\uDCDD", 3),
+    D("⏰", 4),
+    E("\uD83D\uDCC5", 4);
 
     private final String symbol;
+    private final int argCount;
 
-    TaskSymbolType(String symbol) {
+    TaskSymbolType(String symbol, int argCount) {
         this.symbol = symbol;
+        this.argCount = argCount;
     }
 
     /**
@@ -21,5 +23,16 @@ public enum TaskSymbolType {
      */
     public String getSymbol() {
         return this.symbol;
+    }
+
+    /**
+     * Checks if the provided arguments are compatible with the task.
+     *
+     * @param args The arguments to check.
+     * @return {@code true} if the arguments are compatible with the task, {@code false} otherwise.
+     */
+    public boolean isCompatible(String... args) {
+        assert args != null;
+        return this.argCount == args.length;
     }
 }

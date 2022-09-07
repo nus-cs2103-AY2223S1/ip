@@ -30,6 +30,8 @@ public class Storage {
 
     /**
      * Ensures that the {@code dataFile} is there and accessible.
+     * If not then it creates the file.
+     * If it could not be created then it throws an exception.
      */
     private void ensureDataFileExists() {
         if (dataFile.exists()) {
@@ -55,6 +57,26 @@ public class Storage {
      * @return The {@code Task}s loaded from the {@code dataFile} in an {@code ArrayList}.
      */
     public ArrayList<Task> load() {
+        Scanner scanner = getScanner();
+        ArrayList<Task> tasks = new ArrayList<>();
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            try {
+                tasks.add(Parser.parseTask(line));
+            } catch (ParseException e) {
+                throw new DataFileCorruptedException();
+            }
+        }
+        return tasks;
+    }
+
+    /**
+     * Returns a {@code Scanner} for the {@code dataFile}.
+     * Throws an exception if the {@code dataFile} does not exist or could not be opened.
+     *
+     * @return The {@code Scanner} for the {@code dataFile}.
+     */
+    private Scanner getScanner() {
         ensureDataFileExists();
         Scanner scanner;
         try {
@@ -62,16 +84,7 @@ public class Storage {
         } catch (FileNotFoundException e) {
             throw new DukeException("Could not open datafile for reading: " + dataFile);
         }
-
-        ArrayList<Task> tasks = new ArrayList<>();
-        try {
-            while (scanner.hasNextLine()) {
-                tasks.add(Parser.parseTask(scanner.nextLine()));
-            }
-        } catch (ParseException e) {
-            throw new DataFileCorruptedException();
-        }
-        return tasks;
+        return scanner;
     }
 
     /**

@@ -19,6 +19,7 @@ public class EmptyCommand extends Command {
      */
     @Override
     public void execute(Storage storage, Consumer<String> printer, TaskList tasks) {
+        // Does nothing
     }
 
     /**
