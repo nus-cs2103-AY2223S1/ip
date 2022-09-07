@@ -19,6 +19,6 @@ public class ListCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws FredException {
-        ui.showMessage(tasks.list());
+        ui.storeMessage(tasks.list());
     }
 }
