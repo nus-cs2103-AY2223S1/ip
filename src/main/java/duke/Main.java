@@ -24,7 +24,6 @@ public class Main extends Application {
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.show();
-            Parser parser = new Parser(duke);
         } catch (IOException e) {
             e.printStackTrace();
         }
