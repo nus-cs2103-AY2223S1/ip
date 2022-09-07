@@ -49,9 +49,11 @@ public class EditCommand extends Command {
         if (commandLine.startsWith("mark")) {
             int index = Integer.parseInt(commandLine.substring(5)) - 1;
             try {
-                if (index > taskList.size() - 1) {
+                if (index > taskList.size() - 1 || index < 0) {
                     throw new DukeException("You have no such tasks.");
                 } else {
+                    assert index < taskList.size();
+                    assert index >= 0;
                     Task task = taskList.get(index);
                     task.isMark(true);
                     storage.updateData(taskList);
@@ -67,9 +69,11 @@ public class EditCommand extends Command {
         } else {
             int index = Integer.parseInt(commandLine.substring(7)) - 1;
             try {
-                if (index > taskList.size() - 1) {
+                if (index > taskList.size() - 1 || index < 0) {
                     throw new DukeException("You have no such tasks.");
                 } else {
+                    assert index < taskList.size();
+                    assert index >= 0;
                     Task task = taskList.get(index);
                     task.isMark(false);
                     storage.updateData(taskList);

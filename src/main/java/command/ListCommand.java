@@ -49,6 +49,7 @@ public class ListCommand extends Command {
             if (taskList.size() == 0) {
                 throw new DukeException("There are no tasks in your list. :)");
             } else {
+                assert taskList.size() > 0;
                 System.out.println("Here are the tasks in your list:");
                 taskList.forEach();
                 System.out.println();

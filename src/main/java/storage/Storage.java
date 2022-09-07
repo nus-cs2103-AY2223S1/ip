@@ -54,6 +54,7 @@ public class Storage {
         if (!this.f.exists()) {
             throw new DukeException("The file does not exist!");
         } else {
+            assert this.f.exists();
             for (int i = 0; i < tasks.size(); i++) {
                 try {
                     if (i == 0) {

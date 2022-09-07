@@ -66,6 +66,7 @@ public class FileData {
             if (!this.file.exists()) {
                 throw new FileNotFoundException();
             } else {
+                assert this.file.exists();
                 Scanner s = new Scanner(this.file);
                 while (s.hasNext()) {
                     String currTask = s.nextLine();
@@ -105,6 +106,7 @@ public class FileData {
             if (!this.file.exists()) {
                 throw new FileNotFoundException();
             } else {
+                assert this.file.exists();
                 Scanner d = new Scanner(this.file);
                 while (d.hasNext()) {
                     System.out.println(d.nextLine());
