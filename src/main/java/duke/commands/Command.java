@@ -22,12 +22,4 @@ public abstract class Command {
         throw new DukeException("This method is to be implemented by child classes.");
     }
 
-    /**
-     * Indicate whether the programme should continue running.
-     * It is to be overridden by subclasses of Command.
-     *
-     * @return A boolean value.
-     */
-    public abstract boolean isRunning();
-
 }

@@ -13,8 +13,8 @@ public class Task {
      * @param str description of the task.
      */
     public Task(String str) {
-        this.description = str;
-        this.isDone = false;
+        description = str;
+        isDone = false;
     }
 
     /**
