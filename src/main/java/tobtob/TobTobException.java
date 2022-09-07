@@ -28,6 +28,8 @@ public class TobTobException extends Exception {
             "Oopsieee! Error loading file in %s.\n"
             + "Seems like the file has been modified externally.\n"
             + "Please fix the file/delete it and restart application to continue using Tob Tob";
+    private static final String UNRECOGNIZED_TASK_TYPE_ERROR_MESSAGE =
+            "Oopsieee! Error when adding new Task";
 
     /**
      * TobTobException constructor with the specified error message
@@ -125,5 +127,14 @@ public class TobTobException extends Exception {
      */
     public static TobTobException fileLoadingError(String filePath) {
         return new TobTobException(String.format(FILE_LOADING_ERROR_MESSAGE, filePath));
+    }
+
+    /**
+     * Returns a {@link TobTobException} instance with UNRECOGNIZED_TASK_TYPE_ERROR_MESSAGE.
+     *
+     * @return {@link TobTobException}
+     */
+    public static TobTobException unrecognizedTaskType() {
+        return new TobTobException(UNRECOGNIZED_TASK_TYPE_ERROR_MESSAGE);
     }
 }
