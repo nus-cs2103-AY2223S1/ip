@@ -75,7 +75,7 @@ class Storage {
                     }
                 }
             } catch (IOException e) {
-                System.out.println(e.getMessage());
+                assert false : e.getMessage(); // If the file has errors, stop the program execution.
             }
         }
         return list;
