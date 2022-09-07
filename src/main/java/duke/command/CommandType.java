@@ -4,6 +4,7 @@ package duke.command;
  * Supported commands along with their argument counts.
  */
 public enum CommandType {
+    HELP(0),
     LIST(0),
     CHECK(1),
     UNCHECK(1),

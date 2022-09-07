@@ -11,6 +11,10 @@ import duke.util.Storage;
  */
 public class FindCommand extends Command {
 
+    public static final String HELP_STRING = "- find <keyword>:\n"
+            + "Searches for tasks with the given keyword."
+            + "The search is case insensitive.";
+
     private final String keyword;
 
     /**

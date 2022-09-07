@@ -11,6 +11,7 @@ import duke.command.DeleteTaskCommand;
 import duke.command.EmptyCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
+import duke.command.HelpCommand;
 import duke.command.ListCommand;
 import duke.command.UpdateStatusCommand;
 import duke.task.DeadlineTask;
@@ -86,13 +87,15 @@ public class Parser {
         try {
             type = CommandType.valueOf(command);
         } catch (IllegalArgumentException e) {
-            throw new ParseException(input, "unknown command");
+            throw new ParseException(input, "unknown command; enter \"help\" for available commands");
         }
         if (!type.isCompatible(args)) {
             throw new ParseException(input, "wrong number of arguments provided");
         }
 
         switch (type) {
+        case HELP:
+            return new HelpCommand();
         case LIST:
             return new ListCommand();
         case CHECK: // fall through
@@ -111,7 +114,7 @@ public class Parser {
         case EXIT:
             return new ExitCommand();
         default:
-            throw new ParseException(input, "unknown command");
+            throw new ParseException(input, "unknown command; enter \"help\" for available commands");
         }
     }
 

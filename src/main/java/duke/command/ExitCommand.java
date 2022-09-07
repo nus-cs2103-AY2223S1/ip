@@ -12,6 +12,9 @@ import duke.util.Storage;
  */
 public class ExitCommand extends Command {
 
+    public static final String HELP_STRING = "- exit:\n"
+            + "Exits the program.";
+
     /**
      * Calls the {@code UI} to exit interaction.
      *

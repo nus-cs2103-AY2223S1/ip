@@ -11,6 +11,11 @@ import duke.util.Storage;
  */
 public class UpdateStatusCommand extends Command {
 
+    public static final String HELP_STRING = "- check <index>:\n"
+            + "Checks the task at the given index from the task list.\n\n"
+            + "uncheck <index>:\n"
+            + "Unchecks the task at the given index from the task list.";
+
     private final int index;
     private final boolean isDone;
 

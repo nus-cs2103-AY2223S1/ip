@@ -144,7 +144,8 @@ public class ParserTest {
             Parser.parseCommand("add new task");
             fail();
         } catch (ParseException e) {
-            assertEquals("Parsing error: add new task (unknown command)", e.getMessage());
+            assertEquals("Parsing error: add new task (unknown command; enter \"help\" for available commands)",
+                    e.getMessage());
         }
     }
 

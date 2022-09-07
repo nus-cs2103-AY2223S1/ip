@@ -10,6 +10,9 @@ import duke.util.Storage;
  */
 public class DeleteTaskCommand extends Command {
 
+    public static final String HELP_STRING = "- delete <index>:\n"
+            + "Deletes the task at the given index from the task list.";
+
     private final int index;
 
     /**
