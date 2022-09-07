@@ -2,7 +2,6 @@ package duke;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

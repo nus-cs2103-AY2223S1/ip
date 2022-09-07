@@ -16,7 +16,8 @@ public class AddDeadlineCommand extends Command {
     public AddDeadlineCommand(String[] slicedUserInput) {
         this.slicedUserCommands = slicedUserInput;
     }
-     /**
+
+    /**
      * Runs when deadline is to be added.
      *
      * @param taskList TaskList to append Deadline to.

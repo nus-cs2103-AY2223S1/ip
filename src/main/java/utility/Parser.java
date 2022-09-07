@@ -30,10 +30,16 @@ import task.Task;
  * Handles all conversions required in the program.
  */
 public class Parser {
-    private static HashMap<String, Pattern> COMMMAND_ALIASES = new HashMap<>();
+    private static HashMap<String, Pattern> commandAliasesHashMap = new HashMap<>();
 
+    /**
+     * Initiliase hashmap which stores Pattern
+     * required to determine corresponding
+     * String command.
+     *
+     */
     public static void initialiseCommandAliases() {
-        if (COMMMAND_ALIASES.isEmpty()) {
+        if (commandAliasesHashMap.isEmpty()) {
             HashMap<String, Pattern> commandAliases = new HashMap<>();
             Pattern todoRegex = Pattern.compile("t|todo",
                     Pattern.CASE_INSENSITIVE);
@@ -65,7 +71,7 @@ public class Parser {
             commandAliases.put("longdesc", longdescRegex);
             commandAliases.put("istoday", istodayRegex);
             commandAliases.put("help", helpRegex);
-            COMMMAND_ALIASES = commandAliases;
+            commandAliasesHashMap = commandAliases;
         }
     }
 
@@ -109,15 +115,14 @@ public class Parser {
         case "find":
             return new FindCommand(inputSections);
         default:
-            String message = "Command invalid. Type help for more information." +
-                    stringCommand;
+            String message = "Command invalid. Type help for more information."
+                    + stringCommand;
             throw new DukeException(message);
         }
     }
 
 
     /**
-     *
      * Extracts shortcut or formal command used and returns formal command/
      * If input does not follow valid format, return empty string.
      *
@@ -128,7 +133,7 @@ public class Parser {
         // Make sure commandAliases are not empty
         initialiseCommandAliases();
         Matcher matcher;
-        for( Map.Entry<String,Pattern> patternAndString : COMMMAND_ALIASES.entrySet()) {
+        for (Map.Entry<String, Pattern> patternAndString : commandAliasesHashMap.entrySet()) {
             matcher = patternAndString.getValue().matcher(command);
             if (matcher.matches()) {
                 return patternAndString.getKey();
@@ -150,11 +155,12 @@ public class Parser {
     }
 
     /**
+     * return event
      *
-     * @param description
-     * @param date
-     * @return
-     * @throws DukeException
+     * @param description description
+     * @param date date
+     * @return event
+     * @throws DukeException error
      */
     public static Event stringToEvent(String description, String date) throws DukeException {
         LocalDate localDate = getDate(date);
@@ -162,11 +168,12 @@ public class Parser {
     }
 
     /**
+     * Return deadline
      *
-     * @param description
-     * @param date
-     * @return
-     * @throws DukeException
+     * @param description description.
+     * @param date date
+     * @return deadline
+     * @throws DukeException error.
      */
     public static Deadline stringToDeadline(String description, String date) throws DukeException {
         LocalDate localDate = getDate(date);
@@ -175,10 +182,11 @@ public class Parser {
 
 
     /**
+     * Get date
      *
-     * @param date
-     * @return
-     * @throws DukeException
+     * @param date date
+     * @return date
+     * @throws DukeException date error.
      */
     private static LocalDate getDate(String date) throws DukeException {
         try {

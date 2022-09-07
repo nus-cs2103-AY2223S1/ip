@@ -1,12 +1,8 @@
 package tasklist;
 
-
 import java.util.ArrayList;
 
 import task.Task;
-import task.Deadline;
-import task.Event;
-
 /**
  * Manage all interactions between Duke and UserInputHistory FILE storage.
  */
