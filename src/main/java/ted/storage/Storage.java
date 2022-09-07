@@ -29,6 +29,7 @@ public class Storage {
      */
     public Storage(String filePath, String fileName) {
         this.filePath = filePath;
+        assert filePath.contains(fileName);
         this.folderPath = filePath.replace("/" + fileName, "");
         this.dukeFile = new File(filePath);
     }
@@ -53,6 +54,7 @@ public class Storage {
                     if (st[1].equals("1")) {
                         isTaskDone = true;
                     } else {
+                        assert st[1].equals("0");
                         isTaskDone = false;
                     }
 
