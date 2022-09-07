@@ -3,6 +3,7 @@ package duke.util;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Arrays;
 
 import duke.command.AddTaskCommand;
 import duke.command.Command;
@@ -66,53 +67,87 @@ public class Parser {
      * The arguments are seperated by {@code " / "}.
      * There must be at least one space before and after the {@code /}.
      *
-     * @param input The string to parse.
+     * @param rawInput The string to parse.
      * @return The parsed {@code Command}.
      */
-    public static Command parseCommand(String input) {
-        input = input.strip();
+    public static Command parseCommand(String rawInput) {
+        String input = rawInput.strip();
         if (input.length() == 0) {
             return new EmptyCommand();
         }
 
-        String[] parts = input.split("\\s+", 2);
-        String command = parts[0].toUpperCase();
-        String[] args = parts.length > 1 ? parts[1].split("\\s+/\\s+") : new String[0];
-        for (int i = 0; i < args.length; ++i) {
-            args[i] = args[i].strip();
-        }
-
-        CommandType type;
-        try {
-            type = CommandType.valueOf(command);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(input, "unknown command");
-        }
-        if (!type.isCompatible(args)) {
-            throw new ParseException(input, "wrong number of arguments provided");
-        }
+        String[] args = getTokens(input);
+        CommandType type = getCommandType(rawInput, args);
 
         switch (type) {
         case LIST:
             return new ListCommand();
         case CHECK: // fall through
         case UNCHECK:
-            return new UpdateStatusCommand(parseInt(args[0]), type == CommandType.CHECK);
+            return new UpdateStatusCommand(parseInt(args[1]), type == CommandType.CHECK);
         case TODO:
-            return new AddTaskCommand(new TodoTask(args[0]));
+            return new AddTaskCommand(new TodoTask(args[1]));
         case DEADLINE:
-            return new AddTaskCommand(new DeadlineTask(args[0], parseDateTime(args[1])));
+            return new AddTaskCommand(new DeadlineTask(args[1], parseDateTime(args[2])));
         case EVENT:
-            return new AddTaskCommand(new EventTask(args[0], parseDateTime(args[1])));
+            return new AddTaskCommand(new EventTask(args[1], parseDateTime(args[2])));
         case FIND:
-            return new FindCommand(args[0]);
+            return new FindCommand(args[1]);
         case DELETE:
-            return new DeleteTaskCommand(parseInt(args[0]));
+            return new DeleteTaskCommand(parseInt(args[1]));
         case EXIT:
             return new ExitCommand();
         default:
-            throw new ParseException(input, "unknown command");
+            throw new ParseException(rawInput, "unknown command");
         }
+    }
+
+    /**
+     * Returns the {@code CommandType} from an argument list.
+     * In case of an exception, the {@code rawInput} is used to provide more information.
+     *
+     * @param rawInput The raw input string.
+     * @param args The argument list.
+     * @return The {@code CommandType}.
+     */
+    private static CommandType getCommandType(String rawInput, String[] args) {
+        CommandType type;
+        try {
+            type = CommandType.valueOf(args[0].toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(rawInput, "unknown command");
+        }
+        if (!type.isCompatible(args)) {
+            throw new ParseException(rawInput, "wrong number of arguments provided");
+        }
+        return type;
+    }
+
+    /**
+     * Splits the input string into tokens.
+     * The first token is seperated from the rest by any amount of whitespace.
+     * The rest of the tokens (if any) are seperated by {@code " / "} with
+     * any amount of whitespace on either side.
+     *
+     * @param input The string to split.
+     * @return The tokens.
+     */
+    private static String[] getTokens(String input) {
+        String[] parts = input.split("\\s+", 2);
+        if (parts.length == 1) {
+            return parts;
+        }
+
+        // split the rest of the string by " / " and strip the tokens
+        String[] args = parts[1].split("\\s+/\\s+");
+        Arrays.setAll(args, i -> args[i].strip());
+
+        // merge the first token with the rest of the tokens
+        String[] result = new String[args.length + 1];
+        result[0] = parts[0];
+        System.arraycopy(args, 0, result, 1, args.length);
+
+        return result;
     }
 
     /**
