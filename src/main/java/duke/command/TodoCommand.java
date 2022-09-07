@@ -41,11 +41,15 @@ public class TodoCommand extends Command {
      * @param tasks TaskList to add the newly created Todo into.
      * @param ui Ui object which interacts with the user.
      * @param storage Storage object which loads and saves tasks.
+     * @return Message to be shown to the user after successful execution.
+     * @throws DukeException If storage object is unable to save the list of tasks, or if TaskList cannot be properly
+     *              sorted.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task todo = new Todo(description);
         tasks.add(todo);
+        tasks.sort();
         String message = ui.taskAddedMessage(todo, tasks);
         storage.save(tasks);
         return message;

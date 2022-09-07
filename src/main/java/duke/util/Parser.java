@@ -11,6 +11,7 @@ import duke.command.EventCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.SortCommand;
 import duke.command.TodoCommand;
 import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
@@ -36,7 +37,7 @@ public class Parser {
     public static Command parse(String fullCommand) throws DukeException, DateTimeException {
         String command = getCommandString(fullCommand);
         String commandArgument = getCommandArgument(fullCommand);
-        String commandFormat = getCommandFormat(command);
+        String commandFormat = Command.getCommandFormat(command);
         try {
             if (command.equals("todo")) {
                 if (isEmptyInput(commandArgument)) {
@@ -68,6 +69,8 @@ public class Parser {
                     throw new InvalidCommandFormatException(commandFormat);
                 }
                 return new FindCommand(commandArgument);
+            } else if (command.equals("sort")) {
+                return SortCommand.parse(commandArgument);
             } else if (command.equals("bye")) {
                 return new ByeCommand();
             } else if (command.equals("list")) {
@@ -170,38 +173,5 @@ public class Parser {
      */
     private static boolean isEmptyInput(String input) {
         return input.length() == 0;
-    }
-
-    /**
-     * Returns the expected format of the command.
-     *
-     * @param commandString Name of the command.
-     * @return Expected format of the command.
-     * @throws UnknownCommandException If the name of the command does not match with any of the existing known
-     *              commands.
-     */
-    private static String getCommandFormat(String commandString) throws UnknownCommandException {
-        switch (commandString) {
-        case "todo":
-            return TodoCommand.getFormat();
-        case "deadline":
-            return DeadlineCommand.getFormat();
-        case "event":
-            return EventCommand.getFormat();
-        case "find":
-            return FindCommand.getFormat();
-        case "mark":
-            return MarkCommand.getFormat();
-        case "unmark":
-            return UnmarkCommand.getFormat();
-        case "delete":
-            return DeleteCommand.getFormat();
-        case "list":
-            return ListCommand.getFormat();
-        case "bye":
-            return ByeCommand.getFormat();
-        default:
-            throw new UnknownCommandException(commandString);
-        }
     }
 }

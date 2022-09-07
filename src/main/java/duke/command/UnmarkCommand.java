@@ -6,7 +6,6 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.util.Storage;
 
-
 /**
  * Represents the command that is executed when the user inputs unmark.
  *
@@ -53,7 +52,7 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * Returns false, because delete is not an application terminating command.
+     * Returns false, because unmark is not an application terminating command.
      *
      * @return False.
      */

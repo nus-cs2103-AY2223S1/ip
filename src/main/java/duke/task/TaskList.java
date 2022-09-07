@@ -1,8 +1,14 @@
 package duke.task;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
+import duke.command.SortCommand;
+import duke.enums.SortMetric;
+import duke.enums.SortOrder;
+import duke.exception.InvalidCommandFormatException;
 import duke.exception.TaskIndexOutOfBoundsException;
 /**
  * Represents the list of tasks added by the user.
@@ -11,8 +17,12 @@ import duke.exception.TaskIndexOutOfBoundsException;
  * @version v0.1
  */
 public class TaskList {
-    /** List of tasks */
+    /** List of tasks. */
     private List<Task> tasks;
+    /** Order of the tasks to sort by. */
+    private SortOrder sortOrder;
+    /** Measurement used to determine the order of the tasks. */
+    private SortMetric sortMetric;
 
     /**
      * Creates a TaskList object from a List of tasks.
@@ -86,7 +96,56 @@ public class TaskList {
     }
 
     /**
+     * Sorts the list of tasks in order of ascending date and time.
+     */
+    public void sort() throws InvalidCommandFormatException {
+        switch (sortMetric) {
+        case DEADLINE:
+            // Sort by the task deadline or event time.
+            tasks.sort(Comparator.comparing(Task::getDateTime));
+            break;
+        case DATE_ADDED:
+            // Sort by the date the tasks were added.
+            tasks.sort(Comparator.comparing(Task::getDateAdded));
+            break;
+        case TYPE:
+            // Sort by task types.
+            tasks.sort(Comparator.comparing(Task::toString));
+            break;
+        case DESCRIPTION:
+            // Sort by task description.
+            tasks.sort(Comparator.comparing(Task::getDescription));
+            break;
+        default:
+            throw new InvalidCommandFormatException(SortCommand.getFormat());
+        }
+
+        if (sortOrder.equals(SortOrder.DESCENDING)) {
+            Collections.reverse(tasks);
+        }
+    }
+
+    /**
+     * Sets the current sort order of the TaskList to be the given sortOrder.
+     *
+     * @param sortOrder Sort order of the TaskList.
+     */
+    public void setSortOrder(SortOrder sortOrder) {
+        this.sortOrder = sortOrder;
+    }
+
+    /**
+     * Sets the current sort metric of the TaskList to be the given sortMetric.
+     *
+     * @param sortMetric Sort metric of the TaskList.
+     */
+    public void setSortMetric(SortMetric sortMetric) {
+        this.sortMetric = sortMetric;
+    }
+
+    /**
      * Returns the number of tasks in the List of tasks.
+     *
      * @return Size of the List of tasks.
      */
     public int getSize() {

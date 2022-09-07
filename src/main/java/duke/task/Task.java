@@ -11,25 +11,42 @@ import duke.util.Parser;
  * @author njxue
  * @version v0.1
  */
-public class Task {
+public abstract class Task {
     /** Icon to represent that a task is completed. */
     private static final String COMPLETED_ICON = "X";
     /** Icon to represent that a task is not completed. */
     private static final String INCOMPLETE_ICON = " ";
 
-    /** Description of the task. **/
+    /** Description of the task. */
     private String description;
     /** Describes if the task is completed or not. */
     private boolean isDone;
+    /** Date and time the task occurs or to be completed by. */
+    private LocalDateTime dateTime;
+    /** Date and time the task was added to the TaskList. */
+    private LocalDateTime dateAdded = LocalDateTime.now();
 
     /**
-     * Creates a Task object.
+     * Creates a Task object not associated with a date and time.
      *
      * @param description Description of the task.
      */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        dateTime = LocalDateTime.MAX;
+    }
+
+    /**
+     * Creates a Task object associated with a date and time.
+     *
+     * @param description Description of the task.
+     * @param dateTime Date and time of the task.
+     */
+    public Task(String description, LocalDateTime dateTime) {
+        this.description = description;
+        this.isDone = false;
+        this.dateTime = dateTime;
     }
 
     /**
@@ -110,12 +127,30 @@ public class Task {
     }
 
     /**
+     * Returns the deadline or time of the task.
+     *
+     * @return Deadline or time of the task.
+     */
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    /**
+     * Returns the date and time the task was added.
+     *
+     * @return Date and time the task was added.
+     */
+    public LocalDateTime getDateAdded() {
+        return dateAdded;
+    }
+
+    /**
      * Returns the formatted task, which is to be written into the storage file.
      *
      * @return Formatted task, which is to be written into the storage file.
      */
     public String toFileFormatString() {
-        String icon = isDone ? COMPLETED_ICON : INCOMPLETE_ICON;
+        String icon = getStatusIcon();
         return "|" + icon + "|";
     }
 }

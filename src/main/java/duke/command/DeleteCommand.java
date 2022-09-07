@@ -13,9 +13,7 @@ import duke.util.Storage;
  * @version v0.1
  */
 public class DeleteCommand extends Command {
-    /**
-     * The index of the Task object in the TaskList to be deleted.
-     */
+    /** The index of the Task object in the TaskList to be deleted. */
     private int taskIndex;
 
     /**
@@ -42,7 +40,8 @@ public class DeleteCommand extends Command {
      * @param tasks TaskList containing the task to be deleted.
      * @param ui Ui object which interacts with the user.
      * @param storage Storage object which loads and saves tasks.
-     * @throws DukeException If storage object is unable to save the list of tasks after marking,
+     * @return Message to be shown to the user after successful execution.
+     * @throws DukeException If storage object is unable to save the list of tasks after deleting,
      *              or if the taskIndex is not within range of the size of the TaskList.
      */
     @Override
