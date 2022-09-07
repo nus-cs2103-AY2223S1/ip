@@ -118,7 +118,7 @@ public class Parser {
         try {
             type = CommandType.valueOf(args[0].toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new ParseException(rawInput, "unknown command");
+            throw new ParseException(rawInput, "unknown command; enter \"help\" for available commands");
         }
         if (!type.isCompatible(args)) {
             throw new ParseException(rawInput, "wrong number of arguments provided");
