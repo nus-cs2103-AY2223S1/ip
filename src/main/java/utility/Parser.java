@@ -1,8 +1,10 @@
 package utility;
 
+import java.security.Key;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,7 +32,7 @@ import task.Task;
  * Handles all conversions required in the program.
  */
 public class Parser {
-    private static HashMap<String, Pattern> COMMMAND_ALIASES;
+    private static HashMap<String, Pattern> COMMMAND_ALIASES = new HashMap<>();
 
     public static void initialiseCommandAliases() {
         if (COMMMAND_ALIASES.isEmpty()) {
@@ -47,14 +49,14 @@ public class Parser {
             Pattern helpRegex = Pattern.compile("help|h", Pattern.CASE_INSENSITIVE);
             commandAliases.put("todo", todoRegex);
             commandAliases.put("list", listRegex);
-            commandAliases.put(deadlineRegex, "deadline");
-            commandAliases.put(markRegex, "mark");
-            commandAliases.put(unmarkRegex, "unmark");
-            commandAliases.put(byeRegex, "bye");
-            commandAliases.put(findRegex, "find");
-            commandAliases.put(longdescRegex, "longdesc");
-            commandAliases.put(istodayRegex, "istoday");
-            commandAliases.put(helpRegex, "help");
+            commandAliases.put("deadline", deadlineRegex);
+            commandAliases.put("mark", markRegex);
+            commandAliases.put("unmark", unmarkRegex);
+            commandAliases.put("bye", byeRegex);
+            commandAliases.put("find", findRegex);
+            commandAliases.put("longdesc", longdescRegex);
+            commandAliases.put("istoday", istodayRegex);
+            commandAliases.put("help", helpRegex);
             COMMMAND_ALIASES = commandAliases;
         }
     }
@@ -115,14 +117,12 @@ public class Parser {
      */
     private static String extractCommand(String command) {
         initialiseCommandAliases();
-        int numberOfValidCommands = COMMANDS_ORDERED_LIST.length;
         Matcher matcher;
-
-        for (int i = 0; i < ; i ++) {
-           matcher = REGEXES[i].matcher(command);
-           if (matcher.matches()) {
-               return COMMANDS_ORDERED_LIST[i];
-           }
+        for( Map.Entry<String,Pattern> patternAndString : COMMMAND_ALIASES.entrySet()) {
+            matcher = patternAndString.getValue().matcher(command);
+            if (matcher.matches()) {
+                return patternAndString.getKey();
+            }
         }
         return " ";
     }
