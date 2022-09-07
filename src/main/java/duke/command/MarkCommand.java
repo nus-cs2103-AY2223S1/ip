@@ -3,7 +3,6 @@ package duke.command;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.tasklist.TaskList;
-import duke.ui.Ui;
 
 /**
  * Abstraction to mark a task as complete.
@@ -22,7 +21,7 @@ public class MarkCommand implements Command {
      * Marks task at given index as complete, and shows output to user.
      */
     @Override
-    public String execute(TaskList itemList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList itemList, Storage storage) throws DukeException {
         try {
             return itemList.mark(Integer.parseInt(index));
         } catch (NumberFormatException e) {

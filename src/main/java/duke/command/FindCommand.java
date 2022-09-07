@@ -6,7 +6,6 @@ import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.DukeTask;
 import duke.tasklist.TaskList;
-import duke.ui.Ui;
 
 /**
  * Encapsulates searching for keywords in a TaskList.
@@ -30,7 +29,7 @@ public class FindCommand implements Command {
      * Finds tasks matching input string, and shows output to user.
      */
     @Override
-    public String execute(TaskList itemList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList itemList, Storage storage) throws DukeException {
         return executeFindItems(input, itemList);
     }
 

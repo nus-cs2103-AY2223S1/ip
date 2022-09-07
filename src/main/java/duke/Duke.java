@@ -5,7 +5,6 @@ import duke.exception.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.tasklist.TaskList;
-import duke.ui.Ui;
 
 /**
  * Apollo is a chatbot that keeps tracks of various items, encapsulated
@@ -16,7 +15,6 @@ import duke.ui.Ui;
 public class Duke {
     private Storage storage;
     private TaskList itemList;
-    private final Ui ui;
 
     /**
      * Constructor for an instance of Apollo.
@@ -28,23 +26,6 @@ public class Duke {
             itemList = new TaskList(storage.load());
         } catch (DukeException e) {
             itemList = new TaskList();
-        } finally {
-            ui = new Ui();
-        }
-    }
-
-    /**
-     * Runs Apollo. Waits for input lines and processes them accordingly.
-     */
-    private void run() {
-        ui.showIntro();
-        while (true) {
-            try {
-                Command c = Parser.parseUserInput(ui.getUserInput());
-                c.execute(itemList, ui, storage);
-            } catch (DukeException e) {
-                ui.showError(e);
-            }
         }
     }
 
@@ -56,7 +37,7 @@ public class Duke {
     public String execute(String input) {
         try {
             Command c = Parser.parseUserInput(input);
-            return c.execute(itemList, ui, storage);
+            return c.execute(itemList, storage);
         } catch (DukeException e) {
             return e.getMessage();
         }

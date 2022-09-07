@@ -3,7 +3,6 @@ package duke.command;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.tasklist.TaskList;
-import duke.ui.Ui;
 
 /**
  * Encapsulates marking a task as incomplete.
@@ -22,7 +21,7 @@ public class UnmarkCommand implements Command {
      * Marks task at given index as incomplete, and shows output to user.
      */
     @Override
-    public String execute(TaskList itemList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList itemList, Storage storage) throws DukeException {
         try {
             return itemList.unmark(Integer.parseInt(index));
         } catch (NumberFormatException e) {

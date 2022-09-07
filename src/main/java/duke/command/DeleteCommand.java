@@ -3,7 +3,6 @@ package duke.command;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.tasklist.TaskList;
-import duke.ui.Ui;
 
 /**
  * Encapsulates deleting items from a TaskList object.
@@ -22,7 +21,7 @@ public class DeleteCommand implements Command {
      * Removes given input index from itemList, and shows the resulting message to the user.
      */
     @Override
-    public String execute(TaskList itemList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList itemList, Storage storage) throws DukeException {
         try {
             return itemList.deleteItem(Integer.parseInt(index));
         } catch (NumberFormatException e) {

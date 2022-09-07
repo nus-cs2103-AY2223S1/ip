@@ -7,7 +7,6 @@ import duke.task.DukeTask;
 import duke.task.Event;
 import duke.task.ToDo;
 import duke.tasklist.TaskList;
-import duke.ui.Ui;
 
 /**
  * Encapsulates adding items to a TaskList object.
@@ -31,7 +30,7 @@ public class AddItemCommand implements Command {
      * Adds given input item to itemList, and shows the resulting message to the user.
      */
     @Override
-    public String execute(TaskList itemList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList itemList, Storage storage) throws DukeException {
         return executeAddItem(input, itemList);
     }
 
