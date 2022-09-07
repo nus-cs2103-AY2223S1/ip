@@ -52,44 +52,52 @@ public class Parser {
                 if (temp.length == 1) {
                     throw new TedException("Oh no, please indicate task to mark T_T\n");
                 }
+                assert temp.length > 1;
                 c = new MarkCommand(Integer.parseInt(temp[1]));
                 break;
             case "unmark":
                 if (temp.length == 1) {
                     throw new TedException("Oh no, please indicate task to unmark T_T\n");
                 }
+                assert temp.length > 1;
                 c = new UnmarkCommand(Integer.parseInt(temp[1]));
                 break;
             case "delete":
                 if (temp.length == 1) {
                     throw new TedException("Oh no, please indicate task to delete T_T\n");
                 }
+                assert temp.length > 1;
                 c = new DeleteCommand(Integer.parseInt(temp[1]));
                 break;
             case "todo":
                 if (temp.length == 1) {
                     throw new TedException("Oh no, please include task description T_T\n");
                 }
+                assert temp.length > 1;
                 c = new AddCommand(new Todo(temp[1]));
                 break;
             case "deadline":
                 if (temp.length == 1) {
                     throw new TedException("Oh no, please include task description T_T\n");
                 }
+                assert temp.length > 1;
                 String[] deadlineDesc = temp[1].split(" /by ", 2);
                 if (deadlineDesc.length == 1) {
                     throw new TedException("Oh no, please include both deadline description and time T_T\n");
                 }
+                assert deadlineDesc.length > 1;
                 c = new AddCommand(new Deadline(deadlineDesc[0], deadlineDesc[1]));
                 break;
             case "event":
                 if (temp.length == 1) {
                     throw new TedException("Oh no, please include task description T_T\n");
                 }
+                assert temp.length > 1;
                 String[] eventDesc = temp[1].split(" /at ", 2);
                 if (eventDesc.length == 1) {
                     throw new TedException("Oh no, please include both event description and time T_T\n");
                 }
+                assert eventDesc.length > 1;
                 c = new AddCommand(new Event(eventDesc[0], eventDesc[1]));
                 break;
             default:
