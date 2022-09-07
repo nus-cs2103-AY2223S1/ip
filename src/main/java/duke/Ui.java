@@ -121,6 +121,7 @@ public class Ui {
      * @return A String representing the full command inputted by the user.
      */
     public String readCommand() {
+        assert this.sc != null;
         return sc.nextLine();
     }
 

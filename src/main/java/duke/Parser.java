@@ -47,17 +47,20 @@ public class Parser {
             // mark keyword: checks the box of an item in the list
             String numString = words[1];
             int idx = Integer.parseInt(numString) - 1;
+            assert idx >= 0;
             return new MarkCommand(idx);
         } else if (words[0].equals("unmark")) {
             // unmark keyword: unchecks the box of an item in the list
             String numString = words[1];
             int idx = Integer.parseInt(numString) - 1;
+            assert idx >= 0;
             return new UnmarkCommand(idx);
         } else if (words[0].equals("todo")) {
             // to do keyword: create new to do item
             if (words.length == 1) {
                 throw new EmptyTodoException();
             } else {
+                assert input.split("todo ", 2).length > 0;
                 String desc = input.split("todo ", 2)[1];
                 return new AddCommand(new Todo(desc));
             }
@@ -95,6 +98,7 @@ public class Parser {
             // delete keyword: remove task from list
             String numString = words[1];
             int idx = Integer.parseInt(numString) - 1;
+            assert idx >= 0;
             return new DeleteCommand(idx);
         } else if (words[0].equals("find")) {
             // find keyword: find matching tasks
