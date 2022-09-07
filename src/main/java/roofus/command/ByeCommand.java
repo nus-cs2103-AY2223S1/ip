@@ -20,7 +20,7 @@ public class ByeCommand extends Command {
         try {
             storage.save(taskList);
         } catch (IOException err) {
-            return ui.printErrMessage("file not saved") + "\n" 
+            return ui.printErrMessage("file not saved") + "\n"
                     + ui.signOff();
         }
         return ui.signOff();

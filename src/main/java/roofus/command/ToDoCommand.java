@@ -1,11 +1,11 @@
 package roofus.command;
 
+import java.io.IOException;
+
 import roofus.Storage;
 import roofus.TaskList;
 import roofus.Ui;
 import roofus.task.ToDo;
-
-import java.io.IOException;
 
 /**
  * Represents a command action that adds a ToDo task to the TaskList
@@ -21,7 +21,7 @@ public class ToDoCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public String  execute(
+    public String execute(
             TaskList taskList, Storage storage, Ui ui) {
         taskList.addTask(task);
         try {

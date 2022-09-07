@@ -20,14 +20,24 @@ public class Task implements Comparable<Task> {
         this.isDone = false;
     }
 
+    /**
+     * Checks if Task instance has a LocalDate attribute.
+     *
+     * @return boolean Returns true if Task is a Deadline or Event and false otherwise.
+     */
     public boolean hasTime() {
         return false;
     }
-    
+
+    /**
+     * Retrieves the Task's LocalDate attribute.
+     *
+     * @return LocalDate Returns the LocalDate attribute of the Task.
+     */
     public LocalDate getDate() {
         return null;
     }
-    
+
     /**
      * Marks the Task as completed.
      */
@@ -66,7 +76,13 @@ public class Task implements Comparable<Task> {
             return "[ ] " + description;
         }
     }
-    
+
+    /**
+     * Compares tasks using their LocalDate attribute.
+     *
+     * @param t The task to be compared with the current instance.
+     * @return int Number representing the priority.
+     */
     @Override
     public int compareTo(Task t) {
         if (this.hasTime() && t.hasTime()) {

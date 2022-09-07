@@ -47,10 +47,15 @@ public class TaskList {
         }
     }
 
+    /**
+     * Sort the taskLists by task's natural ordering.
+     *
+     * @see Task
+     */
     public void sort() {
         this.tasks.sort(null);
     }
-    
+
     /**
      * Adds a task to Tasklist.
      *

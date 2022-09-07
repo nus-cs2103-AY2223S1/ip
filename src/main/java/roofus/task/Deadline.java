@@ -21,15 +21,22 @@ public class Deadline extends Task {
         this.date = LocalDate.parse(date);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean hasTime() {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public LocalDate getDate() {
         return date;
     }
-    
+
     /**
      * {@inheritDoc}
      */
