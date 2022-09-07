@@ -53,7 +53,7 @@ public class AddCommand extends Command {
         String response = "";
         if (commandLine.startsWith("todo")) {
             try {
-                if (commandLine.length() <= 4) {
+                if (commandLine.length() <= 5) {
                     throw new DukeException("The description of a todo cannot be empty.");
                 } else {
                     String actTask = commandLine.substring(5);
@@ -72,7 +72,7 @@ public class AddCommand extends Command {
             }
         } else if (commandLine.startsWith("deadline")) {
             try {
-                if (commandLine.length() <= 8) {
+                if (commandLine.length() <= 9) {
                     throw new DukeException("The description of a deadline cannot be empty.");
                 } else {
                     if (!commandLine.contains("/")) {
@@ -97,7 +97,7 @@ public class AddCommand extends Command {
             }
         } else {
             try {
-                if (commandLine.length() <= 5) {
+                if (commandLine.length() <= 6) {
                     throw new DukeException("The description of a event cannot be empty.");
                 } else {
                     if (!commandLine.contains("/")) {
