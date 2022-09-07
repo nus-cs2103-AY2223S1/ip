@@ -5,7 +5,6 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
 import duke.exception.DukeException;
 import duke.exception.DukeInvalidSaveDataException;
@@ -16,15 +15,17 @@ import duke.note.NoteList;
  * Handles saving and loading of tasks to and from a file.
  */
 public class Storage {
-    private String filePath;
+    private String tasksFilePath;
+    private String notesFilePath;
 
     /**
      * Create a new Storage object to handle saving and loading of tasks.
      *
      * @param filePath path to the file to save and load tasks from
      */
-    public Storage(String filePath) {
-        this.filePath = filePath;
+    public Storage(String tasksFilePath, String notesFilePath) {
+        this.tasksFilePath = tasksFilePath;
+        this.notesFilePath = notesFilePath;
     }
 
     /**
@@ -34,9 +35,9 @@ public class Storage {
      * @throws DukeInvalidSaveDataException if there is an error reading the file
      */
     public void load(TaskList tasks, NoteList notes) throws DukeInvalidSaveDataException {
-        Path saveLocation = Paths.get(filePath);
+        Path tasksSaveLocation = Paths.get(tasksFilePath);
         try {
-            Files.lines(saveLocation).forEach((taskString) -> {
+            Files.lines(tasksSaveLocation).forEach((taskString) -> {
                 String type = taskString.split(",")[0];
                 switch (type) {
                 case "T":
@@ -48,8 +49,21 @@ public class Storage {
                 case "D":
                     tasks.add(Deadline.fromSaveString(taskString));
                     break;
+                default:
+                    throw new DukeInvalidSaveDataException();
+                }
+            });
+        } catch (IOException ignored) {
+            // Save file does not exist, don't try to continue loading.
+        }
+
+        Path notesSaveLocation = Paths.get(notesFilePath);
+        try {
+            Files.lines(notesSaveLocation).forEach((notesString) -> {
+                String type = notesString.split(",")[0];
+                switch (type) {
                 case "N":
-                    notes.add(Note.fromSaveString(taskString));
+                    notes.add(Note.fromSaveString(notesString));
                     break;
                 default:
                     throw new DukeInvalidSaveDataException();
@@ -58,6 +72,8 @@ public class Storage {
         } catch (IOException ignored) {
             // Save file does not exist, don't try to continue loading.
         }
+
+        
     }
 
     /**
@@ -66,16 +82,24 @@ public class Storage {
      * @param tasks the list of tasks to save
      * @throws DukeException if there is an error writing to the file
      */
-    public void save(TaskList tasks) throws DukeException {
+    public void save(TaskList tasks, NoteList notes) throws DukeException {
         try {
-            Files.createDirectories(Paths.get(filePath).getParent());
-            Path saveLocation = Paths.get(filePath);
+            Files.createDirectories(Paths.get(tasksFilePath).getParent());
+            Path tasksSaveLocation = Paths.get(tasksFilePath);
+            Files.createDirectories(Paths.get(notesFilePath).getParent());
+            Path notesSaveLocation = Paths.get(notesFilePath);
             try {
-                Files.createFile(saveLocation);
+                Files.createFile(tasksSaveLocation);
             } catch (FileAlreadyExistsException ignored) {
-                // Save file already exists, overwrite it in the next step.
+                // Tasks save file already exists, overwrite it in the next step.
             }
-            Files.write(saveLocation, tasks.toSaveData().getBytes());
+            try {
+                Files.createFile(notesSaveLocation);
+            } catch (FileAlreadyExistsException ignored) {
+                // Notes save file already exists, overwrite it in the next step.
+            }
+            Files.write(tasksSaveLocation, tasks.toSaveData().getBytes());
+            Files.write(notesSaveLocation, notes.toSaveData().getBytes());
         } catch (IOException e) {
             throw new DukeException("IOException: " + e.toString());
         }

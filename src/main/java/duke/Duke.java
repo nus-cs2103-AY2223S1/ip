@@ -11,7 +11,8 @@ import javafx.application.Application;
  * This is the main application class for Duke.
  */
 public class Duke {
-    private static final String SAVE_FILE_PATH = "data/tasks.txt";
+    private static final String TASKS_SAVE_FILE_PATH = "data/tasks.txt";
+    private static final String NOTES_SAVE_FILE_PATH = "data/notes.txt";
 
     private Storage storage;
     private TaskList tasks;
@@ -23,8 +24,8 @@ public class Duke {
      *
      * @param filePath path to the save file
      */
-    public Duke(String filePath) {
-        storage = new Storage(filePath);
+    public Duke(String tasksFilePath, String notesFilePath) {
+        storage = new Storage(tasksFilePath, notesFilePath);
         tasks = new TaskList();
         notes = new NoteList();
         try {
@@ -39,7 +40,7 @@ public class Duke {
      * Create a new Duke application with the default save file path.
      */
     public Duke() {
-        this(SAVE_FILE_PATH);
+        this(TASKS_SAVE_FILE_PATH, NOTES_SAVE_FILE_PATH);
     }
 
     /**
