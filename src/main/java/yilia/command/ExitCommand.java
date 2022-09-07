@@ -1,10 +1,10 @@
 package yilia.command;
 
+import java.io.IOException;
+
 import yilia.Storage;
 import yilia.Ui;
 import yilia.task.TaskList;
-
-import java.io.IOException;
 
 /**
  * Represents a command to exit the program.
@@ -19,14 +19,15 @@ public class ExitCommand extends Command {
      * @param tasks The tasks.
      * @param ui The use interface.
      * @param storage The local storage.
+     * @return The message after executing.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         try {
             storage.save(tasks);
-            ui.showBye();
+            return ui.showBye();
         } catch (IOException e) {
-            ui.showError(e.getMessage());
+            return ui.showError(e.getMessage());
         }
     }
 }
