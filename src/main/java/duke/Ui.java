@@ -1,5 +1,6 @@
 package duke;
 
+import duke.task.Note;
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -34,7 +35,7 @@ public abstract class Ui {
         if (taskList.isEmpty()) {
             header = "You have no tasks in your list.";
         } else {
-            header = "My List Of Tasks :>";
+            header = "My List :>";
         }
         return header + "\n" + taskList;
     }
@@ -47,9 +48,9 @@ public abstract class Ui {
      * @return successful task creation message
      */
     public static String printTaskCreationMessage(Task newTask, int noOfTasks) {
-        String createdTaskMessage = "Got it. I've added this task:\n "
-                + newTask + "\nNow you have " + noOfTasks + " tasks in the list.";
-        return createdTaskMessage;
+        String type = newTask instanceof Note ? "note" : "task";
+        return String.format("Got it. I've added %s :\n %s\nNow you have %d %ss in the list",
+                type, newTask, noOfTasks, type);
     }
 
     /**
@@ -58,8 +59,9 @@ public abstract class Ui {
      * @return successful task deletion message
      */
     public static String printTaskDeletionMessage(Task deletedTask, int noOfTasks) {
-        return String.format("Noted. I've removed this task:\n %s\nNow you have %d tasks in the list",
-                deletedTask, noOfTasks);
+        String type = deletedTask instanceof Note ? "note" : "task";
+        return String.format("Noted. I've removed :\n %s\nNow you have %d %ss in the list",
+                deletedTask, noOfTasks, type);
     }
 
     /**

@@ -14,6 +14,7 @@ import duke.Ui;
  */
 public class TaskList {
     private LinkedList<Task> tasks = new LinkedList<>();
+    private LinkedList<Note> notes = new LinkedList<>();
 
     /**
      * Constructs a <code>TaskList</code> containing <code>Task</code> from the data file.
@@ -44,6 +45,10 @@ public class TaskList {
                     event.setDone(isDone);
                     tasks.add(event);
                     break;
+                case "N":
+                    Note note = new Note(taskDescription);
+                    notes.add(note);
+                    break;
                 }
             }
         } catch (FileNotFoundException e) {
@@ -70,35 +75,25 @@ public class TaskList {
         return Ui.printTaskDeletionMessage(deletedTask, tasks.size());
     }
 
-    /**
-     * Modifies this <code>TaskList</code> by editing the task at the specified position.
-     *
-     * @param cmd command to be executed
-     * @param index index of the <code>Task</code> to be edited
-     * @throws DukeException if the index is out of range
-     */
-    public String editTaskList(String cmd, int index) throws DukeException {
-        if (index >= tasks.size() || index < 0) {
-            throw new DukeException("Duke: Looks like your task list currently does not have a task at this index.");
-        }
-        Task t = tasks.get(index);
-        String editMessage = "";
-        switch (cmd) {
-        case "mark":
-            editMessage = t.markAsDone();
-            break;
-        case "unmark":
-            editMessage = t.markAsNotDone();
-            break;
-        case "delete":
-            tasks.remove(index);
-            editMessage = String.format("Noted. I've removed this task:\n %s\nNow you have %d tasks in the list",
-                    t, tasks.size());
-            break;
-        }
-        System.out.println(editMessage);
-        return editMessage;
+    public String addNote(Note newNote) {
+        notes.add(newNote);
+        return Ui.printTaskCreationMessage(newNote, notes.size());
     }
+
+    /**
+     * Deletes <code>Note</code> at the given index from <code>TaskList</code>
+     *
+     * @param index index of note being deleted
+     * @return successful note deletion message
+     */
+    public String deleteNote(int index) {
+        if (index < 0 || index > notes.size() - 1) {
+            throw new DukeException("Invalid note index!");
+        }
+        Task deletedTask = notes.remove(index);
+        return Ui.printTaskDeletionMessage(deletedTask, notes.size());
+    }
+
 
     /**
      * Marks the <code>Task</code> at the given index as done.
@@ -139,6 +134,9 @@ public class TaskList {
         for (Task task : tasks) {
             csv.append(task.toCsv());
         }
+        for (Note note : notes) {
+            csv.append(note.toCsv());
+        }
         return csv.toString();
     }
 
@@ -148,7 +146,7 @@ public class TaskList {
      * @return true if number of tasks in <code>TaskList</code> is 0, otherwise false
      */
     public boolean isEmpty() {
-        return tasks.isEmpty();
+        return tasks.isEmpty() && notes.isEmpty();
     }
 
     /**
@@ -168,6 +166,32 @@ public class TaskList {
         return Ui.printTaskSearch(match.toString());
     }
 
+    public String tasksToString() {
+        StringBuilder strTasks = new StringBuilder().append("Tasks\n");
+        if (tasks.isEmpty()) {
+            strTasks.append("You have no tasks in your list\n");
+        } else {
+            for (int i = 0; i < tasks.size(); i++) {
+                int index = i + 1;
+                strTasks.append(index).append(". ").append(tasks.get(i).toString()).append("\n");
+            }
+        }
+        return strTasks.toString();
+    }
+
+    public String notesToString() {
+        StringBuilder strNotes = new StringBuilder().append("Notes\n");
+        if (notes.isEmpty()) {
+            strNotes.append("You have no notes in your list\n");
+        } else {
+            for (int i = 0; i < notes.size(); i++) {
+                int index = i + 1;
+                strNotes.append(index).append(". ").append(notes.get(i).toString()).append("\n");
+            }
+        }
+        return strNotes.toString();
+    }
+
     /**
      * Returns a string representation of this <code>TaskList</code>.
      *
@@ -175,11 +199,6 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        StringBuilder str = new StringBuilder();
-        for (int i = 0; i < tasks.size(); i++) {
-            int index = i + 1;
-            str.append(index).append(". ").append(tasks.get(i).toString()).append("\n");
-        }
-        return str.toString();
+        return tasksToString() + notesToString();
     }
 }

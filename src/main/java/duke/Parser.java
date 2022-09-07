@@ -1,16 +1,6 @@
 package duke;
 
-import duke.command.Command;
-import duke.command.CommandType;
-import duke.command.DeadlineCommand;
-import duke.command.DeleteCommand;
-import duke.command.EventCommand;
-import duke.command.ExitCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.TodoCommand;
-import duke.command.UnmarkCommand;
+import duke.command.*;
 import duke.exception.DukeException;
 import duke.task.TaskType;
 
@@ -74,6 +64,8 @@ public class Parser {
             return new UnmarkCommand(index);
         case DELETE:
             return new DeleteCommand(index);
+        case DELETENOTE:
+            return new DeleteNoteCommand(index);
         default:
             throw new DukeException("Unable to edit task");
         }
@@ -88,13 +80,14 @@ public class Parser {
      */
     private static Command parseCreateTask(TaskType taskType, String[] splitInput) throws DukeException {
         int len = splitInput.length;
-        String taskDescription;
+        String taskDescription = getTaskField(splitInput, 1, len);;
         String date;
         int index;
         switch (taskType) {
         case TODO:
-            taskDescription = getTaskField(splitInput, 1, len);
             return new TodoCommand(taskDescription);
+        case NOTE:
+            return new AddNoteCommand(taskDescription);
         case DEADLINE:
             index = getDateIndex(splitInput);
             taskDescription = getTaskField(splitInput, 1, index);
@@ -150,12 +143,16 @@ public class Parser {
             return parseEdit(CommandType.UNMARK, splitInput);
         case "delete":
             return parseEdit(CommandType.DELETE, splitInput);
+        case "deletenote":
+            return parseEdit(CommandType.DELETENOTE, splitInput);
         case "todo":
             return parseCreateTask(TaskType.TODO, splitInput);
         case "deadline":
             return parseCreateTask(TaskType.DEADLINE, splitInput);
         case "event":
             return parseCreateTask(TaskType.EVENT, splitInput);
+        case "addnote":
+            return parseCreateTask(TaskType.NOTE, splitInput);
         default:
             throw new DukeException("Sorry! I don't know what that means!");
         }

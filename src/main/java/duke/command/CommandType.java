@@ -1,5 +1,5 @@
 package duke.command;
 
 public enum CommandType {
-    MARK, UNMARK, DELETE, LIST, FIND
+    MARK, UNMARK, DELETE, DELETENOTE, LIST, FIND
 }
