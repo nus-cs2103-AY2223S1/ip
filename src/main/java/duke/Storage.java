@@ -125,17 +125,17 @@ public class Storage {
             for (Task task : tasks) {
                 switch (task.getTaskType()) {
                     case "T": {
-                        String data = "T" + " | " + task.getStatus() + " | " + task.getDescription();
+                        String data = "T" + " | " + task.getStatus() + " | " + task.getStringPriority() + " | " + task.getDescription();
                         stringTasks.add(data);
                         break;
                     }
                     case "D": {
-                        String data = "D" + " | " + task.getStatus() + " | " + task.getDescription();
+                        String data = "D" + " | " + task.getStatus() + " | " + task.getStringPriority() + " | " + task.getDescription();
                         stringTasks.add(data);
                         break;
                     }
                     case "E": {
-                        String data = "E" + " | " + task.getStatus() + " | " + task.getDescription();
+                        String data = "E" + " | " + task.getStatus() + " | " + task.getStringPriority() + " | " + task.getDescription();
                         stringTasks.add(data);
                         break;
                     }

@@ -22,6 +22,26 @@ public class Task {
         this.priority = Priority.LOW;
     }
 
+    public Priority getPriority() {
+        return this.priority;
+    }
+
+    public void setPriority(String priority) {
+        switch (priority) {
+        case "LOW":
+            this.priority = Priority.LOW;
+            break;
+        case "MEDIUM":
+            this.priority = Priority.MEDIUM;
+            break;
+        case "HIGH":
+            this.priority = Priority.HIGH;
+            break;
+        default:
+            break;
+        }
+    }
+
     public String getStringPriority() {
         switch (priority) {
         case LOW:
@@ -84,7 +104,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "] "
-                + this.getStringPriority() + this.description;
+        return "[" + this.getStatusIcon() + "]"
+                + this.getStringPriority() + " " + this.description;
     }
 }
