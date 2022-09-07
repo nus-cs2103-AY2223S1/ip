@@ -84,47 +84,57 @@ public class Parser {
      * @param input
      * @return
      */
-    private static String extractCommand(String input) throws DukeException{
+    private static String extractCommand(String input) throws DukeException {
         int whiteSpaceIndex = input.indexOf(" ");
         String command;
         if (whiteSpaceIndex < 0) {
             command = input;
-        } else {
+        }
+        else {
             command = input.substring(0, input.indexOf(" "));
         }
         if (command.equalsIgnoreCase("t") || command.equalsIgnoreCase("todo")) {
-            return "todo"
-        } else if (command.equalsIgnoreCase("l") || command.equalsIgnoreCase("list")) {
-            return "list"
-        } else if (command.equalsIgnoreCase("deadline") || command.equalsIgnoreCase("d")) {
+            return "todo";
+        }
+        else if (command.equalsIgnoreCase("l") || command.equalsIgnoreCase("list")) {
+            return "list";
+        }
+        else if (command.equalsIgnoreCase("deadline") || command.equalsIgnoreCase("d")) {
             return "deadline";
-        } else if (command.equalsIgnoreCase("mark") || command.equalsIgnoreCase("m")) {
+        }
+        else if (command.equalsIgnoreCase("mark") || command.equalsIgnoreCase("m")) {
             return "mark";
-        } else if (command.equalsIgnoreCase("unmark")  || command.equalsIgnoreCase("um")) {
+        }
+        else if (command.equalsIgnoreCase("unmark") || command.equalsIgnoreCase("um")) {
             return "unmark";
-        } else if (command.equalsIgnoreCase("bye") || command.equalsIgnoreCase("quit") || command.equalsIgnoreCase("q") ||
-                command.equalsIgnoreCase("b") || command.equalsIgnoreCase("exit")){
+        }
+        else if (command.equalsIgnoreCase("bye") || command.equalsIgnoreCase("quit") || command.equalsIgnoreCase("q") ||
+                command.equalsIgnoreCase("b") || command.equalsIgnoreCase("exit")) {
             return "bye";
-        } else if (command.equalsIgnoreCase("find") || command.equalsIgnoreCase("f")) {
+        }
+        else if (command.equalsIgnoreCase("find") || command.equalsIgnoreCase("f")) {
             return "find";
-        } else if (command.equalsIgnoreCase("longdesc")) {
+        }
+        else if (command.equalsIgnoreCase("longdesc")) {
             return "longdesc";
-        } else if (command.equalsIgnoreCase("istoday")) {
+        }
+        else if (command.equalsIgnoreCase("istoday")) {
             return "istoday";
-        }else {
-            return " " ;
+        }
+        else {
+            return " ";
+        }
     }
 
     /**
      * Converts string command for adding
      * task to corresponding Task object.
      *
-     * @param userInput User input command for creating Task.
+     * @param description User input command for creating Task.
      * @return Task object with required description.
      * @throws DukeException When no valid description is found.
      */
-    public static Task stringToTask(String userInput) throws DukeException {
-        String description = getDescription("todo", userInput);
+    public static Task stringToTask(String description) throws DukeException {
         return new Task(description);
     }
 
@@ -136,10 +146,9 @@ public class Parser {
      * @return Event object with required description and date.
      * @throws DukeException When no valid description or date is found.
      */
-    public static Event stringToEvent(String userInput) throws DukeException {
-        String description = getDescription("event", userInput);
-        LocalDate date = getDate(userInput);
-        return new Event(description, date);
+    public static Event stringToEvent(String description, String date) throws DukeException {
+        LocalDate localDate = getDate(date);
+        return new Event(description, localDate);
     }
 
     /**
@@ -150,32 +159,11 @@ public class Parser {
      * @return Deadline object with required description and date.
      * @throws DukeException When no valid description or date is found.
      */
-    public static Deadline stringToDeadline(String userInput, String actualCommandUsed) throws DukeException {
-        String description = getDescription("deadline", actualCommandUsed, userInput);
-        LocalDate date = getDate(userInput);
-        return new Deadline(description, date);
+    public static Deadline stringToDeadline(String description, String date) throws DukeException {
+        LocalDate localDate = getDate(date);
+        return new Deadline(description, localDate);
     }
 
-    /**
-     * Extracts description of a task from user input.
-     * Requires command type used to evaluate description.
-     *
-     * @param commandUsed Command type mentioned in user input.
-     * @param actualCommandUsed User input string for performing command.
-     * @return Description contained in user input.
-     * @throws DukeException when no valid description is found.
-     */
-    private static String getDescription(String commandUsed, String actualCommandUsed, String userInput) throws DukeException {
-        String description;
-        int n = userInput.indexOf(actualCommandUsed);
-        switch (commandUsed) {
-        case "todo" :
-            description = userInput.substring(n);
-        case "event":
-            description = userInput.substring(n, userInput.indexOf("//"));
-        }
-        return " ";
-    }
 
     /**
      * Extracts date from a date-able Task.
@@ -184,13 +172,8 @@ public class Parser {
      * @return LocalDate object corresponding to date mentioned.
      * @throws DukeException Throws when no valid date found.
      */
-    private static LocalDate getDate(String userInput) throws DukeException {
+    private static LocalDate getDate(String date) throws DukeException {
         try {
-            String date;
-            int n = userInput.indexOf(EVENT_DATE_SECTION_START_STRING);
-            int m = userInput.indexOf(DEADLINE_DATE_SECTION_DATE_STRING);
-            int startDateIndex = (n == -1 ? m : n) + START_DATE_COMMAND_LENGTH;
-            date = userInput.substring(startDateIndex).trim();
             if (!date.isBlank()) {
                 return LocalDate.parse(date);
             } else {
