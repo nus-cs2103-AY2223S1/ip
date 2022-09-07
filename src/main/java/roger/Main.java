@@ -10,8 +10,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import roger.storage.Storage;
 import roger.ui.Parser;
-import roger.ui.Response;
-import roger.ui.controllers.DialogBox;
 import roger.ui.controllers.MainWindow;
 
 /**
