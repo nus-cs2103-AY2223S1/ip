@@ -74,6 +74,4 @@ public abstract class Serializable<T> {
     public String toString() {
         return this.serialized;
     }
-
-
 }

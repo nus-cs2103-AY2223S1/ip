@@ -19,6 +19,8 @@ import duke.models.task.Task;
 abstract class AddTaskCommand implements Command {
     private static final String MESSAGE_ADD_TASK = "Got it. I've added this task:";
 
+    private static final String ASSERTION_TASK_IS_NON_NULL = "A task must be non-null to be added.";
+
     /**
      * Retrieves the task supplied by the caller and adds that task to the specified task manager.
      *
@@ -29,6 +31,7 @@ abstract class AddTaskCommand implements Command {
      */
     public String addTask(TaskManager taskManager, Supplier<? extends Task> taskSupplier) {
         Task task = taskSupplier.get();
+        assert task != null : AddTaskCommand.ASSERTION_TASK_IS_NON_NULL;
         try {
             task = taskManager.add(task);
             return String.format(
