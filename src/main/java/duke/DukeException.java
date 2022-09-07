@@ -20,7 +20,7 @@ public class DukeException extends RuntimeException {
      */
     public DukeException(String task) {
         super();
-        this.description = "OOPS!!! The description of a " + task + " cannot be empty.";
+        this.description = "OOPS!!! The second field of " + task + " cannot be empty.";
     }
 
     /**
