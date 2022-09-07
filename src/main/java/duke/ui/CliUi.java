@@ -26,6 +26,7 @@ public class CliUi implements Formatter {
      * @return String formatted and is about to be printed on some screen output.
      */
     public String formatOutput(String input) {
+        assert(input != null);
         return HORIZONTAL_BAR + '\n' + TAB + input + '\n' + HORIZONTAL_BAR + '\n' + '\n';
     }
 

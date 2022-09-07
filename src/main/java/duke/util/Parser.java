@@ -158,13 +158,17 @@ public class Parser {
      * @return The corresponding Command object.
      */
     public Command parse(String input) {
+        assert(input != null);
         String instruction = getCommandInstruction(input);
         String argument = getCommandArgument(input);
         Function<String, Command> supplier = commandMap.getOrDefault(instruction, UNKNOWN_COMMAND_SUPPLIER);
-        return supplier.apply(argument);
+        Command command = supplier.apply(argument);
+        assert (command != null);
+        return command;
     }
 
     private static int getIndexOfFirstOccurrence(String input, String pattern) {
+        assert(input != null);
         int indexOfFirstOccurrence = input.indexOf(pattern);
         if (indexOfFirstOccurrence == -1) {
             indexOfFirstOccurrence = input.length();
@@ -193,6 +197,7 @@ public class Parser {
     }
 
     private static String getTaskTitle(String ... commandArgument) throws DukeMissingTaskTitleException {
+        assert(commandArgument[0] != null);
         int indexOfEnd = getIndexOfFirstDelimiter(commandArgument[0]);
         String roughTaskTitle = commandArgument[0].substring(0, indexOfEnd);
         String realTaskTitle = removeHeadingAndTailingWhiteSpaces(roughTaskTitle);
