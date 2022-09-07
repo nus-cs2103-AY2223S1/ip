@@ -38,8 +38,8 @@ public class FindCommand extends Command {
             String successMessage = MESSAGE_SUCCESS + newTaskList.iterate();
             return successMessage;
         } catch (NullPointerException npe) {
-            String errorMessage = "☹ Please enter a keyword!";
-            return errorMessage;
+            assert keyword == null : "keyword cannot be null";
+            return "☹ Please enter a keyword!";
         }
     }
 
