@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import duke.exception.InvalidCommandException;
+import duke.exception.InvalidInputException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -163,6 +165,18 @@ public class TaskList {
             }
             return returnString.toString();
         }
+    }
+
+    public String updateTaskDescription(int index,String description) {
+        Task toBeUpdatedTask = this.taskList.get(index - 1);
+        toBeUpdatedTask.updateDescription(description);
+        return toBeUpdatedTask.toString();
+    }
+
+    public String updateTaskDate(int index,LocalDate updatedDate) throws InvalidInputException {
+        Task toBeUpdatedTask = this.taskList.get(index - 1);
+        toBeUpdatedTask.updateDate(updatedDate);
+        return toBeUpdatedTask.toString();
     }
 
     /**
