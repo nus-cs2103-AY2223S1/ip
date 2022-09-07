@@ -28,6 +28,7 @@ public class Duke extends Application {
     private Ui ui;
     private Storage storage;
     private TaskList tasks;
+    private Undo undo;
 
     private Image userImg = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImg = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
@@ -38,6 +39,7 @@ public class Duke extends Application {
     public Duke() {
         ui = new Ui();
         storage = new Storage("/data/tasks.txt");
+        undo = new Undo();
         TaskList currentTaskList;
         try {
             currentTaskList = new TaskList(storage.load());
@@ -152,6 +154,6 @@ public class Duke extends Application {
      * @throws IOException   if file not found.
      */
     public String getResponse(String input) throws IOException {
-        return Parser.parse(input, tasks, ui, storage);
+        return Parser.parse(input, tasks, ui, storage, undo);
     }
 }

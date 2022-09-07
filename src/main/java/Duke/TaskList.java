@@ -38,6 +38,19 @@ public class TaskList {
     }
 
     /**
+     * Adds a Task object to list of tasks in TaskList object at specified index.
+     *
+     * @param task  object added to list of tasks.
+     * @param index location of list where task should be added.
+     */
+    public void addTaskToIndex(Integer index, Task task) {
+        int initialSize = this.tasks.size();
+        this.tasks.add(index, task);
+        int afterSize = this.tasks.size();
+        assert (afterSize - initialSize) == 1 : "Task list should increment by 1";
+    }
+
+    /**
      * Removes a Task object from list of tasks in TaskList object.
      *
      * @param index index of object removed from list of tasks.
@@ -95,5 +108,16 @@ public class TaskList {
     public void markAsNotDone(int index) {
         this.tasks.get(index).markAsNotDone();
         assert (!this.tasks.get(index).isDone) : "Task should be marked as not done";
+    }
+
+    /**
+     * Removes last task in the list of tasks and returns it.
+     *
+     * @return last task in the list of tasks.
+     */
+    public Task popLastTask() {
+        Task lastTask = this.tasks.get(this.tasks.size() - 1);
+        this.tasks.remove(this.tasks.size() - 1);
+        return lastTask;
     }
 }
