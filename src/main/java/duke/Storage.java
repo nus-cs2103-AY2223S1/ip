@@ -90,12 +90,7 @@ public class Storage {
     }
 
     private static void printError(Exception err) {
-        System.out.println(BREAK_LINE +
-                "\n" +
-                "     ☹ OOPS!!! " +
-                err +
-                "\n" +
-                BREAK_LINE +
-                "\n");
+        System.out.println(BREAK_LINE + "\n" + "     ☹ OOPS!!! "
+                + err + "\n" + BREAK_LINE + "\n");
     }
 }

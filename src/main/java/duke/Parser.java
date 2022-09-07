@@ -48,12 +48,9 @@ public class Parser {
                     }
                     task = tasks.getTask(number - 1);
                     task.markAsDone();
-                    System.out.println(BREAK_LINE +
-                            "\n" +
-                            "     Nice! I've marked this task as done:\n       " +
-                            task +
-                            "\n" +
-                            BREAK_LINE);
+                    System.out.println(BREAK_LINE + "\n"
+                            + "     Nice! I've marked this task as done:\n       "
+                            + task + "\n" + BREAK_LINE);
                     break;
                 case "unmark":
                     if (inputArr.length > 2 || inputArr.length == 1) {
@@ -65,12 +62,9 @@ public class Parser {
                     }
                     task = tasks.getTask(number - 1);
                     task.markAsNotDone();
-                    System.out.println(BREAK_LINE +
-                            "\n" +
-                            "     Nice! I've marked this task as not done yet:\n       " +
-                            task +
-                            "\n" +
-                            BREAK_LINE);
+                    System.out.println(BREAK_LINE + "\n"
+                            + "     Nice! I've marked this task as not done yet:\n       "
+                            + task + "\n" + BREAK_LINE);
                     break;
                 case "todo":
                     if (input.substring(4).replaceAll("\\s+", "").equals("")) {
@@ -114,13 +108,9 @@ public class Parser {
                     }
                     task = tasks.getTask(number - 1);
                     tasks.deleteTask(number - 1);
-                    System.out.println(BREAK_LINE +
-                            "\n" +
-                            "     Okay! I've removed this task from the list:\n       " +
-                            task +
-                            "\n" +
-                            BREAK_LINE +
-                            "\n");
+                    System.out.println(BREAK_LINE + "\n"
+                            + "     Okay! I've removed this task from the list:\n       "
+                            + task + "\n" + BREAK_LINE + "\n");
                     break;
                 case "find":
                     String keyWord = input.substring(5);
@@ -139,23 +129,20 @@ public class Parser {
                     if(matches.isEmpty()) {
                         throw new DukeException("There is no task matching this key word.");
                     } else {
-                        System.out.println("The following is the matching tasks: ");
+                        System.out.println(BREAK_LINE + "\n"
+                                + "     Okay! I've removed this task from the list:\n       ");
                         for (int i = 0; i < matches.size(); i++) {
                             System.out.println(i + 1 + ". " + matches.get(i));
                         }
+                        System.out.println(BREAK_LINE + "\n");
                     }
                     break;
                 default:
                     throw new DukeException("I'm sorry, but I don't know what that means :-(");
                 }
             } catch (DukeException err) {
-                System.out.println(BREAK_LINE +
-                        "\n" +
-                        "     ☹ OOPS!!! " +
-                        err +
-                        "\n" +
-                        BREAK_LINE +
-                        "\n");
+                System.out.println(BREAK_LINE + "\n" + "     ☹ OOPS!!! "
+                        + err + "\n" + BREAK_LINE + "\n");
             }
             input = sc.nextLine();
             inputArr = input.split(" ");
@@ -164,27 +151,21 @@ public class Parser {
     }
 
     private void printTask(Task task) {
-        System.out.println(BREAK_LINE +
-                "\n" +
-                "     Got it. I've added this task:\n       " +
-                task);
-        System.out.format("     Now you have %d tasks in the list.\n" +
-                        BREAK_LINE +
-                        "\n",
-                tasks.getSize());
+        System.out.println(BREAK_LINE + "\n"
+                + "     Got it. I've added this task:\n       "
+                + task);
+        System.out.format("     Now you have %d tasks in the list.\n"
+                        + BREAK_LINE + "\n", tasks.getSize());
     }
 
     private void printList() {
         if (tasks.getSize() == 0) {
-            System.out.println(BREAK_LINE +
-                    "\n" +
-                    "     There is no pending task for you." +
-                    "\n" +
-                    BREAK_LINE);
+            System.out.println(BREAK_LINE + "\n"
+                    + "     There is no pending task for you."
+                    + "\n" + BREAK_LINE);
         } else {
-            System.out.println(BREAK_LINE +
-                    "\n" +
-                    "     Here are the tasks in your list:");
+            System.out.println(BREAK_LINE + "\n"
+                    + "     Here are the tasks in your list:");
             for (int i = 0; i < tasks.getSize(); i++) {
                 System.out.format("     %d.%s\n", i + 1, tasks.getTask(i));
             }
