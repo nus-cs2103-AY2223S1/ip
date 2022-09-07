@@ -120,6 +120,7 @@ public class Parser {
             throw new EmptyTitleException();
         }
 
+        assert title != "";
         String output = this.tasks.addTask(new Todo(title, false));
 
         this.storage.save(this.tasks);
@@ -147,6 +148,9 @@ public class Parser {
         } else if (deadline == "") {
             throw new InvalidArgumentException();
         }
+
+        assert title != "";
+        assert deadline != "";
 
         LocalDate ld = this.validateDateTime(deadline);
         String output = this.tasks.addTask(new Deadline(title, false, ld));
@@ -176,6 +180,9 @@ public class Parser {
         } else if (time == "") {
             throw new InvalidArgumentException();
         }
+
+        assert title != "";
+        assert time != "";
 
         String output = this.tasks.addTask(new Event(title, false, time));
 
@@ -213,6 +220,8 @@ public class Parser {
         }
 
         String keyword = String.join(" ", commandArgs);
+        assert keyword != "";
+
         return this.tasks.listTasks(keyword);
     }
 
