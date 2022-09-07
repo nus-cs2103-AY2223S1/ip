@@ -73,11 +73,12 @@ public class Parser {
      * @throws DukeException If there is not /by clause
      */
     public LocalDate getDeadlineDate() throws DukeException {
+        final int OFFSET_OF_BY = 4;
         int byIndex = input.indexOf("/by");
         if (byIndex == -1) {
             throw new DukeException("A deadline must have a by clause dummy!");
         }
-        String by = input.substring(byIndex + 4);
+        String by = input.substring(byIndex + OFFSET_OF_BY);
         String[] byArr = by.split(" ");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate byDate = LocalDate.parse(byArr[0], formatter);
@@ -102,12 +103,13 @@ public class Parser {
     }
 
     public LocalDate getEventDate() throws DukeException {
+        final int OFFSET_OF_AT = 4;
         int atIndex = input.indexOf("/at");
         if (atIndex == -1) {
             throw new DukeException("An event must have a at clause dummy!");
         }
 
-        String at = input.substring(atIndex + 4);
+        String at = input.substring(atIndex + OFFSET_OF_AT);
         String[] atArr = at.split(" ");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate atDate = LocalDate.parse(atArr[0], formatter);
@@ -129,6 +131,36 @@ public class Parser {
             throw new DukeException("You need to type in a keyword to find!!");
         }
         return keyword;
+    }
+
+    public String getUpdatedDescription() throws DukeException {
+        int indexOfUpdateNum = input.indexOf(inputArr[1]);
+        int indexOfDescription = input.indexOf(" ", indexOfUpdateNum);
+        int indexOfDateIdentifier;
+        if (input.contains(" /at ")) {
+            indexOfDateIdentifier = input.indexOf("/at");
+        } else if (input.contains(" /by ")) {
+            indexOfDateIdentifier = input.indexOf("/by");
+        } else {
+            indexOfDateIdentifier = input.length();
+        }
+        String newDesc = input.substring(indexOfDescription + 1, indexOfDateIdentifier);
+        if (newDesc.trim().equals("")) {
+            throw new DukeException("An update needs to have a new description dummy!");
+        }
+        return newDesc;
+    }
+
+    public boolean hasUpdateDateClause() {
+        return input.contains(" /at ") || input.contains(" /by ");
+    }
+
+    public boolean hasUpdateDescClause() {
+        if (inputArr[2].equals("/at") || inputArr[2].equals("/by")) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 

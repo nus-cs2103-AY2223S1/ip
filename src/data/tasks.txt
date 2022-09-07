@@ -1,1 +1,1 @@
-T | 0 | make magoc
+T | 0 | make magic

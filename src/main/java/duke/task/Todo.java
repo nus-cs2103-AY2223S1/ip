@@ -1,5 +1,9 @@
 package duke.task;
 
+import duke.exception.DukeException;
+
+import java.time.LocalDate;
+
 /**
  * Represents To-do which is a specific type of task.
  */
@@ -37,5 +41,10 @@ public class Todo extends Task {
     @Override
     public String getTaskType() {
         return "T";
+    }
+
+    @Override
+    public void updateDate(LocalDate date) throws DukeException {
+        throw new DukeException("There is no date clause in a todo task dummy!");
     }
 }

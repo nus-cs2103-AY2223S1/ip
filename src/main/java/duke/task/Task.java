@@ -1,5 +1,9 @@
 package duke.task;
 
+import duke.exception.DukeException;
+
+import java.time.LocalDate;
+
 /**
  * Represents a task.
  */
@@ -16,6 +20,8 @@ public abstract class Task {
 
     public abstract String getDescription();
 
+    public abstract void updateDate(LocalDate date) throws DukeException;
+
     /**
      * Returns icon of marked or unmarked status of the task.
      *
@@ -30,11 +36,20 @@ public abstract class Task {
     }
 
     public void setAsDone() {
-        this.isDone = true;
+        isDone = true;
     }
 
     public void setAsUndone() {
-        this.isDone = false;
+        isDone = false;
+    }
+
+    /**
+     * Updates the description of the task.
+     *
+     * @param desc String contains the new description
+     */
+    public void updateTask(String desc) {
+        description = desc;
     }
 
     /**
@@ -44,7 +59,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "] " + this.description;
+        return "[" + this.getStatusIcon() + "] " + description;
     }
 
 
