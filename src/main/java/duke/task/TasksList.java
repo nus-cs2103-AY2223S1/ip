@@ -6,8 +6,6 @@ import java.util.List;
 import duke.Storage;
 import duke.exception.DukeException;
 
-
-
 /**
  * Represent a list containing the tasks.
  */
