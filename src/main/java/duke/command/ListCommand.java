@@ -10,6 +10,9 @@ import duke.util.Storage;
  */
 public class ListCommand extends Command {
 
+    public static final String HELP_STRING = "- list:\n"
+            + "Lists all the tasks in the task list.";
+
     /**
      * Prints the {@code Task}s in the {@code TaskList} to the {@code UI}.
      *

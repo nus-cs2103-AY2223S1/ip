@@ -3,8 +3,9 @@ package duke.task;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.StringJoiner;
+import java.util.stream.Stream;
 
-import duke.DukeException;
 
 /**
  * Encapsulates a list of tasks.
@@ -49,20 +50,26 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
+     * Returns a {@code Stream<Task>} over the tasks in this {@code TaskList}.
+     *
+     * @return The {@code Stream<Task>}.
+     */
+    public Stream<Task> stream() {
+        return this.tasks.stream();
+    }
+
+    /**
      * Returns the string representation of this {@code TaskList}.
      *
      * @return The string representation of this {@code TaskList}.
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < tasks.size(); ++i) {
-            sb.append(String.format("\t%d. %s", i + 1, tasks.get(i)));
-            if (i + 1 < tasks.size()) {
-                sb.append("\n");
-            }
+        StringJoiner sj = new StringJoiner("\n");
+        for (int i = 0; i < this.tasks.size(); i++) {
+            sj.add(String.format("\t%d. %s", i + 1, this.tasks.get(i)));
         }
-        return sb.toString();
+        return sj.toString();
     }
 
     /**
@@ -81,9 +88,7 @@ public class TaskList implements Iterable<Task> {
      * @return The task at the given index.
      */
     public Task get(int index) {
-        if (index < 0 || index >= tasks.size()) {
-            throw new DukeException("Index out of bound");
-        }
+        assert 0 <= index && index < tasks.size();
         return tasks.get(index);
     }
 
@@ -93,9 +98,7 @@ public class TaskList implements Iterable<Task> {
      * @param index The index of the task to remove. Assumed 0-indexed.
      */
     public void remove(int index) {
-        if (index < 0 || index >= tasks.size()) {
-            throw new DukeException("Index out of bound");
-        }
+        assert 0 <= index && index < tasks.size();
         tasks.remove(index);
     }
 

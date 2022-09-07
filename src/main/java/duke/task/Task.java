@@ -1,5 +1,7 @@
 package duke.task;
 
+import java.util.regex.Pattern;
+
 /**
  * Encapsulates a task.
  */
@@ -66,7 +68,15 @@ public abstract class Task {
         return false;
     }
 
+    /**
+     * Checks if the description of this {@code Task} contains a given keyword.
+     * The search is case-insensitive.
+     *
+     * @param keyword The keyword to search for.
+     * @return {@code true} if the description of this {@code Task} contains the keyword, {@code false} otherwise.
+     */
     public boolean contains(String keyword) {
-        return this.description.contains(keyword);
+        // Ref: https://stackoverflow.com/a/86832
+        return Pattern.compile(Pattern.quote(keyword), Pattern.CASE_INSENSITIVE).matcher(this.description).find();
     }
 }

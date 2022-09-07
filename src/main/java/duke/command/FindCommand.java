@@ -2,7 +2,6 @@ package duke.command;
 
 import java.util.function.Consumer;
 
-import duke.task.Task;
 import duke.task.TaskList;
 import duke.util.Storage;
 
@@ -10,6 +9,10 @@ import duke.util.Storage;
  * Encapsulates a command to perform keyword saerch.
  */
 public class FindCommand extends Command {
+
+    public static final String HELP_STRING = "- find <keyword>:\n"
+            + "Searches for tasks with the given keyword."
+            + "The search is case insensitive.";
 
     private final String keyword;
 
@@ -32,11 +35,7 @@ public class FindCommand extends Command {
     @Override
     public void execute(Storage storage, Consumer<String> printer, TaskList tasks) {
         TaskList foundTasks = new TaskList();
-        for (Task task : tasks) {
-            if (task.contains(keyword)) {
-                foundTasks.add(task);
-            }
-        }
+        tasks.stream().filter(t -> t.contains(keyword)).forEach(foundTasks::add);
         printer.accept("Tasks containing \"" + keyword + "\":\n" + foundTasks);
     }
 

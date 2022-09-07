@@ -4,6 +4,7 @@ package duke.command;
  * Supported commands along with their argument counts.
  */
 public enum CommandType {
+    HELP(1),
     LIST(1),
     CHECK(2),
     UNCHECK(2),
@@ -27,6 +28,7 @@ public enum CommandType {
      * @return {@code true} if the arguments are compatible with the command, {@code false} otherwise.
      */
     public boolean isCompatible(String... args) {
+        assert args != null;
         return this.argCount == args.length;
     }
 }

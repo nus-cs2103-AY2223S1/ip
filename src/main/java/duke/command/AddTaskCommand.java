@@ -11,6 +11,14 @@ import duke.util.Storage;
  */
 public class AddTaskCommand extends Command {
 
+    public static final String HELP_STRING = "- todo <description>:\n"
+            + "Adds a todo task to the task list with the given description.\n\n"
+            + "- deadline <description> / <date-time>:\n"
+            + "Adds a deadline task to the task list with the given description and date.\n"
+            + "The date-time should be in the format d-M-yy HHmm.\n\n"
+            + "- event <description> / <date-time>:\n"
+            + "Adds an event task to the task list with the given description and date.\n"
+            + "The date-time should be in the format d-M-yy HHmm.";
     private final Task task;
 
     /**

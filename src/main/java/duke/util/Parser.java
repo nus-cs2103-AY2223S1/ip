@@ -12,6 +12,7 @@ import duke.command.DeleteTaskCommand;
 import duke.command.EmptyCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
+import duke.command.HelpCommand;
 import duke.command.ListCommand;
 import duke.command.UpdateStatusCommand;
 import duke.task.DeadlineTask;
@@ -80,6 +81,8 @@ public class Parser {
         CommandType type = getCommandType(args, rawInput);
 
         switch (type) {
+        case HELP:
+            return new HelpCommand();
         case LIST:
             return new ListCommand();
         case CHECK: // fall through
@@ -98,7 +101,7 @@ public class Parser {
         case EXIT:
             return new ExitCommand();
         default:
-            throw new ParseException(rawInput, "unknown command");
+            throw new ParseException(input, "unknown command; enter \"help\" for available commands");
         }
     }
 
