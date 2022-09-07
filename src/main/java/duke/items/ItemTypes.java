@@ -1,5 +1,8 @@
 package duke.items;
 
+/**
+ * Type of Items.
+ */
 public enum ItemTypes {
     TODO,
     DEADLINE,

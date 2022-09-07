@@ -9,20 +9,35 @@ import duke.items.ToDo;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+/**
+ * Object that takes in a Command Object then creates and stores the task.
+ */
 public class TaskList {
     private final ArrayList<Item> storedItems;
-    private final Saver saveManager = new Saver();
+    private final Storage saveManager = new Storage();
     private final UI ui;
 
+    /**
+     * Creates a Tasklist Object.
+     * @param ui UI Object to display messages to user.
+     */
     public TaskList(UI ui) {
         this.storedItems = this.saveManager.loadItems();
         this.ui = ui;
     }
 
+    /**
+     * Saves the items in the list of tasks to file upon closing of the app.
+     */
     public void destructor() {
         this.saveManager.saveItems(this.storedItems);
     }
 
+    /**
+     * Creates the tasks from a Command Object.
+     * @param command Command to turn into a task.
+     * @return A String for the UI object to print.
+     */
     public String executeTask(Command command) {
         String[] arguments = command.getArguments();
         switch (command.getCommand()) {

@@ -1,5 +1,8 @@
 package duke.commands;
 
+/**
+ * Enum to describe the list of commands available.
+ */
 public enum CommandsList {
     TODO,
     DEADLINE,
@@ -9,5 +12,6 @@ public enum CommandsList {
     LIST,
     DELETE,
     BYE,
+    HELP,
     UNKNOWN
 }

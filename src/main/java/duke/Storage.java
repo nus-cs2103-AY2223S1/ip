@@ -18,15 +18,24 @@ import java.nio.file.Paths;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
-public class Saver {
+/**
+ * Object to handle storing and loading of user's list of tasks.
+ */
+public class Storage {
     private String filePath = "/src/main/data/items.json";
 
-
-    public Saver() {
+    /**
+     * Creates an object to store & load user's items.
+     */
+    public Storage() {
         String currDir = System.getProperty("user.dir");
         this.filePath = Paths.get(currDir + this.filePath).toString();
     }
 
+    /**
+     * Function to load items from file.
+     * @return ArrayList of items loaded from the file.
+     */
     protected ArrayList<Item> loadItems(){
         JSONArray itemsJson;
         ArrayList<Item> storedItems = new ArrayList<>(100);
@@ -68,7 +77,11 @@ public class Saver {
         }
     }
 
-
+    /**
+     * Function to save items from an Arraylist into file.
+     * @param storedItems ArrayList of items from the user to be stored.
+     * @return
+     */
     protected boolean saveItems(ArrayList<Item> storedItems) {
         JSONArray jsonArray = new JSONArray();
         storedItems.forEach(item -> this.parseItemToJson(item, jsonArray));

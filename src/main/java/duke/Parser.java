@@ -3,6 +3,9 @@ package duke;
 import duke.commands.Command;
 import duke.commands.CommandsList;
 
+/**
+ * Parser to parse the text inputs from the user into Command objects.
+ */
 public class Parser {
     private final UI ui;
 
@@ -10,6 +13,11 @@ public class Parser {
         this.ui = ui;
     }
 
+    /**
+     * Parse the text inputs from the user into Command objects.
+     * @param rawInput Takes in the raw String provided by the user.
+     * @return A Command object representing the parsed command.
+     */
     public Command parse(String rawInput) {
         String[] input = rawInput.trim().split(" ", 2);
         switch (input[0].trim()) {
@@ -74,10 +82,13 @@ public class Parser {
             }
             break;
 
-
         case "bye":
             return new Command(CommandsList.BYE);
+
+        case "help":
+            return new Command(CommandsList.HELP);
         }
+
         return new Command(CommandsList.UNKNOWN);
     }
 }

@@ -1,14 +1,13 @@
 package duke;
 
-;
-
 import duke.commands.Command;
 
 import java.util.Scanner;
 
+/**
+ * Chatbot main.
+ */
 public class Duke {
-    public Duke() {
-    }
 
     private void run() {
         Scanner scanner = new Scanner(System.in);
@@ -32,6 +31,8 @@ public class Duke {
                 breakLoop = true;
                 ui.printGoodbyeMessage();
                 break;
+            case HELP:
+                ui.printHelpMessage();
             default:
                 String response = taskList.executeTask(command);
                 if(response != null) {
@@ -43,6 +44,10 @@ public class Duke {
         taskList.destructor();
     }
 
+    /**
+     * Run the chatbot.
+     * @param args This is useless.
+     */
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.run();

@@ -13,12 +13,27 @@ public abstract class Item {
     private LocalDateTime time;
     private final String name;
 
+    /**
+     * Creates an incomplete Item.
+     * @param name Item description.
+     * @param itemType Type of the item.
+     * @param time Time of the item.
+     * @throws DateTimeParseException If the input string for time is not in correct format.
+     */
     public Item(String name, ItemTypes itemType, String time) throws DateTimeParseException {
         this.name = name;
         this.itemType = itemType;
         this.setLocalDateTime(time);
     }
 
+    /**
+     * Create an Item and set its completion status.
+     * @param name Item description.
+     * @param isDone Completion status of the task.
+     * @param itemType Type of the item.
+     * @param time Time of the item.
+     * @throws DateTimeParseException If the input string for time is not in correct format.
+     */
     public Item(String name, boolean isDone, ItemTypes itemType, String time) throws DateTimeParseException {
         this.name = name;
         this.isDone = isDone;
@@ -61,6 +76,11 @@ public abstract class Item {
         this.isDone = false;
     }
 
+    /**
+     * Parses the string for item time and sets it in the item.
+     * @param str input string for item time.
+     * @throws DateTimeParseException If the input string for time is not in correct format.
+     */
     protected void setLocalDateTime(String str) throws DateTimeParseException {
         if(str == null) {
             isTimed = false;
