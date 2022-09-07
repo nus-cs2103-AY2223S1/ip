@@ -81,6 +81,12 @@ public class Ui {
         return finalString;
     }
 
+
+    public String sortList(TaskList taskList) {
+        taskList.sort();
+        return list(taskList);
+    }
+            
     /**
      * Formats and prints mark task message.
      *

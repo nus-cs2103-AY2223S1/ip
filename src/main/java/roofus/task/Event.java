@@ -21,6 +21,15 @@ public class Event extends Task {
         super(description);
         this.start = LocalDate.parse(start);
     }
+    
+    @Override
+    public boolean hasTime() {
+        return true;
+    }
+
+    public LocalDate getDate() {
+        return start;
+    }
 
     /**
      * {@inheritDoc}

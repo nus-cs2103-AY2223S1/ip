@@ -47,6 +47,10 @@ public class TaskList {
         }
     }
 
+    public void sort() {
+        this.tasks.sort(null);
+    }
+    
     /**
      * Adds a task to Tasklist.
      *

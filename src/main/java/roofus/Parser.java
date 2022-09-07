@@ -11,6 +11,7 @@ import roofus.command.ListCommand;
 import roofus.command.MarkCommand;
 import roofus.command.ToDoCommand;
 import roofus.command.UnmarkCommand;
+import roofus.command.SortCommand;
 import roofus.task.Deadline;
 import roofus.task.Event;
 import roofus.task.ToDo;
@@ -25,7 +26,8 @@ public class Parser {
      */
     private enum CommandList {
         BYE, LIST, TODO, EVENT, DEADLINE,
-        MARK, UNMARK, DELETE, CLEAR, FIND
+        MARK, UNMARK, DELETE, CLEAR, FIND, 
+        SORT
     }
 
     /**
@@ -47,6 +49,8 @@ public class Parser {
                 return new ByeCommand();
             case LIST:
                 return new ListCommand();
+            case SORT:
+                return new SortCommand();
             case DELETE:
                 if (split.length < 2) {
                     throw new RoofusException("Huh?! Delete what?");

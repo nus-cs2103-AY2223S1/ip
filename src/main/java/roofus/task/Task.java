@@ -1,10 +1,12 @@
 package roofus.task;
 
+import java.time.LocalDate;
+
 /**
  * Represents a Task object containing a description and a
  * boolean value indicating if the task has been completed.
  */
-public class Task {
+public class Task implements Comparable<Task> {
     protected String description;
     protected boolean isDone;
 
@@ -18,6 +20,14 @@ public class Task {
         this.isDone = false;
     }
 
+    public boolean hasTime() {
+        return false;
+    }
+    
+    public LocalDate getDate() {
+        return null;
+    }
+    
     /**
      * Marks the Task as completed.
      */
@@ -54,6 +64,19 @@ public class Task {
             return "[X] " + description;
         } else {
             return "[ ] " + description;
+        }
+    }
+    
+    @Override
+    public int compareTo(Task t) {
+        if (this.hasTime() && t.hasTime()) {
+            return this.getDate().compareTo(t.getDate());
+        } else if (this.hasTime()) {
+            return -1;
+        } else if (t.hasTime()) {
+            return 1;
+        } else {
+            return 0;
         }
     }
 }
