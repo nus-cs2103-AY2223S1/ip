@@ -37,7 +37,7 @@ public class Deadline extends Task {
     public String toString() {
         String tagsString = super.getTagsString();
         return ("[D]" + super.toString() + " (by: "
-                + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ") "
+                + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")"
                 + tagsString);
     }
 
@@ -49,10 +49,10 @@ public class Deadline extends Task {
     @Override
     public String toStorageString() {
         String doneDescriptionString = super.toStorageString();
-        String tagsString = super.getTagsString();
+        String tagsString = super.getTagsStorageString();
         return "D" + Task.STORAGE_DELIMITER
                 + doneDescriptionString + Task.STORAGE_DELIMITER
-                + date + Task.STORAGE_DELIMITER
+                + date
                 + tagsString;
     }
 }

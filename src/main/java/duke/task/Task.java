@@ -173,7 +173,17 @@ public class Task {
         if (tags.isEmpty()) {
             return "";
         }
-        return "#" + String.join(" #", tags);
+        return " #" + String.join(" #", tags);
+    }
+
+    /**
+     * Returns the storage String representation of the tags.
+     *
+     * @return storage String representation of the tags.
+     */
+    public String getTagsStorageString() {
+        String tagsString = getTagsString();
+        return tagsString == "" ? "" : " |" + tagsString;
     }
 
 }
