@@ -32,4 +32,19 @@ public abstract class Date {
     public String encode() {
         return date.toString();
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (o instanceof Date) {
+            Date other = (Date) o;
+            return other.date.equals(this.date);
+        }
+        return false;
+    }
 }
