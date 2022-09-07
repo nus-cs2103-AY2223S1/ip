@@ -17,7 +17,7 @@ public class TodoTest {
     @Test
     public void markTodoTest() {
         Todo todo = new Todo("This is a test description");
-        todo.mark();
+        todo.setDone(true);
         assertEquals(todo.toString(), "[T][X] This is a test description");
     }
 }

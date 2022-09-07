@@ -5,11 +5,11 @@ import static org.fusesource.jansi.Ansi.ansi;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-import sus.common.Messages;
 import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.AnsiConsole;
 
 import sus.commands.CommandResult;
+import sus.common.Messages;
 
 /**
  * Represents the ui used to interact with the user.

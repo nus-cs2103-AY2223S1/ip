@@ -17,7 +17,7 @@ public class DeadlineTest {
     @Test
     public void markDeadlineTest() {
         Deadline deadline = new Deadline("This is a test description", "2000-02-02");
-        deadline.mark();
+        deadline.setDone(true);
         assertEquals(deadline.toString(), "[D][X] This is a test description (by: February 2, 2000)");
     }
 }
