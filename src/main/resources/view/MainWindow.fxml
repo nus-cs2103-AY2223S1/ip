@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainWindow">
   <children>
-  <TextField fx:id="userInput" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="324.0" promptText="Type &quot;help&quot; to see the list of commands" style="-fx-background-color: #000000; -fx-text-fill: white; " AnchorPane.bottomAnchor="1.0">
+  <TextField fx:id="userInput" layoutY="558.0" onAction="#handleUserInput" prefHeight="41.0" prefWidth="324.0" promptText="Type &quot;help&quot; to see the list of commands" style="-fx-background-color: #000000; -fx-text-fill: white; -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);" AnchorPane.bottomAnchor="1.0">
          <font>
             <Font name="Orbitron Bold" size="12.0" />
          </font></TextField>
