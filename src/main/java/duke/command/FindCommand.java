@@ -14,6 +14,7 @@ public class FindCommand extends Command {
     public FindCommand(String desc) {
         desc = desc.replace("find ", "");
         this.desc = desc;
+        assert !desc.isEmpty() : "search description cannot be empty";
     }
 
     @Override
@@ -27,6 +28,7 @@ public class FindCommand extends Command {
         int qty = 0;
         String output = "Here are the matching tasks I've found:";
         while (iterate.hasNext()) {
+            assert qty >= 0 : "qty cannot be less than zero";
             Task currentTask = iterate.next();
             if (currentTask.getDesc().contains(desc)) {
                 qty++;

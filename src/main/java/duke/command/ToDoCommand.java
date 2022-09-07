@@ -13,6 +13,7 @@ public class ToDoCommand extends Command {
 
     public ToDoCommand(String desc) {
         this.desc = desc.replace("todo", "");
+        assert !this.desc.isEmpty() : "task description cannot be empty";
     }
 
     @Override

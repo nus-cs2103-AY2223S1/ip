@@ -17,6 +17,8 @@ public class EventCommand extends Command {
         int slashIndex = desc.lastIndexOf("/");
         atDate = desc.substring(slashIndex + 4);
         this.desc = desc.substring(0, slashIndex - 1);
+        assert !this.desc.isEmpty() : "task description cannot be empty";
+        assert !atDate.isEmpty() : "event date cannot be empty";
     }
 
     @Override

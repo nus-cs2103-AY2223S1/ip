@@ -13,6 +13,7 @@ public class DeleteCommand extends Command {
 
     public DeleteCommand(String desc) {
         numberOnly = desc.replaceAll("[^0-9]", "");
+        assert !numberOnly.isEmpty() : "index of task to be deleted cannot be empty";
     }
 
     @Override
