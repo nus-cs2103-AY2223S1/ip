@@ -1,6 +1,6 @@
 package duke.command;
 
-import duke.exception.MarkException;
+import duke.exception.OutOfRangeException;
 import duke.utils.Storage;
 import duke.utils.TaskList;
 import duke.utils.UI;
@@ -24,12 +24,12 @@ public class DeleteCommand extends Command {
      * @param storage {@inheritDoc}
      * @param ui {@inheritDoc}
      * @param taskList {@inheritDoc}
-     * @throws MarkException If number specified is out of range of the task list.
+     * @throws OutOfRangeException If number specified is out of range of the task list.
      */
     @Override
-    public String execute(Storage storage, UI ui, TaskList taskList) throws MarkException {
+    public String execute(Storage storage, UI ui, TaskList taskList) throws OutOfRangeException {
         if (num > taskList.size() || num < 0) {
-            throw new MarkException();
+            throw new OutOfRangeException();
         }
         String temp = taskList.getTask(num - 1).getDescription();
         taskList.delete(num - 1);

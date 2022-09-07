@@ -9,6 +9,7 @@ import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
+import duke.command.EditCommand;
 import duke.command.EventCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
@@ -18,13 +19,13 @@ import duke.command.UnmarkCommand;
 import duke.exception.DateTimeException;
 import duke.exception.DukeException;
 import duke.exception.InputException;
-import duke.exception.MarkException;
+import duke.exception.OutOfRangeException;
 import duke.exception.TaskException;
 import duke.exception.TimeException;
 
 /**
- * duke.Duke utility function to parse through the input from the user, and output the commands to be
- * executed accordingly.
+ * duke.Duke utility function to parse through the input from the user, and output the commands to
+ * be executed accordingly.
  */
 public class Parser {
 

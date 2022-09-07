@@ -50,11 +50,11 @@ public class TaskList {
      * Prints the tasks in the task list.
      */
     public String read() {
-        String out = "";
+        StringBuilder out = new StringBuilder();
         for (int i = 0; i < size(); i++) {
-            out = out + i + 1 + ". " + getTask(i) + "\n";
+            out.append(i + 1).append(". ").append(getTask(i)).append("\n");
         }
-        return out;
+        return out.toString();
     }
 
     /**
@@ -73,5 +73,15 @@ public class TaskList {
      */
     public List<Task> list() {
         return this.tasks;
+    }
+
+    /**
+     * Returns a boolean value indicating if the number is within the size of the task list.
+     *
+     * @param num Number to check.
+     * @return True if number is reachable in the task list.
+     */
+    public boolean isInRange(int num) {
+        return num >= 0 && num < size();
     }
 }

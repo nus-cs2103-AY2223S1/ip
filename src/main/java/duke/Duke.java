@@ -18,16 +18,17 @@ public class Duke {
 
     /**
      * duke.gui.Main entry function.
+     *
      * @param args Command line arguments.
      */
     public static void main(String[] args) {
     }
 
     /**
-     * Gets the parsed response based on the user's input.
+     * Returns output to be displayed to GUI.
      *
-     * @param input The input from the user.
-     * @return The output of Duke, from the parser.
+     * @param input Input from user through the GUI.
+     * @return Parsed output to user through GUI.
      */
     public String getResponse(String input) {
         try {
