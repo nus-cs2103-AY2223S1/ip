@@ -41,6 +41,8 @@ public class Executor {
             throw TobTobException.shouldHaveNoDescriptionError("list");
         }
 
+        assert commandDescription.equals("") : "command description shouldn't be empty at this point";
+
         return brain.show();
     }
 
@@ -56,6 +58,8 @@ public class Executor {
         if (commandDescription.equals("")) {
             throw TobTobException.emptyCommandDescriptionError();
         }
+
+        assert !commandDescription.equals("") : "command description shouldn't be empty at this point";
 
         try {
             String result = "";
@@ -85,6 +89,8 @@ public class Executor {
         if (commandDescription.equals("")) {
             throw TobTobException.emptyCommandDescriptionError();
         }
+
+        assert !commandDescription.equals("") : "command description shouldn't be empty at this point";
 
         try {
             String result = "";
@@ -118,6 +124,8 @@ public class Executor {
         if (taskDescriptionDatetime[0].equals("")) {
             throw TobTobException.emptyCommandDescriptionError();
         }
+
+        assert !taskDescriptionDatetime[0].equals("") : "command description shouldn't be empty at this point";
 
         Task task;
         String taskDescription = taskDescriptionDatetime[0];
@@ -188,6 +196,8 @@ public class Executor {
             throw TobTobException.emptyCommandDescriptionError();
         }
 
+        assert !commandDescription.equals("") : "command description shouldn't be empty at this point";
+
         try {
             String result = "";
             int index = Integer.parseInt(commandDescription);
@@ -232,6 +242,8 @@ public class Executor {
         if (!commandDescription.equals("")) {
             throw TobTobException.shouldHaveNoDescriptionError("bye");
         }
+
+        assert commandDescription.equals("") : "there shouldn't be any command description at this point";
 
         String result = "";
         result += "Byeee! Tob Tob is sick of you\n";
