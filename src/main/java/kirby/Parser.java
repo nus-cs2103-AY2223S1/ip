@@ -1,16 +1,6 @@
 package kirby;
 
-import kirby.commands.Command;
-import kirby.commands.DeadlineCommand;
-import kirby.commands.DeleteCommand;
-import kirby.commands.EventCommand;
-import kirby.commands.ExitCommand;
-import kirby.commands.FindCommand;
-import kirby.commands.GetCommand;
-import kirby.commands.MarkCommand;
-import kirby.commands.ShowListCommand;
-import kirby.commands.ToDoCommand;
-import kirby.commands.UnmarkCommand;
+import kirby.commands.*;
 import kirby.exceptions.KirbyInvalidCommandException;
 
 /**
@@ -56,6 +46,9 @@ public class Parser {
 
         case "find":
             return new FindCommand(inputString);
+
+        case "help":
+            return new HelpCommand();
 
         default:
             throw new KirbyInvalidCommandException();
