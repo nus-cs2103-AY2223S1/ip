@@ -21,7 +21,7 @@ public class ParserTest {
     @Test
     public void findCommand_plainString_plainStringReturned() {
         try {
-            FindCommand findCommand = new FindCommand();
+            FindCommand findCommand = new FindCommand(new String [] {"find"});
             assertEquals(true, Parser.parse("find notebook") instanceof FindCommand);
         } catch (DukeException d) {
             fail();

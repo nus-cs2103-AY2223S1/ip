@@ -9,6 +9,11 @@ import ui.UI;
  * Causes program to terminate.
  */
 public class ExitCommand extends Command {
+    private String[] slicedUserCommands;
+
+    public ExitCommand(String[] slicedUserInput) {
+        this.slicedUserCommands = slicedUserInput;
+    }
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
         String command = ui.getCurrentInput();
@@ -19,5 +24,10 @@ public class ExitCommand extends Command {
         } else {
             ui.showError("error parsing exit command");
         }
+    }
+
+    @Override
+    public boolean isExit() {
+        return true;
     }
 }

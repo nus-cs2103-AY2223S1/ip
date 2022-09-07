@@ -23,3 +23,5 @@ wrapper/
 
 daemon/
 native/
+
+.tmp/*

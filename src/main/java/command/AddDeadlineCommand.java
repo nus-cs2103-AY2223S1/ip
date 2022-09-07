@@ -11,6 +11,11 @@ import utility.Parser;
  * Command that handles adding Deadline to TaskList and Storage.
  */
 public class AddDeadlineCommand extends Command {
+    private String[] slicedUserCommands;
+
+    public AddDeadlineCommand(String[] slicedUserInput) {
+        this.slicedUserCommands = slicedUserInput;
+    }
 
     /**
      * Runs when deadline is to be added.
@@ -22,8 +27,7 @@ public class AddDeadlineCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
-        String userInput = ui.getCurrentInput();
-        Deadline deadlineToAdd = Parser.stringToDeadline(userInput);
+        Deadline deadlineToAdd = Parser.stringToDeadline(slicedUserCommands[1], slicedUserCommands[2]);
         String storableLine = deadlineToAdd + "\n";
         if (storage.isLineAppended(storableLine)) {
             taskList.addDeadline(deadlineToAdd);

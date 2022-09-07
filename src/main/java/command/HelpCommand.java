@@ -11,6 +11,11 @@ import ui.UI;
  * Does not elaborate on their usage.
  */
 public class HelpCommand extends Command {
+    private String[] slicedUserCommands;
+
+    public HelpCommand(String[] slicedUserInput) {
+        this.slicedUserCommands = slicedUserInput;
+    }
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
         ui.showHelpMessage();

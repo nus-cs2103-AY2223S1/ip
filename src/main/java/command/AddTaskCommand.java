@@ -11,7 +11,11 @@ import utility.Parser;
  * Command that handles adding Task to TaskList and Storage.
  */
 public class AddTaskCommand extends Command {
+    private String[] slicedUserCommands;
 
+    public AddTaskCommand(String[] slicedUserInput) {
+        this.slicedUserCommands = slicedUserInput;
+    }
     /**
      * Runs when task is to be added.
      *
@@ -22,8 +26,7 @@ public class AddTaskCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
-        String userInput = ui.getCurrentInput();
-        Task taskToAdd = Parser.stringToTask(userInput);
+        Task taskToAdd = Parser.stringToTask(slicedUserCommands[1]);
         String storableLine = taskToAdd + "\n";
         if (storage.isLineAppended(storableLine)) {
             taskList.addTask(taskToAdd);

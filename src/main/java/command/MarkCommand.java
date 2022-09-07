@@ -11,6 +11,11 @@ import utility.Parser;
  * status in TaskList and Storage.
  */
 public class MarkCommand extends Command {
+    private String[] slicedUserCommands;
+
+    public MarkCommand(String[] slicedUserInput) {
+        this.slicedUserCommands = slicedUserInput;
+    }
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
         int n = Parser.getTaskNumber(ui.getCurrentInput(), taskList.getSize());

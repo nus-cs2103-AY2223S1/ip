@@ -9,6 +9,11 @@ import ui.UI;
  * Lists all tasks in TaskList.
  */
 public class ListCommand extends Command {
+    private String[] slicedUserCommands;
+
+    public ListCommand(String[] slicedUserInput) {
+        this.slicedUserCommands = slicedUserInput;
+    }
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
         StringBuffer contents = new StringBuffer("Tasks in your list are:\n________\n");

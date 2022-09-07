@@ -2,6 +2,10 @@ package utility;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import command.AddDeadlineCommand;
 import command.AddEventCommand;
@@ -26,10 +30,50 @@ import task.Task;
  * Handles all conversions required in the program.
  */
 public class Parser {
-    private static final String END_OF_DESCRIPTION_MARKER = " /";
-    private static final int START_DATE_COMMAND_LENGTH = 3;
-    private static final String EVENT_DATE_SECTION_START_STRING = "/at";
-    private static final String DEADLINE_DATE_SECTION_DATE_STRING = "/by";
+    private static HashMap<String, Pattern> commandAliasesHashMap = new HashMap<>();
+
+    /**
+     * Initiliase hashmap which stores Pattern
+     * required to determine corresponding
+     * String command.
+     *
+     */
+    public static void initialiseCommandAliases() {
+        if (commandAliasesHashMap.isEmpty()) {
+            HashMap<String, Pattern> commandAliases = new HashMap<>();
+            Pattern todoRegex = Pattern.compile("t|todo",
+                    Pattern.CASE_INSENSITIVE);
+            Pattern listRegex = Pattern.compile("l|list",
+                    Pattern.CASE_INSENSITIVE);
+            Pattern deadlineRegex = Pattern.compile("deadline|d",
+                    Pattern.CASE_INSENSITIVE);
+            Pattern markRegex = Pattern.compile("mark|m",
+                    Pattern.CASE_INSENSITIVE);
+            Pattern unmarkRegex = Pattern.compile("unmark|um",
+                    Pattern.CASE_INSENSITIVE);
+            Pattern byeRegex = Pattern.compile("bye|b|quit|q|exit",
+                    Pattern.CASE_INSENSITIVE);
+            Pattern findRegex = Pattern.compile("find|f",
+                    Pattern.CASE_INSENSITIVE);
+            Pattern longdescRegex = Pattern.compile("longdesc",
+                    Pattern.CASE_INSENSITIVE);
+            Pattern istodayRegex = Pattern.compile("istoday",
+                    Pattern.CASE_INSENSITIVE);
+            Pattern helpRegex = Pattern.compile("help|h",
+                    Pattern.CASE_INSENSITIVE);
+            commandAliases.put("todo", todoRegex);
+            commandAliases.put("list", listRegex);
+            commandAliases.put("deadline", deadlineRegex);
+            commandAliases.put("mark", markRegex);
+            commandAliases.put("unmark", unmarkRegex);
+            commandAliases.put("bye", byeRegex);
+            commandAliases.put("find", findRegex);
+            commandAliases.put("longdesc", longdescRegex);
+            commandAliases.put("istoday", istodayRegex);
+            commandAliases.put("help", helpRegex);
+            commandAliasesHashMap = commandAliases;
+        }
+    }
 
     /**
      * Returns Command object corresponding to
@@ -42,135 +86,111 @@ public class Parser {
      * @throws DukeException When command given is invalid.
      */
     public static Command parse(String userInput) throws DukeException {
-        int firstWhiteSpaceIndex = userInput.trim().indexOf(" ");
-        String stringCommand;
-        if (firstWhiteSpaceIndex < 0) {
-            stringCommand = userInput;
-        } else {
-            stringCommand = userInput.substring(0, firstWhiteSpaceIndex);
-        }
-        assert !stringCommand.contains(" ");
+        String[] inputSections = userInput.split(" ");
+        String stringCommand = extractCommand(inputSections[0]);
+        assert !stringCommand.equals(" ");
         switch (stringCommand) {
         case "todo":
-            return new AddTaskCommand();
+            return new AddTaskCommand(inputSections);
         case "event":
-            return new AddEventCommand();
+            return new AddEventCommand(inputSections);
         case "deadline":
-            return new AddDeadlineCommand();
+            return new AddDeadlineCommand(inputSections);
         case "delete":
-            return new DeleteTaskCommand();
+            return new DeleteTaskCommand(inputSections);
         case "mark":
-            return new MarkCommand();
+            return new MarkCommand(inputSections);
         case "unmark":
-            return new UnmarkCommand();
+            return new UnmarkCommand(inputSections);
         case "istoday":
-            return new CheckIsTodayCommand();
+            return new CheckIsTodayCommand(inputSections);
         case "longdesc":
-            return new GetLongDescriptionCommand();
+            return new GetLongDescriptionCommand(inputSections);
         case "list":
-            return new ListCommand();
+            return new ListCommand(inputSections);
         case "bye":
-            return new ExitCommand();
+            return new ExitCommand(inputSections);
         case "help":
-            return new HelpCommand();
+            return new HelpCommand(inputSections);
         case "find":
-            return new FindCommand();
+            return new FindCommand(inputSections);
         default:
-            String message = "Command invalid. Type help for more information.";
+            String message = "Command invalid. Type help for more information."
+                    + stringCommand;
             throw new DukeException(message);
         }
+    }
+
+
+    /**
+     * Extracts shortcut or formal command used and returns formal command/
+     * If input does not follow valid format, return empty string.
+     *
+     * @param command
+     * @return
+     */
+    private static String extractCommand(String command) {
+        // Make sure commandAliases are not empty
+        initialiseCommandAliases();
+        Matcher matcher;
+        for (Map.Entry<String, Pattern> patternAndString : commandAliasesHashMap.entrySet()) {
+            matcher = patternAndString.getValue().matcher(command);
+            if (matcher.matches()) {
+                return patternAndString.getKey();
+            }
+        }
+        return "";
     }
 
     /**
      * Converts string command for adding
      * task to corresponding Task object.
      *
-     * @param userInput User input command for creating Task.
+     * @param description User input command for creating Task.
      * @return Task object with required description.
      * @throws DukeException When no valid description is found.
      */
-    public static Task stringToTask(String userInput) throws DukeException {
-        String description = getDescription("todo", userInput);
+    public static Task stringToTask(String description) throws DukeException {
         return new Task(description);
     }
 
     /**
-     * Converts string command for adding
-     * event to corresponding Event object.
+     * return event
      *
-     * @param userInput User input command for creating Event.
-     * @return Event object with required description and date.
-     * @throws DukeException When no valid description or date is found.
+     * @param description description
+     * @param date date
+     * @return event
+     * @throws DukeException error
      */
-    public static Event stringToEvent(String userInput) throws DukeException {
-        String description = getDescription("event", userInput);
-        LocalDate date = getDate(userInput);
-        return new Event(description, date);
+    public static Event stringToEvent(String description, String date) throws DukeException {
+        LocalDate localDate = getDate(date);
+        return new Event(description, localDate);
     }
 
     /**
-     * Converts string command for adding
-     * deadline to corresponding Deadline object.
+     * Return deadline
      *
-     * @param userInput User input command for creating Deadline.
-     * @return Deadline object with required description and date.
-     * @throws DukeException When no valid description or date is found.
+     * @param description description.
+     * @param date date
+     * @return deadline
+     * @throws DukeException error.
      */
-    public static Deadline stringToDeadline(String userInput) throws DukeException {
-        String description = getDescription("deadline", userInput);
-        LocalDate date = getDate(userInput);
-        return new Deadline(description, date);
+    public static Deadline stringToDeadline(String description, String date) throws DukeException {
+        LocalDate localDate = getDate(date);
+        return new Deadline(description, localDate);
     }
 
-    /**
-     * Extracts description of a task from user input.
-     * Requires command type used to evaluate description.
-     *
-     * @param commandUsed Command type mentioned in user input.
-     * @param input User input string for performing command.
-     * @return Description contained in user input.
-     * @throws DukeException when no valid description is found.
-     */
-    private static String getDescription(String commandUsed, String input) throws DukeException {
-        String description;
-        int startDescriptionIndex = input.indexOf(commandUsed) + commandUsed.length();
-        assert startDescriptionIndex < 0;
-        if (commandUsed.equals("event") || commandUsed.equals("deadline")) {
-            int endDescriptionIndex = input.indexOf(END_OF_DESCRIPTION_MARKER);
-            if (endDescriptionIndex < 0) {
-                throw new DukeException("Could not parse description");
-            } else {
-                description = input.substring(startDescriptionIndex, endDescriptionIndex);
-            }
-        } else {
-            description = input.substring(startDescriptionIndex);
-        }
-
-        if (description.isBlank()) {
-            throw new DukeException("Empty description field");
-        }
-        return description;
-    }
 
     /**
-     * Extracts date from a date-able Task.
+     * Get date
      *
-     * @param userInput User input command to extract date from.
-     * @return LocalDate object corresponding to date mentioned.
-     * @throws DukeException Throws when no valid date found.
+     * @param date date
+     * @return date
+     * @throws DukeException date error.
      */
-    private static LocalDate getDate(String userInput) throws DukeException {
+    private static LocalDate getDate(String date) throws DukeException {
         try {
-            String date;
-            int n = userInput.indexOf(EVENT_DATE_SECTION_START_STRING);
-            int m = userInput.indexOf(DEADLINE_DATE_SECTION_DATE_STRING);
-            int startDateIndex = (n == -1 ? m : n) + START_DATE_COMMAND_LENGTH;
-            date = userInput.substring(startDateIndex).trim();
-            if (!date.isBlank()) {
-                return LocalDate.parse(date);
-            } else {
-                throw new DukeException("Empty date field");
-            }
+            return LocalDate.parse(date);
         } catch (DateTimeParseException dtpe) {
             throw new DukeException("Date is not valid, require format YYYY-MM-DD");
         }

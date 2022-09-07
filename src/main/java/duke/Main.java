@@ -2,7 +2,6 @@ package duke;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,10 +17,12 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         try {
+            /*
             System.out.println("Where would you like to store history:");
             Scanner sc = new Scanner(System.in);
             String filePath = sc.nextLine();
-            Duke duke = new Duke(filePath);
+             */
+            Duke duke = new Duke("src/main/java/data/tasks.txt");
             URL mainWindowUrl = Main.class.getResource("/view/MainWindow.fxml");
             FXMLLoader fxmlLoader = new FXMLLoader(mainWindowUrl);
             AnchorPane ap = fxmlLoader.load();
