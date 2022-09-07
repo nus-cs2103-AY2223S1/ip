@@ -2,6 +2,8 @@ package duke.managers;
 
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import duke.exceptions.DukeException;
 import duke.models.task.Task;
@@ -42,12 +44,12 @@ public class TaskManager {
             return TaskManager.MESSAGE_NO_TASKS_AVAILABLE;
         }
 
-        StringBuilder taskManagerDisplay = new StringBuilder();
-        for (int i = 0; i < tasks.size(); i++) {
-            // Implicitly invoke the display of the task defined in the Task class
-            taskManagerDisplay.append(String.format("%d. %s\n", i + 1, tasks.get(i)));
-        }
-        return (taskManagerDisplay + "\n").strip();
+        String taskManagerDisplay = IntStream
+            .range(0, tasks.size())
+            .mapToObj(index -> String.format("%d. %s\n", index + 1, tasks.get(index)))
+            .collect(Collectors.joining()) + "\n";
+
+        return taskManagerDisplay.strip();
     }
 
     /**
