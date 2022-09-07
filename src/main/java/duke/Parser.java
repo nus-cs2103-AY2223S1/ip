@@ -33,7 +33,7 @@ public abstract class Parser {
         try {
             commandWord = Command.Commands.valueOf(commandArr[0]);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("🙁 OOPS!!! I'm sorry, but I don't know what that means :-(\n");
+            throw new IllegalArgumentException(":( OOPS!!! I'm sorry, but I don't know what that means :-(\n");
         }
 
         if (!Objects.isNull(commandWord)) {

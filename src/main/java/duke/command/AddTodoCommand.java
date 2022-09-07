@@ -27,7 +27,7 @@ public class AddTodoCommand extends AddCommand {
         String text = command.replaceFirst("todo", "").strip();
 
         if (text.isEmpty()) {
-            throw new IllegalArgumentException("🙁 OOPS!!! The description of a todo cannot be empty.\n");
+            throw new IllegalArgumentException(":( OOPS!!! The description of a todo cannot be empty.\n");
         } else {
             return new AddTodoCommand(command, new Todo(isDone, text));
         }
