@@ -15,6 +15,7 @@ import duke.commands.FindCommand;
 import duke.commands.InvalidCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
+import duke.commands.SummaryCommand;
 import duke.commands.TodoCommand;
 import duke.commands.UnmarkCommand;
 import duke.data.exception.DukeException;
@@ -59,6 +60,8 @@ public class Parser {
             return prepareDelete(args);
         case "find":
             return prepareFind(args);
+        case "summary":
+            return new SummaryCommand();
         default:
             return new InvalidCommand();
         }

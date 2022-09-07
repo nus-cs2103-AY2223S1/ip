@@ -6,12 +6,10 @@ import duke.storage.Storage;
 import duke.tasks.Deadline;
 import duke.ui.Ui;
 
-
 /**
  * This class represents a command to add a deadline to the task list
  */
 public class DeadlineCommand extends Command {
-
     private final String description;
     private final String by;
 

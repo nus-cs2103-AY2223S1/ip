@@ -62,20 +62,24 @@ public class Storage {
             while (currentLine != null) {
                 String[] components = currentLine.split(",");
                 Task task = null;
+                String completionStatus = "na";
                 switch (components[0]) {
                 case "T":
-                    assert components.length == 3 : "Invalid todo information";
+                    assert components.length == 4 : "Invalid todo information";
                     task = new ToDo(components[2]);
+                    completionStatus = components[3];
                     break;
                 case "D":
-                    assert components.length == 4 : "Invalid deadline information";
+                    assert components.length == 5 : "Invalid deadline information";
                     LocalDate deadlineDate = LocalDate.parse(components[3], format);
                     task = new Deadline(components[2], deadlineDate.format(formatter));
+                    completionStatus = components[4];
                     break;
                 case "E":
-                    assert components.length == 4 : "Invalid event information";
+                    assert components.length == 5 : "Invalid event information";
                     LocalDate eventDate = LocalDate.parse(components[3], format);
                     task = new Event(components[2], eventDate.format(formatter));
+                    completionStatus = components[4];
                     break;
                 default:
                     assert true : "Invalid task type";
@@ -84,6 +88,7 @@ public class Storage {
 
                 assert task != null : "Task should not be null";
                 task.setIsDone(components[1].equals("true"));
+                task.setDateMarked(completionStatus);
                 tasks.add(task);
                 currentLine = reader.readLine();
             }
@@ -103,21 +108,24 @@ public class Storage {
     }
 
     private String convertToString(Task task) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
         String taskType = task.getTaskType();
         boolean isDone = task.getIsDone();
         String description = task.getDescription();
+        String dateMarked = task.getDateMarked() == null
+                ? "na"
+                : task.getDateMarked().format(formatter);
         String sep = System.getProperty("line.separator");
 
         assert description != null : "Invalid description";
 
         if (taskType.equals("T")) {
-            return String.format("T,%s,%s,%s", isDone, description, sep);
+            return String.format("T,%s,%s,%s,%s", isDone, description, dateMarked, sep);
         } else {
             LocalDate date = task.getDate();
             assert date != null : "Invalid date";
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
             String formattedDate = date.format(formatter);
-            return String.format("%s,%s,%s,%s,%s", taskType, isDone, description, formattedDate, sep);
+            return String.format("%s,%s,%s,%s,%s,%s", taskType, isDone, description, formattedDate, dateMarked, sep);
         }
     }
 

@@ -10,7 +10,6 @@ import duke.ui.Ui;
  * This class represents a command to add an event to the task list
  */
 public class EventCommand extends Command {
-
     private final String description;
     private final String at;
 
@@ -42,7 +41,7 @@ public class EventCommand extends Command {
      */
     @Override
     public String execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
-        Event event = new Event(this.description, this.at);
+        Event event = new Event(description, at);
         taskList.addToList(event);
         storage.save(taskList);
         return ui.printAddTask(event, taskList.getSize());

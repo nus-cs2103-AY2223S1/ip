@@ -118,4 +118,53 @@ public class TaskList {
         return numOfKeywords == keywords.length;
 
     }
+
+    /**
+     * Gets all the lists required to summarise user's activities
+     * @param start Start date
+     * @param end End date
+     * @return An array of tasks list
+     */
+    public List<?>[] summary(LocalDate start, LocalDate end) {
+        List<Task> tasksWithinDateRange = getTasksWithinDateRange(start, end);
+        List<Task> completedTasks = getAllCompletedTasks();
+        List<Task> upcomingTasks = getUpcomingTasks();
+        return new List<?>[] {tasksWithinDateRange, completedTasks, upcomingTasks};
+    }
+
+    private List<Task> getTasksWithinDateRange(LocalDate start, LocalDate end) {
+        Predicate<Task> isWithinRange = task -> {
+            if (task.getDateMarked() == null) {
+                return false;
+            }
+
+            LocalDate dateMarked = task.getDateMarked();
+            boolean isBefore = dateMarked.isBefore(start);
+            boolean isAfter = dateMarked.isAfter(end);
+            return !isBefore && !isAfter;
+        };
+
+        List<Task> tasksWithinDateRange = tasks.stream().filter(isWithinRange).collect(Collectors.toList());
+
+        return tasksWithinDateRange;
+    }
+
+    private List<Task> getAllCompletedTasks() {
+        List<Task> results = tasks.stream().filter(Task::getIsDone).collect(Collectors.toList());
+        return results;
+    }
+
+    private List<Task> getUpcomingTasks() {
+        Predicate<Task> isUpcoming = task -> {
+            if (task.getDate() == null) {
+                return false;
+            }
+            boolean isAfter = task.getDate().isAfter(LocalDate.now());
+            boolean isCompleted = task.getIsDone();
+            return isAfter && isCompleted;
+        };
+
+        List<Task> results = tasks.stream().filter(isUpcoming).collect(Collectors.toList());
+        return results;
+    }
 }

@@ -201,4 +201,68 @@ public class Ui {
     public String print(String input) {
         return input;
     }
+
+    /**
+     * Provides user with a summary of their activities so far
+     * @param completedWithinRange List of tasks completed in the past week
+     * @param completedTasks All completed tasks
+     * @param upcomingTasks Upcoming tasks not yet completed
+     * @return A summary of user's activities
+     */
+    public String printSummary(List<Task> completedWithinRange, List<Task> completedTasks, List<Task> upcomingTasks) {
+        String overview = "Your activity log :D\n\n";
+        String completedOverTheWeek = printCompletedOverTheWeek(completedWithinRange);
+        String completed = printCompleted(completedTasks);
+        String upcoming = printUpcoming(upcomingTasks);
+        return overview + upcoming + completed + completedOverTheWeek;
+    }
+
+    private String printCompletedOverTheWeek(List<Task> list) {
+        if (list.size() == 0) {
+            return "No activities in the past week!";
+        }
+
+        String header = "\n\nYou have completed the following tasks in the past week!\n";
+        StringBuilder stringBuilder = new StringBuilder(header);
+
+        for (int i = 0; i < list.size(); i++) {
+            String formatted = String.format("%d. %s\n", i + 1, list.get(i));
+            stringBuilder.append(formatted);
+        }
+
+        return stringBuilder.toString();
+    }
+
+    private String printCompleted(List<Task> list) {
+        if (list.size() == 0) {
+            return "0 tasks completed!";
+        }
+
+        String header = String.format("\n\nYou have completed %d %s in your list!\n", list.size(),
+                list.size() > 1 ? "tasks" : "task");
+        StringBuilder stringBuilder = new StringBuilder(header);
+        for (int i = 0; i < list.size(); i++) {
+            String formatted = String.format("%d. %s\n", i + 1, list.get(i));
+            stringBuilder.append(formatted);
+        }
+
+        return stringBuilder.toString();
+    }
+
+    private String printUpcoming(List<Task> list) {
+        if (list.size() == 0) {
+            return "No upcoming tasks!";
+        }
+
+        String header = String.format("You have %d upcoming %s in your list!\n",
+                list.size(), list.size() > 1 ? "tasks" : "task");
+        StringBuilder stringBuilder = new StringBuilder(header);
+
+        for (int i = 0; i < list.size(); i++) {
+            String formatted = String.format("%d. %s\n", i + 1, list.get(i));
+            stringBuilder.append(formatted);
+        }
+
+        return stringBuilder.toString();
+    }
 }

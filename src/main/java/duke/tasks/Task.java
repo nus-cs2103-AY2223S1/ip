@@ -1,11 +1,14 @@
 package duke.tasks;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * This class encapsulates a task that users can add a list
  */
 public abstract class Task {
+
+    protected LocalDate dateMarked;
     protected String description;
     protected boolean isDone;
 
@@ -14,6 +17,7 @@ public abstract class Task {
      * @param description The task description.
      */
     public Task(String description) {
+        this.dateMarked = null;
         this.description = description;
         this.isDone = false;
     }
@@ -30,14 +34,16 @@ public abstract class Task {
      * To mark a task as completed.
      */
     public void markAsDone() {
-        this.isDone = true;
+        isDone = true;
+        dateMarked = LocalDate.now();
     }
 
     /**
      * To mark a task as not completed.
      */
     public void markAsNotDone() {
-        this.isDone = false;
+        isDone = false;
+        dateMarked = null;
     }
 
     @Override
@@ -67,6 +73,25 @@ public abstract class Task {
      */
     public String getDescription() {
         return this.description;
+    }
+
+    /**
+     * Sets the date when the task is marked as completed
+     */
+    public void setDateMarked(String date) {
+        if (date.equals("na")) {
+            dateMarked = null;
+        } else {
+            dateMarked = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd MMM yyyy"));
+        }
+    }
+
+    /**
+     * Gets the date when the task is marked as completed
+     * @return Date when the task is marked as completed
+     */
+    public LocalDate getDateMarked() {
+        return dateMarked;
     }
 
     /**
