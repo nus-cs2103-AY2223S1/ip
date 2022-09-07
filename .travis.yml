@@ -10,14 +10,12 @@ jobs:
   include:
     - os: linux
       script:
-        - pwd
-        - ls -la
+        - cd text-ui-test
         - chmod +x runtest.sh
         - ./runtest.sh
     - os: osx
       script:
-        - pwd
-        - ls -la
+        - cd text-ui-test
         - chmod +x runtest.sh
         - ./runtest.sh
 
