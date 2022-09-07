@@ -61,6 +61,7 @@ public class Parser {
                 if (temp.length == 1) {
                     throw new TedException(MISSING_TASKNUMBER_ERROR_MESSAGE + "mark T_T\n");
                 }
+                assert temp.length > 1;
 
                 c = new MarkCommand(Integer.parseInt(temp[1]));
                 break;
@@ -68,6 +69,7 @@ public class Parser {
                 if (temp.length == 1) {
                     throw new TedException(MISSING_TASKNUMBER_ERROR_MESSAGE + "unmark T_T\n");
                 }
+                assert temp.length > 1;
 
                 c = new UnmarkCommand(Integer.parseInt(temp[1]));
                 break;
@@ -75,6 +77,7 @@ public class Parser {
                 if (temp.length == 1) {
                     throw new TedException(MISSING_TASKNUMBER_ERROR_MESSAGE + "delete T_T\n");
                 }
+                assert temp.length > 1;
 
                 c = new DeleteCommand(Integer.parseInt(temp[1]));
                 break;
@@ -82,6 +85,7 @@ public class Parser {
                 if (temp.length == 1) {
                     throw new TedException(NO_TASK_ERROR_MESSAGE);
                 }
+                assert temp.length > 1;
 
                 c = new AddCommand(new Todo(temp[1]));
                 break;
@@ -89,11 +93,13 @@ public class Parser {
                 if (temp.length == 1) {
                     throw new TedException(NO_TASK_ERROR_MESSAGE);
                 }
+                assert temp.length > 1;
 
                 String[] deadlineDesc = temp[1].split(" /by ", 2);
                 if (deadlineDesc.length == 1) {
                     throw new TedException(MISSING_DESCRIPTION_ERROR_MESSAGE);
                 }
+                assert deadlineDesc.length > 1;
 
                 c = new AddCommand(new Deadline(deadlineDesc[0], deadlineDesc[1]));
                 break;
@@ -101,11 +107,13 @@ public class Parser {
                 if (temp.length == 1) {
                     throw new TedException(NO_TASK_ERROR_MESSAGE);
                 }
+                assert temp.length > 1;
 
                 String[] eventDesc = temp[1].split(" /at ", 2);
                 if (eventDesc.length == 1) {
                     throw new TedException(MISSING_DESCRIPTION_ERROR_MESSAGE);
                 }
+                assert eventDesc.length > 1;
 
                 c = new AddCommand(new Event(eventDesc[0], eventDesc[1]));
                 break;

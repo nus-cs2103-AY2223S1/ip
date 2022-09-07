@@ -48,6 +48,7 @@ public class TaskList {
         String listOfTasks = "";
         for (int i = 0; i < tasks.size(); i++) {
             int taskNumber = i + 1;
+            assert taskNumber > 0;
             listOfTasks = listOfTasks + taskNumber + ". " + tasks.get(i) + "\n";
         }
         return listOfTasks;
@@ -139,6 +140,7 @@ public class TaskList {
         for (int i = 0; i < tasks.size(); i++) {
             String toSearch = tasks.get(i).toString();
             if (toSearch.contains(keyword)) {
+                assert count > 0;
                 temp = temp + count + ". " + toSearch + "\n";
                 count++;
             }
