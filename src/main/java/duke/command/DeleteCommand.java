@@ -11,7 +11,7 @@ import duke.ui.Ui;
  */
 public class DeleteCommand extends Command {
     /** The arguments of the command (e.g. 'sleep /at 2020-12-12'). */
-    private final String arguments;
+    private static String arguments;
 
     /**
      * Constructor of DeleteCommand.
@@ -19,7 +19,7 @@ public class DeleteCommand extends Command {
      * @param arguments The arguments of the command.
      */
     public DeleteCommand(String arguments) {
-        this.arguments = arguments;
+        DeleteCommand.arguments = arguments;
     }
 
     /**
@@ -32,7 +32,7 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        String deletedTaskDesc = tasks.deleteItem(this.arguments);
+        String deletedTaskDesc = tasks.deleteItem(DeleteCommand.arguments);
 
         assert !deletedTaskDesc.isEmpty() : "Deleted task description should never be empty";
 

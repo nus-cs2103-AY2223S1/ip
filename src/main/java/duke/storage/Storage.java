@@ -24,10 +24,10 @@ import duke.task.ToDo;
  */
 public class Storage {
     /** Path to file where tasks are stored. */
-    private final Path filePath;
+    private static Path filePath;
 
     /** File reference where tasks are stored. */
-    private final File file;
+    private static File file;
 
     /**
      * Constructor for Storage.
@@ -36,8 +36,8 @@ public class Storage {
      */
     public Storage(String filePath) {
         String[] directories = filePath.split("/");
-        this.filePath = Paths.get(System.getProperty("user.dir"), directories);
-        this.file = new File(this.filePath.toString());
+        Storage.filePath = Paths.get(System.getProperty("user.dir"), directories);
+        Storage.file = new File(Storage.filePath.toString());
 
         // Path to directory where file that stores tasks is at
         Path dirPath = Paths.get(System.getProperty("user.dir"), Arrays.copyOf(directories, directories.length - 1));
@@ -48,7 +48,7 @@ public class Storage {
             dir.mkdirs();
         }
 
-        if (!this.file.exists()) {
+        if (!Storage.file.exists()) {
             try {
                 this.writeToFile("", true);
             } catch (IOException e) {
@@ -65,28 +65,24 @@ public class Storage {
     public ArrayList<Task> load() throws FileNotFoundException {
         ArrayList<Task> tempList = new ArrayList<>();
 
-        if (this.file.exists() && !this.file.isDirectory()) {
-            Scanner fileScanner = new Scanner(this.file);
+        if (Storage.file.exists() && !Storage.file.isDirectory()) {
+            Scanner fileScanner = new Scanner(Storage.file);
             while (fileScanner.hasNext()) {
                 String line = fileScanner.nextLine();
                 String[] details = line.split(" \\| ");
 
-                try {
-                    switch (details[0]) {
-                    case "T":
-                        tempList.add(new ToDo(details[2], details[1].equals("1")));
-                        break;
-                    case "D":
-                        tempList.add(new Deadline(details[2], details[3], details[1].equals("1")));
-                        break;
-                    case "E":
-                        tempList.add(new Event(details[2], details[3], details[1].equals("1")));
-                        break;
-                    default:
-                        throw new DukeException("File contains lines that cannot be validated as a Task.");
-                    }
-                } catch (DukeException e) {
-                    System.out.println(e.getMessage());
+                switch (details[0]) {
+                case "T":
+                    tempList.add(new ToDo(details[2], details[1].equals("1")));
+                    break;
+                case "D":
+                    tempList.add(new Deadline(details[2], details[3], details[1].equals("1")));
+                    break;
+                case "E":
+                    tempList.add(new Event(details[2], details[3], details[1].equals("1")));
+                    break;
+                default:
+                    throw new DukeException("File contains lines that cannot be validated as a Task.");
                 }
             }
 
@@ -108,8 +104,8 @@ public class Storage {
      */
     private void writeToFile(String textToAdd, boolean isOverwrite) throws IOException {
         FileWriter fw = isOverwrite
-                ? new FileWriter(this.filePath.toString())
-                : new FileWriter(this.filePath.toString(), true);
+                ? new FileWriter(Storage.filePath.toString())
+                : new FileWriter(Storage.filePath.toString(), true);
         fw.write(textToAdd);
         fw.close();
     }
@@ -134,6 +130,8 @@ public class Storage {
 
                     this.writeToFile("E | " + taskDone + " | " + t.getTaskName() + " | "
                             + ((Event) t).getDate() + "\n", false);
+                } else {
+                    throw new DukeException("Invalid event found in save! Aborting...");
                 }
             } catch (IOException e) {
                 System.out.println(e.getMessage());
