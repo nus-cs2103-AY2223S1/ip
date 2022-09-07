@@ -17,10 +17,4 @@ public abstract class Command {
      * @throws MortException If the command cannot be executed.
      */
     public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws MortException;
-
-    /**
-     * Indicates whether a command exits the Duke program.
-     * @return True if command is an exit command; false otherwise.
-     */
-    public abstract boolean isExit();
 }

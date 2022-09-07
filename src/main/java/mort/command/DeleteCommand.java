@@ -12,9 +12,11 @@ import mort.ui.Ui;
 public class DeleteCommand extends Command {
     /** Index of task to be deleted */
     private int taskNumber;
+    
     public DeleteCommand(int taskNumber) {
         this.taskNumber = taskNumber;
     }
+    
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MortException {
         try {
@@ -24,9 +26,5 @@ public class DeleteCommand extends Command {
         } catch (IndexOutOfBoundsException e) {
             throw new MortException(ui.getMissingTaskError(CommandWord.DELETE, this.taskNumber));
         }
-    }
-    @Override
-    public boolean isExit() {
-        return false;
     }
 }

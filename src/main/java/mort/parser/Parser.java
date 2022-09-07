@@ -31,6 +31,7 @@ public class Parser {
     public static Command parse(String fullCommand) throws MortException {
         String strippedCommand = fullCommand.stripTrailing();
         String[] parsedCommand = strippedCommand.split(" ", 2);
+        assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
         try {
             switch (parsedCommand[0]) {
             case "":
@@ -102,7 +103,9 @@ public class Parser {
     public static String[] parseSavedTask(String savedTask) {
         return savedTask.split(" \\| ", 4);
     }
+    
     private static Command validateToDo(String[] parsedCommand) throws MortException {
+        assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
         if (parsedCommand.length < 2) {
             throw new MortException("It seems you've invented a way to do nothing. Typical...\n"
                     + Ui.getCommandHelp(CommandWord.TODO));
@@ -114,11 +117,14 @@ public class Parser {
     }
 
     private static Command validateDeadline(String[] parsedCommand) throws MortException {
+        assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
         if (parsedCommand.length < 2) {
             throw new MortException("It seems you've invented a way to do nothing. Typical...\n"
                     + Ui.getCommandHelp(CommandWord.DEADLINE));
         } else {
             String[] parsedTask = parsedCommand[1].split(" /by ", 2);
+            assert parsedTask.length > 0 : "Length of parsedTask should be greater than 0";
+
             if (parsedTask[0].startsWith("/by") || parsedTask[0].isBlank()) {
                 throw new MortException("It seems you've invented a way to do nothing. Typical...\n"
                         + Ui.getCommandHelp(CommandWord.DEADLINE));
@@ -134,11 +140,15 @@ public class Parser {
     }
 
     private static Command validateEvent(String[] parsedCommand) throws MortException {
+        assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
+        
         if (parsedCommand.length < 2) {
             throw new MortException("It seems you've invented a way to do nothing. Typical...\n"
                     + Ui.getCommandHelp(CommandWord.EVENT));
         } else {
             String[] parsedTask = parsedCommand[1].split(" /at ", 2);
+            assert parsedTask.length > 0 : "Length of parsedTask should be greater than 0";
+
             if (parsedTask[0].startsWith("/at") || parsedTask[0].isBlank()) {
                 throw new MortException("It seems you've invented a way to do nothing. Typical...\n"
                         + Ui.getCommandHelp(CommandWord.EVENT));
@@ -154,6 +164,8 @@ public class Parser {
     }
 
     private static Command validateDelete(String[] parsedCommand) throws MortException {
+        assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
+
         if (parsedCommand.length < 2) { // blank task number
             throw new MortException("Enter a task number, nitwit.\n"
                     + Ui.getCommandHelp(CommandWord.DELETE));
@@ -164,6 +176,8 @@ public class Parser {
     }
 
     private static Command validateMark(String[] parsedCommand) throws MortException {
+        assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
+
         if (parsedCommand.length < 2) { // blank task number
             throw new MortException("Enter a task number, nitwit.\n"
                     + Ui.getCommandHelp(CommandWord.MARK));
@@ -174,6 +188,8 @@ public class Parser {
     }
 
     private static Command validateFind(String[] parsedCommand) throws MortException {
+        assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
+
         if (parsedCommand.length < 2) {
             throw new MortException("You're so helpful. What exactly am I supposed to look for?\n"
                     + Ui.getCommandHelp(CommandWord.FIND));
@@ -181,7 +197,10 @@ public class Parser {
             return new FindCommand(parsedCommand[1]);
         }
     }
+    
     private static Command validateUnmark(String[] parsedCommand) throws MortException {
+        assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
+
         if (parsedCommand.length < 2) { // blank task number
             throw new MortException("Enter a task number, nitwit.\n"
                     + Ui.getCommandHelp(CommandWord.UNMARK));
@@ -206,5 +225,4 @@ public class Parser {
             throw new MortException(Ui.getUnknownCommandMessage(strippedCommand));
         }
     }
-
 }

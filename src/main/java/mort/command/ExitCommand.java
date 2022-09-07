@@ -12,8 +12,4 @@ public class ExitCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         return ui.getExitMessage();
     }
-    @Override
-    public boolean isExit() {
-        return true;
-    }
 }
