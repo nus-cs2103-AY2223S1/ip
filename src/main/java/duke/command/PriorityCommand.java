@@ -6,13 +6,22 @@ import duke.exception.InvalidIndexException;
 import duke.exception.InvalidPriorityException;
 import duke.task.TaskList;
 
+/**
+ * a calls to represent the priority command.
+ */
 public class PriorityCommand extends Command {
     public static final String COMMAND = "priority";
     private int targetIndex;
     private String priorityLevel;
 
+    /**
+     * Constructs a new PriorityCommand instance.
+     *
+     * @param description the command description.
+     * @throws DukeException If Index or priority is not valid.
+     */
     public PriorityCommand(String description) throws DukeException {
-        String splitted[] = description.split(" ", 2);
+        String[] splitted = description.split(" ", 2);
         String indexString = splitted[0].trim();
         try {
             targetIndex = Integer.parseInt(indexString);

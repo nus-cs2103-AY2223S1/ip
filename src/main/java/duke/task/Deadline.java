@@ -63,6 +63,6 @@ public class Deadline extends Task {
     @Override
     public String toSaveFileString() {
         return TYPE_SYMBOL + " @ " + getStatusIcon() + " @ " + super.getPriority()
-                + " @ "  + super.getTask() + " @ " + Parser.printSaveFileDate(deadline);
+                + " @ " + super.getTask() + " @ " + Parser.printSaveFileDate(deadline);
     }
 }

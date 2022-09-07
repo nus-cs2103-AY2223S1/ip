@@ -160,7 +160,7 @@ public class TaskList {
         return filteredTasks;
     }
 
-    public String setPriority(int index, String priority) throws DukeException{
+    public String setPriority(int index, String priority) throws DukeException {
         //Index out of bounds
         if (index > taskList.size() || index < 1) {
             throw new InvalidIndexException();

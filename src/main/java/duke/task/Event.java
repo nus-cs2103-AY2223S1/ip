@@ -61,6 +61,6 @@ public class Event extends Task {
     @Override
     public String toSaveFileString() {
         return TYPE_SYMBOL + " @ " + getStatusIcon() + " @ " + super.getPriority()
-               + " @ "  + super.getTask() + " @ " + Parser.printSaveFileDate(date);
+               + " @ " + super.getTask() + " @ " + Parser.printSaveFileDate(date);
     }
 }
