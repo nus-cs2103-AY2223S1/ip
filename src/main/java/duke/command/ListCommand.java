@@ -22,16 +22,16 @@ public class ListCommand extends Command {
      */
     @Override
     public String execute(Ui ui, Storage storage, TaskList taskList) {
-        MultiLineFormatter mf = new MultiLineFormatter();
+        MultiLineFormatter mFormatter = new MultiLineFormatter();
         if (taskList.getSize() == 0) {
             String message = "\t\t\t" + "No items are in the list";
-            mf.add(message);
+            mFormatter.add(message);
         }
         for (int i = 0; i < taskList.getSize(); i++) {
             Task currTask = taskList.getTask(i);
             String itemDisplayed = String.format("%d. %s\n", i + 1, currTask);
-            mf.add(itemDisplayed);
+            mFormatter.add(itemDisplayed);
         }
-        return mf.getFullMessage();
+        return mFormatter.getFullMessage();
     }
 }

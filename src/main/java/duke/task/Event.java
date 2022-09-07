@@ -25,7 +25,7 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.period.format(dtf) + ")";
+        return "[E]" + super.toString() + " (at: " + period.format(dtf) + ")";
     }
 
     /**
@@ -36,6 +36,6 @@ public class Event extends Task {
      */
     @Override
     public String stringFormatting() {
-        return "E" + super.stringFormatting() + " # " + this.period;
+        return "E" + super.stringFormatting() + " # " + period;
     }
 }
