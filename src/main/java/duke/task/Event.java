@@ -43,9 +43,13 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s) [%s]", super.toString(),
+        String tagInfo = super.getTagsString().isEmpty()
+                ? ""
+                : "[" + super.getTagsString() + "]";
+
+        return String.format("[E]%s (at: %s) %s", super.toString(),
                 this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")),
-                super.getTagsString());
+                tagInfo);
     }
 
     /**

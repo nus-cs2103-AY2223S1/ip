@@ -26,7 +26,11 @@ public class ToDo extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[T]%s [%s]", super.toString(), super.getTagsString());
+        String tagInfo = super.getTagsString().isEmpty()
+                ? ""
+                : "[" + super.getTagsString() + "]";
+
+        return String.format("[T]%s %s", super.toString(), tagInfo);
     }
 
     /**

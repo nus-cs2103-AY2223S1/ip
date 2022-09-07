@@ -43,9 +43,13 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s) [%s]", super.toString(),
+        String tagInfo = super.getTagsString().isEmpty()
+                ? ""
+                : "[" + super.getTagsString() + "]";
+
+        return String.format("[D]%s (by: %s) %s", super.toString(),
                 this.deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy")),
-                super.getTagsString());
+                tagInfo);
     }
 
     /**
