@@ -9,17 +9,20 @@ import exceptions.DukeException;
  */
 public class Ui {
 
+    private static final String LOGO = "*\\(^o^)/*\n";
+    private static final String WELCOME_MESSAGE = "Bonjour~~ I'm Byu! How can I help you?\n";
+    private static final String ERROR_FORMAT = "Ohno! Error:%s\n";
+    private static final String EXIT_MESSAGE = "Awww see you soon!!";
+
     private final Scanner sc = new Scanner(System.in);
-    private final String logo = "*\\(^o^)/*";
     private String output;
 
     /**
      * Prints the welcome message.
      */
-    public void showWelcome() {
-        assert logo != null : "logo should be initialized";
-        System.out.println(logo);
-        System.out.println("Bonjour~~ I'm Byu! How can I help you?");
+    public String showWelcome() {
+        assert Ui.LOGO != null : "logo should be initialized";
+        return Ui.LOGO + Ui.WELCOME_MESSAGE;
     }
 
     /**
@@ -35,15 +38,15 @@ public class Ui {
      * Prints the error message for an invalid input.
      */
     public String showError(DukeException e) {
-        return String.format("Ohno! Error: " + e.getMessage() + "\n");
+        return String.format(Ui.ERROR_FORMAT, e.getMessage());
     }
 
     /**
      * Ends interactions with user and prints exit message.
      */
-    public void exit() {
-        System.out.print("Awww see you soon!!");
+    public String exit() {
         sc.close();
+        return Ui.EXIT_MESSAGE;
     }
 
     public void setOutput(String s) {

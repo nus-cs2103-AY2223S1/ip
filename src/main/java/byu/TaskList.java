@@ -14,7 +14,7 @@ public class TaskList {
 
     private final ArrayList<Task> tasks;
     private int numOfTasks = 0;
-    private Ui ui;
+    private final Ui ui;
 
     /**
      * Creates a ToDoList that stores tasks.
@@ -60,12 +60,10 @@ public class TaskList {
      * @throws InvalidIndexException if i > number of tasks in the list.
      */
     public void mark(int i) throws InvalidIndexException {
-        if (i < 0 || i > numOfTasks) {
-            throw new InvalidIndexException();
-        }
-        Task t = tasks.get(i - 1);
-        t.setDone(true);
-        String output = String.format("Nice! I've marked this task as done:\n%s\n", t);
+        int arrayIndex = getValidArrayIndex(i);
+        Task task = tasks.get(arrayIndex);
+        task.setDone(true);
+        String output = String.format("Nice! I've marked this task as done:\n%s\n", task);
         this.ui.setOutput(output);
     }
 
@@ -76,12 +74,10 @@ public class TaskList {
      * @throws InvalidIndexException if i > number of tasks in the list.
      */
     public void unmark(int i) throws InvalidIndexException {
-        if (i < 0 || i > numOfTasks) {
-            throw new InvalidIndexException();
-        }
-        Task t = tasks.get(i - 1);
-        t.setDone(false);
-        String output = String.format("OK, I've marked this task as not done yet:\n%s\n", t);
+        int arrayIndex = getValidArrayIndex(i);
+        Task task = tasks.get(arrayIndex);
+        task.setDone(false);
+        String output = String.format("OK, I've marked this task as not done yet:\n%s\n", task);
         this.ui.setOutput(output);
     }
 
@@ -92,15 +88,22 @@ public class TaskList {
      * @throws InvalidIndexException if i > number of tasks in the list.
      */
     public void delete(int i) throws InvalidIndexException {
-        if (i < 0 || i > numOfTasks) {
-            throw new InvalidIndexException();
-        }
-        Task t = tasks.get(i - 1);
-        this.tasks.remove(i - 1);
+        int arrayIndex = getValidArrayIndex(i);
+        Task task = tasks.get(arrayIndex);
+        this.tasks.remove(arrayIndex);
         this.numOfTasks -= 1;
-        String output = String.format("Alright! I've removed this task:\n%s\n", t);
+        String output = String.format("Alright! I've removed this task:\n%s\n", task);
         output += String.format("Now you have %d tasks in the list.\n", this.numOfTasks);
         this.ui.setOutput(output);
+    }
+
+    private int getValidArrayIndex(int i) throws InvalidIndexException {
+        boolean isNegative = i < 0;
+        boolean isMoreThanLength = i > numOfTasks;
+        if (isNegative || isMoreThanLength) {
+            throw new InvalidIndexException();
+        }
+        return i - 1;
     }
 
     /**

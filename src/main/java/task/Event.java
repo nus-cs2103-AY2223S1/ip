@@ -8,7 +8,8 @@ import java.io.IOException;
  */
 public class Event extends Task {
 
-    private static final char SYMBOL = 'E';
+    public static final String SYMBOL = "E";
+    private static final String FORMAT = "[E]%s (at: %s)";
 
     private String period;
 
@@ -25,6 +26,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), this.period);
+        return String.format(Event.FORMAT, super.toString(), this.period);
     }
 }
