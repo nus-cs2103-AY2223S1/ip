@@ -14,10 +14,10 @@ public class Storage {
 
     /**
      * Creates a new storage instance from the given pathname string.
-     * @param pathname A pathname string.
+     * @param pathName A pathname string.
      */
-    public Storage(String pathname) {
-        this.file = new File(pathname);
+    public Storage(String pathName) {
+        this.file = new File(pathName);
         if (!this.file.exists()) {
             this.file.getParentFile().mkdirs();
             try {
