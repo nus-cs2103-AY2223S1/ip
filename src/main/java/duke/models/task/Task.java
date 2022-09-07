@@ -16,7 +16,7 @@ public abstract class Task {
     /**
      * Initializes the Task object with the provided description and sets the completion status to be undone.
      *
-     * @param description The received description
+     * @param description The received description.
      */
     public Task(String description) {
         this.description = description;
@@ -26,8 +26,8 @@ public abstract class Task {
     /**
      * Initializes the Task object with the provided description and completion status.
      *
-     * @param description The received description
-     * @param isDone      The received completion status
+     * @param description The received description.
+     * @param isDone      The received completion status.
      */
     public Task(String description, boolean isDone) {
         this.description = description;
@@ -55,14 +55,14 @@ public abstract class Task {
     /**
      * Returns the task type icon of the current task.
      *
-     * @return Task type icon of the task
+     * @return Task type icon of the task.
      */
     public abstract String getTaskTypeIcon();
 
     /**
      * Returns the date of the current task, or null if there is no associated date
      *
-     * @return Date of the current task, or null if there is no associated date
+     * @return Date of the current task, or null if there is no associated date.
      */
     public abstract LocalDate getDate();
 
@@ -70,7 +70,7 @@ public abstract class Task {
      * Returns the status icon of the current task, where a task that is done is marked with a 'X' and a task that is
      * undone is marked with an empty space.
      *
-     * @return Date of the current task, or null if there is no associated date
+     * @return Date of the current task, or null if there is no associated date.
      */
     private String getStatusIcon() {
         return (this.isDone ? "X" : " "); // mark done task with X
@@ -79,7 +79,7 @@ public abstract class Task {
     /**
      * Returns a serializable format of the task.
      *
-     * @return Serializable format of the task
+     * @return Serializable format of the task.
      */
     public abstract TaskSerializable serialize();
 

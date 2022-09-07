@@ -30,7 +30,7 @@ public class MarkTaskCommand implements Command {
     /**
      * Creates a new instance of a Command handler for marking a task as completed.
      *
-     * @param arguments The arguments following the {@code 'mark'} prefix supplied by the user from keyboard input
+     * @param arguments The arguments following the {@code 'mark'} prefix supplied by the user from keyboard input.
      */
     public MarkTaskCommand(String arguments) {
         this.arguments = arguments;

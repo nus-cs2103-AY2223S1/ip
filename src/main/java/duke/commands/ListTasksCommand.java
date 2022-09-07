@@ -55,7 +55,7 @@ public class ListTasksCommand implements Command {
     /**
      * Creates a new instance of the Command handler for listing tasks.
      *
-     * @param arguments The arguments following the {@code 'list'} prefix supplied by the user from keyboard input
+     * @param arguments The arguments following the {@code 'list'} prefix supplied by the user from keyboard input.
      */
     public ListTasksCommand(String arguments) {
         this.arguments = arguments;

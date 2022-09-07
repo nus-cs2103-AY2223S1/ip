@@ -35,10 +35,10 @@ public class TaskStorage extends Storage {
     /**
      * Adds a {@link Task} to the task storage.
      *
-     * @param addingTask Task object to be added
+     * @param addingTask Task object to be added.
      *
-     * @return The added task object
-     * @throws DukeException If the task cannot be added
+     * @return The added task object.
+     * @throws DukeException If the task cannot be added.
      */
     public Task addTask(Task addingTask) throws DukeException {
         this.appendTask(addingTask);
@@ -48,10 +48,10 @@ public class TaskStorage extends Storage {
     /**
      * Returns the {@link Task} specified by the task index.
      *
-     * @param taskIndex 0-indexed specifier for the task
+     * @param taskIndex 0-indexed specifier for the task.
      *
-     * @return The corresponding task
-     * @throws DukeException If the task cannot be found
+     * @return The corresponding task.
+     * @throws DukeException If the task cannot be found.
      */
     public Task findTask(int taskIndex) throws DukeException {
         List<Task> allTasks = this.readAllTasks();
@@ -64,10 +64,10 @@ public class TaskStorage extends Storage {
     /**
      * Deletes the {@link Task} corresponding to the task index from the task storage and returns the deleted task.
      *
-     * @param taskIndex The task index corresponding to the task to be deleted
+     * @param taskIndex The task index corresponding to the task to be deleted.
      *
-     * @return The deleted task
-     * @throws DukeException If the task cannot be deleted
+     * @return The deleted task.
+     * @throws DukeException If the task cannot be deleted.
      */
     public Task deleteTask(int taskIndex) throws DukeException {
         List<Task> allTasks = this.readAllTasks();
@@ -83,11 +83,11 @@ public class TaskStorage extends Storage {
      * Updates the {@link Task} corresponding to the task index using the updated Task object provided by the caller,
      * and returns the updated task.
      *
-     * @param taskIndex    0-based indexed specifier for the task to be updated
-     * @param updatingTask The task object containing the updated task
+     * @param taskIndex    0-based indexed specifier for the task to be updated.
+     * @param updatingTask The task object containing the updated task.
      *
-     * @return The updated task
-     * @throws DukeException If the task cannot be updated
+     * @return The updated task.
+     * @throws DukeException If the task cannot be updated.
      */
     public Task updateTask(int taskIndex, Task updatingTask) throws DukeException {
         List<Task> allTasks = this.readAllTasks();
@@ -102,8 +102,8 @@ public class TaskStorage extends Storage {
     /**
      * Returns the number of {@link Task tasks} in the task storage.
      *
-     * @return Number of tasks in the task storage
-     * @throws DukeException If the tasks cannot be read
+     * @return Number of tasks in the task storage.
+     * @throws DukeException If the tasks cannot be read.
      */
     public int count() throws DukeException {
         List<Task> allTasks = this.readAllTasks();
@@ -113,10 +113,10 @@ public class TaskStorage extends Storage {
     /**
      * Returns a filtered {@link Task} list based on the provided predicate.
      *
-     * @param condition Predicate provided for the filter operation
+     * @param condition Predicate provided for the filter operation.
      *
-     * @return Filtered task list
-     * @throws DukeException If the tasks cannot be read or retrieved
+     * @return Filtered task list.
+     * @throws DukeException If the tasks cannot be read or retrieved.
      */
     public List<Task> filter(Predicate<? super Task> condition) throws DukeException {
         return this.readAllTasks().stream().filter(condition).collect(Collectors.toList());
@@ -125,8 +125,8 @@ public class TaskStorage extends Storage {
     /**
      * Returns the list of {@link Task tasks} in the task storage.
      *
-     * @return List of tasks in the task storage
-     * @throws DukeException If the tasks cannot be read
+     * @return List of tasks in the task storage.
+     * @throws DukeException If the tasks cannot be read.
      */
     public List<Task> readAllTasks() throws DukeException {
         File storage = this.getStorage();

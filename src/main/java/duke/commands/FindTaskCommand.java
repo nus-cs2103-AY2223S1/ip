@@ -35,7 +35,7 @@ public class FindTaskCommand implements Command {
     /**
      * Creates a new instance of the Command handler for finding a {@link Task}.
      *
-     * @param arguments The arguments following the {@code 'find'} prefix supplied by the user from keyboard input
+     * @param arguments The arguments following the {@code 'find'} prefix supplied by the user from keyboard input.
      */
     public FindTaskCommand(String ...arguments) {
         this.arguments = arguments;

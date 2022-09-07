@@ -23,7 +23,7 @@ public abstract class Storage {
     /**
      * Sets up the storage object for the provided file name.
      *
-     * @param dataFilename The file name specifying where the data should be stored
+     * @param dataFilename The file name specifying where the data should be stored.
      */
     public Storage(String dataFilename) {
         this.storage = new File(String.format("%s/%s", Storage.FILE_DIRECTORY, dataFilename));
@@ -41,7 +41,7 @@ public abstract class Storage {
      * Initializes the storage by retrieving the file belonging to the file path for the
      * data, creating the relevant files and folders if necessary.
      *
-     * @throws DukeException If the files or folders for the data cannot be retrieved or created
+     * @throws DukeException If the files or folders for the data cannot be retrieved or created.
      */
     public void initialize() throws DukeException {
         File parentFolder = this.storage.getParentFile();

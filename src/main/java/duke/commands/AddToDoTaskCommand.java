@@ -35,7 +35,7 @@ public class AddToDoTaskCommand extends AddTaskCommand implements Command {
     /**
      * Creates a new instance of the Command handler for adding a {@link ToDo} task.
      *
-     * @param arguments The arguments following the {@code 'todo'} prefix supplied by the user from keyboard input
+     * @param arguments The arguments following the {@code 'todo'} prefix supplied by the user from keyboard input.
      */
     public AddToDoTaskCommand(String arguments) {
         this.arguments = arguments;

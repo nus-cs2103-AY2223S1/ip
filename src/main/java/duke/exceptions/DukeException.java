@@ -11,7 +11,7 @@ public class DukeException extends Exception {
     /**
      * Creates a new instance of the Exception object.
      *
-     * @param message The error message associated with the exception
+     * @param message The error message associated with the exception.
      */
     public DukeException(String message) {
         super(String.format("%s %s", DukeException.MESSAGE_OOPS, message));
