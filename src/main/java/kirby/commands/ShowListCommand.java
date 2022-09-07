@@ -22,7 +22,7 @@ public class ShowListCommand extends Command {
         }
         for (int i = 0; i < tasks.getList().size(); i++) {
             Task currTask = tasks.getList().get(i);
-            resPara.append(i).append(1).append(": ").append(currTask.toString()).append("\n");
+            resPara.append(i + 1).append(": ").append(currTask.toString()).append("\n");
         }
         return resPara.toString();
     }

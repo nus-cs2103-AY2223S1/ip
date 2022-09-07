@@ -1,10 +1,10 @@
 package kirby;
 
+import static kirby.time.HandleTime.sortTaskList;
+
 import java.util.ArrayList;
 
 import kirby.tasks.Task;
-
-import static kirby.time.HandleTime.sortTaskList;
 
 /**
  * TaskList class handles the list of tasks - adding and deleting tasks from it and other operations.
