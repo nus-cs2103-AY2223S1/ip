@@ -34,6 +34,8 @@ public class MarkCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         String taskDescription = tasks.markOrUnmark(this.arguments, true);
 
+        assert !taskDescription.isEmpty() : "Task that is marked should not be empty string, even if operation fails";
+
         return ui.getTaskMarkedMsg(taskDescription);
     }
 }

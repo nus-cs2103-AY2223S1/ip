@@ -67,6 +67,8 @@ public class Duke {
             dukeMessage = this.ui.getDateErrorMsg();
         }
 
+        assert !dukeMessage.isEmpty() : "Message is not supposed to be empty";
+
         return dukeMessage;
     }
 }
