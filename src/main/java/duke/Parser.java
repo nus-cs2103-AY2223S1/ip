@@ -75,10 +75,12 @@ public class Parser {
     }
 
     private static Integer parseMarkedTask(String command, TaskList taskList) throws DukeException {
+        assert command.toLowerCase().startsWith("mark") : "This should be mark";
         String[] markedTask = command.split(" ", 2);
         if (markedTask.length < 2) {
             throw new DukeException("Please input a number after mark");
         }
+        assert markedTask.length == 2 : "This should be length 2";
         int number = Integer.parseInt(markedTask[1]);
         if (number > taskList.getSize() || number <= 0) {
             throw new DukeException("Sorry! Please choose a valid item number in the list");
@@ -91,6 +93,7 @@ public class Parser {
         if (unmarkedTask.length < 2) {
             throw new DukeException("Please input a number after unmark");
         }
+        assert unmarkedTask.length == 2 : "This should be length 2";
         int number = Integer.parseInt(unmarkedTask[1]);
         if (number > taskList.getSize() || number <= 0) {
             throw new DukeException("Sorry! Please choose a valid item number in the list");
