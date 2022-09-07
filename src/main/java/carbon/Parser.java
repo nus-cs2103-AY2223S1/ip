@@ -1,5 +1,7 @@
 package carbon;
 
+import java.io.FileNotFoundException;
+
 import carbon.error.CarbonException;
 import carbon.error.CorruptedSaveFileException;
 import carbon.error.InvalidInputException;
@@ -27,8 +29,10 @@ public class Parser {
         this.storage = storage;
         try {
             this.taskList = this.storage.loadSaveFile();
+        } catch (FileNotFoundException error) {
+            this.taskList = new TaskList();
         } catch (CorruptedSaveFileException error) {
-            // cannot read save file, so init with none
+            this.taskList = new TaskList();
         }
     }
 
@@ -52,8 +56,14 @@ public class Parser {
             log = this.taskList.listItems();
             break;
         case "undo":
-            this.taskList = this.storage.loadUndoFile();
-            log = this.taskList.listItems();
+            try {
+                this.taskList = this.storage.loadUndoFile();
+                log = this.taskList.listItems();
+            } catch (FileNotFoundException error) {
+                log = "There's no command to undo yet.";
+            } catch (CorruptedSaveFileException error) {
+                log = "Sorry, I can't undo that command.";
+            }
             break;
         default:
             // unable to process as a simple command, pass to next handler

@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import carbon.error.CorruptedSaveFileException;
+
 /**
  * Stores data on tasks and acts as interface for storage.
  * Used to save data and load data from a default filepath.
@@ -27,24 +29,19 @@ public class Storage {
      */
     public Storage() {}
 
-    private TaskList loadFile(String filepath) {
+    private TaskList loadFile(String filepath) throws FileNotFoundException, CorruptedSaveFileException {
         TaskList taskList = new TaskList();
-
-        try {
-            File saveFile = new File(filepath);
-            if (!saveFile.isFile()) {
-                return taskList;
-            }
-
-            Scanner saveFileScanner = new Scanner(saveFile);
-            while (saveFileScanner.hasNextLine()) {
-                String data = saveFileScanner.nextLine();
-                taskList.loadTask(data);
-            }
-            saveFileScanner.close();
-        } catch (FileNotFoundException error) {
-            System.out.println(error);
+        File saveFile = new File(filepath);
+        if (!saveFile.isFile()) {
+            throw new FileNotFoundException("File does not exist");
         }
+
+        Scanner saveFileScanner = new Scanner(saveFile);
+        while (saveFileScanner.hasNextLine()) {
+            String data = saveFileScanner.nextLine();
+            taskList.loadTask(data);
+        }
+        saveFileScanner.close();
 
         return taskList;
     }
@@ -71,7 +68,7 @@ public class Storage {
      *
      * @return TaskList instance containing the saved tasks.
      */
-    public TaskList loadSaveFile() {
+    public TaskList loadSaveFile() throws FileNotFoundException, CorruptedSaveFileException {
         return this.loadFile(Storage.SAVEFILEPATH);
     }
 
@@ -91,7 +88,7 @@ public class Storage {
      *
      * @return TaskList instance containing the previous saved tasks.
      */
-    public TaskList loadUndoFile() {
+    public TaskList loadUndoFile() throws FileNotFoundException, CorruptedSaveFileException {
         return this.loadFile(Storage.UNDOFILEPATH);
     }
 
