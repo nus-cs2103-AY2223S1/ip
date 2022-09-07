@@ -28,7 +28,7 @@ public class DeleteCommand extends Command {
     public String run() throws DukeException {
         String reply;
         try {
-            reply = tasks.deleteTask(Integer.parseInt(content) - 1);
+            reply = tasks.deleteTask(Integer.parseInt(content.replaceAll("\\s+", "")) - 1);
         } catch (NumberFormatException e) {
             throw new DukeException("Task number need to be an integer!");
         }

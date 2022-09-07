@@ -28,7 +28,7 @@ public class MarkCommand extends Command {
     public String run() throws DukeException {
         String reply;
         try {
-            reply = tasks.markTask(Integer.parseInt(content) - 1);
+            reply = tasks.markTask(Integer.parseInt(content.replaceAll("\\s+", "")) - 1);
         } catch (NumberFormatException e) {
             throw new DukeException("Task number need to be an integer!");
         }

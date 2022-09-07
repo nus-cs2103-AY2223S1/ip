@@ -19,6 +19,16 @@ import duke.exception.DukeException;
 public class Parser {
 
     /**
+     * Splits the input into different sections based on number of commands.
+     *
+     * @param input User command.
+     * @return String array containing user commands.
+     */
+    public String[] parseCommand(String input) {
+        return input.split("@");
+    }
+
+    /**
      * Returns a Command based on the user command.
      *
      * @param message User command.
@@ -29,8 +39,7 @@ public class Parser {
     public Command parse(String message, TaskList tasks) throws DukeException {
         assert tasks != null : "Task list should not be null";
         String[] splitMessage = message.split("\\s+", 2);
-        CommandType commandType = CommandType.parse(splitMessage[0]);
-
+        CommandType commandType = CommandType.parse(splitMessage[0].toLowerCase());
         switch (commandType) {
         case BYE:
             return new EndCommand();

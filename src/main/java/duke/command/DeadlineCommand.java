@@ -27,7 +27,7 @@ public class DeadlineCommand extends Command {
      */
     @Override
     public String run() throws DukeException {
-        String[] splitMessage = content.split(" /by ", 2);
+        String[] splitMessage = content.replaceAll("\\s+", "").split("/by", 2);
         if (splitMessage.length < 2) {
             throw new DukeException("You forgot to add the deadline or description!");
         }

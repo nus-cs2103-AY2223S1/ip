@@ -27,7 +27,8 @@ public class EventCommand extends Command {
      */
     @Override
     public String run() throws DukeException {
-        String[] splitMessage = content.split(" /at ", 2);
+<<<<<<< HEAD
+        String[] splitMessage = content.replaceAll("\\s+", "").split("/at", 2);
         if (splitMessage.length < 2) {
             throw new DukeException("You forgot to add the time or description!");
         }
