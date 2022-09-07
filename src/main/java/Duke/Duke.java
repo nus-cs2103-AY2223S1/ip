@@ -80,7 +80,7 @@ public class Duke extends Application {
 
         //Step 2. Formatting the window to look as expected
         stage.setTitle("Duke");
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.setMinHeight(600.0);
         stage.setMinWidth(400.0);
 
@@ -153,7 +153,7 @@ public class Duke extends Application {
      * the dialog container. Clears the user input after processing.
      */
     private void handleUserInput() {
-        Label userText = new Label(userInput.getText());
+        Label userText = new Label("Your input:    " + userInput.getText());
         Label dukeText = new Label(getResponse(userInput.getText()));
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, new ImageView(user)),
@@ -164,17 +164,18 @@ public class Duke extends Application {
 
     private String getResponse(String input) {
         boolean isExit = false;
-//        try {
-//            String fullCommand = input;
-//            Command c = parser.parse(fullCommand);
-//            c.execute();
-//            isExit = c.isExit();
-//            storage.saveData();
-//        } catch (Exception e) {
-//            ui.showError(e.getMessage());
-//        } finally {
-//        }
-        return "Duke heard: " + input;
+        String res = "";
+        try {
+            String fullCommand = input;
+            Command c = parser.parse(fullCommand);
+            res = c.execute();
+            isExit = c.isExit();
+            storage.saveData();
+        } catch (Exception e) {
+            ui.showError(e.getMessage());
+            res = e.getMessage();
+        }
+        return res;
     }
 
     // abstractions
@@ -260,11 +261,14 @@ public class Duke extends Application {
             all = new ArrayList<>();
         }
 
-        public void displayList() {
+        public String displayList() {
+            String res = "Here are the tasks in your list:\n";
             System.out.println("Here are the tasks in your list:");
             for (int i = 0; i < count(); i++) {
                 System.out.printf("%s. %s\n", i + 1, all.get(i).toString());
+                res += (i + 1) + ". " + all.get(i).toString() + "\n";
             }
+            return res;
         }
 
         public void findList(String target) {
@@ -359,7 +363,7 @@ public class Duke extends Application {
         /**
          * Execute the command based on its type.
          */
-        public abstract void execute();
+        public abstract String execute();
 
         /**
          * Returns whether it is an exit command.
@@ -385,7 +389,8 @@ public class Duke extends Application {
          * Execute the add command. Determine the type of task added then add it to taskList.
          */
         @Override
-        public void execute() {
+        public String execute() {
+            String res = "";
             if (type == TaskType.TODO) {
                 taskList.addTask(new Todo(description));
             } else if (type == TaskType.DEADLINE) {
@@ -405,6 +410,8 @@ public class Duke extends Application {
             } else {
                 ui.showError("type not supported");
             }
+            res = "Got it. I've added this task:\n" + "Now you have" + taskList.count() + " tasks in the list.\n";
+            return res;
         }
 
         @Override
@@ -420,8 +427,8 @@ public class Duke extends Application {
          * Execute the List command. List all tasks in taskList.
          */
         @Override
-        public void execute() {
-            taskList.displayList();
+        public String execute() {
+            return taskList.displayList();
         }
 
         @Override
@@ -442,8 +449,9 @@ public class Duke extends Application {
          * Execute the find command. Display all tasks containing the input text.
          */
         @Override
-        public void execute() {
+        public String execute() {
             taskList.findList(target);
+            return "";
         }
 
         @Override
@@ -467,15 +475,17 @@ public class Duke extends Application {
          * Mark the task as done or undone.
          */
         @Override
-        public void execute() {
+        public String execute() {
             Task task = taskList.getTask(index - 1);
 
             if (isMark) {
                 task.markAsDone();
                 ui.marked(task);
+                return "Nice! I've marked this task as done\n type list to check the tasks";
             } else {
                 task.markAsUndone();
                 ui.unmarked(task);
+                return "Nice! I've marked this task as undone\n type list to check the tasks";
             }
         }
 
@@ -498,12 +508,13 @@ public class Duke extends Application {
          * Delete the specified task in taskList.
          * */
         @Override
-        public void execute() {
+        public String execute() {
             if (index < 1 || index > taskList.count()) {
                 ui.showError("index out of range");
             } else {
                 taskList.deleteTask(index);
             }
+            return "OK. I have deleted this task";
         }
 
         @Override
@@ -516,8 +527,9 @@ public class Duke extends Application {
         public ExitCommand() { super(); }
 
         @Override
-        public void execute() {
+        public String execute() {
             ui.exit();
+            return "Bye!";
         }
 
         @Override
@@ -530,7 +542,7 @@ public class Duke extends Application {
         public SortCommand() { super(); }
 
         @Override
-        public void execute() {
+        public String execute() {
 
             ArrayList<Todo> todos = new ArrayList<>();
             ArrayList<Deadline> deadlines = new ArrayList<>();
@@ -557,8 +569,8 @@ public class Duke extends Application {
                 all.add(deadlines.get(i));
             }
             ui.sorted();
+            return "Sorted!";
         }
-
         @Override
         public boolean isExit() {
             return false;
@@ -599,7 +611,7 @@ public class Duke extends Application {
             } else if (s.equals(exit)) {
                 return new ExitCommand();
             } else if (space == -1 || s.substring(0, space) == "") {
-                throw new DukeException("Invalid input!");
+                throw new DukeException("Sorry I cannot understand! Retry another command.");
             } else {
                 String identifier = s.substring(0, space);
                 String description = s.substring(space + 1);
