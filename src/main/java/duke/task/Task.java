@@ -1,6 +1,8 @@
 package duke.task;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Task for Duke application.
@@ -10,15 +12,22 @@ import java.time.LocalDate;
 public abstract class Task {
     private final String description;
     private boolean isFinished;
+    private final Set<String> tags;
 
     /**
      * Constructs a new Task instance.
      *
      * @param description the description of the task.
+     * @param tags the tags of the task.
      */
-    public Task(String description) {
+    public Task(String description, String ... tags) {
         this.description = description;
         this.isFinished = false;
+
+        this.tags = new HashSet<>();
+        for (int i = 0; i < tags.length; i++) {
+            this.tags.add(tags[i].trim().toLowerCase());
+        }
     }
 
     /**
@@ -61,12 +70,12 @@ public abstract class Task {
     /**
      * Returns true if the description of current Task matches with the keyword.
      *
-     * @param keyWords the strings of keyword.
+     * @param keywords the strings of keyword.
      * @return true if Task matches the keyword, false otherwise.
      */
-    public boolean containsKeyword(String ... keyWords) {
-        for (int i = 0; i < keyWords.length; i++) {
-            if (this.description.contains(keyWords[i].trim())) {
+    protected boolean containsKeyword(String ... keywords) {
+        for (int i = 0; i < keywords.length; i++) {
+            if (this.description.contains(keywords[i].trim())) {
                 return true;
             }
         }
@@ -75,11 +84,43 @@ public abstract class Task {
     }
 
     /**
+     * Returns true if the current Task matches any of the tags.
+     *
+     * @param chosenTags the chosen tags.
+     * @return true if the task contains any of the chosen tags, false otherwise.
+     */
+    protected boolean containsAnyTags(String ... chosenTags) {
+        for (int i = 0; i < chosenTags.length; i++) {
+            if (this.tags.contains(chosenTags[i].trim().toLowerCase())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Returns true if the current Task matches all the tags.
+     *
+     * @param chosenTags the chosen tags.
+     * @return true if the task contains all the chosen tags, false otherwise.
+     */
+    protected boolean containsAllTags(String ... chosenTags) {
+        for (int i = 0; i < chosenTags.length; i++) {
+            if (!this.tags.contains(chosenTags[i].trim().toLowerCase())) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
      * Returns true if the task happens on the given date.
      *
      * @param selectedDates the selected dates.
      * @return true if the task happens on the selected date, false otherwise.
      */
-    public abstract boolean isOnGivenDate(LocalDate ... selectedDates);
+    protected abstract boolean isOnGivenDate(LocalDate ... selectedDates);
 
 }

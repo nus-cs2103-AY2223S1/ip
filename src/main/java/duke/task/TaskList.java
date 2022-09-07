@@ -64,8 +64,10 @@ public class TaskList {
      */
     public Task markTaskWithIndex(int index) {
         assert index >= 0 : "Index should be non-negative";
+
         Task selectedTask = this.tasks.get(index);
         selectedTask.markAsFinished();
+
         return selectedTask;
     }
 
@@ -77,8 +79,10 @@ public class TaskList {
      */
     public Task unmarkTaskWithIndex(int index) {
         assert index >= 0 : "Index should be non-negative";
+
         Task selectedTask = this.tasks.get(index);
         selectedTask.markAsNotFinished();
+
         return selectedTask;
     }
 
@@ -90,8 +94,10 @@ public class TaskList {
      */
     public Task removeTaskWithIndex(int index) {
         assert index >= 0 : "Index should be non-negative";
+
         Task selectedTask = this.tasks.get(index);
         this.tasks.remove(index);
+
         return selectedTask;
     }
 
@@ -117,6 +123,7 @@ public class TaskList {
      */
     public TaskList filterByKeyword(String ... keywords) {
         assert keywords.length > 0 : "Keywords must be non empty";
+
         return new TaskList(this.tasks.stream()
                 .filter(task -> task.containsKeyword(keywords))
                 .collect(Collectors.toList()));
@@ -130,8 +137,37 @@ public class TaskList {
      */
     public TaskList findByDate(LocalDate ... selectedDates) {
         assert selectedDates.length > 0 : "Dates must be non empty";
+
         return new TaskList(this.tasks.stream()
                 .filter(task -> task.isOnGivenDate(selectedDates))
+                .collect(Collectors.toList()));
+    }
+
+    /**
+     * Filters current TaskList to get all Tasks that match any of the selected tags.
+     *
+     * @param tags the selected tags.
+     * @return the TaskList which contains all the matched Tasks.
+     */
+    public TaskList filterByAnyTags(String ... tags) {
+        assert tags.length > 0 : "Tags must be non empty";
+
+        return new TaskList(this.tasks.stream()
+                .filter(task -> task.containsAnyTags(tags))
+                .collect(Collectors.toList()));
+    }
+
+    /**
+     * Filters current TaskList to get all Tasks that match all the selected tags.
+     *
+     * @param tags the selected tags.
+     * @return the TaskList which contains all the matched Tasks.
+     */
+    public TaskList filterByAllTags(String ... tags) {
+        assert tags.length > 0 : "Tags must be non empty";
+
+        return new TaskList(this.tasks.stream()
+                .filter(task -> task.containsAllTags(tags))
                 .collect(Collectors.toList()));
     }
 

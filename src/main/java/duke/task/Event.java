@@ -20,10 +20,12 @@ public class Event extends Task {
      *
      * @param description the description of the task.
      * @param timeString the string which represents the time of the task.
+     * @param tags the tags of the task.
      * @throws EventException If timeString is not valid.
      */
-    public Event(String description, String timeString) throws EventException {
-        super(description);
+    public Event(String description, String timeString, String ... tags)
+            throws EventException {
+        super(description, tags);
 
         try {
             this.timeString = timeString;
@@ -62,7 +64,7 @@ public class Event extends Task {
      * @return true if the Event happens on the selected date, false otherwise.
      */
     @Override
-    public boolean isOnGivenDate(LocalDate ... selectedDates) {
+    protected boolean isOnGivenDate(LocalDate ... selectedDates) {
         for (int i = 0; i < selectedDates.length; i++) {
             if (this.time.equals(selectedDates[i])) {
                 return true;

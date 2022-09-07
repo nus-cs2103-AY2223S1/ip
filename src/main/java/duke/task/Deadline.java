@@ -20,10 +20,12 @@ public class Deadline extends Task {
      *
      * @param description the description of the task.
      * @param deadlineString the string which represents the deadline of the task.
+     * @param tags the tags of the task.
      * @throws DeadlineException If deadlineString is not valid.
      */
-    public Deadline(String description, String deadlineString) throws DeadlineException {
-        super(description);
+    public Deadline(String description, String deadlineString, String ... tags)
+            throws DeadlineException {
+        super(description, tags);
 
         try {
             this.deadlineString = deadlineString;
@@ -62,7 +64,7 @@ public class Deadline extends Task {
      * @return true if the Deadline is on the selected date, false otherwise.
      */
     @Override
-    public boolean isOnGivenDate(LocalDate ... selectedDates) {
+    protected boolean isOnGivenDate(LocalDate ... selectedDates) {
         for (int i = 0; i < selectedDates.length; i++) {
             if (this.deadline.equals(selectedDates[i])) {
                 return true;

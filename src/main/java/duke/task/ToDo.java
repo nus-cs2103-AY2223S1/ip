@@ -13,9 +13,10 @@ public class ToDo extends Task {
      * Constructs a new ToDo instance.
      *
      * @param description the description of the task.
+     * @param tags the tags of the task.
      */
-    public ToDo(String description) {
-        super(description);
+    public ToDo(String description, String ... tags) {
+        super(description, tags);
     }
 
     /**
@@ -45,7 +46,7 @@ public class ToDo extends Task {
      * @return false.
      */
     @Override
-    public boolean isOnGivenDate(LocalDate ... selectedDates) {
+    protected boolean isOnGivenDate(LocalDate ... selectedDates) {
         return false;
     }
 }
