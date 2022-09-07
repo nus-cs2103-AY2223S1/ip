@@ -51,7 +51,22 @@ public class DeadlineCommand implements Command {
             throw new DeadlineException();
         }
 
-        Task newTask = new Deadline(deadlineInfo.get(0), deadlineInfo.get(1));
+        int tagsIndex = deadlineInfo.get(1).indexOf("#");
+        String dateString = tagsIndex < 0
+                ? deadlineInfo.get(1)
+                : deadlineInfo.get(1).substring(0, tagsIndex).trim();
+        String[] tags;
+
+        if (tagsIndex < 0 || tagsIndex >= deadlineInfo.get(1).length() - 1) {
+            tags = new String[0];
+        } else {
+            tags = Arrays.stream(deadlineInfo.get(1).substring(tagsIndex + 1).split(","))
+                    .map(String::trim)
+                    .filter(tag -> !tag.isEmpty())
+                    .toArray(String[]::new);
+        }
+
+        Task newTask = new Deadline(deadlineInfo.get(0), dateString, tags);
         taskList.addTask(newTask);
         storage.saveTasksInStorage(taskList.toStorageRepresentation());
 

@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import duke.command.AllCommand;
+import duke.command.AnyCommand;
 import duke.command.AtCommand;
 import duke.command.ByeCommand;
 import duke.command.Command;
@@ -69,6 +71,10 @@ public class Parser {
             return new FindCommand(description);
         } else if (mainCommand.equals("at")) {
             return new AtCommand(description);
+        } else if (mainCommand.equals("any")) {
+            return new AnyCommand(description);
+        } else if (mainCommand.equals("all")) {
+            return new AllCommand(description);
         } else if (mainCommand.isEmpty()) {
             throw new EmptyCommandException();
         } else {

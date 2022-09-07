@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import duke.exception.DukeException;
@@ -65,21 +66,32 @@ public class Storage {
             BufferedReader storageReader = new BufferedReader(new FileReader(this.filePath));
             String taskString = storageReader.readLine();
 
-            while (taskString != null) {
+            while (taskString != null && !taskString.isEmpty()) {
                 int dateSeparatorIndex = taskString.lastIndexOf("|");
+                int tagsIndex = taskString.indexOf("#");
 
                 String taskType = taskString.substring(0, 1);
                 String taskStatus = taskString.substring(2, 3);
                 String description = dateSeparatorIndex == 3
-                        ? taskString.substring(4)
+                        ? taskString.substring(4, tagsIndex)
                         : taskString.substring(4, dateSeparatorIndex);
-                String taskDate = taskString.substring(dateSeparatorIndex + 1);
+                String taskDate = taskString.substring(dateSeparatorIndex + 1, tagsIndex);
+
+                String[] tags;
+                if (tagsIndex == taskString.length() - 1) {
+                    tags = new String[0];
+                } else {
+                    tags = Arrays.stream(taskString.substring(tagsIndex + 1).split(","))
+                            .map(String::trim)
+                            .filter(text -> !text.isEmpty())
+                            .toArray(String[]::new);
+                }
 
                 Task currentLoadedTask = taskType.equals("D")
-                        ? new Deadline(description, taskDate)
+                        ? new Deadline(description, taskDate, tags)
                         : taskType.equals("E")
-                        ? new Event(description, taskDate)
-                        : new ToDo(description);
+                        ? new Event(description, taskDate, tags)
+                        : new ToDo(description, tags);
 
                 if (taskStatus.equals("X")) {
                     currentLoadedTask.markAsFinished();

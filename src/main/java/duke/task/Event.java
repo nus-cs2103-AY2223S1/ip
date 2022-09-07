@@ -20,10 +20,12 @@ public class Event extends Task {
      *
      * @param description the description of the task.
      * @param timeString the string which represents the time of the task.
+     * @param tags the tags of the task.
      * @throws EventException If timeString is not valid.
      */
-    public Event(String description, String timeString) throws EventException {
-        super(description);
+    public Event(String description, String timeString, String ... tags)
+            throws EventException {
+        super(description, tags);
 
         try {
             this.timeString = timeString;
@@ -41,8 +43,13 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(),
-                this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+        String tagInfo = super.getTagsString().isEmpty()
+                ? ""
+                : "[" + super.getTagsString() + "]";
+
+        return String.format("[E]%s (at: %s) %s", super.toString(),
+                this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")),
+                tagInfo);
     }
 
     /**
@@ -52,7 +59,8 @@ public class Event extends Task {
      */
     @Override
     public String toStorageRepresentation() {
-        return "E|" + super.toStorageRepresentation() + "|" + this.timeString;
+        return String.format("E|%s|%s#%s", super.toStorageRepresentation(),
+                this.timeString, super.getTagsString());
     }
 
     /**
@@ -62,7 +70,7 @@ public class Event extends Task {
      * @return true if the Event happens on the selected date, false otherwise.
      */
     @Override
-    public boolean isOnGivenDate(LocalDate ... selectedDates) {
+    protected boolean isOnGivenDate(LocalDate ... selectedDates) {
         for (int i = 0; i < selectedDates.length; i++) {
             if (this.time.equals(selectedDates[i])) {
                 return true;

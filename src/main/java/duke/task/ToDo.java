@@ -13,9 +13,10 @@ public class ToDo extends Task {
      * Constructs a new ToDo instance.
      *
      * @param description the description of the task.
+     * @param tags the tags of the task.
      */
-    public ToDo(String description) {
-        super(description);
+    public ToDo(String description, String ... tags) {
+        super(description, tags);
     }
 
     /**
@@ -25,7 +26,11 @@ public class ToDo extends Task {
      */
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        String tagInfo = super.getTagsString().isEmpty()
+                ? ""
+                : "[" + super.getTagsString() + "]";
+
+        return String.format("[T]%s %s", super.toString(), tagInfo);
     }
 
     /**
@@ -35,7 +40,8 @@ public class ToDo extends Task {
      */
     @Override
     public String toStorageRepresentation() {
-        return "T|" + super.toStorageRepresentation();
+        return String.format("T|%s#%s", super.toStorageRepresentation(),
+                super.getTagsString());
     }
 
     /**
@@ -45,7 +51,7 @@ public class ToDo extends Task {
      * @return false.
      */
     @Override
-    public boolean isOnGivenDate(LocalDate ... selectedDates) {
+    protected boolean isOnGivenDate(LocalDate ... selectedDates) {
         return false;
     }
 }
