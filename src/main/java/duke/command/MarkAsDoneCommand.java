@@ -12,18 +12,21 @@ import duke.Task;
  */
 
 public class MarkAsDoneCommand extends Command {
-    int taskNo;
+    int[] taskNos;
 
-    public MarkAsDoneCommand(int taskNo) {
-        this.taskNo = taskNo;
+    public MarkAsDoneCommand(int ... taskNos) {
+
+        this.taskNos = taskNos;
     }
 
     @Override
     public void execute(TaskList taskList, Storage storage) throws DukeException {
-        Task task = taskList.getTask(taskNo);
-        task.markAsDone();
-        UI.markAsDone(task);
-        this.response = UI.markAsDoneResponse(task);
+        for (int taskNo : taskNos) {
+            Task task = taskList.getTask(taskNo);
+            task.markAsDone();
+        }
+        UI.markAsDone(taskNos, taskList);
+        this.response = UI.markAsDoneResponse(taskNos, taskList);
         storage.saveData(taskList);
     }
 }

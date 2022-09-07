@@ -3,6 +3,7 @@ package duke;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
 * UI class to handle all user interactions and system output.
 *
@@ -55,18 +56,26 @@ public class UI {
                 + DIVIDER;
     }
 
-    public static void delete(Task task) {
+    public static void delete(int[] taskNos, TaskList taskList) {
+        String tasks = "";
+        for (int taskNo : taskNos) {
+            tasks += taskList.getTask(taskNo).toString() + System.lineSeparator();
+        }
         System.out.println(DIVIDER);
-        System.out.printf("Noted. I've removed this task:\n" +
-                "  %s\n" +
-                "Now you have %d tasks in the list.\n", task, Task.getTaskCount());
+        System.out.printf("Noted. I've removed the task(s):\n" +
+                "%s" +
+                "Now you have %d tasks in the list.\n", tasks, Task.getTaskCount());
         System.out.println(DIVIDER);
     }
 
-    public static String deleteResponse(Task task) {
+    public static String deleteResponse(int[] taskNos, TaskList taskList) {
+        String tasks = "";
+        for (int taskNo : taskNos) {
+            tasks += taskList.getTask(taskNo).toString() + System.lineSeparator();
+        }
         return DIVIDER
                 + "Noted. I've removed this task:\n"
-                + task + System.lineSeparator()
+                + tasks
                 + String.format("Now you have %d tasks in the list.\n", Task.getTaskCount())
                 + DIVIDER;
     }
@@ -91,31 +100,47 @@ public class UI {
                 + DIVIDER;
     }
 
-    public static void markAsDone(Task task) {
+    public static void markAsDone(int[] taskNos, TaskList taskList) {
+        String tasks = "";
+        for (int taskNo : taskNos) {
+            tasks += taskList.getTask(taskNo).toString() + System.lineSeparator();
+        }
         System.out.println(DIVIDER);
-        System.out.printf("Nice! I've marked this task as done: \n" +
-                            "%s\n", task);
+        System.out.printf("Nice! I've marked the task(s) as done: \n" +
+                            "%s", tasks);
         System.out.println(DIVIDER);
     }
 
-    public static String markAsDoneResponse(Task task) {
+    public static String markAsDoneResponse(int[] taskNos, TaskList taskList) {
+        String tasks = "";
+        for (int taskNo : taskNos) {
+            tasks += taskList.getTask(taskNo).toString() + System.lineSeparator();
+        }
         return DIVIDER
-                + "Nice! I've marked this task as done: \n"
-                + task + System.lineSeparator()
+                + "Nice! I've marked the task(s) as done: \n"
+                + tasks
                 + DIVIDER;
     }
 
-    public static void markAsUndone(Task task) {
+    public static void markAsUndone(int[] taskNos, TaskList taskList) {
+        String tasks = "";
+        for (int taskNo : taskNos) {
+            tasks += taskList.getTask(taskNo).toString() + System.lineSeparator();
+        }
         System.out.println(DIVIDER);
-        System.out.printf("OK, I've marked this task as not done yet: \n" +
-                            "%s\n", task);
+        System.out.printf("OK, I've marked the task(s) as not done yet: \n" +
+                            "%s\n", tasks);
         System.out.println(DIVIDER);
     }
 
-    public static String markAsUndoneResponse(Task task) {
+    public static String markAsUndoneResponse(int[] taskNos, TaskList taskList) {
+        String tasks = "";
+        for (int taskNo : taskNos) {
+            tasks += taskList.getTask(taskNo).toString() + System.lineSeparator();
+        }
         return DIVIDER
-                + "OK, I've marked this task as not done yet: \n"
-                + task + System.lineSeparator()
+                + "OK, I've marked the task(s) as not done yet: \n"
+                + tasks + System.lineSeparator()
                 + DIVIDER;
     }
 

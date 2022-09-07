@@ -8,6 +8,8 @@ import duke.Task;
 import duke.Deadline;
 import duke.Parser;
 
+import java.time.format.DateTimeParseException;
+
 /**
  * AddDeadlineCommand class to represent an instruction to add a new Deadline task to the TaskList.
  *
@@ -27,13 +29,20 @@ public class AddDeadlineCommand extends Command { //Creating a duke.Deadline duk
 
     @Override
     public void execute(TaskList taskList, Storage storage) throws DukeException {
-        if (!storage.checkIsLoadingFile()) { this.date = Parser.parseDate(date); }
-        Task deadline = new Deadline(this.description, this.isDone, this.date);
-        taskList.addTask(deadline);
-        storage.saveData(taskList);
-        if (!storage.checkIsLoadingFile()) {
-            UI.added(deadline);
-            response = UI.addedResponse(deadline);
+        try {
+            if (!storage.checkIsLoadingFile()) {
+                this.date = Parser.parseDate(date);
+            }
+
+            Task deadline = new Deadline(this.description, this.isDone, this.date);
+            taskList.addTask(deadline);
+            storage.saveData(taskList);
+            if (!storage.checkIsLoadingFile()) {
+                UI.added(deadline);
+                response = UI.addedResponse(deadline);
+            }
+        } catch (DateTimeParseException e) {
+            response = "OOPS!!! Please enter a valid date in the format: YYYY-MM-DD.";
         }
     }
 

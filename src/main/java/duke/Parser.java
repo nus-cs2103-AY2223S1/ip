@@ -2,6 +2,7 @@ package duke;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -57,40 +58,59 @@ public class Parser {
     }
 
     public static Command parseMarkAsDone(String desc) throws DukeException{
-        Scanner scanner = new Scanner(desc);
-        if (!scanner.hasNextInt()) {
-            return new ResponseCommand("OOPS!! Please enter a valid task number to mark!");
+        String[] taskNosString = desc.split("\\s*,\\s*");
+        if (taskNosString[0] == "") {
+            return new ResponseCommand("OOPS!! Please enter the task number(s) you want to mark!");
         }
-        int taskNo = scanner.nextInt() - 1;
-        if (taskNo < 0 || taskNo >= Task.getTaskCount()) {
-            return new ResponseCommand("OOPS!! Please enter a valid task number to mark!");
+        int[] taskNosInt = new int[taskNosString.length];
+        int currIndex = 0;
+        for (String string : taskNosString) {
+            int taskNo = Integer.valueOf(string) - 1;
+            if (taskNo <= 0 || taskNo >= Task.getTaskCount()) {
+                return new ResponseCommand("Task number " + (taskNo + 1) + " does not exist.");
+            }
+            taskNosInt[currIndex] = taskNo;
+            currIndex++;
         }
-        return new MarkAsDoneCommand(taskNo);
+        return new MarkAsDoneCommand(taskNosInt);
     }
 
     public static Command parseMarkAsUndone(String desc) throws DukeException{
-        Scanner scanner = new Scanner(desc);
-        if (!scanner.hasNextInt()) {
-            return new ResponseCommand("OOPS!! Please enter a valid task number to unmark!");
+        String[] taskNosString = desc.split("\\s*,\\s*");
+        if (taskNosString[0] == "") {
+            return new ResponseCommand("OOPS!! Please enter the task number(s) you want to unmark!");
         }
-        int taskNo = scanner.nextInt() - 1;
-        if (taskNo < 0 || taskNo >= Task.getTaskCount()) {
-            return new ResponseCommand("OOPS!! Please enter a valid task number to unmark!");
+        int[] taskNosInt = new int[taskNosString.length];
+        int currIndex = 0;
+        for (String string : taskNosString) {
+            int taskNo = Integer.valueOf(string) - 1;
+            if (taskNo < 0 || taskNo >= Task.getTaskCount()) {
+                return new ResponseCommand("OOPS!! Task number " + (taskNo + 1) + " does not exist.");
+            }
+            taskNosInt[currIndex] = taskNo;
+            currIndex++;
         }
-        return new MarkAsUndoneCommand(taskNo);
+        return new MarkAsUndoneCommand(taskNosInt);
 
     }
 
     public static Command parseDelete(String desc) {
-        Scanner scanner = new Scanner(desc);
-        if (!scanner.hasNextInt()) {
+        String[] taskNosString = desc.split(",");
+        if (taskNosString[0] == "") {
             return new ResponseCommand("OOPS!! Please enter the task number you would like to delete!");
         }
-        int taskNo = scanner.nextInt() - 1;
-        if (taskNo < 0 || taskNo >= Task.getTaskCount()) {
-            return new ResponseCommand("OOPS!! Task number " + taskNo + "does not exist.");
+        int[] taskNosInt = new int[taskNosString.length];
+        int currIndex = 0;
+        for (String string : taskNosString) {
+            int taskNo = Integer.valueOf(string) - 1;
+            System.out.println(taskNo);
+            if (taskNo < 0 || taskNo >= Task.getTaskCount()) {
+                return new ResponseCommand("OOPS!! Task number " + (taskNo + 1) + " does not exist.");
+            }
+            taskNosInt[currIndex] = taskNo;
+            currIndex++;
         }
-        return new DeleteCommand(taskNo);
+        return new DeleteCommand(taskNosInt);
     }
 
     public static Command parseFind(String desc) {
@@ -101,6 +121,7 @@ public class Parser {
         LocalDate localDate = LocalDate.parse(date.trim());
         String formatDate = localDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
         return formatDate;
+
     }
 
     public static Command parse(String rawCommand) throws DukeException {

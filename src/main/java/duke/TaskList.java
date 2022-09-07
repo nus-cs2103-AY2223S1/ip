@@ -24,6 +24,7 @@ public class TaskList {
     }
 
     public Task getTask(int i) {
+        System.out.println("tasks.get(" + i + ")");
         return tasks.get(i);
     }
 
@@ -31,8 +32,8 @@ public class TaskList {
         tasks.add(task);
     }
 
-    public void delete(int taskNo) {
-        tasks.remove(tasks.get(taskNo));
+    public void delete(Task task) {
+        tasks.remove(task);
     }
 
 
