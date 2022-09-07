@@ -3,7 +3,6 @@ package duke.command;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.task.ToDo;
-import duke.ui.Ui;
 
 /**
  * Command to add a todo task to the task list.
