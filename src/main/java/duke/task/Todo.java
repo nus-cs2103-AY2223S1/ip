@@ -58,8 +58,7 @@ public class Todo extends Task {
             if (t.getName() == null) {
                 return false;
             }
-            return this.getName().equals(t.getName())
-                    && this.getIsDone() == t.getIsDone();
+            return this.getName().equals(t.getName());
         }
         return false;
     }

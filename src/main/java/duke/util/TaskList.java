@@ -3,6 +3,7 @@ package duke.util;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
+import duke.exception.TaskAlreadyExistException;
 import duke.exception.TaskNotFoundException;
 import duke.task.Task;
 
@@ -21,6 +22,9 @@ public class TaskList implements Savable<TaskList> {
      * @param task The given task.
      */
     public void add(Task task) {
+        if (tasks.contains(task)) {
+            throw new TaskAlreadyExistException(task);
+        }
         tasks.add(task);
     }
 

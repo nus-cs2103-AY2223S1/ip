@@ -73,7 +73,6 @@ public class Deadline extends Task {
                 return false;
             }
             return this.getName().equals(d.getName())
-                    && this.getIsDone() == d.getIsDone()
                     && this.getTime().equals(d.getTime());
         }
         return false;
