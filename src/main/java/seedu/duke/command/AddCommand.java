@@ -58,6 +58,7 @@ public class AddCommand extends Command {
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         Task task = new Task("null");
+
         if (typeOfTask.equals("deadline")) {
             task = new Deadline(description, deadline);
         } else if (typeOfTask.equals("event")) {

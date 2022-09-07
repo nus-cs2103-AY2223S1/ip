@@ -71,7 +71,7 @@ public class Ui {
     }
 
     /**
-     * Prints out good bye message.
+     * Prints out goodbye message.
      */
     public String showGoodbye() {
         String text = Style.INDENTATION + "Bye. Hope to see you again soon!\n";
@@ -133,7 +133,7 @@ public class Ui {
      * @param task The task to be deleted.
      */
     public String deleteTask(Task task) {
-        String text = Style.INDENTATION + "Noted. I've removed this task:"
+        String text = Style.INDENTATION + "Noted. I've removed this task:" + "\n"
                 + Style.INDENTATION + Style.HALF_INDENTATION + task + "\n";
         System.out.println(text);
         return text + "\n";
@@ -144,6 +144,7 @@ public class Ui {
      * @param numberOfTasks The number of tasks in the list.
      */
     public String displayNumberOfTasks(int numberOfTasks) {
+        assert(numberOfTasks > 0);
         String taskOrTasks = numberOfTasks == 1 ? "task" : "tasks";
         String text = Style.INDENTATION + "Now you have " + numberOfTasks + " "
                 + taskOrTasks + " in the list.\n";
@@ -156,7 +157,6 @@ public class Ui {
      */
     public String displayMatchingTasks() {
         String text = Style.INDENTATION + "Here are the matching tasks in your list:\n";
-        System.out.println(text);
 
         return text;
     }
