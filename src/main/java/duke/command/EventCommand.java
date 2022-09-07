@@ -1,15 +1,26 @@
 package duke.command;
 
-import duke.main.DukeException;
-import duke.task.Event;
-import duke.main.TaskList;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 
+import duke.main.DukeException;
+import duke.main.TaskList;
+import duke.task.Event;
+
+
+/**
+ * A class that handles the event command.
+ */
 public class EventCommand extends AddCommand {
     private String description;
     private String date;
 
+    /**
+     * Constructor for the event command.
+     *
+     * @param description a string that describes the task.
+     * @param date the date on which the event is held.
+     */
     public EventCommand(String description, String date) {
         this.description = description;
         this.date = date;
@@ -18,7 +29,8 @@ public class EventCommand extends AddCommand {
     /**
      * Add new tasks.
      *
-     * @param taskList the list of tasks
+     * @param taskList the list of tasks.
+     * @throws DukeException If cannot be added.
      */
     @Override
     public void add(TaskList taskList) throws DukeException {

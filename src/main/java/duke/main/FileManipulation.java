@@ -1,18 +1,21 @@
 package duke.main;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.File;
-import java.time.LocalDate;
-import java.util.Scanner;
-import java.util.ArrayList;
-
+/**
+ * A class to handle file manipulation.
+ */
 public class FileManipulation {
 
     private static void tryOverwrite(String filePath, String s) throws IOException {
@@ -41,13 +44,15 @@ public class FileManipulation {
                     d.mark();
                 }
                 arr.add(d);
-            } else {
+            } else if (c == 'E') {
                 String[] strings = s.substring(8).split(" \\| ");
                 Event e = new Event(strings[0], LocalDate.parse(strings[1]));
                 if (s.charAt(4) == '1') {
                     e.mark();
                 }
                 arr.add(e);
+            } else {
+                assert false;
             }
         }
         return arr;

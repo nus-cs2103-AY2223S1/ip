@@ -1,16 +1,24 @@
 package duke.main;
 
+import java.util.ArrayList;
+
 import duke.task.Formatting;
 import duke.task.Task;
 
-import java.util.ArrayList;
-
+/**
+ * A class to handle the storage.
+ */
 public class Storage {
     protected ArrayList<Task> arr;
     protected String filePath;
 
     private Formatting f = new Formatting();
 
+    /**
+     * The constructor for storage.
+     *
+     * @param filePath the directory of the file.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }

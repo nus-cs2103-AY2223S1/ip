@@ -29,6 +29,10 @@ dependencies {
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
 }
 
+run {
+    enableAssertions = true
+}
+
 test {
     useJUnitPlatform()
 
@@ -44,7 +48,7 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "duke.main.Launcher"
 }
 
 shadowJar {

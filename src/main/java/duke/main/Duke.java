@@ -1,11 +1,19 @@
 package duke.main;
+
 import duke.command.Command;
 
+/**
+ * Class for Duke.
+ */
 public class Duke {
+    protected boolean isExit = false;
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
-    protected boolean isExit = false;
+
+    /**
+     * Constructor of Duke.
+     */
     public Duke() {
         ui = new Ui();
         storage = new Storage("./data/dude.txt");
@@ -17,10 +25,12 @@ public class Duke {
         }
     }
 
-    public String readCommand(String command) {
-        return getResponse(command);
-    }
-
+    /**
+     * Returns the response from Duke based on user input.
+     *
+     * @param command instructions from the user.
+     * @return response from Duke.
+     */
     public String getResponse(String command) {
         try {
             Command c = Parser.parse(command);
@@ -32,35 +42,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Returns a Duke's greeting.
+     * @return greeting from Duke.
+     */
     public String greet() {
         return ui.showWelcome();
     }
-
-//    public void run() {
-//        ui.showWelcome();
-//        boolean isExit = false;
-//        while (!isExit) {
-//            try {
-//                String fullCommand = ui.readCommand();
-//                Command c = Parser.parse(fullCommand);
-//                c.execute(tasks, ui, storage);
-//                isExit = c.isExit();
-//            } catch (DukeException e) {
-//                ui.showError(e.getMessage());
-//            }
-//        }
-//    }
-
-//    public static void main(String[] args) {
-//        new Duke().run();
-//    }
-
-//    /**
-//     * You should have your own function to generate a response to user input.
-//     * Replace this stub with your completed method.
-//     */
-//    protected String getResponse(String input) {
-//        return "Duke: " + input;
-//    }
-
 }

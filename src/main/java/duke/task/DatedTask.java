@@ -1,10 +1,11 @@
 package duke.task;
 
-import duke.task.Task;
-
 import java.time.LocalDate;
 
-public class DatedTask extends Task {
+/**
+ * A class that handle dated tasks.
+ */
+public abstract class DatedTask extends Task {
     protected LocalDate date;
 
     protected DatedTask(String description, LocalDate date) {

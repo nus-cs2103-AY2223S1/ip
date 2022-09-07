@@ -11,13 +11,29 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
+/**
+ * A class for commands with date.
+ */
 public class DateCommand extends Command {
-    LocalDate date;
+    private LocalDate date;
 
+    /**
+     * A constructor for Date Command.
+     *
+     * @param date the date of the task.
+     * @throws DateTimeException throws exception when date is not in the right format.
+     */
     public DateCommand(String date) throws DateTimeException {
         this.date = LocalDate.parse(date);
     }
 
+    /**
+     * Returns array of tasks that meets the criteria set by predicate p.
+     *
+     * @param arr an array of tasks.
+     * @param p a condition for the tasks in the array to meet.
+     * @return a list of tasks.
+     */
     private ArrayList<Task> filter(ArrayList<Task> arr, Predicate<? super Task> p) {
         ArrayList<Task> newArr = new ArrayList<>();
         for (Task t: arr) {
@@ -40,6 +56,11 @@ public class DateCommand extends Command {
                 && ((DatedTask) x).getDate().equals(this.date)));
     }
 
+
+    /**
+     * Makes sure program continues and not exit.
+     * @return boolean indicating not exit.
+     */
     public boolean isExit() {
         return false;
     }
