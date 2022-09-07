@@ -101,6 +101,19 @@ public class TaskList {
     }
 
     /**
+     * Update a task with a new description.
+     *
+     * @param inputIndex index of the task to be updated
+     * @param inputDescription description to update task with
+     * @return updated Task
+     */
+    public Task updateTask(int inputIndex, String inputDescription) throws DukeException {
+        Task targetTask = tasks.get(checkIndex(inputIndex));
+        targetTask.setDescription(inputDescription);
+        return targetTask;
+    }
+
+    /**
      * Finds tasks in the task list with a keyword.
      */
     public List<Task> findTasks(String keyword) {

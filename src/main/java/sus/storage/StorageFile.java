@@ -98,11 +98,7 @@ public class StorageFile {
                 }
 
                 if (task != null) {
-                    if (inputArray[1].equals("1")) {
-                        task.mark();
-                    } else {
-                        task.unmark();
-                    }
+                    task.setDone(inputArray[1].equals("1"));
                     tasks.add(task);
                 }
             }

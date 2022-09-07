@@ -1,6 +1,7 @@
 package sus.commands;
 
 import sus.storage.StorageFile;
+import sus.task.Event;
 import sus.task.TaskList;
 import sus.ui.TextUi;
 
@@ -22,6 +23,7 @@ public class HelpCommand extends Command {
                 + "\n" + TodoCommand.MESSAGE_USAGE
                 + "\n" + DeadlineCommand.MESSAGE_USAGE
                 + "\n" + EventCommand.MESSAGE_USAGE
+                + "\n" + UpdateCommand.MESSAGE_USAGE
                 + "\n" + ListCommand.MESSAGE_USAGE
                 + "\n" + FindCommand.MESSAGE_USAGE
                 + "\n" + MarkCommand.MESSAGE_USAGE
