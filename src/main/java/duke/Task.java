@@ -7,10 +7,12 @@ public class Task {
     private final String desc;
     private final char completed;
     private final char taskType;
+    private final static char STATUS_COMPLETE = 'X';
+    private final static char STATUS_INCOMPLETE = ' ';
 
     public Task(String desc, char taskType) {
         this.desc = desc;
-        completed = ' ';
+        completed = STATUS_INCOMPLETE;
         this.taskType = taskType;
     }
 
@@ -32,15 +34,15 @@ public class Task {
      * Creates a Task instance that is identical to a given Task object, and then marked as complete.
      * @return An identical Task object that is marked as complete.
      */
-    protected Task performTask() {
-        return new Task(desc, 'X', taskType);
+    protected Task completeTask() {
+        return new Task(desc, STATUS_COMPLETE, taskType);
     }
 
     /**
      * Creates a Task instance that is identical to a given Task object, and then marked as incomplete.
      * @return An identical Task object that is marked as incomplete.
      */
-    protected Task undoTask() {
+    protected Task resetTask() {
         return new Task(desc, taskType);
     }
 

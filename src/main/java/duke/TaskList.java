@@ -24,9 +24,9 @@ public class TaskList {
      * @return Task updated as complete.
      */
     protected Task markTask(int index) {
-        Task performedTask = tasks.get(index).performTask();
-        tasks.set(index, performedTask);
-        return performedTask;
+        Task completedTask = tasks.get(index).completeTask();
+        tasks.set(index, completedTask);
+        return completedTask;
     }
 
     /**
@@ -34,7 +34,7 @@ public class TaskList {
      * @return Task updated as incomplete.
      */
     protected Task unmarkTask(int index) {
-        Task incompleteTask = tasks.get(index).undoTask();
+        Task incompleteTask = tasks.get(index).resetTask();
         tasks.set(index, incompleteTask);
         return incompleteTask;
     }
