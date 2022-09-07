@@ -8,6 +8,8 @@ import duke.tasks.TaskList;
 import duke.tasks.Todo;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * duke.Main driver class for the chatbot
@@ -82,17 +84,24 @@ public class Duke {
     }
 
     private String handleRemove(String[] inputArgs) throws DukeException {
-        int index = parser.parseIndex(inputArgs);
+        int[] indices = parser.parseMultipleIndices(inputArgs);
+        Arrays.sort(indices);
         StringBuilder sb = new StringBuilder();
-        try {
-            taskList.remove(Integer.parseInt(inputArgs[1]) - 1);
-            sb.append(ResponseMessages.TASK_REMOVED);
-            sb.append(taskList.get(index).toString());
-            sb.append(String.format(ResponseMessages.TASK_COUNT, taskList.getSize()));
-            sb.append(lineSep);
-        } catch (IndexOutOfBoundsException e) {
-            sb.append(String.format(ExceptionMessages.OUT_OF_BOUNDS, "remove", index, taskList.getSize()));
+        sb.append(ResponseMessages.TASKS_REMOVED);
+        for (int i = indices.length - 1; i >= 0; i--) {
+            int index = indices[i];
+            try {
+                String removedTask = taskList.get(index).toString();
+                taskList.remove(index);
+                sb.append(removedTask);
+                sb.append(lineSep);
+            } catch (IndexOutOfBoundsException e) {
+                sb.setLength(0);
+                sb.append(String.format(ExceptionMessages.OUT_OF_BOUNDS, "remove", indices[i] + 1, taskList.getSize()));
+                break;
+            }
         }
+        sb.append(String.format(ResponseMessages.TASK_COUNT, taskList.getSize()));
         return sb.toString();
     }
 
@@ -105,7 +114,7 @@ public class Duke {
             sb.append(taskList.get(index).toString());
             sb.append(lineSep);
         } catch (IndexOutOfBoundsException e) {
-            sb.append(String.format(ExceptionMessages.OUT_OF_BOUNDS, "mark", index, taskList.getSize()));
+            sb.append(String.format(ExceptionMessages.OUT_OF_BOUNDS, "mark", index + 1, taskList.getSize()));
         }
         return sb.toString();
     }
@@ -119,7 +128,7 @@ public class Duke {
             sb.append(taskList.get(index).toString());
             sb.append(lineSep);
         } catch (IndexOutOfBoundsException e) {
-            sb.append(String.format(ExceptionMessages.OUT_OF_BOUNDS, "unmark", index, taskList.getSize()));
+            sb.append(String.format(ExceptionMessages.OUT_OF_BOUNDS, "unmark", index + 1, taskList.getSize()));
         }
         return sb.toString();
     }
@@ -130,6 +139,7 @@ public class Duke {
         StringBuilder sb = new StringBuilder();
         sb.append(ResponseMessages.TASK_ADDED);
         sb.append(taskList.get(taskList.getSize() - 1).toString());
+        sb.append(lineSep);
         sb.append(String.format(ResponseMessages.TASK_COUNT, taskList.getSize()));
         sb.append(lineSep);
         return sb.toString();
@@ -141,6 +151,7 @@ public class Duke {
         StringBuilder sb = new StringBuilder();
         sb.append(ResponseMessages.TASK_ADDED);
         sb.append(taskList.get(taskList.getSize() - 1).toString());
+        sb.append(lineSep);
         sb.append(String.format(ResponseMessages.TASK_COUNT, taskList.getSize()));
         sb.append(lineSep);
         return sb.toString();
@@ -152,6 +163,7 @@ public class Duke {
         StringBuilder sb = new StringBuilder();
         sb.append(ResponseMessages.TASK_ADDED);
         sb.append(taskList.get(taskList.getSize() - 1).toString());
+        sb.append(lineSep);
         sb.append(String.format(ResponseMessages.TASK_COUNT, taskList.getSize()));
         sb.append(lineSep);
         return sb.toString();

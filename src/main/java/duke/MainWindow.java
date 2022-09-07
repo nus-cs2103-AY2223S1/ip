@@ -50,7 +50,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        if (isIgnoredInput(input)) {
+        if (input.trim().equals("")) {
             // Ignore empty inputs
             userInput.clear();
             return;
@@ -64,9 +64,5 @@ public class MainWindow extends AnchorPane {
         if (duke.isExit()) {
             System.exit(0);
         }
-    }
-
-    private boolean isIgnoredInput(String input) {
-        return input.trim().equals("");
     }
 }

@@ -1,3 +1,0 @@
-T|1|eat
-T|0|sleep
-T|0|wake up

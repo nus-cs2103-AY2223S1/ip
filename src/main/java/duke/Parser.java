@@ -5,6 +5,8 @@ import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.Todo;
 
+import java.util.Arrays;
+
 /**
  * Processes the entered command.
  * Checks for formatting errors.
@@ -19,12 +21,30 @@ public class Parser {
      */
     public int parseIndex(String[] args) throws DukeParseException {
         if (args.length !=  2) {
-            throw new DukeParseException(String.format(ExceptionMessages.INVALID_INDEX_FORMAT, "remove"));
+            throw new DukeParseException(ExceptionMessages.INVALID_INDEX_FORMAT);
         }
         try {
             return Integer.parseInt(args[1]) - 1;
         } catch (NumberFormatException e) {
-            throw new DukeParseException(String.format(ExceptionMessages.INVALID_INDEX_FORMAT, "remove"));
+            throw new DukeParseException(ExceptionMessages.INVALID_INDEX_FORMAT);
+        }
+    }
+
+    /**
+     * Gets the indices for commands of type (command) (index) [(index)] ...
+     * @param args String[] of format [commandName, restOfCommand]
+     * @return int[] the desired indices as an int array
+     * @throws DukeParseException if there are no numbers or non-integers are included
+     */
+    public int[] parseMultipleIndices(String[] args) throws DukeParseException {
+        if (args.length < 2) {
+            throw new DukeParseException(ExceptionMessages.INVALID_INDEX_FORMAT);
+        }
+        try {
+            String[] indicesAsText = args[1].split("\\s+");
+            return Arrays.stream(indicesAsText).mapToInt((x -> Integer.parseInt(x) - 1)).toArray();
+        } catch (NumberFormatException e) {
+            throw new DukeParseException(ExceptionMessages.INVALID_INDEX_FORMAT);
         }
     }
 

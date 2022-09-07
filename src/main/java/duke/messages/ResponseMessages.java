@@ -13,7 +13,7 @@ public final class ResponseMessages {
     public static String TASK_UNMARKED = "OK, I've marked this task as not done yet:\n";
     public static String TASK_ADDED = "Got it. I've added this task:\n";
     public static String TASK_COUNT = "Now you have %d task(s) in the list.\n";
-    public static String TASK_REMOVED = "Noted. I've removed this task:\n";
+    public static String TASKS_REMOVED = "Noted. I've removed these task(s):\n";
     public static String FIND_TASKS = "Here are tasks matching '%s' in your list:\n";
     public static String LOAD_ERROR = "Error loading data from storage\n";
 
