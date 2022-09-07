@@ -1,5 +1,7 @@
 package duke.task;
 
+import java.time.LocalDate;
+
 /**
  * Represents a task without any date and time attached to it.
  */
@@ -12,6 +14,11 @@ public class ToDo extends Task {
      */
     public ToDo(String description) {
         super(description);
+    }
+
+    @Override
+    public boolean isOn(LocalDate searchDate) {
+        return false;
     }
 
     @Override

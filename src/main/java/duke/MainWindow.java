@@ -10,6 +10,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
+import java.util.Objects;
+
 public class MainWindow extends AnchorPane {
     @FXML
     private ScrollPane scrollPane;
@@ -40,9 +42,10 @@ public class MainWindow extends AnchorPane {
      * the dialog container. Clears the user input after processing.
      */
     @FXML
-    private void handleUserInput() throws DukeException {
+    private void handleUserInput() {
         String input = userInput.getText();
         String response = duke.getResponse(input);
+        assert response != null : "Duke does not have a response to the input.";
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)

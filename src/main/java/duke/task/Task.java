@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Represents a task the user wishes to complete.
  */
-public class Task {
+public abstract class Task {
     protected DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("EEE, dd LLL yyyy");
     protected DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mma");
     protected DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(
@@ -62,16 +62,6 @@ public class Task {
     }
 
     /**
-     * Indicates whether the task occurs on the given date.
-     *
-     * @param searchDate The date to be checked.
-     * @return True if the task occurs on the given date.
-     */
-    public boolean isOn(LocalDate searchDate) {
-        return false;
-    }
-
-    /**
      * Indicates whether the task description contains the given search term.
      *
      * @param searchTerm Search term to search for.
@@ -97,4 +87,11 @@ public class Task {
         return done + " " + this.description;
     }
 
+    /**
+     * Indicates whether the task occurs on the given date.
+     *
+     * @param searchDate The date to be checked.
+     * @return True if the task occurs on the given date.
+     */
+    public abstract boolean isOn(LocalDate searchDate);
 }

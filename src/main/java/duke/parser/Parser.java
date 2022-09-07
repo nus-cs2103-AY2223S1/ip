@@ -117,6 +117,9 @@ public class Parser {
             }
         case FindCommand.COMMAND_WORD:
             try {
+                if (arr[1].equals("")) {
+                    throw new DukeException(Ui.emptyFindInput());
+                }
                 return new FindCommand(arr[1]);
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(Ui.emptyFindInput());

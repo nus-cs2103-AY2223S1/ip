@@ -72,6 +72,7 @@ public class TaskList {
                 reply += "\n  " + x + ". " + task.toString();
                 x++;
             }
+            assert x > 1 : "No tasks in task list.";
             return reply;
         }
     }
@@ -132,7 +133,7 @@ public class TaskList {
         int x = 1;
         for (Task task : tasks) {
             if (task.isOn(date)) {
-                list = list + "\n  " + x + ". " + task;
+                list += "\n  " + x + ". " + task;
                 x++;
             }
         }
@@ -150,11 +151,12 @@ public class TaskList {
      * @param keyword Keyword(s) to search for.
      */
     public String find(String keyword) {
+        assert keyword.length() > 0: "No keywords passed.";
         String list = "";
         int x = 1;
         for (Task task : tasks) {
             if (task.containsSearchTerm(keyword)) {
-                list = list + "\n  " + x + ". " + task;
+                list += "\n  " + x + ". " + task;
                 x++;
             }
         }
