@@ -1,13 +1,16 @@
 package duke.task;
 
+import duke.constant.PriorityLevel;
+
 /**
  * An abstract class to represent a task.
  *
  * @author Elbert Benedict
  */
 public abstract class Task {
-    private String task;
+    private final String task;
     private boolean isDone;
+    private String priority;
 
     /**
      * Constructs a new Task instance.
@@ -17,6 +20,7 @@ public abstract class Task {
     public Task(String task) {
         this.task = task;
         isDone = false;
+        priority = PriorityLevel.NONE;
     }
 
     /**
@@ -25,9 +29,10 @@ public abstract class Task {
      * @param task the task description.
      * @param isDone whether the task has been marked as done.
      */
-    public Task(String task, boolean isDone) {
+    public Task(String task, boolean isDone, String priority) {
         this.task = task;
         this.isDone = isDone;
+        this.priority = priority;
     }
 
     /**
@@ -39,6 +44,33 @@ public abstract class Task {
         return isDone
                 ? "[X]"
                 : "[ ]";
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public String getPriorityIcon() {
+        switch (priority) {
+        case PriorityLevel.HIGH:
+            return "(!!!)";
+
+        case PriorityLevel.MEDIUM:
+            return "(!!)";
+
+        case PriorityLevel.LOW:
+            return "(!)";
+
+        case PriorityLevel.NONE:
+            return "";
+
+        default:
+            return "";
+        }
+    }
+
+    public void modifyPriority(String priority) {
+        this.priority = priority;
     }
 
     /**
@@ -60,7 +92,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return getStatusIcon() + " " + task;
+        return getStatusIcon() + getPriorityIcon() + " " + task;
     }
 
     /**

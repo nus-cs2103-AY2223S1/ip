@@ -35,8 +35,8 @@ public class Deadline extends Task {
      * @param isDone whether the task has been marked as done.
      * @throws DukeException If deadline is not a valid date.
      */
-    public Deadline(String task, String deadline, boolean isDone) throws DukeException {
-        super(task, isDone);
+    public Deadline(String task, String deadline, boolean isDone, String priority) throws DukeException {
+        super(task, isDone, priority);
         this.deadline = Parser.convertToDateObj(deadline);
     }
 
@@ -62,7 +62,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toSaveFileString() {
-        return TYPE_SYMBOL + " @ " + getStatusIcon() + " @ " + super.getTask()
-                + " @ " + Parser.printSaveFileDate(deadline);
+        return TYPE_SYMBOL + " @ " + getStatusIcon() + " @ " + super.getPriority()
+                + " @ "  + super.getTask() + " @ " + Parser.printSaveFileDate(deadline);
     }
 }
