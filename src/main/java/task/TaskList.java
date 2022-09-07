@@ -44,6 +44,7 @@ public class TaskList {
      * @param task New Task to be added.
      */
     public void add(Task task) {
+        assert task != null;
         tasks.add(task);
     }
 
@@ -86,7 +87,7 @@ public class TaskList {
      *
      * @return String representation of TaskList
      */
-    public String stored() {
+    public String getStoredString() {
         String ls = "";
         for (int i = 0; i < tasks.size(); i++) {
             ls += "\n       " + tasks.get(i);
