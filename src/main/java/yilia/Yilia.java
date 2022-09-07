@@ -1,5 +1,7 @@
 package yilia;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,10 +14,12 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import yilia.command.Command;
-import yilia.exception.*;
+import yilia.exception.DescriptionEmptyException;
+import yilia.exception.KeywordMissingException;
+import yilia.exception.NoIndexException;
+import yilia.exception.TimeFormatException;
+import yilia.exception.YiliaException;
 import yilia.task.TaskList;
-
-import java.io.IOException;
 
 /**
  * Represents a chat box to complete given commands.
@@ -29,10 +33,17 @@ public class Yilia extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/user.jpeg"));
-    private Image yilia = new Image(this.getClass().getResourceAsStream("/images/yilia.jpg"));
-
+    private final Image user;
+    private final Image yilia;
+    /**
+     * Initializes Yilia.
+     *
+     */
     public Yilia() {
+        user = new Image(this.getClass().getResourceAsStream("/images/user.jpeg"));
+        yilia = new Image(this.getClass().getResourceAsStream("/images/yilia.jpg"));
+        assert user != null : "user should not be null";
+        assert yilia != null : "yilia should not be null";
         ui = new Ui();
         storage = new Storage("data/yilia.txt");
         try {
@@ -77,15 +88,14 @@ public class Yilia extends Application {
         AnchorPane.setRightAnchor(sendButton, 1.0);
         AnchorPane.setLeftAnchor(userInput, 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
-        sendButton.setOnMouseClicked((event) -> {
-            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            userInput.clear();
-        });
+        dialogContainer.getChildren().add(
+                DialogBox.getYiliaDialog(ui.showWelcome(), yilia)
+        );
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
-        sendButton.setOnMouseClicked((event) -> {
+        sendButton.setOnMouseClicked(event -> {
             handleUserInput();
         });
-        userInput.setOnAction((event) -> {
+        userInput.setOnAction(event -> {
             handleUserInput();
         });
     }
@@ -104,7 +114,20 @@ public class Yilia extends Application {
         userInput.clear();
     }
     public String getResponse(String input) {
-        return "Yilia heard: " + input;
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(tasks, ui, storage);
+        } catch (DescriptionEmptyException e) {
+            return ui.showError(e.getMessage());
+        } catch (KeywordMissingException e) {
+            return ui.showError(e.getMessage());
+        } catch (NoIndexException e) {
+            return ui.showError(e.getMessage());
+        } catch (TimeFormatException e) {
+            return ui.showError(e.getMessage());
+        } catch (YiliaException e) {
+            return ui.showError(e.getMessage());
+        }
     }
     /**
      * Runs the main body of the chat box.

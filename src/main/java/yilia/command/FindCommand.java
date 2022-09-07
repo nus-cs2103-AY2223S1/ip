@@ -8,7 +8,7 @@ import yilia.task.TaskList;
  * Represents a command to show the whole list of tasks.
  */
 public class FindCommand extends Command {
-    private String content;
+    private final String content;
     public FindCommand(String content) {
         this.content = content;
     }
@@ -18,13 +18,17 @@ public class FindCommand extends Command {
      * @param tasks The tasks.
      * @param ui The use interface.
      * @param storage The local storage.
+     * @return The message after executing.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        StringBuilder message = new StringBuilder();
         for (int i = 1; i <= tasks.size(); i++) {
             if (tasks.get(i).toString().contains(content)) {
-                ui.showTask(i, tasks);
+                message.append(ui.showTask(i, tasks));
+                message.append("\n");
             }
         }
+        return message.toString();
     }
 }
