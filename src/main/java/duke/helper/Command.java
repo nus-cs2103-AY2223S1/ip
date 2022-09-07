@@ -111,4 +111,8 @@ public class Command {
             return e.toString();
         }
     }
+
+    public static String help() {
+        return HelpList.help();
+    }
 }

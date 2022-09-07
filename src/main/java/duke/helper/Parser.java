@@ -18,8 +18,10 @@ public class Parser {
 
         if (in.equals("bye")) {
             return Ui.bye();
-        }
-        if (in.startsWith("find")) {
+        } else if (in.equals("help")) {
+            message = Command.help();
+
+        } else if (in.startsWith("find")) {
             message = Command.find(in, list);
 
         } else if (in.equals("clear")) {

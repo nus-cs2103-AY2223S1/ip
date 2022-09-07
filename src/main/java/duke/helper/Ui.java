@@ -14,7 +14,8 @@ public class Ui {
         return "-------------------------------------------\n"
                 + "Hello from Phil\n"
                         + "How may I assist you on this fine day?\n"
-                                + "-------------------------------------------\n";
+                                + "type 'help' to get a lists of all the commands!\n"
+                                        + "-------------------------------------------\n";
     }
 
     /**
