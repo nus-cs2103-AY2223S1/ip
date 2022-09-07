@@ -16,10 +16,6 @@ public class Duke {
     private Parser parser = new Parser();
     private TaskList taskList = new TaskList(storage.read());
 
-
-    public Duke() {
-    }
-
     /**
      * duke.gui.Main entry function.
      *
