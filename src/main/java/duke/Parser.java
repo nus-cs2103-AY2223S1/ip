@@ -40,9 +40,7 @@ public class Parser {
      * @return True if it is an integer, false otherwise.
      */
     private static boolean isInteger(String strNum) {
-        if (strNum == null) {
-            return false;
-        }
+        assert strNum != null : "strNum should not be left null";
         return CHECKSTRING.matcher(strNum).matches();
     }
 
@@ -110,10 +108,10 @@ public class Parser {
             part2 = parts[1];
             if (isInteger(part2)) {
                 int number = Integer.parseInt(part2);
-                if (this.tasks.size() < number || number <= 0) {
-                    throw new DukeException("There's no such task to delete!");
-                } else {
+                if (number <= 0 || number > this.tasks.size()) {
                     return this.tasks.deleteTask(number);
+                } else {
+                    throw new DukeException("Invalid number input");
                 }
             } else {
                 throw new DukeException("I don't know which to delete!");
