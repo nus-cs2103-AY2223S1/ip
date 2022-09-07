@@ -2,21 +2,21 @@ package doke;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
  * A class to represent a TaskList.
- *
- * @author Stevan Gerard Gunawan
  */
 public class TaskList {
 
-    public static final String SPECIALSTRING = " [|] ";
     private ArrayList<Task> taskList = new ArrayList<>();
 
     /**
-     * Constructs a taskList object.
+     * A public constructor for the TaskList class.
      * It will try to read and create and ArrayList of type task from storage,
      * which, if not possible would then create an empty ArrayList of type Task.
      *
@@ -24,92 +24,79 @@ public class TaskList {
      * @param storage
      */
     public TaskList(Ui ui, Storage storage) {
+
         try {
             Scanner s = new Scanner(Storage.DOKE_FILE);
-            readStorage(s);
+            while (s.hasNext()) {
+                String line = s.nextLine();
+                String specialString = " [|] ";
+                String[] temp = line.split(specialString);
+                Task addTask;
+
+                if (temp[0].equals("T")) {
+                    addTask = new ToDo(temp[2]);
+                } else if (temp[0].equals("D")) {
+                    addTask = new Deadline(temp[2], temp[3]);
+                } else {
+                    if (!temp[0].equals("E")) {
+                        continue;
+                    }
+                    addTask = new Events(temp[2], temp[3]);
+                }
+                this.taskList.add(addTask);
+
+                try {
+                    if (temp[1].equals("1")) {
+                        addTask.markDone();
+                    } else {
+                        addTask.markNotDone();
+                    }
+                } catch (DokeException e) {
+                }
+            }
         } catch (FileNotFoundException e) {
-            createNewDokeFile(storage, ui);
+            try {
+                storage.DOKE_FILE.createNewFile();
+                ui.printOut("a new Doke.txt file has been created"
+                        + "it is in the path mentioned above");
+            } catch (IOException a) {
+                ui.printOut("An error occurred. Try again at another time.");
+            }
         }
     }
 
-    private Task createTask(String[] strings) {
-        Task addTask;
-        if (strings[0].equals("T")) {
-            addTask = new ToDo(strings[2]);
-        } else if (strings[0].equals("D")) {
-            addTask = new Deadline(strings[2], strings[3]);
-        } else {
-            addTask = new Event(strings[2], strings[3]);
-        }
-        return addTask;
-    }
-
-    private void setMarking(Task task, String[] strings) {
-        if (Miscellaneous.equalsStringZero(strings[1])) {
-            return;
-        }
-        task.markDone();
-    }
-
-    private void readStorage(Scanner scanner) {
-        while (scanner.hasNext()) {
-            String line = scanner.nextLine();
-            String[] temp = line.split(SPECIALSTRING);
-            Task task = createTask(temp);
-
-            this.taskList.add(task);
-
-            setMarking(task, temp);
-        }
-    }
-
-    private void createNewDokeFile(Storage storage, Ui ui) {
-        try {
-            storage.DOKE_FILE.createNewFile();
-            ui.printNewFileCreatedMessage();
-        } catch (IOException a) {
-            ui.printErrorMessage();
-        }
-    }
-
-    private int taskSearcher(Ui ui, int num, int i, String str) {
-        Task task = taskList.get(i);
-        String desc = task.getDesc().toLowerCase();
-        if (desc.indexOf(str.toLowerCase()) == -1) {
-            return 0;
-        } else if (num == 0) {
-            ui.printOut("Here's what we found: ");
-        }
-        ui.printOut((i + 1) + "." + taskList.get(i).toString());
-        return 1;
-    }
-
-    private int taskSearchIterator(String str, String message, Ui ui) {
-        int i = 0;
-        int num = 0;
+    public void searchString(String str, Ui ui) {
         int len = taskList.size();
+        int num = 0;
+        String message = "_________________________ \n";
+        int i = 0;
+        message = "_________________________ \n";
         while (i < len) {
-            num += taskSearcher(ui, num, i, str);
+            Task task = taskList.get(i);
+            String desc = task.getDesc().toLowerCase();
+            String taskType = task.getType();
+            if (desc.indexOf(str.toLowerCase()) != -1) {
+                if (num == 0) {
+                    message += "Here's what we found: \n";
+                }
+                message += (i + 1) + "." + taskList.get(i).toString() + "\n";
+                num += 1;
+            } else if ((taskType.equals("E") || taskType.equals("D"))
+                    && task.getTime().format(
+                            DateTimeFormatter.ofPattern("dd-MMM-yyyy")).indexOf(str) != -1) {
+                if (num == 0) {
+                    message += "Here's what we found: \n";
+                }
+                message += (i + 1) + "." + taskList.get(i).toString() + "\n";
+                num += 1;
+            }
             i++;
         }
-        return num;
-    }
-
-    /**
-     * Searches and prints out the tasks which contains the string in its description.
-     *
-     * @param str
-     * @param ui
-     */
-    public void searchString(String str, Ui ui) {
-        int num = 0;
-        String message = "_________________________ ";
-        ui.printOut(message);
-        num = taskSearchIterator(str, message, ui);
         if (num == 0) {
-            ui.printOut("Sorry, we found nothing.");
+            message += "Sorry, we found nothing. \n";
         }
-        ui.printOut("_________________________ ");
+        message += "_________________________ \n";
+        ui.printOut(message);
     }
 
     /**
