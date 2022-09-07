@@ -21,33 +21,48 @@ public class Parser { // inner class
         this.taskList = new TaskList(filePath);
     }
 
-    // Method is made public to facilitate testing, should be private
+    enum Marking {
+        MARK,
+        UNMARK
+    }
+
+    private int getMarkOrUnmarkIndex(String strippedInput, Marking instruction) throws IncorrectFormatException {
+        switch (instruction) {
+            case MARK: {
+                String indexString = strippedInput.substring(5).strip();
+                int indexToChange = Character.getNumericValue(indexString.charAt(0));
+                return indexToChange;
+            }
+            case UNMARK: {
+                String temp = strippedInput.substring(7).strip();
+                int indexToChange = Character.getNumericValue(temp.charAt(0));
+                return indexToChange;
+            }
+            default: //shouldn't reach here
+                throw new IncorrectFormatException("Not a case of mark or unmark!"); // programme breaks
+        }
+    }
+
     public String parse(String userInput) {
+
+        String strippedInput = userInput.strip();
 
         try {
             if (userInput.strip().startsWith("bye")) {
-                // System.out.println(UserInterface.GOODBYE_MESSAGE);
                 return UserInterface.GOODBYE_MESSAGE;
                 // System.exit(0);
 
             } else if (userInput.strip().startsWith("todo ")) {
                 return taskList.handleNewTask(userInput, "T");
-                // System.out.println(UserInterface.AFTER_VALID_INPUT);
 
             } else if (userInput.strip().startsWith("deadline ")) {
                 return taskList.handleNewTask(userInput, "D");
-                // System.out.println(UserInterface.AFTER_VALID_INPUT);
 
             } else if (userInput.strip().startsWith("event ")) {
                 return taskList.handleNewTask(userInput, "E");
-                // System.out.println(UserInterface.AFTER_VALID_INPUT);
 
-            } else if (userInput.strip().startsWith("mark ")) {
-                // truncate the front part
-                String temp = userInput.substring(5);
-                // System.out.println(temp);
-                int indexToChange = Character.getNumericValue(temp.charAt(0));
-                // System.out.println(indexToChange);
+            } else if (strippedInput.startsWith("mark ")) {
+                int indexToChange = getMarkOrUnmarkIndex(strippedInput, Marking.MARK);
                 if ((indexToChange > 0) && (indexToChange < 100)) {
                     Storage.INPUT_TASKS.get(indexToChange - 1).markAsDone();
                 }
@@ -60,15 +75,9 @@ public class Parser { // inner class
                 return (" Nice! I've marked this task as done: \n"
                     + Storage.INPUT_TASKS.get(indexToChange - 1) + "\n"
                     + UserInterface.AFTER_VALID_INPUT);
-//                System.out.println(Storage.INPUT_TASKS.get(indexToChange - 1));
-//                System.out.println(UserInterface.AFTER_VALID_INPUT);
 
-            } else if (userInput.strip().startsWith("unmark ")) {
-                // truncate the front part
-                String temp = userInput.substring(7);
-                // System.out.println(temp);
-                int indexToChange = Character.getNumericValue(temp.charAt(0));
-                // System.out.println(indexToChange);
+            } else if (strippedInput.startsWith("unmark ")) {
+                int indexToChange = getMarkOrUnmarkIndex(strippedInput, Marking.UNMARK);
                 if ((indexToChange > 0) && (indexToChange < 100)) {
                     Storage.INPUT_TASKS.get(indexToChange - 1).markAsNotDone();
                 }
@@ -83,7 +92,6 @@ public class Parser { // inner class
                     + UserInterface.AFTER_VALID_INPUT);
 
             } else if (userInput.strip().equals("list")) {
-                // System.out.println(inputMemory.length);
                 String output = "Here are the tasks in your list: \n";
 
                 for (int i = 0; i < Pixel.count; i++) {
@@ -110,26 +118,23 @@ public class Parser { // inner class
             }
 
         } catch (IndexOutOfBoundsException e) {
-            // System.out.println(e);
             return ("caught Index Out of Bounds Exception \n"
                 + UserInterface.AFTER_INVALID_INPUT + "\n"
                 + UserInterface.PROMPT_MESSAGE);
 
         } catch (StackOverflowError e) {
-            // System.out.println(e);
             return ("caught Stack Overflow Error \n"
                 + UserInterface.AFTER_INVALID_INPUT + "\n"
                 + UserInterface.PROMPT_MESSAGE);
 
         } catch (NullPointerException e) {
-            // System.out.println(e);
             return ("caught Null pointer exception \n"
                 + UserInterface.AFTER_INVALID_INPUT + "\n"
                 + UserInterface.PROMPT_MESSAGE);
 
         } catch (IncorrectFormatException e) {
-            // System.out.println(e);
-            return ("Incorrect format exception! \n"
+            return (e + "\n"
+                + "Incorrect format exception! \n"
                 + UserInterface.AFTER_INVALID_INPUT + "\n"
                 + UserInterface.PROMPT_MESSAGE);
 
@@ -141,15 +146,10 @@ public class Parser { // inner class
                     + "New file is created for you \n"
                     + UserInterface.PROMPT_MESSAGE);
             } else {
-                // System.out.println(e);
                 return ("Caught IO exception! \n"
                     + UserInterface.PROMPT_MESSAGE);
             }
 
-    //    } finally {
-    //        // clean up
-    //        // System.out.println("cleaning up. Process resumes. Please enter your new input");
-    //        run();
         }
     }
 
