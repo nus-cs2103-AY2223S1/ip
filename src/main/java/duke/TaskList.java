@@ -176,12 +176,27 @@ public class TaskList {
      * @param s
      */
     public String find(String s) {
-        String res = "";
+        String result = "";
         for (Task task : tasks) {
             if (task.contains(s)) {
-                res += task + "\n";
+                result += task + "\n";
             }
         }
-        return res;
+        return result;
+    }
+
+    public String dueSoon() {
+        String result = "";
+        for (Task task : tasks) {
+            if (task instanceof Deadline) {
+                Deadline deadline = (Deadline) task;
+                LocalDate soon = LocalDate.now().plusWeeks(1);
+                LocalDate dueDate = deadline.getDeadline();
+                if(dueDate.isBefore(soon)) {
+                    result += deadline + "\n";
+                }
+            }
+        }
+        return result;
     }
 }

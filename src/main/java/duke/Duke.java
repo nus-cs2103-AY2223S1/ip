@@ -26,7 +26,9 @@ public class Duke {
     }
 
     /**
-     * Starts the Duke chatbot
+     * Used by launcher to get the response by the user.
+     * @param fullCommand
+     * @return
      */
     public String getResponse(String fullCommand) {
         String[] command = fullCommand.split(" ", 2);

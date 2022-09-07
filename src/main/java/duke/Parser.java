@@ -1,5 +1,6 @@
 package duke;
 
+import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
 
 import duke.tasks.Deadline;
@@ -35,7 +36,8 @@ public class Parser {
         deadline,
         todo,
         event,
-        find
+        find,
+        remind
     }
 
     /**
@@ -85,20 +87,27 @@ public class Parser {
                 result = tasks.unMark(index);
                 break;
             case deadline:
-                String[] dl = command[1].split("/by ", 2);
-                Deadline d = new Deadline(dl[0], LocalDate.parse(dl[1]));
-                result = tasks.add(d);
+                try {
+                    String[] dl = command[1].split("/by ", 2);
+                    Deadline d = new Deadline(dl[0], LocalDate.parse(dl[1]));
+                    result = tasks.add(d);
+                } catch (ArrayIndexOutOfBoundsException arrException) {
+                    return "Invalid Format for deadline";
+                }
                 break;
             case find:
                 String item = command[1];
                 result = tasks.find(item);
+                break;
+            case remind:
+                result = tasks.dueSoon();
                 break;
             default:
                 result = "Invalid Command";
             }
 
         } catch (IllegalArgumentException e) {
-            return "Invalid command";
+            return "Invalid Command";
         }
         return result;
     }
