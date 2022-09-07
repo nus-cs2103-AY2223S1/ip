@@ -17,6 +17,7 @@ public class Ui {
      * Prints the welcome message.
      */
     public void showWelcome() {
+        assert logo != null : "logo should be initialized";
         System.out.println(logo);
         System.out.println("Bonjour~~ I'm Byu! How can I help you?");
     }
