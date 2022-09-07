@@ -12,15 +12,21 @@ public class DeleteCommand extends Command {
     }
     
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        int index = Integer.parseInt(str.substring(7));
-        if (index <= tasks.size() && index > 0) {
-            System.out.println("Noted. I've removed this task:");
-            System.out.println(tasks.removeTask(index - 1));
-            storage.saveLocalData(tasks.getTasks());
-            System.out.println("Now you have " + tasks.size() + " tasks in the list.");
-        } else {
-            throw new DukeException("Index invalid, no such task exists.");
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        try {
+            int index = Integer.parseInt(str.substring(7));
+            if (index <= tasks.size() && index > 0) {
+                StringBuilder output = new StringBuilder();
+                output.append("Noted. I've removed this task:\n");
+                output.append(tasks.removeTask(index - 1).toString());
+                storage.saveLocalData(tasks.getTasks());
+                output.append(String.format("\nNow you have %d tasks in the list.\n", tasks.size()));
+                return output.toString();
+            } else {
+                throw new DukeException("Index invalid, no such task exists.");
+            }
+        } catch (NumberFormatException e) {
+            throw new DukeException("Index invalid, please enter an integer.");
         }
     }
 }

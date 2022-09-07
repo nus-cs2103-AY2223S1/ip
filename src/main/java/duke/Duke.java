@@ -3,6 +3,7 @@ package duke;
 import command.Command;
 import gui.DialogBox;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -53,7 +54,7 @@ public class Duke extends Application {
             ui.showError(e.getMessage());
             tasks = new TaskList();
         }
-        parser = new Parser(tasks);
+        parser = new Parser();
     }
 
     /**
@@ -185,7 +186,12 @@ public class Duke extends Application {
      * Replace this stub with your completed method.
      */
     public String getResponse(String input) {
-        return "A-chan heard: " + input;
+        try {
+            Command command = parser.parse(input);
+            return command.execute(tasks, ui, storage);
+        } catch (DukeException e) {
+            return e.getMessage();
+        }
     }
 
     public static void main(String[] args) {

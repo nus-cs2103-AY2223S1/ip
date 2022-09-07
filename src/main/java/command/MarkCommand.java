@@ -14,21 +14,27 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        int index = Integer.parseInt(str.substring(5));
-        if (index <= tasks.size() && index > 0) {
-            Task task = tasks.getTasks().get(index - 1);
-            if (!task.isDone()) {
-                task.toggleDoneness();
-                storage.saveLocalData(tasks.getTasks());
-                System.out.println("Good job for doing this task!");
-                System.out.println(task);
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        try {
+            int index = Integer.parseInt(str.substring(5));
+            if (index <= tasks.size() && index > 0) {
+                StringBuilder output = new StringBuilder();
+                Task task = tasks.getTasks().get(index - 1);
+                if (!task.isDone()) {
+                    task.toggleDoneness();
+                    storage.saveLocalData(tasks.getTasks());
+                    output.append("Good job for doing this task!\n");
+                    output.append(task.toString());
+                } else {
+                    output.append("This task has already been marked done.\n");
+                    output.append(task.toString());
+                }
+                return output.toString();
             } else {
-                System.out.println("This task has already been marked done.");
-                System.out.println(task);
+                throw new DukeException("Index invalid, no such task exists.");
             }
-        } else {
-            throw new DukeException("Index invalid, no such task exists.");
+        } catch (NumberFormatException e) {
+            throw new DukeException("Index invalid, please enter an integer.");
         }
     }
 }
