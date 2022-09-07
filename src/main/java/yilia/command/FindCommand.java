@@ -22,13 +22,7 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        StringBuilder message = new StringBuilder();
-        for (int i = 1; i <= tasks.size(); i++) {
-            if (tasks.get(i).toString().contains(content)) {
-                message.append(ui.showTask(i, tasks));
-                message.append("\n");
-            }
-        }
-        return message.toString();
+        TaskList filteredTasks = tasks.filter(content);
+        return ui.showTask(filteredTasks);
     }
 }

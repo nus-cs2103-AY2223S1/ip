@@ -112,14 +112,16 @@ public class Ui {
     /**
      * Shows the content of a task.
      *
-     * @param index The index of the task.
      * @param tasks The task list.
      * @return The information of a task.
      */
-    public String showTask(int index, TaskList tasks) {
-        String info = index + "." + tasks.get(index);
-        System.out.println(info);
-        return info;
+    public String showTask(TaskList tasks) {
+        StringBuilder message = new StringBuilder();
+        for (int i = 1; i <= tasks.size(); i++) {
+            message.append(tasks.get(i));
+            message.append("\n");
+        }
+        return message.toString();
     }
     /**
      * Shows the index out of bounds.
