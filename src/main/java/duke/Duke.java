@@ -89,6 +89,7 @@ public class Duke {
      * @param dukeException The given DukeException.
      */
     public String handle(DukeException dukeException) {
+        assert dukeException == null : "Please appreciate the error message: " + dukeException.getMessage();
         return this.messagePrinter.printMessage(dukeException.getMessage());
     }
 
