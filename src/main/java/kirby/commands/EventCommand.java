@@ -12,7 +12,7 @@ import kirby.ui.Ui;
  * EventCommand class handles the command to create an Event task.
  */
 public class EventCommand extends Command {
-    private String inputString;
+    private final String inputString;
 
     /**
      * Constructor for the class EventCommand.
@@ -29,7 +29,9 @@ public class EventCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
-        if (!inputString.contains("/at") || inputString.length() - 1 < inputString.indexOf("/at") + 4 || inputString.indexOf(" /at") <= inputString.indexOf("event") + 6) {
+        boolean isEvent = (!inputString.contains("/at") || inputString.length() - 1 < inputString.indexOf("/at") + 4
+                || inputString.indexOf(" /at") <= inputString.indexOf("event") + 6);
+        if (isEvent) {
             throw new KirbyMissingArgumentException("event");
         }
         String taskName = inputString.substring(inputString.indexOf("event") + 6, inputString.indexOf(" /at"));

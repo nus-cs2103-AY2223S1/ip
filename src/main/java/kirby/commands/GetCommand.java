@@ -13,7 +13,9 @@ import kirby.ui.Ui;
  * GetCommand class handles the command to get all the tasks on a specified date.
  */
 public class GetCommand extends Command {
-    private String inputString;
+    private static final int GET_COMMAND_LENGTH = 2;
+    private static String EMPTY_TASK_MESSAGE = "No tasks found!";
+    private final String inputString;
 
     /**
      * Constructor for the class DeadlineCommand.
@@ -30,7 +32,7 @@ public class GetCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
-        if (inputString.split(" ").length != 2) {
+        if (inputString.split(" ").length != GET_COMMAND_LENGTH) {
             throw new KirbyMissingArgumentException("get");
         }
         String inputDate = inputString.split(" ")[1];
@@ -39,13 +41,13 @@ public class GetCommand extends Command {
         }
         ArrayList<Task> res = HandleTime.getTaskByDate(tasks.getList(), inputDate);
         if (res.size() < 1) {
-            return "No tasks found!";
+            return EMPTY_TASK_MESSAGE;
         } else {
-            String resListPara = "Here are the tasks: \n";
+            StringBuilder getTaskList = new StringBuilder("Here are the tasks: \n");
             for (Task re : res) {
-                resListPara += re.toString() + "\n";
+                getTaskList.append(re.toString()).append("\n");
             }
-            return resListPara;
+            return getTaskList.toString();
         }
     }
 

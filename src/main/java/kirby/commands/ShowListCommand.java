@@ -16,15 +16,15 @@ public class ShowListCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
-        String resPara = "Your list of tasks: \n";
+        StringBuilder resPara = new StringBuilder("Your list of tasks: \n");
         if (tasks.getTaskCount() == 0) {
             return "You have no tasks added!";
         }
         for (int i = 0; i < tasks.getList().size(); i++) {
             Task currTask = tasks.getList().get(i);
-            resPara += i + 1 + ": " + currTask.toString() + "\n";
+            resPara.append(i).append(1).append(": ").append(currTask.toString()).append("\n");
         }
-        return resPara;
+        return resPara.toString();
     }
 
     /**

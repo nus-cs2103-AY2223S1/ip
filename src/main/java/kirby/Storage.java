@@ -79,26 +79,26 @@ public class Storage {
      * @throws FileNotFoundException If the file does not exist.
      */
     public ArrayList<Task> load() throws FileNotFoundException {
-        ArrayList<Task> result = new ArrayList<>();
+        ArrayList<Task> presavedTasks = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("~");
                 switch (parts[0]) {
                 case "kirby.tasks.Todo":
-                    result.add(new Todo(parts[1]));
+                    presavedTasks.add(new Todo(parts[1]));
                     break;
                 case "kirby.tasks.Deadline":
-                    result.add(new Deadline(parts[1], parts[2]));
+                    presavedTasks.add(new Deadline(parts[1], parts[2]));
                     break;
                 case "kirby.tasks.Event":
-                    result.add(new Event(parts[1], parts[2]));
+                    presavedTasks.add(new Event(parts[1], parts[2]));
                     break;
                 default:
                     throw new IOException();
                 }
             }
-            return result;
+            return presavedTasks;
         } catch (IOException e) {
             e.printStackTrace();
             return null;

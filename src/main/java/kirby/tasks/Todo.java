@@ -4,6 +4,7 @@ package kirby.tasks;
  * Todo class contains information of a Todo task.
  */
 public class Todo extends Task {
+    private static final int[] INVALID_DATE_ARR = new int[]{-1, -1, -1};
     /**
      * Constructor for the class Todo.
      *
@@ -18,7 +19,7 @@ public class Todo extends Task {
      */
     @Override
     public int[] getDate() {
-        return new int[]{-1, -1, -1};
+        return INVALID_DATE_ARR;
     }
 
     /**

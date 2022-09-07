@@ -43,8 +43,7 @@ public class Kirby {
             Command c = Parser.parse(fullCommand);
             return c.execute(tasks, ui, storage);
         } catch (KirbyInvalidCommandException | KirbyMissingArgumentException e) {
-            String error = e.getMessage();
-            return error;
+            return e.getMessage();
         }
     }
 }

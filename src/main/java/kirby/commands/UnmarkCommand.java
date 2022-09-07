@@ -11,7 +11,8 @@ import kirby.ui.Ui;
  * UnmarkCommand class handles the command to unmark a task.
  */
 public class UnmarkCommand extends Command {
-    private String inputString;
+    private static final int UNMARK_COMMAND_LENGTH = 2;
+    private final String inputString;
 
     /**
      * Constructor for the class DeadlineCommand.
@@ -28,7 +29,7 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
-        if (inputString.split(" ").length != 2) {
+        if (inputString.split(" ").length != UNMARK_COMMAND_LENGTH) {
             throw new KirbyMissingArgumentException("unmark");
         }
         int taskIndex = Integer.parseInt(inputString.split(" ")[1]);
@@ -43,7 +44,7 @@ public class UnmarkCommand extends Command {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return tasks.setMarkedString(taskIndex - 1);
+        return tasks.setUnmarkedString(taskIndex - 1);
     }
 
     /**

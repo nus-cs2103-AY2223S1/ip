@@ -11,7 +11,8 @@ import kirby.ui.Ui;
  * DeleteCommand class handles the command to delete a task.
  */
 public class DeleteCommand extends Command {
-    private String inputString;
+    private static final int DELETE_COMMAND_LENGTH = 2;
+    private final String inputString;
 
     /**
      * Constructor for the class DeleteCommand.
@@ -28,7 +29,7 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
-        if (inputString.split(" ").length != 2) {
+        if (inputString.split(" ").length != DELETE_COMMAND_LENGTH) {
             throw new KirbyMissingArgumentException("delete");
         }
         int taskIndex = Integer.parseInt(inputString.split(" ")[1]);

@@ -14,16 +14,15 @@ import kirby.ui.Ui;
  * A GUI for Kirby using FXML.
  */
 public class Main extends Application {
-
-    private Kirby kirby;
+    private static final String FILE_NAME = "data/kirby.txt";
+    private static final String DIRECTORY_NAME = "data/";
+    private final Kirby kirby;
 
     /**
      * Constructor for Main method.
      */
     public Main() throws IOException {
-        String fileName = "data/kirby.txt";
-        String dirName = "data/";
-        this.kirby = new Kirby(fileName, dirName);
+        this.kirby = new Kirby(FILE_NAME, DIRECTORY_NAME);
     }
 
     /**

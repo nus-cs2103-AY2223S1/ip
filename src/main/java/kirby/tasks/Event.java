@@ -10,7 +10,7 @@ import kirby.HandleTime;
  */
 public class Event extends Task {
     protected String at;
-    private LocalDate localDate  = null;
+    private LocalDate localDate = null;
 
     /**
      * Constructor for the class Event.
