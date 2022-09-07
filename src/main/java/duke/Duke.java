@@ -38,11 +38,16 @@ public class Duke {
      */
     public String getResponse(String input) {
         String[] arr = new Parser().parseCommand(input);
-        String action = arr[0];
+        String typeOfTask = arr[0];
         String response;
         Task t;
 
-        switch (action) {
+        // Check for duplicate task in current list.
+        if (this.storage.isDuplicateTask(typeOfTask, arr)) {
+            return this.ui.getDuplicateTaskError();
+        }
+
+        switch (typeOfTask) {
         case "T":
             try {
                 t = this.addAndGetTodo(arr[1]);
@@ -86,7 +91,7 @@ public class Duke {
             response = this.ui.getGoodbyeMessage();
             break;
         default:
-            assert action.equals("U") : action;
+            assert typeOfTask.equals("U") : typeOfTask;
             response = this.ui.getUnknownInputError();
         }
 

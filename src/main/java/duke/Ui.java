@@ -51,24 +51,6 @@ public class Ui {
     }
 
     /**
-     * Returns an error to the user if user input is unknown.
-     *
-     * @return An error when user input is unknown.
-     */
-    public String getUnknownInputError() {
-        return "OOPS!!! I'm sorry, but I don't know what that means :-(";
-    }
-
-    /**
-     * Returns a goodbye message to user.
-     *
-     * @return Goodbye message.
-     */
-    public String getGoodbyeMessage() {
-        return "Bye. Hope to see you again soon!";
-    }
-
-    /**
      * Returns a String of the current list of tasks.
      *
      * @param list The current list of tasks.
@@ -121,5 +103,27 @@ public class Ui {
         }
 
         return "Here are the matching tasks in your list:\n" + tasks;
+    }
+
+    public String getDuplicateTaskError() {
+        return "OOPS!!! I'm sorry, this task already exists in your list! :)";
+    }
+
+    /**
+     * Returns an error to the user if user input is unknown.
+     *
+     * @return An error when user input is unknown.
+     */
+    public String getUnknownInputError() {
+        return "OOPS!!! I'm sorry, but I don't know what that means :-(";
+    }
+
+    /**
+     * Returns a goodbye message to user.
+     *
+     * @return Goodbye message.
+     */
+    public String getGoodbyeMessage() {
+        return "Bye. Hope to see you again soon!";
     }
 }
