@@ -124,24 +124,9 @@ public class TaskList {
      * @return A list of tasks that occur on that date.
      */
     public List<Task> filter(LocalDate date) {
-        List<Task> filtered = new ArrayList<>();
-
-        for (int i = 0; i < this.tasks.size(); ++i) {
-            Task task = this.tasks.get(i - 1);
-            if (task instanceof Event) {
-                Event event = (Event) task;
-                if (event.isOnDate(date)) {
-                    filtered.add(event);
-                }
-            } else if (task instanceof Deadline) {
-                Deadline deadline = (Deadline) task;
-                if (deadline.isOnDate(date)) {
-                    filtered.add(deadline);
-                }
-            }
-        }
-
-        return filtered;
+        return this.tasks.stream()
+                .filter(task -> task.isOnDate(date))
+                .collect(Collectors.toList());
     }
 
     /**

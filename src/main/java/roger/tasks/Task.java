@@ -1,10 +1,13 @@
 package roger.tasks;
 
+import java.time.LocalDate;
+
 /**
  * Encapsulates a Task.
  */
 public abstract class Task {
     protected String name;
+    protected LocalDate date;
     private boolean isDone = false;
 
     /**
@@ -55,5 +58,27 @@ public abstract class Task {
      */
     public boolean isDone() {
         return this.isDone;
+    }
+
+    /**
+     * Returns the date of the task.
+     *
+     * @return The date of the task.
+     */
+    public LocalDate getDate() {
+        return this.date;
+    }
+
+    /**
+     * Returns true if the task lies on the given date.
+     *
+     * @param date The date to check with.
+     * @return true if the task lies on the given date
+     */
+    public boolean isOnDate(LocalDate date) {
+        if (this.date == null) {
+            return false;
+        }
+        return this.date.equals(date);
     }
 }

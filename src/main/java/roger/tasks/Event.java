@@ -7,7 +7,6 @@ import java.time.LocalDate;
  * Encapsulates an event.
  */
 public class Event extends Task {
-    private LocalDate date;
 
     /**
      * Create an event.
@@ -20,10 +19,6 @@ public class Event extends Task {
         this.date = date;
     }
 
-    public boolean isOnDate(LocalDate date) {
-        return this.date.equals(date);
-    }
-
     /**
      * String representation of the event.
      *
@@ -32,14 +27,5 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + this.date.toString() + ")";
-    }
-
-    /**
-     * Returns the date of the event.
-     *
-     * @return The date of the event.
-     */
-    public LocalDate getDate() {
-        return this.date;
     }
 }
