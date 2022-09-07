@@ -19,6 +19,7 @@ public class Event extends Todo{
         super(title, completed);
         this.date = date;
     }
+
     @Override
     public void writeToFile(FileWriter writer) throws IOException {
         writer.write(String.format("E;%s;%s;%d\n", this.title, Duck.dateToStringConverter(this.date), this.completed ? 1 : 0));
@@ -27,5 +28,9 @@ public class Event extends Todo{
     public String toString() {
         return String.format("%s (at: %s)", super.toString().replace("[T]", "[E]"),
                 new SimpleDateFormat("MMM dd yyyy HH:mm").format(this.date));
+    }
+
+    public void setDate(Date date){
+        this.date = date;
     }
 }

@@ -2,6 +2,7 @@ package Duck;
 import Models.Todo;
 import Commands.Commands;
 
+import Quackceptions.InvalidObjectClass;
 import UI.UI;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -44,6 +45,8 @@ public class Duck {
             c.execute(list, storage, ui);
         } catch (IndexOutOfBoundsException e) {
             ui.sendTextToUi("Items do not exist! Or List is empty!");
+        } catch (InvalidObjectClass e) {
+            ui.sendTextToUi(e.toString());
         }
         if(c.isExit()) {
             Platform.exit();

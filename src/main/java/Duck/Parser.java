@@ -9,14 +9,17 @@ import Commands.UnmarkCommand;
 import Commands.DeleteCommand;
 import Commands.ErrorCommand;
 import Commands.FindCommand;
+import Commands.UpdateCommand;
 
 import Models.Todo;
 import Models.Event;
 import Models.Deadline;
+import Quackceptions.InvalidObjectClass;
 import Quackceptions.UnallowedCharacterException;
 import UI.UI;
 
 import java.text.ParseException;
+import java.util.Date;
 
 
 public class Parser {
@@ -49,11 +52,13 @@ public class Parser {
                 ui.sendTextToUi("Speak properly! Quack!");
             }
         } catch (NumberFormatException n) {
-            ui.sendTextToUi("Invalid Arguments! Dummy!");
+            ui.sendTextToUi("Wrong arguments! Quack!");
         } catch (UnallowedCharacterException e) {
             ui.sendTextToUi("Character: " + e.getMessage() + " is not allowed! Quack!!");
         } catch (ParseException e) {
             ui.sendTextToUi("Wrong date time format! Quack! (use: dd/MM/yyyy HHmm) ");
+        } catch (InvalidObjectClass e) {
+            ui.sendTextToUi(e.getMessage());
         }
         return new ErrorCommand();
     }
@@ -64,7 +69,7 @@ public class Parser {
      * @param ui UI object to be used
      * @return returns a type of command corresponding to the input given
      */
-    private static Commands commandsWithArguments(String input, UI ui) throws ParseException {
+    private static Commands commandsWithArguments(String input, UI ui) throws ParseException, InvalidObjectClass {
         String[] arr = input.split(" ", 2);
         String command = arr[0];
         String arguments = arr[1];
@@ -90,10 +95,40 @@ public class Parser {
             return new DeleteCommand(Integer.parseInt(arguments) - 1);
         case "FIND":
             return new FindCommand(arguments);
+        case "UPDATE": //update 1 /time 10/10/1010 10:10
+            return parseUpdateCommand(arguments);
         default:
             ui.sendTextToUi("Quack! What does that even mean ?!?!?");
             break;
         }
         return new ErrorCommand();
+    }
+
+    /**
+     * Function specifically to handle the UpdateCommand
+     * @param arguments the arguments inputted by the user
+     * @return returns a new UpdateCommand
+     * @throws ParseException thrown when numbers cannot be parsed
+     * @throws InvalidObjectClass thrown when arguments given are invalid
+     */
+    private static UpdateCommand parseUpdateCommand(String arguments) throws ParseException, InvalidObjectClass {
+        String[] updateArgs;
+        Date updatedDate;
+        String updatedTitle;
+
+        if (arguments.toUpperCase().contains("/title".toUpperCase())) {
+            updateArgs = arguments.split("/title");
+            int index = Integer.parseInt(updateArgs[0].trim()) - 1;
+            updatedTitle = updateArgs[1].trim();
+            return new UpdateCommand(index, updatedTitle);
+        } else if (arguments.toUpperCase().contains("/time".toUpperCase())) {
+            updateArgs = arguments.split("/time");
+            int index = Integer.parseInt(updateArgs[0].trim()) - 1;
+            updatedDate = Duck.dateStorageConverter(updateArgs[1].trim());
+            return new UpdateCommand(index, updatedDate);
+        } else {
+            throw new InvalidObjectClass("Arguments are wrong! Quack!");
+        }
+
     }
 }

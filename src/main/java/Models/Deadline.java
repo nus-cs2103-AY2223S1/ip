@@ -19,7 +19,6 @@ public class Deadline extends Todo{
         super(title, completed);
         this.date = date;
     }
-
     @Override
     public void writeToFile(FileWriter writer) throws IOException {
         writer.write(String.format("D;%s;%s;%d\n", this.title, Duck.dateToStringConverter(this.date), this.completed ? 1 : 0));
@@ -27,5 +26,8 @@ public class Deadline extends Todo{
     public String toString() {
         return String.format("%s (by: %s)", super.toString().replace("[T]", "[D]"),
                 new SimpleDateFormat("MMM dd yyyy HH:mm").format(this.date));
+    }
+    public void setDate(Date date){
+        this.date = date;
     }
 }

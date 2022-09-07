@@ -2,6 +2,7 @@ package Commands;
 import Models.Todo;
 import Duck.TaskList;
 import Duck.Storage;
+import Quackceptions.InvalidObjectClass;
 import UI.UI;
 
 /**
@@ -10,6 +11,7 @@ import UI.UI;
 public abstract class Commands {
 
     public Commands(){
+
     }
 
     /**
@@ -18,7 +20,7 @@ public abstract class Commands {
      * @param storage Storage to be modified
      * @throws IndexOutOfBoundsException is thrown when accessing a non existent object
      */
-    abstract public void execute(TaskList<Todo> list, Storage storage, UI ui) throws IndexOutOfBoundsException;
+    abstract public void execute(TaskList<Todo> list, Storage storage, UI ui) throws IndexOutOfBoundsException, InvalidObjectClass;
 
     /**
      * checks if the command returned is an exit command

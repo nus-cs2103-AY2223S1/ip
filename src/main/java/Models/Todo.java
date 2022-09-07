@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.text.ParseException;
 
 public class Todo {
-    protected final String title;
+    protected String title;
     protected boolean completed;
 
     /**
@@ -37,6 +37,10 @@ public class Todo {
 
     public void unCompleteTask() {
         this.completed = false;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     /**
