@@ -263,7 +263,8 @@ public class TaskList {
             }
 
             taskToModify.markAsDone();
-            response = String.format("Nice! I've marked this task as done:\n%s", taskToModify);
+            response = String.format("Nice! (๑•̀ㅂ•́)و✧\n"
+                    + "I've marked this task as done:\n%s", taskToModify);
             break;
 
         case "unmark":
@@ -276,14 +277,16 @@ public class TaskList {
             }
 
             taskToModify.markAsUndone();
-            response = String.format("OK, I've marked this task as not done yet:\n%s", taskToModify);
+            response = String.format("OK (｡•́︿•̀｡)\n"
+                    + "I've marked this task as not done yet:\n%s", taskToModify);
             break;
 
         case "delete":
             tasks.remove(taskToModify);
-            response = String.format("Noted. I've removed this task:\n"
-                            + "%s\n"
-                            + "Now you have %d tasks in the list.\n",
+            response = String.format("Noted (｡◕‿◕｡)\n"
+                    + "I've removed this task:\n"
+                    + "%s\n"
+                    + "Now you have %d tasks in the list.\n",
                     taskToModify, tasks.size());
             break;
 

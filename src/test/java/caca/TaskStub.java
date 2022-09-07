@@ -10,8 +10,16 @@ import caca.tasks.Task;
  */
 public class TaskStub extends Task {
 
+    private boolean isDone;
+
+    /**
+     * Constructor for creating a TaskStub.
+     *
+     * @param description TaskStub description from user input.
+     */
     public TaskStub(String description) {
         super(description);
+        this.isDone = false;
     }
 
     @Override
