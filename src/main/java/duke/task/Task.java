@@ -28,6 +28,9 @@ public class Task {
         this.isDone = isDone;
         this.date = date;
     }
+    public void rename(String action) {
+        this.action = action;
+    }
 
     public String getAction() {
         return action;

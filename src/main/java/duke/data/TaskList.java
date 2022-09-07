@@ -84,6 +84,16 @@ public class TaskList {
         this.list.add(task);
     }
 
+    /**
+     * Rename task specified by index.
+     * @param index position of task.
+     * @param name name to be changed to.
+     */
+    public void renameTask(int index, String name) {
+        assert index < list.size();
+        getTask(index).rename(name);
+    }
+
     public int getSize() {
         return this.list.size();
     }

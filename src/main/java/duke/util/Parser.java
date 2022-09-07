@@ -9,13 +9,23 @@ import duke.command.DeleteCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.TaskUpdateCommand;
 import duke.command.UnmarkCommand;
+import duke.command.UpdateCommand;
 
 /**
  * Parses commands and checks it.
  * @author Jicson Toh
  */
 public class Parser {
+    private boolean isEditMode;
+
+    /**
+     * Creates a default parser object with false edit mode.
+     */
+    public Parser() {
+        this.isEditMode = false;
+    }
 
     /**
      * Checks the input command.
@@ -33,10 +43,16 @@ public class Parser {
             return new UnmarkCommand(action);
         } else if (action.length() >= 6 && Objects.equals(action.substring(0, 6), "delete")) {
             return new DeleteCommand(action);
+        } else if (action.length() >= 6 && Objects.equals(action.substring(0, 6), "update")) {
+            isEditMode = true;
+            return new UpdateCommand();
         } else if (isValidTask(parseTaskType(action))) {
             return new AddCommand(action, parseTaskType(action));
         } else if (action.length() >= 4 && Objects.equals(action.substring(0, 4), "find")) {
             return new FindCommand(action);
+        } else if (isEditMode) {
+            isEditMode = false;
+            return new TaskUpdateCommand(action);
         } else {
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }

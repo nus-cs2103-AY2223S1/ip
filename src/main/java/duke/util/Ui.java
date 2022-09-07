@@ -84,6 +84,16 @@ public class Ui {
     }
 
     /**
+     * Prints the task updated.
+     * @param task task updated.
+     * @param index task index.
+     * @return returns the task updated.
+     */
+    public String showUpdatedTask(String task, int index) {
+        return ("I've updated task number " + index + " name to: " + task);
+    }
+
+    /**
      * Prints out the list of tasks added.
      * @param list list of tasks.
      * @return returns list of tasks.
