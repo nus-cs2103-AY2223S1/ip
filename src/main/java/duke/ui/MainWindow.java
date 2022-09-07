@@ -49,6 +49,12 @@ public class MainWindow extends AnchorPane {
             this.getClass().getResourceAsStream("/images/Duke.png"))
     );
 
+    private final String fontType = "Monaco";
+    private final int fontSize = 12;
+    private final int defaultPadding = 8;
+    private final int dialogBoxMinHeight = 100;
+    private final double opacityThreshold = 0.7;
+
     protected void setDuke(Duke duke) {
         this.duke = duke;
     }
@@ -72,10 +78,10 @@ public class MainWindow extends AnchorPane {
             commandsMap.keySet().stream().map(commandWord -> {
                 Label label = new Label(commandsMap.get(commandWord));
                 label.setWrapText(true);
-                label.setFont(new Font("Monaco", 12));
+                label.setFont(new Font(this.fontType, this.fontSize));
                 label.setTextAlignment(TextAlignment.LEFT);
-                label.setMinHeight(100);
-                label.setPadding(new Insets(8.0));
+                label.setMinHeight(this.dialogBoxMinHeight);
+                label.setPadding(new Insets(this.defaultPadding));
                 return new TitledPane(commandWord, label);
             }).collect(Collectors.toList())
         );
@@ -88,7 +94,7 @@ public class MainWindow extends AnchorPane {
     private void toggleCommandsAccordion() {
         this.commandsAccordion.setVisible(!this.commandsAccordion.isVisible());
         if (this.commandsAccordion.isVisible()) {
-            this.dialogContainer.setOpacity(0.7);
+            this.dialogContainer.setOpacity(this.opacityThreshold);
         } else {
             this.dialogContainer.setOpacity(1);
         }
