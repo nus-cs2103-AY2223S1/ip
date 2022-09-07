@@ -44,7 +44,7 @@ test {
 }
 
 application {
-    mainClassName = "poolsheen.Poolsheen"
+    mainClassName = "poolsheen.Launcher"
 }
 
 shadowJar {
