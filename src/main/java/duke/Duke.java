@@ -13,7 +13,7 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         UI ui = new UI();
         TaskList taskList = new TaskList(ui);
-        Parser parser = new Parser(ui);
+        Parser parser = new Parser();
 
 
         ui.printWelcomeMessage();
@@ -33,12 +33,15 @@ public class Duke {
                 break;
             case HELP:
                 ui.printHelpMessage();
+                break;
+            case ERROR:
+                ui.printErrorMessage(command.getArguments()[0]);
+                break;
             default:
                 String response = taskList.executeTask(command);
                 if(response != null) {
                     System.out.println(response);
                 }
-                break;
             }
         }
         taskList.destructor();

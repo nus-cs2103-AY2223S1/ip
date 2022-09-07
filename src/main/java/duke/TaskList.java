@@ -41,20 +41,22 @@ public class TaskList {
     public String executeTask(Command command) {
         String[] arguments = command.getArguments();
         switch (command.getCommand()) {
-            case TODO:
-                return addToDo(command.getArguments()[0]);
-            case DEADLINE:
-                return addDeadline(arguments[0], arguments[1]);
-            case EVENT:
-                return addEvent(arguments[0], arguments[1]);
-            case LIST:
-                return getList();
-            case MARK:
-                return markItem(arguments[0]);
-            case UNMARK:
-                return unMarkItem(arguments[0]);
-            case DELETE:
-                return deleteItem(arguments[0]);
+        case TODO:
+            return addToDo(command.getArguments()[0]);
+        case DEADLINE:
+            return addDeadline(arguments[0], arguments[1]);
+        case EVENT:
+            return addEvent(arguments[0], arguments[1]);
+        case LIST:
+            return getList();
+        case MARK:
+            return markItem(arguments[0]);
+        case UNMARK:
+            return unMarkItem(arguments[0]);
+        case DELETE:
+            return deleteItem(arguments[0]);
+        case FIND:
+            return findString(arguments[0]);
         }
         return null;
     }
@@ -148,4 +150,25 @@ public class TaskList {
             return -1;
         }
     }
+
+    private String findString(String searchParam) {
+        if (this.storedItems.isEmpty()) {
+            return "    The list is currently empty Dattebayo!";
+        }
+        StringBuilder strBuilder =
+                new StringBuilder("    Here's the search results for '" + searchParam + "' Dattebayo:");
+        int count = 1;
+        boolean min1ItemFound = false;
+        for (Item item : this.storedItems) {
+            String name = item.getName();
+            if (name.contains(searchParam)) {
+                strBuilder.append("\n").append("    ").append(count).append(".").append(item);
+                min1ItemFound = true;
+            }
+            count++;
+        }
+        return min1ItemFound ? strBuilder.toString() :
+                "    Sorry there were no results for '" + searchParam + "' Dattebayo:";
+    }
+
 }

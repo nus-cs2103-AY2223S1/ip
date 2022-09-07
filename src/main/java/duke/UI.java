@@ -26,7 +26,7 @@ public class UI {
      * @param description String describing the error.
      */
     public void printErrorMessage(String description) {
-        System.out.println("    Error: " + description);
+        System.out.println("    Aw Shucks: " + description);
     }
 
     /**

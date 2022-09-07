@@ -11,7 +11,9 @@ public enum CommandsList {
     UNMARK,
     LIST,
     DELETE,
+    FIND,
     BYE,
     HELP,
-    UNKNOWN
+    UNKNOWN,
+    ERROR
 }
