@@ -25,7 +25,7 @@ public class UnmarkCommand extends Command {
 
     /**
      * {@inheritDoc}
-     * Unmarks the specified task if arguments are valid.
+     * Marks the specified task as incomplete if arguments are valid.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {

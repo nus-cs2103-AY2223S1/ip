@@ -8,8 +8,10 @@ import kirby.ui.Ui;
  * HelpCommand class handles the command to list all the available commands.
  */
 public class HelpCommand extends Command {
-
-    @SuppressWarnings("checkstyle:OperatorWrap")
+    /**
+     * {@inheritDoc}
+     * Returns the list of all available commands.
+     */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         String listOfAllCommands =

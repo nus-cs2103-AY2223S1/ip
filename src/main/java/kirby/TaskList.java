@@ -67,7 +67,7 @@ public class TaskList {
     /**
      * Returns the list of tasks.
      *
-     * @return List of tasks.
+     * @return List of tasks sorted in chronological order.
      */
     public ArrayList<Task> getList() {
         return sortTaskList(this.tasks);
