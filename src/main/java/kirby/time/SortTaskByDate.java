@@ -1,6 +1,5 @@
 package kirby.time;
 
-import java.util.Arrays;
 import java.util.Comparator;
 
 import kirby.tasks.Task;

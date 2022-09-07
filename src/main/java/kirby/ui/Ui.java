@@ -4,7 +4,7 @@ package kirby.ui;
  * Ui class handles user interaction such as the different display messages.
  */
 public class Ui {
-    private static String WELCOME_MESSAGE = new StringBuilder().append("Hai I'm Kirby (੭｡╹▿╹｡)੭  \n")
+    private static final String WELCOME_MESSAGE = new StringBuilder().append("Hai I'm Kirby (੭｡╹▿╹｡)੭  \n")
             .append("What amazing plans do you have today? \n")
             .append("Type help to get started!").toString();
     /**

@@ -13,7 +13,7 @@ import kirby.ui.Ui;
  */
 public class ToDoCommand extends Command {
     private static final int TODO_COMMAND_LENGTH = 5;
-    private String inputString;
+    private final String inputString;
 
     /**
      * Constructor for the class DeadlineCommand.

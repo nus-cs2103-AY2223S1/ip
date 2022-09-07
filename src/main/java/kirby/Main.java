@@ -21,7 +21,7 @@ public class Main extends Application {
     /**
      * Constructor for Main method.
      */
-    public Main() throws IOException {
+    public Main() {
         this.kirby = new Kirby(FILE_NAME, DIRECTORY_NAME);
     }
 

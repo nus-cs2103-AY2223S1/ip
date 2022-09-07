@@ -42,9 +42,8 @@ public class Storage {
      * Creates a file if the file has not been created.
      *
      * @return New file created.
-     * @throws IOException If there is an error with creating the file.
      */
-    public File createFile() throws IOException {
+    public File createFile() {
         try {
             dir.mkdir();
             if (file.createNewFile()) {
@@ -79,26 +78,26 @@ public class Storage {
      * @throws FileNotFoundException If the file does not exist.
      */
     public ArrayList<Task> load() throws FileNotFoundException {
-        ArrayList<Task> presavedTasks = new ArrayList<>();
+        ArrayList<Task> previousTasks = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("~");
                 switch (parts[0]) {
                 case "kirby.tasks.Todo":
-                    presavedTasks.add(new Todo(parts[1]));
+                    previousTasks.add(new Todo(parts[1]));
                     break;
                 case "kirby.tasks.Deadline":
-                    presavedTasks.add(new Deadline(parts[1], parts[2]));
+                    previousTasks.add(new Deadline(parts[1], parts[2]));
                     break;
                 case "kirby.tasks.Event":
-                    presavedTasks.add(new Event(parts[1], parts[2]));
+                    previousTasks.add(new Event(parts[1], parts[2]));
                     break;
                 default:
                     throw new IOException();
                 }
             }
-            return presavedTasks;
+            return previousTasks;
         } catch (IOException e) {
             e.printStackTrace();
             return null;

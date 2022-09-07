@@ -34,12 +34,15 @@ public class FindCommand extends Command {
             throw new KirbyMissingArgumentException("find");
         }
         String keyword = inputString.split(" ")[1];
-        ArrayList<Task> res = tasks.findTask(keyword);
-        String taskListPara = "";
-        for (Task task: res) {
-            taskListPara += res + "\n";
+        ArrayList<Task> tasksFound = tasks.findTask(keyword);
+        if (tasksFound.size() < 1) {
+            return "No tasks found!";
         }
-        return taskListPara;
+        StringBuilder taskListPara = new StringBuilder();
+        for (Task task: tasksFound) {
+            taskListPara.append(task.toString()).append("\n");
+        }
+        return taskListPara.toString();
     }
 
     /**

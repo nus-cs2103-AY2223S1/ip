@@ -14,7 +14,7 @@ import kirby.ui.Ui;
  */
 public class GetCommand extends Command {
     private static final int GET_COMMAND_LENGTH = 2;
-    private static String EMPTY_TASK_MESSAGE = "No tasks found!";
+    private static final String EMPTY_TASK_MESSAGE = "No tasks found!";
     private final String inputString;
 
     /**
