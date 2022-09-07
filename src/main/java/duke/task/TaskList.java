@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.StringJoiner;
+import java.util.stream.Stream;
 
 import duke.DukeException;
 
@@ -47,6 +48,15 @@ public class TaskList implements Iterable<Task> {
     @Override
     public Iterator<Task> iterator() {
         return this.tasks.iterator();
+    }
+
+    /**
+     * Returns a {@code Stream<Task>} over the tasks in this {@code TaskList}.
+     *
+     * @return The {@code Stream<Task>}.
+     */
+    public Stream<Task> stream() {
+        return this.tasks.stream();
     }
 
     /**
