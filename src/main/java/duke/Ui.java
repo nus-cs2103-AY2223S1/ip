@@ -16,6 +16,7 @@ public class Ui {
      * @param text
      */
     public void printText(String text) {
+        assert text != null;
         System.out.println("________________________________________\n"
                 + text
                 + "\n________________________________________\n");
