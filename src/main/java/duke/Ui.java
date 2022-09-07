@@ -78,6 +78,10 @@ public class Ui {
         return "No saved data found";
     }
 
+    public String printUpdate(String updatedTask) {
+        return String.format("Ok , I have updated this task: %n%s", updatedTask);
+    }
+
     /**
      * Returns any given message.
      *

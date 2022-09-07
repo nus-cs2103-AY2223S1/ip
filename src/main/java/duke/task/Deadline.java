@@ -39,6 +39,10 @@ public class Deadline extends Task {
         this.returnBy = returnBy;
     }
 
+    public void updateDate(LocalDate date) {
+        this.returnBy = date;
+    }
+
     /**
      * Converts the Deadline to data to be saved.
      *

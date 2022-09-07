@@ -1,6 +1,10 @@
 package duke.task;
 
 
+import duke.exception.InvalidCommandException;
+import duke.exception.InvalidInputException;
+
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -33,6 +37,12 @@ public abstract class Task {
     public void markUndone() {
         this.isDone = false;
     }
+
+    public void updateDescription(String description) {
+        this.description = description;
+    }
+
+    public abstract void updateDate(LocalDate date) throws InvalidInputException;
 
     /**
      * Turns task into String format to be saved.

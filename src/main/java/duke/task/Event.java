@@ -37,6 +37,10 @@ public class Event extends Task {
         this.eventTime = eventTime;
     }
 
+    public void updateDate(LocalDate date) {
+        this.eventTime = date;
+    }
+
     /**
      * Converts the Event to a String format to be used for saving.
      *

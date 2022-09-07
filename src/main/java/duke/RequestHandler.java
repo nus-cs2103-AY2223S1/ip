@@ -3,16 +3,7 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-import duke.command.ByeCommand;
-import duke.command.Command;
-import duke.command.DeadlineCommand;
-import duke.command.DeleteCommand;
-import duke.command.EventCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.TodoCommand;
-import duke.command.UnmarkCommand;
+import duke.command.*;
 import duke.exception.IncompleteInputException;
 import duke.exception.InvalidCommandException;
 import duke.exception.InvalidInputException;
@@ -26,7 +17,7 @@ import duke.exception.InvalidInputException;
  */
 public class RequestHandler {
     private enum CommandType {
-        LIST, TODO, EVENT, DEADLINE, MARK, UNMARK, DELETE, BYE, FIND
+        LIST, TODO, EVENT, DEADLINE, MARK, UNMARK, DELETE, BYE, FIND, UPDATE
     }
 
     /**
@@ -65,6 +56,8 @@ public class RequestHandler {
                     throw new IncompleteInputException("Please key in valid index to delete");
                 case FIND:
                     throw new IncompleteInputException("Please key in a valid word to find");
+                case UPDATE:
+                    throw new IncompleteInputException("Please key in a valid index and description/date to update");
                 default:
                     throw new InvalidCommandException("OOPS I didn't understand the command");
                 }
@@ -105,6 +98,21 @@ public class RequestHandler {
                 case FIND:
                     String[] splitIntoInputArray = furtherSplit.split("\\s+");
                     return new FindCommand(splitIntoInputArray);
+                case UPDATE: {
+                    String[] splitUpdateCommand = furtherSplit.split(" ", 3);
+                    int itemNumber = Integer.parseInt(splitUpdateCommand[0].trim());
+                    String updateCommandType = splitUpdateCommand[1].replaceAll("\\s", "").toUpperCase();
+                    if (updateCommandType.equals("DESCRIPTION")) {
+                        return new UpdateDescriptionCommand(itemNumber, splitUpdateCommand[2]);
+                    } else if (updateCommandType.equals("DATE")) {
+                        return new UpdateDateCommand(itemNumber, LocalDate.parse(splitUpdateCommand[2]));
+                    } else {
+                        throw new InvalidInputException("Do you want to update description or date?" +
+                                "Please key in UPDATE index DESCRIPTION 'description' " +
+                                "or UPDATE index DATE 'yyyy-mm-dd'");
+                    }
+
+                }
                 default:
                     throw new InvalidCommandException("OOPS I didn't understand the command");
                 }

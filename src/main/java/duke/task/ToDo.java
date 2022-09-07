@@ -1,5 +1,10 @@
 package duke.task;
 
+import duke.exception.InvalidCommandException;
+import duke.exception.InvalidInputException;
+
+import java.time.LocalDate;
+
 /**
  * ToDo is a task that has to be done.
  *
@@ -26,6 +31,10 @@ public class ToDo extends Task {
     public ToDo(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
+    }
+
+    public void updateDate(LocalDate date) throws InvalidInputException {
+        throw new InvalidInputException("There is no date to update for ToDo");
     }
 
     /**
