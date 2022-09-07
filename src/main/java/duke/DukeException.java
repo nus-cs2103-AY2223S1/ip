@@ -2,6 +2,8 @@ package duke;
 
 /**
  * This class is the customised Exceptions that we create
+ *
+ * @author Kang Zong Xian
  */
 public class DukeException extends Exception {
 

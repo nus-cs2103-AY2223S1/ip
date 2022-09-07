@@ -5,6 +5,8 @@ import java.util.List;
 
 /**
  * This class is responsible for the list of tasks
+ *
+ * @author Kang Zong Xian
  */
 public class TaskList {
 
@@ -33,6 +35,10 @@ public class TaskList {
         taskArrayList.add(task);
     }
 
+    /**
+     * Get the list of tasks
+     * @return the list of tasks
+     */
     public static List<Task> getTaskArrayList() {
         return taskArrayList;
     }

@@ -9,7 +9,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * This clas sis responsible for storing and loading the tasks
+ * This clas is responsible for storing and loading the tasks
+ *
+ * @author Kang Zong Xian
  */
 public class Storage {
 

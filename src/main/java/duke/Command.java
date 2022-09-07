@@ -2,6 +2,8 @@ package duke;
 
 /**
  * This class is responsible for giving commands
+ *
+ * @author Kang Zong Xian
  */
 public class Command {
 

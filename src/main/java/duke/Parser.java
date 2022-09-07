@@ -3,7 +3,9 @@ package duke;
 import java.time.LocalDate;
 
 /**
- * This class is responsible ofr interpretting the user input
+ * This class is responsible ofr interpreting the user input
+ *
+ * @author Kang Zong Xian
  */
 public class Parser {
 

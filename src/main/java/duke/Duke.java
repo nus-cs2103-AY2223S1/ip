@@ -10,14 +10,6 @@ import javafx.stage.Stage;
 import javafx.scene.layout.Region;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -25,6 +17,8 @@ import java.util.List;
 
 /**
  * This class is responsible for the bot Duke
+ *
+ * @author Kang Zong Xian
  */
 public class Duke extends Application {
 
@@ -39,7 +33,7 @@ public class Duke extends Application {
     private Button sendButton;
     private Scene scene;
 
-    // The names are the file names
+    // The images used for Duke
     private Image user = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/user2.png"));
 
@@ -385,6 +379,11 @@ public class Duke extends Application {
         return ui.printAddedTask(newEvent);
     }
 
+    /**
+     * Get multiple task descriptions depending on the index values theu ser enters
+     * @param taskIndexArray the array formed using varargs
+     * @return a string indicating all the task descriptions for the task indexes the user enters
+     */
     public String getMultipleTaskDescriptions(int... taskIndexArray) {
         List<Task> taskArrayList = TaskList.getTaskArrayList();
         String outputString = "";
@@ -392,7 +391,6 @@ public class Duke extends Application {
             int taskIndex = taskIndexArray[i];
             outputString += taskArrayList.get(taskIndex).toString();
         }
-        
         return outputString;
     }
 

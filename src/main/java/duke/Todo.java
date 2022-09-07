@@ -2,6 +2,8 @@ package duke;
 
 /**
  * This class is responsible for Todos
+ *
+ * @author Kang Zong Xian
  */
 public class Todo extends Task {
 

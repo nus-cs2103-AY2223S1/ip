@@ -2,6 +2,8 @@ package duke;
 
 /**
  * This class is responsible for creating and manipulating a task
+ *
+ * @author Kang Zong Xian
  */
 public abstract class Task {
 
@@ -18,6 +20,10 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Get the description of the Task
+     * @return a string representing the description of the task
+     */
     public String getDescription() {
         return description;
     }

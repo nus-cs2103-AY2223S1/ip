@@ -2,10 +2,12 @@ package duke;
 
 /**
  * This class is responsible for creating and manipulating an event
+ *
+ * @author Kang Zong Xian
  */
 public class Event extends Task {
 
-    // Attributes of a duke.Event
+    // Attributes of an Event
     protected String at;
 
     /**

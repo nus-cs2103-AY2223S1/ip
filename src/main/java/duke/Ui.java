@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 /**
  * This class is responsible for showing output to the user
+ *
+ * @author Kang Zong Xian
  */
 public class Ui {
 
@@ -34,6 +36,10 @@ public class Ui {
         return BYE;
     }
 
+    /**
+     * Get the command entered by the user
+     * @return a string indicating what the user has entered
+     */
     public String getCommand() {
         return enterInput.nextLine();
     }

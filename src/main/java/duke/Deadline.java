@@ -4,16 +4,18 @@ import java.time.LocalDate;
 
 /**
  * This class is responsible for creating and manipulating Deadlines
+ *
+ * @author Kang Zong Xian
  */
 public class Deadline extends Task {
 
-    // Attributes of a duke.Deadline
+    // Attributes of a Deadline
     protected LocalDate byDate;
     protected String byTime;
 
 
     /**
-     * The information regarding the duke.Deadline
+     * The information regarding the Deadline
      * @param description the description of the task to do by the deadline
      * @param byDate the due date
      * @param byTime the due time
