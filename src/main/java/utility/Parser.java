@@ -30,13 +30,33 @@ import task.Task;
  * Handles all conversions required in the program.
  */
 public class Parser {
+    private static HashMap<String, Pattern> COMMMAND_ALIASES;
 
-
-    public void initialiseCommandAliases() {
-        HashMap<String, String> commandAliases = new HashMap<>();
-        commandAliases.put("t", "todo");
-        commandAliases.put("todo", "todo");
-        commandAliases.put("list", "list");
+    public static void initialiseCommandAliases() {
+        if (COMMMAND_ALIASES.isEmpty()) {
+            HashMap<String, Pattern> commandAliases = new HashMap<>();
+            Pattern todoRegex = Pattern.compile("t|todo", Pattern.CASE_INSENSITIVE);
+            Pattern listRegex = Pattern.compile("l|list", Pattern.CASE_INSENSITIVE);
+            Pattern deadlineRegex = Pattern.compile("deadline|d", Pattern.CASE_INSENSITIVE);
+            Pattern markRegex = Pattern.compile("mark|m", Pattern.CASE_INSENSITIVE);
+            Pattern unmarkRegex = Pattern.compile("unmark|um", Pattern.CASE_INSENSITIVE);
+            Pattern byeRegex = Pattern.compile("bye|b|quit|q|exit", Pattern.CASE_INSENSITIVE);
+            Pattern findRegex = Pattern.compile("find|f", Pattern.CASE_INSENSITIVE);
+            Pattern longdescRegex = Pattern.compile("longdesc", Pattern.CASE_INSENSITIVE);
+            Pattern istodayRegex = Pattern.compile("istoday", Pattern.CASE_INSENSITIVE);
+            Pattern helpRegex = Pattern.compile("help|h", Pattern.CASE_INSENSITIVE);
+            commandAliases.put("todo", todoRegex);
+            commandAliases.put("list", listRegex);
+            commandAliases.put(deadlineRegex, "deadline");
+            commandAliases.put(markRegex, "mark");
+            commandAliases.put(unmarkRegex, "unmark");
+            commandAliases.put(byeRegex, "bye");
+            commandAliases.put(findRegex, "find");
+            commandAliases.put(longdescRegex, "longdesc");
+            commandAliases.put(istodayRegex, "istoday");
+            commandAliases.put(helpRegex, "help");
+            COMMMAND_ALIASES = commandAliases;
+        }
     }
 
     /**
@@ -94,22 +114,11 @@ public class Parser {
      * @return
      */
     private static String extractCommand(String command) {
-        Pattern todoRegex = Pattern.compile("t|todo");
-        Pattern listRegex = Pattern.compile("l|list");
-        Pattern deadlineRegex = Pattern.compile("deadline|d");
-        Pattern markRegex = Pattern.compile("mark|m");
-        Pattern unmarkRegex = Pattern.compile("unmark|um");
-        Pattern byeRegex = Pattern.compile("bye|b|quit|q|exit");
-        Pattern findRegex = Pattern.compile("find|f");
-        Pattern longdescRegex = Pattern.compile("longdesc");
-        Pattern istodayRegex = Pattern.compile("istoday");
-        Pattern helpRegex = Pattern.compile("help|h");
-        Pattern[] REGEXES = {todoRegex, listRegex, deadlineRegex, markRegex, unmarkRegex, byeRegex, findRegex, longdescRegex, istodayRegex, helpRegex};
-        String[] COMMANDS_ORDERED_LIST = {"todo", "list", "deadline", "mark", "unmark", "bye", "find", "longdesc", "istoday", "help"};
+        initialiseCommandAliases();
         int numberOfValidCommands = COMMANDS_ORDERED_LIST.length;
         Matcher matcher;
 
-        for (int i = 0; i < numberOfValidCommands; i ++) {
+        for (int i = 0; i < ; i ++) {
            matcher = REGEXES[i].matcher(command);
            if (matcher.matches()) {
                return COMMANDS_ORDERED_LIST[i];
