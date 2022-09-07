@@ -10,6 +10,7 @@ public class Ui {
 
     protected Scanner scanner;
     protected String input;
+    protected String fredMessage;
 
     public Ui() {
         scanner = new Scanner(System.in);
@@ -45,18 +46,15 @@ public class Ui {
     }
 
     /**
-     * Shows custom message to user.
+     * Store message that is to be sent to user.
      * @param message
      */
-    public void showMessage(String message) {
-        System.out.println(message);
+    public void storeMessage(String message) {
+        fredMessage = message;
     }
 
-    /**
-     * Show exit message when exiting chat bot.
-     */
-    public void showExit() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String getMessage() {
+        return fredMessage;
     }
 
     /**

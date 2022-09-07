@@ -33,27 +33,17 @@ public class Fred {
     }
 
     /**
-     * Run Fred
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
      */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine(); // show the divider line ("_______")
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (FredException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
-            }
+    public String getResponse(String input) {
+        try {
+            String fullCommand = input;
+            Command c = Parser.parse(fullCommand);
+            c.execute(tasks, ui, storage);
+            return ui.getMessage();
+        } catch (FredException e) {
+            return e.getMessage();
         }
-    }
-
-    public static void main(String[] args) {
-        new Fred("data/fred.txt").run();
     }
 }

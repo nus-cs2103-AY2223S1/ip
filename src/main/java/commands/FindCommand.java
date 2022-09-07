@@ -23,6 +23,6 @@ public class FindCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws FredException {
-        ui.showMessage(tasks.find(keyword));
+        ui.storeMessage(tasks.find(keyword));
     }
 }

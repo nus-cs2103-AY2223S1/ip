@@ -25,8 +25,11 @@ public class DeleteCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws FredException {
         String taskToDelete = tasks.getTask(index).toString();
         tasks.delete(index);
-        ui.showMessage("Noted. I've removed this task:");
-        ui.showMessage(taskToDelete);
-        ui.showMessage("Now you have " + tasks.size() + " tasks in your list.");
+        ui.storeMessage("Noted. I've removed this task:\n"
+                + taskToDelete
+                + "\n"
+                + "Now you have "
+                + tasks.size()
+                + " tasks in your list.\n");
     }
 }

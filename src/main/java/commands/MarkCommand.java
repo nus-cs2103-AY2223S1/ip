@@ -24,6 +24,8 @@ public class MarkCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws FredException {
         tasks.mark(index);
-        ui.showMessage("Nice! I've marked this task as done:\n" + tasks.getTask(index));
+        ui.storeMessage("Nice! I've marked this task as done:\n"
+                + tasks.getTask(index)
+                + "\n");
     }
 }

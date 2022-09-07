@@ -24,6 +24,7 @@ public class UnmarkCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws FredException {
         tasks.unmark(index);
-        ui.showMessage("OK, I've marked this task as not done yet:\n" + tasks.getTask(index));
+        ui.storeMessage("OK, I've marked this task as not done yet:\n"
+                + tasks.getTask(index));
     }
 }

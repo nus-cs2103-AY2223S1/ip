@@ -55,8 +55,12 @@ public class AddCommand extends Command {
             tasks.add(new Deadline(description, date));
         }
 
-        ui.showMessage("Got it. I've added this task ");
-        ui.showMessage(tasks.getTask(tasks.size()).toString());
-        ui.showMessage("Now you have " + tasks.size() + " tasks in your list.");
+        ui.storeMessage("Got it. I've added this task:\n"
+                + tasks.getTask(tasks.size()).toString()
+                + "\n"
+                + "Now you have "
+                + tasks.size()
+                + " tasks in your list."
+                + "\n");
     }
 }

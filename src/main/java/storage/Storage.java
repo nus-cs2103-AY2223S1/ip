@@ -38,7 +38,7 @@ public class Storage {
 
             if (!f.exists()) {
                 f.createNewFile();
-                ui.showMessage("No data file exists. New data file has been created.");
+                ui.storeMessage("No data file exists. New data file has been created.\n");
             }
 
             FileWriter fileWriter = new FileWriter(filePath);
@@ -48,7 +48,7 @@ public class Storage {
                 fileWriter.write(task.getSaveFormat());
             }
             fileWriter.close();
-            ui.showMessage("Tasks have been saved!");
+            ui.storeMessage("Tasks have been saved!\n");
         } catch (IOException e) {
             throw new FredException("IOException!");
         }
