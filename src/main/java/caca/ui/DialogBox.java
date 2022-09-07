@@ -42,6 +42,18 @@ public class DialogBox extends HBox {
                     + "-fx-background-radius: 10;"
                     + "-fx-padding: 10;");
 
+            if (text.contains("OOPS!!!")) {
+                dialog.setStyle("-fx-background-color: #fc8f7c;"
+                        + "-fx-background-radius: 10;"
+                        + "-fx-padding: 10;");
+            }
+
+            if (text.contains("guide")) {
+                dialog.setStyle("-fx-background-color: #acfac6;"
+                        + "-fx-background-radius: 10;"
+                        + "-fx-padding: 10;");
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

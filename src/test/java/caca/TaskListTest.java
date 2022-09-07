@@ -43,8 +43,8 @@ public class TaskListTest {
         String addDuplicateTask = TaskList.addTask(duplicateTask);
         assertEquals(1, taskList.getTasks().size());
 
-        assertEquals("OOPS!!!\n"
-                        + "Your task list already contains [ ][ ] stub1!\n"
+        assertEquals("OOPS!!! Duplicate task:\n"
+                        + "[ ][ ] stub1\n"
                         + "This is not added again.",
                 addDuplicateTask);
     }

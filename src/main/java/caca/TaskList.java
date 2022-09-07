@@ -154,8 +154,8 @@ public class TaskList {
         boolean hasDuplicate = tasks.stream()
                 .anyMatch(taskToCheck -> taskToCheck.toString().equals(task.toString()));
         if (hasDuplicate) {
-            String duplicateWarning = String.format("OOPS!!!\n"
-                    + "Your task list already contains %s!\n"
+            String duplicateWarning = String.format("OOPS!!! Duplicate task:\n"
+                    + "%s\n"
                     + "This is not added again.", task);
             return duplicateWarning;
         }
@@ -283,8 +283,10 @@ public class TaskList {
      * @param keyword Keyword entered by user.
      * @return CaCa's response after finding the corresponding task.
      */
-    public static String findTask(String keyword) {
-        assert keyword != null;
+    public static String findTask(String taskType, String keyword) throws EmptyInputException {
+        assert taskType != null;
+
+        hasDescription(taskType, keyword);
 
         List<Task> matchingTasks = new ArrayList<>();
 

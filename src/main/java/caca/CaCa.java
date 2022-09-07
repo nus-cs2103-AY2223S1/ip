@@ -40,7 +40,7 @@ public class CaCa {
             ui = new Ui();
             parser = new Parser(tasks, storage, ui);
         } catch (InvalidDateException e) {
-            System.out.println("You have keyed in an invalid date and time!\n"
+            System.out.println("OOPS!!! You have keyed in an invalid date and time!\n"
                     + "Please specify date and time in the format: dd/MM/yyyy HHmm\n"
                     + "E.g. 24/08/2022 2359");
         }

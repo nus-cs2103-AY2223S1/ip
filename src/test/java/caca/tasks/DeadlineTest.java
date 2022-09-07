@@ -33,8 +33,8 @@ public class DeadlineTest {
         String addDuplicateDeadline = TaskList.addTask(duplicateDeadline);
         assertEquals(1, deadlineList.getTasks().size());
 
-        assertEquals("OOPS!!!\n"
-                        + "Your task list already contains [D][ ] revision (by: Sep 23 2022 23:59)!\n"
+        assertEquals("OOPS!!! Duplicate task:\n"
+                        + "[D][ ] revision (by: Sep 23 2022 23:59)\n"
                         + "This is not added again.",
                 addDuplicateDeadline);
     }

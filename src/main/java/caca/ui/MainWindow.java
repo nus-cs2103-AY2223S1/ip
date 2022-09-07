@@ -27,13 +27,21 @@ public class MainWindow extends AnchorPane {
     private TextField userInput;
     @FXML
     private Button sendButton;
+    @FXML
+    private Button quickStartButton;
+    @FXML
+    private Button detailedGuideButton;
 
     private CaCa caca;
 
     // User.jpg from https://m.duitang.com/blog/?id=1325275817
     private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
+
     // CaCa.jpg from https://m.duitang.com/blog/?id=1325275816
     private final Image cacaImage = new Image(this.getClass().getResourceAsStream("/images/CaCa.jpg"));
+
+    // LightBulb.png from https://similarpng.com/illustration-of-light-bulb-icon-on-transparent-background-png/
+    private final Image guideImage = new Image(this.getClass().getResourceAsStream("/images/LightBulb.png"));
 
     /**
      * Initialises the main window for chatbot.
@@ -41,6 +49,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+
     }
 
     /**
@@ -55,6 +64,26 @@ public class MainWindow extends AnchorPane {
 
         dialogContainer.getChildren().addAll(
                 DialogBox.getCaCaDialog(displayGreeting, cacaImage));
+    }
+
+    /**
+     * Displays quick start to CaCa when user clicks "Quick Start" button.
+     */
+    @FXML
+    public void handleQuickStart() {
+        String quickStartmessage = Ui.showQuickStart();
+        dialogContainer.getChildren().addAll(
+                DialogBox.getCaCaDialog(quickStartmessage, guideImage));
+    }
+
+    /**
+     * Displays detailed guide to CaCa when user clicks "Detailed Guide" button.
+     */
+    @FXML
+    public void handleDetailedGuide() {
+        String detailedGuidemessage = Ui.showDetailedGuide();
+        dialogContainer.getChildren().addAll(
+                DialogBox.getCaCaDialog(detailedGuidemessage, guideImage));
     }
 
     /**

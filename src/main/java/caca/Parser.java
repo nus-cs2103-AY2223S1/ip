@@ -90,7 +90,7 @@ public class Parser {
                 break;
 
             case "find":
-                response = TaskList.findTask(taskInfo);
+                response = TaskList.findTask(taskType, taskInfo);
                 break;
 
             default:

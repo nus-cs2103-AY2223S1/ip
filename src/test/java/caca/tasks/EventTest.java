@@ -33,8 +33,8 @@ public class EventTest {
         String addDuplicateEvent = TaskList.addTask(duplicateEvent);
         assertEquals(1, eventList.getTasks().size());
 
-        assertEquals("OOPS!!!\n"
-                        + "Your task list already contains [E][ ] book fair (at: Sep 23 2022 14:00)!\n"
+        assertEquals("OOPS!!! Duplicate task:\n"
+                        + "[E][ ] book fair (at: Sep 23 2022 14:00)\n"
                         + "This is not added again.",
                 addDuplicateEvent);
     }
