@@ -60,11 +60,12 @@ public class Storage {
         if (!directory.exists()) {
             directory.mkdir();
         }
-
+        assert directory.exists() : "The directory should already exist";
         try {
             if (!file.exists()) {
                 file.createNewFile();
             }
+            assert file.exists() : "The file should already exist";
         } catch (IOException exception) {
             exception.printStackTrace();
         }
