@@ -79,6 +79,7 @@ public class Storage {
                 default:
                     temp = null;
                 }
+                assert temp != null : "Invalid file text";
                 if (lineSplit[1].equals("1")) {
                     temp.setDone();
                 }

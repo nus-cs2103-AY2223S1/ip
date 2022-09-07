@@ -56,7 +56,7 @@ public class MainWindow extends AnchorPane {
         dialogContainer.getChildren().add(DialogBox.getUserDialog(input, userImage));
         if (response.equals("bye")) {
             duke.saveTasks();
-            PauseTransition delay = new PauseTransition(Duration.seconds(3));
+            PauseTransition delay = new PauseTransition(Duration.seconds(1.5));
             delay.setOnFinished(event -> {
                 Platform.exit();
                 System.exit(0);

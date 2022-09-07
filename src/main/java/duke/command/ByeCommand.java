@@ -18,13 +18,4 @@ public class ByeCommand extends Command {
         this.response = "bye";
     }
 
-    /**
-     * Returns true as the command is bye.
-     *
-     * @return True as the command is bye.
-     */
-    @Override
-    public boolean isExit() {
-        return true;
-    }
 }
