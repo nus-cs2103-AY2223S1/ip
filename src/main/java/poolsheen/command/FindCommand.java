@@ -21,9 +21,9 @@ public class FindCommand extends Command {
         if (rest.size() != 1) {
             throw new PoolsheenException(String.join(" ", rest),
                     "find", "The find command only accepts one word");
-        } else {
-            TaskList matchedTasksArray = tl.find(rest.get(0));
-            return ui.displayList(matchedTasksArray);
         }
+
+        TaskList matchedTasksArray = tl.find(rest.get(0));
+        return ui.displayList(matchedTasksArray);
     }
 }

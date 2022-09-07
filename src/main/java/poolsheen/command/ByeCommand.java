@@ -19,12 +19,11 @@ public class ByeCommand extends Command {
 
     @Override
     public String execute(TaskList tl, Ui ui, Storage storage) {
-        if (rest.isEmpty()) {
-            Poolsheen.forceExit();
-            return ui.say("Goodbye :(");
-        } else {
+        if (!rest.isEmpty()) {
             throw new PoolsheenException(String.join(" ", rest),
                     "bye", "Try to enter 'bye'");
         }
+        Poolsheen.forceExit();
+        return ui.say("Goodbye :(");
     }
 }
