@@ -50,6 +50,7 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
+
         return new DialogBox(text, img);
     }
 

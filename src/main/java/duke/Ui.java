@@ -24,6 +24,7 @@ public class Ui {
      * Prints a greeting message
      */
     public String greetingMessage() {
+
         return this.GREETING_MESSAGE + "\n";
     }
 
