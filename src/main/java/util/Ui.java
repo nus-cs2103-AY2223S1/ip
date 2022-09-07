@@ -34,12 +34,12 @@ public class Ui {
      * @return Prettified block of text to be printed
      */
     public static String formatLinesIntoParagraph(String... lines) {
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (String line : lines) {
-            res += formatLine(line);
+            res.append(formatLine(line));
         }
 
-        return res;
+        return res.toString();
     }
 
     /**

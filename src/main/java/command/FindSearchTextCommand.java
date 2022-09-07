@@ -37,10 +37,10 @@ public class FindSearchTextCommand extends Command {
             return;
         }
 
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (String match : matchedTasks) {
-            res += Ui.formatLine(match);
+            res.append(Ui.formatLine(match));
         }
-        setOutputMessage(res);
+        setOutputMessage(res.toString());
     }
 }
