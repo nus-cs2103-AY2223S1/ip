@@ -25,12 +25,13 @@ public class Duke {
      */
     public Duke(String filePath) {
         storage = new Storage(filePath);
+        tasks = new TaskList();
+        notes = new NoteList();
         try {
-            tasks = new TaskList(storage.load());
+            storage.load(tasks, notes);
         } catch (DukeException e) {
             System.out.println("Error: " + e.getMessage());
         }
-        notes = new NoteList();
         ui = new Ui();
     }
 

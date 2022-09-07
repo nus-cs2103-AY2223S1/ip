@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 import duke.exception.DukeException;
 import duke.exception.DukeInvalidSaveDataException;
+import duke.note.Note;
+import duke.note.NoteList;
 
 /**
  * Handles saving and loading of tasks to and from a file.
@@ -31,9 +33,8 @@ public class Storage {
      * @return the tasks from the file
      * @throws DukeInvalidSaveDataException if there is an error reading the file
      */
-    public ArrayList<Task> load() throws DukeInvalidSaveDataException {
+    public void load(TaskList tasks, NoteList notes) throws DukeInvalidSaveDataException {
         Path saveLocation = Paths.get(filePath);
-        ArrayList<Task> tasks = new ArrayList<>();
         try {
             Files.lines(saveLocation).forEach((taskString) -> {
                 String type = taskString.split(",")[0];
@@ -47,15 +48,16 @@ public class Storage {
                 case "D":
                     tasks.add(Deadline.fromSaveString(taskString));
                     break;
+                case "N":
+                    notes.add(Note.fromSaveString(taskString));
+                    break;
                 default:
                     throw new DukeInvalidSaveDataException();
                 }
             });
         } catch (IOException ignored) {
-            // Save file does not exist, start afresh.
-            return new ArrayList<>();
+            // Save file does not exist, don't try to continue loading.
         }
-        return tasks;
     }
 
     /**

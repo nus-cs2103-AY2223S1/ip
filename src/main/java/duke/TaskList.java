@@ -8,6 +8,10 @@ import java.util.ArrayList;
  * Represents a list of tasks.
  */
 public class TaskList extends ArrayList<Task> {
+    public TaskList() {
+        super();
+    }
+    
     public TaskList(ArrayList<Task> tasks) {
         super(tasks);
     }
