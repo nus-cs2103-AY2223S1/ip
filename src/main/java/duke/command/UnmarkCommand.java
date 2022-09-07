@@ -8,21 +8,21 @@ import java.io.IOException;
 
 public class UnmarkCommand extends Command {
 
-    private int index;
+    private int taskIndex;
 
     public UnmarkCommand(String desc) {
         String numberOnly = desc.replaceAll("[^0-9]", "");
         assert !numberOnly.isEmpty() : "index of task cannot be empty";
-        index = Integer.parseInt(numberOnly);
+        taskIndex = Integer.parseInt(numberOnly);
     }
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {
-            tasks.unmarkTask(index);
+            tasks.unmarkTask(taskIndex);
             storage.rebuildFile(tasks.getIterator());
             ui.nextOutput("Alright, this task is marked as not done yet:\n"
-                    + tasks.getTask(index).toString());
+                    + tasks.getTask(taskIndex).toString());
         } catch (IOException ioe) {
             ui.nextOutput("Something went wrong: " + ioe.getMessage());
         }

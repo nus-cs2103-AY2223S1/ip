@@ -45,10 +45,12 @@ public class TaskList {
             case "D":
                 try {
                     divideIndex = commandDesc.lastIndexOf("|");
-                    String commandBy = commandDesc.substring(divideIndex + 2);
+                    String commandByDate = commandDesc.substring(divideIndex + 2);
                     commandDesc = " " + commandDesc.substring(0 , divideIndex - 1);
-                    Deadline task = new Deadline(commandDesc, commandBy);
-                    if (isDone == 1) { task.markDone(); }
+                    Deadline task = new Deadline(commandDesc, commandByDate);
+                    if (isDone == 1) {
+                        task.markDone();
+                    }
                     taskArrayList.add(task);
                 } catch (EmptyDescException e) {
                     System.out.println(e.getMessage());
@@ -57,10 +59,12 @@ public class TaskList {
             case "E":
                 try {
                     divideIndex = commandDesc.lastIndexOf("|");
-                    String commandBy = commandDesc.substring(divideIndex + 2);
+                    String commandAtDate = commandDesc.substring(divideIndex + 2);
                     commandDesc = " " + commandDesc.substring(0 , divideIndex - 1);
-                    Event task = new Event(commandDesc, commandBy);
-                    if (isDone == 1) { task.markDone(); }
+                    Event task = new Event(commandDesc, commandAtDate);
+                    if (isDone == 1) {
+                        task.markDone();
+                    }
                     taskArrayList.add(task);
                 } catch (EmptyDescException e) {
                     System.out.println(e.getMessage());
@@ -89,13 +93,17 @@ public class TaskList {
      * Marks a tast from the task list as done.
      * @param index The index of the task to be marked.
      */
-    public void markTask(int index) { taskArrayList.get(index-1).markDone(); }
+    public void markTask(int index) {
+        taskArrayList.get(index-1).markDone();
+    }
 
     /**
      * Unmarks a test from the task list as not done yet.
      * @param index The index of the task to be unmarked.
      */
-    public void unmarkTask(int index) { taskArrayList.get(index-1).unmarkDone(); }
+    public void unmarkTask(int index) {
+        taskArrayList.get(index-1).unmarkDone();
+    }
 
     /**
      * Retrieves a task from the task list.

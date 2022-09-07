@@ -1,22 +1,9 @@
 package duke;
 
-import java.util.Scanner;
-
 public class Ui {
 
     private String input;
     private String output;
-
-    /**
-     * Display welcome message to user.
-     */
-    public String showWelcome() {
-        String intro = "Hello! My name is GustavoBot, but you can call me Gus\n"
-                + "How may I help you today?";
-
-        return intro;
-    }
-
 
     public String getInput() {
         return input;
