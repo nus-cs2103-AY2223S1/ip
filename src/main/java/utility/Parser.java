@@ -2,6 +2,8 @@ package utility;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import command.AddDeadlineCommand;
 import command.AddEventCommand;
@@ -77,51 +79,32 @@ public class Parser {
      * Extracts shortcut or formal command used and returns formal command/
      * If input does not follow valid format, return empty string.
      *
-     * @param input
+     * @param command
      * @return
      */
-    private static String extractCommand(String input) {
-        int whiteSpaceIndex = input.indexOf(" ");
-        String command;
-        if (whiteSpaceIndex < 0) {
-            command = input;
+    private static String extractCommand(String command) {
+        Pattern todoRegex = Pattern.compile("(t|todo)");
+        Pattern listRegex = Pattern.compile("(l|list)");
+        Pattern deadlineRegex = Pattern.compile("(deadline|d)");
+        Pattern markRegex = Pattern.compile("(mark|m)");
+        Pattern unmarkRegex = Pattern.compile("(unmark|um)");
+        Pattern byeRegex = Pattern.compile("(bye|b|quit|q|exit)");
+        Pattern findRegex = Pattern.compile("(find|f)");
+        Pattern longdescRegex = Pattern.compile("(longdesc)");
+        Pattern istodayRegex = Pattern.compile("(istoday)");
+        Pattern helpRegex = Pattern.compile("(help|h)");
+        Pattern[] REGEXES = {todoRegex, listRegex, deadlineRegex, markRegex, unmarkRegex, byeRegex, findRegex, longdescRegex, istodayRegex, helpRegex};
+        String[] COMMANDS_ORDERED_LIST = {"todo", "list", "deadline", "mark", "unmark", "bye", "find", "longdesc", "istoday", "help"};
+        int numberOfValidCommands = COMMANDS_ORDERED_LIST.length;
+        Matcher matcher;
+
+        for (int i = 0; i < numberOfValidCommands; i ++) {
+           matcher = REGEXES[i].matcher(command);
+           if (matcher.find()) {
+               return COMMANDS_ORDERED_LIST[i];
+           }
         }
-        else {
-            command = input.substring(0, input.indexOf(" "));
-        }
-        if (command.equalsIgnoreCase("t") || command.equalsIgnoreCase("todo")) {
-            return "todo";
-        }
-        else if (command.equalsIgnoreCase("l") || command.equalsIgnoreCase("list")) {
-            return "list";
-        }
-        else if (command.equalsIgnoreCase("deadline") || command.equalsIgnoreCase("d")) {
-            return "deadline";
-        }
-        else if (command.equalsIgnoreCase("mark") || command.equalsIgnoreCase("m")) {
-            return "mark";
-        }
-        else if (command.equalsIgnoreCase("unmark") || command.equalsIgnoreCase("um")) {
-            return "unmark";
-        }
-        else if (command.equalsIgnoreCase("bye") || command.equalsIgnoreCase("quit") || command.equalsIgnoreCase("q") ||
-                command.equalsIgnoreCase("b") || command.equalsIgnoreCase("exit")) {
-            return "bye";
-        }
-        else if (command.equalsIgnoreCase("find") || command.equalsIgnoreCase("f")) {
-            return "find";
-        }
-        else if (command.equalsIgnoreCase("longdesc")) {
-            return "longdesc";
-        }
-        else if (command.equalsIgnoreCase("istoday")) {
-            return "istoday";
-        }  else if (command.equalsIgnoreCase("help") || command.equalsIgnoreCase("h") ) {
-            return "help";
-        }
-        else {
-            return " ";
-        }
+        return " ";
     }
 
     /**
