@@ -17,6 +17,7 @@ public class Todo extends Task {
         if (description.isBlank()) {
             throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
         }
+        assert this.description.length() > 0 : "Todo description should not be empty";
     }
 
     /**

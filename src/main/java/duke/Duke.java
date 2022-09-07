@@ -84,7 +84,7 @@ public class Duke {
         default:
             break;
         }
-
+        assert reply.length() > 0 : "Reply should not be empty";
         this.storage.updateTasks(this.tasks.getList());
         return reply;
     }
