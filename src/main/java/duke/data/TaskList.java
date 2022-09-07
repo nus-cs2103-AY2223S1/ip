@@ -66,10 +66,12 @@ public class TaskList {
     }
 
     public String getTaskString(int index) {
+        assert index < list.size();
         return list.get(index).toString();
     }
 
     public void removeTask(int index) {
+        assert index < list.size();
         this.list.remove(index);
     }
 
@@ -87,6 +89,7 @@ public class TaskList {
      * @param mark check if mark or unmark.
      */
     public void markTaskStatus(int index, boolean mark) {
+        assert index < list.size();
         if (mark) {
             list.get(index).markDone();
         } else {
@@ -95,6 +98,7 @@ public class TaskList {
     }
 
     public Task getTask(int index) {
+        assert index < list.size();
         return list.get(index);
     }
 }
