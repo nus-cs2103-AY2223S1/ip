@@ -86,7 +86,10 @@ public class Storage {
                     t.mark(i);
                 }
                 break;
+            default:
+                assert false;
             }
+
         }
         return t;
     }
