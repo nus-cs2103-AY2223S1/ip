@@ -1,10 +1,16 @@
 package duke;
 
+import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import duke.command.*;
+<<<<<<< HEAD
+=======
+import org.aopalliance.intercept.Invocation;
+import org.yaml.snakeyaml.util.ArrayUtils;
+>>>>>>> branch-Assertions
 
 /**
  * Parser class to parse texts into commands.
@@ -60,7 +66,11 @@ public class Parser {
         int[] taskNosInt = new int[taskNosString.length];
         int currIndex = 0;
         for (String string : taskNosString) {
+<<<<<<< HEAD
             int taskNo = Integer.parseInt(string) - 1;
+=======
+            int taskNo = Integer.valueOf(string) - 1;
+>>>>>>> branch-Assertions
             if (taskNo < 0 || taskNo >= Task.getTaskCount()) {
                 return new ResponseCommand("Task number " + (taskNo + 1) + " does not exist.");
             }
@@ -109,6 +119,7 @@ public class Parser {
     }
 
     public static Command parseFind(String desc) {
+        //assert !desc.equals("") : " Cannot find an empty string";
         return new FindCommand(desc);
     }
 
@@ -117,45 +128,50 @@ public class Parser {
         return localDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
     }
 
-    public static Command parse(String rawCommand) throws DukeException {
+    public static Command parse(String rawCommand) throws DukeException, AssertionError {
+        UI.userInput(rawCommand);
         Scanner sc = new Scanner(rawCommand);
         String first = sc.next();
         String desc = "";
         if (sc.hasNext()) {
             desc = sc.nextLine().trim();
         }
+            switch (first) {
+                case ("bye"):
+                    return new ByeCommand();
 
-        switch (first) {
-            case ("bye"):
-                return new ByeCommand();
+                case ("list"):
+                    return new ListCommand();
 
-            case ("list"):
-                return new ListCommand();
+                case ("todo"):
+                    return Parser.parseTodo(desc);
 
-            case ("todo"):
-                return Parser.parseTodo(desc);
+                case ("deadline"):
+                    return Parser.parseDeadline(desc);
 
-            case ("deadline"):
-                return Parser.parseDeadline(desc);
+                case ("event"):
+                    return Parser.parseEvent(desc);
 
-            case ("event"):
-                return Parser.parseEvent(desc);
+                case ("mark"):
+                    assert desc.length() != 0 : "Cannot mark an empty task!";
+                    return Parser.parseMarkAsDone(desc);
 
-            case ("mark"):
-                return Parser.parseMarkAsDone(desc);
+                case ("unmark"):
+                    assert desc.length() != 0 : "Cannot unmark an empty task!";
+                    return Parser.parseMarkAsUndone(desc);
 
-            case ("unmark"):
-                return Parser.parseMarkAsUndone(desc);
+                case ("delete"):
+                    assert desc.length() != 0 : "Cannot delete an empty task!";
+                    return Parser.parseDelete(desc);
 
-            case ("delete"):
-                return Parser.parseDelete(desc);
+                case ("find"):
+                    assert desc.length() != 0 : "Cannot find an empty string!";
+                    return Parser.parseFind(desc);
 
-            case ("find") :
-                return Parser.parseFind(desc);
+                default:
+                    return new InvalidCommand();
+            }
 
-            default:
-                return new InvalidCommand();
-        }
     }
 
     public static Command parseFileLine(String desc) {

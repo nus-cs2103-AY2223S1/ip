@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 
 public class DialogBox extends HBox {

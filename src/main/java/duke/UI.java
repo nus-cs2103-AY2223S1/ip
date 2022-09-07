@@ -13,8 +13,12 @@ import java.util.List;
 public class UI {
     private static final String DIVIDER = "–––––––––––––––––––––––\n";
 
+    public static void userInput(String text) {
+        System.out.println("You entered: " + text + System.lineSeparator());
+    }
+
     public static void response(String text) {
-        System.out.println(text);
+        System.out.println(text + System.lineSeparator());
     }
 
     public static String getResponse(String text) { return text; }

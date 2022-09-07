@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 T | X | b
 T |   | c
+=======
+D | X | homework | 11 Jan 2022
+>>>>>>> branch-Assertions
