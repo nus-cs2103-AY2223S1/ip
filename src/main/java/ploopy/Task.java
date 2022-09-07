@@ -39,7 +39,6 @@ public abstract class Task {
         } else {
             dateStringForm = "";
         }
-
     }
 
     /**
@@ -94,7 +93,7 @@ public abstract class Task {
      * @return String of task status.
      */
     public String getStatus() {
-        return done ? "[✓]" : "[ ]";
+        return done ? "[X]" : "[ ]";
     }
 
     public String getType() {

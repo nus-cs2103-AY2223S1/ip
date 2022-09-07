@@ -4,14 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
+import ploopy.ui.TextUI;
 
 class ParserTest {
     @Test
     public void parseInput_unsupportedInput_exceptionThrown() {
         try {
-            UI ui = new UI();
-            Storage storage = new Storage(ui);
-            TaskList taskList = new TaskList(ui, storage);
+            Storage storage = new Storage();
+            TaskList taskList = new TaskList(storage);
             Parser.parseInput("gibberish", taskList);
             fail(); // the test should not reach this line
         } catch (Exception e) {
@@ -22,9 +22,9 @@ class ParserTest {
     @Test
     public void parseInput_blankInput_exceptionThrown() {
         try {
-            UI ui = new UI();
-            Storage storage = new Storage(ui);
-            TaskList taskList = new TaskList(ui, storage);
+            TextUI ui = new TextUI();
+            Storage storage = new Storage();
+            TaskList taskList = new TaskList(storage);
             Parser.parseInput("          ", taskList);
             fail(); // the test should not reach this line
         } catch (Exception e) {

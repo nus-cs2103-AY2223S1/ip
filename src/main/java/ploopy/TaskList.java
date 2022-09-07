@@ -1,5 +1,7 @@
 package ploopy;
 
+import ploopy.ui.TextUI;
+
 import java.util.ArrayList;
 
 /**
@@ -9,32 +11,29 @@ import java.util.ArrayList;
  */
 public class TaskList {
     private ArrayList<Task> taskList;
-    private UI ui;
     private Storage storage;
 
     /**
      * Constructor that takes a UI and Storage objects
      *
-     * @param ui UI to display message.
      * @param storage Storage to store tasks.
      */
-    public TaskList(UI ui, Storage storage) {
+    public TaskList(Storage storage) {
         taskList = new ArrayList<>();
-        this.ui = ui;
         this.storage = storage;
     }
     /**
      * Prints the list of tasks in the order they were added.
      *
      */
-    public void displayList() {
-        ui.showTopWindow();
+    public String displayList() {
+        String list = "";
         int index = 1;
         for (Task item : taskList) {
-            System.out.println("\n" + index + "." + item);
+            list+= index + "." + item + "\n";
             index++;
         }
-        ui.showBottomWindow();
+        return list;
     }
 
     /**
@@ -44,11 +43,11 @@ public class TaskList {
      * @param taskIndex Index of task to be marked done.
      * @throws PloopyException If a storage file error occurs.
      */
-    public void markTask(int taskIndex) throws PloopyException {
+    public String markTask(int taskIndex) throws PloopyException {
         Task current = taskList.get(taskIndex - 1);
         current.markDone();
-        ui.markTaskMessage(current);
         storage.rewriteFile(taskList);
+        return TextUI.markTaskMessage(current);
     }
 
     /**
@@ -57,11 +56,11 @@ public class TaskList {
      * @param taskIndex Index of task to be marked undone.
      * @throws PloopyException If a storage file error occurs.
      */
-    public void unmarkTask(int taskIndex) throws PloopyException {
+    public String unmarkTask(int taskIndex) throws PloopyException {
         Task current = taskList.get(taskIndex - 1);
         current.unmark();
-        ui.unmarkTaskMessage(current);
         storage.rewriteFile(taskList);
+        return TextUI.unmarkTaskMessage(current);
     }
 
     /**
@@ -73,10 +72,11 @@ public class TaskList {
      * @throws PloopyException If a storage file error occurs.
      */
 
-    public void deleteTask(int taskNumber) throws PloopyException {
-        ui.deleteTaskMessage(taskList.get(taskNumber - 1), taskList.size() - 1);
+    public String deleteTask(int taskNumber) throws PloopyException {
+        Task deletedTask = taskList.get(taskNumber - 1);
         taskList.remove(taskNumber - 1);
         storage.rewriteFile(taskList);
+        return TextUI.deleteTaskMessage(deletedTask, taskList.size());
     }
 
     /**
@@ -86,11 +86,11 @@ public class TaskList {
      * @param input Name of task.
      * @throws PloopyException If a storage file error occurs.
      */
-    public void createToDo(String input) throws PloopyException {
+    public String createToDo(String input) throws PloopyException {
         Task newTask = new ToDo(input);
         taskList.add(newTask);
-        ui.addTaskMessage(newTask, taskList.size());
         storage.writeToFile(newTask);
+        return TextUI.addTaskMessage(newTask, taskList.size());
     }
 
     /**
@@ -101,11 +101,11 @@ public class TaskList {
      * @param date Date of task.
      * @throws PloopyException If a storage file error occurs.
      */
-    public void createDeadline(String name, String date) throws PloopyException {
+    public String createDeadline(String name, String date) throws PloopyException {
         Task newTask = new Deadline(name, date);
         taskList.add(newTask);
-        ui.addTaskMessage(newTask, taskList.size());
         storage.writeToFile(newTask);
+        return TextUI.addTaskMessage(newTask, taskList.size());
     }
 
     /**
@@ -116,11 +116,11 @@ public class TaskList {
      * @param date Date of task
      * @throws PloopyException If a storage file error occurs.
      */
-    public void createEvent(String name, String date) throws PloopyException {
+    public String createEvent(String name, String date) throws PloopyException {
         Task newTask = new Event(name, date);
         taskList.add(newTask);
-        ui.addTaskMessage(newTask, taskList.size());
         storage.writeToFile(newTask);
+        return TextUI.addTaskMessage(newTask, taskList.size());
     }
 
     /**
@@ -130,8 +130,9 @@ public class TaskList {
      *
      * @param keyword Keyword for tasks to match.
      */
-    public void findTasks(String keyword) {
+    public String findTasks(String keyword) {
         ArrayList<Task> matchedTasks = new ArrayList<>();
+        String list = "";
         for (Task task : taskList) {
             if (task.getName().contains(keyword)) {
                 matchedTasks.add(task);
@@ -139,16 +140,15 @@ public class TaskList {
         }
 
         if (matchedTasks.size() > 0) {
-            ui.showTopWindow();
-            ui.foundTasks();
+            list+= TextUI.foundTasks();
             int index = 1;
             for (Task matched : matchedTasks) {
-                System.out.println("\n" + index + "." + matched);
+                list+= "\n" + index + "." + matched;
                 index++;
             }
-            ui.showBottomWindow();
+            return list;
         } else {
-            ui.noTasksFound();
+            return TextUI.noTasksFound();
         }
 
     }
