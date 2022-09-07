@@ -82,6 +82,7 @@ public class Bocil {
      * @return Response of Bocil
      */
     public String getResponse(String input) {
+        assert input != null;
         if (this.isError()) {
             return this.getErrorMessage();
         }
