@@ -36,14 +36,13 @@ public class TaskList {
             char tag = line.charAt(1);
             boolean isDone = (line.charAt(4) == 'X');
 
-            String[] msg;
+            String[] tokens = line.split(" ", 3);
 
-            try {
-                msg = line.split(" ", 3)[2].split(" \\(");
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw (new DukeException("Error parsing!"));
+            if (tokens.length < 3) {
+                throw(new DukeException("Error parsing!"));
             }
 
+            String[] msg = tokens[2].split(" \\(");
             String name = msg[0];
             LocalDateTime date = null;
 
@@ -54,6 +53,10 @@ public class TaskList {
                 } catch (Exception e) {
                     throw (new DukeException("Error parsing!"));
                 }
+            }
+
+            if (msg.length == 1) {
+                assert(date == null);
             }
 
             Task task = createTask(tag, name, date);

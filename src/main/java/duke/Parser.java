@@ -20,6 +20,7 @@ import duke.command.UnmarkCommand;
 public class Parser {
 
     private static String getTaskName(String[] msg) {
+        assert(msg.length > 1);
         String input = "";
         for (int i = 1; i < msg.length; i++) {
             input += msg[i];
