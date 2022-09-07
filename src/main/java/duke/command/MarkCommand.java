@@ -29,7 +29,7 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Execute the Command with given Duke Segments.
+     * Executes the Command with given Duke Segments.
      * @param taskList TaskList of the Duke.
      * @param messagePrinter MessagePrinter of the Duke.
      * @param storage Storage of the Duke.
@@ -61,7 +61,7 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Return boolean indicating whether this object
+     * Returns boolean indicating whether this object
      * is equivalent to another object.
      *
      * @param obj The object to be checked.

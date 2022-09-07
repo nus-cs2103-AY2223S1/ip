@@ -29,7 +29,7 @@ public class TaskList implements Savable<TaskList> {
      * @param taskArrayList The given ArrayList of Tasks.
      * @return The boolean whether the given ArrayList is equals to the internal TaskList.
      */
-    protected boolean compareTaskList(ArrayList<Task> taskArrayList) {
+    protected boolean isIdenticalTaskList(ArrayList<Task> taskArrayList) {
         return this.tasks == taskArrayList
                 ? true
                 : this.tasks == null || taskArrayList == null
@@ -141,7 +141,7 @@ public class TaskList implements Savable<TaskList> {
     }
 
     /**
-     * Return boolean indicating whether this object
+     * Returns boolean indicating whether this object
      * is equivalent to another object.
      *
      * @param obj The object to be checked.
@@ -157,7 +157,7 @@ public class TaskList implements Savable<TaskList> {
             if (this.tasks == tl.tasks) {
                 return true;
             }
-            return tl.compareTaskList(this.tasks);
+            return tl.isIdenticalTaskList(this.tasks);
         }
         return false;
     }

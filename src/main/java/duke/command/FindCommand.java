@@ -30,7 +30,7 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Execute the Command with given Duke Segments.
+     * Executes the Command with given Duke Segments.
      * @param tasks TaskList of the Duke.
      * @param messagePrinter MessagePrinter of the Duke.
      * @param storage Storage of the Duke.
@@ -70,7 +70,7 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Return boolean indicating whether this object
+     * Returns boolean indicating whether this object
      * is equivalent to another object.
      *
      * @param obj The object to be checked.

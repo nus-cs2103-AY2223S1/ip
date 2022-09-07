@@ -8,6 +8,14 @@ import java.util.stream.Stream;
 
 import duke.command.Action;
 import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.FindCommand;
+import duke.command.MarkCommand;
+import duke.command.TodoCommand;
+import duke.command.UnmarkCommand;
+import duke.exception.CompileException;
 import duke.exception.DukeException;
 import duke.exception.DukeRuntimeException;
 import duke.exception.InvalidArgumentException;
@@ -90,114 +98,139 @@ public class Parser {
      * @throws DukeException if the given String is not in correct format.
      */
     public static Command parseCommand(String s) throws DukeException {
-        int indexOfName;
-        int indexOfTime;
-        String arg1;
-        String arg2;
-
-        s = s.trim();
-        String[] words = s.split(" ");
-        Action action = Action.getAction(words[0]);
+        Action action = Action.getAction(s.trim().split(" ", 2)[0]);
         switch (action) {
         case GREET:
             return Command.greet();
         case EXIT:
             return Command.exit();
         case MARK:
-            arg1 = s.substring(Action.getString(action).length()).trim();
-            if (arg1.equals("")) {
-                throw new NoArgumentException(action);
-            } else if (!isInt(arg1)) {
-                throw new InvalidArgumentException(action, "The argument should be an integer.");
-            }
-            return Command.mark(Integer.parseInt(arg1));
+            return parseMarkCommand(s);
         case UNMARK:
-            arg1 = s.substring(Action.getString(action).length()).trim();
-            if (arg1.equals("")) {
-                throw new NoArgumentException(action);
-            } else if (!isInt(arg1)) {
-                throw new InvalidArgumentException(action, "The argument should be an integer.");
-            }
-            return Command.unmark(Integer.parseInt(arg1));
+            return parseUnmarkCommand(s);
         case LIST:
             return Command.list();
         case TODO:
-            arg1 = s.substring(Action.getString(action).length()).trim();
-            if (arg1.equals("")) {
-                throw new NoArgumentException(action);
-            } else if (!isValidString(arg1)) {
-                throw new InvalidArgumentException(action,
-                        "Todo details should not contain '}'.");
-            }
-            return Command.todo(arg1);
+            return parseTodoCommand(s);
         case EVENT:
-            String symbolEvent = " /at ";
-            if (!s.contains(symbolEvent)) {
-                throw new InvalidArgumentException(action, "Keyword: ["
-                        + symbolEvent + " ] or [Time] is not found.");
-            }
-            indexOfName = Action.getString(action).length();
-            indexOfTime = getFirstIndexOfStr1InStr2(symbolEvent, s);
-            arg1 = s.substring(indexOfName, indexOfTime).trim();
-            arg2 = s.substring(indexOfTime + symbolEvent.length()).trim();
-            if (arg1.equals("") && arg2.equals("")) {
-                throw new NoArgumentException(action);
-            } else if (!isValidString(arg1)) {
-                throw new InvalidArgumentException(action,
-                        "Event [Name] is not found.");
-            } else if (!isValidDate(arg2)) {
-                throw new InvalidArgumentException(action,
-                        "Event [Time] is not found.");
-            }
-
-            return Command.event(arg1, parseStringToDateTime(arg2));
+            return parseEventCommand(s);
         case DEADLINE:
-            String symbolDeadline = " /by ";
-
-            if (!s.contains(symbolDeadline)) {
-                throw new InvalidArgumentException(action, "Keyword: ["
-                        + symbolDeadline + " ] or [Time] is not found.");
-            }
-
-            indexOfName = Action.getString(action).length();
-            indexOfTime = getFirstIndexOfStr1InStr2(symbolDeadline, s);
-            arg1 = s.substring(indexOfName, indexOfTime).trim();
-            arg2 = s.substring(indexOfTime + symbolDeadline.length()).trim();
-
-            if (arg1.equals("") && arg2.equals("")) {
-                throw new NoArgumentException(action);
-            } else if (!isValidString(arg1)) {
-                throw new InvalidArgumentException(action,
-                        "Deadline [Name] is not found.");
-            } else if (!isValidDate(arg2)) {
-                throw new InvalidArgumentException(action,
-                        "Deadline [Time] is not found.");
-            }
-
-            return Command.deadline(arg1, parseStringToDateTime(arg2));
+            return parseDeadlineCommand(s);
         case DELETE:
-            arg1 = s.substring(Action.getString(action).length()).trim();
-            if (arg1.equals("")) {
-                throw new NoArgumentException(action);
-            } else if (!isInt(arg1)) {
-                throw new InvalidArgumentException(action, "The argument should be an integer.");
-            }
-            return Command.delete(Integer.parseInt(arg1));
+            return parseDeleteCommand(s);
         case SAVE:
             return Command.save();
         case READ:
             return Command.read();
         case FIND:
-            arg1 = s.substring(Action.getString(action).length()).trim();
-            if (arg1.equals("")) {
-                throw new NoArgumentException(action);
-            } else if (!isValidString(arg1)) {
-                throw new InvalidArgumentException(action, "The argument should be a String.");
-            }
-            return Command.find(arg1);
+            return parseFindCommand(s);
         default:
             return Command.doNothing();
         }
+    }
+
+    protected static MarkCommand parseMarkCommand(String s) throws CompileException {
+        String arg1;
+        Action action = Action.MARK;
+        arg1 = s.substring(Action.getString(action).length()).trim();
+        if (arg1.equals("")) {
+            throw new NoArgumentException(action);
+        } else if (!isInt(arg1)) {
+            throw new InvalidArgumentException(action, "The argument should be an integer.");
+        }
+        return Command.mark(Integer.parseInt(arg1));
+    }
+
+    protected static UnmarkCommand parseUnmarkCommand(String s) throws CompileException {
+        String arg1;
+        Action action = Action.UNMARK;
+        arg1 = s.substring(Action.getString(action).length()).trim();
+        if (arg1.equals("")) {
+            throw new NoArgumentException(action);
+        } else if (!isInt(arg1)) {
+            throw new InvalidArgumentException(action, "The argument should be an integer.");
+        }
+        return Command.unmark(Integer.parseInt(arg1));
+    }
+
+    protected static TodoCommand parseTodoCommand(String s) throws CompileException {
+        String arg1;
+        Action action = Action.TODO;
+        arg1 = s.substring(Action.getString(action).length()).trim();
+        if (arg1.equals("")) {
+            throw new NoArgumentException(action);
+        } else if (!isValidString(arg1)) {
+            throw new InvalidArgumentException(action, "Todo details should not contain '}'.");
+        }
+        return Command.todo(arg1);
+    }
+
+    protected static EventCommand parseEventCommand(String s) throws CompileException {
+        String symbolEvent = " /at ";
+        String arg1;
+        String arg2;
+        int indexOfName;
+        int indexOfTime;
+        Action action = Action.EVENT;
+        if (!s.contains(symbolEvent)) {
+            throw new InvalidArgumentException(action, "Keyword: ["
+                    + symbolEvent + " ] or [Time] is not found.");
+        }
+        indexOfName = Action.getString(action).length();
+        indexOfTime = getFirstIndexOfStr1InStr2(symbolEvent, s);
+        arg1 = s.substring(indexOfName, indexOfTime).trim();
+        arg2 = s.substring(indexOfTime + symbolEvent.length()).trim();
+        if (arg1.equals("") && arg2.equals("")) {
+            throw new NoArgumentException(action);
+        } else if (!isValidString(arg1)) {
+            throw new InvalidArgumentException(action,
+                    "Event [Name] is not found.");
+        } else if (!isValidDate(arg2)) {
+            throw new InvalidArgumentException(action,
+                    "Event [Time] is not found.");
+        }
+        return Command.event(arg1, parseStringToDateTime(arg2));
+    }
+
+    protected static DeadlineCommand parseDeadlineCommand(String s) throws CompileException {
+        String arg1;
+        String arg2;
+        int indexOfName;
+        int indexOfTime;
+        String symbolDeadline = " /by ";
+        Action action = Action.DEADLINE;
+        if (!s.contains(symbolDeadline)) {
+            throw new InvalidArgumentException(action, "Keyword: ["
+                    + symbolDeadline + " ] or [Time] is not found.");
+        }
+        indexOfName = Action.getString(action).length();
+        indexOfTime = getFirstIndexOfStr1InStr2(symbolDeadline, s);
+        arg1 = s.substring(indexOfName, indexOfTime).trim();
+        arg2 = s.substring(indexOfTime + symbolDeadline.length()).trim();
+
+        if (arg1.equals("") && arg2.equals("")) {
+            throw new NoArgumentException(action);
+        } else if (!isValidString(arg1)) {
+            throw new InvalidArgumentException(action,
+                    "Deadline [Name] is not found.");
+        } else if (!isValidDate(arg2)) {
+            throw new InvalidArgumentException(action,
+                    "Deadline [Time] is not found.");
+        }
+
+        return Command.deadline(arg1, parseStringToDateTime(arg2));
+    }
+
+    protected static FindCommand parseFindCommand(String s) throws CompileException {
+        String arg1;
+        Action action = Action.FIND;
+        arg1 = s.substring(Action.getString(action).length()).trim();
+        if (arg1.equals("")) {
+            throw new NoArgumentException(action);
+        } else if (!isValidString(arg1)) {
+            throw new InvalidArgumentException(action, "The argument should be a String.");
+        }
+        return Command.find(arg1);
     }
 
     /**
@@ -220,6 +253,18 @@ public class Parser {
             throw new ReadAttributeException(
                     "Task", formattedString, "Task Symbol: [" + attributes.get(0) + "] is invalid.");
         }
+    }
+
+    protected static DeleteCommand parseDeleteCommand(String s) throws CompileException {
+        String arg1;
+        Action action = Action.DELETE;
+        arg1 = s.substring(Action.getString(action).length()).trim();
+        if (arg1.equals("")) {
+            throw new NoArgumentException(action);
+        } else if (!isInt(arg1)) {
+            throw new InvalidArgumentException(action, "The argument should be an integer.");
+        }
+        return Command.delete(Integer.parseInt(arg1));
     }
 
     /**

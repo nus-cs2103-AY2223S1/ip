@@ -16,7 +16,7 @@ public class WriteFileException extends RuntimeException {
     }
 
     /**
-     * Return boolean indicating whether this object
+     * Returns boolean indicating whether this object
      * is equivalent to another object.
      *
      * @param obj The object to be checked.
