@@ -3,6 +3,7 @@ package duke;
 import java.util.Scanner;
 
 import duke.exception.DukeException;
+import duke.note.NoteList;
 
 /**
  * Handles majority of user interaction and printing for CLI mode.
@@ -48,6 +49,18 @@ public class Ui {
         }
         return "Got it. I've added this task:\n  " + tasks.get(tasks.size() - 1).toString()
                 + String.format("\nNow you have %d %s in the list.", tasks.size(), taskString);
+    }
+
+    /**
+     * Returns a message indicating that a note has been added.
+     * Takes in the full notes list and returns info about the
+     * newly added note.
+     *
+     * @param notes the full note list
+     * @return the message to print
+     */
+    public String printAddNotesSuccessfully(NoteList notes) {
+        return "Got it. I've added this note:\n  " + notes.get(notes.size() - 1).toString();
     }
 
     /**

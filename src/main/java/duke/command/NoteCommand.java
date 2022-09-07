@@ -1,32 +1,29 @@
 package duke.command;
 
 import duke.Storage;
-import duke.Task;
 import duke.TaskList;
 import duke.Ui;
 import duke.exception.DukeException;
+import duke.note.Note;
 import duke.note.NoteList;
 
-/**
- * Represents a command to add a todo task.
- */
-public class TodoCommand extends Command {
-    private String task;
+public class NoteCommand extends Command {
+    private String description;
 
     /**
      * Creates a new TodoCommand.
      *
      * @param task
      */
-    public TodoCommand(String task) {
+    public NoteCommand(String description) {
         super();
-        this.task = task;
+        this.description = description;
     }
 
     @Override
     public String execute(TaskList tasks, NoteList notes, Ui ui, Storage storage) throws DukeException {
-        tasks.add(new Task(task));
-        return ui.printAddTaskSuccessfully(tasks);
+        notes.add(new Note(description));
+        return ui.printAddNotesSuccessfully(notes);
     }
 
     @Override
@@ -34,10 +31,10 @@ public class TodoCommand extends Command {
         if (this == o) {
             return true;
         }
-        if (o == null || o instanceof TodoCommand == false) {
+        if (o == null || o instanceof NoteCommand == false) {
             return false;
         }
-        TodoCommand that = (TodoCommand) o;
-        return task.equals(that.task);
+        NoteCommand that = (NoteCommand) o;
+        return description.equals(that.description);
     }
 }

@@ -5,6 +5,7 @@ import duke.Task;
 import duke.TaskList;
 import duke.Ui;
 import duke.exception.DukeException;
+import duke.note.NoteList;
 
 /**
  * Represents a command to delete a task.
@@ -23,7 +24,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, NoteList notes, Ui ui, Storage storage) throws DukeException {
         if (index == -1 || index >= tasks.size()) {
             throw new DukeException(String.format("Task number %d not found! Unable to delete task.", index + 1));
         }

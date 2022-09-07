@@ -3,6 +3,7 @@ package duke.command;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.note.NoteList;
 
 /**
  * Represents a command to exit Duke.
@@ -17,7 +18,7 @@ public class ByeCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, NoteList notes, Ui ui, Storage storage) {
         assert isExit : "ByeCommand is malfunctioning.";
         ui.wrapPrint("Bye. Hope to see you again soon!");
         storage.save(tasks);

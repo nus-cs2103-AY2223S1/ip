@@ -9,6 +9,7 @@ import duke.command.DeleteCommand;
 import duke.command.EventCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.NoteCommand;
 import duke.command.TodoCommand;
 import duke.exception.DukeException;
 
@@ -45,6 +46,13 @@ public class Parser {
             // Return the command
             return new MarkCommand(Integer.parseInt(inputSplit[1]) - 1,
                     inputSplit[0].equals("mark") ? true : false);
+        case "note":
+            // Error handling
+            if (inputSplit.length < 2) {
+                throw new DukeException("Please provide a description for your new note.");
+            }
+            // Return the command
+            return new NoteCommand(input.substring(5));
         case "todo":
             // Error handling
             if (inputSplit.length < 2) {

@@ -3,6 +3,7 @@ package duke;
 import duke.command.Command;
 import duke.exception.DukeException;
 import duke.gui.Main;
+import duke.note.NoteList;
 import javafx.application.Application;
 
 /**
@@ -14,6 +15,7 @@ public class Duke {
 
     private Storage storage;
     private TaskList tasks;
+    private NoteList notes;
     private Ui ui;
 
     /**
@@ -28,6 +30,7 @@ public class Duke {
         } catch (DukeException e) {
             System.out.println("Error: " + e.getMessage());
         }
+        notes = new NoteList();
         ui = new Ui();
     }
 
@@ -48,7 +51,7 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
-                ui.wrapPrint(c.execute(tasks, ui, storage));
+                ui.wrapPrint(c.execute(tasks, notes, ui, storage));
                 isExit = c.isExit();
             } catch (DukeException e) {
                 ui.wrapPrint(ui.showError(e));
@@ -62,7 +65,7 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input);
-            return c.execute(tasks, ui, storage);
+            return c.execute(tasks, notes, ui, storage);
         } catch (DukeException e) {
             return ui.showError(e);
         }

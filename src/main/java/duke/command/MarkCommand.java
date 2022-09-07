@@ -4,6 +4,7 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import duke.exception.DukeException;
+import duke.note.NoteList;
 
 /**
  * Represents a command to mark or unmark a task as done.
@@ -25,7 +26,7 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, NoteList notes, Ui ui, Storage storage) throws DukeException {
         if (index < 0 || index >= tasks.size()) {
             throw new DukeException(String.format(
                     "Task number %d not found! Unable to mark task.", index + 1));
