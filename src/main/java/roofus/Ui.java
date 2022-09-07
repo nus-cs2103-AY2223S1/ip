@@ -1,7 +1,5 @@
 package roofus;
 
-import java.util.Scanner;
-
 import roofus.task.Task;
 
 /**
@@ -56,7 +54,7 @@ public class Ui {
         String finalString = "Here are the tasks in your list:\n";
         for (int i = 0; i < taskList.length(); i++) {
             int index = i + 1;
-            finalString += String.format("%d. %s\n", index, 
+            finalString += String.format("%d. %s\n", index,
                     taskList.getTask(i).toString());
         }
         return finalString;
@@ -81,12 +79,6 @@ public class Ui {
         return finalString;
     }
 
-
-    public String sortList(TaskList taskList) {
-        taskList.sort();
-        return list(taskList);
-    }
-            
     /**
      * Formats and prints mark task message.
      *

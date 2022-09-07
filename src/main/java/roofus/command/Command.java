@@ -25,6 +25,6 @@ public abstract class Command {
      * @return boolean Returns true if Roofus is currently running otherwise false.
      */
     public boolean isRunning() {
-        return true;   
+        return true;
     }
 }

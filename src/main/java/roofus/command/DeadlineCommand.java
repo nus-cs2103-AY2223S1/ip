@@ -1,11 +1,11 @@
 package roofus.command;
 
+import java.io.IOException;
+
 import roofus.Storage;
 import roofus.TaskList;
 import roofus.Ui;
 import roofus.task.Deadline;
-
-import java.io.IOException;
 
 /**
  * Represents a command action that adds a Deadline task to the TaskList
