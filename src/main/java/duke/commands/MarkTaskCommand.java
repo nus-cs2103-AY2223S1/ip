@@ -37,6 +37,7 @@ public class MarkTaskCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
+        taskList.storePrevTaskList();
         taskList.markTask(this.taskId);
         ui.markTaskMessage(taskList.getTask(this.taskId));
         storage.store(taskList);

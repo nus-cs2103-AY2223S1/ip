@@ -1,3 +1,5 @@
+package duke.main;
+
 import duke.commands.Command;
 import duke.exceptions.DukeException;
 import duke.parser.Parser;
@@ -54,6 +56,10 @@ public class Duke {
                 ui.showLineBreak();
             }
         }
+    }
+
+    public String getResponse(String input) {
+        return "Duke heard: " + input;
     }
 
     public static void main(String[] args) {

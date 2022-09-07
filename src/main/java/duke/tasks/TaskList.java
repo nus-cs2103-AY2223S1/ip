@@ -13,6 +13,7 @@ import duke.exceptions.DukeException;
 public class TaskList {
 
     private static ArrayList<Task> taskList;
+    private static ArrayList<Task> prevTaskList = null;
 
     /**
      * Constructs new TaskList using the given ArrayList<Task>.
@@ -151,5 +152,23 @@ public class TaskList {
      */
     public ArrayList<Task> getAllTasks() {
         return taskList;
+    }
+
+    /**
+     * Saves the previous task list, so it can be fetched later.
+     */
+    public void storePrevTaskList() {
+        prevTaskList = taskList;
+        System.out.println(prevTaskList);
+    }
+
+    /**
+     * Undoes the previous command by reverting to the previously saved task list.
+     */
+    public void undo() {
+        System.out.println(prevTaskList);
+        taskList = prevTaskList;
+        prevTaskList = null;
+        System.out.println(taskList);
     }
 }
