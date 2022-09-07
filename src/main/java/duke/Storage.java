@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -27,8 +28,8 @@ public class Storage {
      * @throws IOException If the file does not exist.
      * @throws DukeException         If the file does not have the correct format.
      */
-    public ArrayList<Task> loadTasks() throws IOException, DukeException {
-        ArrayList<Task> userTasks = new ArrayList<>();
+    public List<Task> loadTasks() throws IOException, DukeException {
+        List<Task> userTasks = new ArrayList<>();
         File f = new File(this.filePath);
         if (!f.exists()) {
             f.createNewFile();

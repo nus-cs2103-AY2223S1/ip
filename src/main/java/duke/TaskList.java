@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a list of tasks given to Duke chatbot.
@@ -9,9 +10,9 @@ import java.util.ArrayList;
  */
 public class TaskList {
 
-    private ArrayList<Task> userTasks;
+    private List<Task> userTasks;
 
-    public TaskList(ArrayList<Task> userTasks) {
+    public TaskList(List<Task> userTasks) {
         this.userTasks = userTasks;
     }
 
@@ -27,10 +28,10 @@ public class TaskList {
      */
     public void addTasks(Task ...tasks) throws DukeException {
         for (Task t : tasks) {
-            for (Task currentTask : this.userTasks) {
-                if (currentTask.getTaskDescription().equals(t.getTaskDescription())) {
-                    throw new DukeException("This task is already in the list.");
-                }
+            long numberOfDuplicateTasks = this.userTasks.stream().filter(currentTask
+                    -> currentTask.getTaskDescription().equals(t.getTaskDescription())).count();
+            if (numberOfDuplicateTasks > 0) {
+                throw new DukeException("This task is already in the list.");
             }
             this.userTasks.add(t);
         }
