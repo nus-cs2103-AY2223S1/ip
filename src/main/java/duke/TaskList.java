@@ -30,6 +30,7 @@ public class TaskList {
      * @return A String that will be outputted to screen when added task to list.
      */
     String addToList(Task task) {
+        assert task != null;
         this.list.add(task);
         Ui ui = new Ui();
         return ui.addToListUi(task, this.list);
@@ -42,6 +43,8 @@ public class TaskList {
      */
     String delete(String s) {
         int i = Integer.parseInt(s.substring(7)) - 1;
+        assert i > 0;
+        assert i < list.size();
         Task task = this.list.remove(i);
         Ui ui = new Ui();
         return ui.deleteUi(task, this.list);

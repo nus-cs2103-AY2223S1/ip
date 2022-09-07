@@ -4,9 +4,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class UnmarkCommand extends Command{
-    String execute(String taskName, ArrayList<Task> listOfTask, Ui ui, Storage storage) throws IOException {
-        int i = Integer.parseInt(taskName.substring(7)) - 1;
-        Task task = listOfTask.get(i);
-        return task.unmark();
+    void handleException(int index, ArrayList<Task> listOfTask) throws DukeIndexTooLargeException, DukeNonPositiveIndexException {
+        if (index > listOfTask.size() - 1) {
+            throw new DukeIndexTooLargeException();
+        }
+        if (index <= 0) {
+            throw new DukeNonPositiveIndexException();
+        }
     }
+    String execute(String taskName, ArrayList<Task> listOfTask, Ui ui, Storage storage) throws IOException {
+        try {
+            int i = Integer.parseInt(taskName.substring(7)) - 1;
+            handleException(i, listOfTask);
+            Task task = listOfTask.get(i);
+            assert task != null;
+            return task.unmark();
+        } catch (DukeException e) {
+           return e.getMessage();
+        }
+    }
+
+
 }

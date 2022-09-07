@@ -8,9 +8,11 @@ public class EventCommand extends Command{
     @Override
     String execute(String taskName, ArrayList<Task> listOfTasks, Ui ui, Storage storage)
             throws IOException, DukeEventEmptyException {
+        assert taskName.length() >= 5;
         if(taskName.length() == 5) {
             throw new DukeEventEmptyException();
         }
+        assert taskName.length() > 5;
         int index = taskName.indexOf("/");
         Task t = new Event(taskName.substring(6, index - 1),
                 false, taskName.substring(index + 4));

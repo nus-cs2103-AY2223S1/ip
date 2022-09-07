@@ -12,6 +12,7 @@ public class FindCommand extends Command{
                 count = count + 1;
                  s = s + "\n" + count + "." + listOfTasks.get(i).toString();
             } else {
+                s = "No task with keyword found.";
             }
         }
         return s;

@@ -9,9 +9,11 @@ public class DeadlineCommand extends Command{
 
     @Override
     String execute(String fullCommand, ArrayList<Task> listOfTasks, Ui ui, Storage storage) throws IOException, DukeDeadlineEmptyException {
+       assert fullCommand.length() >= 8;
         if(fullCommand.length() == 8) {
             throw new DukeDeadlineEmptyException();
         }
+        assert fullCommand.length() > 8;
         int index = fullCommand.indexOf("/");
         String subS = fullCommand.substring(9, index - 1);
         String subString = fullCommand.substring(index + 4);
