@@ -12,9 +12,9 @@ import kirby.exceptions.KirbyMissingArgumentException;
 import kirby.ui.Ui;
 
 public class TaskTest {
-    private Storage storage;
-    private Ui ui;
-    private TaskList taskList;
+    private final Storage storage;
+    private final Ui ui;
+    private final TaskList taskList;
     public TaskTest() throws IOException {
         this.storage = new Storage("data/blank.txt", "data/");
         this.ui = new Ui();
@@ -26,7 +26,7 @@ public class TaskTest {
         try {
             new DeadlineCommand("").execute(taskList, ui, storage);
         } catch (KirbyMissingArgumentException e) {
-            String expectedOutput = "Aaaaaaah, the description of a deadline is invalid! Try again!";
+            String expectedOutput = "Aaaaaaah, the description of a deadline" + "\n" + "is invalid! \n Try again!";
             assertEquals(expectedOutput, e.getMessage());
         }
     }

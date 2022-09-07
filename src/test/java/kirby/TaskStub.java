@@ -13,6 +13,6 @@ public class TaskStub extends Task {
 
     @Override
     public int[] getDate() {
-        return new int[0];
+        return new int[]{0, 0, 0};
     }
 }

@@ -1,5 +1,6 @@
 package kirby.time;
 
+import java.util.Arrays;
 import java.util.Comparator;
 
 import kirby.tasks.Task;
@@ -16,6 +17,7 @@ class SortTaskByDate implements Comparator<Task> {
      * @param t2 Second task.
      * @return -1 if t1 is earlier than t2, 1 if t2 is earlier, otherwise 0.
      */
+    @Override
     public int compare(Task t1, Task t2) {
         // Compare year
         if (t1.getDate()[2] < t2.getDate()[2]) {

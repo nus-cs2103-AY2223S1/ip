@@ -70,6 +70,9 @@ public class TaskList {
      * @return List of tasks sorted in chronological order.
      */
     public ArrayList<Task> getList() {
+        if (this.tasks.size() <= 1) {
+            return this.tasks;
+        }
         return sortTaskList(this.tasks);
     }
 
