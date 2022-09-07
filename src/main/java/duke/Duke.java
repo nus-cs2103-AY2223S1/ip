@@ -39,21 +39,39 @@ public class Duke {
         }
     }
 
+    /**
+     * Gets the response by Duke from the command.
+     *
+     * @param input User command.
+     * @return Response by Duke from the command.
+     */
     public String getResponse(String input) {
-        String response;
-        try {
-            Command command = parser.parse(input, this.tasks);
-            response = command.run();
-            if (command instanceof EndCommand) {
-                this.hasEnded = true;
+        String[] userCommands = parser.parseCommand(input);
+        StringBuilder response = new StringBuilder();
+        for (String userCommand : userCommands) {
+            if (userCommand.equals("")) {
+                continue;
             }
-            this.storage.save(this.tasks);
-        } catch (DukeException e) {
-            response = e.getMessage();
+            try {
+                Command command = parser.parse(userCommand, tasks);
+                response.append(command.run() + "\n\n");
+                if (command instanceof EndCommand) {
+                    this.hasEnded = true;
+                }
+                this.storage.save(this.tasks);
+            } catch (DukeException e) {
+                response.append(e.getMessage() + "\n\n");
+            }
         }
-        return response;
+
+        return response.toString();
     }
 
+    /**
+     * Gets the boolean on whether Duke has ended.
+     *
+     * @return Boolean on whether Duke has ended.
+     */
     public boolean getHasEnded() {
         return hasEnded;
     }
