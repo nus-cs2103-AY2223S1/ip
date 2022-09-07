@@ -50,6 +50,7 @@ public class Duke {
                 throw DukeException.INVALIDARGUMENT;
             }
             Task item = Task.createToDo(argument);
+            assert item != null;
             taskList.addTask(item);
             return "added: " + item + "\n"
                     + "Now you have " + taskList.getSize() + " tasks in the list.";
@@ -60,6 +61,7 @@ public class Duke {
                 throw DukeException.INVALIDARGUMENT;
             }
             Task item = Task.createDeadline(argument);
+            assert item != null;
             taskList.addTask(item);
             return "added: " + item + "\n"
                     + "Now you have " + taskList.getSize() + " tasks in the list.";
@@ -70,6 +72,7 @@ public class Duke {
                 throw DukeException.INVALIDARGUMENT;
             }
             Task item = Task.createEvent(argument);
+            assert item != null;
             taskList.addTask(item);
             return "added: " + item + "\n"
                     + "Now you have " + taskList.getSize() + " tasks in the list.";
@@ -79,6 +82,7 @@ public class Duke {
             try {
                 int id = Integer.parseInt(argument) - 1;
                 Task item = taskList.getTask(id).changeMark(true);
+                assert item != null;
                 return "Nice! I've marked this task as done:\n"
                         + item;
             } catch (NumberFormatException e) {
@@ -90,6 +94,7 @@ public class Duke {
             try {
                 int id = Integer.parseInt(argument) - 1;
                 Task item = taskList.getTask(id).changeMark(false);
+                assert item != null;
                 return "OK, I've marked this task as not done yet:\n"
                         + item;
             } catch (NumberFormatException e) {
@@ -101,6 +106,7 @@ public class Duke {
             try {
                 int id = Integer.parseInt(argument) - 1;
                 Task item = taskList.deleteTask(id);
+                assert item != null;
                 return "Noted. I've removed this task:\n"
                         + item + "\n"
                         + "Now you have " + taskList.getSize() + " tasks in the list.";
@@ -117,7 +123,8 @@ public class Duke {
         });
 
         parser.addCommand("find", argument -> {
-            TaskList result = taskList.searchByKeyword(argument);
+            TaskList result = taskList.searchByKeyword(argument.split("/"));
+            assert result != null;
             return "Here are the matching tasks in your list:" + "\n"
                     + result.toString();
         });

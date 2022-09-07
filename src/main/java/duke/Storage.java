@@ -17,6 +17,7 @@ class Storage {
      * @param fileName name of the file.
      */
     public Storage(String fileName) {
+        assert !fileName.isBlank();
         this.fileName = fileName;
     }
 

@@ -31,6 +31,7 @@ class Parser {
             throw DukeException.INVALIDCOMMAND;
         }
         Command command = commands.get(arr[0]);
+        assert command != null;
         if (arr.length < 2) {
             return command.execute("");
         }
