@@ -1,10 +1,8 @@
 package utility;
 
-import java.security.Key;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -37,16 +35,26 @@ public class Parser {
     public static void initialiseCommandAliases() {
         if (COMMMAND_ALIASES.isEmpty()) {
             HashMap<String, Pattern> commandAliases = new HashMap<>();
-            Pattern todoRegex = Pattern.compile("t|todo", Pattern.CASE_INSENSITIVE);
-            Pattern listRegex = Pattern.compile("l|list", Pattern.CASE_INSENSITIVE);
-            Pattern deadlineRegex = Pattern.compile("deadline|d", Pattern.CASE_INSENSITIVE);
-            Pattern markRegex = Pattern.compile("mark|m", Pattern.CASE_INSENSITIVE);
-            Pattern unmarkRegex = Pattern.compile("unmark|um", Pattern.CASE_INSENSITIVE);
-            Pattern byeRegex = Pattern.compile("bye|b|quit|q|exit", Pattern.CASE_INSENSITIVE);
-            Pattern findRegex = Pattern.compile("find|f", Pattern.CASE_INSENSITIVE);
-            Pattern longdescRegex = Pattern.compile("longdesc", Pattern.CASE_INSENSITIVE);
-            Pattern istodayRegex = Pattern.compile("istoday", Pattern.CASE_INSENSITIVE);
-            Pattern helpRegex = Pattern.compile("help|h", Pattern.CASE_INSENSITIVE);
+            Pattern todoRegex = Pattern.compile("t|todo",
+                    Pattern.CASE_INSENSITIVE);
+            Pattern listRegex = Pattern.compile("l|list",
+                    Pattern.CASE_INSENSITIVE);
+            Pattern deadlineRegex = Pattern.compile("deadline|d",
+                    Pattern.CASE_INSENSITIVE);
+            Pattern markRegex = Pattern.compile("mark|m",
+                    Pattern.CASE_INSENSITIVE);
+            Pattern unmarkRegex = Pattern.compile("unmark|um",
+                    Pattern.CASE_INSENSITIVE);
+            Pattern byeRegex = Pattern.compile("bye|b|quit|q|exit",
+                    Pattern.CASE_INSENSITIVE);
+            Pattern findRegex = Pattern.compile("find|f",
+                    Pattern.CASE_INSENSITIVE);
+            Pattern longdescRegex = Pattern.compile("longdesc",
+                    Pattern.CASE_INSENSITIVE);
+            Pattern istodayRegex = Pattern.compile("istoday",
+                    Pattern.CASE_INSENSITIVE);
+            Pattern helpRegex = Pattern.compile("help|h",
+                    Pattern.CASE_INSENSITIVE);
             commandAliases.put("todo", todoRegex);
             commandAliases.put("list", listRegex);
             commandAliases.put("deadline", deadlineRegex);
@@ -101,7 +109,8 @@ public class Parser {
         case "find":
             return new FindCommand(inputSections);
         default:
-            String message = "Command invalid. Type help for more information." + stringCommand;
+            String message = "Command invalid. Type help for more information." +
+                    stringCommand;
             throw new DukeException(message);
         }
     }
@@ -116,6 +125,7 @@ public class Parser {
      * @return
      */
     private static String extractCommand(String command) {
+        // Make sure commandAliases are not empty
         initialiseCommandAliases();
         Matcher matcher;
         for( Map.Entry<String,Pattern> patternAndString : COMMMAND_ALIASES.entrySet()) {
@@ -124,7 +134,7 @@ public class Parser {
                 return patternAndString.getKey();
             }
         }
-        return " ";
+        return "";
     }
 
     /**
@@ -172,11 +182,7 @@ public class Parser {
      */
     private static LocalDate getDate(String date) throws DukeException {
         try {
-            if (!date.isBlank()) {
-                return LocalDate.parse(date);
-            } else {
-                throw new DukeException("Empty date field");
-            }
+            return LocalDate.parse(date);
         } catch (DateTimeParseException dtpe) {
             throw new DukeException("Date is not valid, require format YYYY-MM-DD");
         }
