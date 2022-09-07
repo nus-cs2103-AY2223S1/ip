@@ -70,8 +70,8 @@ public class Ui {
     public void printList(ArrayList<Task> taskList) {
         addToResponse("These are the tasks in your list:\n");
         for (int i = 0; i < taskList.size(); i++) {
-            Task t = taskList.get(i);
-            String currLine = "\t " + (i + 1) + "." + t + "\n";
+            Task task = taskList.get(i);
+            String currLine = "\t " + (i + 1) + "." + task.toString() + "\n";
             addToResponse(currLine);
         }
     }
@@ -97,7 +97,6 @@ public class Ui {
     public void addExitMessage() {
         addToResponse("It has been a pleasure. I’m sure you’ll be coming back soon enough.");
     }
-
 
     /**
      * Adds message to response.

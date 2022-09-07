@@ -36,6 +36,8 @@ public class DeleteCommand extends Command {
         if (this.idx < 0 || this.idx >= taskList.getSize()) {
             throw new ZeusException("☹ OOPS!!! Invalid index entered");
         }
+        taskList.saveCurrentTaskListVersion();
+
         Task task = taskList.getTask(this.idx);
         taskList.removeTask(this.idx);
         ui.printDeleteTask(task, taskList.getSize());

@@ -35,6 +35,8 @@ public class TaskNotDoneCommand extends Command {
         if (this.idx < 0 || this.idx >= taskList.getSize()) {
             throw new ZeusException("☹ OOPS!!! Invalid index entered");
         }
+        taskList.saveCurrentTaskListVersion();
+
         taskList.setTaskNotDone(this.idx);
 
         ui.addMessageToResponse("OK, I've marked this task as not done yet:\n");

@@ -34,13 +34,34 @@ public class Deadline extends Task {
     }
 
     /**
+     * Copy constructor of Deadline class.
+     *
+     * @param deadline Deadline to copy
+     */
+    public Deadline(Deadline deadline) {
+        super(deadline.getDescription(), deadline.isDone);
+        this.by = deadline.by;
+        this.date = deadline.date;
+    }
+
+    /**
      * Returns Deadline as a String formatted to be a line in file.
      *
      * @return String representing deadline.
      */
     @Override
     public String getFileFormat() {
-        return String.format("D | %d | %s | %s", this.isDone ? 1 : 0, this.description, this.by);
+        return String.format("D | %d | %s | %s", isDone ? 1 : 0, description, this.by);
+    }
+
+    /**
+     * Returns Task that represents this Deadline to avoid casting in the copy constructor.
+     *
+     * @return Task that represents this Deadline
+     */
+    @Override
+    public Task copy() {
+        return new Deadline(this);
     }
 
     /**

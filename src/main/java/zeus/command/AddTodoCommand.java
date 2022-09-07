@@ -31,6 +31,8 @@ public class AddTodoCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws ZeusException {
+        taskList.saveCurrentTaskListVersion();
+
         Todo todo = new Todo(description);
         taskList.addTask(todo);
         ui.printAddTask(todo, taskList.getSize());
