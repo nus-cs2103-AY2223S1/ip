@@ -27,28 +27,28 @@ public class Parser {
             throw new DukeException("Oops! You forgot to indicate the description and deadline " +
                     "for your deadline");
         }
-        if (inputString[1].contains("/by")) {
-            String[] deadlineDetails = inputString[1].split("/by");
-            if (deadlineDetails.length == 1) {
-                throw new DukeException("Please be sure to specify both description and deadline");
-            }
-            String description = deadlineDetails[0].trim();
-            String deadline = deadlineDetails[1].trim();
-            if (description.length() == 0) {
-                throw new DukeException("Oops! You forgot to indicate the description " +
-                        "for your deadline");
-            }
-            if (deadline.length() == 0) {
-                throw new DukeException("Oops! You forgot to indicate the deadline");
-            }
-
-            LocalDateTime dateTime = LocalDateTime.parse(deadline, Duke.DATE_TIME_FORMATTER);
-            return new Deadline(description, dateTime);
-        } else {
+        if (!inputString[1].contains("/by")) {
             throw new DukeException("Oops! You forgot to use /by to separate " +
                     "the description and deadline");
         }
+        String[] deadlineDetails = inputString[1].split("/by");
+        if (deadlineDetails.length == 1) {
+            throw new DukeException("Please be sure to specify both description and deadline");
+        }
+        String description = deadlineDetails[0].trim();
+        String deadline = deadlineDetails[1].trim();
+        if (description.length() == 0) {
+            throw new DukeException("Oops! You forgot to indicate the description " +
+                    "for your deadline");
+        }
+        if (deadline.length() == 0) {
+            throw new DukeException("Oops! You forgot to indicate the deadline");
+        }
+
+        LocalDateTime dateTime = LocalDateTime.parse(deadline, Duke.DATE_TIME_FORMATTER);
+        return new Deadline(description, dateTime);
     }
+
     /**
      * Parses the user input to create a Todo instance.
      *
@@ -73,28 +73,27 @@ public class Parser {
             throw new DukeException("Oops! You forgot to indicate the description and timing " +
                     "for your event");
         }
-        if (inputString[1].contains("/at")) {
-            String[] eventDetails = inputString[1].split("/at");
-            if (eventDetails.length == 1) {
-                throw new DukeException("Please be sure to specify both description and timing" +
-                        " for your event");
-            }
-            String description = eventDetails[0].trim();
-            String timing = eventDetails[1].trim();
-            if (description.length() == 0) {
-                throw new DukeException("Oops! You forgot to indicate the description " +
-                        "for your event");
-            }
-            if (timing.length() == 0) {
-                throw new DukeException("Oops! You forgot to indicate the timing " +
-                        "for your event");
-            }
-            LocalDateTime dateTime = LocalDateTime.parse(timing, Duke.DATE_TIME_FORMATTER);
-            return new Event(description, dateTime);
-        } else {
+        if (!inputString[1].contains("/at")) {
             throw new DukeException("Oops! You forgot to use /at to separate " +
                     "the description and timing");
         }
+        String[] eventDetails = inputString[1].split("/at");
+        if (eventDetails.length == 1) {
+            throw new DukeException("Please be sure to specify both description and timing" +
+                    " for your event");
+        }
+        String description = eventDetails[0].trim();
+        String timing = eventDetails[1].trim();
+        if (description.length() == 0) {
+            throw new DukeException("Oops! You forgot to indicate the description " +
+                    "for your event");
+        }
+        if (timing.length() == 0) {
+            throw new DukeException("Oops! You forgot to indicate the timing " +
+                    "for your event");
+        }
+        LocalDateTime dateTime = LocalDateTime.parse(timing, Duke.DATE_TIME_FORMATTER);
+        return new Event(description, dateTime);
     }
 
     /**
@@ -109,6 +108,7 @@ public class Parser {
         }
         return parseInt(inputString[1].trim());
     }
+
     /**
      * Returns the task number of the task to be unmarked.
      *
