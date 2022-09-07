@@ -38,6 +38,7 @@ public class Parser {
     public String categorise(String str) throws DukeException {
         String response = null;
         String uncap = str.toLowerCase();
+        assert(str.length() > 0);
         if (str.equals("bye")) {
             return this.ui.bye();
         }
