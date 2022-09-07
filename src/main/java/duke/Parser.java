@@ -24,12 +24,19 @@ public class Parser {
     public static Command parse(String fullCommand) throws DukeException {
         Commands command;
         String[] userInputs = fullCommand.trim().split(" ");
+        boolean isUserInputsLengthOne = userInputs.length == 1;
+        boolean isNotUserInputsLengthTwo = userInputs.length != 2;
+        boolean isNotStringNumber = !userInputs[1].matches("\\d+");
+        boolean hasNoBy = !Arrays.asList(userInputs).contains("/by");
+        boolean hasNoAt = !Arrays.asList(userInputs).contains("/at");
+
         try {
             command = Commands.valueOf(userInputs[0].toUpperCase());
         } catch (IllegalArgumentException e) {
             throw new InvalidCommandException();
         }
-        if (userInputs.length == 1) {
+
+        if (isUserInputsLengthOne) {
             switch (command) {
             case BYE:
                 return new ExitCommand();
@@ -71,75 +78,86 @@ public class Parser {
         } else {
             switch (command) {
             case MARK:
-                if (userInputs.length != 2) {
+                if (isNotUserInputsLengthTwo) {
                     throw new DukeException(INDENTATION +
                             "☹ OOPS!!! The mark command should be used as shown. " +
                             "eg. mark {num of task in list to be marked as done}");
                 }
-                if (!userInputs[1].matches("\\d+")) {
+                if (isNotStringNumber) {
                     throw new InvalidIndexException();
                 }
+
                 int indexToMark = Integer.parseInt(userInputs[1]);
                 return new MarkCommand(indexToMark);
             case UNMARK:
-                if (userInputs.length != 2) {
+                if (isNotUserInputsLengthTwo) {
                     throw new DukeException(INDENTATION +
                             "☹ OOPS!!! The unmark command should be used as shown. " +
                             "eg. mark {num of task in list to be unmarked as incomplete}");
                 }
-                if (!userInputs[1].matches("\\d+")) {
+                if (isNotStringNumber) {
                     throw new InvalidIndexException();
                 }
+
                 int indexToUnmark = Integer.parseInt(userInputs[1]);
                 return new UnmarkCommand(indexToUnmark);
             case TODO:
                 String[] toDoDescription = Arrays.copyOfRange(userInputs, 1, userInputs.length);
                 return new ToDoCommand(String.join(" ", toDoDescription));
             case DEADLINE:
-                if (!Arrays.asList(userInputs).contains("/by")) {
+                if (hasNoBy) {
                     throw new DukeException(INDENTATION +
                             "☹ OOPS!!! Please use the deadline command in the correct manner, " +
                             "usage of deadline is as shown. " +
                             "eg. deadline {task to be done} /by {yyyy-mm-dd}");
                 }
+
                 int byIndex = Arrays.asList(userInputs).indexOf("/by");
                 String[] deadlineDescription = Arrays.copyOfRange(userInputs, 1, byIndex);
                 String[] by = Arrays.copyOfRange(userInputs, byIndex + 1, userInputs.length);
-                if (!String.join(" ", by).matches("^\\d{4}-\\d{2}-\\d{2}$")) {
+
+                boolean hasNoValidDeadlineDate = !String.join(" ", by).matches("^\\d{4}-\\d{2}-\\d{2}$");
+                if (hasNoValidDeadlineDate) {
                     throw new DukeException(INDENTATION +
                             "☹ OOPS!!! Please use the deadline command in the correct manner, " +
                             "usage of deadline is as shown. " +
                             "eg. deadline {task to be done} /by {yyyy-mm-dd}");
                 }
+
                 return new DeadlineCommand(String.join(" ", deadlineDescription),
                         String.join(" ", by));
             case EVENT:
-                if (!Arrays.asList(userInputs).contains("/at")) {
+                if (hasNoAt) {
                     throw new DukeException(INDENTATION +
                             "☹ OOPS!!! Please use the event command in the correct manner, " +
                             "usage of deadline is as shown. " +
                             "eg. event {event} /at {yyyy-mm-dd}");
                 }
+
                 int atIndex = Arrays.asList(userInputs).indexOf("/at");
                 String[] eventDescription = Arrays.copyOfRange(userInputs, 1, atIndex);
                 String[] at = Arrays.copyOfRange(userInputs, atIndex + 1, userInputs.length);
-                if (!String.join(" ", at).matches("^\\d{4}-\\d{2}-\\d{2}$")) {
+
+                boolean hasNoValidEventDate = !String.join(" ", at).matches("^\\d{4}-\\d{2}-\\d{2}$");
+                if (hasNoValidEventDate) {
                     throw new DukeException(INDENTATION +
                             "☹ OOPS!!! Please use the event command in the correct manner, " +
                             "usage of deadline is as shown. " +
                             "eg. event {event} /at {yyyy-mm-dd}");
                 }
+
                 return new EventCommand(String.join(" ", eventDescription),
                         String.join(" ", at));
             case DELETE:
-                if (userInputs.length != 2) {
+                if (isNotUserInputsLengthTwo) {
                     throw new DukeException(INDENTATION +
                             "☹ OOPS!!! The delete command should be used as shown. " +
                             "eg. delete {num of task in list to be deleted.}");
                 }
-                if (!userInputs[1].matches("\\d+")) {
+                if (isNotStringNumber) {
                     throw new InvalidIndexException();
                 }
+
                 int indexToDelete = Integer.parseInt(userInputs[1]);
                 return new DeleteCommand(indexToDelete);
             case FIND:

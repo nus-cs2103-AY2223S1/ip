@@ -25,11 +25,15 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws InvalidIndexException {
-        if (indexToUnmark < 0 || indexToUnmark > tasks.getSize()) {
+        boolean isSmallerThanZero = indexToUnmark < 0;
+        boolean isLargerThanTaskListSize = indexToUnmark > tasks.getSize();
+        if (isSmallerThanZero || isLargerThanTaskListSize) {
             throw new InvalidIndexException();
         }
+
         tasks.getTask(indexToUnmark).markAsUndone();
         storage.save(tasks.getTasks());
+        
         return String.format("OK, I've marked this task as not done yet:\n" +
                 "%s", tasks.getTask(indexToUnmark).toString());
     }

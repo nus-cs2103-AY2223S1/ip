@@ -76,11 +76,13 @@ public class TaskList {
      */
     public TaskList findTasks(String searchKeyword) {
         TaskList foundTasks = new TaskList(new ArrayList<Task>());
+
         for (Task task : tasks) {
             if (task.toString().contains(searchKeyword)) {
                 foundTasks.addToTaskList(task);
             }
         }
+
         return foundTasks;
     }
 
