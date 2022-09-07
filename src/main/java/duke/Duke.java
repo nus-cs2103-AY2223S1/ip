@@ -136,7 +136,7 @@ public class Duke {
         return ui.echoDelete(taskToDelete, tasks);
     }
 
-    public String find(String keyword) {
+    public String handleFind(String keyword) {
         ArrayList<Task> newList = tasks.filterToArrayList(keyword);
         storage.save(tasks);
         return ui.printFind(newList);

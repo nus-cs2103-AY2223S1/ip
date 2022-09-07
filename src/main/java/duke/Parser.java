@@ -1,6 +1,5 @@
 package duke;
 
-import java.util.Scanner;
 
 /**
  * Parser class that parses input string and dispatches relevant responses.
@@ -67,7 +66,7 @@ public class Parser {
             if (input.startsWith("find")) {
                 String[] parts = input.split(" ");
                 String keyword = parts[1];
-                return duke.find(keyword);
+                return duke.handleFind(keyword);
             }
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         } catch (DukeException e) {
