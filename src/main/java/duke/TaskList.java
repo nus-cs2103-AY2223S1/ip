@@ -30,6 +30,7 @@ public class TaskList {
      * @return A String that will be outputted to screen when added task to list.
      */
     String addToList(Task task) {
+        assert task != null;
         addTaskToList(task,this.list);
         return getOutputShownForAddTask(task, this.list);
     }
@@ -48,6 +49,7 @@ public class TaskList {
      * @param fullCommand Name of the task to be deleted from the list.
      * @return A string that would be outputted to the screen when deleting task.
      */
+
     String delete(String fullCommand) {
         Task taskToBeDeleted = deleteTaskFromList(this.list, fullCommand);
         return getOutputShownForDeleteTask(taskToBeDeleted,this.list);

@@ -9,16 +9,18 @@ public class DeadlineCommand extends TaskCommand {
     boolean isTaskEmpty(String fullCommand) {
         return fullCommand.length() == 8;
     }
-
+    
     @Override
     void handleEmptyTask(String fullCommand) throws DukeDeadlineEmptyException {
         if(isTaskEmpty(fullCommand)) {
             throw new DukeDeadlineEmptyException();
         }
+        assert fullCommand.length() > 8;
     }
 
     @Override
     String addTaskToList(String fullCommand,ArrayList<Task> listOfTasks) {
+       assert fullCommand.length() >= 8;
        int index = fullCommand.indexOf("/");
        String name = fullCommand.substring(9, index - 1);
        String dueDate = fullCommand.substring(index + 4);

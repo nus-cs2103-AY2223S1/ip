@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class EventCommand extends TaskCommand {
     @Override
     String addTaskToList(String fullCommand, ArrayList<Task> listOfTasks) {
+        assert fullCommand.length() >= 5; 
         int index = fullCommand.indexOf("/");
         String time = fullCommand.substring(index + 4);
         String name = fullCommand.substring(6, index - 1);
@@ -24,5 +25,6 @@ public class EventCommand extends TaskCommand {
         if (isTaskEmpty(fullCommand)) {
             throw new DukeEventEmptyException();
         }
+        assert fullCommand.length() > 5; 
     }
 }
