@@ -15,7 +15,7 @@ public class Todo extends Task {
     public Todo(String description, boolean isDone) throws DukeException {
         super(description, isDone);
         if (description.isBlank()) {
-            throw new DukeException("\t☹ OOPS!!! The description of a todo cannot be empty.");
+            throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
         }
     }
 
