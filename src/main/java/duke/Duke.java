@@ -1,21 +1,17 @@
 package duke;
 
 import java.io.FileNotFoundException;
-import java.util.List;
-import java.util.ArrayList;
 
-/**
- * Represents the outward class used by users to interact with Duke application.
- */
 public class Duke {
 
     private final Storage storage;
     private TaskList tasks;
     private final Ui ui;
 
-    public Duke(String filepath) {
+
+    public Duke() {
         ui = new Ui();
-        storage = new Storage(filepath);
+        storage = new Storage("data/tasks.txt");
         try {
             tasks = storage.load();
         } catch (FileNotFoundException err) {
@@ -24,25 +20,31 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
-    }
-
+    /*
     private void run() {
-        ui.intro();
-        //int id = 0;
+        ui.greet();
         boolean isBye = false;
         while (!isBye) {
             try {
                 String commandText = ui.readInput();
                 Command command = Parser.parse(commandText);
                 command.execute(tasks, ui, storage);
-                isBye = command.isBye();
+                isBye = command.isByeCommand();
             } catch (DukeException err) {
                 System.out.println(err);
-            } finally {
-                ui.lineBreak();
             }
+        }
+    }
+     */
+
+    protected String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            return command.execute(tasks, ui, storage);
+        } catch (DukeException err) {
+            return err.getMessage();
+        } catch (Exception ex) {
+            return "Invalid user input ~ hoot";
         }
     }
 }

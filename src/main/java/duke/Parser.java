@@ -6,6 +6,7 @@ import java.time.LocalDate;
  * Accepts String arguments to convert them to their corresponding class types for the operation of Duke
  */
 public class Parser {
+    private final static String EXIT = "bye";
 
     enum Keyword {
         bye, list, mark, unmark, todo, deadline, event, delete, find
@@ -13,6 +14,14 @@ public class Parser {
 
     enum TaskKeyword {
         todo, deadline, event
+    }
+
+    enum ModifyKeyword {
+        mark, unmark, delete
+    }
+
+    enum AccessKeyword {
+        find, list
     }
 
     /**
@@ -24,7 +33,7 @@ public class Parser {
     public static Command parse(String commandText) throws DukeException {
         String keyword = getCommandKey(commandText);
         String content = getCommandContent(commandText);
-        isValidKeyword(keyword);
+        validateKeyword(keyword);
         return new Command(keyword, content);
     }
 
@@ -42,6 +51,14 @@ public class Parser {
             return "";
         }
         return command.substring(index).trim();
+    }
+
+    /**
+     * Check whether a given Command instance is consists of the keyword bye (non case-sensitive).
+     * @return true if the command instance is a bye command, false otherwise.
+     */
+    protected static boolean isByeCommand(String command){
+        return command.substring(0, 3).equalsIgnoreCase(EXIT);
     }
 
     /**
@@ -71,7 +88,7 @@ public class Parser {
     }
 
     /**
-     * Perform a Boolean check on whether a given String is a valid Task command.
+     * Perform a Boolean check on whether a given String is a Task command.
      * @param keyword Keyword of a command.
      * @return true if given keyword is a Task keyword, else false.
      */
@@ -85,18 +102,46 @@ public class Parser {
     }
 
     /**
+     * Perform a Boolean check on whether a given String is a Modify command.
+     * @param keyword Keyword of a command.
+     * @return true if given keyword is a Modify keyword, else false.
+     */
+    protected static boolean isModifyKeyword(String keyword) {
+        for (ModifyKeyword mk : ModifyKeyword.values()) {
+            if (mk.name().equals(keyword)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Perform a Boolean check on whether a given String is a Modify command.
+     * @param keyword Keyword of a command.
+     * @return true if given keyword is a Modify keyword, else false.
+     */
+    protected static boolean isAccessKeyword(String keyword) {
+        for (AccessKeyword ak : AccessKeyword.values()) {
+            if (ak.name().equals(keyword)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Checks whether a given Task command is valid.
      * @param keyword String Description of Task keyword.
      * @param content String Description of Task content.
      * @throws DukeException if content of Task command is empty.
      */
-    protected static void isValidTaskCommand (String keyword, String content) throws DukeException {
+    protected static void validateTaskCommand (String keyword, String content) throws DukeException {
         if (content.isBlank()) {
             throw new DukeException(String.format("The description of a %s cannot be empty", keyword));
         }
     }
 
-    private static void isValidKeyword(String keyword) throws DukeException {
+    private static void validateKeyword(String keyword) throws DukeException {
         if (!isKeyword(keyword) || keyword.isBlank()) {
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }

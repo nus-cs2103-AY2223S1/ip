@@ -10,8 +10,8 @@ public class Ui {
     /**
      * Displays welcome message to users.
      */
-    protected void intro() {
-        System.out.println("Good Day!\nDate Format: YYYYMMDD");
+    protected void greet() {
+        System.out.println("Good Day! ~ Merlin at your service ~");
     }
 
     protected String readInput() {
@@ -23,25 +23,18 @@ public class Ui {
      * Displays to the user that there are no outstanding tasks.
      */
     protected void showLoadingError() {
-        System.out.println("No records detected, creating new file...");
-    }
-
-    /**
-     * Displays linebreak to users.
-     */
-    protected void lineBreak() {
-        System.out.println("^_^ -------------------------------------------- ^_^");
+        System.out.println("No previous records detected, creating new file...");
     }
 
     /**
      * Displays farewell message to users.
      */
-    protected void outro(){
-        System.out.println("Bye. Hope to see you again");
+    protected String outro() {
+        return "Have a nice day ~ Merlin out ~";
     }
 
-    protected void updateTask(Task updatedTask, String status) {
-        System.out.printf("Marked task as %s.\n%s\n", status, updatedTask);
+    protected String updateTask(Task updatedTask, String status) {
+        return String.format("Marked task as %s.\n%s\n", status, updatedTask);
     }
 
     /**
@@ -52,15 +45,11 @@ public class Ui {
         System.out.println(output);
     }
 
-    protected void addTaskConfirmation(Task task, int size) {
-        System.out.println("Got it. I've added this task:");
-        System.out.printf("\t%s\n", task);
-        System.out.printf("Now you have %d tasks in the list.\n", size);
+    protected String addTaskConfirmation(Task task, int size) {
+        return String.format("Got it. I've added this task:\t%s\nNow you have %d tasks in your list.", task, size);
     }
 
-    protected void deleteTaskConfirmation(Task task, int size) {
-        System.out.println("Noted. I've removed this task:");
-        System.out.printf("\t%s\n", task);
-        System.out.printf("Now you have %d tasks in the list.\n", size);
+    protected String deleteTaskConfirmation(Task task, int size) {
+        return String.format("Noted. I've removed this task:\t%s\nNow you have %d tasks in the list.\n", task, size);
     }
 }
