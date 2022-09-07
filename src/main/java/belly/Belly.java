@@ -53,11 +53,12 @@ public class Belly {
                 case "D":
                     taskDatetimeString = taskDetails[3];
                     task = new Deadline(taskIsDone, taskName,
-                            TaskDatetimeFormatter.stringToDatetime(taskDatetimeString));
+                            TaskDatetimeFormatter.convertStringToDatetime(taskDatetimeString));
                     break;
                 default:
                     taskDatetimeString = taskDetails[3];
-                    task = new Event(taskIsDone, taskName, TaskDatetimeFormatter.stringToDatetime(taskDatetimeString));
+                    task = new Event(taskIsDone, taskName,
+                            TaskDatetimeFormatter.convertStringToDatetime(taskDatetimeString));
                 }
 
                 taskList.add(task);

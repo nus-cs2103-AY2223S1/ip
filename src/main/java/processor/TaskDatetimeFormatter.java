@@ -21,7 +21,7 @@ public class TaskDatetimeFormatter {
      * @return {@link LocalDate}
      * @throws TobTobException If {@code datetimeString} doesn't follow the format.
      */
-    public static LocalDate stringToDatetime(String datetimeString) throws TobTobException {
+    public static LocalDate convertStringToDatetime(String datetimeString) throws TobTobException {
         try {
             return LocalDate.parse(datetimeString, formatter);
         } catch (DateTimeParseException e) {

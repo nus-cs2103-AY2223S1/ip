@@ -60,7 +60,7 @@ public class Executor {
         try {
             String result = "";
             int index = Integer.parseInt(commandDescription);
-            Task task = brain.get(index - 1);
+            Task task = brain.getTask(index - 1);
 
             result += "Yoohooo! Tob Tob has marked this task as done:\n";
             result += task.markAsDone();
@@ -69,7 +69,7 @@ public class Executor {
         } catch (NumberFormatException e) {
             throw TobTobException.integerIndexError("mark");
         } catch (IndexOutOfBoundsException e) {
-            throw TobTobException.indexOutOfBoundsError(brain.size());
+            throw TobTobException.indexOutOfBoundsError(brain.getSize());
         }
     }
 
@@ -89,7 +89,7 @@ public class Executor {
         try {
             String result = "";
             int index = Integer.parseInt(commandDescription);
-            Task task = brain.get(index - 1);
+            Task task = brain.getTask(index - 1);
 
             result += "Saddd! Tob Tob has marked this task as not done yet:\n";
             result += task.markAsUndone();
@@ -98,7 +98,7 @@ public class Executor {
         } catch (NumberFormatException e) {
             throw TobTobException.integerIndexError("unmark");
         } catch (IndexOutOfBoundsException e) {
-            throw TobTobException.indexOutOfBoundsError(brain.size());
+            throw TobTobException.indexOutOfBoundsError(brain.getSize());
         }
     }
 
@@ -111,7 +111,7 @@ public class Executor {
      * @return <code>String</code>
      * @throws TobTobException If {@code commandDescription} is an empty {@link String}/{@code commandDescription}
      *      for {@link Deadline} is not separated using " /by "/{@code commandDescription}
-     *      for {@link Deadline} is not separated using " /at "
+     *      for {@link Deadline} is not separated using " /at "/{@code taskType} is unrecognized
      */
     public String putInBrain(String taskType, String[] taskDescriptionDatetime, int separatorIndex)
             throws TobTobException {
@@ -132,7 +132,7 @@ public class Executor {
             task = new Todo(taskDescription);
 
             result += "Wiii! Now Tob Tob's brain has more stuffs\n";
-            result += brain.add(task);
+            result += brain.addTask(task);
             result += "\n\n";
             result += brain.show();
             belly.saveToHardDisk(brain.migrateBrainToTxt());
@@ -144,11 +144,28 @@ public class Executor {
                 throw TobTobException.taskIncorrectFormatError(separator, taskType);
             } else {
                 datetimeString = taskDescriptionDatetime[1];
-                datetime = TaskDatetimeFormatter.stringToDatetime(datetimeString);
+                datetime = TaskDatetimeFormatter.convertStringToDatetime(datetimeString);
                 task = new Deadline(taskDescription, datetime);
 
                 result += "Wiii! Now Tob Tob's brain has more stuffs\n";
-                result += brain.add(task);
+                result += brain.addTask(task);
+                result += "\n\n";
+                result += brain.show();
+                belly.saveToHardDisk(brain.migrateBrainToTxt());
+
+                return result;
+            }
+        case "event":
+            separator = " /at ";
+            if (separatorIndex == -1) {
+                throw TobTobException.taskIncorrectFormatError(separator, taskType);
+            } else {
+                datetimeString = taskDescriptionDatetime[1];
+                datetime = TaskDatetimeFormatter.convertStringToDatetime(datetimeString);
+                task = new Event(taskDescription, datetime);
+
+                result += "Wiii! Now Tob Tob's brain has more stuffs\n";
+                result += brain.addTask(task);
                 result += "\n\n";
                 result += brain.show();
                 belly.saveToHardDisk(brain.migrateBrainToTxt());
@@ -156,22 +173,7 @@ public class Executor {
                 return result;
             }
         default:
-            separator = " /at ";
-            if (separatorIndex == -1) {
-                throw TobTobException.taskIncorrectFormatError(separator, taskType);
-            } else {
-                datetimeString = taskDescriptionDatetime[1];
-                datetime = TaskDatetimeFormatter.stringToDatetime(datetimeString);
-                task = new Event(taskDescription, datetime);
-
-                result += "Wiii! Now Tob Tob's brain has more stuffs\n";
-                result += brain.add(task);
-                result += "\n\n";
-                result += brain.show();
-                belly.saveToHardDisk(brain.migrateBrainToTxt());
-
-                return result;
-            }
+            throw TobTobException.unrecognizedTaskType();
         }
     }
 
@@ -193,7 +195,7 @@ public class Executor {
             int index = Integer.parseInt(commandDescription);
 
             result += "Ewww! This task is no longer in Tob Tob's Brain:\n";
-            result += brain.remove(index - 1);
+            result += brain.removeTask(index - 1);
             result += "\n";
             result += brain.show();
             belly.saveToHardDisk(brain.migrateBrainToTxt());
@@ -202,7 +204,7 @@ public class Executor {
         } catch (NumberFormatException e) {
             throw TobTobException.integerIndexError("delete");
         } catch (IndexOutOfBoundsException e) {
-            throw TobTobException.indexOutOfBoundsError(brain.size());
+            throw TobTobException.indexOutOfBoundsError(brain.getSize());
         }
     }
 
