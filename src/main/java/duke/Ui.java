@@ -144,6 +144,7 @@ public class Ui extends Application {
      */
     public String taskListSizeMessage() {
         int currSize = this.taskList.getSize();
+        assert currSize >= 0;
         if (currSize == 1) {
             return "There is " + currSize + " task in your list.";
         } else {
@@ -173,10 +174,10 @@ public class Ui extends Application {
      */
     @FXML
     private void handleUserInput() {
+        assert userInput != null;
         String command = userInput.getText();
         dialogContainer.getChildren().add(DialogBox.getUserDialog(command, userImage));
         String[] commandArgs = command.split(" ", 2);
-        String response = "lol";
         try {
             Command commandToExecute = Parser.parseCommand(commandArgs);
             this.executeCommand(commandToExecute);

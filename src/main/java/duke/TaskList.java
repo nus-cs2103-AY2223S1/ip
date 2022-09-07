@@ -18,7 +18,9 @@ public class TaskList {
      * @return Number of tasks in the array
      */
     public int getSize() {
-        return this.addedTasks.size();
+        int sizeOfTaskList = this.addedTasks.size();
+        assert sizeOfTaskList >= 0;
+        return sizeOfTaskList;
     }
 
     /**
@@ -37,6 +39,8 @@ public class TaskList {
      * @param task The task to be added.
      */
     public void addTask(Task task) {
+        assert task != null;
+        assert addedTasks != null;
         this.addedTasks.add(task);
         Storage.saveToDirectory(this.addedTasks);
     }

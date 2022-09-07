@@ -20,6 +20,7 @@ public class Parser {
      */
     public static LocalDateTime parseDateTime(String dateTime) throws IllegalDateTimeException {
         // abide by format dd-MM-yyyy-HH-mm (e.g. 23-04-2000-23-04)
+        assert dateTime != null;
         String[] dateTimeData = dateTime.split("-");
         if (dateTimeData.length != 5) {
             throw new IllegalDateTimeException(dateTime);
