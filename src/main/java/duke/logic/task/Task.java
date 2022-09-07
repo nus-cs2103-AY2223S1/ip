@@ -100,6 +100,35 @@ public class Task {
     }
 
     /**
+     * Delete a task
+     *
+     * @param userInput text the user typed
+     * @param workList
+     */
+    public static String delete(ArrayList<Task> workList, String userInput) {
+        try {
+        userInput.substring(8);
+        int index = Integer.parseInt(userInput.split(" ")[1]);
+        Task task = workList.get(index - 1);
+        workList.remove(task);
+        DukeEncoder.rewriteList(workList);
+        // Update data
+        return (Constants.ARROW + "Deleted task: " + task.toString()) + "\n"
+                + Task.updateNumOfTask(workList);
+    } catch (StringIndexOutOfBoundsException e) {
+        return new DukeException.EmptyDeleteException().throwDukeException();
+
+    } catch (NumberFormatException e) {
+        return new DukeException.EmptyDeleteException().throwDukeException();
+
+    } catch (IndexOutOfBoundsException e) {
+        return new DukeException.EmptyDeleteException().throwDukeException();
+
+    }
+    }
+
+
+    /**
      * Updates number of task in the list
      * @return String
      */

@@ -5,7 +5,6 @@ import duke.exception.DukeException;
 import duke.logic.task.Deadline;
 import duke.logic.task.Event;
 import duke.logic.task.Task;
-import duke.logic.task.TaskOperation;
 import duke.logic.task.ToDo;
 import duke.ui.Constants;
 
@@ -37,20 +36,7 @@ public class ProcessUserInput {
         case Constants.EVENT:
             return Event.add(workList, userInput);
         case Constants.DELETE:
-            try {
-                userInput.substring(8);
-                index = Integer.parseInt(userInput.split(" ")[1]);
-                return TaskOperation.delete(workList.get(index - 1), workList);
-            } catch (StringIndexOutOfBoundsException e) {
-                return new DukeException.EmptyDeleteException().throwDukeException();
-
-            } catch (NumberFormatException e) {
-                return new DukeException.EmptyDeleteException().throwDukeException();
-
-            } catch (IndexOutOfBoundsException e) {
-                return new DukeException.EmptyDeleteException().throwDukeException();
-
-            }
+            return Task.delete(workList, userInput);
         case Constants.FIND:
             System.out.println(Constants.FIND_MESSAGE);
             String keyword = userInput.substring(5);
