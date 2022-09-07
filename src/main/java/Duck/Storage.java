@@ -28,6 +28,7 @@ public class Storage {
             duckTxt.getParentFile().mkdirs();
             duckTxt.createNewFile();
         }
+        assert duckTxt.exists() : "Path should exist by this point";
         this.duckTxt = duckTxt;
     }
     public List<Todo> readFromFile() {
@@ -76,6 +77,4 @@ public class Storage {
         }
 
     }
-
-
 }
