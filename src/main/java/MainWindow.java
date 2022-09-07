@@ -1,3 +1,4 @@
+import java.util.Random;
 
 import duke.Duke;
 import javafx.fxml.FXML;
@@ -11,6 +12,8 @@ import javafx.scene.layout.VBox;
  * Controller for MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
+    @FXML
+    private Random random = new Random();
     @FXML
     private ScrollPane scrollPane;
     @FXML
