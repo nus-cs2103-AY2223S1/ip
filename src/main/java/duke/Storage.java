@@ -48,6 +48,9 @@ public class Storage {
      */
     public TaskList load() throws DukeException, FileNotFoundException {
         ArrayList<Task> taskArr = new ArrayList<>();
+        int tdCount = 0;
+        int dCount = 0;
+        int eCount = 0;
         File file = new File(this.filePath);
         try {
             if (!file.exists()) {
@@ -67,23 +70,27 @@ public class Storage {
             while (sc.hasNextLine()) {
                 String[] strArr = sc.nextLine().split("\\|");
                 if (strArr[0].contains("T")) {
+                    tdCount++;
                     taskArr.add(new ToDos(strArr[2]));
                 }
                 if (strArr[0].contains("E")) {
                     String str = strArr[3];
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern(" dd MMM yyyy HH:mm");
                     LocalDateTime ldt = LocalDateTime.parse(str, formatter);
+                    eCount++;
                     taskArr.add(new Events(strArr[2], ldt));
                 }
                 if (strArr[0].contains("D")) {
                     String str = strArr[3];
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern(" dd MMM yyyy HH:mm");
                     LocalDateTime ldt = LocalDateTime.parse(str, formatter);
+                    dCount++;
                     taskArr.add(new Deadlines(strArr[2], ldt));
                 }
             }
             sc.close();
-            return new TaskList(taskArr);
+            //return new TaskList(taskArr);
+            return new TaskList(taskArr, tdCount, dCount, eCount);
         } catch (FileNotFoundException fe) {
             throw new FileNotFoundException("Oops! No file is found.");
         }

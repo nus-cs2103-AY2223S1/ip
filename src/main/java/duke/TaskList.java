@@ -8,13 +8,23 @@ import java.util.ArrayList;
 public class TaskList {
 
     private ArrayList<Task> tasks;
+    private int todoCount = 0;
+    private int deadlineCount = 0;
+    private int eventCount = 0;
 
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
-    public TaskList(ArrayList<Task> tasks) {
+    /**public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
+    }*/
+
+    public TaskList(ArrayList<Task> tasks, int tdCount, int deadlineCount, int eventCount) {
+        this.todoCount = tdCount;
+        this.tasks = tasks;
+        this.deadlineCount = deadlineCount;
+        this.eventCount = eventCount;
     }
 
     /**
@@ -60,15 +70,6 @@ public class TaskList {
     }
 
     /**
-     * Gets task list.
-     *
-     * @return List of task.
-     */
-    public ArrayList<Task> getListOfTasks() {
-        return tasks;
-    }
-
-    /**
      * Gets a specific task.
      *
      * @param index index of task to get.
@@ -85,5 +86,53 @@ public class TaskList {
      */
     public int getSize() {
         return tasks.size();
+    }
+
+    /**
+     * Increases count of todos.
+     */
+    public void increaseTodoCount() {
+        this.todoCount++;
+    }
+
+    /**
+     * Gets number of todos.
+     *
+     * @return Number of todos.
+     */
+    public int getTodoCount() {
+        return this.todoCount;
+    }
+
+    /**
+     * Increases count of deadlines.
+     */
+    public void increaseDeadlineCount() {
+        this.deadlineCount++;
+    }
+
+    /**
+     * Gets number of deadlines.
+     *
+     * @return Number of deadlines.
+     */
+    public int getDeadlineCount() {
+        return this.deadlineCount;
+    }
+
+    /**
+     * Increases count of events.
+     */
+    public void increaseEventCount() {
+        this.eventCount++;
+    }
+
+    /**
+     * Gets number of events.
+     *
+     * @return Number of events.
+     */
+    public int getEventCount() {
+        return this.eventCount;
     }
 }
