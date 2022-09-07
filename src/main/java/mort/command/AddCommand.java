@@ -18,57 +18,75 @@ public class AddCommand extends Command {
     /** Type of task to be added */
     private TaskType taskType;
     /** Description of the task */
-    private String desc;
+    private String description;
     /** Date of the task */
-    private String dateStr;
+    private String dateString;
 
     /**
      * Constructor to initialise the add command with the task type and description.
      * @param taskType The task type.
-     * @param desc The task description.
+     * @param description The task description.
      */
-    public AddCommand(TaskType taskType, String desc) {
+    public AddCommand(TaskType taskType, String description) {
         this.taskType = taskType;
-        this.desc = desc;
+        this.description = description;
     }
 
     /**
      * Constructor to initialise the add command with the task type, description and date.
      * @param taskType The task type.
-     * @param desc The task description.
-     * @param dateStr The task date.
+     * @param description The task description.
+     * @param dateString The task date.
      */
-    public AddCommand(TaskType taskType, String desc, String dateStr) {
+    public AddCommand(TaskType taskType, String description, String dateString) {
         this.taskType = taskType;
-        this.desc = desc;
-        this.dateStr = dateStr;
+        this.description = description;
+        this.dateString = dateString;
     }
+    
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MortException {
-        Task task = null;
-        switch (this.taskType) {
-        case TODO:
-            task = new ToDo(desc);
-            break;
-        case DEADLINE:
-            if (this.dateStr.contains(" ")) {
-                task = new Deadline(this.desc, Parser.convertStringToDateTime(this.dateStr));
-            } else {
-                task = new Deadline(this.desc, Parser.convertStringToDate(this.dateStr));
-            }
-            break;
-        case EVENT:
-            if (this.dateStr.contains(" ")) {
-                task = new Event(this.desc, Parser.convertStringToDateTime(this.dateStr));
-            } else {
-                task = new Event(this.desc, Parser.convertStringToDate(this.dateStr));
-            }
-            break;
-        }
+        Task task = createTask();
         tasks.addTask(task);
         storage.save(tasks);
         return ui.getAddMessage(task, tasks.getSize());
     }
+    
+    private Task createTask() throws MortException {
+        Task task = null;
+        switch (this.taskType) {
+        case TODO:
+            task = new ToDo(description);
+            break;
+        case DEADLINE:
+            task = createDeadline();
+            break;
+        case EVENT:
+            task = createEvent();
+            break;
+        }
+        
+        return task;
+    }
+    
+    private Deadline createDeadline() throws MortException {
+        boolean hasTime = dateString.contains(" ");
+        if (hasTime) {
+            return new Deadline(this.description, Parser.convertStringToDateTime(this.dateString));
+        } else {
+            return new Deadline(this.description, Parser.convertStringToDate(this.dateString));
+        }
+    }
+    
+    private Event createEvent() throws MortException {
+        boolean hasTime = dateString.contains(" ");
+        if (hasTime) {
+            return new Event(this.description, Parser.convertStringToDateTime(this.dateString));
+        } else {
+            return new Event(this.description, Parser.convertStringToDate(this.dateString));
+        }
+    }
+    
     @Override
     public boolean isExit() {
         return false;

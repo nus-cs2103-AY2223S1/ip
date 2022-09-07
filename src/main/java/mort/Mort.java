@@ -39,8 +39,7 @@ public class Mort {
     public String getResponse(String input) {
         StringBuilder response = new StringBuilder();
         try {
-            String fullCommand = input;
-            Command c = Parser.parse(fullCommand);
+            Command c = Parser.parse(input);
             response.append(c.execute(tasks, ui, storage));
         } catch (MortException e) {
             response.append(ui.getError(e.getMessage()));

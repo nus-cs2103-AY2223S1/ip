@@ -42,8 +42,6 @@ public abstract class Task {
      * Marks the task as complete.
      */
     public String mark() {
-        // change to return a boolean if status has changed
-        // move response to Ui class as showMarkResponse method
         StringBuilder sb = new StringBuilder();
         if (this.isDone) {
             sb.append("You can't finish the same task twice, genius.\n");
@@ -58,8 +56,6 @@ public abstract class Task {
      * Marks the task as incomplete.
      */
     public String unmark() {
-        // change to return a boolean if status has changed
-        // move response to Ui class as showUnmarkResponse method
         StringBuilder sb = new StringBuilder();
         if (!this.isDone) {
             sb.append("You're trying to unmark a task you haven't done.\n"
