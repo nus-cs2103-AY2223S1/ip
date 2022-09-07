@@ -27,10 +27,10 @@ public class DeadlineCommand extends Command {
      */
     @Override
     public String run() throws DukeException {
-        String[] splitMessage = this.content.split(" /by ", 2);
+        String[] splitMessage = content.split(" /by ", 2);
         if (splitMessage.length < 2) {
-            throw new DukeException("You forgot to add the deadline!");
+            throw new DukeException("You forgot to add the deadline or description!");
         }
-        return this.tasks.addTask(new Deadline(splitMessage[0], splitMessage[1]));
+        return tasks.addTask(new Deadline(splitMessage[0], splitMessage[1]));
     }
 }

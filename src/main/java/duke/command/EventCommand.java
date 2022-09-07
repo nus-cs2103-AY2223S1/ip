@@ -27,10 +27,10 @@ public class EventCommand extends Command {
      */
     @Override
     public String run() throws DukeException {
-        String[] splitMessage = this.content.split(" /at ", 2);
+        String[] splitMessage = content.split(" /at ", 2);
         if (splitMessage.length < 2) {
-            throw new DukeException("You forgot to add the time!");
+            throw new DukeException("You forgot to add the time or description!");
         }
-        return this.tasks.addTask(new Event(splitMessage[0], splitMessage[1]));
+        return tasks.addTask(new Event(splitMessage[0], splitMessage[1]));
     }
 }

@@ -23,7 +23,7 @@ public abstract class Task {
     public Task(String description) {
         assert description != null : "Task should contain a description";
         this.description = description;
-        this.isDone = false;
+        isDone = false;
     }
 
     /**
@@ -51,7 +51,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return this.getStatusIcon() + " " + this.description;
+        return getStatusIcon() + " " + description;
     }
 
     /**
@@ -60,7 +60,7 @@ public abstract class Task {
      * @return String representation of the Task for storage.
      */
     public String toStorage() {
-        return SEPARATOR + this.getStorageStatusIcon() + SEPARATOR + this.description;
+        return SEPARATOR + getStorageStatusIcon() + SEPARATOR + description;
     }
 
     /**
@@ -69,8 +69,8 @@ public abstract class Task {
      * @return String representation of the Task.
      */
     public String markAsDone() {
-        this.isDone = true;
-        return this.toString();
+        isDone = true;
+        return toString();
     }
 
     /**
@@ -79,8 +79,8 @@ public abstract class Task {
      * @return String representation of the Task.
      */
     public String markAsUndone() {
-        this.isDone = false;
-        return this.toString();
+        isDone = false;
+        return toString();
     }
 
     /**
@@ -90,7 +90,7 @@ public abstract class Task {
      * @return true if it contains the given keyword, false otherwise.
      */
     public boolean contains(String content) {
-        return this.description.contains(content);
+        return description.contains(content);
     }
 
     /**

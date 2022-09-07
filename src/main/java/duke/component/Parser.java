@@ -30,6 +30,7 @@ public class Parser {
         assert tasks != null : "Task list should not be null";
         String[] splitMessage = message.split("\\s+", 2);
         CommandType commandType = CommandType.parse(splitMessage[0]);
+
         switch (commandType) {
         case BYE:
             return new EndCommand();

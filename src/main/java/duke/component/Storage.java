@@ -24,11 +24,12 @@ public class Storage {
      * @throws DukeException If an error occurs when making directories or creating file.
      */
     public Storage(Path path) throws DukeException {
-        this.file = path.toFile();
-        if (!this.file.exists()) {
+        file = path.toFile();
+
+        if (!file.exists()) {
             try {
-                this.file.getParentFile().mkdirs();
-                this.file.createNewFile();
+                file.getParentFile().mkdirs();
+                file.createNewFile();
             } catch (SecurityException e) {
                 throw new DukeException("Unable to make directory!");
             } catch (IOException e) {
@@ -45,7 +46,7 @@ public class Storage {
      */
     public TaskList load() throws DukeException {
         try {
-            Scanner sc = new Scanner(this.file);
+            Scanner sc = new Scanner(file);
             TaskList tasks = new TaskList();
             while (sc.hasNextLine()) {
                 Task task = Task.fromStorage(sc.nextLine());
@@ -68,7 +69,7 @@ public class Storage {
      */
     public void save(TaskList tasks) throws DukeException {
         try {
-            FileWriter fileWriter = new FileWriter(this.file);
+            FileWriter fileWriter = new FileWriter(file);
             fileWriter.write(tasks.toStorage());
             fileWriter.close();
         } catch (FileNotFoundException e) {

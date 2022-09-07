@@ -38,7 +38,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[" + EVENT_REP + "]" + super.toString()
-                + " (at: " + this.time.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
+                + " (at: " + time.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
     /**
@@ -48,6 +48,6 @@ public class Event extends Task {
      */
     @Override
     public String toStorage() {
-        return EVENT_REP + super.toStorage() + Task.SEPARATOR + this.time;
+        return EVENT_REP + super.toStorage() + Task.SEPARATOR + time;
     }
 }

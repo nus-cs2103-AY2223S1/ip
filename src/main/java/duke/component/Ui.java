@@ -22,7 +22,7 @@ public class Ui {
      * Welcomes the user.
      */
     public void welcome() {
-        this.printMessage(MSG_START);
+        printMessage(MSG_START);
     }
 
 }
