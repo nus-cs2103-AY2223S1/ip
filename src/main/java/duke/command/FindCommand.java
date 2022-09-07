@@ -41,7 +41,7 @@ public class FindCommand extends Command {
         String keyword = this.inputArray[1];
         assert this.tasksList != null : "The taskslist should not be null";
         List<Task> matchingTasks = this.tasksList.findMatchingTasks(keyword.split(" "));
-        assert matchingTasks != null: "The matchingTasks should not be null";
+        assert matchingTasks != null : "The matchingTasks should not be null";
         int size = matchingTasks.size();
 
         if (size == 0) {
