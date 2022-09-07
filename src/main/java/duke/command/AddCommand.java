@@ -15,10 +15,10 @@ import duke.ui.Ui;
  */
 public class AddCommand extends Command {
     /** The name of the command (e.g. todo, deadline, event). */
-    private final String command;
+    private static String command;
 
     /** The arguments of the command (e.g. 'sleep /at 2020-12-12'). */
-    private final String arguments;
+    private static String arguments;
 
     /**
      * Constructor of AddCommand.
@@ -27,8 +27,8 @@ public class AddCommand extends Command {
      * @param arguments The arguments of the command (e.g. 'sleep /at 2020-12-12').
      */
     public AddCommand(String command, String arguments) {
-        this.command = command;
-        this.arguments = arguments;
+        AddCommand.command = command;
+        AddCommand.arguments = arguments;
     }
 
     /**
@@ -41,17 +41,17 @@ public class AddCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        switch (this.command) {
+        switch (AddCommand.command) {
         case "todo":
-            ToDo newToDo = tasks.addToDo(this.arguments);
+            ToDo newToDo = tasks.addToDo(AddCommand.arguments);
 
             return ui.getTaskAddedMsg(tasks.getTaskLen(), newToDo);
         case "deadline":
-            Deadline newDeadline = tasks.addDeadline(this.arguments);
+            Deadline newDeadline = tasks.addDeadline(AddCommand.arguments);
 
             return ui.getTaskAddedMsg(tasks.getTaskLen(), newDeadline);
         case "event":
-            Event newEvent = tasks.addEvent(this.arguments);
+            Event newEvent = tasks.addEvent(AddCommand.arguments);
 
             return ui.getTaskAddedMsg(tasks.getTaskLen(), newEvent);
         default:

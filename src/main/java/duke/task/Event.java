@@ -11,7 +11,7 @@ import java.time.format.DateTimeParseException;
  */
 public class Event extends Task {
     /** The date and time of the event. */
-    protected LocalDate date;
+    private LocalDate date;
 
     /**
      * Constructor of Event.
