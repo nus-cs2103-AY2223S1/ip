@@ -3,6 +3,9 @@ package commands;
 import byu.TaskList;
 import byu.Ui;
 
+/**
+ * Represents a command to find tasks containing a given string.
+ */
 public class FindCommand extends Command {
 
     private String substring;

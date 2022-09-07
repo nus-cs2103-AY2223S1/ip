@@ -10,7 +10,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
 
-    private static final char SYMBOL = 'D';
+    public static final String SYMBOL = "D";
+    private static final String FORMAT = "[D]%s (by: %s)";
     private LocalDateTime deadline;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy h:mma");
 
@@ -27,6 +28,6 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), this.deadline.format(formatter));
+        return String.format(Deadline.FORMAT, super.toString(), this.deadline.format(formatter));
     }
 }
