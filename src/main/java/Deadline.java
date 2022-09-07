@@ -1,14 +1,15 @@
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task{
-    private LocalDate by;
+    private LocalDateTime by;
     public Deadline(String input) throws DateTimeParseException {
         String[] strArr = input.split("/by");
         this.description = strArr[0].trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         try {
-            this.by = LocalDate.parse(strArr[1].trim());
+            this.by = LocalDateTime.parse(strArr[1].trim(), formatter);
         } catch (DateTimeParseException e) {
             System.out.println("Wrong date format");
             throw e;
@@ -22,7 +23,7 @@ public class Deadline extends Task{
 
     @Override
     public String toString() {
-        String date = this.by.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
+        String date = this.by.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));
         String head = "[D][" + this.getStatusIcon() + "] ";
         String body = this.description + " (by: " + date + ")";
         return head + body;
