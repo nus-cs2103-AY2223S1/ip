@@ -45,10 +45,13 @@ public class Storage {
             File fileDirectory = new File("./data");
             if (!fileDirectory.exists()) {
                 fileDirectory.mkdir();
+                assert fileDirectory.exists(); // Assuming that the directory is created
                 fileToLoad.createNewFile();
+                assert fileToLoad.exists(); // Assuming that the file is created
                 System.out.println("Creating new directory data and new file tasks.txt");
             } else {
                 fileToLoad.createNewFile();
+                assert fileToLoad.exists(); // Assuming that the file is created
                 System.out.println("Creating new file tasks.txt");
             }
         }

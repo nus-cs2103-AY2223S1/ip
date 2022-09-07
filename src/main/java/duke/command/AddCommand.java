@@ -54,6 +54,7 @@ public class AddCommand extends Command {
             String[] infoArray = this.taskDetails.split(" /by ", 2);
             tasks.add(new Deadline(infoArray[0], formatDate(infoArray[1]), false));
         } else {
+            assert this.taskType == 2; // Assumption made that the remaining tasks will be of type 2 --> Event
             String[] infoArray = this.taskDetails.split(" /at ", 2);
             tasks.add(new Event(infoArray[0], formatDate(infoArray[1]), false));
         }

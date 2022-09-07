@@ -12,7 +12,7 @@ import duke.util.Ui;
 public class ListCommand extends Command {
 
     /**
-     * Executes the ListCommand by iterating through the TaskList and printing out each task in a single line,
+     * Executes the ListCommand and printing out each task in a single line,
      * consisting of the task type (T, D, E), task status (completed tasks are marked with X) and
      * task description.
      *
@@ -23,14 +23,8 @@ public class ListCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        StringBuilder respondMessage = new StringBuilder(this.toString());
-        for (int i = 0; i < tasks.size(); i++) {
-            respondMessage.append("\n")
-                    .append(i + 1)
-                    .append(". ")
-                    .append(tasks.getTask(i).toString());
-        }
-        return respondMessage.append("\n________________________________________").toString();
+        return this + tasks.compileAllTasks()
+                + "\n________________________________________";
     }
 
     /**

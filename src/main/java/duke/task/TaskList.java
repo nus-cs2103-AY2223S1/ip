@@ -95,4 +95,22 @@ public class TaskList {
         }
         return tasksWithKeyWord.toString();
     }
+
+    /**
+     * Compiles all the tasks into a String format where each task
+     * takes up a single line.
+     *
+     * @return String representation of the compiled tasks
+     */
+    public String compileAllTasks() {
+        StringBuilder compiledTasks = new StringBuilder();
+        for (int i = 0; i < this.size(); i++) {
+            String taskInfo = this.getTask(i).toString();
+            compiledTasks.append("\n")
+                    .append(i + 1)
+                    .append(". ")
+                    .append(taskInfo);
+        }
+        return compiledTasks.toString();
+    }
 }
