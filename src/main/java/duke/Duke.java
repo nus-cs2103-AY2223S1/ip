@@ -17,6 +17,7 @@ public class Duke {
     private Storage storage;
     private Parser parser;
     private boolean isExit;
+    private final String lineSep = System.lineSeparator();
 
     /**
      * Initializes necessary components of the chatbot
@@ -64,11 +65,8 @@ public class Duke {
     }
 
     private String handleBye() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(ResponseMessages.ENDING);
         isExit = true;
-        return sb.toString();
-        // Not necessary to save to storage here as saving is done for every TaskList modification.
+        return ResponseMessages.ENDING;
     }
 
     private String handleList() {
@@ -78,39 +76,51 @@ public class Duke {
             sb.append(i + 1);
             sb.append(".");
             sb.append(taskList.get(i).toString());
-            sb.append("\n");
+            sb.append(lineSep);
         }
         return sb.toString();
     }
 
     private String handleRemove(String[] inputArgs) throws DukeException {
         int index = parser.parseIndex(inputArgs);
-        taskList.remove(Integer.parseInt(inputArgs[1]) - 1);
         StringBuilder sb = new StringBuilder();
-        sb.append(ResponseMessages.TASK_REMOVED);
-        sb.append(taskList.get(index).toString());
-        sb.append(String.format(ResponseMessages.TASK_COUNT, taskList.getSize()));
-        sb.append("\n");
+        try {
+            taskList.remove(Integer.parseInt(inputArgs[1]) - 1);
+            sb.append(ResponseMessages.TASK_REMOVED);
+            sb.append(taskList.get(index).toString());
+            sb.append(String.format(ResponseMessages.TASK_COUNT, taskList.getSize()));
+            sb.append(lineSep);
+        } catch (IndexOutOfBoundsException e) {
+            sb.append(String.format(ExceptionMessages.OUT_OF_BOUNDS, "remove", index, taskList.getSize()));
+        }
         return sb.toString();
     }
 
     private String handleMark(String[] inputArgs) throws DukeException {
         int index = parser.parseIndex(inputArgs);
-        taskList.mark(index);
         StringBuilder sb = new StringBuilder();
-        sb.append(ResponseMessages.TASK_MARKED);
-        sb.append(taskList.get(index).toString());
-        sb.append("\n");
+        try {
+            taskList.mark(index);
+            sb.append(ResponseMessages.TASK_MARKED);
+            sb.append(taskList.get(index).toString());
+            sb.append(lineSep);
+        } catch (IndexOutOfBoundsException e) {
+            sb.append(String.format(ExceptionMessages.OUT_OF_BOUNDS, "mark", index, taskList.getSize()));
+        }
         return sb.toString();
     }
 
     private String handleUnmark(String[] inputArgs) throws DukeException {
         int index = parser.parseIndex(inputArgs);
-        taskList.unmark(index);
         StringBuilder sb = new StringBuilder();
-        sb.append(ResponseMessages.TASK_UNMARKED);
-        sb.append(taskList.get(index).toString());
-        sb.append("\n");
+        try {
+            taskList.unmark(index);
+            sb.append(ResponseMessages.TASK_UNMARKED);
+            sb.append(taskList.get(index).toString());
+            sb.append(lineSep);
+        } catch (IndexOutOfBoundsException e) {
+            sb.append(String.format(ExceptionMessages.OUT_OF_BOUNDS, "unmark", index, taskList.getSize()));
+        }
         return sb.toString();
     }
 
@@ -121,7 +131,7 @@ public class Duke {
         sb.append(ResponseMessages.TASK_ADDED);
         sb.append(taskList.get(taskList.getSize() - 1).toString());
         sb.append(String.format(ResponseMessages.TASK_COUNT, taskList.getSize()));
-        sb.append("\n");
+        sb.append(lineSep);
         return sb.toString();
     }
 
@@ -132,7 +142,7 @@ public class Duke {
         sb.append(ResponseMessages.TASK_ADDED);
         sb.append(taskList.get(taskList.getSize() - 1).toString());
         sb.append(String.format(ResponseMessages.TASK_COUNT, taskList.getSize()));
-        sb.append("\n");
+        sb.append(lineSep);
         return sb.toString();
     }
 
@@ -143,7 +153,7 @@ public class Duke {
         sb.append(ResponseMessages.TASK_ADDED);
         sb.append(taskList.get(taskList.getSize() - 1).toString());
         sb.append(String.format(ResponseMessages.TASK_COUNT, taskList.getSize()));
-        sb.append("\n");
+        sb.append(lineSep);
         return sb.toString();
     }
 
@@ -159,7 +169,7 @@ public class Duke {
         for (int i = 0; i < taskList.getSize(); i++) {
             if (taskList.get(i).getDescription().contains(key)) {
                 sb.append(taskList.get(i).toString());
-                sb.append("\n");
+                sb.append(lineSep);
             }
         }
         return sb.toString();
