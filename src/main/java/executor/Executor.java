@@ -38,13 +38,7 @@ public class Executor {
         } else {
             task = new Todo(name);
         }
-        this.taskList.addTask(task);
-        int size = taskList.getSize();
-        String header = "NICE! We got a new task to complete:";
-        String line = String.format("  %s", task);
-        String footer = String.format("Now we have %s task%s in the list, %s marked and %s unmarked",
-                size, size > 0 ? "s" : "", taskList.getSizeMarked(), taskList.getSizeUnmarked());
-        return String.join("\n", header, line, footer);
+        return this.addNewTask(task);
     }
 
     /**
@@ -76,6 +70,16 @@ public class Executor {
         default:
             return "";
         }
+        return this.addNewTask(task);
+    }
+
+    /**
+     * Adds a new {@link Task} object into the task list.
+     *
+     * @param task Task to be added.
+     * @return Response of the program.
+     */
+    public String addNewTask(Task task) {
         this.taskList.addTask(task);
         int size = taskList.getSize();
         String header = "NICE! We got a new task to complete:";
