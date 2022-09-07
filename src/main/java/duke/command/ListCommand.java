@@ -15,6 +15,7 @@ public class ListCommand extends Command {
         String output = "Here are the tasks you currently have: \n";
         int qty = 0;
         while (iterate.hasNext()) {
+            assert qty >= 0 : "qty cannot be less than zero";
             qty++;
             output += qty + "." + iterate.next().toString() + "\n";
         }

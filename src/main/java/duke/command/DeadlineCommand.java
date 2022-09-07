@@ -19,6 +19,8 @@ public class DeadlineCommand extends Command {
         int slash = desc.lastIndexOf("/");
         this.by = desc.substring(slash + 4);
         this.desc = desc.substring(0, slash - 1);
+        assert !this.desc.isEmpty() : "task description cannot be empty";
+        assert !this.by.isEmpty() : "deadline cannot be empty";
     }
 
     @Override
