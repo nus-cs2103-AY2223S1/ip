@@ -146,6 +146,8 @@ public class Parser {
             } else if (deadline == "") {
                 throw new InvalidArgumentException();
             } else {
+                assert title != "";
+                assert deadline != "";
                 LocalDate ld = this.validateDateTime(deadline);
                 String output = this.taskList.addTask(new Deadline(title, false, ld));
                 this.storage.save(this.taskList);
@@ -175,6 +177,8 @@ public class Parser {
             } else if (time == "") {
                 throw new InvalidArgumentException();
             } else {
+                assert title != "";
+                assert time != "";
                 String output = this.taskList.addTask(new Event(title, false, time));
                 this.storage.save(this.taskList);
 
@@ -212,6 +216,7 @@ public class Parser {
             throw new InvalidArgumentException();
         } else {
             String keyword = String.join(" ", commandArgs);
+            assert keyword != "";
             return this.taskList.listTasks(keyword);
         }
     }
