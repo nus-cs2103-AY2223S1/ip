@@ -16,14 +16,14 @@ public class Ui {
     /**
      * Defines the array list that is associated with the program run.
      */
-    private ArrayList<Task> tl;
+    private ArrayList<Task> taskArrayList;
 
     /**
      * Constructs the instance of Ui to be used for the run of the program.
-     * @param tl the array list to be associated with the program run.
+     * @param taskArrayList the array list to be associated with the program run.
      */
-    public Ui(ArrayList<Task> tl) {
-        this.tl = tl;
+    public Ui(ArrayList<Task> taskArrayList) {
+        this.taskArrayList = taskArrayList;
     }
 
     /**
@@ -44,7 +44,7 @@ public class Ui {
      */
     public String bye() {
         try {
-            Storage.save(this.tl);
+            Storage.save(this.taskArrayList);
         } catch (IOException ioe) {
             return "Failed to save";
         }
@@ -66,7 +66,7 @@ public class Ui {
      */
     public String added(Task t) {
         String response = "Got it. I've added this task: \n" + t.toString()
-            + "\n\tNow you have " + this.tl.size() + " task(s) in the list.";
+            + "\n\tNow you have " + this.taskArrayList.size() + " task(s) in the list.";
         return response;
     }
     /**
@@ -92,12 +92,12 @@ public class Ui {
     /**
      * Shows the success of removing the task from the task list.
      * @param t the task that the user has told Duke to remove.
-     * @param tl the task list associated that is to show the
+     * @param taskArrayList the task list associated that is to show the
      *           number of tasks left in the list.
      */
-    public String removed(Task t, ArrayList<Task> tl) {
+    public String removed(Task t, ArrayList<Task> taskArrayList) {
         String response = ("\tNoted. I've removed this task:")
-                    + "\t\t" + t.toString() + ("\tNow you have " + tl.size() + " task(s) in the list.");
+                    + "\t\t" + t.toString() + ("\tNow you have " + taskArrayList.size() + " task(s) in the list.");
         return response;
     }
 
@@ -113,7 +113,6 @@ public class Ui {
 
     /**
      * Tells user when they failed to give a description of the task they wish to add.
-     * @param str the type of Task that was meant to badded.
      * @throws DukeException when called.
      */
     public void showDescEmptyError(String str) throws DukeException {
@@ -133,16 +132,16 @@ public class Ui {
 
     /**
      * lists out the tasks in the task list to the user.
-     * @param tl containing the tasks stored in the task list.
+     * @return the list of things in the task list in the defined format.
      */
-    public String listOut(ArrayList<Task> tl) {
-        if (this.tl.size() == 0) {
+    public String listOut() {
+        if (this.taskArrayList.size() == 0) {
             return "You have no tasks.";
         }
         int count = 1;
         StringBuilder response = new StringBuilder();
         response.append(("Here are the tasks in your list: "));
-        for (Iterator<Task> it = tl.iterator(); it.hasNext();) {
+        for (Iterator<Task> it = this.taskArrayList.iterator(); it.hasNext();) {
             Task curr = it.next();
             response.append("\n\t").append(count).append(". ").append(curr.toString());
             count++;
@@ -153,16 +152,16 @@ public class Ui {
     /**
      * lists out the matching tasks in the task list that meets
      * the user's find query.
-     * @param tl containing the tasks store in the task list.
+     * @param taskArrayList containing the tasks store in the task list.
      */
-    public String listMatch(ArrayList<Task> tl) {
-        if (tl.size() == 0) {
+    public String listMatch(ArrayList<Task> taskArrayList) {
+        if (taskArrayList.size() == 0) {
             return "You have no tasks.";
         }
         int count = 1;
         StringBuilder response = new StringBuilder();
         response.append(("\tHere are the matching tasks in your list: "));
-        for (Iterator<Task> it = tl.iterator(); it.hasNext();) {
+        for (Iterator<Task> it = taskArrayList.iterator(); it.hasNext();) {
             Task curr = it.next();
             response.append("\t\t").append(count).append(". ").append(curr.toString());
             count++;

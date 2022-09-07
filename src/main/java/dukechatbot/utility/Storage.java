@@ -1,6 +1,9 @@
 package dukechatbot.utility;
-import java.io.*;
-import java.nio.file.Path;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -62,7 +65,7 @@ public class Storage {
         if (FILE.canRead()) {
             String ln = this.br.readLine();
             while (ln != null) {
-                this.tasks.add(ln);
+                this.tasks.addFromStorage(ln);
                 ln = br.readLine();
             }
         } else {

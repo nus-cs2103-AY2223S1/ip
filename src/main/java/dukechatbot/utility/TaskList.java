@@ -47,14 +47,24 @@ public class TaskList {
      * associated with this instance of TaskList.
      * @param ln the line read by the Storage class.
      */
-    public void add(String ln) {
+    public void addFromStorage(String ln) {
+        Task toAdd = createTask(ln);
+        this.tl.add(toAdd);
+    }
+
+    /**
+     * Creates tasks from the lines read from storage for adding into task array list.
+     * @param ln the line read from storage.
+     * @return the task to be added.
+     */
+    private static Task createTask(String ln) {
         String tag = String.valueOf(ln.charAt(1));
         String desc = null;
         int id = -1;
-        boolean done = false;
+        boolean isDone = false;
         Task toAdd = null;
         if (String.valueOf(ln.charAt(4)).equals("X")) {
-            done = true;
+            isDone = true;
         }
         if (tag.equals("T")) {
             toAdd = new Todo(ln.substring(7));
@@ -69,12 +79,11 @@ public class TaskList {
         } else {
             toAdd = new Task(ln.substring(6));
         }
-        if (done) {
+        if (isDone) {
             toAdd.markAsDone();
         }
-        this.tl.add(toAdd);
+        return toAdd;
     }
-
     /**
      * Deletes the task from the array list associated with this instance of TaskList.
      * @param id the id passed in to obtain the actual task number to be deleted.

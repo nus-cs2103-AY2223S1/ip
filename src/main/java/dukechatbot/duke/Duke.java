@@ -23,7 +23,7 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
-    private ArrayList<Task> al;
+    private ArrayList<Task> taskArrayList;
     private Parser parse;
     private MainWindow gui;
     /**
@@ -33,10 +33,10 @@ public class Duke {
      */
     public Duke(String filePath) {
         this.gui = new MainWindow();
-        this.al = new ArrayList<>();
-        this.ui = new Ui(al);
+        this.taskArrayList = new ArrayList<>();
+        this.ui = new Ui(taskArrayList);
         try {
-            this.tasks = new TaskList(this.al, this.ui);
+            this.tasks = new TaskList(this.taskArrayList, this.ui);
             this.storage = new Storage(filePath, this.tasks, this.ui);
             this.parse = new Parser(tasks, ui);
         } catch (IOException ioe) {
@@ -47,6 +47,12 @@ public class Duke {
     }
 
     /**
+     * Helper method to print out a dotted line.
+     */
+    private static void printLine() {
+        System.out.println("--------------------------------------\n");
+    }
+    /**
      * Serves as the main entry point to the Duke application.
      *
      * @param args inputs from client.
@@ -55,14 +61,14 @@ public class Duke {
         try {
             new Duke("storage.txt").run();
         } catch (DukeException de) {
-            System.out.println("--------------------------------------\n");
+            printLine();
             System.out.println(de.getMessage());
-            System.out.println("--------------------------------------\n");
+            printLine();
             main(args);
         } catch (IOException io) {
-            System.out.println("--------------------------------------\n");
+            printLine();
             System.out.println(io.getMessage());
-            System.out.println("--------------------------------------\n");
+            printLine();
         }
     }
 
@@ -84,7 +90,7 @@ public class Duke {
             str = sc.nextLine();
         }
         sc.close();
-        Storage.save(this.al);
+        Storage.save(this.taskArrayList);
         ui.bye();
     }
 
