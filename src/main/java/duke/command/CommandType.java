@@ -14,7 +14,8 @@ public enum CommandType {
     DEADLINE("deadline"),
     EVENT("event"),
     DELETE("delete"),
-    FIND("find");
+    FIND("find"),
+    UPDATE("update");
 
     private final String representingString;
 

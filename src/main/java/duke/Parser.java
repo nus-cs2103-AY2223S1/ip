@@ -11,6 +11,7 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.ToDoCommand;
 import duke.command.UnmarkCommand;
+import duke.command.UpdateCommand;
 import duke.exception.DukeException;
 import duke.task.TasksList;
 
@@ -25,7 +26,7 @@ public class Parser {
      * @param userInput The input string by the user.
      * @param tasksList The TasksList to pass into the Command.
      * @return The corresponding command to the user input.
-     * @throws DukeException if there is no command corresponding to the user input.
+     * @throws DukeException If there is no command corresponding to the user input.
      */
     public static Command handleCommand(String userInput, TasksList tasksList) throws DukeException {
         String[] inputArray = userInput.trim().split("\\s+", 2);
@@ -50,6 +51,8 @@ public class Parser {
             return new DeleteCommand(tasksList, inputArray);
         case FIND:
             return new FindCommand(tasksList, inputArray);
+        case UPDATE:
+            return new UpdateCommand(tasksList, inputArray);
         default:
             throw new DukeException("Please enter a valid request / command!");
         }
