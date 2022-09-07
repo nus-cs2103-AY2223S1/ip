@@ -77,6 +77,7 @@ public class Duke {
         this.ui.greet();
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
+        assert(str != null);
         String uncap = str.toLowerCase();
         while (!str.equals("bye")) {
             this.parse.categorise(str);
@@ -88,7 +89,6 @@ public class Duke {
     }
 
     public String getResponse(String input) throws IOException {
-
         String response = parse.categorise(input);
         if (response.equals(this.ui.bye())) {
             System.exit(0);

@@ -36,6 +36,7 @@ public class Storage {
      * @throws IOException when createNewFile fails to create the file.
      */
     public Storage(String fileName, TaskList tasks, Ui ui) throws IOException {
+        assert(FILE.exists());
         this.br = new BufferedReader(new FileReader(FILE));
         this.tasks = tasks;
         this.ui = ui;
@@ -43,6 +44,7 @@ public class Storage {
             this.load();
         } else {
             if (FILE.createNewFile()) {
+                assert(FILE.exists());
                 this.load();
             } else {
                 throw new IOException("File failed creation!");
@@ -56,6 +58,7 @@ public class Storage {
      * @throws IOException if the file fails to be read.
      */
     public void load() throws IOException {
+        assert(FILE.exists());
         if (FILE.canRead()) {
             String ln = this.br.readLine();
             while (ln != null) {
@@ -73,6 +76,7 @@ public class Storage {
      * @throws IOException when method fails to write into the associated file.
      */
     public static void save(ArrayList<Task> taskArrayList) throws IOException {
+        assert(FILE.exists());
         FileWriter fw = new FileWriter(FILE.getAbsolutePath());
         for (Iterator<Task> it = taskArrayList.iterator(); it.hasNext();) {
             Task curr = it.next();
