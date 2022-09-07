@@ -18,12 +18,12 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {
-            int index = Integer.parseInt(numberOnly);
-            Task deleted = tasks.getTask(index);
-            tasks.deleteTask(index);
+            int taskIndex = Integer.parseInt(numberOnly);
+            Task task = tasks.getTask(taskIndex);
+            tasks.deleteTask(taskIndex);
             storage.rebuildFile(tasks.getIterator());
             ui.nextOutput("Noted. I've removed this task:\n"
-                    + deleted.toString() + "\n"
+                    + task.toString() + "\n"
                     + "Now you have " + tasks.listSize() + " tasks in the list");
         } catch (IOException ioe) {
             ui.nextOutput("Something went wrong: " + ioe.getMessage());

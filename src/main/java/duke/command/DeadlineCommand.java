@@ -12,13 +12,13 @@ import java.io.IOException;
 
 public class DeadlineCommand extends Command {
     private String desc;
-    private String by;
+    private String byDate;
 
     public DeadlineCommand(String desc) {
         desc = desc.replace("deadline", "");
-        int slash = desc.lastIndexOf("/");
-        this.by = desc.substring(slash + 4);
-        this.desc = desc.substring(0, slash - 1);
+        int slashIndex = desc.lastIndexOf("/");
+        byDate = desc.substring(slashIndex + 4);
+        this.desc = desc.substring(0, slashIndex - 1);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class DeadlineCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {
-            Deadline task = new Deadline(desc, by);
+            Deadline task = new Deadline(desc, byDate);
             tasks.addTask(task);
             storage.appendToFile(task.toSave() + System.lineSeparator() + "");
             ui.nextOutput("Got it. I've added this task:\n"
