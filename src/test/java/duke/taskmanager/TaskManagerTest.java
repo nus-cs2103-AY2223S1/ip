@@ -1,9 +1,10 @@
 package duke.taskmanager;
 
-import duke.taskmanager.task.EmptyTask;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
+
+import duke.taskmanager.task.EmptyTask;
 public class TaskManagerTest {
     @Test
     public void addTask() {
@@ -62,7 +63,8 @@ public class TaskManagerTest {
         assertEquals(taskManager.deleteTask(0), "\tThere is no such task!!\n");
         assertEquals(taskManager.deleteTask(2), "\tThere is no such task!!\n");
         assertEquals(taskManager.deleteTask(-1), "\tThere is no such task!!\n");
-        assertEquals(taskManager.deleteTask(1), "The following item has been removed.\n[ ] \nYou have 0 item(s) remaining.\n");
+        assertEquals(taskManager.deleteTask(1), "The following item has been removed.\n[ ] \n"
+                + "You have 0 item(s) remaining.\n");
         assertEquals(taskManager.deleteTask(1), "\tThere is no such task!!\n");
     }
 }

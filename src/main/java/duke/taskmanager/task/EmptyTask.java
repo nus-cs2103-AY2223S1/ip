@@ -1,5 +1,8 @@
 package duke.taskmanager.task;
 
+/**
+ * Task that is empty.
+ */
 public class EmptyTask extends Task {
     /**
      * Creates an empty task with an empty task name. Used for exception handling.

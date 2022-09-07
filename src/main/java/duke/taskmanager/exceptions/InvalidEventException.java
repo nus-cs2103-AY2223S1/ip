@@ -1,5 +1,8 @@
 package duke.taskmanager.exceptions;
 
+/**
+ * Exception that is thrown when there is an invalid event time.
+ */
 public class InvalidEventException extends Exception {
     /**
      * Exception that handles invalid date formats for event tasks.

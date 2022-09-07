@@ -1,18 +1,21 @@
 package duke.taskmanager;
 
-import duke.taskmanager.task.Task;
-import duke.taskmanager.task.EmptyTask;
-import duke.taskmanager.task.ToDoTask;
-import duke.taskmanager.task.DeadlineTask;
-import duke.taskmanager.task.EventTask;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
+import duke.taskmanager.task.DeadlineTask;
+import duke.taskmanager.task.EmptyTask;
+import duke.taskmanager.task.EventTask;
+import duke.taskmanager.task.Task;
+import duke.taskmanager.task.ToDoTask;
+
+/**
+ * TaskManager class manages a list of task and provide functions to manipulate the list.
+ */
 public class TaskManager {
     private static final String FILE_PATH = "tasklist.txt";
     private static final String DATE_FORMAT = "dd/MM/yyyy,HHmm";

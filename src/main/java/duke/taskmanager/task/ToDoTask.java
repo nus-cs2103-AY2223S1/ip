@@ -2,6 +2,9 @@ package duke.taskmanager.task;
 
 import duke.taskmanager.exceptions.EmptyTaskException;
 
+/**
+ * ToDoTask is a Task with task information.
+ */
 public class ToDoTask extends Task {
     private static final String TASK_TYPE = "T";
 

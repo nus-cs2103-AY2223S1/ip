@@ -1,8 +1,17 @@
 package duke;
 
-import duke.chatbot.ChatBot;
 import java.util.Scanner;
+
+import duke.chatbot.ChatBot;
+
+/**
+ * Duke class that runs the main program.
+ */
 public class Duke {
+    /**
+     * main
+     * @param args
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ChatBot christina = new ChatBot("Christina");

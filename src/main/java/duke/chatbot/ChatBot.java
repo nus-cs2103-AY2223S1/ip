@@ -1,17 +1,21 @@
 package duke.chatbot;
 
-import duke.taskmanager.TaskManager;
-import duke.taskmanager.task.ToDoTask;
-import duke.taskmanager.task.DeadlineTask;
-import duke.taskmanager.task.EventTask;
-import duke.taskmanager.exceptions.InvalidCommandException;
-import duke.taskmanager.exceptions.EmptyTaskException;
-import duke.taskmanager.exceptions.InvalidDeadlineException;
-import duke.taskmanager.exceptions.InvalidEventException;
-
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+
+import duke.taskmanager.TaskManager;
+import duke.taskmanager.exceptions.EmptyTaskException;
+import duke.taskmanager.exceptions.InvalidCommandException;
+import duke.taskmanager.exceptions.InvalidDeadlineException;
+import duke.taskmanager.exceptions.InvalidEventException;
+import duke.taskmanager.task.DeadlineTask;
+import duke.taskmanager.task.EventTask;
+import duke.taskmanager.task.ToDoTask;
+
+/**
+ * Chatbot that processes commands.
+ */
 public class ChatBot {
     private final String name;
     private boolean isRunning;
@@ -25,7 +29,7 @@ public class ChatBot {
      * @param name string of the name of the chatbot
      */
     public ChatBot(String name) {
-        this.name =  name;
+        this.name = name;
         this.isRunning = false;
         this.taskManager = new TaskManager();
     }

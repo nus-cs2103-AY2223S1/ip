@@ -1,12 +1,15 @@
 package duke.taskmanager.task;
 
-import duke.taskmanager.exceptions.EmptyTaskException;
-import duke.taskmanager.exceptions.InvalidDeadlineException;
-import duke.taskmanager.exceptions.InvalidEventException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import duke.taskmanager.exceptions.EmptyTaskException;
+import duke.taskmanager.exceptions.InvalidEventException;
+
+/**
+ * Event Task is a Task with the additional event time information.
+ */
 public class EventTask extends Task {
     private static final String TASK_TYPE = "E";
     private final LocalDateTime taskTime;
