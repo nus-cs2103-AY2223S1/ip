@@ -16,6 +16,7 @@ public class Event extends Item {
         super(name, ItemTypes.EVENT, eventTime);
     }
 
+
     /**
      * Create an Event Item and set its completion status.
      * @param name Item description.
