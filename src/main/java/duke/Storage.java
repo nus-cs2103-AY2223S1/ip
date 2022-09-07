@@ -62,12 +62,18 @@ public class Storage {
 
                 switch (taskType) {
                 case ToDo.TYPE_SYMBOL:
+                    // assert data is in correct format and
+                    // has not been corrupted
+                    assert splitted.length == 3 : "Incorrect Todo Format";
                     task = splitted[2];
                     isDone = splitted[1].equals("[X]");
                     savedTasks.add(new ToDo(task, isDone));
                     break;
 
                 case Event.TYPE_SYMBOL:
+                    // assert data is in correct format and
+                    // has not been corrupted
+                    assert splitted.length == 4 : "Incorrect Event Format";
                     task = splitted[2];
                     isDone = splitted[1].equals("[X]");
                     date = splitted[3];
@@ -75,6 +81,9 @@ public class Storage {
                     break;
 
                 case Deadline.TYPE_SYMBOL:
+                    // assert data is in correct format and
+                    // has not been corrupted
+                    assert splitted.length == 4 : "Incorrect Deadline Format";
                     task = splitted[2];
                     isDone = splitted[1].equals("[X]");
                     date = splitted[3];
