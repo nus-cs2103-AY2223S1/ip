@@ -28,4 +28,6 @@ public class Messages {
     public static final String MESSAGE_MATCHING_TASKS = "Here are the matching task(s) in your list:\n";
     public static final String MESSAGE_NO_MATCHING_TASKS = "There are no matching tasks in your list!";
     public static final String MESSAGE_PROVIDE_KEYWORD = "Please provide a keyword!";
+
+    public static final String MESSAGE_UNDO = "The most recent change to your task list has been undone!\n\n";
 }

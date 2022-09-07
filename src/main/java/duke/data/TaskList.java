@@ -99,4 +99,12 @@ public class TaskList {
             .filter(task -> Arrays.stream(keywords).anyMatch(keyword -> !keyword.isEmpty() && task.hasKeyword(keyword)))
             .collect(Collectors.toList());
     }
+
+    /**
+     * Modifies the task list.
+     * @param tasks The tasks for the new task list.
+     */
+    public void changeTasks(ArrayList<Task> tasks) {
+        this.tasks = tasks;
+    }
 }

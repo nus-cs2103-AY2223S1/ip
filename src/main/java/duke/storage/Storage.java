@@ -1,8 +1,12 @@
 package duke.storage;
 
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,6 +22,8 @@ import duke.tasks.Todo;
  */
 public class Storage {
     private static final String FILE_PATH = "data/tasklist.txt";
+    private static final String OLD_FILE_PATH = "data/oldtasklist.txt";
+    private static final String TEMP_FILE_PATH = "data/temptasklist.txt";
     private static final String INVALID_STORAGE_DATA = "Invalid storage data";
 
     private void createFile(File file) throws StorageException {
@@ -47,6 +53,7 @@ public class Storage {
         FileWriter writer = null;
 
         try {
+            Files.copy(Paths.get(FILE_PATH), Paths.get(OLD_FILE_PATH), REPLACE_EXISTING);
             writer = new FileWriter(FILE_PATH);
             for (int i = 0; i < numTasks; i++) {
                 Task task = taskList.getTask(i);
@@ -106,5 +113,21 @@ public class Storage {
                 sc.close();
             }
         }
+    }
+
+    /**
+     * Undo the most recent change to the task list.
+     * @param taskList The list of tasks to change.
+     * @throws StorageException If there is an IOException saving the modified list of tasks.
+     */
+    public void undo(TaskList taskList) throws StorageException {
+        try {
+            Files.copy(Paths.get(FILE_PATH), Paths.get(TEMP_FILE_PATH), REPLACE_EXISTING);
+            Files.copy(Paths.get(OLD_FILE_PATH), Paths.get(FILE_PATH), REPLACE_EXISTING);
+            Files.copy(Paths.get(TEMP_FILE_PATH), Paths.get(OLD_FILE_PATH), REPLACE_EXISTING);
+        } catch (IOException e) {
+            throw new StorageException();
+        }
+        taskList.changeTasks(load());
     }
 }
