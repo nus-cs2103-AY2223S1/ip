@@ -1,6 +1,7 @@
 package duke;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 /**
  * Accepts String arguments to convert them to their corresponding class types for the operation of Duke
@@ -79,12 +80,8 @@ public class Parser {
     }
 
     private static boolean isKeyword(String keyword) {
-        for (Keyword k : Keyword.values()) {
-            if (k.name().equals(keyword)) {
-                return true;
-            }
-        }
-        return false;
+        return Arrays.stream(Keyword.values())
+                .anyMatch(kw -> kw.name().equals(keyword));
     }
 
     /**
@@ -93,12 +90,8 @@ public class Parser {
      * @return true if given keyword is a Task keyword, else false.
      */
     protected static boolean isTaskKeyword(String keyword) {
-        for (TaskKeyword tk : TaskKeyword.values()) {
-            if (tk.name().equals(keyword)) {
-                return true;
-            }
-        }
-        return false;
+        return Arrays.stream(TaskKeyword.values())
+                .anyMatch(tk -> tk.name().equals(keyword));
     }
 
     /**
@@ -107,12 +100,8 @@ public class Parser {
      * @return true if given keyword is a Modify keyword, else false.
      */
     protected static boolean isModifyKeyword(String keyword) {
-        for (ModifyKeyword mk : ModifyKeyword.values()) {
-            if (mk.name().equals(keyword)) {
-                return true;
-            }
-        }
-        return false;
+        return Arrays.stream(ModifyKeyword.values())
+                .anyMatch(mk -> mk.name().equals(keyword));
     }
 
     /**
@@ -121,12 +110,8 @@ public class Parser {
      * @return true if given keyword is a Modify keyword, else false.
      */
     protected static boolean isAccessKeyword(String keyword) {
-        for (AccessKeyword ak : AccessKeyword.values()) {
-            if (ak.name().equals(keyword)) {
-                return true;
-            }
-        }
-        return false;
+        return Arrays.stream(AccessKeyword.values())
+                .anyMatch(ak -> ak.name().equals(keyword));
     }
 
     /**
