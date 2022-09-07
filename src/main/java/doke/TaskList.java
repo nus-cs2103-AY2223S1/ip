@@ -2,9 +2,6 @@ package doke;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import java.time.format.DateTimeFormatter;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,8 +12,25 @@ import java.util.Scanner;
  */
 public class TaskList {
 
+    public static final String SPECIALSTRING = " [|] ";
     private ArrayList<Task> taskList = new ArrayList<>();
-    public static final String specialString = " [|] ";
+
+    /**
+     * Constructs a taskList object.
+     * It will try to read and create and ArrayList of type task from storage,
+     * which, if not possible would then create an empty ArrayList of type Task.
+     *
+     * @param ui
+     * @param storage
+     */
+    public TaskList(Ui ui, Storage storage) {
+        try {
+            Scanner s = new Scanner(Storage.DOKE_FILE);
+            readStorage(s);
+        } catch (FileNotFoundException e) {
+            createNewDokeFile(storage, ui);
+        }
+    }
 
     private Task createTask(String[] strings) {
         Task addTask;
@@ -40,7 +54,7 @@ public class TaskList {
     private void readStorage(Scanner scanner) {
         while (scanner.hasNext()) {
             String line = scanner.nextLine();
-            String[] temp = line.split(specialString);
+            String[] temp = line.split(SPECIALSTRING);
             Task task = createTask(temp);
 
             this.taskList.add(task);
@@ -58,55 +72,44 @@ public class TaskList {
         }
     }
 
-    /**
-     * A public constructor for the TaskList class.
-     * It will try to read and create and ArrayList of type task from storage,
-     * which, if not possible would then create an empty ArrayList of type Task.
-     *
-     * @param ui
-     * @param storage
-     */
-    public TaskList(Ui ui, Storage storage) {
-        try {
-            Scanner s = new Scanner(Storage.DOKE_FILE);
-            readStorage(s);
-        } catch (FileNotFoundException e) {
-            createNewDokeFile(storage, ui);
+    private int taskSearcher(Ui ui, int num, int i, String str) {
+        Task task = taskList.get(i);
+        String desc = task.getDesc().toLowerCase();
+        if (desc.indexOf(str.toLowerCase()) == -1) {
+            return 0;
+        } else if (num == 0) {
+            ui.printOut("Here's what we found: ");
         }
+        ui.printOut((i + 1) + "." + taskList.get(i).toString());
+        return 1;
     }
 
-    public void searchString(String str, Ui ui) {
-        int len = taskList.size();
-        int num = 0;
-        String message = "_________________________ \n";
+    private int taskSearchIterator(String str, String message, Ui ui) {
         int i = 0;
-        message = "_________________________ \n";
+        int num = 0;
+        int len = taskList.size();
         while (i < len) {
-            Task task = taskList.get(i);
-            String desc = task.getDesc().toLowerCase();
-            String taskType = task.getType();
-            if (desc.indexOf(str.toLowerCase()) != -1) {
-                if (num == 0) {
-                    message += "Here's what we found: \n";
-                }
-                message += (i + 1) + "." + taskList.get(i).toString() + "\n";
-                num += 1;
-            } else if ((taskType.equals("E") || taskType.equals("D"))
-                    && task.getTime().format(
-                            DateTimeFormatter.ofPattern("dd-MMM-yyyy")).indexOf(str) != -1) {
-                if (num == 0) {
-                    message += "Here's what we found: \n";
-                }
-                message += (i + 1) + "." + taskList.get(i).toString() + "\n";
-                num += 1;
-            }
+            num += taskSearcher(ui, num, i, str);
             i++;
         }
-        if (num == 0) {
-            message += "Sorry, we found nothing. \n";
-        }
-        message += "_________________________ \n";
+        return num;
+    }
+
+    /**
+     * Searches and prints out the tasks which contains the string in its description.
+     *
+     * @param str
+     * @param ui
+     */
+    public void searchString(String str, Ui ui) {
+        int num = 0;
+        String message = "_________________________ ";
         ui.printOut(message);
+        num = taskSearchIterator(str, message, ui);
+        if (num == 0) {
+            ui.printOut("Sorry, we found nothing.");
+        }
+        ui.printOut("_________________________ ");
     }
 
     /**

@@ -2,8 +2,6 @@ package doke;
 
 import javafx.util.Pair;
 
-import java.io.IOException;
-
 /**
  * A class to represent the making sense of the inputted text.
  *
@@ -11,9 +9,9 @@ import java.io.IOException;
  */
 public class Parser {
 
-    protected  boolean isCorrectTimeSignifier(String[] strings, int i) {
-        return (!strings[i].equals("/at") && strings[0].equals("event")) ||
-                (!strings[i].equals("/by") && strings[0].equals("deadline"));
+    protected boolean isCorrectTimeSignifier(String[] strings, int i) {
+        return (!strings[i].equals("/at") && strings[0].equals("event"))
+                || (!strings[i].equals("/by") && strings[0].equals("deadline"));
     }
 
     protected Pair<String, String> getDescriptionTimePair(String[] strings) {

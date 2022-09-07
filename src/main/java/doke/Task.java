@@ -8,9 +8,9 @@ import java.time.format.DateTimeFormatter;
  */
 public abstract class Task {
 
+    protected static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
     private String desc;
     private boolean isDone;
-    protected static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
 
     /**
      * a constructor for Task class.
@@ -80,7 +80,7 @@ public abstract class Task {
      *
      * @throws DokeException
      */
-    public void markNotDone() throws DokeException{
+    public void markNotDone() throws DokeException {
         if (!isDone) {
             throw new DokeException();
         }

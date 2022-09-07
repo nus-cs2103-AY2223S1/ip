@@ -1,8 +1,9 @@
 package doke;
 
+import java.io.IOException;
+
 import javafx.util.Pair;
 
-import java.io.IOException;
 
 /**
  * A command class to contain all command
@@ -113,7 +114,7 @@ public class Command {
 
     static boolean findCommand(TaskList taskList, Ui ui, String string) {
         String search = string.substring(5);
-            taskList.searchString(search, ui);
-            return true;
+        taskList.searchString(search, ui);
+        return true;
     }
 }

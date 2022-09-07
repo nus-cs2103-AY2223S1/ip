@@ -1,14 +1,13 @@
 package doke;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Represent the Events task. Extends the Task class.
  *
  * @author Stevan Gerard Gunawan
  */
-public class Event extends Task{
+public class Event extends Task {
 
     private LocalDate at;
     private String dateCache = "";
@@ -53,7 +52,7 @@ public class Event extends Task{
     @Override
     public String toString() {
         if (dateCache.isEmpty()) {
-            dateCache = at.format(formatter);
+            dateCache = at.format(FORMATTER);
         }
         return "[E]" + super.toString() + " (at: " + dateCache + ")";
     }

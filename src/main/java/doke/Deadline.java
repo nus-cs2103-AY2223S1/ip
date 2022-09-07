@@ -1,14 +1,13 @@
 package doke;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Represents the Deadline task. Extends the Task class.
  *
  * @author Stevan Gerard Gunawan
  */
-public class Deadline extends Task{
+public class Deadline extends Task {
 
     private LocalDate by;
     private String dateCache = "";
@@ -54,7 +53,7 @@ public class Deadline extends Task{
     @Override
     public String toString() {
         if (dateCache.isEmpty()) {
-            dateCache = by.format(formatter);
+            dateCache = by.format(FORMATTER);
         }
         return "[D]" + super.toString() + " (by: " + dateCache + ")";
     }

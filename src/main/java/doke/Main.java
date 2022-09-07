@@ -12,7 +12,8 @@ import javafx.stage.Stage;
  * A GUI for Duke using FXML.
  */
 public class Main extends Application {
-    //anything related to GUI is taken from/referenced from the website: https://se-education.org/guides/tutorials/javaFx.html
+    //anything related to GUI is taken from/referenced from the website:
+    //https://se-education.org/guides/tutorials/javaFx.html
     private Doke doke = new Doke();
 
     @Override

@@ -41,7 +41,8 @@ public class Ui {
     protected void printErrorMessage() {
         printOut("An error occurred. Try again at another time.");
     }
-    protected void printDeleteMessage(Task task, int i ) {
+
+    protected void printDeleteMessage(Task task, int i) {
         printOut("_________________________ \n" + "This task has been removed \n"
                 + task.toString() + "\n" + "Now you have " + i
                 + " tasks!! " + "\n _________________________ \n");
@@ -51,7 +52,7 @@ public class Ui {
      *
      * @param message
      */
-    public void printOut(String message){
+    public void printOut(String message) {
         if (message.equals("hello")) {
             System.out.println(MESSAGE_HELLO);
         } else if (message.equals("bye")) {

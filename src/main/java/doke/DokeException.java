@@ -5,7 +5,7 @@ package doke;
  *
  * @author Stevan Gerard Gunawan
  */
-public class DokeException extends RuntimeException{
+public class DokeException extends RuntimeException {
     private String text = null;
 
     /**
