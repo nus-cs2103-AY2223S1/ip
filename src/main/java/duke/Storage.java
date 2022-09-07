@@ -5,6 +5,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import duke.exception.DukeException;
+import duke.exception.LoadException;
+import duke.exception.SaveException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.TaskList;
+import duke.task.ToDo;
 /**
  * A class to retrieve and store user data
  *
@@ -26,7 +33,7 @@ public class Storage {
             writer.write(tasks);
             writer.close();
         } catch (IOException e) {
-            throw new DukeException("There is a problem with saving the tasks");
+            throw new SaveException();
         }
     }
 
@@ -54,20 +61,20 @@ public class Storage {
                 boolean isDone;
 
                 switch (taskType) {
-                case "[T]":
+                case ToDo.TYPE_SYMBOL:
                     task = splitted[2];
                     isDone = splitted[1].equals("[X]");
                     savedTasks.add(new ToDo(task, isDone));
                     break;
 
-                case "[E]":
+                case Event.TYPE_SYMBOL:
                     task = splitted[2];
                     isDone = splitted[1].equals("[X]");
                     date = splitted[3];
                     savedTasks.add(new Event(task, date, isDone));
                     break;
 
-                case "[D]":
+                case Deadline.TYPE_SYMBOL:
                     task = splitted[2];
                     isDone = splitted[1].equals("[X]");
                     date = splitted[3];
@@ -75,13 +82,13 @@ public class Storage {
                     break;
 
                 default:
-                    throw new DukeException("There is a problem loading your safe file");
+                    throw new LoadException();
                 }
             }
 
             return savedTasks;
         } catch (IOException e) {
-            throw new DukeException("There is a problem loading your safe file");
+            throw new LoadException();
         }
     }
 }

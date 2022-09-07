@@ -3,6 +3,8 @@ package duke;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import duke.exception.DukeException;
+import duke.task.Deadline;
 import org.junit.jupiter.api.Test;
 
 public class DeadlineTest {

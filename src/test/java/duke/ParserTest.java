@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import duke.exception.DukeException;
 import org.junit.jupiter.api.Test;
 
 public class ParserTest {

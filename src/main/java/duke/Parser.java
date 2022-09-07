@@ -4,6 +4,20 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TodoCommand;
+import duke.command.UnmarkCommand;
+import duke.exception.DukeException;
+import duke.exception.InvalidDateException;
+import duke.exception.UnknownCommandException;
+
 /**
  * A class to make sense of user inputs.
  *
@@ -21,7 +35,7 @@ public class Parser {
         try {
             return LocalDate.parse(string);
         } catch (DateTimeException e) {
-            throw new DukeException("Please Input a Valid Date");
+            throw new InvalidDateException();
         }
     }
 
@@ -47,108 +61,50 @@ public class Parser {
     }
 
     /**
-     * Parses user input to a string array.
+     * Parses user input to the corresponding command.
      *
      * @param input the user input.
-     * @return A string array of the parsed input.
+     * @return Command to be executed.
      * @throws DukeException If input is not valid.
      */
-    public static String[] parseUserInput(String input) throws DukeException {
-        String[] parsed;
+    public static Command parseUserInput(String input) throws DukeException {
+        //remove leading and trailing whitespace
+        String trimmed = input.trim();
         //Split by regex to get command
-        String[] splitted = input.split("\\s", 2);
+        String[] splitted = trimmed.split("\\s", 2);
         String command = splitted[0];
+        String description = splitted.length < 2 ? "" : splitted[1].trim();
 
         switch (command) {
-        case "todo":
-            //No Description Given
-            if (splitted.length < 2) {
-                throw new DukeException("The description of a todo cannot be empty.");
-            }
-            //parsed is ["command", "task description"]
-            parsed = splitted;
-            break;
+        case TodoCommand.COMMAND:
+            return new TodoCommand(description);
 
-        case "deadline":
-            //No Description Given
-            if (splitted.length < 2) {
-                throw new DukeException("The description of a deadline cannot be empty.");
-            }
-            //some regex to parse the strings correctly
-            //0th index: task, 1st index: deadline
-            String[] splittedDeadline = splitted[1].split("\\s/by\\s", 2);
-            String deadlineTask = splittedDeadline[0];
+        case DeadlineCommand.COMMAND:
+            return new DeadlineCommand(description);
 
-            //No Description Given
-            if (deadlineTask.equals("") || deadlineTask.startsWith("/by")) {
-                throw new DukeException("The description of a deadline cannot be empty.");
-            }
+        case EventCommand.COMMAND:
+            return new EventCommand(description);
 
-            //No Deadline Given
-            if (splittedDeadline.length == 1) {
-                throw new DukeException("please specify a deadline");
-            }
+        case MarkCommand.COMMAND:
+            return new MarkCommand(description);
 
-            String deadlineDate = splittedDeadline[1];
-            parsed = new String[]{command, deadlineTask, deadlineDate};
-            break;
+        case UnmarkCommand.COMMAND:
+            return new UnmarkCommand(description);
 
-        case "event":
-            //No Description Given
-            if (splitted.length < 2) {
-                throw new DukeException("The description of an event cannot be empty.");
-            }
-            //some regex to parse the strings correctly
-            //0th index: event, 1st index: date
-            String[] splittedEvent = input.split("\\s", 2)
-                    [1].split("\\s/at\\s", 2);
-            String eventString = splittedEvent[0];
+        case DeleteCommand.COMMAND:
+            return new DeleteCommand(description);
 
-            //No Description Given
-            if (eventString.equals("") || eventString.startsWith("/at")) {
-                throw new DukeException("The description of an event cannot be empty.");
-            }
+        case FindCommand.COMMAND:
+            return new FindCommand(description);
 
-            //No Deadline Given
-            if (splittedEvent.length == 1) {
-                throw new DukeException("please specify a date");
-            }
+        case ByeCommand.COMMAND:
+            return new ByeCommand();
 
-            String eventDate = splittedEvent[1];
-
-            parsed = new String[]{command, eventString, eventDate};
-            break;
-
-        case "mark": case "unmark": case "delete":
-            //No Index Given
-            if (splitted.length < 2) {
-                throw new DukeException("No Index Given");
-            }
-            //parsed is ["command", "${index}"]
-            parsed = splitted;
-            break;
-
-        case "find":
-            //No keyword provided
-            if (splitted.length < 2) {
-                throw new DukeException("Please provide a keyword");
-            }
-            //parsed is ["command", "task"]
-            parsed = splitted;
-            break;
-
-        case "bye":
-            parsed = new String[]{"bye"};
-            break;
-
-        case "list":
-            parsed = new String[]{"list"};
-            break;
+        case ListCommand.COMMAND:
+            return new ListCommand();
 
         default:
-            throw new DukeException("Command Not Found!");
+            throw new UnknownCommandException();
         }
-
-        return parsed;
     }
 }

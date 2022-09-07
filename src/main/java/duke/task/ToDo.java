@@ -1,4 +1,4 @@
-package duke;
+package duke.task;
 
 /**
  * Class containing information regarding
@@ -7,7 +7,7 @@ package duke;
  * @author Elbert Benedict
  */
 public class ToDo extends Task {
-    private static final String TYPE_SYMBOL = "[T]";
+    public static final String TYPE_SYMBOL = "[T]";
 
     /**
      * Constructs a new ToDo Instance.
