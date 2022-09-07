@@ -35,6 +35,7 @@ public class EventCommand extends Command {
             Event event = new Event(eventDescription, at);
             tasks.addToTaskList(event);
             storage.save(tasks.getTasks());
+
             return String.format("Got it. I've added this task:\n" +
                             "added: %s\n" +
                             "Now you have %s task%s in the list.",

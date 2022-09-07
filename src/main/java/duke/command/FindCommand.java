@@ -25,7 +25,9 @@ public class FindCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         TaskList foundTasks = tasks.findTasks(searchKeyword);
         int numOfTasks = foundTasks.getSize();
-        if (numOfTasks == 0) {
+        boolean hasNoMatchingTasks = numOfTasks == 0;
+
+        if (hasNoMatchingTasks) {
             return "There are no matching tasks in your list.";
         } else {
             StringBuilder str = new StringBuilder();

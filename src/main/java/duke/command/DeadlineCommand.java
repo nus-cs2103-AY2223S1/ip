@@ -35,6 +35,7 @@ public class DeadlineCommand extends Command {
             Deadline deadline = new Deadline(deadlineDescription, by);
             tasks.addToTaskList(deadline);
             storage.save(tasks.getTasks());
+
             return String.format("Got it. I've added this task:\n" +
                             "added: %s\n" +
                             "Now you have %s task%s in the list.",

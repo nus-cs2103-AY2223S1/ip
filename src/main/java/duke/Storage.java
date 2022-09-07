@@ -7,13 +7,10 @@ import duke.task.ToDo;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -72,18 +69,24 @@ public class Storage {
      * @throws IOException
      */
     public ArrayList<Task> load() throws IOException {
-        if (!Files.exists(relativeDirectoryPath)) {
+        boolean hasNoDirectory = !Files.exists(relativeDirectoryPath);
+        boolean hasNoFile = !Files.exists(relativeFilePath);
+
+        if (hasNoDirectory) {
             Files.createDirectory(relativeDirectoryPath);
         }
-        if (!Files.exists(relativeFilePath)) {
+        if (hasNoFile) {
             Files.createFile(relativeFilePath);
         }
+
         ArrayList<Task> tasks = new ArrayList<>();
         Scanner sc = new Scanner(new File(String.valueOf(relativeFilePath)));
         ArrayList<String> stringTasks = new ArrayList<>();
+
         while(sc.hasNextLine()) {
             stringTasks.add(sc.nextLine());
         }
+
         for (String stringTask : stringTasks) {
             String[] taskDetails = stringTask.split(" \\| ", 2);
             Task task = null;
@@ -140,6 +143,7 @@ public class Storage {
                         break;
                 }
             }
+
             FileWriter fileWriter = new FileWriter(String.valueOf(relativeFilePath));
             for (String stringTask : stringTasks) {
                 fileWriter.write(stringTask + System.lineSeparator());

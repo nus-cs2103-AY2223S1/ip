@@ -22,7 +22,9 @@ public class ListCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         int numOfTasks = tasks.getSize();
-        if (numOfTasks == 0) {
+        boolean hasNoTasks = numOfTasks == 0;
+
+        if (hasNoTasks) {
             return "You do not have any tasks in your list right now.";
         } else {
             StringBuilder str = new StringBuilder();

@@ -28,6 +28,7 @@ public class ToDoCommand extends Command {
         ToDo toDo = new ToDo(toDoDescription);
         tasks.addToTaskList(toDo);
         storage.save(tasks.getTasks());
+
         return String.format("Got it. I've added this task:\n" +
                         "added: %s\n" +
                         "Now you have %s task%s in the list.",
