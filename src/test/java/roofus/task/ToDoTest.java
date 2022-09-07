@@ -10,12 +10,14 @@ public class ToDoTest {
         Task toDoTask = new ToDo("Say hello");
         assertEquals("[T][ ] Say hello", toDoTask.toString());
     }
+
     @Test
     public void markToDoTest() {
         Task toDoTask = new ToDo("Say hello");
         toDoTask.mark();
         assertEquals("[T][X] Say hello", toDoTask.toString());
     }
+
     @Test
     public void unmarkToDoTest() {
         Task toDoTask = new ToDo("Say hello");
@@ -23,6 +25,7 @@ public class ToDoTest {
         toDoTask.unmark();
         assertEquals("[T][ ] Say hello", toDoTask.toString());
     }
+
     @Test
     public void writeToDoTest() {
         Task toDoTask = new ToDo("Say hello");

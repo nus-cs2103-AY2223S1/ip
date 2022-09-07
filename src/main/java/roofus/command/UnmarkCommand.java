@@ -1,11 +1,11 @@
 package roofus.command;
 
+import java.io.IOException;
+
 import roofus.RoofusException;
 import roofus.Storage;
 import roofus.TaskList;
 import roofus.Ui;
-
-import java.io.IOException;
 
 /**
  * Represents a command action that unmarks a task in the TaskList

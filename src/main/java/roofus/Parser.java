@@ -9,9 +9,9 @@ import roofus.command.EventCommand;
 import roofus.command.FindCommand;
 import roofus.command.ListCommand;
 import roofus.command.MarkCommand;
+import roofus.command.SortCommand;
 import roofus.command.ToDoCommand;
 import roofus.command.UnmarkCommand;
-import roofus.command.SortCommand;
 import roofus.task.Deadline;
 import roofus.task.Event;
 import roofus.task.ToDo;
@@ -26,8 +26,7 @@ public class Parser {
      */
     private enum CommandList {
         BYE, LIST, TODO, EVENT, DEADLINE,
-        MARK, UNMARK, DELETE, CLEAR, FIND, 
-        SORT
+        MARK, UNMARK, DELETE, CLEAR, FIND, SORT
     }
 
     /**
