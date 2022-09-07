@@ -117,6 +117,7 @@ public class TaskList {
                 .collect(Collectors.toList());
     }
 
+
     /**
      * Filter the tasks by date.
      *
@@ -127,6 +128,29 @@ public class TaskList {
         return this.tasks.stream()
                 .filter(task -> task.isOnDate(date))
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Filter the tasks by date.
+     *
+     * @param fromDate The date to filter from.
+     * @param toDate The date to filter to.
+     * @return A list of tasks that occur on that date.
+     */
+    public List<Task> filter(LocalDate fromDate, LocalDate toDate) {
+        List<Task> filtered = new ArrayList<>();
+        for (Task task: tasks) {
+            LocalDate date = task.getDate();
+            if (date == null) {
+                continue;
+            }
+            boolean satisfiesLowerBound = date.isAfter(fromDate) || date.equals(fromDate);
+            boolean satisfiesUpperBound = date.isBefore(toDate) || date.equals(toDate);
+            if (satisfiesLowerBound && satisfiesUpperBound) {
+                filtered.add(task);
+            }
+        }
+        return filtered;
     }
 
     /**

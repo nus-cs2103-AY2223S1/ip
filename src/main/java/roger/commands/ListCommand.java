@@ -25,7 +25,7 @@ public class ListCommand extends Command {
 
         for (int taskNum = 1; taskNum < tasks.getLength() + 1; ++taskNum) {
             Task task = tasks.get(taskNum);
-            response.append(String.valueOf(taskNum) + ". " + task.toString() + "\n");
+            response.append(taskNum + ". " + task.toString() + "\n");
         }
         return response.toString();
     }

@@ -35,7 +35,7 @@ public class ListOnDateCommand extends ListCommand {
         response.append("Nephew have to do these things on " + date.toString() + ":\n");
         List<Task> filtered = tasks.filter(date);
         for (Task task: filtered) {
-            response.append(String.valueOf(tasks.getTaskNum(task)) + ". " + task.toString() + "\n");
+            response.append(tasks.getTaskNum(task) + ". " + task.toString() + "\n");
         }
         return response.toString();
     }

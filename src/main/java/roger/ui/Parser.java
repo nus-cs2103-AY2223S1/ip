@@ -2,19 +2,9 @@ package roger.ui;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 
-import roger.commands.AddDeadlineCommand;
-import roger.commands.AddEventCommand;
-import roger.commands.AddToDoCommand;
-import roger.commands.Command;
-import roger.commands.DeleteTaskCommand;
-import roger.commands.ExitCommand;
-import roger.commands.FindCommand;
-import roger.commands.ListCommand;
-import roger.commands.ListOnDateCommand;
-import roger.commands.MarkCommand;
-import roger.commands.UnknownCommand;
-import roger.commands.UnmarkCommand;
+import roger.commands.*;
 import roger.exceptions.RogerInvalidInputException;
 
 /**
@@ -30,6 +20,7 @@ public class Parser {
     private final String COMMAND_ADD_EVENT = "event";
     private final String COMMAND_DELETE = "delete";
     private final String COMMAND_EXIT = "bye";
+    private final String COMMAND_SCHEDULE = "schedule";
 
     private final String CMD_ARG_SEPARATOR_STRING = " ";
 
@@ -52,6 +43,8 @@ public class Parser {
         switch (command) {
         case COMMAND_LIST:
             return parseListArguments(arguments);
+        case COMMAND_SCHEDULE:
+            return parseScheduleArguments(arguments);
         case COMMAND_MARK:
             return parseMarkArguments(arguments);
         case COMMAND_UNMARK:
@@ -84,6 +77,25 @@ public class Parser {
             return new ListOnDateCommand(LocalDate.parse(firstArg));
         } catch (DateTimeParseException e) {
             throw new RogerInvalidInputException("List tasks with `list` or `list <yyyy-mm-dd>`");
+        }
+    }
+
+    private ScheduleCommand parseScheduleArguments(String arguments) throws RogerInvalidInputException {
+        String[] argList = arguments.split(CMD_ARG_SEPARATOR_STRING);
+        if (argList.length < 2) {
+            throw new RogerInvalidInputException("See your schedule with `schedule <yyyy-mm-dd> <yyyy-mm-dd>`");
+        }
+
+        String firstArg = argList[0];
+        String secondArg = argList[1];
+        if (firstArg.isBlank() || secondArg.isBlank()) {
+            throw new RogerInvalidInputException("See your schedule with `schedule <yyyy-mm-dd> <yyyy-mm-dd>`");
+        }
+
+        try {
+            return new ScheduleCommand(LocalDate.parse(firstArg), LocalDate.parse(secondArg));
+        } catch (DateTimeParseException e) {
+            throw new RogerInvalidInputException("See your schedule with `schedule <yyyy-mm-dd> <yyyy-mm-dd>`");
         }
     }
 
