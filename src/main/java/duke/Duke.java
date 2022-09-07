@@ -1,5 +1,6 @@
 package duke;
 
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,6 +13,9 @@ import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * The main application.
@@ -163,6 +167,11 @@ public class Duke {
             case Commands.FIND:
                 String keyword = parser.parseFind();
                 sb.append(TASK_LIST.find(keyword));
+                break;
+            case Commands.BYE:
+                sb.append("Program exiting in 3 seconds...");
+                ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+                service.schedule(() -> Platform.exit(), 3, TimeUnit.SECONDS);
                 break;
             default:
                 sb.append(ui.printCommandNotRecognized());
