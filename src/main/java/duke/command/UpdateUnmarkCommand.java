@@ -43,6 +43,7 @@ public class UpdateUnmarkCommand extends UpdateCommand {
                             "🙁 OOPS!!! Provide a valid number (from 1 to %d) to unmark a task.\n", taskList.size())
             );
         }
+
         return new UpdateUnmarkCommand(command, task, taskIndex);
     }
 

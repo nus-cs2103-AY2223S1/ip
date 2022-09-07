@@ -28,9 +28,9 @@ public class FindCommand extends Command {
         String keyword = command.replace("find", "").trim();
         if (keyword.isEmpty()) {
             throw new IllegalArgumentException("🙁 OOPS!!! Provide a keyword to find tasks.\n");
-        } else {
-            return new FindCommand(command, keyword);
         }
+
+        return new FindCommand(command, keyword);
     }
 
     @Override
