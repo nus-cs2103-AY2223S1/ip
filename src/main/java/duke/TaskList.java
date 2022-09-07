@@ -33,12 +33,13 @@ class TaskList {
      * @param i position of the task to be deleted.
      * @throws DukeException when the task position is non-existent.
      */
-    public void deleteTask(int i) throws DukeException {
+    public Task deleteTask(int i) throws DukeException {
         if (listOfTasks.size() <= i) {
             throw DukeException.IDTOOBIG;
         }
-
+        Task task = listOfTasks.get(i);
         listOfTasks.remove(i);
+        return task;
     }
 
     /**

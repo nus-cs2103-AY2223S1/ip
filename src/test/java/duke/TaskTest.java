@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 public class TaskTest {
     @Test
     public void TaskTest() {
-        Task task = Task.toDo("task description");
+        Task task = Task.createToDo("task description");
         assertThrows(DukeException.class, () -> {
             task.changeMark(false);
         });
@@ -20,13 +20,13 @@ public class TaskTest {
         });
 
         assertDoesNotThrow(() -> {
-            Task.parseFromString(Task.toDo("task description").toString());
+            Task.parseFromString(Task.createToDo("task description").toString());
         });
         assertDoesNotThrow(() -> {
-            Task.parseFromString(Task.event("watch movie|2022-08-22").toString());
+            Task.parseFromString(Task.createEvent("watch movie|2022-08-22").toString());
         });
         assertDoesNotThrow(() -> {
-            Task.parseFromString(Task.deadline("send homework|2022-08-23").toString());
+            Task.parseFromString(Task.createDeadline("send homework|2022-08-23").toString());
         });
     }
 }

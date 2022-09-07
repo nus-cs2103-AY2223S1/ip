@@ -54,15 +54,16 @@ abstract class Task {
         description = text;
     }
 
-    public void changeMark(boolean arg) throws DukeException {
-        if (isDone == arg) {
-            if (arg) {
-                throw DukeException.TASKALREADYMARKED;
-            } else {
-                throw DukeException.TASKALREADYUNMARKED;
-            }
+    public Task changeMark(boolean arg) throws DukeException {
+        if (isDone != arg) {
+            isDone = arg;
+            return this;
         }
-        isDone = arg;
+        if (arg) {
+            throw DukeException.TASKALREADYMARKED;
+        } else {
+            throw DukeException.TASKALREADYUNMARKED;
+        }
     }
 
 
@@ -70,11 +71,11 @@ abstract class Task {
         return description.contains(key);
     }
 
-    public static Task toDo(String argument) {
+    public static Task createToDo(String argument) {
         return new ToDo(argument);
     }
 
-    public static Task deadline(String argument) throws DukeException {
+    public static Task createDeadline(String argument) throws DukeException {
         String[] arr = argument.split("\\|", 2);
         if (arr.length < 2) {
             throw DukeException.INVALIDARGUMENT;
@@ -82,7 +83,7 @@ abstract class Task {
         return new Deadline(arr[0], arr[1]);
     }
 
-    public static Task event(String argument) throws DukeException {
+    public static Task createEvent(String argument) throws DukeException {
         String[] arr = argument.split("\\|", 2);
         if (arr.length < 2) {
             throw DukeException.INVALIDARGUMENT;
@@ -95,13 +96,13 @@ abstract class Task {
         Task task;
         switch (arr[0]) {
         case "[T]":
-            task = toDo(arr[2]);
+            task = createToDo(arr[2]);
             break;
         case "[E]":
-            task = event(arr[2]);
+            task = createEvent(arr[2]);
             break;
         case "[D]":
-            task = deadline(arr[2]);
+            task = createDeadline(arr[2]);
             break;
         default:
             throw DukeException.INVALIDARGUMENT;

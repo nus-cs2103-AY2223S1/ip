@@ -41,33 +41,35 @@ public class Duke {
 
     /**
      * Initialize Parser with built-in commands.
+     * We have to do this here and not in Parser because it uses data
+     * in the Duke class
      */
     private void fillParser() {
         parser.addCommand("todo", argument -> {
-            if (argument.equals("")) {
+            if (argument.isBlank()) {
                 throw DukeException.INVALIDARGUMENT;
             }
-            Task item = Task.toDo(argument);
+            Task item = Task.createToDo(argument);
             taskList.addTask(item);
             return "added: " + item + "\n"
                     + "Now you have " + taskList.getSize() + " tasks in the list.";
         });
 
         parser.addCommand("deadline", argument -> {
-            if (argument.equals("")) {
+            if (argument.isBlank()) {
                 throw DukeException.INVALIDARGUMENT;
             }
-            Task item = Task.deadline(argument);
+            Task item = Task.createDeadline(argument);
             taskList.addTask(item);
             return "added: " + item + "\n"
                     + "Now you have " + taskList.getSize() + " tasks in the list.";
         });
 
         parser.addCommand("event", argument -> {
-            if (argument.equals("")) {
+            if (argument.isBlank()) {
                 throw DukeException.INVALIDARGUMENT;
             }
-            Task item = Task.event(argument);
+            Task item = Task.createEvent(argument);
             taskList.addTask(item);
             return "added: " + item + "\n"
                     + "Now you have " + taskList.getSize() + " tasks in the list.";
@@ -75,10 +77,10 @@ public class Duke {
 
         parser.addCommand("mark", argument -> {
             try {
-                int id = Integer.parseInt(argument);
-                taskList.getTask(id - 1).changeMark(true);
+                int id = Integer.parseInt(argument) - 1;
+                Task item = taskList.getTask(id).changeMark(true);
                 return "Nice! I've marked this task as done:\n"
-                        + taskList.getTask(id - 1);
+                        + item;
             } catch (NumberFormatException e) {
                 throw DukeException.INVALIDARGUMENT;
             }
@@ -86,10 +88,10 @@ public class Duke {
 
         parser.addCommand("unmark", argument -> {
             try {
-                int id = Integer.parseInt(argument);
-                taskList.getTask(id - 1).changeMark(false);
+                int id = Integer.parseInt(argument) - 1;
+                Task item = taskList.getTask(id).changeMark(false);
                 return "OK, I've marked this task as not done yet:\n"
-                        + taskList.getTask(id - 1);
+                        + item;
             } catch (NumberFormatException e) {
                 throw DukeException.INVALIDARGUMENT;
             }
@@ -97,11 +99,10 @@ public class Duke {
 
         parser.addCommand("delete", argument -> {
             try {
-                int id = Integer.parseInt(argument);
-                Task deletedTask = taskList.getTask(id - 1);
-                taskList.deleteTask(id - 1);
+                int id = Integer.parseInt(argument) - 1;
+                Task item = taskList.deleteTask(id);
                 return "Noted. I've removed this task:\n"
-                        + deletedTask + "\n"
+                        + item + "\n"
                         + "Now you have " + taskList.getSize() + " tasks in the list.";
             } catch (NumberFormatException e) {
                 throw DukeException.INVALIDARGUMENT;
@@ -109,7 +110,7 @@ public class Duke {
         });
 
         parser.addCommand("list", argument -> {
-            if (!argument.equals("")) {
+            if (!argument.isBlank()) {
                 throw DukeException.INVALIDARGUMENT;
             }
             return taskList.toString();
