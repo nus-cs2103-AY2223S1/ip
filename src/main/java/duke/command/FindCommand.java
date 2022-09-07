@@ -1,8 +1,8 @@
 package duke.command;
 
+import duke.Response;
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 
 /**
  * Represents a command to list all current tasks.
@@ -22,20 +22,12 @@ public class FindCommand extends Command{
     /**
      * Executes this command.
      * @param tasks Task list to be listed.
-     * @param ui UI to display list.
      * @param storage Storage used in application.
+     * @return The response of the execution.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showFindResults(tasks, keyword);
-    }
-
-    /**
-     * Checks if Duke application should exit after this command.
-     * @return False as this command is not bye.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
+    public Response execute(TaskList tasks, Storage storage) {
+        String message = "Here are the matching tasks in your list:\n";
+        return new Response(message + tasks.find(keyword).toString(), false);
     }
 }

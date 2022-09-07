@@ -1,9 +1,9 @@
 package duke.command;
 
-import duke.DukeException;
+import duke.exception.DukeException;
+import duke.Response;
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 
 import duke.task.Task;
 
@@ -25,24 +25,16 @@ public class DeleteCommand extends Command {
     /**
      * Executes this command to delete a task from the list and update storage.
      * @param tasks Task list that task at task number is deleted from.
-     * @param ui UI to display success on deletion.
      * @param storage Storage to be updated after deleting task.
+     * @return The response of the execution.
      * @throws DukeException If unable to write to storage file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public Response execute(TaskList tasks, Storage storage) throws DukeException {
         Task deletedTask = tasks.deleteTask(this.taskNumber);
         storage.update(tasks);
-        ui.showDeleteMessage(deletedTask, tasks.getNumTasks());
+        String message = "Noted. I've removed this task:\n  " + deletedTask.toString() +
+                "\nNow you have " + tasks.getNumTasks() + " tasks in the list.";
+        return new Response(message, false);
     };
-
-    /**
-     * Checks if Duke application should exit after this command.
-     * @return False as this command is not bye.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    };
-
 }

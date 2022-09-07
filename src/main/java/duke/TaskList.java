@@ -1,5 +1,6 @@
 package duke;
 
+import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -46,7 +47,7 @@ public class TaskList {
 
     /**
      * Deletes a task from this task list.
-     * @param index Task number of task to be deleted.
+     * @param i Task number of task to be deleted.
      * @return Deleted task.
      * @throws DukeException If task number <= 0 or exceeds number of tasks.
      */

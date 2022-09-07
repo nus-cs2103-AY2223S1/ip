@@ -1,9 +1,9 @@
 package duke.command;
 
-import duke.DukeException;
+import duke.exception.DukeException;
+import duke.Response;
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 
 import duke.task.Task;
 
@@ -25,25 +25,16 @@ public class UnmarkCommand extends Command {
     /**
      * Executes this command to mark a task as not done and update storage.
      * @param tasks Task list that task at task number is retrieved from.
-     * @param ui UI to display success on unmarking.
      * @param storage Storage to be updated after unmarking task.
+     * @return The response of the execution.
      * @throws DukeException If unable to write to storage file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public Response execute(TaskList tasks, Storage storage) throws DukeException {
         Task task = tasks.getTask(taskNumber);
         task.markAsNotDone();
         storage.update(tasks);
-        ui.showUnmarkedMessage(task);
+        String message = "OK, I've marked this task as not done yet:\n  " + task.toString();
+        return new Response(message, false);
     };
-
-    /**
-     * Checks if Duke application should exit after this command.
-     * @return False as this command is not bye.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    };
-
 }

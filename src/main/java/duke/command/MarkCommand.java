@@ -1,9 +1,9 @@
 package duke.command;
 
-import duke.DukeException;
+import duke.exception.DukeException;
+import duke.Response;
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 
 import duke.task.Task;
 
@@ -26,25 +26,16 @@ public class MarkCommand extends Command {
     /**
      * Executes this command to mark a task as done and update storage.
      * @param tasks Task list that task at task number is retrieved from.
-     * @param ui UI to display success on marking.
      * @param storage Storage to be updated after marking task.
+     * @return The response of the execution.
      * @throws DukeException If unable to write to storage file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public Response execute(TaskList tasks, Storage storage) throws DukeException {
         Task task = tasks.getTask(taskNumber);
         task.markAsDone();
         storage.update(tasks);
-        ui.showMarkedMessage(task);
+        String message = "Nice! I've marked this task as done\n  " + task.toString();
+        return new Response(message, false);
     };
-
-    /**
-     * Checks if Duke application should exit after this command.
-     * @return False as this command is not bye.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    };
-
 }

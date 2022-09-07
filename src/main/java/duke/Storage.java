@@ -1,5 +1,7 @@
 package duke;
 
+import duke.exception.DukeException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -27,7 +29,7 @@ public class Storage {
 
     /**
      * Updates the contents of this storage with the given task list.
-     * @param list Updated task list to be stored.
+     * @param tasks Updated task list to be stored.
      * @throws DukeException If the application is unable to edit the file.
      */
     public void update(TaskList tasks) throws DukeException {

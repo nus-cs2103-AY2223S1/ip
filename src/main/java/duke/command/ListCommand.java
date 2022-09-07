@@ -1,8 +1,8 @@
 package duke.command;
 
+import duke.Response;
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 
 /**
  * Represents a command to list all current tasks.
@@ -18,20 +18,11 @@ public class ListCommand extends Command{
     /**
      * Executes this command.
      * @param tasks Task list to be listed.
-     * @param ui UI to display list.
      * @param storage Storage used in application.
+     * @return The response of the execution.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showList(tasks);
-    }
-
-    /**
-     * Checks if Duke application should exit after this command.
-     * @return False as this command is not bye.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
+    public Response execute(TaskList tasks, Storage storage) {
+        return new Response(tasks.toString(), false);
     }
 }
