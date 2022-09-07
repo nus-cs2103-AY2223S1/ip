@@ -28,20 +28,11 @@ public class Ui {
     }
 
     /**
-     * Returns the error message arising from invalid user input.
+     * Returns the error message.
      *
      * @return String containing the error message.
      */
-    public String showError(DukeException e) {
-        return e.getMessage();
-    }
-
-    /**
-     * Returns the error message arising from issues in loading or storing tasks locally.
-     *
-     * @return String containing the error message.
-     */
-    public String showLoadingError(Exception e) {
+    public String showError(Exception e) {
         return e.getMessage();
     }
 
