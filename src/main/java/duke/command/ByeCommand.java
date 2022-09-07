@@ -5,8 +5,6 @@ import duke.TaskList;
 import duke.UI;
 import duke.DukeException;
 
-import static duke.UI.bye;
-
 /**
  * ByeCommand class to represent an instruction to exit the program.
  *

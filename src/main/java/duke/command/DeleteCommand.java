@@ -15,7 +15,7 @@ import java.util.Arrays;
  */
 
 public class DeleteCommand extends Command {
-    private int[] taskNos;
+    private final int[] taskNos;
 
     public DeleteCommand(int ... taskNos) {
         this.taskNos = taskNos;

@@ -9,9 +9,9 @@ import duke.*;
  */
 
 public class AddEventCommand extends Command { //Creating an duke.Event duke.Task and adding to the taskList
-    String description;
-    boolean isDone;
-    String date;
+    private String description;
+    private boolean isDone;
+    private String date;
 
     public AddEventCommand(String description, boolean isDone, String date) {
         this.description = description;

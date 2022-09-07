@@ -11,7 +11,7 @@ import java.util.List;
 */
 
 public class UI {
-    public static final String DIVIDER = "–––––––––––––––––––––––\n";
+    private static final String DIVIDER = "–––––––––––––––––––––––\n";
 
     public static void response(String text) {
         System.out.println(text);
@@ -82,7 +82,7 @@ public class UI {
 
     public static void list(TaskList taskList) {
         System.out.println(DIVIDER);
-        System.out.printf("Here are the tasks in your list:\n");
+        System.out.print("Here are the tasks in your list:\n");
         for (int i = 0; i < Task.getTaskCount(); i++) {
             System.out.printf(" %d. %s\n", i + 1, taskList.getTask(i));
         }

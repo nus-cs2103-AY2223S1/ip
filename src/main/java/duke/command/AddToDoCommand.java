@@ -13,11 +13,11 @@ import duke.ToDo;
  * @author Sheryl Kong (A0240686Y)
  */
 
-public class AddCommand extends Command {
+public class AddToDoCommand extends Command {
     private String description;
     private boolean isDone;
 
-    public AddCommand(String description, boolean isDone) {
+    public AddToDoCommand(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
     }

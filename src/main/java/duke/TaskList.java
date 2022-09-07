@@ -24,7 +24,6 @@ public class TaskList {
     }
 
     public Task getTask(int i) {
-        System.out.println("tasks.get(" + i + ")");
         return tasks.get(i);
     }
 

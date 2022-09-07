@@ -17,9 +17,9 @@ import java.time.format.DateTimeParseException;
  */
 
 public class AddDeadlineCommand extends Command { //Creating a duke.Deadline duke.Task and adding to the taskList
-    String description;
-    boolean isDone;
-    String date;
+    private String description;
+    private boolean isDone;
+    private String date;
 
     public AddDeadlineCommand(String description, boolean isDone, String date) {
         this.description = description;

@@ -2,14 +2,9 @@ package duke;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 import duke.command.*;
-import org.yaml.snakeyaml.util.ArrayUtils;
 
 /**
  * Parser class to parse texts into commands.
@@ -19,21 +14,21 @@ import org.yaml.snakeyaml.util.ArrayUtils;
 
 public class Parser {
 
-    public static Command parseTodo(String desc) throws DukeException {
+    public static Command parseTodo(String desc) {
         Scanner sc = new Scanner(desc);
         if (!sc.hasNext()) {
             return new ResponseCommand("OOPS!! ToDo description should not be empty!");
         }
-        return new AddCommand(desc, false);
+        return new AddToDoCommand(desc, false);
     }
 
-    public static Command parseDeadline(String desc) throws DukeException {
+    public static Command parseDeadline(String desc) {
         Scanner scanner = new Scanner(desc);
         if (!scanner.hasNext()) {
             return new ResponseCommand("OOPS!! Deadline description should not be empty!");
         }
         String description = "";
-        String date = "";
+        String date;
         while (!scanner.hasNext("/by")) {
             description += scanner.next();
         }
@@ -42,13 +37,13 @@ public class Parser {
         return new AddDeadlineCommand(description, false, date);
     }
 
-    public static Command parseEvent(String desc) throws DukeException {
+    public static Command parseEvent(String desc) {
         Scanner scanner = new Scanner(desc);
         if (!scanner.hasNext()) {
             return new ResponseCommand("OOPS!! Event description should not be empty!");
         }
         String description = "";
-        String date = "";
+        String date;
         while (!scanner.hasNext("/at")) {
             description += scanner.next();
         }
@@ -57,16 +52,16 @@ public class Parser {
         return new AddEventCommand(description, false, date);
     }
 
-    public static Command parseMarkAsDone(String desc) throws DukeException{
+    public static Command parseMarkAsDone(String desc) {
         String[] taskNosString = desc.split("\\s*,\\s*");
-        if (taskNosString[0] == "") {
+        if (taskNosString[0].equals("")) {
             return new ResponseCommand("OOPS!! Please enter the task number(s) you want to mark!");
         }
         int[] taskNosInt = new int[taskNosString.length];
         int currIndex = 0;
         for (String string : taskNosString) {
-            int taskNo = Integer.valueOf(string) - 1;
-            if (taskNo <= 0 || taskNo >= Task.getTaskCount()) {
+            int taskNo = Integer.parseInt(string) - 1;
+            if (taskNo < 0 || taskNo >= Task.getTaskCount()) {
                 return new ResponseCommand("Task number " + (taskNo + 1) + " does not exist.");
             }
             taskNosInt[currIndex] = taskNo;
@@ -75,15 +70,15 @@ public class Parser {
         return new MarkAsDoneCommand(taskNosInt);
     }
 
-    public static Command parseMarkAsUndone(String desc) throws DukeException{
+    public static Command parseMarkAsUndone(String desc) {
         String[] taskNosString = desc.split("\\s*,\\s*");
-        if (taskNosString[0] == "") {
+        if (taskNosString[0].equals("")) {
             return new ResponseCommand("OOPS!! Please enter the task number(s) you want to unmark!");
         }
         int[] taskNosInt = new int[taskNosString.length];
         int currIndex = 0;
         for (String string : taskNosString) {
-            int taskNo = Integer.valueOf(string) - 1;
+            int taskNo = Integer.parseInt(string) - 1;
             if (taskNo < 0 || taskNo >= Task.getTaskCount()) {
                 return new ResponseCommand("OOPS!! Task number " + (taskNo + 1) + " does not exist.");
             }
@@ -96,13 +91,13 @@ public class Parser {
 
     public static Command parseDelete(String desc) {
         String[] taskNosString = desc.split(",");
-        if (taskNosString[0] == "") {
+        if (taskNosString[0].equals("")) {
             return new ResponseCommand("OOPS!! Please enter the task number you would like to delete!");
         }
         int[] taskNosInt = new int[taskNosString.length];
         int currIndex = 0;
         for (String string : taskNosString) {
-            int taskNo = Integer.valueOf(string) - 1;
+            int taskNo = Integer.parseInt(string) - 1;
             System.out.println(taskNo);
             if (taskNo < 0 || taskNo >= Task.getTaskCount()) {
                 return new ResponseCommand("OOPS!! Task number " + (taskNo + 1) + " does not exist.");
@@ -119,9 +114,7 @@ public class Parser {
 
     public static String parseDate(String date) {
         LocalDate localDate = LocalDate.parse(date.trim());
-        String formatDate = localDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
-        return formatDate;
-
+        return localDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
     }
 
     public static Command parse(String rawCommand) throws DukeException {
@@ -165,18 +158,18 @@ public class Parser {
         }
     }
 
-    public static Command parseFileLine(String desc) throws DukeException {
+    public static Command parseFileLine(String desc) {
         String[] words = desc.split("\\s\\|\\s");
         int size = words.length;
         if (size == 1) return new NullCommand();
         String typeOfTask = words[0];
         boolean isDone = words[1].equals("X");
         String description = words[2];
-        String date = " ";
+        String date;
 
         switch (typeOfTask) {
             case ("T"):
-                return new AddCommand(description, isDone);
+                return new AddToDoCommand(description, isDone);
             case ("D"):
                 date = words[3];
                 return new AddDeadlineCommand(description, isDone, date);

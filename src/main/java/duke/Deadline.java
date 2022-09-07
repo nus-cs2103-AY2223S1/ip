@@ -7,7 +7,7 @@ package duke;
  */
 
 public class Deadline extends Task {
-    private String date;
+    private final String date;
 
     /**
      * Constructor for Deadline class
