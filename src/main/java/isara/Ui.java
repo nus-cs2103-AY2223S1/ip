@@ -145,4 +145,16 @@ public class Ui {
     public String errorMessage(IsaraException e) {
         return e.toString();
     }
+
+    /**
+     * Prints a message when a user reschedules their tasks.
+     *
+     * @param task The task to be rescheduled.
+     * @return Message that is printed when the task is rescheduled (the String shows
+     *     which task is rescheduled).
+     */
+    public String reschedule(Task task) {
+        return "You have just rescheduled the following task:" + "\n"
+                + task.toString();
+    }
 }
