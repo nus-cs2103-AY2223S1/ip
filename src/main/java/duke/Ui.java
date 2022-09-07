@@ -12,6 +12,12 @@ class Ui {
             "OOPS!!! The command cannot be processed :( Type 'help' for more guides";
     private static final String ERROR_WRITE_MESSAGE =
             "OOPS!!! I fail to write in the file, possibly due to no permission. Please help me out :(";
+    private static final String HELP_MESSAGE =
+            "Sample instructions as follows:\nlist\ntodo sleep1\nevent sleep2 /at 2019-10-10\n"
+            + "deadline sleep3 /by 2019-10-10\nmark 1\nunmark 1\ndelete 1\n\n\n"
+            + "Currently, only yyyy-mm-dd format is supported such as 2019-10-10.";
+    private static final String ENDED_SESSION_MESSAGE = "This program has terminated. "
+        + "No input is taken any more. Please close and reopen program";
 
     /**
      * Prints the given string in a formatted manner.
@@ -50,8 +56,16 @@ class Ui {
      * @return greeting string to be displayed to user
      */
     protected static String greet() {
-        // Todo: figure out how to greet first
         return Ui.formatPrint(OPENING);
+    }
+
+    /**
+     * Prints help manual for the user.
+     *
+     * @return help string
+     */
+    protected static String help() {
+        return Ui.formatPrint(HELP_MESSAGE);
     }
 
     /**
@@ -61,6 +75,10 @@ class Ui {
      */
     protected static String bye() {
         return Ui.formatPrint(ENDING);
+    }
+
+    protected static String endedSessionPrint() {
+        return Ui.formatPrint(ENDED_SESSION_MESSAGE);
     }
 
     /**
