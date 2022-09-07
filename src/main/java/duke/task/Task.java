@@ -31,6 +31,15 @@ public class Task {
         return this.task;
     }
 
+    /**
+     * Sets the description of the the task.
+     *
+     * @param newDescription The new description of the task.
+     */
+    public void setDescription(String newDescription) {
+        this.task = newDescription;
+    }
+
     @Override
     public String toString() {
         return done ? "[X] " + task : "[ ] " + task;
