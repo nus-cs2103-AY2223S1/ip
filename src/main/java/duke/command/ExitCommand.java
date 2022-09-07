@@ -2,6 +2,7 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
+import javafx.application.Platform;
 
 /**
  * A class that encapsulates the exit command.
@@ -13,11 +14,12 @@ public class ExitCommand extends Command {
      *
      * @param tasks   The current list of tasks.
      * @param storage The storage of data.
-     * @return The reply of the Duke bot.
+     * @return null
      */
     @Override
     public String execute(TaskList tasks, Storage storage) {
-        return "Quack! Hope to see you again soon!";
+        Platform.exit();
+        return null;
     }
 
     /**
