@@ -13,12 +13,8 @@ import ava.command.List;
 import ava.command.Mark;
 import ava.command.Sort;
 import ava.command.Unmark;
-import ava.exception.AvaException;
-import ava.exception.NoCommandException;
-import ava.exception.NoDescriptionException;
-import ava.exception.NoTimeException;
-import ava.exception.UnknownCommandException;
-import ava.exception.WrongTimeFormatException;
+import ava.exception.*;
+import ava.task.Task;
 
 /**
  * Utility class that handles parsing of user input to program command.
@@ -34,22 +30,34 @@ public class Parser {
      * Returns a new mark task of the specified current task.
      *
      * @param chat Input from the scanner.
+     * @param taskList ArrayList of tasks.
      * @return Task object.
      */
-    public static Command mark(String chat) {
+    public static Command mark(String chat, TaskList taskList) throws AvaException {
         int num = Integer.parseInt(chat.split(" ")[1]) - 1;
-        return new Mark(num);
+        int order = taskList.size();
+        if (num > order || num < 0) {
+            throw new NoSuchTaskException();
+        } else {
+            return new Mark(num);
+        }
     }
 
     /**
      * Returns a new unmark task of the specified current task.
      *
      * @param chat Input from the scanner.
+     * @param taskList ArrayList of tasks.
      * @return Task object.
      */
-    public static Command unmark(String chat) {
+    public static Command unmark(String chat, TaskList taskList) throws AvaException {
         int num = Integer.parseInt(chat.split(" ")[1]) - 1;
-        return new Unmark(num);
+        int order = taskList.size();
+        if (num > order || num < 0) {
+            throw new NoSuchTaskException();
+        } else {
+            return new Unmark(num);
+        }
     }
 
     /**
@@ -117,10 +125,12 @@ public class Parser {
      */
     public static Command delete(String chat, TaskList taskList) throws AvaException {
         int order = taskList.size();
+        int num = Integer.parseInt(chat.split(" ")[1]) - 1;
         if (chat.split(" ").length == 1) {
             throw new NoDescriptionException();
+        } else if (num > order || num < 0) {
+            throw new NoSuchTaskException();
         } else {
-            int num = Integer.parseInt(chat.split(" ")[1]) - 1;
             return new Delete(num);
         }
     }
@@ -172,9 +182,9 @@ public class Parser {
             case FIND:
                 return find(chat);
             case UNMARK:
-                return unmark(chat);
+                return unmark(chat, taskList);
             case MARK:
-                return mark(chat);
+                return mark(chat, taskList);
             case TODO: case DEADLINE: case EVENT:
                 return addTask(chat, taskList);
             case DELETE:
