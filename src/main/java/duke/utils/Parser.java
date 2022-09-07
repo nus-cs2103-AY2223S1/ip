@@ -53,6 +53,7 @@ public class Parser {
     }
 
     private Command singleCommand(String[] arg) throws DukeException {
+        assert arg.length == 1;
         switch (arg[0]) {
         case "bye":
             return new ByeCommand();
@@ -64,6 +65,7 @@ public class Parser {
     }
 
     private Command doubleCommand(String[] arg) throws DukeException {
+        assert arg.length == 2;
         switch (arg[0]) {
         case "mark":
         case "unmark":

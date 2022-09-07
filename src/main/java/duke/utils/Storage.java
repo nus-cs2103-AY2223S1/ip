@@ -53,6 +53,8 @@ public class Storage {
                 }
                 textFileWriter.close();
             }
+            assert new File(savePath
+                + System.getProperty("file.separator") + "duke.txt").exists();
         } catch (IOException e) {
             e.getStackTrace();
         }
