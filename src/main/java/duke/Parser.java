@@ -101,6 +101,10 @@ public class Parser {
                 throw new EmptyCommandException(commandArgs[0]);
             }
             return new Command(Keyword.FIND, commandArgs);
+        case "sortdate":
+            return new Command(Keyword.SORT_DATE, commandArgs);
+        case "sortname":
+            return new Command(Keyword.SORT_NAME, commandArgs);
         default:
             throw new CommandNotFoundException(commandArgs[0]);
         }

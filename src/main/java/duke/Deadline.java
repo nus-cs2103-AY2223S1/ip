@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
  * 
  * @author Siau Wee
  */
-public class Deadline extends Task {
+public class Deadline extends Task implements Comparable<Task> {
 
     private static final DateTimeFormatter FORMAT_TIME_YYYYMMDD =
             DateTimeFormatter.ofPattern("HH:mm 'on' yyyy/MM/dd");
@@ -27,6 +27,10 @@ public class Deadline extends Task {
         this.deadLine = deadLine;
     }
 
+    public LocalDateTime getDeadLine() {
+        return this.deadLine;
+    }
+
     /**
      * Returns the string representation of the current Deadline object.
      * 
@@ -36,5 +40,24 @@ public class Deadline extends Task {
     public String toString() {
         return "[D]" + super.toString() + " (by: " + 
                 this.deadLine.format(FORMAT_TIME_YYYYMMDD) + ")";
+    }
+
+    @Override
+    public int compareTo(Task otherTask) {
+        if (otherTask instanceof Todo) {
+            return -1;
+        } else {
+            if (otherTask instanceof Deadline) {
+                @SuppressWarnings("unchecked")
+                Deadline deadlineTask = (Deadline) otherTask;
+                return this.deadLine.compareTo(deadlineTask.deadLine);
+            } else if (otherTask instanceof Event) {
+                @SuppressWarnings("unchecked")
+                Event eventTask = (Event) otherTask;
+                return this.deadLine.compareTo(eventTask.getEventTime());
+            } else {
+                return 0;
+            }
+        }
     }
 }

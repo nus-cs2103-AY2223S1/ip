@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Contains methods and attributes relevant to storing and operating
@@ -47,7 +48,7 @@ public class TaskList {
 
     /**
      * Removes the task at the specified index from the array.
-     * 
+     *
      * @param index The index at which the contained task is to be deleted.
      * @throws TaskNotFoundException If there is no task at the specified index.
      */
@@ -106,6 +107,24 @@ public class TaskList {
         taskToUnmark.unmark();
         Storage.saveToDirectory(this.addedTasks);
         return taskToUnmark;
+    }
+
+    public void sortListByDateAscending() {
+        this.addedTasks.sort(new Comparator<Task>() {
+            @Override
+            public int compare(Task task1, Task task2) {
+                return task1.compareTo(task2);
+            }
+        });
+    }
+
+    public void sortListByTaskNameAscending() {
+        this.addedTasks.sort(new Comparator<Task>() {
+            @Override
+            public int compare(Task task1, Task task2) {
+                return task1.getTaskName().compareTo(task2.getTaskName());
+            }
+        });
     }
 
 }

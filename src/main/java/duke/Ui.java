@@ -121,6 +121,16 @@ public class Ui extends Application {
         }
     }
 
+    public void listSortedByDateAscendingMessage() {
+        this.dukeRespond("Task list has been sorted by date in ascending order.\n" +
+                "Use the list command to view the sorted list.");
+    }
+
+    public void listSortedByTaskNameAscendingMessage() {
+        this.dukeRespond("Task list has been sorted by task name in ascending order.\n" +
+                "Use the list command to view the sorted list.");
+    }
+
     /**
      * Creates and displays a dialog in GUI before exiting program.
      */
@@ -255,6 +265,15 @@ public class Ui extends Application {
                 String chars = command.getCommandArgs()[1];
                 ArrayList<String> foundTasks = this.taskList.findTask(chars);
                 this.taskFoundMessage(foundTasks);
+                break;
+            case SORT_DATE:
+                this.taskList.sortListByDateAscending();
+                this.listSortedByDateAscendingMessage();
+                break;
+            case SORT_NAME:
+                this.taskList.sortListByTaskNameAscending();
+                this.listSortedByTaskNameAscendingMessage();
+                break;
             default:
                 return;
         }

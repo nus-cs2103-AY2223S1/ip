@@ -3,7 +3,7 @@ package duke;
 /**
  * Contains the information of the basic Task, Todo.
  */
-public class Todo extends Task {
+public class Todo extends Task implements Comparable<Task> {
 
     /**
      * Constructor to initialise a Todo with the given task name
@@ -23,4 +23,14 @@ public class Todo extends Task {
     public String toString() {
         return "[T]" + super.toString();
     }
+
+    @Override
+    public int compareTo(Task otherTask) {
+        if (otherTask instanceof Todo) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
 }

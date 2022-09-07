@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.Comparator;
+
 /**
  * This class encapsulates the attributes, states and capabilities
  * of a task: its name, its done status and the ability to change it.
@@ -7,7 +9,7 @@ package duke;
  * @author Siau Wee
  *
  */
-public class Task {
+public abstract class Task implements Comparable<Task> {
 
     /** The name of the task. */
     private String taskName;
@@ -27,6 +29,10 @@ public class Task {
     public Task(String taskName) {
         assert taskName != null;
         this.taskName = taskName;
+    }
+
+    public String getTaskName() {
+        return this.taskName;
     }
 
     /**
