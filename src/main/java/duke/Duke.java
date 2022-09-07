@@ -18,13 +18,13 @@ import duke.ui.Ui;
  */
 public class Duke {
     /** All Tasks */
-    private static TaskList tasks;
+    private TaskList tasks;
 
     /** Storage for tasks. */
-    private static Storage storage;
+    private final Storage storage;
 
     /** Ui for Duke. */
-    private static Ui ui;
+    private final Ui ui;
 
     /**
      * Constructor for Duke.
@@ -32,14 +32,14 @@ public class Duke {
      * @param filePath Path to storage file from root folder (e.g. 'src/data/duke.txt').
      */
     public Duke(String filePath) {
-        Duke.storage = new Storage(filePath);
-        Duke.ui = new Ui();
+        this.storage = new Storage(filePath);
+        this.ui = new Ui();
 
         try {
-            Duke.tasks = new TaskList(Duke.storage.load());
+            this.tasks = new TaskList(this.storage.load());
         } catch (FileNotFoundException e) {
-            System.out.println(Duke.ui.getLoadingErrorMsg());
-            Duke.tasks = new TaskList();
+            System.out.println(this.ui.getLoadingErrorMsg());
+            this.tasks = new TaskList();
         }
     }
 
@@ -58,13 +58,13 @@ public class Duke {
 
         try {
             Command c = Parser.parse(userInput);
-            dukeMessage = c.execute(Duke.tasks, Duke.ui, Duke.storage);
+            dukeMessage = c.execute(this.tasks, this.ui, this.storage);
         } catch (DukeException e) {
-            dukeMessage = Duke.ui.formatDukeErrorMsg(e.getMessage());
+            dukeMessage = this.ui.formatDukeErrorMsg(e.getMessage());
         } catch (NumberFormatException e) {
-            dukeMessage = Duke.ui.getNumberCastErrorMsg();
+            dukeMessage = this.ui.getNumberCastErrorMsg();
         } catch (DateTimeParseException e) {
-            dukeMessage = Duke.ui.getDateErrorMsg();
+            dukeMessage = this.ui.getDateErrorMsg();
         }
 
         assert !dukeMessage.isEmpty() : "Message is not supposed to be empty";

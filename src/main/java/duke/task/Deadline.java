@@ -53,11 +53,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        String formattedDate = this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-
-        // Basic task representation, mark status and task description (e.g. [X] sleep).
-        String basicDescription = super.toString();
-
-        return "[D]" + basicDescription + " (by: " + formattedDate + ")";
+        return "[D]" + super.toString() + " (by: " + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }

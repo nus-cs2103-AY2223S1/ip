@@ -11,7 +11,7 @@ import java.time.format.DateTimeParseException;
  */
 public class Event extends Task {
     /** The date and time of the event. */
-    private LocalDate date;
+    protected LocalDate date;
 
     /**
      * Constructor of Event.
@@ -53,11 +53,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        String formattedDate = this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-
-        // Basic task representation, mark status and task description (e.g. [X] sleep).
-        String basicDescription = super.toString();
-
-        return "[E]" + basicDescription + " (at: " + formattedDate + ")";
+        return "[E]" + super.toString() + " (at: " + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }
