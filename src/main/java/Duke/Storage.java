@@ -1,7 +1,9 @@
 package Duke;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +19,11 @@ public class Storage {
      * @param filescanner Scanner to read from the file.
      * @return List containing all the tasks from a file.
      */
-    public List<Task> readTasks(Scanner filescanner) {
+    public List<Task> readTasks(Scanner filescanner, File f) {
         List<Task> lst = new ArrayList<>(0);
+        if(f.length() == 0) {
+            return lst;
+        }
         while (filescanner.hasNextLine()) {
             String task = filescanner.nextLine();
             if(task.charAt(1) == 'D') {
@@ -64,32 +69,20 @@ public class Storage {
     }
 
     /**
-     * Adds tasks to file.
-     * @param pathName Pathname of file
-     * @param lst List of tasks to add to file.
-     * @throws IOException If there is an error writing to file.
-     */
-    public void addTasks(String pathName,List<String> lst ) throws IOException {
-        for (int i=0; i < lst.size(); i++) {
-            writeToFile(pathName, lst.get(i));
-        }
-    }
-
-    /**
-     * Overwrite the current file.
+     * Overwrite the current file if list is not empty.
      * @param pathName Pathname of file.
      * @param lst1 First list to write to file.
-     * @param lst2 Second list to write to file.
      * @throws IOException If there is an error writing to file.
      */
-    public void replaceTasks(String pathName, List<Task> lst1, List<Task> lst2) throws IOException {
-        System.out.println("Code has been called to replace tasks");
-        overwriteFile(pathName,lst1.get(0).toString());
+    public void replaceTasks(String pathName, List<Task> lst1) throws IOException {
+        if(lst1.isEmpty()) { //if list is empty,change list to empty list
+            PrintWriter pw = new PrintWriter(pathName);
+            pw.close();
+            return;
+        }
+        overwriteFile(pathName, lst1.get(0).toString()); //else, we replace the file with the contents of lst
         for (int i=1; i < lst1.size(); i++) {
             writeToFile(pathName, lst1.get(i).toString());
-        }
-        for (int i=0; i < lst2.size(); i++) {
-            writeToFile(pathName, lst2.get(i).toString());
         }
     }
 

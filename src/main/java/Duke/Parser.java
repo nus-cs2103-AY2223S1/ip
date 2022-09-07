@@ -28,6 +28,7 @@ public class Parser {
      */
     public String readInput2(String str) throws DukeException, IOException {
         String stringReturned = "Default String";
+        System.out.println("code comes here");
         String[] arr = str.split(" ");
         if (arr[0].equals("find")) {
             List<String> matchlist = tasklist.findMatches(str.substring(5));
@@ -88,35 +89,23 @@ public class Parser {
             int total = tasklist.size();
             stringReturned = bot.addTask2(total,task);
         } else if (str.equals("list")) {
-            stringReturned = bot.printTasks2(tasklist.getOldTasks(),tasklist.getNewTasks());
+            stringReturned = bot.printTasks2(tasklist.getOldTasks());
         } else if (arr[0].equals("unmark")) {
             String strnum = arr[1];
             int num = Integer.valueOf(strnum);
             Task task;
-            if (num > tasklist.oldTasksSize()) {;
-                task = tasklist.getNewTasks(num-tasklist.oldTasksSize()-1);
-                task.markUndone();
-                tasklist.setNewTasks(num-tasklist.oldTasksSize()-1,task);
-            } else {
-                task = tasklist.getOldTasks(num-1);
+                task = tasklist.getOldTask(num-1);
                 task.markUndone();;
                 tasklist.setOldTasks(num-1,task);
-            }
                 stringReturned = bot.markTask2(false);
                 stringReturned += task.toString();
             } else if (arr[0].equals("mark")) {
                 String strnum = arr[1];
                 int num = Integer.valueOf(strnum);
                 Task task;
-                if (num > tasklist.oldTasksSize()) {
-                    task = tasklist.getNewTasks(num-tasklist.oldTasksSize()-1);
-                    task.markDone();
-                    tasklist.setNewTasks(num-tasklist.oldTasksSize()-1, task);
-                } else {
-                    task = tasklist.getOldTasks(num-1);
-                    task.markDone();
-                    tasklist.setOldTasks(num-1, task);
-                }
+                task = tasklist.getOldTask(num-1);
+                task.markDone();
+                tasklist.setOldTasks(num-1, task);
                 stringReturned = bot.markTask2(true);
                 stringReturned += task;
             } else if (str.equals("bye")) {
@@ -124,7 +113,7 @@ public class Parser {
             } else{
                 bot.displayError();
             }
-        storage.replaceTasks("data/Duke2.txt", tasklist.getOldTasks(), tasklist.getNewTasks()); //make sure to replace the task after every action
+        storage.replaceTasks("data/Duke2.txt", tasklist.getOldTasks()); //make sure to replace the task after every action
         return stringReturned;
    }
 

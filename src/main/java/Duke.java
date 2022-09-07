@@ -53,9 +53,9 @@ public class Duke{
         Scanner filescanner = new Scanner(f);
         List<Task> newTasks = new ArrayList<>();
         //This part, im loading all the strings in the pre existing file
-        List<Task> oldTasks = storage.readTasks(filescanner);
+        List<Task> oldTasks = storage.readTasks(filescanner,f);
         tasklist = new TaskList(oldTasks);
-        List<Task> newTasks2 = new ArrayList<>();
+        System.out.println("code comes to Duke");
         parser = new Parser(tasklist, bot, storage);
         String stringReturned =  parser.readInput2(input);
 

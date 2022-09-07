@@ -46,16 +46,14 @@ public class Ui {
         return stringReturned;
     }
 
-    public String printTasks2(List<Task> oldTasks, List<Task> newTasks){
+    public String printTasks2(List<Task> oldTasks){
         String stringReturned = "Here are the tasks in your list\n";
-        for(int i = 0; i < oldTasks.size(); i++) {
-            String oldTask = i+1+"."+oldTasks.get(i).toString() + "\n";
-            stringReturned = stringReturned + oldTask;
-        }
-        if (!newTasks.isEmpty()) {
-            for (int i = 0; i < newTasks.size(); i++) {
-                String newTask = i + 1+ oldTasks.size() + "." + newTasks.get(i).toString()+ "\n";
-                stringReturned = stringReturned + newTask;
+        if(oldTasks.isEmpty()) {
+            stringReturned += "your tasklist is empty\n";
+        } else {
+            for(int i = 0; i < oldTasks.size(); i++) {
+                String oldTask = i+1+"."+oldTasks.get(i).toString() + "\n";
+                stringReturned = stringReturned + oldTask;
             }
         }
         return stringReturned;
