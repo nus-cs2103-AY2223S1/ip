@@ -19,6 +19,7 @@ public class TaskList {
      * @param tasks list of tasks if preloaded
      */
     public TaskList(List<Task> tasks) {
+        assert tasks != null;
         this.tasks = tasks;
     }
 
