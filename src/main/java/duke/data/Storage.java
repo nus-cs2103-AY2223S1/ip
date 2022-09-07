@@ -29,6 +29,7 @@ public class Storage {
             if (!data.exists()) {
                 data.createNewFile();
             }
+            assert data.exists();
         } catch (IOException e) {
             ui.showError();
         }
