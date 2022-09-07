@@ -10,6 +10,7 @@ package duke;
 public class Task {
     private final String taskName;
     private boolean markedAsDone = false;
+    private String priority = "[ ]";
 
     public Task(String taskName) {
         this.taskName = taskName;
@@ -31,6 +32,10 @@ public class Task {
         this.markedAsDone = false;
     }
 
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
     /**
      * Returns a String object representing this Task's value.
      *
@@ -44,6 +49,6 @@ public class Task {
             ticker = "[X]";
         }
 
-        return ticker + this.taskName;
+        return ticker + priority + this.taskName;
     }
 }

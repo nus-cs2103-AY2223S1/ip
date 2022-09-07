@@ -19,7 +19,12 @@ public class Ui {
     private final String TODO_MESSAGE = "LUNA will write this one down on her finest crater...:\n";
     private final String EVENT_MESSAGE = "What event could possibly be more important than the Moon Festival?\n";
     private final String DEADLINE_MESSAGE = "Deadlines... LUNA isn't too good with those...\n";
+    private final String HIGH_PRIORITY_MESSAGE = "LUNA reminds you that this task is of the HIGHEST priority...\n";
+    private final String MEDIUM_PRIORITY_MESSAGE = "MEDIUM priority, not to high, not too low, just right...\n";
+    private final String LOW_PRIORITY_MESSAGE = "LOWEST priority... You're probably procrastinating this, aren't you?\n";
+    private final String INCORRECT_PRIORITY_MESSAGE = "LUNA requires you to indicate the priorities as high, medium or low...\n";
     private final String FIND_MESSAGE = "These are the Tasks you have been finding:";
+
     /**
      * Prints a greeting message
      */
@@ -34,6 +39,26 @@ public class Ui {
     public String goodbyeMessage() {
 
         return GOODBYE_MESSAGE;
+    }
+
+    public String highPriorityMessage(String taskName) {
+
+        return HIGH_PRIORITY_MESSAGE + taskName;
+    }
+
+    public String mediumPriorityMessage(String taskName) {
+
+        return MEDIUM_PRIORITY_MESSAGE + taskName;
+    }
+
+    public String lowPriorityMessage(String taskName) {
+
+        return LOW_PRIORITY_MESSAGE + taskName;
+    }
+
+    public String incorrectPriorityMessage() {
+
+        return INCORRECT_PRIORITY_MESSAGE;
     }
 
     /**

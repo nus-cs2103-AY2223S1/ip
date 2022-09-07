@@ -104,6 +104,52 @@ public class Parser {
 
                 }
             }
+        } else if (input.substring(0, Math.min(input.length(), 8)).equals("priority")) {
+            String str = "";
+            boolean isError = false;
+            String type = splitStr[0];
+
+            try {
+
+                if (splitStr.length > 3 || splitStr.length == 1 || !isNumeric(splitStr[1])) {
+                    isError = true;
+                    throw new DukeException("LUNA is unsure of what you are asking of her... ");
+                }
+            } catch (DukeException e) {
+                errorMessage = e.toString();
+            }
+
+            if (!isError) {
+                str = splitStr[1];
+                int index = Integer.valueOf(str) - 1;
+                String priority = splitStr[2];
+                if (priority.equalsIgnoreCase("high")) {
+                    Task task = taskList.get(index);
+                    task.setPriority("[H]");
+                    String taskName = task.toString();
+                    taskList.set(index, task);
+                    return ui.highPriorityMessage(taskName);
+
+                } else if (priority.equalsIgnoreCase("medium")) {
+                    Task task = taskList.get(index);
+                    task.setPriority("[M]");
+                    String taskName = task.toString();
+                    taskList.set(index, task);
+                    return ui.mediumPriorityMessage(taskName);
+
+                } else if (priority.equalsIgnoreCase("low")) {
+                    Task task = taskList.get(index);
+                    task.setPriority("[L]");
+                    String taskName = task.toString();
+                    taskList.set(index, task);
+                    return ui.lowPriorityMessage(taskName);
+
+                } else {
+                    return ui.incorrectPriorityMessage();
+                }
+            }
+
+
         } else {
             String type = splitStr[0];
             String[] findTask = input.split(type);
