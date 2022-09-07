@@ -4,6 +4,8 @@ package duke;
  * Represents a Task to do. A Todo object is Task with a due date.
  */
 public class Todo extends Task{
+    private final static char STATUS_COMPLETE = 'X';
+
     public Todo(String desc, char taskType) {
         super(desc, taskType);
     }
@@ -24,15 +26,15 @@ public class Todo extends Task{
      * Creates a Todo instance that is identical to a given Todo object, and then marked as complete.
      * @return An identical Todo object that is marked as complete.
      */
-    protected Todo performTask() {
-        return new Todo(this.getDesc(), 'X', this.getTaskType());
+    protected Todo completeTask() {
+        return new Todo(this.getDesc(), STATUS_COMPLETE, this.getTaskType());
     }
 
     /**
      * Creates a Todo instance that is identical to a given Todo object, and then marked as incomplete.
      * @return An identical Todo object that is marked as incomplete.
      */
-    protected Todo undoTask() {
+    protected Todo resetTask() {
         return new Todo(this.getDesc(), this.getTaskType());
     }
 }

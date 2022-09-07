@@ -20,23 +20,6 @@ public class Duke {
         }
     }
 
-    /*
-    private void run() {
-        ui.greet();
-        boolean isBye = false;
-        while (!isBye) {
-            try {
-                String commandText = ui.readInput();
-                Command command = Parser.parse(commandText);
-                command.execute(tasks, ui, storage);
-                isBye = command.isByeCommand();
-            } catch (DukeException err) {
-                System.out.println(err);
-            }
-        }
-    }
-     */
-
     protected String getResponse(String input) {
         try {
             Command command = Parser.parse(input);
