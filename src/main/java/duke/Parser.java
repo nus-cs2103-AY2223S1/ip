@@ -21,6 +21,7 @@ public class Parser {
         } catch (IOException error) {
             this.ui.showError(error.getMessage());
         }
+        assert this.taskList != null: "TaskList not loaded properly!";
     }
 
     /**

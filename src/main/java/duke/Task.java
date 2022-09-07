@@ -14,6 +14,7 @@ public class Task {
     }
 
     public Boolean checkMatch(String cmd) {
+        assert cmd != null : "Command cannot be null";
         return this.description.contains(cmd);
     }
 
