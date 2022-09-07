@@ -1,10 +1,12 @@
 package command;
 
 import storage.Storage;
+import task.NotesList;
 import task.TaskList;
 import ui.Ui;
 import exception.DukeException;
 import task.Task;
+import task.Notes;
 
 /**
  * Represents a Delete Command that inherits from
@@ -44,7 +46,7 @@ public class DeleteCommand extends Command {
      * @throws DukeException If there are no such task in the taskList.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, NotesList notesList, Ui ui, Storage storage) {
         String response = "";
         int index = Integer.parseInt(commandLine.substring(7)) - 1;
         try {
@@ -54,11 +56,18 @@ public class DeleteCommand extends Command {
                 assert index < taskList.size();
                 assert index >= 0;
                 Task task = taskList.get(index);
-                taskList.remove(index);
-                storage.updateData(taskList);
-                response = "Noted. I've removed this task:\n"
-                        + " " + task.toString() + "\n" + "Now you have "
-                        + taskList.size() + " tasks in the list.\n";
+                if (task instanceof Notes) {
+                    notesList.remove(index);
+                    response = "Noted. I've removed this task:\n"
+                            + " " + task.toString() + "\n" + "Now you have "
+                            + notesList.size() + " tasks in the list.\n";
+                } else {
+                    taskList.remove(index);
+                    response = "Noted. I've removed this note:\n"
+                            + " " + task.toString() + "\n" + "Now you have "
+                            + taskList.size() + " notes in the list.\n";
+                }
+                storage.updateData(taskList, notesList);
                 System.out.println(response);
                 return response;
             }

@@ -37,7 +37,8 @@ public class Parser {
     public Command parse(String fullCommand) {
         boolean taskCheck = fullCommand.startsWith("todo")
                     || fullCommand.startsWith("deadline")
-                    || fullCommand.startsWith("event");
+                    || fullCommand.startsWith("event")
+                    || fullCommand.startsWith("notes");
         if (fullCommand.isEmpty() || fullCommand.equals("bye")) {
             return new ByeCommand(fullCommand);
         } else if (fullCommand.equals("list")) {

@@ -2,9 +2,11 @@ package command;
 
 import storage.Storage;
 import task.TaskList;
+import task.NotesList;
 import ui.Ui;
 import exception.DukeException;
 import task.Task;
+import task.Notes;
 
 /**
  * Represents an EditCommand that inherits from
@@ -44,7 +46,7 @@ public class EditCommand extends Command {
      * @throws DukeException If there is no such task.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, NotesList notesList, Ui ui, Storage storage) {
         String response = "";
         if (commandLine.startsWith("mark")) {
             int index = Integer.parseInt(commandLine.substring(5)) - 1;
@@ -55,10 +57,14 @@ public class EditCommand extends Command {
                     assert index < taskList.size();
                     assert index >= 0;
                     Task task = taskList.get(index);
-                    task.isMark(true);
-                    storage.updateData(taskList);
-                    response = "Nice! I've marked this task as done:\n"
-                            + " " + task + "\n";
+                    if (task instanceof Notes) {
+                        response = "Sorry, you can't mark a note.";
+                    } else {
+                        task.isMark(true);
+                        response = "Nice! I've marked this task as done:\n"
+                                + " " + task + "\n";
+                    }
+                    storage.updateData(taskList, notesList);
                     System.out.println(response);
                     return response;
                 }
@@ -75,10 +81,14 @@ public class EditCommand extends Command {
                     assert index < taskList.size();
                     assert index >= 0;
                     Task task = taskList.get(index);
-                    task.isMark(false);
-                    storage.updateData(taskList);
-                    response = "OK, I've marked this task as not done yet:\n"
-                            + " " + task + "\n";
+                    if (task instanceof Notes) {
+                        response = "Sorry, you can't unmark a note.";
+                    } else {
+                        task.isMark(false);
+                        storage.updateData(taskList, notesList);
+                        response = "OK, I've marked this task as not done yet:\n"
+                                + " " + task + "\n";
+                    }
                     System.out.println(response);
                     return response;
                 }

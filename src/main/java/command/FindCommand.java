@@ -2,6 +2,7 @@ package command;
 
 import storage.Storage;
 import task.TaskList;
+import task.NotesList;
 import ui.Ui;
 import exception.DukeException;
 import task.Task;
@@ -37,7 +38,7 @@ public class FindCommand extends Command {
      * @throws DukeException If the description of task is empty.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, NotesList notesList, Ui ui, Storage storage) throws DukeException {
         String response = "";
         try {
             if (taskList.size() == 0) {
@@ -53,6 +54,13 @@ public class FindCommand extends Command {
                         tasksFound.add(currTask);
                     }
                 }
+                for (int j = 0; j < taskList.size(); j++) {
+                    Task currNote = notesList.get(j);
+                    String currNoteString = currNote.toString();
+                    if (currNoteString.contains(taskToFind)) {
+                        tasksFound.add(currNote);
+                    }
+                }
                     if (tasksFound.isEmpty()) {
                         throw new DukeException("There is nothing that matches the task.");
                     } else {
@@ -60,8 +68,8 @@ public class FindCommand extends Command {
                         tasksFound.forEach(n -> System.out.println((tasksFound.indexOf(n) + 1)
                                 + "." + n.toString()));
                         response = "Here are the matching tasks in your list:\n";
-                        for (int j = 0; j < tasksFound.size(); j++) {
-                            Task currTaskFound = tasksFound.get(j);
+                        for (int k = 0; k < tasksFound.size(); k++) {
+                            Task currTaskFound = tasksFound.get(k);
                             String currTaskFoundString = currTaskFound.toString();
                             response += currTaskFoundString;
                         }

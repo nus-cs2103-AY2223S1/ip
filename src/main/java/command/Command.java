@@ -2,6 +2,7 @@ package command;
 
 import storage.Storage;
 import task.TaskList;
+import task.NotesList;
 import ui.Ui;
 
 /**
@@ -27,5 +28,5 @@ public abstract class Command {
      * @param ui The Ui that interacts with the next command from the user.
      * @param storage The Storage used to store the tasks.
      */
-    public abstract String execute(TaskList taskList, Ui ui, Storage storage);
+    public abstract String execute(TaskList taskList, NotesList notesList, Ui ui, Storage storage);
 }

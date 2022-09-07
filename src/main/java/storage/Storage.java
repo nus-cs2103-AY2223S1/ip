@@ -8,21 +8,44 @@ import exception.DukeException;
 import filedata.FileData;
 import task.Task;
 import task.TaskList;
+import task.NotesList;
 
 public class Storage {
     protected String filePath;
     protected FileData fileData;
+    protected TaskList tasksAndNotes;
     protected TaskList tasks;
+    protected NotesList notes;
 
     public Storage(String filePath) {
         this.filePath = filePath;
         this.fileData = new FileData(filePath);
-        this.tasks = new TaskList(this.fileData.storeArray());
+        this.tasksAndNotes = new TaskList(this.fileData.storeArray());
     }
 
-    public ArrayList<Task> load() throws DukeException {
+    public ArrayList<Task> loadTasks() throws DukeException {
         this.fileData.toPrint();
+        this.tasks = new TaskList();
+        for (int i = 0; i < this.tasksAndNotes.size(); i++) {
+            Task currTask = this.tasksAndNotes.get(i);
+            char currTaskType = currTask.toString().charAt(1);
+            if (currTaskType != 'N') {
+                this.tasks.add(currTask);
+            }
+        }
         return tasks.toArray();
+    }
+
+    public ArrayList<Task> loadNotes() throws DukeException {
+        this.notes = new NotesList();
+        for (int i = 0; i < this.tasksAndNotes.size(); i++) {
+            Task currTask = this.tasksAndNotes.get(i);
+            char currTaskType = currTask.toString().charAt(1);
+            if (currTaskType == 'N') {
+                this.notes.add(currTask);
+            }
+        }
+        return notes.toArray();
     }
 
     private static void writeToFile(String filePath, String textToAdd) throws IOException {
@@ -46,15 +69,17 @@ public class Storage {
         }
     }
 
-    public void updateData(TaskList taskList) {
-        fileData.updateData(taskList.toArray());
+    public void updateData(TaskList taskList, NotesList notesList) {
+        ArrayList<Task> taskListArray = taskList.toArray();
+        ArrayList<Task> notesListArray = notesList.toArray();
+        fileData.updateData(taskListArray, notesListArray);
     }
 
     public void save() throws DukeException {
         if (!this.fileData.exists()) {
             throw new DukeException("The file does not exist!");
         } else {
-            assert this.f.exists();
+            assert this.fileData.exists();
             for (int i = 0; i < tasks.size(); i++) {
                 try {
                     if (i == 0) {

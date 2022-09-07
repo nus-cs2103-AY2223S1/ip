@@ -2,12 +2,14 @@ package command;
 
 import storage.Storage;
 import task.TaskList;
+import task.NotesList;
 import ui.Ui;
 import exception.DukeException;
 import task.Task;
 import task.Todo;
 import task.Deadline;
 import task.Event;
+import task.Notes;
 
 /**
  * Represents an Add Command that inherits from
@@ -49,7 +51,7 @@ public class AddCommand extends Command {
      * @throws DukeException If the description of task is empty.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, NotesList notesList, Ui ui, Storage storage) throws DukeException {
         String response = "";
         if (commandLine.startsWith("todo")) {
             try {
@@ -59,8 +61,8 @@ public class AddCommand extends Command {
                     String actTask = commandLine.substring(5);
                     Task currTask = new Todo(actTask);
                     taskList.add(currTask);
-                    storage.updateData(taskList);
-                    response = "Got it. I've added this task:\n"
+                    storage.updateData(taskList, notesList);
+                    response = "Got it. I've added this todo task:\n"
                             + " " + currTask + "\n" + "Now you have "
                             + taskList.size() + " tasks in the list.\n";
                     System.out.println(response);
@@ -83,8 +85,33 @@ public class AddCommand extends Command {
                         String taskDate = commandLine.substring(slashIndex + 4);
                         Task currTask = new Deadline(actTask, taskDate);
                         taskList.add(currTask);
-                        storage.updateData(taskList);
-                        response = "Got it. I've added this task:\n"
+                        storage.updateData(taskList, notesList);
+                        response = "Got it. I've added this deadline task:\n"
+                                + " " + currTask + "\n" + "Now you have "
+                                + taskList.size() + " tasks in the list.\n";
+                        System.out.println(response);
+                        return response;
+                    }
+                }
+            } catch (DukeException e) {
+                System.out.println(e.toString());
+                return e.toString();
+            }
+        } else if (commandLine.startsWith("event")) {
+            try {
+                if (commandLine.length() <= 6) {
+                    throw new DukeException("The description of a event cannot be empty.");
+                } else {
+                    if (!commandLine.contains("/")) {
+                        throw new DukeException("There is no date! >:(");
+                    } else {
+                        int slashIndex = commandLine.indexOf("/");
+                        String actTask = commandLine.substring(6, slashIndex - 1);
+                        String taskDate = commandLine.substring(slashIndex + 4);
+                        Task currTask = new Event(actTask, taskDate);
+                        taskList.add(currTask);
+                        storage.updateData(taskList, notesList);
+                        response = "Got it. I've added this event task:\n"
                                 + " " + currTask + "\n" + "Now you have "
                                 + taskList.size() + " tasks in the list.\n";
                         System.out.println(response);
@@ -98,23 +125,17 @@ public class AddCommand extends Command {
         } else {
             try {
                 if (commandLine.length() <= 6) {
-                    throw new DukeException("The description of a event cannot be empty.");
+                    throw new DukeException("The description of a todo cannot be empty.");
                 } else {
-                    if (!commandLine.contains("/")) {
-                        throw new DukeException("There is no date! >:(");
-                    } else {
-                        int slashIndex = commandLine.indexOf("/");
-                        String actTask = commandLine.substring(6, slashIndex - 1);
-                        String taskDate = commandLine.substring(slashIndex + 4);
-                        Task currTask = new Event(actTask, taskDate);
-                        taskList.add(currTask);
-                        storage.updateData(taskList);
-                        response = "Got it. I've added this task:\n"
-                                + " " + currTask + "\n" + "Now you have "
-                                + taskList.size() + " tasks in the list.\n";
-                        System.out.println(response);
-                        return response;
-                    }
+                    String actTask = commandLine.substring(6);
+                    Task currNote = new Notes(actTask);
+                    notesList.add(currNote);
+                    storage.updateData(taskList, notesList);
+                    response = "Got it. I've added this note:\n"
+                            + " " + currNote + "\n" + "Now you have "
+                            + notesList.size() + " notes in the list.\n";
+                    System.out.println(response);
+                    return response;
                 }
             } catch (DukeException e) {
                 System.out.println(e.toString());

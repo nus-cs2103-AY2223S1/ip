@@ -1,6 +1,7 @@
 package command;
 
 import storage.Storage;
+import task.NotesList;
 import task.TaskList;
 import ui.Ui;
 import exception.DukeException;
@@ -43,7 +44,7 @@ public class FalseCommand extends Command {
      * @throws DukeException Always.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, NotesList notesList, Ui ui, Storage storage) throws DukeException {
         try {
             throw new DukeException("I'm sorry, but I don't know what that means :-(\n");
         } catch (DukeException e) {

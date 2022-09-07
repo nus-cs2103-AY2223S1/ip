@@ -11,6 +11,7 @@ import task.Task;
 import task.Todo;
 import task.Deadline;
 import task.Event;
+import task.Notes;
 
 public class FileData {
     protected String fileName;
@@ -42,9 +43,9 @@ public class FileData {
         fw.close();
     }
 
-    public void updateData(ArrayList<Task> tasks) {
-        for (int i = 0; i < tasks.size(); i++) {
-            try {
+    public void updateData(ArrayList<Task> tasks, ArrayList<Task> notes) {
+        try {
+            for (int i = 0; i < tasks.size(); i++) {
                 if (i == 0) {
                     writeToFile(this.fileName, tasks.get(i).toString() + System.lineSeparator());
                 }
@@ -52,9 +53,17 @@ public class FileData {
                 if (i > 0) {
                     storeData(tasks.get(i).toString());
                 }
-            } catch (IOException e) {
-                System.out.println("Something went wrong: " + e.getMessage());
             }
+
+            for (int j = 0; j < notes.size(); j++) {
+                if (tasks.isEmpty()) {
+                    writeToFile(this.fileName, notes.get(j).toString() + System.lineSeparator());
+                } else {
+                    storeData(notes.get(j).toString());
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
         }
     }
 
@@ -63,7 +72,7 @@ public class FileData {
     }
 
     public ArrayList<Task> storeArray() {
-        ArrayList<Task> tasks = new ArrayList<>(100);
+        ArrayList<Task> tasksAndNotes = new ArrayList<>(100);
         try { 
             if (!this.file.exists()) {
                 throw new FileNotFoundException();
@@ -74,15 +83,17 @@ public class FileData {
                     String currTask = s.nextLine();
                     char currType = currTask.charAt(1);
                     if (currType == 'T') {
-                        tasks.add(new Todo(currTask.substring(7)));
+                        tasksAndNotes.add(new Todo(currTask.substring(7)));
                     } else if (currType == 'D') {
                         int bracketIndex = currTask.indexOf("(");
                         String taskDate = currTask.substring(bracketIndex + 4);
-                        tasks.add(new Deadline(currTask.substring(7, bracketIndex - 1), taskDate));
-                    } else {
+                        tasksAndNotes.add(new Deadline(currTask.substring(7, bracketIndex - 1), taskDate));
+                    } else if (currType == 'E') {
                         int bracketIndex = currTask.indexOf("(");
                         String taskDate = currTask.substring(bracketIndex + 4);
-                        tasks.add(new Event(currTask.substring(7, bracketIndex - 1), taskDate));
+                        tasksAndNotes.add(new Event(currTask.substring(7, bracketIndex - 1), taskDate));
+                    } else {
+                        tasksAndNotes.add(new Notes(currTask.substring(7)));
                     }
                 }
                 System.out.println();
@@ -91,7 +102,7 @@ public class FileData {
             System.out.println("File not found!");
             System.out.println();
         }
-        return tasks;
+        return tasksAndNotes;
     }
 
     public void storeData(String textToStore) {

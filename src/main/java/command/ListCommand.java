@@ -3,6 +3,7 @@ package command;
 import storage.Storage;
 import task.Task;
 import task.TaskList;
+import task.NotesList;
 import ui.Ui;
 import exception.DukeException;
 
@@ -43,7 +44,7 @@ public class ListCommand extends Command {
      * @throws DukeException If the taskList is empty.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, NotesList notesList, Ui ui, Storage storage) {
         String response = "";
         try {
             if (taskList.size() == 0) {
@@ -53,11 +54,20 @@ public class ListCommand extends Command {
                 System.out.println("Here are the tasks in your list:");
                 taskList.forEach();
                 System.out.println();
+                System.out.println("Here are the notes in your list:");
+                notesList.forEach();
+                System.out.println();
                 response = "Here are the tasks in your list:\n";
                 for (int i = 0; i < taskList.size(); i++) {
                     Task currTask = taskList.get(i);
                     String currTaskString = currTask.toString();
-                    response += currTaskString;
+                    response += currTaskString + "\n";
+                }
+
+                for (int j = 0; j < notesList.size(); j++) {
+                    Task currNote = notesList.get(j);
+                    String currNoteString = currNote.toString();
+                    response += currNoteString + "\n";
                 }
                 return response;
             }

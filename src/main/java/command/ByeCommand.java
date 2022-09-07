@@ -1,6 +1,7 @@
 package command;
 
 import storage.Storage;
+import task.NotesList;
 import task.TaskList;
 import ui.Ui;
 
@@ -41,7 +42,7 @@ public class ByeCommand extends Command {
      * @param storage The Storage used to store the tasks.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, NotesList notesList, Ui ui, Storage storage) {
         ui.showGoodbye();
         return "Bye. Hope to see you again soon!";
     }
