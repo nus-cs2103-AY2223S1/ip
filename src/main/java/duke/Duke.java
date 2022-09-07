@@ -170,6 +170,7 @@ public class Duke {
      * @param input a full command entered by the user
      */
     private String handleInput(String input) {
+        assert (!input.equals(""));
         String response;
         String[] inputArgs = input.split("\\s+", 2);
         String keyWord = inputArgs[0];
