@@ -46,6 +46,8 @@ public class Brain {
     public String add(Task task) {
         taskList.add(task);
 
+        assert size() > 0 : "brain size should not be 0 after adding task";
+
         return task.toString();
     }
 
