@@ -1,13 +1,12 @@
 package pixel.util;
 
-import pixel.Pixel;
-import pixel.task.Task;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.ArrayList;
+
+import pixel.Pixel;
+import pixel.task.Task;
 
 /**
  * Deals with making sense of the user command
@@ -23,7 +22,7 @@ public class Parser { // inner class
     }
 
     // Method is made public to facilitate testing, should be private
-    public String parse (String userInput) {
+    public String parse(String userInput) {
 
         try {
             if (userInput.strip().startsWith("bye")) {
@@ -79,9 +78,9 @@ public class Parser { // inner class
                     Storage.appendToFile(task, this.filePath);
                 }
 
-               return ("OK, I've marked this task as not done yet: \n"
-                   + Storage.INPUT_TASKS.get(indexToChange - 1) + "\n"
-                   + UserInterface.AFTER_VALID_INPUT);
+                return ("OK, I've marked this task as not done yet: \n"
+                    + Storage.INPUT_TASKS.get(indexToChange - 1) + "\n"
+                    + UserInterface.AFTER_VALID_INPUT);
 
             } else if (userInput.strip().equals("list")) {
                 // System.out.println(inputMemory.length);
@@ -113,26 +112,26 @@ public class Parser { // inner class
         } catch (IndexOutOfBoundsException e) {
             // System.out.println(e);
             return ("caught Index Out of Bounds Exception \n"
-            + UserInterface.AFTER_INVALID_INPUT + "\n"
-            + UserInterface.PROMPT_MESSAGE);
+                + UserInterface.AFTER_INVALID_INPUT + "\n"
+                + UserInterface.PROMPT_MESSAGE);
 
         } catch (StackOverflowError e) {
             // System.out.println(e);
             return ("caught Stack Overflow Error \n"
-            + UserInterface.AFTER_INVALID_INPUT + "\n"
-            + UserInterface.PROMPT_MESSAGE);
+                + UserInterface.AFTER_INVALID_INPUT + "\n"
+                + UserInterface.PROMPT_MESSAGE);
 
         } catch (NullPointerException e) {
             // System.out.println(e);
             return ("caught Null pointer exception \n"
-            + UserInterface.AFTER_INVALID_INPUT + "\n"
-            + UserInterface.PROMPT_MESSAGE);
+                + UserInterface.AFTER_INVALID_INPUT + "\n"
+                + UserInterface.PROMPT_MESSAGE);
 
         } catch (IncorrectFormatException e) {
             // System.out.println(e);
             return ("Incorrect format exception! \n"
-            + UserInterface.AFTER_INVALID_INPUT + "\n"
-            + UserInterface.PROMPT_MESSAGE);
+                + UserInterface.AFTER_INVALID_INPUT + "\n"
+                + UserInterface.PROMPT_MESSAGE);
 
         } catch (IOException e) {
 
@@ -147,10 +146,10 @@ public class Parser { // inner class
                     + UserInterface.PROMPT_MESSAGE);
             }
 
-//        } finally {
-//            // clean up
-//            // System.out.println("cleaning up. Process resumes. Please enter your new input");
-//            run();
+    //    } finally {
+    //        // clean up
+    //        // System.out.println("cleaning up. Process resumes. Please enter your new input");
+    //        run();
         }
     }
 

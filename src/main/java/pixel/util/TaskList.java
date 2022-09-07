@@ -1,12 +1,12 @@
 package pixel.util;
 
+import java.io.IOException;
+
 import pixel.Pixel;
 import pixel.task.Deadline;
 import pixel.task.Event;
 import pixel.task.Task;
 import pixel.task.ToDo;
-
-import java.io.IOException;
 
 /**
  * Handles tasks
@@ -39,26 +39,26 @@ public class TaskList {
         }
 
         switch (type) {
-            case "T": { // todo
-                String description = userInput.substring(5, indexOfEndOfDescription);
-                newTask = new ToDo(description, due, commandWord); // Stores user input
+        case "T": { // todo
+            String description = userInput.substring(5, indexOfEndOfDescription);
+            newTask = new ToDo(description, due, commandWord); // Stores user input
 
-                break;
-            }
-            case "D": { // deadline
-                String description = userInput.substring(9, indexOfEndOfDescription);
-                newTask = new Deadline(description, due, commandWord); // Stores user input
+            break;
+        }
+        case "D": { // deadline
+            String description = userInput.substring(9, indexOfEndOfDescription);
+            newTask = new Deadline(description, due, commandWord); // Stores user input
 
-                break;
-            }
-            case "E": { // event
-                String description = userInput.substring(6, indexOfEndOfDescription);
-                newTask = new Event(description, due, commandWord); // Stores user input
+            break;
+        }
+        case "E": { // event
+            String description = userInput.substring(6, indexOfEndOfDescription);
+            newTask = new Event(description, due, commandWord); // Stores user input
 
-                break;
-            }
-            default:  //shouldn't reach here
-                throw new IncorrectFormatException("Incorrect format of input!"); // programme breaks
+            break;
+        }
+        default: //shouldn't reach here
+            throw new IncorrectFormatException("Incorrect format of input!"); // programme breaks
 
         }
 
@@ -74,7 +74,7 @@ public class TaskList {
         }
 
         Pixel.count += 1;
-        return("Got it. I've added this task: \n"
+        return ("Got it. I've added this task: \n"
             + newTask + "\n"
             + "Now you have " + Pixel.count + " tasks in the list.");
     }

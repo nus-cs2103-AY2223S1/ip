@@ -7,8 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import pixel.MainWindow;
-import pixel.Pixel;
 
 /**
  * A GUI for Duke using FXML.

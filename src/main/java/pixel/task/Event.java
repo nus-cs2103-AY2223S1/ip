@@ -17,7 +17,7 @@ public class Event extends Task {
      * @param due due day/ date and time of the task
      * @param commandWord "at" or "by"
      */
-    public Event (String description, String due, String commandWord) {
+    public Event(String description, String due, String commandWord) {
         super(description, due, commandWord);
     }
 

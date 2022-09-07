@@ -1,14 +1,13 @@
 package pixel.util;
 
-// Storage: deals with loading tasks from the file and saving tasks in the file
-import pixel.Pixel;
-import pixel.task.Task;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
+
+import pixel.Pixel;
+import pixel.task.Task;
 
 /**
  * Handles the storage functions
@@ -87,8 +86,8 @@ public class Storage {
             int originalInputListSize = Storage.INPUT_TASKS.size();
 
             output += ("Noted. I've removed this task: \n"
-                + tempRecord + "\n" );
-                //+ originalInputListSize + " input task size");
+                + tempRecord + "\n");
+            //+ originalInputListSize + " input task size");
 
             // shift everything forward by 1, starting at the element to be removed (which is replaced by next element)
             for (int i = (indexToDelete - 1); i < originalInputListSize; i++) {
@@ -124,7 +123,8 @@ public class Storage {
      */
     public static void appendToFile(Task task, String filePath) throws IOException {
         String textToAdd = task.formatTaskBeforeSave();
-        Writer bufferedFileWriter = new BufferedWriter(new FileWriter(filePath, true)); // FileWriter(String fileName, boolean append)
+        Writer bufferedFileWriter = new BufferedWriter(new FileWriter(filePath, true));
+        // FileWriter(String fileName, boolean append)
         bufferedFileWriter.append(textToAdd).append("\n");
         bufferedFileWriter.close();
     }
