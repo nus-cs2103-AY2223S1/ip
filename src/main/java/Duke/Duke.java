@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.concurrent.Callable;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -154,7 +155,9 @@ public class Duke extends Application {
      */
     private void handleUserInput() {
         Label userText = new Label("Your input:    " + userInput.getText());
-        Label dukeText = new Label(getResponse(userInput.getText()));
+        Label dukeText = getResponse(userInput.getText());
+        userText.setStyle("-fx-text-fill: blue; -fx-font-size: 16px;");
+
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, new ImageView(user)),
                 DialogBox.getDukeDialog(dukeText, new ImageView(duke))
@@ -162,20 +165,23 @@ public class Duke extends Application {
         userInput.clear();
     }
 
-    private String getResponse(String input) {
+    private Label getResponse(String input) {
         boolean isExit = false;
         String res = "";
+        Label response;
         try {
             String fullCommand = input;
             Command c = parser.parse(fullCommand);
-            res = c.execute();
+            response = new Label(c.execute());
+            response.setStyle("-fx-text-fill: green; -fx-font-size: 16px;");
             isExit = c.isExit();
             storage.saveData();
         } catch (Exception e) {
             ui.showError(e.getMessage());
-            res = e.getMessage();
+            response = new Label(e.getMessage());
+            response.setStyle("-fx-text-fill: red; -fx-font-size: 16px;");
         }
-        return res;
+        return response;
     }
 
     // abstractions
