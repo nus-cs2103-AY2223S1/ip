@@ -104,9 +104,9 @@ public class Command {
         return true;
     }
 
-    static boolean deleteCommand(TaskList taskList, Ui ui, Storage storage, int i) {
-        Task toDelete = taskList.getTask(i);
-        taskList.deleteTask(i);
+    static boolean deleteCommand(TaskList taskList, Ui ui, Storage storage, int num) {
+        Task toDelete = taskList.getTask(num);
+        taskList.deleteTask(num);
         storage.updateFile(taskList.getList(), ui);
         ui.printDeleteMessage(toDelete, taskList.getSize());
         return true;
