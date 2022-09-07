@@ -18,6 +18,8 @@ public class DeleteCommand extends Command {
 
     private DeleteCommand(String command, Task task, int taskIndex, TaskList taskList) {
         super(command);
+        assert(command.startsWith("delete"));
+
         this.task = task;
         this.taskIndex = taskIndex;
         this.taskList = taskList;
@@ -34,11 +36,12 @@ public class DeleteCommand extends Command {
      * @throws IllegalArgumentException if input string from user is invalid.
      */
     public static DeleteCommand of(String command, TaskList taskList) throws IllegalArgumentException {
+        assert(command.startsWith("delete"));
         int taskIndex;
         try {
             taskIndex = Parser.getTaskIndex(command);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("🙁 OOPS!!! Provide a number to delete a task.\n");
+            throw new IllegalArgumentException(":( OOPS!!! Provide a number to delete a task.\n");
         }
 
         Task task;
@@ -47,7 +50,7 @@ public class DeleteCommand extends Command {
         } catch (IndexOutOfBoundsException e) {
             throw new IllegalArgumentException(
                     String.format(
-                            "🙁 OOPS!!! Provide a valid number (from 1 to %d) to delete a task.\n", taskList.size())
+                            ":( OOPS!!! Provide a valid number (from 1 to %d) to delete a task.\n", taskList.size())
             );
         }
 

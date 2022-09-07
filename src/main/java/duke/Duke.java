@@ -59,7 +59,7 @@ public class Duke {
     }
 
     /**
-     * Initialises and runs Duke.
+     * Initialises and runs Duke in CLI.
      * @param args command line arguments.
      */
     public static void main(String[] args) {
@@ -70,6 +70,12 @@ public class Duke {
         return new Duke(FILE_NAME, new Gui(dialogContainer, dukeImage), DIRECTORIES);
     }
 
+    /**
+     * Runs Duke for a single user's input; used for Duke in GUI.
+     *
+     * @param userInput string that the user inputted in the GUI.
+     * @return true if Gui should terminate after this method call, false if otherwise.
+     */
     public boolean runForGui(String userInput) {
         Scanner scanner = new Scanner(userInput);
         boolean isExit = false;
@@ -86,13 +92,5 @@ public class Duke {
             isExit = command.getIsExit();
         }
         return isExit;
-    }
-
-    /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
-     */
-    protected String getResponse(String input) {
-        return "Duke heard: " + input;
     }
 }

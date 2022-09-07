@@ -14,6 +14,7 @@ import duke.task.Task;
 public class UpdateUnmarkCommand extends UpdateCommand {
     private UpdateUnmarkCommand(String command, Task task, int taskIndex) {
         super(command, task, taskIndex);
+        assert(command.startsWith("unmark"));
     }
 
     /**
@@ -27,11 +28,12 @@ public class UpdateUnmarkCommand extends UpdateCommand {
      * @throws IllegalArgumentException if input string from user is invalid.
      */
     public static UpdateUnmarkCommand of(String command, TaskList taskList) throws IllegalArgumentException {
+        assert(command.startsWith("unmark"));
         int taskIndex;
         try {
             taskIndex = Parser.getTaskIndex(command);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("🙁 OOPS!!! Provide a number to unmark a task.\n");
+            throw new IllegalArgumentException(":( OOPS!!! Provide a number to unmark a task.\n");
         }
 
         Task task;
@@ -40,7 +42,7 @@ public class UpdateUnmarkCommand extends UpdateCommand {
         } catch (IndexOutOfBoundsException e) {
             throw new IllegalArgumentException(
                     String.format(
-                            "🙁 OOPS!!! Provide a valid number (from 1 to %d) to unmark a task.\n", taskList.size())
+                            ":( OOPS!!! Provide a valid number (from 1 to %d) to unmark a task.\n", taskList.size())
             );
         }
 

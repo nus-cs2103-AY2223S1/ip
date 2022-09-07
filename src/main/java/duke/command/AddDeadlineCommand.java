@@ -12,6 +12,7 @@ import duke.task.Deadline;
 public class AddDeadlineCommand extends AddCommand {
     private AddDeadlineCommand(String command, Deadline deadline) {
         super(command, deadline);
+        assert(command.startsWith("deadline"));
     }
 
     /**
@@ -24,6 +25,8 @@ public class AddDeadlineCommand extends AddCommand {
      * @throws IllegalArgumentException if input string from user is invalid.
      */
     public static AddDeadlineCommand of(String command) throws IllegalArgumentException {
+        assert(command.startsWith("deadline"));
+
         boolean isDone = command.contains("/done");
         if (isDone) {
             command = command.replace("/done", "");
@@ -33,9 +36,9 @@ public class AddDeadlineCommand extends AddCommand {
         String text = commandArr[0].replaceFirst("deadline", "").strip();
         String time = commandArr.length > 1 ? commandArr[1].strip() : "";
         if (text.isEmpty()) {
-            throw new IllegalArgumentException("🙁 OOPS!!! The description of a deadline cannot be empty.\n");
+            throw new IllegalArgumentException(":( OOPS!!! The description of a deadline cannot be empty.\n");
         } else if (time.isEmpty()) {
-            throw new IllegalArgumentException("🙁 OOPS!!! Provide a time for the deadline.\n");
+            throw new IllegalArgumentException(":( OOPS!!! Provide a time for the deadline.\n");
         }
 
         LocalDateTime timeObj;

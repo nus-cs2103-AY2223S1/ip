@@ -3,10 +3,10 @@ package duke;
 import java.io.PrintStream;
 
 /**
- * Prints messages for user.
+ * Prints messages for user in the CLI.
  */
 public class Cli extends Ui {
-    private final PrintStream OUTPUT = System.out;
+    private static final PrintStream OUTPUT = System.out;
 
     /**
      * Prints 30 "-" that act as a divider.

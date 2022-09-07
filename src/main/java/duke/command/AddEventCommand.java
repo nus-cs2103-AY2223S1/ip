@@ -12,6 +12,7 @@ import duke.task.Event;
 public class AddEventCommand extends AddCommand {
     private AddEventCommand(String command, Event event) {
         super(command, event);
+        assert(command.startsWith("event"));
     }
 
     /**
@@ -24,6 +25,8 @@ public class AddEventCommand extends AddCommand {
      * @throws IllegalArgumentException if input string from user is invalid.
      */
     public static AddEventCommand of(String command) throws IllegalArgumentException {
+        assert(command.startsWith("event"));
+
         boolean isDone = command.contains("/done");
         if (isDone) {
             command = command.replace("/done", "");
@@ -33,9 +36,9 @@ public class AddEventCommand extends AddCommand {
         String text = commandArr[0].replaceFirst("event", "").strip();
         String time = commandArr.length > 1 ? commandArr[1].strip() : "";
         if (text.isEmpty()) {
-            throw new IllegalArgumentException("🙁 OOPS!!! The description of an event cannot be empty.\n");
+            throw new IllegalArgumentException(":( OOPS!!! The description of an event cannot be empty.\n");
         } else if (time.isEmpty()) {
-            throw new IllegalArgumentException("🙁 OOPS!!! Provide a time for the event.\n");
+            throw new IllegalArgumentException(":( OOPS!!! Provide a time for the event.\n");
         }
 
         LocalDateTime timeObj;
