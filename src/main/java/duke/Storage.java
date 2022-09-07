@@ -58,6 +58,7 @@ class Storage {
      * @return 0 if successfully written in else 1
      */
     protected int writeResult(TaskList taskList) {
+        assert taskList != null;
         int endIndex = filePath.lastIndexOf("/");
         String dirPath = filePath.substring(0, endIndex);
         File dest = new File(dirPath);
