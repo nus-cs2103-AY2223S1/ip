@@ -17,6 +17,7 @@ import sus.commands.ListCommand;
 import sus.commands.MarkCommand;
 import sus.commands.TodoCommand;
 import sus.commands.UnmarkCommand;
+import sus.commands.UpdateCommand;
 import sus.common.Messages;
 
 /**
@@ -27,17 +28,15 @@ public class Parser {
     // commandWord arguments (. - matches any character, * - zero or more times)
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     // any character, one or more times
-    private static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("(?<targetIndex>.+)");
+    private static final Pattern TASK_INDEX_ARGS_FORMAT = Pattern.compile("\\d+");
     private static final Pattern COLOUR_FORMAT = Pattern
             .compile("\\b(black|red|green|yellow|blue|magenta|cyan|white)\\b");
     // string of any length
     private static final Pattern TODO_FORMAT = Pattern.compile("(?<description>.+)");
-    // string /by string
-    private static final Pattern DEADLINE_FORMAT = Pattern.compile("(?<description>.+\\S+)/by\\S+(?<dateTime>.+)");
-    // string /at string
-    private static final Pattern EVENT_FORMAT = Pattern.compile("(?<description>.+\\S+)/at\\S+(?<dateTime>.+)");
     // 1 word
     private static final Pattern FIND_FORMAT = Pattern.compile("^\\S+$");
+    // index description
+    private static final Pattern UPDATE_FORMAT = Pattern.compile("(?<targetIndex>\\d+)(?<description>.+)");
 
     /**
      * Parses user input into command for execution.
@@ -65,6 +64,8 @@ public class Parser {
             return prepareDeadline(arguments);
         case EventCommand.COMMAND_WORD:
             return prepareEvent(arguments);
+        case UpdateCommand.COMMAND_WORD:
+            return prepareUpdate(arguments);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
         case FindCommand.COMMAND_WORD:
@@ -94,7 +95,7 @@ public class Parser {
     private Command prepareDeadline(String args) {
         try {
             final String[] desTime = parseDeadline(args);
-            return new DeadlineCommand(desTime[0], desTime[1]);
+            return new DeadlineCommand(desTime[0].trim(), desTime[1].trim());
         } catch (DukeException e) {
             return new InvalidCommand(e.getMessage());
         }
@@ -103,7 +104,20 @@ public class Parser {
     private Command prepareEvent(String args) {
         try {
             final String[] desTime = parseEvent(args);
-            return new EventCommand(desTime[0], desTime[1]);
+            return new EventCommand(desTime[0].trim(), desTime[1].trim());
+        } catch (DukeException e) {
+            return new InvalidCommand(e.getMessage());
+        }
+    }
+
+    private Command prepareUpdate(String args) {
+        try {
+            final Matcher matcher = UPDATE_FORMAT.matcher(args.trim());
+            if (!matcher.matches()) {
+                return new InvalidCommand(Messages.MESSAGE_INVALID_ARGUMENTS);
+            }
+            final int targetIndex = parseArgsAsDisplayedIndex(matcher.group("targetIndex"));
+            return new UpdateCommand(targetIndex, matcher.group("description").trim());
         } catch (DukeException e) {
             return new InvalidCommand(e.getMessage());
         }
@@ -164,14 +178,14 @@ public class Parser {
         if (!args.contains("/by")) {
             throw new DukeException(String.format(Messages.MESSAGE_MISSING_SEPARATOR, "/by"));
         }
-        return parseArgsAsDescriptionAndDate(DEADLINE_FORMAT, args);
+        return args.trim().split("/by");
     }
 
     private String[] parseEvent(String args) throws DukeException {
         if (!args.contains("/at")) {
             throw new DukeException(String.format(Messages.MESSAGE_MISSING_SEPARATOR, "/at"));
         }
-        return parseArgsAsDescriptionAndDate(EVENT_FORMAT, args);
+        return args.trim().split("/at");
     }
 
     private int parseArgsAsDisplayedIndex(String args) throws DukeException {
@@ -179,26 +193,6 @@ public class Parser {
         if (!matcher.matches()) {
             throw new DukeException(Messages.MESSAGE_TASK_NOT_SPECIFIED);
         }
-
-        final int targetIndex;
-        try {
-            targetIndex = Integer.parseInt(matcher.group("targetIndex"));
-        } catch (NumberFormatException e) {
-            throw new DukeException(Messages.MESSAGE_TASK_NOT_SPECIFIED);
-        }
-
-        return targetIndex;
-    }
-
-    private String[] parseArgsAsDescriptionAndDate(Pattern taskFormat, String args) throws DukeException {
-        final Matcher matcher = taskFormat.matcher(args.trim());
-        if (!matcher.matches()) {
-            throw new DukeException(Messages.MESSAGE_EMPTY_DESCRIPTION_TIME);
-        }
-
-        String[] descriptionTimeArray = new String[2];
-        descriptionTimeArray[0] = matcher.group("description").trim();
-        descriptionTimeArray[1] = matcher.group("dateTime").trim();
-        return descriptionTimeArray;
+        return Integer.parseInt(matcher.group());
     }
 }

@@ -5,7 +5,7 @@ package sus.task;
  */
 public abstract class Task {
 
-    protected final String description;
+    protected String description;
     protected boolean isDone;
 
     protected Task(String description) {
@@ -23,6 +23,10 @@ public abstract class Task {
 
     public boolean isDone() {
         return isDone;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public abstract String encodeToString();
