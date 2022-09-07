@@ -167,12 +167,12 @@ public class TaskList {
             throw new DukeException(INVALID_COMMAND_MESSAGE);
         }
         Task curr = this.taskArrayList.get(index);
-        if (command[0].equals(actions[0])) {
+        if (command[0].equals(actions[0])) { // mark
             if (!curr.isDone) {
                 curr.isDone = true;
             }
             return Ui.taskStateChangePrint(curr, true);
-        } else if (command[0].equals(actions[1])) {
+        } else if (command[0].equals(actions[1])) { // unmark
             if (curr.isDone) {
                 curr.isDone = false;
             }
