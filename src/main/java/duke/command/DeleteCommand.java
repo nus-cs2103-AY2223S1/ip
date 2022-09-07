@@ -10,7 +10,7 @@ import duke.note.NoteList;
 import duke.types.ListObject;
 
 /**
- * Represents a command to delete a task.
+ * Represents a command to delete a task or a note.
  */
 public class DeleteCommand extends Command {
     private ListObject objectType;
@@ -19,7 +19,8 @@ public class DeleteCommand extends Command {
     /**
      * Creates a new DeleteCommand.
      *
-     * @param index the index of the task to be deleted.
+     * @param objectType the type of object to delete.
+     * @param index the index of the object to delete.
      */
     public DeleteCommand(ListObject objectType, int index) {
         super();

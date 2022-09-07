@@ -20,6 +20,11 @@ public class NoteList extends ArrayList<Note> {
         return this.stream().map(Note::toSaveData).collect(joining("\n"));
     }
 
+    /**
+     * Finds all notes in the list that contain the given string.
+     * @param toFind
+     * @return
+     */
     public ArrayList<Note> find(String toFind) {
         return this.stream().filter(note -> note.descriptionContains(toFind))
                 .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);

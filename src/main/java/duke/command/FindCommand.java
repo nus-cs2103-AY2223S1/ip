@@ -11,7 +11,7 @@ import duke.note.Note;
 import duke.note.NoteList;
 
 /**
- * Represents a command to find a task.
+ * Represents a command to search through tasks or notes.
  */
 public class FindCommand extends Command {
     private String toFind;
@@ -19,7 +19,7 @@ public class FindCommand extends Command {
     /**
      * Creates a new FindCommand.
      *
-     * @param toFind the string to search for in task descriptions within the task list.
+     * @param toFind the string to search for in objects' descriptions within tasks or notes.
      */
     public FindCommand(String toFind) {
         super();

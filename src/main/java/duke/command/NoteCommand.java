@@ -7,13 +7,16 @@ import duke.exception.DukeException;
 import duke.note.Note;
 import duke.note.NoteList;
 
+/**
+ * Command to add a note to the note list.
+ */
 public class NoteCommand extends Command {
     private String description;
 
     /**
-     * Creates a new TodoCommand.
+     * Creates a new NoteCommand.
      *
-     * @param task
+     * @param description
      */
     public NoteCommand(String description) {
         super();

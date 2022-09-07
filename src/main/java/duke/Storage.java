@@ -12,16 +12,17 @@ import duke.note.Note;
 import duke.note.NoteList;
 
 /**
- * Handles saving and loading of tasks to and from a file.
+ * Handles saving and loading of list objects to and from the hard disk.
  */
 public class Storage {
     private String tasksFilePath;
     private String notesFilePath;
 
     /**
-     * Create a new Storage object to handle saving and loading of tasks.
+     * Create a new Storage object to handle saving and loading of list objects.
      *
-     * @param filePath path to the file to save and load tasks from
+     * @param tasksFilePath path to the save file for tasks
+     * @param notesFilePath path to the save file for notes
      */
     public Storage(String tasksFilePath, String notesFilePath) {
         this.tasksFilePath = tasksFilePath;
@@ -29,9 +30,10 @@ public class Storage {
     }
 
     /**
-     * Loads the tasks from the file.
+     * Loads tasks and notes from the filepaths.
      *
-     * @return the tasks from the file
+     * @param tasks The TaskList to load the tasks into.
+     * @param notes The NoteList to load the notes into.
      * @throws DukeInvalidSaveDataException if there is an error reading the file
      */
     public void load(TaskList tasks, NoteList notes) throws DukeInvalidSaveDataException {
@@ -72,14 +74,13 @@ public class Storage {
         } catch (IOException ignored) {
             // Save file does not exist, don't try to continue loading.
         }
-
-        
     }
 
     /**
-     * Saves the tasks to the file.
+     * Saves the tasks and notes to their respective files.
      *
      * @param tasks the list of tasks to save
+     * @param notes the list of notes to save
      * @throws DukeException if there is an error writing to the file
      */
     public void save(TaskList tasks, NoteList notes) throws DukeException {

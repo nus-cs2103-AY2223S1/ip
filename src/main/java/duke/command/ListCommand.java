@@ -6,7 +6,7 @@ import duke.Ui;
 import duke.note.NoteList;
 
 /**
- * Represents a command to list all tasks in the tasklist.
+ * Represents a command to list all objects in the tasks and notes.
  */
 public class ListCommand extends Command {
     @Override

@@ -23,6 +23,7 @@ public abstract class Command {
      * Executes the command.
      *
      * @param tasks the current task list containing all tasks
+     * @param notes the current note list containing all notes
      * @param ui the user interface object
      * @param storage the storage objecct
      * @return the response to the command
