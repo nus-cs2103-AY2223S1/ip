@@ -11,7 +11,9 @@ package duke;
 public class ToDos extends Task {
 
     public ToDos(String todo) {
+
         super(todo);
+        assert todo != null : "Please input a ToDo task!";
     }
 
     /**

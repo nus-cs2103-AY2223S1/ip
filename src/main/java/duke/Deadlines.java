@@ -18,6 +18,7 @@ public class Deadlines extends Task {
 
     public Deadlines(String deadline, String dateStr) throws ParseException {
         super(deadline);
+        assert deadline != null : "Please input a Deadline task!";
         try {
             this.localDate = LocalDate.parse(dateStr);
         } catch (DateTimeParseException e) {
