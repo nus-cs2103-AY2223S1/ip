@@ -7,14 +7,26 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Loads data if any and saves user input in the same file.
+ */
 public class Storage {
     private final static String BREAK = "    ____________________________________________________________";
     private String path;
 
+    /**
+     * Storage Constructor
+     * @param path file path where the .txt file is stored
+     */
     public Storage(String path) {
         this.path = path;
     }
 
+    /**
+     * Loads data in a .txt file into an ArrayList of tasks
+     * @return ArrayList of Task stored in a previously saved file if any or a new ArrayList.
+     * @throws DukeException If the type format in the .txt file is invalid.
+     */
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> tasks = new ArrayList<>();
         try {
@@ -60,6 +72,10 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves an ArrayList of Task in a .txt file
+     * @param tasks TaskList object consists of a list of task inputted by user
+     */
     public void save(TaskList tasks) {
         try {
             FileWriter fw = new FileWriter(this.path);

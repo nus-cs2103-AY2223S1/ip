@@ -2,14 +2,26 @@ package duke;
 
 import java.util.Scanner;
 
+/**
+ * Reads in user input and processes user input.
+ *
+ * @author Liu Han
+ */
 public class Parser {
     private final static String BREAK = "    ____________________________________________________________";
     private TaskList tasks;
 
+    /**
+     * Parser Constructor
+     * @param tasks list of tasks to add user input on.
+     */
     public Parser(TaskList tasks) {
         this.tasks = tasks;
     }
 
+    /**
+     * Add corresponding tasks inputted by user to the list of tasks.
+     */
     public void parser() {
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
@@ -137,6 +149,7 @@ public class Parser {
                         "\n",
                 tasks.getSize());
     }
+
     private void printList() {
         if (tasks.getSize() == 0) {
             System.out.println(BREAK +
