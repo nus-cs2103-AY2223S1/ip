@@ -5,7 +5,8 @@ import java.util.List;
 
 import duke.Storage;
 import duke.exception.DukeException;
-
+import duke.update.NewTask;
+import duke.update.ParserForUpdate;
 
 
 /**
@@ -121,6 +122,24 @@ public class TasksList {
             Task taskToDelete = this.listOfTasks.get(taskNumber - 1);
             this.listOfTasks.remove(taskToDelete);
             return taskToDelete;
+        }
+    }
+
+    /**
+     * Update a Task from the TasksList.
+     * @param taskNumber Task number of the task to be updated.
+     * @param taskString The string representing the task from user input.
+     * @return The new updated Task.
+     * @throws DukeException If the Task number is invalid.
+     */
+    public Task updateTask(int taskNumber, String taskString) throws DukeException {
+        if (taskNumber < 1 || taskNumber > this.listOfTasks.size()) {
+            throw new DukeException("Please enter a valid task number!");
+        } else {
+            NewTask newTask = ParserForUpdate.handleUpdate(taskString);
+            Task taskToUpdateTo = newTask.create();
+            this.listOfTasks.set(taskNumber - 1, taskToUpdateTo);
+            return taskToUpdateTo;
         }
     }
 
