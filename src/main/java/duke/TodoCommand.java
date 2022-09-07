@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class TodoCommand extends TaskCommand {
     @Override
     String addTaskToList(String fullCommand, ArrayList<Task> listOfTasks) {
+        assert fullCommand.length() >= 4; 
         String name = fullCommand.substring(5);
         TaskList taskList = new TaskList(listOfTasks);
         Task t = new ToDo(name, false);
@@ -21,5 +22,6 @@ public class TodoCommand extends TaskCommand {
         if (isTaskEmpty(fullCommand)) {
             throw new DukeTodoEmptyException();
         }
+        assert fullCommand.length() > 4; 
     }
 }

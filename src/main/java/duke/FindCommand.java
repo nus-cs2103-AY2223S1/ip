@@ -30,6 +30,8 @@ public class FindCommand extends Command {
         if (checkIfTaskHasKeyWord(fullCommand, list, i)) {
             numbering = numbering + 1;
             listOfTasksWithKeyword = appendEachTaskToString(listOfTasksWithKeyword,list,i);
+        } else {
+            listOfTaskWithKeyWord = "No task with keyword found.";
         }
     }
 }
