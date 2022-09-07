@@ -42,6 +42,7 @@ public class MainWindow extends AnchorPane {
     }
 
     public void setLuna(Luna l) {
+        assert l != null;
         luna = l;
     }
 
