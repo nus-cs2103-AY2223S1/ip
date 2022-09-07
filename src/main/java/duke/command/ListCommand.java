@@ -25,7 +25,7 @@ public class ListCommand extends Command {
      */
     @Override
     public String run() {
-        return MSG_LIST + this.tasks.toString();
+        return MSG_LIST + tasks.toString();
     }
 
 }

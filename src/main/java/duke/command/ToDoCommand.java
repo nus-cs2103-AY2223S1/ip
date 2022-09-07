@@ -25,6 +25,6 @@ public class ToDoCommand extends Command {
      */
     @Override
     public String run() {
-        return this.tasks.addTask(new ToDo(this.content));
+        return tasks.addTask(new ToDo(content));
     }
 }

@@ -24,6 +24,6 @@ public class FindCommand extends Command {
      */
     @Override
     public String run() {
-        return this.tasks.findTasks(this.content.split("\\s+"));
+        return tasks.findTasks(content.split("\\s+"));
     }
 }
