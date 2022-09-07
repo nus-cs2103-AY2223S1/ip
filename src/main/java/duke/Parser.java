@@ -19,20 +19,11 @@ import duke.commands.TodoCommand;
  * Class that manages the input text.
  */
 public class Parser {
-    private boolean isAcceptingInput;
 
     /**
      * Default constructor of the Parser class.
-     *
-     * @param isAcceptingInput boolean on whether the Parse should be accepting input.
      */
-    public Parser(boolean isAcceptingInput) {
-        this.isAcceptingInput = isAcceptingInput;
-    }
-
-    public boolean isAcceptingInput() {
-        return this.isAcceptingInput;
-    }
+    public Parser() {}
 
     /**
      * Returns the Command object after processing an input text.
@@ -47,7 +38,6 @@ public class Parser {
         String commandText = inputStringArray[0];
         switch (inputStringArray[0]) {
         case "bye":
-            this.isAcceptingInput = false;
             return new ByeCommand();
         case "list":
             return new ListCommand();

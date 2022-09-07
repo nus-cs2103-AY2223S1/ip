@@ -13,13 +13,21 @@ public class ListCommand implements Command {
      *
      * @param tasks TaskList that contains the temporary tasks.
      * @param storage Storage that the tasks are saved at.
-     * @throws DukeException If any error occur.
+     * @return String output of executing the task.
+     * @throws DukeException If any error occurs.
      */
     @Override
-    public void execute(TaskList tasks, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
+        String output = "Here is the list of all your tasks!\n";
         for (int i = 0; i < tasks.getSize(); i++) {
             int index = i + 1;
-            System.out.println(index + ". " + tasks.get(i));
+            output += index + ". " + tasks.get(i) + "\n";
         }
+        return output;
+    }
+
+    @Override
+    public boolean isBye() {
+        return false;
     }
 }

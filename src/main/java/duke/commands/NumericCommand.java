@@ -31,24 +31,24 @@ public class NumericCommand implements Command {
      *
      * @param tasks TaskList that contains the temporary tasks.
      * @param storage Storage that the tasks are saved at.
-     * @throws DukeException If any error occur.
+     * @return String output of executing the task.
+     * @throws DukeException If any error occurs.
      */
     @Override
-    public void execute(TaskList tasks, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         if (index < 0 || index >= tasks.getSize()) {
             throw new DukeException("Please enter between 1 to the last element of the list");
         }
-
+        String output = "";
         switch (command) {
         case "mark":
             if (tasks.get(index).isMarked()) {
                 throw new DukeException("That task is already marked!");
             }
-
             tasks.get(index).markAsDone();
-            System.out.println("Nice! I've marked this task as done");
-            System.out.println(tasks.get(index));
             storage.writeAll(tasks);
+            output += "Nice! I've marked this task as done\n";
+            output += tasks.get(index) + "\n";
             break;
         case "unmark":
             if (!tasks.get(index).isMarked()) {
@@ -56,22 +56,26 @@ public class NumericCommand implements Command {
             }
 
             tasks.get(index).unmark();
-            System.out.println("OK, I've marked this task as not done yet:");
-            System.out.println(tasks.get(index));
             storage.writeAll(tasks);
+            output += "OK, I've marked this task as not done yet:\n";
+            output += tasks.get(index) + "\n";
             break;
         case "delete":
-            System.out.println("Noted. I've removed this task:");
-            System.out.println(tasks.get(index));
+            output += "Noted. I've removed this task:\n";
+
             tasks.remove(index);
-            System.out.println("Now you have " + tasks.getSize() + " tasks in the list");
+            output += tasks.get(index) + "\n";
+            output += "Now you have " + tasks.getSize() + " tasks in the list" + "\n";
             storage.writeAll(tasks);
             break;
         default:
             throw new DukeException("Unable to parse that numeric command");
         }
+        return output;
+    }
 
-
-
+    @Override
+    public boolean isBye() {
+        return false;
     }
 }

@@ -20,21 +20,29 @@ public class FindCommand implements Command {
 
     /**
      * Runs the find command by printing a list of tasks that match the search keyword.
+     *
      * @param tasks TaskList that contains the temporary tasks.
      * @param storage Storage that the tasks are saved at.
+     * @return String output of executing the task.
      * @throws DukeException If any error occurs.
      */
     @Override
-    public void execute(TaskList tasks, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         TaskList taskListWithKeyword = tasks.search(searchKeyword);
         if (taskListWithKeyword.getSize() > 0) {
-            System.out.println("Here are the matching tasks in your list:");
+            String output = "";
+            output += "Here are the matching tasks in your list:\n";
             for (int i = 0; i < taskListWithKeyword.getSize(); i++) {
                 int printedIndex = i + 1;
-                System.out.println(printedIndex + ": " + taskListWithKeyword.get(i));
+                output += printedIndex + ": " + taskListWithKeyword.get(i) + "\n";
             }
+            return output;
         } else {
-            System.out.println("No matching tasks found!");
+            return "No matching tasks found!";
         }
+    }
+    @Override
+    public boolean isBye() {
+        return false;
     }
 }

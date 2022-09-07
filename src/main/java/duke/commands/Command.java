@@ -15,5 +15,7 @@ public interface Command {
      * @param storage Storage that the tasks are saved at.
      * @throws DukeException If any error occurs.
      */
-    public void execute(TaskList tasks, Storage storage) throws DukeException;
+    public String execute(TaskList tasks, Storage storage) throws DukeException;
+
+    public boolean isBye();
 }
