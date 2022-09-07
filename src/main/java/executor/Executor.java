@@ -36,18 +36,12 @@ public class Executor {
     public String addNewTask(String type, String name, LocalDateTime time) throws BocilException {
         Task task;
         try {
-            switch (type) {
-            case "todo":
+            if (type.equals("todo")) {
                 task = new Todo(name);
-                break;
-            case "deadline":
+            } else if (type.equals("deadline")) {
                 task = new Deadline(name, time);
-                break;
-            case "event":
+            } else {
                 task = new Event(name, time);
-                break;
-            default:
-                throw BocilException.bocilUnknownCommandException();
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             throw BocilException.bocilInvalidFormatException();
@@ -186,10 +180,11 @@ public class Executor {
      * @throws BocilException If the user input is not of the accepted format.
      */
     public String endProgram(String input) throws BocilException {
-        if (!input.equals("bye")) {
+        if (input.equals("bye")) {
+            return "Bye! See you next time!";
+        } else {
             throw BocilException.bocilUnknownCommandException();
         }
-        return "Bye! See you next time!";
     }
 
     /**
@@ -200,14 +195,15 @@ public class Executor {
      * @throws BocilException If the user input is not of the accepted format.
      */
     public String showList(String input) throws BocilException {
-        if (!input.equals("list")) {
-            throw BocilException.bocilUnknownCommandException();
-        }
-        if (taskList.getSize() > 0) {
-            String header = "Here are the tasks that we have right now:";
-            return String.join("\n", header, taskList.toString());
+        if (input.equals("list")) {
+            if (taskList.getSize() > 0) {
+                String header = "Here are the tasks that we have right now:";
+                return String.join("\n", header, taskList.toString());
+            } else {
+                return "We don't have any tasks in our list right now. Lets add some!";
+            }
         } else {
-            return "We don't have any tasks in our list right now. Lets add some!";
+            throw BocilException.bocilUnknownCommandException();
         }
     }
 }
