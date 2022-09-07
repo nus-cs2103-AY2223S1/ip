@@ -112,6 +112,12 @@ public class TaskList {
         return tasksString;
     }
 
+    /**
+     * Returns the list of deadlines as a string.
+     *
+     * @param maxDaysTo The number of days before the user should be reminded of a deadline.
+     * @return The list of deadlines as a string.
+     */
     public String getTaskReminders(long maxDaysTo) {
         if (list.isEmpty()) {
             return "";
