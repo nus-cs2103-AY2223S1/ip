@@ -23,9 +23,9 @@ public class OnCommand extends Command {
     /**
      * {@inheritDoc}
      */
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         TaskList tasksOnDate = taskList.getTasksOnDate(input);
-        ui.showTasksOnDate(tasksOnDate, input);
+        return ui.showTasksOnDate(tasksOnDate, input);
     }
 
     /**

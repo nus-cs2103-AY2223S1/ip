@@ -8,19 +8,6 @@ import duke.task.Task;
  * Deals with interactions with the user
  */
 public class Ui {
-    private static final String LINE = "---------------"
-            + "------------------------------------";
-    private final Scanner scanner = new Scanner(System.in);
-
-    /**
-     * Reads the command typed by the user
-     *
-     * @return The command that the user typed
-     */
-    public String readCommand() {
-        return scanner.nextLine();
-    }
-
     /**
      * Returns the word with the correct plural or singular form
      *
@@ -32,27 +19,17 @@ public class Ui {
     }
 
     /**
-     * Displays a line
-     */
-    public void showLine() {
-        System.out.println(LINE);
-    }
-
-    /**
      * Displays greeting
      */
-    public void showGreeting() {
-        System.out.println(LINE);
-        System.out.println("Hi there! I'm Duke\n"
-                + "     What's up?");
-        System.out.println(LINE);
+    public String showGreeting() {
+        return "Hi there! I'm Duke\n What's up?\n";
     }
 
     /**
      * Displays exit message
      */
-    public void showExit() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String showExit() {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
@@ -60,8 +37,8 @@ public class Ui {
      *
      * @param message The error message
      */
-    public void showError(String message) {
-        System.out.println(message);
+    public String showError(String message) {
+        return message;
     }
 
     /**
@@ -70,11 +47,11 @@ public class Ui {
      * @param task The specified task
      * @param taskList The list of tasks
      */
-    public void showAddTask(Task task, TaskList taskList) {
-        System.out.println("Got it. I've added this task:\n"
-                + "  " + task.toString());
-        System.out.println("Now you have " + taskList.size()
-                + showTaskTense(taskList) + " in the list.");
+    public String showAddTask(Task task, TaskList taskList) {
+        return "Got it. I've added this task:\n"
+                + "  " + task.toString()
+                + "\nNow you have " + taskList.size()
+                + showTaskTense(taskList) + " in the list.";
     }
 
     /**
@@ -83,11 +60,10 @@ public class Ui {
      * @param task The specified task
      * @param taskList The list of tasks
      */
-    public void showDeleteTask(Task task, TaskList taskList) {
-        System.out.println("Done! " + task.toString()
-                + " has been deleted :(");
-        System.out.println("Now you have " + taskList.size()
-                + showTaskTense(taskList) + " left.");
+    public String showDeleteTask(Task task, TaskList taskList) {
+        return "Done! " + task.toString()
+                + " has been deleted :(" + "\nNow you have " + taskList.size()
+                + showTaskTense(taskList) + " left.";
     }
 
     /**
@@ -95,9 +71,8 @@ public class Ui {
      *
      * @param task The specified task
      */
-    public void showMarkedTask(Task task) {
-        System.out.println("Good job! I've marked this task as done:");
-        System.out.println(task.toString());
+    public String showMarkedTask(Task task) {
+        return "Good job!\n I've marked this task as done:\n" + task.toString();
     }
 
     /**
@@ -105,9 +80,8 @@ public class Ui {
      *
      * @param task The specified task
      */
-    public void showUnmarkedTask(Task task) {
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(task.toString());
+    public String showUnmarkedTask(Task task) {
+        return "OK, I've marked this task as not done yet:\n" + task.toString();
     }
 
     /**
@@ -115,15 +89,16 @@ public class Ui {
      *
      * @param taskList The specified task list
      */
-    public void showTaskList(TaskList taskList) {
+    public String showTaskList(TaskList taskList) {
+        String list;
         if (taskList.size() == 0) {
-            System.out.println("Nothing to do right now...");
+             list = "Nothing to do right now...";
         } else {
-            System.out.println("Tasks: ");
-            System.out.println(taskList);
+             list = "Tasks: \n" + taskList;
         }
-        System.out.println("You have " + taskList.size()
-                + showTaskTense(taskList) + "!");
+        list += "\nYou have " + taskList.size()
+                + showTaskTense(taskList) + "!";
+        return list;
     }
 
     /**
@@ -132,15 +107,14 @@ public class Ui {
      * @param taskList The list of tasks on a specified date
      * @param dateStr The specified date
      */
-    public void showTasksOnDate(TaskList taskList, String dateStr) {
+    public String showTasksOnDate(TaskList taskList, String dateStr) {
         if (taskList.size() != 0) {
-            System.out.println("These are the tasks on "
-                    + dateStr + ":");
-            System.out.println(taskList);
-            System.out.println("You have " + taskList.size()
-                    + showTaskTense(taskList) + " on " + dateStr + ".");
+            return "These are the tasks on "
+                    + dateStr + ":\n" + taskList
+                    + "\nYou have " + taskList.size()
+                    + showTaskTense(taskList) + " on " + dateStr + ".";
         } else {
-            System.out.println("There are no tasks on this date!");
+            return "There are no tasks on this date!";
         }
     }
 
@@ -150,16 +124,15 @@ public class Ui {
      * @param taskList The list of tasks with the keyword.
      * @param input The keyword.
      */
-    public void showFindings(TaskList taskList, String input) {
+    public String showFindings(TaskList taskList, String input) {
         if (taskList.size() != 0) {
-            System.out.println("I found " + taskList.size()
-                    + showTaskTense(taskList) + " for \"" + input + "\"");
-            System.out.println(taskList);
-            System.out.println("Did you find what you were looking for?");
+            return "I found " + taskList.size() + showTaskTense(taskList)
+                    + " for \"" + input + "\":\n" + taskList
+                    + "\nDid you find what you were looking for?";
         } else {
-            System.out.println("I couldn't find any tasks for \""
-                    + input + "\"");
-            System.out.println("Perhaps try another word!");
+            return "I couldn't find any tasks for \""
+                    + input + "\""
+                    + "\nPerhaps try another word!";
         }
     }
 }
