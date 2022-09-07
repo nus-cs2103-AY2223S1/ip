@@ -17,17 +17,13 @@ import duke.tasks.TaskList;
  */
 public class Duke {
 
+    private final TaskList taskList;
+    private final CommandHandlerFactory commandHandlerFactory;
+
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Constructor of Duke.
      */
-    public String getResponse(String input) {
-        return "Duke heard: " + input;
-    }
-
-    private void initialise() {
-        wrapWithLines("Hello from\n" + LOGO);
-
+    public Duke() {
         File storageDirectory = new File("./data");
         if (!storageDirectory.exists()) {
             if (!storageDirectory.mkdir()) {
@@ -36,7 +32,34 @@ public class Duke {
         }
 
         Storage db = new Storage("./data/duke.txt");
-        TaskList taskList = db.load();
+        taskList = db.load();
+        commandHandlerFactory = new CommandHandlerFactory();
+    }
+
+    /**
+     * Gets the response to the user.
+     * @param input User input.
+     * @return Duke's response to the user.
+     */
+    public String getResponse(String input) {
+        try {
+            CommandHandler commandHandler = commandHandlerFactory.getHandler(input);
+            return commandHandler.handle(taskList);
+        } catch (DukeException e) {
+            return "☹ OOPS!!! " + e.getMessage();
+        }
+    }
+
+    /**
+     * The welcome message when duke initialises.
+     * @return the welcome message.
+     */
+    public String getWelcomeMessage() {
+        return "Hello from\n" + LOGO;
+    }
+
+    private void initialise() {
+        wrapWithLines("Hello from\n" + LOGO);
 
         Scanner sc = new Scanner(System.in);
         CommandHandlerFactory commandHandlerFactory = new CommandHandlerFactory();
