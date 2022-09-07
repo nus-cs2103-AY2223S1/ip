@@ -14,6 +14,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
+    private static Stage stage;
     private Duke duke = new Duke();
 
     @Override
@@ -21,6 +22,7 @@ public class Main extends Application {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
+            Main.stage = stage;
             Scene scene = new Scene(ap);
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setDuke(duke);
@@ -29,4 +31,9 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+
+    public static void close() {
+        Main.stage.close();
+    }
+
 }
