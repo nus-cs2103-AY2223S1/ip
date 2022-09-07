@@ -25,6 +25,7 @@ public class Task {
      * @param taskName The name of the task to be created.
      */
     public Task(String taskName) {
+        assert taskName != null;
         this.taskName = taskName;
     }
 
