@@ -25,7 +25,7 @@ public class ChatBot {
      * @param name string of the name of the chatbot
      */
     public ChatBot(String name) {
-        this.name =  name;
+        this.name = name;
         this.isRunning = false;
         this.taskManager = new TaskManager();
     }
