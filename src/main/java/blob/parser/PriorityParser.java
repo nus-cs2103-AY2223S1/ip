@@ -15,16 +15,16 @@ public class PriorityParser {
      * @return A Priority based on the parsed input
      */
     public Priority parse(String inputPriority) throws InvalidPriorityException {
-        String cleanedInput = inputPriority.trim().replace("//", "").toUpperCase();
+        String cleanedInput = inputPriority.trim().toUpperCase();
 
         switch(cleanedInput) {
-        case "H":
+        case "//H":
             return Priority.HIGH;
 
-        case "M":
+        case "//M":
             return Priority.MED;
 
-        case "L":
+        case "//L":
             return Priority.LOW;
 
         default:

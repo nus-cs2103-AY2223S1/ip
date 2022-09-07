@@ -57,7 +57,7 @@ public abstract class Task {
      * @return A string representation of the task
      */
     public String toString() {
-        return String.format("[%s][%s] %s", this.type.getAbbreviation(),
+        return String.format("<%s>[%s][%s] %s", this.priority.toString(), this.type.getAbbreviation(),
                 this.getStatusIcon(), this.description);
     }
 
@@ -67,7 +67,7 @@ public abstract class Task {
      * @return Formatted task details for storing in text file
      */
     public String toFileString() {
-        return String.format("%s | %d | %s", this.type.getAbbreviation(),
+        return String.format("%s | %s | %d | %s", this.priority.getAbbreviation(), this.type.getAbbreviation(),
                 this.isDone ? 1 : 0, this.description);
     }
 

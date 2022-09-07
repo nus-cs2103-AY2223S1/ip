@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 import blob.exception.ErrorLoadingTaskException;
 import blob.exception.InvalidDateFormatException;
+import blob.exception.InvalidPriorityException;
 import blob.tasks.Deadline;
 import blob.tasks.Event;
 import blob.tasks.Task;
@@ -44,17 +45,18 @@ public class Storage {
                 Scanner sc = new Scanner(new FileReader(taskFile));
                 while (sc.hasNextLine()) {
                     String[] deconstructedDetails = sc.nextLine().trim().split("\\s+\\|\\s+");
-                    String taskType = deconstructedDetails[0];
-                    String done = deconstructedDetails[1];
-                    String description = deconstructedDetails[2];
+                    String priority = deconstructedDetails[0];
+                    String taskType = deconstructedDetails[1];
+                    String done = deconstructedDetails[2];
+                    String description = deconstructedDetails[3];
                     Task task = null;
 
                     if (Objects.equals(taskType, "T")) {
-                        task = new ToDo(description);
+                        task = new ToDo(description, "//" + priority);
                     } else if (Objects.equals(taskType, "D")) {
-                        task = new Deadline(description, deconstructedDetails[3]);
+                        task = new Deadline(description, deconstructedDetails[4], "//" + priority);
                     } else if (Objects.equals(taskType, "E")) {
-                        task = new Event(description, deconstructedDetails[3]);
+                        task = new Event(description, deconstructedDetails[4], "//" + priority);
                     }
 
                     if (Objects.equals(done, "1")) {
@@ -69,6 +71,8 @@ public class Storage {
             throw new ErrorLoadingTaskException();
         } catch (InvalidDateFormatException e) {
             // Improper datetime, do nothing (don't add to task list)
+        } catch (InvalidPriorityException e) {
+            // Improper priority, do nothing (don't add to task list)
         }
 
         return new TaskList(taskList);

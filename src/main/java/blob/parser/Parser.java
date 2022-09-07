@@ -81,8 +81,17 @@ public class Parser {
             return new InvalidCommand(Messages.MESSAGE_ERROR_MISSING_TASK_DESCRIPTION,
                     Messages.MESSAGE_USAGE_TASK_COMMAND);
         }
-        String taskDetails = deconstructedInput[1];
-        return new TodoCommand(taskDetails);
+
+        String[] deconstructedDetails = deconstructedInput[1].trim().split("\\s+", 2);
+
+        if (deconstructedDetails.length < 2) {
+            return new InvalidCommand(Messages.MESSAGE_ERROR_MISSING_PRIO,
+                Messages.MESSAGE_USAGE_TASK_COMMAND);
+        }
+
+        String taskPriority = deconstructedDetails[0];
+        String taskDescription = deconstructedDetails[1];
+        return new TodoCommand(taskPriority, taskDescription);
     }
 
     /**
@@ -96,13 +105,23 @@ public class Parser {
             return new InvalidCommand(Messages.MESSAGE_ERROR_MISSING_TASK_DESCRIPTION,
                     Messages.MESSAGE_USAGE_TASK_COMMAND);
         }
-        String taskDetails = deconstructedInput[1];
-        String[] deconstructedDetails = taskDetails.split("\\s+(/by)\\s+", 2);
+
+        String[] deconstructedDetails = deconstructedInput[1].trim().split("\\s+", 2);
         if (deconstructedDetails.length < 2) {
+            return new InvalidCommand(Messages.MESSAGE_ERROR_MISSING_PRIO,
+                Messages.MESSAGE_USAGE_TASK_COMMAND);
+        }
+        String taskPriority = deconstructedDetails[0];
+
+        String[] taskDetails = deconstructedDetails[1].split("\\s+(/by)\\s+", 2);
+        if (taskDetails.length < 2) {
             return new InvalidCommand(Messages.MESSAGE_ERROR_INVALID_DEADLINE,
                     Messages.MESSAGE_USAGE_DEADLINE_COMMAND);
         }
-        return new DeadlineCommand(deconstructedDetails[0], deconstructedDetails[1]);
+        String taskDescription = taskDetails[0];
+        String taskBy = taskDetails[1];
+
+        return new DeadlineCommand(taskPriority, taskDescription, taskBy);
     }
 
     /**
@@ -116,14 +135,23 @@ public class Parser {
             return new InvalidCommand(Messages.MESSAGE_ERROR_MISSING_TASK_DESCRIPTION,
                     Messages.MESSAGE_USAGE_TASK_COMMAND);
         }
-        String taskDetails = deconstructedInput[1];
-        String[] deconstructedDetails = taskDetails.split("\\s+(/at)\\s+", 2);
+
+        String[] deconstructedDetails = deconstructedInput[1].trim().split("\\s+", 2);
         if (deconstructedDetails.length < 2) {
+            return new InvalidCommand(Messages.MESSAGE_ERROR_MISSING_PRIO,
+                Messages.MESSAGE_USAGE_TASK_COMMAND);
+        }
+        String taskPriority = deconstructedDetails[0];
+
+        String[] taskDetails = deconstructedDetails[1].split("\\s+(/at)\\s+", 2);
+        if (taskDetails.length < 2) {
             return new InvalidCommand(Messages.MESSAGE_ERROR_INVALID_EVENT,
                     Messages.MESSAGE_USAGE_EVENT_COMMAND);
         }
+        String taskDescription = taskDetails[0];
+        String taskAt = taskDetails[1];
 
-        return new EventCommand(deconstructedDetails[0], deconstructedDetails[1]);
+        return new EventCommand(taskPriority, taskDescription, taskAt);
     }
 
     /**

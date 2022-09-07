@@ -36,5 +36,6 @@ public class Messages {
     public static final String MESSAGE_ERROR_INVALID_PRIO = "Blob does not understand input priority...";
     public static final String MESSAGE_USAGE_INPUT_PRIO = "USAGE: Priorities have to be in the following formats: \n"
         + "\t //h (high), //m (medium), //l (low)";
+    public static final String MESSAGE_ERROR_MISSING_PRIO = "Blob needs to know priority of your task...";
 
 }
