@@ -131,6 +131,7 @@ public class Duke {
      */
     public String handleDelete(int index) throws DukeException {
         Task taskToDelete = tasks.delete(index);
+        assert taskToDelete != null : "task should not be null";
         storage.save(tasks);
         return ui.echoDelete(taskToDelete, tasks);
     }
