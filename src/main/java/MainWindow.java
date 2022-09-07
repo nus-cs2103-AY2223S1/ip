@@ -1,6 +1,7 @@
 import java.util.Random;
 
 import duke.Duke;
+import duke.command.Action;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -79,7 +80,7 @@ public class MainWindow extends AnchorPane {
         } else {
             this.duke = dukes[0];
         }
-        addDialogBox(DialogBox.getDukeDialog(duke.getResponse("greet"), dukeImage));
+        addDialogBox(DialogBox.getDukeDialog(duke.getResponse(Action.getString(Action.GREET)), dukeImage));
     }
 
     @FXML
@@ -97,8 +98,9 @@ public class MainWindow extends AnchorPane {
         }).start();
     }
 
-    @FXML
     private long getNextSleepingTime() {
-        return this.random.nextInt(1500) + 400;
+        int range = 1500;
+        int base = 400;
+        return this.random.nextInt(range) + base;
     }
 }
