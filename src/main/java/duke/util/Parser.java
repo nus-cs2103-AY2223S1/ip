@@ -180,7 +180,12 @@ public class Parser {
             default:
                 throw new ParseException(input);
             }
-            task.setDone(Integer.parseInt(splits[1]) == 1);
+            int isDone = parseInt(splits[1]);
+            if (isDone == 1) {
+                task.setDone(true);
+            } else if (isDone != 0) {
+                throw new ParseException(input);
+            }
         } catch (Exception e) {
             throw new ParseException(input);
         }
