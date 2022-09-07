@@ -16,7 +16,7 @@ public class Ui {
     }
 
     /**
-     * Check if user has entered a new command.
+     * Checks if user has entered a new command.
      *
      * @return Whether user has entered a new command
      */

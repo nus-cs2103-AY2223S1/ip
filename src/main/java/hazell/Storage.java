@@ -16,6 +16,7 @@ public class Storage {
      * Returns a Storage object pointing to the file used to store Hazell data locally.
      *
      * Before doing so, it ensures that the folder exists.
+     * @param filePath The path of file to be used by Hazell for local storage
      * @throws IOException
      */
     public Storage(String filePath) throws IOException {
