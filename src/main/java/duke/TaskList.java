@@ -86,6 +86,12 @@ public class TaskList {
         return this.ui.showTaskDeleted(task) + "\n" + this.ui.showTaskCount(this.count);
     }
 
+    /**
+     * Returns list of all tasks containing a certain string.
+     *
+     * @param keyword Keyword searched by user.
+     * @return TaskList of all tasks with keyword.
+     */
     public TaskList findTasks(String keyword) {
         List<Task> list = new ArrayList<Task>();
         for (int i = 0; i < this.count; i++) {
@@ -106,12 +112,11 @@ public class TaskList {
         assert this.count >= 0 : "Task count should not be negative";
         if (this.count == 0) {
             return "List is empty!";
-        } else {
-            String result = "Here are the tasks in your list:";
-            for (int i = 0; i < this.count; i++) {
-                result = result + "\n\t" + (i + 1) + "." + this.get(i);
-            }
-            return result;
         }
+        String result = "Here are the tasks in your list:";
+        for (int i = 0; i < this.count; i++) {
+            result = result + "\n\t" + (i + 1) + "." + this.get(i);
+        }
+        return result;
     }
 }

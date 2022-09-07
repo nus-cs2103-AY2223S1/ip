@@ -31,6 +31,12 @@ public abstract class Task {
         return this.description;
     }
 
+    /**
+     * Checks if description of task contains a certain string.
+     *
+     * @param keyword Keyword searched by user.
+     * @return Boolean representing whether description of task contains keyword.
+     */
     public boolean containsKeyword(String keyword) {
         keyword = keyword.toLowerCase();
         return this.description.contains(keyword);

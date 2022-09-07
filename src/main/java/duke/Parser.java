@@ -31,14 +31,24 @@ public class Parser {
     }
 
     /**
+     * Returns Todo object from user input.
+     *
+     * @param nextLine Input from user.
+     * @return Todo object.
+     */
+    public Todo createTodo(String nextLine) throws DukeException {
+        return new Todo(nextLine, false);
+    }
+
+    /**
      * Returns Deadline object from user input.
      *
      * @param nextLine Input from user.
      * @return Deadline object.
      */
     public Deadline createDeadline(String nextLine) {
-        String[] section = nextLine.split(" /by ");
-        return new Deadline(section[0], false, section[1]);
+        String[] sections = nextLine.split(" /by ");
+        return new Deadline(sections[0], false, sections[1]);
     }
 
     /**
