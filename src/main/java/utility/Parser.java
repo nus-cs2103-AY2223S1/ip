@@ -2,6 +2,8 @@ package utility;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,6 +30,15 @@ import task.Task;
  * Handles all conversions required in the program.
  */
 public class Parser {
+
+
+    public void initialiseCommandAliases() {
+        HashMap<String, String> commandAliases = new HashMap<>();
+        commandAliases.put("t", "todo");
+        commandAliases.put("todo", "todo");
+        commandAliases.put("list", "list");
+    }
+
     /**
      * Returns Command object corresponding to
      * command extracted from user input.
@@ -83,16 +94,16 @@ public class Parser {
      * @return
      */
     private static String extractCommand(String command) {
-        Pattern todoRegex = Pattern.compile("(t|todo)");
-        Pattern listRegex = Pattern.compile("(l|list)");
-        Pattern deadlineRegex = Pattern.compile("(deadline|d)");
-        Pattern markRegex = Pattern.compile("(mark|m)");
-        Pattern unmarkRegex = Pattern.compile("(unmark|um)");
-        Pattern byeRegex = Pattern.compile("(bye|b|quit|q|exit)");
-        Pattern findRegex = Pattern.compile("(find|f)");
-        Pattern longdescRegex = Pattern.compile("(longdesc)");
-        Pattern istodayRegex = Pattern.compile("(istoday)");
-        Pattern helpRegex = Pattern.compile("(help|h)");
+        Pattern todoRegex = Pattern.compile("t|todo");
+        Pattern listRegex = Pattern.compile("l|list");
+        Pattern deadlineRegex = Pattern.compile("deadline|d");
+        Pattern markRegex = Pattern.compile("mark|m");
+        Pattern unmarkRegex = Pattern.compile("unmark|um");
+        Pattern byeRegex = Pattern.compile("bye|b|quit|q|exit");
+        Pattern findRegex = Pattern.compile("find|f");
+        Pattern longdescRegex = Pattern.compile("longdesc");
+        Pattern istodayRegex = Pattern.compile("istoday");
+        Pattern helpRegex = Pattern.compile("help|h");
         Pattern[] REGEXES = {todoRegex, listRegex, deadlineRegex, markRegex, unmarkRegex, byeRegex, findRegex, longdescRegex, istodayRegex, helpRegex};
         String[] COMMANDS_ORDERED_LIST = {"todo", "list", "deadline", "mark", "unmark", "bye", "find", "longdesc", "istoday", "help"};
         int numberOfValidCommands = COMMANDS_ORDERED_LIST.length;
@@ -100,7 +111,7 @@ public class Parser {
 
         for (int i = 0; i < numberOfValidCommands; i ++) {
            matcher = REGEXES[i].matcher(command);
-           if (matcher.find()) {
+           if (matcher.matches()) {
                return COMMANDS_ORDERED_LIST[i];
            }
         }
@@ -120,12 +131,11 @@ public class Parser {
     }
 
     /**
-     * Converts string command for adding
-     * event to corresponding Event object.
      *
-     * @param userInput User input command for creating Event.
-     * @return Event object with required description and date.
-     * @throws DukeException When no valid description or date is found.
+     * @param description
+     * @param date
+     * @return
+     * @throws DukeException
      */
     public static Event stringToEvent(String description, String date) throws DukeException {
         LocalDate localDate = getDate(date);
@@ -133,12 +143,11 @@ public class Parser {
     }
 
     /**
-     * Converts string command for adding
-     * deadline to corresponding Deadline object.
      *
-     * @param userInput User input command for creating Deadline.
-     * @return Deadline object with required description and date.
-     * @throws DukeException When no valid description or date is found.
+     * @param description
+     * @param date
+     * @return
+     * @throws DukeException
      */
     public static Deadline stringToDeadline(String description, String date) throws DukeException {
         LocalDate localDate = getDate(date);
@@ -147,11 +156,10 @@ public class Parser {
 
 
     /**
-     * Extracts date from a date-able Task.
      *
-     * @param userInput User input command to extract date from.
-     * @return LocalDate object corresponding to date mentioned.
-     * @throws DukeException Throws when no valid date found.
+     * @param date
+     * @return
+     * @throws DukeException
      */
     private static LocalDate getDate(String date) throws DukeException {
         try {
@@ -197,9 +205,5 @@ public class Parser {
      */
     public static String stringToFind(String userInput) {
         return userInput.substring(userInput.indexOf("find") + 5);
-    }
-
-    public static void main(String[] args) throws DukeException {
-        System.out.println(Parser.parse("h"));
     }
 }
