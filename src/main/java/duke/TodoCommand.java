@@ -1,18 +1,25 @@
 package duke;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-public class TodoCommand extends Command {
+public class TodoCommand extends TaskCommand {
     @Override
-    String execute(String taskName, ArrayList<Task> listOfTasks, Ui ui, Storage storage)
-            throws IOException, DukeTodoEmptyException {
-        if(taskName.length() == 4){
-            throw new DukeTodoEmptyException();
-        }
+    String addTaskToList(String fullCommand, ArrayList<Task> listOfTasks) {
+        String name = fullCommand.substring(5);
         TaskList taskList = new TaskList(listOfTasks);
-        Task t = new ToDo(taskName.substring(5), false);
+        Task t = new ToDo(name, false);
         return taskList.addToList(t);
     }
 
+    @Override
+    boolean isTaskEmpty(String fullCommand) {
+        return fullCommand.length() == 4;
+    }
+
+    @Override
+    void handleEmptyTask(String fullCommand) throws DukeTodoEmptyException {
+        if (isTaskEmpty(fullCommand)) {
+            throw new DukeTodoEmptyException();
+        }
+    }
 }

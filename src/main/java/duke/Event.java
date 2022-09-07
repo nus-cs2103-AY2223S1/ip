@@ -3,7 +3,7 @@ package duke;
 /**
  * Represents a task of an event.
  */
-public class Event extends Task{
+public class Event extends Task {
     String time;
     String type;
 
@@ -13,7 +13,7 @@ public class Event extends Task{
      * @param isDone Status of whether the task is done.
      * @param time The time of the event task inputted by user.
      */
-    Event(String name, boolean isDone, String time){
+    Event(String name, boolean isDone, String time) {
         super(name, isDone);
         this.time = time;
         this.type = "[E]";
