@@ -10,16 +10,16 @@ import duke.task.TaskList;
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
 
-    private int t;
+    private int index;
 
     /**
      * Constructs an Unmark Command with the task to be marked
      * as not done.
      *
-     * @param t Index of the task to be unmarked.
+     * @param index Index of the task to be unmarked.
      */
-    public UnmarkCommand(int t) {
-        this.t = t;
+    public UnmarkCommand(int index) {
+        this.index = index;
     }
 
     /**
@@ -32,7 +32,7 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
-        return tasks.unmark(t);
+        return tasks.unmark(index);
     }
 
 }

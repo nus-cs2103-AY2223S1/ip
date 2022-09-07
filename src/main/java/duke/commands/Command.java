@@ -33,6 +33,7 @@ public abstract class Command {
      * @param tasks Contains the task list.
      * @param storage Storage to save and load tasks from a local file.
      * @return The response of Duke.
+     * @throws DukeException if the command could not be executed successfully.
      */
     public abstract String execute(TaskList tasks, Storage storage) throws DukeException;
 }

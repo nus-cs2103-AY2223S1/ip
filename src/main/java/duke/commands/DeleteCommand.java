@@ -10,16 +10,16 @@ import duke.task.TaskList;
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
-    private int t;
+    private int index;
 
     /**
      * Constructs a delete command with the index of the task
      * to be deleted.
      *
-     * @param t Index of the task to be deleted.
+     * @param index Index of the task to be deleted.
      */
-    public DeleteCommand(int t) {
-        this.t = t;
+    public DeleteCommand(int index) {
+        this.index = index;
     }
 
     /**
@@ -31,6 +31,6 @@ public class DeleteCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
-        return tasks.delete(t);
+        return tasks.delete(index);
     }
 }

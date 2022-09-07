@@ -10,16 +10,16 @@ import duke.task.TaskList;
 public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
 
-    private Deadline d;
+    private Deadline deadline;
 
     /**
      * Constructs a Deadline Command with the Deadline task
      * to be added.
      *
-     * @param d The Deadline task to be added.
+     * @param deadline The Deadline task to be added.
      */
-    public DeadlineCommand(Deadline d) {
-        this.d = d;
+    public DeadlineCommand(Deadline deadline) {
+        this.deadline = deadline;
     }
 
     /**
@@ -31,6 +31,6 @@ public class DeadlineCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) {
-        return tasks.add(d);
+        return tasks.add(this.deadline);
     }
 }

@@ -22,6 +22,8 @@ public class Ui {
 
     /**
      * Sends a welcome message.
+     *
+     * @return The welcome message.
      */
     public static String welcome() {
         return START + "hi, i'm Duke!\n   what would you like to do today?";
@@ -30,6 +32,8 @@ public class Ui {
     /**
      * Informs the user that they have entered an invalid argument for the
      * "mark" command.
+     *
+     * @return A string informing the user that they have entered an invalid argument.
      */
     public static String invalidMarkInput() {
         return SAD_FACE + "please enter an integer so i know which task to mark!";
@@ -38,6 +42,8 @@ public class Ui {
     /**
      * Informs the user that they have entered an invalid argument for the
      * "unmark" command.
+     *
+     * @return A string informing the user that they have entered an invalid argument.
      */
     public static String invalidUnmarkInput() {
         return SAD_FACE + "please enter an integer so i know which task to unmark!";
@@ -48,6 +54,7 @@ public class Ui {
      * the task to be added.
      *
      * @param t The type of the task for which information has been entered wrongly.
+     * @return A string informing the user that they have entered invalid information.
      */
     public static String invalidTaskInput(TaskType t) {
         String reply;
@@ -66,6 +73,8 @@ public class Ui {
     /**
      * Informs the user when they have not specified a date for the
      * "search" command.
+     *
+     * @return A string informing the user that they have not entered a date to search for.
      */
     public static String emptyDateInput() {
         return SAD_FACE + "please enter the date you would like to search for in the format DD/MM/YYYY.";
@@ -73,6 +82,8 @@ public class Ui {
 
     /**
      * Informs the user when they have not entered the date in a valid format.
+     *
+     * @return A string informing the user that they have entered the date in an invalid format.
      */
     public static String invalidDateInput() {
         return SAD_FACE + "please enter a valid date in the format DD/MM/YYYY.";
@@ -81,6 +92,9 @@ public class Ui {
     /**
      * Informs the user when they have not entered the date and time
      * in a valid format.
+     *
+     * @return A string informing the user that they have entered the date and time
+     *     in an invalid format.
      */
     public static String invalidDateTimeInput() {
         return SAD_FACE + "please input a valid date and time in the format DD/MM/YYYY HHMM (time optional)";
@@ -88,6 +102,9 @@ public class Ui {
 
     /**
      * Informs the user when they have not entered the dates and time of an event in a valid format.
+     *
+     * @return A string informing the user that they have entered the date and time
+     *     in an invalid format.
      */
     public static String invalidStartEndDateInput() {
         return SAD_FACE + "please input valid starting and ending dates and times in the format\n"
@@ -97,6 +114,8 @@ public class Ui {
     /**
      * Informs the user that they have entered an invalid argument for the
      * "delete" command.
+     *
+     * @return A string informing the user that they did not specify the task to delete..
      */
     public static String invalidDeleteInput() {
         return SAD_FACE + "please enter an integer so i know which task to delete!";
@@ -104,6 +123,8 @@ public class Ui {
 
     /**
      * Sends when the user enters any commands not recognised by Duke.
+     *
+     * @return A string informing the user whenever Duke does not understand the input.
      */
     public static String invalidInput() {
         return SAD_FACE + "sorry, i don't know what that means :(";
@@ -112,6 +133,8 @@ public class Ui {
     /**
      * Informs the user when they have not specified any search terms for the
      * "find" command.
+     *
+     * @return A string informing the user that they have not entered any keywords to search for.
      */
     public static String emptyFindInput() {
         return SAD_FACE + "please enter the keywords you would like to search for.";
@@ -120,6 +143,9 @@ public class Ui {
     /**
      * Sends a goodbye message in the event that the task list created by Duke could not be
      * saved to the hard drive.
+     *
+     * @return A string containing the goodbye message and informing the user that the task list
+     *     could not be saved to the hard drive.
      */
     public static String saveFail() {
         return START + "bye! i was unable to save your list to the hard drive, but i hope to see you again soon! :)";
@@ -127,6 +153,8 @@ public class Ui {
 
     /**
      * Sends a goodbye message upon exiting Duke.
+     *
+     * @return The goodbye message.
      */
     public static String goodbye() {
         return START + "bye! i hope to see you again soon! :)";

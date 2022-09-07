@@ -11,9 +11,9 @@ import java.util.Scanner;
  * the hard drive and load the task list from the hard drive.
  */
 public class Storage {
-    private File data = new File("data/");
-    private File list = new File("data/list.txt");
-    private ArrayList<String[]> infoList;
+    private static final File DATA_DIRECTORY = new File("data/");
+    private static final File LIST_FILE = new File("data/list.txt");
+    private static ArrayList<String[]> infoList;
 
     /**
      * Loads the task list from a file in the hard drive. If the
@@ -22,20 +22,35 @@ public class Storage {
      * @return A list containing information about each task to be saved in TaskList.
      * @throws IOException If the directory or file cannot be created.
      */
+
+    private static void createDirectoryIfNotExists() {
+        if (!DATA_DIRECTORY.exists()) {
+            DATA_DIRECTORY.mkdir();
+        }
+    }
+
+    private static void createFile() throws IOException {
+        createDirectoryIfNotExists();
+        LIST_FILE.createNewFile();
+    }
+
+    /**
+     * Loads information from a file on the hard drive, if any,
+     * into Duke.
+     *
+     * @return A list containing the tasks found on the file, if any.
+     * @throws IOException if there was an error creating the file or data directory.
+     */
     public ArrayList<String[]> load() throws IOException {
         infoList = new ArrayList<>(100);
-
         //create a file to store the task list if it does not exist
-        if (!list.exists()) {
-            if (!data.exists()) {
-                data.mkdir();
-            }
-            list.createNewFile();
+        if (!LIST_FILE.exists()) {
+            createFile();
             return infoList;
         }
 
         //read contents from file containing the task list
-        Scanner listSc = new Scanner(list);
+        Scanner listSc = new Scanner(LIST_FILE);
         while (listSc.hasNext()) {
             String[] info = listSc.nextLine().split(" \\| ");
             infoList.add(info);
@@ -48,7 +63,7 @@ public class Storage {
      * Saves the contents of TaskList to the hard drive.
      *
      * @param taskDescriptions An array containing information about each task.
-     * @throws IOException If the directory or data file cannot be found.
+     * @throws IOException If the directory or list file cannot be found.
      */
     public void save(String[] taskDescriptions) throws IOException {
         FileWriter fw = new FileWriter("data/list.txt");

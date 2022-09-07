@@ -8,9 +8,7 @@ import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
-
 import javafx.application.Application;
-import javafx.application.Platform;
 
 /**
  * Encapsulates a chatbot by the name of Duke.
@@ -32,7 +30,7 @@ import javafx.application.Platform;
  *
  * Duke will stop running upon receiving the "bye" command.
  */
-public class Duke{
+public class Duke {
     private final Storage storage;
     private TaskList tasks;
 
@@ -46,7 +44,6 @@ public class Duke{
         storage = new Storage();
         try {
             tasks = new TaskList(storage.load());
-            storage.load();
         } catch (IOException e) {
             Ui.fileLoadError();
             tasks = new TaskList();
@@ -64,7 +61,7 @@ public class Duke{
             Command command = Parser.parse(input);
             String output = command.execute(this.tasks, this.storage);
             if (command.isExit()) {
-                Platform.exit();
+                System.exit(0);
             }
             return output;
         } catch (DukeException e) {
