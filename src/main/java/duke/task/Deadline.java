@@ -43,8 +43,9 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(),
-                this.deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+        return String.format("[D]%s (by: %s) [%s]", super.toString(),
+                this.deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy")),
+                super.getTagsString());
     }
 
     /**
@@ -54,7 +55,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toStorageRepresentation() {
-        return "D|" + super.toStorageRepresentation() + "|" + this.deadlineString;
+        return String.format("D|%s|%s#%s", super.toStorageRepresentation(),
+                this.deadlineString, super.getTagsString());
     }
 
     /**

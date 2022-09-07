@@ -58,6 +58,21 @@ public abstract class Task {
         return String.format("[%s] %s", this.getStatusIcon(), this.description);
     }
 
+    protected String getTagsString() {
+        if (this.tags.isEmpty()) {
+            return "";
+        }
+
+        StringBuilder tagString = new StringBuilder();
+
+        for (String tag : tags) {
+            tagString.append(tag + ",");
+        }
+
+        tagString.deleteCharAt(tagString.length() - 1);
+        return tagString.toString();
+    }
+
     /**
      * Transforms the Task to a string that is compatible to Duke's storage.
      *

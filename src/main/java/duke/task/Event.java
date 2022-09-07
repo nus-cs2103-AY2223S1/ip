@@ -43,8 +43,9 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(),
-                this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+        return String.format("[E]%s (at: %s) [%s]", super.toString(),
+                this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")),
+                super.getTagsString());
     }
 
     /**
@@ -54,7 +55,8 @@ public class Event extends Task {
      */
     @Override
     public String toStorageRepresentation() {
-        return "E|" + super.toStorageRepresentation() + "|" + this.timeString;
+        return String.format("E|%s|%s#%s", super.toStorageRepresentation(),
+                this.timeString, super.getTagsString());
     }
 
     /**

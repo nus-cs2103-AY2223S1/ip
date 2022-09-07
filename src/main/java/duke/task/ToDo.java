@@ -26,7 +26,7 @@ public class ToDo extends Task {
      */
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return String.format("[T]%s [%s]", super.toString(), super.getTagsString());
     }
 
     /**
@@ -36,7 +36,8 @@ public class ToDo extends Task {
      */
     @Override
     public String toStorageRepresentation() {
-        return "T|" + super.toStorageRepresentation();
+        return String.format("T|%s#%s", super.toStorageRepresentation(),
+                super.getTagsString());
     }
 
     /**

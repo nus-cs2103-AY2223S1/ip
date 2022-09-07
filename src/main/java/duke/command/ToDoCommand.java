@@ -1,5 +1,7 @@
 package duke.command;
 
+import java.util.Arrays;
+
 import duke.exception.DukeException;
 import duke.exception.ToDoException;
 import duke.storage.Storage;
@@ -42,7 +44,22 @@ public class ToDoCommand implements Command {
             throw new ToDoException();
         }
 
-        Task newTask = new ToDo(this.description);
+        int tagsIndex = this.description.indexOf("#");
+        String todoDescription = tagsIndex < 0
+                ? this.description
+                : this.description.substring(0, tagsIndex).trim();
+        String[] tags;
+
+        if (tagsIndex < 0 || tagsIndex >= this.description.length() - 1) {
+            tags = new String[0];
+        } else {
+            tags = Arrays.stream(this.description.substring(tagsIndex + 1).split(","))
+                    .map(String::trim)
+                    .filter(tag -> !tag.isEmpty())
+                    .toArray(String[]::new);
+        }
+
+        Task newTask = new ToDo(todoDescription, tags);
         taskList.addTask(newTask);
         storage.saveTasksInStorage(taskList.toStorageRepresentation());
 

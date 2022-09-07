@@ -51,7 +51,22 @@ public class EventCommand implements Command {
             throw new EventException();
         }
 
-        Task newTask = new Event(eventInfo.get(0), eventInfo.get(1));
+        int tagsIndex = eventInfo.get(1).indexOf("#");
+        String dateString = tagsIndex < 0
+                ? eventInfo.get(1)
+                : eventInfo.get(1).substring(0, tagsIndex).trim();
+        String[] tags;
+
+        if (tagsIndex < 0 || tagsIndex >= eventInfo.get(1).length() - 1) {
+            tags = new String[0];
+        } else {
+            tags = Arrays.stream(eventInfo.get(1).substring(tagsIndex + 1).split(","))
+                    .map(String::trim)
+                    .filter(tag -> !tag.isEmpty())
+                    .toArray(String[]::new);
+        }
+
+        Task newTask = new Event(eventInfo.get(0), dateString, tags);
         taskList.addTask(newTask);
         storage.saveTasksInStorage(taskList.toStorageRepresentation());
 
