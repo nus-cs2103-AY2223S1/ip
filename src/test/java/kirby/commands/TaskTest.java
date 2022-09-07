@@ -1,17 +1,20 @@
 package kirby.commands;
 
-import kirby.Storage;
-import kirby.TaskList;
-import kirby.ui.Ui;
-import kirby.exceptions.KirbyMissingArgumentException;
-import org.junit.jupiter.api.Test;
-import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
+
+import kirby.Storage;
+import kirby.TaskList;
+import kirby.exceptions.KirbyMissingArgumentException;
+import kirby.ui.Ui;
+
 public class TaskTest {
-private Storage storage;
-private Ui ui;
-private TaskList taskList;
+    private Storage storage;
+    private Ui ui;
+    private TaskList taskList;
     public TaskTest() throws IOException {
         this.storage = new Storage("data/blank.txt", "data/");
         this.ui = new Ui();
@@ -20,11 +23,11 @@ private TaskList taskList;
 
     @Test
     public void checkNoArguments() {
-       try {
-           new DeadlineCommand("").execute(taskList, ui, storage);
-       } catch (KirbyMissingArgumentException e) {
-           String expectedOutput = "Aaaaaaah, the description of a deadline is invalid! Try again!";
-           assertEquals(expectedOutput, e.getMessage());
-       }
+        try {
+            new DeadlineCommand("").execute(taskList, ui, storage);
+        } catch (KirbyMissingArgumentException e) {
+            String expectedOutput = "Aaaaaaah, the description of a deadline is invalid! Try again!";
+            assertEquals(expectedOutput, e.getMessage());
+        }
     }
 }
