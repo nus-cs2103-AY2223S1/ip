@@ -253,14 +253,32 @@ public class TaskList {
         String response = "";
 
         switch (operationType) {
+
         case "mark":
+            if (taskToModify.getStatusIcon().equals("X")) {
+                response = String.format("OOPS!!! (•﹏•)\nYou have already completed this task!\n"
+                        + "But GOOD JOB (๑•̀ㅂ•́)و✧\n"
+                        + "You can enter \"delete %s\" to remove it.", taskIndex);
+                return response;
+            }
+
             taskToModify.markAsDone();
             response = String.format("Nice! I've marked this task as done:\n%s", taskToModify);
             break;
+
         case "unmark":
+            if (taskToModify.getStatusIcon().equals(" ")) {
+                response = "OOPS!!! (•﹏•)\n"
+                        + "You have not completed this task yet, so it is already unmarked!\n"
+                        + "You may want to start working on it now.\n"
+                        + "ALL THE BEST (ง •̀_•́)ง";
+                return response;
+            }
+
             taskToModify.markAsUndone();
             response = String.format("OK, I've marked this task as not done yet:\n%s", taskToModify);
             break;
+
         case "delete":
             tasks.remove(taskToModify);
             response = String.format("Noted. I've removed this task:\n"
@@ -268,6 +286,7 @@ public class TaskList {
                             + "Now you have %d tasks in the list.\n",
                     taskToModify, tasks.size());
             break;
+
         default:
             response = String.format("OOPS!!! (•﹏•)\nI'm sorry, I can't %s that task :-( "
                     + "Please try again.", operationType);

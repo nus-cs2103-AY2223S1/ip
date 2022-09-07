@@ -55,7 +55,7 @@ public abstract class Task {
     // Reused code under subsection "Extension: A-Classes" of the section "Duke Level-3: Mark as Done"
     // from https://nus-cs2103-ay2223s1.github.io/website/schedule/week2/project.html#ip
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : " ");
     }
 
     /**
