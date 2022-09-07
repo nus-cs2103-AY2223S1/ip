@@ -22,11 +22,18 @@ public class Duke {
 
     /**
      * duke.gui.Main entry function.
+     *
      * @param args Command line arguments.
      */
     public static void main(String[] args) {
     }
 
+    /**
+     * Returns output to be displayed to GUI.
+     *
+     * @param input Input from user through the GUI.
+     * @return Parsed output to user through GUI.
+     */
     public String getResponse(String input) {
         try {
             Command command = parser.parse(ui.readCommand(input));
