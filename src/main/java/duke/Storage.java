@@ -38,20 +38,20 @@ public class Storage {
             Scanner sc = new Scanner(file);
 
             while (sc.hasNext()) {
-                String s = sc.nextLine();
-                char typeOfTask = s.charAt(1);
-                char statusIcon = s.charAt(4);
+                String line = sc.nextLine();
+                char typeOfTask = line.charAt(1);
+                char statusIcon = line.charAt(4);
                 boolean isDone = (statusIcon == 'X');
 
                 switch (typeOfTask) {
                 case 'T':
-                    tasks.add(this.getTodo(s, isDone));
+                    tasks.add(this.getTodo(line, isDone));
                     break;
                 case 'D':
-                    tasks.add(this.getDeadline(s, isDone));
+                    tasks.add(this.getDeadline(line, isDone));
                     break;
                 case 'E':
-                    tasks.add(this.getEvent(s, isDone));
+                    tasks.add(this.getEvent(line, isDone));
                     break;
                 default:
                     assert false; // Execution should never reach this point!
@@ -65,45 +65,45 @@ public class Storage {
         return tasks;
     }
 
-    private Task getTodo(String s, boolean isDone) {
-        Task t = new Todo(this.getTodoDescription(s));
+    private Task getTodo(String line, boolean isDone) {
+        Task t = new Todo(this.getTodoDescription(line));
         if (isDone) {
             t.markAsDone();
         }
         return t;
     }
 
-    private Task getDeadline(String s, boolean isDone) {
-        Task t = new Deadline(this.getDescription(s), this.getTime(s));
+    private Task getDeadline(String line, boolean isDone) {
+        Task t = new Deadline(this.getDescription(line), this.getTime(line));
         if (isDone) {
             t.markAsDone();
         }
         return t;
     }
 
-    private Task getEvent(String s, boolean isDone) {
-        Task t = new Event(this.getDescription(s), this.getTime(s));
+    private Task getEvent(String line, boolean isDone) {
+        Task t = new Event(this.getDescription(line), this.getTime(line));
         if (isDone) {
             t.markAsDone();
         }
         return t;
     }
 
-    private String getTodoDescription(String s) {
+    private String getTodoDescription(String line) {
         int desStartIndex = 7;
-        return s.substring(desStartIndex);
+        return line.substring(desStartIndex);
     }
 
-    private String getDescription(String s) {
+    private String getDescription(String line) {
         int desStartIndex = 7;
-        int desEndIndex = s.indexOf('(') - 1;
-        return s.substring(desStartIndex, desEndIndex);
+        int desEndIndex = line.indexOf('(') - 1;
+        return line.substring(desStartIndex, desEndIndex);
     }
 
-    private String getTime(String s) {
-        int timeStartIndex = s.indexOf('(') + 5;
-        int timeEndIndex = s.indexOf(')');
-        return s.substring(timeStartIndex, timeEndIndex);
+    private String getTime(String line) {
+        int timeStartIndex = line.indexOf('(') + 5;
+        int timeEndIndex = line.indexOf(')');
+        return line.substring(timeStartIndex, timeEndIndex);
     }
 
     /**
@@ -170,5 +170,74 @@ public class Storage {
         } catch (IOException e) {
             System.err.println("Failed to create file!" + e.getMessage());
         }
+    }
+
+    /**
+     * Returns true if the given task exists in the current list of tasks,
+     * false otherwise. Todo is duplicate if description is identical,
+     * deadline and event is duplicate if both description and time is
+     * identical.
+     *
+     * @param typeOfTask The type of task; "T" for todo, "D" for deadline, "E"
+     *                   for event.
+     * @param arr String array from parseCommand method.
+     * @return True if task already exists, false otherwise.
+     */
+    public boolean isDuplicateTask(String typeOfTask, String[] arr) {
+        File file = new File(this.filePath);
+        assert file.exists();
+        boolean isDuplicate = false;
+
+        try {
+            Scanner sc = new Scanner(file);
+
+            loop:
+            while (sc.hasNext()) {
+                String line = sc.nextLine();
+                String typeOfTaskInList = String.valueOf(line.charAt(1));
+                boolean isSameTaskType = typeOfTaskInList.equals(typeOfTask);
+
+                if (!isSameTaskType) {
+                    continue;
+                }
+
+                switch (typeOfTask) {
+                case "T":
+                    if (this.isDuplicateTodo(arr, line)) {
+                        isDuplicate = true;
+                        break loop;
+                    }
+                    break;
+                case "D":
+                case "E":
+                    if (this.isDuplicateDeadlineOrEvent(arr, line)) {
+                        isDuplicate = true;
+                        break loop;
+                    }
+                    break;
+                default:
+                    assert false; // Execution should never reach this point!
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return isDuplicate;
+    }
+
+    private boolean isDuplicateTodo(String[] arr, String line) {
+        String description = this.getTodoDescription(line);
+        String newDescription = arr[1];
+        return description.equals(newDescription);
+    }
+
+    private boolean isDuplicateDeadlineOrEvent(String[] arr, String line) {
+        String description = this.getDescription(line);
+        String time = this.getTime(line);
+        String newDescription = arr[1];
+        String newTime = arr[2];
+        return description.equals(newDescription) &&
+                time.equals(newTime);
     }
 }

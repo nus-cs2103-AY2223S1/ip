@@ -1,6 +1,4 @@
-[E][X] drink wine (at: tomorrow 4pm)
-[E][X] biology lecture (at: Tues 2-4pm)
-[T][ ] eat delicious mala
+[T][ ] eat korean bbq
 [T][ ] sleep
-[D][X] drink (by: 2020-10-10)
-
+[D][ ] party (by: 2022-02-02)
+[E][ ] drinks (at: tomorrow)
