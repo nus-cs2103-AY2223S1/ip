@@ -21,7 +21,8 @@ public class ToDo extends Task {
      */
     @Override
     public String toString() {
-        return ("[T]" + super.toString());
+        String tagsString = super.getTagsString();
+        return ("[T]" + super.toString() + " " + tagsString);
     }
 
     /**
@@ -32,7 +33,9 @@ public class ToDo extends Task {
     @Override
     public String toStorageString() {
         String doneDescriptionString = super.toStorageString();
+        String tagsString = super.getTagsString();
         return "T" + Task.STORAGE_DELIMITER
-                + doneDescriptionString;
+                + doneDescriptionString + Task.STORAGE_DELIMITER
+                + tagsString;
     }
 }

@@ -14,7 +14,9 @@ public enum CommandType {
     DEADLINE("deadline"),
     EVENT("event"),
     DELETE("delete"),
-    FIND("find");
+    FIND("find"),
+    TAG("tag"),
+    UNTAG("untag");
 
     private final String commandType;
 

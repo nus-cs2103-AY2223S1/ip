@@ -154,12 +154,12 @@ public class TaskList {
     }
 
     /**
-     * Returns a List of Tasks that matches the given keyword.
+     * Returns a List of Tasks that matches the given keywords.
      *
      * @param keywords The keywords to match with.
      * @return The List of matching Tasks.
      */
-    public List<Task> findTasks(String ... keywords) {
+    public List<Task> findKeywords(String ... keywords) {
         List<Task> matchedTasks = new ArrayList<>();
         for (Task task : taskList) {
             boolean matchAllKeywords = true;
@@ -174,5 +174,66 @@ public class TaskList {
             }
         }
         return matchedTasks;
+    }
+
+    /**
+     * Returns a List of Tasks that matches the given tags.
+     *
+     * @param tags The tags to match with.
+     * @return The List of matching Tasks.
+     */
+    public List<Task> findTags(String ... tags) {
+        List<Task> matchedTasks = new ArrayList<>();
+        for (Task task : taskList) {
+            boolean matchAllTags = true;
+            for (String tag : tags) {
+                if (!task.hasTag(tag)) {
+                    matchAllTags = false;
+                    break;
+                }
+            }
+            if (matchAllTags) {
+                matchedTasks.add(task);
+            }
+        }
+        return matchedTasks;
+    }
+
+    /**
+     * Adds given tags to the Task at the given index.
+     *
+     * @param index The given index.
+     * @return The Task with the tag added.
+     * @throws DukeException If the index is out of range.
+     */
+    public Task tagTask(int index, String ...newTags) throws DukeException {
+        if (index < 0 || index >= getSize()) {
+            throw new DukeException("Invalid task number.");
+        } else {
+            Task task = taskList.get(index);
+            for (String tag : newTags) {
+                task.addTag(tag);
+            }
+            return task;
+        }
+    }
+
+    /**
+     * Removes given tags from the Task at the given index.
+     *
+     * @param index The given index.
+     * @return The Task with the tag removed.
+     * @throws DukeException If the index is out of range.
+     */
+    public Task untagTask(int index, String ...currentTags) throws DukeException {
+        if (index < 0 || index >= getSize()) {
+            throw new DukeException("Invalid task number.");
+        } else {
+            Task task = taskList.get(index);
+            for (String tag : currentTags) {
+                task.removeTag(tag);
+            }
+            return task;
+        }
     }
 }

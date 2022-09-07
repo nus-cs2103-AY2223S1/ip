@@ -10,8 +10,10 @@ import duke.command.FindCommand;
 import duke.command.InvalidCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.TagCommand;
 import duke.command.ToDoCommand;
 import duke.command.UnmarkCommand;
+import duke.command.UntagCommand;
 import duke.exception.DukeException;
 import duke.task.TaskList;
 
@@ -50,6 +52,10 @@ public class Parser {
                 return new DeleteCommand(taskList, inputArr);
             case FIND:
                 return new FindCommand(taskList, inputArr);
+            case TAG:
+                return new TagCommand(taskList, inputArr);
+            case UNTAG:
+                return new UntagCommand(taskList, inputArr);
             default:
                 return new InvalidCommand("Invalid command.");
             }

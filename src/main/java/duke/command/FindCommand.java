@@ -9,7 +9,7 @@ import duke.task.TaskList;
 
 
 /**
- * FindCommand represents a command to find all tasks that match a keyword.
+ * FindCommand represents a command to find all tasks that match given keywords or tags.
  */
 public class FindCommand extends Command {
     private TaskList taskList;
@@ -27,7 +27,7 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Finds all the tasks that match the keywords.
+     * Finds all the tasks that match the keywords or tags.
      *
      * @return Response to display the list of matching tasks.
      * @throws DukeException If the input array is invalid.
@@ -35,9 +35,20 @@ public class FindCommand extends Command {
     @Override
     public Response execute() throws DukeException {
         if (inputArr.length < 2) {
-            throw new DukeException("Missing keyword.");
+            throw new DukeException("Missing criteria and keywords/tags.");
         }
-        List<Task> tasks = taskList.findTasks(inputArr[1].split(" "));
+        String[] criteriaWords = inputArr[1].split(" ", 2);
+        if (criteriaWords.length < 2) {
+            throw new DukeException("Missing criteria or keywords/tags.");
+        }
+        List<Task> tasks;
+        if (criteriaWords[0].equals("keywords")) {
+            tasks = taskList.findKeywords(criteriaWords[1].split(" "));
+        } else if (criteriaWords[0].equals("tags")) {
+            tasks = taskList.findTags(criteriaWords[1].split(" "));
+        } else {
+            throw new DukeException("Invalid search criteria");
+        }
         assert tasks != null : "Tasks cannot be null";
         int size = tasks.size();
         if (size == 0) {
