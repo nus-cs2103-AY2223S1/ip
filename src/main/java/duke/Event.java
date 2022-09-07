@@ -6,6 +6,7 @@ package duke;
 public class Event extends Task {
     private final String timing;
     private static final String NO_TIMING = "OTOT";
+    private final static char STATUS_COMPLETE = 'X';
 
     public Event(String desc, char taskType) {
         super(desc, taskType);
@@ -38,15 +39,15 @@ public class Event extends Task {
      * Creates a Event instance that is identical to a given Deadline object, and then marked as complete.
      * @return An identical Event object that is marked as complete.
      */
-    protected Event performTask() {
-        return new Event(getDesc(), 'X', getTaskType());
+    protected Event completeTask() {
+        return new Event(getDesc(), STATUS_COMPLETE, getTaskType());
     }
 
     /**
      * Creates a Event instance that is identical to a given Deadline object, and then marked as incomplete.
      * @return An identical Event object that is marked as incomplete.
      */
-    protected Event undoTask() {
+    protected Event resetTask() {
         return new Event(getDesc(), getTaskType());
     }
 }
