@@ -144,6 +144,7 @@ public class Ui {
      * @param numberOfTasks The number of tasks in the list.
      */
     public String displayNumberOfTasks(int numberOfTasks) {
+        assert(numberOfTasks > 0);
         String taskOrTasks = numberOfTasks == 1 ? "task" : "tasks";
         String text = Style.INDENTATION + "Now you have " + numberOfTasks + " "
                 + taskOrTasks + " in the list.\n";
@@ -156,7 +157,6 @@ public class Ui {
      */
     public String displayMatchingTasks() {
         String text = Style.INDENTATION + "Here are the matching tasks in your list:\n";
-        System.out.println(text);
 
         return text;
     }

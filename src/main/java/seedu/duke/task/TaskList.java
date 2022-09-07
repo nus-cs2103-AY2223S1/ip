@@ -34,6 +34,7 @@ public class TaskList {
      * @return A Task at that specified location.
      */
     public Task getTask(int index) {
+        assert(index > 0 && index < tasks.size());
         return this.tasks.get(index - 1);
     }
 
@@ -55,6 +56,7 @@ public class TaskList {
      * @return The Task after it has been deleted.
      */
     public Task deleteTask(int index) {
+        assert(index > 0 && index < tasks.size());
         Task task = getTask(index);
         tasks.remove(index - 1);
         return task;
@@ -67,6 +69,7 @@ public class TaskList {
      * @return The Task after it has been marked.
      */
     public Task markTask(int index) {
+        assert(index > 0 && index < tasks.size());
         Task task = getTask(index);
         task.markAsDone();
         return task;
@@ -79,6 +82,7 @@ public class TaskList {
      * @return The Task after it has been unmarked.
      */
     public Task unmarkTask(int index) {
+        assert(index > 0 && index < tasks.size());
         Task task = getTask(index);
         task.unmark();
         return task;

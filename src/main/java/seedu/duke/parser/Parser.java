@@ -1,21 +1,14 @@
 package seedu.duke.parser;
 
-import java.util.Objects;
-
-import seedu.duke.command.AddCommand;
-import seedu.duke.command.Command;
-import seedu.duke.command.DeleteCommand;
-import seedu.duke.command.ExitCommand;
-import seedu.duke.command.FindCommand;
-import seedu.duke.command.InvalidCommand;
-import seedu.duke.command.ListCommand;
-import seedu.duke.command.MarkCommand;
+import seedu.duke.command.*;
 import seedu.duke.exception.DukeException;
 import seedu.duke.task.Deadline;
 import seedu.duke.task.Event;
 import seedu.duke.task.Task;
 import seedu.duke.task.ToDo;
 
+
+import java.util.Objects;
 
 /**
  * The parser class handles the parsing of a user input into a Command object that the program can handle.

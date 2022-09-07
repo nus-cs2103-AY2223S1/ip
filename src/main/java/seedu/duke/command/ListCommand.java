@@ -27,6 +27,5 @@ public class ListCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         String messageToUser = ui.showList(tasks);
         return messageToUser;
-
     }
 }
