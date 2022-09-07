@@ -18,10 +18,10 @@ public class EventTest {
         LocalDate date = LocalDate.of(2022, 8, 24);
         event.setDetails(date);
         String dateString = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
-        assertEquals(event.toString(), "[E][ ] Test toString (at: "+ dateString + ")");
+        assertEquals(event.toString(), "[E][ ] Test toString (at: " + dateString + ")");
 
         event.setComplete(true);
-        assertEquals(event.toString(), "[E][X] Test toString (at: "+ dateString + ")");
+        assertEquals(event.toString(), "[E][X] Test toString (at: " + dateString + ")");
     }
 
     @Test
