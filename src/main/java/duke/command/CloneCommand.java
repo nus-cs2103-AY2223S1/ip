@@ -8,9 +8,14 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+/**
+ * Encapsulation of the command of cloning a task.
+ *
+ * @author Sun Ruoxin
+ */
 public class CloneCommand extends Command {
     /** The index of the task ot be cloned. */
-    int index;
+    protected int index;
 
     /**
      * Class constructor.
