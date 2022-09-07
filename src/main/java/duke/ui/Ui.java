@@ -40,12 +40,13 @@ public class Ui {
 
 
     /**
-     * Prints the specified TaskList object to the console.
+     * Returns a String listing the Tasks in the specified TaskList object line by line.
      *
      * @param tasks TaskList object to print.
      * @param isSearchResult boolean value to indicate whether the TaskList object was from a search result.
+     * @return String listing all Task objects line by line.
      */
-    public void listTasks(TaskList tasks, boolean isSearchResult) {
+    public String listTasks(TaskList tasks, boolean isSearchResult) {
 
         // Modify the header sentence based on whether the specified TaskList is from a search result
         String result = isSearchResult ? "Here are the matching tasks in your list:\n"
@@ -56,7 +57,7 @@ public class Ui {
             result = result.concat(line);
         }
 
-        System.out.println(result);
+        return result;
     }
 
 
@@ -97,6 +98,50 @@ public class Ui {
      */
     public void printExitMessage() {
         System.out.println("Bye. Hope to see you again soon!\n");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Returns the welcome message.
+     * 
+     * @return Welcome message.
+     */
+    public static String getWelcomeMessage() {
+        String firstLine = "Hello from Duke!\n";
+        String secondLine = "What can I do for you?\n";
+
+        return String.format("%s%s", firstLine, secondLine);
+    }
+
+
+    /**
+     * Returns the invalid command message.
+     * 
+     * @return Invalid command message.
+     */
+    public String getInvalidCommandMessage() {
+        return "OOPS!!! I'm sorry, but I don't know what that means :-(\n";
+    }
+
+
+    /**
+     * Returns the exit message.
+     * 
+     * @return Exit message.
+     */
+    public String getExitMessage() {
+        return "Bye. Hope to see you again soon!\n";
     }
 
 }

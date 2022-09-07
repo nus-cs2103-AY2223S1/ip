@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.Scanner;
+
 import duke.data.TaskList;
 import duke.parser.Parser;
 import duke.storage.Storage;
@@ -8,6 +10,7 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 import duke.ui.Ui;
+
 
 /**
  * Main driver class.
@@ -38,13 +41,17 @@ public class Duke {
     private TaskList storedTasks;
 
 
+    // GUI attributes
+    // private Image user = new Image(this.getClass().getResourceAsStream("./images/DaUser.png"));
+    // private Image duke = new Image(this.getClass().getResourceAsStream("./images/DaDuke.png"));
+
 
     /**
      * Creates a new Duke object.
      */
     public Duke() {
         this.ui = new Ui();
-        ui.printWelcomeMessage();
+        // ui.printWelcomeMessage();
 
         this.storage = new Storage(DATA_FILE_PATH);
 
@@ -53,7 +60,7 @@ public class Duke {
     }
 
 
-    private void markTaskAsDoneOrUndone(String[] commands) {
+    private String markTaskAsDoneOrUndone(String[] commands) {
 
         String result = "";
 
@@ -84,11 +91,12 @@ public class Duke {
 
         // Add the string representation of the task to the result
         result = result.concat(String.format("%s\n", t));
-        ui.printMessage(result);
+        // ui.printMessage(result);
+        return result;
     }
 
 
-    private void addTask(String[] commands) {
+    private String addTask(String[] commands) {
 
         // Create the correct type of task based on the first token
         Task t = null;
@@ -99,15 +107,16 @@ public class Duke {
         } catch (Exception e) {
             // Cannot create task due to invalid commands
             String result = String.format("OOPS!!! Invalid syntax for a %s task\n", e.getMessage());
-            ui.printMessage(result);
-            return;
+            // ui.printMessage(result);
+            return result;
         }
 
         this.storedTasks.addTask(t);
 
         String result = String.format("Got it. I've added this task:\n%s\nNow you have %d tasks in the list.\n",
                                         t, storedTasks.getSize());
-        ui.printMessage(result);
+        // ui.printMessage(result);
+        return result;
     }
 
 
@@ -228,7 +237,7 @@ public class Duke {
     }
 
 
-    private void deleteTask(String[] commands) {
+    private String deleteTask(String[] commands) {
 
         // Task number is the second token
         // Task number is 1 index, so subtract 1 to make it 0 index
@@ -239,38 +248,42 @@ public class Duke {
 
         String result = String.format("Noted. I've removed this task:\n%s\nNow you have %d tasks in the list.\n",
                                         t, storedTasks.getSize());
-        ui.printMessage(result);
+        // ui.printMessage(result);
+        return result;
     }
 
 
-    private void exitDuke() {
-        ui.printExitMessage();
+    private String exitDuke() {
+        // ui.printExitMessage();
+        return ui.getExitMessage();
     }
 
 
-    private void findTasks(String[] commands) {
+    private String findTasks(String[] commands) {
 
         // Keyword to search for is the second token
         TaskList searchResults = this.storedTasks.searchTasks(commands[1]);
 
-        ui.listTasks(searchResults, true);
+        return ui.listTasks(searchResults, true);
     }
 
 
     // Calls the relevant function based on the given command
     // Return true if need to exit program
-    private boolean executeCommand(String[] commands) {
+    private String executeCommand(String[] commands) {
+
+        String result;
 
         // The first token is used to identify which action to take
         switch (commands[0]) {
 
         case COMMAND_LIST:
-            ui.listTasks(this.storedTasks, false);
+            result = ui.listTasks(this.storedTasks, false);
             break;
 
 
         case COMMAND_FIND:
-            findTasks(commands);
+            result = findTasks(commands);
             break;
 
 
@@ -278,7 +291,7 @@ public class Duke {
         case COMMAND_MARK_AS_DONE:
             // Fall through
         case COMMAND_MARK_AS_UNDONE:
-            markTaskAsDoneOrUndone(commands);
+            result = markTaskAsDoneOrUndone(commands);
             storage.writeToFile(this.storedTasks);
             break;
 
@@ -289,58 +302,87 @@ public class Duke {
         case COMMAND_ADD_DEADLINE:
             // Fall through
         case COMMAND_ADD_EVENT:
-            addTask(commands);
+            result = addTask(commands);
             storage.writeToFile(this.storedTasks);
             break;
 
 
         case COMMAND_DELETE:
-            deleteTask(commands);
+            result = deleteTask(commands);
             storage.writeToFile(this.storedTasks);
             break;
 
 
         case COMMAND_EXIT:
-            exitDuke();
-            return true;
+            result = exitDuke();
+            break;
+            // return true;
 
 
         // Command is invalid
         default:
-            handleInvalidCommand();
+            result = handleInvalidCommand();
         }
 
-        // Don't exit the program if something goes wrong
-        return false;
+        
+        return result;
     }
 
 
-    private void handleInvalidCommand() {
-        ui.printInvalidCommandMessage();
+    private String handleInvalidCommand() {
+        // ui.printInvalidCommandMessage();
+        return ui.getInvalidCommandMessage();
     }
 
 
-    private void run() {
+    // private void run() {
 
-        while (true) {
+    //     while (true) {
 
-            String[] commands = Parser.parseCommand(ui.readCommand());
+    //         String[] commands = Parser.parseCommand(ui.readCommand());
 
-            // If need to exit
-            if (executeCommand(commands)) {
-                ui.stopReadingUserInput();
-                return;
-            }
-        }
+    //         // If need to exit
+    //         if (executeCommand(commands)) {
+    //             ui.stopReadingUserInput();
+    //             return;
+    //         }
+    //     }
+    // }
+
+
+    /**
+     * Returns the response to the specified input.
+     * 
+     * @param input User input string.
+     * @return Response string.
+     */
+    public String getResponse(String input) {
+        String[] commands = Parser.parseCommand(input);
+        return executeCommand(commands);
     }
 
 
     public static void main(String[] args) {
-
+        
         Duke d = new Duke();
 
+        // Scanner sc = new Scanner(System.in);
+
+        // String input = "todo buy bread";
+        // String input = "deadline return book /by 2022-12-16 18:00";
+        // String input = "event book club /at Mon 2-4pm";
+        // String input = "delete 2";
+        String input = "list";
+        String[] command = Parser.parseCommand(input);
+
+        System.out.println(d.executeCommand(command));
+
+
+        
+        // System.out.println(System.getProperty("user.dir"));
+
         // Process user commands
-        d.run();
+        // d.run();
 
     }
 }
