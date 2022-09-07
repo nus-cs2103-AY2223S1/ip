@@ -5,9 +5,10 @@ import duke.exception.DukeException;
 import duke.logic.task.Deadline;
 import duke.logic.task.Event;
 import duke.logic.task.Task;
-import duke.logic.task.TaskOperation;
 import duke.logic.task.ToDo;
 import duke.ui.Constants;
+
+import static duke.logic.task.Task.*;
 
 /**
  * Represents methods process user input into command.
@@ -18,101 +19,28 @@ public class ProcessUserInput {
      * @param workList
      */
     public static String process(ArrayList<Task> workList, String userInput) {
-        assert userInput.split("").length == 0 : "User input cannot be empty";
-        // Processing
+        //assert userInput.split("").length == 0 : "User input cannot be empty";
         String typeOfTask = userInput.split(" ")[0];
-        int index;
         switch (typeOfTask) {
         case Constants.LIST:
-            return TaskOperation.listItems(workList);
+            return Task.listItems(workList);
         case Constants.UNMARK:
-            try {
-                userInput.substring(8);
-                index = Integer.parseInt(userInput.split(" ")[1]);
-                return workList.get(index - 1).unmark(workList);
-            } catch (StringIndexOutOfBoundsException e) {
-                return new DukeException.EmptyMarkingException().throwDukeException();
-            } catch (NumberFormatException e) {
-                return new DukeException.EmptyMarkingException().throwDukeException();
-            } catch (IndexOutOfBoundsException e) {
-                return new DukeException.EmptyMarkingException().throwDukeException();
-            }
+            return markAsNotDone(workList, userInput);
         case Constants.MARK:
-            try {
-                userInput.substring(6);
-                index = Integer.parseInt(userInput.split(" ")[1]);
-                return workList.get(index - 1).markAsDone(workList);
-            } catch (StringIndexOutOfBoundsException e) {
-                return new DukeException.EmptyMarkingException().throwDukeException();
-            } catch (NumberFormatException e) {
-                return new DukeException.EmptyMarkingException().throwDukeException();
-            } catch (IndexOutOfBoundsException e) {
-                return new DukeException.EmptyMarkingException().throwDukeException();
-            }
+            return markAsDone(workList, userInput);
         case Constants.TODO:
-            try {
-                // Error when to-do followed by a blank space
-                userInput.substring(6);
-                // Error when just to-do
-                return TaskOperation.add(new ToDo(userInput.substring(5)), workList);
-            } catch (StringIndexOutOfBoundsException e) {
-                return new DukeException.EmptyTodoException().throwDukeException();
-
-            }
+            return ToDo.add(workList, userInput);
         case Constants.DEADLINE:
-            try {
-                // Error when deadline followed by a blank space
-                userInput.substring(10);
-                // Error when just deadline
-                String[] deadline = userInput.substring(9).split(" /by ");
-                return TaskOperation.add(new Deadline(deadline[0], deadline[1]), workList);
-            } catch (StringIndexOutOfBoundsException e) {
-                return new DukeException.EmptyDeadlineException().throwDukeException();
-
-            } catch (ArrayIndexOutOfBoundsException e) {
-                return new DukeException.DeadlineWithoutByException().throwDukeException();
-            }
-
+            return Deadline.add(workList, userInput);
         case Constants.EVENT:
-            try {
-                // Error when event followed by a blank space
-                userInput.substring(7);
-                // Error when just event
-                String[] event = userInput.substring(6).split(" /at ");
-                return TaskOperation.add(new Event(event[0], event[1]), workList);
-            } catch (StringIndexOutOfBoundsException e) {
-                return new DukeException.EmptyEventException().throwDukeException();
-
-            } catch (ArrayIndexOutOfBoundsException e) {
-                return new DukeException.EventWithoutAtException().throwDukeException();
-            }
-
+            return Event.add(workList, userInput);
         case Constants.DELETE:
-            try {
-                userInput.substring(8);
-                index = Integer.parseInt(userInput.split(" ")[1]);
-                return TaskOperation.delete(workList.get(index - 1), workList);
-            } catch (StringIndexOutOfBoundsException e) {
-                return new DukeException.EmptyDeleteException().throwDukeException();
-
-            } catch (NumberFormatException e) {
-                return new DukeException.EmptyDeleteException().throwDukeException();
-
-            } catch (IndexOutOfBoundsException e) {
-                return new DukeException.EmptyDeleteException().throwDukeException();
-
-            }
+            return Task.delete(workList, userInput);
         case Constants.FIND:
-            System.out.println(Constants.FIND_MESSAGE);
-            String keyword = userInput.substring(5);
-            for (int i = 0; i < workList.size(); i++) {
-                if (workList.get(i).contain(keyword)) {
-                    System.out.println(workList.get(i).toString());
-                }
-            }
+            return Task.find(workList, userInput);
             // Fallthrough
         default:
-            return Constants.EXIT_MESSAGE;
+            return new DukeException.InvalidInputException().throwDukeException();
         }
     }
 }
