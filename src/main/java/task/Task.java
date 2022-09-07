@@ -44,4 +44,19 @@ public abstract class Task {
      * @return A string encoding of the task to be stored in the save file
      */
     public abstract String encode();
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (o instanceof Task) {
+            Task other = (Task) o;
+            return other.taskItem.strip().equals(this.taskItem.strip());
+        }
+        return false;
+    }
 }

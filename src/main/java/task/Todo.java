@@ -44,4 +44,18 @@ public class Todo extends Task {
         int markedStatus = getIsMarked() ? 1 : 0;
         return String.format("T,%d,%s\n", markedStatus, getTaskItem());
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (o instanceof Todo) {
+            return super.equals(o);
+        }
+        return false;
+    }
 }

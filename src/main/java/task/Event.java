@@ -37,4 +37,19 @@ public class Event extends Task {
         int markedStatus = getIsMarked() ? 1 : 0;
         return String.format("E,%d,%s,%s\n", markedStatus, getTaskItem(), eventTiming.encode());
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (o instanceof Event) {
+            Event other = (Event) o;
+            return super.equals(o) && other.eventTiming.equals(this.eventTiming);
+        }
+        return false;
+    }
 }
