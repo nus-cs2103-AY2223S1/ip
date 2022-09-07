@@ -1,5 +1,4 @@
 package duke.command;
-
 import duke.exception.DukeException;
 import duke.response.Response;
 import duke.task.Event;
@@ -39,11 +38,12 @@ public class EventCommand extends Command {
         String[] splitArray = this.inputArray[1].split(EventCommand.DELIMITER, 2);
 
         if (splitArray.length < 2) {
-            throw new DukeException("Please enter a date and time for this event!");
+            throw new DukeException("Please enter a valid description/date for this event");
         }
 
         // Make a new event object
         Event event = new Event(splitArray[0], splitArray[1]);
+        assert this.tasksList != null : "The taskslist should not be null";
         this.tasksList.addToList(event);
         StringBuilder sb = new StringBuilder();
         sb.append(EventCommand.EVENT_MSG + event + "\n" + "Now you have ");
