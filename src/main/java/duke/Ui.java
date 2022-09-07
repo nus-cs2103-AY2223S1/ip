@@ -32,4 +32,21 @@ public class Ui {
         return "Okay, I've added this task:\n" + task.toString()
                 + "\nYou now have " + tasks.size() + " tasks.";
     }
+
+    /**
+     * Returns a list of all available commands and their formats.
+     *
+     * @return A list of commands.
+     */
+    public String getHelp() {
+        return "Here is the list of commands:\n"
+                + "1. todo [description] - adds a todo to your task list\n"
+                + "2. deadline [description] /by [date] - adds a deadline to your task list\n"
+                + "3. event [description] /at [date] - adds an event to your task list\n"
+                + "4. list - retrieves a list of your added items\n"
+                + "5. mark [task number] - marks the task as done\n"
+                + "6. unmark [task number] - unmarks the task as done\n"
+                + "7. delete [task number] - deletes the task\n"
+                + "8. find [keyword] - finds all tasks containing the keyword\n";
+    }
 }

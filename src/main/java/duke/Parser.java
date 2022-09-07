@@ -63,8 +63,11 @@ public class Parser {
             } catch (ArrayIndexOutOfBoundsException e) {
                 return "Please enter a word after 'find'!";
             }
+        case "help":
+            return ui.getHelp();
         default:
-            return "I don't know this command. Try another one!";
+            return "I don't know this command. Try another one!\n"
+                    + "You can enter the word 'help' for a list of commands.";
         }
     }
 
