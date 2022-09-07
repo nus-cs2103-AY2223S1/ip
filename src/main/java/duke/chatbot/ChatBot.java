@@ -1,8 +1,14 @@
 package duke.chatbot;
 
 import duke.taskmanager.TaskManager;
-import duke.taskmanager.task.*;
-import duke.taskmanager.exceptions.*;
+import duke.taskmanager.task.ToDoTask;
+import duke.taskmanager.task.DeadlineTask;
+import duke.taskmanager.task.EventTask;
+import duke.taskmanager.exceptions.InvalidCommandException;
+import duke.taskmanager.exceptions.EmptyTaskException;
+import duke.taskmanager.exceptions.InvalidDeadlineException;
+import duke.taskmanager.exceptions.InvalidEventException;
+
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -71,7 +77,7 @@ public class ChatBot {
                     this.isRunning = false;
                     break;
                 case "list":
-                    System.out.println(wrapMessage(taskManager.list()));
+                    System.out.println(wrapMessage(taskManager.listTask()));
                     break;
                 case "todo":
                     // Fallthrough
@@ -87,7 +93,7 @@ public class ChatBot {
             } else {
                 String arguments = inputScanner.nextLine().substring(1);
                 Scanner argumentScanner = new Scanner(arguments);
-                String response;
+                String response = "";
                 switch (command) {
                 case "todo":
                     response = taskManager.addTask(new ToDoTask(argumentScanner.nextLine()));
@@ -103,16 +109,16 @@ public class ChatBot {
                             argumentScanner.next(), taskManager.getDateFormat()));
                     break;
                 case "mark":
-                    response = taskManager.mark(Integer.parseInt(arguments));
+                    response = taskManager.markTask(Integer.parseInt(arguments));
                     break;
                 case "unmark":
-                    response = taskManager.unmark(Integer.parseInt(arguments));
+                    response = taskManager.unmarkTask(Integer.parseInt(arguments));
                     break;
                 case "delete":
-                    response = taskManager.delete(Integer.parseInt(arguments));
+                    response = taskManager.deleteTask(Integer.parseInt(arguments));
                     break;
                 case "find":
-                    System.out.println(wrapMessage(taskManager.find(arguments)));
+                    System.out.println(wrapMessage(taskManager.findTask(arguments)));
                     break;
                 default:
                     throw new InvalidCommandException();

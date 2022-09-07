@@ -3,7 +3,7 @@ package duke.taskmanager.task;
 import duke.taskmanager.exceptions.EmptyTaskException;
 
 public class ToDoTask extends Task {
-    private static final String taskName_TYPE = "T";
+    private static final String TASK_TYPE = "T";
 
     /**
      * Creates a new to do task with information indicating the name of the task.
@@ -51,7 +51,7 @@ public class ToDoTask extends Task {
      */
     @Override
     public String getFormattedString() {
-        return taskName_TYPE + " | " + (isCompleted() ? 1 : 0) + " | " + getTaskName() + "\n";
+        return TASK_TYPE + " | " + (isCompleted() ? 1 : 0) + " | " + getTaskName() + "\n";
     }
 
     /**
@@ -61,6 +61,6 @@ public class ToDoTask extends Task {
      */
     @Override
     public String toString() {
-        return "[" + taskName_TYPE + "]" + super.toString();
+        return "[" + TASK_TYPE + "]" + super.toString();
     }
 }
