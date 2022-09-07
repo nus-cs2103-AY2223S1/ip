@@ -2,7 +2,7 @@ package duke;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.ListIterator;
+import java.util.stream.IntStream;
 import java.util.stream.Collectors;
 
 /**
@@ -34,9 +34,9 @@ public class TaskList {
      * @return Task updated as incomplete.
      */
     protected Task unmarkTask(int index) {
-        Task undidTask = tasks.get(index).undoTask();
-        tasks.set(index, undidTask);
-        return undidTask;
+        Task incompleteTask = tasks.get(index).undoTask();
+        tasks.set(index, incompleteTask);
+        return incompleteTask;
     }
 
     /**
@@ -49,7 +49,7 @@ public class TaskList {
 
     /**
      * Removes a Task at a given index from the collection of Tasks set belonging to the user.
-     * @param newTask Task deleted by the user.
+     * @param index position of task in the collection of Tasks
      */
     protected Task delete(int index) {
         return tasks.remove(index);
@@ -65,15 +65,12 @@ public class TaskList {
      * @return String consisting of all Taks belonging to the user.
      */
     protected String enumerateList() {
-        ListIterator<Task> it = tasks.listIterator();
-        StringBuilder output = new StringBuilder();
-        while (it.hasNext()) {
-            output.append(it.nextIndex() + 1).append(" ").append(it.next()).append("\n");
-        }
-        return output.toString();
+        return IntStream.range(0, tasks.size())
+                .mapToObj(i -> (i + 1) + " " + tasks.get(i) + "\n")
+                .reduce("", (task1, task2) -> task1 + task2);
     }
 
-    protected String find(String term) {
+    protected String findTasks(String term) {
         List<Task> filteredTaskList = tasks.stream()
                 .filter(task -> task.getDesc().contains(term))
                 .collect(Collectors.toList());

@@ -5,6 +5,7 @@ package duke;
  */
 public class Event extends Task {
     private final String timing;
+    private static final String NO_TIMING = "OTOT";
 
     public Event(String desc, char taskType) {
         super(desc, taskType);
@@ -30,7 +31,7 @@ public class Event extends Task {
         if (index > 0) {
             return desc.substring(index + 1);
         }
-        return "OTOT";
+        return NO_TIMING;
     }
 
     /**
