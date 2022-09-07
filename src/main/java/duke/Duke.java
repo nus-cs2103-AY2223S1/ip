@@ -1,13 +1,5 @@
 package duke;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 public class Duke {
     private final static String PATH = "../data/duke.txt";
 

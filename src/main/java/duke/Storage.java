@@ -4,11 +4,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
-    private final static String BREAK = "    ____________________________________________________________";
+    private static final String BREAK_LINE = "    ____________________________________________________________";
     private String path;
 
     public Storage(String path) {
@@ -73,12 +74,12 @@ public class Storage {
     }
 
     private static void printError(Exception err) {
-        System.out.println(BREAK +
+        System.out.println(BREAK_LINE +
                 "\n" +
                 "     ☹ OOPS!!! " +
                 err +
                 "\n" +
-                BREAK +
+                BREAK_LINE +
                 "\n");
     }
 }
