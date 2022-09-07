@@ -6,7 +6,7 @@ package duke.task;
  */
 abstract public class Task {
     private String name;
-    private Boolean status = false;
+    private Boolean isCompleted = false;
 
     /**
      * duke.task.Task constructor for tasks created by user
@@ -19,41 +19,39 @@ abstract public class Task {
     /**
      * duke.task.Task constructor for tasks loaded from saved file
      * @param name name of task
-     * @param status Completion status of task
+     * @param isCompleted Completion status of task
      */
-    public Task(String name, boolean status) {
+    public Task(String name, boolean isCompleted) {
         this.name = name;
-        this.status = status;
+        this.isCompleted = isCompleted;
     }
 
     /**
-     * Changes status to done
+     * Changes isCompleted to done
      */
-    public void mark() {
+    public String mark() {
         String message;
-        if (status == true) {
+        if (isCompleted == true) {
             message = "\t This task is already marked:";
         } else {
-            status = true;
+            isCompleted = true;
             message = "\tGood Job on completing the task! I've marked this task as done:";
         }
-        System.out.println(message);
-        System.out.println("\t   " + toString());
+        return message + "\n" + toString();
     }
 
     /**
-     * Changes status to not done
-      */
-    public void unmark() {
+     * Changes isCompleted to not done
+     */
+    public String unmark() {
         String message;
-        if (status == false) {
+        if (isCompleted == false) {
             message = "\t This task is already unmarked:";
         } else {
-            status = false;
+            isCompleted = false;
             message = "\tOK, I've marked this task as not done yet:";
         }
-        System.out.println(message);
-        System.out.println("\t   " + toString());
+        return message + "\n" + toString();
     }
 
     /**
@@ -62,7 +60,7 @@ abstract public class Task {
      */
     @Override
     public String toString() {
-        String mark = status ? "X" : " ";
+        String mark = isCompleted ? "X" : " ";
         return String.format("[%s] %s", mark, name);
     }
 
@@ -71,7 +69,7 @@ abstract public class Task {
      * @return completion status of task
      */
     public boolean getStatus() {
-        return status;
+        return isCompleted;
     }
 
     /**
@@ -80,5 +78,14 @@ abstract public class Task {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * Returns true if task name contains the searchString
+     * @param searchString
+     * @return true if task name contains searchString
+     */
+    public boolean nameContains (String searchString) {
+        return name.contains(searchString);
     }
 }

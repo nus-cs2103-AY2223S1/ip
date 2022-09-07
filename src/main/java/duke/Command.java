@@ -1,9 +1,26 @@
 package duke;
 
+import duke.controller.MainWindow;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.ToDos;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+
 import java.io.IOException;
+import java.util.Collections;
 
 /**
  * Abstraction of all commands possibly received on duke,
@@ -12,8 +29,7 @@ import java.io.IOException;
  */
 public class Command {
     static final String EXITWORD = "bye";
-    private ToDoList toDoList;
-    private Ui ui;
+    private TaskList taskList;
     private FileLoaderSaver storage;
     private String fullCommand;
 
@@ -28,7 +44,7 @@ public class Command {
         MARK,
         UNMARK,
         DELETE,
-        EXIT
+        FIND,
     }
 
     /**
@@ -42,88 +58,82 @@ public class Command {
     }
 
     /**
-     * Checks if command entered is EXITWORD
-     * @return true if command is EXITWORD else false
-     */
-    public boolean isExit() {
-        return fullCommand.equals(EXITWORD);
-    }
-
-    /**
      * Executes tasks based on the command type of the command
-     * @param toDoList list containing all the current tasks
-     * @param ui user interaction object for output
+     * @param taskList list containing all the current tasks
      * @param storage duke.FileLoaderSaver object for saving tasks after creating, deletion or manipulation
      * @throws IOException
      * @throws Exception
      */
-    public void execute(ToDoList toDoList, Ui ui, FileLoaderSaver storage) throws IOException, Exception {
-        this.toDoList = toDoList;
-        this.ui = ui;
+    public String execute(TaskList taskList, FileLoaderSaver storage) throws IOException, Exception {
+        this.taskList = taskList;
         this.storage = storage;
+        String response = "";
 
         switch (commandType) {
             case LIST:
-                toDoList.listTasks();
+                response += taskList.listTasks();
                 break;
             case TODO:
-                addToDo(fullCommand);
-                storage.writeToFile(toDoList.createTxtFile());
-                toDoList.displayListSize();
+                response += addToDo(fullCommand) + "\n";
+                response += taskList.displayListSize();
+                storage.writeToFile(taskList.createTxtFile());
                 break;
             case DEADLINE:
-                addDeadline(fullCommand);
-                storage.writeToFile(toDoList.createTxtFile());
-                toDoList.displayListSize();
+                response += addDeadline(fullCommand) + "\n";
+                response += taskList.displayListSize();
+                storage.writeToFile(taskList.createTxtFile());
                 break;
             case EVENT:
-                addEvent(fullCommand);
-                storage.writeToFile(toDoList.createTxtFile());
-                toDoList.displayListSize();
+                response += addEvent(fullCommand) + "\n";
+                response += taskList.displayListSize();
+                storage.writeToFile(taskList.createTxtFile());
                 break;
             case MARK:
             case UNMARK:
-                changeMark(fullCommand);
-                storage.writeToFile(toDoList.createTxtFile());
+                response += changeMark(fullCommand);
+                storage.writeToFile(taskList.createTxtFile());
                 break;
             case DELETE:
-                deleteTask(fullCommand);
-                storage.writeToFile(toDoList.createTxtFile());
-                toDoList.displayListSize();
+                response += deleteTask(fullCommand);
+                response += taskList.displayListSize();
+                storage.writeToFile(taskList.createTxtFile());
                 break;
-            case EXIT:
-                Ui.goodBye();
+            case FIND:
+                response += findTask(fullCommand);
                 break;
         }
+        return response;
     }
 
     /**
-     * Changes status of the task according to index given
+     * Changes isCompleted of the task according to index given
      *
      * @param command change mark command from user
      */
-    private void changeMark(String command) {
+    private String changeMark(String command) throws Exception {
         String[] splitComm = command.split(" ");
         String action = splitComm[0];
         int index = Integer.parseInt(splitComm[1]) - 1;
 
         if (action.equals("mark")) {
-            toDoList.complete(index);
+            return taskList.complete(index);
         } else if (action.equals("unmark")){
-            toDoList.incomplete(index);
+            return taskList.incomplete(index);
+        } else {
+            throw new Exception("Input Error.");
         }
     }
 
     /**
-     * Changes status of the task according to index given
+     * Deletes task according to index given
      *
      * @param command delete task command from user
      */
-    private void deleteTask(String command) {
+    private String deleteTask(String command) {
         String[] splitComm = command.split(" ");
         int index = Integer.parseInt(splitComm[1]) - 1;
 
-        toDoList.delete(index);
+        return taskList.delete(index);
     }
 
     /**
@@ -132,13 +142,13 @@ public class Command {
      * @param command todo command from user
      * @throws Exception
      */
-    private void addToDo(String command) throws Exception {
+    private String addToDo(String command) throws Exception {
         if (!command.matches("todo \\S.*")) {
             throw new Exception("The description of a todo cannot be empty.");
         }
         String name = command.substring(command.indexOf(" ") + 1);
 
-        toDoList.addTask(new ToDos(name));
+        return taskList.addTask(new ToDos(name));
     }
 
     /**
@@ -147,7 +157,7 @@ public class Command {
      * @param command deadline command from user
      * @throws Exception
      */
-    private void addDeadline(String command) throws Exception {
+    private String addDeadline(String command) throws Exception {
         if (!command.matches("deadline \\S.*")) {
             throw new Exception("The description of a deadline cannot be empty.");
         } else if (!command.contains("/by")) {
@@ -158,16 +168,16 @@ public class Command {
         String name = details.split(" /by ")[0];
         String deadline = details.split(" /by ")[1];
 
-        toDoList.addTask(new Deadline(name, deadline));
+        return taskList.addTask(new Deadline(name, deadline));
     }
 
     /**
-     * Creates an duke.task.Event instance and adds it to duke.ToDoList
+     * Creates a duke.task.Event instance and adds it to duke.ToDoList
      *
      * @param command event command from user
      * @throws Exception
      */
-    private void addEvent(String command) throws Exception {
+    private String addEvent(String command) throws Exception {
         if (!command.matches("event \\S.*")) {
             throw new Exception("The description of an event cannot be empty.");
         } else if (!command.contains("/at")) {
@@ -178,6 +188,64 @@ public class Command {
         String name = details.split(" /at ")[0];
         String time = details.split(" /at ")[1];
 
-        toDoList.addTask(new Event(name, time));
+        return taskList.addTask(new Event(name, time));
+    }
+
+    /**
+     * Finds tasks whose name matches search
+     * @param command
+     * @throws Exception
+     */
+    private String findTask(String command) throws Exception {
+        String searchString = command.substring(command.indexOf(" ") + 1);
+        return taskList.findTasks(searchString);
+    }
+
+    public static class DialogBox extends HBox {
+
+        @FXML
+        private Label dialog;
+        @FXML
+        private ImageView displayPicture;
+
+
+        private DialogBox(String text, Image img) {
+            Circle clip = new Circle(img.getWidth()/3, img.getWidth()/3,50);
+
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
+                fxmlLoader.setController(this);
+                fxmlLoader.setRoot(this);
+                fxmlLoader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            dialog.setText(text);
+            displayPicture.setImage(img);
+            displayPicture.setClip(clip);
+            this.setBackground(new Background(new BackgroundFill(Color.AQUA, null, null)));
+        }
+
+        /**
+         * Flips the dialog box such that the ImageView is on the left and text on the right.
+         */
+        private void flip() {
+            ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
+            Collections.reverse(tmp);
+            getChildren().setAll(tmp);
+            setAlignment(Pos.TOP_LEFT);
+            this.setBackground(new Background(new BackgroundFill(Color.DEEPPINK, null, null)));
+        }
+
+        public static DialogBox getUserDialog(String text, Image img) {
+            return new DialogBox(text, img);
+        }
+
+        public static DialogBox getDukeDialog(String text, Image img) {
+            var db = new DialogBox(text, img);
+            db.flip();
+            return db;
+        }
     }
 }
