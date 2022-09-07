@@ -17,6 +17,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
+        assert duke != null : "The chat bot should be instantiated.";
         duke.initialise();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));

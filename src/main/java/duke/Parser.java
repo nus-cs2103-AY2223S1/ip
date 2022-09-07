@@ -28,81 +28,68 @@ public class Parser {
     /**
      * Parses user input to command.
      *
-     * @param fullCommand the input to be parsed
+     * @param userInput the input to be parsed
      * @return the parsed command
      */
-    public static Command parse(String fullCommand) {
-        if (fullCommand.equals("greet")) {
-            // show greeting message when start
+    public static Command parse(String userInput) {
+        String[] substrings = userInput.split(" ", 2);
+        boolean isSingleWordCommand = substrings.length == 1;
+
+        if (userInput.equals("greet")) {
             return new GreetCommand();
-        } else if (fullCommand.equals("bye")) {
-            // when user enters bye
-            // exit programme
+        } else if (userInput.equals("bye")) {
             return new ExitCommand();
-        } else if (fullCommand.equals("list")) {
-            // when user enters list
-            // display the current list
+        } else if (userInput.equals("list")) {
             return new ListCommand();
-        } else if (fullCommand.startsWith("mark")) {
+        } else if (userInput.startsWith("mark")) {
             // when user enters mark and a number
             // mark the corresponding task as done
-            if (fullCommand.split(" ", 2).length == 1) {
+            if (isSingleWordCommand) {
                 throw new DukeException("Please specify which task to mark.");
             }
-            int index = Integer.parseInt(fullCommand.split(" ", 2)[1]) - 1;
+            int index = Integer.parseInt(substrings[1]) - 1;
             return new MarkCommand(index);
-        } else if (fullCommand.startsWith("unmark")) {
+        } else if (userInput.startsWith("unmark")) {
             // when user enters unmark and a number
             // mark the corresponding task as not done
-            if (fullCommand.split(" ", 2).length == 1) {
+            if (isSingleWordCommand) {
                 throw new DukeException("Please specify which task to unmark.");
             }
-            int index = Integer.parseInt(fullCommand.split(" ", 2)[1]) - 1;
+            int index = Integer.parseInt(substrings[1]) - 1;
             return new UnmarkCommand(index);
-        } else if (fullCommand.startsWith("delete")) {
+        } else if (userInput.startsWith("delete")) {
             // when user enters delete and a number
             // delete the corresponding task from the list
-            if (fullCommand.split(" ", 2).length == 1) {
+            if (isSingleWordCommand) {
                 throw new DukeException("Please specify which task to delete.");
             }
-            int index = Integer.parseInt(fullCommand.split(" ", 2)[1]) - 1;
+            int index = Integer.parseInt(substrings[1]) - 1;
             return new DeleteCommand(index);
-        } else if (fullCommand.startsWith("find")) {
+        } else if (userInput.startsWith("find")) {
             // when user enters find and a keyword
             // search for that keyword in the list
             // and print out the result
-            if (fullCommand.split(" ", 2).length == 1) {
+            if (isSingleWordCommand) {
                 throw new DukeException("Please specify what keyword to search for.");
             }
-            String keyword = fullCommand.split(" ", 2)[1];
+            String keyword = substrings[1];
             return new FindCommand(keyword);
         } else {
             // add user input to the list
             // check what type of task it is
-            if (fullCommand.startsWith("todo")) {
-                // the task is a todo
-                if (fullCommand.split(" ", 2).length == 1) {
-                    throw new DukeException("The description of a todo cannot be empty.");
-                }
-                String description = fullCommand.split(" ", 2)[1].split("/")[0].trim();
+            String description = substrings[1].split("/")[0].trim();
+            if (isSingleWordCommand) {
+                throw new DukeException("The description of a task cannot be empty.");
+            }
+            if (userInput.startsWith("todo")) {
                 Todo todo = new Todo(description);
                 return new AddCommand(todo);
-            } else if (fullCommand.startsWith("deadline")) {
-                // the task is a deadline
-                if (fullCommand.split(" ", 2).length == 1) {
-                    throw new DukeException("The description of a deadline cannot be empty.");
-                }
-                String description = fullCommand.split(" ", 2)[1].split("/")[0].trim();
-                String by = fullCommand.split(" ", 2)[1].split("/")[1].split(" ", 2)[1];
+            } else if (userInput.startsWith("deadline")) {
+                String by = substrings[1].split("/")[1].split(" ", 2)[1];
                 Deadline deadline = new Deadline(description, by);
                 return new AddCommand(deadline);
-            } else if (fullCommand.startsWith("event")) {
-                // the task is an event
-                if (fullCommand.split(" ", 2).length == 1) {
-                    throw new DukeException("The description of an event cannot be empty.");
-                }
-                String description = fullCommand.split(" ", 2)[1].split("/")[0].trim();
-                String at = fullCommand.split(" ", 2)[1].split("/")[1].split(" ", 2)[1];
+            } else if (userInput.startsWith("event")) {
+                String at = substrings[1].split("/")[1].split(" ", 2)[1];
                 Event event = new Event(description, at);
                 return new AddCommand(event);
             } else {

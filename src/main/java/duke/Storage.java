@@ -61,12 +61,13 @@ public class Storage {
             // creates directory if not exist
             directory.mkdir();
         }
-
+        assert directory.exists() : "The directory should already exist";
         try {
             if (!file.exists()) {
                 // creates file if not exist
                 file.createNewFile();
             }
+            assert file.exists() : "The file should already exist";
         } catch (IOException exception) {
             exception.printStackTrace();
         }
