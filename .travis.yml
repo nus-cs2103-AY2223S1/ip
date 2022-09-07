@@ -3,13 +3,18 @@ language: java
 jdk:
   - openjdk11
 
+before_install:
+ - chmod +x gradlew
+
 jobs:
   include:
     - os: linux
       script:
+        - chmod +x runtest.sh
         - ./runtest.sh
     - os: osx
       script:
+        - chmod +x runtest.sh
         - ./runtest.sh
     - os: windows
       script:
