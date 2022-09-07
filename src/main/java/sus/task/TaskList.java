@@ -107,6 +107,7 @@ public class TaskList {
      * Finds tasks in the task list with a keyword.
      */
     public List<Task> findTasks(String keyword) {
+        // Use of Streams
         return tasks.stream()
                 .filter(t -> String.valueOf(t).contains(keyword))
                 .collect(Collectors.toList());
