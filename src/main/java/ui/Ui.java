@@ -69,12 +69,13 @@ public class Ui {
         } else {
             try {
                 BufferedReader reader = new BufferedReader(new FileReader("data/luna.txt"));
-                List<String> content = reader.lines()
-                                             .collect(Collectors.toList());
+                Stream<String> contentStream = reader.lines();
+                List<String> contentList = contentStream.collect(Collectors.toList());
 
-                for (String string : content) {
-                    toPrint += "\n" + string;
+                for (String content : contentList) {
+                    toPrint += "\n" + content;
                 }
+
             } catch (FileNotFoundException e) {
                 showError(new LunaLoadingException());
             }
