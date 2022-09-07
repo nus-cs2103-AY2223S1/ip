@@ -21,7 +21,6 @@ public class ProcessUserInput {
     public static String process(ArrayList<Task> workList, String userInput) {
         //assert userInput.split("").length == 0 : "User input cannot be empty";
         String typeOfTask = userInput.split(" ")[0];
-        int index;
         switch (typeOfTask) {
         case Constants.LIST:
             return Task.listItems(workList);
@@ -38,13 +37,7 @@ public class ProcessUserInput {
         case Constants.DELETE:
             return Task.delete(workList, userInput);
         case Constants.FIND:
-            System.out.println(Constants.FIND_MESSAGE);
-            String keyword = userInput.substring(5);
-            for (int i = 0; i < workList.size(); i++) {
-                if (workList.get(i).contain(keyword)) {
-                    System.out.println(workList.get(i).toString());
-                }
-            }
+            return Task.find(workList, userInput);
             // Fallthrough
         default:
             return new DukeException.InvalidInputException().throwDukeException();

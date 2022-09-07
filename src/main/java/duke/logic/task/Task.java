@@ -115,19 +115,34 @@ public class Task {
         // Update data
         return (Constants.ARROW + "Deleted task: " + task.toString()) + "\n"
                 + Task.updateNumOfTask(workList);
-    } catch (StringIndexOutOfBoundsException e) {
-        return new DukeException.EmptyDeleteException().throwDukeException();
+        } catch (StringIndexOutOfBoundsException e) {
+            return new DukeException.EmptyDeleteException().throwDukeException();
 
-    } catch (NumberFormatException e) {
-        return new DukeException.EmptyDeleteException().throwDukeException();
+        } catch (NumberFormatException e) {
+            return new DukeException.EmptyDeleteException().throwDukeException();
 
-    } catch (IndexOutOfBoundsException e) {
-        return new DukeException.EmptyDeleteException().throwDukeException();
+        } catch (IndexOutOfBoundsException e) {
+            return new DukeException.EmptyDeleteException().throwDukeException();
 
+        }
     }
+
+    /**
+     * Find a task by keyword
+     * @param workList
+     * @param userInput
+     * @return
+     */
+    public static String find (ArrayList<Task> workList, String userInput) {
+        String toPrint = Constants.FIND_MESSAGE + "\n";
+        String keyword = userInput.substring(5);
+        for (int i = 0; i < workList.size(); i++) {
+            if (workList.get(i).contain(keyword)) {
+                toPrint += workList.get(i).toString() + "\n";
+            }
+        }
+        return toPrint;
     }
-
-
     /**
      * Updates number of task in the list
      * @return String
