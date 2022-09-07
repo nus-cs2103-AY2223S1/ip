@@ -36,12 +36,18 @@ public class Executor {
     public String addNewTask(String type, String name, LocalDateTime time) throws BocilException {
         Task task;
         try {
-            if (type.equals("todo")) {
+            switch (type) {
+            case "todo":
                 task = new Todo(name);
-            } else if (type.equals("deadline")) {
+                break;
+            case "deadline":
                 task = new Deadline(name, time);
-            } else {
+                break;
+            case "event":
                 task = new Event(name, time);
+                break;
+            default:
+                throw BocilException.bocilUnknownCommandException();
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             throw BocilException.bocilInvalidFormatException();
@@ -180,11 +186,10 @@ public class Executor {
      * @throws BocilException If the user input is not of the accepted format.
      */
     public String endProgram(String input) throws BocilException {
-        if (input.equals("bye")) {
-            return "Bye! See you next time!";
-        } else {
+        if (!input.equals("bye")) {
             throw BocilException.bocilUnknownCommandException();
         }
+        return "Bye! See you next time!";
     }
 
     /**
@@ -195,15 +200,14 @@ public class Executor {
      * @throws BocilException If the user input is not of the accepted format.
      */
     public String showList(String input) throws BocilException {
-        if (input.equals("list")) {
-            if (taskList.getSize() > 0) {
-                String header = "Here are the tasks that we have right now:";
-                return String.join("\n", header, taskList.toString());
-            } else {
-                return "We don't have any tasks in our list right now. Lets add some!";
-            }
-        } else {
+        if (!input.equals("list")) {
             throw BocilException.bocilUnknownCommandException();
+        }
+        if (taskList.getSize() > 0) {
+            String header = "Here are the tasks that we have right now:";
+            return String.join("\n", header, taskList.toString());
+        } else {
+            return "We don't have any tasks in our list right now. Lets add some!";
         }
     }
 }
