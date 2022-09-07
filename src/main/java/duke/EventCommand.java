@@ -28,7 +28,12 @@ public class EventCommand extends Command {
      */
     @Override
     public String execute() {
-        this.tasks.addTasks(Parser.parseEventTask(userResponse));
-        return this.ui.showAddTaskSuccess(this.tasks);
+        try {
+            this.tasks.addTasks(Parser.parseEventTask(userResponse));
+            return this.ui.showAddTaskSuccess(this.tasks);
+        } catch (DukeException e) {
+            return this.ui.showError(e);
+        }
+
     }
 }
