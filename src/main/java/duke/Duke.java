@@ -2,7 +2,7 @@ package duke;
 
 import command.ByeCommand;
 import command.Command;
-import duke.DialougeBox;
+import duke.DialogBox;
 import task.DukeTask;
 
 import java.util.ArrayList;
@@ -52,8 +52,7 @@ public class Duke extends Application {
      * @param text String containing text to add
      * @return a label with the specified text that has word wrap enabled.
      */
-    private Label getDialougeLabel(String text) {
-        // You will need to import `javafx.scene.control.Label`.
+    private Label getDialogLabel(String text) {
         Label textToAdd = new Label(text);
         textToAdd.setWrapText(true);
 
@@ -69,8 +68,8 @@ public class Duke extends Application {
         Label userText = new Label(userInput.getText());
         Label dukeText = new Label(getResponse(userInput.getText()));
         dialogContainer.getChildren().addAll(
-                DialougeBox.getUserDialog(userText, new ImageView(user)),
-                DialougeBox.getDukeDialog(dukeText, new ImageView(duke))
+                DialogBox.getUserDialog(userText, new ImageView(user)),
+                DialogBox.getDukeDialog(dukeText, new ImageView(duke))
         );
         userInput.clear();
     }
@@ -133,12 +132,12 @@ public class Duke extends Application {
 
         //Step 3. Add functionality to handle user input.
         sendButton.setOnMouseClicked((event) -> {
-            dialogContainer.getChildren().add(getDialougeLabel(userInput.getText()));
+            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
             userInput.clear();
         });
 
         userInput.setOnAction((event) -> {
-            dialogContainer.getChildren().add(getDialougeLabel(userInput.getText()));
+            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
             userInput.clear();
         });
 
@@ -161,14 +160,14 @@ public class Duke extends Application {
     public void run() {
         storage.read();
         Scanner input = new Scanner(System.in);
-        System.out.println("What are your commands sir:");
+        Ui.printIntro();
         boolean isRunning = true;
         while(isRunning) {
             if (input.hasNext()) {
                 String str = input.nextLine();
                 Command cmd = Parser.parse(str);
                 if (cmd instanceof ByeCommand) {
-                    System.out.println("Goodbye, hope to see you again");
+                    Ui.printExit();
                     isRunning = false;
                     input.close();
                     break;

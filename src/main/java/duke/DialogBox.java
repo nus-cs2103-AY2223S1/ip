@@ -8,12 +8,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-public class DialougeBox extends HBox {
+public class DialogBox extends HBox {
 
     private Label text;
     private ImageView displayPicture;
 
-    public DialougeBox(Label l, ImageView iv) {
+    public DialogBox(Label l, ImageView iv) {
         text = l;
         displayPicture = iv;
 
@@ -35,12 +35,12 @@ public class DialougeBox extends HBox {
         this.getChildren().setAll(tmp);
     }
 
-    public static DialougeBox getUserDialog(Label l, ImageView iv) {
-        return new DialougeBox(l, iv);
+    public static DialogBox getUserDialog(Label l, ImageView iv) {
+        return new DialogBox(l, iv);
     }
 
-    public static DialougeBox getDukeDialog(Label l, ImageView iv) {
-        var db = new DialougeBox(l, iv);
+    public static DialogBox getDukeDialog(Label l, ImageView iv) {
+        var db = new DialogBox(l, iv);
         db.flip();
         return db;
     }
