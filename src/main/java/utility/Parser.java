@@ -26,11 +26,6 @@ import task.Task;
  * Handles all conversions required in the program.
  */
 public class Parser {
-    private static final String END_OF_DESCRIPTION_MARKER = " /";
-    private static final int START_DATE_COMMAND_LENGTH = 3;
-    private static final String EVENT_DATE_SECTION_START_STRING = "/at";
-    private static final String DEADLINE_DATE_SECTION_DATE_STRING = "/by";
-
     /**
      * Returns Command object corresponding to
      * command extracted from user input.
@@ -85,7 +80,7 @@ public class Parser {
      * @param input
      * @return
      */
-    private static String extractCommand(String input) throws DukeException {
+    private static String extractCommand(String input) {
         int whiteSpaceIndex = input.indexOf(" ");
         String command;
         if (whiteSpaceIndex < 0) {
