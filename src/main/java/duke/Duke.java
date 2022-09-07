@@ -8,37 +8,23 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-
 /**
  * A Duke object which load the SoCCat,  a Personal Assistant Chatbot that helps a person to keep track of various
  * things. The task list will be saved whenever there are changes, and will be loaded the next time the bot starts up.
  */
-public class Duke extends Application {
+public class Duke {
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     private final Storage storage;
     private final Ui ui;
     private final Parser parser;
     private TaskList tasks;
-
-    @Override
-    public void start(Stage stage) {
-        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
-        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
-
-        stage.setScene(scene); // Setting the stage to show our screen
-        stage.show(); // Render the stage.
-    }
 
     /**
      * Creates a Duke object.
