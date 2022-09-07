@@ -11,9 +11,6 @@ import isara.task.Task;
  * @author Melissa Anastasia Harijanto
  */
 public class Ui {
-    /** String that represents a line. */
-    protected final String line = "____________________________________________________________";
-
     /**
      * Prints a message when the user adds a task to the bot.
      *
