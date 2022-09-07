@@ -7,13 +7,12 @@ import ava.exception.AvaException;
 import ava.exception.NoDescriptionException;
 import ava.exception.UnknownCommandException;
 import ava.exception.WrongTimeFormatException;
-import ava.util.Storage;
-import ava.util.TaskList;
 import ava.task.Deadline;
 import ava.task.Event;
 import ava.task.Task;
 import ava.task.Todo;
-
+import ava.util.Storage;
+import ava.util.TaskList;
 
 /**
  * Class to represent "Add" command.

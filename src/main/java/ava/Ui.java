@@ -1,8 +1,8 @@
 package ava;
 
 import ava.command.Command;
-import ava.util.TaskList;
 import ava.task.Task;
+import ava.util.TaskList;
 
 /**
  * Class to represent the user interfaces.

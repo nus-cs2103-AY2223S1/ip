@@ -1,9 +1,9 @@
 package ava.command;
 
 import ava.Ui;
+import ava.task.Task;
 import ava.util.Storage;
 import ava.util.TaskList;
-import ava.task.Task;
 
 /**
  * Class to represent "Delete" tasks.

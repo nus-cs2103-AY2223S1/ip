@@ -19,7 +19,9 @@ import ava.task.Todo;
  * Utility class that handles reading from and writing to device storage.
  */
 public class Storage {
+    @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
     private final String FILE_PATH;
+    @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
     private final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
