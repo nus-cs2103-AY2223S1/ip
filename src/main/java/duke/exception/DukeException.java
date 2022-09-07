@@ -9,6 +9,6 @@ public class DukeException extends Exception {
      * @param message Error message.
      */
     public DukeException(String message) {
-        super(message);
+        super(message + "\n" + "==> Type 'help' to see available commands.");
     }
 }

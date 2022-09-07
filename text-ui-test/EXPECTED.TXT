@@ -8,6 +8,18 @@ Hello! I'm Lily
 What can I do for you?
 ____________________________________________________________
 ____________________________________________________________
+You may try
+todo <description>
+deadline <description> /by <date>
+event <description> /at time
+list
+mark <index>
+unmark <index>
+find <keyword>
+help
+bye
+____________________________________________________________
+____________________________________________________________
 Got it. I've added this task:
 [T][ ] borrow book
 Now you have 1 tasks in the list.
@@ -55,6 +67,7 @@ Here are the matching tasks in your list:
 ____________________________________________________________
 ____________________________________________________________
 ☹ OOPS!!! The keyword cannot be empty.
+==> Type 'help' to see available commands.
 ____________________________________________________________
 ____________________________________________________________
 OK, I've marked this task as not done yet:
@@ -68,9 +81,11 @@ Here are the tasks in your list:
 ____________________________________________________________
 ____________________________________________________________
 ☹ OOPS!!! The description of a todo cannot be empty.
+==> Type 'help' to see available commands.
 ____________________________________________________________
 ____________________________________________________________
 ☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+==> Type 'help' to see available commands.
 ____________________________________________________________
 ____________________________________________________________
 Noted. I've removed this task:
@@ -79,6 +94,7 @@ Now you have 2 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
 Hmm, You need to use yyyy-mm-dd for date format.
+==> Type 'help' to see available commands.
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
