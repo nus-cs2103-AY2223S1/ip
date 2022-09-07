@@ -35,7 +35,9 @@ public class MarkCommand extends Command {
         }
         try {
             int taskNumber = Integer.parseInt(this.inputArray[1]);
+            assert this.tasksList != null : "The taskslist should not be null";
             Task markedTask = this.tasksList.markAsDone(taskNumber);
+            assert markedTask != null : "Marked task should not be null";
             return new Response(MarkCommand.MARK_MSG + markedTask);
         // exception due to parsing
         } catch (NumberFormatException exception) {

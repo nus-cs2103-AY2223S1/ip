@@ -41,11 +41,12 @@ public class DeadlineCommand extends Command {
         String[] splitArray = this.inputArray[1].split(DeadlineCommand.DELIMITER, 2);
 
         if (splitArray.length < 2) {
-            throw new DukeException("Please enter a due date for this task!");
+            throw new DukeException("Please enter a valid description/due date for this task!");
         }
 
         // Make a new deadline object
         Deadline deadline = new Deadline(splitArray[0], splitArray[1]);
+        assert this.tasksList != null : "The taskslist should not be null";
         this.tasksList.addToList(deadline);
         StringBuilder sb = new StringBuilder();
         sb.append(DeadlineCommand.DEADLINE_MSG + deadline + "\n" + "Now you have ");
