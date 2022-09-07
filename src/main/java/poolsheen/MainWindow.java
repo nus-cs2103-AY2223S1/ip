@@ -48,6 +48,8 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
+        assert dukeImage != null : "dukeImage path should not be null";
+        assert userImage != null : "userImage path should not be null";
         if (Poolsheen.getExited()) {
             dialogContainer.getChildren().addAll(
                     DialogBox.getDukeDialog(Ui.getGoodbye(), dukeImage)

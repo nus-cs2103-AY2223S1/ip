@@ -28,6 +28,7 @@ public class Poolsheen {
      * A public constructor to initialise the Poolsheen object.
      */
     public Poolsheen() {
+        assert SAVE_FILE_PATH != null : "SAVE_FILE_PATH should not be null";
         this.hasExited = false;
         this.ui = new Ui();
         this.storage = new Storage(SAVE_FILE_PATH);
@@ -46,6 +47,11 @@ public class Poolsheen {
         Poolsheen.hasExited = true;
     }
 
+    /**
+     * Returns the string which is to be passed into the GUI under Poolsheen's response.
+     * @param fullCommand The full string passed in by the user.
+     * @return The string which is to be passed onto the GUI.
+     */
     public String getResponse(String fullCommand) {
         String reply;
         try {
@@ -68,7 +74,7 @@ public class Poolsheen {
 
     /**
      * A getter method that returns if the poolsheen program has ended.
-     * @return A boolean that is true if exitted, else false.
+     * @return A boolean that is true if exited, else false.
      */
     public static boolean getExited() {
         return Poolsheen.hasExited;
