@@ -43,7 +43,7 @@ public class UnmarkCommand extends Command {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return tasks.setMarkedString(taskIndex - 1);
+        return tasks.setUnmarkedString(taskIndex - 1);
     }
 
     /**
