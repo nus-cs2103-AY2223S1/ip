@@ -102,6 +102,7 @@ public class TaskList {
      */
     public void markList(int index) {
         this.taskArray.get(index - 1).markAsDone();
+        assert this.taskArray.get(index - 1).isDone == true;
     }
 
     /**
@@ -111,6 +112,7 @@ public class TaskList {
      */
     public void unMarkList(int index) {
         this.taskArray.get(index - 1).unMarkTask();
+        assert this.taskArray.get(index - 1).isDone == false;
     }
 }
 
