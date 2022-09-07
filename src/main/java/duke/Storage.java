@@ -11,13 +11,13 @@ import duke.task.Task;
  * Storage class containing all the logic for loading and saving to file.
  */
 public class Storage {
-    private String fileName;
-    private String folderPath;
+    private final String fileName;
+    private final String folderPath;
 
     /**
      * Creates new Storage object.
      *
-     * @param fileName Path to save file.
+     * @param fileName   Path to save file.
      * @param folderPath Path to folder containing save file.
      */
     public Storage(String fileName, String folderPath) {
@@ -36,7 +36,7 @@ public class Storage {
             List<String> res = Files.readAllLines(Paths.get(fileName));
             return res;
         } catch (Exception e) {
-            throw(new DukeException("No saved data found!"));
+            throw (new DukeException("No saved data found!"));
         }
     }
 
@@ -49,15 +49,14 @@ public class Storage {
     public void save(TaskList tasks) throws DukeException {
         String res = "";
         for (Task task : tasks.tasks()) {
-            res += task;
-            res += "\n";
+            res += task + "\n";
         }
 
         try {
             Files.createDirectories(Paths.get(folderPath));
             Files.write(Paths.get(fileName), res.getBytes(StandardCharsets.UTF_8));
         } catch (Exception e) {
-            throw(new DukeException("Error writing to file!"));
+            throw (new DukeException("Error writing to file!"));
         }
 
     }

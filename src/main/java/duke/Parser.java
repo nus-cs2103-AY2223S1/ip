@@ -31,6 +31,26 @@ public class Parser {
         return input;
     }
 
+    private static LocalDateTime parseDateTime(String input) throws DukeException {
+        String timeString = input.replace('/', '-');
+        try {
+            return LocalDateTime.parse(timeString,
+                    DateTimeFormatter.ofPattern("d-M-yyyy H:m"));
+        } catch (Exception e) {
+            throw(new DukeException("Error parsing time. Please " +
+                    "use dd-mm-yyyy hh:mm format instead."));
+        }
+    }
+
+    private static String[] tokenizeInput(
+            String input, String type) throws DukeException {
+        String[] msg = input.split(" ");
+        if (msg.length < 2) {
+            throw(new DukeException("nothing to " + type + "!"));
+        }
+        return msg;
+    }
+
     /**
      * Parses raw input and returns corresponding command.
      *
@@ -50,34 +70,22 @@ public class Parser {
 
         } else if (input.startsWith("mark")) {
 
-            String[] msg = input.split(" ");
-            if (msg.length < 2) {
-                throw(new DukeException("nothing to mark!"));
-            }
+            String[] msg = tokenizeInput(input, "mark");
             return new MarkCommand(Integer.valueOf(msg[1]) - 1);
 
         } else if (input.startsWith("unmark")) {
 
-            String[] msg = input.split(" ");
-            if (msg.length < 2) {
-                throw(new DukeException("nothing to unmark!"));
-            }
+            String[] msg = tokenizeInput(input, "unmark");
             return new UnmarkCommand(Integer.valueOf(msg[1]) - 1);
 
         } else if (input.startsWith("delete")) {
 
-            String[] msg = input.split(" ");
-            if (msg.length < 2) {
-                throw(new DukeException("nothing to delete!"));
-            }
+            String[] msg = tokenizeInput(input, "delete");
             return new DeleteCommand(Integer.valueOf(msg[1]) - 1);
 
         } else if (input.startsWith("todo")) {
 
-            String[] msg = input.split(" ");
-            if (msg.length < 2) {
-                throw(new DukeException("nothing to add!"));
-            }
+            String[] msg = tokenizeInput(input, "add");
             return new TodoCommand(getTaskName(msg));
 
         } else if (input.startsWith("deadline")) {
@@ -87,16 +95,8 @@ public class Parser {
                 throw(new DukeException("no date specified!"));
             }
 
-            String[] tmp = msg[0].split(" ");
-            if (tmp.length < 2) {
-                throw(new DukeException("nothing to add!"));
-            }
-
-            String timeString = msg[1].replace('/', '-');
-            LocalDateTime time = LocalDateTime.parse(
-                    timeString, DateTimeFormatter.ofPattern("d-M-yyyy H:m"));
-
-            return new DeadlineCommand(getTaskName(tmp), time);
+            String[] tmp = tokenizeInput(msg[0], "add");
+            return new DeadlineCommand(getTaskName(tmp), parseDateTime(msg[1]));
 
         } else if (input.startsWith("event")) {
 
@@ -105,23 +105,11 @@ public class Parser {
                 throw(new DukeException("no date specified!"));
             }
 
-            String[] tmp = msg[0].split(" ");
-            if (tmp.length < 2) {
-                throw(new DukeException("nothing to add!"));
-            }
-
-            String timeString = msg[1].replace('/', '-');
-            LocalDateTime time = LocalDateTime.parse(
-                    timeString, DateTimeFormatter.ofPattern("d-M-yyyy H:m"));
-
-            return new EventCommand(getTaskName(tmp), time);
+            String[] tmp = tokenizeInput(msg[0], "add");
+            return new EventCommand(getTaskName(tmp), parseDateTime(msg[1]));
 
         } else if (input.startsWith("find")) {
-            String[] msg = input.split(" ");
-            if (msg.length < 2) {
-                throw(new DukeException("nothing to find!"));
-            }
-
+            String[] msg = tokenizeInput(input, "find");
             return new FindCommand(getTaskName(msg));
 
         } else {
