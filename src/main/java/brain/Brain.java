@@ -32,7 +32,7 @@ public class Brain {
      * @param index index of the {@link Task} in <code>taskList</code> to return
      * @return {@link Task}
      */
-    public Task get(int index) {
+    public Task getTask(int index) {
         return taskList.get(index);
     }
 
@@ -43,7 +43,7 @@ public class Brain {
      * @param task {@link Task} object to add to <code>taskList</code>
      * @return {@link String} representation of the task
      */
-    public String add(Task task) {
+    public String addTask(Task task) {
         taskList.add(task);
 
         assert size() > 0 : "brain size should not be 0 after adding task";
@@ -56,7 +56,7 @@ public class Brain {
      *
      * @return {@code int}
      */
-    public int size() {
+    public int getSize() {
         return taskList.size();
     }
 
@@ -67,7 +67,7 @@ public class Brain {
      * @param index index of the {@link Task} in <code>taskList</code> to remove
      * @return {@link String} representation of the task
      */
-    public String remove(int index) {
+    public String removeTask(int index) {
         Task task = taskList.get(index);
         taskList.remove(index);
 
