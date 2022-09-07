@@ -8,12 +8,12 @@ public class MarkCommand extends Command {
         if (index > listOfTask.size() - 1) {
             throw new DukeIndexTooLargeException();
         }
-        if (index <= 0) {
+        if (index <= -1) {
             throw new DukeNonPositiveIndexException();
         }
     }
     @Override
-    String execute(String taskName, ArrayList<Task> listOfTask, Ui ui, Storage storage) throws IOException {
+    String execute(String taskName, ArrayList<Task> listOfTask, Ui ui, Storage storage) {
         try {
             int taskNumber = getTaskNumberOfTaskToBeMarked(taskName); 
             handleException(taskNumber, listOfTask); 

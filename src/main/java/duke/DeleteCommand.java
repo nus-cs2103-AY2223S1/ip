@@ -7,15 +7,15 @@ public class DeleteCommand extends Command {
         if (index > listOfTask.size() - 1) {
             throw new DukeIndexTooLargeException();
         }
-        if (index <= 0) {
+        if (index <= -1) {
             throw new DukeNonPositiveIndexException();
         }
     }
     @Override
-   String execute(String fullCommand, ArrayList<Task> listOfTasks, Ui ui, Storage storage) throws IOException {
+   String execute(String fullCommand, ArrayList<Task> listOfTasks, Ui ui, Storage storage) {
         try {
             TaskList taskList = new TaskList(listOfTasks);
-            int index = Integer.parseInt(fullCommand.substring(7));
+            int index = Integer.parseInt(fullCommand.substring(7)) - 1;
             handleException(index, listOfTasks);
             return taskList.delete(fullCommand);
         } catch (DukeException e) {
