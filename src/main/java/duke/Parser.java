@@ -11,6 +11,7 @@ import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.SortCommand;
 import duke.command.TodoCommand;
 import duke.command.UnmarkCommand;
 
@@ -111,6 +112,20 @@ public class Parser {
         } else if (input.startsWith("find")) {
             String[] msg = tokenizeInput(input, "find");
             return new FindCommand(getTaskName(msg));
+
+        } else if (input.startsWith("sort")) {
+            String[] msg = tokenizeInput(input, "sort by");
+            String sortType = msg[1];
+
+            if (!sortType.equals("alphabetically") && !sortType.equals("chronologically")) {
+                throw (new DukeException("sort type invalid! try 'alphabetically' or 'chronologically'"));
+            }
+
+            boolean isDescending = false;
+            if (msg.length > 2 && msg[2].equals("descending")) {
+                isDescending = true;
+            }
+            return new SortCommand(msg[1], isDescending);
 
         } else {
             throw(new DukeException("I do not understand!"));

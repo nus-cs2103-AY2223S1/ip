@@ -15,8 +15,8 @@ import javafx.stage.Stage;
 public class Ui extends Application {
 
     private static final String GREETINGS = "Hello! I'm Ekud \n" + "What can I do for you?";
+    private static MainWindow mainWindow;
     private final Duke duke = new Duke();
-    private MainWindow mainWindow;
 
     /**
      * Starts the GUI.
@@ -45,7 +45,7 @@ public class Ui extends Application {
         }
     }
 
-    public void print(String msg) {
+    public static void print(String msg) {
         mainWindow.print(msg);
     }
     /**

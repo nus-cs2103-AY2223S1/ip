@@ -3,6 +3,8 @@ package duke;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import duke.task.Deadline;
@@ -110,4 +112,20 @@ public class TaskList {
         return tasks;
     }
 
+    public void sort(String sortType, boolean isDescending) {
+        switch (sortType) {
+        case "alphabetically":
+            Collections.sort(tasks, Comparator.comparing(Task::getName));
+            break;
+        case "chronologically":
+            Collections.sort(tasks, Comparator.comparing(Task::getTime));
+            break;
+        default:
+            break;
+        }
+
+        if (isDescending) {
+            Collections.reverse(tasks);
+        }
+    }
 }
