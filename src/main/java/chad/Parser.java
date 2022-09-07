@@ -18,61 +18,51 @@ public class Parser {
      * @throws ChadException Thrown when invalid error occurs
      * @throws IOException Thrown when helper file cannot be open
      */
-    public static void readUserInput(ArrayList<Task> taskList, String userInput) throws ChadException, IOException {
+    public static String readUserInput(ArrayList<Task> taskList, String userInput) throws ChadException, IOException {
         String[] tempArr = userInput.split(" ");
         String keyword = tempArr[0];
 
         try {
             switch (keyword) {
             case "bye": {
-                Ui.closeChat();
-                break;
+                return Ui.closeChat();
             }
             case "list": {
-                Ui.listTask(taskList);
-                break;
+                return Ui.listTask(taskList);
             }
             case "mark": {
                 int taskID = Integer.parseInt(userInput.split(" ")[1]) - 1;
-                Ui.markTask(taskList, taskID);
-                break;
+                return Ui.markTask(taskList, taskID);
             }
             case "unmark": {
                 int taskID = Integer.parseInt(userInput.split(" ")[1]) - 1;
-                Ui.unmarkTask(taskList, taskID);
-                break;
+                return Ui.unmarkTask(taskList, taskID);
             }
             case "delete": {
                 int taskID = Integer.parseInt(userInput.split(" ")[1]) - 1;
-                TaskList.deleteTask(taskList, taskID);
-                break;
+                return TaskList.deleteTask(taskList, taskID);
             }
             case "date": {
-                Ui.printTaskAtDate(taskList, userInput);
-                break;
+                return Ui.printTaskAtDate(taskList, userInput);
             }
             case "todo": {
-                TaskList.addTodoTask(taskList, userInput);
-                break;
+                return TaskList.addTodoTask(taskList, userInput);
             }
             case "deadline": {
-                TaskList.addDeadlineTask(taskList, userInput);
-                break;
+                return TaskList.addDeadlineTask(taskList, userInput);
             }
             case "event": {
-                TaskList.addEventTask(taskList, userInput);
-                break;
+                return TaskList.addEventTask(taskList, userInput);
             }
             case "find": {
-                Ui.searchTaskByKeyword(taskList, userInput);
-                break;
+                return Ui.searchTaskByKeyword(taskList, userInput);
             }
             default: {
                 throw new ChadException("I'm sorry, but I don't know what that means :-(");
             }
             }
         } catch (ChadException ce) {
-            Utility.printText(ce.getMessage());
+            return ce.getMessage();
         }
     }
 }
