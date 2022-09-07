@@ -1,5 +1,10 @@
 package duke.logic.task;
 
+import duke.exception.DukeException;
+import duke.storage.DukeEncoder;
+
+import java.util.ArrayList;
+
 /**
  * Represents a to-do task.
  */
@@ -22,6 +27,26 @@ public class ToDo extends Task {
         super(detail, isDone);
     }
 
+    /**
+     * Add a to-do task
+     *
+     * @param userInput text the user typed
+     * @param workList
+     */
+    public static String add(ArrayList<Task> workList, String userInput) {
+        try {
+            userInput.substring(6);
+            String detail = userInput.substring(5);
+            ToDo todo = new ToDo(detail);
+            workList.add(todo);
+            // Update Storage
+            DukeEncoder.rewriteList(workList);
+            return Task.add(workList, userInput) + todo + "\n"
+                + updateNumOfTask(workList);
+        } catch (StringIndexOutOfBoundsException e) {
+            return new DukeException.EmptyTodoException().throwDukeException();
+        }
+    }
     /**
      * Returns String form of the task
      * @return String

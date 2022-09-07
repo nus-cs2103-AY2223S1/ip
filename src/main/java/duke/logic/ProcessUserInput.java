@@ -9,8 +9,7 @@ import duke.logic.task.TaskOperation;
 import duke.logic.task.ToDo;
 import duke.ui.Constants;
 
-import static duke.logic.task.Task.markAsDone;
-import static duke.logic.task.Task.markAsNotDone;
+import static duke.logic.task.Task.*;
 
 /**
  * Represents methods process user input into command.
@@ -26,49 +25,17 @@ public class ProcessUserInput {
         int index;
         switch (typeOfTask) {
         case Constants.LIST:
-            return TaskOperation.listItems(workList);
+            return Task.listItems(workList);
         case Constants.UNMARK:
             return markAsNotDone(workList, userInput);
         case Constants.MARK:
             return markAsDone(workList, userInput);
         case Constants.TODO:
-            try {
-                // Error when to-do followed by a blank space
-                userInput.substring(6);
-                // Error when just to-do
-                return TaskOperation.add(new ToDo(userInput.substring(5)), workList);
-            } catch (StringIndexOutOfBoundsException e) {
-                return new DukeException.EmptyTodoException().throwDukeException();
-
-            }
+            return ToDo.add(workList, userInput);
         case Constants.DEADLINE:
-            try {
-                // Error when deadline followed by a blank space
-                userInput.substring(10);
-                // Error when just deadline
-                String[] deadline = userInput.substring(9).split(" /by ");
-                return TaskOperation.add(new Deadline(deadline[0], deadline[1]), workList);
-            } catch (StringIndexOutOfBoundsException e) {
-                return new DukeException.EmptyDeadlineException().throwDukeException();
-
-            } catch (ArrayIndexOutOfBoundsException e) {
-                return new DukeException.DeadlineWithoutByException().throwDukeException();
-            }
-
+            return Deadline.add(workList, userInput);
         case Constants.EVENT:
-            try {
-                // Error when event followed by a blank space
-                userInput.substring(7);
-                // Error when just event
-                String[] event = userInput.substring(6).split(" /at ");
-                return TaskOperation.add(new Event(event[0], event[1]), workList);
-            } catch (StringIndexOutOfBoundsException e) {
-                return new DukeException.EmptyEventException().throwDukeException();
-
-            } catch (ArrayIndexOutOfBoundsException e) {
-                return new DukeException.EventWithoutAtException().throwDukeException();
-            }
-
+            return Event.add(workList, userInput);
         case Constants.DELETE:
             try {
                 userInput.substring(8);

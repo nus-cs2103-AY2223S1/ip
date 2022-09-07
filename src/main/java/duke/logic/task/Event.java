@@ -1,5 +1,10 @@
 package duke.logic.task;
 
+import duke.exception.DukeException;
+import duke.storage.DukeEncoder;
+
+import java.util.ArrayList;
+
 /**
  * Represents a event task.
  */
@@ -27,6 +32,32 @@ public class Event extends Task {
         this.at = at;
     }
 
+    /**
+     * Add a event task
+     *
+     * @param userInput text the user typed
+     * @param workList
+     */
+    public static String add(ArrayList<Task> workList, String userInput) {
+        try {
+            // Error when event followed by a blank space
+            userInput.substring(7);
+            // Error when just event
+            String[] commandSplit = userInput.substring(6).split(" /at ");
+            Event event = new Event(commandSplit[0], commandSplit[1]);
+            workList.add(event);
+            // Update Storage
+            DukeEncoder.rewriteList(workList);
+            return Task.add(workList, userInput) + event + "\n"
+                    + updateNumOfTask(workList);
+        } catch (StringIndexOutOfBoundsException e) {
+            return new DukeException.EmptyEventException().throwDukeException();
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return new DukeException.EventWithoutAtException().throwDukeException();
+        }
+
+    }
     /**
      * Returns String form of the task
      * @return String

@@ -1,7 +1,11 @@
 package duke.logic.task;
 
+import duke.exception.DukeException;
+import duke.storage.DukeEncoder;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 /**
  * Represents a deadline task.
@@ -30,6 +34,32 @@ public class Deadline extends Task {
     public Deadline(String detail, boolean isDone, String by) {
         super(detail, isDone);
         this.by = LocalDate.parse(by);
+    }
+
+    /**
+     * Add a deadline task
+     *
+     * @param userInput text the user typed
+     * @param workList
+     */
+    public static String add(ArrayList<Task> workList, String userInput) {
+        try {
+            // Error when deadline followed by a blank space
+            userInput.substring(10);
+            // Error when just deadline
+            String[] commandSplit = userInput.substring(9).split(" /by ");
+            Deadline deadline = new Deadline(commandSplit[0], commandSplit[1]);
+            workList.add(deadline);
+            // Update Storage
+            DukeEncoder.rewriteList(workList);
+            return Task.add(workList, userInput) + deadline + "\n"
+                    + updateNumOfTask(workList);
+        } catch (StringIndexOutOfBoundsException e) {
+            return new DukeException.EmptyDeadlineException().throwDukeException();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return new DukeException.DeadlineWithoutByException().throwDukeException();
+        }
+
     }
 
     /**

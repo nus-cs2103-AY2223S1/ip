@@ -39,6 +39,17 @@ public class Task {
     }
 
     /**
+     * Print all item in the word list
+     */
+    public static String listItems(ArrayList<Task> workList) {
+        String toPrint = Constants.LISTING_MESSAGE + "\n";
+        for (int i = 0; i < workList.size(); i++) {
+            toPrint += ((i + 1) + ") " + workList.get(i).toString()) + "\n";
+        }
+        return toPrint;
+    }
+
+    /**
      * Mark task as Done and Print acknowledge message.
      */
     public static String markAsDone(ArrayList<Task> workList, String userInput) {
@@ -76,6 +87,24 @@ public class Task {
         } catch (IndexOutOfBoundsException e) {
             return new DukeException.EmptyMarkingException().throwDukeException();
         }
+    }
+
+    /**
+     * Add text that user typed to the word list
+     *
+     * @param userInput text the user typed
+     * @param workList
+     */
+    public static String add(ArrayList<Task> workList, String userInput) {
+        return Constants.ARROW + "Added task: ";
+    }
+
+    /**
+     * Updates number of task in the list
+     * @return String
+     */
+    public static String updateNumOfTask(ArrayList<Task> workList) {
+        return "Now you have " + workList.size() + " task(s) on your list.";
     }
 
     /**
