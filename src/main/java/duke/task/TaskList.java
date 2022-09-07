@@ -1,6 +1,7 @@
 package duke.task;
 
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 /**
  * Simulates the list used to store the Tasks added by the user
@@ -84,15 +85,12 @@ public class TaskList {
      */
     public String findTasks(String keyWord) {
         StringBuilder tasksWithKeyWord = new StringBuilder();
-        for (int i = 0; i < this.size(); i++) {
-            String taskInfo = this.getTask(i).toString();
-            if (taskInfo.contains(keyWord)) {
-                tasksWithKeyWord.append("\n")
-                        .append(i + 1)
-                        .append(". ")
-                        .append(taskInfo);
-            }
-        }
+        Stream<Task> taskStream = this.taskList.stream();
+        taskStream.map(task -> (this.taskList.indexOf(task) + 1) + ". " + task.toString())
+                .filter(description -> description.contains(keyWord))
+                .forEach(matchDescription -> tasksWithKeyWord
+                        .append("\n")
+                        .append(matchDescription));
         return tasksWithKeyWord.toString();
     }
 
@@ -104,13 +102,11 @@ public class TaskList {
      */
     public String compileAllTasks() {
         StringBuilder compiledTasks = new StringBuilder();
-        for (int i = 0; i < this.size(); i++) {
-            String taskInfo = this.getTask(i).toString();
-            compiledTasks.append("\n")
-                    .append(i + 1)
-                    .append(". ")
-                    .append(taskInfo);
-        }
+        Stream<Task> taskStream = this.taskList.stream();
+        taskStream.map(task -> (this.taskList.indexOf(task) + 1) + ". " + task.toString())
+                .forEach(description -> compiledTasks
+                        .append("\n")
+                        .append(description));
         return compiledTasks.toString();
     }
 }
