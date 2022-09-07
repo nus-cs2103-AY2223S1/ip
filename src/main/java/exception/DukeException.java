@@ -38,7 +38,7 @@ public class DukeException extends Exception {
             break;
         case INVALID_EVENT_DATETIME_FORMAT:
             dateFormat = "\t Please ensure date time is of the "
-                    + "following format: yyyy-mm-dd hh:mm:ss hh:mm:ss hh:mm:ss";
+                    + "following format: yyyy-mm-dd hh:mm:ss hh:mm:ss";
             errorMsg = "OOPS!!! Unable to parse date time for event.\n" + dateFormat;
             break;
         default:
