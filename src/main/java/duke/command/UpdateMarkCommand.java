@@ -33,7 +33,7 @@ public class UpdateMarkCommand extends UpdateCommand {
         try {
             taskIndex = Parser.getTaskIndex(command);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("🙁 OOPS!!! Provide a number to mark a task.\n");
+            throw new IllegalArgumentException(":( OOPS!!! Provide a number to mark a task.\n");
         }
 
         Task task;
@@ -42,7 +42,7 @@ public class UpdateMarkCommand extends UpdateCommand {
         } catch (IndexOutOfBoundsException e) {
             throw new IllegalArgumentException(
                     String.format(
-                            "🙁 OOPS!!! Provide a valid number (from 1 to %d) to mark a task.\n", taskList.size())
+                            ":( OOPS!!! Provide a valid number (from 1 to %d) to mark a task.\n", taskList.size())
             );
         }
         return new UpdateMarkCommand(command, task, taskIndex);

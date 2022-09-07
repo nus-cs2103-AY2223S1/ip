@@ -41,7 +41,7 @@ public class DeleteCommand extends Command {
         try {
             taskIndex = Parser.getTaskIndex(command);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("🙁 OOPS!!! Provide a number to delete a task.\n");
+            throw new IllegalArgumentException(":( OOPS!!! Provide a number to delete a task.\n");
         }
 
         Task task;
@@ -50,7 +50,7 @@ public class DeleteCommand extends Command {
         } catch (IndexOutOfBoundsException e) {
             throw new IllegalArgumentException(
                     String.format(
-                            "🙁 OOPS!!! Provide a valid number (from 1 to %d) to delete a task.\n", taskList.size())
+                            ":( OOPS!!! Provide a valid number (from 1 to %d) to delete a task.\n", taskList.size())
             );
         }
         return new DeleteCommand(command, task, taskIndex, taskList);

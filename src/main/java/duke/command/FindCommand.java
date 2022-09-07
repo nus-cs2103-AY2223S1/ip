@@ -29,7 +29,7 @@ public class FindCommand extends Command {
         assert(command.startsWith("find"));
         String keyword = command.replace("find", "").trim();
         if (keyword.isEmpty()) {
-            throw new IllegalArgumentException("🙁 OOPS!!! Provide a keyword to find tasks.\n");
+            throw new IllegalArgumentException(":( OOPS!!! Provide a keyword to find tasks.\n");
         } else {
             return new FindCommand(command, keyword);
         }
@@ -46,7 +46,7 @@ public class FindCommand extends Command {
         String s = matchingTasks.toString();
 
         if (s.isEmpty()) {
-            ui.println("🙁 OOPS!!! There are no matching tasks in your list.");
+            ui.println(":( OOPS!!! There are no matching tasks in your list.");
         } else {
             ui.printWithDivider(String.format("Here are the matching tasks in your list:\n%s", s));
         }
