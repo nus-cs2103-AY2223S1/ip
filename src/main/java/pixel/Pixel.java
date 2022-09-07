@@ -12,9 +12,19 @@ public class Pixel {
     public static int count = 0; // made public for testing
     private final Scanner myScanner = new Scanner(System.in); // Create a Scanner object
     private final Parser parser;
+    private boolean justInitialised = true;
 
     public Pixel(String filePath) {
         this.parser = new Parser(filePath);
+    }
+
+    public boolean botJustInitialised() {
+        if (this.justInitialised) {
+            this.justInitialised = false;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // for other classes to use
@@ -22,6 +32,7 @@ public class Pixel {
         return this.parser.parse(userInput);
     }
 
+    // obsolete since the implementation of GUI
     public void run() {
         while (myScanner.hasNextLine()) {
             String userInput = myScanner.nextLine(); // Read user input
