@@ -45,8 +45,12 @@ public class Parser {
         case "unmark":
         case "delete":
             validateArgument(inputStringArray);
-            int index = Integer.parseInt(inputStringArray[1]) - 1;
-            return new NumericCommand(commandText, index);
+            //String[] argumentsArray = Arrays.asList(inputStringArray).subList(1,inputStringArray.length - 1).toArray(new String[0]);
+            int[] integerArgumentsArray = new int[inputStringArray.length - 1];
+            for (int i = 0; i < integerArgumentsArray.length; i++) {
+                integerArgumentsArray[i] = Integer.parseInt(inputStringArray[i+1]) - 1;
+            }
+            return new NumericCommand(commandText, integerArgumentsArray);
         case "todo":
             validateArgument(inputStringArray);
             String todoName = combineStringArray(inputStringArray, 1, inputStringArray.length);

@@ -5,26 +5,27 @@ import duke.Storage;
 import duke.TaskList;
 
 /**
- * Command that represents a command with a numeric argument, mark, unmark and delete.
+ * Command that represents a command with numeric arguments: mark, unmark and delete.
  */
 public class NumericCommand implements Command {
     private String command;
-    private int index;
+
+    private int[] indexList;
 
     /**
      * Default constructor of the Numeric Command.
      * Command can be either mark, unmark or delete.
      *
      * @param command Command that the numeric command represents
-     * @param index Numerical argument of the command.
+     * @param indexList Numerical arguments of the command.
      */
-    public NumericCommand(String command, int index) {
+    public NumericCommand(String command, int... indexList) {
         this.command = command;
-        this.index = index;
+        this.indexList = indexList;
     }
 
     /**
-     * Runs the numeric command with the task at specified index.
+     * Runs the numeric command at the specified indexes.
      * If the command is mark, the task at specified index is marked.
      * If the command is unmark, the task at the specified index is unmarked.
      * If the command is delete, the task at the specified index is deleted.
@@ -36,35 +37,40 @@ public class NumericCommand implements Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
-        if (index < 0 || index >= tasks.getSize()) {
+        if (!validateIndexes(indexList, tasks)) {
             throw new DukeException("Please enter between 1 to the last element of the list");
         }
         String output = "";
+
         switch (command) {
         case "mark":
-            if (tasks.get(index).isMarked()) {
-                throw new DukeException("That task is already marked!");
+            output += "Nice! I've marked the following task(s) as done\n";
+            for (int index : indexList) {
+                if (tasks.get(index).isMarked()) {
+                    throw new DukeException("Task " +  index + "is already marked!");
+                }
+                tasks.get(index).markAsDone();
+                output += tasks.get(index) + "\n";
             }
-            tasks.get(index).markAsDone();
             storage.writeAll(tasks);
-            output += "Nice! I've marked this task as done\n";
-            output += tasks.get(index) + "\n";
             break;
         case "unmark":
-            if (!tasks.get(index).isMarked()) {
-                throw new DukeException("That task is already unmarked!");
+            output += "OK, I've marked the following task(s) not done yet:\n";
+            for (int index : indexList) {
+                if (!tasks.get(index).isMarked()) {
+                    throw new DukeException("Task " + index + "is already unmarked!");
+                }
+                tasks.get(index).unmark();
+                output += tasks.get(index) + "\n";
             }
-
-            tasks.get(index).unmark();
             storage.writeAll(tasks);
-            output += "OK, I've marked this task as not done yet:\n";
-            output += tasks.get(index) + "\n";
             break;
         case "delete":
-            output += "Noted. I've removed this task:\n";
-
-            tasks.remove(index);
-            output += tasks.get(index) + "\n";
+            output += "Noted. I've removed the following task(s):\n";
+            for (int index : indexList) {
+                tasks.remove(index);
+                output += tasks.get(index) + "\n";
+            }
             output += "Now you have " + tasks.getSize() + " tasks in the list" + "\n";
             storage.writeAll(tasks);
             break;
@@ -72,6 +78,15 @@ public class NumericCommand implements Command {
             throw new DukeException("Unable to parse that numeric command");
         }
         return output;
+    }
+
+    private boolean validateIndexes (int[] indexList, TaskList tasks) {
+        for (int index : indexList) {
+            if (index < 0 || index >= tasks.getSize()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
