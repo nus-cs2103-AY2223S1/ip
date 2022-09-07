@@ -58,13 +58,11 @@ public class Storage {
     public void initialiseFile() {
         File directory = new File(this.file.getParent());
         if (!directory.exists()) {
-            // creates directory if not exist
             directory.mkdir();
         }
 
         try {
             if (!file.exists()) {
-                // creates file if not exist
                 file.createNewFile();
             }
         } catch (IOException exception) {
