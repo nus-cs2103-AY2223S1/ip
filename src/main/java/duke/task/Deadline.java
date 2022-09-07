@@ -30,4 +30,26 @@ public class Deadline extends Task {
         return "[D]" + super.toString() + " (by: "
                 + deadlineDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
+
+    /**
+     * Returns if a given object is equal to a Deadline instance.
+     *
+     * @param object Given object.
+     * @return True if the two are equal, false otherwise.
+     */
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof Deadline) {
+            Deadline deadline = (Deadline) object;
+            if (this == deadline) {
+                return true;
+            } else {
+                boolean isSameDescription = this.description.equals(deadline.description);
+                boolean isSameDate = this.deadlineDate.equals(deadline.deadlineDate);
+                return isSameDescription && isSameDate;
+            }
+        } else {
+            return false;
+        }
+    }
 }

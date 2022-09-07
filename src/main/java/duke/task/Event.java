@@ -30,4 +30,27 @@ public class Event extends Task {
         return "[E]" + super.toString() + " (at: "
                 + eventDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
+
+    /**
+     * Returns if a given object is equal to an Event instance.
+     *
+     * @param object Given object.
+     * @return True if the two are equal, false otherwise.
+     */
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof Event) {
+            Event event = (Event) object;
+            if (this == event) {
+                return true;
+            } else {
+                boolean isSameDescription = this.description.equals(event.description);
+                boolean isSameDate = this.eventDate.equals(event.eventDate);
+                return isSameDescription && isSameDate;
+            }
+        } else {
+            return false;
+        }
+    }
+
 }
