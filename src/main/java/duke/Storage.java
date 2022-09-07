@@ -36,12 +36,12 @@ public class Storage {
 
     /**
      * Saves a given instance of a Task List to the user's local directory.
-     * @param taskList Task List formatted as String type.
+     * @param tasks TaskList of tasks
      */
-    protected void save(String taskList) {
+    protected void save(TaskList tasks) {
         try {
             FileWriter fw = new FileWriter(filepath);
-            fw.write(taskList);
+            fw.write(tasks.enumerateList());
             fw.close();
         } catch (IOException err) {
             System.out.println(":( TaskList not saved: " + err.getMessage());
