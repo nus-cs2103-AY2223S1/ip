@@ -46,6 +46,7 @@ public class TodoCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task todo = new Todo(description);
         tasks.add(todo);
+        tasks.sort();
         String message = ui.taskAddedMessage(todo, tasks);
         storage.save(tasks);
         return message;

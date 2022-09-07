@@ -54,6 +54,7 @@ public class DeadlineCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task deadline = new Deadline(description, byDateTime);
         tasks.add(deadline);
+        tasks.sort();
         String message = ui.taskAddedMessage(deadline, tasks);
         storage.save(tasks);
         return message;

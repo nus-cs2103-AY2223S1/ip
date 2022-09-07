@@ -38,7 +38,6 @@ public class TaskList {
     public void add(Task task) {
         assert(task != null);
         tasks.add(task);
-        sort();
     }
 
     /**
