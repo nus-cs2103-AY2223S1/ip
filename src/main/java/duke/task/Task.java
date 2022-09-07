@@ -61,6 +61,10 @@ public abstract class Task {
         return (isDone ? "1" : "0");
     }
 
+    public boolean getStatusBoolean() {
+        return isDone;
+    }
+
     /**
      * Sets the status of the task.
      *

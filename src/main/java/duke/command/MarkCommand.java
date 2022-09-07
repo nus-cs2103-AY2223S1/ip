@@ -40,6 +40,6 @@ public class MarkCommand extends Command {
         tasks.get(index).setStatus(true);
         storage.writeFile(tasks);
         return "Nice! I've marked this task as done:\n"
-                + tasks.get(index).toString();
+                + "  " + tasks.get(index);
     }
 }

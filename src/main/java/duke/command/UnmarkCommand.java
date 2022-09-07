@@ -40,6 +40,6 @@ public class UnmarkCommand extends Command {
         tasks.get(index).setStatus(false);
         storage.writeFile(tasks);
         return "OK, I've marked this task as not done yet:\n"
-                + tasks.get(index).toString();
+                + "  " + tasks.get(index).toString();
     }
 }

@@ -3,16 +3,7 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import duke.command.AddCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.ExitCommand;
-import duke.command.FindCommand;
-import duke.command.GreetCommand;
-import duke.command.IdleCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.UnmarkCommand;
+import duke.command.*;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -74,6 +65,14 @@ public class Parser {
             }
             String keyword = substrings[1];
             return new FindCommand(keyword);
+        } else if (userInput.startsWith("clone")) {
+            // when user enters clone and a number
+            // clone the corresponding task from the list
+            if (isSingleWordCommand) {
+                throw new DukeException("Please specify which task to clone.");
+            }
+            int index = Integer.parseInt(substrings[1]) - 1;
+            return new CloneCommand(index);
         } else {
             // add user input to the list
             // check what type of task it is
@@ -132,8 +131,8 @@ public class Parser {
      * @return a boolean value representing whether the Task is marked as done
      */
     public static boolean checkStatus(int status) {
-        final int DONE = 1;
-        return status == DONE;
+        final int done = 1;
+        return status == done;
     }
 
     /**
