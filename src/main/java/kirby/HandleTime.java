@@ -11,6 +11,9 @@ import kirby.tasks.Task;
  * HandleTime class contains methods to handle inputs with standard dates.
  */
 public class HandleTime {
+    private static final int[] INVALID_DATE_ARR = new int[]{-1, -1, -1};
+    private static final int VALID_DATE_LENGTH = 3;
+
     /**
      * Checks if the input given is a standard form of a date.
      *
@@ -37,8 +40,8 @@ public class HandleTime {
     public static int[] fromStringToDate(String input) {
         assert input != null;
         String[] parts = input.split("-");
-        if (parts.length != 3) {
-            return new int[]{-1, -1, -1};
+        if (parts.length != VALID_DATE_LENGTH) {
+            return INVALID_DATE_ARR;
         }
         int date = Integer.parseInt(parts[2]);
         int month = Integer.parseInt(parts[1]);
@@ -53,15 +56,15 @@ public class HandleTime {
      * @param input Date that the chosen tasks should correspond to.
      * @return List of tasks with the specified date.
      */
-    public static ArrayList<Task> getTaskByDate(ArrayList<Task> arr, String input) {
-        assert arr != null && input != null;
-        ArrayList<Task> result = new ArrayList<>();
+    public static ArrayList<Task> getTaskByDate(ArrayList<Task> inputTasks, String input) {
+        assert inputTasks != null && input != null;
+        ArrayList<Task> datedTaskList = new ArrayList<>();
         int[] inputArray = fromStringToDate(input);
-        for (Task task : arr) {
+        for (Task task : inputTasks) {
             if (Arrays.equals(inputArray, task.getDate())) {
-                result.add(task);
+                datedTaskList.add(task);
             }
         }
-        return result;
+        return datedTaskList;
     }
 }

@@ -11,6 +11,8 @@ import kirby.Kirby;
 import kirby.exceptions.KirbyInvalidCommandException;
 import kirby.exceptions.KirbyMissingArgumentException;
 
+import java.util.Objects;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -25,8 +27,8 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private Kirby kirby;
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/mario.png"));
-    private Image kirbyImage = new Image(this.getClass().getResourceAsStream("/images/kirby_picture.png"));
+    private final Image userImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/mario.png")));
+    private final Image kirbyImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/kirby_picture.png")));
 
     /**
      * Initialises the components for GUI.

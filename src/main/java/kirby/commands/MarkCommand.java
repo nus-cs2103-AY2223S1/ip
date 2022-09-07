@@ -11,7 +11,8 @@ import kirby.ui.Ui;
  * MarkCommand class handles the command to mark a task.
  */
 public class MarkCommand extends Command {
-    private String inputString;
+    private static final int MARK_COMMAND_LENGTH = 2;
+    private final String inputString;
 
     /**
      * Constructor for the class DeadlineCommand.
@@ -28,7 +29,7 @@ public class MarkCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
-        if (inputString.split(" ").length != 2) {
+        if (inputString.split(" ").length != MARK_COMMAND_LENGTH) {
             throw new KirbyMissingArgumentException("mark");
         }
         int taskIndex = Integer.parseInt(inputString.split(" ")[1]);

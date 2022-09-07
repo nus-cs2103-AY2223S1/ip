@@ -12,6 +12,7 @@ import kirby.ui.Ui;
  * ToDoCommand class handles the command to create a Todo task.
  */
 public class ToDoCommand extends Command {
+    private static final int TODO_COMMAND_LENGTH = 5;
     private String inputString;
 
     /**
@@ -28,7 +29,7 @@ public class ToDoCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
-        if (inputString.length() <= 5) {
+        if (inputString.length() <= TODO_COMMAND_LENGTH) {
             throw new KirbyMissingArgumentException("todo");
         }
         String taskName = inputString.substring(inputString.indexOf(' ') + 1);

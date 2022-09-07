@@ -12,7 +12,7 @@ import kirby.ui.Ui;
  * DeadlineCommand class handles the command to create a Deadline task.
  */
 public class DeadlineCommand extends Command {
-    private String inputString;
+    private final String inputString;
 
     /**
      * Constructor for the class DeadlineCommand.
@@ -27,9 +27,12 @@ public class DeadlineCommand extends Command {
      * {@inheritDoc}
      * Creates a Deadline task if arguments are valid.
      */
+    @SuppressWarnings("checkstyle:Indentation")
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
-        if (!inputString.contains("/by") || inputString.length() - 1 < inputString.indexOf("/by") + 4 || inputString.indexOf(" /by") <= inputString.indexOf("deadline") + 9) {
+        boolean isDeadline = (!inputString.contains("/by") || inputString.length() - 1 < inputString.indexOf("/by") + 4
+                || inputString.indexOf(" /by") <= inputString.indexOf("deadline") + 9);
+        if (isDeadline) {
             throw new KirbyMissingArgumentException("deadline");
         }
         String taskName = inputString.substring(inputString.indexOf("deadline") + 9, inputString.indexOf(" /by"));

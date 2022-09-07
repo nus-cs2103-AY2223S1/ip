@@ -12,7 +12,8 @@ import kirby.ui.Ui;
  * FindCommand class handles the command to find the list of tasks that contains a specified keyword.
  */
 public class FindCommand extends Command {
-    private String inputString;
+    private static final int FIND_COMMAND_LENGTH = 2;
+    private final String inputString;
 
     /**
      * Constructor for the class FindCommand.
@@ -29,7 +30,7 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws KirbyMissingArgumentException {
-        if (inputString.split(" ").length != 2) {
+        if (inputString.split(" ").length != FIND_COMMAND_LENGTH) {
             throw new KirbyMissingArgumentException("find");
         }
         String keyword = inputString.split(" ")[1];

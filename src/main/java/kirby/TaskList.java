@@ -8,8 +8,8 @@ import kirby.tasks.Task;
  * TaskList class handles the list of tasks - adding and deleting tasks from it and other operations.
  */
 public class TaskList {
-    private ArrayList<Task> tasks;
-    private int taskCount = 0;
+    private final ArrayList<Task> tasks;
+    private int taskCount;
 
     /**
      * Constructor of the TaskList class.
@@ -106,13 +106,13 @@ public class TaskList {
      * @return List of tasks where each task contains the keyword.
      */
     public ArrayList<Task> findTask(String keyword) {
-        ArrayList<Task> res = new ArrayList<>();
+        ArrayList<Task> findTaskList = new ArrayList<>();
         for (Task task : tasks) {
             if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
-                res.add(task);
+                findTaskList.add(task);
             }
         }
-        return res;
+        return findTaskList;
     }
 
     /**

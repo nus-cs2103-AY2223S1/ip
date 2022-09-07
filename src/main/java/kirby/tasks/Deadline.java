@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 
 import kirby.HandleTime;
 
-
 /**
  * Deadline class contains information of a Deadline task.
  */
