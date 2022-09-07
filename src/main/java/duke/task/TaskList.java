@@ -40,6 +40,7 @@ public class TaskList {
      * @return Size of TaskList.
      */
     public int getSize() {
+        assert size >= 0 : "size should be greater or equal to 0";
         return size;
     }
 
@@ -50,6 +51,7 @@ public class TaskList {
      * @return Specified task in TaskList.
      */
     public Task getTask(int index) {
+        assert index >= 0 : "index should be greater or equal to 0";
         return tasks.get(index);
     }
 
@@ -60,6 +62,7 @@ public class TaskList {
      * @return Marked task.
      */
     public Task markTask(int index) {
+        assert index >= 0 : "index should be greater or equal to 0";
         Task markedTask = tasks.get(index);
         markedTask.markAsDone();
         return markedTask;
@@ -72,6 +75,7 @@ public class TaskList {
      * @return Unmarked task.
      */
     public Task unmarkTask(int index) {
+        assert index >= 0 : "index should be greater or equal to 0";
         Task unmarkedTask = tasks.get(index);
         unmarkedTask.unmarkAsDone();
         return unmarkedTask;
@@ -96,6 +100,7 @@ public class TaskList {
      * @return Added Todo task.
      */
     public Task addTodo(String description) {
+        assert description.length() > 0 : "todo description cannot be empty";
         Todo todo = new Todo(description);
         tasks.add(todo);
         size++;
@@ -110,6 +115,7 @@ public class TaskList {
      * @return Added Deadline task.
      */
     public Task addDeadline(String description, String by) {
+        assert description.length() > 0 : "deadline description cannot be empty";
         Deadline deadline = new Deadline(description, by);
         tasks.add(deadline);
         size++;
@@ -124,6 +130,7 @@ public class TaskList {
      * @return Added Event task.
      */
     public Task addEvent(String description, String at) {
+        assert description.length() > 0 : "event description cannot be empty";
         Event event = new Event(description, at);
         tasks.add(event);
         size++;
@@ -137,6 +144,7 @@ public class TaskList {
      * @return The deleted task.
      */
     public Task deleteTask(int index) {
+        assert index >= 0 : "index should be greater or equal to 0";
         Task deletedTask = tasks.remove(index);
         size--;
         return deletedTask;
@@ -162,6 +170,7 @@ public class TaskList {
      */
     @Override
     public String toString() {
+        assert size >= 0 : "size should be greater or equal to 0";
         if (size == 0) {
             return "Hmm, there doesn't seem to be any tasks in your list.";
         } else {
