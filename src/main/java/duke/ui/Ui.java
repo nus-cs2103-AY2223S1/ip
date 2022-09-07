@@ -32,7 +32,7 @@ public class Ui {
      *
      * @return Message conveying that user that has successfully deleted a task, and the number of tasks left
      */
-    public String taskDeletedMsg(int newTaskCount, String taskDescription) {
+    public String getTaskDeletedMsg(int newTaskCount, String taskDescription) {
         return "Noted. I've removed this task:\n  " + taskDescription + "\n" + "Now you have "
                 + newTaskCount + " tasks in the list";
     }

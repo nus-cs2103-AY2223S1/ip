@@ -34,6 +34,6 @@ public class DeleteCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         String deletedTaskDesc = tasks.deleteItem(this.arguments);
 
-        return ui.taskDeletedMsg(tasks.getTaskLen(), deletedTaskDesc);
+        return ui.getTaskDeletedMsg(tasks.getTaskLen(), deletedTaskDesc);
     }
 }
