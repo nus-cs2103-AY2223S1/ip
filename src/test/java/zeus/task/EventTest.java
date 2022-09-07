@@ -1,14 +1,14 @@
 package zeus.task;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 public class EventTest {
     @Test
-    public void testDateString(){
+    public void testDateString() {
         Event e = new Event("birthday", "22 Aug 2022");
         assertEquals("[E][ ] birthday (at: 22 Aug 2022)", e.toString(), "toString() method works");
 

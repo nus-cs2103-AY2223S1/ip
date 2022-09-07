@@ -1,12 +1,12 @@
 package zeus.task;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 public class TodoTest {
     @Test
-    public void todoTest(){
+    public void todoTest() {
         Todo t = new Todo("test");
         assertEquals("[T][ ] test", t.toString(), "toString() method works");
 

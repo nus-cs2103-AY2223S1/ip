@@ -1,14 +1,15 @@
 package zeus.task;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
 
 public class DeadlineTest {
     @Test
-    public void testDeadlineString(){
+    public void testDeadlineString() {
         Deadline e = new Deadline("Submit report", "07 Sept 2022");
         assertEquals("[D][ ] Submit report (by: 07 Sept 2022)", e.toString(), "toString() method works");
 
