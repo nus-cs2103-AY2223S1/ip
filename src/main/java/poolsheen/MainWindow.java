@@ -1,7 +1,6 @@
 package poolsheen;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -18,8 +17,6 @@ public class MainWindow extends AnchorPane {
     private VBox dialogContainer;
     @FXML
     private TextField userInput;
-    @FXML
-    private Button sendButton;
 
     private Poolsheen poolsheen;
 
@@ -58,7 +55,6 @@ public class MainWindow extends AnchorPane {
         } else {
             String input = userInput.getText();
             String response = poolsheen.getResponse(input);
-            //System.out.println(response);
             dialogContainer.getChildren().addAll(
                     DialogBox.getUserDialog(input, userImage),
                     DialogBox.getDukeDialog(response, dukeImage)

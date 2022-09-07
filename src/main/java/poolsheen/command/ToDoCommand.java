@@ -22,11 +22,11 @@ public class ToDoCommand extends Command {
         if (rest.isEmpty()) {
             throw new PoolsheenException(String.join(" ", rest),
                     "todo", "The description of a todo cannot be empty");
-        } else {
-            String descTD = String.join(" ", rest);
-            ToDo t = new ToDo(descTD, false);
-            tl.add(t);
-            return ui.say("Poolsheen now remembers: " + descTD);
         }
+
+        String descTD = String.join(" ", rest);
+        ToDo t = new ToDo(descTD, false);
+        tl.add(t);
+        return ui.say("Poolsheen now remembers: " + descTD);
     }
 }

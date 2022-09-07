@@ -22,15 +22,17 @@ public class MarkCommand extends Command {
         if (rest.isEmpty() || rest.size() != 1) {
             throw new PoolsheenException(String.join(" ", rest),
                     "mark", "Please enter 1 appropriate integer");
-        } else {
-            int pos = java.lang.Integer.parseInt(rest.get(0));
-            if ((pos - 1) > (tl.getSize() - 1)) {
-                throw new PoolsheenException("Index out of bounds", "mark", "Enter an appropriate integer");
-            } else {
-                Task t = tl.get(pos - 1);
-                tl.mark(pos);
-                return ui.say("Poolsheen thinks you are done with " + t.getDescription());
-            }
         }
+
+        int pos = java.lang.Integer.parseInt(rest.get(0));
+        boolean isOutOfBounds = (pos - 1) > (tl.getSize() - 1);
+
+        if (isOutOfBounds) {
+            throw new PoolsheenException("Index out of bounds", "mark", "Enter an appropriate integer");
+        }
+
+        Task t = tl.get(pos - 1);
+        tl.mark(pos);
+        return ui.say("Poolsheen thinks you are done with " + t.getDescription());
     }
 }

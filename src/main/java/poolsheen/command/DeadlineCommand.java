@@ -23,22 +23,27 @@ public class DeadlineCommand extends Command {
         if (rest.isEmpty()) {
             throw new PoolsheenException(String.join(" ", rest),
                     "deadline", "Deadlines need a description and time");
-        } else if (!rest.contains("/by")) {
+        }
+
+        if (!rest.contains("/by")) {
             throw new PoolsheenException(String.join(" ", rest),
                     "deadline", "Deadline commands need a '/by'");
-        } else {
-            List<String> descArray = rest.subList(0, rest.indexOf("/by"));
-            List<String> timeArray = rest.subList(rest.indexOf("/by") + 1, rest.size());
-            String descD = String.join(" ", descArray);
-            String timeD = String.join(" ", timeArray);
-            if (descD.length() == 0 || timeD.length() == 0) {
-                throw new PoolsheenException(String.join(" ", rest),
-                        "deadline", "Deadline commands must specify a description and time");
-            } else {
-                Deadline d = new Deadline(descD, false, timeD);
-                tl.add(d);
-                return ui.say("Poolsheen now remembers: " + descD);
-            }
         }
+
+        List<String> descArray = rest.subList(0, rest.indexOf("/by"));
+        List<String> timeArray = rest.subList(rest.indexOf("/by") + 1, rest.size());
+        String descD = String.join(" ", descArray);
+        String timeD = String.join(" ", timeArray);
+        boolean isEmptyDesc = descD.length() == 0;
+        boolean isEmptyTime = timeD.length() == 0;
+
+        if (isEmptyDesc || isEmptyTime) {
+            throw new PoolsheenException(String.join(" ", rest),
+                    "deadline", "Deadline commands must specify a description and time");
+        }
+
+        Deadline d = new Deadline(descD, false, timeD);
+        tl.add(d);
+        return ui.say("Poolsheen now remembers: " + descD);
     }
 }
