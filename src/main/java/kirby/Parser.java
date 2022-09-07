@@ -25,6 +25,7 @@ public class Parser {
      * @throws KirbyInvalidCommandException if the command entered is undefined.
      */
     public static Command parse(String inputString) throws KirbyInvalidCommandException {
+        assert inputString != null;
         switch (inputString.split(" ")[0]) {
         case "todo":
             return new ToDoCommand(inputString);
