@@ -45,6 +45,42 @@ public class Duke {
      * in the Duke class
      */
     private void fillParser() {
+        parser.addCommand("help", argument -> {
+            if (!argument.isBlank()) {
+                throw DukeException.INVALIDARGUMENT;
+            }
+            String res = "";
+
+            res += "help\n";
+            res += " - Show help\n";
+
+            res += "todo [argument]\n";
+            res += " - Add a todo task to list\n";
+
+            res += "deadline [argument]|[yyyy-mm-dd]\n";
+            res += " - Add a deadline task to list\n";
+
+            res += "event [argument]|[yyyy-mm-dd]\n";
+            res += " - Add an event task to list\n";
+
+            res += "mark [id]\n";
+            res += " - Mark id-th task as done\n";
+
+            res += "unmark [id]\n";
+            res += " - Unmark id-th task as not done\n";
+
+            res += "delete [id]\n";
+            res += " - Delete id-th task\n";
+
+            res += "list\n";
+            res += " - List all the tasks\n";
+
+            res += "find [arg1]/[arg2]/[arg3]...\n";
+            res += " - Find tasks containing at least one of the arguments\n";
+
+            return res;
+        });
+
         parser.addCommand("todo", argument -> {
             if (argument.isBlank()) {
                 throw DukeException.INVALIDARGUMENT;
@@ -123,10 +159,14 @@ public class Duke {
         });
 
         parser.addCommand("find", argument -> {
+            String[] keywords = argument.split("/");
+            if (keywords.length == 0) {
+                throw DukeException.INVALIDARGUMENT;
+            }
             TaskList result = taskList.searchByKeyword(argument.split("/"));
             assert result != null;
             return "Here are the matching tasks in your list:" + "\n"
-                    + result.toString();
+                    + result;
         });
     }
 }
