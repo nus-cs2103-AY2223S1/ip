@@ -4,6 +4,7 @@ import duke.task.Task;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * Represents a list that contains different tasks.
@@ -36,13 +37,10 @@ public class TaskList {
      * @return A string of a task list
      */
     public String iterate() {
-        int i = 1;
-        StringBuilder str = new StringBuilder();
-        for (Task task : tasks) {
-            str.append(i).append(".").append(task.toString()).append("\n");
-            i++;
-        }
-        return str.toString();
+        return Stream.iterate(1, x -> x + 1).limit(tasks.size())
+                .sequential()
+                .map(i -> i + ". " + tasks.get(i - 1).toString() + System.lineSeparator())
+                .reduce("", (x, y) -> x + y);
     }
 
     /**

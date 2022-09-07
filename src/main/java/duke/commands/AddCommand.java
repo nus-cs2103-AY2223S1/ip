@@ -46,14 +46,4 @@ public class AddCommand extends Command {
         }
     }
 
-    /**
-     * Keeps the programme running.
-     *
-     * @return True.
-     */
-    @Override
-    public boolean isRunning() {
-        return true;
-    }
-
 }

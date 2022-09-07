@@ -43,13 +43,4 @@ public class FindCommand extends Command {
         }
     }
 
-    /**
-     * Keeps the programme running.
-     *
-     * @return True.
-     */
-    @Override
-    public boolean isRunning() {
-        return true;
-    }
 }

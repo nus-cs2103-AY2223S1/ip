@@ -41,19 +41,11 @@ public class UnmarkCommand extends Command {
             storage.overwriteFile(tasks);
             return successMessage;
         } catch (IndexOutOfBoundsException e) {
-            return "☹ Please enter an index in the range!";
+            String errorMessage = "☹ Please enter an index in the range!";
+            return errorMessage;
         } catch (DukeException e) {
             return e.getMessage();
         }
     }
 
-    /**
-     * Keeps the programme running.
-     *
-     * @return True.
-     */
-    @Override
-    public boolean isRunning() {
-        return true;
-    }
 }
