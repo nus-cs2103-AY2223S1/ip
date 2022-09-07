@@ -15,6 +15,8 @@ public abstract class Storage {
     private static final String ERROR_CREATING_DATA_FOLDER = "No permission to create data folder!";
     private static final String ERROR_CREATING_DATA_FILE = "No permission to create data file!";
 
+    private static final String ASSERTION_FILE_STORAGE_INITIALIZED = "File storage should be initialized";
+
     private static final String FILE_DIRECTORY = "data";
 
     private final File storage;
@@ -34,6 +36,8 @@ public abstract class Storage {
         if (!this.isInitialized) {
             throw new DukeException(Storage.ERROR_STORAGE_NOT_INITIALIZED);
         }
+
+        assert this.storage != null : Storage.ASSERTION_FILE_STORAGE_INITIALIZED;
         return this.storage;
     }
 

@@ -24,7 +24,18 @@ public class TaskSerializable extends Serializable<Task> {
             + "(?<taskMeta>(.+)))?"
     );
 
+    private static final String ASSERTION_SERIALIZED_FORMAT_VALID = "Serialized format must be valid.";
+
     private static final String ERROR_UNKNOWN_TASK_TYPE = "Unknown task type %s!";
+
+    /**
+     * There are 3 core serialized components, including {@code taskType}, {@code taskCompleted},
+     * {@code taskDescription}, and optionally a {@code taskMeta}, which is not counted.
+     */
+    private static final int NUM_CORE_SERIALIZED_COMPONENTS = 3;
+
+    private static final String TASK_IS_DONE_STATUS = "1";
+    private static final String TASK_IS_NOT_DONE_STATUS = "0";
 
     private final TaskType taskType;
     private final String taskDescription;
@@ -55,8 +66,17 @@ public class TaskSerializable extends Serializable<Task> {
     private TaskSerializable(String serializedString) throws DukeException {
         super(serializedString, TaskSerializable.MATCH_TASK_DATA);
         String[] originalData = super.get();
+
+        assert (
+            originalData.length == TaskSerializable.NUM_CORE_SERIALIZED_COMPONENTS
+                || originalData.length == NUM_CORE_SERIALIZED_COMPONENTS + 1
+        ) : TaskSerializable.ASSERTION_SERIALIZED_FORMAT_VALID;
+
+        // By invariance, there are at least 3 core serialized components consisting of
+        // `taskType`, `taskIsDone` and `taskDescription`. Optionally, there is a
+        // `taskMeta` component.
         this.taskType = TaskType.fromString(originalData[0]);
-        this.taskIsDone = originalData[1].equals("1");
+        this.taskIsDone = originalData[1].equals(TaskSerializable.TASK_IS_DONE_STATUS);
         this.taskDescription = originalData[2];
         this.taskMetaData = originalData.length > 3 ? originalData[3] : null;
     }
@@ -67,7 +87,9 @@ public class TaskSerializable extends Serializable<Task> {
             boolean taskIsDone,
             Object taskMetaData
     ) {
-        String taskIsDoneStatus = taskIsDone ? "1" : "0";
+        String taskIsDoneStatus = taskIsDone
+            ? TaskSerializable.TASK_IS_DONE_STATUS
+            : TaskSerializable.TASK_IS_NOT_DONE_STATUS;
         ArrayList<String> data = new ArrayList<>() {
             {
                 add(taskType.toString());
