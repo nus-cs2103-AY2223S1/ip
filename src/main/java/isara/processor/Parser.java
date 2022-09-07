@@ -9,6 +9,7 @@ import isara.command.DeleteCommand;
 import isara.command.FindCommand;
 import isara.command.ListCommand;
 import isara.command.MarkCommand;
+import isara.command.RescheduleCommand;
 import isara.command.UnmarkCommand;
 import isara.exception.IsaraException;
 import isara.task.Deadline;
@@ -30,6 +31,7 @@ public class Parser {
         DELETE,
         LIST,
         FIND,
+        RESCHEDULE,
     }
 
     /** Enum class for the available types of tasks. */
@@ -46,8 +48,11 @@ public class Parser {
      * @return A boolean value; returns true if the input is a task, false otherwise.
      */
     public static boolean isTask(String input) {
-        return input.equals("deadline") || input.equals("todo")
-                || input.equals("event");
+        boolean isInputDeadline = input.equals("deadline");
+        boolean isInputToDo = input.equals("todo");
+        boolean isInputEvent = input.equals("event");
+        return isInputDeadline || isInputToDo
+                || isInputEvent;
     }
 
     /**
@@ -64,8 +69,72 @@ public class Parser {
         boolean isInputDelete = input.equals("delete");
         boolean isInputList = input.equals("list");
         boolean isInputFind = input.equals("find");
+        boolean isInputReschedule = input.equals("reschedule");
         return isInputBye || isInputMark || isInputUnmark
-                || isInputDelete || isInputList || isInputFind;
+                || isInputDelete || isInputList
+                || isInputFind || isInputReschedule;
+    }
+
+    /**
+     * Parses commands that are followed by only a task index.
+     *
+     * @param input String that is inputted by the user.
+     * @param command The command line inputted by the user.
+     * @return Command that is inputted by the user. Only one command
+     *     of type Mark, Unmark, or Delete would be returned.
+     */
+    public static Command parseCommandsWithOnlyTaskIndex(String input, CommandLine command) {
+        String taskToBeUpdated = input.split(" ")[1];
+        int taskIndex = Integer.parseInt(taskToBeUpdated) - 1;
+        if (command.equals(CommandLine.MARK)) {
+            return new MarkCommand(taskIndex);
+        } else if (command.equals(CommandLine.UNMARK)) {
+            return new UnmarkCommand(taskIndex);
+        } else if (command.equals(CommandLine.DELETE)) {
+            return new DeleteCommand(taskIndex);
+        }
+        return null;
+    }
+
+    /**
+     * Parses one-word commands.
+     *
+     * @param command The command line inputted by the user.
+     * @return Command that is inputted by user. Only returns one command of type List or Bye.
+     */
+    public static Command parseOneWordCommands(CommandLine command) {
+        if (command.equals(CommandLine.LIST)) {
+            return new ListCommand();
+        } else if (command.equals(CommandLine.BYE)) {
+            return new ByeCommand();
+        }
+        return null;
+    }
+
+    /**
+     * Parses the Find command into a keyword.
+     *
+     * @param input String inputted by the user.
+     * @return An instance of the Find command.
+     */
+    public static Command parseFindCommand(String input) {
+        String keyword = input.split(" ")[1];
+        return new FindCommand(keyword);
+    }
+
+    /**
+     * Parses the Reschedule command into a task index, and a LocalDate object.
+     *
+     * @param input String inputted by the user.
+     * @return An instance of the Reschedule command.
+     */
+    public static Command parseRescheduleCommand(String input) {
+        String[] content = input.split(" ");
+        String taskToBeRescheduled = content[1].trim();
+        int taskIndexToBeRescheduled = Integer.parseInt(taskToBeRescheduled) - 1;
+        String by = content[3].trim();
+        LocalDate date = LocalDate.parse(by);
+        return new RescheduleCommand(taskIndexToBeRescheduled, date);
     }
 
     /**
@@ -82,24 +151,22 @@ public class Parser {
 
         switch(commandLine) {
         case BYE:
-            return new ByeCommand();
-        case MARK:
-            String taskToBeMarked = input.split(" ")[1];
-            int taskIndexToBeMarked = Integer.parseInt(taskToBeMarked) - 1;
-            return new MarkCommand(taskIndexToBeMarked);
-        case DELETE:
-            String taskToBeDeleted = input.split(" ")[1];
-            int taskIndexToBeDeleted = Integer.parseInt(taskToBeDeleted) - 1;
-            return new DeleteCommand(taskIndexToBeDeleted);
-        case UNMARK:
-            String taskToBeUnmarked = input.split(" ")[1];
-            int taskIndexToBeUnmarked = Integer.parseInt(taskToBeUnmarked) - 1;
-            return new UnmarkCommand(taskIndexToBeUnmarked);
         case LIST:
-            return new ListCommand();
+            return parseOneWordCommands(commandLine);
+        case MARK:
+        case DELETE:
+        case UNMARK:
+            return parseCommandsWithOnlyTaskIndex(input, commandLine);
         case FIND:
-            String keyword = input.split(" ")[1];
-            return new FindCommand(keyword);
+            return parseFindCommand(input);
+        case RESCHEDULE:
+            try {
+                return parseRescheduleCommand(input);
+            } catch (DateTimeParseException e) {
+                throw new IsaraException("☹ OOPS!! Date is invalid! Hint: Make it YYYY-MM-DD.");
+            } catch (Exception e) {
+                throw new IsaraException("☹ OOPS!! I don't know when you are rescheduling this to.");
+            }
         default:
             throw new IsaraException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
