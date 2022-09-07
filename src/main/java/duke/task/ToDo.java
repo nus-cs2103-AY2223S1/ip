@@ -3,7 +3,7 @@ package duke.task;
 /**
  * ToDo is an extension of Task.
  */
-public class ToDo extends Task{
+public class ToDo extends Task {
     private String taskType;
 
     /**
@@ -15,6 +15,11 @@ public class ToDo extends Task{
         this.taskType = "T";
     }
 
+    /**
+     * Constructor for Task.
+     * @param description task description.
+     * @param priority priority of task.
+     */
     public ToDo(String description, String priority) {
         super(description, priority);
         this.taskType = "T";

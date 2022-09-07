@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Deadline is an extension of Task.
  */
-public class Deadline extends Task{
+public class Deadline extends Task {
     private String by;
     private String taskType;
     private LocalDate deadline;
@@ -23,6 +23,12 @@ public class Deadline extends Task{
         this.deadline = LocalDate.parse(by);
     }
 
+    /**
+     * Constructor for Deadline.
+     * @param description deadline description.
+     * @param by due date of deadline.
+     * @param priority priority of task.
+     */
     public Deadline(String description, String by, String priority) {
         super(description, priority);
         this.by = by;
@@ -47,7 +53,7 @@ public class Deadline extends Task{
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return String.format("[D]" + super.toString() + " (by: %s)",
                 deadline.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
     }

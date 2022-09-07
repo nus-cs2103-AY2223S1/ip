@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Event is an extension of Task.
  */
-public class Event extends Task{
+public class Event extends Task {
     private String at;
     private String taskType;
     private LocalDate eventDate;
@@ -23,6 +23,12 @@ public class Event extends Task{
         this.eventDate = LocalDate.parse(at);
     }
 
+    /**
+     * Constructor for Event.
+     * @param description Event description.
+     * @param at when the event is happening.
+     * @param priority priority of task.
+     */
     public Event(String description, String at, String priority) {
         super(description, priority);
         this.at = at;
@@ -47,7 +53,7 @@ public class Event extends Task{
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return String.format("[E]" + super.toString() + " (at: %s)",
                 eventDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
     }

@@ -1,18 +1,26 @@
 package duke.command;
 
-import duke.*;
+import duke.InvalidDateException;
+import duke.InvalidIndexException;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 
 /**
  * Command runs certain commands input by user.
  */
 public abstract class Command {
-    boolean isExit;
+    private boolean isExit;
 
     /**
      * Constructor for Command.
      */
     public Command() {
         this.isExit = false;
+    }
+
+    public void setExit(boolean isExit) {
+        this.isExit = isExit;
     }
 
     /**

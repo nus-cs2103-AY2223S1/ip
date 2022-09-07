@@ -1,15 +1,15 @@
 package duke;
 
-import duke.task.Task;
-
 import java.util.Scanner;
+
+import duke.task.Task;
 
 /**
  * Ui deals with interactions with the user.
  */
 public class Ui {
-    private final static String LINE = "____________________________________________________________";
-    private final static String INDENTATION = "   ";
+    private static final String LINE = "____________________________________________________________";
+    private static final String INDENTATION = "   ";
     private Scanner sc;
 
     /**
@@ -64,8 +64,8 @@ public class Ui {
             System.out.printf(INDENTATION + "Here %s the task%s in your list:\n",
                     numOfTasks > 1 ? "are" : "is", numOfTasks > 1 ? "s" : "");
             for (int i = 1; i <= numOfTasks; i++) {
-                System.out.println(INDENTATION + String.valueOf(i) + ". " +
-                        tasks.getTask(i).toString());
+                System.out.println(INDENTATION + String.valueOf(i) + ". "
+                        + tasks.getTask(i).toString());
             }
         }
     }
@@ -82,8 +82,8 @@ public class Ui {
             System.out.printf(INDENTATION + "Here %s the task%s in your list:\n",
                     numOfTasks > 1 ? "are" : "is", numOfTasks > 1 ? "s" : "");
             for (int i = 1; i <= numOfTasks; i++) {
-                System.out.println(INDENTATION + String.valueOf(i) + ". " +
-                        tasks.getTask(i).toString());
+                System.out.println(INDENTATION + String.valueOf(i) + ". "
+                        + tasks.getTask(i).toString());
             }
         }
     }
@@ -114,8 +114,8 @@ public class Ui {
     public void showAddTaskMessage(TaskList tasks, Task task) {
         System.out.println(INDENTATION + "Got it. I've added this task:");
         System.out.println(INDENTATION + INDENTATION + "added: " + task.toString());
-        System.out.println(INDENTATION +
-                "Now you have " + String.valueOf(tasks.getSize()) + " tasks in the list.");
+        System.out.println(INDENTATION
+                + "Now you have " + String.valueOf(tasks.getSize()) + " tasks in the list.");
     }
 
     /**
@@ -126,8 +126,8 @@ public class Ui {
     public void showDeleteMessage(TaskList tasks, Task task) {
         System.out.println(INDENTATION + "Noted. I've removed this task:");
         System.out.println(INDENTATION + INDENTATION + task.toString());
-        System.out.println(INDENTATION +
-                "Now you have " + String.valueOf(tasks.getSize()) + " tasks in the list.");
+        System.out.println(INDENTATION
+                + "Now you have " + String.valueOf(tasks.getSize()) + " tasks in the list.");
     }
 
     /**

@@ -2,9 +2,9 @@ package duke.command;
 
 import duke.InvalidIndexException;
 import duke.Storage;
-import duke.task.Task;
 import duke.TaskList;
 import duke.Ui;
+import duke.task.Task;
 
 /**
  * DeleteCommand deletes a task.
@@ -36,9 +36,9 @@ public class DeleteCommand extends Command {
         tasks.removeFromTaskList(indexToDelete);
         storage.save(tasks.getTasks());
 
-        return String.format("Noted. I've removed this task:\n" +
-                "%s\n" +
-                "Now you have %s task%s in the list.",
+        return String.format("Noted. I've removed this task:\n"
+                        + "%s\n"
+                        + "Now you have %s task%s in the list.",
                 taskToDelete.toString(),
                 String.valueOf(tasks.getSize()),
                 tasks.getSize() == 1 ? "" : "s");

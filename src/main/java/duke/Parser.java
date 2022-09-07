@@ -2,14 +2,23 @@ package duke;
 
 import java.util.Arrays;
 
-import duke.command.*;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.PriorityCommand;
+import duke.command.ToDoCommand;
+import duke.command.UnmarkCommand;
+
 
 /**
  * Parser parses and helps to make sense of user input.
  */
 public class Parser {
-    private static final String INDENTATION = "   ";
-
     private enum Commands {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND, PRIORITY
     }
@@ -43,38 +52,30 @@ public class Parser {
             case LIST:
                 return new ListCommand();
             case MARK:
-                throw new DukeException(INDENTATION
-                        + "☹ OOPS!!! The mark command should be used as shown. "
+                throw new DukeException("OOPS!!! The mark command should be used as shown. "
                         + "eg. mark {num of task in list to be marked as done}");
             case UNMARK:
-                throw new DukeException(INDENTATION
-                        + "☹ OOPS!!! The unmark command should be used as shown. "
+                throw new DukeException("OOPS!!! The unmark command should be used as shown. "
                         + "eg. mark {num of task in list to be unmarked as incomplete}");
             case TODO:
-                throw new DukeException(INDENTATION +
-                        "☹ OOPS!!! The description of a todo cannot be empty, " +
-                        "usage of todo is as shown. eg. todo {task to be done}");
+                throw new DukeException("OOPS!!! The description of a todo cannot be empty, "
+                        + "usage of todo is as shown. eg. todo {task to be done}");
             case DEADLINE:
-                throw new DukeException(INDENTATION +
-                        "☹ OOPS!!! The description of a deadline cannot be empty, " +
-                        "usage of deadline is as shown. " +
-                        "eg. deadline {task to be done} /by {date/time to complete}");
+                throw new DukeException("OOPS!!! The description of a deadline cannot be empty, "
+                        + "usage of deadline is as shown. "
+                        + "eg. deadline {task to be done} /by {date/time to complete}");
             case EVENT:
-                throw new DukeException(INDENTATION +
-                        "☹ OOPS!!! The description of a event cannot be empty, " +
-                        "usage of event is as shown. " +
-                        "eg. event {event} /at {date/time}");
+                throw new DukeException("OOPS!!! The description of a event cannot be empty, "
+                        + "usage of event is as shown. "
+                        + "eg. event {event} /at {date/time}");
             case DELETE:
-                throw new DukeException(INDENTATION +
-                        "☹ OOPS!!! The delete command should be used as shown. " +
-                        "eg. delete {num of task in list to be deleted.}");
+                throw new DukeException("OOPS!!! The delete command should be used as shown. "
+                        + "eg. delete {num of task in list to be deleted.}");
             case FIND:
-                throw new DukeException(INDENTATION +
-                        "☹ OOPS!!! The find command should be used as shown. " +
-                        "eg. find {keyword to search}");
+                throw new DukeException("OOPS!!! The find command should be used as shown. "
+                        + "eg. find {keyword to search}");
             case PRIORITY:
-                throw new DukeException(INDENTATION
-                        + "☹ OOPS!!! The priority command should be used as shown. "
+                throw new DukeException("OOPS!!! The priority command should be used as shown. "
                         + "eg. priority {num of task in list to change priority} {low/medium/high}");
             default:
                 throw new InvalidCommandException();
@@ -84,9 +85,8 @@ public class Parser {
             switch (command) {
             case MARK:
                 if (isNotUserInputsLengthTwo) {
-                    throw new DukeException(INDENTATION +
-                            "☹ OOPS!!! The mark command should be used as shown. " +
-                            "eg. mark {num of task in list to be marked as done}");
+                    throw new DukeException("OOPS!!! The mark command should be used as shown. "
+                            + "eg. mark {num of task in list to be marked as done}");
                 }
                 if (isNotIndexOfTask) {
                     throw new InvalidIndexException();
@@ -96,9 +96,8 @@ public class Parser {
                 return new MarkCommand(indexToMark);
             case UNMARK:
                 if (isNotUserInputsLengthTwo) {
-                    throw new DukeException(INDENTATION +
-                            "☹ OOPS!!! The unmark command should be used as shown. " +
-                            "eg. mark {num of task in list to be unmarked as incomplete}");
+                    throw new DukeException("OOPS!!! The unmark command should be used as shown. "
+                            + "eg. mark {num of task in list to be unmarked as incomplete}");
                 }
                 if (isNotIndexOfTask) {
                     throw new InvalidIndexException();
@@ -111,10 +110,9 @@ public class Parser {
                 return new ToDoCommand(String.join(" ", toDoDescription));
             case DEADLINE:
                 if (hasNoBy) {
-                    throw new DukeException(INDENTATION +
-                            "☹ OOPS!!! Please use the deadline command in the correct manner, " +
-                            "usage of deadline is as shown. " +
-                            "eg. deadline {task to be done} /by {yyyy-mm-dd}");
+                    throw new DukeException("OOPS!!! Please use the deadline command in the correct manner, "
+                            + "usage of deadline is as shown. "
+                            + "eg. deadline {task to be done} /by {yyyy-mm-dd}");
                 }
 
                 int byIndex = Arrays.asList(userInputs).indexOf("/by");
@@ -123,20 +121,18 @@ public class Parser {
 
                 boolean hasNoValidDeadlineDate = !String.join(" ", by).matches("^\\d{4}-\\d{2}-\\d{2}$");
                 if (hasNoValidDeadlineDate) {
-                    throw new DukeException(INDENTATION +
-                            "☹ OOPS!!! Please use the deadline command in the correct manner, " +
-                            "usage of deadline is as shown. " +
-                            "eg. deadline {task to be done} /by {yyyy-mm-dd}");
+                    throw new DukeException("OOPS!!! Please use the deadline command in the correct manner, "
+                            + "usage of deadline is as shown. "
+                            + "eg. deadline {task to be done} /by {yyyy-mm-dd}");
                 }
 
                 return new DeadlineCommand(String.join(" ", deadlineDescription),
                         String.join(" ", by));
             case EVENT:
                 if (hasNoAt) {
-                    throw new DukeException(INDENTATION +
-                            "☹ OOPS!!! Please use the event command in the correct manner, " +
-                            "usage of deadline is as shown. " +
-                            "eg. event {event} /at {yyyy-mm-dd}");
+                    throw new DukeException("OOPS!!! Please use the event command in the correct manner, "
+                            + "usage of deadline is as shown. "
+                            + "eg. event {event} /at {yyyy-mm-dd}");
                 }
 
                 int atIndex = Arrays.asList(userInputs).indexOf("/at");
@@ -145,19 +141,17 @@ public class Parser {
 
                 boolean hasNoValidEventDate = !String.join(" ", at).matches("^\\d{4}-\\d{2}-\\d{2}$");
                 if (hasNoValidEventDate) {
-                    throw new DukeException(INDENTATION +
-                            "☹ OOPS!!! Please use the event command in the correct manner, " +
-                            "usage of deadline is as shown. " +
-                            "eg. event {event} /at {yyyy-mm-dd}");
+                    throw new DukeException("OOPS!!! Please use the event command in the correct manner, "
+                            + "usage of deadline is as shown. "
+                            + "eg. event {event} /at {yyyy-mm-dd}");
                 }
 
                 return new EventCommand(String.join(" ", eventDescription),
                         String.join(" ", at));
             case DELETE:
                 if (isNotUserInputsLengthTwo) {
-                    throw new DukeException(INDENTATION +
-                            "☹ OOPS!!! The delete command should be used as shown. " +
-                            "eg. delete {num of task in list to be deleted.}");
+                    throw new DukeException("OOPS!!! The delete command should be used as shown. "
+                            + "eg. delete {num of task in list to be deleted.}");
                 }
                 if (isNotIndexOfTask) {
                     throw new InvalidIndexException();
@@ -170,8 +164,7 @@ public class Parser {
                 return new FindCommand(String.join(" ", searchKeywords));
             case PRIORITY:
                 if (isNotUserInputsLengthThree) {
-                    throw new DukeException(INDENTATION
-                            + "☹ OOPS!!! The priority command should be used as shown. "
+                    throw new DukeException("OOPS!!! The priority command should be used as shown. "
                             + "eg. priority {num of task in list to change priority} {low/medium/high}");
                 }
                 if (isNotIndexOfTask) {
@@ -182,8 +175,7 @@ public class Parser {
                 boolean isNotMediumPriority = !userInputs[2].trim().matches("\\bmedium\\b");
                 boolean isNotHighPriority = !userInputs[2].trim().matches("\\bhigh\\b");
                 if (isNotLowPriority && isNotMediumPriority && isNotHighPriority) {
-                    throw new DukeException(INDENTATION
-                            + "☹ OOPS!!! The priority command should be used as shown. "
+                    throw new DukeException("OOPS!!! The priority command should be used as shown. "
                             + "eg. priority {num of task in list to change priority} {low/medium/high}");
                 }
 

@@ -22,6 +22,11 @@ public class Task {
         this.priority = Priority.LOW;
     }
 
+    /**
+     * Constructor for Task.
+     * @param description task description.
+     * @param priority priority of task.
+     */
     public Task(String description, String priority) {
         this.description = description;
         this.isDone = false;

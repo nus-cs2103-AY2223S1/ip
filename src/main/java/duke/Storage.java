@@ -1,10 +1,5 @@
 package duke;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,6 +8,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
 
 /**
  * Storage is a class to load and save tasks.
@@ -44,7 +44,7 @@ public class Storage {
         case "T": {
             String[] taskDetails = details.split(" \\| ");
             task = new ToDo(taskDetails[2],
-                    taskDetails[1].replaceAll("\\[","").replaceAll("\\]", ""));
+                    taskDetails[1].replaceAll("\\[", "").replaceAll("\\]", ""));
             if (Integer.parseInt(taskDetails[0]) == 1) {
                 task.markAsDone();
             }
@@ -53,7 +53,7 @@ public class Storage {
         case "D": {
             String[] taskDetails = details.split(" \\| ");
             task = new Deadline(taskDetails[2], taskDetails[3],
-                    taskDetails[1].replaceAll("\\[","").replaceAll("\\]", ""));
+                    taskDetails[1].replaceAll("\\[", "").replaceAll("\\]", ""));
             if (Integer.parseInt(taskDetails[0]) == 1) {
                 task.markAsDone();
             }
@@ -62,7 +62,7 @@ public class Storage {
         case "E": {
             String[] taskDetails = details.split(" \\| ");
             task = new Event(taskDetails[2], taskDetails[3],
-                    taskDetails[1].replaceAll("\\[","").replaceAll("\\]", ""));
+                    taskDetails[1].replaceAll("\\[", "").replaceAll("\\]", ""));
             if (Integer.parseInt(taskDetails[0]) == 1) {
                 task.markAsDone();
             }
@@ -94,7 +94,7 @@ public class Storage {
         Scanner sc = new Scanner(new File(String.valueOf(relativeFilePath)));
         ArrayList<String> stringTasks = new ArrayList<>();
 
-        while(sc.hasNextLine()) {
+        while (sc.hasNextLine()) {
             stringTasks.add(sc.nextLine());
         }
 
@@ -135,23 +135,26 @@ public class Storage {
             ArrayList<String> stringTasks = new ArrayList<>();
             for (Task task : tasks) {
                 switch (task.getTaskType()) {
-                    case "T": {
-                        String data = "T" + " | " + task.getStatus() + " | " + task.getStringPriority() + " | " + task.getDescription();
-                        stringTasks.add(data);
-                        break;
-                    }
-                    case "D": {
-                        String data = "D" + " | " + task.getStatus() + " | " + task.getStringPriority() + " | " + task.getDescription();
-                        stringTasks.add(data);
-                        break;
-                    }
-                    case "E": {
-                        String data = "E" + " | " + task.getStatus() + " | " + task.getStringPriority() + " | " + task.getDescription();
-                        stringTasks.add(data);
-                        break;
-                    }
-                    default:
-                        break;
+                case "T": {
+                    String data = "T" + " | " + task.getStatus() + " | "
+                            + task.getStringPriority() + " | " + task.getDescription();
+                    stringTasks.add(data);
+                    break;
+                }
+                case "D": {
+                    String data = "D" + " | " + task.getStatus() + " | "
+                            + task.getStringPriority() + " | " + task.getDescription();
+                    stringTasks.add(data);
+                    break;
+                }
+                case "E": {
+                    String data = "E" + " | " + task.getStatus() + " | "
+                            + task.getStringPriority() + " | " + task.getDescription();
+                    stringTasks.add(data);
+                    break;
+                }
+                default:
+                    break;
                 }
             }
 

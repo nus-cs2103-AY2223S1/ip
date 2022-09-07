@@ -4,8 +4,10 @@ import duke.InvalidIndexException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-import duke.task.Task;
 
+/**
+ * PriorityCommand changes priority of a task.
+ */
 public class PriorityCommand extends Command {
     private int indexToChangePriority;
     private String priority;

@@ -34,7 +34,7 @@ public class MarkCommand extends Command {
         tasks.getTask(indexToMark).markAsDone();
         storage.save(tasks.getTasks());
 
-        return String.format("Nice! I've marked this task as done:\n" +
-                "%s", tasks.getTask(indexToMark).toString());
+        return String.format("Nice! I've marked this task as done:\n"
+                + "%s", tasks.getTask(indexToMark).toString());
     }
 }
