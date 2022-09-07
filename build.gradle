@@ -37,6 +37,10 @@ shadowJar {
     archiveClassifier = null
 }
 
+checkstyle {
+    toolVersion = '10.2'
+}
+
 run{
     standardInput = System.in
 }
