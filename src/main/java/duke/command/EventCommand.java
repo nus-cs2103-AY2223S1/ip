@@ -36,7 +36,7 @@ public class EventCommand extends Command {
         }
         String[] descriptionDate = inputArr[1].split(" /at ", 2);
         if (descriptionDate.length < 2) {
-            throw new DukeException("The date of an event cannot be empty.");
+            throw new DukeException("The deadline and date of an event cannot be empty.");
         }
         String description = descriptionDate[0];
         String date = descriptionDate[1];
