@@ -3,6 +3,8 @@ package byu;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import exceptions.InvalidIndexException;
 import task.Task;
@@ -12,7 +14,7 @@ import task.Task;
  */
 public class TaskList {
 
-    private final ArrayList<Task> tasks;
+    private ArrayList<Task> tasks;
     private int numOfTasks = 0;
     private final Ui ui;
 
@@ -47,9 +49,11 @@ public class TaskList {
     public void list() {
         assert tasks.size() >= 0 : "size of list should be non-negative";
         String output = "These are the tasks in your list:\n";
-        for (int i = 0; i < tasks.size(); i++) {
-            output += String.format("%d. %s\n", i + 1, tasks.get(i).toString());
-        }
+        IntStream intStream = IntStream.range(1, numOfTasks);
+        Stream<String> stringStream = intStream.mapToObj(
+                i -> String.format("%d. %s\n", i + 1, tasks.get(i).toString()));
+        String result = stringStream.reduce("", (x, y) -> x + y);
+        output += result;
         this.ui.setOutput(output);
     }
 
