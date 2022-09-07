@@ -13,7 +13,7 @@ public class Ui {
      * @return Formatted string to be printed
      */
     public static String formatLine(String input) {
-        return "\t " + input + "\n";
+        return input + "\n";
     }
 
     /**
@@ -39,17 +39,16 @@ public class Ui {
             res += formatLine(line);
         }
 
-        return formatParagraph(res);
+        return res;
     }
 
     /**
      * Prints the introduction message when starting the app
      */
-    public static void printIntroMessage() {
+    public static String getIntroMessage() {
         String introParagraph = Ui.formatLine("Hello! I'm duke.")
                 + Ui.formatLine("What can I do for you?");
-        String formattedIntro = Ui.formatParagraph(introParagraph);
 
-        System.out.println(formattedIntro);
+        return introParagraph;
     }
 }

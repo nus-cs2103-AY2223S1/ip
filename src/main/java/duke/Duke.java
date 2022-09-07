@@ -1,13 +1,13 @@
 package duke;
 
-import java.util.Scanner;
-
 import command.Command;
 import exception.DukeException;
+import gui.DukeGui;
+import javafx.application.Application;
+import javafx.application.Platform;
 import tasklist.TaskList;
 import util.Parser;
 import util.Storage;
-import util.Ui;
 
 /**
  * Entry point of the application that initialises and run the app.
@@ -26,27 +26,22 @@ public class Duke {
         storage.load(dukelist);
     }
 
-    /**
-     * Initialises and runs the Duke application
-     */
-    public void run() {
-        Ui.printIntroMessage();
-        boolean isTerminated = false;
-        Scanner sc = new Scanner(System.in);
-
-        while (!isTerminated) {
-            try {
-                String nextLine = sc.nextLine();
-                Command cmd = Parser.parseInputLine(nextLine);
-                cmd.execute(dukelist, storage);
-                isTerminated = cmd.getIsTerminated();
-            } catch (DukeException e) {
-                System.out.println(Ui.formatLinesIntoParagraph(e.errorMessage()));
+    public String getResponse(String input) {
+        try {
+            Command cmd = Parser.parseInputLine(input);
+            cmd.execute(dukelist, storage);
+            if (cmd.getIsTerminated()) {
+                Platform.exit();
             }
+            return cmd.getOutputMessage();
+        } catch (DukeException e) {
+            return e.errorMessage();
+        } catch (Exception e) {
+            return e.getMessage();
         }
     }
 
     public static void main(String[] args) {
-        new Duke("data/saveFile.txt").run();
+        Application.launch(DukeGui.class, args);
     }
 }

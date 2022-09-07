@@ -1,10 +1,10 @@
 package command;
 
+import java.util.ArrayList;
+
 import tasklist.TaskList;
 import util.Storage;
 import util.Ui;
-
-import java.util.ArrayList;
 
 /**
  * Represents a task to be executed that searches and returns a task in the internal
@@ -41,6 +41,6 @@ public class FindSearchTextCommand extends Command {
         for (String match : matchedTasks) {
             res += Ui.formatLine(match);
         }
-        System.out.println(Ui.formatParagraph(res));
+        setOutputMessage(res);
     }
 }

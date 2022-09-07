@@ -31,7 +31,7 @@ public class DeleteTaskCommand extends Command {
         String endLine = String.format(
                 "Now you have %d tasks in the list.",
                 list.getTaskCount());
-        System.out.println(Ui.formatLinesIntoParagraph(
+        setOutputMessage(Ui.formatLinesIntoParagraph(
                 deleteText,
                 deletedItem,
                 endLine

@@ -28,7 +28,7 @@ public class TaskList {
      * {@inheritDoc}
      *
      * @return A string representation of all tasks within the list
-     * formatted properly to be printed out as output
+     *     formatted properly to be printed out as output
      */
     @Override
     public String toString() {
@@ -85,6 +85,10 @@ public class TaskList {
         return this.list.size();
     }
 
+    /**
+     * @param searchText Text to be searched
+     * @return A list of tasks that matches the searchText
+     */
     public ArrayList<String> find(String searchText) {
         ArrayList<String> res = new ArrayList<>();
 

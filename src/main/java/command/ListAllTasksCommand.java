@@ -2,7 +2,6 @@ package command;
 
 import tasklist.TaskList;
 import util.Storage;
-import util.Ui;
 
 /**
  * Represents a command to be executed that lists all current tasks in the
@@ -16,8 +15,8 @@ public class ListAllTasksCommand extends Command {
      */
     @Override
     public void execute(TaskList list, Storage storage) {
-        System.out.println(Ui.formatParagraph(
+        setOutputMessage(
                 list.toString()
-        ));
+        );
     }
 }

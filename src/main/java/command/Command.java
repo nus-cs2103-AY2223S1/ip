@@ -12,6 +12,8 @@ import util.Storage;
 public abstract class Command {
     private boolean isTerminated = false;
 
+    private String outputMessage = "";
+
     /**
      * Executes a specific command
      *
@@ -19,6 +21,14 @@ public abstract class Command {
      * @param storage Storage that handles all storage related functionalities
      */
     public abstract void execute(TaskList list, Storage storage);
+
+    public String getOutputMessage() {
+        return this.outputMessage;
+    }
+
+    protected void setOutputMessage(String outputMessage) {
+        this.outputMessage = outputMessage;
+    }
 
     public boolean getIsTerminated() {
         return isTerminated;

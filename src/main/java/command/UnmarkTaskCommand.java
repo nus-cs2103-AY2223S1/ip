@@ -28,7 +28,7 @@ public class UnmarkTaskCommand extends Command {
     public void execute(TaskList list, Storage storage) {
         String unmarkedItem = "  " + list.unmarkItem(index);
         String unmarkedText = "OK, I've marked this task as not done yet:";
-        System.out.println(Ui.formatLinesIntoParagraph(
+        setOutputMessage(Ui.formatLinesIntoParagraph(
                 unmarkedText,
                 unmarkedItem
         ));

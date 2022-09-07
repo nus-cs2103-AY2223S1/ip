@@ -26,7 +26,7 @@ public class MarkTaskCommand extends Command {
     public void execute(TaskList list, Storage storage) {
         String markedItem = "  " + list.markItem(index);
         String markedText = "Nice! I've marked this task as done:";
-        System.out.println(Ui.formatLinesIntoParagraph(
+        setOutputMessage(Ui.formatLinesIntoParagraph(
                 markedText,
                 markedItem
         ));
