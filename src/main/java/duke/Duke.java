@@ -345,7 +345,6 @@ public class Duke extends Application {
             // Cut down a white spacing at the end
             by = by.substring(0, by.length() - 1);
         }
-        assert dateTimeArray != null;
         LocalDate byDate = Parser.createLocalDate(dateTimeArray[0].strip());
         Deadline newDeadline = new Deadline(description, byDate, by);
         taskArrayList.add(newDeadline);
