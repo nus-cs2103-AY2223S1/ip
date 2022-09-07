@@ -64,7 +64,6 @@ public class DeleteCommand extends Command {
         tasks.delete(this.taskNumber - 1);
         storage.writeToFile(tasks);
         return respondMessage;
-
     }
 
     /**

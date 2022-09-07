@@ -23,42 +23,12 @@ public class Ui {
      *
      * @return String representation of a Welcome Message
      */
-    public String welcomeMessage() {
-        String logo = " _           _        \n"
-                + "| |    _   _| | _____ \n"
-                + "| |   | | | | |/ / _ \\\n"
-                + "| |___| |_| |   <  __/\n"
-                + "|_____|\\__,_|_|\\_\\___|\n";
-
+    public static String welcomeMessage() {
         return "________________________________________\n"
-                + "Hola Amigo! My name is\n"
-                + logo
-                + "\n"
+                + "Kon'nichiwa, I am Raijinmaru! A Fat Capybara!\n"
                 + "How may I assist you today?\n"
+                + "Type --help for list of commands\n"
                 + "________________________________________";
-    }
-
-    /**
-     * Displays the welcome message.
-     */
-    public void displayWelcome() {
-        System.out.println(this.welcomeMessage());
-    }
-
-    /**
-     * Reads the next line of user input.
-     *
-     * @return String representation of the next line of user input
-     */
-    public String readCommand() {
-        return this.scanner.nextLine();
-    }
-
-    /**
-     * Prints out a divider for formatting.
-     */
-    public void showLine() {
-        System.out.println("________________________________________");
     }
 
     /**

@@ -153,6 +153,5 @@ public class Parser {
         } else {
             return new WrongCommand();
         }
-
     }
 }
