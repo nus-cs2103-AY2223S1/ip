@@ -43,13 +43,19 @@ public class AddCommand extends Command {
         if (this.command.equals("todo")) {
             ToDo newToDo = tasks.addToDo(this.arguments);
 
+            assert newToDo != null : "Should not reach this line if ToDo task failed to create";
+
             return ui.getTaskAddedMsg(tasks.getTaskLen(), newToDo);
         } else if (this.command.equals("deadline")) {
             Deadline newDeadline = tasks.addDeadline(this.arguments);
 
+            assert newDeadline != null : "Should not reach this line if Deadline task failed to create";
+
             return ui.getTaskAddedMsg(tasks.getTaskLen(), newDeadline);
         } else {
             Event newEvent = tasks.addEvent(this.arguments);
+
+            assert newEvent != null : "Should not reach this line if Event task failed to create";
 
             return ui.getTaskAddedMsg(tasks.getTaskLen(), newEvent);
         }

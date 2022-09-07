@@ -66,6 +66,8 @@ public class Ui {
             return "There are no tasks yet...";
         }
 
+        assert !allTasks.isEmpty() : "Tasks should not be empty";
+
         return "Here are the tasks in your list\n" + allTasks;
     }
 

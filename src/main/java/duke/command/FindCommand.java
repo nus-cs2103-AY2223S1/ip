@@ -34,6 +34,8 @@ public class FindCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         String searchResults = tasks.findMatches(this.searchInput);
 
+        assert !searchResults.isEmpty() : "The search results should not be empty, even if there is no search results";
+
         return Ui.getSearchResultsMsg(searchResults);
     }
 }

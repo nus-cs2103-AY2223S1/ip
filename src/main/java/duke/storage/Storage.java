@@ -129,7 +129,9 @@ public class Storage {
                 } else if (t instanceof Deadline) {
                     this.writeToFile("D | " + taskDone + " | " + t.getTaskName() + " | "
                             + ((Deadline) t).getDate() + "\n", false);
-                } else if (t instanceof Event) {
+                } else {
+                    assert t instanceof Event : "Should be an event task here";
+
                     this.writeToFile("E | " + taskDone + " | " + t.getTaskName() + " | "
                             + ((Event) t).getDate() + "\n", false);
                 }
