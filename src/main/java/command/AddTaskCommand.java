@@ -22,14 +22,22 @@ public class AddTaskCommand extends Command {
      */
     @Override
     public void execute(TaskList list, Storage storage) {
-        String task = "  " + list.addTask(this.taskItem);
+        Task task = list.addTask(this.taskItem);
+        if (task == null) {
+            setOutputMessage(Ui.formatLinesIntoParagraph(
+                    "This task has already been added to the list previously."
+            ));
+            return;
+        }
+        assert task != null;
+        String taskDescription = " " + task.toString();
         String startLine = "Got it. I've added this task:";
         String endLine = String.format(
                 "Now you have %d tasks in the list.",
                 list.getTaskCount());
         setOutputMessage(Ui.formatLinesIntoParagraph(
                 startLine,
-                task,
+                taskDescription,
                 endLine
         ));
     }
