@@ -1,3 +1,5 @@
+package doemon.exception;
+
 public class MissingArgumentException extends DoemonException {
     /**
      * A string indicating the type of task that threw this exception.

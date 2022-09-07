@@ -1,3 +1,19 @@
+package doemon.parser;
+
+import doemon.command.AddCommand;
+import doemon.command.Command;
+import doemon.command.DeleteCommand;
+import doemon.command.ExitCommand;
+import doemon.command.ListCommand;
+import doemon.command.MarkCommand;
+import doemon.command.UnmarkCommand;
+import doemon.exception.EmptyTaskException;
+import doemon.exception.InvalidCommandException;
+import doemon.exception.MissingArgumentException;
+import doemon.task.Deadline;
+import doemon.task.Event;
+import doemon.task.Todo;
+
 public class Parser {
 
     /**
@@ -9,12 +25,12 @@ public class Parser {
      * @throws MissingArgumentException if there is a missing argument from a deadline or event
      */
     public static Command parse(String inputString) throws EmptyTaskException, InvalidCommandException,
-            MissingArgumentException{
-        if (inputString.equals("bye")) {
+            MissingArgumentException {
+
+        switch (inputString) {
+        case "bye":
             return new ExitCommand();
-        }
-        // List tasks
-        if (inputString.equals("list")) {
+        case "list":
             return new ListCommand();
         }
 
@@ -35,14 +51,19 @@ public class Parser {
         }
 
         // Add new task
-        if (inputArr[0].equals("todo")) {
-            String detail = inputString.substring(4).trim();
+        // Used for todo case
+        String detail = null;
+        // Used for deadline/event case
+        String[] details = null;
+        switch (inputArr[0]) {
+        case "todo":
+            detail = inputString.substring(4).trim();
             if (detail.trim().equals("")) {
                 throw new EmptyTaskException("todo");
             }
             return new AddCommand(new Todo(detail));
-        } else if (inputArr[0].equals("deadline")) {
-            String[] details = inputString.substring(8).trim().split(" /by ");
+        case "deadline":
+            details = inputString.substring(8).trim().split(" /by ");
             if (details[0].trim().equals("")) {
                 throw new EmptyTaskException("deadline");
             }
@@ -50,8 +71,8 @@ public class Parser {
                 throw new MissingArgumentException("deadline", "/by");
             }
             return new AddCommand(new Deadline(details[0], details[1]));
-        } else if (inputArr[0].equals("event")) {
-            String[] details = inputString.substring(5).trim().split(" /at ");
+        case "event":
+            details = inputString.substring(5).trim().split(" /at ");
             if (details[0].trim().equals("")) {
                 throw new EmptyTaskException("event");
             }
@@ -59,7 +80,7 @@ public class Parser {
                 throw new MissingArgumentException("event", "/at");
             }
             return new AddCommand(new Event(details[0], details[1]));
-        } else {
+        default:
             throw new InvalidCommandException();
         }
     }

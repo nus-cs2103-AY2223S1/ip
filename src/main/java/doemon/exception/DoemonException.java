@@ -1,3 +1,5 @@
+package doemon.exception;
+
 public class DoemonException extends RuntimeException {
     /**
      * Returns a string representation of the exception.

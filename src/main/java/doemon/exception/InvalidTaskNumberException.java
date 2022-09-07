@@ -1,3 +1,5 @@
+package doemon.exception;
+
 public class InvalidTaskNumberException extends DoemonException {
     /**
      * The action being performed.

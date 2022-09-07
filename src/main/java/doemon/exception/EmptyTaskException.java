@@ -1,3 +1,5 @@
+package doemon.exception;
+
 public class EmptyTaskException extends DoemonException {
     /**
      * A string indicating the type of task that threw this exception.

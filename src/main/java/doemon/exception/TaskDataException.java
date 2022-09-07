@@ -1,3 +1,5 @@
+package doemon.exception;
+
 public class TaskDataException extends DoemonException {
     @Override
     public String toString() {

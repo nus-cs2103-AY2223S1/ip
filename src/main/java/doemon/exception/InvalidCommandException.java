@@ -1,3 +1,5 @@
+package doemon.exception;
+
 public class InvalidCommandException extends DoemonException {
     /**
      * Returns a string representation of the exception.
