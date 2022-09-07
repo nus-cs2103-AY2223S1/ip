@@ -71,7 +71,9 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Parser parser = new Parser(new Scanner(System.in));
-            return parser.handleGuiInput(input);
+            String outputForGui = parser.handleGuiInput(input);
+            assert !outputForGui.equals("");
+            return outputForGui;
         } catch (DukeException e) {
             return e.getMessage();
         }

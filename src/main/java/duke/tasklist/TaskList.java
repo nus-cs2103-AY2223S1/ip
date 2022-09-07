@@ -89,6 +89,7 @@ public class TaskList {
      * @throws DukeException If input provided is not valid.
      */
     public void addTask(String[] input) throws DukeException {
+        assert input.length == 2;
         if (input[1] == null) {
             throw new DukeException("Description of a " + input[0]
                     + " cannot be empty!");
