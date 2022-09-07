@@ -14,6 +14,7 @@ import duke.task.Task;
 public class UpdateMarkCommand extends UpdateCommand {
     private UpdateMarkCommand(String command, Task task, int taskIndex) {
         super(command, task, taskIndex);
+        assert(command.startsWith("mark"));
     }
 
     /**
@@ -27,6 +28,7 @@ public class UpdateMarkCommand extends UpdateCommand {
      * @throws IllegalArgumentException if input string from user is invalid.
      */
     public static UpdateMarkCommand of(String command, TaskList taskList) throws IllegalArgumentException {
+        assert(command.startsWith("mark"));
         int taskIndex;
         try {
             taskIndex = Parser.getTaskIndex(command);

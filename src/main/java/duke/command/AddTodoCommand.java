@@ -8,6 +8,7 @@ import duke.task.Todo;
 public class AddTodoCommand extends AddCommand {
     private AddTodoCommand(String command, Todo todo) {
         super(command, todo);
+        assert(command.startsWith("todo"));
     }
 
     /**
@@ -19,6 +20,8 @@ public class AddTodoCommand extends AddCommand {
      * @throws IllegalArgumentException if input string from user is invalid.
      */
     public static AddTodoCommand of(String command) throws IllegalArgumentException {
+        assert(command.startsWith("todo"));
+
         boolean isDone = command.contains("/done");
         if (isDone) {
             command = command.replace("/done", "");

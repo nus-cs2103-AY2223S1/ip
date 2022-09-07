@@ -18,6 +18,8 @@ public class DeleteCommand extends Command {
 
     private DeleteCommand(String command, Task task, int taskIndex, TaskList taskList) {
         super(command);
+        assert(command.startsWith("delete"));
+
         this.task = task;
         this.taskIndex = taskIndex;
         this.taskList = taskList;
@@ -34,6 +36,7 @@ public class DeleteCommand extends Command {
      * @throws IllegalArgumentException if input string from user is invalid.
      */
     public static DeleteCommand of(String command, TaskList taskList) throws IllegalArgumentException {
+        assert(command.startsWith("delete"));
         int taskIndex;
         try {
             taskIndex = Parser.getTaskIndex(command);

@@ -12,6 +12,7 @@ import duke.task.Event;
 public class AddEventCommand extends AddCommand {
     private AddEventCommand(String command, Event event) {
         super(command, event);
+        assert(command.startsWith("event"));
     }
 
     /**
@@ -24,6 +25,8 @@ public class AddEventCommand extends AddCommand {
      * @throws IllegalArgumentException if input string from user is invalid.
      */
     public static AddEventCommand of(String command) throws IllegalArgumentException {
+        assert(command.startsWith("event"));
+
         boolean isDone = command.contains("/done");
         if (isDone) {
             command = command.replace("/done", "");
