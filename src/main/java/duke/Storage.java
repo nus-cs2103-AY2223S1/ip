@@ -61,6 +61,7 @@ public class Storage {
                 }
                 break;
             case "D":
+                assert taskInArray.length == 4 : "Deadline task was not saved and loaded properly";
                 LocalDate date = LocalDate.parse(taskInArray[3]);
                 task = new Deadline(taskInArray[2], date);
                 lst.add(task);
