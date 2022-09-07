@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 /**
  * a class to represents the storage.
+ *
+ * @author Stevan Gerard Gunawan
  */
 public class Storage {
     protected static final File DOKE_FILE = new File(Doke.DOKE_FILE_PATH);
