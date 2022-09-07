@@ -6,17 +6,17 @@ package duke;
  * @author Liu Han
  */
 public class Ui {
-    private final static String BREAK = "    ____________________________________________________________";
+    private static final String BREAK_LINE = "    ____________________________________________________________";
 
     /**
      * Welcome Message: greet the user
      */
     public void showWelcome() {
-        System.out.println(BREAK +
+        System.out.println(BREAK_LINE +
                 "\n" +
                 "     Hello! I'm Duke\n" +
                 "     What can I do for you?\n" +
-                BREAK +
+                BREAK_LINE +
                 "\n");
     }
 
@@ -24,10 +24,10 @@ public class Ui {
      * Goodbye Message: bid farewell to the user
      */
     public void farewell() {
-        System.out.println(BREAK +
+        System.out.println(BREAK_LINE +
                 "\n" +
                 "     Goodbye! Have a nice Day!\n" +
-                BREAK +
+                BREAK_LINE +
                 "\n");
     }
 
@@ -35,11 +35,11 @@ public class Ui {
      * Error Message: remind the user
      */
     public void showLoadingError() {
-        System.out.println(BREAK +
+        System.out.println(BREAK_LINE +
                 "\n" +
                 "     ☹ OOPS!!! I cannot load your file!" +
                 "\n" +
-                BREAK +
+                BREAK_LINE +
                 "\n");
     }
 }
