@@ -27,6 +27,7 @@ public enum CommandType {
      * @return {@code true} if the arguments are compatible with the command, {@code false} otherwise.
      */
     public boolean isCompatible(String... args) {
+        assert args != null;
         return this.argsCount == args.length;
     }
 }
