@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     /** The Duke chat bot to be run. */
-    private Duke duke = new Duke("./src/main/resources/tasks.txt");
+    private Duke duke = new Duke("src/tasks.txt");
 
     @Override
     public void start(Stage stage) {
