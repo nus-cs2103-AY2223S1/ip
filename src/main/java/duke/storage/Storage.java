@@ -4,8 +4,8 @@ import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
-import duke.task.Todo;
 import duke.task.TaskList;
+import duke.task.Todo;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,22 +20,22 @@ import java.util.regex.Pattern;
  * @version CS2103T AY22/23 Sem 1
  */
 public class Storage {
-    private static final String DIR = System.getProperty("user.dir");
+    private static final String DIRECTORY = System.getProperty("user.dir");
     private String filePath = "data/duke.txt";
 
     /**
      * Constructor for Storage.
      */
     public Storage() {
-        this.filePath = DIR + "/" + filePath;
+        this.filePath = DIRECTORY + "/" + filePath;
     }
 
     /**
      * Loads the data from the file.
      *
      * @return ArrayList containing tasks.
-     * @throws DukeException The exception thrown when an action is unauthorized by Duke.
-     * @throws IOException The exception thrown when accessing files is incorrect.
+     * @throws DukeException
+     * @throws IOException
      */
     public ArrayList<Task> load() throws DukeException, IOException {
         ArrayList<Task> dukeList = new ArrayList<>();
@@ -80,7 +80,7 @@ public class Storage {
                 }
             }
         } else {
-            File parent = new File(DIR + "/data");
+            File parent = new File(DIRECTORY + "/data");
             boolean isDirectoryCreated = parent.mkdir();
             boolean isFileCreated = file.createNewFile();
         }
@@ -92,7 +92,7 @@ public class Storage {
      * Saves the data to the file.
      *
      * @param tasks TaskList containing the tasks.
-     * @throws IOException The exception thrown when accessing files is incorrect.
+     * @throws IOException
      */
     public void save(TaskList tasks) throws IOException {
         FileWriter writer = new FileWriter(filePath);
