@@ -48,7 +48,7 @@ checkstyle {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "duke.Launcher"
 }
 
 shadowJar {
