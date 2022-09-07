@@ -11,17 +11,17 @@ import task.TaskList;
 
 public class Storage {
     protected String filePath;
-    protected FileData f;
+    protected FileData fileData;
     protected TaskList tasks;
 
     public Storage(String filePath) {
         this.filePath = filePath;
-        this.f = new FileData(filePath);
-        this.tasks = new TaskList(this.f.storeArray());
+        this.fileData = new FileData(filePath);
+        this.tasks = new TaskList(this.fileData.storeArray());
     }
 
     public ArrayList<Task> load() throws DukeException {
-        this.f.toPrint();
+        this.fileData.toPrint();
         return tasks.toArray();
     }
 
@@ -47,11 +47,11 @@ public class Storage {
     }
 
     public void updateData(TaskList taskList) {
-        f.updateData(taskList.toArray());
+        fileData.updateData(taskList.toArray());
     }
 
     public void save() throws DukeException {
-        if (!this.f.exists()) {
+        if (!this.fileData.exists()) {
             throw new DukeException("The file does not exist!");
         } else {
             assert this.f.exists();
