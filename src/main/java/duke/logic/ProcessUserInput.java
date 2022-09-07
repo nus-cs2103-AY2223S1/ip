@@ -10,6 +10,7 @@ import duke.logic.task.ToDo;
 import duke.ui.Constants;
 
 import static duke.logic.task.Task.markAsDone;
+import static duke.logic.task.Task.markAsNotDone;
 
 /**
  * Represents methods process user input into command.
@@ -27,17 +28,7 @@ public class ProcessUserInput {
         case Constants.LIST:
             return TaskOperation.listItems(workList);
         case Constants.UNMARK:
-            try {
-                userInput.substring(8);
-                index = Integer.parseInt(userInput.split(" ")[1]);
-                return workList.get(index - 1).unmark(workList);
-            } catch (StringIndexOutOfBoundsException e) {
-                return new DukeException.EmptyMarkingException().throwDukeException();
-            } catch (NumberFormatException e) {
-                return new DukeException.EmptyMarkingException().throwDukeException();
-            } catch (IndexOutOfBoundsException e) {
-                return new DukeException.EmptyMarkingException().throwDukeException();
-            }
+            return markAsNotDone(workList, userInput);
         case Constants.MARK:
             return markAsDone(workList, userInput);
         case Constants.TODO:

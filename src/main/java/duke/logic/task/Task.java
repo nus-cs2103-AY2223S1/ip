@@ -61,11 +61,21 @@ public class Task {
     /**
      * Mark task as not Done and Print acknowledge message.
      */
-    public String unmark(ArrayList<Task> workList) {
-        this.isDone = false;
-        // Update data
-        DukeEncoder.rewriteList(workList);
-        return Constants.UNMARK_MESSAGE + this;
+    public static String markAsNotDone(ArrayList<Task> workList, String userInput) {
+        try {
+            userInput.substring(8);
+            int index = Integer.parseInt(userInput.split(" ")[1]);
+            Task task = workList.get(index - 1);
+            task.isDone = false;
+            DukeEncoder.rewriteList(workList);
+            return Constants.UNMARK_MESSAGE + task;
+        } catch (StringIndexOutOfBoundsException e) {
+            return new DukeException.EmptyMarkingException().throwDukeException();
+        } catch (NumberFormatException e) {
+            return new DukeException.EmptyMarkingException().throwDukeException();
+        } catch (IndexOutOfBoundsException e) {
+            return new DukeException.EmptyMarkingException().throwDukeException();
+        }
     }
 
     /**
