@@ -27,7 +27,6 @@ public class Parser {
      * @throws IOException If there is an error writing to file.
      */
     public String readInput2(String str) throws DukeException, IOException {
-        int initialSize = tasklist.oldTasksSize();
         String stringReturned = "Default String";
         String[] arr = str.split(" ");
         if (arr[0].equals("find")) {
@@ -123,7 +122,7 @@ public class Parser {
             } else if (str.equals("bye")) {
                 stringReturned = bot.goodBye2();
             } else{
-                stringReturned = bot.displayError2();
+                bot.displayError();
             }
         storage.replaceTasks("data/Duke2.txt", tasklist.getOldTasks(), tasklist.getNewTasks()); //make sure to replace the task after every action
         return stringReturned;
