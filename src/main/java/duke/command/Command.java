@@ -45,6 +45,7 @@ public abstract class Command {
      * @return String to be displayed on the screen as a response to the user input.
      */
     public String execute(CliUi cliUi, TaskList taskList, Storage storage) throws DukeCommandAlreadyExecutedException {
+        assert(cliUi != null && taskList != null && storage != null);
         if (isExecuted) {
             throw new DukeCommandAlreadyExecutedException(COMMAND_ALREADY_EXECUTED_ERROR_MESSAGE);
         }

@@ -48,6 +48,7 @@ public class TaskList {
                 stringBuilder.append('\n' + TAB);
             }
         }
+        assert(stringBuilder.length() > 0);
         return stringBuilder.toString();
     }
 
@@ -60,6 +61,7 @@ public class TaskList {
     public String addNewTask(Task newTask)
             throws DukeCommandFormatException, DukeMissingTaskTitleException, DukeMissingTaskDateTimeException,
             DukeDateTimeFormatException {
+        assert(newTask != null);
         tasks.add(newTask);
         return "Added: " + newTask.toString();
     }
