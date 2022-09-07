@@ -11,7 +11,7 @@ public class Parser {
     private static final String INDENTATION = "   ";
 
     private enum Commands {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND, PRIORITY
     }
 
     /**
@@ -26,7 +26,7 @@ public class Parser {
         String[] userInputs = fullCommand.trim().split(" ");
         boolean isUserInputsLengthOne = userInputs.length == 1;
         boolean isNotUserInputsLengthTwo = userInputs.length != 2;
-        boolean isNotStringNumber = !userInputs[1].matches("\\d+");
+        boolean isNotUserInputsLengthThree = userInputs.length != 3;
         boolean hasNoBy = !Arrays.asList(userInputs).contains("/by");
         boolean hasNoAt = !Arrays.asList(userInputs).contains("/at");
 
@@ -72,10 +72,15 @@ public class Parser {
                 throw new DukeException(INDENTATION +
                         "☹ OOPS!!! The find command should be used as shown. " +
                         "eg. find {keyword to search}");
+            case PRIORITY:
+                throw new DukeException(INDENTATION
+                        + "☹ OOPS!!! The priority command should be used as shown. "
+                        + "eg. priority {num of task in list to change priority} {low/medium/high}");
             default:
                 throw new InvalidCommandException();
             }
         } else {
+            boolean isNotIndexOfTask = !userInputs[1].matches("\\d+");
             switch (command) {
             case MARK:
                 if (isNotUserInputsLengthTwo) {
@@ -83,7 +88,7 @@ public class Parser {
                             "☹ OOPS!!! The mark command should be used as shown. " +
                             "eg. mark {num of task in list to be marked as done}");
                 }
-                if (isNotStringNumber) {
+                if (isNotIndexOfTask) {
                     throw new InvalidIndexException();
                 }
 
@@ -95,7 +100,7 @@ public class Parser {
                             "☹ OOPS!!! The unmark command should be used as shown. " +
                             "eg. mark {num of task in list to be unmarked as incomplete}");
                 }
-                if (isNotStringNumber) {
+                if (isNotIndexOfTask) {
                     throw new InvalidIndexException();
                 }
 
@@ -154,7 +159,7 @@ public class Parser {
                             "☹ OOPS!!! The delete command should be used as shown. " +
                             "eg. delete {num of task in list to be deleted.}");
                 }
-                if (isNotStringNumber) {
+                if (isNotIndexOfTask) {
                     throw new InvalidIndexException();
                 }
 
@@ -163,6 +168,28 @@ public class Parser {
             case FIND:
                 String[] searchKeywords = Arrays.copyOfRange(userInputs, 1, userInputs.length);
                 return new FindCommand(String.join(" ", searchKeywords));
+            case PRIORITY:
+                if (isNotUserInputsLengthThree) {
+                    throw new DukeException(INDENTATION
+                            + "☹ OOPS!!! The priority command should be used as shown. "
+                            + "eg. priority {num of task in list to change priority} {low/medium/high}");
+                }
+                if (isNotIndexOfTask) {
+                    throw new InvalidIndexException();
+                }
+
+                boolean isNotLowPriority = !userInputs[2].trim().matches("\\blow\\b");
+                boolean isNotMediumPriority = !userInputs[2].trim().matches("\\bmedium\\b");
+                boolean isNotHighPriority = !userInputs[2].trim().matches("\\bhigh\\b");
+                if (isNotLowPriority && isNotMediumPriority && isNotHighPriority) {
+                    throw new DukeException(INDENTATION
+                            + "☹ OOPS!!! The priority command should be used as shown. "
+                            + "eg. priority {num of task in list to change priority} {low/medium/high}");
+                }
+
+                int indexToChangePriority = Integer.parseInt(userInputs[1]);
+                String priority = userInputs[2].toUpperCase();
+                return new PriorityCommand(indexToChangePriority, priority);
             default:
                 throw new InvalidCommandException();
             }
