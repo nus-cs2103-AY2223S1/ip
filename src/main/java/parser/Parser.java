@@ -35,6 +35,9 @@ public class Parser {
      * user input.
      */
     public Command parse(String fullCommand) {
+        boolean taskCheck = fullCommand.startsWith("todo")
+                    || fullCommand.startsWith("deadline")
+                    || fullCommand.startsWith("event");
         if (fullCommand.isEmpty() || fullCommand.equals("bye")) {
             return new ByeCommand(fullCommand);
         } else if (fullCommand.equals("list")) {
@@ -43,9 +46,7 @@ public class Parser {
             return new DeleteCommand(fullCommand);
         } else if (fullCommand.startsWith("mark") || fullCommand.startsWith("unmark")) {
             return new EditCommand(fullCommand);
-        } else if (fullCommand.startsWith("todo")
-                || fullCommand.startsWith("deadline")
-                || fullCommand.startsWith("event")) {
+        } else if (taskCheck) {
             return new AddCommand(fullCommand);
         } else if (fullCommand.startsWith("find")) {
             return new FindCommand(fullCommand);

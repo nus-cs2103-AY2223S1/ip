@@ -47,7 +47,9 @@ public class FileData {
             try {
                 if (i == 0) {
                     writeToFile(this.fileName, tasks.get(i).toString() + System.lineSeparator());
-                } else {
+                }
+
+                if (i > 0) {
                     storeData(tasks.get(i).toString());
                 }
             } catch (IOException e) {
