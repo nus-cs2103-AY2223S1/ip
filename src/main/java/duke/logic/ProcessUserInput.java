@@ -9,6 +9,8 @@ import duke.logic.task.TaskOperation;
 import duke.logic.task.ToDo;
 import duke.ui.Constants;
 
+import static duke.logic.task.Task.markAsDone;
+
 /**
  * Represents methods process user input into command.
  */
@@ -18,7 +20,7 @@ public class ProcessUserInput {
      * @param workList
      */
     public static String process(ArrayList<Task> workList, String userInput) {
-        assert userInput.split("").length == 0 : "User input cannot be empty";
+        //assert userInput.split("").length == 0 : "User input cannot be empty";
         String typeOfTask = userInput.split(" ")[0];
         int index;
         switch (typeOfTask) {
@@ -37,17 +39,7 @@ public class ProcessUserInput {
                 return new DukeException.EmptyMarkingException().throwDukeException();
             }
         case Constants.MARK:
-            try {
-                userInput.substring(6);
-                index = Integer.parseInt(userInput.split(" ")[1]);
-                return workList.get(index - 1).markAsDone(workList);
-            } catch (StringIndexOutOfBoundsException e) {
-                return new DukeException.EmptyMarkingException().throwDukeException();
-            } catch (NumberFormatException e) {
-                return new DukeException.EmptyMarkingException().throwDukeException();
-            } catch (IndexOutOfBoundsException e) {
-                return new DukeException.EmptyMarkingException().throwDukeException();
-            }
+            return markAsDone(workList, userInput);
         case Constants.TODO:
             try {
                 // Error when to-do followed by a blank space
@@ -111,7 +103,7 @@ public class ProcessUserInput {
             }
             // Fallthrough
         default:
-            return Constants.EXIT_MESSAGE;
+            return new DukeException.InvalidInputException().throwDukeException();
         }
     }
 }

@@ -1,6 +1,7 @@
 package duke.logic.task;
 import java.util.ArrayList;
 
+import duke.exception.DukeException;
 import duke.storage.DukeEncoder;
 import duke.ui.Constants;
 
@@ -40,11 +41,21 @@ public class Task {
     /**
      * Mark task as Done and Print acknowledge message.
      */
-    public String markAsDone(ArrayList<Task> workList) {
-        this.isDone = true;
-        // Update data
-        DukeEncoder.rewriteList(workList);
-        return Constants.MARK_AS_DONE_MESSAGE + this;
+    public static String markAsDone(ArrayList<Task> workList, String userInput) {
+        try {
+            userInput.substring(6);
+            int index = Integer.parseInt(userInput.split(" ")[1]);
+            Task task = workList.get(index - 1);
+            task.isDone = true;
+            DukeEncoder.rewriteList(workList);
+            return Constants.MARK_AS_DONE_MESSAGE + task;
+        } catch (StringIndexOutOfBoundsException e) {
+            return new DukeException.EmptyMarkingException().throwDukeException();
+        } catch (NumberFormatException e) {
+            return new DukeException.EmptyMarkingException().throwDukeException();
+        } catch (IndexOutOfBoundsException e) {
+            return new DukeException.EmptyMarkingException().throwDukeException();
+        }
     }
 
     /**
