@@ -63,7 +63,9 @@ public class AddTaskCommand<T extends Task> extends TaskListCommand {
         T newTask;
         if (argumentDelimiter != null) {
             String[] splitParameters = parameters.split(argumentDelimiter, 2);
-            if (splitParameters.length > 1) {
+            if (splitParameters.length <= 1) {
+                throw taskFactory.get().invalidParameterError();
+            } else {
                 newTask = taskFactory.get();
                 newTask.setText(splitParameters[0]);
 
@@ -78,8 +80,6 @@ public class AddTaskCommand<T extends Task> extends TaskListCommand {
                 newTask.setDetails(localDate);
                 taskList.addTask(newTask);
 
-            } else {
-                throw taskFactory.get().invalidParameterError();
             }
         } else {
             newTask = taskFactory.get();

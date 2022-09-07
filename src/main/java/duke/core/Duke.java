@@ -59,6 +59,7 @@ public class Duke {
         File taskFile = new File(fileName);
 
         Scanner scanner = null;
+
         try {
             scanner = new Scanner(taskFile);
         } catch (FileNotFoundException e) {
