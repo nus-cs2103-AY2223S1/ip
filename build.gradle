@@ -14,7 +14,7 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
 
-    String javaFxVersion = '11.0.2'
+    String javaFxVersion = '11'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
@@ -62,6 +62,6 @@ run{
 }
 
 javafx {
-    version = "11.0.2"
+    version = "11"
     modules = [ 'javafx.controls' ]
 }

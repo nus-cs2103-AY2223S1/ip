@@ -46,9 +46,11 @@ public class Parser {
         String[] words = input.split(" ");
         if (words[0].equals("mark")) {
             int idx = Integer.parseInt(words[1]) - 1;
+            assert idx >= 0;
             return new MarkCommand(idx);
         } else if (words[0].equals("unmark")) {
             int idx = Integer.parseInt(words[1]) - 1;
+            assert idx >= 0;
             return new UnmarkCommand(idx);
         } else if (words[0].equals("todo")) {
             String desc = getTodoDescription(input);
@@ -65,6 +67,7 @@ public class Parser {
             return new AddCommand(new Event(desc, formattedDate));
         } else if (words[0].equals("delete")) {
             int idx = Integer.parseInt(words[1]) - 1;
+            assert idx >= 0;
             return new DeleteCommand(idx);
         } else if (words[0].equals("find")) {
             String[] find = input.split("find ", 2);

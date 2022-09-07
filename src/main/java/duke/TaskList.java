@@ -70,6 +70,7 @@ public class TaskList {
      */
     public Task deleteTask(int idx) {
         Task deleted = tasks.get(idx);
+        assert deleted != null;
         tasks.remove(idx);
         return deleted;
     }
@@ -82,6 +83,7 @@ public class TaskList {
      */
     public Task markTask(int idx) {
         Task task = tasks.get(idx);
+        assert task != null;
         task.mark();
         return task;
     }
@@ -94,6 +96,7 @@ public class TaskList {
      */
     public Task unmarkTask(int idx) {
         Task task = tasks.get(idx);
+        assert task != null;
         task.unmark();
         return task;
     }
