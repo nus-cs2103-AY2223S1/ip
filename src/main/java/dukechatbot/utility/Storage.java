@@ -1,6 +1,7 @@
 package dukechatbot.utility;
 import java.io.*;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
@@ -13,7 +14,7 @@ public class Storage {
     /**
      * Defines the file to be associated with this instance of the Storage class.
      */
-    private File file;
+    private static final File FILE = new File("storage.txt");
     /**
      * Defines the instance of the BufferedReader to allow the instance of Storage to read from input.
      */
@@ -35,14 +36,13 @@ public class Storage {
      * @throws IOException when createNewFile fails to create the file.
      */
     public Storage(String fileName, TaskList tasks, Ui ui) throws IOException {
-        this.file = Path.of(fileName).toFile();
-        this.br = new BufferedReader(new FileReader(file));
+        this.br = new BufferedReader(new FileReader(FILE));
         this.tasks = tasks;
         this.ui = ui;
-        if (file.exists()) {
+        if (FILE.exists()) {
             this.load();
         } else {
-            if (file.createNewFile()) {
+            if (FILE.createNewFile()) {
                 this.load();
             } else {
                 throw new IOException("File failed creation!");
@@ -56,7 +56,7 @@ public class Storage {
      * @throws IOException if the file fails to be read.
      */
     public void load() throws IOException {
-        if (file.canRead()) {
+        if (FILE.canRead()) {
             String ln = this.br.readLine();
             while (ln != null) {
                 this.tasks.add(ln);
@@ -72,9 +72,9 @@ public class Storage {
      *
      * @throws IOException when method fails to write into the associated file.
      */
-    public void save() throws IOException {
-        FileWriter fw = new FileWriter(file.getAbsolutePath());
-        for (Iterator<Task> it = this.tasks.getArrayList().iterator(); it.hasNext();) {
+    public static void save(ArrayList<Task> taskArrayList) throws IOException {
+        FileWriter fw = new FileWriter(FILE.getAbsolutePath());
+        for (Iterator<Task> it = taskArrayList.iterator(); it.hasNext();) {
             Task curr = it.next();
             fw.write(curr.toString() + "\r\n");
         }

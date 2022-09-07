@@ -83,11 +83,12 @@ public class Duke {
             str = sc.nextLine();
         }
         sc.close();
-        storage.save();
+        Storage.save(this.al);
         ui.bye();
     }
 
     public String getResponse(String input) throws IOException {
+
         String response = parse.categorise(input);
         if (response.equals(this.ui.bye())) {
             System.exit(0);

@@ -43,6 +43,11 @@ public class Ui {
      * Says goodbye to the user when the program run is terminated by user.
      */
     public String bye() {
+        try {
+            Storage.save(this.tl);
+        } catch (IOException ioe) {
+            return "Failed to save";
+        }
         return "\tBye. Hope to see you soon again!";
     }
 
@@ -131,6 +136,9 @@ public class Ui {
      * @param tl containing the tasks stored in the task list.
      */
     public String listOut(ArrayList<Task> tl) {
+        if (this.tl.size() == 0) {
+            return "You have no tasks.";
+        }
         int count = 1;
         StringBuilder response = new StringBuilder();
         response.append(("Here are the tasks in your list: "));
@@ -148,6 +156,9 @@ public class Ui {
      * @param tl containing the tasks store in the task list.
      */
     public String listMatch(ArrayList<Task> tl) {
+        if (tl.size() == 0) {
+            return "You have no tasks.";
+        }
         int count = 1;
         StringBuilder response = new StringBuilder();
         response.append(("\tHere are the matching tasks in your list: "));
