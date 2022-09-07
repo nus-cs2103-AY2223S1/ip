@@ -22,8 +22,7 @@ public class Ui {
      * Method to return bye message
      */
     public static String bye() {
-        return "See you later alligator!"
-                + "-------------------------------------------";
+        return "I shall take my leave in 3 seconds! See you later alligator!";
     }
 
     /**
