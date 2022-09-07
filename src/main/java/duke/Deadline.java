@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
 
-    private static DateTimeFormatter FORMAT_TIME_YYYYMMDD =
+    private static final DateTimeFormatter FORMAT_TIME_YYYYMMDD =
             DateTimeFormatter.ofPattern("HH:mm 'on' yyyy/MM/dd");
             
     private final LocalDateTime deadLine;

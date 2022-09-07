@@ -152,6 +152,27 @@ public class Ui extends Application {
     }
 
     /**
+     * Delays the exiting of the program by 1500 milliseconds.
+     */
+    public void delayExit() {
+        final long DELAY_TIME = 1500;
+        TimerTask delayExitTimer = new TimerTask() {
+            public void run () {
+                System.exit(0);
+            }
+        };
+        new Timer().schedule(delayExitTimer, DELAY_TIME);
+    }
+
+    /**
+     * Displays an exit greeting, then exits the program.
+     */
+    public void exitProgram() {
+        delayExit();
+        this.byeMessage();
+    }
+
+    /**
      * Prints a greeting as well as initialise assets of GUI
      */
     @FXML
@@ -195,13 +216,7 @@ public class Ui extends Application {
     public void executeCommand(Command command) throws DukeException {
         switch (command.getKeyword()) {
             case BYE:
-                TimerTask timerTask = new TimerTask() {
-                    public void run () {
-                        System.exit(0);
-                    }
-                };
-                new Timer().schedule(timerTask, 1500);
-                this.byeMessage();
+                this.exitProgram();
                 break;
             case LIST:
                 this.listTask();
