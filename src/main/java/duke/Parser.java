@@ -35,14 +35,16 @@ public class Parser {
      * @return Whether "bye" has been inputted.
      */
     public static Command parse(String input) throws DukeException {
+        String[] split = input.split(" ", 2);
         if (input.equals("bye")) {
             return new ByeCommand();
         } else if (input.equals("list")) {
             return new ListCommand();
-        } else {
-            String[] split = input.split(" ", 2);
-            if (split.length > 0 && Arrays.asList(validInputs).contains(split[0])) {
-                switch (split[0]) {
+        } else if (split.length > 0 && Arrays.asList(validInputs).contains(split[0])) {
+            if (split.length < 2) {
+                throw new DukeException(split[0]);
+            }
+            switch (split[0]) {
                 case "delete": // Checks for delete
                     int index = Integer.parseInt(split[1]) - 1;
                     return new DeleteCommand(index);
@@ -53,37 +55,20 @@ public class Parser {
                     index = Integer.parseInt(split[1]) - 1;
                     return new UnmarkCommand(index);
                 case "todo": // Checks for Todo
-                    if (split.length < 2) {
-                        throw new DukeException("todo");
-                    } else {
-                        return new TodoCommand(split[1]);
-                    }
+                    return new TodoCommand(split[1]);
                 case "deadline": // Checks for Deadline
-                    if (split.length < 2) {
-                        throw new DukeException("deadline");
-                    } else {
-                        String[] temp = split[1].split(" /by ", 2);
-                        return new DeadlineCommand(temp[0], temp[1]);
-                    }
+                    String[] temp = split[1].split(" /by ", 2);
+                    return new DeadlineCommand(temp[0], temp[1]);
                 case "event": // Checks for Event
-                    if (split.length < 2) {
-                        throw new DukeException("event");
-                    } else {
-                        String[] temp = split[1].split(" /at ", 2);
-                        return new EventCommand(temp[0], temp[1]);
-                    }
+                    temp = split[1].split(" /at ", 2);
+                    return new EventCommand(temp[0], temp[1]);
                 case "find":
-                    if (split.length < 2) {
-                        throw new DukeException("find");
-                    } else {
                         return new FindCommand(split[1]);
-                    }
                 default: // Default case
                     throw new DukeException();
-                }
-            } else {
-                throw new DukeException(); // Invalid input
             }
+        } else {
+            throw new DukeException(); // Invalid input
         }
     }
 }
