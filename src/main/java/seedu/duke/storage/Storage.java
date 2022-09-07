@@ -1,15 +1,15 @@
 package seedu.duke.storage;
 
 import seedu.duke.exception.DukeException;
-import seedu.duke.task.*;
+import seedu.duke.parser.Parser;
+import seedu.duke.task.Task;
+import seedu.duke.task.TaskList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -39,7 +39,6 @@ public class Storage {
 
         try {
             File directory = new File("./data");
-            System.out.println(directory.exists());
             if (!directory.exists()) {
                 directory.mkdir();
             }
@@ -63,9 +62,9 @@ public class Storage {
     public void writeToFile(TaskList tasks) {
         try {
             FileWriter myWriter = new FileWriter(this.filePath);
-            ArrayList<Task> data = tasks.getAllTasks();
-            for (int i = 0; i < data.size(); i++) {
-                myWriter.write(data.get(i).toFileString() + System.getProperty("line.separator"));
+            ArrayList<Task> tasksArrayList = tasks.getAllTasks();
+            for (Task task : tasksArrayList) {
+                myWriter.write(task.toFileString() + System.getProperty("line.separator"));
             }
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
@@ -88,15 +87,7 @@ public class Storage {
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                String[] output = data.split(" , ", 0);
-                boolean isDone = Integer.parseInt(output[1]) == 1;
-                if (Objects.equals(output[0], "E")) {
-                    tasks.add(new Event(output[2], output[3], isDone));
-                } else if (Objects.equals(output[0], "D")) {
-                    tasks.add(new Deadline(output[2], output[3], isDone));
-                } else if (Objects.equals(output[0], "T")) {
-                    tasks.add(new ToDo(output[2], isDone));
-                }
+                tasks.add(Parser.readLine(data));
             }
         } catch (FileNotFoundException e) {
             throw new DukeException("An error occurred.");
