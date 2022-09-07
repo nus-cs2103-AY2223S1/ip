@@ -52,40 +52,42 @@ public class Storage {
             } catch (IOException err) {
                 System.out.println("Problem trying to create directory!");
             }
-        }
-        Scanner scan = new Scanner(file);
-        while (scan.hasNextLine()) {
-            String taskString = scan.nextLine();
+        } else {
+            Scanner scan = new Scanner(file);
+            while (scan.hasNextLine()) {
+                String taskString = scan.nextLine();
 
-            // split and organise task data
-            String[] taskSplit = taskString.split(" \\| ");
-            String taskType = taskSplit[0];
-            boolean isTaskDone = taskSplit[1].equals("1");
-            String taskDescription = taskSplit[2];
+                // split and organise task data
+                String[] taskSplit = taskString.split(" \\| ");
+                String taskType = taskSplit[0];
+                boolean isTaskDone = taskSplit[1].equals("1");
+                String taskDescription = taskSplit[2];
 
-            Task task;
-            switch (taskType) {
-            case "T": {
-                task = new ToDo(taskDescription);
-                break;
+                Task task;
+                switch (taskType) {
+                case "T": {
+                    task = new ToDo(taskDescription);
+                    break;
+                }
+                case "D": {
+                    assert taskSplit.length > 3 : "deadline task not split correctly";
+                    String taskDate = taskSplit[3];
+                    task = new Deadline(taskDescription, taskDate);
+                    break;
+                }
+                case "E": {
+                    String taskDate = taskSplit[3];
+                    task = new Event(taskDescription, taskDate);
+                    break;
+                }
+                default:
+                    throw new DukeException("Task type is not supported!");
+                }
+                if (isTaskDone) {
+                    task.markAsDone();
+                }
+                loadedTasks.add(task);
             }
-            case "D": {
-                String taskDate = taskSplit[3];
-                task = new Deadline(taskDescription, taskDate);
-                break;
-            }
-            case "E": {
-                String taskDate = taskSplit[3];
-                task = new Event(taskDescription, taskDate);
-                break;
-            }
-            default:
-                throw new DukeException("Task type is not supported!");
-            }
-            if (isTaskDone) {
-                task.markAsDone();
-            }
-            loadedTasks.add(task);
         }
         return loadedTasks;
     }
