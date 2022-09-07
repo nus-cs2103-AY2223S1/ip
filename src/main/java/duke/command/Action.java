@@ -104,12 +104,10 @@ public enum Action {
      * @return The String representation of an Action.
      */
     public static String getString(Action action) {
-        for (Map.Entry<String, Action> m : stringActionMap.entrySet()) {
-            if (m.getValue().equals(action)) {
-                return m.getKey();
-            }
-        }
-        return "";
+        return stringActionMap.entrySet().stream()
+                .filter(m -> m.getValue().equals(action))
+                .map(m -> m.getKey())
+                .reduce("", (x, y) -> x.equals("") ? y : x);
     }
 
     /**
