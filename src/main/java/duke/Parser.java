@@ -1,6 +1,16 @@
 package duke;
 
-import duke.command.*;
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.ToDoCommand;
+import duke.command.UnmarkCommand;
+import duke.command.WrongCommand;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -24,39 +34,40 @@ public class Parser {
      */
     public static Command parse(String command, TaskList taskList) throws DukeException,
             DateTimeParseException, NumberFormatException{
-        if (command.toLowerCase().equals("bye")) {
+        String lowercaseCommand = command.toLowerCase();
+        if (lowercaseCommand.equals("bye")) {
             return new ByeCommand();
         }
-        if (command.toLowerCase().equals("list")) {
+        if (lowercaseCommand.equals("list")) {
             return new ListCommand();
         }
-        if (command.toLowerCase().startsWith("mark")) {
+        if (lowercaseCommand.startsWith("mark")) {
             int position = parseMarkedTask(command, taskList);
             return new MarkCommand(position);
         }
-        if (command.toLowerCase().startsWith("unmark")) {
+        if (lowercaseCommand.startsWith("unmark")) {
             int position = parseUnmarkedTask(command, taskList);
             return new UnmarkCommand(position);
         }
-        if (command.toLowerCase().startsWith("todo")) {
+        if (lowercaseCommand.startsWith("todo")) {
             String description = parseToDo(command);
             return new ToDoCommand(description);
         }
-        if (command.toLowerCase().startsWith("deadline")) {
+        if (lowercaseCommand.startsWith("deadline")) {
            String[] taskWithDeadline = parseDeadline(command);
            LocalDate date = parseDate(taskWithDeadline[1]);
            return new DeadlineCommand(taskWithDeadline[0], date);
         }
-        if (command.toLowerCase().startsWith("event")) {
+        if (lowercaseCommand.startsWith("event")) {
             String[] taskWithPeriod = parseEvent(command);
             LocalDate date = parseDate(taskWithPeriod[1]);
             return new EventCommand(taskWithPeriod[0], date);
         }
-        if (command.toLowerCase().startsWith("delete")) {
+        if (lowercaseCommand.startsWith("delete")) {
             int position = parseDelete(command, taskList);
             return new DeleteCommand(position);
         }
-        if (command.toLowerCase().startsWith("find")) {
+        if (lowercaseCommand.startsWith("find")) {
             String keyword = parseFind(command);
             return new FindCommand(keyword);
         }

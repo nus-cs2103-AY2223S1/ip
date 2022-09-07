@@ -27,7 +27,7 @@ public class Storage {
      * @throws IOException If the file cannot be found by scanner or I/O error occurred.
      */
     public ArrayList<Task> readFile() throws IOException {
-        ArrayList<Task> botArray  = new ArrayList<>();
+        ArrayList<Task> dukeBotArray  = new ArrayList<>();
         File dataDirectory = new File("Info");
         if (!dataDirectory.isDirectory()) {
             dataDirectory.mkdir();
@@ -42,7 +42,7 @@ public class Storage {
                 ToDo todo = new ToDo(task[2]);
                 boolean isMarked = task[1].equals("T");
                 todo.setCompleted(isMarked);
-                botArray.add(todo);
+                dukeBotArray.add(todo);
             }
             if (task.length == 4) {
                 if (task[0].equals("D")) {
@@ -50,19 +50,19 @@ public class Storage {
                     Deadline deadline = new Deadline(task[2],currDate);
                     boolean isMarked = task[1].equals("T");
                     deadline.setCompleted(isMarked);
-                    botArray.add(deadline);
+                    dukeBotArray.add(deadline);
                 }
                 if (task[0].equals("E")) {
                     LocalDate currDate = LocalDate.parse(task[3]);
                     Event event = new Event(task[2],currDate);
                     boolean isMarked = task[1].equals("T");
                     event.setCompleted(isMarked);
-                    botArray.add(event);
+                    dukeBotArray.add(event);
                 }
             }
         }
         scanningFile.close();
-        return botArray;
+        return dukeBotArray;
     }
 
     /**

@@ -45,7 +45,7 @@ public abstract class Task {
      * @param keyword Keyword that the task is being checked.
      * @return true if the keyword is in the description;else return false;
      */
-    public Boolean isContainsKeyword(String keyword) {
+    public Boolean hasKeyword(String keyword) {
         return this.description.toLowerCase().contains(keyword);
     }
 
