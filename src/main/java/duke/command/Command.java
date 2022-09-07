@@ -4,6 +4,7 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import duke.exception.DukeException;
+import duke.note.NoteList;
 
 /**
  * Represents a command to interact with Duke.
@@ -22,12 +23,13 @@ public abstract class Command {
      * Executes the command.
      *
      * @param tasks the current task list containing all tasks
+     * @param notes the current note list containing all notes
      * @param ui the user interface object
      * @param storage the storage objecct
      * @return the response to the command
      * @throws DukeException
      */
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, NoteList notes, Ui ui, Storage storage) throws DukeException {
         throw new DukeException("Not implemented");
     }
 

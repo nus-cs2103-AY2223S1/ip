@@ -5,6 +5,7 @@ import duke.Task;
 import duke.TaskList;
 import duke.Ui;
 import duke.exception.DukeException;
+import duke.note.NoteList;
 
 /**
  * Represents a command to add a todo task.
@@ -23,7 +24,7 @@ public class TodoCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, NoteList notes, Ui ui, Storage storage) throws DukeException {
         tasks.add(new Task(task));
         return ui.printAddTaskSuccessfully(tasks);
     }

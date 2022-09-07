@@ -5,6 +5,7 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import duke.exception.DukeException;
+import duke.note.NoteList;
 
 /**
  * Represents a command to add an event.
@@ -26,7 +27,7 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, NoteList notes, Ui ui, Storage storage) throws DukeException {
         tasks.add(new Event(task, on));
         return ui.printAddTaskSuccessfully(tasks);
     }

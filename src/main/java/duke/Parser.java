@@ -7,10 +7,13 @@ import duke.command.Command;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
 import duke.command.EventCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.NoteCommand;
 import duke.command.TodoCommand;
 import duke.exception.DukeException;
+import duke.types.ListObject;
 
 /**
  * Parser takes in a string and returns a Command object which
@@ -45,6 +48,13 @@ public class Parser {
             // Return the command
             return new MarkCommand(Integer.parseInt(inputSplit[1]) - 1,
                     inputSplit[0].equals("mark") ? true : false);
+        case "note":
+            // Error handling
+            if (inputSplit.length < 2) {
+                throw new DukeException("Please provide a description for your new note.");
+            }
+            // Return the command
+            return new NoteCommand(input.substring(5));
         case "todo":
             // Error handling
             if (inputSplit.length < 2) {
@@ -75,15 +85,28 @@ public class Parser {
                         " ", Arrays.copyOfRange(description, 1, description.length)), date);
             }
         case "delete":
+            ListObject type = ListObject.TASK;
             // Error handling
             if (inputSplit.length < 2) {
-                throw new DukeException("You did not specify what task number to delete.");
-            } else if (!isNumeric(inputSplit[1])) {
+                throw new DukeException("You did not specify what number to delete.");
+            }
+            if (inputSplit[1].startsWith("N")) {
+                type = ListObject.NOTE;
+                inputSplit[1] = inputSplit[1].substring(1);
+            }
+            if (!isNumeric(inputSplit[1])) {
                 throw new DukeException(String.format(
-                        "Invalid task number provided: %s. Unable to delete task.", inputSplit[1]));
+                        "Invalid %s number provided: %s. Unable to delete %s.", type.label, inputSplit[1], type.label));
             }
             // Return the command
-            return new DeleteCommand(Integer.parseInt(inputSplit[1]) - 1);
+            return new DeleteCommand(type, Integer.parseInt(inputSplit[1]) - 1);
+        case "find":
+            // Error handling
+            if (inputSplit.length < 2) {
+                throw new DukeException("Please provide a search term.");
+            }
+            // Return the command
+            return new FindCommand(input.substring(5));
         default:
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }

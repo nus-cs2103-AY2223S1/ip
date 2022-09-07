@@ -5,6 +5,7 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import duke.exception.DukeException;
+import duke.note.NoteList;
 
 /**
  * Represents a command to add a deadline.
@@ -26,7 +27,7 @@ public class DeadlineCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, NoteList notes, Ui ui, Storage storage) throws DukeException {
         tasks.add(new Deadline(task, by));
         return ui.printAddTaskSuccessfully(tasks);
     }
