@@ -110,6 +110,11 @@ public class TaskList {
         assert (!this.tasks.get(index).isDone) : "Task should be marked as not done";
     }
 
+    /**
+     * Removes last task in the list of tasks and returns it.
+     *
+     * @return last task in the list of tasks.
+     */
     public Task popLastTask() {
         Task lastTask = this.tasks.get(this.tasks.size() - 1);
         this.tasks.remove(this.tasks.size() - 1);
