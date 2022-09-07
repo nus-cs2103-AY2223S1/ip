@@ -46,7 +46,7 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "dukechatbot.duke.Launcher"
 }
 
 shadowJar {
@@ -60,7 +60,7 @@ run{
 
 jar {
     manifest {
-        attributes "Main-Class" : "dukechatbot.duke.Duke"
+        attributes "Main-Class" : "dukechatbot.duke.Launcher"
     }
 }
 task customFatJar(type: Jar) {
