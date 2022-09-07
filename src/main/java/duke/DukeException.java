@@ -22,6 +22,7 @@ public class DukeException extends Exception {
      */
     @Override
     public String toString() {
+
         return (errorMessage + "LUNA reads words, not minds!");
     }
 

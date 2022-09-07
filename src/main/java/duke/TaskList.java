@@ -65,10 +65,12 @@ public class TaskList {
      * @return The length of the ArrayList
      */
     public int size() {
+
         return this.arrayList.size();
     }
 
     public void forEach(Consumer<? super Task> consumer) {
+
         arrayList.forEach(consumer);
     }
 
