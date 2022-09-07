@@ -34,15 +34,15 @@ public class Storage {
     public ArrayList<Task> load() throws IOException, DukeException {
         ArrayList<Task> lst = new ArrayList<>();
         Scanner input = null;
-        try {
-            if (!listOfTasks.exists()) {
-                try {
-                    listOfTasks.getParentFile().mkdirs();
-                    listOfTasks.createNewFile();
-                } catch (IOException e) {
-                    throw new DukeException("OOPS! I have problem creating directory!");
-                }
+        if (!listOfTasks.exists()) {
+            try {
+                listOfTasks.getParentFile().mkdirs();
+                listOfTasks.createNewFile();
+            } catch (IOException e) {
+                throw new DukeException("OOPS! I have problem creating directory!");
             }
+        }
+        try {
             input = new Scanner(listOfTasks);
         } catch (FileNotFoundException e) {
             throw new DukeException("OOPS! I cannot read your file!");
