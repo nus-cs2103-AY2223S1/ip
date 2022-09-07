@@ -1,9 +1,10 @@
-package kirby;
+package kirby.time;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import kirby.tasks.Task;
 
@@ -52,7 +53,7 @@ public class HandleTime {
     /**
      * Picks out all the tasks with a specified date from a given list of tasks.
      *
-     * @param arr List of tasks.
+     * @param inputTasks List of tasks.
      * @param input Date that the chosen tasks should correspond to.
      * @return List of tasks with the specified date.
      */
@@ -66,5 +67,17 @@ public class HandleTime {
             }
         }
         return datedTaskList;
+    }
+
+    /**
+     * Sorts the list of tasks by chronological order.
+     * Tasks with no valid dates are placed above.
+     *
+     * @param inputTasks List of tasks.
+     * @return List of tasks sorted in a chronological order.
+     */
+    public static ArrayList<Task> sortTaskList(ArrayList<Task> inputTasks) {
+        Collections.sort(inputTasks, new SortTaskByDate());
+        return inputTasks;
     }
 }

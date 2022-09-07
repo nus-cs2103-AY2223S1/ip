@@ -1,3 +1,7 @@
 kirby.tasks.Todo~hi
-kirby.tasks.Deadline~ewd~2012-21-32
+kirby.tasks.Todo~sleep
+kirby.tasks.Todo~yay
+kirby.tasks.Deadline~yo~1990-10-02
+kirby.tasks.Deadline~haha~2001-11-10
 kirby.tasks.Deadline~csd~1999-12-23
+kirby.tasks.Deadline~ewd~2012-21-32

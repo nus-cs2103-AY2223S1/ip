@@ -1,7 +1,7 @@
 package kirby;
 
-import static kirby.HandleTime.fromStringToDate;
-import static kirby.HandleTime.isValidDate;
+import static kirby.time.HandleTime.fromStringToDate;
+import static kirby.time.HandleTime.isValidDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
