@@ -7,10 +7,10 @@ package duke.task;
  */
 public class Task {
     /** Name of the task. */
-    protected String taskName;
+    private String taskName;
 
     /** Whether the task has been completed. */
-    protected boolean isDone;
+    private boolean isDone;
 
     /**
      * Constructor for a Task, initializes task name

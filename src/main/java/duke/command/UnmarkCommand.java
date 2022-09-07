@@ -11,7 +11,7 @@ import duke.ui.Ui;
  */
 public class UnmarkCommand extends Command {
     /** The arguments of the command (e.g. 'sleep /at 2020-12-12'). */
-    private final String arguments;
+    private static String arguments;
 
     /**
      * Constructor of MarkCommand.
@@ -32,7 +32,7 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        String taskDescription = tasks.markOrUnmark(this.arguments, false);
+        String taskDescription = tasks.markOrUnmark(UnmarkCommand.arguments, false);
 
         assert !taskDescription.isEmpty() : "Task unmarked should not be empty string, even if operation fails";
 
