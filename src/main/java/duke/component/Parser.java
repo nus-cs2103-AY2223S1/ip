@@ -37,6 +37,7 @@ public class Parser {
      * @throws DukeException If there is no matching Command based on the user command.
      */
     public Command parse(String message, TaskList tasks) throws DukeException {
+        assert tasks != null : "Task list should not be null";
         String[] splitMessage = message.split("\\s+", 2);
         CommandType commandType = CommandType.parse(splitMessage[0].toLowerCase());
         switch (commandType) {

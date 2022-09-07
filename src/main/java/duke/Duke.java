@@ -27,15 +27,15 @@ public class Duke {
      * Constructs a new Duke.
      */
     public Duke() {
-        this.hasEnded = false;
-        this.parser = new Parser();
+        hasEnded = false;
+        parser = new Parser();
         try {
-            this.storage = new Storage(Paths.get(System.getProperty("user.dir"),
+            storage = new Storage(Paths.get(System.getProperty("user.dir"),
                     "data", "duke.txt"));
-            this.tasks = this.storage.load();
+            tasks = storage.load();
         } catch (DukeException e) {
             System.out.println(e.getMessage());
-            this.tasks = new TaskList();
+            tasks = new TaskList();
         }
     }
 

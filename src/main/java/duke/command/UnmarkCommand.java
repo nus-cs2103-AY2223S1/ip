@@ -28,7 +28,7 @@ public class UnmarkCommand extends Command {
     public String run() throws DukeException {
         String reply;
         try {
-            reply = this.tasks.unmarkTask(Integer.parseInt(content.replaceAll("\\s+", "")) - 1);
+            reply = tasks.unmarkTask(Integer.parseInt(content.replaceAll("\\s+", "")) - 1);
         } catch (NumberFormatException e) {
             throw new DukeException("Task number need to be an integer!");
         }

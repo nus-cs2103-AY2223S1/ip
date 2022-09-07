@@ -38,7 +38,7 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return "[" + DEADLINE_REP + "]" + super.toString()
-                + " (by: " + this.deadline.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
+                + " (by: " + deadline.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
     /**
@@ -48,6 +48,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toStorage() {
-        return DEADLINE_REP + super.toStorage() + Task.SEPARATOR + this.deadline;
+        return DEADLINE_REP + super.toStorage() + Task.SEPARATOR + deadline;
     }
 }

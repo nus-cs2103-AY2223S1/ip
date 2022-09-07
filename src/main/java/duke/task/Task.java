@@ -21,8 +21,9 @@ public abstract class Task {
      * @param description Description of the task.
      */
     public Task(String description) {
+        assert description != null : "Task should contain a description";
         this.description = description;
-        this.isDone = false;
+        isDone = false;
     }
 
     /**
@@ -50,7 +51,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return this.getStatusIcon() + " " + this.description;
+        return getStatusIcon() + " " + description;
     }
 
     /**
@@ -59,7 +60,7 @@ public abstract class Task {
      * @return String representation of the Task for storage.
      */
     public String toStorage() {
-        return SEPARATOR + this.getStorageStatusIcon() + SEPARATOR + this.description;
+        return SEPARATOR + getStorageStatusIcon() + SEPARATOR + description;
     }
 
     /**
@@ -68,8 +69,8 @@ public abstract class Task {
      * @return String representation of the Task.
      */
     public String markAsDone() {
-        this.isDone = true;
-        return this.toString();
+        isDone = true;
+        return toString();
     }
 
     /**
@@ -78,8 +79,8 @@ public abstract class Task {
      * @return String representation of the Task.
      */
     public String markAsUndone() {
-        this.isDone = false;
-        return this.toString();
+        isDone = false;
+        return toString();
     }
 
     /**
@@ -89,7 +90,7 @@ public abstract class Task {
      * @return true if it contains the given keyword, false otherwise.
      */
     public boolean contains(String content) {
-        return this.description.contains(content);
+        return description.contains(content);
     }
 
     /**
@@ -100,6 +101,7 @@ public abstract class Task {
      * @throws DukeException If the storage String is invalid.
      */
     public static Task fromStorage(String task) throws DukeException {
+        assert task != null : "Task should not be null";
         String[] taskDetails = task.split(" \\| ");
         TaskType taskType = TaskType.parse(taskDetails[0]);
         Task currTask;

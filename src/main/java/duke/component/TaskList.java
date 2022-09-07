@@ -25,7 +25,7 @@ public class TaskList {
      * Constructs a new TaskList.
      */
     public TaskList() {
-        this.tasks = new ArrayList<>();
+        tasks = new ArrayList<>();
     }
 
     /**
@@ -36,9 +36,9 @@ public class TaskList {
     @Override
     public String toString() {
         StringBuilder allTasks = new StringBuilder();
-        for (int i = 1; i <= this.tasks.size(); i++) {
-            allTasks.append(i + ". " + this.tasks.get(i - 1));
-            if (i < this.tasks.size()) {
+        for (int i = 1; i <= tasks.size(); i++) {
+            allTasks.append(i + ". " + tasks.get(i - 1));
+            if (i < tasks.size()) {
                 allTasks.append("\n");
             }
         }
@@ -47,12 +47,13 @@ public class TaskList {
 
     /**
      * Returns a String representation of the TaskList for storage.
+     *
      * @return String representation of the TaskList for storage.
      */
     public String toStorage() {
         StringBuilder storage = new StringBuilder();
 
-        for (Task task : this.tasks) {
+        for (Task task : tasks) {
             storage.append(task.toStorage() + System.lineSeparator());
         }
 
@@ -66,8 +67,8 @@ public class TaskList {
      * @return String representation of the response after adding the task.
      */
     public String addTask(Task task) {
-        this.tasks.add(task);
-        return MSG_ADD + task.toString() + "\n" + MSG_NUMBER_START + this.tasks.size() + MSG_NUMBER_END;
+        tasks.add(task);
+        return MSG_ADD + task.toString() + "\n" + MSG_NUMBER_START + tasks.size() + MSG_NUMBER_END;
     }
 
     /**
@@ -78,11 +79,11 @@ public class TaskList {
      * @throws DukeException If the given index is out of range.
      */
     public String deleteTask(int index) throws DukeException {
-        if (index < 0 || index >= this.tasks.size()) {
+        if (index < 0 || index >= tasks.size()) {
             throw new DukeException("There is no such task number!");
         }
-        Task task = this.tasks.remove(index);
-        return MSG_DELETE + task.toString() + "\n" + MSG_NUMBER_START + this.tasks.size() + MSG_NUMBER_END;
+        Task task = tasks.remove(index);
+        return MSG_DELETE + task.toString() + "\n" + MSG_NUMBER_START + tasks.size() + MSG_NUMBER_END;
     }
 
     /**
@@ -93,10 +94,10 @@ public class TaskList {
      * @throws DukeException If the given index is out of range.
      */
     public String markTask(int index) throws DukeException {
-        if (index < 0 || index >= this.tasks.size()) {
+        if (index < 0 || index >= tasks.size()) {
             throw new DukeException("There is no such task number!");
         }
-        return MSG_DONE + this.tasks.get(index).markAsDone();
+        return MSG_DONE + tasks.get(index).markAsDone();
     }
 
     /**
@@ -107,10 +108,10 @@ public class TaskList {
      * @throws DukeException If the given index is out of range.
      */
     public String unmarkTask(int index) throws DukeException {
-        if (index < 0 || index >= this.tasks.size()) {
+        if (index < 0 || index >= tasks.size()) {
             throw new DukeException("There is no such task number!");
         }
-        return MSG_UNDONE + this.tasks.get(index).markAsUndone();
+        return MSG_UNDONE + tasks.get(index).markAsUndone();
     }
 
     /**
@@ -121,7 +122,7 @@ public class TaskList {
      */
     public String findTasks(String ... content) {
         ArrayList<Task> matchingTasks = new ArrayList<>();
-        for (Task task : this.tasks) {
+        for (Task task : tasks) {
             boolean hasKeywords = true;
             for (int i = 0; i < content.length; i++) {
                 if (!task.contains(content[i])) {
@@ -133,9 +134,11 @@ public class TaskList {
                 matchingTasks.add(task);
             }
         }
+
         if (matchingTasks.size() == 0) {
             return MSG_NO_MATCH;
         }
+
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 1; i <= matchingTasks.size(); i++) {
             stringBuilder.append(i + ". " + matchingTasks.get(i - 1));
