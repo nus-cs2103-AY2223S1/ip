@@ -27,8 +27,7 @@ public class AddEventCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
-        String userInput = ui.getCurrentInput();
-        Event eventToAdd = Parser.stringToEvent(userInput);
+        Event eventToAdd = Parser.stringToEvent(slicedUserCommands[1], slicedUserCommands[2]);
         taskList.addEvent(eventToAdd);
         String storableLine = eventToAdd + "\n";
         if (storage.isLineAppended(storableLine)) {

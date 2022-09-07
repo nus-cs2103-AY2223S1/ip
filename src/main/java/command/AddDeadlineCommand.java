@@ -26,8 +26,7 @@ public class AddDeadlineCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
-        String userInput = ui.getCurrentInput();
-        Deadline deadlineToAdd = Parser.stringToDeadline(userInput, actualCommandUsedToInvoke);
+        Deadline deadlineToAdd = Parser.stringToDeadline(slicedUserCommands[1], slicedUserCommands[2]);
         String storableLine = deadlineToAdd + "\n";
         if (storage.isLineAppended(storableLine)) {
             taskList.addDeadline(deadlineToAdd);
