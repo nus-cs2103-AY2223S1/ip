@@ -1,8 +1,8 @@
 package pixel;
 
-import pixel.util.Parser;
-
 import java.util.Scanner;
+
+import pixel.util.Parser;
 
 /**
  * Main class of chatbot
@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Pixel {
 
     public static int count = 0; // made public for testing
-    private final Scanner myScanner = new Scanner(System.in);  // Create a Scanner object
+    private final Scanner myScanner = new Scanner(System.in); // Create a Scanner object
     private final Parser parser;
 
     public Pixel(String filePath) {
@@ -24,7 +24,7 @@ public class Pixel {
 
     public void run() {
         while (myScanner.hasNextLine()) {
-            String userInput = myScanner.nextLine();  // Read user input
+            String userInput = myScanner.nextLine(); // Read user input
             parser.parse(userInput);
             run();
         }

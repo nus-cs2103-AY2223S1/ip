@@ -10,7 +10,7 @@ public class IncorrectFormatException extends RuntimeException {
      *
      * @param errorMessage description of the exception
      */
-    public IncorrectFormatException (String errorMessage) {
+    public IncorrectFormatException(String errorMessage) {
         super(errorMessage);
     }
 }

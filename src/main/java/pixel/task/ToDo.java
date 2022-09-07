@@ -17,7 +17,7 @@ public class ToDo extends Task {
      * @param due due day/ date and time of the task
      * @param commandWord "at" or "by"
      */
-    public ToDo (String description, String due, String commandWord) {
+    public ToDo(String description, String due, String commandWord) {
         super(description, due, commandWord);
     }
 

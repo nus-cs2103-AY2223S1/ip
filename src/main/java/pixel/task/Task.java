@@ -1,8 +1,5 @@
 package pixel.task;
 
-import pixel.util.DateValidator;
-import pixel.util.UserInterface;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,6 +10,9 @@ import java.time.format.ResolverStyle;
 import java.util.Date;
 import java.util.Locale;
 
+import pixel.util.DateValidator;
+import pixel.util.UserInterface;
+
 /**
  * Represents a Task
  * Has three types, Event, Deadline and ToDo
@@ -22,10 +22,10 @@ import java.util.Locale;
  */
 public class Task {
 
-    private final String description;
-    private boolean isDone = false;
     protected final String due; // can be accessed by subclasses
     protected final String commandWord;
+    private final String description;
+    private boolean isDone = false;
 
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US)
         .withResolverStyle(ResolverStyle.SMART);
@@ -39,7 +39,7 @@ public class Task {
      * @param due due day/ date and time of the task
      * @param commandWord "at" or "by"
      */
-    public Task (String description, String due, String commandWord) {
+    public Task(String description, String due, String commandWord) {
         this.description = description;
         this.due = dateTimeProcessing(due);
         this.commandWord = commandWord;
@@ -89,7 +89,8 @@ public class Task {
 
         } catch (IndexOutOfBoundsException e) {
             System.out.println(e);
-            System.out.println("Please ensure that you have entered both date and time in yyyy-MM-dd(SPACE)HHmm(24h) format");
+            System.out.println(
+                "Please ensure that you have entered both date and time in yyyy-MM-dd(SPACE)HHmm(24h) format");
             System.out.println(UserInterface.PROMPT_MESSAGE);
 
         } catch (ParseException e) {

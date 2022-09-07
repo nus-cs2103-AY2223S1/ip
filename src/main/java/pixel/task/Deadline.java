@@ -17,7 +17,7 @@ public class Deadline extends Task {
      * @param due due day/ date and time of the task
      * @param commandWord "at" or "by"
      */
-    public Deadline (String description, String due, String commandWord) {
+    public Deadline(String description, String due, String commandWord) {
         super(description, due, commandWord);
     }
 

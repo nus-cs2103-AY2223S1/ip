@@ -1,34 +1,35 @@
 package pixel;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
+
 import pixel.util.IncorrectFormatException;
 import pixel.util.Storage;
 import pixel.util.TaskList;
 
-import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 public class HandleTaskTest {
 
-    String filePath = "./data/pixel.txt";
-    Pixel pixelBot = new Pixel(filePath); // output file address
-    TaskList taskList = new TaskList(filePath);
+    private String filePath = "./data/pixel.txt";
+    private Pixel pixelBot = new Pixel(filePath); // output file address
+    private TaskList taskList = new TaskList(filePath);
 
-//    @Test
-//    public void testAddingTasks() throws FileNotFoundException {
+    //@Test
+    //public void testAddingTasks() throws FileNotFoundException {
     //String inputFileAddress = "C:/!Education/CS2103/gitFolderOne/data/testInput.txt";
     //File text = new File(inputFileAddress);
     //Scanner inputScanner = new Scanner(text);
 
     //Reading each line of the file using Scanner class
-//        int lineNumber = 1;
-//        while (inputScanner.hasNextLine()){
-//            String line = inputScanner.nextLine();
-//            System.out.println("line " + lineNumber + " :" + line);
-//            lineNumber++;
-//        }
+    //        int lineNumber = 1;
+    //        while (inputScanner.hasNextLine()){
+    //            String line = inputScanner.nextLine();
+    //            System.out.println("line " + lineNumber + " :" + line);
+    //            lineNumber++;
+    //        }
 
     @Test
     public void testInvalidInput() {
@@ -48,7 +49,8 @@ public class HandleTaskTest {
         } catch (Exception exception) {
             // System.out.println(exception);
             assertTrue(exception instanceof IncorrectFormatException);
-            assertEquals(exception.toString(), "pixel.util.IncorrectFormatException: Slash should be followed by \"by\" or \"at\"!");
+            assertEquals(exception.toString(),
+                "pixel.util.IncorrectFormatException: Slash should be followed by \"by\" or \"at\"!");
         }
     }
 
@@ -63,17 +65,17 @@ public class HandleTaskTest {
         } catch (Exception exception) {
             // System.out.println(exception);
             assertTrue(exception instanceof IOException);
-            // assertEquals("pixel.util.IncorrectFormatException: Slash should be followed by \"by\" or \"at\"!", exception.toString());
+            // assertEquals("pixel.util.IncorrectFormatException: Slash should be followed by \"by\" or \"at\"!",
+            //      exception.toString());
         }
     }
 
     // Unit tests
-/*
-DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("uuuu-MM-dd", Locale.US)
-    .withResolverStyle(ResolverStyle.STRICT);
-DateValidator validator = new DateValidatorUsingDateTimeFormatter(dateFormatter);
-
-assertTrue(validator.isValid("2019-02-28"));
-assertFalse(validator.isValid("2019-02-30"));
+    /*
+    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("uuuu-MM-dd", Locale.US)
+        .withResolverStyle(ResolverStyle.STRICT);
+    DateValidator validator = new DateValidatorUsingDateTimeFormatter(dateFormatter);
+    assertTrue(validator.isValid("2019-02-28"));
+    assertFalse(validator.isValid("2019-02-30"));
     */
 }
