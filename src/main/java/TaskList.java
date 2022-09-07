@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.time.format.DateTimeParseException;
 
 public class TaskList {
     Task[] taskList = new Task[100];
@@ -6,11 +7,16 @@ public class TaskList {
     private int firstEmptyIndex = 0;
 
     public void addTask(String input, Task.TaskType taskType, boolean isDone) throws IOException {
-        Task task = taskType == Task.TaskType.ToDo
-                ? new Todo(input, isDone)
-                : taskType == Task.TaskType.Event
-                ? new Event(input, isDone)
-                : new Deadline(input, isDone);
+        Task task;
+        try {
+            task = taskType == Task.TaskType.ToDo
+                    ? new Todo(input, isDone)
+                    : taskType == Task.TaskType.Event
+                    ? new Event(input, isDone)
+                    : new Deadline(input, isDone);
+        } catch (DateTimeParseException e) {
+            return;
+        }
 
         taskList[firstEmptyIndex] = task;
         DataReadWriter.saveAddedTask(task);

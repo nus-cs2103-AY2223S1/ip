@@ -1,17 +1,32 @@
-public class Deadline extends Task{
-    private String by;
-    public Deadline(String input, boolean isDone) {
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+public class Deadline extends Task {
+    private LocalDateTime by;
+    public Deadline(String input, boolean isDone) throws DateTimeParseException {
         super(isDone);
         String[] strArr = input.split("/by");
-        System.out.println(strArr[0]);
         this.description = strArr[0].trim();
-        this.by = strArr[1].trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        try {
+            this.by = LocalDateTime.parse(strArr[1].trim(), formatter);
+        } catch (DateTimeParseException e) {
+            System.out.println("Wrong date format");
+            throw e;
+        }
     }
 
     public Deadline(String input, String by, boolean isDone) {
         super(isDone);
         this.description = input;
-        this.by = by;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        try {
+            this.by = LocalDateTime.parse(by);
+        } catch (DateTimeParseException e) {
+            System.out.println("Wrong date format");
+            throw e;
+        }
     }
 
     @Override
@@ -27,8 +42,9 @@ public class Deadline extends Task{
 
     @Override
     public String toString() {
+        String date = this.by.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));
         String head = "[D][" + this.getStatusIcon() + "] ";
-        String body = this.description + " (by: " + this.by + ")";
+        String body = this.description + " (by: " + date + ")";
         return head + body;
     }
 }

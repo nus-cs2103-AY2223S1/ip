@@ -1,16 +1,33 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class Event extends Task {
-    private String at;
-    public Event(String input, boolean isDone) {
+
+    private LocalDateTime at;
+    public Event(String input, boolean isDone) throws DateTimeParseException {
         super(isDone);
         String[] strArr = input.split("/at");
         this.description = strArr[0].trim();
-        this.at = strArr[1].trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        try {
+            this.at = LocalDateTime.parse(strArr[1].trim(), formatter);
+        } catch (DateTimeParseException e) {
+            System.out.println("Wrong date format");
+            throw e;
+        }
     }
 
     public Event(String input, String at, boolean isDone) {
         super(isDone);
         this.description = input;
-        this.at = at;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        try {
+            this.at = LocalDateTime.parse(at);
+        } catch (DateTimeParseException e) {
+            System.out.println("Wrong date format");
+            throw e;
+        }
     }
 
     @Override
@@ -26,8 +43,9 @@ public class Event extends Task {
 
     @Override
     public String toString() {
+        String date  = this.at.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));
         String head = "[E][" + this.getStatusIcon() + "] ";
-        String body = this.description + " (at: " + this.at + ")";
+        String body = this.description + " (at: " + date + ")";
         return head + body;
     }
 }
