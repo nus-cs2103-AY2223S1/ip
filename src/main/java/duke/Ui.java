@@ -18,7 +18,7 @@ public class Ui {
     private Scanner enterInput;
 
     /**
-     * Constructor for the duke.Ui
+     * Constructor for the Ui
      */
     public Ui() {
         this.enterInput = new Scanner(System.in);
