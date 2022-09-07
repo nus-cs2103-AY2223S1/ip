@@ -4,11 +4,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represent the Deadline task. Extends the Task class.
+ * Represents the Deadline task. Extends the Task class.
+ *
+ * @author Stevan Gerard Gunawan
  */
 public class Deadline extends Task{
 
     private LocalDate by;
+    private String dateCache = "";
 
     /**
      * a public constructor method for the Deadline class.
@@ -18,6 +21,7 @@ public class Deadline extends Task{
      */
     public Deadline(String description, String by) {
         super(description);
+        System.out.println(by);
         LocalDate date = LocalDate.parse(by);
         this.by = date;
     }
@@ -49,6 +53,9 @@ public class Deadline extends Task{
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy")) + ")";
+        if (dateCache.isEmpty()) {
+            dateCache = by.format(formatter);
+        }
+        return "[D]" + super.toString() + " (by: " + dateCache + ")";
     }
 }

@@ -1,7 +1,9 @@
 package doke;
 
 /**
- * A Miscellaneous class to handle miscellaneous methdods
+ * A Miscellaneous class to handle miscellaneous methods
+ *
+ * @author Stevan Gerard Gunawan
  */
 public class Miscellaneous {
 
@@ -21,6 +23,9 @@ public class Miscellaneous {
         }
     }
 
+    public static boolean equalsStringZero(String s) {
+        return s.equals("0");
+    }
     /**
      * Returns the int after parsing the string.
      * A static method.

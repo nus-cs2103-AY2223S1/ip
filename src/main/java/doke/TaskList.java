@@ -10,10 +10,53 @@ import java.util.Scanner;
 
 /**
  * A class to represent a TaskList.
+ *
+ * @author Stevan Gerard Gunawan
  */
 public class TaskList {
 
     private ArrayList<Task> taskList = new ArrayList<>();
+    public static final String specialString = " [|] ";
+
+    private Task createTask(String[] strings) {
+        Task addTask;
+        if (strings[0].equals("T")) {
+            addTask = new ToDo(strings[2]);
+        } else if (strings[0].equals("D")) {
+            addTask = new Deadline(strings[2], strings[3]);
+        } else {
+            addTask = new Event(strings[2], strings[3]);
+        }
+        return addTask;
+    }
+
+    private void setMarking(Task task, String[] strings) {
+        if (Miscellaneous.equalsStringZero(strings[1])) {
+            return;
+        }
+        task.markDone();
+    }
+
+    private void readStorage(Scanner scanner) {
+        while (scanner.hasNext()) {
+            String line = scanner.nextLine();
+            String[] temp = line.split(specialString);
+            Task task = createTask(temp);
+
+            this.taskList.add(task);
+
+            setMarking(task, temp);
+        }
+    }
+
+    private void createNewDokeFile(Storage storage, Ui ui) {
+        try {
+            storage.DOKE_FILE.createNewFile();
+            ui.printNewFileCreatedMessage();
+        } catch (IOException a) {
+            ui.printErrorMessage();
+        }
+    }
 
     /**
      * A public constructor for the TaskList class.
@@ -24,44 +67,11 @@ public class TaskList {
      * @param storage
      */
     public TaskList(Ui ui, Storage storage) {
-
         try {
             Scanner s = new Scanner(Storage.DOKE_FILE);
-            while (s.hasNext()) {
-                String line = s.nextLine();
-                String specialString = " [|] ";
-                String[] temp = line.split(specialString);
-                Task addTask;
-
-                if (temp[0].equals("T")) {
-                    addTask = new ToDo(temp[2]);
-                } else if (temp[0].equals("D")) {
-                    addTask = new Deadline(temp[2], temp[3]);
-                } else {
-                    if (!temp[0].equals("E")) {
-                        continue;
-                    }
-                    addTask = new Events(temp[2], temp[3]);
-                }
-                this.taskList.add(addTask);
-
-                try {
-                    if (temp[1].equals("1")) {
-                        addTask.markDone();
-                    } else {
-                        addTask.markNotDone();
-                    }
-                } catch (DokeException e) {
-                }
-            }
+            readStorage(s);
         } catch (FileNotFoundException e) {
-            try {
-                storage.DOKE_FILE.createNewFile();
-                ui.printOut("a new Doke.txt file has been created"
-                        + "it is in the path mentioned above");
-            } catch (IOException a) {
-                ui.printOut("An error occurred. Try again at another time.");
-            }
+            createNewDokeFile(storage, ui);
         }
     }
 

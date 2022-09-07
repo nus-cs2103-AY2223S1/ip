@@ -1,6 +1,7 @@
 package doke;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represent the abstract class Task
@@ -9,6 +10,7 @@ public abstract class Task {
 
     private String desc;
     private boolean isDone;
+    protected static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
 
     /**
      * a constructor for Task class.
