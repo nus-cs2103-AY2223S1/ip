@@ -10,20 +10,6 @@ import java.util.ArrayList;
 public class Ui {
 
     /**
-     * Returns a welcome message to the user.
-     *
-     * @return Welcome message.
-     */
-    public String getWelcomeMessage() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        return "Hello from\n" + logo + "What can I do for you?";
-    }
-
-    /**
      * Returns a reply with the added task and the updated number of tasks in
      * the current list.
      *

@@ -90,51 +90,77 @@ public class Storage {
      */
     public ArrayList<Task> load() throws DukeException {
         File file = new File(this.filePath);
-        ArrayList<Task> tasks = new ArrayList<>(); // to be returned
+        ArrayList<Task> tasks = new ArrayList<>(); // To be returned
 
         try {
             Scanner sc = new Scanner(file);
 
             while (sc.hasNext()) {
                 String s = sc.nextLine();
-                String description;
-                char task = s.charAt(1);
-                char symbol = s.charAt(4);
-                boolean isDone = (symbol == 'X');
+                char typeOfTask = s.charAt(1);
+                char statusIcon = s.charAt(4);
+                boolean isDone = (statusIcon == 'X');
 
-                if (task == 'T') {
-                    description = s.substring(7);
-                    Task t = new Todo(description);
-                    if (isDone) {
-                        t.markAsDone();
-                    }
-                    tasks.add(t);
-                    continue;
+                switch (typeOfTask) {
+                case 'T':
+                    tasks.add(this.getTodo(s, isDone));
+                    break;
+                case 'D':
+                    tasks.add(this.getDeadline(s, isDone));
+                    break;
+                case 'E':
+                    tasks.add(this.getEvent(s, isDone));
+                    break;
+                default:
+                    assert false; // Execution should never reach this point!
                 }
-
-                description = s.substring(7, s.indexOf('(') - 1);
-                String time = s.substring(s.indexOf('(') + 5, s.indexOf(')'));
-                if (task == 'D') {
-                    Task t = new Deadline(description, time);
-                    if (isDone) {
-                        t.markAsDone();
-                    }
-                    tasks.add(t);
-                    continue;
-                }
-
-                if (task == 'E') {
-                    Task t = new Event(description, time);
-                    if (isDone) {
-                        t.markAsDone();
-                    }
-                    tasks.add(t);
-                }
-
             }
+
         } catch (FileNotFoundException e) {
             throw new DukeException();
         }
+
         return tasks;
+    }
+
+    private Task getTodo(String s, boolean isDone) {
+        Task t = new Todo(this.getTodoDescription(s));
+        if (isDone) {
+            t.markAsDone();
+        }
+        return t;
+    }
+
+    private Task getDeadline(String s, boolean isDone) {
+        Task t = new Deadline(this.getDescription(s), this.getTime(s));
+        if (isDone) {
+            t.markAsDone();
+        }
+        return t;
+    }
+
+    private Task getEvent(String s, boolean isDone) {
+        Task t = new Event(this.getDescription(s), this.getTime(s));
+        if (isDone) {
+            t.markAsDone();
+        }
+        return t;
+    }
+
+    private String getTodoDescription(String s) {
+        int desStartIndex = 7;
+        return s.substring(desStartIndex);
+    }
+
+    private String getDescription(String s) {
+        int desStartIndex = 7;
+        int desEndIndex = s.indexOf('(') - 1;
+        return s.substring(desStartIndex, desEndIndex);
+    }
+
+    private String getTime(String s) {
+        int timeStartIndex = s.indexOf('(') + 5;
+        int timeEndIndex = s.indexOf(')');
+        return s.substring(timeStartIndex, timeEndIndex);
     }
 }
