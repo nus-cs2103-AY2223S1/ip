@@ -9,6 +9,7 @@ public class Event extends Task {
 
     public Event(String desc, char taskType) {
         super(desc, taskType);
+        assert taskType == 'E';
         timing = getTiming(desc);
     }
 

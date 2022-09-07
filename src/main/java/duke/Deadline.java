@@ -10,6 +10,7 @@ public class Deadline extends Task {
 
     public Deadline(String desc, char taskType) {
         super(desc, taskType);
+        assert taskType == 'D';
         due = Parser.formatDate(desc);
     }
 
