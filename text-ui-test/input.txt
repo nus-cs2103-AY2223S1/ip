@@ -1,0 +1,16 @@
+event project meeting /at Aug 15th 3-4pm
+deadline coding project homework /by 16 Aug
+todo plan for next semester
+blah
+todo
+event party
+deadline /by 3pm
+mark 3
+mark 6
+list
+unmark 3
+mark
+delete 2
+delete
+list
+bye
