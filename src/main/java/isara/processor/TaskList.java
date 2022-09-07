@@ -76,4 +76,8 @@ public class TaskList {
     public int getNumberOfTasks() {
         return tasks.size();
     }
+
+    public void set(int taskIndex, Task task) {
+        tasks.set(taskIndex, task);
+    }
 }

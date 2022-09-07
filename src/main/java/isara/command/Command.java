@@ -6,8 +6,6 @@ import isara.exception.IsaraException;
 import isara.processor.TaskList;
 import isara.storage.Storage;
 
-
-
 /**
  * Class to represent commands.
  *
