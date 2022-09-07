@@ -8,10 +8,10 @@ public class Parser {
     static final String END_WORD = "bye";
 
     private static String endProgram(Storage storage, TaskList taskList) {
-
+        String unableToWriteMsg = "Unable to write the record";
         int exitCode = storage.writeResult(taskList);
         if (exitCode == -1) {
-            return Ui.processExceptionOutput("Unable to write the record") + Ui.bye();
+            return Ui.processExceptionOutput(unableToWriteMsg) + Ui.bye();
         }
         return Ui.bye();
     }

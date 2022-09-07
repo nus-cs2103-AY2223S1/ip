@@ -7,8 +7,9 @@ import java.util.ArrayList;
  * TaskList class to model list of Tasks and relevant operations.
  */
 public class TaskList {
+    static final String INVALID_COMMAND_MESSAGE = "Invalid Command";
     private ArrayList<Task> taskArrayList;
-    enum TaskEnum {
+    protected enum TaskEnum {
         Todo,
         Deadline,
         Event
@@ -41,11 +42,17 @@ public class TaskList {
         return LocalDate.parse(dateString);
     }
 
+    private void setIsDoneAndAddTask(Task task, boolean isDone) {
+        task.setDone(isDone);
+        this.addTask(task);
+    }
+
     /**
      * Reads pre-created records from the given line from the file
      * @param line string of pre-created record
      */
     protected void readPreCreatedTask(String line) {
+        String separator = " \\| ";
         Task curr;
         boolean isDone;
         LocalDate localDate;
@@ -53,27 +60,25 @@ public class TaskList {
         isDone = !(line.charAt(4) == '0');
         switch (line.substring(0, 1)) {
         case "T":
-            description = line.split("\\|", 3)[2];
+            // example: T | 0 | sleep1
+            description = line.split(separator, 3)[2];
             description = description.substring(1);
             curr = new Todo(description);
-            curr.setDone(isDone);
-            this.addTask(curr);
+            setIsDoneAndAddTask(curr, isDone);
             break;
         case "E":
-            description = line.split("\\|", 4)[2];
-            description = description.substring(1, description.length() - 1);
-            localDate = LocalDate.parse(line.split("\\|", 4)[3].substring(1));
+            // example: E | 0 | sleep2 | 2019-10-10
+            description = line.split(separator, 4)[2];
+            localDate = LocalDate.parse(line.split(separator, 4)[3]);
             curr = new Event(description, localDate);
-            curr.setDone(isDone);
-            this.addTask(curr);
+            setIsDoneAndAddTask(curr, isDone);
             break;
         case "D":
-            description = line.split("\\|", 4)[2];
-            description = description.substring(1, description.length() - 1);
-            localDate = LocalDate.parse(line.split("\\|", 4)[3].substring(1));
+            //example: D | 1 | sleep3 | 2019-10-10
+            description = line.split(separator, 4)[2];
+            localDate = LocalDate.parse(line.split(separator, 4)[3]);
             curr = new Deadline(description, localDate);
-            curr.setDone(isDone);
-            this.addTask(curr);
+            setIsDoneAndAddTask(curr, isDone);
             break;
         default:
             // unrecognized pre-created task
@@ -83,45 +88,57 @@ public class TaskList {
     private String createEvent(TaskEnum taskEnum, String command) throws DukeException {
         String[] args;
         Task taskToCreate;
+        String separator = "/";
+        String invalidInputMessage = "Invalid Input";
+        String outputMessage = "Got it. I've added this task:\n";
+
         switch (taskEnum) {
         case Todo:
+            // example: borrow book
             taskToCreate = new Todo(command);
             break;
 
         case Deadline:
-            args = command.split("/", 2);
+            // example: return book /by Sunday
+            args = command.split(separator, 2);
             if (args.length != 2) {
-                throw new DukeException("Invalid Input");
+                throw new DukeException(invalidInputMessage);
             }
             taskToCreate = new Deadline(args[0].trim(), TaskList.parseString2LocalDate(args[1].substring(3)));
             break;
 
         case Event:
-            args = command.split("/", 2);
+            // example: project meeting /at Mon 2-4pm
+            args = command.split(separator, 2);
             if (args.length != 2) {
-                throw new DukeException("Invalid Input");
+                throw new DukeException(invalidInputMessage);
             }
             taskToCreate = new Event(args[0].trim(), TaskList.parseString2LocalDate(args[1].substring(3)));
             break;
 
         default:
-            throw new DukeException("Invalid Input");
+            throw new DukeException(invalidInputMessage);
         }
         this.addTask(taskToCreate);
-        return Ui.formatPrint("Got it. I've added this task:\n" + taskToCreate);
+        return Ui.formatPrint(outputMessage + taskToCreate);
     }
 
     private String handleDelete(String indexStr) throws DukeException {
+        String[] outputMessage = new String[]{
+            "Noted. I've removed this task:\n",
+            "Now you have ",
+            " tasks in the list."
+        };
         int index;
         try {
             index = Integer.parseInt(indexStr) - 1;
         } catch (NumberFormatException e) {
-            throw new DukeException("Invalid command");
+            throw new DukeException(INVALID_COMMAND_MESSAGE);
         }
         Task curr = this.taskArrayList.get(index);
         this.remove(index);
-        return Ui.formatPrint("Noted. I've removed this task:\n" + curr.toString()
-                + "Now you have " + this.taskArrayList.size() + " tasks in the list.");
+        return Ui.formatPrint(outputMessage[0] + curr.toString()
+                + outputMessage[1] + this.taskArrayList.size() + outputMessage[2]);
     }
 
     private void addTask(Task t) {
@@ -144,22 +161,24 @@ public class TaskList {
     }
 
     private String handleMarkDoneUndone(String[] command) throws DukeException {
-
+        String[] actions = new String[] {"mark", "unmark"};
         int index = Integer.parseInt(command[1]) - 1;
         if (index < 0 || index > this.taskArrayList.size() - 1) {
-            throw new DukeException("Invalid command");
+            throw new DukeException(INVALID_COMMAND_MESSAGE);
         }
         Task curr = this.taskArrayList.get(index);
-        if (command[0].equals("mark")) {
+        if (command[0].equals(actions[0])) {
             if (!curr.isDone) {
                 curr.isDone = true;
             }
             return Ui.taskStateChangePrint(curr, true);
-        } else { // command [0].equals("unmark")
+        } else if (command[0].equals(actions[1])) {
             if (curr.isDone) {
                 curr.isDone = false;
             }
             return Ui.taskStateChangePrint(curr, false);
+        } else {
+            throw new DukeException(INVALID_COMMAND_MESSAGE);
         }
     }
 
@@ -182,7 +201,8 @@ public class TaskList {
         String[] arguments = args.split(" ", 2);
         try {
             switch (arguments[0]) {
-            case "mark": // flow through
+            case "mark":
+                // fall through
             case "unmark":
                 return this.handleMarkDoneUndone(arguments);
             case "delete":
@@ -200,13 +220,11 @@ public class TaskList {
                 } else {
                     return Ui.processUnfoundResult();
                 }
-
-
             default:
-                throw new DukeException("Unable to parse query");
+                throw new DukeException(INVALID_COMMAND_MESSAGE);
             }
         } catch (DukeException e) {
-            throw new DukeException("Unable to process query");
+            throw new DukeException(INVALID_COMMAND_MESSAGE);
         }
     }
 }

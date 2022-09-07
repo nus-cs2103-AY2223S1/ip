@@ -39,6 +39,18 @@ class Storage {
         }
     }
 
+    private void writeFile(ArrayList<Task> arrayList, File dest) {
+        try {
+            FileWriter fw = new FileWriter(dest);
+
+            for (Task t : arrayList) {
+                fw.write(t.toStorageString() + "\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            Ui.formatPrint("Fail to write file.");
+        }
+    }
     /**
      * Writes the task list result to the file.
      *
@@ -56,19 +68,10 @@ class Storage {
             dest.mkdir();
         }
 
-        File file = new File(filePath);
+        File destination = new File(filePath);
         ArrayList<Task> arrayList = taskList.getTaskArrayList();
-        try {
-            FileWriter fw = new FileWriter(file);
+        writeFile(arrayList, destination);
 
-            for (Task t : arrayList) {
-                fw.write(t.toStorageString() + "\n");
-            }
-            fw.close();
-        } catch (IOException e) {
-            Ui.formatPrint("Fail to write file.");
-            return -1;
-        }
         return 0;
     }
 }

@@ -29,14 +29,16 @@ class Ui {
      * @param taskList the list of tasks
      */
     protected static String listPrint(TaskList taskList) {
+        String opening = "Here are the tasks in your list:\n";
+        String[] separators = new String[] {"\n", ". "};
         ArrayList<Task> arr = taskList.getTaskArrayList();
         int count = 1;
-        String result = "Here are the tasks in your list:\n";
+        String result = opening;
         for (Task t : arr) {
             if (count != 1) {
-                result += "\n";
+                result += separators[0];
             }
-            result += "    " + count + ". " + t.toString();
+            result += count + separators[1] + t.toString();
             count++;
         }
         return Ui.formatPrint(result);
@@ -76,11 +78,13 @@ class Ui {
      * @return result string to be displayed to user
      */
     protected static String taskStateChangePrint(Task t, boolean isDone) {
+        String successMsg = "Nice! I've marked this task as done:\n";
+        String failMsg = "OK, I've marked this task as not done yet:\n";
         String res;
         if (isDone) {
-            res = "Nice! I've marked this task as done:\n";
+            res = successMsg;
         } else {
-            res = "OK, I've marked this task as not done yet:\n";
+            res = failMsg;
         }
         return Ui.formatPrint(res + t.toString());
     }
@@ -94,7 +98,7 @@ class Ui {
     protected static String processExceptionOutput(String msg) {
         switch (msg) {
         case "Unable to parse query":
-            // flow through
+            // fall through
         case "Unable to process query":
             return Ui.formatPrint(ERROR_PROCESS_MESSAGE);
         case "Unable to write the record":
