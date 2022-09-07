@@ -11,17 +11,16 @@ import utility.Parser;
  * find operation on TaskList.
  */
 public class FindCommand extends Command {
+    private String[] slicedUserCommands;
 
-    private String actualCommandUsedToInvoke;
-
-    public FindCommand(String actualCommandUsed) {
-        this.actualCommandUsedToInvoke = actualCommandUsed;
+    public FindCommand(String[] slicedUserInput) {
+        this.slicedUserCommands = slicedUserInput;
     }
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
         String findString = Parser.stringToFind(ui.getCurrentInput());
         TaskList matchedTasks = taskList.findTasks(findString);
-        ListCommand listCommand = new ListCommand("list");
+        ListCommand listCommand = new ListCommand(new String[] {"list"});
         listCommand.execute(matchedTasks, ui, storage);
     }
 }

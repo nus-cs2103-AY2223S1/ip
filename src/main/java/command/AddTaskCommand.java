@@ -11,10 +11,10 @@ import utility.Parser;
  * Command that handles adding Task to TaskList and Storage.
  */
 public class AddTaskCommand extends Command {
-    private String actualCommandUsedToInvoke;
+    private String[] slicedUserCommands;
 
-    public AddTaskCommand(String actualCommandUsed) {
-        this.actualCommandUsedToInvoke = actualCommandUsed;
+    public AddTaskCommand(String[] slicedUserInput) {
+        this.slicedUserCommands = slicedUserInput;
     }
     /**
      * Runs when task is to be added.

@@ -12,11 +12,10 @@ import utility.Parser;
  * Returns true if the task is due today.
  */
 public class CheckIsTodayCommand extends Command {
+    private String[] slicedUserCommands;
 
-    private String actualCommandUsedToInvoke;
-
-    public CheckIsTodayCommand(String actualCommandUsed) {
-        this.actualCommandUsedToInvoke = actualCommandUsed;
+    public CheckIsTodayCommand(String[] slicedUserInput) {
+        this.slicedUserCommands = slicedUserInput;
     }
     /**
      * Checks if task at index n in taskList

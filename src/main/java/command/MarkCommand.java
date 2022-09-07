@@ -11,10 +11,10 @@ import utility.Parser;
  * status in TaskList and Storage.
  */
 public class MarkCommand extends Command {
-    private String actualCommandUsedToInvoke;
+    private String[] slicedUserCommands;
 
-    public MarkCommand(String actualCommandUsed) {
-        this.actualCommandUsedToInvoke = actualCommandUsed;
+    public MarkCommand(String[] slicedUserInput) {
+        this.slicedUserCommands = slicedUserInput;
     }
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {

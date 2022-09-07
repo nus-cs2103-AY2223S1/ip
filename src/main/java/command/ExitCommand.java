@@ -9,10 +9,10 @@ import ui.UI;
  * Causes program to terminate.
  */
 public class ExitCommand extends Command {
-    private String actualCommandUsedToInvoke;
+    private String[] slicedUserCommands;
 
-    public ExitCommand(String actualCommandUsed) {
-        this.actualCommandUsedToInvoke = actualCommandUsed;
+    public ExitCommand(String[] slicedUserInput) {
+        this.slicedUserCommands = slicedUserInput;
     }
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {

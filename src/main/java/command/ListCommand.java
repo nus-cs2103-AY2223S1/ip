@@ -9,11 +9,10 @@ import ui.UI;
  * Lists all tasks in TaskList.
  */
 public class ListCommand extends Command {
+    private String[] slicedUserCommands;
 
-    private String actualCommandUsedToInvoke;
-
-    public ListCommand(String actualCommandUsed) {
-        this.actualCommandUsedToInvoke = actualCommandUsed;
+    public ListCommand(String[] slicedUserInput) {
+        this.slicedUserCommands = slicedUserInput;
     }
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {

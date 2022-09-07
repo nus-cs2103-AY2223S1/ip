@@ -10,11 +10,10 @@ import utility.Parser;
  * Deletes task.
  */
 public class DeleteTaskCommand extends Command {
+    private String[] slicedUserCommands;
 
-    private String actualCommandUsedToInvoke;
-
-    public DeleteTaskCommand(String actualCommandUsed) {
-        this.actualCommandUsedToInvoke = actualCommandUsed;
+    public DeleteTaskCommand(String[] slicedUserInput) {
+        this.slicedUserCommands = slicedUserInput;
     }
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
