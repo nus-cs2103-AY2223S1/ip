@@ -53,6 +53,11 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        String formattedDate = this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+
+        // Basic task representation, mark status and task description (e.g. [X] sleep).
+        String basicDescription = super.toString();
+
+        return "[E]" + basicDescription + " (at: " + formattedDate + ")";
     }
 }
