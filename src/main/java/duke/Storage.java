@@ -71,30 +71,33 @@ public class Storage {
             sc = new Scanner(file);
             while (sc.hasNextLine()) {
                 String taskString = sc.nextLine();
-                if (taskString.isBlank()) {
-                    continue;
-                }
-                String[] taskElements = taskString.split(" \\| ");
-                boolean isTaskDone = taskElements[1].equals("1");
-
-                switch (taskElements[0]) {
-                case "T":
-                    taskList.add(new ToDo(taskElements[2], isTaskDone));
-                    break;
-                case "D":
-                    taskList.add(new Deadline(taskElements[2], taskElements[3], isTaskDone));
-                    break;
-                case "E":
-                    taskList.add(new Event(taskElements[2], taskElements[3], isTaskDone));
-                    break;
-                default:
-                    break;
+                if (!taskString.isBlank()) {
+                    stringToTask(taskString, taskList);
                 }
             }
             sc.close();
             return taskList;
         } catch (FileNotFoundException e) {
             throw new DukeException("You don't have any previously saved tasks!");
+        }
+    }
+    
+    private void stringToTask(String str, ArrayList<Task> taskList) {
+        String[] taskElements = str.split(" \\| ");
+        boolean isTaskDone = taskElements[1].equals("1");
+
+        switch (taskElements[0]) {
+        case "T":
+            taskList.add(new ToDo(taskElements[2], isTaskDone));
+            break;
+        case "D":
+            taskList.add(new Deadline(taskElements[2], taskElements[3], isTaskDone));
+            break;
+        case "E":
+            taskList.add(new Event(taskElements[2], taskElements[3], isTaskDone));
+            break;
+        default:
+            break;
         }
     }
 
