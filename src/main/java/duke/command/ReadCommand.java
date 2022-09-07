@@ -24,11 +24,11 @@ public class ReadCommand extends Command {
      */
     @Override
     public String execute(Duke duke) {
-        TaskList taskList = duke.getTaskList();
         MessagePrinter messagePrinter = duke.getMessagePrinter();
         Storage storage = duke.getStorage();
-        duke.setTaskList(Parser.parseTaskList(storage.read()));
-        int size = taskList.size();
+        TaskList newTaskList = Parser.parseTaskList(storage.read());
+        duke.setTaskList(newTaskList);
+        int size = newTaskList.size();
         String temp = size == 1 ? "task has" : "tasks have";
         return messagePrinter.printMessage("Your " + size + " " + temp + " been loaded successfully\n"
                 + "Type [list] to view your tasks");
