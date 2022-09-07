@@ -14,29 +14,29 @@ Description of the feature.
 
 ### `add` - Add a new task to your task list.
 
-      There are 3 tpyes of tasks: todo, deadline, and event.
+- There are 3 tpyes of tasks: todo, deadline, and event.
 
-      Examples of adding tasks:
+  Examples of adding tasks:
 
-         `add todo todo_name`
+  - `add todo todo_name`
 
-         `add deadline deadline_name /by YYYY/MM/DD`
+  - `add deadline deadline_name /by YYYY/MM/DD`
 
-         `add event event_name /at YYYY/MM/DD`
+  - `add event event_name /at YYYY/MM/DD`
 
-      Expected outcome:
+- Expected outcome:
 
-      Add the respective tasks into the task list.
+  - Add the respective tasks into the task list.
 
-      _Dates must follow the YYYY/MM/DD format_
+  _Dates must follow the YYYY/MM/DD format_
 
 ### `list` - List all of the tasks in your task list.
 
-Example of listing tasks:
+- Example of listing tasks:
 
-`list`
+  - `list`
 
-Expected outcome:
+- Expected outcome:
 
 A list of tasks.
 
