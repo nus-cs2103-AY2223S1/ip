@@ -3,6 +3,8 @@ package duke.task;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,11 +15,13 @@ public class DeadlineTest {
         Deadline deadline = new Deadline();
 
         deadline.setText("Test toString");
-        deadline.setDetails(LocalDate.of(2022, 8, 23));
-        assertEquals(deadline.toString(), "[D][ ] Test toString (by: Tuesday, 23 August 2022)");
+        LocalDate date = LocalDate.of(2022, 8, 23);
+        deadline.setDetails(date);
+        String dateString = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
+        assertEquals(deadline.toString(), "[D][ ] Test toString (by: " + dateString + ")");
 
         deadline.setComplete(true);
-        assertEquals(deadline.toString(), "[D][X] Test toString (by: Tuesday, 23 August 2022)");
+        assertEquals(deadline.toString(), "[D][X] Test toString (by: " + dateString + ")");
     }
 
     @Test
