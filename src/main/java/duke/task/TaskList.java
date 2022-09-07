@@ -1,6 +1,11 @@
-package duke;
+package duke.task;
 
 import java.util.ArrayList;
+
+import duke.Storage;
+import duke.Ui;
+import duke.exception.DukeException;
+import duke.exception.IndexOutOfBoundsException;
 
 /**
  * A class containing the list of tasks
@@ -48,7 +53,7 @@ public class TaskList {
     public String delete(int index) throws DukeException {
         //Index out of bounds
         if (index > taskList.size() || index < 1) {
-            throw new DukeException("Index Is Not Valid");
+            throw new IndexOutOfBoundsException();
         }
         //get the selected task
         Task task = taskList.get(index - 1);
@@ -70,7 +75,7 @@ public class TaskList {
     public String mark(int index) throws DukeException {
         //Index out of bounds
         if (index > taskList.size() || index < 1) {
-            throw new DukeException("Index Is Not Valid");
+            throw new IndexOutOfBoundsException();
         }
         //get the selected task
         Task task = taskList.get(index - 1);
@@ -90,7 +95,7 @@ public class TaskList {
     public String unmark(int index) throws DukeException {
         //Index out of bounds
         if (index > taskList.size() || index < 1) {
-            throw new DukeException("Index Is Not Valid");
+            throw new IndexOutOfBoundsException();
         }
         //get the selected task
         Task task = taskList.get(index - 1);

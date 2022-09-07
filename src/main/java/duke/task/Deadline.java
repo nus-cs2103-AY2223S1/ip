@@ -1,6 +1,9 @@
-package duke;
+package duke.task;
 
 import java.time.LocalDate;
+
+import duke.Parser;
+import duke.exception.DukeException;
 
 /**
  * Class containing information regarding
@@ -9,7 +12,7 @@ import java.time.LocalDate;
  * @author Elbert Benedict
  */
 public class Deadline extends Task {
-    private static final String TYPE_SYMBOL = "[D]";
+    public static final String TYPE_SYMBOL = "[D]";
     private LocalDate deadline;
 
     /**
