@@ -86,6 +86,7 @@ public class Duke {
             response = this.ui.getGoodbyeMessage();
             break;
         default:
+            assert action.equals("U") : action;
             response = this.ui.getUnknownInputError();
         }
 
