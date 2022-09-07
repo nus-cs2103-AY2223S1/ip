@@ -7,10 +7,20 @@ import duke.task.TaskList;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a event command.
+ */
 public class EventCommand extends Command {
     private String taskDescription;
     private LocalDate at;
 
+    /**
+     * Creates an event command.
+     *
+     * @param taskDescription description of task
+     * @param at date of task
+     * @throws DukeException if date has wrong format
+     */
     public EventCommand(String taskDescription, String at) throws DukeException {
         try {
             this.taskDescription = taskDescription;

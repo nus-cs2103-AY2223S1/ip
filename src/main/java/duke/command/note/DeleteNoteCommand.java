@@ -1,10 +1,14 @@
-package duke.command;
+package duke.command.note;
 
+import duke.command.Command;
 import duke.exception.DukeException;
 import duke.task.TaskList;
 
+/**
+ * Represents a delete note command
+ */
 public class DeleteNoteCommand extends Command {
-    int index;
+    private int index;
 
     public DeleteNoteCommand(int index) {
         this.index = index;

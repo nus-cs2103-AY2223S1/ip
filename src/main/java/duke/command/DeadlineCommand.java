@@ -7,10 +7,20 @@ import duke.task.TaskList;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-public class DeadlineCommand extends Command{
+/**
+ * Represents a deadline command.
+ */
+public class DeadlineCommand extends Command {
     private String taskDescription;
     private LocalDate by;
 
+    /**
+     * Creates a deadline command.
+     *
+     * @param taskDescription description of task
+     * @param by deadline of task
+     * @throws DukeException if date has wrong format
+     */
     public DeadlineCommand(String taskDescription, String by) throws DukeException {
         try {
             this.taskDescription = taskDescription;

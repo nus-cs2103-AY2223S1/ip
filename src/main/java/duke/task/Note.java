@@ -1,5 +1,8 @@
 package duke.task;
 
+/**
+ * Represents a <code>Note</code>.
+ */
 public class Note extends Task {
     private String note;
     /**

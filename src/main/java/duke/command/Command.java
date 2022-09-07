@@ -3,6 +3,9 @@ package duke.command;
 import duke.exception.DukeException;
 import duke.task.TaskList;
 
+/**
+ * Represents a command
+ */
 public abstract class Command {
 
     /**

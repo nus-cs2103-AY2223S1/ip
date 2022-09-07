@@ -4,8 +4,6 @@ import duke.task.Note;
 import duke.task.Task;
 import duke.task.TaskList;
 
-import java.util.Scanner;
-
 /**
  * Represents the user interface for Duke.
  */
@@ -33,11 +31,10 @@ public abstract class Ui {
     public static String printTaskList(TaskList taskList) {
         String header;
         if (taskList.isEmpty()) {
-            header = "You have no tasks in your list.";
+            return "OOPS! Nothing to see here";
         } else {
-            header = "My List :>";
+            return taskList.toString();
         }
-        return header + "\n" + taskList;
     }
 
     /**

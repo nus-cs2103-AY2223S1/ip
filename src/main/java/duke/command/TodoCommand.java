@@ -4,9 +4,17 @@ import duke.exception.DukeException;
 import duke.task.TaskList;
 import duke.task.Todo;
 
+/**
+ * Represents a todo command
+ */
 public class TodoCommand extends Command {
     private String taskDescription;
 
+    /**
+     * Creates an task command.
+     *
+     * @param taskDescription description of task being created
+     */
     public TodoCommand(String taskDescription) {
         this.taskDescription = taskDescription;
     }

@@ -1,9 +1,12 @@
 package duke.command;
 
-import duke.exception.DukeException;
 import duke.Ui;
+import duke.exception.DukeException;
 import duke.task.TaskList;
 
+/**
+ * Represents a exit duke command
+ */
 public class ExitCommand extends Command {
 
     /**

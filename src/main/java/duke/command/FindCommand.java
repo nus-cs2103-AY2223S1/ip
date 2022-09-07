@@ -3,9 +3,17 @@ package duke.command;
 import duke.exception.DukeException;
 import duke.task.TaskList;
 
+/**
+ * Represents a find command.
+ */
 public class FindCommand extends Command {
-    String keyword;
+    private String keyword;
 
+    /**
+     * Creates an find command.
+     *
+     * @param keyword keyword used to search through <code>TaskList</code>
+     */
     public FindCommand(String keyword) {
         this.keyword = keyword;
     }

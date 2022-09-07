@@ -6,8 +6,8 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import duke.exception.DukeException;
 import duke.Ui;
+import duke.exception.DukeException;
 
 /**
  * Represents a list of <code>Task</code> objects.
@@ -49,6 +49,8 @@ public class TaskList {
                     Note note = new Note(taskDescription);
                     notes.add(note);
                     break;
+                default:
+                    throw new DukeException("Error is loading saved data!");
                 }
             }
         } catch (FileNotFoundException e) {
@@ -56,6 +58,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * @param newTask new task being added to <code>TaskList</code>
+     * @return successful task creation message
+     */
     public String addTask(Task newTask) {
         tasks.add(newTask);
         return Ui.printTaskCreationMessage(newTask, tasks.size());
@@ -75,6 +81,10 @@ public class TaskList {
         return Ui.printTaskDeletionMessage(deletedTask, tasks.size());
     }
 
+    /**
+     * @param newNote new note being added to <code>TaskList</code>
+     * @return successful note creation message
+     */
     public String addNote(Note newNote) {
         notes.add(newNote);
         return Ui.printTaskCreationMessage(newNote, notes.size());
@@ -166,6 +176,11 @@ public class TaskList {
         return Ui.printTaskSearch(match.toString());
     }
 
+    /**
+     * Returns a string representation of tasks in the <code>TaskList</code>
+     *
+     * @return a string representation of tasks in the <code>TaskList</code>
+     */
     public String tasksToString() {
         StringBuilder strTasks = new StringBuilder().append("Tasks\n");
         if (tasks.isEmpty()) {
@@ -179,6 +194,11 @@ public class TaskList {
         return strTasks.toString();
     }
 
+    /**
+     * Returns a string representation of notes in the <code>TaskList</code>
+     *
+     * @return a string representation of notes in the <code>TaskList</code>
+     */
     public String notesToString() {
         StringBuilder strNotes = new StringBuilder().append("Notes\n");
         if (notes.isEmpty()) {

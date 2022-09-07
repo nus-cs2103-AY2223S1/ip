@@ -3,9 +3,17 @@ package duke.command;
 import duke.exception.DukeException;
 import duke.task.TaskList;
 
+/**
+ * Represents a unmark task command
+ */
 public class UnmarkCommand extends Command {
-    int index;
+    private int index;
 
+    /**
+     * Creates an unmark task command.
+     *
+     * @param index index of task to be unmarked
+     */
     public UnmarkCommand(int index) {
         this.index = index;
     }

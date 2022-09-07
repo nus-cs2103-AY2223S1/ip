@@ -1,9 +1,13 @@
-package duke.command;
+package duke.command.note;
 
+import duke.command.Command;
 import duke.exception.DukeException;
 import duke.task.Note;
 import duke.task.TaskList;
 
+/**
+ * Represents a add note command
+ */
 public class AddNoteCommand extends Command {
     private String note;
 

@@ -3,9 +3,17 @@ package duke.command;
 import duke.exception.DukeException;
 import duke.task.TaskList;
 
+/**
+ * Represents a delete command.
+ */
 public class DeleteCommand extends Command {
-    int index;
+    private int index;
 
+    /**
+     * Creates a delete command.
+     *
+     * @param index index of task to be deleted from <code>TaskList</code>
+     */
     public DeleteCommand(int index) {
         this.index = index;
     }
