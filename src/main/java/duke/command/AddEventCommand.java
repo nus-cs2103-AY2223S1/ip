@@ -25,7 +25,10 @@ public class AddEventCommand extends Command { //Creating an duke.Event duke.Tas
         Task event = new Event(this.description, this.isDone, this.date);
         taskList.addTask(event);
         storage.saveData(taskList);
-        if (!storage.checkIsLoadingFile()) { UI.added(event); }
+        if (!storage.checkIsLoadingFile()) {
+            UI.added(event);
+            response = UI.addedResponse(event);
+        }
     }
 
 }

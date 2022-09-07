@@ -41,7 +41,7 @@ public class Task {
     public String added() {
         return String.format("New task added:\n" +
                 "  %s\n" +
-                "Now you have %d tasks in the list.\n", this, Task.getTaskCount());
+                "Now you have %d tasks in the list.", this, Task.getTaskCount());
     }
 
     public String toString() {

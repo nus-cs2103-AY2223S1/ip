@@ -15,6 +15,7 @@ public class ListCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Storage storage) throws DukeException {
+        this.response = UI.listResponse(taskList);
         UI.list(taskList);
     }
 }

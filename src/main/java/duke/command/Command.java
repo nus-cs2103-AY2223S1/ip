@@ -14,6 +14,8 @@ public abstract class Command {
 
     private boolean isByeCommand = false;
 
+    protected String response;
+
     public boolean isByeCommand() {
         return isByeCommand;
     }
@@ -22,5 +24,8 @@ public abstract class Command {
         isByeCommand = true;
     }
 
+    public String getResponse() { return response; };
+
     public abstract void execute(TaskList taskList, Storage storage) throws DukeException;
+
 }

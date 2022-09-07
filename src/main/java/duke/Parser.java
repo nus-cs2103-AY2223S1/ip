@@ -2,9 +2,14 @@ package duke;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 import duke.command.*;
+import org.yaml.snakeyaml.util.ArrayUtils;
 
 /**
  * Parser class to parse texts into commands.
@@ -17,14 +22,16 @@ public class Parser {
     public static Command parseTodo(String desc) throws DukeException {
         Scanner sc = new Scanner(desc);
         if (!sc.hasNext()) {
-            throw new DukeException("OOPS!! duke.ToDo description should not be empty!");
-        } else {
-            return new AddCommand(desc, false);
+            return new ResponseCommand("OOPS!! ToDo description should not be empty!");
         }
+        return new AddCommand(desc, false);
     }
 
     public static Command parseDeadline(String desc) throws DukeException {
         Scanner scanner = new Scanner(desc);
+        if (!scanner.hasNext()) {
+            return new ResponseCommand("OOPS!! Deadline description should not be empty!");
+        }
         String description = "";
         String date = "";
         while (!scanner.hasNext("/by")) {
@@ -37,6 +44,9 @@ public class Parser {
 
     public static Command parseEvent(String desc) throws DukeException {
         Scanner scanner = new Scanner(desc);
+        if (!scanner.hasNext()) {
+            return new ResponseCommand("OOPS!! Event description should not be empty!");
+        }
         String description = "";
         String date = "";
         while (!scanner.hasNext("/at")) {
@@ -48,40 +58,59 @@ public class Parser {
     }
 
     public static Command parseMarkAsDone(String desc) throws DukeException{
-        Scanner scanner = new Scanner(desc);
-        if (!scanner.hasNextInt()) {
-            throw new DukeException("OOPS!! Please enter a valid task number to mark!");
+        String[] taskNosString = desc.split("\\s*,\\s*");
+        if (taskNosString[0] == "") {
+            return new ResponseCommand("OOPS!! Please enter the task number(s) you want to mark!");
         }
-        int taskNo = scanner.nextInt();
-        if (taskNo < 0 || taskNo >= Task.getTaskCount()) {
-            throw new DukeException("OOPS!! Please enter a valid task number to mark!");
+        int[] taskNosInt = new int[taskNosString.length];
+        int currIndex = 0;
+        for (String string : taskNosString) {
+            int taskNo = Integer.valueOf(string) - 1;
+            if (taskNo <= 0 || taskNo >= Task.getTaskCount()) {
+                return new ResponseCommand("Task number " + (taskNo + 1) + " does not exist.");
+            }
+            taskNosInt[currIndex] = taskNo;
+            currIndex++;
         }
-        return new MarkAsDoneCommand(taskNo);
+        return new MarkAsDoneCommand(taskNosInt);
     }
 
     public static Command parseMarkAsUndone(String desc) throws DukeException{
-        Scanner scanner = new Scanner(desc);
-        if (!scanner.hasNextInt()) {
-            throw new DukeException("OOPS!! Please enter a valid task number to unmark!");
+        String[] taskNosString = desc.split("\\s*,\\s*");
+        if (taskNosString[0] == "") {
+            return new ResponseCommand("OOPS!! Please enter the task number(s) you want to unmark!");
         }
-        int taskNo = scanner.nextInt();
-        if (taskNo < 0 || taskNo >= Task.getTaskCount()) {
-            throw new DukeException("OOPS!! Please enter a valid task number to unmark!");
+        int[] taskNosInt = new int[taskNosString.length];
+        int currIndex = 0;
+        for (String string : taskNosString) {
+            int taskNo = Integer.valueOf(string) - 1;
+            if (taskNo < 0 || taskNo >= Task.getTaskCount()) {
+                return new ResponseCommand("OOPS!! Task number " + (taskNo + 1) + " does not exist.");
+            }
+            taskNosInt[currIndex] = taskNo;
+            currIndex++;
         }
-        return new MarkAsUndoneCommand(taskNo);
+        return new MarkAsUndoneCommand(taskNosInt);
 
     }
 
-    public static Command parseDelete(String desc) throws DukeException {
-        Scanner scanner = new Scanner(desc);
-        if (!scanner.hasNextInt()) {
-            throw new DukeException("OOPS!! Please enter a valid task number to delete!");
+    public static Command parseDelete(String desc) {
+        String[] taskNosString = desc.split(",");
+        if (taskNosString[0] == "") {
+            return new ResponseCommand("OOPS!! Please enter the task number you would like to delete!");
         }
-        int taskNo = scanner.nextInt();
-        if (taskNo < 0 || taskNo >= Task.getTaskCount()) {
-            throw new DukeException("OOPS!! Please enter a valid task number to delete!");
+        int[] taskNosInt = new int[taskNosString.length];
+        int currIndex = 0;
+        for (String string : taskNosString) {
+            int taskNo = Integer.valueOf(string) - 1;
+            System.out.println(taskNo);
+            if (taskNo < 0 || taskNo >= Task.getTaskCount()) {
+                return new ResponseCommand("OOPS!! Task number " + (taskNo + 1) + " does not exist.");
+            }
+            taskNosInt[currIndex] = taskNo;
+            currIndex++;
         }
-        return new DeleteCommand(taskNo);
+        return new DeleteCommand(taskNosInt);
     }
 
     public static Command parseFind(String desc) {
@@ -92,6 +121,7 @@ public class Parser {
         LocalDate localDate = LocalDate.parse(date.trim());
         String formatDate = localDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
         return formatDate;
+
     }
 
     public static Command parse(String rawCommand) throws DukeException {
@@ -131,7 +161,7 @@ public class Parser {
                 return Parser.parseFind(desc);
 
             default:
-                throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                return new InvalidCommand();
         }
     }
 
@@ -154,7 +184,7 @@ public class Parser {
                 date = words[3];
                 return new AddEventCommand(description, isDone, date);
             default :
-                throw new DukeException("File may be corrupted");
+                return new ResponseCommand("OOPS!!! File may be corrupted, please delete file and try again!");
         }
     }
 }
