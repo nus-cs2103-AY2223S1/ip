@@ -101,6 +101,9 @@ public class Command {
             case FIND:
                 response += findTask(fullCommand);
                 break;
+            default:
+                response = "I am sorry, I do not comprehend such commands. Please Try again...";
+
         }
         return response;
     }
