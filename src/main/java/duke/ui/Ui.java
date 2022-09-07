@@ -89,4 +89,8 @@ public class Ui {
         }
         return str;
     }
+
+    public String printUpdateMessage(Task task) {
+        return "Fickle-minded as usual. I've update this task:\n" + task.toString();
+    }
 }

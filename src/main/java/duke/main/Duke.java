@@ -125,6 +125,34 @@ public class Duke {
                 TaskList relatedTasks = tasks.findRelatedTask(keyword);
                 return ui.printFindMessage(relatedTasks);
             }
+            //update a task
+            case "update": {
+                int updateValue = parser.getTaskNumber();
+                boolean isWithinTaskSize = updateValue > tasks.getSize();
+                boolean isGreaterThanZero = updateValue <= 0;
+                if (isWithinTaskSize || isGreaterThanZero) {
+                    throw new DukeException("The update value does not exist dummy!");
+                }
+
+                Task task = tasks.getTask(updateValue);
+
+                boolean hasUpdateDateClause = parser.hasUpdateDateClause();
+                if (hasUpdateDateClause && task.getTaskType().equals("E")) {
+                    LocalDate updatedDate = parser.getEventDate();
+                    task.updateDate(updatedDate);
+                } else if (hasUpdateDateClause && task.getTaskType().equals("D")) {
+                    LocalDate updatedDate = parser.getDeadlineDate();
+                    task.updateDate(updatedDate);
+                }
+
+                boolean hasUpdateDescClause = parser.hasUpdateDescClause();
+                if (hasUpdateDescClause) {
+                    String updatedDescription = parser.getUpdatedDescription();
+                    task.updateTask(updatedDescription);
+                }
+
+                return ui.printUpdateMessage(task);
+            }
             //unknown input
             default:
                 return ui.printUnknownMessage();

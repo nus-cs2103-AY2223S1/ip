@@ -35,7 +35,7 @@ public class TaskList {
      * @return Task at the index
      */
     public Task getTask(int index) {
-        //-1 because of 0 indexing
+        //-1 to index because of 0 indexing
         return list.get(index - 1);
     }
 
