@@ -64,6 +64,7 @@ public class Storage {
                 //Uncomment to see how the file contents are parsed as arrays.
                 //System.out.println(arl.toString());
                 String taskType = arl.get(1);
+                assert taskType != null : "A task type loaded from the save file should not be null";
                 boolean isDone;
                 if (arl.get(2).equals("X")) {
                     isDone = true;
