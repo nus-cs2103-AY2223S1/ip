@@ -1,12 +1,15 @@
 package duke.command;
 
+import java.util.Stack;
+
 import duke.Duke;
 import duke.exception.DukeRuntimeException;
 import duke.util.MessagePrinter;
 import duke.util.TaskList;
 
-import java.util.Stack;
-
+/**
+ * Represents a Command to revert the command executed in Duke.
+ */
 public class UndoCommand extends Command {
     /**
      * The constructor of the Class.

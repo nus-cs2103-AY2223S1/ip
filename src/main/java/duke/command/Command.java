@@ -140,7 +140,7 @@ public abstract class Command {
 
     /**
      * A public static factory method to return a UndoCommand.
-     * @return The FindCommand
+     * @return The UndoCommand
      */
     public static UndoCommand undo() {
         return new UndoCommand();
