@@ -40,6 +40,7 @@ public class TaskList {
      * @param taskNumber Index of the task to be marked.
      */
     public void setTaskMarked(int taskNumber) {
+        assert tasks != null;
         tasks.get(taskNumber).setCompleted();
     }
 
@@ -53,6 +54,7 @@ public class TaskList {
      * @param taskNumber Index of the task to be unmarked.
      */
     public void setTaskUnmarked(int taskNumber) {
+        assert tasks != null;
         tasks.get(taskNumber).setIncomplete();
     }
 
@@ -89,6 +91,7 @@ public class TaskList {
      * @param taskIndex Index which the task is to be removed.
      */
     public void removeTask(int taskIndex) {
+        assert tasks != null;
         this.tasks.remove(taskIndex);
         this.taskCount--;
     }

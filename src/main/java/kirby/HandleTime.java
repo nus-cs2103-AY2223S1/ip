@@ -38,6 +38,7 @@ public class HandleTime {
      * @return Array of the date in the form of [dd, mm, yyyy].
      */
     public static int[] fromStringToDate(String input) {
+        assert input != null;
         String[] parts = input.split("-");
         if (parts.length != VALID_DATE_LENGTH) {
             return INVALID_DATE_ARR;
@@ -55,10 +56,11 @@ public class HandleTime {
      * @param input Date that the chosen tasks should correspond to.
      * @return List of tasks with the specified date.
      */
-    public static ArrayList<Task> getTaskByDate(ArrayList<Task> arr, String input) {
+    public static ArrayList<Task> getTaskByDate(ArrayList<Task> inputTasks, String input) {
+        assert inputTasks != null && input != null;
         ArrayList<Task> datedTaskList = new ArrayList<>();
         int[] inputArray = fromStringToDate(input);
-        for (Task task : arr) {
+        for (Task task : inputTasks) {
             if (Arrays.equals(inputArray, task.getDate())) {
                 datedTaskList.add(task);
             }
