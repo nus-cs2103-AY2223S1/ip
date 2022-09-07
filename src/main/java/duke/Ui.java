@@ -9,7 +9,8 @@ public class Ui {
      */
     public String getWelcome() {
         return "Hello! I'm Duke.\n"
-                + "What can I do for you?";
+                + "What can I do for you?\n"
+                + "You can enter the command 'help' for a list of things I can do!";
     }
 
     /**
