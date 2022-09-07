@@ -41,7 +41,7 @@ public class AddDeadlineTaskCommand extends AddTaskCommand implements Command {
     /**
      * Creates a new instance of the Command handler for adding a {@link Deadline} task.
      *
-     * @param arguments The arguments following the {@code 'deadline'} prefix supplied by the user from keyboard input
+     * @param arguments The arguments following the {@code 'deadline'} prefix supplied by the user from keyboard input.
      */
     public AddDeadlineTaskCommand(String arguments) {
         this.arguments = arguments;

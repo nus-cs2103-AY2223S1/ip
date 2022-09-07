@@ -16,12 +16,12 @@ import javafx.application.Application;
 public class Duke {
 
     /**
-     * Name of the chatbot
+     * Name of the chatbot.
      */
     public static final String NAME = "Duke";
 
     /**
-     * The greeting message used by the chatbot when the application starts
+     * The greeting message used by the chatbot when the application starts.
      */
     public static final String MESSAGE_GREETING = String.format("Hello! I'm %s\nWhat can I do for you?", Duke.NAME);
 
@@ -45,8 +45,8 @@ public class Duke {
     /**
      * Retrieves the command for the given command string.
      *
-     * @param fullCommand The given command string
-     * @return Status string of the command execution
+     * @param fullCommand The given command string.
+     * @return Status string of the command execution.
      */
     public String handleCommand(String fullCommand) {
         try {

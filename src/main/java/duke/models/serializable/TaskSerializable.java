@@ -45,10 +45,10 @@ public class TaskSerializable extends Serializable<Task> {
     /**
      * Initializes the serializable {@link Task} object from parameters for the {@link Task} model.
      *
-     * @param taskType        The type of the task
-     * @param taskDescription The description of the task
-     * @param taskIsDone      The completion status of the task
-     * @param taskMetaData    The metadata associated with the task
+     * @param taskType        The type of the task.
+     * @param taskDescription The description of the task.
+     * @param taskIsDone      The completion status of the task.
+     * @param taskMetaData    The meta data associated with the task.
      */
     public TaskSerializable(
             TaskType taskType,
@@ -106,10 +106,10 @@ public class TaskSerializable extends Serializable<Task> {
     /**
      * Initializes and returns the serializable {@link Task} object from a serialized string.
      *
-     * @param serializedString The received serialized string
+     * @param serializedString The received serialized string.
      *
-     * @return The serializable task object if and only if the received serialized string is of the expected format
-     * @throws DukeException If the serialized string is not of the expected format
+     * @return The serializable task object if and only if the received serialized string is of the expected format.
+     * @throws DukeException If the serialized string is not of the expected format.
      */
     public static TaskSerializable from(String serializedString) throws DukeException {
         return new TaskSerializable(serializedString);

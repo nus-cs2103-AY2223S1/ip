@@ -24,10 +24,10 @@ abstract class AddTaskCommand implements Command {
     /**
      * Retrieves the task supplied by the caller and adds that task to the specified task manager.
      *
-     * @param taskManager  Task manager in charge of the managing all the tasks
-     * @param taskSupplier Supplier method that returns a task
+     * @param taskManager  Task manager in charge of the managing all the tasks.
+     * @param taskSupplier Supplier method that returns a task.
      *
-     * @return Status message indicating the status of adding the task
+     * @return Status message indicating the status of adding the task.
      */
     public String addTask(TaskManager taskManager, Supplier<? extends Task> taskSupplier) {
         Task task = taskSupplier.get();
