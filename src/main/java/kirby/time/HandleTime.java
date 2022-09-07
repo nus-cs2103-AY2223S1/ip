@@ -69,6 +69,13 @@ public class HandleTime {
         return datedTaskList;
     }
 
+    /**
+     * Sorts the list of tasks by chronological order.
+     * Tasks with no valid dates are placed above.
+     *
+     * @param inputTasks List of tasks.
+     * @return List of tasks sorted in a chronological order.
+     */
     public static ArrayList<Task> sortTaskList(ArrayList<Task> inputTasks) {
         Collections.sort(inputTasks, new SortTaskByDate());
         return inputTasks;

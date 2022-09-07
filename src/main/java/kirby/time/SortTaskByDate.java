@@ -3,6 +3,11 @@ package kirby.time;
 import java.util.Comparator;
 
 import kirby.tasks.Task;
+
+/**
+ * SortTaskByDate class contains the method to compare two tasks by their dates
+ * to use them for sorting.
+ */
 class SortTaskByDate implements Comparator<Task> {
     public int compare(Task t1, Task t2) {
         // Compare year
