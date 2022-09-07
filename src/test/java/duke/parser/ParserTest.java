@@ -1,12 +1,11 @@
-package duke.task;
-
-import duke.parser.Parser;
-import org.junit.jupiter.api.Test;
-
-import java.time.LocalDate;
+package duke.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import java.time.LocalDate;
+
+import org.junit.jupiter.api.Test;
 
 public class ParserTest {
 
@@ -22,7 +21,7 @@ public class ParserTest {
 
     @Test
     public void parseDateFormats_wrongInput_exceptionThrown() {
-        try{
+        try {
             assertEquals(LocalDate.parse("2021-11-23"),
                     Parser.parseDateFormats("something"));
             assertEquals(LocalDate.parse("2021-11-23"),

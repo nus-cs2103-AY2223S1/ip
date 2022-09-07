@@ -1,10 +1,10 @@
 package duke.storage;
 
-import duke.task.Task;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+
+import duke.task.Task;
 
 /**
  * Represents a list that contains different tasks.
@@ -108,4 +108,13 @@ public class TaskList {
         return newTaskList;
     }
 
+    /**
+     * Returns if the task list contains the given task.
+     *
+     * @param task Given task.
+     * @return True if the task is already in the task list; false otherwise.
+     */
+    public boolean hasDuplicates(Task task) {
+        return tasks.contains(task);
+    }
 }

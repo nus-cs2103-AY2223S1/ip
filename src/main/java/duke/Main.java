@@ -20,9 +20,7 @@ public class Main extends Application {
      * Creates the ui of duke.
      *
      * @param stage the primary stage for this application, onto which
-     * the application scene can be set.
-     * Applications may create other stages, if needed, but they will not be
-     * primary stages.
+     *              the application scene can be set.
      */
     @Override
     public void start(Stage stage) {

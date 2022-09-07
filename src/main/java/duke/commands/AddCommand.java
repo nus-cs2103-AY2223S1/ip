@@ -10,9 +10,7 @@ import duke.task.Task;
  * The given task-to-add may be a deadline, an event, or a to-do.
  */
 public class AddCommand extends Command {
-    public static final String COMMAND_WORD_DEADLINE = "deadline";
-    public static final String COMMAND_WORD_EVENT = "event";
-    public static final String COMMAND_WORD_TODO = "todo";
+
     public static final String MESSAGE_SUCCESS = "Got it. I've added this duke.task:\n ";
     private Task taskToAdd;
 
@@ -36,6 +34,7 @@ public class AddCommand extends Command {
     @Override
     public String execute(TaskList tasks, Storage storage) {
         try {
+            checkDuplicates(tasks, taskToAdd);
             tasks.add(taskToAdd);
             String successMessage = MESSAGE_SUCCESS + taskToAdd.toString()
                     + "\n" + tasks.getCount();
@@ -43,6 +42,20 @@ public class AddCommand extends Command {
             return successMessage;
         } catch (DukeException e) {
             return e.getMessage();
+        }
+    }
+
+    /**
+     * Checks if the given task has already been stored in the specified task list.
+     *
+     * @param taskList Given task list.
+     * @param task Given task.
+     * @throws DukeException If the task is already in the task list.
+     */
+    public void checkDuplicates(TaskList taskList, Task task) throws DukeException {
+        if (taskList.hasDuplicates(task)) {
+            String errorMessage = "☹ The input task has already been stored in the task list!";
+            throw new DukeException(errorMessage);
         }
     }
 

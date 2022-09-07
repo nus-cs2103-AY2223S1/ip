@@ -4,7 +4,7 @@ package duke.task;
  * Represents a task.
  */
 public class Task {
-    private String description;
+    protected String description;
     private boolean isDone;
 
     /**
@@ -60,6 +60,27 @@ public class Task {
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + this.description;
+    }
+
+    /**
+     * Returns if a given object is equal to a task.
+     *
+     * @param object Given object.
+     * @return True if the two are equal, false otherwise.
+     */
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof Task) {
+            Task task = (Task) object;
+            if (this == task) {
+                return true;
+            } else {
+                return this.description.equals(task.description);
+            }
+
+        } else {
+            return false;
+        }
     }
 
 }

@@ -1,24 +1,26 @@
 package duke.parser;
 
-import duke.commands.AddCommand;
-import duke.commands.Command;
-import duke.commands.DeleteCommand;
-import duke.commands.ExitCommand;
-import duke.commands.FindCommand;
-import duke.commands.ListCommand;
-import duke.commands.MarkCommand;
-import duke.commands.UnmarkCommand;
-import duke.others.DukeException;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.ToDo;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import duke.commands.Command;
+import duke.commands.DeadlineCommand;
+import duke.commands.DeleteCommand;
+import duke.commands.EventCommand;
+import duke.commands.ExitCommand;
+import duke.commands.FindCommand;
+import duke.commands.ListCommand;
+import duke.commands.MarkCommand;
+import duke.commands.ToDoCommand;
+import duke.commands.UnmarkCommand;
+import duke.others.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.ToDo;
 
 /**
  * Represents a parser that interprets the user input and
@@ -52,11 +54,11 @@ public class Parser {
         }
 
         switch (commandWord) {
-        case AddCommand.COMMAND_WORD_DEADLINE:
+        case DeadlineCommand.COMMAND_WORD:
             // Fallthrough
-        case AddCommand.COMMAND_WORD_EVENT:
+        case EventCommand.COMMAND_WORD:
             // Fallthrough
-        case AddCommand.COMMAND_WORD_TODO:
+        case ToDoCommand.COMMAND_WORD:
             return prepareAdd(commandWord, description);
         case DeleteCommand.COMMAND_WORD:
             // Fallthrough
@@ -89,8 +91,8 @@ public class Parser {
     public static Command prepareAdd(String commandWord, String description) throws DukeException {
         if (description == null) {
             throw new DukeException("☹ Description of a duke.task cannot be empty!");
-        } else if (commandWord.equals(AddCommand.COMMAND_WORD_TODO)) {
-            return new AddCommand(new ToDo(description));
+        } else if (commandWord.equals(ToDoCommand.COMMAND_WORD)) {
+            return new ToDoCommand(new ToDo(description));
         } else {
             return parseDate(commandWord, description);
         }
@@ -108,22 +110,22 @@ public class Parser {
      */
     public static Command parseDate(String commandWord, String description) throws DukeException {
         switch (commandWord) {
-        case AddCommand.COMMAND_WORD_DEADLINE:
+        case DeadlineCommand.COMMAND_WORD:
             if (description.contains(" /by ")) {
                 String[] arr = description.split(" /by ", 2);
                 String message = arr[0];
                 LocalDate date = parseDateFormats(arr[1]);
-                return new AddCommand(new Deadline(message, date));
+                return new DeadlineCommand(new Deadline(message, date));
             } else {
                 String errorMessage = "☹ Please follow the format <deadline description /by date>";
                 throw new DukeException(errorMessage);
             }
-        case AddCommand.COMMAND_WORD_EVENT:
+        case EventCommand.COMMAND_WORD:
             if (description.contains(" /at ")) {
                 String[] arr = description.split(" /at ", 2);
                 String message = arr[0];
                 LocalDate date = parseDateFormats(arr[1]);
-                return new AddCommand(new Event(message, date));
+                return new EventCommand(new Event(message, date));
             } else {
                 String errorMessage = "☹ Please follow the format <event description /at date>";
                 throw new DukeException(errorMessage);
