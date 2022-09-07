@@ -27,10 +27,10 @@ public class MarkCommand extends Command {
      * @param storage Storage to save updated list.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.markAsDone(index);
-        ui.mark(taskList, index);
         storage.save(taskList);
+        return ui.mark(taskList, index);
     }
 
     /**
