@@ -20,6 +20,9 @@ public class TaskList {
      * @return The same task that is passed in
      */
     public Task addTask(Task taskItem) {
+        if (this.list.contains(taskItem)) {
+            return null;
+        }
         this.list.add(taskItem);
         return taskItem;
     }
