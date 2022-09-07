@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
 import duke.Storage;
 import duke.TaskList;
@@ -7,6 +8,7 @@ import duke.UI;
 import duke.command.Command;
 import duke.Parser;
 
+import duke.command.ResponseCommand;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -60,14 +62,17 @@ public class Duke {
                 Command c = Parser.parse(rawCommand);
                 c.execute(taskList, storage);
                 isExit = c.isByeCommand();
+            } catch (AssertionError ae) {
+                UI.response(ae.getMessage());
+                Command c = new ResponseCommand(ae.getMessage());
             } catch (DukeException de) {
                 System.out.println(de);
             }
         }
-
     }
 
-    public static void main(String[] args) throws DukeException, IOException {
+
+    public static void main(String[] args) {
         Duke d = new Duke("data/duke.txt");
         d.run();
     }

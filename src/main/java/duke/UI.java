@@ -13,8 +13,12 @@ import java.util.List;
 public class UI {
     public static final String DIVIDER = "–––––––––––––––––––––––\n";
 
+    public static void userInput(String text) {
+        System.out.println("You entered: " + text + System.lineSeparator());
+    }
+
     public static void response(String text) {
-        System.out.println(text);
+        System.out.println(text + System.lineSeparator());
     }
 
     public static String getResponse(String text) { return text; }
@@ -82,7 +86,7 @@ public class UI {
 
     public static void list(TaskList taskList) {
         System.out.println(DIVIDER);
-        System.out.printf("Here are the tasks in your list:\n");
+        System.out.print("Here are the tasks in your list:\n");
         for (int i = 0; i < Task.getTaskCount(); i++) {
             System.out.printf(" %d. %s\n", i + 1, taskList.getTask(i));
         }
