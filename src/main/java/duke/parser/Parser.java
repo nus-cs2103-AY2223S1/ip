@@ -130,6 +130,40 @@ public class Parser {
         return true;
     }
 
+    private String addTasksHelper(TasksController controller, Storage storage, String inputText) {
+        String response = "";
+        Command command = null;
+        try {
+            String task = parseTask(inputText);
+            String content = parseContent(inputText);
+            switch (task) {
+                case "ToDo":
+                    command = new CreateToDoCommand();
+                    response = command.execute(controller, content, "", -1, storage, "");
+                    break;
+                case "Event": {
+                    String taskTime = parseTime(inputText);
+                    command = new CreateEventCommand();
+                    response = command.execute(controller, content, taskTime, -1, storage, "");
+                    break;
+                }
+                case "Deadline": {
+                    String taskTime = parseTime(inputText);
+                    command = new CreateDeadlineCommand();
+                    response = command.execute(controller, content, taskTime, -1, storage, "");
+                    break;
+                }
+            }
+        } catch (InvalidTaskException ite) {
+            response = "Your task is invalid. Please try again...";
+        } catch (EmptyContentException ece) {
+            response = "Your task content cannot be empty. Please try again...";
+        } catch (InvalidTimeException ite) {
+            response = "Your time format is invalid. Please try again...";
+        }
+        return response;
+    }
+
     /**
      * Parses user's input of commands and returns a Duke command
      * @param inputText user's input
@@ -144,26 +178,7 @@ public class Parser {
             String commandText = parseCommand(inputText);
             switch (commandText) {
                 case "add":
-                    String task = parseTask(inputText);
-                    String content = parseContent(inputText);
-                    switch (task) {
-                        case "ToDo":
-                            command = new CreateToDoCommand();
-                            response = command.execute(controller, content, "", -1, storage, "");
-                            break;
-                        case "Event": {
-                            String taskTime = parseTime(inputText);
-                            command = new CreateEventCommand();
-                            response = command.execute(controller, content, taskTime, -1, storage, "");
-                            break;
-                        }
-                        case "Deadline": {
-                            String taskTime = parseTime(inputText);
-                            command = new CreateDeadlineCommand();
-                            response = command.execute(controller, content, taskTime, -1, storage, "");
-                            break;
-                        }
-                    }
+                    response = addTasksHelper(controller, storage, inputText);
                     break;
                 case "list":
                     command = new ShowTasksCommand();
@@ -212,12 +227,6 @@ public class Parser {
             }
         } catch (InvalidCommandException ice) {
             response = "Your command is invalid. Please try again...";
-        } catch (InvalidTaskException ite) {
-            response = "Your task is invalid. Please try again...";
-        } catch (EmptyContentException ece) {
-            response = "Your task content cannot be empty. Please try again...";
-        } catch (InvalidTimeException ite) {
-            response = "Your time format is invalid. Please try again...";
         } catch (TooManyKeywordsException mke) {
             response = "Too many keywords. Please try again...";
         }
