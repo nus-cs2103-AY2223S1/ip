@@ -115,4 +115,11 @@ public class Ui {
 
         return message;
     }
+
+    public static String getPriorityMessage(Task task, String priority) {
+        String message = "Ok, I have set this task priority as " + priority + ":\n"
+                            + task.toString();
+
+        return message;
+    }
 }

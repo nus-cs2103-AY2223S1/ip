@@ -24,8 +24,8 @@ public class ToDo extends Task {
      * @param task the task description.
      * @param isDone whether the task has been marked as done.
      */
-    public ToDo(String task, boolean isDone) {
-        super(task, isDone);
+    public ToDo(String task, boolean isDone, String priority) {
+        super(task, isDone, priority);
     }
 
     /**
@@ -48,6 +48,7 @@ public class ToDo extends Task {
      */
     @Override
     public String toSaveFileString() {
-        return TYPE_SYMBOL + " @ " + getStatusIcon() + " @ " + super.getTask();
+        return TYPE_SYMBOL + " @ " + getStatusIcon() + " @ " + super.getPriority()
+                + " @ " + super.getTask();
     }
 }

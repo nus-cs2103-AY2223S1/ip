@@ -55,39 +55,35 @@ public class Storage {
             while (reader.hasNextLine()) {
                 String data = reader.nextLine();
                 String[] splitted = data.split("\\s@\\s");
+                assert splitted.length >= 4 : "Corrupted File";
                 String taskType = splitted[0];
-                String task;
+                String task = splitted[3];
+                String priority = splitted[2];
                 String date;
-                boolean isDone;
+                boolean isDone = splitted[1].equals("[X]");
 
                 switch (taskType) {
                 case ToDo.TYPE_SYMBOL:
                     // assert data is in correct format and
                     // has not been corrupted
-                    assert splitted.length == 3 : "Incorrect Todo Format";
-                    task = splitted[2];
-                    isDone = splitted[1].equals("[X]");
-                    savedTasks.add(new ToDo(task, isDone));
+                    assert splitted.length == 4 : "Incorrect Todo Format";
+                    savedTasks.add(new ToDo(task, isDone, priority));
                     break;
 
                 case Event.TYPE_SYMBOL:
                     // assert data is in correct format and
                     // has not been corrupted
-                    assert splitted.length == 4 : "Incorrect Event Format";
-                    task = splitted[2];
-                    isDone = splitted[1].equals("[X]");
-                    date = splitted[3];
-                    savedTasks.add(new Event(task, date, isDone));
+                    assert splitted.length == 5 : "Incorrect Event Format";
+                    date = splitted[4];
+                    savedTasks.add(new Event(task, date, isDone, priority));
                     break;
 
                 case Deadline.TYPE_SYMBOL:
                     // assert data is in correct format and
                     // has not been corrupted
-                    assert splitted.length == 4 : "Incorrect Deadline Format";
-                    task = splitted[2];
-                    isDone = splitted[1].equals("[X]");
-                    date = splitted[3];
-                    savedTasks.add(new Deadline(task, date, isDone));
+                    assert splitted.length == 5 : "Incorrect Deadline Format";
+                    date = splitted[4];
+                    savedTasks.add(new Deadline(task, date, isDone, priority));
                     break;
 
                 default:

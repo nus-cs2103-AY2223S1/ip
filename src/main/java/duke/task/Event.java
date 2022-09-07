@@ -34,8 +34,8 @@ public class Event extends Task {
      * @param isDone whether the event has been marked as done.
      * @throws DukeException If date is not a valid date.
      */
-    public Event(String task, String date, boolean isDone) throws DukeException {
-        super(task, isDone);
+    public Event(String task, String date, boolean isDone, String priority) throws DukeException {
+        super(task, isDone, priority);
         this.date = Parser.convertToDateObj(date);
     }
 
@@ -60,7 +60,7 @@ public class Event extends Task {
      */
     @Override
     public String toSaveFileString() {
-        return TYPE_SYMBOL + " @ " + getStatusIcon() + " @ " + super.getTask()
-                + " @ " + Parser.printSaveFileDate(date);
+        return TYPE_SYMBOL + " @ " + getStatusIcon() + " @ " + super.getPriority()
+               + " @ " + super.getTask() + " @ " + Parser.printSaveFileDate(date);
     }
 }

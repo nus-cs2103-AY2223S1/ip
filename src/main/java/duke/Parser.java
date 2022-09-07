@@ -12,6 +12,7 @@ import duke.command.EventCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.PriorityCommand;
 import duke.command.TodoCommand;
 import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
@@ -93,6 +94,9 @@ public class Parser {
 
         case DeleteCommand.COMMAND:
             return new DeleteCommand(description);
+
+        case PriorityCommand.COMMAND:
+            return new PriorityCommand(description);
 
         case FindCommand.COMMAND:
             return new FindCommand(description);
