@@ -50,6 +50,7 @@ public class Storage {
         }
 
         //read contents from file containing the task list
+        assert LIST_FILE.exists() : "File not created and exception not thrown.";
         Scanner listSc = new Scanner(LIST_FILE);
         while (listSc.hasNext()) {
             String[] info = listSc.nextLine().split(" \\| ");

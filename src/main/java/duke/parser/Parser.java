@@ -142,6 +142,9 @@ public class Parser {
         case FindCommand.COMMAND_WORD:
             try {
                 String keywords = arr[1];
+                if (keywords.equals("")) {
+                    throw new DukeException(Ui.emptyFindInput());
+                }
                 return new FindCommand(keywords);
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(Ui.emptyFindInput());

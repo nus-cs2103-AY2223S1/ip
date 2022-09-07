@@ -45,6 +45,7 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = duke.getResponse(input);
+        assert response != null : "Duke does not have a response to the input.";
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, USER_IMAGE),
                 DialogBox.getDukeDialog(response, DUKE_IMAGE)
