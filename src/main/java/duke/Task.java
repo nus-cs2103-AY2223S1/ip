@@ -46,13 +46,16 @@ public class Task {
      *
      * @param saveString the save string data
      * @return the new Task object created from saveString
-     * @throws DukeException
+     * @throws DukeInvalidSaveDataException
      */
     public static Task fromSaveString(String saveString) throws DukeInvalidSaveDataException {
         String[] splitSaveString = saveString.split("(\",\")|(\",)|(,\")|\"");
         if (splitSaveString.length != 2) {
             throw new DukeInvalidSaveDataException();
         }
+        assert splitSaveString[0].equals("T") : "Save data is not a todo.";
+        assert splitSaveString[0].endsWith("1") || splitSaveString[0].endsWith("0")
+                : "Save data contains invalid isDone value.";
         String description = splitSaveString[1];
         boolean isDone = splitSaveString[0].endsWith("1");
         return new Task(description, isDone);

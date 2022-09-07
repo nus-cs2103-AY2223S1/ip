@@ -52,6 +52,9 @@ public class Event extends Task {
         if (splitSaveString.length != 3) {
             throw new DukeInvalidSaveDataException();
         }
+        assert splitSaveString[0].equals("E") : "Save data is not an event.";
+        assert splitSaveString[0].endsWith("1") || splitSaveString[0].endsWith("0")
+                : "Save data contains invalid isDone value.";
         String description = splitSaveString[1];
         String on = "on " + splitSaveString[2];
         boolean isDone = splitSaveString[0].endsWith("1");
