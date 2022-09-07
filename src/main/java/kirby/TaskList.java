@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import kirby.tasks.Task;
 
+import static kirby.time.HandleTime.sortTaskList;
+
 /**
  * TaskList class handles the list of tasks - adding and deleting tasks from it and other operations.
  */
@@ -68,7 +70,7 @@ public class TaskList {
      * @return List of tasks.
      */
     public ArrayList<Task> getList() {
-        return this.tasks;
+        return sortTaskList(this.tasks);
     }
 
     /**

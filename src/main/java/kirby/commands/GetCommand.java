@@ -2,7 +2,7 @@ package kirby.commands;
 
 import java.util.ArrayList;
 
-import kirby.HandleTime;
+import kirby.time.HandleTime;
 import kirby.Storage;
 import kirby.TaskList;
 import kirby.exceptions.KirbyMissingArgumentException;
