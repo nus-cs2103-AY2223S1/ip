@@ -1,6 +1,7 @@
 package duke.logic.task;
 import java.util.ArrayList;
 
+import duke.exception.DukeException;
 import duke.storage.DukeEncoder;
 import duke.ui.Constants;
 
@@ -38,23 +39,116 @@ public class Task {
     }
 
     /**
+     * Print all item in the word list
+     */
+    public static String listItems(ArrayList<Task> workList) {
+        String toPrint = Constants.LISTING_MESSAGE + "\n";
+        for (int i = 0; i < workList.size(); i++) {
+            toPrint += ((i + 1) + ") " + workList.get(i).toString()) + "\n";
+        }
+        return toPrint;
+    }
+
+    /**
      * Mark task as Done and Print acknowledge message.
      */
-    public String markAsDone(ArrayList<Task> workList) {
-        this.isDone = true;
-        // Update data
-        DukeEncoder.rewriteList(workList);
-        return Constants.MARK_AS_DONE_MESSAGE + this;
+    public static String markAsDone(ArrayList<Task> workList, String userInput) {
+        try {
+            userInput.substring(6);
+            int index = Integer.parseInt(userInput.split(" ")[1]);
+            Task task = workList.get(index - 1);
+            task.isDone = true;
+            DukeEncoder.rewriteList(workList);
+            return Constants.MARK_AS_DONE_MESSAGE + task;
+        } catch (StringIndexOutOfBoundsException e) {
+            return new DukeException.EmptyMarkingException().throwDukeException();
+        } catch (NumberFormatException e) {
+            return new DukeException.EmptyMarkingException().throwDukeException();
+        } catch (IndexOutOfBoundsException e) {
+            return new DukeException.EmptyMarkingException().throwDukeException();
+        }
     }
 
     /**
      * Mark task as not Done and Print acknowledge message.
      */
-    public String unmark(ArrayList<Task> workList) {
-        this.isDone = false;
-        // Update data
+    public static String markAsNotDone(ArrayList<Task> workList, String userInput) {
+        try {
+            userInput.substring(8);
+            int index = Integer.parseInt(userInput.split(" ")[1]);
+            Task task = workList.get(index - 1);
+            task.isDone = false;
+            DukeEncoder.rewriteList(workList);
+            return Constants.UNMARK_MESSAGE + task;
+        } catch (StringIndexOutOfBoundsException e) {
+            return new DukeException.EmptyMarkingException().throwDukeException();
+        } catch (NumberFormatException e) {
+            return new DukeException.EmptyMarkingException().throwDukeException();
+        } catch (IndexOutOfBoundsException e) {
+            return new DukeException.EmptyMarkingException().throwDukeException();
+        }
+    }
+
+    /**
+     * Add text that user typed to the word list
+     *
+     * @param userInput text the user typed
+     * @param workList
+     */
+    public static String add(ArrayList<Task> workList, String userInput) {
+        return Constants.ARROW + "Added task: ";
+    }
+
+    /**
+     * Delete a task
+     *
+     * @param userInput text the user typed
+     * @param workList
+     */
+    public static String delete(ArrayList<Task> workList, String userInput) {
+        try {
+        userInput.substring(8);
+        int index = Integer.parseInt(userInput.split(" ")[1]);
+        Task task = workList.get(index - 1);
+        workList.remove(task);
         DukeEncoder.rewriteList(workList);
-        return Constants.UNMARK_MESSAGE + this;
+        // Update data
+        return (Constants.ARROW + "Deleted task: " + task.toString()) + "\n"
+                + Task.updateNumOfTask(workList);
+        } catch (StringIndexOutOfBoundsException e) {
+            return new DukeException.EmptyDeleteException().throwDukeException();
+
+        } catch (NumberFormatException e) {
+            return new DukeException.EmptyDeleteException().throwDukeException();
+
+        } catch (IndexOutOfBoundsException e) {
+            return new DukeException.EmptyDeleteException().throwDukeException();
+
+        }
+    }
+
+    /**
+     * Find a task by keyword
+     * @param workList
+     * @param userInput
+     * @return
+     */
+    public static String find (ArrayList<Task> workList, String userInput) {
+        String toPrint = Constants.FIND_MESSAGE + "\n";
+        String keyword = userInput.substring(5);
+        for (int i = 0; i < workList.size(); i++) {
+            if (workList.get(i).contain(keyword)) {
+                toPrint += workList.get(i).toString() + "\n";
+            }
+        }
+        return toPrint;
+    }
+    /**
+     * Updates number of task in the list
+     * @return String
+     */
+    public static String updateNumOfTask(ArrayList<Task> workList) {
+        return "Now you have " + workList.size() + " task(s) on your list.";
     }
 
     /**
