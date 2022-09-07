@@ -1,6 +1,7 @@
 package mort.task;
 
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 /**
  * Class that stores the list of tasks and methods to manipulate the tasks.
@@ -93,11 +94,12 @@ public class TaskList {
      */
     public String find(String keyword) {
         StringBuilder sb = new StringBuilder();
-        this.tasks.forEach(t -> {
-            if (t.isMatch(keyword)) {
-                sb.append(this.tasks.indexOf(t) + 1).append(". ").append(t).append("\n");
-            }
-        });
+        tasks.stream()
+                .filter(task -> task.isMatch(keyword))
+                .forEach(task -> sb.append(this.tasks.indexOf(task) + 1)
+                        .append(". ")
+                        .append(task)
+                        .append("\n"));
         return sb.toString();
     }
 }
