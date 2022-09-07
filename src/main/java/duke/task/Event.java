@@ -72,7 +72,6 @@ public class Event extends Task {
                 return false;
             }
             return this.getName().equals(e.getName())
-                    && this.getIsDone() == e.getIsDone()
                     && this.getTime().equals(e.getTime());
         }
         return false;
