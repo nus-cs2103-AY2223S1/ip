@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.FormatStyle;
+import java.util.function.Supplier;
 
 import duke.core.DukeException;
 
@@ -110,16 +111,16 @@ public abstract class Task {
         } else if (o instanceof Task) {
             Task other = (Task) o;
 
-            boolean matchType = this.getTaskType() == other.getTaskType();
-            boolean matchCompletion = this.isComplete == other.isComplete;
-            boolean matchText = this.text.equals(other.text);
-            boolean matchDetails = ((this.details == null && other.details == null)
+            Supplier<Boolean> matchType = () -> this.getTaskType() == other.getTaskType();
+            Supplier<Boolean> matchCompletion = () -> this.isComplete == other.isComplete;
+            Supplier<Boolean> matchText = () -> this.text.equals(other.text);
+            Supplier<Boolean> matchDetails = () -> ((this.details == null && other.details == null)
                     || this.details.equals(other.details));
 
-            return matchType
-                    && matchCompletion
-                    && matchText
-                    && matchDetails;
+            return matchType.get()
+                    && matchCompletion.get()
+                    && matchText.get()
+                    && matchDetails.get();
         } else {
             return false;
         }

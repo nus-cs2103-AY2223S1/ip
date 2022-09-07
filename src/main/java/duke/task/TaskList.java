@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import duke.core.DukeException;
+
 /**
  * Encapsulates a list of tasks. Supports various methods
  * such as addition and deletion of tasks, as well as serialization.
@@ -25,11 +27,14 @@ public class TaskList {
     }
 
     /**
-     * Adds a task to the list.
+     * Adds a task to the list if no duplicate already exists.
      *
      * @param task Task to add.
      */
     public void addTask(Task task) {
+        if (isInList(task)) {
+            throw new DukeException("Task already exists in list!");
+        }
         this.tasks.add(task);
     }
 
@@ -92,5 +97,14 @@ public class TaskList {
      */
     public List<Task> findInList(String search) {
         return tasks.stream().filter(x -> x.text.toLowerCase().contains(search)).collect(Collectors.toList());
+    }
+
+    /**
+     * Returns whether an identical task already exists in the list, for duplicate detection.
+     * @param task Task to find in the list.
+     * @return Whether an identical task already exists.
+     */
+    private boolean isInList(Task task) {
+        return tasks.stream().anyMatch(x -> x.equals(task));
     }
 }
