@@ -50,6 +50,8 @@ public class AddEventCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws ZeusException {
+        taskList.saveCurrentTaskListVersion();
+
         Event e;
         if (this.datetime == null) {
             e = new Event(description, this.datetimeDescription);

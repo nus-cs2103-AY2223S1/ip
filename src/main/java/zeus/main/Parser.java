@@ -12,6 +12,7 @@ import zeus.command.FindCommand;
 import zeus.command.ListCommand;
 import zeus.command.TaskDoneCommand;
 import zeus.command.TaskNotDoneCommand;
+import zeus.command.UndoCommand;
 import zeus.exception.ZeusException;
 
 
@@ -41,11 +42,11 @@ public class Parser {
             int taskNum = Integer.parseInt(fullCommand.replaceFirst("unmark", "").trim());
             return new TaskNotDoneCommand(taskNum - 1);
         } else if (fullCommand.startsWith("todo")) {
-            String t = fullCommand.replaceFirst("todo", "").trim();
-            if (t.isEmpty()) {
+            String todoDescription = fullCommand.replaceFirst("todo", "").trim();
+            if (todoDescription.isEmpty()) {
                 throw new ZeusException("☹ OOPS!!! The description of a todo cannot be empty.");
             }
-            return new AddTodoCommand(t);
+            return new AddTodoCommand(todoDescription);
         } else if (fullCommand.startsWith("deadline")) {
             // sample input: deadline return book /by 2/12/2019 1800
             String[] deadlineInfo = fullCommand.replaceFirst("deadline ", "").split(" /by ");
@@ -60,8 +61,8 @@ public class Parser {
             String[] eventInfo = fullCommand.replaceFirst("event ", "").split(" /at ");
             String dateAndTime = eventInfo[1];
             if (isSpecificDateFormat(dateAndTime)) {
-                LocalDate ld = convertFormattedStringToDate(dateAndTime);
-                return new AddEventCommand(eventInfo[0], ld);
+                LocalDate localDate = convertFormattedStringToDate(dateAndTime);
+                return new AddEventCommand(eventInfo[0], localDate);
             } else {
                 return new AddEventCommand(eventInfo[0], eventInfo[1]);
             }
@@ -71,6 +72,8 @@ public class Parser {
         } else if (fullCommand.startsWith("find")) {
             String s = fullCommand.replaceFirst("find", "").trim();
             return new FindCommand(s);
+        } else if (fullCommand.startsWith("undo")) {
+            return new UndoCommand();
         } else {
             throw new ZeusException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }

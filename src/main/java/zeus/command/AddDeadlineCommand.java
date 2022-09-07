@@ -50,6 +50,8 @@ public class AddDeadlineCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws ZeusException {
+        taskList.saveCurrentTaskListVersion();
+
         Deadline deadline;
         if (this.localDate == null) {
             deadline = new Deadline(description, this.by);

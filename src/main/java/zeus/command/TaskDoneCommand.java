@@ -35,9 +35,11 @@ public class TaskDoneCommand extends Command {
         if (this.idx < 0 || this.idx >= taskList.getSize()) {
             throw new ZeusException("☹ OOPS!!! Invalid index entered");
         }
-        taskList.setTaskDone(this.idx);
+        // Before each command is executed, add prev version to the stack
+        taskList.saveCurrentTaskListVersion();
 
-        ui.addMessageToResponse("Nice! I've marked this task as done:\n");
+        taskList.setTaskDone(this.idx);
+        ui.addMessageToResponse("Excellent! I've marked this task as done:\n");
         ui.addMessageToResponse("\t   " + taskList.getTask(this.idx));
 
         storage.saveTasksToDisk(taskList.getTaskList());

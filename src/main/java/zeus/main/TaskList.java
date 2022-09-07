@@ -1,6 +1,7 @@
 package zeus.main;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 import zeus.task.Task;
 
@@ -11,16 +12,24 @@ import zeus.task.Task;
 public class TaskList {
 
     private ArrayList<Task> tasks;
+    private Stack<ArrayList<Task>> historicalTaskLists;
 
     /**
      * Constructor of Tasklist class.
      */
     public TaskList() {
-        this.tasks = new ArrayList<>();
+        this.tasks = new ArrayList<>(100);
+        this.historicalTaskLists = new Stack<>();
     }
 
+    /**
+     * Constructor of TaskList class that takes in an ArrayList of Tasks.
+     *
+     * @param tasks ArrayList of Tasks
+     */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
+        this.historicalTaskLists = new Stack<>();
     }
 
     /**
@@ -73,6 +82,7 @@ public class TaskList {
 
     /**
      * Sets the task at the given index as done.
+     *
      * @param idx Index of target Task
      */
     public void setTaskDone(int idx) {
@@ -83,7 +93,7 @@ public class TaskList {
     /**
      * Sets the task at the given index as not done.
      *
-     * @param idx index of target Task
+     * @param idx Index of target Task
      */
     public void setTaskNotDone(int idx) {
         assert (idx >= 0) && (idx < tasks.size());
@@ -104,5 +114,33 @@ public class TaskList {
             }
         }
         return matchingTasks;
+    }
+
+    /**
+     * Restores task list to most recent state.
+     */
+    public void undoLastVersion() {
+        // restore current task list to previous version
+        this.tasks = historicalTaskLists.pop();
+    }
+
+    /**
+     * Adds a deep copy of current task list version to the stack of historical task lists.
+     */
+    public void saveCurrentTaskListVersion() {
+        ArrayList<Task> deepCopyOfCurrentTaskList = new ArrayList<>();
+        for (Task task : this.tasks) {
+            deepCopyOfCurrentTaskList.add(task.copy());
+        }
+        this.historicalTaskLists.push(deepCopyOfCurrentTaskList);
+    }
+
+    /**
+     * Returns size of stack containing historical versions of task lists.
+     *
+     * @return Number of task lists in stack
+     */
+    public int getHistorySize() {
+        return historicalTaskLists.size();
     }
 }

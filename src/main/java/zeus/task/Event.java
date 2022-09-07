@@ -34,13 +34,34 @@ public class Event extends Task {
     }
 
     /**
+     * Copy constructor of Event class.
+     *
+     * @param event Event to copy
+     */
+    public Event(Event event) {
+        super(event.getDescription(), event.isDone);
+        this.datetime = event.datetime;
+        this.datetimeFormatted = event.datetimeFormatted;
+    }
+
+    /**
      * Returns Event as a String formatted to be a line in file.
      *
      * @return String representing event.
      */
     @Override
     public String getFileFormat() {
-        return String.format("E | %d | %s | %s", this.isDone ? 1 : 0, this.description, this.datetime);
+        return String.format("E | %d | %s | %s", isDone ? 1 : 0, description, this.datetime);
+    }
+
+    /**
+     * Returns Task that represents this Event to avoid casting in the copy constructor.
+     *
+     * @return Task that represents this Event
+     */
+    @Override
+    public Task copy() {
+        return new Event(this);
     }
 
     /**
