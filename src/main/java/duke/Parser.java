@@ -77,9 +77,7 @@ public class Parser {
                             "eg. mark {num of task in list to be marked as done}");
                 }
                 if (!userInputs[1].matches("\\d+")) {
-                    throw new DukeException(INDENTATION +
-                            "☹ OOPS!!! The mark command should be used as shown. " +
-                            "eg. mark {num of task in list to be marked as done}");
+                    throw new InvalidIndexException();
                 }
                 int indexToMark = Integer.parseInt(userInputs[1]);
                 return new MarkCommand(indexToMark);
@@ -90,9 +88,7 @@ public class Parser {
                             "eg. mark {num of task in list to be unmarked as incomplete}");
                 }
                 if (!userInputs[1].matches("\\d+")) {
-                    throw new DukeException(INDENTATION +
-                            "☹ OOPS!!! The mark command should be used as shown. " +
-                            "eg. mark {num of task in list to be marked as done}");
+                    throw new InvalidIndexException();
                 }
                 int indexToUnmark = Integer.parseInt(userInputs[1]);
                 return new UnmarkCommand(indexToUnmark);
@@ -142,9 +138,7 @@ public class Parser {
                             "eg. delete {num of task in list to be deleted.}");
                 }
                 if (!userInputs[1].matches("\\d+")) {
-                    throw new DukeException(INDENTATION +
-                            "☹ OOPS!!! The mark command should be used as shown. " +
-                            "eg. mark {num of task in list to be marked as done}");
+                    throw new InvalidIndexException();
                 }
                 int indexToDelete = Integer.parseInt(userInputs[1]);
                 return new DeleteCommand(indexToDelete);
