@@ -42,6 +42,8 @@ public class AddTaskCommand<T extends Task> extends TaskListCommand {
         super(invoker, taskList);
         this.argumentDelimiter = argumentDelimiter;
         this.taskFactory = taskFactory;
+
+        assert(!this.argumentDelimiter.isBlank());
     }
 
     /**

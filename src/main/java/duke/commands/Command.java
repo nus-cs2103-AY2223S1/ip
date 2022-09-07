@@ -19,6 +19,7 @@ public abstract class Command {
      */
     public Command(String invoker) {
         this.invoker = invoker;
+        assert(!this.invoker.isBlank());
     }
 
     public String getInvoker() {
