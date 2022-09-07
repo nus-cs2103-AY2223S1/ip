@@ -1,5 +1,8 @@
 package yilia;
 
+import java.io.IOException;
+import java.util.Collections;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,9 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-
-import java.io.IOException;
-import java.util.Collections;
 
 /**
  * An example of a custom control using FXML.
@@ -49,10 +49,23 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Shows a dialog.
+     *
+     * @param text The text to be shown.
+     * @param img The image to be shown.
+     * @return The DialogBox object containing the text and image.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Shows a Yilia dialog.
+     * @param text The text to be shown.
+     * @param img The image to be shown.
+     * @return The DialogBox object containing the text and image.
+     */
     public static DialogBox getYiliaDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();

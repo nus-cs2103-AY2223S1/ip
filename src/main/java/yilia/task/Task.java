@@ -3,7 +3,7 @@ package yilia.task;
 /**
  * Represents an abstract task.
  */
-public class Task {
+public abstract class Task {
     private boolean isDone = false;
     private final String content;
     public Task(String content) {
@@ -36,11 +36,43 @@ public class Task {
     public boolean status() {
         return isDone;
     }
+    /**
+     * Returns the String representation.
+     *
+     * @return The String representation.
+     */
     @Override
     public String toString() {
         return "[" + (isDone ? 'X' : ' ') + "] " + content;
     }
+    /**
+     * Returns how the task should appear on a file.
+     *
+     * @return The text information.
+     */
     public String parse() {
         return content;
+    }
+    /**
+     * Checks if two tasks are the same.
+     *
+     * @param obj The other object to compare with.
+     * @return A boolean value indicating if two tasks are the same.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Task)) {
+            return false;
+        }
+        return this.content == ((Task) obj).content;
+    }
+    /**
+     * Returns how the task should appear on a file.
+     *
+     * @param content A substring that we want to know whether is contained.
+     * @return The text information.
+     */
+    public boolean contains(String content) {
+        return this.content.contains(content);
     }
 }

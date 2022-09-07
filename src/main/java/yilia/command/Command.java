@@ -29,9 +29,10 @@ public abstract class Command {
      * @param tasks The tasks.
      * @param ui The use interface.
      * @param storage The local storage.
+     * @return A string indicating the execution status.
      * @throws DescriptionEmptyException  If the description of a task is empty.
      * @throws TimeFormatException  If the given time format is invalid.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws
             DescriptionEmptyException, TimeFormatException;
 }

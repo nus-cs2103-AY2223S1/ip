@@ -19,16 +19,20 @@ public class MarkCommand extends Command {
      * @param tasks The tasks.
      * @param ui The use interface.
      * @param storage The local storage.
+     * @return The message after executing.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        for (int i = 0; i < indices.length; i++) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        StringBuilder message = new StringBuilder();
+        for (int index : indices) {
             try {
-                tasks.get(indices[i]).setDone();
-                ui.showMarkStatus(tasks.get(indices[i]));
+                tasks.get(index).setDone();
+                message.append(ui.showMarkStatus(tasks.get(index)));
+                message.append("\n");
             } catch (IndexOutOfBoundsException e) {
-                ui.showIndexOutOfBounds(indices[i]);
+                message.append(ui.showIndexOutOfBounds(index));
             }
         }
+        return message.toString();
     }
 }
