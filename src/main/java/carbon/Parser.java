@@ -1,5 +1,7 @@
 package carbon;
 
+import java.io.FileNotFoundException;
+
 import carbon.error.CarbonException;
 import carbon.error.CorruptedSaveFileException;
 import carbon.error.InvalidInputException;
@@ -27,8 +29,10 @@ public class Parser {
         this.storage = storage;
         try {
             this.taskList = this.storage.loadSaveFile();
+        } catch (FileNotFoundException error) {
+            this.taskList = new TaskList();
         } catch (CorruptedSaveFileException error) {
-            // cannot read save file, so init with none
+            this.taskList = new TaskList();
         }
     }
 
@@ -51,6 +55,16 @@ public class Parser {
             assert this.taskList != null : "Tasks not loaded";
             log = this.taskList.listItems();
             break;
+        case "undo":
+            try {
+                this.taskList = this.storage.loadUndoFile();
+                log = this.taskList.listItems();
+            } catch (FileNotFoundException error) {
+                log = "There's no command to undo yet.";
+            } catch (CorruptedSaveFileException error) {
+                log = "Sorry, I can't undo that command.";
+            }
+            break;
         default:
             // unable to process as a simple command, pass to next handler
             log = this.processAdvancedCommand(input);
@@ -70,6 +84,7 @@ public class Parser {
         String lowerCaseInput = input.toLowerCase();
         String log;
         try {
+            this.storage.writeUndoTasks(this.taskList);
             if (lowerCaseInput.startsWith("mark")) {
                 log = this.taskList.validateAndMark(input, true);
             } else if (lowerCaseInput.startsWith("unmark")) {
@@ -89,7 +104,7 @@ public class Parser {
                 CarbonException invalidInput = new InvalidInputException(input);
                 throw invalidInput;
             }
-            this.storage.saveTasks(this.taskList);
+            this.storage.writeSaveTasks(this.taskList);
             return log;
         } catch (CarbonException error) {
             throw error;

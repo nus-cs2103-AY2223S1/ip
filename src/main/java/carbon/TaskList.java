@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import carbon.error.CarbonException;
+import carbon.error.CorruptedSaveFileException;
 import carbon.error.InvalidParamException;
 import carbon.error.OutOfBoundsException;
 import carbon.task.Deadline;
@@ -32,11 +33,11 @@ public class TaskList {
      * @param data String input of the encoded task.
      * @throws CarbonException  If an error is encountered while decoding the String data.
      */
-    public void loadTask(String data) throws CarbonException {
+    public void loadTask(String data) throws CorruptedSaveFileException {
         try {
             Task task = Task.decodeTask(data);
             this.tasks.add(task);
-        } catch (CarbonException error) {
+        } catch (CorruptedSaveFileException error) {
             throw error;
         }
     }
