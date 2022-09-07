@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * class Duke is the main class for a chatbot named ashy
@@ -14,7 +13,7 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
-
+//constructor for the duke class
     public Duke(String filePath) {
         this.storage = new Storage(filePath);
         this.ui = new Ui();
@@ -29,6 +28,7 @@ public class Duke {
         }
     }
 
+    //main function to writr h
     public static void main(String[] args) {
         //Run bot
         Duke duke = new Duke("src/tasks/tasks.txt");

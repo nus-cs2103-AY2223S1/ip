@@ -12,7 +12,7 @@ public class Ui {
      * Displays a welcome message.
      */
     public void hello() {
-        System.out.println(LINE_BREAK + "\nHello! I'm Donovan\nWhat can I do for you?\n" + LINE_BREAK);
+        System.out.println(LINE_BREAK + "\nHello! I'm nikki" + "\nWhat can I do for you?\n" + LINE_BREAK);
     }
 
     /**
