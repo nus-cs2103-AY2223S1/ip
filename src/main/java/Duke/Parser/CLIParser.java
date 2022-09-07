@@ -46,20 +46,20 @@ public class CLIParser {
 
 
         switch (commandType) {
-            case "todo" :
-                return parseTodoCommand(commandElse, userTasks);
-            case "deadline" :
-                return parseDeadlineCommand(commandElse, userTasks);
-            case "event" :
-                return parseEventCommand(commandElse, userTasks);
-            case "find":
-                return parseFindTaskCommand(commandElse, userTasks);
-            case "delete":
-                return parseDeleteTaskCommand(commandElse, userTasks);
-            case "done":
-                return parseMarkDoneCommand(commandElse, userTasks);
-            default:
-                System.out.println("CLIParser .. default ...");
+        case "todo" :
+            return parseTodoCommand(commandElse, userTasks);
+        case "deadline" :
+            return parseDeadlineCommand(commandElse, userTasks);
+        case "event" :
+            return parseEventCommand(commandElse, userTasks);
+        case "find":
+            return parseFindTaskCommand(commandElse, userTasks);
+        case "delete":
+            return parseDeleteTaskCommand(commandElse, userTasks);
+        case "done":
+            return parseMarkDoneCommand(commandElse, userTasks);
+        default:
+            System.out.println("CLIParser .. default ...");
 
         }
         throw new InvalidCommandException();
