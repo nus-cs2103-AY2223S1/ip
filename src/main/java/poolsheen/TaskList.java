@@ -1,6 +1,9 @@
 package poolsheen;
 
 import java.util.ArrayList;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import poolsheen.task.Task;
 
@@ -89,13 +92,11 @@ public class TaskList {
      */
     public TaskList find(String keyword) {
         ArrayList<Task> finalArl = new ArrayList<>(100);
-        for (Task t : this.arl) {
-            for (String word : t.getDescription().split(" ")) {
-                if (keyword.toUpperCase().equals(word.toUpperCase())) {
-                    finalArl.add(t);
-                }
-            }
-        }
+        Stream<Task> taskStream = this.arl.stream();
+        //Stream operations are used for easy understanding.
+        Function<Task, Stream<String>> taskDescStream = task -> Stream.of(task.getDescription().split(" "));
+        Predicate<Task> hasWord = task -> taskDescStream.apply(task).anyMatch(word -> keyword.equalsIgnoreCase(word));
+        taskStream.filter(hasWord).forEach(x -> finalArl.add(x));
         return new TaskList(finalArl);
     }
 }
