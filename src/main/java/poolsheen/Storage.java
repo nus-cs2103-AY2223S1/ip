@@ -65,6 +65,7 @@ public class Storage {
                 //System.out.println(arl.toString());
                 String taskType = arl.get(1);
                 boolean isDone = arl.get(2).equals("X");
+                assert taskType != null : "A task type loaded from the save file should not be null";
                 String taskDesc;
                 String time;
                 switch (taskType.toUpperCase()) {

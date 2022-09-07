@@ -13,7 +13,6 @@ import poolsheen.command.MarkCommand;
 import poolsheen.command.ToDoCommand;
 import poolsheen.command.UnmarkCommand;
 
-
 /**
  * Represents a class that can parse strings into commands.
  */
@@ -25,6 +24,7 @@ public class Parser {
      * @return A Command that will be executed later.
      */
     public static Command parse(String fullCommand) {
+        assert fullCommand != null : "The command that is being parsed should not be null";
         String[] arr = fullCommand.split(" ");
         ArrayList<String> arl = new ArrayList<>();
         for (String s : arr) {
