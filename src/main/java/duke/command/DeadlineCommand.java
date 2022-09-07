@@ -2,6 +2,7 @@ package duke.command;
 
 import java.time.LocalDateTime;
 
+import duke.Duke;
 import duke.task.Task;
 import duke.util.MessagePrinter;
 import duke.util.Storage;
@@ -44,13 +45,14 @@ public class DeadlineCommand extends AddCommand {
     }
 
     /**
-     * Executes the Command with given Duke Segments.
-     * @param taskList TaskList of the Duke.
-     * @param messagePrinter MessagePrinter of the Duke.
-     * @param storage Storage of the Duke.
+     * Executes the Command with given Duke.
+     * @param duke The target duke that the command takes effect.
+     * @return The response of Duke.
      */
     @Override
-    public String execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
+    public String execute(Duke duke) {
+        TaskList taskList = duke.getTaskList();
+        MessagePrinter messagePrinter = duke.getMessagePrinter();
         String successMsg = "Got it. I've added this task:";
         Task deadline = Task.deadline(msg, time);
         taskList.add(deadline);

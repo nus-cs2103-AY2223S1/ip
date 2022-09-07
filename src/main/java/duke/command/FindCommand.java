@@ -2,6 +2,7 @@ package duke.command;
 
 import java.util.stream.Stream;
 
+import duke.Duke;
 import duke.util.MessagePrinter;
 import duke.util.Storage;
 import duke.util.TaskList;
@@ -30,13 +31,14 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Executes the Command with given Duke Segments.
-     * @param tasks TaskList of the Duke.
-     * @param messagePrinter MessagePrinter of the Duke.
-     * @param storage Storage of the Duke.
+     * Executes the Command with given Duke.
+     * @param duke The target duke that the command takes effect.
+     * @return The response of Duke.
      */
     @Override
-    public String execute(TaskList tasks, MessagePrinter messagePrinter, Storage storage) {
+    public String execute(Duke duke) {
+        TaskList tasks = duke.getTaskList();
+        MessagePrinter messagePrinter = duke.getMessagePrinter();
         String message = "Here are the matching tasks in your list:\n";
         TaskList temp = new TaskList();
         Stream.iterate(0, x -> x + 1).limit(tasks.size())

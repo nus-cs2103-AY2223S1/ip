@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.Duke;
 import duke.util.MessagePrinter;
 import duke.util.Storage;
 import duke.util.TaskList;
@@ -16,13 +17,13 @@ public class GreetCommand extends Command {
     }
 
     /**
-     * Executes the Command with given Duke Segments.
-     * @param taskList TaskList of the Duke.
-     * @param messagePrinter MessagePrinter of the Duke.
-     * @param storage Storage of the Duke.
+     * Executes the Command with given Duke.
+     * @param duke The target duke that the command takes effect.
+     * @return The response of Duke.
      */
     @Override
-    public String execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
+    public String execute(Duke duke) {
+        MessagePrinter messagePrinter = duke.getMessagePrinter();
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"

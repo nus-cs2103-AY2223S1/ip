@@ -2,6 +2,7 @@ package duke.command;
 
 import java.time.LocalDateTime;
 
+import duke.Duke;
 import duke.util.MessagePrinter;
 import duke.util.Storage;
 import duke.util.TaskList;
@@ -138,13 +139,11 @@ public abstract class Command {
     }
 
     /**
-     * Executes the Command with given Duke Segments.
-     * @param taskList TaskList of the Duke.
-     * @param messagePrinter MessagePrinter of the Duke.
-     * @param storage Storage of the Duke.
+     * Executes the Command with given Duke.
+     * @param duke The target duke that the command takes effect.
      * @return The response of Duke.
      */
-    public abstract String execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage);
+    public abstract String execute(Duke duke);
 
     /**
      * Returns whether this command terminates Duke.

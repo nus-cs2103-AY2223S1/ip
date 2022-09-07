@@ -7,7 +7,6 @@ import duke.command.Command;
 import duke.exception.CompileException;
 import duke.exception.DukeException;
 import duke.exception.DukeRuntimeException;
-import duke.task.Task;
 import duke.util.MessagePrinter;
 import duke.util.Parser;
 import duke.util.Storage;
@@ -84,7 +83,7 @@ public class Duke {
      * @param command The given Command.
      */
     public String execute(Command command) throws DukeRuntimeException {
-        return command.execute(this.tasks, this.messagePrinter, this.storage);
+        return command.execute(this);
     }
 
     /**
@@ -128,23 +127,23 @@ public class Duke {
         return !this.isTerminated;
     }
 
-    protected MessagePrinter getMessagePrinter() {
+    public MessagePrinter getMessagePrinter() {
         return this.messagePrinter;
     }
 
-    protected Storage getStorage() {
+    public Storage getStorage() {
         return this.storage;
     }
 
-    protected TaskList getTaskList() {
+    public TaskList getTaskList() {
         return this.tasks;
     }
 
-    protected Stack<TaskList> getTaskListHistory() {
+    public Stack<TaskList> getTaskListHistory() {
         return this.taskListHistory;
     }
 
-    protected void setTaskList(TaskList taskList) {
+    public void setTaskList(TaskList taskList) {
         this.tasks = taskList;
     }
 }
