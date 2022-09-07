@@ -16,7 +16,7 @@ public abstract class Serializable<T> {
     private static final String ERROR_MATCHING_SERIALIZABLE_REGEX = "Regex for serialized string does not match!";
 
     /**
-     * Use the double slash to escape the pipe character
+     * Use the double slash to escape the pipe character.
      */
     private static final String formatterRead = " \\| ";
     private static final String formatterWrite = formatterRead.replace("\\", "");
@@ -27,7 +27,7 @@ public abstract class Serializable<T> {
     /**
      * Stores the original data and sets up a serialized form of the data.
      *
-     * @param originalData The original data
+     * @param originalData The original data.
      */
     public Serializable(String[] originalData) {
         this.originalData = originalData;
@@ -39,10 +39,10 @@ public abstract class Serializable<T> {
      * serialized string to obtain the original data as well as storing the serialized string, if and only if the
      * provided serialized string matches the expected format.
      *
-     * @param serializedString The received serialized string
-     * @param regexMatch       The Regex format that the serialized string should match
+     * @param serializedString The received serialized string.
+     * @param regexMatch       The Regex format that the serialized string should match.
      *
-     * @throws DukeException If the received serialized string does not match the provided Regex format
+     * @throws DukeException If the received serialized string does not match the provided Regex format.
      */
     public Serializable(String serializedString, Pattern regexMatch) throws DukeException {
         Matcher matcher = regexMatch.matcher(serializedString);
@@ -56,15 +56,15 @@ public abstract class Serializable<T> {
     /**
      * Supports the deserialization operation of the serializable object.
      *
-     * @return The deserialized object
-     * @throws DukeException If the object cannot be deserialized
+     * @return The deserialized object.
+     * @throws DukeException If the object cannot be deserialized.
      */
     public abstract T deserialize() throws DukeException;
 
     /**
      * Returns the original data passed into the {@code Serializable} constructor.
      *
-     * @return Original data passed into the constructor
+     * @return Original data passed into the constructor.
      */
     protected String[] get() {
         return this.originalData;

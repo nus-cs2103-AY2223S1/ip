@@ -19,7 +19,7 @@ public class StorageManager {
     /**
      * Sets up the {@link Storage storages} used in the application and initializes each of them.
      *
-     * @throws DukeException If an error occurred when initializing a particular storage
+     * @throws DukeException If an error occurred when initializing a particular storage.
      */
     public StorageManager() throws DukeException {
         this.storages = new HashMap<>() {

@@ -39,7 +39,7 @@ public class AddEventTaskCommand extends AddTaskCommand implements Command {
     /**
      * Creates a new instance of the Command handler for adding an {@link Event} task.
      *
-     * @param arguments The arguments following the {@code 'event'} prefix supplied by the user from keyboard input
+     * @param arguments The arguments following the {@code 'event'} prefix supplied by the user from keyboard input.
      */
     public AddEventTaskCommand(String arguments) {
         this.arguments = arguments;

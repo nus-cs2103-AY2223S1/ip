@@ -16,7 +16,7 @@ public class ToDo extends Task {
     /**
      * Initializes the ToDo task with the provided description.
      *
-     * @param description The received description
+     * @param description The received description.
      */
     public ToDo(String description) {
         super(description);
@@ -25,8 +25,8 @@ public class ToDo extends Task {
     /**
      * Initializes the ToDo task with the provided description and completion status.
      *
-     * @param description The received description
-     * @param isDone      The received completion status
+     * @param description The received description.
+     * @param isDone      The received completion status.
      */
     public ToDo(String description, boolean isDone) {
         super(description, isDone);

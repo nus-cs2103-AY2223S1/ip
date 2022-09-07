@@ -22,9 +22,9 @@ public class ByeCommand implements Command {
     /**
      * Returns {@code true} if and only if the supplied command is an instance of the {@link ByeCommand}.
      *
-     * @param command The supplied command
+     * @param command The supplied command.
      *
-     * @return {@code true} if and only if the supplied command is an instance of the {@link ByeCommand}
+     * @return {@code true} if and only if the supplied command is an instance of the {@link ByeCommand}.
      */
     public static boolean is(Command command) {
         return command instanceof ByeCommand;

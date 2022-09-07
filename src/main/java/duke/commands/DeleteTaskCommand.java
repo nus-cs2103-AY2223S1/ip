@@ -33,7 +33,7 @@ public class DeleteTaskCommand implements Command {
      * Creates a new instance of the Command handler for deleting a {@link Task}.
      *
      * @param arguments The arguments following the {@code 'delete'} prefix that is supplied by the user from keyboard
-     *                  input, and should denote the corresponding task number
+     *                  input, and should denote the corresponding task number.
      */
     public DeleteTaskCommand(String arguments) {
         this.arguments = arguments;
