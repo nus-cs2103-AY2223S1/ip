@@ -5,6 +5,7 @@ import duke.task.Task;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Period;
 
 import static java.time.temporal.ChronoUnit.*;
 
@@ -12,35 +13,43 @@ public class Reminder {
     private final TaskList taskList;
     private final LocalDate nowDate;
     private final LocalTime nowTime;
+    private final Ui ui;
+    private static final int MINUTES_IN_AN_HOUR = 60;
 
     public Reminder() throws DukeException {
         this.taskList = this.loadTaskList();
         this.nowDate = LocalDate.now();
         this.nowTime = LocalTime.now();
+        this.ui = new Ui();
     }
 
     private TaskList loadTaskList() throws DukeException {
         return new TaskList(new Storage("duke.txt").load());
     }
-    public String getReminder() throws DukeException {
+
+    /**
+     * Get the first coming and undone task in the future from the TaskList.
+     *
+     * @return String of beautified task and the time remaining to complete the task.
+     */
+    public String getReminder() {
         try {
-            Task firstComingTask = this.getFirstComingTask();
+            Task firstComingTask = this.getFirstComingUndoneTask();
             String countdown = this.getCountDown(firstComingTask);
             return "REMINDER: The coming task is\n" +
-                    firstComingTask + "\n" +
+                    this.ui.beautyWrapTask(firstComingTask) + "\n" +
                     "COUNTDOWN: " + countdown;
         } catch (NullPointerException e) {
-            //throw new DukeException("Null pointer exception!");
             return "No reminder for now :)";
         }
     }
 
-    private Task getFirstComingTask() {
+    private Task getFirstComingUndoneTask() {
         Task nearestTask = null;
         long shortestDayBetween = Long.MAX_VALUE;
         long shortestTimeBetween = Long.MAX_VALUE;
         for (Task t : this.taskList.getList()) {
-            if (t.getDate() == null && t.getTime() == null) {
+            if (t.isMarked() || (t.getDate() == null && t.getTime() == null)) {
                 continue;
             }
             if (this.isFutureDate(t)) {
@@ -61,9 +70,53 @@ public class Reminder {
     }
 
     private String getCountDown(Task task) {
-        return this.nowDate.until(task.getDate()) + " "
-                + this.nowTime.until(task.getTime(), HOURS) + " "
-                + this.nowTime.until(task.getTime(), MINUTES);
+        int year = 0;
+        int month = 0;
+        int day = 0;
+        Period periodDate = this.nowDate.until(task.getDate());
+        String periodString = periodDate.toString();
+        int number = 0;
+        for (int i = 0; i < periodString.length(); i++) {
+            char c = periodString.charAt(i);
+
+            switch (c) {
+            case 'P':
+                break;
+            case 'Y':
+                year = number;
+                break;
+            case 'M':
+                month = number;
+                break;
+            case 'D':
+                day = number;
+                break;
+            default:
+                number = Character.getNumericValue(c);
+                break;
+            }
+        }
+        String countdownString = "";
+        if (year != 0) {
+            countdownString += year + " Year, ";
+        }
+        if (month != 0) {
+            countdownString += month + " Month, ";
+        }
+        if (day != 0) {
+            countdownString += day + " Day, ";
+        }
+
+        long periodMinutes = this.nowTime.until(task.getTime(), MINUTES);
+        long hour = periodMinutes / MINUTES_IN_AN_HOUR;
+        long minute = periodMinutes % MINUTES_IN_AN_HOUR;
+        if (hour != 0) {
+            countdownString += hour + " Hour, ";
+        }
+        if (minute != 0) {
+            countdownString += minute + " Minute ";
+        }
+        return countdownString;
     }
 
 
