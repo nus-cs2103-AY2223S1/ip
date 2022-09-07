@@ -15,9 +15,10 @@ public class Parser {
      * @param listOfTasks is the list of tasks stored.
      * @param ui          is the output text from Duke to console.
      * @param storage     deals with saving and loading tasks in Duke.txt.
+     * @param undo        deals with undoing the last command from user.
      * @throws IOException if file does not open.
      */
-    public static String parse(String command, TaskList listOfTasks, Ui ui, Storage storage)
+    public static String parse(String command, TaskList listOfTasks, Ui ui, Storage storage, Undo undo)
             throws IOException {
         String reply = "";
         String[] response = command.split(" ");
@@ -38,6 +39,8 @@ public class Parser {
                 listOfTasks.markAsDone(taskIndex);
                 reply = ui.showMarkedTask(taskIndex, listOfTasks);
                 storage.writeToTextFile(listOfTasks);
+                undo.addLastCommand("MARK");
+                undo.addLastIndex(taskIndex);
             } catch (ArrayIndexOutOfBoundsException e) {
                 return ":( OOPS!!! You're missing an index for mark.";
             }
@@ -49,6 +52,8 @@ public class Parser {
                 listOfTasks.markAsNotDone(taskIndex);
                 reply = ui.showUnmarkedTask(taskIndex, listOfTasks);
                 storage.writeToTextFile(listOfTasks);
+                undo.addLastCommand("UNMARK");
+                undo.addLastIndex(taskIndex);
             } catch (ArrayIndexOutOfBoundsException e) {
                 return ":( OOPS!!! You're missing an index for unmark.";
             }
@@ -61,6 +66,7 @@ public class Parser {
                 listOfTasks.add(toDoTask);
                 reply = ui.showToDoTask(toDoTask, listOfTasks);
                 storage.writeToTextFile(listOfTasks);
+                undo.addLastCommand("TODO");
             } catch (StringIndexOutOfBoundsException e) {
                 return ":( OOPS!!! The description of a todo cannot be empty.";
             }
@@ -75,6 +81,7 @@ public class Parser {
                 listOfTasks.add(deadlineTask);
                 reply = ui.showDeadlineTask(deadlineTask, listOfTasks);
                 storage.writeToTextFile(listOfTasks);
+                undo.addLastCommand("DEADLINE");
             } catch (StringIndexOutOfBoundsException e) {
                 return ":( OOPS!!! The description of a deadline cannot be empty.";
             } catch (ArrayIndexOutOfBoundsException e) {
@@ -93,6 +100,7 @@ public class Parser {
                 listOfTasks.add(eventTask);
                 reply = ui.showEventTask(eventTask, listOfTasks);
                 storage.writeToTextFile(listOfTasks);
+                undo.addLastCommand("EVENT");
             } catch (StringIndexOutOfBoundsException e) {
                 return ":( OOPS!!! The description of an event cannot be empty.";
             } catch (ArrayIndexOutOfBoundsException e) {
@@ -109,6 +117,9 @@ public class Parser {
                 listOfTasks.remove(deleteIndex + 1);
                 reply = ui.showDeletedTask(deletedTask, listOfTasks);
                 storage.writeToTextFile(listOfTasks);
+                undo.addLastCommand("DELETE");
+                undo.addLastIndex(deleteIndex);
+                undo.addLastTask(deletedTask);
             } catch (ArrayIndexOutOfBoundsException e) {
                 return ":( OOPS!!! You're missing an index for delete.";
             }
@@ -126,6 +137,54 @@ public class Parser {
                 reply = ui.showFindTask(matchingTasks);
             } catch (ArrayIndexOutOfBoundsException e) {
                 return ":( OOPS!!! The description of a find cannot be empty.";
+            }
+            break;
+
+        case "UNDO":
+            String lastCommand = undo.popLastCommand();
+            switch (lastCommand) {
+            case "MARK":
+                int taskIndex = undo.popLastIndex();
+                listOfTasks.markAsNotDone(taskIndex);
+                reply = ui.showUnmarkedTask(taskIndex, listOfTasks);
+                storage.writeToTextFile(listOfTasks);
+                break;
+
+            case "UNMARK":
+                taskIndex = undo.popLastIndex();
+                listOfTasks.markAsDone(taskIndex);
+                reply = ui.showMarkedTask(taskIndex, listOfTasks);
+                storage.writeToTextFile(listOfTasks);
+                break;
+
+            case "TODO":
+                Todo lastToDoTask = (Todo) listOfTasks.popLastTask();
+                reply = ui.showDeletedTask(lastToDoTask, listOfTasks);
+                storage.writeToTextFile(listOfTasks);
+                break;
+
+            case "DEADLINE":
+                Deadline lastDeadlineTask = (Deadline) listOfTasks.popLastTask();
+                reply = ui.showDeletedTask(lastDeadlineTask, listOfTasks);
+                storage.writeToTextFile(listOfTasks);
+                break;
+
+            case "EVENT":
+                Event lastEventTask = (Event) listOfTasks.popLastTask();
+                reply = ui.showDeletedTask(lastEventTask, listOfTasks);
+                storage.writeToTextFile(listOfTasks);
+                break;
+
+            case "DELETE":
+                taskIndex = undo.popLastIndex();
+                Task deletedTask = undo.popLastTask();
+                listOfTasks.addTaskToIndex(taskIndex, deletedTask);
+                reply = ui.showUndoDeletedTask(deletedTask, listOfTasks);
+                storage.writeToTextFile(listOfTasks);
+                break;
+
+            default:
+                break;
             }
             break;
 

@@ -150,6 +150,20 @@ public class Ui {
     }
 
     /**
+     * Displays task added to list of tasks after undo.
+     *
+     * @param undoTask    is the task to be added back to list of tasks.
+     * @param listOfTasks containing tasks stored by user.
+     * @return a string of the task added to list of tasks.
+     */
+    public String showUndoDeletedTask(Task undoTask, TaskList listOfTasks) {
+        sb = new StringBuilder();
+        sb.append("Got it. I've added back this task:\n" + undoTask + "\nNow you have "
+                + listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
+        return sb.toString();
+    }
+
+    /**
      * Prints error message to console.
      *
      * @param errorMessage error message String.
