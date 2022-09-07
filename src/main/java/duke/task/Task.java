@@ -11,18 +11,20 @@ import duke.util.Parser;
  * @author njxue
  * @version v0.1
  */
-public abstract class Task implements Comparable<Task> {
+public abstract class Task {
     /** Icon to represent that a task is completed. */
     private static final String COMPLETED_ICON = "X";
     /** Icon to represent that a task is not completed. */
     private static final String INCOMPLETE_ICON = " ";
 
-    /** Description of the task. **/
+    /** Description of the task. */
     private String description;
     /** Describes if the task is completed or not. */
     private boolean isDone;
     /** Date and time the task occurs or to be completed by. */
     private LocalDateTime dateTime;
+    /** Date and time the task was added to the TaskList. */
+    private LocalDateTime dateAdded = LocalDateTime.now();
 
     /**
      * Creates a Task object not associated with a date and time.
@@ -46,8 +48,6 @@ public abstract class Task implements Comparable<Task> {
         this.isDone = false;
         this.dateTime = dateTime;
     }
-
-
 
     /**
      * Returns a Task object from a string.
@@ -93,6 +93,10 @@ public abstract class Task implements Comparable<Task> {
         return isDone ? COMPLETED_ICON : INCOMPLETE_ICON;
     }
 
+    public LocalDateTime getDateAdded() {
+        return dateAdded;
+    }
+
     /**
      * Marks the task as completed.
      */
@@ -133,20 +137,6 @@ public abstract class Task implements Comparable<Task> {
      */
     public LocalDateTime getDateTime() {
         return dateTime;
-    }
-
-    /**
-     * Compares two Task objects.
-     *
-     * @param other Task object to be compared against.
-     * @return Returns -1 if the invoker, a Task object, has dateTime field before that of the Task object supplied as
-     *         the argument. Returns 0 if both dateTime fields are equal. Returns 1 otherwise.
-     */
-    @Override
-    public int compareTo(Task other) {
-        LocalDateTime thisTaskDate = this.getDateTime();
-        LocalDateTime otherTaskDate = other.getDateTime();
-        return thisTaskDate.compareTo(otherTaskDate);
     }
 
     /**

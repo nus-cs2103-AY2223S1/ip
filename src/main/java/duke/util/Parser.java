@@ -3,16 +3,7 @@ package duke.util;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
-import duke.command.ByeCommand;
-import duke.command.Command;
-import duke.command.DeadlineCommand;
-import duke.command.DeleteCommand;
-import duke.command.EventCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.TodoCommand;
-import duke.command.UnmarkCommand;
+import duke.command.*;
 import duke.exception.DukeException;
 import duke.exception.InvalidCommandFormatException;
 import duke.exception.UnknownCommandException;
@@ -68,6 +59,8 @@ public class Parser {
                     throw new InvalidCommandFormatException(commandFormat);
                 }
                 return new FindCommand(commandArgument);
+            } else if (command.equals("sort")) {
+                return SortCommand.parse(commandArgument);
             } else if (command.equals("bye")) {
                 return new ByeCommand();
             } else if (command.equals("list")) {
@@ -162,6 +155,14 @@ public class Parser {
         return argumentSplit;
     }
 
+    private static String[] getCommandArgumentSplit(String commandArgument, String delimiter) {
+        String[] argumentSplit = commandArgument.split(delimiter);
+        for (int i = 0; i < argumentSplit.length; i++) {
+            argumentSplit[i] = argumentSplit[i].strip();
+        }
+        return argumentSplit;
+    }
+
     /**
      * Checks if a given string input is empty.
      *
@@ -200,6 +201,8 @@ public class Parser {
             return ListCommand.getFormat();
         case "bye":
             return ByeCommand.getFormat();
+        case "sort":
+            return SortCommand.getFormat();
         default:
             throw new UnknownCommandException(commandString);
         }
