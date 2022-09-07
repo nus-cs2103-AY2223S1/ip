@@ -16,10 +16,6 @@ public class Duke {
     private Parser parser = new Parser();
     private TaskList taskList = new TaskList(storage.read());
 
-
-    public Duke() {
-    }
-
     /**
      * duke.gui.Main entry function.
      * @param args Command line arguments.
@@ -27,6 +23,12 @@ public class Duke {
     public static void main(String[] args) {
     }
 
+    /**
+     * Gets the parsed response based on the user's input.
+     *
+     * @param input The input from the user.
+     * @return The output of Duke, from the parser.
+     */
     public String getResponse(String input) {
         try {
             Command command = parser.parse(ui.readCommand(input));
