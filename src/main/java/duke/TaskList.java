@@ -58,6 +58,9 @@ public class TaskList {
     }
 
     public String add(Task task, Storage fo) {
+        if (isDuplicate(task)) {
+            return "You already have this task in your list :)";
+        }
         tasks.add(task);
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("Gotcha. I have added this task:\n"));
@@ -104,5 +107,21 @@ public class TaskList {
             sb.insert(0, "Here are your results: ");
             return sb.toString();
         }
+    }
+
+    /**
+     * Checks whether a duplicate task already exists in the tasks list.
+     * Two tasks are said to be identical if they have the same string representation.
+     *
+     * @param task
+     * @return
+     */
+    public boolean isDuplicate(Task task) {
+        for (Task temp : tasks) {
+            if (task.toString().equals(temp.toString())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
