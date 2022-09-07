@@ -77,6 +77,7 @@ public class Parser {
                         1,
                         bySeparationIndex));
         try {
+            assert bySeparationIndex + 1 < parsedUserResponse.length : "No date added after /byyy";
             LocalDate deadline = LocalDate.parse(parsedUserResponse[bySeparationIndex + 1]);
             return new Deadline(newTaskDescription, deadline);
         } catch (ArrayIndexOutOfBoundsException e) {
