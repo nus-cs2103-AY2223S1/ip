@@ -13,6 +13,7 @@ import duke.commands.FindCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
 import duke.commands.TodoCommand;
+import duke.commands.UndoCommand;
 import duke.commands.UnmarkCommand;
 import duke.common.Messages;
 import duke.common.exceptions.DukeException;
@@ -66,6 +67,8 @@ public class Parser {
             return prepareDelete(splitInputArray);
         case FindCommand.COMMAND_WORD:
             return prepareFind(splitInputArray);
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
         default:
             throw new InvalidCommandException();
         }

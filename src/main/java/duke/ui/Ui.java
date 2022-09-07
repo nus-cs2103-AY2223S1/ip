@@ -117,4 +117,12 @@ public class Ui {
             return Messages.MESSAGE_NO_MATCHING_TASKS;
         }
     }
+
+    /**
+     * Returns a message that the most recent change to the task list has been undone.
+     * @return A message indicating the updated list of tasks.
+     */
+    public String showUndo(TaskList taskList) {
+        return Messages.MESSAGE_UNDO + showAllTasks(taskList);
+    }
 }
