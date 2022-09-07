@@ -20,6 +20,7 @@ import duke.command.UnmarkCommand;
 public class Parser {
 
     private static String getTaskName(String[] msg) {
+        assert(msg.length > 1);
         String input = "";
         for (int i = 1; i < msg.length; i++) {
             input += msg[i];
@@ -87,7 +88,7 @@ public class Parser {
             }
 
             String[] tmp = msg[0].split(" ");
-            if (msg.length < 2) {
+            if (tmp.length < 2) {
                 throw(new DukeException("nothing to add!"));
             }
 
@@ -105,7 +106,7 @@ public class Parser {
             }
 
             String[] tmp = msg[0].split(" ");
-            if (msg.length < 2) {
+            if (tmp.length < 2) {
                 throw(new DukeException("nothing to add!"));
             }
 
