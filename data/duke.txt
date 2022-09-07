@@ -1,3 +1,4 @@
 E | 0 | Go to Los Pollos Hermanos | 2023-01-01
 T | 0 | Meet Jesse ASAP
+T | 0 | Meet Hank ASAP
 T | 1 | Find out who's the sussy baka
