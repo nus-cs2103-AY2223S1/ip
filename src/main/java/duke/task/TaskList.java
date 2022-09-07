@@ -1,5 +1,6 @@
 package duke.task;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -148,6 +149,22 @@ public class TaskList {
         Task deletedTask = tasks.remove(index);
         size--;
         return deletedTask;
+    }
+
+    /**
+     * Reminds tasks that are within 7 days to expiring.
+     *
+     * @return The task to be reminded.
+     */
+    public ArrayList<Task> remindTasks() {
+        ArrayList<Task> remindedTasks = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            Task currentTask = tasks.get(i);
+            if (currentTask.isNeedReminder()) {
+                remindedTasks.add(currentTask);
+            }
+        }
+        return remindedTasks;
     }
 
     /**

@@ -70,4 +70,11 @@ public abstract class Task {
     public String toString() {
         return "[" + this.getStatusIcon() + "]" + " " + this.description;
     }
+
+    /**
+     * Checks if the task needs a reminder.
+     *
+     * @return Boolean representing whether the task needs a reminder.
+     */
+    public abstract boolean isNeedReminder();
 }

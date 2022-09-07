@@ -2,6 +2,8 @@ package duke.ui;
 
 import duke.task.TaskList;
 import duke.task.Task;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -70,6 +72,18 @@ public class Ui {
 
         for (int i = 0; i < size; i++) {
             list = list + makeIndent((i + 1) + ". " + tasks.getTask(i).toString() + "\n");
+        }
+
+        return printMessage(list);
+    }
+
+    public String displayReminder(ArrayList<Task> remindedTasks) {
+        int size = remindedTasks.size();
+
+        String list = "These tasks have to be completed soon: \n";
+
+        for (int i = 0; i < size; i++) {
+            list = list + makeIndent((i + 1) + ". " + remindedTasks.get(i).toString() + "\n");
         }
 
         return printMessage(list);

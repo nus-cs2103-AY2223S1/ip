@@ -8,6 +8,7 @@ import duke.command.EventCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.RemindCommand;
 import duke.command.TodoCommand;
 import duke.command.UnmarkCommand;
 import duke.exception.DukeEmptyDescriptionException;
@@ -35,6 +36,8 @@ public class Parser {
             return new ByeCommand();
         } else if (command.equals("list")) {
             return new ListCommand();
+        } else if (command.equals("remind")) {
+            return new RemindCommand();
         } else if (command.startsWith("mark")) {
             String[] splitCommand = command.split("\\s+", 2);
             if (!splitCommand[0].equals("mark")) {

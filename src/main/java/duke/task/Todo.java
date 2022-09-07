@@ -1,5 +1,7 @@
 package duke.task;
 
+import java.time.LocalDate;
+
 /**
  * Todo is a Task that represents a todo.
  *
@@ -14,6 +16,16 @@ public class Todo extends Task {
      */
     public Todo(String description) {
         super(description);
+    }
+
+    /**
+     * Checks if the task needs a reminder.
+     *
+     * @return Boolean representing whether the task needs a reminder.
+     */
+    @Override
+    public boolean isNeedReminder() {
+        return false;
     }
 
     /**

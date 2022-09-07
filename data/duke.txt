@@ -5,3 +5,4 @@ D | 0 | Kick Timmy out of dorm | 2022-08-31
 T | 0 | eat breakfast
 E | 1 | Join CS2103T tutorial | 2022-09-01
 T | 0 | hello
+E | 0 | test remind | 2022-09-12
