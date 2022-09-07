@@ -110,13 +110,7 @@ public class TaskList {
         }
 
         for (String line : txtFile) {
-            String[] details = line.split(" # ");
-            String taskType = details[0];
-            boolean isComplete = Boolean.parseBoolean(details[1]);
-            String taskName = details[2];
-            String eventInfo = details.length > 3 ? details[3] : "";
-
-            Task task = createTaskFromString(taskType, taskName, eventInfo, isComplete);
+            Task task = createTaskFromString(line);
             if (task == null) {
                 throw new Exception("Unable to load task");
             }
@@ -124,7 +118,14 @@ public class TaskList {
         }
     }
 
-    public Task createTaskFromString(String taskType, String taskName, String eventInfo, boolean isComplete) {
+    public Task createTaskFromString(String task) {
+
+        String[] details = task.split(" # ");
+        String taskType = details[0];
+        boolean isComplete = Boolean.parseBoolean(details[1]);
+        String taskName = details[2];
+        String eventInfo = details.length > 3 ? details[3] : "";
+
         switch (taskType) {
             case "T":
                 return new ToDos(taskName, isComplete);
@@ -132,9 +133,9 @@ public class TaskList {
                 return new Deadline(taskName, eventInfo, isComplete);
             case "E":
                 return new Event(taskName, eventInfo, isComplete);
+            default:
+                return null;
         }
-
-        return null;
     }
 
     
