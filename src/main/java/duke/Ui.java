@@ -21,14 +21,18 @@ public class Ui {
     }
 
     /**
-     * Method that prints a welcome message for the user.
+     * Method that returns a welcome message for the user.
+     *
+     * @return A welcome message for the user.
      */
     public String showWelcome() {
         return "Hello! I'm Edric\nWhat can I do for you?";
     }
 
     /**
-     * Method that prints a goodbye message for the user.
+     * Method that returns a goodbye message for the user.
+     *
+     * @return A goodbye message for the user.
      */
     public String showBye() {
         return "Bye. Hope to see you again soon!";
@@ -42,14 +46,7 @@ public class Ui {
     }
 
     /**
-     * Method that prints a message to indicate a loading error.
-     */
-    public String showLoadingError() {
-        return "Error Loading Storage File!";
-    }
-
-    /**
-     * Method that prints a message to indicate a given error.
+     * Method that returns a message to indicate a given error.
      *
      * @param message The error message to be displayed.
      */
@@ -62,6 +59,7 @@ public class Ui {
      *
      * @param task The task that has been added to the list.
      * @param tasks The current list of tasks.
+     * @return A message to indicate that a task has been added to the list.
      */
     public String showAddTask(Task task, TaskList tasks) {
         return "Got it. I've added this task:" + "\n"
@@ -74,6 +72,7 @@ public class Ui {
      *
      * @param task The task that has been deleted from the list.
      * @param tasks The current list of tasks.
+     * @return A message to indicate a task has been deleted from the list.
      */
     public String showDeleteTask(Task task, TaskList tasks) {
         return "Got it. I've removed this task:" + "\n"
@@ -85,6 +84,7 @@ public class Ui {
      * Method that prints a message to indicate a task has been marked as done.
      *
      * @param task The task that has been marked as done.
+     * @return A message to indicate a task has been marked as done.
      */
     public String showMarkTask(Task task) {
         return "Nice! I've marked this task as done:" + "\n"
@@ -95,6 +95,7 @@ public class Ui {
      * Method that prints a message to indicate a task has been marked as not done.
      *
      * @param task The task that has been marked as not done.
+     * @return A message to indicate a task has been marked as not done.
      */
     public String showUnmarkTask(Task task) {
         return "OK, I've marked this task as not done yet:" + "\n"
@@ -105,9 +106,11 @@ public class Ui {
      * Method that prints all the Tasks in the TaskList.
      *
      * @param tasks The List of Tasks.
+     * @param message The message to be shown before the tasks.
+     * @return All tasks currently in the list.
      */
-    public String showTasks(TaskList tasks) {
-        StringBuilder allTasks = new StringBuilder("Here are the tasks in your list:\n");
+    public String showTasks(TaskList tasks, String message) {
+        StringBuilder allTasks = new StringBuilder(message);
         for (int i = 0; i < tasks.getSize(); i++) {
             Task curr = tasks.getTask(i);
             allTasks.append(String.format("%d. %s\n", i + 1, curr.toString()));
@@ -122,20 +125,6 @@ public class Ui {
      */
     public String readCommand() {
         return sc.nextLine();
-    }
-
-    /**
-     * Method that prints out the given matching tasks.
-     *
-     * @param tasks The TaskList containing the matching tasks.
-     */
-    public String showMatchingTasks(TaskList tasks) {
-        StringBuilder matchingTasks = new StringBuilder("Here are the matching tasks in you list:\n");
-        for (int i = 0; i < tasks.getSize(); i++) {
-            Task curr = tasks.getTask(i);
-            matchingTasks.append(String.format("%d. %s\n", i + 1, curr.toString()));
-        }
-        return matchingTasks.toString();
     }
 
 }

@@ -36,6 +36,7 @@ public class Storage {
      * Method that loads the saved data file.
      *
      * @return A List of Tasks that have been stored in the data file.
+     * @throws FileNotFoundException if unable to read from data file.
      */
     public List<Task> loadTasks() throws FileNotFoundException {
         List<Task> tasks = new ArrayList<>();
@@ -45,27 +46,25 @@ public class Storage {
             String input = sc.nextLine();
             String[] words = input.split(" # ");
 
-            // check description
+            // Checks description of task
             String desc = words[2];
-            // check task
-            String task = words[0];
-            if (task.equals("T")) {
+            // Checks type of task
+            String typeOfTask = words[0];
+            if (typeOfTask.equals("T")) {
                 Task todo = new Todo(desc);
-                // check marked
+                // Checks if task is marked
                 if (words[1].equals("1")) {
                     todo.mark();
                 }
                 tasks.add(todo);
-            } else if (task.equals("D")) {
+            } else if (typeOfTask.equals("D")) {
                 Task deadline = new Deadline(desc, words[3]);
-                // check marked
                 if (words[1].equals("1")) {
                     deadline.mark();
                 }
                 tasks.add(deadline);
-            } else if (task.equals("E")) {
+            } else if (typeOfTask.equals("E")) {
                 Task event = new Event(desc, words[3]);
-                // check marked
                 if (words[1].equals("1")) {
                     event.mark();
                 }
@@ -81,6 +80,7 @@ public class Storage {
      * Method that saves the current tasks in the data file.
      *
      * @param tasks The current List of Tasks.
+     * @throws IOException if unable to save to data file.
      */
     public void saveTasks(TaskList tasks) throws IOException {
         tasks.saveTasks(this.filePath);

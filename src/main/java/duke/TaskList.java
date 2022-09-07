@@ -102,12 +102,12 @@ public class TaskList {
      * Method that saves and updates the data file.
      *
      * @param filePath The filePath to the data file to write to.
+     * @throws IOException if filePath is invalid.
      */
     public void saveTasks(String filePath) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         for (int i = 0; i < tasks.size(); i++) {
             Task curr = tasks.get(i);
-            // System.out.println(curr.toDataEntry());
             fw.write(curr.toDataEntry());
         }
         fw.close();
