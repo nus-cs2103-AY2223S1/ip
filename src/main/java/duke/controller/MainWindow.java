@@ -50,7 +50,7 @@ public class MainWindow extends AnchorPane {
         if (input.equals("quit")) {
             Platform.exit();
         }
-
+        assert !response.isBlank() : "Please key in a non-empty command";
         response = duke.getResponse(input);
 
         dialogContainer.getChildren().addAll(

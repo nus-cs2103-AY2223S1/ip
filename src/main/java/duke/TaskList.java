@@ -79,6 +79,7 @@ public class TaskList {
                 response += String.format("%d. %s\n", i + 1, currentTask);
             }
         }
+        assert taskList.size() >= 0 : "Task list size is negative";
         return response;
     }
 
@@ -88,6 +89,7 @@ public class TaskList {
      * @Throws IndexOutOfBoundsException
      */
     public String delete(int index) throws IndexOutOfBoundsException {
+        assert (index < taskList.size() && index >=0): "index needs to be within bounds of list";
         if (index >= taskList.size()) {
             throw new IndexOutOfBoundsException();
         }
