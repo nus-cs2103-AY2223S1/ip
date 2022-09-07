@@ -37,7 +37,8 @@ public class MainWindow extends AnchorPane {
         duke = d;
         dialogContainer.getChildren().add(
                 DialogBox.getDukeDialog("Hello! I'm Lily\n"
-                        + "What can I do for you?", dukeImage)
+                        + "What can I do for you?\n"
+                        + "A list of options can be found with 'help' command", dukeImage)
         );
         header.getChildren().add(Header.setHeader("Lily", dukeImage, pinkVenom));
     }

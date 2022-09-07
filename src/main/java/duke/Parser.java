@@ -6,6 +6,7 @@ import duke.command.DeleteCommand;
 import duke.command.DoneCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
+import duke.command.HelpCommand;
 import duke.command.ListCommand;
 import duke.command.OnGoingCommand;
 import duke.exception.DukeException;
@@ -27,7 +28,7 @@ public class Parser {
      * Request type that can be used.
      */
     public enum RequestType {
-        DONE, ONGOING, TODO, EVENT, DEADLINE, DELETE, LIST, EXIT, FIND
+        DONE, ONGOING, TODO, EVENT, DEADLINE, DELETE, LIST, EXIT, FIND, HELP
     }
 
     /**
@@ -39,6 +40,8 @@ public class Parser {
     public static RequestType checkRequest(String request) throws DukeException {
         if (request.equals("bye")) {
             return RequestType.EXIT;
+        } else if (request.equals("help")) {
+            return RequestType.HELP;
         } else if (request.equals("list")) {
             return RequestType.LIST;
         } else if (request.matches("mark \\d+")) {
@@ -182,6 +185,8 @@ public class Parser {
         switch (rqType) {
         case LIST:
             return new ListCommand();
+        case HELP:
+            return new HelpCommand();
         case DONE:
             return new DoneCommand(getMarkIndex(userInput, taskList));
         case ONGOING:
