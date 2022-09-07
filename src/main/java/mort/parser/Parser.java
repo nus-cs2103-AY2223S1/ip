@@ -35,6 +35,7 @@ public class Parser {
     }
     
     private static Command createCommand(String[] parsedCommand, String strippedCommand) throws MortException {
+        assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
         try {
             switch (parsedCommand[0]) {
             case "":
@@ -108,11 +109,11 @@ public class Parser {
     }
     
     private static Command validateToDo(String[] parsedCommand) throws MortException {
+        assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
         boolean hasBlankDescription = parsedCommand.length < 2;
         boolean containsPipeCharacter = !hasBlankDescription && parsedCommand[1].contains("|");
         
         if (hasBlankDescription) {
-            // perhaps make child exception classes
             throw new MortException("It seems you've invented a way to do nothing. Typical...\n"
                     + Ui.getCommandHelp(CommandWord.TODO));
         } else if (containsPipeCharacter) {
@@ -123,6 +124,7 @@ public class Parser {
     }
     
     private static Command validateDeadline(String[] parsedCommand) throws MortException {
+        assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
         boolean hasBlankDescriptionWithoutDate = parsedCommand.length < 2;
 
         if (hasBlankDescriptionWithoutDate) {
@@ -130,6 +132,7 @@ public class Parser {
                     + Ui.getCommandHelp(CommandWord.DEADLINE));
         } else {
             String[] parsedTask = parsedCommand[1].split(" /by ", 2);
+            assert parsedTask.length > 0 : "Length of parsedTask should be greater than 0";
             boolean hasBlankDescriptionWithDate = parsedTask[0].startsWith("/by") || parsedTask[0].isBlank();
             boolean hasBlankDate = parsedTask.length < 2;
             boolean containsPipeCharacter = parsedTask[0].contains("|");
@@ -149,6 +152,7 @@ public class Parser {
     }
 
     private static Command validateEvent(String[] parsedCommand) throws MortException {
+        assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
         boolean hasBlankDescriptionWithoutDate = parsedCommand.length < 2;
 
         if (hasBlankDescriptionWithoutDate) {
@@ -156,6 +160,7 @@ public class Parser {
                     + Ui.getCommandHelp(CommandWord.EVENT));
         } else {
             String[] parsedTask = parsedCommand[1].split(" /at ", 2);
+            assert parsedTask.length > 0 : "Length of parsedTask should be greater than 0";
             boolean hasBlankDescriptionWithDate = parsedTask[0].startsWith("/at") || parsedTask[0].isBlank();
             boolean hasBlankDate = parsedTask.length < 2;
             boolean containsPipeCharacter = parsedTask[0].contains("|");
@@ -175,6 +180,7 @@ public class Parser {
     }
 
     private static Command validateDelete(String[] parsedCommand) throws MortException {
+        assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
         boolean hasBlankTaskNumber = parsedCommand.length < 2;
         if (hasBlankTaskNumber) {
             throw new MortException("Enter a task number, nitwit.\n"
@@ -186,6 +192,7 @@ public class Parser {
     }
 
     private static Command validateMark(String[] parsedCommand) throws MortException {
+        assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
         boolean hasBlankTaskNumber = parsedCommand.length < 2;
         if (hasBlankTaskNumber) {
             throw new MortException("Enter a task number, nitwit.\n"
@@ -197,14 +204,18 @@ public class Parser {
     }
 
     private static Command validateFind(String[] parsedCommand) throws MortException {
-        if (parsedCommand.length < 2) {
+        assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
+        boolean hasBlankKeyword = parsedCommand.length < 2;
+        if (hasBlankKeyword) {
             throw new MortException("You're so helpful. What exactly am I supposed to look for?\n"
                     + Ui.getCommandHelp(CommandWord.FIND));
         } else {
             return new FindCommand(parsedCommand[1]);
         }
     }
+    
     private static Command validateUnmark(String[] parsedCommand) throws MortException {
+        assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
         boolean hasBlankTaskNumber = parsedCommand.length < 2;
         if (hasBlankTaskNumber) {
             throw new MortException("Enter a task number, nitwit.\n"

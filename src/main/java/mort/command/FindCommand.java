@@ -19,9 +19,4 @@ public class FindCommand extends Command {
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         return ui.getFindMessage(this.keyword, tasks.find(this.keyword));
     }
-    
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

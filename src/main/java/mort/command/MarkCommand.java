@@ -26,8 +26,4 @@ public class MarkCommand extends Command {
             throw new MortException(ui.getMissingTaskError(CommandWord.MARK, this.taskNumber));
         }
     }
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }

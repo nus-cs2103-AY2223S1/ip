@@ -26,8 +26,4 @@ public class UnmarkCommand extends Command {
             throw new MortException(ui.getMissingTaskError(CommandWord.UNMARK, this.taskNumber));
         }
     }
-    @Override
-    public boolean isExit() {
-        return false;
-    }
 }
