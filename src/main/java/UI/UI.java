@@ -41,11 +41,11 @@ public class UI extends Application {
 
     /**
      * The override start for the JavaFX UI
-     * @param stage the stage to be passed in, required as an overriden function
+     * @param stage the stage to be passed in, required as an overridden function
      */
     @Override
     public void start(Stage stage) {
-
+        assert this.duck != null : "Duck object should be created";
         stage.setTitle("Duck!");
         stage.setResizable(false);
         stage.setMinHeight(UI_HEIGHT);
