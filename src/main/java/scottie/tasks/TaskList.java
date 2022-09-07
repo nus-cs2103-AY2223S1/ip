@@ -2,7 +2,9 @@ package scottie.tasks;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -122,6 +124,36 @@ public class TaskList implements Iterable<Task> {
         return this.tasks.stream()
                 .filter(task -> task.matchesAgainst(searchText))
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Sorts the Tasks in this TaskList by their descriptions.
+     * If the isReversed argument is true, sort them in the reversed order.
+     *
+     * @param isReversed Whether to sort in the reversed order.
+     */
+    public void sortByDescription(boolean isReversed) {
+        Comparator<Task> comparator = Comparator.comparing(Task::getDescription);
+        if (isReversed) {
+            comparator = comparator.reversed();
+        }
+        this.tasks.sort(comparator);
+        this.saveTasks();
+    }
+
+    /**
+     * Sorts the Tasks in this TaskList by their descriptions.
+     * If the isReversed argument is true, sort them in the reversed order.
+     * Tasks without a date are always sorted behind those with dates.
+     *
+     * @param isReversed Whether to sort in the reversed order.
+     */
+    public void sortByDate(boolean isReversed) {
+        Comparator<LocalDateTime> localDateTimeComparator =
+                isReversed ? Comparator.reverseOrder() : Comparator.naturalOrder();
+        this.tasks.sort(Comparator.comparing(Task::getDateTime,
+                Comparator.nullsLast(localDateTimeComparator)));
+        this.saveTasks();
     }
 
     /**

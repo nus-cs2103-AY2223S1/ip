@@ -12,6 +12,14 @@ find deadline
 find TEST EVENT
 find test
 find text
+sort
+list
+sort /by date
+list
+sort /by name /desc
+list
+sort /desc /by date
+list
 delete 2
 list
 delete 2

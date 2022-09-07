@@ -70,6 +70,8 @@ public abstract class Instruction {
             return new ByeInstruction(mainArgument, flagArgumentsMap);
         case FIND:
             return new FindInstruction(mainArgument, flagArgumentsMap);
+        case SORT:
+            return new SortInstruction(mainArgument, flagArgumentsMap);
         default:
             // Only way execution can reach here is if a new Command was added
             // but the switch statement was not updated.

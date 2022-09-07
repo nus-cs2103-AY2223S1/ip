@@ -1,5 +1,7 @@
 package scottie.tasks;
 
+import java.time.LocalDateTime;
+
 /**
  * Encapsulates a regular task with no extra information.
  */
@@ -49,6 +51,14 @@ public class Todo extends Task {
     @Override
     String toEncodedString() {
         return String.format("T|%s", super.toEncodedString());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    LocalDateTime getDateTime() {
+        return null;
     }
 
     @Override

@@ -47,4 +47,19 @@ public final class DateTimeUtil {
     public static String formatPrettyDateTime(TemporalAccessor dateTime) {
         return PRETTY_DATE_TIME_FORMATTER.format(dateTime);
     }
+
+    /**
+     * Converts a TemporalAccessor that is either a LocalDate or a
+     * LocalDateTime into a LocalDateTime. A LocalDate is given the
+     * time of midnight to create the LocalDateTime.
+     *
+     * @param temporalAccessor The TemporalAccessor to convert.
+     * @return The resulting LocalDateTime.
+     */
+    public static LocalDateTime toLocalDateTime(TemporalAccessor temporalAccessor) {
+        if (temporalAccessor instanceof LocalDateTime) {
+            return (LocalDateTime) temporalAccessor;
+        }
+        return LocalDate.from(temporalAccessor).atStartOfDay();
+    }
 }
