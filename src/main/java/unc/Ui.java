@@ -1,7 +1,5 @@
 package unc;
 
-import java.util.Scanner;
-
 import unc.task.Deadline;
 import unc.task.Event;
 import unc.task.Task;
@@ -17,14 +15,6 @@ public class Ui {
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
-    private Scanner scanner;
-
-    /**
-     * Constructor.
-     */
-    public Ui() {
-        this.scanner = new Scanner(System.in);
-    }
 
     /**
      * Prints a preset welcome message.
@@ -39,19 +29,8 @@ public class Ui {
      * Stops reading inputs.
      * Prints a preset goodbye message.
      */
-    public void goodbye() {
-        scanner.close();
-        System.out.println("Bye");
-
-    }
-
-    /**
-     * Reads in user input line by line.
-     *
-     * @return A line of input.
-     */
-    public String readCommand() {
-        return scanner.nextLine();
+    public String goodbye() {
+        return ("Bye");
     }
 
     /**
@@ -60,10 +39,12 @@ public class Ui {
      *
      * @param taskList List.
      */
-    public void displayList(TaskList taskList) {
+    public String displayList(TaskList taskList) {
+        String s = "";
         for (int i = 0; i < taskList.size(); i++) {
-            System.out.println(i + 1 + ". " + taskList.get(i));
+            s = s + ("\n" + i + 1 + ". " + taskList.get(i));
         }
+        return s;
     }
 
     /**
@@ -72,8 +53,8 @@ public class Ui {
      * @param taskList List.
      * @param todo Added task.
      */
-    public void addTodo(TaskList taskList, Todo todo) {
-        System.out.println("added: \n " + todo + "\nNow you have " + taskList.size()
+    public String addTodo(TaskList taskList, Todo todo) {
+        return ("added: \n " + todo + "\nNow you have " + taskList.size()
                 + " tasks on the list.");
     }
 
@@ -83,8 +64,8 @@ public class Ui {
      * @param taskList List.
      * @param event Added task.
      */
-    public void addEvent(TaskList taskList, Event event) {
-        System.out.println("added: \n " + event + "\nNow you have " + taskList.size()
+    public String addEvent(TaskList taskList, Event event) {
+        return ("added: \n " + event + "\nNow you have " + taskList.size()
                 + " tasks on the list.");
     }
 
@@ -94,8 +75,8 @@ public class Ui {
      * @param taskList List.
      * @param deadline Added task.
      */
-    public void addDeadline(TaskList taskList, Deadline deadline) {
-        System.out.println("added: \n " + deadline + "\nNow you have " + taskList.size()
+    public String addDeadline(TaskList taskList, Deadline deadline) {
+        return ("added: \n " + deadline + "\nNow you have " + taskList.size()
                 + " tasks on the list.");
     }
 
@@ -105,8 +86,8 @@ public class Ui {
      * @param taskList List.
      * @param index The index of newly marked task.
      */
-    public void mark(TaskList taskList, int index) {
-        System.out.println("Marked as done: \n" + taskList.get(index));
+    public String mark(TaskList taskList, int index) {
+        return ("Marked as done: \n" + taskList.get(index));
     }
 
     /**
@@ -115,8 +96,8 @@ public class Ui {
      * @param taskList List.
      * @param index The index of newly unmarked task.
      */
-    public void unmark(TaskList taskList, int index) {
-        System.out.println("Marked as not done: \n" + taskList.get(index));
+    public String unmark(TaskList taskList, int index) {
+        return ("Marked as not done: \n" + taskList.get(index));
     }
 
     /**
@@ -125,12 +106,12 @@ public class Ui {
      * @param task The recently removed task.
      * @param size The new size of list.
      */
-    public void delete(Task task, int size) {
-        System.out.println("Deleted: \n" + task + "\nNow you have " + size
+    public String delete(Task task, int size) {
+        return ("Deleted: \n" + task + "\nNow you have " + size
                 + " tasks on the list.");
     }
 
-    public void displayFoundList(TaskList taskList) {
-        displayList(taskList);
+    public String displayFoundList(TaskList taskList) {
+        return displayList(taskList);
     }
 }

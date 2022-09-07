@@ -1,12 +1,13 @@
 package unc.task;
 
-import org.junit.jupiter.api.Test;
-import unc.UncException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
+
+import unc.UncException;
+
 public class EventTest {
-    public static Event testEvent () {
+    public static Event testEvent() {
         Event temp = null;
         try {
             temp = new Event("Celebrate", "2001-09-11");
@@ -18,7 +19,7 @@ public class EventTest {
 
     @Test
     public void toStringTest() {
-        assertEquals("[E][ ] Celebrate (at: 11-09-2001)",testEvent().toString());
+        assertEquals("[E][ ] Celebrate (at: 11-09-2001)", testEvent().toString());
     }
 
     @Test

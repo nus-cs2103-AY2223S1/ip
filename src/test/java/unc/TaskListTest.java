@@ -1,19 +1,19 @@
 package unc;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
+
 import unc.task.Deadline;
 import unc.task.Event;
 import unc.task.Task;
 import unc.task.Todo;
 
-import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class TaskListTest {
 
-    public static ArrayList<Task> testList () {
+    public static ArrayList<Task> testList() {
         ArrayList<Task> temp = new ArrayList<>();
         try {
             temp.add(new Todo("Fly", "random"));

@@ -31,12 +31,12 @@ public class EventCommand extends Command {
      * @throws UncException If error occurs when creating new Event.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws UncException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws UncException {
         String[] phrases = description.split(" /at ", 2);
         Event newEvent = new Event(phrases[0], phrases[1]);
         taskList.add(newEvent);
-        ui.addEvent(taskList, newEvent);
         storage.save(taskList);
+        return ui.addEvent(taskList, newEvent);
     }
 
     /**

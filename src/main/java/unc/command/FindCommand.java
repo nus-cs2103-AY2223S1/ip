@@ -15,9 +15,9 @@ public class FindCommand extends Command {
         this.keyword = input;
     }
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws UncException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws UncException {
         TaskList foundList = taskList.find(keyword);
-        ui.displayFoundList(foundList);
+        return ui.displayFoundList(foundList);
     }
 
     @Override

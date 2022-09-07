@@ -31,12 +31,12 @@ public class DeadlineCommand extends Command {
      * @throws UncException If error occurs when creating new Deadline.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws UncException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws UncException {
         String[] phrases = description.split(" /by ", 2);
         Deadline newDeadline = new Deadline(phrases[0], phrases[1]);
         taskList.add(newDeadline);
-        ui.addDeadline(taskList, newDeadline);
         storage.save(taskList);
+        return ui.addDeadline(taskList, newDeadline);
     }
 
     /**

@@ -30,11 +30,11 @@ public class TodoCommand extends Command {
      * @param storage Storage to save updated list.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         Todo newTodo = new Todo(description);
         taskList.add(newTodo);
-        ui.addTodo(taskList, newTodo);
         storage.save(taskList);
+        return ui.addTodo(taskList, newTodo);
     }
 
     /**

@@ -17,7 +17,7 @@ public abstract class Command {
      * @param storage Storage to save updated list.
      * @throws UncException
      */
-    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws UncException;
+    public abstract String execute(TaskList taskList, Ui ui, Storage storage) throws UncException;
 
     /**
      * Returns whether the command is an exit command.
