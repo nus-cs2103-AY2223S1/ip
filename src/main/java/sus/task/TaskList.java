@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 import sus.DukeException;
 import sus.common.Messages;
-import sus.ui.TextUi;
 
 /**
  * Represents the task list and methods to manage the task list.
@@ -13,7 +12,6 @@ import sus.ui.TextUi;
 public class TaskList {
 
     private final List<Task> tasks;
-    private final TextUi textUi;
 
     /**
      * Constructor for a new Task List.
@@ -23,7 +21,6 @@ public class TaskList {
     public TaskList(List<Task> tasks) {
         assert tasks != null;
         this.tasks = tasks;
-        textUi = new TextUi();
     }
 
     public int getNumberOfTasks() {
@@ -85,7 +82,7 @@ public class TaskList {
         if (targetTask.isDone()) {
             throw new DukeException(Messages.MESSAGE_TASK_ALREADY_MARKED);
         }
-        targetTask.mark();
+        targetTask.setDone(true);
         return targetTask;
     }
 
@@ -99,7 +96,7 @@ public class TaskList {
         if (!targetTask.isDone()) {
             throw new DukeException(Messages.MESSAGE_TASK_ALREADY_UNMARKED);
         }
-        targetTask.unmark();
+        targetTask.setDone(false);
         return targetTask;
     }
 
