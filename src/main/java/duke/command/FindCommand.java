@@ -2,7 +2,6 @@ package duke.command;
 
 import java.util.function.Consumer;
 
-import duke.task.Task;
 import duke.task.TaskList;
 import duke.util.Storage;
 
@@ -36,11 +35,7 @@ public class FindCommand extends Command {
     @Override
     public void execute(Storage storage, Consumer<String> printer, TaskList tasks) {
         TaskList foundTasks = new TaskList();
-        for (Task task : tasks) {
-            if (task.contains(keyword)) {
-                foundTasks.add(task);
-            }
-        }
+        tasks.stream().filter(t -> t.contains(keyword)).forEach(foundTasks::add);
         printer.accept("Tasks containing \"" + keyword + "\":\n" + foundTasks);
     }
 
