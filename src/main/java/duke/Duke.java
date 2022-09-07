@@ -30,5 +30,4 @@ public class Duke {
     public String getResponse(String input) throws ParseException {
         return parser.parse(input);
     }
-
 }
