@@ -20,6 +20,9 @@ public class Duke {
      */
     public Duke() {}
 
+    /**
+     * Initialises the chat box.
+     */
     public void initialise() {
         storage = new Storage("data/tasks.txt");
         try {

@@ -4,6 +4,11 @@ import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 
+/**
+ * Encapsulates the command of greeting the user.
+ *
+ * @author Sun Ruoxin
+ */
 public class GreetCommand extends Command {
     /**
      * The logo of the chatbot.

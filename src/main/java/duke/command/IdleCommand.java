@@ -4,6 +4,10 @@ import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 
+/**
+ * Encapsulates the command of doing nothing.
+ * (User command is out of scope)
+ */
 public class IdleCommand extends Command {
     /**
      * Executes the command.

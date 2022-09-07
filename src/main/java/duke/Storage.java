@@ -46,7 +46,7 @@ public class Storage {
             }
             scanner.close();
         } catch (IOException exception) {
-
+            System.out.println(exception.getMessage());
         }
 
         return taskList;
