@@ -173,9 +173,12 @@ public class Duke extends Application {
     public String getResponse(String input) {
         String response = "";
         boolean isExit = false;
-        try {
-            //ui.printLine();
 
+        // Use assertion to ensure that Duke is properly intialized
+        assert ui.showWelcome() == "Hello! I'm Duke" + "\n" + "What can I do for you?"
+                :"UI is not initialized!";
+
+        try {
             //we get the commandType to know how to process the command
             String commandType = Parser.getCommandType(input);
 
@@ -216,15 +219,14 @@ public class Duke extends Application {
                 response += Parser.printUpcomingTasks(tasks);
             }
             storage.save(tasks);
-            if (isExit) {
-                System.out.println(response);
-                System.exit(0);
-            }
             return response;
         } catch (DukeException e) {
             return ui.showError(e);
         } finally {
-            //return ui.printLine();
+            if (isExit) {
+                System.out.println(response);
+                System.exit(0);
+            }
         }
     }
 }
