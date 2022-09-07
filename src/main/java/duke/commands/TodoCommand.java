@@ -10,15 +10,15 @@ import duke.task.ToDo;
 public class TodoCommand extends Command {
     public static final String COMMAND_WORD = "todo";
 
-    private ToDo td;
+    private ToDo toDo;
 
     /**
      * Constructs a Todo Command with the Todo task to be added.
      *
-     * @param td The Todo task to be added.
+     * @param toDo The Todo task to be added.
      */
-    public TodoCommand(ToDo td) {
-        this.td = td;
+    public TodoCommand(ToDo toDo) {
+        this.toDo = toDo;
     }
 
     /**
@@ -30,7 +30,7 @@ public class TodoCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) {
-        return tasks.add(td);
+        return tasks.add(toDo);
     }
 
 }

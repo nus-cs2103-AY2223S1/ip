@@ -61,6 +61,8 @@ public class TaskList {
 
     /**
      * Prints the contents of the task list to the user.
+     *
+     * @return A string containing the list of tasks.
      */
     public String printList() {
         if (tasks.size() == 0) {
@@ -80,6 +82,7 @@ public class TaskList {
      * Adds the given task to the task list.
      *
      * @param t Task to be added.
+     * @return A string informing the user that the task was successfully added.
      */
     public String add(Task t) {
         String reply;
@@ -97,6 +100,9 @@ public class TaskList {
      * Deletes the task at the specified position in the task list.
      *
      * @param i Index of the task to delete
+     * @return A string informing the user that the specified task was successfully deleted,
+     *     or that there are not tasks to delete if the task list is empty.
+     * @throws DukeException if the user entered an invalid index.
      */
     public String delete(int i) throws DukeException {
         if (tasks.size() == 0) {
@@ -126,6 +132,7 @@ public class TaskList {
      * a list of the results to the user.
      *
      * @param date Date to search for.
+     * @return A list of tasks that start on the specified date.
      */
     public String search(LocalDate date) {
         String list = "";
@@ -148,6 +155,7 @@ public class TaskList {
      * a list of the results to the user.
      *
      * @param keyword Keyword(s) to search for.
+     * @return A list of tasks with descriptions matching the keywords.
      */
     public String find(String keyword) {
         String list = "";
@@ -171,6 +179,9 @@ public class TaskList {
      * as done.
      *
      * @param t Index of the task to mark.
+     * @return A string informing the user that the specified task was successfully marked
+     *     as done, or that there are no tasks to be marked if the task list is empty.
+     * @throws DukeException if the user entered an invalid index.
      */
     public String mark(int t) throws DukeException {
         try {
@@ -192,6 +203,9 @@ public class TaskList {
      * as not done.
      *
      * @param t Index of the task to unmark.
+     * @return A string informing the user that the specified task was unmarked, or that
+     *     there are no tasks to be unmarked if the task list is empty.
+     * @throws DukeException if the user entered an invalid index.
      */
     public String unmark(int t) throws DukeException {
         try {

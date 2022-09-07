@@ -10,20 +10,20 @@ import duke.task.TaskList;
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
-    private String keyword;
+    private String keywords;
 
     /**
      * Constructs a Find Command with the search term the user
      * wants to search for.
      *
-     * @param keyword Search term to be searched for.
+     * @param keywords Search term to be searched for.
      */
-    public FindCommand(String keyword) {
-        this.keyword = keyword;
+    public FindCommand(String keywords) {
+        this.keywords = keywords;
     }
 
     @Override
     public String execute(TaskList tasks, Storage storage) {
-        return tasks.find(keyword);
+        return tasks.find(keywords);
     }
 }

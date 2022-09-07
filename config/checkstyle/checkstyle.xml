@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE module PUBLIC
-    "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
-    "https://checkstyle.org/dtds/configuration_1_3.dtd">
+        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd">
 
 <!--
     This configuration file enforces rules for the coding standard at
@@ -56,11 +56,11 @@
       4. THIRD_PARTY_PACKAGE: defined as com imports
     -->
     <module name="CustomImportOrder">
-        <property name="customImportOrderRules"
-            value="STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE"/>
-        <property name="specialImportsRegExp" value="^org\."/>
-        <property name="thirdPartyPackageRegExp" value="^com\."/>
-        <property name="sortImportsInGroupAlphabetically" value="true"/>
+      <property name="customImportOrderRules"
+                value="STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE"/>
+      <property name="specialImportsRegExp" value="^org\."/>
+      <property name="thirdPartyPackageRegExp" value="^com\."/>
+      <property name="sortImportsInGroupAlphabetically" value="true"/>
     </module>
 
     <!-- Checks for redundant import statements.
@@ -216,7 +216,7 @@
       some other variants which we don't publicized to promote consistency).
       -->
       <property name="reliefPattern"
-       value="fall through|Fall through|fallthru|Fallthru|falls through|Falls through|fallthrough|Fallthrough|No break|NO break|no break|continue on"/>
+                value="fall through|Fall through|fallthru|Fallthru|falls through|Falls through|fallthrough|Fallthrough|No break|NO break|no break|continue on"/>
     </module>
 
     <module name="MissingSwitchDefault"/>

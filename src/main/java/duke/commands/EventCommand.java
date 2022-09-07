@@ -10,16 +10,16 @@ import duke.task.TaskList;
 public class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";
 
-    private Event ev;
+    private Event event;
 
     /**
      * Constructs an EventCommand with the Event task
      * to be added.
      *
-     * @param ev The Event task to be added.
+     * @param event The Event task to be added.
      */
-    public EventCommand(Event ev) {
-        this.ev = ev;
+    public EventCommand(Event event) {
+        this.event = event;
     }
 
     /**
@@ -31,6 +31,6 @@ public class EventCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) {
-        return tasks.add(ev);
+        return tasks.add(event);
     }
 }

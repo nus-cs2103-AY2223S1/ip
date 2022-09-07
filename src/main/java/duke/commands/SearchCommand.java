@@ -8,26 +8,26 @@ import duke.task.TaskList;
 
 /**
  * Represents a command to search for tasks occurring
- * on a specified date.
+ * on a specified searchDate.
  */
 public class SearchCommand extends Command {
     public static final String COMMAND_WORD = "search";
 
-    private LocalDate date;
+    private LocalDate searchDate;
 
     /**
-     * Constructs a Search Command with the date the user wants
+     * Constructs a Search Command with the searchDate the user wants
      * to search for.
      *
-     * @param date Date to be searched for.
-     * @throws DateTimeParseException If date is in an invalid format.
+     * @param searchDate Date to be searched for.
+     * @throws DateTimeParseException If searchDate is in an invalid format.
      */
-    public SearchCommand(LocalDate date) throws DateTimeParseException {
-        this.date = date;
+    public SearchCommand(LocalDate searchDate) throws DateTimeParseException {
+        this.searchDate = searchDate;
     }
 
     @Override
     public String execute(TaskList tasks, Storage storage) {
-        return tasks.search(date);
+        return tasks.search(searchDate);
     }
 }

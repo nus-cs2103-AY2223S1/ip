@@ -39,6 +39,7 @@ public class Parser {
      *
      * @param input Input from the user.
      * @return Command to be executed.
+     * @throws DukeException if the user has entered an invalid input.
      */
     public static Command parse(String input) throws DukeException {
         String[] arr = input.split(" ", 2);
@@ -51,32 +52,42 @@ public class Parser {
             return new ListCommand();
         case MarkCommand.COMMAND_WORD:
             try {
-                return new MarkCommand(Integer.parseInt(arr[1]) - 1);
+                int index = Integer.parseInt(arr[1]) - 1;
+                return new MarkCommand(index);
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 throw new DukeException(Ui.invalidMarkInput());
             }
         case UnmarkCommand.COMMAND_WORD:
             try {
-                return new UnmarkCommand(Integer.parseInt(arr[1]) - 1);
+                int index = Integer.parseInt(arr[1]) - 1;
+                return new UnmarkCommand(index);
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 throw new DukeException(Ui.invalidUnmarkInput());
             }
         case TodoCommand.COMMAND_WORD:
             try {
-                return new TodoCommand(new ToDo(arr[1]));
+                String description = arr[1];
+                return new TodoCommand(new ToDo(description));
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(Ui.invalidTaskInput(Task.TaskType.ToDo));
             }
         case DeadlineCommand.COMMAND_WORD:
             try {
-                String[] dl = arr[1].split(" /by ", 2);
-                String[] datetime = dl[1].split(" ");
-                LocalDate day = LocalDate.parse(datetime[0], dateFormatter);
-                if (datetime.length == 1) {
-                    return new DeadlineCommand(new Deadline(dl[0], day));
+                String info = arr[1];
+
+                String[] descriptionAndDateTime = info.split(" /by ", 2);
+                String description = descriptionAndDateTime[0];
+
+                String by = descriptionAndDateTime[1];
+                String[] dateTime = by.split(" ");
+                LocalDate day = LocalDate.parse(dateTime[0], dateFormatter);
+
+                //check if time was provided
+                if (dateTime.length == 1) {
+                    return new DeadlineCommand(new Deadline(description, day));
                 } else {
-                    return new DeadlineCommand(new Deadline(
-                            dl[0], day, LocalTime.parse(datetime[1], timeFormatter)));
+                    LocalTime time = LocalTime.parse(dateTime[1], timeFormatter);
+                    return new DeadlineCommand(new Deadline(description, day, time));
                 }
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(Ui.invalidTaskInput(Task.TaskType.Deadline));
@@ -85,16 +96,27 @@ public class Parser {
             }
         case EventCommand.COMMAND_WORD:
             try {
-                String[] info = arr[1].split(" /", 2);
-                String[] timings = info[1].split(" ", 2);
-                String[] dateTimeInfo = timings[1].split(" - ");
-                LocalDateTime startDateTime = LocalDateTime.parse(dateTimeInfo[0], dateTimeFormatter);
+                String info = arr[1];
+
+                String[] descriptionAndTimings = info.split(" /", 2);
+                String description = descriptionAndTimings[0];
+
+                String otherEventInfo = descriptionAndTimings[1];
+                String[] prepAndTiming = otherEventInfo.split(" ", 2);
+                String preposition = prepAndTiming[0];
+
+                String timings = prepAndTiming[1];
+                String[] startEndDateTimes = timings.split(" - ");
+                LocalDateTime startDateTime = LocalDateTime.parse(startEndDateTimes[0], dateTimeFormatter);
+
+                //assume user provided end date and time
                 try {
-                    LocalDateTime endDateTime = LocalDateTime.parse(dateTimeInfo[1], dateTimeFormatter);
-                    return new EventCommand(new Event(info[0], timings[0], startDateTime, endDateTime));
+                    LocalDateTime endDateTime = LocalDateTime.parse(startEndDateTimes[1], dateTimeFormatter);
+                    return new EventCommand(new Event(description, preposition, startDateTime, endDateTime));
+                //error indicates user only provided an end time
                 } catch (DateTimeParseException e) {
-                    return new EventCommand(new Event(
-                            info[0], timings[0], startDateTime, LocalTime.parse(dateTimeInfo[1], timeFormatter)));
+                    LocalTime endTime = LocalTime.parse(startEndDateTimes[1], timeFormatter);
+                    return new EventCommand(new Event(description, preposition, startDateTime, endTime));
                 }
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(Ui.invalidTaskInput(Task.TaskType.Event));
@@ -103,13 +125,15 @@ public class Parser {
             }
         case DeleteCommand.COMMAND_WORD:
             try {
-                return new DeleteCommand(Integer.parseInt(arr[1]) - 1);
+                int index = Integer.parseInt(arr[1]) - 1;
+                return new DeleteCommand(index);
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 throw new DukeException(Ui.invalidDeleteInput());
             }
         case SearchCommand.COMMAND_WORD:
             try {
-                return new SearchCommand(LocalDate.parse(arr[1], dateFormatter));
+                LocalDate searchDate = LocalDate.parse(arr[1], dateFormatter);
+                return new SearchCommand(searchDate);
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(Ui.emptyDateInput());
             } catch (DateTimeParseException e) {
@@ -117,7 +141,8 @@ public class Parser {
             }
         case FindCommand.COMMAND_WORD:
             try {
-                return new FindCommand(arr[1]);
+                String keywords = arr[1];
+                return new FindCommand(keywords);
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(Ui.emptyFindInput());
             }

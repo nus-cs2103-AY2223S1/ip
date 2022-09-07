@@ -11,15 +11,15 @@ import duke.task.TaskList;
 public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
 
-    private int t;
+    private int index;
 
     /**
      * Constructs a Mark Command with the task to be marked.
      *
-     * @param t Index of the task to be marked.
+     * @param index Index of the task to be marked.
      */
-    public MarkCommand(int t) {
-        this.t = t;
+    public MarkCommand(int index) {
+        this.index = index;
     }
 
     /**
@@ -32,7 +32,7 @@ public class MarkCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
-        return tasks.mark(t);
+        return tasks.mark(index);
     }
 
 }
