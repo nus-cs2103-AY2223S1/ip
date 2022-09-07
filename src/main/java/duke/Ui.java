@@ -1,32 +1,22 @@
 package duke;
-
 import java.util.ArrayList;
 
 /**
  * Ui class that deals with the interaction with the users.
  */
 public class Ui {
-    private final String LINE_BREAK = "____________________________________________________________";
-
-    /**
-     * Displays a welcome message.
-     */
-    public void hello() {
-        System.out.println(LINE_BREAK + "\nHello! I'm nikki" + "\nWhat can I do for you?\n" + LINE_BREAK);
-    }
-
     /**
      * Displays a goodbye message.
      */
-    public void bye() {
-        System.out.println(LINE_BREAK + "\n\tBye! Hope to see you again soon!\n" + LINE_BREAK);
+    public String bye() {
+        return String.format("Bye! Hope to see you again soon!\n");
     }
 
     /**
      * Displays a file loading error message.
      */
-    public void showLoadingError() {
-        System.out.println("OOPS! I have difficulty loading your file!");
+    public String showErrorMessage(String message) {
+        return message;
     }
 
     /**
@@ -34,11 +24,10 @@ public class Ui {
      *
      * @param todo The todo task specified by user.
      * @param size The number of tasks in the list.
+     * @return A String to indicate successful addition of todo.
      */
-    public void printTodo(Task todo, int size) {
-        System.out.printf(LINE_BREAK
-                + "\n\tGot it. I've added this task:\n\t%s\n\tNow you have %d tasks in the list.\n"
-                + LINE_BREAK + "\n", todo, size);
+    public String printTodo(Task todo, int size) {
+        return String.format("Got it. I've added this task:\n%s\nNow you have %d tasks in the list.", todo, size);
     }
 
     /**
@@ -46,11 +35,11 @@ public class Ui {
      *
      * @param deadline The deadline task specified by user.
      * @param size The number of tasks in the list.
+     * @return A String to indicate successful addition of deadline.
      */
-    public void printDeadline(Task deadline, int size) {
-        System.out.printf(LINE_BREAK
-                + "\n\tGot it. I've added this task:\n\t%s\n\tNow you have %d tasks in the list.\n"
-                + LINE_BREAK + "\n", deadline, size);
+    public String printDeadline(Task deadline, int size) {
+        return String.format("Got it. I've added this task:\n%s\nNow you have %d tasks in the list.",
+                deadline, size);
     }
 
     /**
@@ -58,26 +47,28 @@ public class Ui {
      *
      * @param event The event task specified by user.
      * @param size The number of tasks in the list.
+     * @return A String to indicate successful addition of event.
      */
-    public void printEvent(Task event, int size) {
-        System.out.printf(LINE_BREAK
-                + "\n\tGot it. I've added this task:\n\t%s\n\tNow you have %d tasks in the list.\n"
-                + LINE_BREAK + "\n", event, size);
+    public String printEvent(Task event, int size) {
+        return String.format("Got it. I've added this task:\n%s\nNow you have %d tasks in the list.",
+                event, size);
     }
 
     /**
      * Displays the list of tasks the user has inputted thus far.
      *
      * @param tasks The list of tasks user has inputted.
+     * @return A String to indicate the lists of tasks by users.
      */
-    public void listTasks(TaskList tasks) {
-        System.out.println(LINE_BREAK);
-        System.out.println("\tHere are the tasks in your list.");
+    public String listTasks(TaskList tasks) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the tasks in your list.");
         for (int i = 0; i < tasks.getSize(); i++) {
             Task task = tasks.getTask(i);
-            System.out.printf("\t%d. %s\n", i + 1, task.toString());
+            sb.append("\n");
+            sb.append(i + 1 + ". " + task.toString());
         }
-        System.out.println(LINE_BREAK);
+        return sb.toString();
     }
 
     /**
@@ -85,48 +76,48 @@ public class Ui {
      *
      * @param task The task to be deleted.
      * @param size The number of tasks left after deletion.
+     * @return A String to indicate successful deletion of task.
      */
-    public void printDelete(Task task, int size) {
-        System.out.printf(LINE_BREAK
-                + "\n\tNoted. I've removed this task:\n\t%s\n" + "\tNow you have %d tasks in the list.\n"
-                + LINE_BREAK + "\n", task, size);
+    public String printDelete(Task task, int size) {
+        return String.format("Noted. I've removed this task:\n%s" + "\nNow you have %d tasks in the list.",
+                task, size);
     }
 
     /**
      * Displays the message that the specified task has been marked.
      *
      * @param task The task to be marked as done.
+     * @return A String to indicate successful marking of task.
      */
-    public void printMarkedTask(Task task) {
-        System.out.printf(LINE_BREAK
-                + "\n\tNice! I've marked this task as done:\n\t%s\n"
-                + LINE_BREAK + "\n", task);
+    public String printMarkedTask(Task task) {
+        return String.format("Nice! I've marked this task as done:\n%s", task);
     }
 
     /**
      * Displays the message that the specified task has been unmarked.
      *
      * @param task The task to be marked as undone.
+     * @return A String to indicate successful unmarking of task.
      */
-    public void printUnmarkedTask(Task task) {
-        System.out.printf(LINE_BREAK
-                + "\n\tOkay, I've marked this task as not done yet:\n\t%s\n"
-                + LINE_BREAK + "\n", task);
+    public String printUnmarkedTask(Task task) {
+        return String.format("Okay, I've marked this task as not done yet:\n%s", task);
     }
 
     /**
      * Displays the list of tasks based on the keyword user specify.
      *
      * @param lst An ArrayList of the tasks filtered by keyword.
+     * @return A String to indicate the lists of tasks filtered by user's keyword.
      */
-    public void printFind(ArrayList<Task> lst) {
-        System.out.println(LINE_BREAK);
-        System.out.println("\tHere are the matching tasks in your list.");
+    public String printFind(ArrayList<Task> lst) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the matching tasks in your list.");
         for (int i = 0; i < lst.size(); i++) {
             Task task = lst.get(i);
-            System.out.printf("\t%d. %s\n", i+1, task.toString());
+            sb.append("\n");
+            sb.append(i + 1 + ". " + task.toString());
         }
-        System.out.println(LINE_BREAK);
+        return sb.toString();
     }
 
 

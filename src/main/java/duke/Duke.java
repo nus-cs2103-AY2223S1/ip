@@ -1,77 +1,74 @@
 package duke;
-
 import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- * class Duke is the main class for a chatbot named ashy
+ * Duke is an interactive chatbot that keeps track of tasks inputted by user.
  */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
-//constructor for the duke class
-    public Duke(String filePath) {
-        this.storage = new Storage(filePath);
+    /**
+     * Constructor of the Duke class.
+     *
+     */
+    public Duke() {
         this.ui = new Ui();
-
+        this.tasks = new TaskList();
+        this.storage = new Storage("src/tasks/tasks.txt");
         try {
             this.tasks = new TaskList(storage.load());
         } catch (DukeException e) {
-            ui.showLoadingError();
+            ui.showErrorMessage(e.getMessage());
             tasks = new TaskList();
         } catch (IOException e) {
-            System.out.println("OOPS! I have issue creating a new file!");
+            ui.showErrorMessage(e.getMessage());
         }
+
     }
 
-    //main function to writr h
-    public static void main(String[] args) {
-        //Run bot
-        Duke duke = new Duke("src/tasks/tasks.txt");
+    /**
+     * Returns a String response based on the given input by user.
+     *
+     * @param input A String input by user.
+     * @param duke A Duke object.
+     * @return A String of the response associated with the user's input.
+     */
+    public String getResponse(String input, Duke duke) {
         Parser parser = new Parser(duke);
-        duke.run(parser);
-    }
-
-    private void run(Parser parser) {
-        ui.hello();
-        parser.start();
-        ui.bye();
+        return parser.start(input);
     }
 
     /**
      * Handles a Todo task inputted by user by calling on TaskList and Ui objects.
      *
      * @param tDescription A String of the description for the task.
+     * @return A String of the response associated with the user's todo.
      * @throws DukeException
      */
-    public void addTodo(String tDescription) throws DukeException {
-        if (tDescription.equals("")) {
-            throw new DukeException("OOPS! The description of a todo cannot be empty.");
-        } else {
-            Task todo = new Todo(tDescription);
-            tasks.addTask(todo);
-            int size = tasks.getSize();
-            ui.printTodo(todo, size);
-            storage.save(tasks);
-        }
+    public String addTodo(String tDescription) throws DukeException {
+        Task todo = new Todo(tDescription);
+        tasks.addTask(todo);
+        int size = tasks.getSize();
+        storage.save(tasks);
+        return ui.printTodo(todo, size);
     }
 
     /**
      * Handles a Deadline task inputted by user by calling on TaskList and Ui objects.
      *
      * @param str A string representing the entire input user keyed in after "deadline".
+     * @return A String of the response associated with the user's deadline.
+     * @throws DukeException
      */
-    public void addDeadline(String str) throws DukeException {
+    public String addDeadline(String str) throws DukeException {
         LocalDate date;
         String dDescription;
         try {
-            if (str.equals("")) {
-                throw new DukeException("OOPS! The description of a todo cannot be empty.");
-            }
             dDescription = str.substring(0, str.indexOf('/') - 1);
             String dBy = str.substring(str.indexOf('/') + 4);
             date = LocalDate.parse(dBy);
@@ -81,95 +78,105 @@ public class Duke {
         Task deadline = new Deadline(dDescription, date);
         tasks.addTask(deadline);
         int size = tasks.getSize();
-        ui.printDeadline(deadline, size);
         storage.save(tasks);
+        return ui.printDeadline(deadline, size);
     }
 
     /**
      * Handles an Event task inputted by user by calling on TaskList and Ui objects.
      *
      * @param str A string representing the entire input user keyed in after "event".
+     * @return A String of the response associated with the user's event.
+     * @throws DukeException
      */
-    public void addEvent(String str) throws DukeException {
+    public String addEvent(String str) throws DukeException {
         String eDescription;
         String eAt;
-        if (str.equals("")) {
-            throw new DukeException("OOPS! The description of a todo cannot be empty.");
-        } else {
-            eDescription = str.substring(0, str.indexOf('/') - 1);
-            eAt = str.substring(str.indexOf('/') + 4);
-            Task event = new Event(eDescription, eAt);
-            tasks.addTask(event);
-            int size = tasks.getSize();
-            ui.printEvent(event, size);
-            storage.save(tasks);
-        }
+        eDescription = str.substring(0, str.indexOf('/') - 1);
+        eAt = str.substring(str.indexOf('/') + 4);
+        Task event = new Event(eDescription, eAt);
+        tasks.addTask(event);
+        int size = tasks.getSize();
+        storage.save(tasks);
+        return ui.printEvent(event, size);
     }
 
     /**
      * Calls Ui object to print the list of tasks.
+     *
+     * @return A String of the response associated with the user's list.
      */
-    public void printList() {
-        ui.listTasks(tasks);
+    public String printList() {
+        return ui.listTasks(tasks);
     }
 
     /**
      * Calls TaskList and Ui objects to handle the marking of a task.
      *
      * @param index The index of the task to be marked.
+     * @return A String of the response associated with the user's mark.
      * @throws DukeException
      */
-    public void handleMark(int index) throws DukeException {
+    public String handleMark(int index) throws DukeException {
         tasks.markTask(index);
         Task taskToBeMarked = tasks.getTask(index);
-        ui.printMarkedTask(taskToBeMarked);
         storage.save(tasks);
+        return ui.printMarkedTask(taskToBeMarked);
     }
 
     /**
      * Calls TaskList and Ui objects to handle the unmarking of a task.
      *
      * @param index The index of the task to be unmarked.
+     * @return A String of the response associated with the user's unmark.
      * @throws DukeException
      */
-    public void handleUnmark(int index) throws DukeException {
+    public String handleUnmark(int index) throws DukeException {
         tasks.unmarkTask(index);
         Task taskToBeUnmarked = tasks.getTask(index);
-        ui.printUnmarkedTask(taskToBeUnmarked);
         storage.save(tasks);
+        return ui.printUnmarkedTask(taskToBeUnmarked);
     }
 
     /**
      * Calls TaskList and Ui objects to handle the deleting of a task.
      *
      * @param index The index of the task to be deleted.
+     * @return A String of the response associated with the user's delete.
      * @throws DukeException
      */
-    public void handleDelete(int index) throws DukeException {
+    public String handleDelete(int index) throws DukeException {
         Task taskToBeDeleted = tasks.deleteTask(index);
         int size = tasks.getSize();
-        ui.printDelete(taskToBeDeleted, size);
         storage.save(tasks);
+        return ui.printDelete(taskToBeDeleted, size);
     }
 
     /**
-     * Filters the list based on keyword
-     * Calls Ui object to display the list of filtered tasks.
+     * Filters the list based on keyword specified and calls Ui object to display the list of filtered tasks.
      *
-     * @param str The keyword inputted by user in the format of String.
+     * @param string The keyword inputted by user in the format of String.
+     * @return A String of the response associated with the user's find.
      */
-    public void find(String str) {
+    public String find(String string) {
         ArrayList<Task> lst = tasks.getTasks();
         ArrayList<Task> filtered = new ArrayList<>();
         for (Task task : lst) {
             String description = task.description;
-            if (description.contains(str)) {
+            if (description.contains(string)) {
                 filtered.add(task);
             }
         }
-        ui.printFind(filtered);
+        return ui.printFind(filtered);
+    }
 
-
+    /**
+     * Returns a goodbye message to the user.
+     *
+     * @return A String of a goodbye message.
+     */
+    public String handleBye() {
+        return ui.bye();
     }
 
 }
