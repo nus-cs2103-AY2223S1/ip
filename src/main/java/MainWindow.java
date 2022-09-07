@@ -1,3 +1,4 @@
+import java.util.Random;
 
 import duke.Duke;
 import javafx.fxml.FXML;
@@ -11,6 +12,8 @@ import javafx.scene.layout.VBox;
  * Controller for MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
+    @FXML
+    private Random random = new Random();
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -56,6 +59,10 @@ public class MainWindow extends AnchorPane {
         DialogBox dukeDialog = DialogBox.getDukeDialog(response, dukeImage);
         addDialogBox(userDialog);
         addDialogBox(dukeDialog);
+
+        if (!duke.isRunning()) {
+            end();
+        }
     }
 
     @FXML
@@ -73,5 +80,25 @@ public class MainWindow extends AnchorPane {
             this.duke = dukes[0];
         }
         addDialogBox(DialogBox.getDukeDialog(duke.getResponse("greet"), dukeImage));
+    }
+
+    @FXML
+    private void end() {
+        new Thread(() -> {
+            try {
+                sendButton.setDisable(true);
+                userInput.setDisable(true);
+                userInput.setText("Shutting Down...");
+                Thread.sleep(getNextSleepingTime());
+                System.exit(0);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+    @FXML
+    private long getNextSleepingTime() {
+        return this.random.nextInt(1500) + 400;
     }
 }

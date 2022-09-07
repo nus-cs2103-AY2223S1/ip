@@ -93,7 +93,9 @@ public class MessagePrinter {
      * @return The indentation in String.
      */
     private String getIndentation() {
-        return Stream.generate(() -> " ").limit(this.indentationLevel).reduce("", (x, y) -> x + y);
+        return Stream.generate(() -> " ")
+                .limit(this.indentationLevel)
+                .reduce("", (x, y) -> x + y);
     }
 
     /**
