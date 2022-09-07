@@ -45,6 +45,7 @@ public class TaskList {
      * Prints all the tasks in the list.
      */
     public void list() {
+        assert tasks.size() >= 0 : "size of list should be non-negative";
         String output = "These are the tasks in your list:\n";
         for (int i = 0; i < tasks.size(); i++) {
             output += String.format("%d. %s\n", i + 1, tasks.get(i).toString());

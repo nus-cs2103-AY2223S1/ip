@@ -21,6 +21,7 @@ public class Ui {
      * Prints the welcome message.
      */
     public String showWelcome() {
+        assert Ui.LOGO != null : "logo should be initialized";
         return Ui.LOGO + Ui.WELCOME_MESSAGE;
     }
 
