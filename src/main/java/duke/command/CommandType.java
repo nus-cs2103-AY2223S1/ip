@@ -14,10 +14,10 @@ public enum CommandType {
     DELETE(2),
     EXIT(1);
 
-    private final int argsCount;
+    private final int argCount;
 
-    CommandType(int argsCount) {
-        this.argsCount = argsCount;
+    CommandType(int argCount) {
+        this.argCount = argCount;
     }
 
     /**
@@ -27,6 +27,6 @@ public enum CommandType {
      * @return {@code true} if the arguments are compatible with the command, {@code false} otherwise.
      */
     public boolean isCompatible(String... args) {
-        return this.argsCount == args.length;
+        return this.argCount == args.length;
     }
 }

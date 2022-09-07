@@ -77,7 +77,7 @@ public class Parser {
         }
 
         String[] args = getTokens(input);
-        CommandType type = getCommandType(rawInput, args);
+        CommandType type = getCommandType(args, rawInput);
 
         switch (type) {
         case LIST:
@@ -106,11 +106,11 @@ public class Parser {
      * Returns the {@code CommandType} from an argument list.
      * In case of an exception, the {@code rawInput} is used to provide more information.
      *
+     * @param args     The argument list.
      * @param rawInput The raw input string.
-     * @param args The argument list.
      * @return The {@code CommandType}.
      */
-    private static CommandType getCommandType(String rawInput, String[] args) {
+    private static CommandType getCommandType(String[] args, String rawInput) {
         CommandType type;
         try {
             type = CommandType.valueOf(args[0].toUpperCase());
@@ -165,30 +165,77 @@ public class Parser {
      */
     public static Task parseTask(String input) {
         String[] splits = input.split(" \\| ", -1);
-        Task task;
-        try {
-            switch (TaskSymbolType.valueOf(splits[0])) {
-            case T:
-                task = new TodoTask(splits[2]);
-                break;
-            case D:
-                task = new DeadlineTask(splits[2], parseDateTime(splits[3]));
-                break;
-            case E:
-                task = new EventTask(splits[2], parseDateTime(splits[3]));
-                break;
-            default:
-                throw new ParseException(input);
-            }
-            int isDone = parseInt(splits[1]);
-            if (isDone == 1) {
-                task.setDone(true);
-            } else if (isDone != 0) {
-                throw new ParseException(input);
-            }
-        } catch (Exception e) {
-            throw new ParseException(input);
-        }
+
+        TaskSymbolType type = getTaskSymbolType(splits, input);
+        Task task = getTask(splits, type, input);
+        task.setDone(getIsDone(splits, input));
+
         return task;
+    }
+
+    /**
+     * Returns the {@code TaskSymbolType} from an argument list of a Task.
+     * In case of an exception, the {@code input} is used to provide more information.
+     *
+     * @param splits The argument list.
+     * @param input  The input string.
+     * @return The {@code TaskSymbolType}.
+     */
+    private static TaskSymbolType getTaskSymbolType(String[] splits, String input) {
+        TaskSymbolType type;
+        try {
+            type = TaskSymbolType.valueOf(splits[0]);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(input, "unknown task symbol");
+        }
+        if (!type.isCompatible(splits)) {
+            throw new ParseException(input, "wrong number of arguments provided");
+        }
+        return type;
+    }
+
+    /**
+     * Returns the {@code Task} from an argument list of a Task.
+     * In case of an exception, the {@code input} is used to provide more information.
+     * Assumes the {@code TaskSymbolType} is compatible with the argument list.
+     *
+     * @param splits The argument list.
+     * @param type   The {@code TaskSymbolType}.
+     * @param input  The input string.
+     * @return The parsed {@code Task}.
+     */
+    private static Task getTask(String[] splits, TaskSymbolType type, String input) {
+        switch (type) {
+        case T:
+            return new TodoTask(splits[2]);
+        case D:
+            return new DeadlineTask(splits[2], parseDateTime(splits[3]));
+        case E:
+            return new EventTask(splits[2], parseDateTime(splits[3]));
+        default:
+            // should not reach here as we assume type is valid.
+            throw new ParseException(input, "unknown task symbol");
+        }
+    }
+
+    /**
+     * Returns the {@code isDone} from an argument list of a Task.
+     * In case of an exception, the {@code input} is used to provide more information.
+     *
+     * @param splits The argument list.
+     * @param input  The input string.
+     * @return The {@code isDone}.
+     */
+    private static boolean getIsDone(String[] splits, String input) {
+        int isDone;
+        try {
+            isDone = parseInt(splits[1]);
+        } catch (NumberFormatException e) {
+            throw new ParseException(input, "invalid isDone value");
+        }
+        if (isDone != 0 && isDone != 1) {
+            throw new ParseException(input, "invalid isDone value");
+        }
+        return isDone == 1;
     }
 }
