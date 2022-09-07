@@ -74,6 +74,8 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() throws IOException {
+        assert (userImage != null);
+        assert (dukeImage != null);
         String input = userInput.getText();
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
