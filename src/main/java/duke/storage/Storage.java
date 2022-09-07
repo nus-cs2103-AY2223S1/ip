@@ -71,22 +71,18 @@ public class Storage {
                 String line = fileScanner.nextLine();
                 String[] details = line.split(" \\| ");
 
-                try {
-                    switch (details[0]) {
-                    case "T":
-                        tempList.add(new ToDo(details[2], details[1].equals("1")));
-                        break;
-                    case "D":
-                        tempList.add(new Deadline(details[2], details[3], details[1].equals("1")));
-                        break;
-                    case "E":
-                        tempList.add(new Event(details[2], details[3], details[1].equals("1")));
-                        break;
-                    default:
-                        throw new DukeException("File contains lines that cannot be validated as a Task.");
-                    }
-                } catch (DukeException e) {
-                    System.out.println(e.getMessage());
+                switch (details[0]) {
+                case "T":
+                    tempList.add(new ToDo(details[2], details[1].equals("1")));
+                    break;
+                case "D":
+                    tempList.add(new Deadline(details[2], details[3], details[1].equals("1")));
+                    break;
+                case "E":
+                    tempList.add(new Event(details[2], details[3], details[1].equals("1")));
+                    break;
+                default:
+                    throw new DukeException("File contains lines that cannot be validated as a Task.");
                 }
             }
 
