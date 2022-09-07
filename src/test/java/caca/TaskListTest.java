@@ -43,9 +43,10 @@ public class TaskListTest {
         String addDuplicateTask = TaskList.addTask(duplicateTask);
         assertEquals(1, taskList.getTasks().size());
 
-        assertEquals("OOPS!!! Duplicate task:\n"
-                        + "[ ][ ] stub1\n"
-                        + "This is not added again.",
+        assertEquals("OOPS!!! (•﹏•)\n"
+                + "Duplicate task:\n"
+                + "[ ][ ] stub1\n"
+                + "This is not added again.",
                 addDuplicateTask);
     }
 
@@ -82,7 +83,8 @@ public class TaskListTest {
             TaskList.indexOperation("delete", "4");
             fail(); // Test should not reach this line.
         } catch (InvalidIndexException e) {
-            assertEquals("OOPS!!! You have entered an invalid task index. It should be between 1 and 3.",
+            assertEquals("OOPS!!! (•﹏•)\n"
+                    + "You have entered an invalid task index. It should be between 1 and 3.",
                     e.getMessage());
         }
 
@@ -104,7 +106,8 @@ public class TaskListTest {
             TaskList.indexOperation("delete", "hi");
             fail(); // Test should not reach this line.
         } catch (InvalidIndexException e) {
-            assertEquals("OOPS!!! You have entered an invalid task index. It must be a number.",
+            assertEquals("OOPS!!! (•﹏•)\n"
+                    + "You have entered an invalid task index. It must be a number.",
                     e.getMessage());
         }
 
@@ -126,8 +129,9 @@ public class TaskListTest {
             TaskList.indexOperation("delete", null);
             fail(); // Test should not reach this line.
         } catch (InvalidIndexException e) {
-            assertEquals("OOPS!!! Task index cannot be empty. "
-                            + "It must be specified and must be a number.",
+            assertEquals("OOPS!!! (•﹏•)\n"
+                    + "Task index cannot be empty. "
+                    + "It must be specified and must be a number.",
                     e.getMessage());
         }
 

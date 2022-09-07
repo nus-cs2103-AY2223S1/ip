@@ -14,7 +14,9 @@ public class Ui {
      * @return Greeting message.
      */
     public static String greet() {
-        return "Hello! I'm CaCa.\nWhat can I do for you?\n";
+        String greetMessage = "Hello (◍•◡•◍)\n"
+                + "Welcome to CaCa's world!\nWhat can I do for you?\n";
+        return greetMessage;
     }
 
     /**
@@ -23,7 +25,9 @@ public class Ui {
      * @return Goodbye message.
      */
     public String bye() {
-        return "Bye. Hope to see you again soon!";
+        String byeMessage = "Bye (╥﹏╥)\n"
+                + "Hope to see you again soon!";
+        return byeMessage;
     }
 
     /**

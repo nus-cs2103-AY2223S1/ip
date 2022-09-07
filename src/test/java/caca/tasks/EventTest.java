@@ -33,9 +33,10 @@ public class EventTest {
         String addDuplicateEvent = TaskList.addTask(duplicateEvent);
         assertEquals(1, eventList.getTasks().size());
 
-        assertEquals("OOPS!!! Duplicate task:\n"
-                        + "[E][ ] book fair (at: Sep 23 2022 14:00)\n"
-                        + "This is not added again.",
+        assertEquals("OOPS!!! (•﹏•)\n"
+                + "Duplicate task:\n"
+                + "[E][ ] book fair (at: Sep 23 2022 14:00)\n"
+                + "This is not added again.",
                 addDuplicateEvent);
     }
 
@@ -61,9 +62,10 @@ public class EventTest {
             assertEquals("[E][ ] session 2 (at: Oct 00 2022 16:00)", event.toString());
             fail(); // Test should not reach this line.
         } catch (InvalidDateException e) {
-            assertEquals("You have keyed in an invalid date and time!\n"
-                            + "Please specify date and time in the format: dd/MM/yyyy HHmm\n"
-                            + "E.g. 24/08/2022 2359",
+            assertEquals("OOPS!!! (•﹏•)\n"
+                    + "You have keyed in an invalid date and time!\n"
+                    + "Please specify date and time in the format: dd/MM/yyyy HHmm\n"
+                    + "E.g. 24/08/2022 2359",
                     e.getMessage());
         }
     }
@@ -78,9 +80,10 @@ public class EventTest {
             assertEquals("[E][ ] session 3 (at: Oct 01 2022 00:01)", event.toString());
             fail(); // Test should not reach this line.
         } catch (InvalidDateException e) {
-            assertEquals("You have keyed in an invalid date and time!\n"
-                            + "Please specify date and time in the format: dd/MM/yyyy HHmm\n"
-                            + "E.g. 24/08/2022 2359",
+            assertEquals("OOPS!!! (•﹏•)\n"
+                    + "You have keyed in an invalid date and time!\n"
+                    + "Please specify date and time in the format: dd/MM/yyyy HHmm\n"
+                    + "E.g. 24/08/2022 2359",
                     e.getMessage());
         }
     }

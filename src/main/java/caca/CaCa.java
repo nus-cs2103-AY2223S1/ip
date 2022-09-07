@@ -32,18 +32,13 @@ public class CaCa {
      *
      * @param dirPath Directory path containing the file with stored tasks.
      * @param filePath Relative file path to store tasks locally.
+     * @throws InvalidDateException If date entered by user is not in the specified format.
      */
-    public CaCa(String dirPath, String filePath) {
-        try {
-            storage = new Storage(dirPath, filePath);
-            tasks = storage.readFile();
-            ui = new Ui();
-            parser = new Parser(tasks, storage, ui);
-        } catch (InvalidDateException e) {
-            System.out.println("OOPS!!! You have keyed in an invalid date and time!\n"
-                    + "Please specify date and time in the format: dd/MM/yyyy HHmm\n"
-                    + "E.g. 24/08/2022 2359");
-        }
+    public CaCa(String dirPath, String filePath) throws InvalidDateException {
+        storage = new Storage(dirPath, filePath);
+        tasks = storage.readFile();
+        ui = new Ui();
+        parser = new Parser(tasks, storage, ui);
     }
 
     /**

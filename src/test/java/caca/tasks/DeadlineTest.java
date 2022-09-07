@@ -33,9 +33,10 @@ public class DeadlineTest {
         String addDuplicateDeadline = TaskList.addTask(duplicateDeadline);
         assertEquals(1, deadlineList.getTasks().size());
 
-        assertEquals("OOPS!!! Duplicate task:\n"
-                        + "[D][ ] revision (by: Sep 23 2022 23:59)\n"
-                        + "This is not added again.",
+        assertEquals("OOPS!!! (•﹏•)\n"
+                + "Duplicate task:\n"
+                + "[D][ ] revision (by: Sep 23 2022 23:59)\n"
+                + "This is not added again.",
                 addDuplicateDeadline);
     }
 
@@ -60,7 +61,8 @@ public class DeadlineTest {
             Deadline deadline = new Deadline("quiz 2", "00/09/2022 1600");
             fail(); // Test should not reach this line.
         } catch (InvalidDateException e) {
-            assertEquals("You have keyed in an invalid date and time!\n"
+            assertEquals("OOPS!!! (•﹏•)\n"
+                    + "You have keyed in an invalid date and time!\n"
                     + "Please specify date and time in the format: dd/MM/yyyy HHmm\n"
                     + "E.g. 24/08/2022 2359",
                     e.getMessage());
@@ -76,9 +78,10 @@ public class DeadlineTest {
             Deadline deadline = new Deadline("quiz 3", "01/09/2022 2401");
             fail(); // Test should not reach this line.
         } catch (InvalidDateException e) {
-            assertEquals("You have keyed in an invalid date and time!\n"
-                            + "Please specify date and time in the format: dd/MM/yyyy HHmm\n"
-                            + "E.g. 24/08/2022 2359",
+            assertEquals("OOPS!!! (•﹏•)\n"
+                    + "You have keyed in an invalid date and time!\n"
+                    + "Please specify date and time in the format: dd/MM/yyyy HHmm\n"
+                    + "E.g. 24/08/2022 2359",
                     e.getMessage());
         }
     }

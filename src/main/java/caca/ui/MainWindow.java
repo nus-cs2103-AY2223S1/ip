@@ -110,7 +110,7 @@ public class MainWindow extends AnchorPane {
         // Solution below adapted from
         // https://github.com/cheehongw/ip/blob/master/src/main/java/duke/MainWindow.java
         if (input.equals("bye")) {
-            PauseTransition endingProgram = new PauseTransition(Duration.seconds(1));
+            PauseTransition endingProgram = new PauseTransition(Duration.seconds(1.5));
             endingProgram.setOnFinished(event -> exitProgram());
             endingProgram.play();
         }

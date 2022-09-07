@@ -77,7 +77,7 @@ public class TaskList {
      */
     public static void hasDescription(String taskType, String taskInfo) throws EmptyInputException {
         if (taskInfo == null || taskInfo.isBlank()) {
-            String message = String.format("OOPS!!! The description of %s cannot be empty.",
+            String message = String.format("OOPS!!! (•﹏•)\nThe description of %s cannot be empty.",
                     taskType);
             throw new EmptyInputException(message);
         }
@@ -120,14 +120,14 @@ public class TaskList {
         }
         boolean isDetailMissing = detailedCommand.length < 2;
         if (isDetailMissing) {
-            String errorMessage = String.format("OOPS!!! Details missing as "
+            String errorMessage = String.format("OOPS!!! (•﹏•)\nDetails missing as "
                     + "%s must have both description and date & time.", taskType);
             throw new MissingDetailException(errorMessage);
         }
 
         boolean isDetailBlank = detailedCommand[0].isBlank() || detailedCommand[1].isBlank();
         if (isDetailBlank) {
-            String errorMessage = String.format("OOPS!!! I do not accept blank details as "
+            String errorMessage = String.format("OOPS!!! (•﹏•)\nI do not accept blank details as "
                     + "%s must have both description and date & time specified clearly.", taskType);
             throw new MissingDetailException(errorMessage);
         }
@@ -154,7 +154,7 @@ public class TaskList {
         boolean hasDuplicate = tasks.stream()
                 .anyMatch(taskToCheck -> taskToCheck.toString().equals(task.toString()));
         if (hasDuplicate) {
-            String duplicateWarning = String.format("OOPS!!! Duplicate task:\n"
+            String duplicateWarning = String.format("OOPS!!! (•﹏•)\nDuplicate task:\n"
                     + "%s\n"
                     + "This is not added again.", task);
             return duplicateWarning;
@@ -216,20 +216,20 @@ public class TaskList {
     public static void isValid(String taskIndexInput) throws InvalidIndexException {
 
         if (taskIndexInput == null) {
-            String errorMessage = "OOPS!!! Task index cannot be empty. "
+            String errorMessage = "OOPS!!! (•﹏•)\nTask index cannot be empty. "
                     + "It must be specified and must be a number.";
             throw new InvalidIndexException(errorMessage);
         }
 
         if (!isNumber(taskIndexInput)) {
-            String errorMessage = "OOPS!!! You have entered an invalid task index. "
+            String errorMessage = "OOPS!!! (•﹏•)\nYou have entered an invalid task index. "
                     + "It must be a number.";
             throw new InvalidIndexException(errorMessage);
         }
 
         int taskIndexNumber = Integer.parseInt(taskIndexInput);
         if (taskIndexNumber <= 0 || taskIndexNumber > tasks.size()) {
-            String errorMessage = String.format("OOPS!!! You have entered an invalid task index. "
+            String errorMessage = String.format("OOPS!!! (•﹏•)\nYou have entered an invalid task index. "
                     + "It should be between 1 and %d.", tasks.size());
             throw new InvalidIndexException(errorMessage);
         }
@@ -269,7 +269,7 @@ public class TaskList {
                     taskToModify, tasks.size());
             break;
         default:
-            response = String.format("OOPS!!! I'm sorry, I can't %s that task :-( "
+            response = String.format("OOPS!!! (•﹏•)\nI'm sorry, I can't %s that task :-( "
                     + "Please try again.", operationType);
         }
 
@@ -304,7 +304,7 @@ public class TaskList {
         }
 
         if (matchingTasks.size() < 1) {
-            return "OOPS!!! There is no matching task in your list.";
+            return "OOPS!!! (•﹏•)\nThere is no matching task in your list.";
         }
 
         return response;

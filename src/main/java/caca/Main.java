@@ -2,6 +2,7 @@ package caca;
 
 import java.io.IOException;
 
+import caca.exceptions.InvalidDateException;
 import caca.ui.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,13 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     private final CaCa caca = new CaCa("data/", "data/caca.txt");
+
+    /**
+     * Constructor for Main class.
+     * @throws InvalidDateException If date entered by user is not in the specified format.
+     */
+    public Main() throws InvalidDateException {
+    }
 
     @Override
     public void start(Stage stage) {

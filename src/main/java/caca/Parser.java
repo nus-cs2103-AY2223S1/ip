@@ -60,7 +60,8 @@ public class Parser {
 
         try {
             if (taskType.isBlank()) {
-                throw new EmptyInputException("OOPS!!! You have entered an empty input.");
+                throw new EmptyInputException("OOPS!!! (•﹏•)\n"
+                        + "You have entered an empty input.");
             }
 
             switch (taskType) {
@@ -94,7 +95,8 @@ public class Parser {
                 break;
 
             default:
-                response = "OOPS!!! I'm sorry, but I don't know what that means :-(";
+                response = "OOPS!!! (•﹏•)\n"
+                        + "I'm sorry, but I don't know what that means...";
             }
 
         } catch (CaCaException | IOException e) {

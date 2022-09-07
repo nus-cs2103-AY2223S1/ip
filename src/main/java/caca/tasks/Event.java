@@ -38,7 +38,8 @@ public class Event extends Task {
             at = LocalDateTime.parse(dateTimeInput, formatter);
 
         } catch (DateTimeParseException e) {
-            throw new InvalidDateException("You have keyed in an invalid date and time!\n"
+            throw new InvalidDateException("OOPS!!! (•﹏•)\n"
+                    + "You have keyed in an invalid date and time!\n"
                     + "Please specify date and time in the format: dd/MM/yyyy HHmm\n"
                     + "E.g. 24/08/2022 2359");
         }
