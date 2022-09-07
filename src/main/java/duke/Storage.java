@@ -34,8 +34,10 @@ public class Storage {
 
     /**
      * A method to create file that also handles the errors.
+     *
+     * @return file A newly created {@link File}
      */
-    public void createFile() throws DukeException {
+    private File createFile() throws DukeException {
         if (!file.exists()) {
             try {
                 file.getParentFile().mkdir();
@@ -48,6 +50,30 @@ public class Storage {
                 throw new DukeException("Exception. Don't know the specific type");
             }
         }
+        return this.file;
+    }
+
+    private void parseLine(String line, TaskList taskList) {
+        String[] strArray = line.split(",");
+        switch (strArray[0]) {
+        case "Todo": {
+            Task task = new Todo(strArray[1], Boolean.parseBoolean(strArray[2]));
+            taskList.add(task);
+            break;
+        }
+        case "Event": {
+            Task task = new Event(strArray[1], Boolean.parseBoolean(strArray[2]), strArray[3]);
+            taskList.add(task);
+            break;
+        }
+        case "Deadline": {
+            Task task = new Deadline(strArray[1], Boolean.parseBoolean(strArray[2]), strArray[3]);
+            taskList.add(task);
+            break;
+        }
+        default:
+            break;
+        }
     }
 
     /**
@@ -57,7 +83,7 @@ public class Storage {
      * @param taskList TaskList
      */
     public void saveFile(TaskList taskList) throws DukeException {
-        createFile();
+        File file = createFile();
         assert file.exists() : "File should exists";
         PrintWriter writer;
         try {
@@ -81,7 +107,7 @@ public class Storage {
      * @return TaskList where its tasks are those in the save file
      */
     public TaskList readFile() throws DukeException {
-        createFile();
+        File file = createFile();
         assert file.exists() : "File should exists";
         TaskList taskList = new TaskList();
         BufferedReader reader;
@@ -92,25 +118,7 @@ public class Storage {
             String line;
 
             while ((line = reader.readLine()) != null) {
-                String[] strArray = line.split(",");
-                switch (strArray[0]) {
-                case "Todo": {
-                    Task task = new Todo(strArray[1], Boolean.parseBoolean(strArray[2]));
-                    taskList.add(task);
-                    break;
-                }
-                case "Event": {
-                    Task task = new Event(strArray[1], Boolean.parseBoolean(strArray[2]), strArray[3]);
-                    taskList.add(task);
-                    break;
-                }
-                case "Deadline": {
-                    Task task = new Deadline(strArray[1], Boolean.parseBoolean(strArray[2]), strArray[3]);
-                    taskList.add(task);
-                    break;
-                }
-                default:
-                }
+                parseLine(line, taskList);
             }
             reader.close();
         } catch (Exception e) {
