@@ -17,12 +17,8 @@ public abstract class Task {
         return isDone ? "[X]" : "[ ]";
     }
 
-    public void mark() {
-        this.isDone = true;
-    }
-
-    public void unmark() {
-        this.isDone = false;
+    public void setDone(boolean isDone) {
+        this.isDone = isDone;
     }
 
     public boolean isDone() {
