@@ -26,22 +26,21 @@ public abstract class TaskListIndexCommand extends TaskListCommand {
 
         if (parameters.equals("")) {
             throw new DukeException("No index given!");
-        } else {
-
-            try {
-                index = Integer.parseInt(parameters);
-            } catch (NumberFormatException e) {
-                throw new DukeException("Invalid index!");
-            }
-
-            try {
-                t = taskList.getTaskAtIndex(index - 1);
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException("Task index out of bounds!");
-            }
-
-            return execute(t);
         }
+
+        try {
+            index = Integer.parseInt(parameters);
+        } catch (NumberFormatException e) {
+            throw new DukeException("Invalid index!");
+        }
+
+        try {
+            t = taskList.getTaskAtIndex(index - 1);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Task index out of bounds!");
+        }
+
+        return execute(t);
     }
 
     /**

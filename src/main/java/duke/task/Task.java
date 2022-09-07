@@ -58,7 +58,6 @@ public abstract class Task {
                     if (task.getTaskType() == TaskType.ToDo) {
                         return task;
                     }
-                    System.out.println("fail 2");
                     return null;
                 }
             }
@@ -110,11 +109,17 @@ public abstract class Task {
             return false;
         } else if (o instanceof Task) {
             Task other = (Task) o;
-            return this.getTaskType() == other.getTaskType()
-                    && this.isComplete == other.isComplete
-                    && this.text.equals(other.text)
-                    && ((this.details == null && other.details == null)
+
+            boolean matchType = this.getTaskType() == other.getTaskType();
+            boolean matchCompletion = this.isComplete == other.isComplete;
+            boolean matchText = this.text.equals(other.text);
+            boolean matchDetails = ((this.details == null && other.details == null)
                     || this.details.equals(other.details));
+
+            return matchType
+                    && matchCompletion
+                    && matchText
+                    && matchDetails;
         } else {
             return false;
         }
