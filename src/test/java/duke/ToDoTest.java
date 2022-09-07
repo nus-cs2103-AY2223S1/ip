@@ -2,6 +2,7 @@ package duke;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import duke.constant.PriorityLevel;
 import duke.task.ToDo;
 import org.junit.jupiter.api.Test;
 
@@ -14,38 +15,38 @@ public class ToDoTest {
 
     @Test
     public void createToDo_unmarkedToDo_unmarkedToDoReturned() {
-        ToDo todo = new ToDo("Test", false);
+        ToDo todo = new ToDo("Test", false, PriorityLevel.NONE);
         assertEquals("[T][ ] Test", todo.toString());
     }
 
     @Test
     public void createToDo_markedToDo_markedToDoReturned() {
-        ToDo todo = new ToDo("Test", true);
+        ToDo todo = new ToDo("Test", true, PriorityLevel.NONE);
         assertEquals("[T][X] Test", todo.toString());
     }
 
     @Test
     public void toSaveFileString_unmarkedToDo_stringRepresentationMatch() {
-        ToDo todo = new ToDo("Test", false);
-        assertEquals("[T] @ [ ] @ Test", todo.toSaveFileString());
+        ToDo todo = new ToDo("Test", false, PriorityLevel.NONE);
+        assertEquals("[T] @ [ ] @ none @ Test", todo.toSaveFileString());
     }
 
     @Test
     public void toSaveFileStringTest_markedToDo_stringRepresentationMatch() {
-        ToDo todo = new ToDo("Test", true);
-        assertEquals("[T] @ [X] @ Test", todo.toSaveFileString());
+        ToDo todo = new ToDo("Test", true, PriorityLevel.NONE);
+        assertEquals("[T] @ [X] @ none @ Test", todo.toSaveFileString());
     }
 
     @Test
     public void markAsDoneTest() {
-        ToDo todo = new ToDo("Test", false);
+        ToDo todo = new ToDo("Test", false, PriorityLevel.NONE);
         todo.markAsDone();
         assertEquals("[T][X] Test", todo.toString());
     }
 
     @Test
     public void markAsUndoneTest() {
-        ToDo todo = new ToDo("Test", true);
+        ToDo todo = new ToDo("Test", true, PriorityLevel.NONE);
         todo.markAsUndone();
         assertEquals("[T][ ] Test", todo.toString());
     }
