@@ -46,6 +46,8 @@ public class TaskList {
                 this.taskList.add(addTask);
 
                 try {
+                    assert temp[1].equals("1") || temp[1].equals("0")
+                            : "the done state of a task can only be either 1 or 0";
                     if (temp[1].equals("1")) {
                         addTask.markDone();
                     } else {
@@ -129,6 +131,8 @@ public class TaskList {
      * @param i the position + 1 of the task to delete
      */
     public void deleteTask(int i) {
+        assert i >= 0 : "the index can't be smaller than 0";
+        assert i <= taskList.size() : "we can't delete non-existant task";
         this.taskList.remove(i - 1);
     }
 

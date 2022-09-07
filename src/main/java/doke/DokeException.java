@@ -12,6 +12,8 @@ public class DokeException extends RuntimeException{
      * @param text the text to be outputted.
      */
     public DokeException(String text) {
+        assert text.equals("todo") || text.equals("deadline") || text.equals("event")
+                : "we only have 3 types of task";
         this.text = text;
     }
 
