@@ -1,5 +1,6 @@
 package scottie.tasks;
 
+import java.time.LocalDateTime;
 import java.time.temporal.TemporalAccessor;
 
 import scottie.common.DateTimeUtil;
@@ -60,6 +61,14 @@ public class Event extends Task {
     public String toEncodedString() {
         return String.format("E|%s|%s", super.toEncodedString(),
                 DateTimeUtil.formatCompactDateTime(this.dateTime));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    LocalDateTime getDateTime() {
+        return DateTimeUtil.toLocalDateTime(this.dateTime);
     }
 
     @Override

@@ -13,7 +13,8 @@ public enum Command {
     EVENT("event"),
     DELETE("delete"),
     BYE("bye"),
-    FIND("find");
+    FIND("find"),
+    SORT("sort");
 
     private final String name;
 

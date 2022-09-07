@@ -40,17 +40,37 @@ Ok, I've found these tasks in your list:
 2. (D) [X] Test deadline (by: Feb 1 2034)
 3. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
 Oops, I couldn't find any tasks matching that search.
-Ok, I've deleted this task:
-(D) [X] Test deadline (by: Feb 1 2034)
-You have 2 task(s) left in your list.
+Ok, I've sorted your tasks in alphabetical order.
+Ok, here are the tasks you have at the moment!
+1. (D) [X] Test deadline (by: Feb 1 2034)
+2. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
+3. (T) [ ] Test todo
+Ok, I've sorted your tasks in chronological order.
+Ok, here are the tasks you have at the moment!
+1. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
+2. (D) [X] Test deadline (by: Feb 1 2034)
+3. (T) [ ] Test todo
+Ok, I've sorted your tasks in reverse alphabetical order.
 Ok, here are the tasks you have at the moment!
 1. (T) [ ] Test todo
 2. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
+3. (D) [X] Test deadline (by: Feb 1 2034)
+Ok, I've sorted your tasks in reverse chronological order.
+Ok, here are the tasks you have at the moment!
+1. (D) [X] Test deadline (by: Feb 1 2034)
+2. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
+3. (T) [ ] Test todo
 Ok, I've deleted this task:
 (E) [ ] Test event (at: Dec 30 2021 12:00AM)
-You have 1 task(s) left in your list.
+You have 2 task(s) left in your list.
+Ok, here are the tasks you have at the moment!
+1. (D) [X] Test deadline (by: Feb 1 2034)
+2. (T) [ ] Test todo
 Ok, I've deleted this task:
 (T) [ ] Test todo
+You have 1 task(s) left in your list.
+Ok, I've deleted this task:
+(D) [X] Test deadline (by: Feb 1 2034)
 You have no more tasks left in your list!
 Sorry, you need to tell me which task to mark.
 Sorry, you need to tell me which task to unmark.

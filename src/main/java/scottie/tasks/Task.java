@@ -1,5 +1,7 @@
 package scottie.tasks;
 
+import java.time.LocalDateTime;
+
 /**
  * Encapsulates a task that the user wants to record.
  */
@@ -52,6 +54,23 @@ public abstract class Task {
             throw new RuntimeException(String.format(MISSING_TASK_SUBCLASS_MESSAGE, taskLetter));
         }
     }
+
+    /**
+     * Returns this Task's description.
+     *
+     * @return This Task's description.
+     */
+    String getDescription() {
+        return this.description;
+    }
+
+    /**
+     * Returns the date and time associated with this Task.
+     * If this Task has no associated date, returns null instead.
+     *
+     * @return The date and time associated with this Task.
+     */
+    abstract LocalDateTime getDateTime();
 
     /**
      * Marks this Task as done.
