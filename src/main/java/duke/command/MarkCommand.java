@@ -12,6 +12,7 @@ public class MarkCommand extends Command {
 
     public MarkCommand(String desc) {
         String numberOnly = desc.replaceAll("[^0-9]", "");
+        assert !numberOnly.isEmpty() : "index of task cannot be empty";
         index = Integer.parseInt(numberOnly);
     }
 
