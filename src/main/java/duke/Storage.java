@@ -52,10 +52,10 @@ public class Storage {
      * @param commandOutputs user interface of application.
      * @param taskList list of tasks.
      */
-    public void startUpPullStorage(CommandOutputs commandOutputs, TaskList taskList) {
+    public void startUpPullStorage(CommandOutputs commandOutputs, TaskList taskList, ClientList clientList) {
         createFolder();
         createFile();
-        pullSavedTaskList(commandOutputs, taskList);
+        pullSavedTaskList(commandOutputs, taskList, clientList);
     }
 
     private void createFolder() {
@@ -77,14 +77,14 @@ public class Storage {
      * @param commandOutputs user interface of application.
      * @param taskList list of tasks.
      */
-    private void pullSavedTaskList(CommandOutputs commandOutputs, TaskList taskList) {
+    private void pullSavedTaskList(CommandOutputs commandOutputs, TaskList taskList, ClientList clientList) {
         File save = new File(filePath);
         try {
             Scanner s = new Scanner(save);
             while (s.hasNextLine()) {
                 String nextInput = s.nextLine();
                 Command c = Parser.parseSavedInput(nextInput);
-                c.execute(taskList, commandOutputs, this);
+                c.execute(taskList, commandOutputs, this, clientList);
             }
         } catch (FileNotFoundException | DukeException e) {
             throw new RuntimeException(e);

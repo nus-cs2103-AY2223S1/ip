@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.ClientList;
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
@@ -29,7 +30,7 @@ public class ListCommand extends Command {
      * @throws DukeException if list is empty.
      */
     @Override
-    public String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage, ClientList clientList) throws DukeException {
         return commandOutputs.showListOut(taskList);
     }
 }

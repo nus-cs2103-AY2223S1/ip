@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.ClientList;
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
@@ -20,5 +21,5 @@ public abstract class Command {
      *
      * @throws DukeException if error occurs during execution of command.
      */
-    public abstract String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage) throws DukeException;
+    public abstract String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage, ClientList clientList) throws DukeException;
 }

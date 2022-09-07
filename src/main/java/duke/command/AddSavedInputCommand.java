@@ -63,7 +63,7 @@ public class AddSavedInputCommand extends Command {
      * @throws DukeException if timing is of the wrong format.
      */
     @Override
-    public String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage, ClientList clientList) throws DukeException {
         Task savedTask;
         switch (type) {
         case todo:

@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.ClientList;
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
@@ -29,8 +30,8 @@ public class FindCommand extends Command {
      * @throws DukeException if keyword list is empty.
      */
     @Override
-    public String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage, ClientList clientList) throws DukeException {
         TaskList keywordList = taskList.findKeyWord(keyword);
-        return new ListKeywordCommand().execute(keywordList, commandOutputs, storage);
+        return new ListKeywordCommand().execute(keywordList, commandOutputs, storage, clientList);
     }
 }

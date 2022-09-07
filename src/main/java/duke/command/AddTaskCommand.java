@@ -9,7 +9,7 @@ import duke.task.ToDos;
 /**
  * Represents a command adding a new task into task list.
  */
-public class AddUserCommand extends Command {
+public class AddTaskCommand extends Command {
     private static final boolean NOT_DONE = false;
     private static final String TODO_TIMING = "";
     private final String task;
@@ -21,7 +21,7 @@ public class AddUserCommand extends Command {
      *
      * @param task task in String.
      */
-    public AddUserCommand(String task) {
+    public AddTaskCommand(String task) {
         this.task = task;
         this.type = Instructions.todo;
         this.timing = TODO_TIMING;
@@ -34,7 +34,7 @@ public class AddUserCommand extends Command {
      * @param instruction specific instruction.
      * @param timing timing in String.
      */
-    public AddUserCommand(String task, Instructions instruction, String timing) {
+    public AddTaskCommand(String task, Instructions instruction, String timing) {
         this.task = task;
         this.type = instruction;
         this.timing = timing;
@@ -50,7 +50,7 @@ public class AddUserCommand extends Command {
      * @throws DukeException if timing is of the wrong format.
      */
     @Override
-    public String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage, ClientList clientList) throws DukeException {
         Task newTask;
         switch (type) {
         case todo:
@@ -66,7 +66,7 @@ public class AddUserCommand extends Command {
             throw new DukeException("Unknown Error");
         }
         taskList.add(newTask);
-        new SaveCommand().execute(taskList, commandOutputs, storage);
+        new SaveCommand().execute(taskList, commandOutputs, storage, clientList);
         return commandOutputs.showAdd(taskList, newTask);
     }
 }

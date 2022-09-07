@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.ClientList;
 import duke.Storage;
 import duke.TaskList;
 
@@ -16,7 +17,7 @@ public class SaveCommand extends Command {
      * @param storage  files storing task list.
      * @return
      */
-    public String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage) {
+    public String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage, ClientList clientList) {
         storage.saveTaskList(taskList);
         return null;
     }

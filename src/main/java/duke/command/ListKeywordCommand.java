@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.ClientList;
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
@@ -19,7 +20,7 @@ public class ListKeywordCommand extends Command {
      * @throws DukeException if keyword list is empty.
      */
     @Override
-    public String execute(TaskList keywordList, CommandOutputs commandOutputs, Storage storage) throws DukeException {
+    public String execute(TaskList keywordList, CommandOutputs commandOutputs, Storage storage, ClientList clientList) throws DukeException {
         return commandOutputs.showKeywordList(keywordList);
     }
 }

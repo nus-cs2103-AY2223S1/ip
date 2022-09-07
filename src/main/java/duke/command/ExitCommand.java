@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.ClientList;
 import duke.Storage;
 import duke.TaskList;
 
@@ -27,7 +28,7 @@ public class ExitCommand extends Command {
      * @return
      */
     @Override
-    public String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage) {
+    public String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage, ClientList clientList) {
         System.exit(0); //placeholder method to end the application
         return commandOutputs.showGoodbye();
     }

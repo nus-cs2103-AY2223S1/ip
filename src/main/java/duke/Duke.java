@@ -22,6 +22,8 @@ public class Duke {
     private final TaskList taskList;
     private final CommandOutputs commandOutputs;
 
+    private final ClientList clientList;
+
     /**
      * Constructor for class Duke.
      *
@@ -29,8 +31,9 @@ public class Duke {
     public Duke() {
         this.taskList = new TaskList();
         this.commandOutputs = new CommandOutputs();
+        this.clientList = new ClientList();
         this.storage = new Storage("data", "data/Duke.txt");
-        storage.startUpPullStorage(commandOutputs, taskList);
+        storage.startUpPullStorage(commandOutputs, taskList, clientList);
     }
 
     /**
@@ -42,7 +45,7 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Command c = Parser.parseInput(input);
-            return c.execute(taskList, commandOutputs, storage);
+            return c.execute(taskList, commandOutputs, storage, clientList);
         } catch (DukeException e) {
             return e.getMessage();
         }

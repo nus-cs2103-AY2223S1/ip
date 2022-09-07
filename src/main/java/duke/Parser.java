@@ -1,14 +1,6 @@
 package duke;
 
-import duke.command.AddSavedInputCommand;
-import duke.command.AddUserCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.ExitCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.UnMarkCommand;
+import duke.command.*;
 
 /**
  * Represents the parser that processes user input from UI.
@@ -50,6 +42,8 @@ public class Parser {
             throw new DukeException("Choose which index to delete.");
         case find:
             throw new DukeException("Input a keyword to find.");
+        case client:
+            throw new DukeException("Input clients name, phone number and address");
         default:
             throw new DukeException("Please input a correct command");
         }
@@ -72,6 +66,8 @@ public class Parser {
             return parseEvent(info);
         case find:
             return parseFind(info);
+        case client:
+            return parseClient(info);
         default:
             throw new DukeException("Seems like that command is not in my programming :(");
         }
@@ -87,11 +83,13 @@ public class Parser {
 
     private static Command parseDelete(String info) throws DukeException {
         try {
-            return new DeleteCommand(Integer.parseInt(info) - 1);
+            if (info.contains("client ")) {
+                String index = info.split("client ")[1];
+                return new DeleteClientCommand(Integer.parseInt(index));
+            }
+            return new DeleteTaskCommand(Integer.parseInt(info) - 1);
         } catch (NumberFormatException e) {
             throw new DukeException("Deleting requires an integer as index");
-        } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(String.format("Index %s does not exist on the list.", info));
         }
     }
 
@@ -111,7 +109,7 @@ public class Parser {
     }
 
     private static Command parseToDo(String info) {
-        return new AddUserCommand(info);
+        return new AddTaskCommand(info);
     }
 
     private static Command parseDeadLine(String info) throws DukeException {
@@ -119,7 +117,7 @@ public class Parser {
             String[] taskAndDeadline = info.split(" /by ", 2);
             String deadlineTask = taskAndDeadline[0];
             String deadlineTiming = taskAndDeadline[1];
-            return new AddUserCommand(deadlineTask, Instructions.deadline, deadlineTiming);
+            return new AddTaskCommand(deadlineTask, Instructions.deadline, deadlineTiming);
         } else {
             throw new DukeException("Deadline does not have proper format.");
         }
@@ -130,7 +128,7 @@ public class Parser {
             String[] taskAndTiming = info.split(" /at ", 2);
             String eventTask = taskAndTiming[0];
             String eventTiming = taskAndTiming[1];
-            return new AddUserCommand(eventTask, Instructions.event, eventTiming);
+            return new AddTaskCommand(eventTask, Instructions.event, eventTiming);
         } else {
             throw new DukeException("Event does not have proper format.");
         }
@@ -138,6 +136,14 @@ public class Parser {
 
     private static Command parseFind(String info) {
         return new FindCommand(info);
+    }
+
+    private static Command parseClient(String info) {
+        String[] nameNumberAddress = info.split(" ", 3);
+        String name = nameNumberAddress[0];
+        int number = Integer.parseInt(nameNumberAddress[1]);
+        String address = nameNumberAddress[2];
+        return new AddClientCommand(name, number, address);
     }
 
     /**

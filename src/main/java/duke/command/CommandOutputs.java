@@ -1,5 +1,7 @@
 package duke.command;
 
+import duke.Client;
+import duke.ClientList;
 import duke.DukeException;
 import duke.TaskList;
 import duke.task.Task;
@@ -107,5 +109,25 @@ public class CommandOutputs {
             output = output + String.format("%d.%s\n", i + 1, taskList.get(i).toString());
         }
         return output;
+    }
+
+    public String showNewClient(Client client, ClientList clientList) {
+        String output = String.format("Nice! Added this client:\n" +
+                "%s\n", client.toString());
+        return clientList.size() == 1 ? output + "Now you have 1 client\n"
+                : output + String.format("Now you have %d clients\n", clientList.size());
+    }
+
+    public String showClientList(ClientList clientList) throws DukeException {
+        if (clientList.size() == 0) {
+            throw new DukeException("You have no clients right now rip");
+        }
+        return "Clients:\n" +
+                clientList;
+    }
+
+    public String showDeletedClient(Client client) {
+        return "Deleted Client:\n" +
+                client + "\n";
     }
 }
