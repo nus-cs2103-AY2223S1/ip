@@ -5,7 +5,7 @@ import java.time.LocalDate;
 /**
  * Represent the ToDo task. Extends the Task class.
  */
-public class ToDo extends Task {
+public class ToDo extends Task{
 
     /**
      * a public constructor method for the ToDo class.
