@@ -76,6 +76,7 @@ public class Parser {
         }
     }
 
+
     /**
      *
      * Extracts shortcut or formal command used and returns formal command/
@@ -120,6 +121,8 @@ public class Parser {
         }
         else if (command.equalsIgnoreCase("istoday")) {
             return "istoday";
+        }  else if (command.equalsIgnoreCase("help") || command.equalsIgnoreCase("h") ) {
+            return "help";
         }
         else {
             return " ";
@@ -216,5 +219,9 @@ public class Parser {
      */
     public static String stringToFind(String userInput) {
         return userInput.substring(userInput.indexOf("find") + 5);
+    }
+
+    public static void main(String[] args) throws DukeException {
+        System.out.println(Parser.parse("h"));
     }
 }
