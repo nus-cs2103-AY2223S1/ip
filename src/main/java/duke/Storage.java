@@ -18,6 +18,9 @@ public class Storage {
         storage = new ArrayList<>();
     }
 
+    /**
+     * Loads saved data from the initialised filePath.
+     */
     public ArrayList<Task> load() {
         ArrayList<Task> taskList = new ArrayList<>();
 
@@ -70,6 +73,10 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Marks a task as done.
+     * @param index the task number on the storage list
+     */
     public void mark(int index) {
         if (!storage.get(index - 1).contains(" | X")) {
                 String temp = storage.get(index - 1) + " | X";
@@ -78,6 +85,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Unmarks an undone task.
+     * @param index the task number on the storage list
+     */
     public void unmark(int index) {
         if (storage.get(index - 1).contains(" | X")) {
             String temp = storage.get(index - 1).replace(" | X", "");
@@ -86,14 +97,26 @@ public class Storage {
         }
     }
 
+    /**
+     * Deletes a task from the storage list.
+     * @param index the task number on the storage list
+     */
     public void delete(int index) {
         storage.remove(index - 1);
     }
 
+    /**
+     * Adds a task to be recorded and saved in storage.
+     * @param taskType the string representing the type of task
+     * @param description the string describing the task
+     */
     public void add(String taskType, String description) {
         storage.add(taskType + description);
     }
 
+    /**
+     * Stores and saves data from storage list into the initialised filePath.
+     */
     public void store() {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
