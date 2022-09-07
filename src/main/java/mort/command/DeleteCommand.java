@@ -27,4 +27,5 @@ public class DeleteCommand extends Command {
             throw new MortException(ui.getMissingTaskError(CommandWord.DELETE, this.taskNumber));
         }
     }
+
 }

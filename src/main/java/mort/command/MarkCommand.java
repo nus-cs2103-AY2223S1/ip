@@ -19,9 +19,9 @@ public class MarkCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MortException {
         try {
-            String msg = tasks.markTask(this.taskNumber - 1);
+            String markMessage = tasks.markTask(this.taskNumber - 1);
             storage.save(tasks);
-            return msg; //abstract away to Ui class
+            return markMessage;
         } catch (IndexOutOfBoundsException e) {
             throw new MortException(ui.getMissingTaskError(CommandWord.MARK, this.taskNumber));
         }
