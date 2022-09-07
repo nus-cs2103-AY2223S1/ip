@@ -14,7 +14,7 @@ import duke.task.Todo;
  * TaskList class containing all the logic for interactions with the list of tasks.
  */
 public class TaskList {
-    private ArrayList<Task> tasks;
+    private final ArrayList<Task> tasks;
 
     /**
      * Creates empty TaskList.
@@ -31,17 +31,17 @@ public class TaskList {
      */
     public TaskList(List<String> res) throws DukeException {
         tasks = new ArrayList<>();
-        for (String line: res) {
+        for (String line : res) {
 
             char tag = line.charAt(1);
-            boolean isDone = (line.charAt(4) == 'X' ? true : false);
+            boolean isDone = (line.charAt(4) == 'X');
 
             String[] msg;
 
             try {
                 msg = line.split(" ", 3)[2].split(" \\(");
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw(new DukeException("Error parsing!"));
+                throw (new DukeException("Error parsing!"));
             }
 
             String name = msg[0];
@@ -52,7 +52,7 @@ public class TaskList {
                     date = LocalDateTime.parse(msg[1].split("\\)")[0],
                             DateTimeFormatter.ofPattern("MMM dd yyyy H:m"));
                 } catch (Exception e) {
-                    throw(new DukeException("Error parsing!"));
+                    throw (new DukeException("Error parsing!"));
                 }
             }
 
@@ -69,21 +69,21 @@ public class TaskList {
     /**
      * Creates new Task object given a list of descriptors.
      *
-     * @param tag Character indicating type of task.
+     * @param tag         Character indicating type of task.
      * @param description Title of task.
-     * @param time Time of task in LocalDateTime format.
+     * @param time        Time of task in LocalDateTime format.
      * @return New Task containing above details.
      */
     public Task createTask(char tag, String description, LocalDateTime time) {
         switch (tag) {
-        case 'T':
-            return new Todo(description);
-        case 'E':
-            return new Event(description, time);
-        case 'D':
-            return new Deadline(description, time);
-        default:
-            return null;
+            case 'T':
+                return new Todo(description);
+            case 'E':
+                return new Event(description, time);
+            case 'D':
+                return new Deadline(description, time);
+            default:
+                return null;
         }
     }
 
