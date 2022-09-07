@@ -11,8 +11,10 @@ package duke;
 public class Events extends Task {
 
     private final String date;
+
     public Events(String event, String date) {
         super(event);
+        assert event != null : "Please input an Event task!";
         this.date = date;
     }
 
