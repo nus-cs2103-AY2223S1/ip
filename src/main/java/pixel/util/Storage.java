@@ -77,7 +77,7 @@ public class Storage {
         String output = "";
         Task tempRecord;
         // truncate the front part
-        String temp = userInput.substring(7);
+        String temp = userInput.substring(7).strip();
         // System.out.println(temp);
         int indexToDelete = Character.getNumericValue(temp.charAt(0));
         // System.out.println(indexToChange);
@@ -95,6 +95,7 @@ public class Storage {
                 if (i == (originalInputListSize - 1)) {
                     // System.out.println(i + " remove");
                     Storage.INPUT_TASKS.remove(i);
+                    assert Storage.INPUT_TASKS.size() == (originalInputListSize - 1) : "Size of ArrayList of tasks did not decrease by 1 upon deletion";
                 } else {
                     // System.out.println(i + " replace");
                     Storage.INPUT_TASKS.set(i, Storage.INPUT_TASKS.get(i + 1));

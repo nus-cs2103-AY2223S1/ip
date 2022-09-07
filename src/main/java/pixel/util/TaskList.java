@@ -40,19 +40,19 @@ public class TaskList {
 
         switch (type) {
         case "T": { // todo
-            String description = userInput.substring(5, indexOfEndOfDescription);
+            String description = userInput.substring(5, indexOfEndOfDescription).strip();
             newTask = new ToDo(description, due, commandWord); // Stores user input
 
             break;
         }
         case "D": { // deadline
-            String description = userInput.substring(9, indexOfEndOfDescription);
+            String description = userInput.substring(9, indexOfEndOfDescription).strip();
             newTask = new Deadline(description, due, commandWord); // Stores user input
 
             break;
         }
         case "E": { // event
-            String description = userInput.substring(6, indexOfEndOfDescription);
+            String description = userInput.substring(6, indexOfEndOfDescription).strip();
             newTask = new Event(description, due, commandWord); // Stores user input
 
             break;
@@ -63,6 +63,9 @@ public class TaskList {
         }
 
         Storage.INPUT_TASKS.add(Pixel.count, newTask);
+        // index of last element in ArrayList is always smaller than size
+        assert Storage.INPUT_TASKS.size() == (Pixel.count + 1)
+            : "Size of ArrayList did not increase by 1 after adding new task";
 
         // Not so efficient method
         // first delete existing content in old file

@@ -83,31 +83,28 @@ public class Task {
             }
 
         } catch (DateTimeParseException e) {
-            System.out.println(e);
-            System.out.println("Please ensure that your date & time input are in yyyy-MM-dd(SPACE)HHmm(24h) format");
-            System.out.println(UserInterface.PROMPT_MESSAGE);
+            // System.out.println(e);
+            return ("Please ensure that your date & time input are in yyyy-MM-dd(SPACE)HHmm(24h) format \n"
+                + UserInterface.PROMPT_MESSAGE);
 
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(e);
-            System.out.println(
-                "Please ensure that you have entered both date and time in yyyy-MM-dd(SPACE)HHmm(24h) format");
-            System.out.println(UserInterface.PROMPT_MESSAGE);
+            // System.out.println(e);
+            return ("Please ensure that you have entered both date and time in yyyy-MM-dd(SPACE)HHmm(24h) format \n"
+                + UserInterface.PROMPT_MESSAGE);
 
         } catch (ParseException e) {
-            System.out.println(e);
-            System.out.println("Caught parse exception!");
-            System.out.println(UserInterface.AFTER_INVALID_INPUT);
-            System.out.println(UserInterface.PROMPT_MESSAGE);
+           //  System.out.println(e);
+            return ("Caught parse exception! \n"
+                + UserInterface.AFTER_INVALID_INPUT + "\n"
+                + UserInterface.PROMPT_MESSAGE);
 
         } catch (Exception e) {
-            System.out.println(e);
-            System.out.println("Some other error occurred");
-            System.out.println(UserInterface.AFTER_INVALID_INPUT);
-            System.out.println(UserInterface.PROMPT_MESSAGE);
+            // System.out.println(e);
+            return ("Some other error occurred \n"
+                + UserInterface.AFTER_INVALID_INPUT + "\n"
+                + UserInterface.PROMPT_MESSAGE);
 
         }
-
-        return due; // Shouldn't reach here
     }
 
     /**
@@ -135,10 +132,13 @@ public class Task {
 
         if (this instanceof Event) {
             tag = Event.TAG;
+            assert tag == "E" : "event tag should be E";
         } else if (this instanceof Deadline) {
             tag = Deadline.TAG;
+            assert tag == "D" : "deadline tag should be D";
         } else if (this instanceof ToDo) {
             tag = ToDo.TAG;
+            assert tag == "T" : "todo tag should be T";
         }
 
         String taskToString = tag + " | " + isTaskDone + " | " + this.description + "| " + this.due;

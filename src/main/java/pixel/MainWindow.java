@@ -44,19 +44,23 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = pixel.parserParse(input);
-        // Unsuccessful attempt to make GUI display welcome message upon initialisation.
-        // Keeping code for future reference
-        /*if (pixel.botJustInitialised()) {
-            String initialMessage = UserInterface.GREETING_MESSAGE + "\n"
-                + UserInterface.PROMPT_MESSAGE;
-            dialogContainer.getChildren().add(
-                DialogBox.getDukeDialog(initialMessage, pixelImage)
-            );
-        }*/
         dialogContainer.getChildren().addAll(
             DialogBox.getUserDialog(input, userImage),
             DialogBox.getDukeDialog(response, pixelImage)
         );
         userInput.clear();
     }
+
+    @FXML
+    private void handleWelcomeMessage() {
+        if (pixel.botJustInitialised()) {
+            String initialMessage = UserInterface.GREETING_MESSAGE + "\n"
+                + UserInterface.PROMPT_MESSAGE;
+            dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog(initialMessage, pixelImage)
+            );
+        }
+    }
+    // Unsuccessful attempt to make GUI display welcome message upon initialisation.
+    // Keeping code for future reference
 }
