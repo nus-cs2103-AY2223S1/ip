@@ -65,22 +65,23 @@ public class Storage {
 
                 Task task;
                 switch (taskType) {
-                    case "T": {
-                        task = new ToDo(taskDescription);
-                        break;
-                    }
-                    case "D": {
-                        String taskDate = taskSplit[3];
-                        task = new Deadline(taskDescription, taskDate);
-                        break;
-                    }
-                    case "E": {
-                        String taskDate = taskSplit[3];
-                        task = new Event(taskDescription, taskDate);
-                        break;
-                    }
-                    default:
-                        throw new DukeException("Task type is not supported!");
+                case "T": {
+                    task = new ToDo(taskDescription);
+                    break;
+                }
+                case "D": {
+                    assert taskSplit.length > 3 : "deadline task not split correctly";
+                    String taskDate = taskSplit[3];
+                    task = new Deadline(taskDescription, taskDate);
+                    break;
+                }
+                case "E": {
+                    String taskDate = taskSplit[3];
+                    task = new Event(taskDescription, taskDate);
+                    break;
+                }
+                default:
+                    throw new DukeException("Task type is not supported!");
                 }
                 if (isTaskDone) {
                     task.markAsDone();
@@ -88,7 +89,7 @@ public class Storage {
                 loadedTasks.add(task);
             }
         }
-            return loadedTasks;
+        return loadedTasks;
     }
 
 }
