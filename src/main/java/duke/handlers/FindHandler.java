@@ -6,10 +6,8 @@ import duke.models.TaskList;
 
 import java.util.ArrayList;
 
-import static duke.services.Ui.dukePrint;
-
 public class FindHandler {
-    public static void handle(TaskList taskList, String input) throws DukeException {
+    public static String getResponse (TaskList taskList, String input) throws DukeException {
         boolean isEmptyList = true;
         ArrayList<Task> resultList = new ArrayList<Task>();
 
@@ -25,13 +23,14 @@ public class FindHandler {
         }
 
         if (!isEmptyList) {
-            dukePrint("Here are the matching tasks in your list:");
+            StringBuilder response = new StringBuilder("Here are the matching tasks in your list:\n");
             for (int i = 1; i <= resultList.size(); i++) {
                 Task foundTask = resultList.get(i - 1);
-                dukePrint(i + ". " + foundTask.toString());
+                response.append(i).append(". ").append(foundTask.toString()).append("\n");
             }
+            return response.toString();
         } else {
-            dukePrint("No tasks found with keyword");
+            return ("No tasks found with keyword");
         }
     }
 }
