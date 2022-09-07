@@ -132,6 +132,8 @@ public class Storage {
                 } else if (t instanceof Event) {
                     this.writeToFile("E | " + taskDone + " | " + t.getTaskName() + " | "
                             + ((Event) t).getDate() + "\n", false);
+                } else {
+                    throw new DukeException("Invalid event found in save! Aborting...");
                 }
             } catch (IOException e) {
                 System.out.println(e.getMessage());

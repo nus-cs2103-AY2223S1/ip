@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.Deadline;
 import duke.task.Event;
@@ -40,18 +41,21 @@ public class AddCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        if (this.command.equals("todo")) {
+        switch (this.command) {
+        case "todo":
             ToDo newToDo = tasks.addToDo(this.arguments);
 
             return ui.getTaskAddedMsg(tasks.getTaskLen(), newToDo);
-        } else if (this.command.equals("deadline")) {
+        case "deadline":
             Deadline newDeadline = tasks.addDeadline(this.arguments);
 
             return ui.getTaskAddedMsg(tasks.getTaskLen(), newDeadline);
-        } else {
+        case "event":
             Event newEvent = tasks.addEvent(this.arguments);
 
             return ui.getTaskAddedMsg(tasks.getTaskLen(), newEvent);
+        default:
+            throw new DukeException("Invalid command to create a new task");
         }
     }
 }
