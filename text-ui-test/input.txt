@@ -1,9 +1,10 @@
 todo read book
 list
-deadline return book /by Sunday
-event project meeting /at Mon 2-4pm
+deadline return book /by 2022-09-08 11:11
+event project meeting /at 2022-09-10 11:11
 deadline
-event
+event cca meeting
+event cca meeting /at 2022-09-10
 testing
 mark 1
 mark 2

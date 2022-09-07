@@ -1,3 +1,5 @@
+package duke.task;
+
 import java.time.format.DateTimeFormatter;
 
 public abstract class Task {
@@ -14,7 +16,7 @@ public abstract class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : " "); // mark done duke.task with X
     }
 
     public void markAsDone() {

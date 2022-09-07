@@ -1,3 +1,8 @@
+package duke.ui;
+
+import duke.task.Task;
+import duke.task.TaskList;
+
 import java.util.Scanner;
 
 public class TextUi {
@@ -29,7 +34,7 @@ public class TextUi {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
 
-         String greetingMsg = "Hello! I'm Duke\n"
+         String greetingMsg = "Hello! I'm duke.Duke\n"
                 + "What can I do for you?\n";
 
          String welcomeMsg = logo + greetingMsg;
@@ -47,9 +52,9 @@ public class TextUi {
     }
 
     public void showAddTaskMessage(Task task, TaskList tasks) {
-        String message =  "Got it. I've added this task:\n" +
+        String message =  "Got it. I've added this duke.task:\n" +
                 "  " + task + "\n" +
-                "Now you have " + tasks.size() + " task(s) in the list.\n";
+                "Now you have " + tasks.size() + " duke.task(s) in the list.\n";
 
         printTextWithDivider(message);
     }
@@ -61,15 +66,15 @@ public class TextUi {
     }
 
     public void showUnmarkTaskMessage(Task task) {
-        String message = "Ok, I've marked this task as not done yet:\n" +
+        String message = "Ok, I've marked this duke.task as not done yet:\n" +
                     task + "\n";
         printTextWithDivider(message);
     }
 
     public void showRemoveTaskMessage(Task task, TaskList tasks) {
-        String message = "Noted. I've removed this task:\n" +
+        String message = "Noted. I've removed this duke.task:\n" +
                 "  " + task + "\n" +
-                "Now you have " + tasks.size() + " task(s) in the list.\n";
+                "Now you have " + tasks.size() + " duke.task(s) in the list.\n";
         printTextWithDivider(message);
     }
 }

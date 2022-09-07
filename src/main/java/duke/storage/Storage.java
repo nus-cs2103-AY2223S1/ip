@@ -1,3 +1,12 @@
+package duke.storage;
+
+import duke.exception.DukeException;
+import duke.task.Deadline;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.Todo;
+import duke.task.Event;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -103,7 +112,7 @@ public class Storage {
             task = null;
         }
 
-        // "1" indicates task is done
+        // "1" indicates duke.task is done
         if (components[1].equals("1")) {
             task.markAsDone();
         }
