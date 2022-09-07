@@ -72,6 +72,8 @@ public class Parser {
             return executor.hibernate(commandDescription);
         case "find":
             return executor.findInBrain(commandDescription);
+        case "help":
+            return executor.showShortGuide(commandDescription);
         default:
             throw TobTobException.commandNotRecognizedError(command);
         }

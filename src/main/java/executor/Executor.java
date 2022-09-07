@@ -240,4 +240,33 @@ public class Executor {
 
         return result;
     }
+
+    /**
+     * Returns a {@link String} of the short guide.
+     *
+     * @param commandDescription a {@link String} passed by parser
+     * @return {@link String}
+     * @throws TobTobException If {@code commandDescription} is not empty.
+     */
+    public String showShortGuide(String commandDescription) throws TobTobException {
+        if (!commandDescription.equals("")) {
+            throw TobTobException.shouldHaveNoDescriptionError("help");
+        }
+
+        String result = "";
+        result += "Hi there! Here are the available commands that Tob Tob understands (Don't forget to replace "
+                + "the CAPITALIZED_WORDS)\n";
+        result += "- To list all the tasks, type \n  \"list\"\n";
+        result += "- To add a todo task, type \n  \"todo TODO_NAME\"\n";
+        result += "- To add a deadline task, type \n  \"deadline DEADLINE_NAME \\by YYYY-MM-DD\"\n";
+        result += "- To add an event task, type \n  \"event EVENT_NAME \\at YYYY-MM-DD\"\n";
+        result += "- To mark a task, type \n  \"mark TASK_NUMBER\"\n";
+        result += "- To unmark a task, type \n  \"unmark TASK_NUMBER\"\n";
+        result += "- To delete a task, type \n  \"delete TASK_NUMBER\"\n";
+        result += "- To find a task, type \n  \"find TASK_NAME\"\n";
+        result += "- To see the list of available commands, type \n  \"help\"\n";
+        result += "- To say goodbye to Tob Tob, type \n  \"bye\"";
+
+        return result;
+    }
 }
