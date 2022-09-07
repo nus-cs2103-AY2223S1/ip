@@ -31,69 +31,113 @@ public class Parser {
         String[] userInput = input.trim().split(" ", 2);
         switch (userInput[0]) {
         case "bye":
-            return new ExitCommand();
+            return exitParse();
         case "list":
-            return new ListCommand();
+            return listParse();
         case "mark":
-            try {
-                return new MarkCommand(Integer.parseInt(userInput[1]));
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException("Which one to mark??");
-            } catch (NumberFormatException e) {
-                throw new DukeException("Can you type a valid number? Don't try to be funny.");
-            }
+            return markParse(userInput);
         case "unmark":
-            try {
-                return new UnmarkCommand(Integer.parseInt(userInput[1]));
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException("Which one to unmark??");
-            } catch (NumberFormatException e) {
-                    throw new DukeException("Can you type a whole number? Don't try to be funny.");
-            }
+            return unmarkParse(userInput);
         case "todo":
-            try {
-                return new ToDoCommand(userInput[1]);
-            } catch(IndexOutOfBoundsException e) {
-                throw new DukeException("The description of a todo cannot be empty!");
-            }
+            return todoParse(userInput);
         case "deadline":
-            try {
-                String[] thingAndDate = userInput[1].split(" /by ");
-                return new DeadlineCommand(thingAndDate[0], thingAndDate[1]);
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException("Invalid input for deadline!");
-            }
+            return deadlineParse(userInput);
         case "event":
-            try {
-                String[] thingsAndDate = userInput[1].split(" /at ");
-                return new EventCommand(thingsAndDate[0], thingsAndDate[1]);
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException("Invalid input for event!");
-            }
+            return eventParse(userInput);
         case "delete":
-            try {
-                return new DeleteCommand(Integer.parseInt(userInput[1]));
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException("Delete... delete what??");
-            } catch (NumberFormatException e) {
-                throw new DukeException("Can you type a valid number?");
-            }
+            return deleteParse(userInput);
         case "date":
-            try {
-                return new DateCommand(userInput[1]);
-            } catch (DateTimeException e) {
-                throw new DukeException("Key in a valid date!");
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException("Which date?? Please specify!");
-            }
+            return dateParse(userInput);
         case "find":
-            try {
-                return new FindCommand(userInput[1]);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeException("What do you want me to find for you...?");
-            }
+            return findParse(userInput);
         default:
-            return new IncomprehensibleCommand();
+            return incomprehensibleCommand();
         }
+    }
+
+    private static Command exitParse() {
+        return new ExitCommand();
+    }
+
+    private static Command listParse() {
+        return new ListCommand();
+    }
+
+    private static Command markParse(String[] userInput) throws DukeException {
+        try {
+            return new MarkCommand(Integer.parseInt(userInput[1]));
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Which one to mark??");
+        } catch (NumberFormatException e) {
+            throw new DukeException("Can you type a valid number? Don't try to be funny.");
+        }
+    }
+
+    private static Command unmarkParse(String[] userInput) throws DukeException {
+        try {
+            return new UnmarkCommand(Integer.parseInt(userInput[1]));
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Which one to unmark??");
+        } catch (NumberFormatException e) {
+            throw new DukeException("Can you type a whole number? Don't try to be funny.");
+        }
+    }
+
+    private static Command todoParse(String[] userInput) throws DukeException {
+        try {
+            return new ToDoCommand(userInput[1]);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("The description of a todo cannot be empty!");
+        }
+    }
+
+    private static Command deadlineParse(String[] userInput) throws DukeException {
+        try {
+            String[] thingAndDate = userInput[1].split(" /by ");
+            return new DeadlineCommand(thingAndDate[0], thingAndDate[1]);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Invalid input for deadline!");
+        }
+    }
+
+    private static Command eventParse(String[] userInput) throws DukeException {
+        try {
+            String[] thingsAndDate = userInput[1].split(" /at ");
+            return new EventCommand(thingsAndDate[0], thingsAndDate[1]);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Invalid input for event!");
+        }
+    }
+
+    private static Command deleteParse(String[] userInput) throws DukeException {
+        try {
+            return new DeleteCommand(Integer.parseInt(userInput[1]));
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Delete... delete what??");
+        } catch (NumberFormatException e) {
+            throw new DukeException("Can you type a valid number?");
+        }
+    }
+
+    private static Command dateParse(String[] userInput) throws DukeException {
+        try {
+            return new DateCommand(userInput[1]);
+        } catch (DateTimeException e) {
+            throw new DukeException("Key in a valid date!");
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Which date?? Please specify!");
+        }
+    }
+
+    private static Command findParse(String[] userInput) throws DukeException {
+        try {
+            return new FindCommand(userInput[1]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new DukeException("What do you want me to find for you...?");
+        }
+    }
+
+    private static Command incomprehensibleCommand() {
+        return new IncomprehensibleCommand();
     }
 }

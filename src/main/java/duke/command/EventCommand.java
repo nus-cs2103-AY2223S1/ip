@@ -36,7 +36,7 @@ public class EventCommand extends AddCommand {
     public void add(TaskList taskList) throws DukeException {
         try {
             taskList.add(new Event(description, LocalDate.parse(this.date)));
-        } catch(DateTimeException e) {
+        } catch (DateTimeException e) {
             throw new DukeException("Please give a valid date in YYYY-MM-DD format!");
         }
     }
