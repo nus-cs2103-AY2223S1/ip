@@ -28,7 +28,7 @@ public class Duke {
             ui.showError(e);
             tasks = new TaskList();
         } catch (IOException e) {
-            ui.showLoadingError(e);
+            ui.showError(e);
         }
     }
 
@@ -49,39 +49,10 @@ public class Duke {
      */
     public String getResponse(String userResponse) {
         try {
-            Command command = Parser.parseUserResponse(userResponse);
-            switch (command) {
-            case BYE:
-                this.storage.saveTasks(this.tasks);
-                return this.ui.showGoodbye();
-            case LIST:
-                return this.ui.showTasks(this.tasks);
-            case MARK:
-                this.tasks.markTask(Parser.parseTaskNumber(userResponse));
-                return this.ui.showMarkSuccess(Parser.parseTaskNumber(userResponse));
-            case UNMARK:
-                this.tasks.unmarkTask(Parser.parseTaskNumber(userResponse));
-                return this.ui.showUnmarkSuccess(Parser.parseTaskNumber(userResponse));
-            case TODO:
-                this.tasks.addTasks(Parser.parseTodoTask(userResponse));
-                return this.ui.showAddTaskSuccess(this.tasks);
-            case EVENT:
-                this.tasks.addTasks(Parser.parseEventTask(userResponse));
-                return this.ui.showAddTaskSuccess(this.tasks);
-            case DEADLINE:
-                this.tasks.addTasks(Parser.parseDeadlineTask(userResponse));
-                return this.ui.showAddTaskSuccess(this.tasks);
-            case DELETE:
-                this.tasks.deleteTask(Parser.parseTaskNumber(userResponse));
-                return this.ui.showRemoveTaskSuccess(Parser.parseTaskNumber(userResponse), this.tasks);
-            case FIND:
-                return this.ui.showMatchingTasks(Parser.parseSearchInput(userResponse), this.tasks);
-            default:
-                break;
-            }
+            Command command = Parser.parseUserResponse(userResponse, this.storage, this.ui, this.tasks);
+            return command.execute();
         } catch (DukeException e) {
             return this.ui.showError(e);
         }
-        return "";
     }
 }
