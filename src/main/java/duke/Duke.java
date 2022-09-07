@@ -1,6 +1,7 @@
 package duke;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
@@ -41,6 +42,9 @@ public class Duke extends Application {
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/Medivh.jpg"));
     private Storage storage = new Storage("data/duke.txt");
     private TaskList tasks;
+
+    //private TaskList undoTasks;
+
     private Ui ui = new Ui();
 
     /**
@@ -58,6 +62,7 @@ public class Duke extends Application {
         ui = new Ui();
         storage = new Storage(filePath);
         tasks = new TaskList(storage.loadFile());
+        //undoTasks = new TaskList(storage.loadFile());
     }
 
     /**
@@ -71,6 +76,7 @@ public class Duke extends Application {
     public void start(Stage stage) throws IOException {
         //Step 1. Setting up required components
         tasks = new TaskList(storage.loadFile());
+        //undoTasks = new TaskList(storage.loadFile());
 
         //The container for the content of the chat to scroll.
         scrollPane = new ScrollPane();
@@ -180,6 +186,15 @@ public class Duke extends Application {
                 delay.play();
             }
             return command.execute(tasks, ui, storage);
+            /*
+            if (!input.equals("undo")) {
+                //undoTasks = tasks;
+                return command.execute(tasks, ui, storage);
+            } else {
+                tasks = undoTasks;
+                return command.execute(tasks, ui, storage);
+            }
+             */
         } catch (DukeException e) {
             return ui.showError(e.getMessage());
         }

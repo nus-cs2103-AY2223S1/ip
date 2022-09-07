@@ -6,14 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import duke.command.AddCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.ExitCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.UnmarkCommand;
+import duke.command.*;
 import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
@@ -87,6 +80,10 @@ public class Parser {
                 assert number > 0 : "Integer is not valid!";
                 return new DeleteCommand(number);
             }
+        } else if (fullCommand.equals("sort")) {
+            return new SortCommand();
+        //} else if (fullCommand.equals("undo")) {
+        //    return new UndoCommand();
         } else if (fullCommand.equals("todo")
                 || (fullCommand.startsWith("todo") && fullCommand.substring(5).isBlank())) {
         } else if (fullCommand.length() >= 5 && (fullCommand.startsWith("find")

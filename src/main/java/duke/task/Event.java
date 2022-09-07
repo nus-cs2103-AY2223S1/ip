@@ -10,7 +10,7 @@ public class Event extends Task {
 
     protected String at = description.substring(description.lastIndexOf("/") + 4);
     private DateTimeFormatter formatted = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private LocalDate date = LocalDate.parse(at, formatted);
+    protected LocalDate date = LocalDate.parse(at, formatted);
 
     /**
      * Constructor of Event
@@ -46,5 +46,18 @@ public class Event extends Task {
             return description.substring(6, index);
         }
         return null;
+    }
+
+    @Override
+    public int compareTo(Task o) {
+        if (o instanceof ToDo) {
+            return 1;
+        } else if (o instanceof Deadline) {
+            return this.date.compareTo(((Deadline) o).date);
+        } else if (o instanceof Event) {
+            return this.date.compareTo(((Event) o).date);
+        } else {
+            return 0;
+        }
     }
 }

@@ -10,7 +10,7 @@ public class Deadline extends Task {
 
     protected String by = description.substring(description.lastIndexOf("/") + 4);
     private DateTimeFormatter formatted = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private LocalDate date = LocalDate.parse(by, formatted);
+    protected LocalDate date = LocalDate.parse(by, formatted);
 
     /**
      * Constructor of Deadline
@@ -54,6 +54,19 @@ public class Deadline extends Task {
             return description.substring(9, index);
         }
         return null;
+    }
+
+    @Override
+    public int compareTo(Task o) {
+        if (o instanceof ToDo) {
+            return 1;
+        } else if (o instanceof Deadline) {
+            return this.date.compareTo(((Deadline) o).date);
+        } else if (o instanceof Event) {
+            return this.date.compareTo(((Event) o).date);
+        } else {
+            return 0;
+        }
     }
 }
 

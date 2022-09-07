@@ -150,4 +150,17 @@ public class Ui {
         }
         return stringBuilder.toString();
     }
+/*
+    public String showUndo() {
+        return ("The previous command has been undone.");
+    }
+ */
+
+    public String showSortMessage(TaskList taskList) {
+        StringBuilder stringBuilder = new StringBuilder("Here is the new sorted list:\n");
+        for (int i = 0; i < taskList.getTaskListSize(); i++) {
+            stringBuilder.append(i + 1 + ". " + taskList.getTask(i).toString() + "\n");
+        }
+        return stringBuilder.toString();
+    }
 }

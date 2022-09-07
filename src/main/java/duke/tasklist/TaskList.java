@@ -1,6 +1,7 @@
 package duke.tasklist;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import duke.task.Task;
 
@@ -11,6 +12,8 @@ import duke.task.Task;
  */
 public class TaskList {
     private ArrayList<Task> tasks;
+
+    //private ArrayList<Task> undoTasks;
 
     /**
      * Empty constructor of TaskList that initializes tasks
@@ -26,6 +29,7 @@ public class TaskList {
      */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
+        //undoTasks = tasks;
     }
 
     /**
@@ -43,6 +47,7 @@ public class TaskList {
      * @param task the task to be added to tasks
      */
     public void add(Task task) {
+        //undoTasks = new ArrayList<>(tasks);
         tasks.add(task);
     }
 
@@ -52,6 +57,7 @@ public class TaskList {
      * @param integer the index of the item that is to be removed
      */
     public void remove(int integer) {
+        //undoTasks = new ArrayList<>(tasks);
         tasks.remove(integer - 1);
     }
 
@@ -98,6 +104,8 @@ public class TaskList {
      * @param integer the task array index
      */
     public void markAsDone(int integer) {
+       // undoTasks = new ArrayList<>(tasks);
+       // System.out.println(undoTasks);
         tasks.get(integer - 1).markAsDone();
     }
 
@@ -107,6 +115,7 @@ public class TaskList {
      * @param integer the task array index
      */
     public void markAsNotDone(int integer) {
+        //undoTasks = new ArrayList<>(tasks);
         tasks.get(integer - 1).markAsNotDone();
     }
 
@@ -123,5 +132,21 @@ public class TaskList {
             }
         }
         return taskList;
+    }
+/*
+    public void makeBothTaskEqual() {
+        undoTasks = new ArrayList<>(tasks);
+    }
+
+    public ArrayList<Task> getUndoTasks() {
+        return this.undoTasks;
+    }
+*/
+    public ArrayList<Task> getTasks() {
+        return this.tasks;
+    }
+
+    public void sort() {
+        Collections.sort(tasks, Collections.reverseOrder());
     }
 }
