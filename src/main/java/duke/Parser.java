@@ -33,37 +33,38 @@ public class Parser {
      */
     public String process(String cmd) {
         try {
-            if (cmd.toLowerCase().equals("bye")) {
+            String input = cmd.toLowerCase();
+            if (input.equals("bye")) {
                 return this.ui.end();
-            } else if (cmd.toLowerCase().equals("list")) {
+            } else if (input.equals("list")) {
                 String log = this.taskList.handleList();
                 this.storage.save(this.taskList.getTaskList());
                 return ui.printMessage(log);
-            } else if (cmd.toLowerCase().startsWith("mark")) {
+            } else if (input.startsWith("mark")) {
                 String log = this.taskList.handleMark(cmd);
                 this.storage.save(this.taskList.getTaskList());
                 return ui.printMessage(log);
-            } else if (cmd.toLowerCase().startsWith("unmark")) {
+            } else if (input.startsWith("unmark")) {
                 String log = this.taskList.handleUnmark(cmd);
                 this.storage.save(this.taskList.getTaskList());
                 return ui.printMessage(log);
-            } else if (cmd.toLowerCase().startsWith("todo")) {
+            } else if (input.startsWith("todo")) {
                 String log = this.taskList.handleToDo(cmd);
                 this.storage.save(this.taskList.getTaskList());
                 return ui.printMessage(log);
-            } else if (cmd.toLowerCase().startsWith("deadline")) {
+            } else if (input.startsWith("deadline")) {
                 String log = this.taskList.handleDeadline(cmd);
                 this.storage.save(this.taskList.getTaskList());
                 return ui.printMessage(log);
-            } else if (cmd.toLowerCase().startsWith("event")) {
+            } else if (input.startsWith("event")) {
                 String log = this.taskList.handleEvent(cmd);
                 this.storage.save(this.taskList.getTaskList());
                 return ui.printMessage(log);
-            } else if (cmd.toLowerCase().startsWith("delete")) {
+            } else if (input.startsWith("delete")) {
                 String log = this.taskList.handleDelete(cmd);
                 this.storage.save(this.taskList.getTaskList());
                 return ui.printMessage(log);
-            } else if (cmd.toLowerCase().startsWith("find")){
+            } else if (input.startsWith("find")){
                 String log = this.taskList.handleFind(cmd);
                 return ui.printMessage(log);
             } else {

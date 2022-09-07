@@ -10,8 +10,8 @@ public class Ui {
      *
      */
     public static String intro() {
-        String res = UNDERLINE + "\n" + "Hello! I'm Duke!"  + "\n" + "What can I do for you?" + "\n" + UNDERLINE;
-        return res;
+        String res = "Hello! I'm Duke!"  + "\n" + "What can I do for you?";
+        return printMessage(res);
     }
 
     /**
@@ -20,7 +20,7 @@ public class Ui {
      */
     public static String end() {
         String byeMessage = "Bye! See you again soon";
-        return UNDERLINE + "\n" + byeMessage  + "\n" + UNDERLINE;
+        return printMessage(byeMessage);
     }
 
     /**
@@ -28,8 +28,8 @@ public class Ui {
      *
      * @param error Error message string
      */
-    public String showError(String error) {
-        return UNDERLINE + "\n" + error + "\n" + UNDERLINE;
+    public static String showError(String error) {
+        return printMessage(error);
     }
 
     /**
@@ -37,7 +37,7 @@ public class Ui {
      *
      * @return user input
      */
-    public String getCommand() {
+    public static String getCommand() {
         Scanner sc = new Scanner(System.in);
         String command = sc.nextLine();
         return command;
@@ -49,7 +49,7 @@ public class Ui {
      *
      * @param message message from Duke
      */
-    public String printMessage(String message) {
+    public static String printMessage(String message) {
         return UNDERLINE + "\n" + message + "\n" + UNDERLINE;
     }
 }
