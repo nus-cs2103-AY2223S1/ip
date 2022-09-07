@@ -2,7 +2,6 @@ package duke;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
@@ -21,6 +20,106 @@ public class Parser {
         this.taskList = new TaskList();
     }
 
+    private String markMultiple(String[] strArray) {
+
+        String output = "";
+
+        for (int i = 1; i < strArray.length; i++) {
+
+            int index = Integer.parseInt(strArray[i]) - 1;
+
+            try {
+                output += this.taskList.markTaskDoneAt(index);
+            } catch (IOException e) {
+                return "Unable to save to file";
+            }
+        }
+
+        return output;
+    }
+
+    private String unmarkMultiple(String[] strArray) {
+
+        String output = "";
+
+        for (int i = 1; i < strArray.length; i++) {
+
+            int index = Integer.parseInt(strArray[i]) - 1;
+
+            try {
+                output += this.taskList.markTaskNotDoneAt(index);
+            } catch (IOException e) {
+                return "Unable to save to file";
+            }
+        }
+
+        return output;
+    }
+
+    private String deleteMultiple(String[] strArray) {
+
+        Integer[] sortedIntArray = Arrays.stream(strArray)
+                .skip(1)
+                .sorted()
+                .map(Integer::parseInt)
+                .toArray(Integer[]::new);
+
+        String output = "";
+        int offset = 0;
+
+        for (Integer i : sortedIntArray) {
+
+            int index = i - 1 - offset;
+
+            try {
+                output += this.taskList.deleteTaskAt(index);
+            } catch (IOException e) {
+                return "Unable to save to file";
+            }
+
+            offset++;
+        }
+
+        return output;
+    }
+
+    private String parseDeadlineOrEvent(String[] strArray) throws DukeException, IOException {
+
+        String taskname = Arrays.stream(strArray)
+                .skip(1)
+                .takeWhile(current -> current.charAt(0) != '/')
+                .reduce("", (acc, current) -> acc + " " + current);
+
+        String date = Arrays.stream(strArray)
+                .skip(1)
+                .dropWhile(current -> current.charAt(0) != '/')
+                .skip(1)
+                .collect(Collectors.joining()); //no time functionality yet
+
+        if (taskname.equals("")) {
+            throw new DukeException("Name of task cannot be empty!");
+        }
+
+        if (date.equals("")) {
+            throw new DukeException("Date/Time cannot be empty!");
+        }
+
+        LocalDate localDate;
+        //LocalDateTime dateTime = null; //no time functionality for now
+
+        try {
+            localDate = LocalDate.parse(date.trim(), DateTimeFormatter.ofPattern("yyyy-MMM-d"));
+        } catch (DateTimeParseException e) {
+            return "Please provide a realistic date in the yyyy-MMM-dd format!";
+        }
+
+        if (strArray[0].equals("deadline")) {
+            return this.taskList.addDeadline(taskname, localDate);
+        } else {
+            return this.taskList.addEvent(taskname, localDate);
+        }
+    }
+
 
     /**
      * Calls the corresponding methods according to user input.
@@ -34,76 +133,29 @@ public class Parser {
 
         String str = strArray[0];
 
-        if (str.equals("list")) {
+        if (str.equals("deadline") || str.equals("event")) {
+            return parseDeadlineOrEvent(strArray);
+        }
+
+        switch (str) {
+        case "list":
             return this.taskList.listTasks();
-        } else if (str.equals("mark")) {
-
-            int i = Integer.parseInt(strArray[1]) - 1;
-            return this.taskList.markTaskDoneAt(i);
-
-        } else if (str.equals("unmark")) {
-
-            int i = Integer.parseInt(strArray[1]) - 1;
-            return this.taskList.markTaskNotDoneAt(i);
-
-        } else if (str.equals("delete")) {
-
-            int i = Integer.parseInt(strArray[1]) - 1;
-            return this.taskList.deleteTaskAt(i);
-
-        } else if (str.equals("find")) {
-
+        case "mark":
+            return markMultiple(strArray);
+        case "unmark":
+            return unmarkMultiple(strArray);
+        case "delete":
+            return deleteMultiple(strArray);
+        case "find":
             return this.taskList.findAllTasksWith(strArray[1]);
-
-        } else if (str.equals("todo")) {
-
+        case "todo":
             String taskname = Arrays.stream(strArray)
                     .skip(1)
                     .reduce("", (acc, current) -> acc + " " + current);
 
             return this.taskList.addToDo(taskname);
-
-        } else if (str.equals("deadline") || str.equals("event")) {
-
-            String taskname = Arrays.stream(strArray)
-                    .skip(1)
-                    .takeWhile(current -> current.charAt(0) != '/')
-                    .reduce("", (acc, current) -> acc + " " + current);
-
-            String date = Arrays.stream(strArray)
-                    .skip(1)
-                    .dropWhile(current -> current.charAt(0) != '/')
-                    .skip(1)
-                    .collect(Collectors.joining()); //no time functionality yet
-
-            if (taskname.equals("")) {
-                throw new DukeException("Name of task cannot be empty!");
-            }
-
-            if (date.equals("")) {
-                throw new DukeException("Date/Time cannot be empty!");
-            }
-
-            LocalDate localDate;
-
-            //LocalDateTime dateTime = null; //no time functionality for now
-
-            try {
-                localDate = LocalDate.parse(date.trim(), DateTimeFormatter.ofPattern("yyyy-MMM-d"));
-            } catch (DateTimeParseException e) {
-                return "Please provide a sensible date in the yyyy-MMM-dd format!";
-            }
-
-            if (str.equals("deadline")) {
-                return this.taskList.addDeadline(taskname, localDate);
-            } else {
-                return this.taskList.addEvent(taskname, localDate);
-            }
-
-        } else {
+        default:
             return "Please enter a valid input";
         }
     }
-
-
 }

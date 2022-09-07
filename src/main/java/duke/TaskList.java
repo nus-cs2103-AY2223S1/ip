@@ -66,11 +66,12 @@ public class TaskList {
      * @return A String containing all tasks, each separated by a new line.
      */
     protected String listTasks() {
-        String intro = "Here are the tasks in your current list:" + NEWLINE;
 
         if (arrayList.size() == 0) {
-            intro += "  Wow! You have no tasks to do currently!!" + NEWLINE;
+            return "Wow! You have no tasks to do currently!!" + NEWLINE;
         }
+
+        String intro = "You have " + arrayList.size() + " task(s):" + NEWLINE;
 
         for (int i = 0; i < arrayList.size(); i++) {
             int j = i + 1;
@@ -118,7 +119,6 @@ public class TaskList {
      * @throws IOException If unable to save changes to file.
      */
     protected String deleteTaskAt(int i) throws IOException {
-        this.arrayList.get(i).markNotDone();
         Task deletedTask = arrayList.remove(i);
         this.saveChangesToFile();
 

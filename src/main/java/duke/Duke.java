@@ -145,7 +145,6 @@ public class Duke extends Application {
 
         if (strArray[0].equals("bye")) {
             Main.closeStage();
-
         }
 
         try {
@@ -154,6 +153,8 @@ public class Duke extends Application {
             return e.getErrorMsg();
         } catch (IOException e) {
             return "Unable to save to file.";
+        } catch (Exception e) {
+            return "Sorry, an error has occurred, please check your input";
         }
     }
 
