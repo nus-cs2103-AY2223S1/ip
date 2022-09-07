@@ -53,7 +53,7 @@ public class Parser {
     }
 
     /**
-     * Reads user input and commands the {@link Executor} to do actions on the {@link TaskList} object.
+     * Reads user input and runs the appropriate process method to get a response from Bocil.
      *
      * @param input String line that the user inputs.
      * @return Response line of the program.
@@ -75,31 +75,31 @@ public class Parser {
             response = this.processDeadlineEvent(split);
             break;
         case "delete":
-            response = this.executor.deleteTaskFromList(split);
+            response = this.processDelete(split);
             break;
         case "mark":
-            response = this.executor.markAsDone(split);
+            response = this.processMark(split);
             break;
         case "unmark":
-            response = this.executor.unmarkAsDone(split);
+            response = this.processUnmark(split);
             break;
         case "tag":
-            response = this.executor.tagTask(split);
+            response = this.processTag(split);
             break;
         case "untag":
-            response = this.executor.untagTask(split);
+            response = this.processUntag(split);
             break;
         case "view":
-            response = this.executor.viewTag(split);
+            response = this.processView(split);
             break;
         case "find":
-            response = this.executor.findTaskFromList(split);
+            response = this.processFind(split);
             break;
         case "list":
-            response = this.executor.showList(input);
+            response = this.processList(split);
             break;
         case "bye":
-            response = this.executor.endProgram(input);
+            response = this.processBye(split);
             break;
         default:
             throw BocilException.bocilUnknownCommandException();
@@ -107,6 +107,13 @@ public class Parser {
         return response;
     }
 
+    /**
+     * Processes todo commands to get a response from Bocil.
+     *
+     * @param split The user's input split by each space.
+     * @return Response line of the program.
+     * @throws BocilException If the user input is not of the accepted format.
+     */
     public String processTodo(String[] split) throws BocilException {
         String response;
         if (split.length < 2) {
@@ -136,6 +143,13 @@ public class Parser {
         return response;
     }
 
+    /**
+     * Processes deadline and event commands to get a response from Bocil.
+     *
+     * @param split The user's input split by each space.
+     * @return Response line of the program.
+     * @throws BocilException If the user input is not of the accepted format.
+     */
     public String processDeadlineEvent(String[] split) throws BocilException {
         String command = split[0];
         String response;
@@ -173,6 +187,185 @@ public class Parser {
         } else {
             throw BocilException.bocilInvalidFormatException();
         }
+        return response;
+    }
+
+    /**
+     * Processes delete commands to get a response from Bocil.
+     *
+     * @param split The user's input split by each space.
+     * @return Response line of the program.
+     * @throws BocilException If the user input is not of the accepted format.
+     */
+    public String processDelete(String[] split) throws BocilException {
+        String response;
+        if (split.length < 2) {
+            throw BocilException.bocilInvalidFormatException();
+        }
+        try {
+            int num = Integer.parseInt(split[1]);
+            response = this.executor.deleteTaskFromList(num);
+        } catch (NumberFormatException e) {
+            throw BocilException.bocilInvalidIndexException();
+        }
+        return response;
+    }
+
+    /**
+     * Processes mark commands to get a response from Bocil.
+     *
+     * @param split The user's input split by each space.
+     * @return Response line of the program.
+     * @throws BocilException If the user input is not of the accepted format.
+     */
+    public String processMark(String[] split) throws BocilException {
+        String response;
+        if (split.length < 2) {
+            throw BocilException.bocilInvalidFormatException();
+        }
+        try {
+            int num = Integer.parseInt(split[1]);
+            response = this.executor.markAsDone(num);
+        } catch (NumberFormatException e) {
+            throw BocilException.bocilInvalidIndexException();
+        }
+        return response;
+    }
+
+    /**
+     * Processes unmark commands to get a response from Bocil.
+     *
+     * @param split The user's input split by each space.
+     * @return Response line of the program.
+     * @throws BocilException If the user input is not of the accepted format.
+     */
+    public String processUnmark(String[] split) throws BocilException {
+        String response;
+        if (split.length < 2) {
+            throw BocilException.bocilInvalidFormatException();
+        }
+        try {
+            int num = Integer.parseInt(split[1]);
+            response = this.executor.unmarkAsDone(num);
+        } catch (NumberFormatException e) {
+            throw BocilException.bocilInvalidIndexException();
+        }
+        return response;
+    }
+
+    /**
+     * Processes tag commands to get a response from Bocil.
+     *
+     * @param split The user's input split by each space.
+     * @return Response line of the program.
+     * @throws BocilException If the user input is not of the accepted format.
+     */
+    public String processTag(String[] split) throws BocilException {
+        String response;
+        if (split.length < 2) {
+            throw BocilException.bocilInvalidFormatException();
+        }
+        String[] details = split[1].split("\\s+");
+        if (details.length < 2) {
+            throw BocilException.bocilInvalidFormatException();
+        }
+        try {
+            int num = Integer.parseInt(details[0]);
+            String tag = details[1];
+            response = this.executor.tagTask(num, tag);
+        } catch (NumberFormatException e) {
+            throw BocilException.bocilInvalidIndexException();
+        }
+        return response;
+    }
+
+    /**
+     * Processes untag commands to get a response from Bocil.
+     *
+     * @param split The user's input split by each space.
+     * @return Response line of the program.
+     * @throws BocilException If the user input is not of the accepted format.
+     */
+    public String processUntag(String[] split) throws BocilException {
+        String response;
+        if (split.length < 2) {
+            throw BocilException.bocilInvalidFormatException();
+        }
+        try {
+            int num = Integer.parseInt(split[1]);
+            response = this.executor.untagTask(num);
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw BocilException.bocilInvalidIndexException();
+        }
+        return response;
+    }
+
+    /**
+     * Processes view commands to get a response from Bocil.
+     *
+     * @param split The user's input split by each space.
+     * @return Response line of the program.
+     * @throws BocilException If the user input is not of the accepted format.
+     */
+    public String processView(String[] split) throws BocilException {
+        String response;
+        if (split.length < 2) {
+            throw BocilException.bocilInvalidFormatException();
+        }
+        String tag = split[1];
+        if (!isValid(tag)) {
+            throw BocilException.bocilInvalidTagFormatException();
+        }
+        response = this.executor.viewTag(tag);
+        return response;
+    }
+
+    /**
+     * Processes find commands to get a response from Bocil.
+     *
+     * @param split The user's input split by each space.
+     * @return Response line of the program.
+     * @throws BocilException If the user input is not of the accepted format.
+     */
+    public String processFind(String[] split) throws BocilException {
+        String response;
+        if (split.length < 2) {
+            throw BocilException.bocilInvalidFormatException();
+        }
+        String keyword = split[1];
+        response = this.executor.findTaskFromList(keyword);
+        return response;
+    }
+
+    /**
+     * Processes list commands to get a response from Bocil.
+     *
+     * @param split The user's input split by each space.
+     * @return Response line of the program.
+     * @throws BocilException If the user input is not of the accepted format.
+     */
+    public String processList(String[] split) throws BocilException {
+        String response;
+        if (split.length > 1) {
+            throw BocilException.bocilUnknownCommandException();
+        }
+        response = this.executor.showList();
+        return response;
+    }
+
+    /**
+     * Processes bye commands to get a response from Bocil.
+     *
+     * @param split The user's input split by each space.
+     * @return Response line of the program.
+     * @throws BocilException If the user input is not of the accepted format.
+     */
+    public String processBye(String[] split) throws BocilException {
+        String response;
+        if (split.length > 1) {
+            throw BocilException.bocilUnknownCommandException();
+        }
+        response = this.executor.endProgram();
         return response;
     }
 

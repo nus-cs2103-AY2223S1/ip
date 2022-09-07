@@ -25,10 +25,10 @@ public class Executor {
     }
 
     /**
-     * Adds {@link Todo} object into the {@code taskList}.
+     * Adds a new {@link Todo} object into the task list.
      *
-     * @param name Name of the task.
-     * @param tag Tag name if is given by the user.
+     * @param name Name of task to be added.
+     * @param tag Tag of task to be added if exists.
      * @return Response of the program.
      */
     public String addNewTodo(String name, String... tag) {
@@ -48,10 +48,12 @@ public class Executor {
     }
 
     /**
-     * Adds one of {@link Deadline} or {@link Event} object into the {@code taskList}.
+     * Adds a new {@link Deadline} or {@link Event} object into the task list.
      *
-     * @param name Name of the task.
-     * @param tag Tag name if is given by the user.
+     * @param type Type of task to be added.
+     * @param name Name of task to be added.
+     * @param time Time of task to be added.
+     * @param tag Tag of task to be added if exists.
      * @return Response of the program.
      */
     public String addNewDeadlineEvent(String type, String name, LocalDateTime time, String... tag) {
@@ -84,23 +86,19 @@ public class Executor {
     }
 
     /**
-     * Deletes a {@link Task} object from the {@code taskList}.
+     * Deletes a {@link Task} object from the task list.
      *
-     * @param split The user's input split by each space.
+     * @param num Task number to delete.
      * @return Response of the program.
-     * @throws BocilException If the user input is not of the accepted format.
+     * @throws BocilException If the specified index is out of range.
      */
-    public String deleteTaskFromList(String[] split) throws BocilException {
+    public String deleteTaskFromList(int num) throws BocilException {
         Task task;
         String header;
-        if (split.length < 2) {
-            throw BocilException.bocilInvalidFormatException();
-        }
         try {
-            int num = Integer.parseInt(split[1]);
             task = this.taskList.getTask(num);
             taskList.removeTask(num);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw BocilException.bocilInvalidIndexException();
         }
         if (task.isDone()) {
@@ -115,23 +113,19 @@ public class Executor {
     /**
      * Marks a {@link Task} object as done.
      *
-     * @param split The user's input split by each space.
+     * @param num Task number to mark.
      * @return Response of the program.
-     * @throws BocilException If the user input is not of the accepted format.
+     * @throws BocilException If the specified index is out of range.
      */
-    public String markAsDone(String[] split) throws BocilException {
+    public String markAsDone(int num) throws BocilException {
         Task task;
         String header;
         boolean isDone;
-        if (split.length < 2) {
-            throw BocilException.bocilInvalidFormatException();
-        }
         try {
-            int num = Integer.parseInt(split[1]);
             task = this.taskList.getTask(num);
             isDone = task.isDone();
             task.mark();
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw BocilException.bocilInvalidIndexException();
         }
         if (isDone) {
@@ -146,23 +140,19 @@ public class Executor {
     /**
      * Unmarks a {@link Task} object as not done.
      *
-     * @param split The user's input split by each space.
+     * @param num Task number to unmark.
      * @return Response of the program.
-     * @throws BocilException If the user input is not of the accepted format.
+     * @throws BocilException If the specified index is out of range.
      */
-    public String unmarkAsDone(String[] split) throws BocilException {
+    public String unmarkAsDone(int num) throws BocilException {
         Task task;
         String header;
         boolean isDone;
-        if (split.length < 2) {
-            throw BocilException.bocilInvalidFormatException();
-        }
         try {
-            int num = Integer.parseInt(split[1]);
             task = this.taskList.getTask(num);
             isDone = task.isDone();
             task.unmark();
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw BocilException.bocilInvalidIndexException();
         }
         if (isDone) {
@@ -177,28 +167,20 @@ public class Executor {
     /**
      * Tags a {@link Task} object.
      *
-     * @param split The user's input split by each space.
+     * @param num Task number to tag.
+     * @param tag Tag name to be given to task.
      * @return Response of the program.
-     * @throws BocilException If the user input is not of the accepted format.
+     * @throws BocilException If the specified index is out of range.
      */
-    public String tagTask(String[] split) throws BocilException {
+    public String tagTask(int num, String tag) throws BocilException {
         Task task;
         String header;
         boolean isTagged;
-        if (split.length < 2) {
-            throw BocilException.bocilInvalidFormatException();
-        }
         try {
-            String[] details = split[1].split("\\s+");
-            if (details.length < 2) {
-                throw BocilException.bocilInvalidFormatException();
-            }
-            int num = Integer.parseInt(details[0]);
-            String tag = details[1];
             task = this.taskList.getTask(num);
             isTagged = task.isTagged();
             task.addTag(tag);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw BocilException.bocilInvalidIndexException();
         }
         if (isTagged) {
@@ -213,23 +195,19 @@ public class Executor {
     /**
      * Untags a {@link Task} object.
      *
-     * @param split The user's input split by each space.
+     * @param num Task number to untag.
      * @return Response of the program.
-     * @throws BocilException If the user input is not of the accepted format.
+     * @throws BocilException If the specified index is out of range.
      */
-    public String untagTask(String[] split) throws BocilException {
+    public String untagTask(int num) throws BocilException {
         Task task;
         String header;
         boolean isTagged;
-        if (split.length < 2) {
-            throw BocilException.bocilInvalidFormatException();
-        }
         try {
-            int num = Integer.parseInt(split[1]);
             task = this.taskList.getTask(num);
             isTagged = task.isTagged();
             task.untag();
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw BocilException.bocilInvalidIndexException();
         }
         if (isTagged) {
@@ -244,18 +222,10 @@ public class Executor {
     /**
      * Views all {@link Task} objects with the specified tag.
      *
-     * @param split The user's input split by each space.
+     * @param tag Tag to find.
      * @return Response of the program.
-     * @throws BocilException If the user input is not of the accepted format.
      */
-    public String viewTag(String[] split) throws BocilException {
-        if (split.length < 2) {
-            throw BocilException.bocilInvalidFormatException();
-        }
-        if (split[1].contains("\\s")) {
-            throw BocilException.bocilInvalidTagFormatException();
-        }
-        String tag = split[1];
+    public String viewTag(String tag) {
         TaskList taggedTasks = this.taskList.findTags(tag);
         if (taggedTasks.getSize() > 0) {
             String header = String.format("Here are the tasks with tag '%s' in our list:", tag);
@@ -268,15 +238,10 @@ public class Executor {
     /**
      * Finds a {@link Task} object from the {@code taskList} by using a string.
      *
-     * @param split The user's input split by each space.
+     * @param keyword Keyword to match with.
      * @return Response of the program.
-     * @throws BocilException If the user input is not of the accepted format.
      */
-    public String findTaskFromList(String[] split) throws BocilException {
-        if (split.length < 2) {
-            throw BocilException.bocilInvalidFormatException();
-        }
-        String keyword = split[1];
+    public String findTaskFromList(String keyword) {
         TaskList matchedTasks = this.taskList.match(keyword);
         if (matchedTasks.getSize() > 0) {
             String header = String.format("Here are the tasks I managed to match with '%s':", keyword);
@@ -289,14 +254,9 @@ public class Executor {
     /**
      * Shows the {@link Task} objects inside the {@code taskList}.
      *
-     * @param input String of user input.
      * @return Response of the program.
-     * @throws BocilException If the user input is not of the accepted format.
      */
-    public String showList(String input) throws BocilException {
-        if (!input.equals("list")) {
-            throw BocilException.bocilUnknownCommandException();
-        }
+    public String showList() {
         if (taskList.getSize() > 0) {
             String header = "Here are the tasks that we have right now:";
             return String.join("\n", header, taskList.toString());
@@ -308,14 +268,9 @@ public class Executor {
     /**
      * Creates the bye message.
      *
-     * @param input String of user input.
      * @return Response of the program.
-     * @throws BocilException If the user input is not of the accepted format.
      */
-    public String endProgram(String input) throws BocilException {
-        if (!input.equals("bye")) {
-            throw BocilException.bocilUnknownCommandException();
-        }
+    public String endProgram() {
         return "Bye! See you next time!";
     }
 }

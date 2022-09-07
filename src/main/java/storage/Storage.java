@@ -57,7 +57,11 @@ public class Storage {
         boolean isDone = Boolean.parseBoolean(split[1]);
         String tag = split[2];
         String name = split[3];
+
         Task task;
+        if (!split[1].equals("false") && !split[1].equals("true")) {
+            throw BocilException.bocilFileWrongFormatException();
+        }
         switch (command) {
         case "T":
             if (tag.equals(" ")) {
@@ -71,25 +75,33 @@ public class Storage {
             }
             break;
         case "D":
-            if (tag.equals(" ")) {
-                task = new Deadline(name, parser.parseTime(split[4]), isDone);
-            } else {
-                if (this.parser.isValid(tag)) {
-                    task = new Deadline(name, parser.parseTime(split[4]), isDone, tag);
+            try {
+                if (tag.equals(" ")) {
+                    task = new Deadline(name, parser.parseTime(split[4]), isDone);
                 } else {
-                    throw BocilException.bocilFileWrongFormatException();
+                    if (this.parser.isValid(tag)) {
+                        task = new Deadline(name, parser.parseTime(split[4]), isDone, tag);
+                    } else {
+                        throw BocilException.bocilFileWrongFormatException();
+                    }
                 }
+            } catch (BocilException e) {
+                throw BocilException.bocilFileWrongFormatException();
             }
             break;
         case "E":
-            if (tag.equals(" ")) {
-                task = new Event(name, parser.parseTime(split[4]), isDone);
-            } else {
-                if (this.parser.isValid(tag)) {
-                    task = new Event(name, parser.parseTime(split[4]), isDone, tag);
+            try {
+                if (tag.equals(" ")) {
+                    task = new Event(name, parser.parseTime(split[4]), isDone);
                 } else {
-                    throw BocilException.bocilFileWrongFormatException();
+                    if (this.parser.isValid(tag)) {
+                        task = new Event(name, parser.parseTime(split[4]), isDone, tag);
+                    } else {
+                        throw BocilException.bocilFileWrongFormatException();
+                    }
                 }
+            } catch (BocilException e) {
+                throw BocilException.bocilFileWrongFormatException();
             }
             break;
         default:
