@@ -13,14 +13,12 @@ import chad.task.Task;
  * Main way for users to interact with Chadbot
  */
 public class Chad {
-
     /**
      * Main Function of Chad
-     * @param args Reads input
      * @throws IOException Thrown when helper file cannot be open
      * @throws ChadException Thrown when invalid error occurs
      */
-    public static void main(String[] args) throws IOException, ChadException {
+    public static void run() throws IOException, ChadException {
         Scanner sc = new Scanner(System.in);
         ArrayList<Task> taskList = Storage.initializeArrayList();
         Ui.greet();
@@ -29,5 +27,13 @@ public class Chad {
             String userInput = sc.nextLine();
             Parser.readUserInput(taskList, userInput);
         }
+    }
+
+    public static String getResponse(String input) {
+
+    }
+
+    public static void main(String[] args) throws ChadException, IOException {
+        run();
     }
 }

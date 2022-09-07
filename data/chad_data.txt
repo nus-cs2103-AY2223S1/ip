@@ -1,3 +1,1 @@
-T | 0 | write
-T | 0 | seat
-D | 0 | return book | 2019-12-02T18:00
+T | 0 | return book
