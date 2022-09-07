@@ -21,4 +21,6 @@ public abstract class Command {
      * @return
      */
     public abstract boolean isExit();
+
+    public abstract String getResponse(TaskList tasks, Ui ui, Storage storage);
 }

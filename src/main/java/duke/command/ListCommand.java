@@ -19,6 +19,11 @@ public class ListCommand extends Command {
         ui.showTaskList(tasks);
     }
 
+    @Override
+    public String getResponse(TaskList tasks, Ui ui, Storage storage) {
+        return tasks.toString();
+    }
+
     /**
      * Check if the command exit duke.
      * @return

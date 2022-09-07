@@ -20,6 +20,12 @@ public class ExitCommand extends Command {
         ui.showBye();
     }
 
+    @Override
+    public String getResponse(TaskList tasks, Ui ui, Storage storage) {
+        storage.storeTasks(tasks);
+        return "Ok bye, see you later.";
+    }
+
     /**
      * Check if the command exit duke.
      * @return

@@ -31,6 +31,13 @@ public class AddCommand extends Command {
         ui.showAddTask(task, tasks.getNumberOfTasks());
     }
 
+    @Override
+    public String getResponse(TaskList tasks, Ui ui, Storage storage) {
+        tasks.addTask(task);
+        return "Added " + task.toString() + " to the list.\n"
+                + "There are " + tasks.getNumberOfTasks() + " tasks in the list.";
+    }
+
     /**
      * Checks if the command exit duke.
      * @return

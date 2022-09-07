@@ -27,6 +27,12 @@ public class FindCommand extends Command {
         ui.showTaskList(matches);
     }
 
+    @Override
+    public String getResponse(TaskList tasks, Ui ui, Storage storage) {
+        TaskList matches = tasks.findTasks(keyword);
+        return matches.toString();
+    }
+
     /**
      * Check if the command exit duke.
      * @return false

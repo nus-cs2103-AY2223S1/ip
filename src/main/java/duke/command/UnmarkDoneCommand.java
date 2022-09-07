@@ -30,6 +30,13 @@ public class UnmarkDoneCommand extends Command {
         ui.showUnmarkDone(tasks.getTask(index));
     }
 
+    @Override
+    public String getResponse(TaskList tasks, Ui ui, Storage storage) {
+        tasks.unmarkDone(index);
+        return "Oh no! I have marked this task as not done\n"
+                + tasks.getTask(index).toString();
+    }
+
     /**
      * Check if the command exit duke.
      * @return

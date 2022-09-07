@@ -30,10 +30,20 @@ public class MarkDoneCommand extends Command {
         ui.showMarkDone(tasks.getTask(index));
     }
 
+    @Override
+    public String getResponse(TaskList tasks, Ui ui, Storage storage) {
+        tasks.markDone(index);
+        return "Nice! I have marked this task as done\n"
+                + tasks.getTask(index).toString();
+    }
+
     /**
      * Check if the command exit duke.
      * @return
      */
+
+
+
     @Override
     public boolean isExit() {
         return false;
