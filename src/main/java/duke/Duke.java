@@ -16,7 +16,7 @@ public class Duke {
     /**
      * Constructor for Duke.
      *
-     * @param filePath File name of file where tasks are saved.
+     * @param filePath Name of file where tasks are saved.
      */
     public Duke(String filePath) {
         ui = new Ui();

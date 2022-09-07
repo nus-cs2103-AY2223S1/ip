@@ -21,6 +21,8 @@ public class Parser {
      *         Second element of the array is either: the description of a todo/
      *         deadline/event task or the number of task to be marked/deleted.
      *         The third element of the array is the time for deadline/event tasks.
+     *         If given task is empty, description and time of that task will both be
+     *         empty strings.
      */
     public String[] parseCommand(String command) {
 
@@ -60,28 +62,41 @@ public class Parser {
     }
 
     private String[] getTodoArray(String input) {
-        if (input.replace(" ", "").length() == 4) {
+        if (input.replace(" ", "").equals("todo")) {
             return new String[]{"T", ""}; // if todo is empty
         }
-        String description = input.substring(5);
+
+        int desStartIndex = 5;
+
+        String description = input.substring(desStartIndex);
         return new String[]{"T", description};
     }
 
     private String[] getDeadlineArray(String input) {
-        if (input.replace(" ", "").length() == 8) {
+        if (input.replace(" ", "").equals("deadline")) {
             return new String[]{"D", "", ""}; // if deadline is empty
         }
-        String description = input.substring(9, input.indexOf('/') - 1);
-        String by = input.substring(input.indexOf('/') + 4);
+
+        int desStartIndex = 9;
+        int desEndIndex = input.indexOf('/') - 1;
+        int dateStartIndex = input.indexOf('/') + 4;
+
+        String description = input.substring(desStartIndex, desEndIndex);
+        String by = input.substring(dateStartIndex);
         return new String[]{"D", description, by};
     }
 
     private String[] getEventArray(String input) {
-        if (input.replace(" ", "").length() == 5) {
+        if (input.replace(" ", "").equals("event")) {
             return new String[]{"E", "", ""}; // if event is empty
         }
-        String description = input.substring(6, input.indexOf('/') - 1);
-        String at = input.substring(input.indexOf('/') + 4);
+
+        int desStartIndex = 6;
+        int desEndIndex = input.indexOf('/') - 1;
+        int timeStartIndex = input.indexOf('/') + 4;
+
+        String description = input.substring(desStartIndex, desEndIndex);
+        String at = input.substring(timeStartIndex);
         return new String[]{"E", description, at};
     }
 
@@ -110,7 +125,8 @@ public class Parser {
     }
 
     private String[] getFindArray(String input) {
-        String keyword = input.substring(5);
+        int keyStartIndex = 5;
+        String keyword = input.substring(keyStartIndex);
         return new String[]{"F", keyword};
     }
 }

@@ -24,64 +24,6 @@ public class Storage {
     }
 
     /**
-     * Saves the given list of tasks in the specified file.
-     *
-     * @param list TaskList to be saved in the file.
-     */
-    public void save(TaskList list) {
-        try {
-            FileWriter fw = new FileWriter(filePath);
-            fw.flush();
-            for (Task t : list.getList()) {
-                if (t.toString().charAt(1) == 'D') {
-                    Deadline d = (Deadline) t;
-                    fw.write(d.toStringOri() + "\n");
-                    continue;
-                }
-                fw.write(t + "\n");
-            }
-            fw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Creates folder if folder does not exist, and does nothing if
-     * folder already exists.
-     */
-    public void createFolder() {
-        String dir = this.filePath;
-        String tempDir;
-
-        while (dir.contains("/")) {
-            tempDir = dir.substring(0, filePath.indexOf('/'));
-            Path folder = Paths.get(tempDir);
-            dir = dir.substring(dir.indexOf('/') + 1);
-
-            try {
-                Files.createDirectories(folder);
-            } catch (IOException e) {
-                System.err.println("Failed to create folder!" + e.getMessage());
-            }
-
-        }
-    }
-
-    /**
-     * Creates file in folder if file does not exist, and
-     * does nothing if file already exists.
-     */
-    public void createFile() {
-        File file = new File(filePath);
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            System.err.println("Failed to create file!" + e.getMessage());
-        }
-    }
-
-    /**
      * Loads the data from the specified file into an arraylist. Throws
      * DukeException if file does not exist.
      *
@@ -162,5 +104,71 @@ public class Storage {
         int timeStartIndex = s.indexOf('(') + 5;
         int timeEndIndex = s.indexOf(')');
         return s.substring(timeStartIndex, timeEndIndex);
+    }
+
+    /**
+     * Saves the given list of tasks in the specified file.
+     *
+     * @param list TaskList to be saved in the file.
+     */
+    public void save(TaskList list) {
+        try {
+            FileWriter fw = new FileWriter(filePath);
+            fw.flush();
+            ArrayList<Task> currList = list.getList();
+
+            for (Task t : currList) {
+                boolean isDeadline = (t.toString().charAt(1) == 'D');
+
+                // Date of deadline saved must be in format yyyy-mm-dd; e.g. 2020-10-10
+                if (isDeadline) {
+                    Deadline d = (Deadline) t;
+                    fw.write(d.toStringOri() + "\n");
+                    continue;
+                }
+
+                fw.write(t + "\n");
+            }
+
+            fw.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Creates folder if folder does not exist, and does nothing if
+     * folder already exists.
+     */
+    public void createFolder() {
+        String dir = this.filePath;
+        String tempDir;
+
+        while (dir.contains("/")) {
+            tempDir = dir.substring(0, filePath.indexOf('/')); // Get first directory
+            Path folder = Paths.get(tempDir);
+            dir = dir.substring(dir.indexOf('/') + 1); // Get next directory
+
+            try {
+                Files.createDirectories(folder);
+            } catch (IOException e) {
+                System.err.println("Failed to create folder!" + e.getMessage());
+            }
+
+        }
+    }
+
+    /**
+     * Creates file in folder if file does not exist, and
+     * does nothing if file already exists.
+     */
+    public void createFile() {
+        File file = new File(filePath);
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            System.err.println("Failed to create file!" + e.getMessage());
+        }
     }
 }
