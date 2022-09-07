@@ -2,14 +2,7 @@ package ted.parser;
 
 import java.time.format.DateTimeParseException;
 
-import ted.command.AddCommand;
-import ted.command.ByeCommand;
-import ted.command.Command;
-import ted.command.DeleteCommand;
-import ted.command.FindCommand;
-import ted.command.ListCommand;
-import ted.command.MarkCommand;
-import ted.command.UnmarkCommand;
+import ted.command.*;
 import ted.exception.TedException;
 import ted.task.Deadline;
 import ted.task.Event;
@@ -53,6 +46,13 @@ public class Parser {
                 }
 
                 c = new ListCommand();
+                break;
+            case "remind":
+                if (temp.length != 1) {
+                    throw new TedException(NONCOMMAND_ERROR_MESSAGE);
+                }
+
+                c = new RemindCommand();
                 break;
             case "find":
                 c = new FindCommand(temp[1]);

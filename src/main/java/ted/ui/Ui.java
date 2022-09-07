@@ -76,4 +76,8 @@ public class Ui {
     public String findResponse(String tasks) {
         return "Here are the matching tasks in your list:\n" + tasks;
     }
+
+    public String remindResponse(String tasks) {
+        return "!Upcoming Deadlines!\n" + tasks;
+    }
 }

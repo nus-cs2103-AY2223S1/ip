@@ -68,4 +68,8 @@ public class Task {
                 : NOT_DONE_FILEFORMAT + this.taskDescription;
     }
 
+    public boolean shouldRemind() {
+        return false;
+    }
+
 }
