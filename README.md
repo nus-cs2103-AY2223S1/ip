@@ -1,6 +1,8 @@
-# Duke project template
+### duke project template
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it. :grinning:
+
+> If you don't win, you lose. - someone probably
 
 ## Setting up in Intellij
 
@@ -22,3 +24,25 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    | |_| | |_| |   <  __/
    |____/ \__,_|_|\_\___|
    ```
+
+Features:
+- [x] Managing Tasks
+- [ ] Managing Deadlines
+
+Duke frees your mind of having to remember things you need to do. It's, 
+- text-based
+- easy to learn 
+
+If you are a **Java programmer**, you can use it to practice Java too. Here's the main method:
+
+```ruby
+public class Main {
+    public static void main(String[] args) {
+        Application.launch(MainApp.class, args);
+    }
+}
+```
+
+
+## Link to this repo
+Click [here](https://github.com/shogun187/ip)
