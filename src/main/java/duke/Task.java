@@ -24,6 +24,7 @@ abstract public class Task {
     }
 
     public String getDescription() {
+        assert description != null && description != "";
         return description;
     }
 
