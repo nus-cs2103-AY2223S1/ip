@@ -52,6 +52,10 @@ public abstract class Task {
 
     public abstract String toFormattedString();
 
+    /**
+     * Return the String representation of the Task.
+     * @return The String representation of the Task.
+     */
     @Override
     public String toString() {
         return (isDone ? "[X]" : "[ ]") + " " + this.getName();

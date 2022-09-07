@@ -25,11 +25,19 @@ public class Deadline extends Task {
         this.time = time;
     }
 
+    /**
+     * Return the String representation of the Task.
+     * @return The String representation of the Task.
+     */
     @Override
     public String toString() {
         return "[" + SYMBOL + "]" + super.toString() + " (by: " + Parser.parseDateTimeToString(this.time) + ")";
     }
 
+    /**
+     * Returns the formatted string representation of the object.
+     * @return The formatted string representation of the object.
+     */
     @Override
     public String toFormattedString() {
         return Parser.combineAttributes(SYMBOL,
@@ -38,6 +46,13 @@ public class Deadline extends Task {
                 Parser.parseDateTimeToString(this.getTime()));
     }
 
+    /**
+     * Returns boolean indicating whether this object
+     * is equivalent to another object.
+     *
+     * @param obj The object to be checked.
+     * @return The boolean whether the given object is equivalent to this object.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {

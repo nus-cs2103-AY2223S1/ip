@@ -44,7 +44,7 @@ public class EventCommand extends AddCommand {
     }
 
     /**
-     * Execute the Command with given Duke Segments.
+     * Executes the Command with given Duke Segments.
      * @param taskList TaskList of the Duke.
      * @param messagePrinter MessagePrinter of the Duke.
      * @param storage Storage of the Duke.
@@ -60,7 +60,7 @@ public class EventCommand extends AddCommand {
     }
 
     /**
-     * Return boolean indicating whether this object
+     * Returns boolean indicating whether this object
      * is equivalent to another object.
      *
      * @param obj The object to be checked.

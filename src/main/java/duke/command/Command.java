@@ -138,7 +138,7 @@ public abstract class Command {
     }
 
     /**
-     * Execute the Command with given Duke Segments.
+     * Executes the Command with given Duke Segments.
      * @param taskList TaskList of the Duke.
      * @param messagePrinter MessagePrinter of the Duke.
      * @param storage Storage of the Duke.
@@ -159,7 +159,7 @@ public abstract class Command {
     public abstract String getFormat();
 
     /**
-     * Return the Action to be done by the Command.
+     * Returns the Action to be done by the Command.
      * @return The Action to be done by the Command.
      */
     public Action getAction() {
