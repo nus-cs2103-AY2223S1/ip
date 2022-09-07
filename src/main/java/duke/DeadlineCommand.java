@@ -1,28 +1,43 @@
 package duke;
 
-import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class DeadlineCommand extends Command{
+public class DeadlineCommand extends TaskCommand {
+    @Override
+    boolean isTaskEmpty(String fullCommand) {
+        return fullCommand.length() == 8;
+    }
 
     @Override
-    String execute(String fullCommand, ArrayList<Task> listOfTasks, Ui ui, Storage storage) throws IOException, DukeDeadlineEmptyException {
-        if(fullCommand.length() == 8) {
+    void handleEmptyTask(String fullCommand) throws DukeDeadlineEmptyException {
+        if(isTaskEmpty(fullCommand)) {
             throw new DukeDeadlineEmptyException();
         }
-        int index = fullCommand.indexOf("/");
-        String subS = fullCommand.substring(9, index - 1);
-        String subString = fullCommand.substring(index + 4);
-        TaskList taskList = new TaskList(listOfTasks);
-        try {
-            LocalDate date = LocalDate.parse(subString);
-            Task t = new Deadline(subS,false, date);
-           return taskList.addToList(t);
+    }
+
+    @Override
+    String addTaskToList(String fullCommand,ArrayList<Task> listOfTasks) {
+       int index = fullCommand.indexOf("/");
+       String name = fullCommand.substring(9, index - 1);
+       String dueDate = fullCommand.substring(index + 4);
+       TaskList taskList = new TaskList(listOfTasks);
+          try {
+              return addingTaskWithDateFormat(name, dueDate, taskList);
         } catch (DateTimeException e) {
-            Task t = new Deadline(subS,false, subString);
-          return  taskList.addToList(t);
+              return addingTaskWithNoDateFormat(name, dueDate, taskList);
         }
+    }
+
+    String addingTaskWithDateFormat(String name, String dueDate,TaskList taskList) {
+        LocalDate date = LocalDate.parse(dueDate);
+        Task t = new Deadline(name,false, date);
+        return taskList.addToList(t);
+    }
+
+    String addingTaskWithNoDateFormat(String name, String dueDate, TaskList taskList) {
+        Task t = new Deadline(name,false, dueDate);
+        return taskList.addToList(t);
     }
 }

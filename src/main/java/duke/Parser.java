@@ -22,22 +22,22 @@ public class Parser {
     Command parse() throws DukeUnknownWordException {
         if (isSubstringForDeleteCommand()){
             return new DeleteCommand();
-        } else if (isSubstringForMarkCommand()){
+        } else if (isSubstringForMarkCommand()) {
             return new MarkCommand();
-        } else if (isSubstringForUnmarkCommand()){
+        } else if (isSubstringForUnmarkCommand()) {
             return new UnmarkCommand();
-        } else if (isSubstringForDeadlineCommand()){
+        } else if (isSubstringForDeadlineCommand()) {
             return new DeadlineCommand();
         } else if (isSubstringForEventCommand()) {
             return new EventCommand();
-        } else if (isSubstringForTodoCommand()){
+        } else if (isSubstringForTodoCommand()) {
             return new TodoCommand();
-        } else if (isSubstringForShowListCommand()){
+        } else if (isSubstringForShowListCommand()) {
             return new ShowListCommand();
         } else if (isSubstringForFindCommand()) {
             return new FindCommand();
-       // } else if (isSubStringForExitCommand()){
-         //   return new ExitCommand();
+        } else if (isSubStringForExitCommand()) {
+            return new ExitCommand();
         } else {
             throw new DukeUnknownWordException();
         }

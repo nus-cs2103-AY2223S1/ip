@@ -3,19 +3,26 @@ package duke;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class EventCommand extends Command{
-
+public class EventCommand extends TaskCommand {
     @Override
-    String execute(String taskName, ArrayList<Task> listOfTasks, Ui ui, Storage storage)
-            throws IOException, DukeEventEmptyException {
-        if(taskName.length() == 5) {
-            throw new DukeEventEmptyException();
-        }
-        int index = taskName.indexOf("/");
-        Task t = new Event(taskName.substring(6, index - 1),
-                false, taskName.substring(index + 4));
+    String addTaskToList(String fullCommand, ArrayList<Task> listOfTasks) {
+        int index = fullCommand.indexOf("/");
+        String time = fullCommand.substring(index + 4);
+        String name = fullCommand.substring(6, index - 1);
         TaskList taskList = new TaskList(listOfTasks);
+        Task t = new Event(name, false, time);
         return taskList.addToList(t);
     }
 
+    @Override
+    boolean isTaskEmpty(String fullCommand) {
+        return fullCommand.length() == 5;
+    }
+
+    @Override
+    void handleEmptyTask(String fullCommand) throws DukeEventEmptyException {
+        if (isTaskEmpty(fullCommand)) {
+            throw new DukeEventEmptyException();
+        }
+    }
 }

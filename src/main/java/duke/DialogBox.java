@@ -19,7 +19,6 @@ import javafx.scene.text.Text;
 public class DialogBox extends HBox {
     private Label text;
     private ImageView displayPicture;
-    private Text greetings;
 
     public DialogBox(Label l, ImageView iv) {
         text = l;
