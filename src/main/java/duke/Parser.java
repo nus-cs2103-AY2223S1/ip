@@ -8,6 +8,7 @@ import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
+import duke.command.HelpCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.exception.DukeException;
@@ -18,7 +19,7 @@ import duke.exception.UnknownCommand;
  * A class that deals with making sense of user commands.
  */
 public class Parser {
-    private enum Commands { list, mark, unmark, todo, event, deadline, delete, bye, find }
+    private enum Commands { list, mark, unmark, todo, event, deadline, delete, bye, find, help }
 
     /**
      * Takes in the user input, process it and returns the
@@ -67,6 +68,8 @@ public class Parser {
             String query = getContent(input, "find");
             getDescription(query, false);
             return new FindCommand(query);
+        case help:
+            return new HelpCommand();
         case bye:
             return new ExitCommand();
         default:
