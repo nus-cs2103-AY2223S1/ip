@@ -30,15 +30,22 @@ public class DeadlineCommand implements Command {
      *
      * @param tasks TaskList that contains the temporary tasks.
      * @param storage Storage that the tasks are saved at.
+     * @return String output of executing the task.
      * @throws DukeException If any error occurs.
      */
     @Override
-    public void execute(TaskList tasks, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Storage storage) throws DukeException {
         DeadlinesTask newTask = new DeadlinesTask(taskName, deadlineDate);
         tasks.add(newTask);
-        System.out.println("Got it. I've added this task:");
-        System.out.println(newTask);
-        System.out.println("Now you have " + tasks.getSize() + " tasks in the list");
         storage.writeAll(tasks);
+        String output = "";
+        output += "Got it. I've added this task:\n";
+        output += newTask + "\n" ;
+        output += "Now you have " + tasks.getSize() + " tasks in the list\n";
+        return output;
+    }
+    @Override
+    public boolean isBye() {
+        return false;
     }
 }
