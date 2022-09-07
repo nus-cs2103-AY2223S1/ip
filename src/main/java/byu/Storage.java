@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+import exceptions.IncorrectFileInputException;
 import task.Deadline;
 import task.Event;
 import task.Task;
@@ -20,6 +21,7 @@ import task.ToDo;
  */
 public class Storage {
 
+    private static final String TEXT_FILE = "./Duke.txt";
     private File file;
     private Scanner sc;
     private TaskList tasks;
@@ -33,14 +35,14 @@ public class Storage {
      */
     public Storage(Ui ui) throws IOException {
         try {
-            this.file = new File("./Duke.txt");
+            this.file = new File(TEXT_FILE);
             this.sc = new Scanner(file);
             this.ui = ui;
             this.tasks = new TaskList(this.ui);
         } catch (FileNotFoundException e) {
-            String TEXT_FILE = "./Duke.txt";
             Path textFilePath = Paths.get(TEXT_FILE);
             Files.createFile(textFilePath);
+            this.file = new File(TEXT_FILE);
             this.sc = new Scanner(file);
             this.tasks = new TaskList(this.ui);
         }
@@ -51,31 +53,42 @@ public class Storage {
      *
      * @return TaskList that contains the previously added tasks.
      */
-    public TaskList load() {
+    public TaskList load() throws IncorrectFileInputException {
         while (sc.hasNext()) {
-            String line = sc.nextLine();
-            String[] details = line.split(" \\| ");
-            Task t;
-            switch (details[0]) {
-            case "D":
-                t = new Deadline(details[2], details[3]);
-                break;
-            case "E":
-                t = new Event(details[2], details[3]);
-                break;
-            case "T":
-                t = new ToDo(details[2]);
-                break;
-            default:
-                t = new Task("unknown");
-            }
-            if (details[1].equals("1")) {
-                t.setDone(true);
-            }
-            tasks.addTask(t);
+            String nextLine = sc.nextLine();
+            Task task = getTask(nextLine);
+            tasks.addTask(task);
         }
         sc.close();
         return this.tasks;
+    }
+
+    private Task getTask(String nextLine) throws IncorrectFileInputException {
+        String[] details = nextLine.split(" \\| ");
+        String symbol = details[0];
+        String isDoneValue = details[1];
+        String taskName = details[2];
+        String description;
+        Task task;
+        switch (symbol) {
+        case Deadline.SYMBOL:
+            description = details[3];
+            task = new Deadline(taskName, description);
+            break;
+        case Event.SYMBOL:
+            description = details[3];
+            task = new Event(taskName, description);
+            break;
+        case ToDo.SYMBOL:
+            task = new ToDo(taskName);
+            break;
+        default:
+            throw new IncorrectFileInputException();
+        }
+        if (isDoneValue.equals("1")) {
+            task.setDone(true);
+        }
+        return task;
     }
 
 }

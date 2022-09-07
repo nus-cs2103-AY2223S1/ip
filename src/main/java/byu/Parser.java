@@ -30,41 +30,41 @@ public class Parser {
      * @param fullCommand the string to be parsed.
      */
     public static Command parse(String fullCommand) throws DukeException {
-        Command c;
-        Instruction i = getInstruction(fullCommand);
-        String description = getDescription(i, fullCommand);
-        switch (i) {
+        Command command;
+        Instruction instruction = getInstruction(fullCommand);
+        String description = getDescription(instruction, fullCommand);
+        switch (instruction) {
         case MARK:
-            c = prepareMark(description);
+            command = new MarkCommand(getDescriptionAsIntegerValue(description));
             break;
         case UNMARK:
-            c = prepareUnmark(description);
+            command = new UnmarkCommand(getDescriptionAsIntegerValue(description));
             break;
         case DEADLINE:
-            c = prepareDeadline(description);
+            command = prepareDeadline(description);
             break;
         case EVENT:
-            c = prepareEvent(description);
+            command = prepareEvent(description);
             break;
         case TODO:
-            c = prepareToDo(description);
+            command = prepareToDo(description);
             break;
         case DELETE:
-            c = prepareDelete(description);
+            command = new DeleteCommand(getDescriptionAsIntegerValue(description));
             break;
         case BYE:
-            c = new ByeCommand();
+            command = new ByeCommand();
             break;
         case LIST:
-            c = new ListCommand();
+            command = new ListCommand();
             break;
         case FIND:
-            c = new FindCommand(description);
+            command = new FindCommand(description);
             break;
         default:
-            c = new NextCommand();
+            command = new NextCommand();
         }
-        return c;
+        return command;
     }
 
 
@@ -75,9 +75,9 @@ public class Parser {
      * @throws InvalidInstructionException if the instruction is invalid.
      */
     private static Instruction getInstruction(String fullCommand) throws InvalidInstructionException {
+        String firstWord = fullCommand.split(" ")[0];
         try {
-            String instruction = fullCommand.split(" ")[0];
-            return Instruction.valueOf(instruction.toUpperCase(Locale.ROOT));
+            return Instruction.valueOf(firstWord.toUpperCase(Locale.ROOT));
         } catch (IllegalArgumentException e) {
             throw new InvalidInstructionException();
         }
@@ -99,44 +99,30 @@ public class Parser {
         case EVENT:
         case DELETE:
         case FIND:
-            String[] substrings = fullCommand.split(" ");
-            if (substrings.length == 1) {
+            String[] words = fullCommand.split(" ");
+            boolean hasDescription = words.length > 1;
+            if (!hasDescription) {
                 throw new EmptyDescriptionException(i.name());
-            } else {
-                return fullCommand.substring(substrings[0].length() + 1);
             }
+            int indexOfDescription = words[0].length() + 1;
+            String description = fullCommand.substring(indexOfDescription);
+            return description;
         default:
             return "";
         }
     }
 
     /**
-     * Returns a MarkCommand with the given description.
+     * Returns an integer from the given description.
      *
-     * @param d description of the command indicating index to be marked.
-     * @return a MarkCommand with the given description.
+     * @param d description of the command indicating index of a task.
+     * @return an integer representing the index of a task.
      * @throws InvalidDescriptionException if the description cannot be converted to an integer.
      */
-    private static MarkCommand prepareMark(String d) throws InvalidDescriptionException {
+    private static int getDescriptionAsIntegerValue(String d) throws InvalidDescriptionException {
         try {
             int index = Integer.parseInt(d);
-            return new MarkCommand(index);
-        } catch (NumberFormatException e) {
-            throw new InvalidDescriptionException("index");
-        }
-    }
-
-    /**
-     * Returns an UnmarkCommand with the given description.
-     *
-     * @param d description of the command indicating index to be unmarked.
-     * @return an UnmarkCommand with the given description.
-     * @throws InvalidDescriptionException if the description cannot be converted to an integer.
-     */
-    private static UnmarkCommand prepareUnmark(String d) throws InvalidDescriptionException {
-        try {
-            int index = Integer.parseInt(d);
-            return new UnmarkCommand(index);
+            return index;
         } catch (NumberFormatException e) {
             throw new InvalidDescriptionException("index");
         }
@@ -185,22 +171,6 @@ public class Parser {
     private static AddCommand prepareToDo(String d) {
         ToDo t = new ToDo(d);
         return new AddCommand(t);
-    }
-
-    /**
-     * Returns a DeleteCommand with the given description.
-     *
-     * @param d description of the command indicating index to be deleted.
-     * @return a DeleteCommand with the given description.
-     * @throws InvalidDescriptionException if the description cannot be converted to an integer.
-     */
-    private static DeleteCommand prepareDelete(String d) throws InvalidDescriptionException {
-        try {
-            int index = Integer.parseInt(d);
-            return new DeleteCommand(index);
-        } catch (NumberFormatException e) {
-            throw new InvalidDescriptionException("index");
-        }
     }
 
 }

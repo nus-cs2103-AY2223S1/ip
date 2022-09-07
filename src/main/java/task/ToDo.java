@@ -8,6 +8,9 @@ import java.io.IOException;
  */
 public class ToDo extends Task {
 
+    public static final String SYMBOL = "T";
+    private static final String FORMAT = "[T]%s";
+
     public ToDo(String s) {
         super(s);
     }
@@ -20,6 +23,6 @@ public class ToDo extends Task {
 
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return String.format(ToDo.FORMAT, super.toString());
     }
 }
