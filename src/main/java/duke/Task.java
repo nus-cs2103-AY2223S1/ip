@@ -7,7 +7,7 @@ package duke;
  * @author Liu Han
  */
 public class Task {
-    protected String description;
+    private String description;
     protected boolean isDone;
 
     /**
@@ -25,6 +25,10 @@ public class Task {
      */
     public String getStatus() {
         return (this.isDone ? "X" : " ");
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 
     /**

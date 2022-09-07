@@ -45,7 +45,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toSave() {
-        return "D | " + (this.isDone ? "1 | " : "0 | ") + this.description +
+        return "D | " + (this.isDone ? "1 | " : "0 | ") + this.getDescription() +
                 " | " + this.by.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + "\n";
     }
 }
