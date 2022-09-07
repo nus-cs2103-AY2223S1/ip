@@ -27,7 +27,8 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        return "[T] " + this.getStatusIcon() + " " + this.description ;
+        return new StringBuilder().append("[T] ").append(this.getStatusIcon())
+                .append(" ").append(this.description).toString();
     }
 
     /**

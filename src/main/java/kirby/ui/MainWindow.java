@@ -1,5 +1,7 @@
 package kirby.ui;
 
+import java.util.Objects;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -10,8 +12,6 @@ import javafx.scene.layout.VBox;
 import kirby.Kirby;
 import kirby.exceptions.KirbyInvalidCommandException;
 import kirby.exceptions.KirbyMissingArgumentException;
-
-import java.util.Objects;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -27,8 +27,10 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private Kirby kirby;
-    private final Image userImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/mario.png")));
-    private final Image kirbyImage = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/images/kirby_picture.png")));
+    private final Image userImage = new Image(Objects.requireNonNull(this.getClass()
+            .getResourceAsStream("/images/mario.png")));
+    private final Image kirbyImage = new Image(Objects.requireNonNull(this.getClass()
+            .getResourceAsStream("/images/kirby_picture.png")));
 
     /**
      * Initialises the components for GUI.

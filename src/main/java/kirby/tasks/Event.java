@@ -40,7 +40,8 @@ public class Event extends Task {
     @Override
     public String toString() {
         if (localDate != null) {
-            return "[E] " + this.getStatusIcon() + " " + this.description + " (at: " + localDate.format(DateTimeFormatter.ofPattern("MMM d yyyy)"));
+            return new StringBuilder().append("[E] ").append(this.getStatusIcon()).append(" ").append(this.description)
+                    .append(" (at: ").append(localDate.format(DateTimeFormatter.ofPattern("MMM d yyyy)"))).toString();
         } else {
             return "[E] " + this.getStatusIcon() + " " + this.description + " (at: " + at + ")";
         }

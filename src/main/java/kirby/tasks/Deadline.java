@@ -40,7 +40,9 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         if (localDate != null) {
-            return "[D] " + this.getStatusIcon() + " " + this.description + " (by: " + localDate.format(DateTimeFormatter.ofPattern("MMM d yyyy)"));
+            return new StringBuilder().append("[D] ").append(this.getStatusIcon()).append(" ")
+                    .append(this.description).append(" (by: ")
+                    .append(localDate.format(DateTimeFormatter.ofPattern("MMM d yyyy)"))).toString();
         } else {
             return "[D] " + this.getStatusIcon() + " " + this.description + " (by: " + by + ")";
         }
