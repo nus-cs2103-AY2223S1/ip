@@ -1,7 +1,6 @@
 package duke;
 
 import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,7 +14,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Region;
-
 
 /**
  * A GUI for Duke.
@@ -34,6 +32,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
+
+        //first example
 //        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
 //        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
 //
@@ -111,6 +111,7 @@ public class Main extends Application {
             handleUserInput();
         });
 
+        //below is about FXML
 //        try {
 //            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
 //            AnchorPane ap = fxmlLoader.load();
@@ -123,6 +124,7 @@ public class Main extends Application {
 //            e.printStackTrace();
 //        }
     }
+
     /**
      * Iteration 1:
      * Creates a label with the specified text and adds it to the dialog container.

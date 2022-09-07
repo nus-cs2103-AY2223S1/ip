@@ -1,4 +1,5 @@
 package duke;
+
 import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -14,7 +15,6 @@ public class Duke {
 
     /**
      * Constructor of the Duke class.
-     *
      */
     public Duke() {
         this.ui = new Ui();
@@ -73,7 +73,7 @@ public class Duke {
             String dBy = str.substring(str.indexOf('/') + 4);
             date = LocalDate.parse(dBy);
         } catch (DateTimeException e) {
-            throw new DukeException("OOPS! Date must be in proper format!");
+            throw new DukeException("OOPS! Date must be in proper format :(");
         }
         Task deadline = new Deadline(dDescription, date);
         tasks.addTask(deadline);
