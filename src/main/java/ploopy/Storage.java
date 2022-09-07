@@ -16,7 +16,6 @@ public class Storage {
     private static final String FILE_PATH = FOLDER_PATH + FILE_NAME;
     private static File folder;
     private static File file;
-    private UI ui;
 
     /**
      * Constructor that takes in a UI object
@@ -24,10 +23,9 @@ public class Storage {
      * @param ui UI object used to interact with user.
      * @throws PloopyException If a file storage error occurs.
      */
-    public Storage(UI ui) throws PloopyException {
+    public Storage() throws PloopyException {
         folder = new File(FOLDER_PATH);
         file = new File(FILE_PATH);
-        this.ui = ui;
         //this.taskList = taskList;
         if (!folder.exists()) {
             try {
@@ -38,9 +36,7 @@ public class Storage {
         }
 
         try {
-            if (!file.createNewFile()) {
-                ui.createFilesMessage();
-            }
+           boolean successful = !file.createNewFile();
         } catch (IOException e) {
             throw new PloopyException("IO");
         }
@@ -71,7 +67,6 @@ public class Storage {
     public void loadFile(TaskList taskList) throws PloopyException {
         try {
             Scanner fileReader = new Scanner(file);
-            ui.addingFilesMessage();
             while (fileReader.hasNext()) {
                 taskList.addTasksFromFile(fileReader.nextLine());
             }

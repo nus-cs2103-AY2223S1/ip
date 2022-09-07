@@ -1,6 +1,8 @@
 package ploopy;
 
-import java.util.Scanner;
+import javafx.application.Application;
+import ploopy.ui.Main;
+import ploopy.ui.TextUI;
 
 /**
  * Chatbot that can store and edit tasks.
@@ -8,25 +10,11 @@ import java.util.Scanner;
  */
 public class Ploopy {
 
-    /** The UI object to interact with the user */
-    private UI ui;
     /** The task list to store tasks */
     private TaskList taskList;
     /** The storage file to write to and read from */
     private Storage storage;
 
-    /**
-     * Constructor that creates the UI and storage objects
-     */
-    public Ploopy() {
-        ui = new UI();
-        try {
-            storage = new Storage(ui);
-        } catch (PloopyException e) {
-            ui.exceptionMessage(e.getMessage());
-        }
-        taskList = new TaskList(ui, storage);
-    }
 
     /**
      * Greets the user and tries to load data from
@@ -34,14 +22,20 @@ public class Ploopy {
      * Asks for input from user.
      *
      */
-    public void start() {
-        ui.greeting();
+    public String start() {
+        String introString = TextUI.greeting() + "\n";
         try {
+            storage = new Storage();
+            introString+= TextUI.createFilesMessage() + "\n";
+            taskList = new TaskList(storage);
+            introString+= TextUI.addingFilesMessage() + "\n";
             storage.loadFile(taskList);
+            return introString;
         } catch (PloopyException e) {
-            ui.exceptionMessage(e.getMessage());
+            return introString + TextUI.exceptionMessage(e.getMessage());
         }
-        command();
+
+
     }
 
     /**
@@ -50,26 +44,17 @@ public class Ploopy {
      * file storage errors.
      *
      */
-    private void command() {
-        ui.promptUser();
-        ui.correctFormatForUser();
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        while (!input.equals("bye")) {
-            try {
-                Parser.parseInput(input, taskList);
-            } catch (PloopyException e) {
-                ui.exceptionMessage(e.getMessage());
-            }
-            input = scanner.nextLine();
+
+    public String getResponse(String input) {
+        try {
+            return Parser.parseInput(input, taskList);
+        } catch (PloopyException e) {
+            return TextUI.exceptionMessage(e.getMessage());
         }
-        ui.bye();
     }
 
-
-
     public static void main(String[] args) {
-        new Ploopy().start();
+        Application.launch(Main.class, args);
 
     }
 }
