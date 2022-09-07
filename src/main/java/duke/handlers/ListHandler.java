@@ -1,10 +1,7 @@
 package duke.handlers;
 
-import duke.models.TaskList;
 import duke.models.Task;
-import duke.services.Ui;
-
-import static duke.services.Ui.dukePrint;
+import duke.models.TaskList;
 
 public class ListHandler {
     /**
@@ -12,11 +9,12 @@ public class ListHandler {
      * Prints out all the tasks in the TaskList.
      * @param taskList TaskList containing the list of tasks.
      */
-    public static void handle(TaskList taskList) {
-        dukePrint("Here are the tasks in your list:");
+    public static String getResponse(TaskList taskList) {
+        StringBuilder response = new StringBuilder("Here are the tasks in your list:\n");
         for (int i = 1; i <= taskList.size(); i++) {
             Task task = taskList.get(i - 1);
-            Ui.dukePrint(i + ". " + task.toString());
+            response.append(i).append(". ").append(task.toString()).append("\n");
         }
+        return response.toString();
     }
 }
