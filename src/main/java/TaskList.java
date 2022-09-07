@@ -41,6 +41,7 @@ public class TaskList {
         this.list.add(task);
         this.noOfTasks++;
         updateKeyword(task.getTaskDescription(), task);
+        assert noOfTasks > 0 : "NoOfTasks should be more than 0";
         return this.noOfTasks;
     }
 
@@ -71,6 +72,7 @@ public class TaskList {
         removeTaskFromKeyword(currentTaskDescription, currentTask);
         this.list.remove(taskNo - 1);
         this.noOfTasks--;
+        assert noOfTasks >= 0 : "NoOfTasks should not be negative";
         String[] tasklistInfo = {currentTask.toString(), String.valueOf(noOfTasks)};
         return tasklistInfo;
     }

@@ -23,6 +23,7 @@ public class MarkCommand extends Command {
     String execute(TaskList tasks, Ui ui, Storage storage) {
         String modifiedTask = tasks.mark(this.taskNo);
         String response = ui.marked(modifiedTask);
+        assert this.isExit == false : "IsExit should be false";
         return response;
     }
 

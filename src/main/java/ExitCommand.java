@@ -22,6 +22,7 @@ public class ExitCommand extends Command {
      */
     String execute(TaskList tasks, Ui ui, Storage storage) {
         String response = ui.exit();
+        assert this.isExit == true : "IsExit should be true";
         return response;
     }
 

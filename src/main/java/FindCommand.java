@@ -22,6 +22,7 @@ public class FindCommand extends Command {
      */
     String execute(TaskList tasks, Ui ui, Storage storage) {
         String response = ui.printMatchingList(tasks.findTaskWithThisKeyword(this.keyword));
+        assert this.isExit == false : "IsExit should be false";
         return response;
     }
 
