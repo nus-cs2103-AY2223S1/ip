@@ -24,7 +24,7 @@ public class EventCommand extends Command {
     /**
      * {@inheritDoc}
      */
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         if (input.isBlank()) {
             throw new DukeException("Hold up! Description cannot be empty!");
         }
@@ -36,7 +36,8 @@ public class EventCommand extends Command {
         Event newEvent = new Event(str[0], str[1]);
 
         taskList.addTask(newEvent);
-        ui.showAddTask(newEvent, taskList);
+        storage.save(taskList);
+        return ui.showAddTask(newEvent, taskList);
     }
 
     /**

@@ -24,13 +24,14 @@ public class ToDoCommand extends Command {
     /**
      * {@inheritDoc}
      */
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         if (input.isBlank()) {
             throw new DukeException("Hold up! Description cannot be empty!");
         }
         ToDo newTodo = new ToDo(input);
         taskList.addTask(newTodo);
-        ui.showAddTask(newTodo, taskList);
+        storage.save(taskList);
+        return ui.showAddTask(newTodo, taskList);
     }
 
     /**

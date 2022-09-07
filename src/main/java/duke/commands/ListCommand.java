@@ -12,8 +12,8 @@ public class ListCommand extends Command {
     /**
      * {@inheritDoc}
      */
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        ui.showTaskList(taskList);
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+        return ui.showTaskList(taskList);
     }
 
     /**

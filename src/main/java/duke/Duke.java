@@ -28,26 +28,16 @@ public class Duke {
         tasks = currTasks;
     }
 
-    private void run() {
-        ui.showGreeting();
-        boolean isExit = false;
-
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
-            }
+    protected String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(tasks, ui, storage);
+        } catch (DukeException e) {
+            return ui.showError(e.getMessage());
         }
     }
 
-    public static void main(String[] args) {
-        new Duke("./data2/tasks.txt").run();
+    protected String getGreeting() {
+        return ui.showGreeting();
     }
 }

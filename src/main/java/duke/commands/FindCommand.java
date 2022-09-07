@@ -23,13 +23,13 @@ public class FindCommand extends Command {
     /**
      * {@inheritDoc}
      */
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         if (input.isBlank()) {
             throw new DukeException("Wait a minute :/ "
                     + "what are you finding??");
         }
         TaskList tasksWithWord = taskList.getTasksWithWord(input);
-        ui.showFindings(tasksWithWord, input);
+        return ui.showFindings(tasksWithWord, input);
     }
 
     /**
