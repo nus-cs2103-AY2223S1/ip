@@ -46,6 +46,7 @@ public class TaskList {
      * @param taskIndex index of task to be removed.
      */
     public void removeFromTaskList(int taskIndex) {
+        assert taskIndex >= 0 : "taskIndex should be greater than or equal to 0";
         this.tasks.remove(taskIndex - 1);
     }
 
@@ -54,6 +55,8 @@ public class TaskList {
      * @return size of taskList.
      */
     public int getSize() {
+        int size = tasks.size();
+        assert size >= 0 : "size of taskList should at least be 0 or greater";
         return this.tasks.size();
     }
 

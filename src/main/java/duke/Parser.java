@@ -83,15 +83,8 @@ public class Parser {
                             "☹ OOPS!!! The mark command should be used as shown. " +
                             "eg. mark {num of task in list to be marked as done}");
                 }
-<<<<<<< Updated upstream
-                if (!userInputs[1].matches("\\d+")) {
-                    throw new DukeException(INDENTATION +
-                            "☹ OOPS!!! The mark command should be used as shown. " +
-                            "eg. mark {num of task in list to be marked as done}");
-=======
                 if (isNotStringNumber) {
                     throw new InvalidIndexException();
->>>>>>> Stashed changes
                 }
 
                 int indexToMark = Integer.parseInt(userInputs[1]);
@@ -102,15 +95,8 @@ public class Parser {
                             "☹ OOPS!!! The unmark command should be used as shown. " +
                             "eg. mark {num of task in list to be unmarked as incomplete}");
                 }
-<<<<<<< Updated upstream
-                if (!userInputs[1].matches("\\d+")) {
-                    throw new DukeException(INDENTATION +
-                            "☹ OOPS!!! The mark command should be used as shown. " +
-                            "eg. mark {num of task in list to be marked as done}");
-=======
                 if (isNotStringNumber) {
                     throw new InvalidIndexException();
->>>>>>> Stashed changes
                 }
 
                 int indexToUnmark = Integer.parseInt(userInputs[1]);
@@ -168,15 +154,8 @@ public class Parser {
                             "☹ OOPS!!! The delete command should be used as shown. " +
                             "eg. delete {num of task in list to be deleted.}");
                 }
-<<<<<<< Updated upstream
-                if (!userInputs[1].matches("\\d+")) {
-                    throw new DukeException(INDENTATION +
-                            "☹ OOPS!!! The mark command should be used as shown. " +
-                            "eg. mark {num of task in list to be marked as done}");
-=======
                 if (isNotStringNumber) {
                     throw new InvalidIndexException();
->>>>>>> Stashed changes
                 }
 
                 int indexToDelete = Integer.parseInt(userInputs[1]);
