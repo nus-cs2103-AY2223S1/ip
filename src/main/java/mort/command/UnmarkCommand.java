@@ -11,21 +11,19 @@ import mort.ui.Ui;
 public class UnmarkCommand extends Command {
     /** Index of the task to be marked as incomplete */
     private int taskNumber;
+    
     public UnmarkCommand(int taskNumber) {
         this.taskNumber = taskNumber;
     }
+    
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MortException {
         try {
-            String msg = tasks.unmarkTask(this.taskNumber - 1);
+            String unmarkMessage = tasks.unmarkTask(this.taskNumber - 1);
             storage.save(tasks);
-            return msg; // abstract away to Ui class
+            return unmarkMessage;
         } catch (IndexOutOfBoundsException e) {
             throw new MortException(ui.getMissingTaskError(CommandWord.UNMARK, this.taskNumber));
         }
-    }
-    @Override
-    public boolean isExit() {
-        return false;
     }
 }

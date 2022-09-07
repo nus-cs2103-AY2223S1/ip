@@ -12,11 +12,7 @@ import java.util.List;
 
 import mort.exception.MortException;
 import mort.parser.Parser;
-import mort.task.Deadline;
-import mort.task.Event;
-import mort.task.Task;
-import mort.task.TaskList;
-import mort.task.ToDo;
+import mort.task.*;
 
 /**
  * Class that contains methods to save tasks to a file
@@ -73,32 +69,7 @@ public class Storage {
                 List<String> allLines = Files.readAllLines(this.filePath);
                 for (String line : allLines) {
                     String[] parsedTask = Parser.parseSavedTask(line);
-                    boolean isDone = parsedTask[1].contains("1");
-                    String desc = parsedTask[2];
-                    Task task = null;
-                    switch (parsedTask[0]) {
-                    case "T":
-                        task = new ToDo(desc, isDone);
-                        break;
-                    case "D":
-                        if (parsedTask[3].contains(" ")) {
-                            LocalDateTime dateTime = Parser.convertStringToDateTime(parsedTask[3]);
-                            task = new Deadline(desc, dateTime, isDone);
-                        } else {
-                            LocalDate date = Parser.convertStringToDate(parsedTask[3]);
-                            task = new Deadline(desc, date, isDone);
-                        }
-                        break;
-                    case "E":
-                        if (parsedTask[3].contains(" ")) {
-                            LocalDateTime dateTime = Parser.convertStringToDateTime(parsedTask[3]);
-                            task = new Event(desc, dateTime, isDone);
-                        } else {
-                            LocalDate date = Parser.convertStringToDate(parsedTask[3]);
-                            task = new Event(desc, date, isDone);
-                        }
-                        break;
-                    }
+                    Task task = createTask(parsedTask);
                     this.tasks.add(task);
                 }
             }
@@ -107,4 +78,45 @@ public class Storage {
             throw new MortException();
         }
     }
+    
+    private Task createTask(String[] parsedTask) throws MortException {
+        String taskType = parsedTask[0];
+        boolean isDone = parsedTask[1].contains("1");
+        String description = parsedTask[2];
+        Task task = null;
+        switch (taskType) {
+        case "T":
+            task = new ToDo(description, isDone);
+            break;
+        case "D":
+            task = createDeadline(description, isDone, parsedTask[3]);
+            break;
+        case "E":
+            task = createEvent(description, isDone, parsedTask[3]);
+            break;
+        }
+        return task;
+    }
+    
+    private Deadline createDeadline(String description, boolean isDone, String dateString) throws MortException {
+        boolean hasTime = dateString.contains(" ");
+        if (hasTime) {
+            LocalDateTime dateTime = Parser.convertStringToDateTime(dateString);
+            return new Deadline(description, dateTime, isDone);
+        } else {
+            LocalDate date = Parser.convertStringToDate(dateString);
+            return new Deadline(description, date, isDone);
+        }
+    }
+
+    private Event createEvent(String description, boolean isDone, String dateString) throws MortException {
+        boolean hasTime = dateString.contains(" ");
+        if (hasTime) {
+            LocalDateTime dateTime = Parser.convertStringToDateTime(dateString);
+            return new Event(description, dateTime, isDone);
+        } else {
+            LocalDate date = Parser.convertStringToDate(dateString);
+            return new Event(description, date, isDone);
+        }
+    } // add full commit message, changes already added/staged for commit
 }

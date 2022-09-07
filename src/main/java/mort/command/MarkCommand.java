@@ -11,21 +11,19 @@ import mort.ui.Ui;
 public class MarkCommand extends Command {
     /** Index of task to be marked as complete */
     private int taskNumber;
+    
     public MarkCommand(int taskNumber) {
         this.taskNumber = taskNumber;
     }
+    
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MortException {
         try {
-            String msg = tasks.markTask(this.taskNumber - 1);
+            String markMessage = tasks.markTask(this.taskNumber - 1);
             storage.save(tasks);
-            return msg; //abstract away to Ui class
+            return markMessage;
         } catch (IndexOutOfBoundsException e) {
             throw new MortException(ui.getMissingTaskError(CommandWord.MARK, this.taskNumber));
         }
-    }
-    @Override
-    public boolean isExit() {
-        return false;
     }
 }
