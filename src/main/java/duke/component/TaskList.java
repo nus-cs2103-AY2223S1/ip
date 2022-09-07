@@ -47,6 +47,7 @@ public class TaskList {
 
     /**
      * Returns a String representation of the TaskList for storage.
+     *
      * @return String representation of the TaskList for storage.
      */
     public String toStorage() {
