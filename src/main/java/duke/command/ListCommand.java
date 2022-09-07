@@ -22,7 +22,7 @@ public class ListCommand extends Command {
         // Append notes into list string
         listString.append("\nHere are your notes:\n");
         for (int i = 0; i < notes.size(); i++) {
-            listString.append(String.format("%d.", i + 1));
+            listString.append(String.format("N%d.", i + 1));
             listString.append(notes.get(i).toString());
             listString.append("\n");
         }
