@@ -58,7 +58,7 @@ public class Event extends DatedTask {
      */
     @Override
     public String toString() {
-        return super.toString() + " at: "
+        return super.toString() + " at "
                 + this.time.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm"));
     }
 }

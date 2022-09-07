@@ -1,21 +1,23 @@
-package ava;
-
-import ava.task.Deadline;
-import org.junit.jupiter.api.Test;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+package ava.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.nio.charset.Charset;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import org.junit.jupiter.api.Test;
+
 public class DeadlineTest {
-    public static DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private static DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     @Test
     public void markTest() {
+        byte[] emojiCheckByteCode = new byte[]{(byte) 0xE2, (byte) 0x9C, (byte) 0x85};
+        String check = new String(emojiCheckByteCode, Charset.forName("UTF-8"));
         Deadline deadline = new Deadline("cs2103 ip", false,
                 LocalDateTime.parse("2022-08-26 16:00", timeFormat));
-        assertEquals(deadline.markDone().toString(), "[D][X] cs2103 ip (by: 26-Aug-2022 16:00)");
+        assertEquals(deadline.markDone().toString(), check + " - cs2103 ip is due by 26-Aug-2022 16:00");
     }
 
     @Test

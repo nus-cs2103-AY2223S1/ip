@@ -130,7 +130,7 @@ public class TaskList {
      * @return An array of string representation of the Tasks in the list, numbered from 1.
      */
     public String[] toStringArray() {
-        String[] copy = tasks.stream().map(Object::toString).toArray(String[]::new);
+        String[] copy = tasks.stream().map(Task::toString).toArray(String[]::new);
         for (int i = 0; i < size(); i++) {
             copy[i] = (i + 1) + ". " + copy[i];
         }

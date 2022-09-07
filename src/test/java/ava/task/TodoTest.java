@@ -1,15 +1,18 @@
-package ava;
-
-import ava.task.Todo;
-import org.junit.jupiter.api.Test;
+package ava.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.nio.charset.Charset;
+
+import org.junit.jupiter.api.Test;
 
 public class TodoTest {
     @Test
     public void markTest() {
+        byte[] emojiCheckByteCode = new byte[]{(byte) 0xE2, (byte) 0x9C, (byte) 0x85};
+        String check = new String(emojiCheckByteCode, Charset.forName("UTF-8"));
         Todo todo = new Todo("Eat lunch", false);
-        assertEquals(todo.markDone().toString(), "[T][X] Eat lunch");
+        assertEquals(todo.markDone().toString(), check + " - Eat lunch");
     }
 
     @Test
