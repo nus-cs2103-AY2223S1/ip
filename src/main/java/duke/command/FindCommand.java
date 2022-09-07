@@ -2,11 +2,11 @@ package duke.command;
 
 import java.util.ArrayList;
 
-import duke.DukeException;
 import duke.Storage;
 import duke.Task;
 import duke.TaskList;
 import duke.Ui;
+import duke.exception.DukeException;
 
 /**
  * Represents a command to find a task.

@@ -5,11 +5,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import duke.exception.DukeInvalidSaveDataException;
+
 /**
  * Represents a deadline to be completed. Has a description, date
  * that the deadline is due, and can be marked as done or undone.
  */
 public class Deadline extends Task {
+    private static final char DEADLINE_TAG = 'D';
     protected LocalDate by;
 
     public Deadline(String description, String by) {
@@ -24,7 +27,7 @@ public class Deadline extends Task {
      * @param isDone      whether the deadline is done
      */
     public Deadline(String description, String by, boolean isDone) {
-        super(description, 'D', isDone);
+        super(description, DEADLINE_TAG, isDone);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.by = LocalDate.parse(Arrays.stream(by.split(" ")).skip(1)
                 .collect(Collectors.joining("")), formatter);
@@ -42,12 +45,12 @@ public class Deadline extends Task {
      *
      * @param saveString the save string data
      * @return the new Deadline object created from saveString
-     * @throws DukeException
+     * @throws DukeInvalidSaveDataException
      */
-    public static Deadline fromSaveString(String saveString) throws DukeException {
+    public static Deadline fromSaveString(String saveString) throws DukeInvalidSaveDataException {
         String[] splitSaveString = saveString.split("(\",\")|(\",)|(,\")|\"");
         if (splitSaveString.length != 3) {
-            throw new DukeException("Tried to read unexpected save data.");
+            throw new DukeInvalidSaveDataException();
         }
         assert splitSaveString[0].equals("D") : "Save data is not a deadline.";
         assert splitSaveString[0].endsWith("1") || splitSaveString[0].endsWith("0")

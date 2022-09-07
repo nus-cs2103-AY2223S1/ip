@@ -7,6 +7,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+import duke.exception.DukeException;
+import duke.exception.DukeInvalidSaveDataException;
+
 /**
  * Handles saving and loading of tasks to and from a file.
  */
@@ -26,9 +29,9 @@ public class Storage {
      * Loads the tasks from the file.
      *
      * @return the tasks from the file
-     * @throws DukeException if there is an error reading the file
+     * @throws DukeInvalidSaveDataException if there is an error reading the file
      */
-    public ArrayList<Task> load() throws DukeException {
+    public ArrayList<Task> load() throws DukeInvalidSaveDataException {
         Path saveLocation = Paths.get(filePath);
         ArrayList<Task> tasks = new ArrayList<>();
         try {
@@ -45,7 +48,7 @@ public class Storage {
                     tasks.add(Deadline.fromSaveString(taskString));
                     break;
                 default:
-                    throw new DukeException("Tried to read unexpected save data.");
+                    throw new DukeInvalidSaveDataException();
                 }
             });
         } catch (IOException ignored) {

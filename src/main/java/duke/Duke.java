@@ -1,9 +1,9 @@
 package duke;
 
-import javafx.application.Application;
-
 import duke.command.Command;
+import duke.exception.DukeException;
 import duke.gui.Main;
+import javafx.application.Application;
 
 /**
  * Duke is a chatbot that helps you keep track of your tasks.

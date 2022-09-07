@@ -5,11 +5,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import duke.exception.DukeInvalidSaveDataException;
+
 /**
  * Represents an event that will happen. Has a description, date
  * that the event occurs, and can be marked as done or undone.
  */
 public class Event extends Task {
+    private static final char EVENT_TAG = 'E';
     protected LocalDate on;
 
     public Event(String description, String on) {
@@ -24,7 +27,7 @@ public class Event extends Task {
      * @param isDone
      */
     public Event(String description, String on, boolean isDone) {
-        super(description, 'E', isDone);
+        super(description, EVENT_TAG, isDone);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.on = LocalDate.parse(Arrays.stream(on.split(" ")).skip(1)
                 .collect(Collectors.joining("")), formatter);
@@ -44,10 +47,10 @@ public class Event extends Task {
      * @return the new Event object created from saveString
      * @throws DukeException
      */
-    public static Event fromSaveString(String saveString) throws DukeException {
+    public static Event fromSaveString(String saveString) throws DukeInvalidSaveDataException {
         String[] splitSaveString = saveString.split("(\",\")|(\",)|(,\")|\"");
         if (splitSaveString.length != 3) {
-            throw new DukeException("Tried to read unexpected save data.");
+            throw new DukeInvalidSaveDataException();
         }
         assert splitSaveString[0].equals("E") : "Save data is not an event.";
         assert splitSaveString[0].endsWith("1") || splitSaveString[0].endsWith("0")

@@ -14,6 +14,8 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.TodoCommand;
 
+import duke.exception.DukeException;
+
 public class ParserTest {
     @Test
     public void testParseTodo() {

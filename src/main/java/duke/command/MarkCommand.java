@@ -1,9 +1,9 @@
 package duke.command;
 
-import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.exception.DukeException;
 
 /**
  * Represents a command to mark or unmark a task as done.

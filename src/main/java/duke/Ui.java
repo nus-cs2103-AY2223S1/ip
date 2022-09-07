@@ -2,6 +2,8 @@ package duke;
 
 import java.util.Scanner;
 
+import duke.exception.DukeException;
+
 /**
  * Handles majority of user interaction and printing for CLI mode.
  */

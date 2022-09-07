@@ -10,6 +10,7 @@ import duke.command.EventCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.TodoCommand;
+import duke.exception.DukeException;
 
 /**
  * Parser takes in a string and returns a Command object which

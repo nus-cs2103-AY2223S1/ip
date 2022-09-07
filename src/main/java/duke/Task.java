@@ -1,10 +1,15 @@
 package duke;
 
+import duke.exception.DukeInvalidSaveDataException;
+
 /**
  * Represents a task to be completed. Has a description,
  * and can be marked as done or undone.
  */
 public class Task {
+    private static final char DEFAULT_TAG = 'T';
+    private static final char DONE_SYMBOL = 'X';
+
     private boolean isDone;
     private String description;
     private char tag;
@@ -27,7 +32,7 @@ public class Task {
     }
 
     private Task(String description, boolean isDone) {
-        this(description, 'T', isDone);
+        this(description, DEFAULT_TAG, isDone);
     }
 
     /**
@@ -41,12 +46,12 @@ public class Task {
      *
      * @param saveString the save string data
      * @return the new Task object created from saveString
-     * @throws DukeException
+     * @throws DukeInvalidSaveDataException
      */
-    public static Task fromSaveString(String saveString) throws DukeException {
+    public static Task fromSaveString(String saveString) throws DukeInvalidSaveDataException {
         String[] splitSaveString = saveString.split("(\",\")|(\",)|(,\")|\"");
         if (splitSaveString.length != 2) {
-            throw new DukeException("Tried to read unexpected save data.");
+            throw new DukeInvalidSaveDataException();
         }
         assert splitSaveString[0].equals("T") : "Save data is not a todo.";
         assert splitSaveString[0].endsWith("1") || splitSaveString[0].endsWith("0")
@@ -89,7 +94,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return String.format("[%s][%s] %s", this.tag, this.isDone ? 'X' : ' ', this.description);
+        return String.format("[%s][%s] %s", this.tag, this.isDone ? DONE_SYMBOL : ' ', this.description);
     }
 
     @Override
