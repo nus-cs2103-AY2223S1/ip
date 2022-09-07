@@ -108,7 +108,8 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        new Duke("./src/main/files/taskset.txt").run();
+        Duke duke = new Duke("./src/main/files/taskset.txt");
+        duke.run();
         System.exit(0);
     }
 }

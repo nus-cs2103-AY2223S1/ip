@@ -25,6 +25,7 @@ public class Duke {
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.extractFile());
+            assert tasks.getSize() >= 0 : "Errors happened with your file.";
         } catch (WrongMessageException e) {
             System.out.println(e);
             tasks = new TaskList();
