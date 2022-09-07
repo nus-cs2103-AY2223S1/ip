@@ -25,7 +25,7 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.deadline.format(dtf) + ")";
+        return "[D]" + super.toString() + " (by: " + deadline.format(dtf) + ")";
     }
 
     /**
@@ -36,6 +36,6 @@ public class Deadline extends Task {
      */
     @Override
     public String stringFormatting() {
-        return "D" + super.stringFormatting() + " # " + this.deadline;
+        return "D" + super.stringFormatting() + " # " + deadline;
     }
 }

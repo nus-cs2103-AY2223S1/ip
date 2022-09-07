@@ -46,16 +46,16 @@ public class FindCommand extends Command{
             String message = "\t" + "No search results are available for this keyword!";
             return ui.displayCommandMessage(message, null, null);
         } else {
-            MultiLineFormatter mf = new MultiLineFormatter();
+            MultiLineFormatter mFormatter = new MultiLineFormatter();
             String findMessage = "Here are the list of matching tasks!";
-            mf.add(findMessage);
-            mf.add("\n");
+            mFormatter.add(findMessage);
+            mFormatter.add("\n");
             for (int j = 0; j < tempTaskArray.size(); j++) {
                 String itemDisplayed = String.format("\t\t%d. %s", j + 1, tempTaskArray.get(j));
-                mf.add(itemDisplayed);
-                mf.add("\n");
+                mFormatter.add(itemDisplayed);
+                mFormatter.add("\n");
             }
-            return mf.getFullMessage();
+            return mFormatter.getFullMessage();
         }
     }
 }

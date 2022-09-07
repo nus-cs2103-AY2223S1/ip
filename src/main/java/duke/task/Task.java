@@ -46,7 +46,7 @@ public abstract class Task {
      * @return true if the keyword is in the description;else return false;
      */
     public Boolean hasKeyword(String keyword) {
-        return this.description.toLowerCase().contains(keyword);
+        return description.toLowerCase().contains(keyword);
     }
 
     /**
@@ -57,11 +57,11 @@ public abstract class Task {
      */
     public String stringFormatting() {
         String marker = getStatus().equals("X") ? "T" : "F";
-        return " # " + marker + " # " + this.description;
+        return " # " + marker + " # " + description;
     }
 
     @Override
     public String toString() {
-        return "[" + getStatus() + "] " + this.description;
+        return "[" + getStatus() + "] " + description;
     }
 }
