@@ -21,6 +21,7 @@ public abstract class Task {
      * @param description Description of the task.
      */
     public Task(String description) {
+        assert description != null : "Task should contain a description";
         this.description = description;
         this.isDone = false;
     }
@@ -100,6 +101,7 @@ public abstract class Task {
      * @throws DukeException If the storage String is invalid.
      */
     public static Task fromStorage(String task) throws DukeException {
+        assert task != null : "Task should not be null";
         String[] taskDetails = task.split(" \\| ");
         TaskType taskType = TaskType.parse(taskDetails[0]);
         Task currTask;
