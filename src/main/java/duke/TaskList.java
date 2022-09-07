@@ -23,9 +23,15 @@ public class TaskList {
      * Adds the given <code>Task</code> to the list.
      *
      * @param tasks Variable number of <code>Task</code>s to be added to the list.
+     * @throws DukeException If duplicate tasks are added.
      */
-    public void addTasks(Task ...tasks) {
+    public void addTasks(Task ...tasks) throws DukeException {
         for (Task t : tasks) {
+            for (Task currentTask : this.userTasks) {
+                if (currentTask.getTaskDescription().equals(t.getTaskDescription())) {
+                    throw new DukeException("This task is already in the list.");
+                }
+            }
             this.userTasks.add(t);
         }
     }
