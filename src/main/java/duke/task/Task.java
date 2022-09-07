@@ -52,6 +52,8 @@ public abstract class Task {
 
     public abstract String toFormattedString();
 
+    public abstract Task clone();
+
     /**
      * Return the String representation of the Task.
      * @return The String representation of the Task.

@@ -46,6 +46,15 @@ public class Deadline extends Task {
                 Parser.parseDateTimeToString(this.getTime()));
     }
 
+    @Override
+    public Deadline clone() {
+        Deadline result = new Deadline(this.getName(), this.getTime());
+        if (this.getIsDone()) {
+            result.markAsDone();
+        }
+        return result;
+    }
+
     /**
      * Returns boolean indicating whether this object
      * is equivalent to another object.

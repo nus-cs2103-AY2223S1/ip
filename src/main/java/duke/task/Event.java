@@ -45,6 +45,15 @@ public class Event extends Task {
                 Parser.parseDateTimeToString(this.getTime()));
     }
 
+    @Override
+    public Event clone() {
+        Event result = new Event(this.getName(), this.getTime());
+        if (this.getIsDone()) {
+            result.markAsDone();
+        }
+        return result;
+    }
+
     /**
      * Returns boolean indicating whether this object
      * is equivalent to another object.

@@ -28,6 +28,12 @@ public class TaskList implements Savable<TaskList> {
         tasks.add(task);
     }
 
+    public TaskList clone() {
+        TaskList result = new TaskList();
+        tasks.stream().forEach(task -> result.add(task.clone()));
+        return result;
+    }
+
     /**
      * Returns a boolean whether the given ArrayList is equals to the internal TaskList.
      * @param taskArrayList The given ArrayList of Tasks.

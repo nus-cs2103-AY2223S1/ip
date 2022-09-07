@@ -32,6 +32,15 @@ public class Todo extends Task {
                 this.getName());
     }
 
+    @Override
+    public Todo clone() {
+        Todo result = new Todo(this.getName());
+        if (this.getIsDone()) {
+            result.markAsDone();
+        }
+        return result;
+    }
+
     /**
      * Returns boolean indicating whether this object
      * is equivalent to another object.
