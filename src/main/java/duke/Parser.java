@@ -7,6 +7,7 @@ import duke.command.Command;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
 import duke.command.EventCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.NoteCommand;
@@ -99,6 +100,13 @@ public class Parser {
             }
             // Return the command
             return new DeleteCommand(type, Integer.parseInt(inputSplit[1]) - 1);
+        case "find":
+            // Error handling
+            if (inputSplit.length < 2) {
+                throw new DukeException("Please provide a search term.");
+            }
+            // Return the command
+            return new FindCommand(input.substring(5));
         default:
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
