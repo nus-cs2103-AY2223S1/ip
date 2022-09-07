@@ -1,6 +1,6 @@
 # User Guide
 
-## Features 
+## Features
 
 ### Feature-ABC
 
@@ -12,18 +12,46 @@ Description of the feature.
 
 ## Usage
 
-### `Keyword` - Describe action
+### `add` - Add a new task to your task list.
 
-Describe the action and its outcome.
+There are 3 tpyes of tasks: todo, deadline, and event.
 
-Example of usage: 
+Examples of adding tasks:
 
-`keyword (optional arguments)`
+`add todo todo_name`
+
+`add deadline deadline_name /by YYYY/MM/DD`
+
+`add event event_name /at YYYY/MM/DD`
 
 Expected outcome:
 
-Description of the outcome.
+Add the respective tasks into the task list.
 
-```
-expected output
-```
+### `list` - List all of the tasks in your task list.
+
+Example of listing tasks:
+
+`list`
+
+Expected outcome:
+
+A list of tasks.
+
+### `mark` `unmark` - mark or unmark one task in your task list.
+
+Example of marking tasks as done:
+
+`mark index_in_the_list`
+
+Expected outcome:
+
+mark the task of the given index as done.
+
+Example of marking tasks as undone:
+
+`unmark index_in_the_list`
+
+Expected outcome:
+
+mark the task of the given index as undone.
