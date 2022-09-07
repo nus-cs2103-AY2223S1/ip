@@ -1,14 +1,21 @@
+import java.time.format.DateTimeParseException;
+
 public class TaskList {
     Task[] taskList = new Task[100];
     // The first index that is empty
     private int firstEmptyIndex = 0;
 
     public void addTask(String input, Task.TaskType taskType) {
-        Task task = taskType == Task.TaskType.ToDo
-                ? new Todo(input)
-                : taskType == Task.TaskType.Event
-                ? new Event(input)
-                : new Deadline(input);
+        Task task;
+        try {
+            task = taskType == Task.TaskType.ToDo
+                    ? new Todo(input)
+                    : taskType == Task.TaskType.Event
+                    ? new Event(input)
+                    : new Deadline(input);
+        } catch (DateTimeParseException e) {
+            return;
+        }
 
         taskList[firstEmptyIndex] = task;
 
