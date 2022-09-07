@@ -188,4 +188,9 @@ public class Duke {
         ArrayList<Task> results = tasks.find(searchTerm);
         ui.printMatchingTasks(results);
     }
+
+    public String getResponse(String input) {
+        return "apple";
+    }
+    
 }
