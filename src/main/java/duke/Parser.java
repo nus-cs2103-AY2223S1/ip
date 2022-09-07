@@ -3,6 +3,7 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Represents a parser for user input given to Duke chatbot.
@@ -93,7 +94,8 @@ public class Parser {
      * @param userResponse String input provided by user.
      * @return A <code>Command</code> representing the action requested from Duke chatbot.
      */
-    public static Command parseUserResponse(String userResponse) throws DukeException {
+    public static Command parseUserResponse(String userResponse,
+                                            Storage storage, Ui ui, TaskList tasks) throws DukeException {
         String[] parsedUserResponse = userResponse.split(" ");
         String mainCommand = parsedUserResponse[0];
         switch(mainCommand) {
@@ -101,57 +103,57 @@ public class Parser {
             if (parsedUserResponse.length > 1) {
                 throw new DukeException("Invalid number of arguments, only one required\n");
             } else {
-                return Command.BYE;
+                return new ByeCommand(storage, ui, tasks);
             }
         case "list":
             if (parsedUserResponse.length > 1) {
                 throw new DukeException("Invalid number of arguments, only one required\n");
             } else {
-                return Command.LIST;
+                return new ListCommand(ui, tasks);
             }
         case "mark":
             if (parsedUserResponse.length != 2) {
                 throw new DukeException("Invalid number of arguments, two required\n");
             } else {
-                return Command.MARK;
+                return new MarkCommand(ui, tasks, userResponse);
             }
         case "unmark":
             if (parsedUserResponse.length != 2) {
                 throw new DukeException("Invalid number of arguments, two required\n");
             } else {
-                return Command.UNMARK;
+                return new UnmarkCommand(ui, tasks, userResponse);
             }
         case "todo":
             if (parsedUserResponse.length < 2) {
                 throw new DukeException("The description of a todo cannot be empty.\n");
             } else {
-                return Command.TODO;
+                return new TodoCommand(ui, tasks, userResponse);
             }
         case "deadline":
             int bySeparationIndex = Arrays.asList(parsedUserResponse).indexOf("/by");
             if (bySeparationIndex == -1) {
                 throw new DukeException("Error: No date added for the deadline.\n");
             } else {
-                return Command.DEADLINE;
+                return new DeadlineCommand(ui, tasks, userResponse);
             }
         case "event":
             int atSeparationIndex = Arrays.asList(parsedUserResponse).indexOf("/at");
             if (atSeparationIndex == -1) {
                 throw new DukeException("Error: No date added for the event.\n");
             } else {
-                return Command.EVENT;
+                return new EventCommand(ui, tasks, userResponse);
             }
         case "delete":
             if (parsedUserResponse.length != 2) {
                 throw new DukeException("Invalid number of arguments, two required\n");
             } else {
-                return Command.DELETE;
+                return new DeleteCommand(ui, tasks, userResponse);
             }
         case "find":
             if (parsedUserResponse.length < 2) {
                 throw new DukeException("Invalid number of arguments, at least two required\n");
             } else {
-                return Command.FIND;
+                return new FindCommand(ui, tasks, userResponse);
             }
         default:
             throw new DukeException("I'm sorry, but I don't know what that means :-(\n");
