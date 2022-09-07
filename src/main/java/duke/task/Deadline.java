@@ -22,6 +22,12 @@ public class Deadline extends Task {
         this.endDate = endDate;
     }
 
+    /**
+     * Returns the number of days before this deadline is due.
+     *
+     * @param today The current date.
+     * @return The number of days before this deadline is due.
+     */
     public long getDaysToDeadlineFrom(LocalDate today) {
         return DAYS.between(today, this.endDate);
     }
