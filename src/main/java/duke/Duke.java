@@ -15,10 +15,18 @@ import duke.util.Ui;
  * @author Jicson Toh
  */
 public class Duke {
+    private static final String FILE_PATH = "data/data.txt";
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
     private Parser parser;
+
+    /**
+     * Default constructor if no file path specified
+     */
+    public Duke() {
+        this(FILE_PATH);
+    }
 
     /**
      * Constructor for Duke Class.
@@ -33,7 +41,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("data/data.txt").run();
+        new Duke().run();
     }
 
     /**
