@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 /**
  * Represents a task that will occur on a particular date
  */
-
 public class Event extends Task {
 
     private LocalDate at;
@@ -18,6 +17,7 @@ public class Event extends Task {
 
     /**
      * Returns the string representation of the event
+     *
      * @return String representation of the task.
      */
     @Override

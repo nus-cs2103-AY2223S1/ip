@@ -16,7 +16,7 @@ public class Parser {
     public Parser(TaskList tasklist, Ui bot, Storage storage) {
         this.tasklist = tasklist;
         this.bot = bot;
-         this.storage = storage;
+        this.storage = storage;
     }
 
     /**
@@ -72,7 +72,7 @@ public class Parser {
             }
         } else if (arr[0].equals("event")) {
             String description = "";
-            String time="";
+            String time = "";
             int counter = 1;
             for(int i = 1; i < arr.length; i++){
                 if(arr[i].equals("/at")){
