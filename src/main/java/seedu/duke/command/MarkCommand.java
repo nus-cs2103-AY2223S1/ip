@@ -7,6 +7,9 @@ import seedu.duke.ui.Ui;
 
 import java.util.Objects;
 
+
+
+
 /**
  * A class which extends from the Command abstract class.
  * A MarkCommand object can be used to mark tasks as done or not done.
@@ -33,21 +36,33 @@ public class MarkCommand extends Command {
      * Marks a task as done or not done.
      * Printing out hte appropriate UI when the task has been marked successfully.
      *
-     * @param tasks The tasks object containing all the tasks and CRUD methods to modify the tasks.
+     * @param tasks The TaskList object containing all the tasks and CRUD methods to modify the tasks.
      * @param ui The Ui object capable of displaying user interface.
      * @param storage The storage object capable of doing write, load, open functionality.
      * @return the reply from the bot
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        String output = "";
+        String messageToUser = generateAppropriateUiOutput(tasks, ui);
+        storage.writeToFile(tasks);
+        return messageToUser;
+    }
+
+    /**
+     * Returns the appropriate message depending on whether it is a command to mark.
+     *
+     * @param tasks The TaskList object containing all the tasks and CRUD methods to modify the tasks.T
+     * @param ui The Ui object capable of displaying user interface.
+     * @return a message to be displayed to the user.
+     */
+    private String generateAppropriateUiOutput(TaskList tasks, Ui ui) {
+        String messageToUser = "";
         if (this.toMark) {
             Task task = tasks.markTask(index);
-            output += ui.showMarkStatus(task);
+            messageToUser += ui.showMarkStatus(task);
         } else {
             Task task = tasks.unmarkTask(index);
-            output += ui.showUnmarkStatus(task);
+            messageToUser += ui.showUnmarkStatus(task);
         }
-        storage.writeToFile(tasks);
-        return output;
+        return messageToUser;
     }
 }

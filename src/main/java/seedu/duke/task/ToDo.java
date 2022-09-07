@@ -4,6 +4,8 @@ package seedu.duke.task;
  * A class representing a todo Task.
  */
 public class ToDo extends Task {
+    private final String taskLabel = "T";
+
     /**
      * Creates a ToDo object.
      * @param description The description of the todo task.
@@ -29,7 +31,7 @@ public class ToDo extends Task {
      */
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return "[" + taskLabel + "]" + super.toString();
     }
 
     /**
@@ -38,6 +40,6 @@ public class ToDo extends Task {
      * @return The string representation of a ToDo object for the purpose of being written to af file.
      */
     public String toFileString() {
-        return "T , " + super.toFileString();
+        return taskLabel + " , " + super.toFileString();
     }
 }

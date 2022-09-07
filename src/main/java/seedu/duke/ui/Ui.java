@@ -133,7 +133,7 @@ public class Ui {
      * @param task The task to be deleted.
      */
     public String deleteTask(Task task) {
-        String text = Style.INDENTATION + "Noted. I've removed this task:" + "\n"
+        String text = Style.INDENTATION + "Noted. I've removed this task:\n"
                 + Style.INDENTATION + Style.HALF_INDENTATION + task + "\n";
         System.out.println(text);
         return text + "\n";

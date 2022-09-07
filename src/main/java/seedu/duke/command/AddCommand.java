@@ -51,25 +51,34 @@ public class AddCommand extends Command {
      * Creates a deadline, event or a todo object based on the typeOfTask.
      * This object is then added to the TaskList and the relevant messages are printed out.
      *
-     * @param tasks The tasks object containing all the tasks and CRUD methods to modify the tasks.
+     * @param tasks The TaskList object containing all the tasks and CRUD methods to modify the tasks.
      * @param ui The Ui object capable of displaying user interface.
      * @param storage The storage object capable of doing write, load, open functionality.
      * @return the reply from the bot
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        Task task = new Task("null");
-
-        if (typeOfTask.equals("deadline")) {
-            task = new Deadline(description, deadline);
-        } else if (typeOfTask.equals("event")) {
-            task = new Event(description, deadline);
-        } else if (typeOfTask.equals("todo")) {
-            task = new ToDo(description);
-        }
-
+        Task task = createAppropriateTask();
         tasks.addTask(task);
         storage.writeToFile(tasks);
-        return ui.addTask(task) + ui.displayNumberOfTasks(tasks.getNumberOfTasks());
+        String messageToUser = ui.addTask(task)
+                + ui.displayNumberOfTasks(tasks.getNumberOfTasks());
+        return messageToUser;
     }
 
+    /**
+     * Returns the appropriate task based on the typeOfTask.
+     *
+     * @return A Task object corresponding to the typeOfTask.
+     */
+    private Task createAppropriateTask() {
+        if (typeOfTask.equals("deadline")) {
+            return new Deadline(description, deadline);
+        } else if (typeOfTask.equals("event")) {
+            return new Event(description, deadline);
+        } else if (typeOfTask.equals("todo")) {
+            return new ToDo(description);
+        } else {
+            return new Task("null");
+        }
+    }
 }

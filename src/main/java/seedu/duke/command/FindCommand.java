@@ -24,13 +24,13 @@ public class FindCommand extends Command {
     /**
      * Displays the matching tasks based on this.keyword.
      *
-     * @param tasks The tasks object containing all the tasks and CRUD methods to modify the tasks.
+     * @param tasks The TaskList object containing all the tasks and CRUD methods to modify the tasks.
      * @param ui The Ui object capable of displaying user interface.
      * @param storage The storage object capable of doing write, load, open functionality.
      * @return the reply from the bot
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-
-        return ui.displayMatchingTasks() + tasks.displayMatchingTasks(keyword);
+        String messageToUser = ui.displayMatchingTasks() + tasks.displayMatchingTasks(keyword);
+        return messageToUser;
     }
 }
