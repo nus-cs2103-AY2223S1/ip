@@ -145,9 +145,8 @@ public class Parser {
      * @return a boolean value representing whether the Task is marked as done
      */
     public static boolean checkStatus(int status) {
-        // if status == 0, the task is not done yet
-        // if status == 1, the task is done
-        return status != 0;
+        final int DONE = 1;
+        return status == DONE;
     }
 
     /**
