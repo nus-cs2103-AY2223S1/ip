@@ -11,9 +11,9 @@ public class EventTest {
     @Test
     public void createEvent_validInput_getCorrectStringRepresentation() {
         try {
-            Event sampleEvent = new Event("winter break", "2022-12-07");
+            Event sampleEvent = new Event("winter break", "2022-12-07", "holiday");
             assertEquals(sampleEvent.toString(), "[E][ ] winter break "
-                    + "(at: Dec 7 2022)");
+                    + "(at: Dec 7 2022) [holiday]");
         } catch (EventException error) {
             fail("Should not have thrown any exception.");
         }
@@ -22,9 +22,9 @@ public class EventTest {
     @Test
     public void createEvent_validInput_getCorrectStorageRepresentation() {
         try {
-            Event sampleEvent = new Event("summer break", "2023-05-08");
+            Event sampleEvent = new Event("summer break", "2023-05-08", "holiday");
             assertEquals(sampleEvent.toStorageRepresentation(), "E| |"
-                    + "summer break|2023-05-08");
+                    + "summer break|2023-05-08#holiday");
         } catch (EventException error) {
             fail("Should not have thrown any exception.");
         }

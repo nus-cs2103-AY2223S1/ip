@@ -12,9 +12,9 @@ public class DeadlineTest {
     public void createDeadline_validInput_getCorrectStringRepresentation() {
         try {
             Deadline sampleDeadline = new Deadline("cs1101s grading",
-                    "2022-08-23");
+                    "2022-08-23", "uni");
             assertEquals(sampleDeadline.toString(), "[D][ ] cs1101s grading "
-                    + "(by: Aug 23 2022)");
+                    + "(by: Aug 23 2022) [uni]");
         } catch (DeadlineException error) {
             fail("Should not have thrown any exception");
         }
@@ -25,9 +25,9 @@ public class DeadlineTest {
     public void createDeadline_validInput_getCorrectStorageRepresentation() {
         try {
             Deadline sampleDeadline = new Deadline("cs2100 quiz",
-                    "2022-09-10");
+                    "2022-09-10", "uni");
             assertEquals(sampleDeadline.toStorageRepresentation(), "D| |"
-                    + "cs2100 quiz|2022-09-10");
+                    + "cs2100 quiz|2022-09-10#uni");
         } catch (DeadlineException error) {
             fail("Should not have thrown any exception");
         }
