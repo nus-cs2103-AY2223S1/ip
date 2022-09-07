@@ -11,7 +11,7 @@ import duke.ui.Ui;
  */
 public class FindCommand extends Command {
     /** The search input for the task. */
-    private static String searchInput;
+    private final String searchInput;
 
     /**
      * Constructor for FindCommand.
@@ -19,7 +19,7 @@ public class FindCommand extends Command {
      * @param arguments The arguments for the task (i.e. the search input string).
      */
     public FindCommand(String arguments) {
-        FindCommand.searchInput = arguments;
+        this.searchInput = arguments;
     }
 
     /**
@@ -32,7 +32,7 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        String searchResults = tasks.findMatches(FindCommand.searchInput);
+        String searchResults = tasks.findMatches(this.searchInput);
 
         assert !searchResults.isEmpty() : "The search results should not be empty, even if there is no search results";
 

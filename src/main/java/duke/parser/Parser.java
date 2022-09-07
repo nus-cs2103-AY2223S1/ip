@@ -20,11 +20,11 @@ import duke.exception.DukeException;
  */
 public class Parser {
     /** All valid commands. */
-    private static final ArrayList<String> VALID_COMMANDS = new ArrayList<>(Arrays.asList("bye", "list", "todo",
+    private static final ArrayList<String> validCommands = new ArrayList<>(Arrays.asList("bye", "list", "todo",
             "event", "deadline", "mark", "unmark", "delete", "find"));
 
     /** All valid commands without arguments. */
-    private static final ArrayList<String> VALID_COMMANDS_WITHOUT_ARGS = new ArrayList<>(Arrays.asList("bye", "list"));
+    private static final ArrayList<String> validCommandsWithoutArgs = new ArrayList<>(Arrays.asList("bye", "list"));
 
     /**
      * Parses the user input and return the command that the user is demanding.
@@ -90,7 +90,7 @@ public class Parser {
      * @return True if command can run without arguments, false otherwise.
      */
     public static boolean canRunWithoutArgs(String command) {
-        return Parser.VALID_COMMANDS_WITHOUT_ARGS.contains(command);
+        return Parser.validCommandsWithoutArgs.contains(command);
     }
 
     /**
@@ -100,6 +100,6 @@ public class Parser {
      * @return True if command is valid, false otherwise.
      */
     public static boolean isValidCommand(String command) {
-        return Parser.VALID_COMMANDS.contains(command);
+        return Parser.validCommands.contains(command);
     }
 }
