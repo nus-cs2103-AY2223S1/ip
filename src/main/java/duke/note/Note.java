@@ -1,5 +1,7 @@
 package duke.note;
 
+import duke.exception.DukeInvalidSaveDataException;
+
 /**
  * Represents a note. Stores only a description.
  */
@@ -20,12 +22,15 @@ public class Note {
      * N,"&lt;description&gt;"
      * </pre>
      * <p>
-     * 
+     *
      * @param saveString
      * @return the new Note object created from saveString
      */
-    public static Note fromSaveString(String saveString) {
+    public static Note fromSaveString(String saveString) throws DukeInvalidSaveDataException {
         String[] splitSaveString = saveString.split("(\",\")|(\",)|(,\")|\"");
+        if (splitSaveString.length != 2) {
+            throw new DukeInvalidSaveDataException();
+        }
         assert splitSaveString[0].startsWith("N") : "Save data is not a note.";
         String description = splitSaveString[1];
         return new Note(description);

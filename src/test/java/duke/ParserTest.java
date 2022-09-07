@@ -12,8 +12,10 @@ import duke.command.DeleteCommand;
 import duke.command.EventCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.NoteCommand;
 import duke.command.TodoCommand;
 import duke.exception.DukeException;
+import duke.types.ListObject;
 
 public class ParserTest {
     @Test
@@ -68,6 +70,19 @@ public class ParserTest {
     }
 
     @Test
+    public void testParseNote() {
+        String command = "note CS2103T is fun";
+        Command c = Parser.parse(command);
+        assertEquals(c, new NoteCommand("CS2103T is fun"));
+    }
+
+    @Test
+    public void testParseNoteEmpty() {
+        String command = "note";
+        assertThrows(DukeException.class, () -> Parser.parse(command));
+    }
+
+    @Test
     public void testParseInvalid() {
         String command = "invalid";
         assertThrows(DukeException.class, () -> {
@@ -101,7 +116,7 @@ public class ParserTest {
     public void testParseDelete() {
         String command = "delete 1";
         Command c = Parser.parse(command);
-        assertEquals(c, new DeleteCommand(0));
+        assertEquals(c, new DeleteCommand(ListObject.TASK, 0));
     }
 
     @Test
