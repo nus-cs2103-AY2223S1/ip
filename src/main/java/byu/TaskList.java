@@ -47,6 +47,7 @@ public class TaskList {
      * Prints all the tasks in the list.
      */
     public void list() {
+        assert tasks.size() >= 0 : "size of list should be non-negative";
         String output = "These are the tasks in your list:\n";
         IntStream intStream = IntStream.range(1, numOfTasks);
         Stream<String> stringStream = intStream.mapToObj(
