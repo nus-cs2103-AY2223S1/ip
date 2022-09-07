@@ -1,8 +1,13 @@
 package dobby.commands;
 
+import java.io.IOException;
+
+import dobby.Dobby;
 import dobby.DobbyChat;
 import dobby.DobbyList;
+import dobby.DobbyStorage;
 import dobby.UserInput;
+
 
 /**
  * Class that deletes tasks in the list.
@@ -28,8 +33,11 @@ public class DeleteCommand extends Command {
                 DobbyChat.deleted(dl.getTask(toDelete), dl);
                 dl.delete(toDelete);
             }
+            DobbyStorage.save(dl, Dobby.getFilePath());
         } catch (StringIndexOutOfBoundsException e) {
             DobbyChat.noTaskNumber();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

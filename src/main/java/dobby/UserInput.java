@@ -180,7 +180,7 @@ public class UserInput {
     }
 
     /**
-     * Simplifies the command from initialCmd to newCmd.
+     * Simplifies the command from initialCmd to newCmd.a
      */
     public static void setSimplifiedCommand() {
         switch (initialCmd) {

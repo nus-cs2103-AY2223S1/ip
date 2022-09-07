@@ -14,9 +14,9 @@ import dobby.commands.Command;
 public class Dobby {
     private static String filePath;
     private static DobbyList dobbyList;
+    private static String DEFAULT_FILE_PATH = "./data/dobbyList.txt";
     private UserInput ui;
     private ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-
 
     /**
      * Constructor for Dobby class.
@@ -31,11 +31,15 @@ public class Dobby {
     }
 
     public Dobby() {
-        this("./data/dobbyList.txt");
+        this(DEFAULT_FILE_PATH);
     }
 
     public static String getFilePath() {
         return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 
     /**

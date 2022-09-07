@@ -1,7 +1,11 @@
 package dobby.commands;
 
+import java.io.IOException;
+
+import dobby.Dobby;
 import dobby.DobbyChat;
 import dobby.DobbyList;
+import dobby.DobbyStorage;
 import dobby.UserInput;
 
 /**
@@ -26,10 +30,13 @@ public class UnmarkCommand extends Command {
                 dl.unmark(toUnmark);
                 DobbyChat.unmarked(dl.getTaskString(toUnmark));
             }
+            DobbyStorage.save(dl, Dobby.getFilePath());
         } catch (StringIndexOutOfBoundsException e) {
             DobbyChat.noTaskNumber();
         } catch (IndexOutOfBoundsException e) {
             DobbyChat.tooLittleTasks();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -1,7 +1,11 @@
 package dobby.commands;
 
+import java.io.IOException;
+
+import dobby.Dobby;
 import dobby.DobbyChat;
 import dobby.DobbyList;
+import dobby.DobbyStorage;
 import dobby.UserInput;
 
 /**
@@ -26,10 +30,13 @@ public class MarkCommand extends Command {
                 dl.mark(toMark);
                 DobbyChat.marked(dl.getTaskString(toMark));
             }
+            DobbyStorage.save(dl, Dobby.getFilePath());
         } catch (StringIndexOutOfBoundsException e) {
             DobbyChat.noTaskNumber();
         } catch (IndexOutOfBoundsException e) {
             DobbyChat.tooLittleTasks();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

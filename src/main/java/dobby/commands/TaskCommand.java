@@ -1,16 +1,29 @@
 package dobby.commands;
 
+import java.io.IOException;
+
+import dobby.Dobby;
 import dobby.DobbyChat;
 import dobby.DobbyList;
+import dobby.DobbyStorage;
 import dobby.UserInput;
 import dobby.tasks.Deadline;
 import dobby.tasks.Event;
 import dobby.tasks.Todo;
 
+
 /**
  * Class that adds new tasks to the list.
  */
 public class TaskCommand extends Command {
+    private static String COMMAND_TODO = "todo";
+    private static String COMMAND_DEADLINE = "deadline";
+    private static String COMMAND_EVENT = "event";
+    private static String WRONG_DATE_FORMAT = "wrongDateFormat";
+    private static String NO_DATE = "noDate";
+    private static String WRONG_DATETYPE_DEADLINE = "wrongDeadline";
+    private static String WRONG_DATETYPE_EVENT = "wrongEvent";
+
     /**
      * Adds new tasks to the list.
      *
@@ -26,38 +39,41 @@ public class TaskCommand extends Command {
             if (desc.equals("")) {
                 DobbyChat.noTaskDesc();
             } else {
-                if (cmd.equals("todo")) {
+                if (cmd.equals(COMMAND_TODO)) {
                     Todo newTodo = new Todo(desc);
                     dl.add(newTodo);
                     DobbyChat.added(newTodo, dl);
+                    DobbyStorage.save(dl, Dobby.getFilePath());
                 } else {
                     date = ui.getDate();
                     //if date has the wrong format
-                    if (date.equals("wrongDateFormat")) {
+                    if (date.equals(WRONG_DATE_FORMAT)) {
                         DobbyChat.wrongDateFormat();
-                        //if user didnt use the /by command
-                    } else if (date.equals("wrongDeadline")) {
+                        //if user didn't use the /by command for a deadline
+                    } else if (date.equals(WRONG_DATETYPE_DEADLINE)) {
                         DobbyChat.noDeadlineDate();
-                        //if user didnt use the /at command
-                    } else if (date.equals("wrongEvent")) {
+                        //if user didn't use the /at command for an event
+                    } else if (date.equals(WRONG_DATETYPE_EVENT)) {
                         DobbyChat.noEventDate();
-                        //if user didnt include the date
-                    } else if (date.equals("noDate") | desc.equals("noDate")) {
-                        if (cmd.equals("event")) {
+                        //if user didn't include the date
+                    } else if (date.equals(NO_DATE) | desc.equals(NO_DATE)) {
+                        if (cmd.equals(COMMAND_EVENT)) {
                             DobbyChat.noEventDate();
                         } else {
                             DobbyChat.noDeadlineDate();
                         }
                         //user entered everything correctly
                     } else {
-                        if (cmd.equals("deadline")) {
+                        if (cmd.equals(COMMAND_DEADLINE)) {
                             Deadline newDeadline = new Deadline(desc, date);
                             dl.add(newDeadline);
                             DobbyChat.added(newDeadline, dl);
+                            DobbyStorage.save(dl, Dobby.getFilePath());
                         } else {
                             Event newEvent = new Event(desc, date);
                             dl.add(newEvent);
                             DobbyChat.added(newEvent, dl);
+                            DobbyStorage.save(dl, Dobby.getFilePath());
                         }
                     }
                 }
@@ -67,6 +83,8 @@ public class TaskCommand extends Command {
             DobbyChat.noTaskDesc();
         } catch (NullPointerException e) {
             DobbyChat.noTaskDesc();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

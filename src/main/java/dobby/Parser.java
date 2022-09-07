@@ -20,12 +20,14 @@ import dobby.commands.UnmarkCommand;
  * Class that deals with understanding user commands.
  */
 public class Parser {
-    private static final String DESC_DATE_SEPERATOR = "/";
-    private static final String TASKTYPE_REST_SEPERATOR = " ";
+    private static final String DESC_AND_DATE_SEPERATOR = "/";
+    private static final String TASKTYPE_AND_REST_SEPERATOR = " ";
     private static final String NO_DATE_FOUND = "noDate";
     private static final String WRONG_DATE_FORMAT = "wrongDateFormat";
     private static final char TASK_MARKED_SYMBOL = 'X';
     private static final String USERFILE_DESC_DATE_SEPERATOR = "|";
+    private static final String INPUT_DATE_FORMAT = "yyyy-MM-dd HHmm";
+    private static final String OUTPUT_DATE_FORMAT = "MMM dd yyyy HH:mm";
 
     /**
      * Parses the user input and returns the task description of input.
@@ -36,10 +38,10 @@ public class Parser {
     public static String getDesc(String rest) {
         try {
             assert rest != null;
-            int endIndex = rest.indexOf(DESC_DATE_SEPERATOR) - 1;
+            int endIndex = rest.indexOf(DESC_AND_DATE_SEPERATOR) - 1;
             return rest.substring(0, endIndex);
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
-            return "noDate";
+            return NO_DATE_FOUND;
         }
     }
 
@@ -54,12 +56,12 @@ public class Parser {
         try {
             assert rest != null;
             assert rest != null;
-            int i = rest.indexOf(DESC_DATE_SEPERATOR);
+            int i = rest.indexOf(DESC_AND_DATE_SEPERATOR);
             if (i == -1) {
                 dateFormatted = NO_DATE_FOUND;
             } else {
                 String dateString = rest.substring(i + 4);
-                dateFormatted = dateFormat(dateString, "yyyy-MM-dd HHmm", "MMM dd yyyy HH:mm");
+                dateFormatted = dateFormat(dateString, INPUT_DATE_FORMAT, OUTPUT_DATE_FORMAT);
             }
         } catch (DateTimeParseException e) {
             dateFormatted = WRONG_DATE_FORMAT;
@@ -77,7 +79,7 @@ public class Parser {
      */
     public static String getTaskType(String task) {
         assert task != null;
-        return task.split(TASKTYPE_REST_SEPERATOR)[0];
+        return task.split(TASKTYPE_AND_REST_SEPERATOR)[0];
     }
 
     /**
@@ -88,7 +90,7 @@ public class Parser {
      */
     public static String getRestOfCommand(String task) {
         assert task != null;
-        int firstSpace = task.indexOf(TASKTYPE_REST_SEPERATOR);
+        int firstSpace = task.indexOf(TASKTYPE_AND_REST_SEPERATOR);
         String rest = task.substring(firstSpace + 1);
         return rest;
     }
@@ -102,7 +104,7 @@ public class Parser {
     public static String getDateType(String rest) {
         try {
             assert rest != null;
-            int i = rest.indexOf(DESC_DATE_SEPERATOR);
+            int i = rest.indexOf(DESC_AND_DATE_SEPERATOR);
             if (i == -1) {
                 return NO_DATE_FOUND;
             } else {
@@ -124,7 +126,7 @@ public class Parser {
         if (rest.isBlank()) {
             return "";
         } else {
-            String oldCommand = rest.split(TASKTYPE_REST_SEPERATOR)[0];
+            String oldCommand = rest.split(TASKTYPE_AND_REST_SEPERATOR)[0];
             return oldCommand;
         }
     }
@@ -140,7 +142,7 @@ public class Parser {
         if (rest.isBlank()) {
             return "";
         } else {
-            String newCommand = rest.split(TASKTYPE_REST_SEPERATOR)[1];
+            String newCommand = rest.split(TASKTYPE_AND_REST_SEPERATOR)[1];
             return newCommand;
         }
     }
@@ -235,33 +237,23 @@ public class Parser {
     public static Command parse(String cmd) {
         assert cmd != null;
         switch (cmd) {
-        case "q":
         case "bye":
         case "quit":
             return new ByeCommand();
-        case "l":
         case "list":
             return new ListCommand();
-        case "m":
         case "mark":
             return new MarkCommand();
-        case "u":
         case "unmark":
             return new UnmarkCommand();
-        case "del":
         case "delete":
             return new DeleteCommand();
-        case "t":
         case "todo":
-        case "e":
         case "event":
-        case "d":
         case "deadline":
             return new TaskCommand();
-        case "f":
         case "find":
             return new FindCommand();
-        case "s":
         case "simplify":
             return new SimplifyCommand();
         default:
