@@ -1,0 +1,28 @@
+language: java
+
+os:
+  - linux
+  - osx
+  - windows
+
+jdk:
+  - openjdk11
+
+branches:
+  only:
+    - master
+
+jobs:
+  include:
+    - os: linux
+      script:
+        - ./runtest.sh
+    - os: osx
+      script:
+        - ./runtest.sh
+    - os: windows
+      script:
+        - ./runtest.bat
+
+notifications:
+  email: false
