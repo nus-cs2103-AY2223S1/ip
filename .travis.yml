@@ -4,7 +4,7 @@ jdk:
   - openjdk11
 
 before_install:
- - chmod +x /gradlew
+ - chmod +x gradlew
 
 jobs:
   include:
@@ -12,13 +12,13 @@ jobs:
       script:
         - pwd
         - ls -la
-        - chmod +x /runtest.sh
+        - chmod +x runtest.sh
         - ./runtest.sh
     - os: osx
       script:
         - pwd
         - ls -la
-        - chmod +x /runtest.sh
+        - chmod +x runtest.sh
         - ./runtest.sh
 
 notifications:
