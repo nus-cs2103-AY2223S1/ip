@@ -64,15 +64,8 @@ public class Duke {
     public void run() {
         Scanner scanner = new Scanner(System.in);
         while (!this.isTerminated) {
-            try {
-                if (scanner.hasNext()) {
-                    String entry = scanner.nextLine();
-                    Command command = parse(entry);
-                    execute(command);
-                    this.isTerminated = command.isTerminated();
-                }
-            } catch (DukeException dukeException) {
-                handle(dukeException);
+            if (scanner.hasNext()) {
+                getResponse(scanner.nextLine());
             }
         }
     }
@@ -121,5 +114,13 @@ public class Duke {
             return handle(dukeException);
         }
         return null;
+    }
+
+    /**
+     * Returns whether the Duke is running.
+     * @return A boolean indicating whether the Duke is running.
+     */
+    public Boolean isRunning() {
+        return !this.isTerminated;
     }
 }
