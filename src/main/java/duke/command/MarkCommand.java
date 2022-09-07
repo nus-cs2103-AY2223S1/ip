@@ -11,7 +11,7 @@ import duke.ui.Ui;
  */
 public class MarkCommand extends Command {
     /** The arguments of the command (e.g. 'sleep /at 2020-12-12'). */
-    private final String arguments;
+    private static String arguments;
 
     /**
      * Constructor of MarkCommand.
@@ -19,7 +19,7 @@ public class MarkCommand extends Command {
      * @param arguments The arguments of the command.
      */
     public MarkCommand(String arguments) {
-        this.arguments = arguments;
+        MarkCommand.arguments = arguments;
     }
 
     /**
@@ -32,7 +32,7 @@ public class MarkCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        String taskDescription = tasks.markOrUnmark(this.arguments, true);
+        String taskDescription = tasks.markOrUnmark(MarkCommand.arguments, true);
 
         assert !taskDescription.isEmpty() : "Task that is marked should not be empty string, even if operation fails";
 

@@ -12,7 +12,7 @@ import duke.exception.DukeException;
  */
 public class TaskList {
     /** List of tasks. */
-    private final ArrayList<Task> tasks;
+    private static ArrayList<Task> TASKS;
 
     /**
      * Constructor for TaskList.
@@ -20,7 +20,7 @@ public class TaskList {
      * @param tasks The tasks in TaskList.
      */
     public TaskList(ArrayList<Task> tasks) {
-        this.tasks = tasks;
+        TaskList.TASKS = tasks;
     }
 
     /**
@@ -28,7 +28,7 @@ public class TaskList {
      *
      */
     public TaskList() {
-        this.tasks = new ArrayList<>();
+        TaskList.TASKS = new ArrayList<>();
     }
 
     /**
@@ -37,7 +37,7 @@ public class TaskList {
      * @return All tasks in TaskList.
      */
     public ArrayList<Task> getTasks() {
-        return this.tasks;
+        return TaskList.TASKS;
     }
 
     /**
@@ -46,7 +46,7 @@ public class TaskList {
      * @return The total number of tasks currently.
      */
     public int getTaskLen() {
-        return this.tasks.size();
+        return TaskList.TASKS.size();
     }
 
     /**
@@ -57,7 +57,7 @@ public class TaskList {
      */
     public ToDo addToDo(String description) {
         ToDo newToDo = new ToDo(description);
-        this.tasks.add(newToDo);
+        TaskList.TASKS.add(newToDo);
 
         return newToDo;
     }
@@ -78,7 +78,7 @@ public class TaskList {
         }
 
         Deadline newDeadline = new Deadline(detailsFragments[0], detailsFragments[1].trim());
-        this.tasks.add(newDeadline);
+        TaskList.TASKS.add(newDeadline);
 
         return newDeadline;
     }
@@ -98,7 +98,7 @@ public class TaskList {
         }
 
         Event newEvent = new Event(detailsFragments[0], detailsFragments[1].trim());
-        this.tasks.add(newEvent);
+        TaskList.TASKS.add(newEvent);
 
         return newEvent;
     }
@@ -116,12 +116,12 @@ public class TaskList {
 
         int deleteIndex = Integer.parseInt(index);
 
-        if (deleteIndex < 1 || deleteIndex > this.tasks.size()) {
+        if (deleteIndex < 1 || deleteIndex > TaskList.TASKS.size()) {
             throw new DukeException("Invalid index, choose a valid item index!");
         }
 
         // Removes the task, and returns the string representation of the task deleted.
-        return this.tasks.remove(deleteIndex - 1).toString();
+        return TaskList.TASKS.remove(deleteIndex - 1).toString();
     }
 
     /**
@@ -136,17 +136,17 @@ public class TaskList {
     public String markOrUnmark(String userInput, boolean isMarkDone) throws DukeException, NumberFormatException {
         int index = Integer.parseInt(userInput.trim());
 
-        if (index < 1 || index > this.tasks.size()) {
+        if (index < 1 || index > TaskList.TASKS.size()) {
             throw new DukeException("Invalid index, please provide a valid input");
         }
 
         if (!isMarkDone) {
-            this.tasks.get(index - 1).unmark();
+            TaskList.TASKS.get(index - 1).unmark();
         } else {
-            this.tasks.get(index - 1).markAsDone();
+            TaskList.TASKS.get(index - 1).markAsDone();
         }
 
-        return this.tasks.get(index - 1).toString();
+        return TaskList.TASKS.get(index - 1).toString();
     }
 
     /**
@@ -161,7 +161,7 @@ public class TaskList {
         StringBuilder sb = new StringBuilder();
 
         int foundCount = 0;
-        for (Task task : this.tasks) {
+        for (Task task : TaskList.TASKS) {
             String taskName = task.getTaskName();
             if (taskName.contains(searchInput)) {
                 sb.append(++foundCount).append(".").append(task).append("\n");
@@ -182,10 +182,10 @@ public class TaskList {
      */
     public String allItems() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < this.tasks.size(); i++) {
+        for (int i = 0; i < TaskList.TASKS.size(); i++) {
             int itemIndex = i + 1;
 
-            sb.append(itemIndex).append(".").append(this.tasks.get(i)).append("\n");
+            sb.append(itemIndex).append(".").append(TaskList.TASKS.get(i)).append("\n");
         }
 
         return sb.toString();

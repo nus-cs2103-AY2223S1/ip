@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.Deadline;
 import duke.task.Event;
@@ -14,10 +15,10 @@ import duke.ui.Ui;
  */
 public class AddCommand extends Command {
     /** The name of the command (e.g. todo, deadline, event). */
-    private final String command;
+    private static String command;
 
     /** The arguments of the command (e.g. 'sleep /at 2020-12-12'). */
-    private final String arguments;
+    private static String arguments;
 
     /**
      * Constructor of AddCommand.
@@ -26,8 +27,8 @@ public class AddCommand extends Command {
      * @param arguments The arguments of the command (e.g. 'sleep /at 2020-12-12').
      */
     public AddCommand(String command, String arguments) {
-        this.command = command;
-        this.arguments = arguments;
+        AddCommand.command = command;
+        AddCommand.arguments = arguments;
     }
 
     /**
@@ -40,24 +41,27 @@ public class AddCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        if (this.command.equals("todo")) {
-            ToDo newToDo = tasks.addToDo(this.arguments);
+        switch (AddCommand.command) {
+        case "todo":
+            ToDo newToDo = tasks.addToDo(AddCommand.arguments);
 
             assert newToDo != null : "Should not reach this line if ToDo task failed to create";
 
             return ui.getTaskAddedMsg(tasks.getTaskLen(), newToDo);
-        } else if (this.command.equals("deadline")) {
-            Deadline newDeadline = tasks.addDeadline(this.arguments);
+        case "deadline":
+            Deadline newDeadline = tasks.addDeadline(AddCommand.arguments);
 
             assert newDeadline != null : "Should not reach this line if Deadline task failed to create";
 
             return ui.getTaskAddedMsg(tasks.getTaskLen(), newDeadline);
-        } else {
-            Event newEvent = tasks.addEvent(this.arguments);
+        case "event":
+            Event newEvent = tasks.addEvent(AddCommand.arguments);
 
             assert newEvent != null : "Should not reach this line if Event task failed to create";
 
             return ui.getTaskAddedMsg(tasks.getTaskLen(), newEvent);
+        default:
+            throw new DukeException("Invalid command to create a new task");
         }
     }
 }
