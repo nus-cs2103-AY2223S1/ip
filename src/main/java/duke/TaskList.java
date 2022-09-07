@@ -29,6 +29,7 @@ public class TaskList {
      * @return String representing task marked.
      */
     public String mark(int index) {
+        assert index > 0 : "Index should be positive";
         Task task = this.list.get(index - 1);
         task.setDone(true);
         return this.ui.showTaskMarked(task);
@@ -41,6 +42,7 @@ public class TaskList {
      * @return String representing task unmarked.
      */
     public String unmark(int index) {
+        assert index > 0 : "Index should be positive";
         Task task = this.list.get(index - 1);
         task.setDone(false);
         return this.ui.showTaskUnmarked(task);
@@ -77,6 +79,7 @@ public class TaskList {
      * @return String representing task deleted.
      */
     public String delete(int index) {
+        assert index > 0 : "Index should be positive";
         Task task = this.get(index - 1);
         this.list.remove(index - 1);
         this.count--;
@@ -100,6 +103,7 @@ public class TaskList {
      */
     @Override
     public String toString() {
+        assert this.count >= 0 : "Task count should not be negative";
         if (this.count == 0) {
             return "List is empty!";
         } else {

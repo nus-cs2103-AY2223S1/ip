@@ -77,6 +77,7 @@ public class Duke {
                 break;
             }
         }
+        assert reply.length() > 0 : "Reply should not be empty";
         return reply;
     }
 }

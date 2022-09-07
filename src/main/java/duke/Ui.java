@@ -15,22 +15,27 @@ public class Ui {
     }
 
     public String showTaskMarked(Task task) {
+        assert task != null : "Marked task cannot be null";
         return "Nice! I've marked this task as done:\n\t" + task;
     }
 
     public String showTaskUnmarked(Task task) {
+        assert task != null : "Unmarked task cannot be null";
         return "OK, I've marked this task as not done yet:\n\t" + task;
     }
 
     public String showTaskAdded(Task task) {
+        assert task != null : "Added task cannot be null";
         return "Got it. I've added this task:\n\t" + task;
     }
 
     public String showTaskDeleted(Task task) {
+        assert task != null : "Deleted task cannot be null";
         return "Noted. I've removed this task:\n\t" + task;
     }
 
     public String showTaskCount(int count) {
+        assert count >= 0 : "Task count should not be negative";
         if (count == 1) {
             return "Now you have 1 task in the list.";
         } else {
