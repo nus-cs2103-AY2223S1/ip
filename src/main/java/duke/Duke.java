@@ -31,6 +31,7 @@ public class Duke {
      */
     public String getResponse(String in) {
         // Splits the input to retrieve possible commands.
+        assert(in != null);
         try {
             Parser.parseInput(in);
         } catch (IllegalArgumentException e) {
@@ -40,6 +41,8 @@ public class Duke {
         }
         Command command = Parser.getUserCommand();
         String userInstructions = Parser.getUserInstructions();
+        assert(command != null);
+        assert(userInstructions != null);
 
         // Break out of loop
         if (command == Command.BYE) {
