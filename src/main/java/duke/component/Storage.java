@@ -25,6 +25,7 @@ public class Storage {
      */
     public Storage(Path path) throws DukeException {
         file = path.toFile();
+
         if (!file.exists()) {
             try {
                 file.getParentFile().mkdirs();

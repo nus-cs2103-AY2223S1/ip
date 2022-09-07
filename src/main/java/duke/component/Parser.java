@@ -29,6 +29,7 @@ public class Parser {
     public Command parse(String message, TaskList tasks) throws DukeException {
         String[] splitMessage = message.split("\\s+", 2);
         CommandType commandType = CommandType.parse(splitMessage[0]);
+
         switch (commandType) {
         case BYE:
             return new EndCommand();

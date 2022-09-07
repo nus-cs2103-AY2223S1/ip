@@ -133,9 +133,11 @@ public class TaskList {
                 matchingTasks.add(task);
             }
         }
+
         if (matchingTasks.size() == 0) {
             return MSG_NO_MATCH;
         }
+
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 1; i <= matchingTasks.size(); i++) {
             stringBuilder.append(i + ". " + matchingTasks.get(i - 1));
