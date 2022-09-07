@@ -34,17 +34,8 @@ public class FindCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         StringBuilder respondMessage = new StringBuilder(this.toString());
-        for (int i = 0; i < tasks.size(); i++) {
-            String taskInfo = tasks.getTask(i).toString();
-            for (int j = 0; j < this.keyWord.length; j++) {
-                if (taskInfo.contains(keyWord[j])) {
-                    respondMessage.append("\n")
-                            .append(i + 1)
-                            .append(". ")
-                            .append(taskInfo);
-                    break;
-                }
-            }
+        for (int i = 0; i < this.keyWord.length; i++) {
+            respondMessage.append(tasks.findTasks(this.keyWord[i]));
         }
         return respondMessage.append("\n________________________________________").toString();
     }

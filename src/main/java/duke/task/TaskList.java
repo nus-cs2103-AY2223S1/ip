@@ -75,4 +75,24 @@ public class TaskList {
     public boolean isEmpty() {
         return this.taskList.isEmpty();
     }
+
+    /**
+     * Iterate through the TaskList to find tasks with matching keywords.
+     *
+     * @param keyWord String representing the keyWord to search
+     * @return String representation of the compiled tasks
+     */
+    public String findTasks(String keyWord) {
+        StringBuilder tasksWithKeyWord = new StringBuilder();
+        for (int i = 0; i < this.size(); i++) {
+            String taskInfo = this.getTask(i).toString();
+            if (taskInfo.contains(keyWord)) {
+                tasksWithKeyWord.append("\n")
+                        .append(i + 1)
+                        .append(". ")
+                        .append(taskInfo);
+            }
+        }
+        return tasksWithKeyWord.toString();
+    }
 }
