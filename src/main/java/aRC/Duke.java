@@ -5,7 +5,7 @@ package arc;
  */
 public class Duke {
     private Storage storage;
-    private TaskList tasklist;
+    private TaskList tasks;
     private Parser parser;
 
     /**
@@ -13,8 +13,8 @@ public class Duke {
      */
     public Duke() {
         this.storage = new Storage("data/aRC.txt");
-        this.tasklist = new TaskList(this.storage.load());
-        this.parser = new Parser(this.storage, this.tasklist);
+        this.tasks = new TaskList(this.storage.load());
+        this.parser = new Parser(this.storage, this.tasks);
     }
 
     public String getResponse(String input) {

@@ -7,14 +7,14 @@ import java.util.ArrayList;
  */
 public class TaskList {
 
-    private ArrayList<Task> arrayList;
+    private ArrayList<Task> tasks;
 
     /**
      * Constructor for TaskList
-     * @param arrayList An ArrayList of Tasks
+     * @param tasks An ArrayList of Tasks
      */
-    public TaskList(ArrayList<Task> arrayList) {
-        this.arrayList = arrayList;
+    public TaskList(ArrayList<Task> tasks) {
+        this.tasks = tasks;
     }
 
     /**
@@ -22,7 +22,7 @@ public class TaskList {
      * @return The number of tasks currently in TaskList
      */
     public int numTasks() {
-        return this.arrayList.size();
+        return this.tasks.size();
     }
 
     /**
@@ -31,7 +31,7 @@ public class TaskList {
      * @return The task at the given index
      */
     public Task getTask(int index) {
-        return arrayList.get(index);
+        return this.tasks.get(index);
     }
 
     /**
@@ -45,17 +45,21 @@ public class TaskList {
                 "Listing the%s tasks in your list...\n", !keyword.equals("") ? " matching" : ""
         ));
 
-        if (this.arrayList.size() == 0) {
+        if (this.tasks.size() == 0) {
             sb.append("\tYou have no current tasks :-(");
         }
 
-        for (int i = 0; i < this.arrayList.size(); i++) {
-            if (this.arrayList.get(i).title.toLowerCase().contains(keyword.toLowerCase())) {
-                sb.append(String.format("\t%d. %s\n", i + 1, this.arrayList.get(i)));
+        for (int i = 0; i < this.tasks.size(); i++) {
+            if (containsRegardlessOfCase(this.tasks.get(i).title, keyword)) {
+                sb.append(String.format("\t%d. %s\n", i + 1, this.tasks.get(i)));
             }
         }
 
         return sb.toString();
+    }
+
+    private boolean containsRegardlessOfCase(String target, String sequence) {
+        return target.toLowerCase().contains(sequence.toLowerCase());
     }
 
     /**
@@ -64,10 +68,10 @@ public class TaskList {
      * @return An output message
      */
     public String addTask(Task newTask) {
-        this.arrayList.add(newTask);
+        this.tasks.add(newTask);
         return String.format(
                 "Got it. I've added this task:\n\t%s\nNow you have %d task%s in the list.",
-                newTask, this.arrayList.size(), this.arrayList.size() == 1 ? "" : "s");
+                newTask, this.tasks.size(), this.tasks.size() == 1 ? "" : "s");
     }
 
     /**
@@ -76,9 +80,9 @@ public class TaskList {
      * @return An output message
      */
     public String deleteTask(int index) {
-        Task deletedTask = this.arrayList.remove(index);
+        Task deletedTask = this.tasks.remove(index);
         return String.format(
                 "Noted. I've removed this task:\n\t%s\nNow you have %d task%s in the list.",
-                deletedTask, this.arrayList.size(), this.arrayList.size() == 1 ? "" : "s");
+                deletedTask, this.tasks.size(), this.tasks.size() == 1 ? "" : "s");
     }
 }

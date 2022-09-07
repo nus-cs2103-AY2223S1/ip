@@ -28,37 +28,15 @@ public class Storage {
      * @return An ArrayList containing tasks read from the datafile
      */
     public ArrayList<Task> load() {
-        ArrayList<Task> arrayList = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<>();
 
         try {
-            Scanner sc = new Scanner(this.dataFile);
-
-            while (sc.hasNextLine()) {
-                String[] currTask = sc.nextLine().split("\\|");
-
-                switch (currTask[0]) {
-                case "T":
-                    arrayList.add(new Todo(currTask[2], currTask[1].equals("1")));
-                    break;
-                case "D":
-                    LocalDate ldt = LocalDate.parse(currTask[3], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                    arrayList.add(new Deadline(currTask[2], currTask[1].equals("1"), ldt));
-                    break;
-                case "E":
-                    arrayList.add(new Event(currTask[2], currTask[1].equals("1"), currTask[3]));
-                    break;
-                default:
-                    System.out.println("Undefined task type: " + currTask[0]);
-                }
-            }
-
-            sc.close();
-
+            readFile(tasks);
         } catch (FileNotFoundException e) {
             createFile();
         }
 
-        return arrayList;
+        return tasks;
     }
 
     private void createFile() {
@@ -70,6 +48,40 @@ public class Storage {
         } catch (IOException e) {
             System.out.println("File not successfully created");
         }
+    }
+
+    private void readFile(ArrayList<Task> tasks) throws FileNotFoundException {
+        Scanner sc = new Scanner(this.dataFile);
+
+        while (sc.hasNextLine()) {
+            String[] currTask = sc.nextLine().split("\\|");
+            String taskType = currTask[0];
+            String isDone = currTask[1];
+            String title = currTask[2];
+
+            switch (taskType) {
+            case "T":
+                tasks.add(new Todo(title, isDoneToBoolean(isDone)));
+                break;
+            case "D":
+                String deadline = currTask[3];
+                LocalDate ldt = LocalDate.parse(deadline, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                tasks.add(new Deadline(title, isDoneToBoolean(isDone), ldt));
+                break;
+            case "E":
+                String time = currTask[3];
+                tasks.add(new Event(title, isDoneToBoolean(isDone), time));
+                break;
+            default:
+                System.out.println("Undefined task type: " + taskType);
+            }
+        }
+
+        sc.close();
+    }
+
+    private boolean isDoneToBoolean(String isDone) {
+        return isDone.equals("1");
     }
 
     /**

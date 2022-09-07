@@ -10,16 +10,16 @@ import java.util.Arrays;
  */
 public class Parser {
     private Storage storage;
-    private TaskList taskList;
+    private TaskList tasks;
 
     /**
      * Constructor for Parser
      * @param storage Storage object that handles loading and saving of data
-     * @param taskList TaskList object that stores all user tasks
+     * @param tasks TaskList object that stores all user tasks
      */
-    public Parser(Storage storage, TaskList taskList) {
+    public Parser(Storage storage, TaskList tasks) {
         this.storage = storage;
-        this.taskList = taskList;
+        this.tasks = tasks;
     }
 
     /**
@@ -66,9 +66,9 @@ public class Parser {
     public String parseList(String[] commandArgs) throws InvalidArgumentException {
         if (commandArgs.length != 0) {
             throw new InvalidArgumentException();
-        } else {
-            return this.taskList.listTasks("");
         }
+
+        return this.tasks.listTasks("");
     }
 
     /**
@@ -80,13 +80,13 @@ public class Parser {
     public String parseMark(String[] commandArgs) throws DukeException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
-        } else {
-            int index = validateIndex(commandArgs[0]) - 1;
-            String output = this.taskList.getTask(index).mark();
-            this.storage.save(this.taskList);
-
-            return output;
         }
+
+        int index = this.validateIndex(commandArgs[0]) - 1;
+        String output = this.tasks.getTask(index).mark();
+
+        this.storage.save(this.tasks);
+        return output;
     }
 
     /**
@@ -98,13 +98,13 @@ public class Parser {
     public String parseUnmark(String[] commandArgs) throws DukeException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
-        } else {
-            int index = this.validateIndex(commandArgs[0]) - 1;
-            String output = this.taskList.getTask(index).unmark();
-            this.storage.save(this.taskList);
-
-            return output;
         }
+
+        int index = this.validateIndex(commandArgs[0]) - 1;
+        String output = this.tasks.getTask(index).unmark();
+
+        this.storage.save(this.tasks);
+        return output;
     }
 
     /**
@@ -118,12 +118,13 @@ public class Parser {
 
         if (title == "") {
             throw new EmptyTitleException();
-        } else {
-            String output = this.taskList.addTask(new Todo(title, false));
-            this.storage.save(this.taskList);
-
-            return output;
         }
+
+        assert title != "";
+        String output = this.tasks.addTask(new Todo(title, false));
+
+        this.storage.save(this.tasks);
+        return output;
     }
 
     /**
@@ -135,26 +136,27 @@ public class Parser {
     public String parseDeadline(String[] commandArgs) throws DukeException {
         if (!Arrays.asList(commandArgs).contains("/by")) {
             throw new InvalidArgumentException();
-        } else {
-            int indexOfBy = Arrays.asList(commandArgs).indexOf("/by");
-            String title = String.join(" ", Arrays.copyOfRange(commandArgs, 0, indexOfBy));
-            String deadline = String.join(" ",
-                    Arrays.copyOfRange(commandArgs, indexOfBy + 1, commandArgs.length));
-
-            if (title == "") {
-                throw new EmptyTitleException();
-            } else if (deadline == "") {
-                throw new InvalidArgumentException();
-            } else {
-                assert title != "";
-                assert deadline != "";
-                LocalDate ld = this.validateDateTime(deadline);
-                String output = this.taskList.addTask(new Deadline(title, false, ld));
-                this.storage.save(this.taskList);
-
-                return output;
-            }
         }
+
+        int indexOfBy = Arrays.asList(commandArgs).indexOf("/by");
+        String title = String.join(" ", Arrays.copyOfRange(commandArgs, 0, indexOfBy));
+        String deadline = String.join(" ",
+                Arrays.copyOfRange(commandArgs, indexOfBy + 1, commandArgs.length));
+
+        if (title == "") {
+            throw new EmptyTitleException();
+        } else if (deadline == "") {
+            throw new InvalidArgumentException();
+        }
+
+        assert title != "";
+        assert deadline != "";
+
+        LocalDate ld = this.validateDateTime(deadline);
+        String output = this.tasks.addTask(new Deadline(title, false, ld));
+
+        this.storage.save(this.tasks);
+        return output;
     }
 
     /**
@@ -166,25 +168,26 @@ public class Parser {
     public String parseEvent(String[] commandArgs) throws DukeException {
         if (!Arrays.asList(commandArgs).contains("/at")) {
             throw new InvalidArgumentException();
-        } else {
-            int indexOfBy = Arrays.asList(commandArgs).indexOf("/at");
-            String title = String.join(" ", Arrays.copyOfRange(commandArgs, 0, indexOfBy));
-            String time = String.join(" ",
-                    Arrays.copyOfRange(commandArgs, indexOfBy + 1, commandArgs.length));
-
-            if (title == "") {
-                throw new EmptyTitleException();
-            } else if (time == "") {
-                throw new InvalidArgumentException();
-            } else {
-                assert title != "";
-                assert time != "";
-                String output = this.taskList.addTask(new Event(title, false, time));
-                this.storage.save(this.taskList);
-
-                return output;
-            }
         }
+
+        int indexOfBy = Arrays.asList(commandArgs).indexOf("/at");
+        String title = String.join(" ", Arrays.copyOfRange(commandArgs, 0, indexOfBy));
+        String time = String.join(" ",
+                Arrays.copyOfRange(commandArgs, indexOfBy + 1, commandArgs.length));
+
+        if (title == "") {
+            throw new EmptyTitleException();
+        } else if (time == "") {
+            throw new InvalidArgumentException();
+        }
+
+        assert title != "";
+        assert time != "";
+
+        String output = this.tasks.addTask(new Event(title, false, time));
+
+        this.storage.save(this.tasks);
+        return output;
     }
 
     /**
@@ -196,13 +199,13 @@ public class Parser {
     public String parseDelete(String[] commandArgs) throws DukeException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
-        } else {
-            int index = this.validateIndex(commandArgs[0]) - 1;
-            String output = this.taskList.deleteTask(index);
-            this.storage.save(this.taskList);
-
-            return output;
         }
+
+        int index = this.validateIndex(commandArgs[0]) - 1;
+        String output = this.tasks.deleteTask(index);
+
+        this.storage.save(this.tasks);
+        return output;
     }
 
     /**
@@ -214,11 +217,12 @@ public class Parser {
     public String parseFind(String[] commandArgs) throws InvalidArgumentException {
         if (commandArgs.length == 0) {
             throw new InvalidArgumentException();
-        } else {
-            String keyword = String.join(" ", commandArgs);
-            assert keyword != "";
-            return this.taskList.listTasks(keyword);
         }
+
+        String keyword = String.join(" ", commandArgs);
+        assert keyword != "";
+
+        return this.tasks.listTasks(keyword);
     }
 
     /**
@@ -230,9 +234,9 @@ public class Parser {
     public String parseBye(String[] commandArgs) throws InvalidArgumentException {
         if (commandArgs.length != 0) {
             throw new InvalidArgumentException();
-        } else {
-            return UI.sayBye();
         }
+
+        return UI.sayBye();
     }
 
     /**
@@ -250,7 +254,7 @@ public class Parser {
             throw new InvalidArgumentException();
         }
 
-        if (intIndex <= 0 || intIndex > this.taskList.numTasks()) {
+        if (intIndex <= 0 || intIndex > this.tasks.numTasks()) {
             throw new InvalidArgumentException();
         }
 
