@@ -5,7 +5,7 @@ package task;
  */
 public class Todo extends Task {
     /**
-     * Constructs an unmarked {@link Todo} object.
+     * Constructs an unmarked {@link Todo} object without tag.
      *
      * @param name Name of the task.
      */
@@ -14,13 +14,34 @@ public class Todo extends Task {
     }
 
     /**
-     * Constructs a marked or an unmarked {@link Todo} object.
+     * Constructs a marked or an unmarked {@link Todo} object without tag.
      *
      * @param name Name of the task.
-     * @param isDone The marked status of the task.
+     * @param isDone Marked status of the task.
      */
     public Todo(String name, boolean isDone) {
         super(name, isDone);
+    }
+
+    /**
+     * Constructs a marked or an unmarked {@link Todo} object with tag.
+     *
+     * @param name Name of the task.
+     * @param tag Tag name of the task.
+     */
+    public Todo(String name, String tag) {
+        super(name, tag);
+    }
+
+    /**
+     * Constructs a marked or an unmarked {@link Todo} object with tag.
+     *
+     * @param name Name of the task.
+     * @param isDone Marked status of the task.
+     * @param tag Tag name of the task.
+     */
+    public Todo(String name, boolean isDone, String tag) {
+        super(name, isDone, tag);
     }
 
     /**

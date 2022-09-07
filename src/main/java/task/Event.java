@@ -13,7 +13,7 @@ public class Event extends Task {
      * Constructs an unmarked {@link Event} object.
      *
      * @param name Name of the task.
-     * @param time Time of the task's event.
+     * @param time Event time of the task.
      */
     public Event(String name, LocalDateTime time) {
         super(name);
@@ -24,11 +24,36 @@ public class Event extends Task {
      * Constructs a marked or an unmarked {@link Event} object.
      *
      * @param name Name of the task.
-     * @param time Deadline of the task.
-     * @param isDone The marked status of the task.
+     * @param time Event time of the task.
+     * @param isDone Marked status of the task.
      */
     public Event(String name, LocalDateTime time, boolean isDone) {
         super(name, isDone);
+        this.time = time;
+    }
+
+    /**
+     * Constructs a marked or an unmarked {@link Event} object with tag.
+     *
+     * @param name Name of the task.
+     * @param time Event time of the task.
+     * @param tag Tag name of the task.
+     */
+    public Event(String name, LocalDateTime time, String tag) {
+        super(name, tag);
+        this.time = time;
+    }
+
+    /**
+     * Constructs a marked or an unmarked {@link Event} object with tag.
+     *
+     * @param name Name of the task.
+     * @param time Event time of the task.
+     * @param isDone Marked status of the task.
+     * @param tag Tag name of the task.
+     */
+    public Event(String name, LocalDateTime time, boolean isDone, String tag) {
+        super(name, isDone, tag);
         this.time = time;
     }
 

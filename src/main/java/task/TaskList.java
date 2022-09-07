@@ -105,7 +105,23 @@ public class TaskList {
     }
 
     /**
-     * Checks if the given keyword is in the name of the object.
+     * Find all tasks with the corresponding tag.
+     *
+     * @param tag The tag being checked.
+     * @return {@link TaskList} with the matching tag name.
+     */
+    public TaskList findTags(String tag) {
+        TaskList matchedTasks = new TaskList();
+        for (Task task: this.taskList) {
+            if (task.getTag().equals(tag) && task.isTagged()) {
+                matchedTasks.addTask(task);
+            }
+        }
+        return matchedTasks;
+    }
+
+    /**
+     * Finds all tasks that match the keyword.
      *
      * @param keyword The string keyword being checked.
      * @return {@link TaskList} with the matching {@link Task} names.

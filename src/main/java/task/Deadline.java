@@ -13,7 +13,7 @@ public class Deadline extends Task {
      * Constructs an unmarked {@link Deadline} object.
      *
      * @param name Name of the task.
-     * @param time Time of the task's deadline.
+     * @param time Deadline time of the task.
      */
     public Deadline(String name, LocalDateTime time) {
         super(name);
@@ -24,11 +24,36 @@ public class Deadline extends Task {
      * Constructs a marked or an unmarked {@link Deadline} object.
      *
      * @param name Name of the task.
-     * @param time Deadline of the task.
-     * @param isDone The marked status of the task.
+     * @param time Deadline time of the task.
+     * @param isDone Marked status of the task.
      */
     public Deadline(String name, LocalDateTime time, boolean isDone) {
         super(name, isDone);
+        this.time = time;
+    }
+
+    /**
+     * Constructs a marked or an unmarked {@link Deadline} object with tag.
+     *
+     * @param name Name of the task.
+     * @param time Deadline time of the task.
+     * @param tag Tag name of the task.
+     */
+    public Deadline(String name, LocalDateTime time, String tag) {
+        super(name, tag);
+        this.time = time;
+    }
+
+    /**
+     * Constructs a marked or an unmarked {@link Deadline} object with tag.
+     *
+     * @param name Name of the task.
+     * @param time Deadline time of the task.
+     * @param isDone Marked status of the task.
+     * @param tag Tag name of the task.
+     */
+    public Deadline(String name, LocalDateTime time, boolean isDone, String tag) {
+        super(name, isDone, tag);
         this.time = time;
     }
 

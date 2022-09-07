@@ -55,16 +55,45 @@ public class Storage {
         String[] split = inputLine.split("\\|\\|");
         String command = split[0];
         boolean isDone = Boolean.parseBoolean(split[1]);
+        String tag = split[2];
+        String name = split[3];
         Task task;
         switch (command) {
         case "T":
-            task = new Todo(split[2], isDone);
+            if (tag.equals(" ")) {
+                task = new Todo(name, isDone);
+            } else {
+                if (this.parser.isValid(tag)) {
+                    task = new Todo(name, isDone, tag);
+                } else {
+                    throw BocilException.bocilFileWrongFormatException();
+                }
+            }
             break;
         case "D":
-            task = new Deadline(split[2], parser.parseTime(split[3]), isDone);
+            if (tag.equals(" ")) {
+                task = new Deadline(name, parser.parseTime(split[4]), isDone);
+            } else {
+                if (this.parser.isValid(tag)) {
+                    task = new Deadline(name, parser.parseTime(split[4]), isDone, tag);
+                } else {
+                    throw BocilException.bocilFileWrongFormatException();
+                }
+            }
+            break;
+        case "E":
+            if (tag.equals(" ")) {
+                task = new Event(name, parser.parseTime(split[4]), isDone);
+            } else {
+                if (this.parser.isValid(tag)) {
+                    task = new Event(name, parser.parseTime(split[4]), isDone, tag);
+                } else {
+                    throw BocilException.bocilFileWrongFormatException();
+                }
+            }
             break;
         default:
-            task = new Event(split[2], parser.parseTime(split[3]), isDone);
+            throw BocilException.bocilFileWrongFormatException();
         }
         return task;
     }

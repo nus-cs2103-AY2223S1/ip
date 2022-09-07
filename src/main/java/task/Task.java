@@ -6,26 +6,54 @@ package task;
 public abstract class Task {
     private final String name;
     private boolean isDone;
+    private String tag;
 
     /**
-     * Constructs an unmarked {@link Task} object.
+     * Constructs an unmarked {@link Task} object without tag.
      *
      * @param name Name of the task.
      */
     public Task(String name) {
         this.name = name;
         this.isDone = false;
+        this.tag = null;
     }
 
     /**
-     * Constructs a marked or an unmarked {@link Task} object.
+     * Constructs a marked or an unmarked {@link Task} object without tag.
      *
      * @param name Name of the task.
-     * @param isDone The marked status of the task.
+     * @param isDone Marked status of the task.
      */
     public Task(String name, boolean isDone) {
         this.name = name;
         this.isDone = isDone;
+        this.tag = null;
+    }
+
+    /**
+     * Constructs a marked or an unmarked {@link Task} object with tag.
+     *
+     * @param name Name of the task.
+     * @param tag Tag name of the task.
+     */
+    public Task(String name, String tag) {
+        this.name = name;
+        this.isDone = false;
+        this.tag = tag;
+    }
+
+    /**
+     * Constructs a marked or an unmarked {@link Task} object with tag.
+     *
+     * @param name Name of the task.
+     * @param isDone Marked status of the task.
+     * @param tag Tag name of the task.
+     */
+    public Task(String name, boolean isDone, String tag) {
+        this.name = name;
+        this.isDone = isDone;
+        this.tag = tag;
     }
 
     /**
@@ -35,7 +63,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s] %s", this.getStatus(), this.getName());
+        return String.format("[%s][%s] %s", this.getStatus(), this.getTag(), this.getName());
     }
 
     /**
@@ -44,7 +72,7 @@ public abstract class Task {
      * @return String representation of the object.
      */
     public String toFileString() {
-        return String.format("%s||%s||%s", this.getType(), this.getBooleanStatus(), this.getName());
+        return String.format("%s||%s||%s||%s", this.getType(), this.getBooleanStatus(), this.getTag(), this.getName());
     }
 
     /**
@@ -63,6 +91,31 @@ public abstract class Task {
      */
     public boolean isDone() {
         return this.isDone;
+    }
+
+    /**
+     * Gets the tag name of the task.
+     *
+     * @return Task tag name.
+     */
+    public String getTag() {
+        return this.isTagged() ? this.tag : " ";
+    }
+
+    /**
+     * Removes a task's tag.
+     */
+    public void untag() {
+        this.tag = null;
+    }
+
+    /**
+     * Gets whether task is tagged or not.
+     *
+     * @return Task tag presence.
+     */
+    public boolean isTagged() {
+        return this.tag != null;
     }
 
     /**
@@ -109,6 +162,15 @@ public abstract class Task {
      */
     public void unmark() {
         this.isDone = false;
+    }
+
+    /**
+     * Adds a tag into the object.
+     *
+     * @param tag Tag to be added.
+     */
+    public void addTag(String tag) {
+        this.tag = tag;
     }
 
     /**
