@@ -45,12 +45,15 @@ public class Parser {
                 switch (split[0]) {
                 case "delete": // Checks for delete
                     int index = Integer.parseInt(split[1]) - 1;
+                    assert index >= 0 : "index should be >= 0";
                     return new DeleteCommand(index);
                 case "mark": // Checks for mark
                     index = Integer.parseInt(split[1]) - 1;
+                    assert index >= 0 : "index should be >= 0";
                     return new MarkCommand(index);
                 case "unmark": // Checks for unmark
                     index = Integer.parseInt(split[1]) - 1;
+                    assert index >= 0 : "index should be >= 0";
                     return new UnmarkCommand(index);
                 case "todo": // Checks for Todo
                     if (split.length < 2) {
