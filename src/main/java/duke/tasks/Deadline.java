@@ -50,4 +50,8 @@ public class Deadline extends Task {
         String s = super.toFile();
         return "D," + s + "," + time;
     }
+
+    public LocalDate getDeadline() {
+        return this.time;
+    }
 }

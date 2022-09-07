@@ -7,13 +7,9 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class DukeTest {
     @Test
-    public void testRun() {
-        Duke d = new Duke();
-        try{
-            d.run();
-        } catch (Exception e) {
-            fail();
-        }
+    public void testGetResponse() {
+        Duke duke = new Duke();
+        assertEquals(duke.getResponse("bla"), "Invalid Command");
     }
 }
 
