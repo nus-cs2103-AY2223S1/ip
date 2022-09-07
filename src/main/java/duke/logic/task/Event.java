@@ -1,9 +1,9 @@
 package duke.logic.task;
+import java.util.ArrayList;
 
 import duke.exception.DukeException;
 import duke.storage.DukeEncoder;
 
-import java.util.ArrayList;
 
 /**
  * Represents a event task.

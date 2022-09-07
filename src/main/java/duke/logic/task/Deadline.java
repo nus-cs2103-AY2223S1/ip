@@ -1,11 +1,11 @@
 package duke.logic.task;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import duke.exception.DukeException;
 import duke.storage.DukeEncoder;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 /**
  * Represents a deadline task.

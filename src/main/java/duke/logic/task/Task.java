@@ -107,14 +107,14 @@ public class Task {
      */
     public static String delete(ArrayList<Task> workList, String userInput) {
         try {
-        userInput.substring(8);
-        int index = Integer.parseInt(userInput.split(" ")[1]);
-        Task task = workList.get(index - 1);
-        workList.remove(task);
-        DukeEncoder.rewriteList(workList);
-        // Update data
-        return (Constants.ARROW + "Deleted task: " + task.toString()) + "\n"
-                + Task.updateNumOfTask(workList);
+            userInput.substring(8);
+            int index = Integer.parseInt(userInput.split(" ")[1]);
+            Task task = workList.get(index - 1);
+            workList.remove(task);
+            DukeEncoder.rewriteList(workList);
+            // Update data
+            return (Constants.ARROW + "Deleted task: " + task.toString()) + "\n"
+                    + Task.updateNumOfTask(workList);
         } catch (StringIndexOutOfBoundsException e) {
             return new DukeException.EmptyDeleteException().throwDukeException();
 
@@ -133,7 +133,7 @@ public class Task {
      * @param userInput
      * @return
      */
-    public static String find (ArrayList<Task> workList, String userInput) {
+    public static String find(ArrayList<Task> workList, String userInput) {
         String toPrint = Constants.FIND_MESSAGE + "\n";
         String keyword = userInput.substring(5);
         for (int i = 0; i < workList.size(); i++) {

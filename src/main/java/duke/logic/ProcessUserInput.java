@@ -1,4 +1,7 @@
 package duke.logic;
+import static duke.logic.task.Task.markAsDone;
+import static duke.logic.task.Task.markAsNotDone;
+
 import java.util.ArrayList;
 
 import duke.exception.DukeException;
@@ -8,7 +11,6 @@ import duke.logic.task.Task;
 import duke.logic.task.ToDo;
 import duke.ui.Constants;
 
-import static duke.logic.task.Task.*;
 
 /**
  * Represents methods process user input into command.
