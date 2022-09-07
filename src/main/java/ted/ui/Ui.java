@@ -5,13 +5,14 @@ package ted.ui;
  * and responds to the user.
  */
 public class Ui {
+    private static final String BYE_MESSAGE = "Goodbye! Have a pleasant day |._.|";
     /**
      * Returns farewell message to user.
      *
      * @return farewell message string.
      */
     public String showExit() {
-        return "Goodbye! Have a pleasant day |._.|";
+        return BYE_MESSAGE;
     }
 
     /**

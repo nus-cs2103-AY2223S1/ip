@@ -11,6 +11,7 @@ import ted.exception.TedException;
  * to the bot by the user.
  */
 public class TaskList {
+    private static final String NO_TASK_ERROR_MESSAGE = "Oh no, there's no such task T_T\n";
     private ArrayList<Task> tasks;
 
     /**
@@ -46,9 +47,9 @@ public class TaskList {
     public String list() {
         String listOfTasks = "";
         for (int i = 0; i < tasks.size(); i++) {
-            int bulletPoint = i + 1;
-            assert bulletPoint > 0;
-            listOfTasks = listOfTasks + bulletPoint + ". " + tasks.get(i) + "\n";
+            int taskNumber = i + 1;
+            assert taskNumber > 0;
+            listOfTasks = listOfTasks + taskNumber + ". " + tasks.get(i) + "\n";
         }
         return listOfTasks;
     }
@@ -74,7 +75,7 @@ public class TaskList {
      */
     public String markTask(int i) throws TedException {
         if (i - 1 < 0 || i > tasks.size()) {
-            throw new TedException("Oh no, there's no such task T_T\n");
+            throw new TedException(NO_TASK_ERROR_MESSAGE);
         }
 
         tasks.get(i - 1).markDone();
@@ -90,7 +91,7 @@ public class TaskList {
      */
     public String unmarkTask(int i) throws TedException {
         if (i - 1 < 0 || i > tasks.size()) {
-            throw new TedException("Oh no, there's no such task T_T\n");
+            throw new TedException(NO_TASK_ERROR_MESSAGE);
         }
 
         tasks.get(i - 1).unmarkDone();
@@ -117,7 +118,7 @@ public class TaskList {
      */
     public String deleteTask(int i) throws TedException {
         if (i - 1 < 0 || i > tasks.size()) {
-            throw new TedException("Oh no, there's no such task T_T\n");
+            throw new TedException(NO_TASK_ERROR_MESSAGE);
         }
 
         String task = tasks.get(i - 1).toString();
