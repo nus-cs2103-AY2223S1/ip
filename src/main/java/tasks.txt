@@ -1,1 +1,3 @@
 T|0|read book
+T|0|say hello
+E|0|say goodbye|1400

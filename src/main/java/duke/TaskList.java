@@ -44,6 +44,7 @@ public class TaskList {
      */
     public void deleteTask(int taskNumber) throws DukeException {
         try {
+            assert taskNumber < this.userTasks.size() : "Task number exceeds the number of tasks";
             Task userTask = this.userTasks.get(taskNumber);
             this.userTasks.remove(taskNumber);
         } catch (IndexOutOfBoundsException e) {
@@ -59,6 +60,7 @@ public class TaskList {
      */
     public void markTask(int taskNumber) throws DukeException {
         try {
+            assert taskNumber < this.userTasks.size() : "Task number exceeds the number of tasks";
             Task userTask = this.userTasks.get(taskNumber);
             if (userTask.isCompleted()) {
                 throw new DukeException("    " + "This task is already marked as done.\n");
@@ -78,6 +80,7 @@ public class TaskList {
      */
     public void unmarkTask(int taskNumber) throws DukeException {
         try {
+            assert taskNumber < this.userTasks.size() : "Task number exceeds the number of tasks";
             Task userTask = this.userTasks.get(taskNumber);
             if (!userTask.isCompleted()) {
                 throw new DukeException("    "
