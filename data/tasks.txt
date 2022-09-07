@@ -1,0 +1,4 @@
+[T][ ] homework
+[D][ ] coding assignment (by: Sep 5 2022)
+[E][ ] concert (at: Jun 8 2022)
+[T][ ] buy concert tickets
