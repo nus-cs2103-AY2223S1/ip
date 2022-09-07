@@ -45,6 +45,7 @@ public class UpdateMarkCommand extends UpdateCommand {
                             ":( OOPS!!! Provide a valid number (from 1 to %d) to mark a task.\n", taskList.size())
             );
         }
+
         return new UpdateMarkCommand(command, task, taskIndex);
     }
 

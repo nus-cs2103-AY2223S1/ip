@@ -53,6 +53,7 @@ public class DeleteCommand extends Command {
                             ":( OOPS!!! Provide a valid number (from 1 to %d) to delete a task.\n", taskList.size())
             );
         }
+
         return new DeleteCommand(command, task, taskIndex, taskList);
     }
 
