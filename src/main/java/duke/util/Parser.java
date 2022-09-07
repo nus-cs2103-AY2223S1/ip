@@ -37,7 +37,7 @@ public class Parser {
     public static Command parse(String fullCommand) throws DukeException, DateTimeException {
         String command = getCommandString(fullCommand);
         String commandArgument = getCommandArgument(fullCommand);
-        String commandFormat = getCommandFormat(command);
+        String commandFormat = Command.getCommandFormat(command);
         try {
             if (command.equals("todo")) {
                 if (isEmptyInput(commandArgument)) {
@@ -173,40 +173,5 @@ public class Parser {
      */
     private static boolean isEmptyInput(String input) {
         return input.length() == 0;
-    }
-
-    /**
-     * Returns the expected format of the command.
-     *
-     * @param commandString Name of the command.
-     * @return Expected format of the command.
-     * @throws UnknownCommandException If the name of the command does not match with any of the existing known
-     *              commands.
-     */
-    private static String getCommandFormat(String commandString) throws UnknownCommandException {
-        switch (commandString) {
-        case "todo":
-            return TodoCommand.getFormat();
-        case "deadline":
-            return DeadlineCommand.getFormat();
-        case "event":
-            return EventCommand.getFormat();
-        case "find":
-            return FindCommand.getFormat();
-        case "mark":
-            return MarkCommand.getFormat();
-        case "unmark":
-            return UnmarkCommand.getFormat();
-        case "delete":
-            return DeleteCommand.getFormat();
-        case "list":
-            return ListCommand.getFormat();
-        case "bye":
-            return ByeCommand.getFormat();
-        case "sort":
-            return SortCommand.getFormat();
-        default:
-            throw new UnknownCommandException(commandString);
-        }
     }
 }
