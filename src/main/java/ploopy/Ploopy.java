@@ -12,6 +12,7 @@ public class Ploopy {
 
     /** The task list to store tasks */
     private TaskList taskList;
+    
     /** The storage file to write to and read from */
     private Storage storage;
 
