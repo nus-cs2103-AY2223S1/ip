@@ -25,16 +25,15 @@ class Parser {
      * @param input command made of commandKey and argument.
      * @throws DukeException during execution of the command or if commandKey does not exist.
      */
-    public void executeCommand(String input) throws DukeException {
+    public String executeCommand(String input) throws DukeException {
         String[] arr = input.split(" ", 2);
         if (!commands.containsKey(arr[0])) {
             throw DukeException.INVALIDCOMMAND;
         }
         Command command = commands.get(arr[0]);
         if (arr.length < 2) {
-            command.execute("");
-        } else {
-            command.execute(arr[1]);
+            return command.execute("");
         }
+        return command.execute(arr[1]);
     }
 }
