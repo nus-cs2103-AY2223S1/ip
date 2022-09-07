@@ -70,6 +70,11 @@ public class TaskList {
         return list.get(index).toString();
     }
 
+    /**
+     * Remove task specified by the index.
+     *
+     * @param index position of task in list.
+     */
     public void removeTask(int index) {
         assert index < list.size();
         this.list.remove(index);
