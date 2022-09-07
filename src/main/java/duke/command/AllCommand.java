@@ -1,12 +1,12 @@
 package duke.command;
 
+import java.util.Arrays;
+
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 import javafx.util.Pair;
-
-import java.util.Arrays;
 
 /**
  * All Command for Duke application.
