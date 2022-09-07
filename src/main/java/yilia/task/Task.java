@@ -64,13 +64,13 @@ public abstract class Task {
         if (!(obj instanceof Task)) {
             return false;
         }
-        return this.content == ((Task) obj).content;
+        return this.content.equals(((Task) obj).content);
     }
     /**
-     * Returns how the task should appear on a file.
+     * Returns whether the content is included in the task.
      *
      * @param content A substring that we want to know whether is contained.
-     * @return The text information.
+     * @return A boolean value indicating if the content appears on the task.
      */
     public boolean contains(String content) {
         return this.content.contains(content);

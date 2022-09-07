@@ -22,12 +22,35 @@ public class Deadline extends Task {
         super(content, isDone);
         this.date = LocalDate.parse(date);
     }
+    /**
+     * Returns the String representation.
+     *
+     * @return The String representation.
+     */
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
+    /**
+     * Returns how the deadline should appear on a file.
+     *
+     * @return The text information.
+     */
     @Override
     public String parse() {
         return "D / " + (status() ? "1" : "0") + " / " + super.parse() + " / " + date;
+    }
+    /**
+     * Checks if two deadlines are the same.
+     *
+     * @param obj The other object to compare with.
+     * @return A boolean value indicating if two tasks are the same.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Deadline)) {
+            return false;
+        }
+        return super.equals(obj) && this.date.equals(((Deadline) obj).date);
     }
 }

@@ -136,10 +136,22 @@ public class Ui {
     }
     /**
      * Farewells to users.
+     *
      * @return A good bye message.
      */
     public String showBye() {
         String message = "Bye. Hope to see you again soon!";
+        System.out.println(message);
+        return message;
+    }
+    /**
+     * Shows duplicate task.
+     *
+     * @param task The task that already exists in the task list.
+     * @return A message to inform users of the duplicate task.
+     */
+    public String showDuplicate(Task task) {
+        String message = "The task " + task + " already exists in the task list.";
         System.out.println(message);
         return message;
     }

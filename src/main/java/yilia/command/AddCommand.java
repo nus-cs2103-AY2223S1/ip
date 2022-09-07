@@ -41,6 +41,9 @@ public class AddCommand extends Command {
                 throw new DescriptionEmptyException(type);
             }
             Todo todo = new Todo(text);
+            if (tasks.anyMatch(todo)) {
+                return ui.showDuplicate(todo);
+            }
             tasks.add(todo);
             return ui.showAddStatus(tasks);
         }
@@ -51,9 +54,15 @@ public class AddCommand extends Command {
         try {
             if (type.equals(Type.DEADLINE)) {
                 Deadline deadline = new Deadline(info[0].strip(), info[1].strip().substring(3));
+                if (tasks.anyMatch(deadline)) {
+                    return ui.showDuplicate(deadline);
+                }
                 tasks.add(deadline);
             } else if (type.equals(Type.EVENT)) {
                 Event event = new Event(info[0].strip(), info[1].strip().substring(3));
+                if (tasks.anyMatch(event)) {
+                    return ui.showDuplicate(event);
+                }
                 tasks.add(event);
             }
         } catch (Exception e) {

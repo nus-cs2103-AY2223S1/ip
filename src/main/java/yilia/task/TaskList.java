@@ -55,4 +55,7 @@ public class TaskList {
              .forEach(task -> newList.add(task));
         return newList;
     }
+    public boolean anyMatch(Task newTask) {
+        return tasks.stream().anyMatch(task -> task.equals(newTask));
+    }
 }
