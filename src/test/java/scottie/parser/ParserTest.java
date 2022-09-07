@@ -41,4 +41,37 @@ public class ParserTest {
             fail("An unexpected exception occurred while running this test.");
         }
     }
+
+    @Test
+    public void testNoMainArgument() {
+        Map<String, String> flagArgumentsMap = Map.of("at", "1/2/34 1200");
+        try {
+            assertEquals(Instruction.of("event", null, flagArgumentsMap),
+                    Parser.parse("event /at 1/2/34 1200"));
+        } catch (InvalidCommandException e) {
+            fail("An unexpected exception occurred while running this test.");
+        }
+    }
+
+    @Test
+    public void testFlagWithNoValue() {
+        Map<String, String> flagArgumentsMap = Map.of("fOne", "", "fTwo", "arg2", "fThree", "");
+        try {
+            assertEquals(Instruction.of("list", null, flagArgumentsMap),
+                    Parser.parse("list /fOne /fTwo arg2 /fThree"));
+        } catch (InvalidCommandException e) {
+            fail("An unexpected exception occurred while running this test.");
+        }
+    }
+
+    @Test
+    public void testExtraSpaces() {
+        Map<String, String> flagArgumentsMap = Map.of("by", "12/12/12");
+        try {
+            assertEquals(Instruction.of("deadline", "buy   milk", flagArgumentsMap),
+                    Parser.parse("   deadline   buy   milk   /by   12/12/12   "));
+        } catch (InvalidCommandException e) {
+            fail("An unexpected exception occurred while running this test.");
+        }
+    }
 }
