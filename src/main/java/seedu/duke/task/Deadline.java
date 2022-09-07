@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
     /* When the task is due. */
     protected LocalDate dateAndTime;
+    private final String taskLabel = "D";
 
     /**
      * Creates a Deadline object.
@@ -40,7 +41,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: "
+        return "[" + taskLabel + "]" + super.toString() + " (by: "
                 + dateAndTime.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
@@ -50,6 +51,6 @@ public class Deadline extends Task {
      * @return A string representation of a Deadline object in the format of D , do this , 2019-10-15
      */
     public String toFileString() {
-        return "D , " + super.toFileString() + " , " + dateAndTime;
+        return taskLabel + " , " + super.toFileString() + " , " + dateAndTime;
     }
 }

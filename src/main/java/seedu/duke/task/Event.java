@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 public class Event extends Task {
     /* When the task is due. */
     protected LocalDate dateAndTime;
+    private final String taskLabel = "E";
 
 
     /**
@@ -42,7 +43,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: "
+        return "[" + taskLabel + "]" + super.toString() + " (at: "
                 + dateAndTime.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
@@ -52,6 +53,6 @@ public class Event extends Task {
      * @return A string representation of an Event object in the format of E , do this , 2019-10-15
      */
     public String toFileString() {
-        return "E , " + super.toFileString() + " , " + dateAndTime;
+        return taskLabel + " , " + super.toFileString() + " , " + dateAndTime;
     }
 }
