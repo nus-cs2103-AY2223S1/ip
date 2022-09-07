@@ -40,23 +40,35 @@ public class Storage {
      */
     public TaskList loadFile() {
         ArrayList<Task> temp = new ArrayList<>();
-        Scanner sc;
 
         if (dukeFile.exists()) {
-            try {
-                sc = new Scanner(dukeFile);
+            getFromFile(temp);
+        } else {
+            createFile();
+        }
+        return new TaskList(temp);
+    }
 
-                while (sc.hasNextLine()) {
-                    String[] st = sc.nextLine().split(" \\| ");
-                    boolean isTaskDone;
+    /**
+     * Loads task data from file into ArrayList.
+     *
+     * @param temp ArrayList to load data into.
+     */
+    private void getFromFile(ArrayList<Task> temp) {
+        try {
+            Scanner sc = new Scanner(dukeFile);
 
-                    if (st[1].equals("1")) {
-                        isTaskDone = true;
-                    } else {
-                        isTaskDone = false;
-                    }
+            while (sc.hasNextLine()) {
+                String[] st = sc.nextLine().split(" \\| ");
+                boolean isTaskDone;
 
-                    switch (st[0]) {
+                if (st[1].equals("1")) {
+                    isTaskDone = true;
+                } else {
+                    isTaskDone = false;
+                }
+
+                switch (st[0]) {
                     case "T":
                         temp.add(new Todo(st[2], isTaskDone));
                         break;
@@ -68,25 +80,27 @@ public class Storage {
                         break;
                     default:
                         break;
-
-                    }
                 }
-                sc.close();
-            } catch (FileNotFoundException e) {
-                System.out.println(e.getMessage());
             }
-        } else {
-            try {
-                File dataFolder = new File(folderPath);
-                dataFolder.mkdirs();
-                dukeFile.createNewFile();
-            } catch (SecurityException e) {
-                System.out.println(e.getMessage());
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
+            sc.close();
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
         }
-        return new TaskList(temp);
+    }
+
+    /**
+     * Creates new file and directory for data to be stored.
+     */
+    private void createFile() {
+        try {
+            File dataFolder = new File(folderPath);
+            dataFolder.mkdirs();
+            dukeFile.createNewFile();
+        } catch (SecurityException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**

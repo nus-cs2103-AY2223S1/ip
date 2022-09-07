@@ -5,6 +5,10 @@ package ted.task;
  * Todo, Deadline, or Event.
  */
 public class Task {
+    private static final String DONE_DISPLAY = "[X] ";
+    private static final String NOT_DONE_DISPLAY = "[ ] ";
+    private static final String DONE_FILEFORMAT = "1 | ";
+    private static final String NOT_DONE_FILEFORMAT = "0 | ";
     private String taskDescription;
     private boolean isTaskDone;
 
@@ -50,7 +54,8 @@ public class Task {
      */
     @Override
     public String toString() {
-        return isTaskDone ? "[X] " + this.taskDescription : "[ ] " + this.taskDescription;
+        return isTaskDone ? DONE_DISPLAY + this.taskDescription
+                : NOT_DONE_DISPLAY + this.taskDescription;
     }
 
     /**
@@ -59,7 +64,8 @@ public class Task {
      * @return String that represents Task.
      */
     public String toFileString() {
-        return isTaskDone ? "1 | " + this.taskDescription : "0 | " + this.taskDescription;
+        return isTaskDone ? DONE_FILEFORMAT + this.taskDescription
+                : NOT_DONE_FILEFORMAT + this.taskDescription;
     }
 
 }

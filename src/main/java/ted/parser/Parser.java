@@ -20,6 +20,12 @@ import ted.task.Todo;
  * correct <code>Command</code> according to the user input.
  */
 public class Parser {
+    private static final String NONCOMMAND_ERROR_MESSAGE = "Oh no, I don't understand T_T\n";
+    private static final String MISSING_TASKNUMBER_ERROR_MESSAGE = "Oh no, please indicate task to ";
+    private static final String NO_TASK_ERROR_MESSAGE = "Oh no, please include task description T_T\n";
+    private static final String MISSING_DESCRIPTION_ERROR_MESSAGE = "Oh no, " +
+            "please include both description and time T_T\n";
+
     /**
      * Returns a Command object based on the parsed user input command.
      *
@@ -31,18 +37,21 @@ public class Parser {
         Command c;
         String[] temp = command.split(" ", 2);
         String action = temp[0];
+
         try {
             switch (action) {
             case "bye":
                 if (temp.length != 1) {
-                    throw new TedException("Oh no, I don't understand T_T\n");
+                    throw new TedException(NONCOMMAND_ERROR_MESSAGE);
                 }
+
                 c = new ByeCommand();
                 break;
             case "list":
                 if (temp.length != 1) {
-                    throw new TedException("Oh no, I don't understand T_T\n");
+                    throw new TedException(NONCOMMAND_ERROR_MESSAGE);
                 }
+
                 c = new ListCommand();
                 break;
             case "find":
@@ -50,53 +59,61 @@ public class Parser {
                 break;
             case "mark":
                 if (temp.length == 1) {
-                    throw new TedException("Oh no, please indicate task to mark T_T\n");
+                    throw new TedException(MISSING_TASKNUMBER_ERROR_MESSAGE + "mark T_T\n");
                 }
+
                 c = new MarkCommand(Integer.parseInt(temp[1]));
                 break;
             case "unmark":
                 if (temp.length == 1) {
-                    throw new TedException("Oh no, please indicate task to unmark T_T\n");
+                    throw new TedException(MISSING_TASKNUMBER_ERROR_MESSAGE + "unmark T_T\n");
                 }
+
                 c = new UnmarkCommand(Integer.parseInt(temp[1]));
                 break;
             case "delete":
                 if (temp.length == 1) {
-                    throw new TedException("Oh no, please indicate task to delete T_T\n");
+                    throw new TedException(MISSING_TASKNUMBER_ERROR_MESSAGE + "delete T_T\n");
                 }
+
                 c = new DeleteCommand(Integer.parseInt(temp[1]));
                 break;
             case "todo":
                 if (temp.length == 1) {
-                    throw new TedException("Oh no, please include task description T_T\n");
+                    throw new TedException(NO_TASK_ERROR_MESSAGE);
                 }
+
                 c = new AddCommand(new Todo(temp[1]));
                 break;
             case "deadline":
                 if (temp.length == 1) {
-                    throw new TedException("Oh no, please include task description T_T\n");
+                    throw new TedException(NO_TASK_ERROR_MESSAGE);
                 }
+
                 String[] deadlineDesc = temp[1].split(" /by ", 2);
                 if (deadlineDesc.length == 1) {
-                    throw new TedException("Oh no, please include both deadline description and time T_T\n");
+                    throw new TedException(MISSING_DESCRIPTION_ERROR_MESSAGE);
                 }
+
                 c = new AddCommand(new Deadline(deadlineDesc[0], deadlineDesc[1]));
                 break;
             case "event":
                 if (temp.length == 1) {
-                    throw new TedException("Oh no, please include task description T_T\n");
+                    throw new TedException(NO_TASK_ERROR_MESSAGE);
                 }
+
                 String[] eventDesc = temp[1].split(" /at ", 2);
                 if (eventDesc.length == 1) {
-                    throw new TedException("Oh no, please include both event description and time T_T\n");
+                    throw new TedException(MISSING_DESCRIPTION_ERROR_MESSAGE);
                 }
+
                 c = new AddCommand(new Event(eventDesc[0], eventDesc[1]));
                 break;
             default:
-                throw new TedException("Oh no, I don't understand T_T\n");
+                throw new TedException(NONCOMMAND_ERROR_MESSAGE);
             }
         } catch (NumberFormatException e) {
-            throw new TedException("Oh no, please indicate task to mark/unmark/delete with a number T_T\n");
+            throw new TedException(MISSING_TASKNUMBER_ERROR_MESSAGE + "mark/unmark/delete with a number T_T\n");
         } catch (DateTimeParseException e) {
             throw new TedException("Oh no, please input the date in yyyy-mm-dd hh:mm format T_T\n");
         }
