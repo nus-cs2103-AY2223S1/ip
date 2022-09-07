@@ -6,6 +6,9 @@ import duke.TaskList;
 import duke.Ui;
 import duke.task.Event;
 
+/**
+ * Represents a command to create an event.
+ */
 public class EventCommand extends Command {
     private final String input;
 

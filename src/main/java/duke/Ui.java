@@ -1,15 +1,16 @@
 package duke;
 
-import duke.task.Task;
 import java.util.Scanner;
+
+import duke.task.Task;
 
 /**
  * Deals with interactions with the user
  */
 public class Ui {
-    private final Scanner SCANNER = new Scanner(System.in);
     private static final String LINE = "---------------"
             + "------------------------------------";
+    private final Scanner scanner = new Scanner(System.in);
 
     /**
      * Reads the command typed by the user
@@ -17,7 +18,7 @@ public class Ui {
      * @return The command that the user typed
      */
     public String readCommand() {
-        return SCANNER.nextLine();
+        return scanner.nextLine();
     }
 
     /**
@@ -42,8 +43,8 @@ public class Ui {
      */
     public void showGreeting() {
         System.out.println(LINE);
-        System.out.println("Hi there! I'm Duke\n" +
-                "     What's up?");
+        System.out.println("Hi there! I'm Duke\n"
+                + "     What's up?");
         System.out.println(LINE);
     }
 
@@ -143,6 +144,12 @@ public class Ui {
         }
     }
 
+    /**
+     * Displays the list of tasks with the relevant keyword if there are matches.
+     *
+     * @param taskList The list of tasks with the keyword.
+     * @param input The keyword.
+     */
     public void showFindings(TaskList taskList, String input) {
         if (taskList.size() != 0) {
             System.out.println("I found " + taskList.size()

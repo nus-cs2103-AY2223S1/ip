@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -48,18 +47,18 @@ public class Storage {
                 line = scanner.nextLine();
                 // process data
                 switch (line.charAt(4)) {
-                    case 'T':
-                        newTask = ToDo.createToDoFromString(line);
-                        break;
-                    case 'E':
-                        newTask = Event.createEventFromString(line);
-                        break;
-                    case 'D':
-                        newTask = Deadline.createDeadlineFromString(line);
-                        break;
-                    default:
-                        newTask = null;
-                        break;
+                case 'T':
+                    newTask = ToDo.createToDoFromString(line);
+                    break;
+                case 'E':
+                    newTask = Event.createEventFromString(line);
+                    break;
+                case 'D':
+                    newTask = Deadline.createDeadlineFromString(line);
+                    break;
+                default:
+                    newTask = null;
+                    break;
                 }
                 tasks.add(newTask);
             }

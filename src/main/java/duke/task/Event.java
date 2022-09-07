@@ -7,11 +7,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
+/**
+ * Represents an event.
+ */
 public class Event extends Task {
+    private static DateTimeFormatter dateTimeInputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+    private static DateTimeFormatter dateTimeOutputFormatter = DateTimeFormatter.ofPattern("dd LLL yyyy hh:mma");
+    private static DateTimeFormatter dateInputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     protected LocalDateTime dateTime;
-    protected static DateTimeFormatter dateTimeInputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-    protected static DateTimeFormatter dateTimeOutputFormatter = DateTimeFormatter.ofPattern("dd LLL yyyy hh:mma");
-    protected static DateTimeFormatter dateInputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     /**
      * Constructs an event with the specified description, date and time.
@@ -56,12 +59,12 @@ public class Event extends Task {
         try {
             LocalDate date = LocalDate.parse(dateStr, dateInputFormatter);
             return date.equals(this.dateTime.toLocalDate());
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new DukeException("Please type in the date in the format yyyy-MM-dd");
         }
     }
 
-    public boolean doesDescriptionContain(String input) throws DukeException {
+    public boolean doesDescriptionContain(String input) {
         return Arrays.asList(description.split(" ")).contains(input);
     }
 

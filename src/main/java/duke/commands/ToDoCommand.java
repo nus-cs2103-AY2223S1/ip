@@ -6,6 +6,9 @@ import duke.TaskList;
 import duke.Ui;
 import duke.task.ToDo;
 
+/**
+ * Represents the command to create a to-do.
+ */
 public class ToDoCommand extends Command {
     private String input;
 

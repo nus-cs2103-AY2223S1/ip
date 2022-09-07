@@ -5,6 +5,9 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
+/**
+ * Represents a command to return the list of tasks on the specified date.
+ */
 public class OnCommand extends Command {
     private String input;
 

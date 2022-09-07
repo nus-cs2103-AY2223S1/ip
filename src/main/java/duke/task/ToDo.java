@@ -1,8 +1,10 @@
 package duke.task;
 
-import duke.DukeException;
 import java.util.Arrays;
 
+/**
+ * Represents a to-do.
+ */
 public class ToDo extends Task {
     /**
      * Constructs a to-do with the specified description.
@@ -30,7 +32,7 @@ public class ToDo extends Task {
         return false;
     }
 
-    public boolean doesDescriptionContain(String input) throws DukeException {
+    public boolean doesDescriptionContain(String input) {
         return Arrays.asList(description.split(" ")).contains(input);
     }
 

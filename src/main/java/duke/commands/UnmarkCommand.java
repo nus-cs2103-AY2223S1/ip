@@ -5,6 +5,9 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
+/**
+ * Represents the command to mark a task as undone.
+ */
 public class UnmarkCommand extends Command {
     private String input;
 
