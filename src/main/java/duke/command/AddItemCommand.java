@@ -44,7 +44,7 @@ public class AddItemCommand implements Command {
     private String executeAddItem(String[] newItem, TaskList itemList) throws DukeException {
         String s = String.join(" ", newItem);
         if (newItem[0].equals("")) {
-            return "";
+            return "No command was given.";
         }
         DukeTask newTask;
         switch (newItem[0]) {

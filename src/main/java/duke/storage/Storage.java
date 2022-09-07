@@ -37,6 +37,7 @@ public class Storage {
             if (!saved.exists()) {
                 saved.createNewFile();
             }
+            assert saved.exists() : "Save file should always be created.";
         } catch (IOException e) {
             throw new DukeException(e.getMessage());
         }
@@ -53,6 +54,7 @@ public class Storage {
         ArrayList<DukeTask> taskList = new ArrayList<>();
         try {
             File f = new File(FILEPATH);
+            assert f.exists() : "Save file should always exist.";
             Scanner s = new Scanner(f);
             while (s.hasNext()) {
                 String[] taskSplit = s.nextLine().split(" >> ");
@@ -102,6 +104,9 @@ public class Storage {
         try {
             FileWriter fw = new FileWriter(FILEPATH);
             for (DukeTask t : itemList) {
+                assert t != null : "Empty tasks should not exist in itemList.";
+                assert !t.getStorageString().equals("")
+                        : "Storage string should never be empty.";
                 fw.write(t.getStorageString() + "\n");
             }
             fw.close();
