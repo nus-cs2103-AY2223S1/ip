@@ -19,7 +19,6 @@ public class ProcessUserInput {
      */
     public static String process(ArrayList<Task> workList, String userInput) {
         assert userInput.split("").length == 0 : "User input cannot be empty";
-        // Processing
         String typeOfTask = userInput.split(" ")[0];
         int index;
         switch (typeOfTask) {
