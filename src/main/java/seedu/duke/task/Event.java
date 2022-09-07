@@ -55,4 +55,9 @@ public class Event extends Task {
     public String toFileString() {
         return taskLabel + " , " + super.toFileString() + " , " + dateAndTime;
     }
+
+    @Override
+    public void setDateAndTime(LocalDate dateAndTime) {
+        this.dateAndTime = dateAndTime;
+    }
 }

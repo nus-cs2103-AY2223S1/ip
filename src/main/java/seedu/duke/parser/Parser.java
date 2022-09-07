@@ -1,14 +1,21 @@
 package seedu.duke.parser;
 
-import seedu.duke.command.*;
+import java.util.Objects;
+
+import seedu.duke.command.AddCommand;
+import seedu.duke.command.Command;
+import seedu.duke.command.DeleteCommand;
+import seedu.duke.command.ExitCommand;
+import seedu.duke.command.FindCommand;
+import seedu.duke.command.InvalidCommand;
+import seedu.duke.command.ListCommand;
+import seedu.duke.command.MarkCommand;
+import seedu.duke.command.UpdateCommand;
 import seedu.duke.exception.DukeException;
 import seedu.duke.task.Deadline;
 import seedu.duke.task.Event;
 import seedu.duke.task.Task;
 import seedu.duke.task.ToDo;
-
-
-import java.util.Objects;
 
 /**
  * The parser class handles the parsing of a user input into a Command object that the program can handle.
@@ -61,8 +68,23 @@ public class Parser {
             }
         } else if (Objects.equals(commands[0], "delete")) {
             return new DeleteCommand(Integer.parseInt(commands[1]));
-        }
+        } else if (Objects.equals(commands[0], "update")) {
+            try {
+                String[] taskDetails = commands[1].split(" ", 2);
+                String[] updateDetails = new String[0];
 
+                if (taskDetails[1].contains("/dateTime")) {
+                    updateDetails = taskDetails[1].split("/dateTime ", 2);
+                    return new UpdateCommand(Integer.parseInt(taskDetails[0]), "/dateTime", updateDetails[1]);
+                } else if (taskDetails[1].contains("/description")) {
+                    updateDetails = taskDetails[1].split("/description ", 2);
+                    return new UpdateCommand(Integer.parseInt(taskDetails[0]), "/description", updateDetails[1]);
+                }
+                return new InvalidCommand();
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new DukeException("There should be details provided on what should be updated");
+            }
+        }
         return new InvalidCommand();
     }
 

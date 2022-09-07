@@ -1,5 +1,7 @@
 package seedu.duke.task;
 
+import java.time.LocalDate;
+
 /**
  * A Task class representing a task.
  */
@@ -69,4 +71,10 @@ public class Task {
         int isDone = this.isDone ? 1 : 0;
         return isDone + " , " + description;
     }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDateAndTime(LocalDate dateAndTime) {};
 }

@@ -1,9 +1,10 @@
 package seedu.duke.ui;
 
+import java.util.Scanner;
+
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
-import java.util.Scanner;
 
 /**
  * Ui Class responsible for handling all Ui displaying related matters.
@@ -158,6 +159,17 @@ public class Ui {
     public String displayMatchingTasks() {
         String text = Style.INDENTATION + "Here are the matching tasks in your list:\n";
 
+        return text;
+    }
+
+    /**
+     * Displays the updated task result
+     * @param task The task that has been updated
+     * @return a String representation of the updated result of the task.
+     */
+    public String updateTask(Task task) {
+        String text = Style.INDENTATION + "The task has been updated and this is the new output:\n"
+                + Style.INDENTATION + Style.HALF_INDENTATION + task + "\n";
         return text;
     }
 }

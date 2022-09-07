@@ -1,8 +1,10 @@
 package seedu.duke.task;
 
-import seedu.duke.ui.Style;
-
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
+
+import seedu.duke.ui.Style;
 
 /**
  * A class representing a list of tasks.
@@ -128,4 +130,21 @@ public class TaskList {
         }
         return text;
     }
+
+    /**
+     * Returns the updated task
+     * @return returns updated task
+     */
+    public Task updateTask(int index, String typeOfUpdate, String newValue) {
+        assert(index > 0 && index < tasks.size());
+        if (Objects.equals(typeOfUpdate, "/dateTime")) {
+            getTask(index).setDateAndTime(LocalDate.parse(newValue));
+        }
+        if (Objects.equals(typeOfUpdate, "/description")) {
+            getTask(index).setDescription(newValue);
+        }
+        Task task = getTask(index);
+        return task;
+    }
+
 }
