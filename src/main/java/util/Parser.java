@@ -57,6 +57,7 @@ public class Parser {
             break;
         case "todo":
             Todo.validateInput(splitted);
+            assert splitted.length >= 2 : "No of arguments should be more than 1.";
             Task todo = new Todo(splitted[1]);
             cmd = new AddTaskCommand(todo);
             break;
