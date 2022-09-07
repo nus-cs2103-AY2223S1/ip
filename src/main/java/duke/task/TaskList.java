@@ -19,7 +19,9 @@ import duke.exception.TaskIndexOutOfBoundsException;
 public class TaskList {
     /** List of tasks. */
     private List<Task> tasks;
+    /** Order of the tasks to sort by. */
     private SortOrder sortOrder;
+    /** Measurement used to determine the order of the tasks. */
     private SortMetric sortMetric;
 
     /**
@@ -143,6 +145,7 @@ public class TaskList {
 
     /**
      * Returns the number of tasks in the List of tasks.
+     *
      * @return Size of the List of tasks.
      */
     public int getSize() {

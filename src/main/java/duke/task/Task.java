@@ -93,10 +93,6 @@ public abstract class Task {
         return isDone ? COMPLETED_ICON : INCOMPLETE_ICON;
     }
 
-    public LocalDateTime getDateAdded() {
-        return dateAdded;
-    }
-
     /**
      * Marks the task as completed.
      */
@@ -137,6 +133,15 @@ public abstract class Task {
      */
     public LocalDateTime getDateTime() {
         return dateTime;
+    }
+
+    /**
+     * Returns the date and time the task was added.
+     *
+     * @return Date and time the task was added.
+     */
+    public LocalDateTime getDateAdded() {
+        return dateAdded;
     }
 
     /**

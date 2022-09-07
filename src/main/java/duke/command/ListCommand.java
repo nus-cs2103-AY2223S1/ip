@@ -17,6 +17,7 @@ public class ListCommand extends Command {
      * @param tasks TaskList to be printed.
      * @param ui Ui object which interacts with the user.
      * @param storage Storage object which loads and saves tasks.
+     * @return Message to be shown to the user after successful execution.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
@@ -33,7 +34,7 @@ public class ListCommand extends Command {
     }
 
     /**
-     * Returns false, because deadline is not an application terminating command.
+     * Returns false, because list is not an application terminating command.
      *
      * @return False.
      */

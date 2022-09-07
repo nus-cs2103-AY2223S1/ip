@@ -40,6 +40,7 @@ public class MarkCommand extends Command {
      * @param tasks TaskList containing the task to be marked.
      * @param ui Ui object which interacts with the user.
      * @param storage Storage object which loads and saves tasks.
+     * @return Message to be shown to the user after successful execution.
      * @throws DukeException If storage object is unable to save the list of tasks after marking,
      *              or if the taskIndex is not within range of the size of the TaskList.
      */
@@ -52,7 +53,7 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Returns false, because delete is not an application terminating command.
+     * Returns false, because mark is not an application terminating command.
      *
      * @return False.
      */

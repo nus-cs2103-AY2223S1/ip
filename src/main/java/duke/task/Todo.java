@@ -26,7 +26,6 @@ public class Todo extends Task {
         return "[T]" + super.toString();
     }
 
-
     /**
      * Returns the formatted todo task, which is to be written into the storage file.
      *

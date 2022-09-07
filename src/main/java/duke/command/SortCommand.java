@@ -60,7 +60,7 @@ public class SortCommand extends Command {
     /**
      * Returns a SortCommand initialised with the correct sortOrder and sortMetric by parsing the command argument.
      *
-     * @param commandArg
+     * @param commandArg The command argument to parse.
      * @return SortCommand with the correct sortOrder and sortMetric.
      * @throws InvalidCommandFormatException If the command argument cannot be parsed due to an incorrect sort metric
      *              and/or sort order.
@@ -89,7 +89,9 @@ public class SortCommand extends Command {
      * @param tasks The TaskList to be sorted.
      * @param ui Ui object which interacts with the user.
      * @param storage Storage object which loads and saves tasks.
-     * @throws DukeException If storage object is unable to save the list of tasks after sorting.
+     * @return Message to be shown to the user after successful execution.
+     * @throws DukeException If storage object is unable to save the list of tasks, or if TaskList cannot be properly
+     *              sorted.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

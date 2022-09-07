@@ -4,7 +4,6 @@ import duke.gui.Ui;
 import duke.task.TaskList;
 import duke.util.Storage;
 
-
 /**
  * Represents the application terminating command that is executed when the user inputs bye.
  *
@@ -18,6 +17,7 @@ public class ByeCommand extends Command {
      * @param tasks TaskList containing the list of tasks.
      * @param ui Ui object which interacts with the user.
      * @param storage Storage object which loads and saves tasks.
+     * @return Message to be shown to the user after successful execution.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
