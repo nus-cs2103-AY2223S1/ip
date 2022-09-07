@@ -29,15 +29,15 @@ import duke.utils.DukeValidator;
 public class ListTasksCommand implements Command {
     public static final String COMMAND_WORD = "list";
     public static final String COMMAND_DESCRIPTION = ListTasksCommand.COMMAND_WORD
-            + " : Lists all the tasks\n\n"
-            + ListTasksCommand.COMMAND_WORD
-            + " /before <date>: Lists all the tasks occurring before the provided date\n\n"
-            + ListTasksCommand.COMMAND_WORD
-            + " /on <date>: Lists all the tasks occurring on the provided date";
+        + " : Lists all the tasks\n\n"
+        + ListTasksCommand.COMMAND_WORD
+        + " /before <date>: Lists all the tasks occurring before the provided date\n\n"
+        + ListTasksCommand.COMMAND_WORD
+        + " /on <date>: Lists all the tasks occurring on the provided date";
 
     private static final String ERROR_UNKNOWN_OPTION = "Unknown option provided! Use either a '/on' or\n"
-            + "'/before' command together with a date in order to\n"
-            + "filter the tasks by their date!";
+        + "'/before' command together with a date in order to\n"
+        + "filter the tasks by their date!";
 
     /**
      * Matches a {@code '/on'} command followed by a (possibly invalid) date string. This is used to show the list of
@@ -63,32 +63,34 @@ public class ListTasksCommand implements Command {
 
     @Override
     public String execute(TaskManager taskManager) throws DukeException {
-        if (this.arguments.length() > 0) {
-            Matcher matchTasksOn = ListTasksCommand.MATCH_TASKS_ON.matcher(this.arguments);
-            if (matchTasksOn.matches()) {
-                LocalDate date = DukeValidator.parseDate(matchTasksOn.group("date"));
-                List<Task> filteredTasks = taskManager.list(
-                        task -> {
-                            LocalDate taskDate = task.getDate();
-                            return taskDate != null && taskDate.isEqual(date);
-                        }
-                );
-                return TaskManager.display(filteredTasks);
-            }
-            Matcher matchTasksBefore = ListTasksCommand.MATCH_TASKS_BEFORE.matcher(this.arguments);
-            if (matchTasksBefore.matches()) {
-                LocalDate date = DukeValidator.parseDate(matchTasksBefore.group("date"));
-                List<Task> filteredTasks = taskManager.list(
-                        task -> {
-                            LocalDate taskDate = task.getDate();
-                            return taskDate != null && taskDate.isBefore(date);
-                        }
-                );
-                return TaskManager.display(filteredTasks);
-            }
-            throw new DukeException(ListTasksCommand.ERROR_UNKNOWN_OPTION);
+        if (this.arguments.length() == 0) {
+            return TaskManager.display(taskManager.list());
         }
 
-        return TaskManager.display(taskManager.list());
+        Matcher matchTasksOn = ListTasksCommand.MATCH_TASKS_ON.matcher(this.arguments);
+        if (matchTasksOn.matches()) {
+            LocalDate date = DukeValidator.parseDate(matchTasksOn.group("date"));
+            List<Task> filteredTasks = taskManager.list(
+                task -> {
+                    LocalDate taskDate = task.getDate();
+                    return taskDate != null && taskDate.isEqual(date);
+                }
+            );
+            return TaskManager.display(filteredTasks);
+        }
+
+        Matcher matchTasksBefore = ListTasksCommand.MATCH_TASKS_BEFORE.matcher(this.arguments);
+        if (matchTasksBefore.matches()) {
+            LocalDate date = DukeValidator.parseDate(matchTasksBefore.group("date"));
+            List<Task> filteredTasks = taskManager.list(
+                task -> {
+                    LocalDate taskDate = task.getDate();
+                    return taskDate != null && taskDate.isBefore(date);
+                }
+            );
+            return TaskManager.display(filteredTasks);
+        }
+
+        throw new DukeException(ListTasksCommand.ERROR_UNKNOWN_OPTION);
     }
 }
