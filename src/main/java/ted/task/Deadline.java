@@ -53,4 +53,10 @@ public class Deadline extends Task {
     public String toFileString() {
         return "D | " + super.toFileString() + " | " + this.taskDeadline + "\n";
     }
+
+    @Override
+    public boolean shouldRemind() {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        return taskDeadline.isAfter(currentDateTime);
+    }
 }

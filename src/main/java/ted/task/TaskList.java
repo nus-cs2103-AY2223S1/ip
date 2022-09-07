@@ -147,4 +147,18 @@ public class TaskList {
         }
         return temp;
     }
+
+    public String getRemindTasks() {
+        String reminders = "";
+        int count = 1;
+
+        for (int i = 0; i < tasks.size(); i++) {
+            Task curr = tasks.get(i);
+            if (curr.shouldRemind()) {
+                reminders = reminders + count + ". " + curr.toString() + "\n";
+                count++;
+            }
+        }
+        return reminders;
+    }
 }
