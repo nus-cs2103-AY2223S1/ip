@@ -17,7 +17,6 @@ then
 fi
 
 # compile the code into the bin folder, terminates if error occurred
-# @@author cheeheng-reused
 # Solution adapted from https://stackoverflow.com/questions/31011069/executing-a-script-from-a-parent-directory
 # ./gradlew adapted from https://stackoverflow.com/questions/41700798/gradlew-command-not-found
 cd ..
@@ -28,6 +27,7 @@ then
 fi
 
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
+# https://linuxize.com/post/bash-append-to-file/
 ./gradlew run --args console-test -q < text-ui-test/input.txt > text-ui-test/ACTUAL.TXT
 ./gradlew run --args console-test -q < text-ui-test/input2.txt >> text-ui-test/ACTUAL.TXT
 

@@ -61,7 +61,9 @@ public class MainWindow {
     public void setJude(Jude jude) {
         this.jude = jude;
         Ui ui = this.jude.getUi();
-        String firstMessageString = ui.getWelcomeMessage() + ui.getCredits();
+        Parser parser = this.jude.getParser();
+        String firstMessageString = ui.getWelcomeMessage() + '\n' + parser.remindMe() + '\n'
+                + ui.getCredits();
         dialogContainer.getChildren().add(DialogBox.getChatbotDialog(firstMessageString,
                 chatbotImage));
     }

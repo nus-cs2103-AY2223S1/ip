@@ -1,10 +1,14 @@
 Hello! I'm Jude, named after the Beatles' hit song 'Hey Jude'.
 What can I do for you?
+I will remind you of the important tasks you have:
+No tasks found
+
 
 > Sorry, I don't understand what this means!
 
 
-> 
+> No tasks found
+
 
 
 > The following todo task has been added:
@@ -281,6 +285,7 @@ The task list now contains 6 task(s).
 
 
 > Here are the matching results in your task list (0 in total):
+No tasks found
 
 
 
@@ -328,15 +333,32 @@ The task list now contains 6 task(s).
 
 
 
+> I will remind you of the important tasks you have:
+No tasks found
+
+
+
+> The following task has been marked as undone:
+  [D][ ] Task 6 (by: 23 Aug 2022 00:00)
+
+
+> I will remind you of the important tasks you have:
+1.[D][ ] Task 6 (by: 23 Aug 2022 00:00)
+
+
+
 > Goodbye! Have a nice day!
 Hello! I'm Jude, named after the Beatles' hit song 'Hey Jude'.
 What can I do for you?
+I will remind you of the important tasks you have:
+1.[D][ ] Task 6 (by: 23 Aug 2022 00:00)
+
 
 > 1.[T][X] task1
 2.[T][ ] task3
 3.[D][X] task4 (by: 22 Aug 2022 00:00)
 4.[E][ ] task5 (at: Monday 4pm-5pm)
-5.[D][X] Task 6 (by: 23 Aug 2022 00:00)
+5.[D][ ] Task 6 (by: 23 Aug 2022 00:00)
 6.[E][ ] Task 7 (at: Tuesday 1am-2am)
 
 

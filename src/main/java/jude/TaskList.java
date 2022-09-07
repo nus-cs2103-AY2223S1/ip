@@ -68,4 +68,21 @@ public class TaskList {
     public int size() {
         return tasks.size();
     }
+
+    /**
+     * Returns the list of deadlines within the specified number of seconds from
+     * the current moment, or less.
+     *
+     * @param seconds The number of seconds.
+     * @returns List of tasks to remind.
+     */
+    public TaskList getTasksToRemind(long seconds) {
+        TaskList reminderTasks = new TaskList();
+        for (Task task: tasks) {
+            if (task.needsReminder(seconds)) {
+                reminderTasks.add(task);
+            }
+        }
+        return reminderTasks;
+    }
 }

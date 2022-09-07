@@ -12,7 +12,7 @@ public abstract class Task {
      * Creates a new {@code Task} object with a given description and whether it has been done.
      *
      * @param description The description of the {@code Task}.
-     * @param isDone Whether the {@code Task} is marked as done.
+     * @param isDone      Whether the {@code Task} is marked as done.
      */
     public Task(String description, boolean isDone) {
         this.description = description;
@@ -40,6 +40,7 @@ public abstract class Task {
     //@@author cheeheng-reused
     //Reused from https://nus-cs2103-ay2223s1.github.io/website/schedule/week2/project.html
     //with minor modifications
+
     /**
      * Returns the status icon depicting whether the {@code Task} has been done.
      *
@@ -86,7 +87,7 @@ public abstract class Task {
     /**
      * Returns a String representation of the {@code Task} object which in a format convenient to
      * save and load files.
-     *
+     * <p>
      * The string returned is in the following format (with newlines in between components and in
      * the end):
      * Task Type Code
@@ -98,4 +99,12 @@ public abstract class Task {
     public String toFileSaveString() {
         return String.format("%s\n%s\n%d\n", getTaskTypeCode(), description, isDone ? 1 : 0);
     }
+
+    /**
+     * Returns whether the task requires given number of seconds time interval notice required.
+     *
+     * @param seconds Number of seconds time notice required.
+     * @return Whether the task needs reminder.
+     */
+    public abstract boolean needsReminder(long seconds);
 }

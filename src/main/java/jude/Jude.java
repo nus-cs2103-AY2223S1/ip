@@ -32,6 +32,7 @@ import java.io.IOException;
  *   multiple words, case-insensitive match)
  * delete - delete the task corresponding to a specified index (from list command)
  *   e.g. delete 2 deletes second task
+ * remindme - reminds the user of any tasks about to take place (default: within the next 24 hours)
  * bye - exits the program
  * <br>
  *
@@ -99,6 +100,7 @@ public class Jude {
         tasks = storage.load();
         parser = new Parser(tasks, storage);
         System.out.println(ui.getWelcomeMessage());
+        System.out.println(parser.remindMe());
 
         while (true) {
             ui.showCommandReadReady();
@@ -111,5 +113,14 @@ public class Jude {
             String response = parser.parse(str);
             System.out.println(response);
         }
+    }
+
+    /**
+     * Returns the parser object associated with this instance of Jude the chatbot.
+     *
+     * @return The parser object associated with this instance of Jude the chatbot.
+     */
+    public Parser getParser() {
+        return this.parser;
     }
 }
