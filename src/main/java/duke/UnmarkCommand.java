@@ -1,7 +1,7 @@
 package duke;
 
-import java.io.IOException;
 import java.util.ArrayList;
+
 
 public class UnmarkCommand extends Command{
     void handleException(int index, ArrayList<Task> listOfTask) throws DukeIndexTooLargeException, DukeNonPositiveIndexException {
@@ -12,16 +12,25 @@ public class UnmarkCommand extends Command{
             throw new DukeNonPositiveIndexException();
         }
     }
-    String execute(String taskName, ArrayList<Task> listOfTask, Ui ui, Storage storage) throws IOException {
+   
+    @Override
+    String execute(String taskName, ArrayList<Task> listOfTask, Ui ui, Storage storage) {
         try {
-            int i = Integer.parseInt(taskName.substring(7)) - 1;
-            handleException(i, listOfTask);
-            Task task = listOfTask.get(i);
-            assert task != null;
-            return task.unmark();
+        int taskNumber = getTaskNumberOfTaskToBeUnmarked(taskName);
+        handleException(taskNumber, listOfTask); 
+        Task task = getTaskToBeUnmarked(taskNumber,listOfTask);
+        return task.unmark();
         } catch (DukeException e) {
-           return e.getMessage();
-        }
+           return e.getMessage(); 
+        } 
+    }
+
+    int getTaskNumberOfTaskToBeUnmarked(String taskName) {
+        return Integer.parseInt(taskName.substring(7)) - 1;
+    }
+
+    Task getTaskToBeUnmarked(int taskNumber, ArrayList<Task> listOfTask) {
+        return listOfTask.get(taskNumber);
     }
 
 

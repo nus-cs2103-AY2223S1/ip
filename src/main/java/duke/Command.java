@@ -15,11 +15,8 @@ public abstract class Command {
      * @param ui Ui object that is used to interact with users.
      * @param storage Storage to store the file of the list of tasks.
      * @throws IOException
-     * @throws DukeEventEmptyException
-     * @throws DukeDeadlineEmptyException
-     * @throws DukeTodoEmptyException
+     * @throws DukeException
      * @return A string that prints onto the screen after user input.
      */
-    abstract String execute(String taskName, ArrayList<Task> listOfTasks, Ui ui, Storage storage)
-            throws IOException, DukeEventEmptyException, DukeDeadlineEmptyException, DukeTodoEmptyException;
+    abstract String execute(String taskName, ArrayList<Task> listOfTasks, Ui ui, Storage storage);
 }

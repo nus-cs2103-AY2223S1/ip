@@ -19,9 +19,9 @@ public class TaskList {
      * Displays the tasks in the list.
      * @return A string that would be outputted to the screen when showing list of tasks.
      */
-    String showList(){
+    String showList() {
         Ui ui = new Ui();
-       return ui.displayListUi(this.list);
+        return ui.displayListUi(this.list);
     }
 
     /**
@@ -31,23 +31,41 @@ public class TaskList {
      */
     String addToList(Task task) {
         assert task != null;
-        this.list.add(task);
+        addTaskToList(task,this.list);
+        return getOutputShownForAddTask(task, this.list);
+    }
+
+    void addTaskToList(Task task, ArrayList<Task> list) {
+        list.add(task);
+    }
+
+    String getOutputShownForAddTask(Task task, ArrayList<Task> list) {
         Ui ui = new Ui();
-        return ui.addToListUi(task, this.list);
+        return ui.addToListUi(task,list);
     }
 
     /**
      * Deletes task from list.
-     * @param s Name of the task to be deleted from the list.
+     * @param fullCommand Name of the task to be deleted from the list.
      * @return A string that would be outputted to the screen when deleting task.
      */
-    String delete(String s) {
-        int i = Integer.parseInt(s.substring(7)) - 1;
-        assert i > 0;
-        assert i < list.size();
-        Task task = this.list.remove(i);
-        Ui ui = new Ui();
-        return ui.deleteUi(task, this.list);
+
+    String delete(String fullCommand) {
+        Task taskToBeDeleted = deleteTaskFromList(this.list, fullCommand);
+        return getOutputShownForDeleteTask(taskToBeDeleted,this.list);
     }
 
+    Task deleteTaskFromList(ArrayList<Task> list, String fullCommand) {
+        int taskNumber = getTaskNumberOfTaskToBeDeleted(fullCommand);
+        return list.remove(taskNumber);
+    }
+
+    int getTaskNumberOfTaskToBeDeleted(String fullCommand) {
+        return Integer.parseInt(fullCommand.substring(7)) - 1;
+    }
+
+    String getOutputShownForDeleteTask(Task task, ArrayList<Task> list) {
+        Ui ui = new Ui();
+        return ui.deleteUi(task,list);
+    }
 }

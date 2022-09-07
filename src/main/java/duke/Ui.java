@@ -10,12 +10,16 @@ public class Ui {
         return "Bye. Hope to see you again soon!";
     }
 
+    public static String appendCurrentTaskInList(String currList, int count, ArrayList<Task> list) {
+        return currList + "\n" + count + "." + list.get(count - 1).toString();
+    }
+
     public String displayListUi(ArrayList<Task> list) {
-        String s = "";
+        String currList= "";
         for (int i = 1; i <= list.size(); i++) {
-            s =  s + "\n" + i + "." + list.get(i - 1).toString();
+           currList = appendCurrentTaskInList(currList, i, list);
         }
-        return "Here are the tasks in your list:" + s;
+        return "Here are the tasks in your list:" + currList;
     }
 
     public String deleteUi(Task task, ArrayList<Task> list) {
@@ -24,13 +28,12 @@ public class Ui {
     }
 
     public String addToListUi(Task task, ArrayList<Task> list) {
-        if (list.size() == 1) {
-            return "Got it. I've added this task:\n" + task.toString() + "\n"
-                    + "Now you have 1 task in the list.";
-        } else {
-            return "Got it. I've added this task:\n" + task.toString() + "\n" +
-                    "Now you have " + list.size() + " tasks in the list.";
+        String taskWord = "task";
+        if(list.size() != 1) {
+            taskWord = "tasks";
         }
+        return "Got it. I've added this task:\n" + task.toString() + "\n" +
+                "Now you have " + list.size() + " " + taskWord + " in the list.";
     }
 
     public String getEmptyEventExceptionUi() {
@@ -45,7 +48,7 @@ public class Ui {
         return "OOPS!!! The description of a todo cannot be empty.";
     }
 
-    public String getUnknownWordExceptionUi(){return "OOPS!!! I'm sorry, but I don't know what that means :-(";};
+    public String getUnknownWordExceptionUi() {return "OOPS!!! I'm sorry, but I don't know what that means :-(";};
 
     public String markHelperUi(Task task) {
        return "Nice! I've marked this task as done: " + task.toString();
