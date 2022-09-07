@@ -25,10 +25,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        /*Label helloWorld = new Label("兰靖博");
-        Scene scene = new Scene(helloWorld);
-        stage.setScene(scene);
-        stage.show();*/
 
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
