@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Duke {
-    private final static String PATH = "../data/duke.txt";
+    private final static String PATH = "data/duke.txt";
 
     private final Storage storage;
     private TaskList tasks;

@@ -1,7 +1,7 @@
 package duke;
 
 public class Task {
-    protected String description;
+    private String description;
     protected boolean isDone;
 
     public Task(String description) {
@@ -11,6 +11,10 @@ public class Task {
 
     public String getStatus() {
         return (this.isDone ? "X" : " ");
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 
     public void markAsDone() {

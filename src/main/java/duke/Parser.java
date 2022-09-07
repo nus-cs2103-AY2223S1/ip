@@ -1,5 +1,6 @@
 package duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Parser {
@@ -109,6 +110,29 @@ public class Parser {
                                 BREAK +
                                 "\n");
                         break;
+                case "find":
+                    String keyWord = input.substring(5);
+                    if (keyWord.replaceAll("\\s+", "").equals("")) {
+                        throw new DukeException("The description of a find query cannot be empty.");
+                    }
+
+                    ArrayList<Task> matches = new ArrayList<Task>();
+                    for (int i = 0; i < tasks.getSize(); i++) {
+                        task = tasks.getTask(i);
+                        if (task.getDescription().contains(keyWord)) {
+                            matches.add(task);
+                        }
+                    }
+
+                    if(matches.isEmpty()) {
+                        throw new DukeException("There is no task matching this key word.");
+                    } else {
+                        System.out.println("The following is the matching tasks: ");
+                        for (int i = 0; i < matches.size(); i++) {
+                            System.out.println(i + 1 + ". " + matches.get(i));
+                        }
+                    }
+                    break;
                     default:
                         throw new DukeException("I'm sorry, but I don't know what that means :-(");
                 }
