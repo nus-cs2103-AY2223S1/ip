@@ -183,7 +183,7 @@ public class Parser {
         String[] cleanedArgs = performArgumentGrouping(args);
         String description = cleanedArgs[0];
         String dateTime = cleanedArgs[1];
-        
+
         try {
             LocalDateTime parsed = LocalDateTime.parse(dateTime, formatter);
             if (!isDateValid(parsed)) {
