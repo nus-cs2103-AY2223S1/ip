@@ -15,7 +15,7 @@ public class TaskList implements Savable<TaskList> {
     /**
      * The collection of Tasks.
      */
-    private ArrayList<Task> tasks = new ArrayList<>();
+    private final ArrayList<Task> tasks = new ArrayList<>();
 
     /**
      * Add a given Task to the collection.
@@ -30,7 +30,7 @@ public class TaskList implements Savable<TaskList> {
 
     public TaskList clone() {
         TaskList result = new TaskList();
-        tasks.stream().forEach(task -> result.add(task.clone()));
+        tasks.forEach(task -> result.add(task.clone()));
         return result;
     }
 
@@ -98,14 +98,6 @@ public class TaskList implements Savable<TaskList> {
     }
 
     /**
-     * Returns the Task ArrayList of the TaskList.
-     * @return The Task ArrayList of the TaskList.
-     */
-    protected ArrayList<Task> getTaskList() {
-        return tasks;
-    }
-
-    /**
      * Return the String representation of the TaskList.
      * @return The String representation of the TaskList.
      */
@@ -130,14 +122,6 @@ public class TaskList implements Savable<TaskList> {
                 .map(x -> this.tasks.get(x).toFormattedString())
                 .reduce("", (x, y) -> x + y + "\n");
         return s;
-    }
-
-    /**
-     * Load the instantiated Tasks from given formatted String to current TaskList.
-     * @param formattedString
-     */
-    public void loadFrom(String formattedString) {
-        this.tasks = parse(formattedString).getTaskList();
     }
 
     /**

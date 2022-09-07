@@ -2,6 +2,7 @@ package duke.command;
 
 import duke.Duke;
 import duke.util.MessagePrinter;
+import duke.util.Parser;
 import duke.util.Storage;
 import duke.util.TaskList;
 
@@ -26,7 +27,7 @@ public class ReadCommand extends Command {
         TaskList taskList = duke.getTaskList();
         MessagePrinter messagePrinter = duke.getMessagePrinter();
         Storage storage = duke.getStorage();
-        taskList.loadFrom(storage.read());
+        duke.setTaskList(Parser.parseTaskList(storage.read()));
         int size = taskList.size();
         String temp = size == 1 ? "task has" : "tasks have";
         return messagePrinter.printMessage("Your " + size + " " + temp + " been loaded successfully\n"
