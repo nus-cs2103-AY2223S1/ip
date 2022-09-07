@@ -19,7 +19,7 @@ public class UnmarkCommand extends Command {
      * @param arguments The arguments of the command.
      */
     public UnmarkCommand(String arguments) {
-        this.arguments = arguments;
+        UnmarkCommand.arguments = arguments;
     }
 
     /**
