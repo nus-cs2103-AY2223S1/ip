@@ -20,6 +20,7 @@ public class ListCommand extends Command {
      */
     String execute(TaskList tasks, Ui ui, Storage storage) {
         String response = ui.printList(tasks.getList());
+        assert this.isExit == false : "IsExit should be false";
         return response;
     }
 

@@ -10,7 +10,7 @@ public class AddCommand extends Command {
 
     AddCommand(Task task) {
         this.task = task;
-        this.isExit = isExit;
+        this.isExit = false;
     }
 
     /**
@@ -23,6 +23,7 @@ public class AddCommand extends Command {
     String execute(TaskList tasks, Ui ui, Storage storage) {
         int noOfTasks = tasks.add(this.task);
         String response = ui.added(this.task.toString(), noOfTasks);
+        assert this.isExit == false : "IsExit should be false";
         return response;
     }
 

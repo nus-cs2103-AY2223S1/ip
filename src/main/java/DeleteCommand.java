@@ -23,6 +23,7 @@ public class DeleteCommand extends Command {
     String execute(TaskList tasks, Ui ui, Storage storage) {
         String[] taskInfo = tasks.delete(this.taskNo);
         String response = ui.deleted(taskInfo[0], Integer.parseInt(taskInfo[1]));
+        assert this.isExit == false : "IsExit should be false";
         return response;
     }
 

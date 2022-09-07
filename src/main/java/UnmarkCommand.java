@@ -23,6 +23,7 @@ public class UnmarkCommand extends Command {
     String execute(TaskList tasks, Ui ui, Storage storage) {
         String modifiedTask = tasks.unmark(this.taskNo);
         String response = ui.unmarked(modifiedTask);
+        assert this.isExit == false : "IsExit should be false";
         return response;
     }
 
