@@ -74,22 +74,6 @@ public class Manager <T extends StorableObjects> {
     }
 
     /**
-     * Marks each T as done.
-     *
-     * @param n The index of the T to be
-     *          marked as done.
-     * @return String.
-     */
-    public String markAsDone(int n) {
-        T done = this.storedObjects.get(n - 1);
-        done.markAsDone();
-
-        storage.rewriteFile(this.storedObjects);
-        String ret = "Nice! I've marked this task as done:\n" + done;
-        return ret;
-    }
-
-    /**
      * Deletes a T from the list of T stored
      * by the Manager.
      *
@@ -167,5 +151,9 @@ public class Manager <T extends StorableObjects> {
      */
     public <S> S operateOnList(Function<? super ArrayList<? extends T>, ? extends S> func) {
         return func.apply(storedObjects);
+    }
+
+    public void updateFile() {
+        storage.rewriteFile(this.storedObjects);
     }
 }

@@ -47,7 +47,11 @@ public class Interact {
         } else if (word.startsWith("list") || word.startsWith("List")) {
             return tasksManager.showList();
         } else if (word.startsWith("done") || word.startsWith("Done")) {
-            return tasksManager.markAsDone(Decoder.handleDone(word, tasksManager.numStored()));
+            int taskNo = Decoder.handleDone(word, tasksManager.numStored());
+            Task doneTask = tasksManager.operateOnList(arr -> TaskFunction.markAsDone(arr, taskNo));
+            tasksManager.updateFile();
+            String ret = "Nice! I've marked this task as done:\n" + doneTask;
+            return ret;
         } else if (word.startsWith("delete") || word.startsWith("Delete")) {
             return tasksManager.delete(Decoder.handleDelete(word, tasksManager.numStored()));
         } else if (word.startsWith("todo") || word.startsWith("deadline") || word.startsWith("event")) {

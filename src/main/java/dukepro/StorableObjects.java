@@ -18,11 +18,6 @@ public abstract class StorableObjects {
     public abstract String fileForm();
 
     /**
-     * Marks this object as done.
-     */
-    public void markAsDone(){};
-
-    /**
      * Returns if the name of this object
      * matches the user's query.
      *

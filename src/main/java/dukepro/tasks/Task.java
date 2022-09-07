@@ -24,7 +24,6 @@ public class Task extends StorableObjects {
     /**
      * Marks this task as done.
      */
-    @Override
     public void markAsDone() {
         finished = true;
     }

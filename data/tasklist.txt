@@ -1,3 +1,2 @@
-T,false,sleep
 D,false,listen to music ,2022-10-10
-E,false,concert , stadium
+E,true,eat at frens house , bukit something

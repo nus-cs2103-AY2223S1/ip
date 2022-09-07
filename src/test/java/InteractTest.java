@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import dukepro.exceptions.DukeException;
 import dukepro.handlers.Decoder;
 import dukepro.handlers.Manager;
+import dukepro.handlers.TaskFunction;
 import dukepro.tasks.Task;
 import dukepro.tasks.Todo;
 
@@ -52,8 +53,9 @@ public class InteractTest {
         Manager<Task> tm = new Manager<Task>("data/test", "data/test/testTasklist", decoder, "tasks");
         Task test = new Todo("test");
         tm.add(test);
-        tm.markAsDone(1);
+        int taskNo = 1;
+        Task doneTask = tm.operateOnList(arr -> TaskFunction.markAsDone(arr, taskNo));
         String correct = "[T][/] test";
-        assertEquals(correct, test.toString());
+        assertEquals(correct, doneTask.toString());
     }
 }
