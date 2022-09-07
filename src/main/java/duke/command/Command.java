@@ -4,6 +4,8 @@ import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.Container;
+import duke.ContactMap;
 
 /**
  * A generic template for commands
@@ -30,5 +32,5 @@ public abstract class Command {
         this.isExit = true;
     }
 
-    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage, Container container, ContactMap contacts) throws DukeException;
 }

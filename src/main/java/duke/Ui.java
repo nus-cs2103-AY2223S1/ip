@@ -1,7 +1,9 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 import duke.task.Task;
 
@@ -125,4 +127,35 @@ public class Ui {
         }
         return newList;
     }
+
+    public String showAddContact(Contact contact, int total) {
+        String printLine = "Got it. I've added this contact:\n" + "  " + contact.toString() + "\n" + "Now you have " + total
+                + " contacts in the list.\n";
+        return printLine;
+
+    }
+
+    public String showDeleteContact(String name, int total) {
+        String message = "Noted. I've removed this contact:\n" + " " + name + "\n" + "Now you have " + total
+                + " contacts in the list.\n";
+        return message;
+
+    }
+
+    public String showContactList(TreeMap<String,Contact> contacts) {
+        String newContactList = "Here are the contacts stored:\n";
+        int count = 1;
+        for (Map.Entry<String,Contact> set: contacts.entrySet()) {
+            newContactList += (count + "." + set.getValue().toString() + "\n");
+            count++;
+        }
+        return newContactList;
+
+    }
+
+    public String showFindContact(Contact contact) {
+        String message = "Here is the contact number: \n" + contact.getPhoneNumber();
+        return message;
+    }
+
 }

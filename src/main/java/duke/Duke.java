@@ -12,6 +12,9 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    private Container container;
+
+    private ContactMap contacts;
 
     /**
      * Creates a Duke object with its relevant filepath.
@@ -19,19 +22,26 @@ public class Duke {
      */
     public Duke() {
         ui = new Ui();
-        String filePath = "data/tasks.txt";
+        String taskFilePath = "data/tasks.txt";
         try {
-            storage = new Storage(filePath);
+            storage = new Storage(taskFilePath);
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
             tasks = new TaskList();
+        }
+        String contactFilePath = "data/contacts.txt";
+        try {
+            container = new Container(contactFilePath);
+            contacts = new ContactMap(container.load());
+        } catch (DukeException e) {
+            contacts = new ContactMap();
         }
     }
     public String getResponse(String input) {
         String output;
         try {
             Command c = Parser.parse(input);
-            output = c.execute(tasks, ui, storage);
+            output = c.execute(tasks, ui, storage,container,contacts);
         } catch (DukeException e) {
             output = e.toString();
         }

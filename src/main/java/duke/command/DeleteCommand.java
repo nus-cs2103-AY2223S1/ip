@@ -1,9 +1,6 @@
 package duke.command;
 
-import duke.DukeException;
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
+import duke.*;
 import duke.task.Task;
 
 /**
@@ -34,7 +31,7 @@ public class DeleteCommand extends Command {
      * @throws DukeException specific error message to be thrown
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage, Container container, ContactMap contacts) throws DukeException {
         try {
             int originalTotal = tasks.totalSize();
             Task task = tasks.getTaskList().get(this.number - 1);

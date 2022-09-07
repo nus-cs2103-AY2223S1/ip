@@ -4,15 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
-import duke.command.AddCommand;
-import duke.command.ByeCommand;
-import duke.command.Command;
-import duke.command.DefaultCommand;
-import duke.command.DeleteCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.UnMarkedCommand;
+import duke.command.*;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.ToDo;
@@ -100,6 +92,26 @@ public class Parser {
             FindCommand findCommand = new FindCommand(keyword);
             return findCommand;
 
+
+        case "addContact":
+            Contact contact = createContact(strArr[1],strArr[2]);
+            AddContactCommand addContactCommand = new AddContactCommand(contact);
+            return addContactCommand;
+
+        case "deleteContact":
+            String ContactName = strArr[1];
+            DeleteContactCommand deleteContactCommand = new DeleteContactCommand(ContactName);
+            return deleteContactCommand;
+
+        case "contactList":
+            ListContactCommand listContactCommand = new ListContactCommand();
+            return listContactCommand;
+
+        case "findContact":
+            String nameToFind = strArr[1];
+            FindContactCommand findContactCommand = new FindContactCommand(nameToFind);
+            return findContactCommand;
+
         default:
             DefaultCommand defaultCommand = new DefaultCommand();
             return defaultCommand;
@@ -117,6 +129,10 @@ public class Parser {
         String[] arrOfStr = dateTime.split(" ");
         return LocalTime.of(Integer.parseInt(arrOfStr[1].substring(0, 2)),
                 Integer.parseInt(arrOfStr[1].substring(2)));
+    }
+
+    public static Contact createContact(String name,String number) {
+        return new Contact(name,number);
     }
 
 
