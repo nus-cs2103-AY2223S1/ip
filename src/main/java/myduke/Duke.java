@@ -1,10 +1,10 @@
 package myduke;
 
-import java.time.format.DateTimeParseException;
 import java.io.File;
 
 import gui.Launcher;
 
+import command.Command;
 import exception.DukeException;
 
 /**
@@ -12,6 +12,8 @@ import exception.DukeException;
  */
 public class Duke {
     private Ui ui;
+    private Storage storage;
+    private TaskList tasklist;
 
     /**
      * Constructor for duke.
@@ -20,18 +22,17 @@ public class Duke {
      */
     public Duke(String filePath) {
         File file = new File(filePath);
-        Storage storage = new Storage(file);
-        TaskList tasks = new TaskList();
-        storage.loadFromFile(tasks);
-        ui = new Ui(tasks, storage);
+        storage = new Storage(file);
+        tasklist = new TaskList();
+        storage.loadFromFile(tasklist);
+        ui = new Ui(tasklist, storage);
     }
 
     public String getResponse(String input) {
         try {
-            return ui.response(input);
+            Command c = Parser.parse(input);
+            return c.execute(tasklist, ui, storage);
         } catch (DukeException e) {
-            return e.getMessage();
-        } catch (DateTimeParseException e) {
             return e.getMessage();
         }
     }
