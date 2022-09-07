@@ -60,30 +60,26 @@ public class Parser {
      * @throws BocilException If the user input is not of the accepted format.
      */
     public String processInput(String input) throws BocilException {
+        String response;
         String[] split = input.split("\\s+", 2);
         if (input.matches("\\s*")) {
             throw BocilException.bocilEmptyInputException();
         }
-
         String command = split[0];
-        String response;
+
         switch (command) {
-        case "todo":
-            String todoName = split[1];
-            String placeholderDate = "1-1-2000 00:00";
-            response = this.executor.addNewTask(command, todoName, this.parseTime(placeholderDate));
-            break;
-        case "deadline":
-            String[] deadlineDetails = split[1].split("\\s+/by\\s+");
-            String deadlineName = deadlineDetails[0];
-            String deadlineTime = deadlineDetails[1];
-            response = this.executor.addNewTask(command, deadlineName, this.parseTime(deadlineTime));
-            break;
-        case "event":
-            String[] eventDetails = split[1].split("\\s+/at\\s+");
-            String eventName = eventDetails[0];
-            String eventTime = eventDetails[1];
-            response = this.executor.addNewTask(command, eventName, this.parseTime(eventTime));
+        case "todo": case "event": case "deadline":
+            String name = split[1];
+            if (command.equals("todo")) {
+                String placeholderDate = "1-1-2000 00:00";
+                response = this.executor.addNewTask(command, name, this.parseTime(placeholderDate));
+            } else if (command.equals("deadline")) {
+                String[] details = name.split("\\s+/by\\s+");
+                response = this.executor.addNewTask(command, details[0], this.parseTime(details[1]));
+            } else {
+                String[] details = name.split("\\s+/at\\s+");
+                response = this.executor.addNewTask(command, details[0], this.parseTime(details[1]));
+            }
             break;
         case "mark":
             response = this.executor.markAsDone(split);
@@ -122,7 +118,7 @@ public class Parser {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
                 return LocalDateTime.parse(date, formatter);
             } catch (DateTimeParseException e) {
-                // Proceeds to the next format if the current one is not matched
+                // An empty catch block
             }
         }
         throw BocilException.bocilInvalidDateFormatException();
