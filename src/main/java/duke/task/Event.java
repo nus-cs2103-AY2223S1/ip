@@ -23,6 +23,13 @@ public class Event extends Task{
         this.eventDate = LocalDate.parse(at);
     }
 
+    public Event(String description, String at, String priority) {
+        super(description, priority);
+        this.at = at;
+        this.taskType = "E";
+        this.eventDate = LocalDate.parse(at);
+    }
+
     /**
      * Returns event description.
      * @return even description.

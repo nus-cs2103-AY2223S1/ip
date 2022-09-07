@@ -22,6 +22,12 @@ public class Task {
         this.priority = Priority.LOW;
     }
 
+    public Task(String description, String priority) {
+        this.description = description;
+        this.isDone = false;
+        this.priority = Priority.valueOf(priority);
+    }
+
     public Priority getPriority() {
         return this.priority;
     }

@@ -15,6 +15,11 @@ public class ToDo extends Task{
         this.taskType = "T";
     }
 
+    public ToDo(String description, String priority) {
+        super(description, priority);
+        this.taskType = "T";
+    }
+
     /**
      * Returns task description.
      * @return task description.

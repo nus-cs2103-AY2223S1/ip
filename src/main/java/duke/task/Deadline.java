@@ -23,6 +23,13 @@ public class Deadline extends Task{
         this.deadline = LocalDate.parse(by);
     }
 
+    public Deadline(String description, String by, String priority) {
+        super(description, priority);
+        this.by = by;
+        this.taskType = "D";
+        this.deadline = LocalDate.parse(by);
+    }
+
     /**
      * Returns deadline description.
      * @return deadline description.

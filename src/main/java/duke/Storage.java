@@ -1,6 +1,7 @@
 package duke;
 
 import duke.task.Deadline;
+import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
@@ -42,16 +43,26 @@ public class Storage {
         switch (taskType) {
         case "T": {
             String[] taskDetails = details.split(" \\| ");
-            task = new ToDo(taskDetails[1]);
+            task = new ToDo(taskDetails[2],
+                    taskDetails[1].replaceAll("\\[","").replaceAll("\\]", ""));
             if (Integer.parseInt(taskDetails[0]) == 1) {
                 task.markAsDone();
             }
             break;
         }
-        case "D":
+        case "D": {
+            String[] taskDetails = details.split(" \\| ");
+            task = new Deadline(taskDetails[2], taskDetails[3],
+                    taskDetails[1].replaceAll("\\[","").replaceAll("\\]", ""));
+            if (Integer.parseInt(taskDetails[0]) == 1) {
+                task.markAsDone();
+            }
+            break;
+        }
         case "E": {
             String[] taskDetails = details.split(" \\| ");
-            task = new Deadline(taskDetails[1], taskDetails[2]);
+            task = new Event(taskDetails[2], taskDetails[3],
+                    taskDetails[1].replaceAll("\\[","").replaceAll("\\]", ""));
             if (Integer.parseInt(taskDetails[0]) == 1) {
                 task.markAsDone();
             }
