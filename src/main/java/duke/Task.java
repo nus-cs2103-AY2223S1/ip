@@ -26,10 +26,12 @@ public class Task {
     }
 
     public void mark() {
+
         isDone = true;
     }
 
     public void unmark() {
+
         isDone = false;
     }
 
