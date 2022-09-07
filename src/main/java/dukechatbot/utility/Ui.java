@@ -65,18 +65,15 @@ public class Ui {
      * @param t the task that the user has told Duke to add into their task list.
      */
     public String added(Task t) {
-        String response = "Got it. I've added this task: \n" + t.toString()
+        return "Got it. I've added this task: \n" + t.toString()
             + "\n\tNow you have " + this.taskArrayList.size() + " task(s) in the list.";
-        return response;
     }
     /**
      * Shows success of marking the task in the task list as done.
      * @param t the task that the user has told Duke to mark as done.
      */
     public String marked(Task t) {
-        String response =
-            "Nice! I have marked this task as done: \n\t" + t.toString();
-        return response;
+        return "Nice! I have marked this task as done: \n\t" + t.toString();
     }
 
     /**
@@ -85,8 +82,7 @@ public class Ui {
      * @param t the task that the user has told Duke to mark as not done.
      */
     public String unmarked(Task t) {
-        String response = ("OK, I've marked this task as not done yet: ") + ("\n\t" + t.toString());
-        return response;
+        return "OK, I've marked this task as not done yet: " + "\n\t" + t.toString();
     }
 
     /**
