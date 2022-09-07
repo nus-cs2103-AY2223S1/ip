@@ -29,6 +29,7 @@ public class AddDeadlineCommand extends Command {
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeMissingArgumentException {
         try {
+            assert !description.substring(9).isBlank() : "Task description cannot be blank";
             String[] str = description.substring(9).split(" /by ");
             Deadline deadline = new Deadline(str[0], str[1], false);
             tasks.add(deadline);

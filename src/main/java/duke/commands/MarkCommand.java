@@ -29,6 +29,8 @@ public class MarkCommand extends Command {
     public String execute(TaskList tasks, Storage storage) throws DukeIndexOutOfBoundsException {
         try {
             int index = Integer.parseInt(description.substring(5)) - 1;
+            assert index >= 0 : "Task index cannot be less than 0";
+            assert index < tasks.getSize() : "Task index cannot be larger than the number of tasks.";
             tasks.markTaskAsDone(index);
             String response = "Nice! I've marked this task as done:\n" + tasks.get(index);
             return response;

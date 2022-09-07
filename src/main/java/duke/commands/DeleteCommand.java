@@ -30,6 +30,8 @@ public class DeleteCommand extends Command {
     public String execute(TaskList tasks, Storage storage) throws DukeIndexOutOfBoundsException {
         try {
             int index = Integer.parseInt(description.substring(7)) - 1;
+            assert index >= 0 : "Task index cannot be less than 0";
+            assert index < tasks.getSize() : "Task index cannot be larger than the number of tasks.";
             Task task = tasks.get(index);
             tasks.delete(index);
             String response = "Noted. I've removed this task:\n  " + task;

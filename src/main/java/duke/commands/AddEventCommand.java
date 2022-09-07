@@ -29,6 +29,7 @@ public class AddEventCommand extends Command {
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeMissingArgumentException {
         try {
+            assert !description.substring(6).isBlank() : "Task description cannot be blank";
             String[] str = description.substring(6).split(" /at ");
             Event event = new Event(str[0], str[1], false);
             tasks.add(event);
