@@ -68,6 +68,7 @@ public class Storage {
         try {
             this.createDirectory("data");
             this.createFile();
+            assert file.exists(); //Asserts that the file in the specified filePath exists
             sc = new Scanner(file);
             while (sc.hasNextLine()) {
                 String taskString = sc.nextLine();

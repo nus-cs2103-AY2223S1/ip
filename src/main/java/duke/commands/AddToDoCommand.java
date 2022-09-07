@@ -29,6 +29,7 @@ public class AddToDoCommand extends Command {
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeMissingArgumentException {
         try {
+            assert !description.substring(5).isBlank() : "Task description cannot be blank";
             ToDo todo = new ToDo(description.substring(5), false);
             tasks.add(todo);
             int numberOfTasks = tasks.getSize();
