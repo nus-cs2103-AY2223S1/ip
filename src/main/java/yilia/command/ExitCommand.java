@@ -19,15 +19,14 @@ public class ExitCommand extends Command {
      * @param tasks The tasks.
      * @param ui The use interface.
      * @param storage The local storage.
-     * @return The message after executing.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {
             storage.save(tasks);
-            return ui.showBye();
+            ui.showBye();
         } catch (IOException e) {
-            return ui.showError(e.getMessage());
+            ui.showError(e.getMessage());
         }
     }
 }

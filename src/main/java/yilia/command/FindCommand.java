@@ -18,17 +18,13 @@ public class FindCommand extends Command {
      * @param tasks The tasks.
      * @param ui The use interface.
      * @param storage The local storage.
-     * @return The message after executing.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
-        String message = "";
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         for (int i = 1; i <= tasks.size(); i++) {
             if (tasks.get(i).toString().contains(content)) {
-                message += ui.showTask(i, tasks);
-                message += "\n";
+                ui.showTask(i, tasks);
             }
         }
-        return message;
     }
 }

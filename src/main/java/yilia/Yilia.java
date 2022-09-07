@@ -77,9 +77,10 @@ public class Yilia extends Application {
         AnchorPane.setRightAnchor(sendButton, 1.0);
         AnchorPane.setLeftAnchor(userInput, 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
-        dialogContainer.getChildren().add(
-                DialogBox.getYiliaDialog(ui.showWelcome(), yilia)
-        );
+        sendButton.setOnMouseClicked((event) -> {
+            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
+            userInput.clear();
+        });
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
         sendButton.setOnMouseClicked((event) -> {
             handleUserInput();
@@ -103,20 +104,7 @@ public class Yilia extends Application {
         userInput.clear();
     }
     public String getResponse(String input) {
-        try {
-            Command c = Parser.parse(input);
-            return c.execute(tasks, ui, storage);
-        } catch (DescriptionEmptyException e) {
-            return ui.showError(e.getMessage());
-        } catch (KeywordMissingException e) {
-            return ui.showError(e.getMessage());
-        } catch (NoIndexException e) {
-            return ui.showError(e.getMessage());
-        } catch (TimeFormatException e) {
-            return ui.showError(e.getMessage());
-        } catch (YiliaException e) {
-            return ui.showError(e.getMessage());
-        }
+        return "Yilia heard: " + input;
     }
     /**
      * Runs the main body of the chat box.
