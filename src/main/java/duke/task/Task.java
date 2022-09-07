@@ -54,6 +54,8 @@ public abstract class Task {
 
     public abstract Task clone();
 
+    public abstract boolean isSameTask(Task task);
+
     /**
      * Return the String representation of the Task.
      * @return The String representation of the Task.

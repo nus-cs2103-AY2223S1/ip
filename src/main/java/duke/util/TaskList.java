@@ -22,12 +22,17 @@ public class TaskList implements Savable<TaskList> {
      * @param task The given task.
      */
     public void add(Task task) {
-        if (tasks.contains(task)) {
+        boolean hasSameTask = tasks.stream().anyMatch(x -> x.isSameTask(task));
+        if (hasSameTask) {
             throw new TaskAlreadyExistException(task);
         }
         tasks.add(task);
     }
 
+    /**
+     * Returns an identical TaskList as this.
+     * @return An identical TaskList.
+     */
     public TaskList clone() {
         TaskList result = new TaskList();
         tasks.forEach(task -> result.add(task.clone()));

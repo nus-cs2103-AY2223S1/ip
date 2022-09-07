@@ -56,6 +56,22 @@ public class Deadline extends Task {
     }
 
     /**
+     * Returns whether the given Task is same as this one.
+     * @param task The given Task
+     * @return The boolean whether the given Task is same as this one.
+     */
+    @Override
+    public boolean isSameTask(Task task) {
+        if (task instanceof Deadline) {
+            Deadline that = (Deadline) task;
+            return this.getName().equals(task.getName())
+                    && this.getTime().equals(that.getTime())
+                    && this.getIsDone() == task.getIsDone();
+        }
+        return false;
+    }
+
+    /**
      * Returns boolean indicating whether this object
      * is equivalent to another object.
      *
@@ -72,7 +88,7 @@ public class Deadline extends Task {
             if (d == null) {
                 return false;
             }
-            if (this.time == d.time && this.getName() == d.getName()) {
+            if (this.time == d.time) {
                 return true;
             }
             if (this.getName() == null || this.time == null) {
@@ -82,7 +98,8 @@ public class Deadline extends Task {
                 return false;
             }
             return this.getName().equals(d.getName())
-                    && this.getTime().equals(d.getTime());
+                    && this.getTime().equals(d.getTime())
+                    && this.getIsDone() == d.getIsDone();
         }
         return false;
     }

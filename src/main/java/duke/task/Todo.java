@@ -34,11 +34,24 @@ public class Todo extends Task {
 
     @Override
     public Todo clone() {
-        Todo result = new Todo(this.getName());
+        Todo result = new Todo(String.valueOf(this.getName()));
         if (this.getIsDone()) {
             result.markAsDone();
         }
         return result;
+    }
+
+    /**
+     * Returns whether the given Task is same as this one.
+     * @param task The given Task
+     * @return The boolean whether the given Task is same as this one.
+     */
+    @Override
+    public boolean isSameTask(Task task) {
+        if (task instanceof Todo) {
+            return this.getName().equals(task.getName()) && this.getIsDone() == task.getIsDone();
+        }
+        return false;
     }
 
     /**
@@ -58,16 +71,13 @@ public class Todo extends Task {
             if (t == null) {
                 return false;
             }
-            if (this.getName() == t.getName()) {
-                return true;
-            }
             if (this.getName() == null) {
                 return false;
             }
             if (t.getName() == null) {
                 return false;
             }
-            return this.getName().equals(t.getName());
+            return this.getName().equals(t.getName()) && this.getIsDone() == t.getIsDone();
         }
         return false;
     }

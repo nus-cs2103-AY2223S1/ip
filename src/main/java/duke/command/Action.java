@@ -27,7 +27,9 @@ public enum Action {
     //    Level_8
     //    No new actions is added
     //    Level-9
-    FIND;
+    FIND,
+    //    Extension
+    UNDO;
 
     /**
      * The HashMap stores the standardFormat of an Action.
@@ -67,6 +69,8 @@ public enum Action {
         //        No action added.
         //        Level_9
         map.put(Action.FIND, "find [keyword]");
+        //        Extension
+        map.put(Action.UNDO, "undo");
     }
 
     static {
@@ -95,6 +99,8 @@ public enum Action {
         map.put("read", Action.READ);
         //        Level_9
         map.put("find", Action.FIND);
+        //        Extension
+        map.put("undo", Action.UNDO);
     }
 
     /**

@@ -124,6 +124,8 @@ public class Parser {
             return Command.read();
         case FIND:
             return parseFindCommand(s);
+        case UNDO:
+            return Command.undo();
         default:
             return Command.doNothing();
         }

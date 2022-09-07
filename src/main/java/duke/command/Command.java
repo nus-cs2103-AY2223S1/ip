@@ -139,6 +139,14 @@ public abstract class Command {
     }
 
     /**
+     * A public static factory method to return a UndoCommand.
+     * @return The FindCommand
+     */
+    public static UndoCommand undo() {
+        return new UndoCommand();
+    }
+
+    /**
      * Executes the Command with given Duke.
      * @param duke The target duke that the command takes effect.
      * @return The response of Duke.

@@ -3,6 +3,7 @@ package duke;
 import java.util.Scanner;
 import java.util.Stack;
 
+import duke.command.Action;
 import duke.command.Command;
 import duke.exception.CompileException;
 import duke.exception.DukeException;
@@ -83,7 +84,15 @@ public class Duke {
      * @param command The given Command.
      */
     public String execute(Command command) throws DukeRuntimeException {
-        return command.execute(this);
+        TaskList oldTaskList = this.tasks.clone();
+        String result = command.execute(this);
+        TaskList newTaskList = this.tasks;
+        boolean isUnchangedTaskList = oldTaskList.equals(newTaskList);
+        boolean isUndoCommand = command.getAction().equals(Action.UNDO);
+        if (!isUnchangedTaskList && !isUndoCommand) {
+            taskListHistory.push(oldTaskList);
+        }
+        return result;
     }
 
     /**

@@ -47,11 +47,27 @@ public class Event extends Task {
 
     @Override
     public Event clone() {
-        Event result = new Event(this.getName(), this.getTime());
+        Event result = new Event(String.valueOf(this.getName()), this.getTime());
         if (this.getIsDone()) {
             result.markAsDone();
         }
         return result;
+    }
+
+    /**
+     * Returns whether the given Task is same as this one.
+     * @param task The given Task
+     * @return The boolean whether the given Task is same as this one.
+     */
+    @Override
+    public boolean isSameTask(Task task) {
+        if (task instanceof Event) {
+            Event that = (Event) task;
+            return this.getName().equals(task.getName())
+                    && this.getTime().equals(that.getTime())
+                    && this.getIsDone() == task.getIsDone();
+        }
+        return false;
     }
 
     /**
@@ -71,7 +87,7 @@ public class Event extends Task {
             if (e == null) {
                 return false;
             }
-            if (this.time == e.time && this.getName() == e.getName()) {
+            if (this.time == e.time) {
                 return true;
             }
             if (this.getName() == null || this.time == null) {
@@ -81,7 +97,8 @@ public class Event extends Task {
                 return false;
             }
             return this.getName().equals(e.getName())
-                    && this.getTime().equals(e.getTime());
+                    && this.getTime().equals(e.getTime())
+                    && this.getIsDone() == e.getIsDone();
         }
         return false;
     }
