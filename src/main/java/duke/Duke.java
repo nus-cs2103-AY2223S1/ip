@@ -28,7 +28,7 @@ public class Duke {
         try {
             tasks = new TaskList(storage.loadTasks());
         } catch (FileNotFoundException e) {
-            ui.showLoadingError();
+            ui.showError("Error Loading Storage File!");
             tasks = new TaskList();
         }
     }
@@ -51,7 +51,7 @@ public class Duke {
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
             } catch (DukeException e) {
-                ui.showError(e.getMessage());
+                System.out.println(ui.showError(e.getMessage()));
             } finally {
                 ui.showLine();
             }

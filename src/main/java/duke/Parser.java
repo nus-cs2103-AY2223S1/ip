@@ -15,6 +15,7 @@ import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
 import duke.exception.EmptyDateException;
 import duke.exception.EmptyTodoException;
+import duke.exception.InvalidDateException;
 import duke.exception.UnknownCommandException;
 import duke.task.Deadline;
 import duke.task.Event;
@@ -44,65 +45,68 @@ public class Parser {
         }
         String[] words = input.split(" ");
         if (words[0].equals("mark")) {
-            // mark keyword: checks the box of an item in the list
-            String numString = words[1];
-            int idx = Integer.parseInt(numString) - 1;
+            int idx = Integer.parseInt(words[1]) - 1;
             return new MarkCommand(idx);
         } else if (words[0].equals("unmark")) {
-            // unmark keyword: unchecks the box of an item in the list
-            String numString = words[1];
-            int idx = Integer.parseInt(numString) - 1;
+            int idx = Integer.parseInt(words[1]) - 1;
             return new UnmarkCommand(idx);
         } else if (words[0].equals("todo")) {
-            // to do keyword: create new to do item
-            if (words.length == 1) {
-                throw new EmptyTodoException();
-            } else {
-                String desc = input.split("todo ", 2)[1];
-                return new AddCommand(new Todo(desc));
-            }
+            String desc = getTodoDescription(input);
+            return new AddCommand(new Todo(desc));
         } else if (words[0].equals("deadline")) {
-            // deadline keyword: create new deadline item
             String[] splitStringByBy = input.split(" /by ", 2);
-            if (splitStringByBy.length <= 1) {
-                throw new EmptyDateException();
-            }
-            String formattedDate = "";
-            try {
-                LocalDate unformattedDate = LocalDate.parse(splitStringByBy[1]);
-                formattedDate = unformattedDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
-            } catch (DateTimeParseException e) {
-                System.out.println("Invalid Date format! Use a YYYY-MM-DD format!");
-            }
+            String formattedDate = formatDate(splitStringByBy);
             String desc = splitStringByBy[0].split("deadline ", 2)[1];
             return new AddCommand(new Deadline(desc, formattedDate));
         } else if (words[0].equals("event")) {
-            // event keyword: create new event item
             String[] splitStringByAt = input.split(" /at ", 2);
-            if (splitStringByAt.length <= 1) {
-                throw new EmptyDateException();
-            }
-            String formattedDate = "";
-            try {
-                LocalDate unformattedDate = LocalDate.parse(splitStringByAt[1]);
-                formattedDate = unformattedDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
-            } catch (DateTimeParseException e) {
-                System.out.println("Invalid Date format! Use a YYYY-MM-DD format!");
-            }
+            String formattedDate = formatDate(splitStringByAt);
             String desc = splitStringByAt[0].split("event ", 2)[1];
             return new AddCommand(new Event(desc, formattedDate));
         } else if (words[0].equals("delete")) {
-            // delete keyword: remove task from list
-            String numString = words[1];
-            int idx = Integer.parseInt(numString) - 1;
+            int idx = Integer.parseInt(words[1]) - 1;
             return new DeleteCommand(idx);
         } else if (words[0].equals("find")) {
-            // find keyword: find matching tasks
             String[] find = input.split("find ", 2);
             String keyword = find[1];
             return new FindCommand(keyword);
         } else {
             throw new UnknownCommandException();
         }
+    }
+
+    /**
+     * Method that formats the date field, given the input and keyword
+     *
+     * @param splitStringByKeyword An array containing the description and time.
+     * @return A String representing the formatted date.
+     * @throws DukeException If input is invalid.
+     */
+    public static String formatDate(String[] splitStringByKeyword) throws DukeException {
+        if (splitStringByKeyword.length <= 1) {
+            throw new EmptyDateException();
+        }
+        String formattedDate = "";
+        try {
+            LocalDate unformattedDate = LocalDate.parse(splitStringByKeyword[1]);
+            formattedDate = unformattedDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateException();
+        }
+        return formattedDate;
+    }
+
+    /**
+     * Method that returns the description field of a Todo, given the input.
+     *
+     * @param input The command entered by the user.
+     * @return A String representing the description of the Todo.
+     * @throws DukeException If input is invalid.
+     */
+    public static String getTodoDescription(String input) throws DukeException {
+        if (input.split(" ").length == 1) {
+            throw new EmptyTodoException();
+        }
+        return input.split("todo ", 2)[1];
     }
 }
