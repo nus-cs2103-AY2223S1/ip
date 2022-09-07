@@ -1,6 +1,15 @@
 package duke.parser;
 
-import duke.command.*;
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TodoCommand;
+import duke.command.UnmarkCommand;
 import duke.exception.DukeEmptyDescriptionException;
 import duke.exception.DukeException;
 import duke.exception.DukeInvalidCommandException;
@@ -19,7 +28,7 @@ public class Parser {
      *
      * @param command String representation of the command.
      * @return The command by user.
-     * @throws DukeException The exception thrown when an action is unauthorized by Duke.
+     * @throws DukeException
      */
     public static Command parse(String command) throws DukeException {
         if (command.equals("bye")) {

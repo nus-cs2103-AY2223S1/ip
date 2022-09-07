@@ -22,8 +22,8 @@ public class Ui {
     }
 
     public String displayGreeting() {
-        return printMessage(makeIndent("Hi, how are you doing?! I'm JRH2000\n") +
-                makeIndent("How can I help you?\n"));
+        return printMessage(makeIndent("Hi, how are you doing?! I'm JRH2000\n")
+                + makeIndent("How can I help you?\n"));
     }
 
     public String displayBye() {
