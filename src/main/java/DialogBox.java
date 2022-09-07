@@ -31,7 +31,6 @@ public class DialogBox extends HBox {
             fxmlLoader.setController(this);
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
-//            setMinHeight(getNumberOfRows(text) * ROW_HEIGHT);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -39,15 +38,6 @@ public class DialogBox extends HBox {
         dialog.setText(text);
         displayPicture.setImage(img);
     }
-
-//    private int getNumberOfRows(String s) {
-//        int result = 0;
-//        String[] strings = s.split(System.lineSeparator());
-//        for (String row : strings) {
-//            result += (row.length() / ROW_LENGTH) + 1;
-//        }
-//        return result;
-//    }
 
     /**
      * Flips the dialog box such that the ImageView is on the left and text on the right.
