@@ -38,33 +38,7 @@ public class Parser {
             else if (input.toUpperCase().equals("BYE")) return new ExitCommand();
             else if (input.toUpperCase().equals("LIST")) return new ListCommand();
             else {
-                String[] arr = input.split(" ", 2);
-                String command = arr[0];
-                String arguments = arr[1];
-                switch (command.toUpperCase()) {
-                case "TODO":
-                    Todo newTodo = new Todo(arguments, false);
-                    return new AddCommand(newTodo);
-                case "DEADLINE":
-                    String[] deadlineArgs = arguments.split("/by");
-                    Deadline newDeadline = new Deadline(deadlineArgs[0].trim(), false, Duck.dateStorageConverter(deadlineArgs[1].trim()));
-                    return new AddCommand(newDeadline);
-                case "EVENT":
-                    String[] eventArgs = arguments.split("/at");
-                    Event newEvent = new Event(eventArgs[0].trim(), false, Duck.dateStorageConverter(eventArgs[1].trim()));
-                    return new AddCommand(newEvent);
-                case "MARK":
-                    return new MarkCommand(Integer.parseInt(arguments) - 1);
-                case "UNMARK":
-                    return new UnmarkCommand(Integer.parseInt(arguments) - 1);
-                case "DELETE":
-                    return new DeleteCommand(Integer.parseInt(arguments) - 1);
-                case "FIND":
-                    return new FindCommand(arguments);
-                default:
-                    ui.sendTextToUi("Quack! What does that even mean ?!?!?");
-                    break;
-                }
+                return commandsWithArguments(input, ui);
             }
         } catch (ArrayIndexOutOfBoundsException a) {
             if (input.toUpperCase().contains("TODO") ||
@@ -84,4 +58,42 @@ public class Parser {
         return new ErrorCommand();
     }
 
+    /**
+     * Abstracted function to handle for commands with arguments
+     * @param input input string to be parsed
+     * @param ui UI object to be used
+     * @return returns a type of command corresponding to the input given
+     */
+    private static Commands commandsWithArguments(String input, UI ui) throws ParseException {
+        String[] arr = input.split(" ", 2);
+        String command = arr[0];
+        String arguments = arr[1];
+        switch (command.toUpperCase()) {
+        case "TODO":
+            Todo newTodo = new Todo(arguments, false);
+            return new AddCommand(newTodo);
+        case "DEADLINE":
+            String[] deadlineArgs = arguments.split("/by");
+            Deadline newDeadline = new Deadline(deadlineArgs[0].trim(), false,
+                    Duck.dateStorageConverter(deadlineArgs[1].trim()));
+            return new AddCommand(newDeadline);
+        case "EVENT":
+            String[] eventArgs = arguments.split("/at");
+            Event newEvent = new Event(eventArgs[0].trim(), false,
+                    Duck.dateStorageConverter(eventArgs[1].trim()));
+            return new AddCommand(newEvent);
+        case "MARK":
+            return new MarkCommand(Integer.parseInt(arguments) - 1);
+        case "UNMARK":
+            return new UnmarkCommand(Integer.parseInt(arguments) - 1);
+        case "DELETE":
+            return new DeleteCommand(Integer.parseInt(arguments) - 1);
+        case "FIND":
+            return new FindCommand(arguments);
+        default:
+            ui.sendTextToUi("Quack! What does that even mean ?!?!?");
+            break;
+        }
+        return new ErrorCommand();
+    }
 }
