@@ -54,20 +54,22 @@ public class Parser {
                 String status = taskList.readStatus(i);
                 switch (taskType) {
                 case 'T': {
-                    String taskToAppend = taskList.storeIntoFileFormat("T", taskList.convertStatus(status),
-                            taskList.getDescription(i), "");
+                    String taskStatus = status.equals("X") ? "1" : "0";
+                    String taskToAppend = "T | " + taskStatus + " | " + taskList.getDescription(i);
                     storage.appendToFile(taskToAppend);
                     break;
                 }
                 case 'D': {
-                    String taskToAppend = taskList.storeIntoFileFormat("D", taskList.convertStatus(status),
-                            taskList.getDescription(i), taskList.getDate(i));
+                    String taskStatus = status.equals("X") ? "1" : "0";
+                    String taskToAppend = "D | " + taskStatus + " | " + taskList.getDescription(i) + "| "
+                            + taskList.getDate(i);
                     storage.appendToFile(taskToAppend);
                     break;
                 }
                 case 'E': {
-                    String taskToAppend = taskList.storeIntoFileFormat("E", taskList.convertStatus(status),
-                            taskList.getDescription(i), taskList.getDate(i));
+                    String taskStatus = status.equals("X") ? "1" : "0";
+                    String taskToAppend = "E | " + taskStatus + " | " + taskList.getDescription(i) + "| "
+                            + taskList.getDate(i);
                     storage.appendToFile(taskToAppend);
                     break;
                 }
@@ -157,22 +159,9 @@ public class Parser {
                 return ui.getMatchingTaskMessage() + result;
             }
         }
-        case "cdf": {
-            if (splitCommand.length == 1) {
-                throw new InvalidDescriptionException("Please add a number.");
-            }
-            int index = Integer.parseInt(splitCommand[1]) - 1;
-            if (index + 1 > taskList.getNumOfTasks()) {
-                throw new InvalidCommandException("Task does not exist.");
-            }
-            if (taskList.changeDateFormat(index).equals("")) {
-                return ui.getNoDateMessage();
-            } else {
-                return ui.getDateChangedMessage() + "\n" + taskList.changeDateFormat(index);
-            }
-        }
         default:
             throw new InvalidCommandException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
+
 }

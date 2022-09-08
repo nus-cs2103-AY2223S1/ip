@@ -27,15 +27,11 @@ public class Deadline extends Task {
         return this.by.toString();
     }
 
-
     /**
-     * Returns a String with a different date format.
-     * @return A <code>Deadline</code> with a different date format.
+     * Changes the date format of the deadline.
      */
-    public String changeDateFormat() {
-        String updatedDate = this.by.format(DateTimeFormatter.ofPattern("d MMM uuuu"));
-        return "[D]" + super.toString()
-                + "(by: " + updatedDate + ")";
+    public void changeDateFormat() {
+        this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
     /**
