@@ -16,6 +16,7 @@ public class TaskList {
 
     /**
      * Adds a task to the tasklist.
+     *
      * @param task Task to be added.
      */
     public void addTask(Task task) {
@@ -24,6 +25,7 @@ public class TaskList {
 
     /**
      * Removes a task from the tasklist.
+     *
      * @param index Task number to remove.
      * @return String representation of task removed.
      */
@@ -35,6 +37,7 @@ public class TaskList {
 
     /**
      * Returns Total number of tasks stored.
+     *
      * @return Total number of tasks.
      */
     public int size() {
@@ -44,6 +47,7 @@ public class TaskList {
 
     /**
      * Filters the tasklist based on str.
+     *
      * @param str Match criteria.
      * @return List of tasks that matches str.
      */
@@ -61,6 +65,7 @@ public class TaskList {
 
     /**
      * Returns task in oldTasks based on task number.
+     *
      * @param num num Index of Task in oldTasks.
      * @return Task in old Tasklist
      */
@@ -70,6 +75,7 @@ public class TaskList {
 
     /**
      * Replacing the Task of oldtask.
+     *
      * @param index Position of task in list.
      * @param Task Task.
      */
@@ -80,12 +86,16 @@ public class TaskList {
 
     /**
      * Return list of old tasks.
+     *
      * @return List of old tasks.
      */
     public List<Task> getOldTasks() {
         return oldTasks;
     }
 
+    /**
+     * Sorts the tasklist.
+     */
     public void sort() {
         Collections.sort(oldTasks);
     }

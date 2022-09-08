@@ -16,6 +16,7 @@ public class Storage {
 
     /**
      * Reads lines from a file and stores them in a list.
+     *
      * @param filescanner Scanner to read from the file.
      * @return List containing all the tasks from a file.
      */
@@ -70,6 +71,7 @@ public class Storage {
 
     /**
      * Overwrite the current file if list is not empty.
+     *
      * @param pathName Pathname of file.
      * @param lst1 First list to write to file.
      * @throws IOException If there is an error writing to file.
@@ -88,6 +90,7 @@ public class Storage {
 
     /**
      * Writes to file.
+     *
      * @param filePath Pathname of file.
      * @param textToAdd Text to write to file.
      * @throws IOException If there is an error writing to file.
@@ -101,6 +104,7 @@ public class Storage {
 
     /**
      * Overwrites existing file.
+     *
      * @param filePath Pathname of file.
      * @param textToAdd Text to write to file.
      * @throws IOException If there is an error writing to file.

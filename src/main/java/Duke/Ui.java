@@ -13,6 +13,7 @@ public class Ui {
 
     /**
      * Prints out if the file has already been created.
+     *
      * @param create Boolean whether the file is already created.
      */
     public void fileCreate(boolean create) {
