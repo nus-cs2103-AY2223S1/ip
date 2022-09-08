@@ -28,7 +28,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
         try {
             if (!isNumeric(userAction)) {
                 throw new DukeException("I'm sorry, the input you provided is not a number!");
@@ -40,12 +40,14 @@ public class DeleteCommand extends Command {
                     Task task = tasks.getTasks().get(index);
                     tasks.getTasks().remove(index);
                     storage.save();
-                    ui.sendMessage(" Noted. I've removed this task:\n" + "   " + task.toString()
+                    return ui.sendMessage(" Noted. I've removed this task:\n" + "   " + task.toString()
                             + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
                 }
             }
         } catch (IOException e) {
             throw new DukeException(e.getMessage());
+        } catch (DukeException e2) {
+            return e2.toString();
         }
     }
 

@@ -19,7 +19,7 @@ public class TodoCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
         try {
             Task newTodo = new Todo(userAction);
             if (this.userAction.equals("")) {
@@ -27,11 +27,13 @@ public class TodoCommand extends Command {
             } else{
                 tasks.addTask(newTodo);
                 storage.save();
-                ui.sendMessage(" Got it. I've added this task:\n" + "   " + newTodo.toString()
+                return ui.sendMessage(" Got it. I've added this task:\n" + "   " + newTodo.toString()
                         + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
             }
-        } catch (DukeException | IOException e) {
+        } catch (IOException e) {
             throw new DukeException(e.getMessage());
+        } catch (DukeException e2) {
+            return e2.toString();
         }
     }
 

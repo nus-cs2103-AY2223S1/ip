@@ -18,9 +18,8 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
-        String findMessage = tasks.find(userAction);
-        ui.sendMessage(findMessage);
+    public String execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
+        return tasks.find(userAction);
     }
 
     @Override
