@@ -32,7 +32,12 @@ public class Deadline extends Task {
 
     @Override
     public void updateDate(String updatedBy) throws DukeException {
-        this.by = LocalDate.parse(updatedBy);
+        try {
+            this.by = LocalDate.parse(updatedBy);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("date after task number should be in YYYY-MM-DD Format.");
+        }
+
     }
 
     @Override

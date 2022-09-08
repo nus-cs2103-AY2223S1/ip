@@ -1,2 +1,2 @@
-D | 1 | assignment | 2023-08-12
-T | 1 | testing
+D | 0 | CS2100 Tutorial | 2022-09-09
+E | 0 | Summer CS Internship Interview | 2022-09-11
