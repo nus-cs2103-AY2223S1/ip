@@ -45,6 +45,8 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = duke.getResponse(input);
+        assert !input.isEmpty() : "Input cannot be empty!";
+        assert !response.isEmpty() : "Puke doesn't feel like talking to you, try again later";
         Label inputLabel = new Label("You say: " + input);
         Label responseLabel = new Label(response);
         dialogContainer.getChildren().addAll(
