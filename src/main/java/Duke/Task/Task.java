@@ -120,8 +120,9 @@ public abstract class Task {
     public boolean equals(Object obj) {
         if (obj instanceof Task) {
             return encodeForStorage().equals(((Task) obj).encodeForStorage());
+        } else {
+            return false;
         }
-        return false;
     }
 
 }

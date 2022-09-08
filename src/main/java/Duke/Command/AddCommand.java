@@ -7,11 +7,11 @@ import Duke.Task.Task;
 
 /**
  * This class represents the add command that inserts new tasks
- * into the todo list.
+ * into the task list.
  */
 public class AddCommand extends Command{
 
-    /** The task to be inserted into todo list. */
+    /** The task to be inserted into task list. */
     private Task task;
 
     /** Constructs the task insertion command.
@@ -24,8 +24,10 @@ public class AddCommand extends Command{
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.insertTask(this.task);
-        storage.writeListToFile(tasks);
+        boolean isInsertSuccessful = tasks.insertTask(this.task);
+        assert isInsertSuccessful : "Insertion should be completed successfully";
+        boolean isWriteSuccessful = storage.writeListToFile(tasks);
+        assert isWriteSuccessful : "Writing to file should be completed successfully";
         ui.showResponse(String.format("%s\nNow you have %d tasks in the list.", 
                 this.toString(), tasks.getNumOfTasks()));
     }
