@@ -24,8 +24,10 @@ public class AddCommand extends Command{
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.insertTask(this.task);
-        storage.writeListToFile(tasks);
+        boolean isInsertSuccessful = tasks.insertTask(this.task);
+        assert isInsertSuccessful : "Insertion should be completed successfully";
+        boolean isWriteSuccessful = storage.writeListToFile(tasks);
+        assert isWriteSuccessful : "Writing to file should be completed successfully";
         ui.showResponse(String.format("%s\nNow you have %d tasks in the list.", 
                 this.toString(), tasks.getNumOfTasks()));
     }

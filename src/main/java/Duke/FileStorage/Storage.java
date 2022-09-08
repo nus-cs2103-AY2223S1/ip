@@ -132,9 +132,10 @@ public class Storage {
      * 
      * @param tasks The list of tasks to be written to the file.
      */
-    public void writeListToFile(TaskList tasks) {
+    public boolean writeListToFile(TaskList tasks) {
         try {
             ArrayList<Task> taskList= tasks.getList();
+            assert taskList != null : "taskList should at most be empty and not null";
             FileWriter listWriter = new FileWriter(storageFile);
             for (Task task : taskList) {
                 listWriter.write(task.encodeForStorage() + "\n");
@@ -145,6 +146,7 @@ public class Storage {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+        return true;
     }
     
 }

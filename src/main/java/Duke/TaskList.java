@@ -49,9 +49,11 @@ public class TaskList {
      * Inserts the given task into the todo list.
      * 
      * @param task The task to be inserted.
+     * @return True if the task completed successfully.
      */
-    public void insertTask(Task task) {
+    public boolean insertTask(Task task) {
         this.tasks.add(task);
+        return true;
     }
 
     /**

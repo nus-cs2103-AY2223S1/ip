@@ -29,6 +29,7 @@ public class Duke {
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
+        assert storage != null : "Storage should be created";
         try {
             tasks = new TaskList(storage.load());
             ui.showResponse(String.format("Here is the list that you have saved previously:\n%s", 
