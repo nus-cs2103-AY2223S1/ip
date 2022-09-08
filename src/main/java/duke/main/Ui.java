@@ -178,6 +178,18 @@ public class Ui {
     }
 
     /**
+     * Print the archived tasks message.
+     *
+     * @return A String containing the message.
+     */
+    public String printArchive() {
+        printLine();
+        String msg = "Existing data stored as archive, tasks have been purged.";
+        printLine();
+        return msg;
+    }
+
+    /**
      * Print a line.
      */
     public void printLine() {

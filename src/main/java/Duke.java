@@ -75,7 +75,7 @@ public class Duke {
      * @param input Text that user entered.
      * @return Response from Duke.
      */
-    String getResponse(String input) {
+    public String getResponse(String input) {
         boolean isExit = false;
         try {
             Command command = Parser.parseCommand(input);
@@ -91,4 +91,18 @@ public class Duke {
             return ui.printIoException(ie);
         }
     }
+
+//    public void setStorage(Storage newStorage) {
+//        storage = newStorage;
+//    }
+
+
+//    /**
+//     * Getter for Storage.
+//     * @return Storage in Duke.
+//     */
+//    public static Storage getStorage() {
+//        return storage;
+//    }
+
 }

@@ -35,6 +35,12 @@ public class Parser {
             }
             command = new ListCommand();
             break;
+        case ("archive"):
+            if (input.length != 1) {
+                throw new DukeException("I'm sorry, but you cannot add more commands behind 'archive' :-(");
+            }
+            command = new ArchiveCommand();
+            break;
         case ("todo"):
             command = new AddCommand(new Todo(input[1]));
             break;
