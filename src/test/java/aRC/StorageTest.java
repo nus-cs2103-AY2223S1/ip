@@ -50,7 +50,7 @@ public class StorageTest {
             fw.write(String.join("\n", testData));
             fw.close();
 
-            TaskList taskListTest = new TaskList(storageTest.load());
+            TaskList taskListTest = new TaskList(storageTest.loadTasks());
             assertEquals(numberOfTestTests, taskListTest.numTasks());
         } catch (IOException e) {
             fail();
