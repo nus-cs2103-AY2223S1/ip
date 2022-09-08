@@ -50,6 +50,8 @@ public class Duke implements InputAcceptor {
 
     private String handle(String command, String params) {
         switch (command) {
+        case "l":
+            // fallthrough
         case "list":
             StringBuilder out = new StringBuilder();
             for (int i = 0; i < tasks.size(); ++i) {
@@ -77,6 +79,8 @@ public class Duke implements InputAcceptor {
                 return "No search results!";
             }
             return searchResults.toString();
+        case "m":
+            // fallthrough
         case "mark":
             int markedTask = checkTask(params);
             if (markedTask < 0) {
@@ -104,6 +108,8 @@ public class Duke implements InputAcceptor {
         case "bye":
             ui.stopInputLoop();
             return "Goodbye!";
+        case "t":
+            // fallthrough
         case "todo":
             if (params.equals("")) {
                 return "Todo description can't be empty.";
@@ -111,6 +117,8 @@ public class Duke implements InputAcceptor {
             tasks.add(new Todo(params));
             storage.save(tasks);
             return "Added new todo: " + tasks.getTask(tasks.size() - 1);
+        case "d":
+            // fallthrough
         case "deadline":
             if (params.equals("")) {
                 return "Deadline description can't be empty.";
@@ -123,6 +131,8 @@ public class Duke implements InputAcceptor {
             }
             storage.save(tasks);
             return "Added new deadline: " + tasks.getTask(tasks.size() - 1);
+        case "e":
+            // fallthrough
         case "event":
             if (params.equals("")) {
                 return "Event description can't be empty.";
