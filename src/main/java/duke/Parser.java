@@ -1,9 +1,11 @@
 package duke;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.function.Predicate;
 
 public class Parser {
 
@@ -36,13 +38,9 @@ public class Parser {
             command = new Command(
                     (tasks, ui, storage) -> {
                         if (tasks.size() == 0) {
-                            System.out.println("You have nothing to do!");
+                            ui.showNothingToDoMessage();
                         } else {
-                            System.out.println("Here are the tasks in your list:");
-                            tasks.forEach((task) -> {
-                                int itemNumber = tasks.indexOf(task) + 1;
-                                System.out.printf("%d: %s\n", itemNumber, task);
-                            });
+                            ui.listAllTasks(tasks);
                         }
                     }
             );
@@ -58,12 +56,10 @@ public class Parser {
                             Task task = tasks.get(itemNumber);
 
                             if (task.isDone()) {
-                                System.out.println("This task is already marked as done!");
+                                ui.showError("This task is already marked as done!");
                             } else {
                                 task.mark();
-
-                                System.out.println("Nice! I've marked this task as done:");
-                                System.out.println(task);
+                                ui.showMarkedAsDoneMessage(task);
                             }
 
                         } catch (ArrayIndexOutOfBoundsException e) {
@@ -88,12 +84,10 @@ public class Parser {
                             Task task = tasks.get(itemNumber);
 
                             if (!task.isDone()) {
-                                System.out.println("This task is already marked as not done yet!");
+                                ui.showError("This task is already marked as not done yet!");
                             } else {
                                 task.unmark();
-
-                                System.out.println("OK, I've marked this task as not done yet:");
-                                System.out.println(task);
+                                ui.showMarkedAsNotDoneMessage(task);
                             }
 
                         } catch (ArrayIndexOutOfBoundsException e) {
@@ -113,18 +107,17 @@ public class Parser {
                     (tasks, ui, storage) -> {
                         try {
 
-                            String taskName = parameters.split(" /by ")[0];
-                            String by = parameters.split(" /by ")[1];
-
+                            String taskName = parameters.split(Deadline.KEYWORD_TO_SPLIT)[0];
+                            String by = parameters.split(Deadline.KEYWORD_TO_SPLIT)[1];
 
                             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(TIME_INPUT_PATTERN);
                             LocalDateTime byDateTime = LocalDateTime.parse(by, formatter);
                             Task task = new Deadline(taskName, byDateTime);
+
                             tasks.add(task);
 
-                            System.out.println("Got it. I've added this task:");
-                            System.out.println(task);
-                            System.out.printf("Now you have %d tasks in the list.%n", tasks.size());
+                            ui.showAddedTaskMessage(task);
+                            ui.countTasks(tasks);
 
                         } catch (ArrayIndexOutOfBoundsException e) {
                             System.out.println("Please input a valid date/time!");
@@ -148,9 +141,8 @@ public class Parser {
                             Task task = new Event(taskName, byDateTime);
                             tasks.add(task);
 
-                            System.out.println("Got it. I've added this task:");
-                            System.out.println(task);
-                            System.out.printf("Now you have %d tasks in the list.%n", tasks.size());
+                            ui.showAddedTaskMessage(task);
+                            ui.countTasks(tasks);
 
                         } catch (ArrayIndexOutOfBoundsException e) {
                             System.out.println("Please input a valid date/time!");
@@ -167,9 +159,8 @@ public class Parser {
                         Task task = new Todo(parameters);
                         tasks.add(task);
 
-                        System.out.println("Got it. I've added this task:");
-                        System.out.println(task);
-                        System.out.printf("Now you have %d task in the list.%n", tasks.size());
+                        ui.showAddedTaskMessage(task);
+                        ui.countTasks(tasks);
                     }
             );
             break;
@@ -185,10 +176,8 @@ public class Parser {
 
                             tasks.remove(taskToRemove);
 
-                            System.out.println("Noted. I've removed this task:");
-                            System.out.println(taskToRemove);
-                            System.out.printf("Now you have %d tasks in the list.%n", tasks.size());
-
+                            ui.showRemovedTaskMessage(taskToRemove);
+                            ui.countTasks(tasks);
 
                         } catch (ArrayIndexOutOfBoundsException e) {
                             System.out.println("Please input a valid item to mark!");
@@ -208,28 +197,13 @@ public class Parser {
 
                             DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DEADLINE_TIME_INPUT_PATTERN);
                             LocalDate deadlineDate = LocalDate.parse(parameters, formatter);
+                            SimpleDateFormat d = new SimpleDateFormat("yyyyMMdd");
+                            Predicate<? super Task> areDatesEqual = t -> d.format(deadlineDate).equals(d.format(t.getDateTime()));
 
-                            boolean[] hasElements = {false};
-
-                            tasks
-                                    .stream()
-                                    .filter(t -> t.getDateTime().getYear() == deadlineDate.getYear())
-                                    .filter(t -> t.getDateTime().getDayOfYear() == deadlineDate.getDayOfYear())
-                                    .forEach((t) -> {
-                                        int itemNumber = tasks.indexOf(t) + 1;
-                                        if (!hasElements[0]) {
-                                            System.out.println("Here are deadlines in your list");
-                                        }
-                                        hasElements[0] = true;
-                                        System.out.printf("%d: %s\n", itemNumber, t);
-                                    });
-
-                            if (!hasElements[0]) {
-                                System.out.println("You do not have any deadlines for this date!");
-                            }
+                            ui.showTasksWithThisProperty(tasks, areDatesEqual);
 
                         } catch (DateTimeParseException e) {
-                            System.out.println("Please input the date and time in the following format: " + DEADLINE_TIME_INPUT_PATTERN);
+                            ui.showError("Please input the date and time in the following format: " + DEADLINE_TIME_INPUT_PATTERN);
                         }
                     }
             );
@@ -239,23 +213,9 @@ public class Parser {
             command = new Command(
                     (tasks, ui, storage) -> {
 
-                        boolean[] hasElements = {false};
+                        Predicate<? super Task> doesTaskNameContain = t -> t.getDescription().contains(parameters);
 
-                        tasks
-                                .stream()
-                                .filter(t -> t.getDescription().contains(parameters))
-                                .forEach((t) -> {
-                                    int itemNumber = tasks.indexOf(t) + 1;
-                                    if (!hasElements[0]) {
-                                        System.out.println("Here are the matching tasks in you list");
-                                    }
-                                    hasElements[0] = true;
-                                    System.out.printf("%d: %s\n", itemNumber, t);
-                                });
-
-                        if (!hasElements[0]) {
-                            System.out.println("No such entries were found!");
-                        }
+                        ui.showTasksWithThisProperty(tasks, doesTaskNameContain);
 
                     }
             );
@@ -271,15 +231,14 @@ public class Parser {
                             int itemNumber = Integer.parseInt(itemString) - 1;
                             Task taskToTag = tasks.get(itemNumber);
 
-                            if (tagString.equals(Task.defaultTagString)) {
-                                throw new DukeException("Please use another tag name!");
+                            if (taskToTag.containsTag(tagString)) {
+                                ui.showError("This task already has that tag!");
+                            } else {
+                                taskToTag.addTag(tagString);
+
+                                ui.showAddedTagMessage(taskToTag);
+                                ui.countTasks(tasks);
                             }
-
-                            taskToTag.setTag(tagString);
-
-                            System.out.println("Noted. I've tagged this task:");
-                            System.out.println(taskToTag);
-                            System.out.printf("Now you have %d tasks in the list.%n", tasks.size());
 
 
                         } catch (ArrayIndexOutOfBoundsException e) {
@@ -288,9 +247,50 @@ public class Parser {
                             System.out.println("Please input a number!");
                         } catch (IndexOutOfBoundsException e) {
                             System.out.println("Task not found!");
-                        } catch (DukeException e) {
-                            e.printStackTrace();
                         }
+                    }
+            );
+            break;
+
+        case "removetag":
+            command = new Command(
+                    (tasks, ui, storage) -> {
+                        try {
+
+                            String itemString = fullCommand.split(" ")[1];
+                            String tagToRemove = fullCommand.split(" ")[2];
+                            int itemNumber = Integer.parseInt(itemString) - 1;
+                            Task taskWithTagToRemove = tasks.get(itemNumber);
+
+                            if (!taskWithTagToRemove.containsTag(tagToRemove)) {
+                                ui.showError("This task does not contain that tag!");
+                            } else {
+                                taskWithTagToRemove.removeTag(tagToRemove);
+
+                                ui.showRemovedTagMessage(taskWithTagToRemove);
+                                ui.countTasks(tasks);
+                            }
+
+
+                        } catch (ArrayIndexOutOfBoundsException e) {
+                            System.out.println("Please input a valid item to remove a tag!");
+                        } catch (NumberFormatException e) {
+                            System.out.println("Please input a number!");
+                        } catch (IndexOutOfBoundsException e) {
+                            System.out.println("Task not found!");
+                        }
+                    }
+            );
+            break;
+
+        case "findtag":
+            command = new Command(
+                    (tasks, ui, storage) -> {
+
+                        Predicate<? super Task> doesTaskContainTag = t -> t.containsTag(parameters);
+
+                        ui.showTasksWithThisProperty(tasks, doesTaskContainTag);
+
                     }
             );
             break;

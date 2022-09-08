@@ -1,13 +1,14 @@
 package duke;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Task {
 
-    protected static final String defaultTagString = "DEFAULT_TAG_THAT_NO_ONE_WOULD_THINK_OF";
     protected String description;
     protected boolean isDone;
-    protected String tag = defaultTagString;
+    protected ArrayList<String> tags = new ArrayList<>();
 
     /**
      * Create a task class.
@@ -30,14 +31,6 @@ public class Task {
         return this.isDone;
     }
 
-    public String getTag() {
-        return this.tag;
-    }
-
-    public void setTag(String newTag) {
-        this.tag = newTag;
-    }
-
     public void mark() {
         this.isDone = true;
     }
@@ -46,20 +39,41 @@ public class Task {
         this.isDone = false;
     }
 
+    public void addTag(String newTag) {
+        this.tags.add(newTag);
+    }
+
+    public void removeTag(String tag) {
+        this.tags.remove(tag);
+    }
+
+    public boolean isTagless() {
+        return this.tags.size() == 0;
+    }
+
+    public boolean containsTag(String tag) {
+        return this.tags.contains(tag);
+    }
+
+    public void setTag(String tags) {
+        String[] tagsList = tags.substring(1, tags.length() - 1).split(", ");
+        this.tags = new ArrayList<>(Arrays.asList(tagsList));
+    }
+
     public LocalDateTime getDateTime() {
         return LocalDateTime.of(0, 1, 1, 0, 0);
     }
 
     public String getWriteString() {
         String marked = this.isDone() ? "1" : "0";
-        return String.format("%s | %s | %s", marked, this.description, this.tag);
+        return String.format("%s | %s | %s", marked, this.description, this.tags);
     }
 
     @Override
     public String toString() {
         String message = String.format("[%s] %s", this.getStatusIcon(), this.description);;
-        if (!this.tag.equals(Task.defaultTagString)) {
-            message = String.format("%s | Tag: %s", message, this.tag);
+        if (!this.isTagless()) {
+            message = String.format("%s | Tag: %s", message, this.tags);
         }
         return message;
     }

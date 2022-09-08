@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class Deadline extends Task {
 
+    protected static final String KEYWORD_TO_SPLIT = " /by ";
     protected LocalDateTime by;
 
     /**
