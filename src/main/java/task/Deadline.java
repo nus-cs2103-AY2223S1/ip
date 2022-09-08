@@ -23,7 +23,7 @@ public class Deadline extends Task {
     public Deadline(String description, String by) {
         super(description);
         this.by = by;
-        String dateAndTime[] = by.split(" ");;
+        String[] dateAndTime = by.split(" ");;
         this.string_Date = dateAndTime[0];
         this.string_Time = dateAndTime[1];
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");

@@ -53,9 +53,7 @@ public class Storage {
                 String data = myReader.nextLine();
                 checkTask(data, taskList);
             }
-        } catch (IOException e) {
-            throw new DukeException("");
-        } catch (StringIndexOutOfBoundsException e) {
+        } catch (IOException | StringIndexOutOfBoundsException e) {
             throw new DukeException("");
         }
         size = currentAction;
@@ -66,7 +64,7 @@ public class Storage {
         //check what task
         String task = Character.toString(str.charAt(1));
         String done = Character.toString(str.charAt(4));
-        Boolean isDone = !done.equals(" ");
+        boolean isDone = !done.equals(" ");
 
 
         if (isTodo(task)) {
