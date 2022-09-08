@@ -3,14 +3,14 @@ package Duke;
 public class Task {
 
     private boolean isDone;
-    private String descript;
+    private final String DESCRIPT;
 
     /**
      * Creates the Task instance.
      * @param description
      */
     public Task(String description) {
-        this.descript = description;
+        this.DESCRIPT = description;
         this.isDone = false;
     }
 
@@ -35,30 +35,26 @@ public class Task {
      * @return detail.
      */
     public String getDescription() {
-        return this.descript;
+        return this.DESCRIPT;
     }
 
     /**
      * Marks task as done
-     * @return the task to print
      */
-    public String markAsDone() {
+    public void markAsDone() {
         this.isDone = true;
-        return ("Nice! I've marked this task as done:\n  " + this);
     }
 
     /**
      * Marks task as not done
-     * @return the task to print
      */
-    public String markAsNotDone() {
+    public void markAsNotDone() {
         this.isDone = false;
-        return ("OK, I've marked this task as not done yet:\n  " + this);
     }
 
     @Override
     public String toString() {
-        return ("[" + getStatusIcon() + "] " + this.descript);
+        return ("[" + getStatusIcon() + "] " + this.DESCRIPT);
     }
 }
 
