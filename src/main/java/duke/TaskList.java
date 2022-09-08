@@ -27,6 +27,7 @@ public class TaskList {
      * @param storage storage object used to store tasks
      */
     public TaskList(Storage storage) {
+        assert storage != null: "storage object is null";
         this.list = storage.getList();
         this.storage = storage;
         this.count = storage.getCount();
@@ -103,6 +104,7 @@ public class TaskList {
      * @param item the input of the user
      */
     public String createDeadline(String item) {
+        assert item.length() != 0: "invalid string as argument";
         try {
             String string = "";
             int slash = findSlash(item);
@@ -127,6 +129,7 @@ public class TaskList {
      * @param item the user's input
      */
     public String createEvent(String item) {
+        assert item.length() != 0: "invalid string as argument";
         try {
             String string = "";
             int slash = findSlash(item);
@@ -161,10 +164,11 @@ public class TaskList {
 
 
     /**
-     * Creates a todo object and stores it
+     * Creates a to do object and stores it
      * @param item The user's input
      */
     public String createTask(String item) {
+        assert item.length() != 0: "invalid string as argument";
         try {
             String string = "";
             list.add(new Todo(item.substring(5)));
