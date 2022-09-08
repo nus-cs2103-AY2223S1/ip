@@ -30,7 +30,7 @@ public class DeleteCommand extends Command {
     public String execute(TaskList taskList, Storage storage) {
         String response = Ui.delete(taskList.delete(this.taskNumber));
         storage.save(taskList);
-        assert response != null : "response should be null";
+        assert response != null : "response should not be null";
         return response;
     }
 }
