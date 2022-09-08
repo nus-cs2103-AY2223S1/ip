@@ -1,9 +1,8 @@
-package iana.ui;
+package iana.ui.controller;
 
 import java.io.IOException;
 
 import iana.Iana;
-import iana.ui.controller.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

@@ -18,7 +18,7 @@ public class ExitCommand extends Command {
         try {
             Storage.store(tasks);
         } catch (IanaException e) {
-            ui.echo(e.getMessage());
+            ui.say(e.getMessage());
         }
         return ui.sayBye();
     }
