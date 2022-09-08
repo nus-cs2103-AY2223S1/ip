@@ -1,0 +1,29 @@
+list
+todo borrow book
+deadline return book /by 2022-12-24
+event project meeting /at 2021-04-02
+todo cs2103t assignment
+deadline cs2109s ps0 /by 2022-01-12
+list
+mark 3
+mark 4
+list
+unmark 3
+list
+mark
+help
+mark apple
+mark 123
+deadline sleep
+deadline sleep /by april
+event sleep
+eevent sleep /at friday
+todo
+delete 123
+delete
+delete 2
+list
+find
+find cs
+find 20
+bye
