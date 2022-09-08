@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @author amresh A0235398R
  */
 public class TaskList {
-    protected ArrayList<Task> storeLists;
+    protected ArrayList<Task> storeTasks;
     protected Storage storage;
     protected String printStatement;
 
@@ -23,11 +23,12 @@ public class TaskList {
     /**
      * Overload constructor to initialize TaskList Object
      *
-     * @param storeList ArrayList<Task> passed into constructor
+     * @param storeTasks ArrayList<Task> passed into constructor
      * @param storage Storage object passed into constructor
      */
-    public TaskList(ArrayList<Task> storeList, Storage storage) {
-        this.storeLists = storeList;
+    public TaskList(ArrayList<Task> storeTasks, Storage storage) {
+        assert storeTasks != null;
+        this.storeTasks = storeTasks;
         this.storage = storage;
     }
 
@@ -37,7 +38,7 @@ public class TaskList {
      */
     public String addTask(String userInput) {
         Task t = new Task(userInput);
-        storeLists.add(t);
+        storeTasks.add(t);
         storage.appendToFile(t.description);
         return "added: " + t.description;
     }
@@ -49,10 +50,10 @@ public class TaskList {
     public String deleteTask(int taskIndex) {
         String printStatement = "";
         printStatement += "Noted. I've removed this task: \n";
-        printStatement += "\t" + storeLists.get(taskIndex).toString() + "\n";
-        storage.removeLineInText(storeLists.get(taskIndex).toString());
-        storeLists.remove(taskIndex);
-        printStatement += "Now you have " + storeLists.size() + " tasks in the list.";
+        printStatement += "\t" + storeTasks.get(taskIndex).toString() + "\n";
+        storage.removeLineInText(storeTasks.get(taskIndex).toString());
+        storeTasks.remove(taskIndex);
+        printStatement += "Now you have " + storeTasks.size() + " tasks in the list.";
         return printStatement;
     }
 
@@ -62,8 +63,8 @@ public class TaskList {
      */
     public String list() {
         printStatement = "Here are the tasks in your list:\n";
-        for (int i=0; i < storeLists.size(); i++) {
-            printStatement += i + 1 + ". " + storeLists.get(i).toString() + "\n";
+        for (int i = 0; i < storeTasks.size(); i++) {
+            printStatement += i + 1 + ". " + storeTasks.get(i).toString() + "\n";
         }
         return printStatement;
     }
@@ -75,13 +76,13 @@ public class TaskList {
      */
     public String find(String search) {
         int count = 0;
-        for(int i = 0; i < storeLists.size(); i++) {
-            if(storeLists.get(i).description.contains(search)) {
+        for(int i = 0; i < storeTasks.size(); i++) {
+            if(storeTasks.get(i).description.contains(search)) {
                 count++;
                 if(count == 1) {
                     printStatement = "Here are the matching tasks in your list:\n";
                 }
-                printStatement += i + 1 + ". " + storeLists.get(i).toString() + "\n";
+                printStatement += i + 1 + ". " + storeTasks.get(i).toString() + "\n";
             }
         }
         if(count == 0) {
@@ -95,9 +96,9 @@ public class TaskList {
      * @return PrintStatement String
      */
     public String mark(int taskIndex) {
-        String oldText = storeLists.get(taskIndex).toString();
-        printStatement = storeLists.get(taskIndex).markAsDone();
-        String newText = storeLists.get(taskIndex).toString();
+        String oldText = storeTasks.get(taskIndex).toString();
+        printStatement = storeTasks.get(taskIndex).markAsDone();
+        String newText = storeTasks.get(taskIndex).toString();
         storage.editTextInFile(newText, oldText);
         return printStatement;
     }
@@ -108,9 +109,9 @@ public class TaskList {
      * @return PrintStatement String
      */
     public String unmark(int taskIndex) {
-        String oldText = storeLists.get(taskIndex).toString();
-        printStatement = storeLists.get(taskIndex).markAsNotDone();
-        String newText = storeLists.get(taskIndex).toString();
+        String oldText = storeTasks.get(taskIndex).toString();
+        printStatement = storeTasks.get(taskIndex).markAsNotDone();
+        String newText = storeTasks.get(taskIndex).toString();
         storage.editTextInFile(newText, oldText);
         return printStatement;
     }
@@ -126,10 +127,10 @@ public class TaskList {
         if (userInput.isEmpty()) {
             throw new DukeException("\t☹ OOPS!!! The description of a todo cannot be empty.");
         }
-        storeLists.add(todo);
+        storeTasks.add(todo);
         printStatement = "Got it. I've added this task:\n";
         printStatement += "\t" + todo.toString() + "\n";
-        printStatement += "Now you have " + storeLists.size() + " tasks in the list.";
+        printStatement += "Now you have " + storeTasks.size() + " tasks in the list.";
         storage.appendToFile(todo.toString());
         return printStatement;
 
@@ -144,10 +145,10 @@ public class TaskList {
     public String deadline(String userInput, String by) {
         Deadline deadline = new Deadline(userInput, by);
         dateProcessor(deadline);
-        storeLists.add(deadline);
+        storeTasks.add(deadline);
         printStatement = "Got it. I've added this task:\n";
         printStatement += "\t" + deadline.toString() + "\n";
-        printStatement += "Now you have " + storeLists.size() + " tasks in the list.";
+        printStatement += "Now you have " + storeTasks.size() + " tasks in the list.";
         storage.appendToFile(deadline.toString());
         return printStatement;
     }
@@ -160,10 +161,10 @@ public class TaskList {
      */
     public String event(String userInput, String duration) {
         Event event = new Event(userInput, duration);
-        storeLists.add(event);
+        storeTasks.add(event);
         printStatement = "Got it. I've added this task:\n";
         printStatement += "\t" + event.toString() + "\n";
-        printStatement += "Now you have " + storeLists.size() + " tasks in the list.";
+        printStatement += "Now you have " + storeTasks.size() + " tasks in the list.";
         storage.appendToFile(event.toString());
         return printStatement;
     }
