@@ -1,4 +1,11 @@
-package clevernotbot;
+package command;
+
+import clevernotbot.Storage;
+import clevernotbot.UI;
+import exception.CleverNotBotException;
+import task.Task;
+import task.TaskList;
+import task.ToDo;
 
 import java.util.Arrays;
 

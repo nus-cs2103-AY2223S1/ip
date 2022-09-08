@@ -1,5 +1,10 @@
 package clevernotbot;
 
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.ToDo;
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -24,10 +29,15 @@ public class Storage {
      */
     public ArrayList<Task> getTasksFromFile() {
         ArrayList<Task> tasks = new ArrayList<>();
-        String line;
+
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileLocation));
-            while ((line = reader.readLine()) != null) {
+            while (true) {
+                String line = reader.readLine();
+                boolean hasNextLine = (line != null);
+                if (!hasNextLine){
+                    break;
+                }
                 Task task = convertLineToTask(line);
                 tasks.add(task);
             }
@@ -59,18 +69,23 @@ public class Storage {
             FileWriter fw = new FileWriter(file);
             StringBuilder op = new StringBuilder();
             int counter = 0;
+            final String TODO_PREFIX = "T";
+            final String DEADLINE_PREFIX = "D";
+            final String EVENT_PREFIX = "E";
             for (Task task : tasks) {
                 String taskToStorage = "";
-                if (task.getTaskType().equals("T")) {
+                String prefix = task.getTaskType();
+                switch(prefix){
+                case TODO_PREFIX:
                     taskToStorage = String.format("%s | %d | %s",
                             task.getTaskType(), task.isCompleted() ? 1 : 0, task.getName());
-                } else if (task.getTaskType().equals("D") || task.getTaskType().equals("E")) {
+                case DEADLINE_PREFIX:
+                case EVENT_PREFIX:
                     taskToStorage = String.format("%s | %d | %s | %s",
                             task.getTaskType(), task.isCompleted() ? 1 : 0, task.getName(), task.getTime());
-                } else {
+                default:
                     System.out.println("Warning! Illegal entries has been detected!");
                 }
-
                 op.append(taskToStorage);
                 counter++;
                 if (counter < tasks.size()) {
@@ -93,21 +108,36 @@ public class Storage {
      * @return Task.
      */
     private Task convertLineToTask(String line) {
+        // This is to make it in a form of [prefix,marked,name,dateTime]
+        // In order to get the individual data.
         String[] content = line.split(" \\| ");
         /* Debug line
         System.out.println(file.getAbsolutePath());
         System.out.println(String.join(",",content));
          */
-        //"1".equals(content[1]) is to convert it to boolean
-        switch (content[0]) {
+        String prefix = content[0];
+        String markInStringFormat = content[1];
+        String name = content[2];
+        // content[3] is dateTime
+        switch (prefix) {
         case "T":
-            return new ToDo(content[2], "1".equals(content[1]));
+            return new ToDo(name, isMarked(markInStringFormat));
         case "D":
-            return new Deadline(content[2], "1".equals(content[1]), content[3]);
+            return new Deadline(name, isMarked(markInStringFormat), content[3]);
         default:
             // new event
-            return new Event(content[2], "1".equals(content[1]), content[3]);
+            return new Event(name, isMarked(markInStringFormat), content[3]);
         }
+    }
+
+    /**
+     * Returns that it is marked if the marked col is "1"
+     *
+     * @param number Marked col store in the txt.
+     * @return Marked or not.
+     */
+    private boolean isMarked(String number) {
+        return "1".equals(number);
     }
 
 }

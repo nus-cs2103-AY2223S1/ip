@@ -1,5 +1,7 @@
 package clevernotbot;
 
+import command.*;
+
 /**
  * Deals with making sense of the user command
  */

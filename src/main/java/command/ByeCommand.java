@@ -1,22 +1,27 @@
-package clevernotbot;
+package command;
+
+import clevernotbot.Storage;
+import clevernotbot.UI;
+import exception.CleverNotBotException;
+import task.TaskList;
 
 /**
- * Represents a command used for greeting
+ * Represents a command used for saying bye.
  */
-public class GreetCommand extends Command {
+public class ByeCommand extends Command {
 
     /**
-     * Constructor for the GreetCommand.
+     * Constructor for the ByeCommand.
      *
-     * @param commandName Description of command.
+     * @param commandName Description of Command.
      * @param exit        Checking if program intends to exit.
      */
-    public GreetCommand(String commandName, boolean exit) {
+    public ByeCommand(String commandName, boolean exit) {
         super(commandName, exit);
     }
 
     /**
-     * Runs the greet command.
+     * Runs the bye command.
      *
      * @param tasks   The task list used to store all tasks.
      * @param textBox UI for the textbox.
@@ -25,6 +30,6 @@ public class GreetCommand extends Command {
      */
     @Override
     public void run(TaskList tasks, UI textBox, Storage storage) throws CleverNotBotException {
-        textBox.chat("Hello! I'm CleverNotBot\n What can I do for you?");
+        textBox.chat("Bye. Hope to see you again soon!");
     }
 }

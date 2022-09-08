@@ -1,4 +1,4 @@
-package clevernotbot;
+package task;
 
 /**
  * Represents a string as a <code>Task</code>. A <code>Task</code> object corresponding to

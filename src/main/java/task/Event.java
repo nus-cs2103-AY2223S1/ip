@@ -1,4 +1,4 @@
-package clevernotbot;
+package task;
 
 /**
  * Represents a more specific task with time limit attached to it. A <code>Event</code> object corresponds to

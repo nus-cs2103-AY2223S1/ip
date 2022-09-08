@@ -1,4 +1,11 @@
-package clevernotbot;
+package command;
+
+import clevernotbot.Storage;
+import clevernotbot.UI;
+import exception.CleverNotBotException;
+import task.Event;
+import task.Task;
+import task.TaskList;
 
 /**
  * Represents a command used to add an Event Task.

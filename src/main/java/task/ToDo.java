@@ -1,4 +1,4 @@
-package clevernotbot;
+package task;
 
 /**
  * Represents a more specific task with no time limit attached to it.

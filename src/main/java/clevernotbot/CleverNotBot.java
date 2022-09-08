@@ -1,5 +1,9 @@
 package clevernotbot;
 
+import command.Command;
+import exception.CleverNotBotException;
+import task.TaskList;
+
 import java.util.Scanner;
 
 public class CleverNotBot {
@@ -13,8 +17,8 @@ public class CleverNotBot {
 
         parser.parseText("greet").run(tasks, textBox, storage);
         while (sc.hasNext()) {
-            String inp = sc.nextLine();
-            Command commandToRun = parser.parseText(inp);
+            String input = sc.nextLine();
+            Command commandToRun = parser.parseText(input);
             commandToRun.run(tasks, textBox, storage);
             if (commandToRun.isExitingProgram()) {
                 break;

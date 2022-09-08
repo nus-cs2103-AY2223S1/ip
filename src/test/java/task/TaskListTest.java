@@ -1,4 +1,4 @@
-package clevernotbot;
+package task;
 
 import org.junit.jupiter.api.Test;
 

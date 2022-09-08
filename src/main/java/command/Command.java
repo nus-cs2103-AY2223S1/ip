@@ -1,4 +1,9 @@
-package clevernotbot;
+package command;
+
+import clevernotbot.Storage;
+import clevernotbot.UI;
+import exception.CleverNotBotException;
+import task.TaskList;
 
 /**
  * Represents a command.

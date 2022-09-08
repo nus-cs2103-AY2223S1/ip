@@ -1,4 +1,6 @@
-package clevernotbot;
+package exception;
+
+import clevernotbot.UI;
 
 /**
  * Deals with exception
