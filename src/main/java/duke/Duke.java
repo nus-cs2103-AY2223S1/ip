@@ -47,7 +47,7 @@ public class Duke {
         this.ui.printDukeOpening();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String current = this.ui.nextLine();
-
+        assert current != null : "There is no input. Turtle cannot understand.";
         while (!current.equals("bye")) {
             try {
                 String information = Parser.parseCommand(current);
@@ -127,12 +127,12 @@ public class Duke {
      * @return Returns the properly formatted response to display on the GUI.
      */
     public String getResponse(String input) {
+        assert input != null : "There is no input. Turtle cannot understand.";
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String response = "";
         try {
             String information = Parser.parseCommand(input);
             String[] infoArray = information.split("\\|");
-            System.out.println("/" + infoArray[0]+"/");
             switch (infoArray[0]) {
                 case "hello":
                     response = this.ui.printDukeOpening();

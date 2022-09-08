@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Main-Class: duke.Launcher
+Class-Path: javafx-base-11-mac.jar javafx-fxml-11-mac.jar javafx-control
+ s-11.jar javafx-graphics-11-mac.jar javafx-fxml-11-win.jar javafx-graph
+ ics-11-win.jar javafx-base-11-linux.jar javafx-controls-11-mac.jar java
+ fx-graphics-11-linux.jar javafx-base-11.jar javafx-base-11-win.jar java
+ fx-controls-11-linux.jar javafx-fxml-11-linux.jar javafx-controls-11-wi
+ n.jar javafx-graphics-11.jar
+
