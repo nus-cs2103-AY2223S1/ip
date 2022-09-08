@@ -101,7 +101,7 @@ public class Parser {
 
     private static String openHelpPage() {
         try {
-            Desktop.getDesktop().browse(new URI(Ui.displayHelpURL()));
+            Desktop.getDesktop().browse(new URI(Ui.displayHelpUrl()));
 
         } catch (MalformedURLException | URISyntaxException e) {
             return "This shouldn't happen, the server side URL is broken.";
@@ -167,7 +167,7 @@ public class Parser {
      * but not enough information is provided
      */
     private static void taskValidator(String input) throws InvalidCommandException, EmptyTaskException {
-        String taskIndicator = input.split(" ", 0)[1]; //splits into words
+        String taskIndicator = input.split(" ", 0)[0]; //splits into words
         String[] descriptionInformation = input.split(" ", 0);
 
         //taskIndicator is invalid
