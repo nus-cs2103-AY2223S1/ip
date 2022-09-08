@@ -29,7 +29,7 @@ public class Storage {
      * @return ArrayList of tasks loaded
      * @throws FileNotFoundException if file cannot be found
      */
-    public ArrayList<Task> load() throws FileNotFoundException {
+    public ArrayList<Task> loadTasks() throws FileNotFoundException {
         try {
             ArrayList<Task> ls = new ArrayList<>();
             File file = new File(filePath);

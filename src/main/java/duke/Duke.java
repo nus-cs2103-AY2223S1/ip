@@ -45,7 +45,7 @@ public class Duke extends Application {
         ui = new Ui();
         storage = new Storage("./src/duke.txt");
         try {
-            tasks = new TaskList(storage.load());
+            tasks = new TaskList(storage.loadTasks());
         } catch (FileNotFoundException de) {
             ui.showLoadingError();
             tasks = new TaskList();
