@@ -25,8 +25,9 @@ public class MarkCommand extends Command {
         taskList.markTask(index);
         Task temp = taskList.getTask(index);
 
-        storage.save(taskList, ui);
-        return ui.displayTask(ui.MARKED, temp);
+        boolean status = storage.save(taskList, ui);
+        String returnString = ui.displayTask(ui.MARKED, temp);
+        return status ? returnString : returnString + "Error saving";
     }
 
     /**

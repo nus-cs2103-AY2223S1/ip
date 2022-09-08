@@ -25,8 +25,8 @@ public class AddCommand extends Command {
         taskList.addTask(task);
         String str = ui.displayTask(ui.ADDED, task);
         str += ui.showTotalTasks(taskList);
-        storage.save(taskList, ui);
-        return str;
+        boolean status = storage.save(taskList, ui);
+        return status ? str : str + "\nError saving";
     }
 
     /**

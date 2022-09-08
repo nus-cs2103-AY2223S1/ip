@@ -16,6 +16,7 @@ import static duke.DukeConstants.KEY_SEPARATOR;
  */
 public class Storage {
     private String filePath;
+    private boolean isSaved;
 
     /**
      * Constructor for the Storage class.
@@ -32,14 +33,17 @@ public class Storage {
      * @param taskList Tasklist to be written.
      * @param ui Ui for display.
      */
-    public void save(TaskList taskList, Ui ui) {
+    public boolean save(TaskList taskList, Ui ui) {
         try {
             FileWriter fw = new FileWriter(filePath, false);
             fw.write(taskList.formatTasks());
             fw.close();
+            isSaved = true;
         } catch (IOException e) {
-            ui.showError("there is a problem with saving");
-            return;
+            //ui.showError("there is a problem with saving");
+            isSaved = false;
+        } finally {
+            return isSaved;
         }
     }
 
@@ -88,5 +92,9 @@ public class Storage {
         }
         scanner.close();
         return tasks;
+    }
+
+    public boolean getSavedStatus() {
+        return isSaved;
     }
 }

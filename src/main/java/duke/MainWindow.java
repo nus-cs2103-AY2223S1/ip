@@ -31,6 +31,9 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         String welcomeMsg = "hi im kirbo what can i do for u today!";
         dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(welcomeMsg, dukeImage));
+        if (!duke.getFileStatus()) {
+            dialogContainer.getChildren().addAll(DialogBox.getDukeDialog("previous file not found!!", dukeImage));
+        }
     }
 
     public void setDuke(Duke d) {
@@ -50,6 +53,14 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
+
+//        if (!duke.getSavedStatus()) {
+//            dialogContainer.getChildren().addAll(DialogBox.getDukeDialog("error saving", dukeImage));
+//        }
         userInput.clear();
+    }
+
+    public void handleErrorDisplay(String message) {
+        dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(message, dukeImage));
     }
 }
