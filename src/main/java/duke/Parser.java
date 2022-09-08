@@ -75,6 +75,13 @@ public class Parser {
         case "BYE":
             isExitCommand = true;
             break;
+        case "FIND":
+            if (inputArray.length < 2) {
+                throw new DukeException("Please enter a keyword to search!");
+            }
+            String keyword = inputArray[1];
+            tl.findTask(keyword, ui);
+            break;
         default:
             ui.printUnknownCommandMessage();
             break;
