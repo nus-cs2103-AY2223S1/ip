@@ -1,8 +1,12 @@
 package duke;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Locale;
+import java.util.Set;
 
 import duke.task.Deadline;
 import duke.task.Event;
@@ -133,7 +137,8 @@ public class TaskList {
         try {
             String string = "";
             int slash = findSlash(item);
-            list.add(new Event(item.substring(6, slash - 1), item.substring(slash + 4)));
+            LocalDate date = LocalDate.parse(item.substring(slash + 4));
+            list.add(new Event(item.substring(6, slash - 1), date));
             string += "Got it. I've added this task:\n";
             string += list.get(list.size() - 1).getTask() + "\n";
             storage.writeToFile();
@@ -142,7 +147,7 @@ public class TaskList {
             return string;
         } catch (IndexOutOfBoundsException e) {
             return ("☹ OOPS!!! The description of a event has to be in the format event"
-                    + " <task> /at <date and time>");
+                    + " <task> /at <date>");
         }
     }
 
@@ -196,10 +201,54 @@ public class TaskList {
             string += text + "\n";
             storage.writeToFile();
             count = count - 1;
-            string += "Now you have " + Integer.toString(count) + " tasks in the list";
+            string += "Now you have " + count + " tasks in the list";
             return string;
         } catch (IndexOutOfBoundsException e) {
             return ("Oops! Looks like the task number is incorrect :(");
+        }
+    }
+
+    /**
+     * Gets the tasks according to the dates that they have to be done
+     *
+     * @return the tasks in the manner mentioned above
+     */
+    public String getSchedule() {
+        Hashtable<LocalDate, ArrayList<String>> dict = new Hashtable<>();
+        setUpDictionary(dict);
+        Set<LocalDate> keys = dict.keySet();
+        String output = "";
+        for(LocalDate key: keys){
+            String dateString = key.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+            output += "Tasks for " + dateString + " :\n";
+            ArrayList list = dict.get(key);
+            for (int i = 0; i < list.size(); i++) {
+                output += list.get(i) +"\n";
+            }
+        }
+        return output;
+    }
+
+    /**
+     * Add tasks to the dictionary according to the date
+     * @param dict the dictionary to be modified
+     */
+    public void setUpDictionary(Hashtable<LocalDate, ArrayList<String>> dict) {
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i) instanceof Deadline) {
+                Deadline deadline = (Deadline) list.get(i);
+                LocalDate date =  deadline.getDate();
+                if (dict.get(date) == null) {
+                    dict.put(date, new ArrayList<>());
+                }
+                dict.get(date).add(deadline.getTask());
+            } else if (list.get(i) instanceof Event) {
+                Event event = (Event) list.get(i);
+                if (dict.get(event.getDate()) == null) {
+                    dict.put(event.getDate(), new ArrayList<>());
+                }
+                dict.get(event.getDate()).add(event.getTask());
+            }
         }
     }
 

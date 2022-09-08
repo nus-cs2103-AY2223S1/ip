@@ -32,7 +32,10 @@ public class Parser {
             return taskList.deleteTask(index);
         } else if (item.length() >= 4 && item.substring(0, 4).equals("find")) {
             return taskList.printFilteredTaskList(item.substring(5));
-        } else {
+        } else if (item.equals("schedule")) {
+            return taskList.getSchedule();
+        }
+        else {
             return ("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }

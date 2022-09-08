@@ -116,7 +116,9 @@ public class Storage {
      * @param parts line separated into  to the components of the event
      */
     private void addEventToList(String[] parts) {
-        Event event = new Event(parts[2], parts[3]);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy", Locale.ENGLISH);
+        LocalDate date = LocalDate.parse(parts[3], formatter);
+        Event event = new Event(parts[2], date);
         if (parts[1] == "[X]") {
             event.setDone();
         }

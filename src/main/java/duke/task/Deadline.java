@@ -40,4 +40,12 @@ public class Deadline extends Task {
         String d = this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
         return "[D]" + "##" + this.getStatusIcon() + "##" + this.getItem() + "##" + d;
     }
+
+    /**
+     * Returns date of deadline
+     * @return date of deadline
+     */
+    public LocalDate getDate() {
+        return this.date;
+    }
 }
