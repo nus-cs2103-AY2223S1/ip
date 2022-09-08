@@ -22,6 +22,6 @@ public class Event extends Task {
 
     @Override
     public String toSave() {
-        return "E | " + (isDone ? "1" : "0") + " |" + desc + " | " + at;
+        return "E | " + (isDone ? "1" : "0") + " |" + desc + " | " + at + super.tagDesc;
     }
 }

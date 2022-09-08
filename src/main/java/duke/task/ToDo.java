@@ -14,6 +14,6 @@ public class ToDo extends Task {
 
     @Override
     public String toSave() {
-        return "T | " + (isDone ? "1" : "0") + " |" + desc;
+        return "T | " + (isDone ? "1" : "0") + " |" + desc + super.tagDesc;
     }
 }

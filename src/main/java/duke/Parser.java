@@ -27,6 +27,8 @@ public class Parser {
             return new EventCommand(fullCommand);
         } else if (fullCommand.contains("find")) {
             return new FindCommand(fullCommand);
+        } else if (fullCommand.contains("tag")) {
+            return new TagCommand(fullCommand);
         } else if (fullCommand.equals("bye")) {
             return new ExitCommand();
         } else if (fullCommand.equals("hello")) {
