@@ -47,7 +47,7 @@ test {
 }
 
 application {
-    mainClassName = "qoobee.Launcher"
+    mainClassName = "Qoobee.Qoobee"
 }
 
 shadowJar {

@@ -59,7 +59,6 @@ public class TaskList {
      * @throws QoobeeException if the user inputs an invalid syntax.
      */
     public String addTask(Task task) throws QoobeeException {
-        assert task.getDescription().length() > 0 : "Task description cannot be empty";
         this.taskList.add(task);
         storage.save(taskList);
         return "Got it. I've added this task:\n" + task + "\n"
@@ -88,7 +87,6 @@ public class TaskList {
      * @throws QoobeeException if the task does not exist.
      */
     public String unmark(Task task) throws QoobeeException {
-        assert task.getDescription().length() > 0 : "Task description cannot be empty";
         task.markAsUndone();
         storage.save(taskList);
         return "OK, I've marked this task as not done yet:\n" + task;
@@ -100,7 +98,6 @@ public class TaskList {
      * @throws QoobeeException if the tast does not exist.
      */
     public String mark(Task task) throws QoobeeException {
-        assert task.getDescription().length() > 0 : "Task description cannot be empty";
         task.markAsDone();
         storage.save(taskList);
         return "Nice! I've marked this task as done:\n" + task;
@@ -111,7 +108,6 @@ public class TaskList {
      * @param description The description of the task
      */
     public String findTask(String description) {
-        assert description.length() > 0 : "Task description to find cannot be empty";
         List<Task> foundTasks = new ArrayList<>();
         for (int i = 0; i < taskListSize(); i++) {
             Task curr = taskList.get(i);
