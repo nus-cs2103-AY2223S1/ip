@@ -54,6 +54,8 @@ public class MainWindow extends AnchorPane {
         } else {
             dukeText = Duke.executeCommand(command, userInput.getText());
         }
+        assert userImage != null;
+        assert dukeImage != null;
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, userImage),
                 DialogBox.getDukeDialog(dukeText, dukeImage)

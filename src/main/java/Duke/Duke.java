@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -67,22 +66,6 @@ public class Duke extends Application {
     }
 
     /**
-     * Constructor for Duke.
-     *
-     * @param filePath filepath to data file.
-     */
-    public Duke(String filePath) {
-        ui = new Ui();
-        storage = new Storage(filePath);
-        parser = new Parser();
-        try {
-            tasks = new TaskList(storage.load());
-        } catch (IOException e) {
-            ui.showErrorReadingMessage();
-        }
-    }
-
-    /**
      * Constructor for Duke with no parameters.
      */
     public Duke() {
@@ -97,7 +80,7 @@ public class Duke extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         // step 1
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
@@ -153,19 +136,6 @@ public class Duke extends Application {
         });
     }
 
-    /**
-     * Iteration 1:
-     * Creates a label with the specified text and adds it to the dialog container.
-     *
-     * @param text String containing text to add
-     * @return a label with the specified text that has word wrap enabled.
-     */
-    private Label getDialogLabel(String text) {
-        Label textToAdd = new Label(text);
-        textToAdd.setWrapText(true);
-
-        return textToAdd;
-    }
 
     /**
      * Iteration 2:
@@ -179,6 +149,8 @@ public class Duke extends Application {
             // end program
             ui.showGoodbyeMessage();
         } else {
+            assert user != null;
+            assert duke != null;
             String dukeText = executeCommand(command, userInput.getText());
             dialogContainer.getChildren().addAll(
                     DialogBox.getUserDialog(userText, user),
@@ -187,41 +159,6 @@ public class Duke extends Application {
         }
 
         userInput.clear();
-    }
-
-    /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
-     */
-    String getResponse(String input) {
-        return "Duke heard: " + input;
-    }
-
-    /**
-     * Main method initializes welcome message, and then calls taskList method.
-     *
-     * @param args unused
-     */
-    public static void main(String[] args) {
-        //new Duke("data/duke.txt").run();
-    }
-
-    /**
-     * TaskList method creates an input loop, creating Duke.Task objects and adding it to the array.
-     *
-     * @throws NumberFormatException if User inputs a non integer after mark/unmark
-     */
-    public void run() throws NumberFormatException {
-        while (ui.hasInput()) {
-            String input = ui.getUserInput().trim();
-            Commands command = parser.parseCommand(input);
-            if (command == Commands.BYE) {
-                break;
-            } else {
-                executeCommand(command, input);
-            }
-        }
-        ui.showGoodbyeMessage();
     }
 
 
