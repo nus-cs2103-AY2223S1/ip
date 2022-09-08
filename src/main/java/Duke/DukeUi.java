@@ -11,10 +11,16 @@ public class DukeUi {
     private static final String START_MESSAGE = " Hello! I'm Duke\n" + " What can I do for you?";
     private static final String END_MESSAGE = " Bye. Hope to see you again soon!";
 
-    public String readCommand() {
-        Scanner scanner = new Scanner(System.in);
-        String userCommand = scanner.next();
-        String userAction = scanner.nextLine().stripLeading();
+    public String readCommand(String input) {
+        String[] command = input.split(" ");
+        String userCommand = command[0];
+        String userAction = "";
+        for (int i = 0; i < command.length; i++) {
+            if (i != 0) {
+                userAction = userAction + command[i] + " ";
+            }
+        }
+        userAction.strip();
         return userCommand + "_______________" + userAction;
     }
 
@@ -23,17 +29,15 @@ public class DukeUi {
      *
      * @param message the message to be printed out.
      */
-    public static void sendMessage(String message) {
-        System.out.println(message);
+    public static String sendMessage(String message) {
+        return message;
     }
 
     /**
      * Prints Duke's welcome message when program starts.
      */
-    public static void showWelcome() {
-        sendMessage(LINE);
-        sendMessage(START_MESSAGE);
-        sendMessage(LINE);
+    public static String welcomeMessage() {
+        return START_MESSAGE;
     }
 
     /**
@@ -41,8 +45,8 @@ public class DukeUi {
      * in the user's device and informs the user that a new file will be created
      * to save the user's tasks.
      */
-    public void showLoadingError() {
-        sendMessage("File not found, creating new file in current directory");
+    public String showLoadingError() {
+        return "File not found, creating new file in current directory";
     }
 
     /**
@@ -63,7 +67,7 @@ public class DukeUi {
     /**
      * Prints Duke's goodbye message before closing program.
      */
-    public void endMessage() {
-        sendMessage(END_MESSAGE);
+    public String endMessage() {
+        return END_MESSAGE;
     }
 }

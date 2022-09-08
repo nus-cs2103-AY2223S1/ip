@@ -14,8 +14,8 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, DukeUi ui, Storage storage) {
-        ui.sendMessage(tasks.toString());
+    public String execute(TaskList tasks, DukeUi ui, Storage storage) {
+        return tasks.toString();
     }
 
     @Override

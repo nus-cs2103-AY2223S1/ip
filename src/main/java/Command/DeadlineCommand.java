@@ -6,6 +6,7 @@ import Duke.Storage;
 import Duke.Task;
 import Duke.TaskList;
 import java.io.IOException;
+import java.time.format.DateTimeParseException;
 
 /**
 * Command that adds a Deadline to the TaskList when executed.
@@ -19,7 +20,7 @@ public class DeadlineCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
         try {
             String[] deadlineString = userAction.split("/by ");
             if (deadlineString[0].equals("")) {
@@ -30,11 +31,15 @@ public class DeadlineCommand extends Command {
                 Task newDeadline = new Deadline(deadlineString[0], deadlineString[1]);
                 tasks.addTask(newDeadline);
                 storage.save();
-                ui.sendMessage(" Got it. I've added this task:\n" + "   " + newDeadline.toString()
+                return ui.sendMessage(" Got it. I've added this task:\n" + "   " + newDeadline.toString()
                         + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
             }
+        } catch (DateTimeParseException e) {
+            throw new DukeException("deadline must be of form yyyy-mm-dd");
         } catch (IOException e) {
             throw new DukeException(e.getMessage());
+        } catch (DukeException e2) {
+            return e2.toString();
         }
     }
 
