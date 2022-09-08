@@ -30,7 +30,7 @@ public class AddCommand extends Command {
     @Override
     public String execute(TaskList taskList, Storage storage) {
         taskList.add(createdTask);
-        storage.save(taskList);
+        storage.writeToFile(taskList);
         String response = Ui.add(createdTask);
         return response;
     }

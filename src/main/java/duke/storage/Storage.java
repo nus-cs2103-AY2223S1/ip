@@ -37,7 +37,7 @@ public class Storage {
      *
      * @param taskList the TaskList used to update the storage file.
      */
-    public void save(TaskList taskList) {
+    public void writeToFile(TaskList taskList) {
         try {
             FileWriter fw = new FileWriter(filePath);
             String res = taskList.toStorage();
@@ -53,7 +53,7 @@ public class Storage {
      *
      * @return a list of Tasks from the storage file memory.
      */
-    public List<Task> load() {
+    public List<Task> loadFromFile() {
         String line = "";
         List<Task> tasks = new ArrayList<>();
         try {
@@ -65,15 +65,15 @@ public class Storage {
                     String[] str = line.split(" \\| ");
                     Task t = null;
                     switch (str[0]) {
-                        case "T":
-                            t = new ToDo(str[2]);
-                            break;
-                        case "D":
-                            t = new Deadline(str[2], str[3]);
-                            break;
-                        case "E":
-                            t = new Event(str[2], str[3], str[4]);
-                            break;
+                    case "T":
+                        t = new ToDo(str[2]);
+                        break;
+                    case "D":
+                        t = new Deadline(str[2], str[3]);
+                        break;
+                    case "E":
+                        t = new Event(str[2], str[3], str[4]);
+                        break;
                     }
                     tasks.add(t);
                     if (parseInt(str[1]) == 1) {
