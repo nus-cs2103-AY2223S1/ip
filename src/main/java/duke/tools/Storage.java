@@ -48,43 +48,55 @@ public class Storage {
      * Loads previously stored data from file into current TaskList.
      *
      * @return TaskList stored in the file.
-     * @throws DukeException If file is not found or data is in invalid format.
+     * @throws DukeException If file is not found.
      */
     public TaskList loadFromFile() throws DukeException {
         List<Task> taskList = new ArrayList<>();
         try {
             File data = new File(filePath.toString());
-            Scanner sc = new Scanner(data);
-            while (sc.hasNextLine()) {
-                try {
-                    String[] storedInfo = sc.nextLine().split(" \\| ");
-                    String type = storedInfo[0];
-                    boolean isDone = storedInfo[1].equals("O");
-                    String description = storedInfo[2];
-                    Task task;
-                    switch (type) {
-                    case "T":
-                        task = new ToDo(description, isDone);
-                        break;
-                    case "D":
-                        task = new Deadline(description, isDone, Parser.parseDate(storedInfo[3]));
-                        break;
-                    case "E":
-                        task = new Event(description, isDone, Parser.parseDateTime(storedInfo[3]));
-                        break;
-                    default:
-                        throw new DukeException(OOPS_STRING + " No save data found");
-                    }
-                    taskList.add(task);
-                } catch (IndexOutOfBoundsException e) {
-                    throw new DukeException(OOPS_STRING + " Incorrect task format");
-                }
+            Scanner dataScanner = new Scanner(data);
+            while (dataScanner.hasNextLine()) {
+                readDataToTask(dataScanner, taskList);
             }
-            sc.close();
+            dataScanner.close();
         } catch (FileNotFoundException e) {
             throw new DukeException(FILE_CANNOT_BE_OPEN_STRING);
         }
         return new TaskList(taskList);
+    }
+
+    /**
+     * Reads data strings and converts it back into task object to be stored in
+     * the TaskList.
+     *
+     * @param dataScanner Scanner to read data string.
+     * @param taskList TaskList to store the task.
+     * @throws DukeException If no data string is found or data is in invalid format.
+     */
+    private void readDataToTask(Scanner dataScanner, List<Task> taskList) throws DukeException {
+        try {
+            String[] storedInfo = dataScanner.nextLine().split(" \\| ");
+            String type = storedInfo[0];
+            boolean isDone = storedInfo[1].equals("O");
+            String description = storedInfo[2];
+            Task task;
+            switch (type) {
+            case "T":
+                task = new ToDo(description, isDone);
+                break;
+            case "D":
+                task = new Deadline(description, isDone, Parser.parseDate(storedInfo[3]));
+                break;
+            case "E":
+                task = new Event(description, isDone, Parser.parseDateTime(storedInfo[3]));
+                break;
+            default:
+                throw new DukeException(OOPS_STRING + " No save data found");
+            }
+            taskList.add(task);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(OOPS_STRING + " Incorrect task format");
+        }
     }
 
     /**
