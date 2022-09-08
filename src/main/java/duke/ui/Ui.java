@@ -101,4 +101,21 @@ public class Ui {
     public String getGoodbyeMessage() {
         return "Seaward out!";
     }
+
+    /**
+     * Returns a success message showing the user a different date format.
+     * @return A success message.
+     */
+    public String getDateChangedMessage() {
+        return "Here is a different date format for this task!";
+    }
+
+    /**
+     * Returns a failure message telling the user that the <code>Task</code> does not have
+     * a date.
+     * @return A failure message.
+     */
+    public String getNoDateMessage() {
+        return "This task has no date!";
+    }
 }
