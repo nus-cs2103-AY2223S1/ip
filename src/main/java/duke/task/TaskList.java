@@ -109,8 +109,11 @@ public class TaskList {
      */
     public String markTaskDone(int i) throws DukeException {
         isValidTask(i);
+        assert i > 0 : "Task number should be more than 0";
+        assert i <= size() : "Task should exist";
         Task task = tasks.get(i - 1);
         task.markTaskAsDone();
+        assert task.isCompleted() : "Task should be marked as done";
         return "awesome!! bobo marked this task as done ~(˘▾˘~)";
     }
 
@@ -122,6 +125,8 @@ public class TaskList {
      */
     public String markTaskNotDone(int i) throws DukeException {
         isValidTask(i);
+        assert i > 0 : "Task number should be more than 0";
+        assert i <= size() : "Task should exist";
         Task task = tasks.get(i - 1);
         task.markTaskAsUndone();
         return "alright-y, bobo marked this task as not done yet  (・◡・)ゝ";
@@ -151,6 +156,8 @@ public class TaskList {
      */
     public String deleteTask(int i) throws DukeException {
         isValidTask(i);
+        assert i > 0 : "Task number should be more than 0";
+        assert i <= size() : "Task should exist";
         tasks.remove(i - 1);
         String taskDeletedSuccessfully = String.format("okayy! bobo removed this task (´･ω･`)┐"
                 + " you now have %d tasks in your list", tasks.size());
