@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class Todo extends Task {
 
     /**
-     * Constructs a To do object.
+     * Constructs a to do object, with an arbitrary date.
      * @param description Description of the to do object.
      */
     public Todo(String description, Date date) {

@@ -24,12 +24,13 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     *
-     * @param o the object to be compared.
-     * @return
+     * Compare 2 dates with one another.
+     * @param otherDate The other date to be compared.
+     * @return  A negative integer, zero, or a positive integer as this date
+     * is less than, equal to, or greater than the supplied date object.
      */
     @Override
-    public int compareTo(Date o) {
-        return getFormattedDate().compareTo(o.getFormattedDate());
+    public int compareTo(Date otherDate) {
+        return getFormattedDate().compareTo(otherDate.getFormattedDate());
     }
 }

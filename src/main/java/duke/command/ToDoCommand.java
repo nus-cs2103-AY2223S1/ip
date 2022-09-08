@@ -24,13 +24,14 @@ public class ToDoCommand extends Command {
      * Handles a to do task.
      * @param taskList TaskList to add to do task to.
      * @param storage Storage to save new to do task.
-     * @return String message of running the"todo" command.
+     * @return String message of running the "todo" command.
      * @throws DukeException To do task has no description.
      */
     @Override
     public String run(TaskList taskList, Storage storage) throws DukeException, IOException {
         int minimumTodoCommandLength = 2;
         if (commandDetails.length >= minimumTodoCommandLength) {
+            //Arbitrary date for sorting to do tasks.
             Date date = Parser.parseDate("9999-12-31");
             Todo todo = new Todo(commandDetails[1], date);
             return taskList.addTask(todo, storage);

@@ -78,9 +78,6 @@ public abstract class Task {
      * is less than, equal to, or greater than the supplied task object.
      */
     public int compareTo(Task anotherTask) {
-        if (this instanceof Todo || anotherTask instanceof Todo) {
-            return 1;
-        }
         return this.getDate().compareTo(anotherTask.getDate());
     }
 }
