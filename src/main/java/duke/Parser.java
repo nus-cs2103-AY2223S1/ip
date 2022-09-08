@@ -5,6 +5,38 @@ package duke;
  */
 public class Parser {
 
+    private static boolean isValidCommand(String cmd) {
+        if (cmd.equals("mark") || cmd.equals("unmark")
+                || cmd.equals("delete") || cmd.equals("todo")
+                || cmd.equals("deadline") || cmd.equals("event")
+                || cmd.equals("find")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private static String[] formatResults(String cmd) {
+        String[] result = new String[6];
+        result[0] = cmd;
+        return result;
+    }
+
+    private static String[] formatResults(String cmd, String description) {
+        String[] result = new String[6];
+        result[0] = cmd;
+        result[1] = description;
+        return result;
+    }
+
+    private static String[] formatResults(String cmd, String description, String time) {
+        String[] result = new String[6];
+        result[0] = cmd;
+        result[1] = description;
+        result[2] = time;
+        return result;
+    }
+
     /**
      * Static method used to parse player inputs into a String array
      * that is understood by Duke.
@@ -19,93 +51,75 @@ public class Parser {
             EmptyDescriptionException, InvalidFormatException {
         s = s.trim();
         String[] helper = s.split(" ");
+        String cmd = helper[0];
         String[] result = new String[6];
 
         if (helper.length == 1) {
-            String temp = helper[0];
-            if (temp.equals("bye")) {
-                result[0] = "bye";
-                return result;
-            } else if (temp.equals("list")) {
-                result[0] = "list";
-                return result;
+            //String cmd = helper[0];
+            if (cmd.equals("bye")) {
+                return formatResults(cmd);
 
-            } else if (temp.equals("mark") || temp.equals("unmark")
-                    || temp.equals("delete") || temp.equals("todo")
-                    || temp.equals("deadline") || temp.equals("event")
-                    || temp.equals("find")) {
+            } else if (cmd.equals("list")) {
+                return formatResults(cmd);
 
-                throw new EmptyDescriptionException("Empty descriptor", temp);
+            } else if (isValidCommand(cmd)) {
+                throw new EmptyDescriptionException("Empty descriptor", cmd);
             } else {
                 throw new InvalidTaskException("No valid task descriptor");
             }
         }
 
-        if (helper[0].equals("mark")) {
+        if (cmd.equals("mark")) {
             if (helper.length == 2) {
-                result[0] = "mark";
-                result[1] = helper[1];
-                return result;
+                return formatResults(cmd, helper[1]);
             } else {
                 throw new InvalidTaskException("No valid task descriptor");
             }
-        } else if (helper[0].equals("unmark")) {
+        } else if (cmd.equals("unmark")) {
             if (helper.length == 2) {
-                result[0] = "unmark";
-                result[1] = helper[1];
-                return result;
+                return formatResults(cmd, helper[1]);
             } else {
                 throw new InvalidTaskException("No valid task descriptor");
             }
-        } else if (helper[0].equals("delete")) {
+        } else if (cmd.equals("delete")) {
             if (helper.length == 2) {
-                result[0] = "delete";
-                result[1] = helper[1];
-                return result;
+                return formatResults(cmd, helper[1]);
             } else {
                 throw new InvalidTaskException("No valid task descriptor");
             }
         } else if (helper[0].equals("find")) {
-            result[0] = "find";
             String[] findDescription = s.split(" ", 2);
-            result[1] = findDescription[1];
-            return result;
+            return formatResults(cmd, findDescription[1]);
 
         } else if (helper[0].equals("todo")) {
-            result[0] = "todo";
             String[] todoString = s.split(" ", 2);
-            result[1] = todoString[1];
-            return result;
+            return formatResults(cmd, todoString[1]);
 
         } else if (helper[0].equals("deadline")) {
-            result[0] = "deadline";
-            String descript = s.substring(8).trim();
+            String description = s.substring(8).trim();
+            String[] temp = description.split("/by", 2);
+
             if (!s.contains("/by")) {
                 throw new InvalidFormatException("Invalid format");
             }
-            String[] temp = descript.split("/by", 2);
             if (temp[1].trim().equals("")) {
                 throw new InvalidTaskException("Invalid format");
 
             }
-            result[1] = temp[0].trim();
-            result[2] = temp[1].trim();
-            return result;
+            return formatResults(cmd, temp[0].trim(), temp[1].trim());
 
         } else if (helper[0].equals("event")) {
-            result[0] = "event";
-            String descript = s.substring(6).trim();
+            String description = s.substring(6).trim();
+            String[] temp = description.split("/at", 2);
+
             if (!s.contains("/at")) {
                 throw new InvalidFormatException("Invalid format");
             }
-            String[] temp = descript.split("/at", 2);
             if (temp[1].trim().equals("")) {
                 throw new InvalidFormatException("Invalid format");
             }
+            return formatResults(cmd, temp[0].trim(), temp[1].trim());
 
-            result[1] = temp[0].trim();
-            result[2] = temp[1].trim();
-            return result;
         } else {
             throw new InvalidTaskException("No valid task descriptor");
         }
