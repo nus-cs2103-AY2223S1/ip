@@ -29,13 +29,6 @@ public class Parser {
     }
 
     /**
-     * Clears the stored Scanner object.
-     */
-    public void clear() {
-        inputLine = new Scanner("");
-    }
-
-    /**
      * Parse user input for the command.
      * If no input is detected, it returns a ByeCommand object.
      *
@@ -43,33 +36,31 @@ public class Parser {
      * @throws InvalidCommand If the command entered is not recognised.
      */
     public DukeCommand getCommand() throws InvalidCommand {
-        if (inputLine.hasNext()) {
-            String commandGiven = inputLine.next();
-            switch (commandGiven) {
-            case "bye":
-                return new ByeCommand();
-            case "list":
-                return new ListCommand();
-            case "todo":
-                // Fallthrough
-            case "deadline":
-                // Fallthrough
-            case "event":
-                return new AddCommand(commandGiven, inputLine);
-            case "delete":
-                // Fallthrough
-            case "mark":
-                // Fallthrough
-            case "unmark":
-                return new EditCommand(commandGiven, inputLine);
-            case "find":
-                return new FindCommand(inputLine);
-            default:
-                throw new InvalidCommand(commandGiven);
-            }
-        } else {
-            System.out.println("No input detected. Terminating program...");
+        if (!inputLine.hasNext()) {
+            throw new InvalidCommand();
+        }
+        String commandGiven = inputLine.next();
+        switch (commandGiven) {
+        case "bye":
             return new ByeCommand();
+        case "list":
+            return new ListCommand();
+        case "todo":
+            // Fallthrough
+        case "deadline":
+            // Fallthrough
+        case "event":
+            return new AddCommand(commandGiven, inputLine);
+        case "delete":
+            // Fallthrough
+        case "mark":
+            // Fallthrough
+        case "unmark":
+            return new EditCommand(commandGiven, inputLine);
+        case "find":
+            return new FindCommand(inputLine);
+        default:
+            throw new InvalidCommand(commandGiven);
         }
     }
 }

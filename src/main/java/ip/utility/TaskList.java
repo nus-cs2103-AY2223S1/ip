@@ -71,9 +71,12 @@ public class TaskList {
      */
     public String list() {
         StringBuilder output = new StringBuilder();
+        int i = 1;
         for (Task task : tasks) {
+            output.append(i).append(".\t");
             output.append(task);
             output.append("\n");
+            i++;
         }
         return output.toString();
     }

@@ -15,10 +15,6 @@ public class Main extends Application {
 
     private final Duke duke = new Duke("data/taskData.txt");
 
-    public static void main(String[] args) {
-
-    }
-
     @Override
     public void start(Stage stage) {
         try {
