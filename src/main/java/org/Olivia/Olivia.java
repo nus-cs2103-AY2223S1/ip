@@ -50,12 +50,16 @@ public class Olivia extends Application {
         // somehow the getResourceAsStream function does not work on my system
         // (it always returns null)
         try {
-            File userIconFile = new File("images/User.jpg");
-            InputStream userIconStream = new FileInputStream(userIconFile);
-            File oliviaIconFile = new File("images/Olivia.jpg");
-            InputStream oliviaIconStream = new FileInputStream(oliviaIconFile);
-            user = new Image(userIconStream);
-            olivia = new Image(oliviaIconStream);
+//            File userIconFile = new File("images/User.jpg");
+//            assert userIconFile!=null;
+//            InputStream userIconStream = new FileInputStream(userIconFile);
+//            File oliviaIconFile = new File("images/Olivia.jpg");
+//            assert oliviaIconFile!=null;
+//            InputStream oliviaIconStream = new FileInputStream(oliviaIconFile);
+            InputStream userIco=getClass().getResourceAsStream("/images/User.jpg");
+            InputStream oliviaIco=getClass().getResourceAsStream("/images/Olivia.jpg");
+            user = new Image(userIco);
+            olivia = new Image(oliviaIco);
         }
         catch (Exception e) {
             e.printStackTrace();
