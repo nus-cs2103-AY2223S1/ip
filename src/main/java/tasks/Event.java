@@ -1,5 +1,8 @@
 package tasks;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Task with a period of time of the task
  */
@@ -7,17 +10,17 @@ public class Event extends Task {
     /**
      * Event object at field which indicates the timings
      */
-    protected String atDate;
+    protected LocalDate atTime;
 
     /**
      * A constructor to initialize the Event object with the description and timings
      *
      * @param description The task
-     * @param atDate The timings
+     * @param atTime The timings
      */
-    public Event(String description, String atDate) {
+    public Event(String description, LocalDate atTime) {
         super(description);
-        this.atDate = atDate;
+        this.atTime = atTime;
     }
 
     /**
@@ -26,7 +29,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E][" + this.getStatusIcon() + "] " + super.toString() + " (at: " + atDate + ")";
+        String timing = this.atTime.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        return "[E][" + this.getStatusIcon() + "] " + super.toString() + " (at: " + timing + ")";
     }
 
     /**
@@ -35,6 +39,16 @@ public class Event extends Task {
      */
     @Override
     public String toFileString() {
-        return "E | " +  this.getFileStatus() + " | " + super.toString() + " | " + this.atDate;
+        String timing = this.atTime.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        return "E | " +  this.getFileStatus() + " | " + super.toString() + " | " + timing;
+    }
+
+    /**
+     * Changes the date of the Event
+     *
+     * @param date The new date
+     */
+    public void changeDate(LocalDate date){
+        this.atTime = date;
     }
 }

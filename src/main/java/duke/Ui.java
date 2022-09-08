@@ -109,4 +109,15 @@ public class Ui {
         }
         return tasks;
     }
+
+    /**
+     * A method that returns the output of postpone
+     *
+     * @param t The newly edited task
+     * @return String postpone message
+     */
+    public static String postponeMessage(Task t) {
+        return "I've changed the date of this task:\n " + t;
+    }
+
 }
