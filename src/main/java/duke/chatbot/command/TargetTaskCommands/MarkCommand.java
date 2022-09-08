@@ -28,4 +28,9 @@ public class MarkCommand extends TargetTaskCommand {
         messageBuilder.buildLines(MESSAGE_MARKED, targetTask.toString());
         return messageBuilder.toString();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj) && obj instanceof MarkCommand;
+    }
 }

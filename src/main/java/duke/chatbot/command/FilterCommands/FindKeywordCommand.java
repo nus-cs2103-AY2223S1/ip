@@ -23,4 +23,9 @@ public class FindKeywordCommand extends FilterCommand {
     Predicate<Task> supplyCondition() {
         return (task) -> task.hasSubstring(arguments);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj) && obj instanceof FindKeywordCommand;
+    }
 }

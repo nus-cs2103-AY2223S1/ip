@@ -34,4 +34,9 @@ public class CheckDateCommand extends FilterCommand {
             return timedTask.hasMatchingDate(date);
         };
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj) && obj instanceof CheckDateCommand;
+    }
 }

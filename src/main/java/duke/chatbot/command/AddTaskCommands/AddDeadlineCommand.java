@@ -43,4 +43,9 @@ public class AddDeadlineCommand extends AddTaskCommand {
         LocalDateTime dateTime = Parser.parseDateTime(matcher.group("dateTime").strip());
         return new Deadline(description, dateTime);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj) && obj instanceof AddDeadlineCommand;
+    }
 }

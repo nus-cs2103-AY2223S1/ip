@@ -27,4 +27,9 @@ public class ExitCommand extends Command {
     protected String buildMessage() {
         return MESSAGE_BYE;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj) && obj instanceof ExitCommand;
+    }
 }

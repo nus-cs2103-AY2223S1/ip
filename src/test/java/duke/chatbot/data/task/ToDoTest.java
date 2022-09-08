@@ -34,7 +34,7 @@ public class ToDoTest {
     @Test
     public void encode_noBoolean_stringWithZero() {
         String description = "Finish level-7";
-        String expected = "T,,,0,,,Finish level-7";
+        String expected = "T`0`Finish level-7`";
         String actual = new ToDo(description).encode();
         assertEquals(expected, actual);
     }
@@ -42,14 +42,14 @@ public class ToDoTest {
     @Test
     public void encode_haveBoolean_stringWithOne() {
         String description = "Finish level-7";
-        String expected = "T,,,1,,,Finish level-7";
+        String expected = "T`1`Finish level-7`";
         String actual = new ToDo(description, true).encode();
         assertEquals(expected, actual);
     }
 
     @Test
     public void encode_emptyDescription_emptySuffix() {
-        String expected = "T,,,0,,,";
+        String expected = "T`0``";
         String actual = new ToDo("").encode();
         assertEquals(expected, actual);
     }

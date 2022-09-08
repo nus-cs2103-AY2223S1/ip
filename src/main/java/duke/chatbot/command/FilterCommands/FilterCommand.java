@@ -43,4 +43,9 @@ public abstract class FilterCommand extends Command {
         filteredTasks = taskList.filter(supplyCondition());
         return super.execute();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj) && obj instanceof FilterCommand;
+    }
 }
