@@ -93,6 +93,8 @@ public class Parser {
         int indexInStr = 7;
         int taskNum = Integer.parseInt(String.valueOf(userInput.charAt(indexInStr)));
         if (taskNum <= tasklist.getSize()) {
+            Task task = tasklist.unmark(taskNum - 1);
+            assert task.isDone : "task should be marked as not done";
             return ui.printUndone(tasklist.unmark(taskNum - 1));
         } else {
             throw new DukeException("An invalid number is inputted!");
@@ -111,6 +113,8 @@ public class Parser {
             String finalStr = "";
             ToDos newToDo = new ToDos(str.substring(lengthOfWordTodo));
             tasklist.increaseTodoCount();
+            int size = tasklist.getSize();
+            assert size > 0 : "size should be more than 0";
             finalStr += ui.printTodo(tasklist.addTask(newToDo)) + "\n" + ui.printTasksLeft(tasklist.getSize());
             return finalStr;
         } else {
@@ -139,6 +143,8 @@ public class Parser {
 
             tasklist.increaseDeadlineCount();
             String finalStr = "";
+            int size = tasklist.getSize();
+            assert size > 0 : "size should be more than 0";
             finalStr += ui.printTodo(tasklist.addTask(newDeadline)) + "\n" + ui.printTasksLeft(tasklist.getSize());
             return finalStr;
         } else {
@@ -167,6 +173,8 @@ public class Parser {
 
             tasklist.increaseEventCount();
             String finalStr = "";
+            int size = tasklist.getSize();
+            assert size > 0 : "size should be more than 0";
             finalStr += ui.printTodo(tasklist.addTask(newEvent)) + "\n"+ ui.printTasksLeft(tasklist.getSize());
             return finalStr;
         } else {
