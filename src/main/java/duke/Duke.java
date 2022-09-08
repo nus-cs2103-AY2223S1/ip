@@ -55,6 +55,7 @@ public class Duke {
     public String getResponse(String s) {
         try {
             String[] parsed = Parser.parseInput(s);
+            assert parsed.length == 6 : "Parser error occurred.";
 
             if (parsed[0].equals("bye")) {
                 exit();
@@ -92,7 +93,6 @@ public class Duke {
                 tList.addTask(a);
                 return ui.printTaskAdded(a, tList);
 
-
             } else if (parsed[0].equals("deadline")) {
                 Deadline d = new Deadline(parsed[1], parsed[2]);
                 tList.addTask(d);
@@ -115,6 +115,7 @@ public class Duke {
         } catch (IndexOutOfBoundsException e) {
             return ui.printErrorMessage("Invalid index access detected!");
         } finally {
+            assert tList != null : "TaskList has to be present";
             storage.saveFile(this.tList);
         }
 

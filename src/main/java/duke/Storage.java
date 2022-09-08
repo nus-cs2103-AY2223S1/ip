@@ -76,6 +76,7 @@ public class Storage {
      * @param info Info of the task to be loaded.
      */
     public void loadFileHelper(TaskList t, String info) {
+        assert info.length() != 0 : "Scanner not suppose to pass in empty string.";
         String[] parts = info.split(" \\| ");
         if (parts[0].equals("T")) {
             Task todo = new Todo(parts[2]);
