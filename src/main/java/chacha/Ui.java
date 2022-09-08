@@ -87,14 +87,33 @@ public class Ui {
     public void printUnmark(Task task) {
         System.out.println("Nice! I've marked this task as not done yet:\n" + task.toString());
     }
-   
-    /** 
-     * Prints given error message.
+
+    /**
+     * Prints tasks from task list containing certain keyword.
      * 
-     * @param message Given error message.
+     * @param taskList TaskList with tasks containing certain keyword.
+     */
+    public void printFind(TaskList taskList) {
+        if (taskList.getSize() == 0) {
+            System.out.println("There are no matching tasks in your list.");
+        } else {
+            System.out.println("Here are the matching tasks in your list:");
+            for (int i = 0; i < taskList.getSize();i++) {
+                Task t = taskList.get(i);	      
+                System.out.println(i + 1 + 
+                    "." + 
+                    t.toString()); 		
+            } 
+        }
+    } 
+
+    /**
+     * Prints custom error message.
+     * 
+     * @param message Custom error message to be printed.
      */
     public void printError(String message) {
-        System.out.println("Chacha error: " + message);
+            System.out.println("Chacha error: " + message);
     }
     
 }
