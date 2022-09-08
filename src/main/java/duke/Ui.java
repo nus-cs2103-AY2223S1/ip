@@ -12,4 +12,9 @@ public class Ui {
     public void end() {
         System.out.println("\nBye. Hope to see you again soon!");
     }
+
+    public static String showLoadingError(DukeException e) {
+        return e.getMessage();
+    }
+
 }

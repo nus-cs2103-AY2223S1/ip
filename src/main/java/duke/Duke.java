@@ -6,6 +6,7 @@ import java.util.Scanner;
  * Encapsulates the main Duke program.
  */
 public class Duke {
+
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
@@ -14,43 +15,29 @@ public class Duke {
 
     /**
      * Creates a Duke object.
-     * @param filePath String representation of the relative path of the file.
      */
-    public Duke(String filePath) {
+    public Duke() {
         this.ui = new Ui();
-        this.storage = new Storage(filePath);
+        this.storage = new Storage("data/tasks.txt");
 
         try {
             this.tasks = new TaskList(storage.load());
         } catch (DukeException e) {
-            //ui.showLoadingError;
             tasks = new TaskList();
         }
         this.parser = new Parser(this.tasks, this.storage);
     }
 
-    public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
-    }
 
     /**
-     * Runs the program.
+     *
      */
-    public void run() {
-        this.ui.start();
-        Scanner sc = new Scanner(System.in);
 
-        String message = sc.nextLine();
-
-        while (!message.equals("bye")) {
-            try {
-                this.parser.parse(message);
-            } catch (DukeException e) {
-                System.out.println(e);
-            }
-            message = sc.nextLine();
+    public String getResponse(String input) {
+        try {
+            return this.parser.parse(input);
+        } catch (DukeException e) {
+            return ui.showLoadingError(e);
         }
-        this.ui.end();
-        sc.close();
     }
 }

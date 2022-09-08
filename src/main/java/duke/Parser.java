@@ -26,38 +26,31 @@ public class Parser {
     /**
      * Evaluates the user input and parse accordingly.
      * @param cmd String representation to be parsed.
+     * @return Returns a string representing the command.
      * @throws DukeException Throws a DukeException.
      */
-    public void parse(String cmd) throws DukeException {
+    public String parse(String cmd) throws DukeException {
         String[] temp = cmd.split(" ");
         String mainCmd = temp[0];
         String[] subCmd = Arrays.copyOfRange(temp, 1, temp.length);
 
         switch (mainCmd) {
         case "list":
-            this.parseList(subCmd);
-            break;
+            return this.parseList(subCmd);
         case "mark":
-            this.parseMark(subCmd);
-            break;
+            return this.parseMark(subCmd);
         case "unmark":
-            this.parseUnmark(subCmd);
-            break;
+            return this.parseUnmark(subCmd);
         case "todo":
-            this.parseTodo(subCmd);
-            break;
+            return this.parseTodo(subCmd);
         case "deadline":
-            this.parseDeadline(subCmd);
-            break;
+            return this.parseDeadline(subCmd);
         case "event":
-            this.parseEvent(subCmd);
-            break;
+            return this.parseEvent(subCmd);
         case "delete":
-            this.parseDelete(subCmd);
-            break;
+            return this.parseDelete(subCmd);
         case "find":
-            this.parseFind(subCmd);
-            break;
+            return this.parseFind(subCmd);
         default:
             throw new InvalidDescriptionException();
         }
@@ -66,69 +59,76 @@ public class Parser {
     /**
      * Parses the list command.
      * @param subCmd An Array of Strings containing the remaining command arguments.
+     * @return A string representing the list command.
      * @throws InvalidDescriptionException Throws an invalidDescriptionException.
      */
-    public void parseList(String[] subCmd) throws InvalidDescriptionException {
+    public String parseList(String[] subCmd) throws InvalidDescriptionException {
         if (subCmd.length != 0) {
             throw new InvalidDescriptionException();
         } else {
-            this.taskList.listTasks();
+            return this.taskList.listTasks();
         }
     }
 
     /**
      * Parses the mark command.
      * @param subCmd An Array of Strings containing the remaining command arguments.
+     * @return A string representing the mark command.
      * @throws DukeException Throws a DukeException.
      */
-    public void parseMark(String[] subCmd) throws DukeException {
+    public String parseMark(String[] subCmd) throws DukeException {
         if (Integer.parseInt(subCmd[0]) <= 0 || Integer.parseInt(subCmd[0]) > this.taskList.size()) {
             throw new InvalidDescriptionException();
         } else {
-            this.taskList.getTask(Integer.parseInt(subCmd[0]) - 1).mark();
+            String markMessage = this.taskList.getTask(Integer.parseInt(subCmd[0]) - 1).mark();
             this.storage.save(this.taskList);
+            return markMessage;
+
         }
     }
 
     /**
      * Parses the unmark command.
      * @param subCmd An Array of Strings containing the remaining command arguments.
+     * @return A string representing the unmark command.
      * @throws DukeException Throws a DukeException.
      */
-    public void parseUnmark(String[] subCmd) throws DukeException {
+    public String parseUnmark(String[] subCmd) throws DukeException {
         if (Integer.parseInt(subCmd[0]) <= 0 || Integer.parseInt(subCmd[0]) > this.taskList.size()) {
             throw new InvalidDescriptionException();
         } else {
-            this.taskList.getTask(Integer.parseInt(subCmd[0]) - 1).unmark();
+            String unMarkMessage = this.taskList.getTask(Integer.parseInt(subCmd[0]) - 1).unmark();
             this.storage.save(this.taskList);
+            return unMarkMessage;
         }
     }
 
     /**
      * Parses the todo command.
      * @param subCmd An Array of Strings containing the remaining command arguments.
+     * @return A string representing the todo command.
      * @throws DukeException Throws a DukeException.
      */
-    public void parseTodo(String[] subCmd) throws DukeException {
+    public String parseTodo(String[] subCmd) throws DukeException {
 
         String tmp = String.join(" ", subCmd);
         if (tmp.equals("")) {
             throw new EmptyDescriptionException();
         } else {
             Todo tmpTask = new Todo(tmp, false);
-            System.out.println(tmpTask);
-            this.taskList.addTask(tmpTask);
-
+            String toDoMessage = this.taskList.addTask(tmpTask);
             this.storage.save(this.taskList);
+            return toDoMessage;
         }
     }
 
     /**
      * Parses the deadline command.
      * @param subCmd An Array of Strings containing the remaining command arguments.
+     * @return A string representing the deadline command.
      * @throws DukeException Throws a DukeException.
      */
-    public void parseDeadline(String[] subCmd) throws DukeException {
+    public String parseDeadline(String[] subCmd) throws DukeException {
         String tmp = String.join(" ", subCmd);
         if (tmp.equals("")) {
             throw new EmptyDescriptionException();
@@ -139,9 +139,9 @@ public class Parser {
                 String[] tempSplit = tmp.split(" /by ");
                 LocalDate tempDate = LocalDate.parse(tempSplit[1], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                 Deadline tmpTask = new Deadline(tempSplit[0], false, tempDate);
-
-                this.taskList.addTask(tmpTask);
+                String DeadlineMessage = this.taskList.addTask(tmpTask);
                 this.storage.save(this.taskList);
+                return DeadlineMessage;
 
             } catch (DateTimeParseException e) {
                 throw new DukeException("Please change Date format to dd/mm/yyyy");
@@ -152,46 +152,50 @@ public class Parser {
     /**
      * Parses the event command.
      * @param subCmd An Array of Strings containing the remaining command arguments.
+     * @return A string representing the event command.
      * @throws DukeException Throws a DukeException.
      */
-    public void parseEvent(String[] subCmd) throws DukeException {
+    public String parseEvent(String[] subCmd) throws DukeException {
         String tmp = String.join(" ", subCmd);
         if (tmp.equals("")) {
             throw new EmptyDescriptionException();
         } else {
             String[] tempSplit = tmp.split(" /at ");
             Event tmpTask = new Event(tempSplit[0], false, tempSplit[1]);
-
-            this.taskList.addTask(tmpTask);
+            String EventMessage = this.taskList.addTask(tmpTask);
             this.storage.save(this.taskList);
+            return EventMessage;
         }
     }
 
     /**
      * Parses the delete command.
      * @param subCmd An Array of Strings containing the remaining command arguments.
+     * @return A string representing the delete command.
      * @throws DukeException Throws a DukeException.
      */
-    public void parseDelete(String[] subCmd) throws DukeException {
+    public String parseDelete(String[] subCmd) throws DukeException {
         if (Integer.parseInt(subCmd[0]) <= 0 || Integer.parseInt(subCmd[0]) > this.taskList.size()) {
             throw new InvalidDescriptionException();
         } else {
-            this.taskList.deleteTask(Integer.parseInt(subCmd[0]));
+            String deleteMessage = this.taskList.deleteTask(Integer.parseInt(subCmd[0]));
             this.storage.save(this.taskList);
+            return deleteMessage;
         }
     }
 
     /**
      * Parses the find command.
      * @param subCmd String representation of the command.
+     * @return A string representing the find command.
      * @throws DukeException Throws DukeException.
      */
-    public void parseFind(String[] subCmd) throws DukeException {
+    public String parseFind(String[] subCmd) throws DukeException {
         String temp = String.join(" ", subCmd);
         if (temp.equals("")) {
             throw new EmptyDescriptionException();
         } else {
-            this.taskList.findKeyword(temp);
+            return this.taskList.findKeyword(temp);
         }
     }
 }
