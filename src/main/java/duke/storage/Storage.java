@@ -12,7 +12,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
-import java.util.*;
+import java.util.Scanner;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  * reads file from duke.txt and
@@ -71,8 +74,6 @@ public class Storage {
         }
         myReader.close();
         writer.print("");
-        System.out.println(tasks.size());
-        System.out.println(curr);
         return new TaskList(tasks, curr);
     }
 

@@ -1,5 +1,6 @@
 package duke.parser;
 
+import duke.tasks.Task;
 import duke.taskList.TaskList;
 import duke.ui.Ui;
 
@@ -20,6 +21,8 @@ public class Parser {
             case "list":
                 return taskList.listTasks(ui);
 
+            case "find":
+                return taskList.findTasks(command, ui);
             case "mark":
                 try {
                     return taskList.markTask(command.split(" "), ui);

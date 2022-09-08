@@ -199,6 +199,24 @@ public class TaskList {
         return this.curr;
     }
 
+    public TaskList findTasks(String command, Ui ui) {
+        String subWord = command.substring(5);
+        List<Task> foundTasks= new ArrayList<Task>();
+        boolean hasTasks = false;
+        for(int i = 0; i < curr; i++) {
+            Task task = tasks.get(i);
+            if(task.getVal().contains(subWord)) {
+                hasTasks = true;
+                foundTasks.add(task);
+            }
+        }
+        if(!hasTasks) {
+            ui.findNothingPrint();
+        } else {
+            ui.findPrint(foundTasks);
+        }
+        return this;
+    }
 
 }
 
