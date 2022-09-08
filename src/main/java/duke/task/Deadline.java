@@ -47,13 +47,13 @@ public class Deadline extends DukeTask {
      * Updates time of event.
      *
      * @param newBy new time of event
-     * @return the string confirming time of event has been updated
+     * @return the string confirming time of deadline has been updated
      * @throws DukeException if the input is erroneous
      */
-    public String updateAt(String newBy) throws DukeException {
+    public String updateTime(String newBy) throws DukeException {
         this.by = newBy;
         formatTime();
-        return "Event time updated!";
+        return "Deadline time updated!";
     }
 
     @Override

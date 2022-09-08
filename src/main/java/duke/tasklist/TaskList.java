@@ -122,10 +122,27 @@ public class TaskList {
      * @param taskNumber  given task, 1-indexed
      * @param description new description of task
      * @return the string confirming the description has been updated
+     * @throws DukeException if the input is erroneous
      */
     public String updateDescription(int taskNumber, String description) throws DukeException {
         try {
             return items.get(taskNumber - 1).updateDescription(description);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(ITEM_DOESNT_EXIST);
+        }
+    }
+
+    /**
+     * Updates time of given task.
+     *
+     * @param taskNumber given task, 1-indexed
+     * @param time       new time of task
+     * @return the string confirming the time has been updated
+     * @throws DukeException if the input is erroneous
+     */
+    public String updateTime(int taskNumber, String time) throws DukeException {
+        try {
+            return items.get(taskNumber - 1).updateTime(time);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(ITEM_DOESNT_EXIST);
         }

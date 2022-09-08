@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.exception.DukeException;
+
 /**
  * Encapsulates a task stored in Apollo.
  *
@@ -86,6 +88,18 @@ public abstract class DukeTask {
     public String updateDescription(String newDescription) {
         this.description = newDescription;
         return "Description updated!";
+    }
+
+    /**
+     * Updates task time. Default behaviour for non-time-limited tasks is to throw
+     * an error indicating so.
+     *
+     * @param time updated time
+     * @return the string confirming the time has been updated
+     * @throws DukeException if the input is erroneous or the task is not time-limited
+     */
+    public String updateTime(String time) throws DukeException {
+        throw new DukeException("This task is not time-limited.");
     }
 
     @Override

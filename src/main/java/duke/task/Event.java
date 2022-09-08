@@ -50,7 +50,8 @@ public class Event extends DukeTask {
      * @return the string confirming time of event has been updated
      * @throws DukeException if the input is erroneous
      */
-    public String updateAt(String newAt) throws DukeException {
+    @Override
+    public String updateTime(String newAt) throws DukeException {
         this.at = newAt;
         formatTime();
         return "Event time updated!";
