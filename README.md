@@ -14,15 +14,7 @@ CaCa is
 - text-based
 - easy to learn
 - ~~FAST~~ _SUPER_ FAST to use
-
-All you need to do is,
-1. download it from [here](https://github.com/carriezhengjr/ip/releases/tag/A-Jar).
-2. open a command window in that same folder.
-3. run the command `java -jar {filename}.jar`. 
-    - e.g., `java -jar caca.jar` (i.e., run the command in the same folder as the jar file)
-4. let it manage your tasks for you! 😉
-
-And it is **FREE**!
+- __FREE!!!__
 
 <br>
 
@@ -46,10 +38,10 @@ public class Main {
 
 <hr>
 
-# CaCa at a Glance 😎
+# CaCa at a glance 😎
 
 ### Here is a quick summary of the powers of CaCa!
-(More details can be found in the [User Guide](/docs/README.md).)
+More details can be found in the [User Guide](https://carriezhengjr.github.io/ip/).
 
 | Features                | Command                                                        |
 |-------------------------|----------------------------------------------------------------|
