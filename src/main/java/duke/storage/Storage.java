@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class Storage {
 
     private static String filePath;
-    private File f;
+    private File taskFile;
     private ArrayList<String> tasksList;
 
     /**
@@ -26,7 +26,7 @@ public class Storage {
      */
     public Storage(String filePath) {
         this.filePath = filePath;
-        f = new File(this.filePath);
+        taskFile = new File(this.filePath);
         tasksList = new ArrayList<>();
     }
 
@@ -34,10 +34,10 @@ public class Storage {
      * Reads the tasks from the file and loads them into an <code>ArrayList</code>
      * @return An <code>ArrayList</code> containing the tasks from the file.
      */
-    public ArrayList<String> load() {
+    public ArrayList<String> loadFromFile() {
         try {
-            if (!f.createNewFile()) {
-                Scanner sc = new Scanner(f);
+            if (!taskFile.createNewFile()) {
+                Scanner sc = new Scanner(taskFile);
                 while (sc.hasNext()) {
                     String curr = sc.nextLine();
                     tasksList.add(curr);
@@ -67,7 +67,7 @@ public class Storage {
      * @throws FileNotFoundException If the file path is invalid.
      */
     public void clearFile() throws FileNotFoundException {
-        PrintWriter writer = new PrintWriter(f);
+        PrintWriter writer = new PrintWriter(taskFile);
         writer.print("");
         writer.close();
     }
