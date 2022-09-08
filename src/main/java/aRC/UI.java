@@ -1,7 +1,5 @@
 package arc;
 
-import java.util.Scanner;
-
 /**
  * Encapsulates a UI object that handles user interface
  */
