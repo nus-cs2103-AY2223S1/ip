@@ -10,10 +10,10 @@ import java.time.format.DateTimeParseException;
 public class Deadline extends Task {
 
     /** A string representing the due date/time of the Deadline. */
-    protected String by;
+    private String by;
 
     /** A LocalDate representing the due date of the Deadline */
-    protected LocalDate byDate;
+    private LocalDate byDate;
 
     /**
      * Constructor for a Deadline.

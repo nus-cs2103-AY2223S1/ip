@@ -24,6 +24,6 @@ public class EmptyTaskException extends DukeException {
      */
     @Override
     public String toString() {
-        return super.toString() + " The task " + this.cmd + " is empty! Please add the task description:)";
+        return super.toString() + " The " + this.cmd + " task is empty! Please add the task description:)";
     }
 }

@@ -22,7 +22,6 @@ public class DeadlineCommand extends Command {
      */
     public DeadlineCommand(String description) {
         this.description = description;
-        response = "";
     }
 
     /**
@@ -44,7 +43,7 @@ public class DeadlineCommand extends Command {
         if (split[0].equals(this.description)) {
             throw new InvalidArgumentException("deadline", "/by");
         }
-        if (split.length == 1) {
+        if (split.length == 1 || split[1].trim().equals("")) {
             throw new EmptyDurationException("deadline", "/by");
         }
         taskList.add(new Deadline(split[0].trim(), split[1]));

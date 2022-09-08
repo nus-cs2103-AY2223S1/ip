@@ -43,7 +43,7 @@ public class EventCommand extends Command {
         if (split[0].equals(this.description)) {
             throw new InvalidArgumentException("event", "/at");
         }
-        if (split.length == 1) {
+        if (split.length == 1 || split[1].trim().equals("")) {
             throw new EmptyDurationException("event", "/at");
         }
         taskList.add(new Event(split[0].trim(), split[1]));

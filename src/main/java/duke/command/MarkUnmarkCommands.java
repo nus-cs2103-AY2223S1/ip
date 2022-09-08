@@ -75,7 +75,7 @@ public class MarkUnmarkCommands extends Command {
     }
 
     /**
-     * Checks if the text after mark/unmark is an integer.
+     * Checks if the text is an integer.
      *
      * @param input The text to be checked.
      * @return The boolean representing if the text is an integer.

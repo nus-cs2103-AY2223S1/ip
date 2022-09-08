@@ -11,7 +11,7 @@ public class Parser {
 
     /** Set to store all known commands. */
     private static final Set<String> commandList = Set.of("bye", "list", "mark", "unmark", "todo",
-            "deadline", "event", "delete", "find");
+            "deadline", "event", "delete", "find", "fixed");
 
     /**
      * Returns a command based on the input string.
@@ -49,6 +49,8 @@ public class Parser {
             return new DeleteCommand(postCmd);
         case "find":
             return new FindCommand(postCmd);
+        case "fixed":
+            return new FixedDurationCommand(postCmd);
         default:
             return null;
         }

@@ -36,7 +36,7 @@ public abstract class Task {
      *
      * @return A string indicating if the Task is done.
      */
-    protected String getStatusIcon() {
+    private String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
 

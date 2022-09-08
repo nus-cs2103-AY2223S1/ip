@@ -55,7 +55,7 @@ public class DeleteCommand extends Command {
 
 
     /**
-     * Checks if the text after delete is an integer.
+     * Checks if the text is an integer.
      *
      * @param input The text to be checked.
      * @return The boolean representing if the text is an integer.

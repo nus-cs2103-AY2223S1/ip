@@ -10,10 +10,10 @@ import java.time.format.DateTimeParseException;
 public class Event extends Task {
 
     /** A string representing the date/time of the Event. */
-    protected String at;
+    private String at;
 
     /** A LocalDateTime representing the date and time of the Event */
-    protected LocalDateTime atDateTime;
+    private LocalDateTime atDateTime;
 
 
     /**

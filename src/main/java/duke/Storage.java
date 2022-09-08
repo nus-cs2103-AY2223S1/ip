@@ -2,6 +2,7 @@ package duke;
 
 import duke.task.Deadline;
 import duke.task.Event;
+import duke.task.FixedDuration;
 import duke.task.Task;
 import duke.task.Todo;
 
@@ -75,6 +76,10 @@ public class Storage {
                     break;
                 case "E":
                     temp = new Event(lineSplit[2], lineSplit[3]);
+                    break;
+                case "F":
+                    temp = new FixedDuration(lineSplit[2], Integer.parseInt(lineSplit[3]),
+                            Integer.parseInt(lineSplit[4]));
                     break;
                 default:
                     temp = null;
