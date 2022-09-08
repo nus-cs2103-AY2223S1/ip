@@ -57,12 +57,18 @@ public class Parser {
             return new AddCommand(new Todo(desc));
         } else if (words[0].equals("deadline")) {
             String[] splitStringByBy = input.split(" /by ", 2);
-            String formattedDate = formatDate(splitStringByBy);
+            if (splitStringByBy.length <= 1) {
+                throw new EmptyDateException();
+            }
+            String formattedDate = formatDate(splitStringByBy[1]);
             String desc = splitStringByBy[0].split("deadline ", 2)[1];
             return new AddCommand(new Deadline(desc, formattedDate));
         } else if (words[0].equals("event")) {
             String[] splitStringByAt = input.split(" /at ", 2);
-            String formattedDate = formatDate(splitStringByAt);
+            if (splitStringByAt.length <= 1) {
+                throw new EmptyDateException();
+            }
+            String formattedDate = formatDate(splitStringByAt[1]);
             String desc = splitStringByAt[0].split("event ", 2)[1];
             return new AddCommand(new Event(desc, formattedDate));
         } else if (words[0].equals("delete")) {
@@ -81,17 +87,14 @@ public class Parser {
     /**
      * Method that formats the date field, given the input and keyword
      *
-     * @param splitStringByKeyword An array containing the description and time.
+     * @param date A String containing the date field.
      * @return A String representing the formatted date.
      * @throws DukeException If input is invalid.
      */
-    public static String formatDate(String[] splitStringByKeyword) throws DukeException {
-        if (splitStringByKeyword.length <= 1) {
-            throw new EmptyDateException();
-        }
+    public static String formatDate(String date) throws DukeException {
         String formattedDate = "";
         try {
-            LocalDate unformattedDate = LocalDate.parse(splitStringByKeyword[1]);
+            LocalDate unformattedDate = LocalDate.parse(date);
             formattedDate = unformattedDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
         } catch (DateTimeParseException e) {
             throw new InvalidDateException();
