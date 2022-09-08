@@ -45,27 +45,6 @@ public class Duke extends Application {
         }
     }
 
-    /**
-     * Runs the duke program and parses user's input.
-     */
-    public void run() {
-        Scanner scn = new Scanner(System.in);
-        int numTasks = this.tasks.getLength();
-
-        //Can change to greet
-        ui.say("Hello! I'm Pawl\nWhat can I do for you?");
-
-        String input = scn.nextLine();
-        //Potential exception: No input
-        while (!Parser.checkExit(input)) {
-            Parser.parse(input, tasks, storage);
-
-            input = scn.nextLine();
-        }
-
-        ui.say("Bye. Hope to see you again soon!");
-    }
-
 
     @Override
     public void start(Stage stage) {

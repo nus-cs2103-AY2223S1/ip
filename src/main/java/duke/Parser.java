@@ -20,55 +20,37 @@ public class Parser {
         ArrayList<String> split = new ArrayList<String>(Arrays.asList(input.split(" ")));
         String first = split.remove(0);
         String rest = String.join(" ", split);
-
+        try {
         if (first.equals("list")) {
             //Handle listing of tasks
             return tasks.listTasks();
-
         } else if (first.equals("mark")) {
             //Mark a task as done
-            try {
-                String message = tasks.markTask(rest);
-                storage.writeToFile(tasks);
-                return message;
-            } catch (DukeException ex) {
-                return ex.toString();
-            }
+            String message = tasks.markTask(rest);
+            storage.writeToFile(tasks);
+            return message;
         } else if (first.equals("unmark")) {
             //Mark a task as not done
-            try {
-                String message = tasks.unmarkTask(rest);
-                storage.writeToFile(tasks);
-                return message;
-            } catch (DukeException ex) {
-                return ex.toString();
-            }
+            String message = tasks.unmarkTask(rest);
+            storage.writeToFile(tasks);
+            return message;
         } else if (first.equals("delete")) {
             //Delete a task at a given index
-            try {
-                String message = tasks.deleteTask(rest);
-                storage.writeToFile(tasks);
-                return message;
-            } catch (DukeException ex) {
-                return ex.toString();
-            }
+            String message = tasks.deleteTask(rest);
+            storage.writeToFile(tasks);
+            return message;
         } else if (first.equals("todo") || first.equals("deadline") || first.equals("event")) {
             //Else, add task to list
-            try {
-                String message = tasks.addTask(rest, first, false, false);
-                storage.writeToFile(tasks);
-                return message;
-            } catch (DukeException ex) {
-                return ex.toString();
-            }
+            String message = tasks.addTask(rest, first, false, false);
+            storage.writeToFile(tasks);
+            return message;
         } else if (first.equals("find")) {
-            try {
-                return tasks.find(rest);
-            } catch (DukeException ex) {
-                return ex.toString();
-            }
+            return tasks.find(rest);
         } else {
             return "OOPS!!! I'm sorry, but I don't know what that means :-(";
+        }
+        } catch (DukeException ex) {
+            return ex.toString();
         }
     }
 

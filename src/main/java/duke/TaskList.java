@@ -32,9 +32,11 @@ public class TaskList {
      * This method adds a task to the given task-list.
      *
      * @param noType The input String with type removed.
-     * @param type The type of the task
+     * @param type The type of the task.
+     * @param isDone The completion status of the task.
+     * @param isLoaded Whether the task is called due to a load call
      */
-    public String addTask(String noType, String type, boolean done, boolean load)
+    public String addTask(String noType, String type, boolean isDone, boolean isLoaded)
             throws DukeException {
         String confirmation = "Got it. I've added this task:\n  ";
         String number = "\nNow you have " + (numTasks + 1) + " tasks in the list.";
@@ -49,9 +51,9 @@ public class TaskList {
                 throw new DukeException("☹ OOPS!!! A single deadline must be specified."
                         + "e.g. deadline finish work /by June 9th");
             }
-            tasks.add(numTasks, new Deadline(split[0], split[1], done));
+            tasks.add(numTasks, new Deadline(split[0], split[1], isDone));
             numTasks++;
-            if (!load) {
+            if (!isLoaded) {
                 return (confirmation + tasks.get(numTasks - 1) + number);
             }
         } else if (type.equals("event")) {
@@ -60,15 +62,15 @@ public class TaskList {
                 throw new DukeException("☹ OOPS!!! A single timeframe must be specified."
                         + "e.g. event meeting /at Thursday 2-4pm");
             }
-            tasks.add(numTasks, new Event(split[0], split[1], done));
+            tasks.add(numTasks, new Event(split[0], split[1], isDone));
             numTasks++;
-            if (!load) {
+            if (!isLoaded) {
                 return (confirmation + tasks.get(numTasks - 1) + number);
             }
         } else {
-            tasks.add(numTasks, new ToDo(noType, done));
+            tasks.add(numTasks, new ToDo(noType, isDone));
             numTasks++;
-            if (!load) {
+            if (!isLoaded) {
                 return (confirmation + tasks.get(numTasks - 1) + number);
             }
         }
