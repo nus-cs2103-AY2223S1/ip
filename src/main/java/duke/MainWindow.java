@@ -53,14 +53,7 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
-
-//        if (!duke.getSavedStatus()) {
-//            dialogContainer.getChildren().addAll(DialogBox.getDukeDialog("error saving", dukeImage));
-//        }
         userInput.clear();
     }
 
-    public void handleErrorDisplay(String message) {
-        dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(message, dukeImage));
-    }
 }
