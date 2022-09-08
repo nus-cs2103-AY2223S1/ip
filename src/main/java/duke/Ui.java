@@ -50,7 +50,7 @@ public class Ui {
         } else {
             System.out.println("Here are the matching tasks in your list:");
             for (int i = 0; i < found.size(); i++) {
-                System.out.println(i + 1 + "." + found.get(0).toString());
+                System.out.println(i + 1 + "." + found.get(i).toString());
             }
         }
     }
