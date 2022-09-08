@@ -127,6 +127,26 @@ public class Ui {
     }
 
     /**
+     * Returns number of todos in the list.
+     *
+     * @param taskType Type of tasks to be counted.
+     * @param taskNum Number of todos in list
+     * @return String of number of todos in list.
+     */
+    public String printTaskCount(String taskType, int taskNum) {
+        if (taskType.equals("todo")) {
+            String str = "You have " + taskNum + " todos. XD";
+            return str;
+        } else if (taskType.equals("deadline")) {
+            String str = "You have " + taskNum + " deadlines. :)";
+            return str;
+        } else {
+            String str = "You have " + taskNum + " events. ;)";
+            return str;
+        }
+    }
+
+    /**
      * Prints error message.
      */
     public String printErrorMsg(String str) {

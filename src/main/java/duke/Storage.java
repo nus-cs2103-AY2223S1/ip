@@ -48,6 +48,9 @@ public class Storage {
      */
     public TaskList load() throws DukeException, FileNotFoundException {
         ArrayList<Task> taskArr = new ArrayList<>();
+        int tdCount = 0;
+        int dCount = 0;
+        int eCount = 0;
         File file = new File(this.filePath);
         try {
             if (!file.exists()) {
@@ -86,7 +89,8 @@ public class Storage {
                 }
             }
             sc.close();
-            return new TaskList(taskArr);
+            //return new TaskList(taskArr);
+            return new TaskList(taskArr, tdCount, dCount, eCount);
         } catch (FileNotFoundException fe) {
             throw new FileNotFoundException("Oops! No file is found.");
         }

@@ -42,6 +42,12 @@ public class Parser {
             return deleteTask(userInput);
         } else if (userInput.startsWith("find ")) {
             return findTask(userInput);
+        } else if (userInput.equals("count todo")) {
+            return countTasks("todo");
+        } else if (userInput.equals("count deadline")) {
+            return countTasks("deadline");
+        } else if (userInput.equals("count event")) {
+            return countTasks("event");
         } else if (userInput.equals("bye")) {
             return ui.printGoodbyeMessage();
         } else {
@@ -54,7 +60,7 @@ public class Parser {
      *
      * @return String of list.
      */
-    public static String showList() {
+    public static String showList(){
         return ui.printList(tasklist);
     }
 
@@ -87,6 +93,8 @@ public class Parser {
         int indexInStr = 7;
         int taskNum = Integer.parseInt(String.valueOf(userInput.charAt(indexInStr)));
         if (taskNum <= tasklist.getSize()) {
+            Task task = tasklist.unmark(taskNum - 1);
+            assert task.isDone : "task should be marked as not done";
             storage.save(tasklist);
             return ui.printUndone(tasklist.unmark(taskNum - 1));
         } else {
@@ -105,6 +113,8 @@ public class Parser {
         if (str.length() > lengthOfWordTodo) {
             String finalStr = "";
             ToDos newToDo = new ToDos(str.substring(lengthOfWordTodo));
+            int size = tasklist.getSize();
+            assert size > 0 : "size should be more than 0";
             finalStr += ui.printTodo(tasklist.addTask(newToDo)) + "\n" + ui.printTasksLeft(tasklist.getSize());
             storage.save(tasklist);
             return finalStr;
@@ -132,6 +142,8 @@ public class Parser {
             String date = str.substring(k + 4);
             Deadlines newDeadline = new Deadlines(desc, LocalDateTime.parse(date));
             String finalStr = "";
+            int size = tasklist.getSize();
+            assert size > 0 : "size should be more than 0";
             finalStr += ui.printTodo(tasklist.addTask(newDeadline)) + "\n" + ui.printTasksLeft(tasklist.getSize());
             storage.save(tasklist);
             return finalStr;
@@ -159,6 +171,8 @@ public class Parser {
             String eventTime = str.substring(k + 4);
             Events newEvent = new Events(desc, LocalDateTime.parse(eventTime));
             String finalStr = "";
+            int size = tasklist.getSize();
+            assert size > 0 : "size should be more than 0";
             finalStr += ui.printTodo(tasklist.addTask(newEvent)) + "\n" + ui.printTasksLeft(tasklist.getSize());
             storage.save(tasklist);
             return finalStr;
@@ -209,4 +223,24 @@ public class Parser {
 
         return ui.printFind(matchedTasks);
     }
+
+    /**
+     * Counts the number of todos.
+     *
+     * @param str User input.
+     * @return String of number of specified type of tasks in list.
+     */
+    public static String countTasks(String str) {
+        if (str.equals("todo")) {
+            int todoNum = tasklist.getTodoCount();
+            return ui.printTaskCount("todo", todoNum);
+        } else if (str.equals("deadline")) {
+            int deadlineNum = tasklist.getDeadlineCount();
+            return ui.printTaskCount("deadline", deadlineNum);
+        } else {
+            int eventNum = tasklist.getEventCount();
+            return ui.printTaskCount("event", eventNum);
+        }
+    }
+
 }

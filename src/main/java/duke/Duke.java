@@ -27,9 +27,8 @@ public class Duke {
      *
      * @param input User input into Duke bot.
      * @return String of response to user.
-     * @throws DukeException If input is unable to be parsed.
      */
-    public String getResponse(String input) throws DukeException {
+    public String getResponse(String input) {
         Parser parser = new Parser(ui, tasklist, storage);
         try {
             return parser.parse(input);
