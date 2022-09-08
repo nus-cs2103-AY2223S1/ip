@@ -14,8 +14,7 @@ public class ListCommand extends Command {
     /**
      * Execute the list command.
      * @param tasks current tasklist
-     * @param ui
-     * @param storage
+     * @param ui interaction class.
      * @return the response of the duke
      */
     String execute(TaskList tasks, Ui ui) {

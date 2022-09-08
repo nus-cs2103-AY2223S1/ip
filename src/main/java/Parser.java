@@ -50,6 +50,9 @@ public class Parser {
             String keyword = strArr[1];
             return new FindCommand(keyword);
 
+        } else if (command.equals("sortdeadlines")) {
+            return new SortDeadlineCommand();
+
         } else {
             throw new MismatchInputException(":( OOPS!!! I'm sorry, but I don't know what that means");
         }

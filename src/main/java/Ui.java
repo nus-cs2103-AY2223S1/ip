@@ -105,5 +105,24 @@ public class Ui {
         return printedList;
     }
 
+    /**
+     * Reply the users when the users' input is to sort deadlines.
+     * @return the reply by Duke that shows a list of sorted-by-date deadlines.
+     */
+    String printSortedDeadlineList(List<Deadline> sortedDeadlines) {
+        String printedList = "";
+
+        if (sortedDeadlines == null) {
+            printedList = "There are no deadlines.";
+            return printedList;
+        } else if (sortedDeadlines != null) {
+            printedList = "Here are the sorted deadlines:\n";
+            for (int i = 1; i < sortedDeadlines.size() + 1; i++) {
+                String task = sortedDeadlines.get(i - 1).toString();
+                printedList = printedList + i + ". " + task + "\n";
+            }
+        }
+        return printedList;
+    }
 
 }
