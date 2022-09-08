@@ -36,7 +36,7 @@ public class Ui {
     /**
      * Prints the introduction for the Puke Chatbot
      */
-    public String intro() {
+    public static String intro() {
         String logo = " ____         _        \n"
                 + "|   | \\ _   _| | _____ \n"
                 + "|  _|  | | | | |/ / _ \\\n"
@@ -49,8 +49,8 @@ public class Ui {
                 + "mark/unmark x : mark as done or unmark in list\n"
                 + "ToDo, Deadline, Event: \n"
                 + "todo xx\n"
-                + "deadline xx /by yyyy-mm-dd\n"
-                + "event xx /at yyyy-mm-dd\n"
+                + "deadline xx /by yyyy-mm-dd hh:mm\n"
+                + "event xx /at yyyy-mm-dd hh:mm\n"
                 + "delete x : remove the task from the list\n";
 
     }

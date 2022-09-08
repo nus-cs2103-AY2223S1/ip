@@ -60,7 +60,7 @@ public class DialogBox extends HBox {
      * @param iv Image for DialogBox
      * @return DialogBox
      */
-    public static DialogBox getDukeDialog(Label l, ImageView iv) {
+    public static DialogBox getPukeDialog(Label l, ImageView iv) {
         var db = new DialogBox(l, iv);
         db.flip();
         return db;
