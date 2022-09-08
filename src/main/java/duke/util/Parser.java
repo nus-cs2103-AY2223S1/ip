@@ -111,7 +111,7 @@ public class Parser {
     private static EventCommand parseEventCommand(String commandArgument) throws InvalidCommandFormatException {
         String[] argumentSplit = getCommandArgumentSplit(commandArgument, " /at ");
         if (argumentSplit.length < 2) {
-            throw new InvalidCommandFormatException(DeadlineCommand.getFormat());
+            throw new InvalidCommandFormatException(EventCommand.getFormat());
         }
         String description = argumentSplit[0];
         LocalDateTime byDateTime = parseDateTime(argumentSplit[1]);
