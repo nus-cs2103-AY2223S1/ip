@@ -4,7 +4,7 @@ public class Task {
     public String description;
     public boolean isDone;
 
-    protected static int count = 0;
+    public static int count = 0;
 
     public Task(String description) {
         this.description = description;
