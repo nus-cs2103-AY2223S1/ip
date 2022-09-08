@@ -16,6 +16,8 @@ public class Ui {
      * @return Formatted text.
      */
     public String basic(String reply) {
+        // At this point, reply should not be null
+        assert reply != null : "Null reply was given to basic formatter";
         return addSeparator(reply);
     }
 

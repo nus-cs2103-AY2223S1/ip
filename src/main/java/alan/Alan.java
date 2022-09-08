@@ -111,7 +111,8 @@ public class Alan {
         } catch (AlanException exception) {
             response = executor.excException(exception.getMessage());
         }
-
+        // At this point response must not be null
+        assert response != null : "No response was generated for user input";
         return response;
     }
 

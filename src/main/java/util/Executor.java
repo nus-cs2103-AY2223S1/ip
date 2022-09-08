@@ -49,6 +49,8 @@ public class Executor {
         ParsedData parsedData = parser.parse(InputType.event, userInput);
         Task currentTask = new Event(parsedData);
         taskList.add(currentTask);
+        // At this point taskList should have at least one element
+        assert taskList.size() > 0 : "Tasklist is still empty after attempt to add task";
         // Append new task to save File
         alanIO.append(fileFormatter.formatTask(currentTask));
 
@@ -66,6 +68,8 @@ public class Executor {
         ParsedData parsedData = parser.parse(InputType.deadline, userInput);
         Task currentTask = new Deadline(parsedData);
         taskList.add(currentTask);
+        // At this point taskList should have at least one element
+        assert taskList.size() > 0 : "Tasklist is still empty after attempt to add task";
         // Append new task to save File
         alanIO.append(fileFormatter.formatTask(currentTask));
 
@@ -83,6 +87,8 @@ public class Executor {
         ParsedData parsedData = parser.parse(InputType.todo, userInput);
         Task currentTask = new Todo(parsedData);
         taskList.add(currentTask);
+        // At this point taskList should have at least one element
+        assert taskList.size() > 0 : "Tasklist is still empty after attempt to add task";
         // Append new task to save File
         alanIO.append(fileFormatter.formatTask(currentTask));
 
