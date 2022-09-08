@@ -17,7 +17,7 @@ public class Event extends Task {
     protected LocalDate date;
 
     /**
-     * Event constructor that creates an instance of a Deadline object.
+     * Event constructor that creates an instance of a Event object.
      *
      * @param description The description for the task that needs to be completed.
      * @param at The date for the task to be completed at.
@@ -26,6 +26,17 @@ public class Event extends Task {
         super(description);
         this.at = at;
         this.date = LocalDate.parse(at);
+    }
+
+    /**
+     * A method to check if the given dateTime is equal to that of the Event object.
+     *
+     * @param at The dateTime to check against.
+     * @return boolean Whether the dateTimes are equal.
+     */
+    public boolean sameTime(String at) {
+        LocalDate date = LocalDate.parse(at);
+        return this.date.equals(date);
     }
 
     /**
