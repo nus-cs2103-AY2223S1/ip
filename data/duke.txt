@@ -1,4 +1,2 @@
-T | 1 | read book
-D | 0 | return book | 2022-06-06T23:59
-E | 0 | project meeting | 2022-08-06T14:00
-T | 1 | join sports club
+T | 1 | Homework | #SO
+E | 0 | Group Meeting | DEFAULT_TAG_THAT_NO_ONE_WOULD_THINK_OF | 2022-01-01T18:00

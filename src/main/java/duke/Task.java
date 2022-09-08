@@ -3,8 +3,11 @@ package duke;
 import java.time.LocalDateTime;
 
 public class Task {
+
+    protected static final String defaultTagString = "DEFAULT_TAG_THAT_NO_ONE_WOULD_THINK_OF";
     protected String description;
     protected boolean isDone;
+    protected String tag = defaultTagString;
 
     /**
      * Create a task class.
@@ -27,6 +30,14 @@ public class Task {
         return this.isDone;
     }
 
+    public String getTag() {
+        return this.tag;
+    }
+
+    public void setTag(String newTag) {
+        this.tag = newTag;
+    }
+
     public void mark() {
         this.isDone = true;
     }
@@ -41,11 +52,15 @@ public class Task {
 
     public String getWriteString() {
         String marked = this.isDone() ? "1" : "0";
-        return String.format("%s | %s", marked, this.description);
+        return String.format("%s | %s | %s", marked, this.description, this.tag);
     }
 
     @Override
     public String toString() {
-        return String.format("[%s] %s", this.getStatusIcon(), this.description);
+        String message = String.format("[%s] %s", this.getStatusIcon(), this.description);;
+        if (!this.tag.equals(Task.defaultTagString)) {
+            message = String.format("%s | Tag: %s", message, this.tag);
+        }
+        return message;
     }
 }

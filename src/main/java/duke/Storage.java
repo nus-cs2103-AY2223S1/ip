@@ -38,23 +38,28 @@ public class Storage {
 
             switch (input[0]) {
             case "D":
-                task = new Deadline(input[2], LocalDateTime.parse(input[3]));
+                task = new Deadline(input[2], LocalDateTime.parse(input[4]));
+                task.setTag(input[3]);
                 break;
 
             case "E":
-                task = new Event(input[2], LocalDateTime.parse(input[3]));
+                task = new Event(input[2], LocalDateTime.parse(input[4]));
+                task.setTag(input[3]);
                 break;
 
             case "T":
                 task = new Todo(input[2]);
+                task.setTag(input[3]);
                 break;
 
             default:
-                throw new DukeException("Duke couldn't understand what this file type is! " + input[0]);
+                throw new DukeException("Duke couldn't read this line! " + input[0]);
             }
+
             if (input[1].equals("1")) {
                 task.mark();
-            }
+            };
+
             tasks.add(task);
         }
         fileScanner.close();

@@ -261,6 +261,40 @@ public class Parser {
             );
             break;
 
+        case "tag":
+            command = new Command(
+                    (tasks, ui, storage) -> {
+                        try {
+
+                            String itemString = fullCommand.split(" ")[1];
+                            String tagString = fullCommand.split(" ")[2];
+                            int itemNumber = Integer.parseInt(itemString) - 1;
+                            Task taskToTag = tasks.get(itemNumber);
+
+                            if (tagString.equals(Task.defaultTagString)) {
+                                throw new DukeException("Please use another tag name!");
+                            }
+
+                            taskToTag.setTag(tagString);
+
+                            System.out.println("Noted. I've tagged this task:");
+                            System.out.println(taskToTag);
+                            System.out.printf("Now you have %d tasks in the list.%n", tasks.size());
+
+
+                        } catch (ArrayIndexOutOfBoundsException e) {
+                            System.out.println("Please input a valid item to tag!");
+                        } catch (NumberFormatException e) {
+                            System.out.println("Please input a number!");
+                        } catch (IndexOutOfBoundsException e) {
+                            System.out.println("Task not found!");
+                        } catch (DukeException e) {
+                            e.printStackTrace();
+                        }
+                    }
+            );
+            break;
+
         default:
             throw new DukeException("Invalid Command!");
         }
