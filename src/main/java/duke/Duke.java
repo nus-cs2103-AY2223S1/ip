@@ -2,6 +2,7 @@ package duke;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Objects;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -22,12 +23,12 @@ import javafx.stage.Stage;
  * @author eugeneleong
  * @version 1.0
  */
-
-@SuppressWarnings("checkstyle:Regexp")
 public class Duke extends Application {
 
-    private final Image user = new Image(this.getClass().getResourceAsStream("/images/NotSoPoliteCat.png"));
-    private final Image duke = new Image(this.getClass().getResourceAsStream("/images/PoliteCat.png"));
+    private final Image user = new Image(Objects.requireNonNull(
+            this.getClass().getResourceAsStream("/images/NotSoPoliteCat.png")));
+    private final Image duke = new Image(Objects.requireNonNull(
+            this.getClass().getResourceAsStream("/images/PoliteCat.png")));
     private ScrollPane scrollPane;
     private VBox dialogContainer;
     private TextField userInput;
@@ -67,8 +68,7 @@ public class Duke extends Application {
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
 
         scene = new Scene(mainLayout);
-        // Additional line to make code work with Launcher.java
-        scene.getRoot().setStyle("-fx-font-family: 'serif'");
+        scene.getRoot().setStyle("-fx-font-family: 'serif'"); // Additional line to make code work with Launcher.java
         stage.setScene(scene);
         stage.show();
         // Step 2. Formatting the window to look as expected

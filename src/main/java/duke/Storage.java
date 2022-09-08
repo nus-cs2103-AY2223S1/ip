@@ -26,7 +26,7 @@ public class Storage {
 
     /**
      * Responsible for loading all the pre-existing tasks from file
-     * @return ArrayList<Task></Task>
+     * @return ArrayList of tasks loaded
      * @throws FileNotFoundException if file cannot be found
      */
     public ArrayList<Task> load() throws FileNotFoundException {
@@ -73,7 +73,7 @@ public class Storage {
 
     /**
      * Responsible for saving the user's input into the file
-     * @param text to save
+     * @param text task to save
      * @throws IOException if the user's input cannot be saved
      */
     public void saveToFile(String text) throws IOException {
