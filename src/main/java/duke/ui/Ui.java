@@ -4,7 +4,7 @@ import duke.data.TaskList;
 import duke.task.Task;
 
 /**
- * Formats UI messages.
+ * Formats and returns UI messages.
  */
 public class Ui {
 

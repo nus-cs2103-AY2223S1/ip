@@ -81,6 +81,15 @@ public class Duke {
     }
 
 
+    private String findTasks(String[] commands) {
+
+        // Keyword to search for is the second token
+        TaskList searchResults = this.storedTasks.searchTasks(commands[1]);
+
+        return ui.getListTasksMessage(searchResults, true);
+    }
+
+
     private String markTaskAsDoneOrUndone(String[] commands) {
 
         String result;
@@ -213,7 +222,7 @@ public class Duke {
         try {
             delimiterIndex = findDelimiter(commands);
 
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             // Cannot find delimiter, i.e. delimiter doesn't exist
             return false;
         }
@@ -229,14 +238,14 @@ public class Duke {
 
 
     // Return the index of the first delimiter in the commands array
-    private int findDelimiter(String[] commands) throws Exception {
+    private int findDelimiter(String[] commands) throws IllegalArgumentException {
         for (int i = 0; i < commands.length; i++) {
             if (commands[i].charAt(0) == TIME_DELIMITER) {
                 return i;
             }
         }
 
-        throw new Exception();
+        throw new IllegalArgumentException();
     }
 
 
@@ -267,17 +276,13 @@ public class Duke {
     }
 
 
-    private String findTasks(String[] commands) {
-
-        // Keyword to search for is the second token
-        TaskList searchResults = this.storedTasks.searchTasks(commands[1]);
-
-        return ui.getListTasksMessage(searchResults, true);
-    }
+    private String handleInvalidCommand() {
+        return ui.getInvalidCommandErrorMessage();
+    }    
 
 
     // Calls the relevant function based on the given command
-    // Return true if need to exit program
+    // Returns the response of the command
     private String executeCommand(String[] commands) {
 
         String result;
@@ -335,26 +340,6 @@ public class Duke {
     }
 
 
-    private String handleInvalidCommand() {
-        return ui.getInvalidCommandErrorMessage();
-    }
-
-
-    // private void run() {
-
-    //     while (true) {
-
-    //         String[] commands = Parser.parseCommand(ui.readCommand());
-
-    //         // If need to exit
-    //         if (executeCommand(commands)) {
-    //             ui.stopReadingUserInput();
-    //             return;
-    //         }
-    //     }
-    // }
-
-
     /**
      * Returns the response to the specified input.
      * 
@@ -369,25 +354,15 @@ public class Duke {
 
     public static void main(String[] args) {
         
-        Duke d = new Duke();
-
-        // Scanner sc = new Scanner(System.in);
+        // Duke d = new Duke();
 
         // String input = "todo buy bread";
         // String input = "deadline return book /by 2022-12-16 18:00";
         // String input = "event book club /at Mon 2-4pm";
         // String input = "delete 2";
-        String input = "list";
-        String[] command = Parser.parseCommand(input);
+        // String input = "list";
+        // String[] command = Parser.parseCommand(input);
 
-        System.out.println(d.executeCommand(command));
-
-
-        
-        // System.out.println(System.getProperty("user.dir"));
-
-        // Process user commands
-        // d.run();
-
+        // System.out.println(d.executeCommand(command));
     }
 }

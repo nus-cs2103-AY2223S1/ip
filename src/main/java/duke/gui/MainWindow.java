@@ -1,5 +1,6 @@
-package duke;
+package duke.gui;
 
+import duke.Duke;
 import duke.ui.Ui;
 
 import javafx.fxml.FXML;
@@ -32,7 +33,9 @@ public class MainWindow extends AnchorPane {
 
 
     /**
-     * initialize() is called first before setDuke().
+     * Initialize the Main Window.
+     * 
+     * Note that initialize() is called first before setDuke().
      * Hence, the duke attribute is still null when this function is called.
      */
     @FXML
@@ -68,13 +71,6 @@ public class MainWindow extends AnchorPane {
         String response = duke.getResponse(input);
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(response, dukeImage));
         
-        // System.exit(0);
-
-        // dialogContainer.getChildren().addAll(
-        //     DialogBox.getUserDialog(input, userImage),
-        //     DialogBox.getDukeDialog(response, dukeImage)
-        //     );
-        
-        }
+    }
     
 }
