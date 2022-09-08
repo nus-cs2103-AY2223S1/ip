@@ -31,14 +31,19 @@ public class Duke {
 
     /**
      * Executes instructions passed into Apollo.
+     *
      * @param input the input string
      * @return the output string
      */
     public String execute(String input) {
         try {
             Command c = Parser.parseUserInput(input);
+            assert itemList != null : "itemList should always be initiated before "
+                    + "execution commences.";
             return c.execute(itemList, storage);
         } catch (DukeException e) {
+            assert e.getMessage().startsWith("Hang on!")
+                    : "Exception messages should always start with \"Hang on!\"";
             return e.getMessage();
         }
     }

@@ -59,6 +59,7 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String output = duke.execute(input);
+        assert !output.equals("") : "Execution output should never be empty.";
         if (output.equals("Screen cleared!")) {
             dialogContainer.getChildren().clear();
         }
