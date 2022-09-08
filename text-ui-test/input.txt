@@ -1,0 +1,7 @@
+todo borrow math book
+todo borrow science book
+deadline return science book /by Sunday
+list
+deadline return math book /by Sunday
+event project A meeting /at Mon 2-4pm
+event project B meeting /at Mon 2-4pm
