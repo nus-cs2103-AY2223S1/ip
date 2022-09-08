@@ -8,6 +8,9 @@ import java.util.List;
 
 import exceptions.HenryException;
 
+/**
+ * Utility class containing DateTime related methods
+ */
 public class DateUtils {
 
     private static final DateTimeFormatter parseFormatter =
