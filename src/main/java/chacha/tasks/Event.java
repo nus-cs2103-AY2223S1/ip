@@ -1,4 +1,5 @@
 package chacha.tasks;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -7,7 +8,7 @@ public class Event extends Task {
     private LocalDateTime date;
     private boolean isDone;
     private String type;
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
 
     public Event(String description, LocalDateTime date) {
         this.description = description;
@@ -24,7 +25,7 @@ public class Event extends Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : " ");
     }
 
     public String getDescription() {

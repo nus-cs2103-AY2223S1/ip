@@ -1,7 +1,7 @@
 package chacha;
+
 import java.util.ArrayList;
 import java.util.List;
-
 import chacha.tasks.Task;
 
 public class TaskList {
@@ -11,7 +11,6 @@ public class TaskList {
         public TaskList() {
             this.tasks = new ArrayList<>();
         }
-    
         
         public TaskList(ArrayList<Task> inputTasks) {
             this.tasks = new ArrayList<>();
@@ -20,14 +19,12 @@ public class TaskList {
             }
         }
 
-        
         /** 
          * @return int
          */
         public int getSize() {
             return tasks.size();
         }
-
         
         /** 
          * @param taskIndex
@@ -37,14 +34,12 @@ public class TaskList {
             return tasks.get(taskIndex);
         }
 
-        
         /** 
          * @param task
          */
         public void add(Task task) {
             tasks.add(task);
         }
-
         
         /** 
          * @param taskIndex

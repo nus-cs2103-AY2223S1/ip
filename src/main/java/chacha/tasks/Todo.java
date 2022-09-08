@@ -1,4 +1,5 @@
 package chacha.tasks;
+
 public class Todo extends Task {
     private String description;
     private boolean isDone;
@@ -18,7 +19,7 @@ public class Todo extends Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : " ");
     }
 
     public String getDescription() {

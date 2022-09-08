@@ -1,11 +1,8 @@
 package chacha.commands;
 
-
-
 import chacha.Storage;
 import chacha.TaskList;
 import chacha.Ui;
-
 
 public class ExitCommand extends Command {
     

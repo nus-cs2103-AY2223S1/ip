@@ -1,6 +1,6 @@
 package chacha;
-import java.util.Scanner;
 
+import java.util.Scanner;
 import chacha.tasks.Task;
 
 public class Ui {
