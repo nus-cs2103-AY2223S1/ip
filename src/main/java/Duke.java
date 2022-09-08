@@ -11,10 +11,12 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
     private DukeUi ui;
+    private final String FILE_PATH = "./data/tasks.txt";
 
-    public Duke(String filePath) {
+
+    public Duke() {
         ui = new DukeUi();
-        storage = new Storage(filePath);
+        storage = new Storage(FILE_PATH);
         try {
             tasks = new TaskList(storage.load());
             DukeUi.sendMessage("load complete!");
@@ -24,29 +26,18 @@ public class Duke {
         }
     }
 
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine();
-                Command c = Parser.parse(fullCommand);
-                if (c != null) {
-                    c.execute(tasks, ui, storage);
-                } else {
-                    continue;
-                }
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
+    public String getResponse(String input) throws DukeException {
+        try {
+            String fullCommand = ui.readCommand(input);
+            Command c = Parser.parse(fullCommand);
+            if (c != null) {
+                return c.execute(tasks, ui, storage);
+            } else {
+                throw new DukeException("Sorry ! I do not understand this command !!");
             }
+        } catch (DukeException e) {
+            return e.toString();
         }
     }
 
-    public static void main(String[] args) {
-        new Duke("./data/tasks.txt").run();
-    }
 }

@@ -28,7 +28,7 @@ public abstract class Command {
      * @param storage the storage that saves changes made to the TaskList.
      * @throws DukeException if user input is invalid or insufficient.
      */
-    public abstract void execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException;
+    public abstract String execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException;
 
     /**
      * Checks if the command exits the program

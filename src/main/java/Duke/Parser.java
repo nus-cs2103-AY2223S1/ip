@@ -34,26 +34,14 @@ public class Parser {
             if (userCommand.equals("list")) {
                 nextCommand = new ListCommand();
             } else if (userCommand.equals("mark")) {
-                try {
-                    String userAction = command[1];
-                    nextCommand = new MarkCommand(userAction);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    throw new DukeException("I'm sorry, but you need to provide a valid index");
-                }
+                String userAction = command[1].strip();
+                nextCommand = new MarkCommand(userAction);
             } else if (userCommand.equals("unmark")) {
-                try {
-                    String userAction = command[1];
-                    nextCommand = new UnmarkCommand(userAction);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    throw new DukeException("I'm sorry, but you need to provide a valid index");
-                }
+                String userAction = command[1].strip();
+                nextCommand = new UnmarkCommand(userAction);
             } else if (userCommand.equals("todo")) {
-                try {
-                    String userAction = command[1];
-                    nextCommand = new TodoCommand(userAction);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    throw new DukeException("I'm sorry, but you need to provide a todo");
-                }
+                String userAction = command[1];
+                nextCommand = new TodoCommand(userAction);
             } else if (userCommand.equals("event")) {
                 try {
                     String userAction = command[1];
@@ -63,18 +51,14 @@ public class Parser {
                 }
             } else if (userCommand.equals("deadline")) {
                 try {
-                    String userAction = command[1];
+                    String userAction = command[1].strip();
                     nextCommand = new DeadlineCommand(userAction);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeException("I'm sorry, but you need to provide a deadline");
                 }
             } else if (userCommand.equals("delete")) {
-                try {
-                    String userAction = command[1];
-                    nextCommand = new DeleteCommand(userAction);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    throw new DukeException("I'm sorry, but you need to provide a valid index");
-                }
+                String userAction = command[1].strip();
+                nextCommand = new DeleteCommand(userAction);
             } else if (userCommand.equals("find")) {
                 try {
                     String userAction = command[1];
@@ -87,6 +71,8 @@ public class Parser {
             } else {
                 throw new DukeException("I'm sorry, but I don't know what that means :-(");
             }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new DukeException("I'm sorry, but you need to provide a valid index");
         } catch (NullPointerException e1){
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         } catch (DukeException e2) {

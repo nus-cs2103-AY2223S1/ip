@@ -19,7 +19,7 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, DukeUi ui, Storage storage) throws DukeException {
         try {
             String[] eventString = userAction.split("/at ");
             if (eventString[0].equals("")) {
@@ -30,11 +30,13 @@ public class EventCommand extends Command {
                 Task newEvent = new Event(eventString[0], eventString[1]);
                 tasks.addTask(newEvent);
                 storage.save();
-                ui.sendMessage(" Got it. I've added this task:\n" + "   " + newEvent.toString()
+                return ui.sendMessage(" Got it. I've added this task:\n" + "   " + newEvent.toString()
                         + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
             }
-        } catch (IOException | DukeException e) {
+        } catch (IOException e) {
             throw new DukeException(e.getMessage());
+        } catch (DukeException e2) {
+            return e2.toString();
         }
     }
 
