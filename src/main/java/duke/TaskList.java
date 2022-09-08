@@ -78,8 +78,17 @@ public class TaskList {
                     TimedTask.getFormat());
         }
         return new TaskList(tasks.stream()
-                .filter(x -> x instanceof TimedTask && ((TimedTask) x).getTime().toLocalDate().equals(convertedDate))
+                .filter(x -> isSameDate(x, convertedDate))
                 .collect(Collectors.toList()));
+    }
+
+    private boolean isSameDate(Task task, LocalDate date) {
+        if (!(task instanceof TimedTask)) {
+            return false;
+        }
+        TimedTask timedTask = (TimedTask) task;
+        LocalDate taskDate = timedTask.getTime().toLocalDate();
+        return taskDate.equals(date);
     }
 
     /**

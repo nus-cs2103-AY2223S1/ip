@@ -44,26 +44,27 @@ public class Duke {
         try {
             switch (parsedCommands[0]) {
             case "list":
-                if (parsedCommands.length == 1) {
-                    return ui.showTasks(tasks);
-                } else {
-                    return ui.showTasks(tasks, parsedCommands[1]);
-                }
+                return (parsedCommands.length == 1)
+                    ? ui.showTasks(tasks)
+                    : ui.showTasks(tasks, parsedCommands[1]);
 
             case "todo":
-                tasks.add(new Todo(parsedCommands[1]));
+                Todo todo = new Todo(parsedCommands[1]);
+                tasks.add(todo);
                 return String.format("Got it. I've added this todo:\n  %s\nNow you have %d tasks in the list.",
-                        tasks.get(tasks.size()), tasks.size());
+                        todo, tasks.size());
 
             case "deadline":
-                tasks.add(new Deadline(parsedCommands[1], parsedCommands[2]));
+                Deadline deadline = new Deadline(parsedCommands[1], parsedCommands[2]);
+                tasks.add(deadline);
                 return String.format("Got it. I've added this deadline:\n  %s\nNow you have %d tasks in the list.",
-                        tasks.get(tasks.size()), tasks.size());
+                        deadline, tasks.size());
 
             case "event":
-                tasks.add(new Event(parsedCommands[1], parsedCommands[2]));
+                Event event = new Event(parsedCommands[1], parsedCommands[2]);
+                tasks.add(event);
                 return String.format("Got it. I've added this event:\n  %s\nNow you have %d tasks in the list.",
-                        tasks.get(tasks.size()), tasks.size());
+                        event, tasks.size());
 
             case "sort":
                 tasks.sort();
