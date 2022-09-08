@@ -2,20 +2,18 @@ package iana;
 
 import iana.command.Command;
 import iana.exception.IanaException;
-import iana.main.Parser;
-import iana.main.Storage;
-import iana.main.Ui;
+import iana.parser.Parser;
+import iana.storage.Storage;
 import iana.tasks.TaskList;
+import iana.ui.Ui;
 import java.util.Scanner;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
 /**
  * Represents the command line interface Iana used to manage tasks.
  */
 public class Iana {
+    private TaskList tasks;
+    private Ui ui;
 
     /**
      * Runs the command line interface.
@@ -51,6 +49,15 @@ public class Iana {
         }
     }
 
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            return command.execute(tasks, ui);
+        } catch (IanaException e) {
+            return e.getMessage();
+        }
+    }
+
     /**
      * Execute the entire program.
      * 
@@ -59,13 +66,4 @@ public class Iana {
     public static void main(String[] args) {
         new Iana().run();
     }
-    
-    // @Override
-    // public void start(Stage stage) {
-    //     Label helloWorld = new Label("Hello World!"); // Creating a new Label control
-    //     Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
-
-    //     stage.setScene(scene); // Setting the stage to show our screen
-    //     stage.show(); // Render the stage.
-    // }
 }

@@ -1,9 +1,9 @@
 package iana.command;
 
 import iana.exception.IanaException;
-import iana.main.Ui;
 import iana.tasks.Task;
 import iana.tasks.TaskList;
+import iana.ui.Ui;
 
 /**
  * Command that adds a new task to the list.
@@ -23,13 +23,13 @@ public class AddTaskCommand extends Command {
      * Runs the command to try to add a new task.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) {
+    public String execute(TaskList tasks, Ui ui) {
         try {
             Task newTask = Task.of(this.taskInput, false);
             tasks.add(newTask);
-            ui.sayTaskAdded(newTask);
+            return ui.sayTaskAdded(newTask);
         } catch (IanaException e) {
-            ui.echo(e.getMessage());
+            return ui.say(e.getMessage());
         }
     }
 

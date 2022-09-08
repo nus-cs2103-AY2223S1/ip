@@ -1,4 +1,4 @@
-package iana.main;
+package iana.parser;
 
 import iana.command.Actions;
 import iana.command.AddTaskCommand;

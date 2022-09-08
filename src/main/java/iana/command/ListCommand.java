@@ -1,7 +1,7 @@
 package iana.command;
 
-import iana.main.Ui;
 import iana.tasks.TaskList;
+import iana.ui.Ui;
 
 /**
  * Command to list out all current tasks in task list.
@@ -12,8 +12,8 @@ public class ListCommand extends Command {
      * Runs command to list out all current tasks.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) {
-        ui.list(tasks);
+    public String execute(TaskList tasks, Ui ui) {
+        return ui.list(tasks);
     }
 
     /**

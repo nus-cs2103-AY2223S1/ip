@@ -1,7 +1,7 @@
 package iana.command;
 
-import iana.main.Ui;
 import iana.tasks.TaskList;
+import iana.ui.Ui;
 
 /**
  * Command that marks task as completed.
@@ -21,14 +21,14 @@ public class MarkCommand extends Command {
      * Runs command to mark task.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) {
+    public String execute(TaskList tasks, Ui ui) {
         try {
             int taskNumber = Integer.parseInt(this.taskNum) - 1;
             tasks.mark(taskNumber);
             String markedMsg = "Nice! I've marked this task as done:\n";
-            ui.echo(String.format("%s\t   %s", markedMsg, tasks.printTaskString(taskNumber)));
+            return ui.say(String.format("%s\t   %s", markedMsg, tasks.printTaskString(taskNumber)));
         } catch (ArrayIndexOutOfBoundsException e) {
-            ui.echo(e.getMessage());
+            return ui.say(e.getMessage());
         }
     }
 

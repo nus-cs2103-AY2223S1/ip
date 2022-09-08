@@ -1,9 +1,9 @@
 package iana.command;
 
 import iana.exception.IanaException;
-import iana.main.Storage;
-import iana.main.Ui;
+import iana.storage.Storage;
 import iana.tasks.TaskList;
+import iana.ui.Ui;
 
 /**
  * Command that exits the program.
@@ -14,13 +14,13 @@ public class ExitCommand extends Command {
      * Runs the command to exit the program.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) {
+    public String execute(TaskList tasks, Ui ui) {
         try {
             Storage.store(tasks);
         } catch (IanaException e) {
             ui.echo(e.getMessage());
         }
-        ui.sayBye();
+        return ui.sayBye();
     }
 
     /**

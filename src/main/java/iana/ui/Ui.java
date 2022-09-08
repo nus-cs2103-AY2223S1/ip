@@ -1,4 +1,4 @@
-package iana.main;
+package iana.ui;
 
 import iana.tasks.Task;
 import iana.tasks.TaskList;
@@ -25,6 +25,10 @@ public class Ui {
         System.out.println(LINEBLOCK);
     }
 
+    public String sayBorder() {
+        return LINEBLOCK;
+    }
+
     /**
      * Prints desired message surrounded by borders.
      * @param msg the message to be printed.
@@ -35,44 +39,46 @@ public class Ui {
         System.out.println(LINEBLOCK);
     }
 
+    public String say(String msg) {
+        return String.format("%s\t%s\n%s", sayBorder(),  msg, sayBorder());
+    }
+
     /**
      * Prints out task list of all current tasks.
      * @param tasks task list to be printed out.
      */
-    public void list(TaskList tasks) {
+    public String list(TaskList tasks) {
         String listMessage = "\t> Here are the tasks in your list:\n" + tasks.toString();
-        showLine();
-        System.out.println(listMessage);
-        showLine();
+        return String.format("%s%s%s", sayBorder(), listMessage, sayBorder());
     }
 
     /**
      * Prints goodbye message.
      */
-    public void sayBye() {
-        echo("> Goodbye! :P");
+    public String sayBye() {
+        return say("> Goodbye! :P");
     }
 
     /**
      * Prints welcome message.
      */
-    public void sayHi() {
-        echo("> Hello there~ I'm IANA.\n\tWhat can I do for you today? : )");
+    public String sayHi() {
+        return say("> Hello there~ I'm IANA.\n\tWhat can I do for you today? : )");
     }
 
     /**
      * Prints message to request new user input.
      */
-    public void askNewCommand() {
-        echo("\t> Try another action ><");
+    public String askNewCommand() {
+        return say("\t> Try another action ><");
     }
 
     /**
      * Prints task information that is added to task list.
      * @param task task to be printed.
      */
-    public void sayTaskAdded(Task task) {
-        echo(String.format("> Nice! I have added the task to the list:\n\t   %s", task.toString()));
+    public String sayTaskAdded(Task task) {
+        return say(String.format("> Nice! I have added the task to the list:\n\t   %s", task.toString()));
     }
 
     /**
@@ -80,8 +86,8 @@ public class Ui {
      * @param task task that is deleted.
      * @param listSize number of tasks left in the task list.
      */
-    public void sayTaskDeleted(Task task, int listSize) {
-        echo(String.format("> Noted. I've removed this task:\n\t   %s\n\tNow you have %d tasks in the list.", 
+    public String sayTaskDeleted(Task task, int listSize) {
+        return say(String.format("> Noted. I've removed this task:\n\t   %s\n\tNow you have %d tasks in the list.", 
         task.toString(), listSize));
     }
 

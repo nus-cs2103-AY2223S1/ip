@@ -1,9 +1,9 @@
 package iana.command;
 
 import iana.exception.IanaException;
-import iana.main.Ui;
 import iana.tasks.Task;
 import iana.tasks.TaskList;
+import iana.ui.Ui;
 
 /**
  * Command that deletes a task.
@@ -23,17 +23,17 @@ public class DeleteCommand extends Command {
      * Runs the command to delete task.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui) {
+    public String execute(TaskList tasks, Ui ui) {
         try {
             int taskNumber = Integer.parseInt(this.taskNum) - 1;
             Task deletedTask = tasks.delete(taskNumber);
-            ui.sayTaskDeleted(deletedTask, tasks.size());
+            return ui.sayTaskDeleted(deletedTask, tasks.size());
         } catch (IanaException e) {
-            ui.echo(e.getMessage());
+            return ui.say(e.getMessage());
         } catch (IndexOutOfBoundsException e) {
-            ui.echo("This task number does not exist! ^^");
+            return ui.say("This task number does not exist! ^^");
         } catch (NumberFormatException e) {
-            ui.echo("Oops! Delete a task number instead <[u_u]>");
+            return ui.say("Oops! Delete a task number instead <[u_u]>");
         }
     }
 
