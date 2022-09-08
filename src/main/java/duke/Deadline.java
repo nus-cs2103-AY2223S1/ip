@@ -1,3 +1,5 @@
+package duke;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -15,6 +17,7 @@ public class Deadline extends Task {
         // date_str gives date only
         String date_str = this.by.replaceAll(this.by.substring(this.by.length() - 5),"");
         String[] date_slots = date_str.split("/", -1);
+
         if (date_slots[0].length() == 1) {
             date_slots[0] = "0" + date_slots[0];
         }
@@ -29,7 +32,11 @@ public class Deadline extends Task {
         this.final_format = d1.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
-
+    /**
+     * toString method that turns the input of deadline into a String type
+     *
+     * @return String
+     */
     @Override
     public String toString() {
         date_formatter();
