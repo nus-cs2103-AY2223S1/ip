@@ -37,8 +37,7 @@ public class Parser {
      */
     public DukeCommand getCommand() throws InvalidCommand {
         if (!inputLine.hasNext()) {
-            System.out.println("No input detected. Terminating program...");
-            return new ByeCommand();
+            throw new InvalidCommand();
         }
         String commandGiven = inputLine.next();
         switch (commandGiven) {

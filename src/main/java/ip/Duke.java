@@ -26,12 +26,12 @@ public class Duke {
      *
      * @param dataFilePath Path of file to load task data from.
      */
-    public Duke(String dataFilePath) throws BadLineFormat {
+    public Duke(String dataFilePath) {
         storage = new Storage(dataFilePath);
         parser = new Parser();
         try {
             taskList = storage.getTaskList();
-        } catch (IOException e) {
+        } catch (IOException | BadLineFormat e) {
             System.out.println("Error in loading file from specified path.");
             System.out.println("Duke will not save any task data this run.");
             // Initialize new empty task list.

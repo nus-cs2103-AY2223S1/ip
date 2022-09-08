@@ -10,7 +10,6 @@ import ip.task.Event;
 import ip.task.ToDo;
 import ip.utility.TaskList;
 
-
 /**
  * DukeCommand to add a task to the task list.
  */
@@ -41,6 +40,7 @@ public class AddCommand extends DukeCommand {
      */
     @Override
     public String execute(TaskList taskList) throws MissingDescription, BadTimespan, BadDeadline {
+        assert !taskType.isEmpty() : "No task type.";
         switch (taskType) {
         case "todo":
             taskList.add(new ToDo(taskMetadata));

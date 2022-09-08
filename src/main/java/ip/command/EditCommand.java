@@ -36,6 +36,7 @@ public class EditCommand extends DukeCommand {
      */
     @Override
     public String execute(TaskList taskList) throws IndexNotSpecified, NoTaskFound {
+        assert !editType.isEmpty() : "No edit type specified.";
         int taskIndex;
         try {
             taskIndex = options.nextInt();

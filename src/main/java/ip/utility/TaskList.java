@@ -75,9 +75,12 @@ public class TaskList {
      */
     public String listAllTasks() {
         StringBuilder allTasks = new StringBuilder();
+        int i = 1;
         for (Task task : tasks) {
+            allTasks.append(i).append(".\t");
             allTasks.append(task);
             allTasks.append("\n");
+            i++;
         }
         return allTasks.toString();
     }
