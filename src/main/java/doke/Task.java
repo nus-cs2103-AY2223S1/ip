@@ -1,12 +1,14 @@
 package doke;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represent the abstract class Task
  */
 public abstract class Task {
 
+    protected static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
     private String desc;
     private boolean isDone;
 
@@ -78,7 +80,7 @@ public abstract class Task {
      *
      * @throws DokeException
      */
-    public void markNotDone() throws DokeException{
+    public void markNotDone() throws DokeException {
         if (!isDone) {
             throw new DokeException();
         }
