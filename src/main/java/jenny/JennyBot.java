@@ -9,6 +9,9 @@ import jenny.tasks.TaskList;
 import jenny.util.Parser;
 import jenny.util.Ui;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 /**
@@ -19,17 +22,16 @@ import java.util.ArrayList;
  * @author Deon
  */
 public final class JennyBot {
+    public boolean isExit = false;
     private final Storage<ArrayList<Task>> storage;
     private TaskList tasks;
     private final Ui ui;
-
 
     /**
      * Constructor for a JennyBot application.
      * Will initialise a storage at the default location under the specified name.
      */
     public JennyBot() {
-        // @param filePath the name of the storage file.
         String fileName = "tasks.txt";
         ui = new Ui(System.in, System.out);
         storage = new TaskStorage<>(fileName);
@@ -46,7 +48,7 @@ public final class JennyBot {
      */
     public void run() {
         ui.greet();
-        boolean isExit = false;
+        isExit = false;
         while (!isExit) {
             try {
                 String nextLine = ui.read();
@@ -59,15 +61,25 @@ public final class JennyBot {
         }
     }
 
-    public static void main(String[] args) {
-        new JennyBot().run();
-    }
-
     /**
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
      */
     String getResponse(String input) {
-        return "Duke heard: " + input;
+        ByteArrayOutputStream res = new ByteArrayOutputStream();
+        PrintStream out = new PrintStream(res, true, StandardCharsets.UTF_8);
+        ui.setPrintStream(out);
+
+        try {
+            Command cmd = Parser.parse(input);
+            cmd.run(tasks, ui, storage); // throws JennyException
+            isExit = cmd.isExit();
+        } catch (JennyException e) {
+            ui.print(e.getMessage());
+        }
+
+        String response = res.toString();
+        out.close();
+        return response;
     }
 }

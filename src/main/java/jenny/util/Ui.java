@@ -17,7 +17,7 @@ import java.util.Scanner;
  */
 public final class Ui {
     private final Scanner sc;
-    private final Printer pr;
+    private Printer pr;
 
     /**
      * Creates a new instance of user interface to interact with the user.
@@ -28,6 +28,15 @@ public final class Ui {
     public Ui(InputStream in, PrintStream out) {
         sc = new Scanner(in);
         pr = new Printer(out);
+    }
+
+    /**
+     * Set Ui to use the provided PrintStream for sending outputs.
+     *
+     * @param out the PrintStream to use.
+     */
+    public void setPrintStream(PrintStream out) {
+        this.pr = new Printer(out);
     }
 
     /**

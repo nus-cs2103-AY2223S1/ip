@@ -37,11 +37,11 @@ public final class Printer {
      * @param messages the messages to be printed.
      */
     public void print(String[] messages) {
-        printLine();
+//        printLine();
         for (String message : messages) {
             out.println("\t" + message);
         }
-        printLine();
+//        printLine();
     }
 
     /**
@@ -50,10 +50,10 @@ public final class Printer {
      * @param messages the messages to be printed.
      */
     public void print(ArrayList<String> messages) {
-        printLine();
+//        printLine();
         for (String message : messages) {
             out.println("\t" + message);
         }
-        printLine();
+//        printLine();
     }
 }

@@ -46,9 +46,14 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         String response = jennyBot.getResponse(input);
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+            DialogBox.getUserDialog(input, userImage),
+            DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
+
+        if (jennyBot.isExit) {
+            userInput.setDisable(true);
+            sendButton.setDisable(true);
+        }
     }
 }
