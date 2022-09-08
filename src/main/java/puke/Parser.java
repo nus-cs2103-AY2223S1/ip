@@ -23,6 +23,7 @@ public class Parser {
             }
             result += s.charAt(i);
         }
+        assert !(result.length() == 0) : "message should not be empty";
 
         if (result.length() == 0) {
             throw new DukeException("     OOPS!!! The Description of a " + type + " cannot be empty.\n");

@@ -60,6 +60,7 @@ public class Duke {
     public static String puke(Duke d,String input) throws DukeException {
         Scanner sc = new Scanner(input);
         String a = sc.next();
+        assert !(a.isEmpty()) : "input should not be empty!";
         if (a.equals("bye")) {
             hasended = true;
             return Duke.d.ui.systemMessage(1,d, new ToDo(""));
