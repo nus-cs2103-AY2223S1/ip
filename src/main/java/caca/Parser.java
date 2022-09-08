@@ -65,6 +65,10 @@ public class Parser {
             }
 
             switch (taskType) {
+            case "help":
+                response = Ui.showDetailedGuide();
+                break;
+
             case "bye":
                 response = ui.bye();
                 break;

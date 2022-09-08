@@ -48,6 +48,7 @@ public class Ui {
      */
     public static String showDetailedGuide() {
         String detailedCommandsMessage = "*****A comprehensive guide to CaCa*****\n"
+                + "* help: access this detailed help page\n"
                 + "* todo taskDescription \n"
                 + "    e.g. todo borrow book\n"
                 + "* deadline taskDescription /by dd/MM/yyyy HHmm\n"
@@ -63,7 +64,7 @@ public class Ui {
                 + "    e.g. delete 3\n"
                 + "* find taskDescription\n"
                 + "    e.g. find book\n"
-                + "* bye\n";
+                + "* bye: exit program\n";
         return detailedCommandsMessage;
     }
 
