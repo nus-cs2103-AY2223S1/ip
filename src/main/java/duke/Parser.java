@@ -38,7 +38,10 @@ public class Parser {
      */
     public String parseCommand(String str) throws DukeException {
         String command = str.split(" ", 2)[0];
-        if (validCommands.contains(command)) return command;
+        assert !validCommands.isEmpty() : "possible command list invalid";
+        if (validCommands.contains(command)) {
+            return command;
+        }
         throw new DukeException("OOPS!!! I'm sorry but I don't know what that means :-(");
     }
 

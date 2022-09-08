@@ -41,6 +41,7 @@ public class DialogBox extends HBox {
 
     public static DialogBox getDukeDialog(Label l, ImageView iv) {
         var db = new DialogBox(l, iv);
+        assert db != null : "DialogBox cannot be null";
         db.flip();
         return db;
     }

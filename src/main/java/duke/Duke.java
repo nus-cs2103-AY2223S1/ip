@@ -127,6 +127,7 @@ public class Duke extends Application {
     private String getResponse(String input) {
         try {
             Parser p = new Parser(this.tasks);
+            assert p != null : "parser not created";
             if (!p.isBye(p.parseCommand(input))) {
                 String result = p.executeCommand(p.parseCommand(input), input);
                 storage.writeFile(this.tasks.getList());
