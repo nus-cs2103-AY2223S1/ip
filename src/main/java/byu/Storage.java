@@ -2,6 +2,7 @@ package byu;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -89,6 +90,22 @@ public class Storage {
             task.setDone(true);
         }
         return task;
+    }
+
+    /**
+     * Updates the file.
+     */
+    public void save() {
+        try {
+            FileWriter fw = new FileWriter("./Duke.txt");
+            for (int i = 1; i <= tasks.getNumOfTasks(); i++) {
+                Task t = tasks.getTask(i);
+                t.write(fw);
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.print(e.getMessage());
+        }
     }
 
 }

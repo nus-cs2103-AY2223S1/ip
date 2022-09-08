@@ -42,6 +42,7 @@ public class Byu {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui);
+                storage.save();
                 isExit = c.isExit();
             } catch (DukeException e) {
                 ui.showError(e);
@@ -64,10 +65,11 @@ public class Byu {
         try {
             Command c = Parser.parse(input);
             if (c.isExit()) {
-                this.tasks.save();
+                this.storage.save();
                 return "Aww, see you soon!";
             } else {
                 c.execute(this.tasks, this.ui);
+                this.storage.save();
                 return this.ui.showOutput();
             }
         } catch (DukeException e) {

@@ -10,6 +10,7 @@ public class Event extends Task {
 
     public static final String SYMBOL = "E";
     private static final String FORMAT = "[E]%s (at: %s)";
+    private static final String WRITE_FORMAT = "E | %d | %s | %s\n";
 
     private String period;
 
@@ -20,7 +21,7 @@ public class Event extends Task {
 
     @Override
     public void write(FileWriter fw) throws IOException {
-        String str = String.format("E | %d | %s | %s\n", this.getDoneInt(), this.getName(), this.period);
+        String str = String.format(Event.WRITE_FORMAT, this.getDoneInt(), this.getName(), this.period);
         fw.write(str);
     }
 

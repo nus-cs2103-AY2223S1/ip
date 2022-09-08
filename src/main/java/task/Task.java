@@ -6,7 +6,7 @@ import java.io.IOException;
 /**
  * Represents a Task, with a given name and status (completed or not completed).
  */
-public class Task {
+public abstract class Task {
 
     private String name;
     private boolean isDone;
@@ -33,8 +33,7 @@ public class Task {
         }
     }
 
-    public void write(FileWriter writer) throws IOException {
-    }
+    public abstract void write(FileWriter writer) throws IOException;
 
 
     @Override

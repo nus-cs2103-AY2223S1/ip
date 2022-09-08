@@ -49,9 +49,9 @@ public class TaskList {
     public void list() {
         assert tasks.size() >= 0 : "size of list should be non-negative";
         String output = "These are the tasks in your list:\n";
-        IntStream intStream = IntStream.range(1, numOfTasks);
+        IntStream intStream = IntStream.rangeClosed(1, numOfTasks);
         Stream<String> stringStream = intStream.mapToObj(
-                i -> String.format("%d. %s\n", i + 1, tasks.get(i).toString()));
+                i -> String.format("%d. %s\n", i, this.getTask(i).toString()));
         String result = stringStream.reduce("", (x, y) -> x + y);
         output += result;
         this.ui.setOutput(output);
@@ -110,22 +110,6 @@ public class TaskList {
         return i - 1;
     }
 
-    /**
-     * Updates the file.
-     */
-    public void save() {
-        try {
-            FileWriter fw = new FileWriter("./Duke.txt");
-            for (int i = 0; i < numOfTasks; i++) {
-                Task t = tasks.get(i);
-                t.write(fw);
-            }
-            fw.close();
-        } catch (IOException e) {
-            System.out.print(e.getMessage());
-        }
-    }
-
     public void find(String s) {
         String output = "Here are the matching tasks in your list:\n";
         for (int i = 0; i < tasks.size(); i++) {
@@ -138,6 +122,10 @@ public class TaskList {
 
     public int getNumOfTasks() {
         return this.numOfTasks;
+    }
+
+    public Task getTask(int index) {
+        return this.tasks.get(index - 1);
     }
 
 }

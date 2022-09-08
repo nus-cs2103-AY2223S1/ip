@@ -12,6 +12,8 @@ public class Deadline extends Task {
 
     public static final String SYMBOL = "D";
     private static final String FORMAT = "[D]%s (by: %s)";
+    private static final String WRITE_FORMAT = "D | %d | %s | %s\n";
+
     private LocalDateTime deadline;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy h:mma");
 
@@ -22,7 +24,7 @@ public class Deadline extends Task {
 
     @Override
     public void write(FileWriter fw) throws IOException {
-        String str = String.format("D | %d | %s | %s\n", this.getDoneInt(), this.getName(), this.deadline);
+        String str = String.format(Deadline.WRITE_FORMAT, this.getDoneInt(), this.getName(), this.deadline);
         fw.write(str);
     }
 

@@ -11,7 +11,7 @@ public class Ui {
 
     private static final String LOGO = "*\\(^o^)/*\n";
     private static final String WELCOME_MESSAGE = "Bonjour~~ I'm Byu! How can I help you?\n";
-    private static final String ERROR_FORMAT = "Ohno! Error:%s\n";
+    private static final String ERROR_FORMAT = "Ohno! Error: %s\n";
     private static final String EXIT_MESSAGE = "Awww see you soon!!";
 
     private final Scanner sc = new Scanner(System.in);
