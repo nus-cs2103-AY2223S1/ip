@@ -4,27 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db1a3883-01e4-4887-a911-0f26c8411180" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Gradle/Lab_2.Gradle.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/Gradle/Lab_2.Gradle.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Gradle/Lab_2.Gradle.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/Gradle/Lab_2.Gradle.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Gradle/Lab_2.Gradle.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/Gradle/Lab_2.Gradle.test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Lab_2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/Lab_2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gradle/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Gradle/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/duke/Duke.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/duke/Duke.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/duke/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/duke/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/duke/storage/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/duke/storage/Storage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/duke/taskList/TaskList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/duke/taskList/TaskList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/duke/tasks/Deadline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/duke/tasks/Deadline.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/duke/tasks/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/duke/tasks/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/duke/tasks/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/duke/tasks/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/duke/tasks/ToDo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/duke/tasks/ToDo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/duke/ui/Ui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/duke/ui/Ui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ParserTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="db1a3883-01e4-4887-a911-0f26c8411180" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,23 +74,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "jdk.selected.JAVA_MODULE": "11",
-    "last_opened_file_path": "C:/Unu_Stuff/Y3S1/CS2103-CS2103T/Lab/Lab 2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.sourceCode.Java"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;11&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Unu_Stuff/Y3S1/CS2103-CS2103T/Lab/Lab 2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Java&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.Duke">
     <configuration name="Duke" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="duke.Duke" />
@@ -145,19 +125,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="Lab_2" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="Lab_2" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Duke" />
@@ -178,6 +145,7 @@
       <workItem from="1662217824448" duration="1156000" />
       <workItem from="1662274955968" duration="129000" />
       <workItem from="1662275088117" duration="5223000" />
+      <workItem from="1662648684477" duration="15000" />
     </task>
     <servers />
   </component>
