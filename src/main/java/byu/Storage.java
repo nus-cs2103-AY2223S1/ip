@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+import exceptions.DuplicateException;
 import exceptions.IncorrectFileInputException;
 import task.Deadline;
 import task.Event;
@@ -54,7 +55,7 @@ public class Storage {
      *
      * @return TaskList that contains the previously added tasks.
      */
-    public TaskList load() throws IncorrectFileInputException {
+    public TaskList load() throws IncorrectFileInputException, DuplicateException {
         while (sc.hasNext()) {
             String nextLine = sc.nextLine();
             Task task = getTask(nextLine);

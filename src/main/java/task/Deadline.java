@@ -12,6 +12,7 @@ public class Deadline extends Task {
 
     public static final String SYMBOL = "D";
     private static final String FORMAT = "[D]%s (by: %s)";
+    // format: 2019/12/02 16:00
     private static final String WRITE_FORMAT = "D | %d | %s | %s\n";
 
     private LocalDateTime deadline;
@@ -31,5 +32,19 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return String.format(Deadline.FORMAT, super.toString(), this.deadline.format(formatter));
+    }
+
+    @Override
+    public boolean equals(Task task) {
+        if (task == null) {
+            return false;
+        } else if (!(task instanceof Deadline)) {
+            return false;
+        } else if (this.getName().equals(task.getName())) {
+            Deadline d = (Deadline) task;
+            return this.deadline.isEqual(d.deadline);
+        } else {
+            return false;
+        }
     }
 }

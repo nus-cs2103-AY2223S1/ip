@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import commands.Command;
 import exceptions.DukeException;
+import exceptions.DuplicateException;
 import exceptions.IncorrectFileInputException;
 
 /**
@@ -26,6 +27,8 @@ public class Byu {
         } catch (IOException e) {
             System.out.print(e.getMessage());
         } catch (IncorrectFileInputException e) {
+            System.out.print(e.getMessage());
+        } catch (DuplicateException e) {
             System.out.print(e.getMessage());
         }
     }

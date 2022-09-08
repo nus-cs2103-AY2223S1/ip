@@ -26,4 +26,15 @@ public class ToDo extends Task {
     public String toString() {
         return String.format(ToDo.PRINT_FORMAT, super.toString());
     }
+
+    @Override
+    public boolean equals(Task task) {
+        if (task == null) {
+            return false;
+        } else if (!(task instanceof ToDo)) {
+            return false;
+        } else {
+            return this.getName().equals(task.getName());
+        }
+    }
 }

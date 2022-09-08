@@ -2,6 +2,7 @@ package commands;
 
 import byu.TaskList;
 import byu.Ui;
+import exceptions.DuplicateException;
 import task.Task;
 
 /**
@@ -20,7 +21,7 @@ public class AddCommand extends Command {
         this.task = task;
     }
 
-    public void execute(TaskList tasks, Ui ui) {
+    public void execute(TaskList tasks, Ui ui) throws DuplicateException {
         tasks.addTask(task);
     }
 
