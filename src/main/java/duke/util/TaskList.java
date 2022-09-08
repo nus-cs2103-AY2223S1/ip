@@ -15,6 +15,14 @@ import duke.task.Todo;
  * Represents a list of Tasks and provides methods to modify the list.
  */
 public class TaskList {
+    private static final String TOTAL_TASK_MESSAGE = "Total Task: ";
+    private static final String UNMARK_TASK_MESSAGE = "Unmarked Task: ";
+
+    private static final int START_SQUARE_BRACKET_INDEX = 3;
+    private static final int END_SQUARE_BRACKET_INDEX = 6;
+    private static final int START_DESCRIPTION_INDEX= 10;
+    private static final int IS_DONE_INDEX = 7;
+
     private ArrayList<Task> tasks;
 
     /**
@@ -36,24 +44,24 @@ public class TaskList {
             String taskType;
             String description;
             for (int i = 0; i < texts.length; i++) {
-                taskType = texts[i].substring(3, 6);
+                taskType = texts[i].substring(START_SQUARE_BRACKET_INDEX, END_SQUARE_BRACKET_INDEX);
                 String[] descriptions;
                 switch (taskType) {
                 case "[T]":
-                    description = texts[i].substring(10);
+                    description = texts[i].substring(START_DESCRIPTION_INDEX);
                     tasks.add(new Todo(description, texts[i].charAt(7) == 'X'));
                     break;
                 case "[D]":
-                    description = texts[i].substring(10);
+                    description = texts[i].substring(START_DESCRIPTION_INDEX);
                     descriptions = description.split("by");
                     tasks.add(new Deadline(descriptions[0].substring(0, description.indexOf("(") - 1),
-                            descriptions[1].substring(2, descriptions[1].length() - 1), texts[i].charAt(7) == 'X'));
+                            descriptions[1].substring(2, descriptions[1].length() - 1), texts[i].charAt(IS_DONE_INDEX) == 'X'));
                     break;
                 case "[E]":
-                    description = texts[i].substring(10);
+                    description = texts[i].substring(START_DESCRIPTION_INDEX);
                     descriptions = description.split("at");
                     tasks.add(new Event(descriptions[0].substring(0, description.indexOf("(") - 1),
-                            descriptions[1].substring(2, descriptions[1].length() - 1), texts[i].charAt(7) == 'X'));
+                            descriptions[1].substring(2, descriptions[1].length() - 1), texts[i].charAt(IS_DONE_INDEX) == 'X'));
                     break;
                 default:
                     break;
@@ -145,8 +153,8 @@ public class TaskList {
      * @return String Representation of the status.
      */
     public String getStatus() {
-        String totalTaskMessage = "Total Task: " + tasks.size();
-        String unmarkTaskMessage = "Unmarked Task: " + getNoOfUnmarkTask();
+        String totalTaskMessage = TOTAL_TASK_MESSAGE + tasks.size();
+        String unmarkTaskMessage = UNMARK_TASK_MESSAGE + getNoOfUnmarkTask();
         return totalTaskMessage + "\n" + unmarkTaskMessage;
     }
 
