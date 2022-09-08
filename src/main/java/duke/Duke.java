@@ -35,9 +35,15 @@ public class Duke extends Application {
     private Scene scene;
     private Image user = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/Duke.jpg"));
+    public static boolean isterminated = false;
 
 
-    public Duke() {}
+    public Duke() {
+        ui = new Ui();
+        storage = new Storage();
+        tasklist = new ArrayList<DukeTask>();
+        Storage.setOnce(tasklist, "data/list.txt");
+    }
 
     public Duke(String filePath) {
         ui = new Ui();
@@ -79,7 +85,15 @@ public class Duke extends Application {
      * Replace this stub with your completed method.
      */
     private String getResponse(String input) {
-        return "Duke heard: " + input;
+        while(!isterminated){
+            try {
+                return Parser.parse(input).deconstruct(tasklist, ui, storage);
+            } catch (Exception e) {
+                return "Sorry something went wrong: " + e;
+            }
+        }
+        System.exit(0);
+        return null;
     }
 
     @Override
@@ -152,6 +166,7 @@ public class Duke extends Application {
         userInput.setOnAction((event) -> {
             handleUserInput();
         });
+        storage.read();
     }
 
     /**
@@ -160,14 +175,14 @@ public class Duke extends Application {
     public void run() {
         storage.read();
         Scanner input = new Scanner(System.in);
-        Ui.printIntro();
+//        Ui.printIntro();
         boolean isRunning = true;
         while(isRunning) {
             if (input.hasNext()) {
                 String str = input.nextLine();
                 Command cmd = Parser.parse(str);
                 if (cmd instanceof ByeCommand) {
-                    Ui.printExit();
+//                    Ui.printExit();
                     isRunning = false;
                     input.close();
                     break;

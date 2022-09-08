@@ -1,5 +1,6 @@
 package command;
 
+import duke.Duke;
 import duke.Ui;
 import duke.Storage;
 import exception.InvalidFormatException;
@@ -19,8 +20,9 @@ public class ByeCommand extends Command {
      * @throws InvalidFormatException
      */
     @Override
-    public void deconstruct(ArrayList<DukeTask> taskList, Ui ui, Storage storage) throws InvalidFormatException {
-       System.out.println("Bye, see you soon");        
+    public String deconstruct(ArrayList<DukeTask> taskList, Ui ui, Storage storage) throws InvalidFormatException {
+        Duke.isterminated = true;
+        return Ui.printExit();
     }
     
 }

@@ -25,14 +25,14 @@ public class FindCommand extends Command {
      * @throws InvalidFormatException
      */
     @Override
-    public void deconstruct(ArrayList<DukeTask> tasklist, Ui ui, Storage storage) throws InvalidFormatException {
-
-        System.out.println("Ok! Here are some things I found that matched your description");
+    public String deconstruct(ArrayList<DukeTask> tasklist, Ui ui, Storage storage) throws InvalidFormatException {
+        StringBuilder output = new StringBuilder("Ok! Here are some things I found that matched your description:\n");
         for (int j = 0; j < tasklist.size(); j++) {
             if (tasklist.get(j).toString().contains(cmd)) {
-                System.out.println(String.format("List %d: ", j) + tasklist.get(j).toString());
+                output.append(String.format("List %d: ", j) + tasklist.get(j).toString());
+                output.append("\n");
             }
         }
-
+        return output.toString();
     }
 }

@@ -25,15 +25,16 @@ public class MarkCommand extends Command {
      * @throws InvalidFormatException
      */
     @Override
-    public void deconstruct(ArrayList<DukeTask> tasklist, Ui ui, Storage storage) throws InvalidFormatException {
+    public String deconstruct(ArrayList<DukeTask> tasklist, Ui ui, Storage storage) throws InvalidFormatException {
         try {
             int j = Integer.valueOf(cmd.substring(5).trim());
             tasklist.get(j).setMark(true);
-            System.out.println("Nice! I've marked this task as done:");
-            System.out.println(String.format("List %d: ", j) + tasklist.get(j).toString());
+            StringBuilder output = new StringBuilder("Nice! I've marked this task as done:\n");
+            output.append(String.format("List %d: ", j) + tasklist.get(j).toString());
             storage.save();
+            return output.toString();
         } catch (Exception e) {
-            System.out.println("Something went wrong, here's the error message cuz im lazy to figure it out for you: " + e);
+            return "Something went wrong, here's the error message cuz im lazy to figure it out for you: " + e;
         }
         
     }

@@ -1,19 +1,14 @@
 package duke;
 
-import java.util.Scanner;
-
 /**
  * Represent the responses that Duke says
  */
 public class Ui {
-    private final Scanner sc;
 
     /**
      * Creates the Ui and initialises Scanner.
      */
-    public Ui() {
-        this.sc = new Scanner(System.in);
-    }
+    public Ui() {}
 
     /**
      * Returns the String introduction message.

@@ -25,17 +25,17 @@ public class DeleteCommand extends Command {
      * @throws InvalidFormatException
      */
     @Override
-    public void deconstruct(ArrayList<DukeTask> tasklist, Ui ui, Storage storage) throws InvalidFormatException {
+    public String deconstruct(ArrayList<DukeTask> tasklist, Ui ui, Storage storage) throws InvalidFormatException {
         try {
             int j = Integer.valueOf(cmd.substring(7));
-            System.out.println("Alight! I've deleted this task for you:");
-            System.out.println(String.format("List %d: ", j) + tasklist.get(j).toString());
+            StringBuilder output = new StringBuilder("Alight! I've deleted this task for you:\n");
+            output.append(String.format("List %d: ", j) + tasklist.get(j).toString());
             tasklist.remove(j);
             storage.save();
+            return output.toString();
 
         } catch (Exception e) {
-            //add proper exceptions handling later on
-            System.out.println("Something went wrong, here's the error message cuz im lazy to figure it out for you: " + e);
+            return "Something went wrong, here's the error message cuz im lazy to figure it out for you: " + e;
         }
         
     }

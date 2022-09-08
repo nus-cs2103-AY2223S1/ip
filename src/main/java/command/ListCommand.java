@@ -25,12 +25,13 @@ public class ListCommand extends Command {
      * @throws InvalidFormatException
      */
     @Override
-    public void deconstruct(ArrayList<DukeTask> tasklist, Ui ui, Storage storage) throws InvalidFormatException {
-        System.out.println("You requested to view your schedule:");
+    public String deconstruct(ArrayList<DukeTask> tasklist, Ui ui, Storage storage) throws InvalidFormatException {
+        StringBuilder output = new StringBuilder("You requested to view your schedule:\n");
         for (int j = 0; j < tasklist.size(); j++) {
-            System.out.println(String.format("List %d: ", j) + tasklist.get(j).toString());
+            output.append(String.format("List %d: ", j) + tasklist.get(j).toString());
+            output.append("\n");
         }
-        
+        return output.toString();
     }
     
 }

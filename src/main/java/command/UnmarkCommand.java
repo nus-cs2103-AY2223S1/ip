@@ -25,12 +25,13 @@ public class UnmarkCommand extends Command {
      * @throws InvalidFormatException
      */
     @Override
-    public void deconstruct(ArrayList<DukeTask> tasklist, Ui ui, Storage storage) throws InvalidFormatException {
+    public String deconstruct(ArrayList<DukeTask> tasklist, Ui ui, Storage storage) throws InvalidFormatException {
         int j = Integer.valueOf(cmd.substring(7).trim());
         tasklist.get(j).setMark(false);
-        System.out.println("Got it. I've mark this task as not done:");
-        System.out.println(String.format("List %d: ", j) + tasklist.get(j).toString());
+        StringBuilder output = new StringBuilder("Got it. I've mark this task as not done:\n");
+        output.append(String.format("List %d: ", j) + tasklist.get(j).toString());
         storage.save();
+        return output.toString();
         
     }
     

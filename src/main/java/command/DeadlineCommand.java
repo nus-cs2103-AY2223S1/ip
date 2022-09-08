@@ -29,7 +29,7 @@ public class DeadlineCommand extends Command {
      * @throws InvalidFormatException
      */
     @Override
-    public void deconstruct(ArrayList<DukeTask> tasklist, Ui ui, Storage storage) throws InvalidFormatException {
+    public String deconstruct(ArrayList<DukeTask> tasklist, Ui ui, Storage storage) throws InvalidFormatException {
         try {
             int index = cmd.indexOf('/');
             if (index == -1) {
@@ -37,18 +37,18 @@ public class DeadlineCommand extends Command {
             }
             String task = cmd.substring(0, index).trim();
             LocalDateTime ldt = LocalDateTime.parse(cmd.substring(index + 1), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-            System.out.println("Something wrong here 3");
             DukeTaskDeadline tD = new DukeTaskDeadline(task, false, 'D', ldt);
             tasklist.add(tD);
-            System.out.println("Got it. I've added this task:");
-            System.out.println(String.format("List %d: ", tasklist.size() - 1) + tD.toString());
+            StringBuilder output = new StringBuilder("Got it. I've added this task:\n");
+            output.append(String.format("List %d: ", tasklist.size() - 1) + tD.toString());
             storage.save();
+            return output.toString();
         } catch (InvalidFormatException e) {
-            System.out.println("Please format your Deadline request with a /{deadline}");
+            return "Please format your Deadline request with a /{deadline}";
         } catch (DateTimeParseException e) {
-            System.out.println("Looks like your date time formatting is wrong, please format it like so: \"yyyy-mm-dd hh:mm\"");
+            return "Looks like your date time formatting is wrong, please format it like so: \"yyyy-mm-dd hh:mm\"";
         } catch (Exception e) {
-            System.out.println("Something went wrong in DeadlineCommand" + e);
+            return "Something went wrong in DeadlineCommand" + e;
         }
     }
 }
