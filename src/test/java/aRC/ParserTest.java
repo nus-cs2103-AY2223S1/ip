@@ -18,15 +18,8 @@ public class ParserTest {
             parser.parse(testInput);
             fail();
         } catch (DukeException e) {
-            assertEquals("Date format should be dd/mm/yyyy"
-                    + "\naRCommands:\n"
-                    + "\tlist\n"
-                    + "\ttodo [title]\n"
-                    + "\tdeadline [title] /by [deadline]\n"
-                    + "\tevent [title] /at [time]\n"
-                    + "\tmark [index]\n"
-                    + "\tunmark [index]\n"
-                    + "\tdelete [index]", e.getMessage());
+            String message = "Date format should be dd/mm/yyyy";
+            assertEquals(message + Duke.LIST_OF_ARC_COMMANDS, e.getMessage());
         }
     }
 }
