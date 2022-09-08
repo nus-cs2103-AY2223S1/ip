@@ -28,14 +28,26 @@ public class TaskList {
      */
     private void commandBuilder(String saveLine) {
         int divideIndex;
-        String commandType = saveLine.substring(0, 1);
-        int isDone = Integer.parseInt(saveLine.substring(4, 5));
-        String commandDesc = saveLine.substring(8);
+        int tagIndex;
+        int isDone;
+        String commandType;
+        String commandDesc;
+        String tagDesc = "";
+
+        commandType = saveLine.substring(0, 1);
+        isDone = Integer.parseInt(saveLine.substring(4, 5));
+        commandDesc = saveLine.substring(8);
+        tagIndex = commandDesc.lastIndexOf("#");
+        if (tagIndex != -1) {
+            tagDesc = commandDesc.substring(tagIndex - 1);
+            commandDesc = commandDesc.replace(tagDesc, "");
+        }
 
         switch(commandType) {
             case "T":
                 try {
                     ToDo task = new ToDo(" " + commandDesc);
+                    task.loadTag(tagDesc);
                     if (isDone == 1) { task.markDone(); }
                     taskArrayList.add(task);
                 } catch (EmptyDescException e) {
@@ -48,6 +60,7 @@ public class TaskList {
                     String commandByDate = commandDesc.substring(divideIndex + 2);
                     commandDesc = " " + commandDesc.substring(0 , divideIndex - 1);
                     Deadline task = new Deadline(commandDesc, commandByDate);
+                    task.loadTag(tagDesc);
                     if (isDone == 1) {
                         task.markDone();
                     }
@@ -62,6 +75,7 @@ public class TaskList {
                     String commandAtDate = commandDesc.substring(divideIndex + 2);
                     commandDesc = " " + commandDesc.substring(0 , divideIndex - 1);
                     Event task = new Event(commandDesc, commandAtDate);
+                    task.loadTag(tagDesc);
                     if (isDone == 1) {
                         task.markDone();
                     }
@@ -103,6 +117,10 @@ public class TaskList {
      */
     public void unmarkTask(int index) {
         taskArrayList.get(index-1).unmarkDone();
+    }
+
+    public void tagInTaskList(int index, String tagDesc) {
+        taskArrayList.get(index-1).tagTask(tagDesc);
     }
 
     /**

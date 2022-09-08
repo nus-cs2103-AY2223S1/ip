@@ -4,6 +4,7 @@ import duke.exception.EmptyDescException;
 
 public class Task {
     protected String desc;
+    protected String tagDesc = "";
     protected boolean isDone;
 
     /**
@@ -47,9 +48,17 @@ public class Task {
         this.isDone = false;
     }
 
-    public String toString() {
-        return "[" + getStatusIcon() + "]" + desc;
+    public void tagTask(String tagDesc) {
+        this.tagDesc = " #" + tagDesc;
     }
 
-    public String toSave() { return "? | " + (isDone ? "1" : "0") + " | " + desc; }
+    public void loadTag(String tagDesc) {
+        this.tagDesc = tagDesc;
+    }
+
+    public String toString() {
+        return "[" + getStatusIcon() + "]" + desc + tagDesc;
+    }
+
+    public String toSave() { return "? | " + (isDone ? "1" : "0") + " | " + desc + tagDesc; }
 }

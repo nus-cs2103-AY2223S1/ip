@@ -25,6 +25,6 @@ public class Deadline extends Task {
 
     @Override
     public String toSave() {
-        return "D | " + (isDone ? "1" : "0") + " |" + desc + " | " + by;
+        return "D | " + (isDone ? "1" : "0") + " |" + desc + " | " + by + super.tagDesc;
     }
 }
