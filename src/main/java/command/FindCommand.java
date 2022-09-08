@@ -20,7 +20,7 @@ public class FindCommand extends Command {
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        String sub = str.substring(5).trim();
+        String sub = str.substring(4).trim();
         if (!sub.isEmpty()) {
             StringBuilder output = new StringBuilder();
             output.append("Here are the matching tasks in your list:\n");

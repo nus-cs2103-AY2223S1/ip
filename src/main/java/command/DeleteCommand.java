@@ -14,7 +14,7 @@ public class DeleteCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
-            int index = Integer.parseInt(str.substring(7));
+            int index = Integer.parseInt(str.substring(6).trim());
             if (index <= tasks.size() && index > 0) {
                 StringBuilder output = new StringBuilder();
                 output.append("Noted. I've removed this task:\n");

@@ -16,7 +16,7 @@ public class MarkCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
-            int index = Integer.parseInt(str.substring(5));
+            int index = Integer.parseInt(str.substring(4).trim());
             if (index <= tasks.size() && index > 0) {
                 StringBuilder output = new StringBuilder();
                 Task task = tasks.getTasks().get(index - 1);

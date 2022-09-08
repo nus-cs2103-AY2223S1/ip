@@ -18,7 +18,7 @@ public class DeadlineCommand extends Command {
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        String sub = str.substring(9).trim();
+        String sub = str.substring(8).trim();
         try {
             if (str.contains("/by ")) {
                 String[] split = sub.split("/by ");
