@@ -77,12 +77,19 @@ public class Duke extends Application {
 
 
     @Override
+    /**
+     * initialize javafx UI
+     */
     public void start(Stage stage) {
         setUpComponents(stage);
         setAlignment(stage);
         setUpDialogue();
     }
 
+    /**
+     * Sets up the javafx components of the program
+     * @param stage the stage object in which the UI is being built
+     */
     private void setUpComponents(Stage stage) {
         //Step 1. Setting up required components
 
@@ -103,6 +110,10 @@ public class Duke extends Application {
         stage.show();
     }
 
+    /**
+     * sets the alignment properties of the window and the components inside it.
+     * @param stage the stage object in which the UI is being built
+     */
     private void setAlignment(Stage stage) {
         stage.setTitle("Duke");
         stage.setResizable(false);
@@ -134,6 +145,9 @@ public class Duke extends Application {
         AnchorPane.setBottomAnchor(userInput, 1.0);
     }
 
+    /**
+     * Sets up the dialogue box and event handlers when text is being inputted by the user.
+     */
     public void setUpDialogue() {
         dialogContainer.getChildren().add(getDialogLabel(ui.initialize()));
 
