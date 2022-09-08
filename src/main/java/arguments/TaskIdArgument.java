@@ -10,6 +10,9 @@ public class TaskIdArgument extends Argument<Integer> {
     public TaskIdArgument(Input input) {
         super(input, "id");
     }
+    public TaskIdArgument() {
+        super("id");
+    }
 
     @Override
     public String getShortDescription() {

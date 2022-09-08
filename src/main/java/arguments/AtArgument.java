@@ -8,6 +8,14 @@ import input.Input;
 public class AtArgument extends StringArgument {
     /**
      * Creates new AtArgument object
+     */
+    public AtArgument() {
+        super("at", "The at date should not be empty!",
+                "This command needs an at date");
+    }
+
+    /**
+     * Creates new AtArgument object
      * @param input Input object representing CLI input
      */
     public AtArgument(Input input) {

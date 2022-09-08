@@ -15,6 +15,10 @@ public abstract class Argument<T> {
     protected Input input;
     protected String argumentName;
 
+    protected Argument(String argumentName) {
+        this.argumentName = argumentName;
+    }
+
     protected Argument(Input input, String argumentName) {
         this.input = input;
         this.argumentName = argumentName;

@@ -14,6 +14,11 @@ public abstract class CompulsoryArgument<T> extends Argument<T> {
         this.missingMessage = missingMessage;
     }
 
+    protected CompulsoryArgument(String argumentName, String missingMessage) {
+        super(argumentName);
+        this.missingMessage = missingMessage;
+    }
+
     /**
      * Validates that the argument was specified
      * @throws DukeException if argument was not specified

@@ -28,8 +28,10 @@ public class EventCommand extends Command {
      * @param model TaskModel to use
      */
     public EventCommand(TaskModel model) {
-        super("event");
+        super("event", "Adds an event task");
         this.taskModel = model;
+        description = new DescriptionArgument();
+        at = new AtArgument();
     }
 
     @Override
@@ -44,5 +46,15 @@ public class EventCommand extends Command {
 
         TaskResponse res = taskModel.addEvent(description.getParameter(), at.getParameter());
         return new CommandResponse(TaskResponseFormatter.addedTask(res));
+    }
+
+    @Override
+    public String getShortDescription() {
+        return makeShortDescription(description, at);
+    }
+
+    @Override
+    public String getUsageDescription() {
+        return makeUsage(description, at);
     }
 }

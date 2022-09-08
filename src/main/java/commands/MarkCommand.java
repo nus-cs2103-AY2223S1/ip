@@ -27,8 +27,9 @@ public class MarkCommand extends Command {
      * @param taskModel TaskModel to use
      */
     public MarkCommand(TaskModel taskModel) {
-        super("mark");
+        super("mark", "Marks a specified task as done");
         this.taskModel = taskModel;
+        taskId = new TaskIdArgument();
     }
 
     @Override
@@ -48,5 +49,15 @@ public class MarkCommand extends Command {
         } catch (IllegalArgumentException ex) {
             return new CommandResponse(ex.getMessage());
         }
+    }
+
+    @Override
+    public String getShortDescription() {
+        return makeShortDescription(taskId);
+    }
+
+    @Override
+    public String getUsageDescription() {
+        return makeUsage(taskId);
     }
 }

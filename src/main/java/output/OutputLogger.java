@@ -1,6 +1,7 @@
 package output;
 
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 /**
@@ -62,7 +63,11 @@ public class OutputLogger {
      * Print chatbot introduction for the user
      */
     public static String getIntroduction() {
-        return output(String.format("Hello, I'm %s!\nWhat can I do for you?", NAME));
+        StringJoiner joiner = new StringJoiner("\n");
+        joiner.add("Hello, I'm %s!");
+        joiner.add("Type 'help' to see a list of available commands.");
+        joiner.add("Type help <command name> to see help for a specific command");
+        return output(String.format(joiner.toString(), NAME));
     }
 
 }

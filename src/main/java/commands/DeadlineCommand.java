@@ -25,8 +25,10 @@ public class DeadlineCommand extends Command {
      * @param taskModel TaskModel to use
      */
     public DeadlineCommand(TaskModel taskModel) {
-        super("deadline");
+        super("deadline", "Adds a deadline task.");
         this.taskModel = taskModel;
+        description = new DescriptionArgument();
+        by = new DatetimeArgument();
 
     }
 
@@ -43,5 +45,15 @@ public class DeadlineCommand extends Command {
 
         TaskResponse res = taskModel.addDeadline(description.getParameter(), by.getParameter());
         return new CommandResponse(TaskResponseFormatter.addedTask(res));
+    }
+
+    @Override
+    public String getShortDescription() {
+        return makeShortDescription(description, by);
+    }
+
+    @Override
+    public String getUsageDescription() {
+        return makeUsage(description, by);
     }
 }
