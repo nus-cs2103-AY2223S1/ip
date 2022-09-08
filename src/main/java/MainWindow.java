@@ -63,6 +63,7 @@ public class MainWindow extends AnchorPane {
         );
 
         if (input.equals("bye")) {
+            duke.writeAndCloseFile();
             TimerTask task = new TimerTask() {
                 @Override
                 public void run() {

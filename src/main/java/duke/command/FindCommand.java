@@ -30,7 +30,7 @@ public class FindCommand extends Command {
      * @param storage The storage location of the list file in the system.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage, TaskList newTasks) {
         int count = 1;
         String result = "Here are the matching tasks in your list:\n";
         for (int i = 0; i < tasks.getsize(); i++) {

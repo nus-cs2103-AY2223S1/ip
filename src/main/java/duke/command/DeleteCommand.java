@@ -36,7 +36,7 @@ public class DeleteCommand extends Command {
      * @throws DukeException If index < 0 or index > number of tasks in tasklist.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage, TaskList newTasks) throws DukeException {
         try {
             String reply = tasks.removeTask(this.index);
             return reply;

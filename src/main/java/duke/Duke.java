@@ -11,6 +11,7 @@ public class Duke {
     private TaskList tasks;
     private Storage storage;
     private Parser parser;
+    private TaskList newlyAddedTasks;
 
     /**
      * Constructor for Duke.
@@ -23,6 +24,7 @@ public class Duke {
         tasks = new TaskList();
         storage.loadStorage(filePath, tasks);
         parser = new Parser();
+        newlyAddedTasks = new TaskList();
     }
 
     public static void main(String[] args) {
@@ -38,7 +40,7 @@ public class Duke {
             String fullInput = ui.readCommand();
             try {
                 Command command = parser.parse(fullInput);
-                String reply = command.execute(tasks, ui, storage);
+                String reply = command.execute(tasks, ui, storage, newlyAddedTasks);
                 Ui.printString(reply);
                 ui.printBlankLine();
                 isExit = command.isExit();
@@ -46,17 +48,28 @@ public class Duke {
                 System.out.println(e);
             }
         }
+        storage.writeFromTaskListToFile(filePath, tasks, false);
         assert isExit : "You should be exiting the program";
-        storage.writeToTaskList(filePath, tasks);
+
     }
 
+    /**
+     * Get Duke's response to user input.
+     * @param input User's input.
+     * @return Duke's response.
+     */
     public String getResponse(String input) {
         try {
-            return parser.parse(input).execute(tasks, ui, storage);
+            return parser.parse(input).execute(tasks, ui, storage, newlyAddedTasks);
         } catch (DukeException e) {
             return e.getMessage();
         }
 
+    }
+
+    public void writeAndCloseFile() {
+        storage.writeFromTaskListToFile(filePath, tasks, false);
+        storage.writeFromTaskListToFile("data/archive.txt", newlyAddedTasks, true);
     }
 
 }

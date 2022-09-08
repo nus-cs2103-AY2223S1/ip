@@ -192,6 +192,4 @@ public class Parser {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
         return LocalDateTime.parse(string, format);
     }
-
-
 }

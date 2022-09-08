@@ -10,7 +10,8 @@ import duke.task.Task;
  * Class to encapsulate the Storage of the program.
  */
 public class Storage {
-
+    private TaskList newlyAddedTasks = new TaskList();
+    private File archive = new File("archive.txt");
     /**
      * Loads the file containing task list.
      * If file not found, create new file.
@@ -37,9 +38,13 @@ public class Storage {
      * @param filePath The path to the file to write to.
      * @param taskList The task list temporarily storing all tasks.
      */
-    public void writeToTaskList(String filePath, TaskList taskList) {
+    public void writeFromTaskListToFile(String filePath, TaskList taskList, Boolean isAppend) {
         try {
-            FileWriter writer = new FileWriter(filePath);
+            FileWriter writer = new FileWriter(filePath, isAppend);
+            if (isAppend) {
+                writer.write("- - - NEW SESSION - - - ");
+                writer.write(System.getProperty("line.separator"));
+            }
             int i = 0;
             while (i < taskList.getsize()) {
                 writer.write(taskList.get(i).toFileFormat());
@@ -51,7 +56,8 @@ public class Storage {
             System.out.println("Directory does not exist, creating new directory now");
             File f = new File("data");
             assert f.mkdir() : "mkdir should return true";
-            writeToTaskList(filePath, taskList);
+            writeFromTaskListToFile(filePath, taskList, false);
         }
     }
+
 }

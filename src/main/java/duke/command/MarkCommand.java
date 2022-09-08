@@ -33,7 +33,7 @@ public class MarkCommand extends Command {
      * @throws DukeException If index < 0 or index > number of tasks in tasklist.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage, TaskList newTasks) throws DukeException {
         try {
             int i = Integer.parseInt(this.index);
             Task task = tasks.get(i - 1);

@@ -24,7 +24,7 @@ public class UnknownCommand extends Command {
      * @return Message of not recognizing the command.
      */
     @Override
-    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage, TaskList newTasks) throws DukeException {
         return "I'm sorry, I don't understand what you mean.";
     }
 }
