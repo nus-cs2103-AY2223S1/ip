@@ -67,15 +67,6 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(output, dukeImage)
         );
-        // Credits: RezwanArefin01 for the Timer code fragment
-        if (output.equals("Goodbye, see you soon!")) {
-            new Timer().schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    System.exit(0);
-                }
-            }, 1200);
-        }
         userInput.clear();
     }
 }
