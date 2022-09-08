@@ -12,10 +12,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  * reads file from duke.txt and
@@ -53,15 +53,20 @@ public class Storage {
             switch (userInputArray[0]) {
                 case "T":
                     task = new ToDo(userInputArray[2], done, "");
-                    tasks.add(curr++, task);
+                    curr += 1;
+                    System.out.println("here");
+                    tasks.add(curr, task);
                     break;
                 case "E":
                     task = new Event(userInputArray[2], done, dateReader(userInputArray[3]));
-                    tasks.add(curr++, task);
+                    curr += 1;
+                    tasks.add(curr, task);
                     break;
                 case "D":
                     task = new Deadline(userInputArray[2], done, dateReader(userInputArray[3]));
-                    tasks.add(curr++, task);
+                    curr += 1;
+                    System.out.println("here");
+                    tasks.add(curr, task);
                     break;
                 case "":
                     break; //edge case

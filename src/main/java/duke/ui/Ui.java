@@ -2,6 +2,7 @@ package duke.ui;
 
 import duke.tasks.Task;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -124,6 +125,20 @@ public class Ui {
     }
 
     /**
+     * no search results found for this find word
+     */
+    public void findNothingPrint() {
+        System.out.println("Sorry, I cannot find what you are looking for");
+    }
+
+    public void findPrint(List<Task> tasks) {
+        System.out.println("Here are the matching tasks in your list:");
+        for(Task task : tasks) {
+            System.out.println(task);
+        }
+    }
+
+    /**
      * prints unable to comprehend the instructions of the users
      */
     public void addUnknownPrint() {
@@ -133,10 +148,6 @@ public class Ui {
     /**
      * prints user attempted to print an empty list of tasks
      */
-    public void emptyList() {
-        System.out.println("☹ OOPS!!! I'm sorry, but cannot print empty list");
-    }
-
 
     public void emptyListPrint() {
         System.out.println("☹ OOPS!!! I'm sorry, but cannot print empty list");
