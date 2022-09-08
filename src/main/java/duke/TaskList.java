@@ -7,6 +7,7 @@ import java.util.List;
  * Stores and manages the tasks
  */
 public class TaskList {
+
     private final List<Task> tasks;
     private final Storage storage;
 

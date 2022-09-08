@@ -4,6 +4,7 @@ package duke;
  * Represents a task that a user has
  */
 public class Task {
+
     protected String description;
     protected boolean isDone;
 

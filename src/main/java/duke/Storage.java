@@ -12,6 +12,7 @@ import java.io.BufferedWriter;
  * Manages the file where all the tasks are read or written into
  */
 public class Storage {
+
     protected Path outputFile;
 
     /**
@@ -35,12 +36,15 @@ public class Storage {
         writer.flush();
         for (Task curTask : taskList) {
             if (curTask instanceof Event) {
-                writer.write("duke.Event | " + curTask.getStatusNumber() + " | " + curTask.getDescription() + " | "
+                writer.write("duke.Event | " + curTask.getStatusNumber() + " | "
+                        + curTask.getDescription() + " | "
                         + ((Event) curTask).getDatetime() + "\n");
             } else if (curTask instanceof Todo) {
-                writer.write("duke.Todo | " + curTask.getStatusNumber() + " | " + curTask.getDescription() + "\n");
+                writer.write("duke.Todo | " + curTask.getStatusNumber() + " | "
+                        + curTask.getDescription() + "\n");
             } else if (curTask instanceof Deadline) {
-                writer.write("Deadline | " + curTask.getStatusNumber() + " | " + curTask.getDescription()
+                writer.write("Deadline | " + curTask.getStatusNumber() + " | "
+                        + curTask.getDescription()
                         + " | " + ((Deadline) curTask).getDatetime() + "\n");
             }
         }

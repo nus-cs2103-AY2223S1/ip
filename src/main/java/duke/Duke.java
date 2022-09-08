@@ -8,6 +8,7 @@ import java.io.IOException;
  * A program that manages and stores tasks inputted by a user
  */
 public class Duke {
+
     private static final String EXIT_COMMAND = "bye";
     private static final String FILE_NAME = "dukeList.txt";
     private Storage storage;
