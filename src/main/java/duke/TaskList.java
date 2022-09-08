@@ -132,7 +132,7 @@ public class TaskList {
      */
     public TaskList find(String userInput) {
         ArrayList<Task> currTasks = new ArrayList<>(this.tasks);
-        currTasks.removeIf(x -> !x.getDescription().contains(userInput));
+        currTasks.removeIf(x -> !x.getDescription().toLowerCase().contains(userInput.toLowerCase()));
         return new TaskList(currTasks);
     }
 
