@@ -8,6 +8,8 @@ import duke.exceptions.TaskMarkedException;
 
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class TaskList {
 
@@ -17,6 +19,14 @@ public class TaskList {
         this.taskList = new ArrayList<>(100);
     }
 
+    public TaskList(ArrayList<Task> taskList) {
+        this.taskList = taskList;
+    }
+
+    public TaskList(List<Task> taskList) {
+        this.taskList = new ArrayList<>(taskList);
+    }
+
     public void addTask(Task task) {
         this.taskList.add(task);
     }
@@ -24,17 +34,15 @@ public class TaskList {
 
     public TaskList findTask(String keyword) throws NoMatchingKeywordException {
         assert !keyword.isBlank(): "keyword should not be blank";
-        TaskList successList = new TaskList();
-        for (int i = 0; i < taskList.size(); i ++) {
-            Task curr = taskList.get(i);
-            if (curr.isMatchKeyword(keyword)) {
-                successList.addTask(curr);
-            }
-        }
-        if (successList.size() == 0) {
+        List<Task> filtered = this.taskList.stream()
+                .filter(task -> task.isMatchKeyword(keyword))
+                .collect(Collectors.toList());
+        TaskList filteredTaskList = new TaskList(filtered);
+        
+        if (filteredTaskList.size() == 0) {
             throw new NoMatchingKeywordException(keyword);
         }
-        return successList;
+        return new TaskList(filtered);
     }
 
     public Task markStatus(int task) throws DukeException {
@@ -75,10 +83,11 @@ public class TaskList {
             throw new CannotFindTaskException();
         }
     }
+
     @Override
     public String toString() {
-        Object[] taskArr = this.taskList.toArray();
         String result = "";
+        Object[] taskArr = this.taskList.toArray();
         for (int i = 0; i < this.taskList.size(); i++) {
             result += (i + 1)
                     + ". "
@@ -104,11 +113,10 @@ public class TaskList {
     }
 
     public String generateSave() {
-        String result = "";
-        for (int i = 0; i < taskList.size(); i++) {
-            result += this.taskList.get(i).toSaveVersion();
-        }
+        String result = taskList
+                .stream()
+                .map(task -> task.toSaveVersion())
+                .reduce("", (res, task) -> res + task);
         return result;
     }
-
 }
