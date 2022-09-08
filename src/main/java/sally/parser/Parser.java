@@ -15,6 +15,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Parser class to parse inputs into commands.
+ *
+ * @author liviamil
+ */
+
 public class Parser {
     private Storage storage;
     private static TaskList tasks;

@@ -5,6 +5,12 @@ import sally.storage.Storage;
 import sally.task.TaskList;
 import sally.ui.Ui;
 
+/**
+ * ByeCommand class to represent command to exit Sally.
+ *
+ * @author liviamil
+ */
+
 public class ByeCommand extends Command {
     public ByeCommand() {};
 

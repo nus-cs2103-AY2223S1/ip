@@ -6,6 +6,12 @@ import sally.task.Task;
 import sally.task.TaskList;
 import sally.ui.Ui;
 
+/**
+ * UnmarkCommand class to represent command to unmark a task in the tasklist.
+ *
+ * @author liviamil
+ */
+
 public class UnmarkCommand extends Command {
     private final int index;
 

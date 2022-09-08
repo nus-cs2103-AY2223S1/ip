@@ -3,6 +3,12 @@ package sally.task;
 import sally.exception.SallyException;
 import sally.storage.Storage;
 
+/**
+ * Task class to represent generic task
+ *
+ * @author liviamil
+ */
+
 public class Task {
     protected String description;
     protected boolean isDone;

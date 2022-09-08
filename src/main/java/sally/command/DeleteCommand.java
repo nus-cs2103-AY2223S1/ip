@@ -5,6 +5,12 @@ import sally.storage.Storage;
 import sally.task.TaskList;
 import sally.ui.Ui;
 
+/**
+ * DeleteCommand class to represent command to delete a task in the tasklist.
+ *
+ * @author liviamil
+ */
+
 public class DeleteCommand extends Command {
     private final int index;
 

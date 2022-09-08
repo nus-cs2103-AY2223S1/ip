@@ -1,5 +1,12 @@
 package sally.exception;
 
+/**
+ * SallyException class throws checked exception when exceptions are thrown and caught in
+ * the execution of Sally.
+ *
+ * @author liviamil
+ */
+
 public class SallyException extends Exception {
     public SallyException(String message) {
         super(message);

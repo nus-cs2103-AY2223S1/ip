@@ -6,6 +6,12 @@ import sally.task.Task;
 import sally.task.TaskList;
 import sally.ui.Ui;
 
+/**
+ * AddCommand class to represent command to add a new task in the tasklist.
+ *
+ * @author liviamil
+ */
+
 public class AddCommand extends Command {
     private final Task task;
 

@@ -2,6 +2,12 @@ package sally.task;
 
 import java.util.ArrayList;
 
+/**
+ * TaskList class to represent the list of tasks stored.
+ *
+ * @author liviamil
+ */
+
 public class TaskList {
     protected ArrayList<Task> tasks;
     protected int numOfTasks;

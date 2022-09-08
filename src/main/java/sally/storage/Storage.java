@@ -11,6 +11,12 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+/**
+ * Storage class to store tasks into tasklist, reads tasks from files, and saves tasks to files.
+ *
+ * @author liviamil
+ */
+
 public class Storage {
     protected static final String FILEPATH = System.getProperty("user.home") + "/Sally/Sally.txt";
     protected File file;

@@ -6,6 +6,12 @@ import sally.task.Task;
 import sally.task.TaskList;
 import sally.ui.Ui;
 
+/**
+ * MarkCommand class to represent command to mark a task in the tasklist.
+ *
+ * @author liviamil
+ */
+
 public class MarkCommand extends Command {
     private final int index;
 
