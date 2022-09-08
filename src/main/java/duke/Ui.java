@@ -8,7 +8,7 @@ import java.util.Scanner;
  * The Ui class that interacts with the user.
  */
 public class Ui {
-    private static final Scanner echo = new Scanner(System.in);
+    private static Scanner echo = new Scanner(System.in);
     private Parser parser;
 
     /**
@@ -38,6 +38,6 @@ public class Ui {
                 System.out.println("Oh no! Deadline Date and Time is specified wrongly, " + e);
             }
         }
-        return "It's over?";
+        return "It's over?"; //Placeholder return statement.
     }
 }

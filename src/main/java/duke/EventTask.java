@@ -21,19 +21,28 @@ public class EventTask extends Task {
      */
     public EventTask(String description, String at) throws DukeException {
         super(description);
-        String[] dateParts = at.split(" ");
-        if (dateParts.length != 2) {
+        String[] dateTime = at.split(" ");
+        if (dateTime.length != 2) {
             throw new DukeException("Event Date and Time is specified wrongly");
+        } else {
+            setDateTime(dateTime);
         }
-        this.date = LocalDate.parse(dateParts[0]);
-        String temp = "";
-        for (int i = 0; i < dateParts[1].length(); i++) {
-            temp += dateParts[1].charAt(i);
+    }
+
+    /**
+     * Sets the date and time according to the time package.
+     * @param dateTime The array containing date and time separated.
+     */
+    public void setDateTime(String[] dateTime) {
+        this.date = LocalDate.parse(dateTime[0]);
+        String formattedTime = "";
+        for (int i = 0; i < dateTime[1].length(); i++) {
+            formattedTime += dateTime[1].charAt(i);
             if (i == 1) {
-                temp += COLON;
+                formattedTime += COLON;
             }
         }
-        this.time = LocalTime.parse(temp);
+        this.time = LocalTime.parse(formattedTime);
     }
 
     /**

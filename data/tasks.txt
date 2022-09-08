@@ -1,7 +1,8 @@
-E | X | event | 2022-12-20 1200
 E |   | todo | 2022-12-20 1200
-T | X | todo
-T | X | todo
 D |   | deadline | 2023-11-23 1930
-T |   | todo
 T | X | todo
+D |   | fix my car | 2022-08-01 0200
+E |   | event | -2021-02-20 0100
+T |   | todo
+D |   | deadline | 2022-11-11 1100
+E |   | event | 2011-11-11 1100

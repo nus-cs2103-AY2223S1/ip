@@ -10,13 +10,13 @@ public class TaskList {
 
     private static final Pattern CHECKSTRING = Pattern.compile("-?\\d+");
 
-    private ArrayList<Task> list;
+    private final ArrayList<Task> list;
 
     /**
-     * Constructor of a tasklist
+     * Constructor of a TaskList.
      */
     public TaskList() {
-        this.list = new ArrayList<Task>();
+        this.list = new ArrayList<>();
     }
 
     /**
@@ -35,14 +35,13 @@ public class TaskList {
      * Adds task from the text document to the arraylist.
      * @param task The task from the text document.
      */
-
     public void addStorageToList(Task task) {
         this.list.add(task);
     }
 
     /**
      * gets index from the arraylist.
-     * @param number The inndex
+     * @param number The index
      * @return The task in that index.
      */
     public Task getTask(int number) {
@@ -65,125 +64,44 @@ public class TaskList {
     }
 
     /**
-     * marks task with an X.
-     * @param task
+     *  Views the entire list
+     * @return the String of the entire list.
+     * @throws DukeException If the list is empty.
      */
-    public static String markString(Task task) {
-        task.mark();
-        return "Nice! I've marked this task as done:\n" + task;
-    }
-
-    /**
-     * Unmarks task by removing the X.
-     * @param task
-     */
-    public static String unMarkString(Task task) {
-        task.unMark();
-        return "OK, I've marked this task as not done yet:\n" + task;
-    }
-
-    /**
-     * To mark or unmark the task.
-     * @param update The action to be done.
-     * @param parts The string response broken down into its keywords.
-     * @throws DukeException If the keywords are missing or invalid.
-     */
-    public String updateTask(Parser.Update update, String[] parts) throws DukeException {
-        String part2;
-        switch (update) {
-        case MARK:
-            if (parts.length <= 1) {
-                throw new DukeException("Please tell me what to mark!");
+    public String viewList() throws DukeException {
+        if (this.list.size() == 0) {
+            throw new DukeException("there's nothing!");
+        } else {
+            String listString = "";
+            for (int i = 0; i < this.list.size(); i++) {
+                listString += (i + 1) + "." + this.list.get(i).toString() + "\n";
             }
-            part2 = parts[1];
-            if (isInteger(part2)) {
-                int number = Integer.parseInt(part2);
-                if (this.list.size() < number || number <= 0) {
-                    throw new DukeException("There's no such task to mark!");
-                } else {
-                    return markString(this.list.get(number - 1));
-                }
-            } else {
-                throw new DukeException("I don't know which to mark!");
-            }
-        case UNMARK:
-            if (parts.length <= 1) {
-                throw new DukeException("Please tell me what to unmark!");
-            }
-            part2 = parts[1];
-            if (isInteger(part2)) {
-                int number = Integer.parseInt(part2);
-                if (this.list.size() < number || number <= 0) {
-                    throw new DukeException("There's no such task to unmark!");
-                } else {
-                    return unMarkString(this.list.get(number - 1));
-                }
-            } else {
-                throw new DukeException("I don't know which to unmark!");
-            }
-        default:
-            throw new DukeException(("Error! Update not specified."));
+            return listString;
         }
     }
 
     /**
-     * Adds task into the arraylist.
-     * @param task The task added into the arraylist.
-     */
-    public String addDetailedTask(Task task) {
-        return "Got it. I've added this task:\n" + task + "\n"
-                + "Now you have " + this.list.size() + " tasks in the list.";
-    }
-
-    /**
-     * Adds the right type of task to the list.
-     * @param type     Type of task.
-     * @param parts    The string response broken down into its keywords.
+     * To mark or unmark the task.
+     * @param updater The action to be done.
+     * @param index The string response broken down into its keywords.
      * @throws DukeException If the keywords are missing or invalid.
      */
-    public String addTaskType(Parser.Type type, String[] parts) throws DukeException {
-        String part2;
-        switch (type) {
-        case DEADLINE:
-            if (parts.length <= 1) {
-                throw new DukeException("There's no deadline task!");
+    public String updateTask(Parser.TaskUpdater updater, String index) throws DukeException {
+        int number = stringToInteger(index);
+        if (this.list.size() < number || number <= 0) {
+            throw new DukeException("There's no such task to " + updater.toString().toLowerCase() + "!");
+        } else {
+            switch (updater) {
+            case MARK:
+                return markString(number);
+            case UNMARK:
+                return unMarkString(number);
+            case DELETE:
+                return deleteTask(number);
+            default:
+                assert false : "There should not be any other TaskUpdater.";
+                return "this should never happen in updateTask."; // Placeholder return statement.
             }
-            part2 = parts[1];
-            String[] deadlineParts = part2.split(" /by ", 2);
-            if (deadlineParts[0].equals("")) {
-                throw new DukeException("There's no deadline task!");
-            }
-            if (deadlineParts.length <= 1) {
-                throw new DukeException("You didn't specify the deadline! Please use /by.");
-            }
-            DeadlineTask deadline = new DeadlineTask(deadlineParts[0], deadlineParts[1]);
-            this.list.add(deadline);
-            return addDetailedTask(deadline);
-        case TODO:
-            if (parts.length <= 1) {
-                throw new DukeException("There's no todo task!");
-            }
-            part2 = parts[1];
-            TodoTask todo = new TodoTask(part2);
-            this.list.add(todo);
-            return addDetailedTask(todo);
-        case EVENT:
-            if (parts.length <= 1) {
-                throw new DukeException("There's no event task!");
-            }
-            part2 = parts[1];
-            String[] eventParts = part2.split(" /at ", 2);
-            if (eventParts[0].equals("")) {
-                throw new DukeException("There's no event task!");
-            }
-            if (eventParts.length <= 1) {
-                throw new DukeException("You didn't specify the event time! Please use /at.");
-            }
-            EventTask event = new EventTask(eventParts[0], eventParts[1]);
-            this.list.add(event);
-            return addDetailedTask(event);
-        default:
-            throw new DukeException("Error! What type of task are we adding?");
         }
     }
 
@@ -196,5 +114,114 @@ public class TaskList {
         this.list.remove(number - 1);
         return "Noted. I've removed this task:\n" + task + "\n"
                 + "Now you have " + this.list.size() + " tasks in the list.";
+    }
+
+    /**
+     * Finds all the task that fits the keyword.
+     * @param keyword The word used for searching.
+     * @return all tasks that have keyword in their description.
+     */
+    public String findTask(String keyword) {
+        int count = 1;
+        String findListString = "Here are the matching tasks in your list:\n";
+        Pattern findExpression = Pattern.compile(".*\\b" + keyword + "\\b.*");
+        for (int i = 0; i < this.list.size(); i++) {
+            if (this.list.get(i).getDescription().matches(String.valueOf(findExpression))) {
+                findListString += (count) + "." + this.list.get(i).toString() + "\n";
+                count++;
+            }
+        }
+        return findListString;
+    }
+
+    /**
+     * Converts String into integer.
+     * @param word The string to be converted.
+     * @return The integer converted.
+     * @throws DukeException If string cannot be converted into integer.
+     */
+    public int stringToInteger(String word) throws DukeException {
+        if (!isInteger(word)) {
+            throw new DukeException("I don't know which to delete!");
+        } else {
+            return Integer.parseInt(word);
+        }
+    }
+    /**
+     * marks task with an X.
+     * @param number Index in the list for marking.
+     */
+    public String markString(int number) {
+        Task currentTask = this.list.get(number - 1);
+        currentTask.mark();
+        return "Nice! I've marked this task as done:\n" + currentTask;
+    }
+
+    /**
+     * Unmarks task by removing the X.
+     * @param number Index in the list for unmarking.
+     */
+    public String unMarkString(int number) {
+        Task currentTask = this.list.get(number - 1);
+        currentTask.unMark();
+        return "OK, I've marked this task as not done yet:\n" + currentTask;
+    }
+
+    /**
+     * Adds the right type of task to the list.
+     * @param type     Type of task.
+     * @param stringComponent    The string response broken down into its keywords.
+     * @throws DukeException If the keywords are missing or invalid.
+     */
+    public String addTaskType(Parser.Type type, String stringComponent) throws DukeException {
+        switch (type) {
+        case DEADLINE:
+            String[] deadlineComponents = stringComponent.split(" /by ", 2);
+            assert verifyTask(deadlineComponents, " /by ", Parser.Type.DEADLINE)
+                    : "It should never be false.";
+            DeadlineTask deadline = new DeadlineTask(deadlineComponents[0], deadlineComponents[1]);
+            this.list.add(deadline);
+            return addTask(deadline);
+        case TODO:
+            TodoTask todo = new TodoTask(stringComponent);
+            this.list.add(todo);
+            return addTask(todo);
+        case EVENT:
+            String[] eventComponents = stringComponent.split(" /at ", 2);
+            assert verifyTask(eventComponents, " /at ", Parser.Type.EVENT)
+                    : "It should never be false.";
+            EventTask event = new EventTask(eventComponents[0], eventComponents[1]);
+            this.list.add(event);
+            return addTask(event);
+        default:
+            assert false : "There should not be any other type.";
+            return "this should never happen in addTaskType."; // Placeholder return statement.
+        }
+    }
+
+    /**
+     * Adds task into the arraylist.
+     * @param task The task added into the arraylist.
+     */
+    public String addTask(Task task) {
+        return "Got it. I've added this task:\n" + task + "\n"
+                + "Now you have " + this.list.size() + " tasks in the list.";
+    }
+
+    /**
+     * Verifies if the task input is valid.
+     * @param parts Details of the task.
+     * @param regex The keyword that separates task description and task date and time.
+     * @return True if task input in valid. False, if otherwise.
+     * @throws DukeException If the task input in invalid.
+     */
+    public boolean verifyTask(String[] parts, String regex, Parser.Type type) throws DukeException {
+        if (parts[0].trim().equals("")) {
+            throw new DukeException("There's no " + type.toString().toLowerCase() + " task!");
+        } else if (parts.length == 1) {
+            throw new DukeException("You didn't specify the deadline! Please use " + regex);
+        } else {
+            return true;
+        }
     }
 }
