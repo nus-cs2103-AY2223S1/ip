@@ -3,18 +3,8 @@ package duke.parser;
 import duke.taskList.TaskList;
 import duke.ui.Ui;
 
-/**
- * A parser class that makes sense of user's inputs
- */
 public class Parser {
 
-    /**
-     *
-     * @param command String command from user inputs
-     * @param taskList TaskList object
-     * @param ui User Interface object
-     * @return a new TaskList, updated as per user input
-     */
     public TaskList readInput(String command, TaskList taskList, Ui ui) {
         switch (command.split(" ")[0]) {
             case "list":

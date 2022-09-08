@@ -11,10 +11,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A taskList class that stores all the tasks currently on hand
- * task stored as ArrayList, with no of tasks as curr
- */
 public class TaskList {
     private final List<Task> tasks;
     private final int curr;//no of elements in list
@@ -29,21 +25,11 @@ public class TaskList {
         this.curr = curr;
     }
 
-    /**
-     *
-     * @param tasks arraylist of tasks
-     * @param curr no of tasks
-     */
     public TaskList(List<Task> tasks, int curr) {
         this.tasks = tasks;
         this.curr = curr;
     }
 
-    /**
-     * programme prints out all the tasks currently at hand
-     * @param ui User Interface object
-     * @return this task list
-     */
     public TaskList listTasks(Ui ui) {
         if(this.curr == 0) {
             ui. emptyList();
@@ -54,12 +40,6 @@ public class TaskList {
         return this;
     }
 
-    /**
-     * programme marks the specified task as done
-     * @param atMark Command string read from UI
-     * @param ui User Interface
-     * @return this task list
-     */
     public TaskList markTask(String[] atMark, Ui ui) {
         int index = Integer.parseInt(atMark[1]);
         tasks.set(index - 1, tasks.get(index - 1).markDone());
@@ -67,12 +47,6 @@ public class TaskList {
         return this;
     }
 
-    /**
-     * programme marks the specified task as undone
-     * @param atUnmark Command string read from UI
-     * @param ui User Interface
-     * @return this task list
-     */
     public TaskList unmarkTask(String[] atUnmark, Ui ui) {
         int index = Integer.parseInt(atUnmark[1]);
         tasks.set(index - 1, tasks.get(index - 1).markUndone());
@@ -80,13 +54,6 @@ public class TaskList {
         return this;
     }
 
-    /**
-     * programme takes in tasks to be deleted at specified index
-     * removes the task and returns a new TaskList object
-     * @param atDel Commmand string from UI
-     * @param ui User Interface
-     * @return new TaskList object, with specified task removed
-     */
     public TaskList deleteTask (String[] atDel, Ui ui) {
         int index = Integer.parseInt(atDel[1]);
         index--;
@@ -98,13 +65,6 @@ public class TaskList {
         return(this.removeCurr());
     }
 
-    /**
-     * programme takes in ToDo tasks to be added and
-     * adds the task and returns a new TaskList object
-     * @param command Commmand string from UI
-     * @param ui User Interface
-     * @return new TaskList object, with specified task added
-     */
     public TaskList toDoTask(String command, Ui ui) {
         String todo = command.substring(5);
         Task task = new ToDo(todo);
@@ -113,13 +73,6 @@ public class TaskList {
         return(this.addCurr());
     }
 
-    /**
-     * returns a new deadline TaskList object, with the specified
-     * deadline task added
-     * @param command Command string from UI
-     * @param ui User Interface
-     * @return new TaskList object, with deadline task added
-     */
     public TaskList deadlineTask(String command, Ui ui) {
         String deadline = command.substring(9);
         String[] atDead = deadline.split(" /by ");
@@ -133,13 +86,6 @@ public class TaskList {
         return(this.addCurr());
     }
 
-    /**
-     * returns a new event TaskList object, with the specified
-     * deadline task added
-     * @param command Command string from UI
-     * @param ui User Interface
-     * @return new TaskList object, with event task added
-     */
     public TaskList eventTask(String command, Ui ui) {
         String event = command.substring(6);
         String[] atEvent = event.split(" /by ");
@@ -153,12 +99,6 @@ public class TaskList {
         return(this.addCurr());
     }
 
-    /**
-     * prints out list of task happening at specified date
-     * deadline task added
-     * @param command Command string from UI
-     * @return this task object
-     */
     public TaskList thingsTask(String command) {
         String[] at = command.split(" /on ");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
@@ -183,18 +123,10 @@ public class TaskList {
         return new TaskList(this.tasks, this.curr - 1);
     }
 
-    /**
-     *
-     * @return the arrayList containing the tasks
-     */
     public List<Task> getTasks() {
         return this.tasks;
     }
 
-    /**
-     *
-     * @return the current no of tasks in list
-     */
     public int getCurr() {
         return this.curr;
     }
