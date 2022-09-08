@@ -45,8 +45,6 @@ public class Duke {
      * Replace this stub with your completed method.
      */
     public String getResponse(String input) {
-        Scanner sc = new Scanner(System.in);
-
         if (input.equals("bye")) {
             return ui.sayBye();
         }
