@@ -12,6 +12,9 @@ import duke.DukeException;
  * @author Derrick Khoo
  */
 public class Deadline extends Task {
+    public static final int SPLIT_LIMIT_DEADLINE = 4;
+    public static final int INDEX_OF_DESCRIPTION = 2;
+    public static final int INDEX_OF_DATE_BY = 3;
     protected LocalDate by;
 
     /**
@@ -44,9 +47,9 @@ public class Deadline extends Task {
      * @throws DukeException if there is an error parsing input to a LocalDate
      */
     public static Deadline fromFileDescription(String input) throws DukeException {
-        String[] strArray = input.split(" \\| ", 4);
-        String description = strArray[2];
-        String by = strArray[3];
+        String[] strArray = input.split(" \\| ", SPLIT_LIMIT_DEADLINE);
+        String description = strArray[INDEX_OF_DESCRIPTION];
+        String by = strArray[INDEX_OF_DATE_BY];
         try {
             LocalDate dateBy = LocalDate.parse(by);
             Deadline deadline = new Deadline(description, dateBy);
