@@ -19,6 +19,7 @@ public class ExitCommand extends Command {
     public String execute(TaskList taskList, Storage storage) {
         toggleIsExit();
         String response = Ui.sayBye();
+        assert response != null : "response should be null";
         return response;
     }
 }

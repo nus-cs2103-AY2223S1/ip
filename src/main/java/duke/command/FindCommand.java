@@ -29,6 +29,7 @@ public class FindCommand extends Command {
     @Override
     public String execute(TaskList taskList, Storage storage) {
         String response = Ui.find(this.description, taskList);
+        assert response != null : "response should be null";
         return response;
     }
 }

@@ -30,6 +30,7 @@ public class UnmarkCommand extends Command {
         taskList.unmark(this.taskNumber);
         storage.save(taskList);
         String response = Ui.unmark(taskList.getTask(this.taskNumber));
+        assert response != null : "response should be null";
         return response;
     }
 }
