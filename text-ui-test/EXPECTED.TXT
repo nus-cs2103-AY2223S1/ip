@@ -16,4 +16,3 @@ I've deleted this task:
 [D][0] CS2103 | 16 Sep 2022 2359
 [E][0] cca | 7 Sep 2022 1900
 Bye!
-
