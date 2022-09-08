@@ -141,7 +141,7 @@ public class Parser {
      * but not enough information is provided
      */
     private static void taskValidator (String input) throws InvalidCommandException, EmptyTaskException {
-        String taskIndicator = input.split(" ", 0)[1]; //splits into words
+        String taskIndicator = input.split(" ", 0)[0]; //splits into words
         String[] descriptionInformation = input.split(" ", 0);
 
         //taskIndicator is invalid
