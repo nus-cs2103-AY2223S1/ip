@@ -1,6 +1,8 @@
 package duke.command;
 
 import duke.exception.NoTaskFoundException;
+import duke.exception.TaskDuplicatedException;
+import duke.exception.TaskNotFoundException;
 import duke.util.Storage;
 import duke.util.TaskList;
 
@@ -29,7 +31,7 @@ public class FindCommand extends Command {
      * @throws NoTaskFoundException when no task is matches the search
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) throws NoTaskFoundException {
+    public String execute(TaskList tasks, Storage storage) throws NoTaskFoundException, TaskDuplicatedException {
         TaskList filterTasks = tasks.findTask(description);
         if (filterTasks.isEmpty()) {
             throw new NoTaskFoundException();
