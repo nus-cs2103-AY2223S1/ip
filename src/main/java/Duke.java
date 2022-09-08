@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class Duke {
     private static final Scanner scan = new Scanner( System.in );
+    private static final String filePath = "data/tasks.txt";
     private static Storage storage;
     private static TaskList tasks;
     private static Ui ui;
@@ -42,7 +43,7 @@ public class Duke {
      * @throws DukeException If invalid command encountered.
      */
     public static void main(String[] args) throws DukeException {
-        new Duke("data/tasks.txt").run();
+        new Duke(filePath).run();
     }
 
     /**

@@ -87,6 +87,7 @@ public class Storage {
                 }
             }
         }
+        assert !tasksArray.isEmpty() : "The task array should not be empty";
         return tasksArray;
     }
 
