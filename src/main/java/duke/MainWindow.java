@@ -29,10 +29,12 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     public void initialize() {
+        assert scrollPane != null : "scrollPane is null, try again";
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
     public void setDuke(Duke d) {
+        assert d != null : "setDuke is null, try again";
         duke = d;
     }
 
@@ -43,6 +45,7 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     private void handleUserInput() {
+        assert duke != null : "Duke is null, try again";
         String input = userInput.getText();
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
