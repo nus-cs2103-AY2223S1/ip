@@ -32,7 +32,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns a String format of date and time of the deadline
+     * Returns a String format of date and time of the deadline.
      * @return string formatted date and time
      */
     public String getDateTime() {
@@ -41,7 +41,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns a LocalDateTime object that the deadline needs to be completed by
+     * Returns a LocalDateTime object that the deadline needs to be completed by.
      * @return local date and time object
      */
     public LocalDateTime getRawDateTime() {

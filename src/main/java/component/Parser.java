@@ -52,7 +52,7 @@ public class Parser {
     }
 
     /**
-     * Returns index of the intended task from command input string
+     * Returns index of the intended task from command input string.
      * @param input String input
      * @return integer index of task
      */

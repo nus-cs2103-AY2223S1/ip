@@ -31,7 +31,7 @@ public class Storage {
     }
 
     /**
-     * Loads task data from TXT file in directory
+     * Loads task data from TXT file in directory.
      * @return text array from which the document was loaded
      */
     public ArrayList<String> load() {
@@ -77,7 +77,7 @@ public class Storage {
     }
 
     /**
-     * Creates file object at the current directory
+     * Creates file object at the current directory.
      * @param path Path of the directory
      * @param filename name of the file
      * @return File object

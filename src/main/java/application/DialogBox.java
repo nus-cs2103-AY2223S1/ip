@@ -48,10 +48,22 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Returns a dialog box that belongs to the user.
+     * @param text Text contained in the dialog box
+     * @param img Image of the user
+     * @return User dialog box
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Returns a dialog box that belongs to Mew.
+     * @param text Text contained in the dialog box
+     * @param img Image of Mew
+     * @return Mew dialog box
+     */
     public static DialogBox getMewDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
