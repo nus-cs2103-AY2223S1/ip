@@ -8,11 +8,12 @@ import java.util.Scanner;
  * The Ui class that interacts with the user.
  */
 public class Ui {
-    private static final Scanner echo = new Scanner(System.in);
+    private static Scanner echo = new Scanner(System.in);
     private Parser parser;
 
     /**
      * Constructs the Ui class.
+     *
      * @param parser The parser that interprets the user input.
      */
     public Ui(Parser parser) {
@@ -22,7 +23,7 @@ public class Ui {
     /**
      * To run the program after receiving the user input.
      */
-    public void run() {
+    public String run() {
         String response;
         while (!this.parser.isItDone()) {
             try {
@@ -38,5 +39,7 @@ public class Ui {
                 System.out.println("Oh no! Deadline Date and Time is specified wrongly, " + e);
             }
         }
+        assert false : "This should not be returned";
+        return "ui.run() should not return anything.";
     }
 }

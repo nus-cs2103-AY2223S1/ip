@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * The Storage class stores and load the information into a text docmument.
+ * The Storage class stores and load the information into a text document.
  */
 public class Storage {
 
@@ -15,6 +15,7 @@ public class Storage {
 
     /**
      * Constructor for a Storage class.
+     *
      * @param filePath The relative path to the text document.
      */
     public Storage(String filePath) {
@@ -23,6 +24,7 @@ public class Storage {
 
     /**
      * To create the text document in the relevant file if it does not exist.
+     *
      * @throws IOException If the relative path to the text document is invalid.
      */
     public void load() throws IOException {
@@ -35,6 +37,7 @@ public class Storage {
 
     /**
      * Writes tasks from the arraylist into the text document.
+     *
      * @param textToAdd String information of the task.
      * @throws IOException If the relative path to the text document is invalid.
      */
@@ -46,6 +49,7 @@ public class Storage {
 
     /**
      * Formats the string of the task.
+     *
      * @param task Task in the arraylist.
      * @return The formatted string.
      */
@@ -67,57 +71,93 @@ public class Storage {
 
     /**
      * Adds tasks from the text document into the arraylist.
-     * @param tasks
+     *
+     * @param tasks The list added into.
      * @throws FileNotFoundException If the file does not exist.
      * @throws DukeException If information from the task in invalid.
      */
     public void addDukeToList(TaskList tasks) throws FileNotFoundException, DukeException {
+        File file = new File(this.filePath);
+        Scanner scanner = new Scanner(file);
         assert this.filePath != null;
-        File file = new File(this.filePath); // create a File for the given file path
-        Scanner scanner = new Scanner(file); // create a Scanner using the File as the source
         while (scanner.hasNext()) {
             String line = scanner.nextLine();
             String[] keywords = line.split(" \\| ", 4);
             switch (keywords[0]) {
             case "D":
-                if (keywords.length != 4) {
-                    throw new DukeException("Incorrect information for deadline from input or file");
-                }
-                DeadlineTask deadlineTask = new DeadlineTask(keywords[2], keywords[3]);
-                if (keywords[1].equals("X")) {
-                    deadlineTask.mark();
-                } else {
-                    deadlineTask.unMark();
-                }
-                tasks.addStorageToList(deadlineTask);
+                validateTask(4, keywords, tasks, Parser.Type.DEADLINE);
                 break;
             case "E":
-                if (keywords.length != 4) {
-                    throw new DukeException("Incorrect information for event from input or file");
-                }
-                EventTask eventTask = new EventTask(keywords[2], keywords[3]);
-                if (keywords[1].equals("X")) {
-                    eventTask.mark();
-                } else {
-                    eventTask.unMark();
-                }
-                tasks.addStorageToList(eventTask);
+                validateTask(4, keywords, tasks, Parser.Type.EVENT);
                 break;
             case "T":
-                if (keywords.length != 3) {
-                    throw new DukeException("Incorrect information for todo class from. input or file");
-                }
-                TodoTask todoTask = new TodoTask(keywords[2]);
-                if (keywords[1].equals("X")) {
-                    todoTask.mark();
-                } else {
-                    todoTask.unMark();
-                }
-                tasks.addStorageToList(todoTask);
+                validateTask(3, keywords, tasks, Parser.Type.TODO);
                 break;
             default:
                 throw new DukeException("Error! Task not given.");
             }
+        }
+    }
+
+    /**
+     * Checks if it contains the right number of keywords.
+     * Starts to add into list if number of keywords is correct.
+     *
+     * @param numberOfKeywords The number of keywords separated by | symbol.
+     * @param keywords The array of words separated by | symbol.
+     * @param tasks The list added into.
+     * @throws DukeException If the number of keywords is incorrect.
+     */
+    public void validateTask(int numberOfKeywords, String[] keywords, TaskList tasks, Parser.Type type)
+            throws DukeException {
+        if (keywords.length != numberOfKeywords) {
+            throw new DukeException("Incorrect information for deadline from input or file");
+        } else {
+            setTaskIntoList(type, keywords, tasks);
+        }
+    }
+
+    /**
+     * Determines if task is marked or unmarked.
+     *
+     * @param symbol Mark symbol if any.
+     * @param task The task to mark or unmark.
+     */
+    public void verifyMarkTask(String symbol, Task task) {
+        if (symbol.equals("X")) {
+            task.mark();
+        } else {
+            task.unMark();
+        }
+    }
+
+    /**
+     * Set task into the list.
+     *
+     * @param type Task type.
+     * @param keywords The array of words separated by | symbol.
+     * @param tasks The list added into.
+     * @throws DukeException If task cannot be made.
+     */
+    public void setTaskIntoList(Parser.Type type, String[] keywords, TaskList tasks) throws DukeException {
+        switch (type) {
+        case DEADLINE:
+            DeadlineTask deadlineTask = new DeadlineTask(keywords[2], keywords[3]);
+            verifyMarkTask(keywords[1], deadlineTask);
+            tasks.addStorageToList(deadlineTask);
+            break;
+        case EVENT:
+            EventTask eventTask = new EventTask(keywords[2], keywords[3]);
+            verifyMarkTask(keywords[1], eventTask);
+            tasks.addStorageToList(eventTask);
+            break;
+        case TODO:
+            TodoTask todoTask = new TodoTask(keywords[2]);
+            verifyMarkTask(keywords[1], todoTask);
+            tasks.addStorageToList(todoTask);
+            break;
+        default:
+            assert false : "Adding tasks from text into the list should not reach this error.";
         }
     }
 }
