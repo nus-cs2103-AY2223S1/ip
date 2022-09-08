@@ -12,7 +12,10 @@ import java.util.Scanner;
 
 import duke.dukeexception.DukeException;
 import duke.dukeexception.TypeNotExistException;
+import duke.tasks.Deadline;
+import duke.tasks.Event;
 import duke.tasks.Task;
+import duke.tasks.ToDo;
 import duke.ui.Ui;
 
 /**
@@ -115,6 +118,91 @@ public class Cache {
             writer.close();
         } catch (IOException e) {
             throw new DukeException("     :( OOPS!!! Cannot be written cos the file doesn't exist");
+        }
+    }
+
+    public static String listToString(TaskList taskList) throws DukeException {
+        StringBuilder builder = new StringBuilder();
+        for (Task task : taskList.getList()) {
+            builder.append(task.recordString());
+            builder.append("\n");
+        }
+        return builder.toString();
+    }
+
+    public static File saveFile(String str, String path) throws DukeException {
+        try {
+            // Create path if not exist
+            File file = new File(System.getProperty("user.dir") + "/data");
+            if (!file.exists()) {
+                Path folderPath = Paths.get(System.getProperty("user.dir") + "/data");
+                Files.createDirectories(folderPath);
+                assert (file.exists());
+            }
+
+            // Create file if not exist
+            file = new File(path);
+            file.createNewFile();
+            assert (file.exists()) : "The input file has not been created. Please check!";
+            FileWriter writer = new FileWriter(path);
+            writer.write(str);
+            writer.close();
+            return file;
+
+        } catch (IOException e) {
+            throw new DukeException(e.getMessage());
+        }
+    }
+
+    public static TaskList backToLastStep(File f) throws DukeException, FileNotFoundException {
+        ArrayList<Task> taskList = new ArrayList<>();
+        String[] commands;
+        String type;
+        String description;
+        boolean isDone;
+        Scanner sc;
+        Task.clear();
+        try {
+            sc = new Scanner(f);
+
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                commands = line.split(" \\| ", 3);
+                type = commands[0].trim();
+                isDone = commands[1].trim().equals("1") ? true : false;
+                description = commands[2].trim();
+
+                // sync task using ui.Ui functions
+                if (type.equals("T")) {
+                    ToDo task = new ToDo(description);
+                    if (isDone) {
+                        task.changeStatus();
+                    }
+                    taskList.add(task);
+                } else if (type.equals("D")) {
+                    String name = description.split(" \\| ", 2)[0];
+                    String by = description.split(" \\| ", 2)[1];
+                    Deadline task = new Deadline(name, by);
+                    if (isDone) {
+                        task.changeStatus();
+                    }
+                    taskList.add(task);
+                } else if (type.equals("E")) {
+                    String name = description.split(" \\| ", 2)[0];
+                    String at = description.split(" \\| ", 2)[1];
+                    Event task = new Event(name, at);
+                    if (isDone) {
+                        task.changeStatus();
+                    }
+                    taskList.add(task);
+                } else {
+                    throw new TypeNotExistException("");
+                }
+            }
+
+            return new TaskList(taskList);
+        } catch (FileNotFoundException e) {
+            throw new DukeException("     :( OOPS!!! Cannot be read cos the file doesn't exist");
         }
     }
 }

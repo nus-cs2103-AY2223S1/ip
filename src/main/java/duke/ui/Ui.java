@@ -3,6 +3,7 @@ package duke.ui;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Stack;
 
 import duke.dukeexception.DateTimeFormatException;
 import duke.dukeexception.DukeException;
@@ -216,6 +217,21 @@ public class Ui {
         for (Task task : findList) {
             index = index + 1;
             System.out.println("     " + index + "." + task.printSelf());
+        }
+        printLine();
+    }
+
+    /**
+     * Prints msg to show the user last command has been undone.
+     * @param stack The taskList history of Duke for this run only.
+     * @return a boolean value indicating that if a undo can be done.
+     */
+    public static void undo(Stack<String> stack) {
+        printLine();
+        if (stack.isEmpty()) {
+            System.out.println("     Opps:( Nothing has been done, cos there is no history.");
+        } else {
+            System.out.println("     Last command has been undone. Yay!");
         }
         printLine();
     }

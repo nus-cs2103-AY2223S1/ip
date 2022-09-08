@@ -42,6 +42,10 @@ public class Task {
         System.out.println("       " + task.printSelf());
     }
 
+    public static void clear() {
+        totalNumber = 0;
+    }
+
     /**
      * Update the index of a particular task to be index -1 after removal.
      */

@@ -1,9 +1,10 @@
 package duke;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.Stack;
 
-import duke.dukeexception.DateTimeFormatException;
 import duke.dukeexception.DukeException;
 import duke.dukeexception.IncompleteCommandException;
 import duke.dukeexception.NoSuchCommandException;
@@ -23,6 +24,8 @@ import duke.ui.Ui;
  */
 public class Duke {
     private static TaskList taskList;
+    private static Stack<String> listHistory;
+    private static String historyPath;
     private Cache cache;
 
     public Duke() {
@@ -43,6 +46,8 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         Cache cache = new Cache(System.getProperty("user.dir") + "\\data\\duke.txt");
+        historyPath = System.getProperty("user.dir") + "\\data\\hist.txt";
+        listHistory = new Stack<String>();
         taskList = cache.printPath();
         cliRun();
         cache.update(taskList);
@@ -60,9 +65,9 @@ public class Duke {
      * 8. delete [index]: to delete the task with given index.
      * 9. find [String]: to find the corresponding task.
      * 10. list: to list all ongoing tasks.
+     * 11. undo: to undo last command
      */
-    public static void cliRun() throws IncompleteCommandException, TaskOutOfBoundException,
-            NoSuchCommandException, TaskCompletionException, DateTimeFormatException {
+    public static void cliRun() throws DukeException, FileNotFoundException {
         Scanner in = new Scanner(System.in);
         boolean lastCommandOrNot = false;
         Task task;
@@ -88,6 +93,7 @@ public class Duke {
 
                 case MARK:
                 case UNMARK:
+                    record();
                     taskIndex = Parser.strToInt(commandList[1]) - 1;
                     task = taskList.get(taskIndex);
                     switch (type) {
@@ -114,6 +120,7 @@ public class Duke {
                     break;
 
                 case DELETE:
+                    record();
                     taskIndex = Parser.strToInt(commandList[1]) - 1;
                     task = taskList.get(taskIndex);
                     Ui.delete(task);
@@ -128,19 +135,29 @@ public class Duke {
                     break;
 
                 case TODO:
+                    record();
                     taskList.add(Ui.addToDo(commandList[1]));
                     break;
 
                 case DEADLINE:
+                    record();
                     taskList.add(Ui.addDeadline(commandList[1]));
                     break;
 
                 case EVENT:
+                    record();
                     taskList.add(Ui.addEvent(commandList[1]));
                     break;
 
                 case FIND:
                     Ui.find(commandList[1].trim(), taskList);
+                    break;
+
+                case UNDO:
+                    Ui.undo(listHistory);
+                    if (!listHistory.isEmpty()) {
+                        taskList = Cache.backToLastStep(Cache.saveFile(listHistory.pop(), historyPath));
+                    }
                     break;
 
                 default:
@@ -177,13 +194,14 @@ public class Duke {
     public String getResponse() throws DukeException, IOException {
         assert (OutputRedirector.isCaptured() == false) : "The output stream is somehow alr captured. Please check!";
         OutputRedirector.start();
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+        String logo = "____          __        \n"
+                + "|  _  \\ _   _|  | __ __ \n"
+                + "|  | |  | |  | |  |/ /  _  \\\n"
+                + "|  |_|  | |__| |  <  ___/\n"
+                + "|____/ \\__,_|_|\\_\\__|\n";
         System.out.println("Hello from\n" + logo);
         cache = new Cache(System.getProperty("user.dir") + "\\data\\duke.txt");
+        listHistory = new Stack<String>();
         taskList = cache.printPath();
         Ui.greet();
         return OutputRedirector.stop();
@@ -220,6 +238,7 @@ public class Duke {
 
             case MARK:
             case UNMARK:
+                record();
                 taskIndex = Parser.strToInt(commandList[1]) - 1;
                 task = taskList.get(taskIndex);
                 switch (type) {
@@ -246,6 +265,7 @@ public class Duke {
                 break;
 
             case DELETE:
+                record();
                 taskIndex = Parser.strToInt(commandList[1]) - 1;
                 task = taskList.get(taskIndex);
                 Ui.delete(task);
@@ -260,19 +280,29 @@ public class Duke {
                 break;
 
             case TODO:
+                record();
                 taskList.add(Ui.addToDo(commandList[1]));
                 break;
 
             case DEADLINE:
+                record();
                 taskList.add(Ui.addDeadline(commandList[1]));
                 break;
 
             case EVENT:
+                record();
                 taskList.add(Ui.addEvent(commandList[1]));
                 break;
 
             case FIND:
                 Ui.find(commandList[1].trim(), taskList);
+                break;
+
+            case UNDO:
+                Ui.undo(listHistory);
+                if (!listHistory.isEmpty()) {
+                    taskList = Cache.backToLastStep(Cache.saveFile(listHistory.pop(), historyPath));
+                }
                 break;
 
             default:
@@ -302,6 +332,10 @@ public class Duke {
 
         String stop = OutputRedirector.stop();
         return stop;
+    }
+
+    public static void record() throws DukeException {
+        listHistory.push(Cache.listToString(taskList));
     }
 }
 
