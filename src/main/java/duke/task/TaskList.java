@@ -66,6 +66,9 @@ public class TaskList {
      */
     public Task deleteTask(int index) throws DukeException {
         int numOfTasks = this.tasks.size();
+        if (numOfTasks == 0) {
+            throw new DukeException("You cant delete anything yet! Try creating some tasks first!");
+        }
         if (index < 1) {
             throw new DukeException("Hey there! Are you sure you are referring to a correct task? "
                     + " It definitely has to be at least 1!");
@@ -73,9 +76,7 @@ public class TaskList {
         if (index > numOfTasks) {
             throw new DukeException(String.format("That's magical! You only have %d task(s) at hand!", numOfTasks));
         }
-        if (numOfTasks == 0) {
-            throw new DukeException("You cant delete anything yet! Try creating some tasks first!");
-        }
+        assert index <= numOfTasks && numOfTasks > 0;
         Task t = getTask(index);
         int indexInList = index - 1;
         this.tasks.remove(indexInList);
@@ -104,6 +105,7 @@ public class TaskList {
             throw new DukeException("Hey there! Are you sure you are referring to a correct task? "
                     + "It definitely has to be at least 1!");
         }
+        assert index <= numOfTasks && numOfTasks > 0;
         return this.tasks.get(index - 1);
     }
 
