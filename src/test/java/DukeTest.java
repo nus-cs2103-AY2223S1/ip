@@ -1,4 +1,4 @@
-import duke.TaskList;
+import duke.*;
 import duke.events.Task;
 import duke.parser.Parser;
 import org.junit.jupiter.api.Test;
@@ -38,29 +38,5 @@ public class DukeTest {
         assertEquals(todoTest.toString(), "[T][X] borrow book");
         tl.unmarkTask(0);
         assertEquals(todoTest.toString(), "[T][ ] borrow book");
-    }
-
-
-    /**
-     * Test whether viewSchedule can add / ignore valid tasks
-     */
-    @Test
-    public void TestViewSchedule() {
-        Parser p = new Parser();
-        Task deadlineTest = Parser.generateTask("deadline return book /by 2019-10-15");
-        Task eventTest = p.generateTask("event project meeting /at 2019-10-15");
-        Task deadlineInvalid = Parser.generateTask("deadline return book /by 2019-10-16"); //shld ignore this
-        TaskList tl = new TaskList(new ArrayList<Task>());
-        tl.addTask(deadlineTest);
-        tl.addTask(eventTest);
-        tl.addTask(deadlineInvalid);
-        String response = p.parseData("viewSchedule 2019-10-15", tl);
-        String expectedResponse = "Hello, here are the tasks for the date scheduled: 2019-10-15\n" +
-                "1. [D][ ] return book (by: Oct 15 2019)\n" +
-                "2. [E][ ] project meeting (at: Oct 15 2019)\n";
-        assertEquals(response, expectedResponse);
-
-
-
     }
 }

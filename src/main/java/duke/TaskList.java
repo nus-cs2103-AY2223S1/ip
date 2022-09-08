@@ -148,7 +148,7 @@ public class TaskList {
 
     /**
      * Based on a given date that is unparsed, check each individual task if
-     * it clashes with the date. If it does, add it into a list
+     * it clashes with the date. If it is, add it into a list
      * @param date
      * @return A formatted list of tasks that occur on the same day
      */
