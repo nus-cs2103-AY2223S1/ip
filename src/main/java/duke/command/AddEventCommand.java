@@ -10,8 +10,8 @@ import duke.task.Event;
  * Adds an event task to the list when command is called.
  */
 public class AddEventCommand extends Command {
-    private String description;
-    private String time;
+    private final String description;
+    private final String time;
 
     /**
      * Adds an event based on command received
@@ -30,7 +30,7 @@ public class AddEventCommand extends Command {
         event = new Event(description, time);
         tasks.add(event);
         ui.outputMessage("\tGot it. I've added this task:\n\t"
-                + event.toString()
+                + event
                 + "\n\tNow you have " + tasks.size()
                 + " tasks in the list.");
         storage.save(tasks);

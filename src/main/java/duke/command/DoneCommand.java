@@ -9,7 +9,7 @@ import duke.main.Ui;
  * Mark a task as done when command is called.
  */
 public class DoneCommand extends Command {
-    private int taskNum;
+    private final int taskNum;
 
     /**
      * Marks task as done based on index entered when command is called.
