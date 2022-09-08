@@ -58,35 +58,26 @@ public class Storage {
             Scanner s = new Scanner(f);
             while (s.hasNext()) {
                 String[] taskSplit = s.nextLine().split(" >> ");
+                DukeTask task;
                 switch (taskSplit[0]) {
                 case "T": {
-                    ToDo task = new ToDo(taskSplit[2]);
-                    if (taskSplit[1].equals("1")) {
-                        task.markAsDone();
-                    }
-                    taskList.add(task);
+                    task = new ToDo(taskSplit[2]);
                     break;
                 }
                 case "D": {
-                    Deadline task = new Deadline(taskSplit[2], taskSplit[3]);
-                    if (taskSplit[1].equals("1")) {
-                        task.markAsDone();
-                    }
-                    taskList.add(task);
+                    task = new Deadline(taskSplit[2], taskSplit[3]);
                     break;
                 }
                 case "E": {
-                    Event task = new Event(taskSplit[2], taskSplit[3]);
-                    if (taskSplit[1].equals("1")) {
-                        task.markAsDone();
-                    }
-                    taskList.add(task);
+                    task = new Event(taskSplit[2], taskSplit[3]);
                     break;
                 }
                 default: {
                     throw new DukeException("Invalid storage configuration encountered.");
                 }
                 }
+                checkTaskDone(taskSplit, task);
+                taskList.add(task);
             }
         } catch (FileNotFoundException e) {
             throw new DukeException(e.getMessage());
@@ -112,6 +103,17 @@ public class Storage {
             fw.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Checks if the loaded task is completed.
+     * @param taskSplit loaded task data
+     * @param task DukeTask representation of loaded task
+     */
+    private void checkTaskDone(String[] taskSplit, DukeTask task) {
+        if (taskSplit[1].equals("1")) {
+            task.markAsDone();
         }
     }
 }
