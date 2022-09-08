@@ -23,7 +23,6 @@ public class DialogBox extends HBox{
     private ImageView displayPicture;
 
     public DialogBox(String txt, Image img) {
-
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(duke.MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);

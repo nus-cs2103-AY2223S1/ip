@@ -19,6 +19,7 @@ public class ListCommand extends Command{
         if (tasks.getCount() == 0) {
             throw new DukeException("You currently have no tasks remaining! Create a task now!");
         }
+
         StringBuilder toReturn = new StringBuilder();
         for (int i = 0; i < tasks.getCount(); i++) {
             if (tasks.get(i) == null) {

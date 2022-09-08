@@ -1,5 +1,4 @@
-T,0,new task,
-D,0,hw ,2019-12-02
+T,1,new task,
+D,1,hw ,2019-12-02
 D,1,home ,2019-12-02
-T,0,homework,
-T,0,homwework,
+T,0,finish weekly tasks,

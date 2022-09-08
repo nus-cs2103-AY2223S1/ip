@@ -14,10 +14,6 @@ public class Ui {
      * Output stream.
      */
     private final PrintStream out;
-    /**
-     * Divider to print.
-     */
-    private final String DIVIDER = "------------------------";
 
     public Ui() {
         this(System.in, System.out);
@@ -36,19 +32,6 @@ public class Ui {
         toReturn.append("Hello! I'm Duke\n");
         toReturn.append("What can I do for you?\n");
         return toReturn.toString();
-    }
-
-    /**
-     * Reads the command line input.
-     *
-     * @return
-     */
-
-    /**
-     * Shows the divider.
-     */
-    public String showLine() {
-        return DIVIDER + "\n";
     }
 
     /**

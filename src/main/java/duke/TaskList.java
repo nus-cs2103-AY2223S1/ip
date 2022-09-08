@@ -28,6 +28,7 @@ public class TaskList {
      * @return Task at specified index.
      */
     public Task get(int i) {
+        assert tasks.size() > i && i >= 0 : i;
         return this.tasks.get(i);
     }
 
@@ -37,6 +38,7 @@ public class TaskList {
      * @param t Task to be added.
      */
     public void add(Task t) {
+        assert t != null;
         tasks.add(t);
     }
 
@@ -47,6 +49,7 @@ public class TaskList {
      * @return Task removed from list.
      */
     public Task remove(int i) {
+        assert tasks.size() > i && i >= 0 : i;
         return tasks.remove(i);
     }
 

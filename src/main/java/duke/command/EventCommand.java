@@ -37,8 +37,8 @@ public class EventCommand extends Command {
 
         StringBuilder toReturn = new StringBuilder();
         toReturn.append("Got it. I've added this task: \n");
-        System.out.println(curr + "\n");
-        System.out.println("Now you have " + tasks.getCount() + " tasks in the list.\n");
+        toReturn.append(curr + "\n");
+        toReturn.append("Now you have " + tasks.getCount() + " tasks in the list.\n");
 
         return toReturn.toString();
     }

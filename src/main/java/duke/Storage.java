@@ -33,6 +33,8 @@ public class Storage {
                 System.out.println(e);
             }
         }
+
+        assert toRead.exists(): "File doesnt exist";
     }
 
     /**
@@ -50,6 +52,7 @@ public class Storage {
                 String[] info = line.split(",");
                 String taskType = info[0];
                 Task toAdd;
+                assert taskType.equals("T") || taskType.equals("D") || taskType.equals("E") : taskType;
                 switch (taskType) {
                 case "T":
                     toAdd = new Todo(info[2]);
@@ -85,7 +88,6 @@ public class Storage {
                 default:
 
                 }
-
             }
         } catch (FileNotFoundException e) {
             System.out.println("Oops file cannot be found!");
@@ -102,6 +104,7 @@ public class Storage {
         try {
             FileWriter toLoad = new FileWriter(path);
             for (Task t: tasks.getTasks()) {
+                assert t != null : "Task is null!";
                 String taskInfo = t.getTaskType() + ",";
 
                 if (t.isCompleted()) {
@@ -111,7 +114,6 @@ public class Storage {
                 }
                 taskInfo += t.getTaskName() + ",";
 
-                //change here too
                 if (t.getTaskType().equals("D") || t.getTaskType().equals("E")) {
                     taskInfo += t.getDateFormat();
                 }
