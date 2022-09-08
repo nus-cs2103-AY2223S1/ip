@@ -45,6 +45,7 @@ public class Storage {
             while (reader.hasNextLine()) {
                 String data = reader.nextLine();
                 char action = data.charAt(1);
+                assert action == 'T' || action == 'E' || action == 'D' : "Tasks not stored properly!";
                 Task task;
 
                 if (action == 'T') {
@@ -73,6 +74,7 @@ public class Storage {
                 }
 
                 char isDone = data.charAt(4);
+                assert isDone == 'X' || isDone == ' ': "The state of whether the task is completed is not stored properly";
                 tasks.add(task);
                 if (isDone == 'X') {
                     task.setDone();
