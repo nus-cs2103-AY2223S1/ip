@@ -5,6 +5,10 @@ package duke;
  */
 public class Ui {
 
+    String showWelcome() {
+        return "Hello! I'm Duke" + "\n" + "What can I do for you?";
+    }
+    
     String showError(Exception e){
         return e.getMessage();
     }
