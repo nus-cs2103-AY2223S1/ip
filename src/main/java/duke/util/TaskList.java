@@ -31,33 +31,32 @@ public class TaskList {
      */
     public TaskList(String text) {
         this();
-        if (text != "") {
-            String[] texts = text.split("\n");
-            String taskType;
-            String description;
-            for (int i = 0; i < texts.length; i++) {
-                taskType = texts[i].substring(3, 6);
-                String[] descriptions;
-                switch (taskType) {
-                case "[T]":
-                    description = texts[i].substring(10);
-                    tasks.add(new Todo(description, texts[i].charAt(7) == 'X'));
-                    break;
-                case "[D]":
-                    description = texts[i].substring(10);
-                    descriptions = description.split("by");
-                    tasks.add(new Deadline(descriptions[0].substring(0, description.indexOf("(") - 1),
-                            descriptions[1].substring(2, descriptions[1].length() - 1), texts[i].charAt(7) == 'X'));
-                    break;
-                case "[E]":
-                    description = texts[i].substring(10);
-                    descriptions = description.split("at");
-                    tasks.add(new Event(descriptions[0].substring(0, description.indexOf("(") - 1),
-                            descriptions[1].substring(2, descriptions[1].length() - 1), texts[i].charAt(7) == 'X'));
-                    break;
-                default:
-                    break;
-                }
+        assert text != "" : "You should not be reading from an empty file.";
+        String[] texts = text.split("\n");
+        String taskType;
+        String description;
+        for (int i = 0; i < texts.length; i++) {
+            taskType = texts[i].substring(3, 6);
+            String[] descriptions;
+            switch (taskType) {
+            case "[T]":
+                description = texts[i].substring(10);
+                tasks.add(new Todo(description, texts[i].charAt(7) == 'X'));
+                break;
+            case "[D]":
+                description = texts[i].substring(10);
+                descriptions = description.split("by");
+                tasks.add(new Deadline(descriptions[0].substring(0, description.indexOf("(") - 1),
+                        descriptions[1].substring(2, descriptions[1].length() - 1), texts[i].charAt(7) == 'X'));
+                break;
+            case "[E]":
+                description = texts[i].substring(10);
+                descriptions = description.split("at");
+                tasks.add(new Event(descriptions[0].substring(0, description.indexOf("(") - 1),
+                        descriptions[1].substring(2, descriptions[1].length() - 1), texts[i].charAt(7) == 'X'));
+                break;
+            default:
+                break;
             }
         }
     }
