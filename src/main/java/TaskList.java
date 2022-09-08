@@ -25,14 +25,9 @@ public class TaskList {
         return this.count;
     }
 
-    public boolean markTaskAtPos(int position){
-        try {
+    public void markTaskAtPos(int position) throws IndexOutOfBoundsException{
             Task currTask = getTask(position);
             currTask.markAsDone();
-            return true;
-        } catch (IndexOutOfBoundsException e) {
-            return false;
-        }
     }
 
     public boolean unmarkTaskAtPos(int position){
@@ -64,7 +59,11 @@ public class TaskList {
     public String toString(){
         String stringedList = "";
         for (int i = 0; i < this.count; i++) {
-            stringedList += (i + 1) + ". " + getTask(i + 1).toString() + "\n";
+            if (i == this.count -1) {
+                stringedList += (i + 1) + ". " + getTask(i + 1).toString();
+            } else {
+                stringedList += (i + 1) + ". " + getTask(i + 1).toString() + "\n";
+            }
         }
         return "Here are the tasks in your list:\n" + stringedList;
     }

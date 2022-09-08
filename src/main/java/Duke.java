@@ -2,185 +2,209 @@ import java.util.Scanner;
 import java.time.LocalDate;
 
 public class Duke {
-    private static final String SAVED_PATH = "data/duke.txt";
-    private static final String HORIZONTAL_BORDER = "_________________________________\n";
-    private static final String INVALID_TODO_INPUT = " ☹ OOPS!!! The description of a todo cannot be empty.\n";
-    private static final String INVALID_DEADLINE_INPUT = "☹ OOPS!!! Please use proper deadline formatting: deadline {task} /by {time}\n";
-    private static final String INVALID_DATE_FORMAT = "☹ OOPS!!! Please indicate your date as YYYY-MM-DD (e.g 2019-12-09)\n";
-    private static final String INVALID_EVENT_INPUT = "☹ OOPS!!! Please use proper event formatting: event {task} /at {time}\n";
-    private static final String INVALID_ACCESS_EMPTY_TASKLIST = "☹ OOPS!!! Task does not exist. Initialise a task first, then try again\n";
-    private static final String INVALID_USER_INPUT = "☹ OOPS!!! Please use one of these keywords: {deadline, event, todo} followed by \\\"by\\\" and \\\"at\\\" for deadline and event tasks respectively.\n";
-    private static final String INVALID_DATE_INPUT = "☹ OOPS!!! The date given should not be before today's date\n";
 
-    private simpleDatabase database;
+    private final String SAVED_PATH = "data/duke.txt";
+    private Storage storage;
     private TaskList taskList;
+    private Ui ui;
 
-    private Duke(){
-        this.database = new simpleDatabase(SAVED_PATH);
+    private Duke() {
+        this.storage = new Storage(SAVED_PATH);
         try {
-            this.taskList = this.database.getMemory();
+            this.taskList = this.storage.load();
         } catch (DukeException e) {
-            System.out.println(errorMessage(e.getMessage() + "\n"));
+            ui.showError(e.getMessage() + "\n");
             System.exit(0);
         }
+        this.ui = new Ui(this.taskList);
     }
 
-    private static String errorMessage(String errorMessage) {
-        return HORIZONTAL_BORDER + errorMessage + HORIZONTAL_BORDER;
-    }
+//    private static String errorMessage(String errorMessage) {
+//        return HORIZONTAL_BORDER + errorMessage + HORIZONTAL_BORDER;
+//    }
 
-    private static String welcomeMessage(){
-        return HORIZONTAL_BORDER + "Hello! I'm Duke\nWhat can I do for you?\n" + HORIZONTAL_BORDER;
-    }
+//    private static String welcomeMessage(){
+//        return HORIZONTAL_BORDER + "Hello! I'm Duke\nWhat can I do for you?\n" + HORIZONTAL_BORDER;
+//    }
 
-    private static String byeMessage(){
-        return HORIZONTAL_BORDER + "Bye. Hope to see you again soon!\n" + HORIZONTAL_BORDER;
-    }
+//    private static String byeMessage(){
+//        return HORIZONTAL_BORDER + "Bye. Hope to see you again soon!\n" + HORIZONTAL_BORDER;
+//    }
 
-    private String listContents(){
-        return HORIZONTAL_BORDER + this.taskList + HORIZONTAL_BORDER;
-    }
+//    private String listContents(){
+//        return HORIZONTAL_BORDER + this.taskList + HORIZONTAL_BORDER;
+//    }
 
-    public String addTaskMessage(String taskString) {
-        return HORIZONTAL_BORDER +  "Got it. I've added this task:\n" + taskString + "\n" + "Now you have " + this.taskList.getCount() + " tasks in the list.\n" + HORIZONTAL_BORDER;
-    }
+//    public String addTaskMessage(String taskString) {
+//        return HORIZONTAL_BORDER +  "Got it. I've added this task:\n" + taskString + "\n" + "Now you have " + this.taskList.getCount() + " tasks in the list.\n" + HORIZONTAL_BORDER;
+//    }
 
-    public String taskNotFoundMessage(){
-        return "☹ OOPS!!! Task does not exist. Try another number between 1 and " + this.taskList.getCount() + "\n";
-    }
+//    public String taskNotFoundMessage(){
+//        return "Task does not exist. Try another number between 1 and " + this.taskList.getCount();
+//    }
 
-    private String markDoneMessage(int position) throws DukeException{
-        boolean isTaskMarked = this.taskList.markTaskAtPos(position);
-        if (isTaskMarked) {
-            Task currentTask = this.taskList.getTask(position);
-            database.save(this.taskList);
-            return HORIZONTAL_BORDER + "Nice! I've marked this task as done:\n" + currentTask + "\n" + HORIZONTAL_BORDER;
-        } else if (this.taskList.getCount() == 0) {
-            throw new DukeException(INVALID_ACCESS_EMPTY_TASKLIST);
-        } else {
-            throw new DukeException(taskNotFoundMessage());
-        }
-    }
-
-    private String unmarkDoneMessage(int position) throws DukeException {
-        boolean isTaskUnmarked = this.taskList.unmarkTaskAtPos(position);
-        if (isTaskUnmarked) {
-            Task currentTask = this.taskList.getTask(position);
-            database.save(this.taskList);
-            return HORIZONTAL_BORDER + "OK, I've marked this task as not done yet:\n" + currentTask + "\n" + HORIZONTAL_BORDER;
-        } else if (this.taskList.getCount() == 0) {
-            throw new DukeException(INVALID_ACCESS_EMPTY_TASKLIST);
-        } else {
-            throw new DukeException(taskNotFoundMessage());
-        }
-    }
-
-    private String deleteTaskMessage(int position) throws DukeException {
+    private void markDoneMessage(String command) throws DukeException{
+        String[] commandList = command.strip().split(" ");
         try {
-            Task deletedTask = this.taskList.deleteTaskAtPos(position);
-            database.save(this.taskList);
-            return HORIZONTAL_BORDER + "Noted. I've removed this task:\n" + deletedTask + "\n" + "" + "Now you have " + this.taskList.getCount() + " tasks in the list.\n" + HORIZONTAL_BORDER;
-        } catch (IndexOutOfBoundsException e){
-            if (this.taskList.getCount() == 0){
-                throw new DukeException(INVALID_ACCESS_EMPTY_TASKLIST);
+            int taskIndexNum = Integer.parseInt(commandList[1]);
+            this.taskList.markTaskAtPos(taskIndexNum);
+            Task currentTask = this.taskList.getTask(taskIndexNum);
+            storage.save(this.taskList);
+            ui.showMarked(currentTask);
+        } catch (NumberFormatException e) {
+            throw new DukeException(Message.INVALID_MARK_TASK_FORMAT);
+        } catch (IndexOutOfBoundsException e) {
+            if (commandList.length <= 1) {
+                throw new DukeException(Message.INVALID_MARK_TASK_FORMAT);
+            } else if (this.taskList.getCount() == 0) {
+                throw new DukeException(Message.INVALID_ACCESS_EMPTY_TASKLIST);
             } else {
-                throw new DukeException(taskNotFoundMessage());
+                throw new DukeException("mark done lo");
             }
         }
     }
 
-    private boolean isInteger(String value) {
+    private void unmarkDoneMessage(String command) throws DukeException {
+        String[] commandList = command.strip().split(" ");
         try {
-            Integer.parseInt(value);
-            return true;
+            int taskIndexNum = Integer.parseInt(commandList[1]);
+            this.taskList.unmarkTaskAtPos(taskIndexNum);
+            Task currentTask = this.taskList.getTask(taskIndexNum);
+            storage.save(this.taskList);
+            ui.showUnmarked(currentTask);
         } catch (NumberFormatException e) {
-            return false;
+            throw new DukeException(Message.INVALID_UNMARK_TASK_FORMAT);
+        } catch (IndexOutOfBoundsException e) {
+            if (commandList.length <= 1) {
+                throw new DukeException(Message.INVALID_UNMARK_TASK_FORMAT);
+            } else if (this.taskList.getCount() == 0) {
+                throw new DukeException(Message.INVALID_ACCESS_EMPTY_TASKLIST);
+            } else {
+                throw new DukeException("unmark done lo");
+            }
         }
     }
 
-    private String makeToDoFromInput(String input) throws DukeException {
+    private void deleteTaskMessage(String command) throws DukeException {
+        String[] commandList = command.strip().split(" ");
+        try {
+            int taskIndexNum = Integer.parseInt(commandList[1]);
+            Task deletedTask = this.taskList.deleteTaskAtPos(taskIndexNum);
+            storage.save(this.taskList);
+            ui.showDeleted(deletedTask);
+        } catch (NumberFormatException e) {
+            throw new DukeException(Message.INVALID_DELETE_TASK_FORMAT);
+        } catch (IndexOutOfBoundsException e){
+            if (commandList.length <= 1) {
+                throw new DukeException(Message.INVALID_DELETE_TASK_FORMAT);
+            } else if (this.taskList.getCount() == 0){
+                throw new DukeException(Message.INVALID_ACCESS_EMPTY_TASKLIST);
+            } else {
+                throw new DukeException("Hola amigos");
+            }
+        }
+    }
+
+//    private boolean isInteger(String value) {
+//        try {
+//            Integer.parseInt(value);
+//            return true;
+//        } catch (NumberFormatException e) {
+//            return false;
+//        }
+//    }
+
+    private void makeToDoFromInput(String input) throws DukeException {
         String description = input.substring("todo".length()).strip();
         if (!description.equals("")) {
             ToDo newToDo = new ToDo(description);
             this.taskList.add(newToDo);
-            database.save(newToDo.toSimpleString());
-            return addTaskMessage(newToDo.toString());
+            storage.save(newToDo.toSimpleString());
+            ui.showAddition(newToDo, taskList.getCount());
         } else {
-            throw new DukeException(INVALID_TODO_INPUT);
+            throw new DukeException(Message.INVALID_TODO_INPUT);
         }
     }
 
-    private String makeDeadlineFromInput(String input) throws DukeException {
+    private void makeDeadlineFromInput(String input) throws DukeException {
         String[] stringArray = input.substring("deadline".length()).strip().split("/by");
         try {
             LocalDate deadlineDate = LocalDate.parse(stringArray[1].strip());
             if (deadlineDate.isBefore(LocalDate.now())){
-                throw new DukeException(INVALID_DATE_INPUT);
+                throw new DukeException(Message.INVALID_DATE_INPUT);
             }
             Deadline newDeadline = new Deadline(stringArray[0].strip(), deadlineDate);
             this.taskList.add(newDeadline);
-            database.save(newDeadline.toSimpleString());
-            return addTaskMessage(newDeadline.toString());
+            storage.save(newDeadline.toSimpleString());
+            ui.showAddition(newDeadline, taskList.getCount());
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException(INVALID_DEADLINE_INPUT);
+            throw new DukeException(Message.INVALID_DEADLINE_INPUT);
         } catch (java.time.format.DateTimeParseException e) {
-            throw new DukeException(INVALID_DATE_FORMAT);
+            throw new DukeException(Message.INVALID_DATE_FORMAT);
         }
     }
 
-    private String makeEventFromInput(String input) throws DukeException {
+    private void makeEventFromInput(String input) throws DukeException {
         String[] stringArray = input.substring("event".length()).strip().split("/at");
         if (stringArray.length > 1) {
             Event newEvent = new Event(stringArray[0].strip(), stringArray[1].strip());
             this.taskList.add(newEvent);
-            database.save(newEvent.toSimpleString());
-            return addTaskMessage(newEvent.toString());
+            storage.save(newEvent.toSimpleString());
+            ui.showAddition(newEvent, taskList.getCount());
         } else {
-            throw new DukeException(INVALID_EVENT_INPUT);
+            throw new DukeException(Message.INVALID_EVENT_INPUT);
         }
     }
 
-    public void run(){
-        System.out.println(welcomeMessage());
-        Scanner scan = new Scanner(System.in);
-        String s = scan.nextLine();
-        boolean exitNow = false;
-        while(!exitNow) {
+    public void run() {
+        ui.showWelcome();
+        boolean isExit = false;
+        while (!isExit) {
             try {
-                String[] commandList = s.strip().split(" ");
-                String command = commandList[0].toLowerCase();
-                if (command.equals("bye") && commandList.length == 1) {
-                    exitNow = true;
-                    System.out.println(byeMessage());
-                } else if (command.equals("list") && commandList.length == 1) {
-                    System.out.println(listContents());
-                } else if (command.equals("mark") && commandList.length > 1 && isInteger(commandList[1])) {
-                    int taskIndexNum = Integer.parseInt(commandList[1]);
-                    System.out.println(markDoneMessage(taskIndexNum));
-                } else if (command.equals("unmark") && commandList.length > 1 && isInteger(commandList[1])) {
-                    int taskIndexNum = Integer.parseInt(commandList[1]);
-                    System.out.println(unmarkDoneMessage(taskIndexNum));
-                } else if (command.equals("deadline")) {
-                    System.out.println(makeDeadlineFromInput(s));
-                } else if (command.equals("event")) {
-                    System.out.println(makeEventFromInput(s));
-                } else if (command.equals("todo")) {
-                    System.out.println(makeToDoFromInput(s));
-                } else if (command.equals("delete") && commandList.length > 1 && isInteger(commandList[1])){
-                    int taskIndexNum = Integer.parseInt(commandList[1]);
-                    System.out.println(deleteTaskMessage(taskIndexNum));
-                } else if (!s.strip().equals("")) {
-                    System.out.println(HORIZONTAL_BORDER + INVALID_USER_INPUT + HORIZONTAL_BORDER);
-                }
+                String fullCommand = ui.readCommand();
+                Command c = Parser.parse(fullCommand);
+                c.execute(taskList, ui, storage);
+                isExit = c.isExit();
             } catch (DukeException e) {
-                System.out.println(HORIZONTAL_BORDER + e.getMessage() + HORIZONTAL_BORDER);
-            } finally {
-                if (!exitNow) {
-                    s = scan.nextLine();
-                }
+                ui.showError(e.getMessage());
             }
+//        Scanner scan = new Scanner(System.in);
+//        String s = scan.nextLine();
+//        boolean exitNow = false;
+//        while(!exitNow) {
+//            try {
+//                String[] commandList = s.strip().split(" ");
+//                String command = commandList[0].toLowerCase();
+//                if (command.equals("bye") && commandList.length == 1) {
+//                    exitNow = true;
+//                    ui.showBye();
+//                } else if (command.equals("list") && commandList.length == 1) {
+//                    ui.showList();
+//                } else if (command.equals("mark")) {
+//                    markDoneMessage(s);
+//                } else if (command.equals("unmark")) {
+//                    unmarkDoneMessage(s);
+//                } else if (command.equals("deadline")) {
+//                    makeDeadlineFromInput(s);
+//                } else if (command.equals("event")) {
+//                    makeEventFromInput(s);
+//                } else if (command.equals("todo")) {
+//                   makeToDoFromInput(s);
+//                } else if (command.equals("delete")){
+//                    deleteTaskMessage(s);
+//                } else {
+//                    System.out.println(Message.INVALID_USER_INPUT);
+//                }
+//            } catch (DukeException e) {
+//               ui.showError(e.getMessage());
+//            } finally {
+//                if (!exitNow) {
+//                    s = scan.nextLine();
+//                }
+//            }
+//        }
+//        scan.close();
         }
-        scan.close();
     }
 
     public static void main(String[] args) {

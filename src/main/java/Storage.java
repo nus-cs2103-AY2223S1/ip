@@ -7,18 +7,15 @@ import java.util.Scanner;
 import java.time.LocalDate;
 
 
-public class simpleDatabase {
-    private static final String FILE_NOT_FOUND = "☹ Sorry , the file cannot be found.\n";
-    private static final String FILE_READ_ERROR = "☹ Sorry , there is an error when reading the file.\n";
-
+public class Storage {
     private final String filePath;
 
-    public simpleDatabase(String filePath){
+    public Storage (String filePath) {
         this.filePath = filePath;
         File f = new File(filePath);
     }
 
-    public TaskList getMemory() throws DukeException{
+    public TaskList load() throws DukeException{
         TaskList taskList = new TaskList();
         try {
             File localFile = new File(this.filePath);
@@ -94,10 +91,10 @@ public class simpleDatabase {
                     newTask = makeToDo(taskSegments[1].strip(), taskSegments[2].strip());
                     break;
                 default:
-                    throw new DukeException(FILE_READ_ERROR);
+                    throw new DukeException(Message.FILE_READ_ERROR);
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException(FILE_READ_ERROR);
+            throw new DukeException(Message.FILE_READ_ERROR);
         }
         return newTask;
     }
@@ -108,7 +105,7 @@ public class simpleDatabase {
             fw.write(taskString + "\n");
             fw.close();
         } catch (IOException e) {
-            throw new DukeException(FILE_NOT_FOUND);
+            throw new DukeException(Message.FILE_NOT_FOUND);
         }
     }
 
@@ -120,7 +117,7 @@ public class simpleDatabase {
             }
             fw.close();
         } catch (IOException e) {
-            throw new DukeException(FILE_NOT_FOUND);
+            throw new DukeException(Message.FILE_NOT_FOUND);
         }
     }
 }
