@@ -8,7 +8,7 @@ package duke.tasks;
 public class ToDo extends Task {
     /**
      * Constructor for ToDo.
-     * @param description - The description of the ToDo.
+     * @param description The description of the ToDo.
      */
     public ToDo(String description) {
         super(description);
@@ -17,7 +17,7 @@ public class ToDo extends Task {
     /**
      * Rebuilds the ToDo from a todo save string.
      * 
-     * @param saveString - The save string containing todo information.
+     * @param saveString The save string containing todo information.
      * @return A ToDo task.
      */
     public static ToDo taskFromSave(String saveString) {

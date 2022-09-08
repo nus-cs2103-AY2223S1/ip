@@ -30,7 +30,7 @@ public class UI {
     /**
      * Gets the user input.
      * 
-     * @return - The user input in String form.
+     * @return The user input in String form.
      */
     public String getUserCommand() {
         String rawInput = this.IN.nextLine();
@@ -45,7 +45,7 @@ public class UI {
     /**
      * Shows the given messages to user in proper format.
      * 
-     * @param message - The messages to be shown.
+     * @param message The messages to be shown.
      */
     public void showToUser(String... message) {
         this.OUT.println(DIVIDER);
