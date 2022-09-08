@@ -31,8 +31,7 @@ public class Jarvis {
      */
     public CommandResponse getResponse(String userInput) {
         try {
-            CommandResponse res = cmdRunner.run(Input.newInput(userInput));
-            return res;
+            return cmdRunner.run(Input.newInput(userInput));
         } catch (DukeException e) {
             return new CommandResponse(e.getMessage());
         }
