@@ -42,6 +42,11 @@ public class Duke {
     protected static Duke d = new Duke();
 
     /**
+     * tracks the status of Duke programme
+     */
+    private static boolean hasended = false;
+
+    /**
      * Creates the chatbot
      */
     public Duke() {
@@ -107,23 +112,6 @@ public class Duke {
             throw new DukeException(
                     "OOPS!!! I'm sorry, but I dont't know what that means\n"
                     );
-        }
-    }
-
-    private static boolean hasended = false;
-    public static void startBot() {
-        try {
-            puke(d, "");
-        } catch (DukeException e) {
-            System.out.println(e);
-        } catch (StackOverflowError e) {
-            System.out.println("goodbye");
-        } finally {
-            if (hasended) {
-                return;
-            } else {
-                startBot();
-            }
         }
     }
 }

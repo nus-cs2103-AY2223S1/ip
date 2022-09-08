@@ -55,13 +55,6 @@ public class Ui {
 
     }
 
-    public void echo(Scanner sc) {
-        String s = sc.nextLine();
-        if (s.equals("bye")){
-            return;
-        }
-        echo(sc);
-    }
 
     /**
      * Prints out system message for marking tasks as done/undone
