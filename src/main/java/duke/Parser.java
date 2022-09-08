@@ -22,6 +22,7 @@ import duke.task.Todo;
  * @author Derrick Khoo
  */
 public class Parser {
+    public static final String ERROR_DID_NOT_SPECIFY_WHAT = "Did you forget to specify what?";
 
     /**
      * Handles the case where the user inputs a <code>Todo</code>.
@@ -46,7 +47,7 @@ public class Parser {
      */
     public static Event handleEvent(String input) throws DukeException {
         if (input.length() == 0) {
-            throw new DukeException("Did you forget to specify what?");
+            throw new DukeException(ERROR_DID_NOT_SPECIFY_WHAT);
         }
         String[] modifiedInput = input.split("/", 2);
         String description = modifiedInput[0];
@@ -70,7 +71,7 @@ public class Parser {
      */
     public static Deadline handleDeadline(String input) throws DukeException {
         if (input.length() == 0) {
-            throw new DukeException("Did you forget to specify what?");
+            throw new DukeException(ERROR_DID_NOT_SPECIFY_WHAT);
         }
         String[] modifiedInput = input.split("/", 2);
         String description = modifiedInput[0];
