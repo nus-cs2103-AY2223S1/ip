@@ -30,9 +30,9 @@ public class HomePageCommand extends Command {
                 );
             }
         } else {
-            User user = new User(System.getProperty("user.name"));
+            user = new User(System.getProperty("user.name"), User.USER_IMAGE);
             SaveManager.save("user", user);
-
+            TaskList.initialise();
             return new InternalAction(
                     String.format("This is the first time we've met, %s.", user.getName())
                             + "\nNice to meet you! What would you like to do?"
@@ -82,6 +82,7 @@ public class HomePageCommand extends Command {
     }
 
     public User getUser() {
+        assert user != null;
         return user;
     }
 }

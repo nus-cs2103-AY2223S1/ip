@@ -41,23 +41,24 @@ public class DialogBox extends HBox {
 
     @FXML
     private HBox parentPanel;
-
     @FXML
     private Label name;
     @FXML
     private Label dialog;
-
     @FXML
     private VBox dialogLayout;
-
     @FXML
     private ImageView displayPicture;
+    @FXML
+    private Widget widget;
 
-    private DialogBox(String dialogText, String nameText, Image img, Color color) {
-        this(dialogText, nameText, img, color, false);
+    protected DialogBox(String dialogText, User user, Color backgroundColor, Widget widget) {
+        this(dialogText, user, backgroundColor);
+        this.widget = widget;
+        dialogLayout.getChildren().add(widget);
     }
 
-    private DialogBox(String dialogText, String nameText, Image img, Color color, boolean isFlipped) {
+    protected DialogBox(String dialogText, User user, Color backgroundColor) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
             fxmlLoader.setController(this);
@@ -67,20 +68,20 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
-        name.setText(nameText);
+        name.setText(user.getName());
         dialog.setText(dialogText);
 
-        setDisplayPicture(img);
+        setDisplayPicture(user.getUserImage());
 
         dialog.setPadding(new Insets(5, 5, 5, 5));
 
         this.setBackground(new Background(new BackgroundFill(
-                color,
+                backgroundColor,
                 new CornerRadii(10),
                 new Insets(5, 5, 5, 5)))
         );
 
-        if (isFlipped) {
+        if (!user.equals(Duke.getUser())) {
             this.flip();
         }
 
@@ -89,7 +90,7 @@ public class DialogBox extends HBox {
             public void changed(ObservableValue<? extends Bounds> observable, Bounds oldValue, Bounds newValue) {
                 TranslateTransition translateTransition = new TranslateTransition(Duration.millis(500),
                         DialogBox.this);
-                translateTransition.setFromX((isFlipped ? -1 : 1) * newValue.getWidth() / 2);
+                translateTransition.setFromX((user.equals(Duke.getUser()) ? 1 : -1) * newValue.getWidth() / 2);
                 translateTransition.setFromY(-newValue.getHeight() / 2);
                 translateTransition.setToX(0);
                 translateTransition.setToY(0);
@@ -154,11 +155,11 @@ public class DialogBox extends HBox {
         return timeline;
     }
 
-    public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, Duke.getUser().getName(), img, Color.TURQUOISE);
+    public static DialogBox getUserDialog(String text) {
+        return new DialogBox(text, Duke.getUser(), Color.TURQUOISE);
     }
 
-    public static DialogBox getDukeDialog(String text, Image img) {
-        return new DialogBox(text, "Duke", img, Color.BURLYWOOD, true);
+    public static DialogBox getDukeDialog(String text) {
+        return new DialogBox(text, User.DUKE, Color.BURLYWOOD);
     }
 }

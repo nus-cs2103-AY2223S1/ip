@@ -16,10 +16,7 @@
                 <children>
                     <VBox fx:id="dialogLayout" alignment="TOP_RIGHT" spacing="1">
                         <children>
-                            <Label fx:id="name" text="Label" wrapText="true" style="-fx-font-weight: bold;">
-                                <font>
-                                    <Font name="Corbel" size="15.0"/>
-                                </font>
+                            <Label fx:id="name" text="Label" wrapText="true" style="-fx-font-family: Corbel; -fx-font-weight: bold;-fx-font-size: 15px;">
                                 <padding>
                                     <Insets left="5.0" right="5.0"/>
                                 </padding>

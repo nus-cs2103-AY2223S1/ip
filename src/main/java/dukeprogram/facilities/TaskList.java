@@ -42,6 +42,9 @@ public class TaskList implements Serializable {
      * @return the current task list
      */
     public static TaskList current() {
+        if (current == null) {
+            initialise();
+        }
         return current;
     }
 

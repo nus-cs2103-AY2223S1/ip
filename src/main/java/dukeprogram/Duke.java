@@ -17,18 +17,20 @@ public class Duke {
 
     private static Command currentContext;
 
-    private static final ArrayList<String> responseLog = new ArrayList<>();
+    private static final ArrayList<DukeResponse> responseLog = new ArrayList<>();
 
 
     /**
      * Begins the Duke program from GUI
      * @return the welcoming message of the beginning of the program
      */
-    public static String[] start() {
+    public static DukeResponse[] start() {
+        System.out.println("Starting");
         currentContext = new HomePageCommand();
         InternalAction internalAction = currentContext.onInvoke();
         user = ((HomePageCommand) currentContext).getUser();
-        return internalAction.getAllDisplayText();
+
+        return internalAction.getAllResponses();
     }
 
 
@@ -37,11 +39,11 @@ public class Duke {
      * @param input the input to hand to Duke
      * @return all the responses from Duke
      */
-    public static String[] getResponses(String input) {
+    public static DukeResponse[] getResponses(String input) {
         InternalAction internalAction = currentContext.onParse(input);
-        responseLog.addAll(List.of(internalAction.getAllDisplayText()));
+        responseLog.addAll(List.of(internalAction.getAllResponses()));
         internalAction.doRunnable();
-        String[] responses = responseLog.stream().filter(x -> !x.equals("")).toArray(String[]::new);
+        DukeResponse[] responses = responseLog.toArray(DukeResponse[]::new);
         responseLog.clear();
 
         return responses;
@@ -52,14 +54,16 @@ public class Duke {
      * Exits the current state
      */
     public static void exitCurrentState() {
+        assert currentContext != null;
         try {
             SaveManager.serialize("saveFile");
         } catch (IOException e) {
-            responseLog.add("Wait... I had some issues saving your progress");
+            System.out.println(e);
+            responseLog.add(new DukeResponse("Wait... I had some issues saving your progress"));
         }
         currentContext = currentContext.onExit();
         InternalAction internalAction = currentContext.onInvoke();
-        responseLog.addAll(List.of(internalAction.getAllDisplayText()));
+        responseLog.addAll(List.of(internalAction.getAllResponses()));
         internalAction.doRunnable();
     }
 
@@ -70,7 +74,7 @@ public class Duke {
     public static void setState(Command state) {
         currentContext = state;
         InternalAction internalAction = currentContext.onInvoke();
-        responseLog.addAll(List.of(internalAction.getAllDisplayText()));
+        responseLog.addAll(List.of(internalAction.getAllResponses()));
         internalAction.doRunnable();
     }
 

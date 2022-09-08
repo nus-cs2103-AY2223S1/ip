@@ -3,7 +3,9 @@ package dukeprogram.command;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import dukeprogram.DukeResponse;
 import dukeprogram.InternalAction;
+import dukeprogram.Widget;
 import dukeprogram.facilities.TaskList;
 
 /**
@@ -19,10 +21,9 @@ public class ListTasksCommand extends Command {
                         .mapToObj(i -> i + 1 + ". " + currentTaskList.get(i).toString())
                         .collect(Collectors.joining("\n"));
 
-        return new InternalAction(
-                "This is your task list: \n"
-                        + formattedTaskListString
-        );
+        return new InternalAction(new DukeResponse(
+                "Here is your task list:",
+                new Widget("Tasks:", formattedTaskListString)));
     }
 
     @Override
