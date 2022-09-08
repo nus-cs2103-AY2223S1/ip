@@ -1,5 +1,7 @@
 package jenny.util;
 
+import jenny.tasks.TaskList;
+
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -79,6 +81,14 @@ public final class Ui {
      * @param messages an {@link ArrayList} of {@link String}.
      */
     public void print(ArrayList<String> messages) {
+        pr.print(messages);
+    }
+
+    public void print(TaskList tasks) {
+        String tempStr = tasks.toString();
+        int tempStrLen = tempStr.length();
+        tempStr = tempStr.substring(1, tempStrLen - 1);
+        String[] messages = tempStr.split(", ");
         pr.print(messages);
     }
 }

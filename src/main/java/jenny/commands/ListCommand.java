@@ -1,12 +1,12 @@
 package jenny.commands;
 
-import java.util.ArrayList;
-
 import jenny.exceptions.JennyException;
 import jenny.storage.Storage;
 import jenny.tasks.Task;
 import jenny.tasks.TaskList;
 import jenny.util.Ui;
+
+import java.util.ArrayList;
 
 
 /**
@@ -42,6 +42,6 @@ public class ListCommand extends Command {
         if (tasks.isEmpty()) {
             throw new JennyException(MESSAGE_SCOPE, ERROR_EMPTY_LIST);
         }
-        ui.print(tasks.toString());
+        ui.print(tasks);
     }
 }
