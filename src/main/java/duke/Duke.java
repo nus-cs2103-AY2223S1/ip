@@ -55,7 +55,7 @@ public class Duke {
     public String getResponse(String s) {
         try {
             String[] parsed = Parser.parseInput(s);
-            assert parsed.length == 6 : "Parser error occurred.";
+            assert parsed.length == 3 : "Parser error occurred.";
 
             if (parsed[0].equals("bye")) {
                 return getByeResponse();

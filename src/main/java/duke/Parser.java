@@ -17,20 +17,20 @@ public class Parser {
     }
 
     private static String[] formatResults(String cmd) {
-        String[] result = new String[6];
+        String[] result = new String[3];
         result[0] = cmd;
         return result;
     }
 
     private static String[] formatResults(String cmd, String description) {
-        String[] result = new String[6];
+        String[] result = new String[3];
         result[0] = cmd;
         result[1] = description;
         return result;
     }
 
     private static String[] formatResults(String cmd, String description, String time) {
-        String[] result = new String[6];
+        String[] result = new String[3];
         result[0] = cmd;
         result[1] = description;
         result[2] = time;
@@ -52,10 +52,8 @@ public class Parser {
         s = s.trim();
         String[] helper = s.split(" ");
         String cmd = helper[0];
-        String[] result = new String[6];
 
         if (helper.length == 1) {
-            //String cmd = helper[0];
             if (cmd.equals("bye")) {
                 return formatResults(cmd);
 
