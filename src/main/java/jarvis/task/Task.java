@@ -1,6 +1,8 @@
+package jarvis.task;
+
 public class Task {
-    protected String description;
-    protected boolean isDone;
+    public String description;
+    public boolean isDone;
 
     protected static int count = 0;
 

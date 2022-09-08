@@ -1,10 +1,11 @@
+package jarvis.task;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 
 public class Event extends Task{
 
-    protected LocalDate at;
+    public LocalDate at;
 
     public Event(String description, String date) {
         super(description);

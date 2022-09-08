@@ -1,13 +1,13 @@
-import java.io.File;
+package jarvis;
+
+import jarvis.task.TaskList;
+import jarvis.exception.JarvisException;
+
 import java.io.IOException;
-import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
-import java.io.FileWriter;
 
 public class Jarvis {
     public static void main(String[] args) throws JarvisException {
-        
+
         String filePath = "data/taskList.txt";
 
         TaskList tasks;
