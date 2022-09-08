@@ -129,6 +129,7 @@ public class Duke {
 
         try {
             t = createTask(commands);
+            assert (t != null && t instanceof Task) : "t must be a Task object";
 
         } catch (IllegalArgumentException e) {
             // Cannot create task due to invalid commands
@@ -292,6 +293,8 @@ public class Duke {
         // Remove the task from the TaskList object
         Task t = storedTasks.removeTask(indexNumber);
 
+        assert (t != null && t instanceof Task) : "t must be a Task object";
+
         return ui.getDeleteTaskMessage(t, storedTasks.getSize());
     }
 
@@ -372,6 +375,8 @@ public class Duke {
      * @return Response string.
      */
     public String getResponse(String input) {
+        assert input != null : "input cannot be null";
+
         String[] commands = Parser.parseCommand(input);
         return executeCommand(commands);
     }
