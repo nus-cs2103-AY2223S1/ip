@@ -215,6 +215,12 @@ public class TaskList {
      */
     public static void isValid(String taskIndexInput) throws InvalidIndexException {
 
+        if (tasks.isEmpty()) {
+            String errorMessage = "OOPS!!! (•﹏•)\nThere is no task in your list!\n"
+                    + "Add one first.";
+            throw new InvalidIndexException(errorMessage);
+        }
+
         if (taskIndexInput == null) {
             String errorMessage = "OOPS!!! (•﹏•)\nTask index cannot be empty. "
                     + "It must be specified and must be a number.";
