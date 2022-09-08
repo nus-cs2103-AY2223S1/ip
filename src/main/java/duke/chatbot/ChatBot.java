@@ -66,9 +66,11 @@ public class ChatBot {
      * save command of the task manager after every successful command processed.
      *
      * @param input string of the input provided by the user
+     * @return the response to the user input
      */
-    public void processCommand(String input) {
+    public String processCommand(String input) {
         Scanner inputScanner = new Scanner(input);
+        String response = "";
         try {
             String command = inputScanner.next();
             if (!(inputScanner.hasNext())) {
@@ -77,7 +79,7 @@ public class ChatBot {
                     this.isRunning = false;
                     break;
                 case "list":
-                    System.out.println(wrapMessage(taskManager.listTask()));
+                    response = taskManager.listTask();
                     break;
                 case "todo":
                     // Fallthrough
@@ -93,7 +95,6 @@ public class ChatBot {
             } else {
                 String arguments = inputScanner.nextLine().substring(1);
                 Scanner argumentScanner = new Scanner(arguments);
-                String response = "";
                 switch (command) {
                 case "todo":
                     response = taskManager.addTask(new ToDoTask(argumentScanner.nextLine()));
@@ -128,15 +129,16 @@ public class ChatBot {
                 taskManager.save();
             }
         } catch (InputMismatchException exception) {
-            System.out.println(wrapMessage("You need to put a number after your command!\n"));
+            response = "You need to put a number after your command!\n";
         } catch (NoSuchElementException exception) {
-            System.out.println(wrapMessage("You placed invalid arguments!\n"));
+            response = "You placed invalid arguments!\n";
         } catch (EmptyTaskException | InvalidDeadlineException | InvalidEventException exception) {
-            System.out.println(wrapMessage(exception.toString()));
+            response = exception.toString();
         } catch (InvalidCommandException exception) {
-            System.out.println(wrapMessage("Sorry, I don't understand what you mean by \"" + input + "\"\n"));
+            response = "Sorry, I don't understand what you mean by \"" + input + "\"\n";
         } finally {
             inputScanner.close();
+            return response;
         }
     }
 

@@ -6,12 +6,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import duke.chatbot.ChatBot;
+import duke.gui.DialogBox;
 import java.util.Scanner;
 public class Duke extends Application {
     private static final double WINDOW_MIN_WIDTH = 400.0;
@@ -21,6 +24,11 @@ public class Duke extends Application {
     private VBox dialogContainer;
     private TextField userInput;
     private Button sendButton;
+
+    private Image userPicture = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
+    private Image chatbotPicture = new Image(this.getClass().getResourceAsStream("/images/Christina.jpg"));
+
+    private ChatBot christina;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -34,6 +42,9 @@ public class Duke extends Application {
     }
     @Override
     public void start(Stage stage) {
+        christina = new ChatBot("Christina");
+        christina.initialize();
+        
         // Setting the scene
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
@@ -48,9 +59,7 @@ public class Duke extends Application {
         scene = new Scene(mainLayout);
 
         // Styling the scene
-
-
-        stage.setTitle("Duke");
+        stage.setTitle("DukePro");
         stage.setResizable(false);
         stage.setMinWidth(WINDOW_MIN_WIDTH);
         stage.setMinHeight(WINDOW_MIN_HEIGHT);
@@ -64,10 +73,17 @@ public class Duke extends Application {
         scrollPane.setFitToWidth(true);
 
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
 
         userInput.setPrefWidth(325.0);
+        userInput.setOnAction((event) -> {
+            handleUserInput();
+        });
 
         sendButton.setPrefWidth(55.0);
+        sendButton.setOnMouseClicked((event) -> {
+            handleUserInput();
+        });
 
         AnchorPane.setTopAnchor(scrollPane, 1.0);
 
@@ -78,5 +94,20 @@ public class Duke extends Application {
         AnchorPane.setRightAnchor(sendButton, 1.0);
         stage.setScene(scene);
         stage.show();
+    }
+
+    private void handleUserInput() {
+        Label userText = new Label(userInput.getText());
+        Label responseText = new Label(christina.processCommand(userInput.getText()));
+        dialogContainer.getChildren().addAll(
+            DialogBox.getUserDialog(userText, new ImageView(userPicture)), 
+            DialogBox.getResponseDialog(responseText, new ImageView(chatbotPicture))
+        );
+        userInput.clear();
+
+        if (!(christina.isRunning())) {
+            christina.terminate();
+            System.exit(0);
+        }
     }
 }
