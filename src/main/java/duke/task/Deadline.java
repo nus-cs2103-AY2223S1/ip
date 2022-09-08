@@ -24,10 +24,10 @@ public class Deadline extends Task{
      * duke.task.Deadline constructor for task loaded from saved file
      * @param name name of task
      * @param deadline deadline of task
-     * @param status completed status of task
+     * @param isCompleted completed status of task
      */
-    public Deadline(String name, String deadline, boolean status) {
-        super(name, status);
+    public Deadline(String name, String deadline, boolean isCompleted, PriorityLevel priority) {
+        super(name, isCompleted, priority);
         this.deadline = LocalDate.parse(deadline);
     }
 

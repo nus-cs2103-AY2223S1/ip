@@ -18,8 +18,8 @@ public class ToDos extends Task{
      * @param name name of task
      * @param status completed status of task
      */
-    public ToDos(String name, boolean status) {
-        super(name, status);
+    public ToDos(String name, boolean status, PriorityLevel priority) {
+        super(name, status, priority);
     }
 
     /**
