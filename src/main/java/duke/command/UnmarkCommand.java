@@ -38,5 +38,4 @@ public class UnmarkCommand extends Command {
         storage.update(tasks);
         return String.format("%s\n%s", TASK_UNMARK, task);
     }
-
 }
