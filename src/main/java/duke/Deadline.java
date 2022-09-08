@@ -62,6 +62,7 @@ public class Deadline extends Task{
         if(this.time == null) {
             return "";
         }
+
         String hh = this.time.substring(0,2);
         String mm = this.time.substring(2,4);
 
@@ -70,13 +71,10 @@ public class Deadline extends Task{
             return hh + ":" + mm +"pm";
         }
         else {
-            if (Integer.parseInt(hh) == 0) {
-                return "12:" + mm +"am";
-            } else {
-                return hh + ":" + mm +"pm";
-            }
+            return Integer.parseInt(hh) == 0
+                    ? "12:" + mm + "am"
+                    : hh + ":" + mm + "am";
         }
-
     }
 
 }
