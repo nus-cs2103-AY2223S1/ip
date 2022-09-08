@@ -97,4 +97,36 @@ public class TaskList {
         }
         return result;
     }
+
+    public ArrayList<String> findTodo() {
+        ArrayList<String> result = new ArrayList<String>();
+        for (int i = 0; i < lst.size(); i++) {
+            System.out.println(lst.get(i).toString());
+            if (lst.get(i).toString().charAt(0) == 'T') {
+                result.add(lst.get(i).formatTask());
+            }
+        }
+        return result;
+    }
+
+    public ArrayList<String> findEvent() {
+        ArrayList<String> result = new ArrayList<String>();
+        for (int i = 0; i < lst.size(); i++) {
+            System.out.println(lst.get(i).toString());
+            if (lst.get(i).toString().charAt(0) == 'E') {
+                result.add(lst.get(i).formatTask());
+            }
+        }
+        return result;
+    }
+
+    public ArrayList<String> findDeadline() {
+        ArrayList<String> result = new ArrayList<String>();
+        for (int i = 0; i < lst.size(); i++) {
+            if (lst.get(i).toString().charAt(0) == 'D') {
+                result.add(lst.get(i).formatTask());
+            }
+        }
+        return result;
+    }
 }

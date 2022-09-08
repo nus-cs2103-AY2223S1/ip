@@ -20,6 +20,7 @@ public class Event extends Task {
         return "[E] [" + super.getStatusIcon() + "] " + super.description + " (at: "
                 + at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
+
     @Override
     public String toString() {
         return "E/" + super.getStatusIcon() + "/" + super.description + "/" + at;

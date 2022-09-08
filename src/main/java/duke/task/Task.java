@@ -49,6 +49,7 @@ public class Task {
     public String formatTask() {
         return "task";
     }
+
     @Override
     public String toString() {
         return "task";
