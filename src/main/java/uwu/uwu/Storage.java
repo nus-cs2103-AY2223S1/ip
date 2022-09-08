@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 import uwu.exception.LoadingFileErrorException;
 import uwu.exception.UwuException;
-
 import uwu.task.Deadline;
 import uwu.task.Event;
 import uwu.task.TaskList;
@@ -77,7 +76,7 @@ public class Storage {
                     result.add(todo);
                     break;
                 case "D":
-                    Deadline deadline = new Deadline(taskData[2],taskData[3]);
+                    Deadline deadline = new Deadline(taskData[2], taskData[3]);
                     deadline.setIsDone(taskData[1].equals("1"));
                     result.add(deadline);
                     break;
@@ -86,6 +85,9 @@ public class Storage {
                     event.setIsDone(taskData[1].equals("1"));
                     result.add(event);
                     break;
+                default:
+                    throw new LoadingFileErrorException("\n\toops! seems like there is trouble "
+                            + "loading the task list file TT");
                 }
             }
         } catch (IOException e) {

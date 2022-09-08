@@ -3,22 +3,19 @@ package uwu.uwu;
 import uwu.command.Command;
 import uwu.exception.UwuException;
 import uwu.task.TaskList;
-import uwu.uwu.Parser;
-import uwu.uwu.Storage;
-import uwu.uwu.Ui;
 
 /**
  * The UwuBot program to be executed.
  */
 public class UwuBot {
+    /** The ui to print out UwuBot's response. */
+    private static Ui ui = new Ui();
+
     /** The task list that is stored in the user's hard disk. */
     private Storage storage;
 
     /** The list where tasks are added to. */
     private TaskList tasks;
-
-    /** The ui to print out UwuBot's response. */
-    private static Ui ui = new Ui();
 
     /**
      * Constructor for UwuBot object.
@@ -42,6 +39,13 @@ public class UwuBot {
         }
     }
 
+    /**
+     * Checks if the UwuBot program has ended.
+     *
+     * @param input The user input.
+     * @return true if the command exits the UwuBot program.
+     *         false if the command does not exit the UwuBot program.
+     */
     public boolean isEnd(String input) {
         try {
             Command c = Parser.parse(input);

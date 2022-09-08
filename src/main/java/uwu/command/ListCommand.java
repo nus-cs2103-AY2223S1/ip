@@ -1,9 +1,7 @@
 package uwu.command;
 
-import uwu.uwu.Storage;
-
 import uwu.task.TaskList;
-
+import uwu.uwu.Storage;
 import uwu.uwu.Ui;
 
 /**
@@ -17,7 +15,7 @@ public class ListCommand extends Command {
      * @param ui The ui to print out UwuBot's response.
      * @param storage The task list that is stored in the user's hard disk.
      */
-    public String execute (TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         return ui.listTasks(tasks);
     }
 

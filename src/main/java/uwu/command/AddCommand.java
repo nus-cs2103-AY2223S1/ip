@@ -3,16 +3,14 @@ package uwu.command;
 import uwu.exception.EmptyInputException;
 import uwu.exception.IncorrectFormatException;
 import uwu.exception.InvalidDateException;
+import uwu.exception.NullTaskException;
 import uwu.exception.UwuException;
-
-import uwu.uwu.Storage;
-
 import uwu.task.Deadline;
 import uwu.task.Event;
 import uwu.task.Task;
 import uwu.task.TaskList;
 import uwu.task.ToDos;
-
+import uwu.uwu.Storage;
 import uwu.uwu.Ui;
 
 /**
@@ -60,13 +58,13 @@ public class AddCommand extends Command {
 
         switch (taskType) {
         case "todo":
-                ToDos todo = new ToDos(description);
-                tasks.add(todo);
-                storage.save(tasks.taskListToStorageString());
-                response = ui.addTask(todo, tasks.size());
-                break;
+            ToDos todo = new ToDos(description);
+            tasks.add(todo);
+            storage.save(tasks.taskListToStorageString());
+            response = ui.addTask(todo, tasks.size());
+            break;
         case "deadline":
-            // Fallthrough.
+        // Fallthrough.
         case "event":
             String descriptor = taskType.equals("deadline") ? "/by" : "/at";
 
@@ -80,7 +78,7 @@ public class AddCommand extends Command {
                         + "\nplease enter a date after the " + descriptor
                         + " in this format:" + "\n\tyyyy-mm-dd HH:mm"
                         + "\nthankiew <:");
-                }
+            }
 
             int startIndex = userCommand.indexOf(descriptor + " ");
             int userCmdLen = userCommand.length();
@@ -98,6 +96,9 @@ public class AddCommand extends Command {
             storage.save(tasks.taskListToStorageString());
             response = ui.addTask(task, tasks.size());
             break;
+        default:
+            throw new NullTaskException("\tsomething went wrong while adding your task..."
+                    + "\n\tmake sure your task is of type todo, deadline or event~!");
         }
 
         return response;

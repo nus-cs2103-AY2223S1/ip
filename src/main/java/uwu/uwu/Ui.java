@@ -1,7 +1,5 @@
 package uwu.uwu;
 
-import java.util.Scanner;
-
 import uwu.task.Task;
 import uwu.task.TaskList;
 
@@ -86,12 +84,19 @@ public class Ui {
 
     /**
      * Displays the error encountered during execution.
+     *
      * @param e The exception message.
      */
     public String showError(String e) {
         return e;
     }
 
+    /**
+     * Displays the tasks found containing the keyword.
+     *
+     * @param tasks The tasks containing the keyword.
+     * @return The list of tasks containing the keyword.
+     */
     public String findTask(TaskList tasks) {
         if (tasks.size() == 0) {
             return "hm...looks like there are no tasks matching the keyword ><\ntry another one~";

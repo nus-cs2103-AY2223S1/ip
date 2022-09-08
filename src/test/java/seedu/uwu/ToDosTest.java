@@ -1,18 +1,18 @@
 package seedu.uwu;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import uwu.exception.UwuException;
-import uwu.task.ToDos;
-import uwu.task.Deadline;
+import org.junit.jupiter.api.Test;
 
+import uwu.exception.UwuException;
+import uwu.task.Deadline;
+import uwu.task.ToDos;
 
 public class ToDosTest {
     @Test
     public void toString_nonNullTask_success() {
         ToDos task = new ToDos("read book");
-        assertEquals("[T][ ]\tread book",task.toString());
+        assertEquals("[T][ ]\tread book", task.toString());
     }
 
     @Test

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /** This class encapsulates a TaskList object. */
 public class TaskList {
     /** The list of user's tasks. */
-    public ArrayList<Task> userToDoList;
+    private ArrayList<Task> userToDoList;
 
     /**
      * Constructor for TaskList object.
@@ -31,6 +31,15 @@ public class TaskList {
      */
     public Task get(int i) {
         return userToDoList.get(i);
+    }
+
+    /**
+     * Sets the userToDoList to tasks.
+     *
+     * @param tasks The updated task list.
+     */
+    public void setTaskList(ArrayList<Task> tasks) {
+        this.userToDoList = tasks;
     }
 
     /**
