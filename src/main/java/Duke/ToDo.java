@@ -15,9 +15,6 @@ public class ToDo extends Task {
      */
     public ToDo(String name, boolean init, boolean completed, int listSize) {
         super(name, completed);
-//        if (!init) {
-//            addMessage(listSize);
-//        }
     }
     
     /**

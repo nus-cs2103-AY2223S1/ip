@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -43,12 +42,14 @@ public class Duke extends Application {
      */
     private final Parser parser;
 
+    /**
+     * executer object to run commands.
+     */
+    private static final Execute executer = new Execute();
 
-    private ScrollPane scrollPane;
+
     private VBox dialogContainer;
     private TextField userInput;
-    private Button sendButton;
-    private Scene scene;
     private Image user = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
 
@@ -67,22 +68,6 @@ public class Duke extends Application {
     }
 
     /**
-     * Constructor for Duke.
-     *
-     * @param filePath filepath to data file.
-     */
-    public Duke(String filePath) {
-        ui = new Ui();
-        storage = new Storage(filePath);
-        parser = new Parser();
-        try {
-            tasks = new TaskList(storage.load());
-        } catch (IOException e) {
-            ui.showErrorReadingMessage();
-        }
-    }
-
-    /**
      * Constructor for Duke with no parameters.
      */
     public Duke() {
@@ -97,14 +82,14 @@ public class Duke extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         // step 1
-        scrollPane = new ScrollPane();
+        ScrollPane scrollPane = new ScrollPane();
         dialogContainer = new VBox();
         scrollPane.setContent(dialogContainer);
 
         userInput = new TextField();
-        sendButton = new Button("Send");
+        Button sendButton = new Button("Send");
 
         AnchorPane mainLayout = new AnchorPane();
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
@@ -154,20 +139,6 @@ public class Duke extends Application {
     }
 
     /**
-     * Iteration 1:
-     * Creates a label with the specified text and adds it to the dialog container.
-     *
-     * @param text String containing text to add
-     * @return a label with the specified text that has word wrap enabled.
-     */
-    private Label getDialogLabel(String text) {
-        Label textToAdd = new Label(text);
-        textToAdd.setWrapText(true);
-
-        return textToAdd;
-    }
-
-    /**
      * Iteration 2:
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
@@ -190,42 +161,6 @@ public class Duke extends Application {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
-     */
-    String getResponse(String input) {
-        return "Duke heard: " + input;
-    }
-
-    /**
-     * Main method initializes welcome message, and then calls taskList method.
-     *
-     * @param args unused
-     */
-    public static void main(String[] args) {
-        //new Duke("data/duke.txt").run();
-    }
-
-    /**
-     * TaskList method creates an input loop, creating Duke.Task objects and adding it to the array.
-     *
-     * @throws NumberFormatException if User inputs a non integer after mark/unmark
-     */
-    public void run() throws NumberFormatException {
-        while (ui.hasInput()) {
-            String input = ui.getUserInput().trim();
-            Commands command = parser.parseCommand(input);
-            if (command == Commands.BYE) {
-                break;
-            } else {
-                executeCommand(command, input);
-            }
-        }
-        ui.showGoodbyeMessage();
-    }
-
-
-    /**
      * Processes and runs user commands.
      *
      * @param command user command
@@ -233,87 +168,22 @@ public class Duke extends Application {
      */
     static String executeCommand(Commands command, String input) {
         if (command == Commands.LIST) {
-            StringBuilder list = new StringBuilder();
-            for (int i = 1; i <= tasks.getSize(); i++) {
-                String index = String.format("%d.", i);
-                String entry = index + tasks.getItem(i).toString() + "\n";
-                //ui.showEntry(entry);
-                list.append(entry);
-            }
-            return list.toString();
+            return executer.executeList(tasks);
 
         } else if (command == Commands.MARK) {
-            String number = input.split(" ", 2)[1];
-            try {
-                int num = Integer.parseInt(number);
-                String str = tasks.markTasks("mark", num);
-                storage.rewriteFile(tasks.getTaskArray());
-                return str;
+            return executer.executeMark(tasks, input, storage, ui);
 
-            } catch (NumberFormatException e) {
-                ui.showInvalidTaskMessage();
-            } catch (IOException e) {
-                ui.showErrorWritingMessage();
-            }
         } else if (command == Commands.UNMARK) {
-            try {
-                String number = input.split(" ", 2)[1];
-                int num = Integer.parseInt(number);
-                String str = tasks.markTasks("unmark", num);
-                storage.rewriteFile(tasks.getTaskArray());
-                return str;
+            return executer.executeUnmark(tasks, input, storage, ui);
 
-            } catch (NumberFormatException e) {
-                ui.showInvalidTaskMessage();
-            } catch (IOException e) {
-                ui.showErrorWritingMessage();
-            }
         } else if (command == Commands.DELETE) {
-            String number = input.split(" ", 2)[1];
-            try {
-                int num = Integer.parseInt(number);
-                Task toDelete = tasks.getTaskArray().get(num - 1);
-                tasks.delete(toDelete);
-                String str = ui.showDeleteMessage(toDelete, tasks.getSize());
-                storage.writeToFile(toDelete);
-                return str;
+            return executer.executeDelete(tasks, input, storage, ui);
 
-            } catch (NumberFormatException e) {
-                return ui.showInvalidTaskMessage();
-            } catch (IndexOutOfBoundsException e) {
-                return ui.showInvalidIndexMessage();
-            } catch (IOException e) {
-                return ui.showErrorWritingMessage();
-            }
         } else if (command == Commands.CREATETASK) {
-            try {
-                Task newTask = tasks.createTask(input, false);
-                if (newTask != null) {
-                    storage.writeToFile(newTask);
-                    return newTask.addMessage(tasks.getSize());
-                }
+            return executer.executeCreateTask(tasks, input, storage, ui);
 
-            } catch (DukeException.EmptyTaskException | DukeException.UnkownCommandException | DukeException.InvalidParameterException error) {
-                return error.getMessage();
-            } catch (IOException e) {
-                return ui.showErrorWritingMessage();
-            }
         } else if (command == Commands.FIND) {
-            try {
-                String word = input.split(" ", 2)[1];
-                StringBuilder list = new StringBuilder();
-                for (int i = 1; i <= tasks.getSize(); i++) {
-                    String index = String.format("%d.", i);
-                    String entry = index + tasks.getItem(i).toString();
-                    if (entry.contains(word)) {
-                        //ui.showEntry(entry);
-                        list.append(entry);
-                    }
-                }
-                return list.toString();
-            } catch (ArrayIndexOutOfBoundsException e) {
-                return ui.showInvalidFindFiledMessage();
-            }
+            return executer.executeFind(tasks, input, ui);
         }
         return "";
     }
