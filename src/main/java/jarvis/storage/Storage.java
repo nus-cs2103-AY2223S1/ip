@@ -106,10 +106,10 @@ public class Storage {
 
                 if (task instanceof Deadline) {
                     taskString.append("|");
-                    taskString.append(((Deadline) task).getBy());
+                    taskString.append(((Deadline) task).getDueBy());
                 } else if (task instanceof Event) {
                     taskString.append("|");
-                    taskString.append(((Event) task).getAt());
+                    taskString.append(((Event) task).getStartAt());
                 }
 
                 taskString.append(System.lineSeparator());
