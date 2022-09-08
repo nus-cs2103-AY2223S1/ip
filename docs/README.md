@@ -5,7 +5,7 @@ CaCa is a desktop application for managing tasks. It is optimised for use via a 
 Start your task easily and boost your productivity with CaCa 🤖, a personal assistant chatbot which frees your mind 🤯 of having to remember and keep track of overwhelming things you need to do! ✅
 
 - [Quick Start](#quick-start)
-- [Features & Usage](#features-&-usage)
+- [Features & Usage](#features--usage)
   - [Showing help page](#showing-help-page-help)
   - [Adding ToDo](#adding-todo-todo-todo_description)
   - [Adding Deadline](#adding-deadline-deadline-deadline_description-by-ddmmyyyy-hhmm)
@@ -27,7 +27,7 @@ Start your task easily and boost your productivity with CaCa 🤖, a personal as
 4. Double-click `CaCa.jar` to start the app.
 5. Type the command in the text box and press Enter on your keyboard or click "Send" to execute it.
 
-![](/docs/Ui.png)
+<img src = "/docs/Ui.png" width = 500>
 
 <hr>
 
