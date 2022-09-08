@@ -162,7 +162,7 @@ public class Parser {
                         UNKNOWN_COMMAND_SUPPLIER
                 );
 
-        private static List<String> instructions = List.of(
+        private static final List<String> instructions = List.of(
                 CommandType.ADD_DEADLINE.toString(),
                 CommandType.ADD_EVENT.toString(),
                 CommandType.ADD_TODO.toString(),
