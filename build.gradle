@@ -50,13 +50,12 @@ test {
 }
 
 application {
-    mainClass = "duke.Duke"
+    mainClass = "duke.Launcher"
 }
 
 shadowJar {
-    archiveBaseName.set('duke')
-    archiveClassifier.set('')
-    archiveVersion.set('1.0.2')
+    archiveBaseName = "duke"
+    archiveClassifier = null
 }
 
 run{

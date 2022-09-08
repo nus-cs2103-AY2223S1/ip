@@ -40,11 +40,13 @@ public class Parser {
             } else if (first.equals("mark")) {
                 char c = input.charAt(5);
                 int index = Integer.parseInt(String.valueOf(c));
+                assert index >= 0 && index < lst.size(): "Task index should be from 1 to length of list";
                 return(lst.markTask(index - 1, storage));
 
             } else if (first.equals("unmark")) {
                 char c = input.charAt(7);
                 int index = Integer.parseInt(String.valueOf(c));
+                assert index >= 0 && index < lst.size(): "Task index should be from 1 to length of list";
                 return(lst.unmarkTask(index - 1, storage));
 
 
@@ -57,6 +59,7 @@ public class Parser {
                 String desc = "";
                 Task t = new Task("test");
                 if (first.equals("deadline")) {
+                    assert s.contains("/by") : "Please enter task in the format <desc> /by <date>";
                     String[] arr = s.split("/by");
                     desc = arr[0];
                     String time = arr[1].strip();
@@ -70,6 +73,7 @@ public class Parser {
                     t = new Deadline(desc, d);
                     lst.addNewTask(t);
                 } else if (first.equals("event")) {
+                    assert s.contains("/at") : "Please enter task in the format <desc> /at <date>";
                     String[] arr = s.split("/at");
                     desc = arr[0];
                     String time = arr[1].strip();
@@ -96,6 +100,7 @@ public class Parser {
                     throw new DukeException("Please specify task to delete");
                 }
                 int index = Integer.parseInt(words[1]) - 1;
+                assert index >= 0 && index < lst.size(): "Task index should be from 1 to length of list";
                 return(lst.deleteTask(index, storage));
 
             } else if (first.equals("find")) {
