@@ -6,8 +6,7 @@ import doemon.task.TaskList;
 import doemon.ui.Ui;
 
 public class AddCommand extends Command {
-
-    Task task;
+    private Task task;
 
     public AddCommand(Task task) {
         this.task = task;

@@ -15,7 +15,6 @@ import doemon.task.Event;
 import doemon.task.Todo;
 
 public class Parser {
-
     /**
      * Parses the user-input string and returns the related command.
      * @param inputString the user-inputted string
@@ -38,7 +37,9 @@ public class Parser {
 
         // Check for mark/unmark/delete
         if (inputArr.length == 2
-                && (inputArr[0].equals("mark") || inputArr[0].equals("unmark") || inputArr[0].equals("delete"))
+                && (inputArr[0].equals("mark")
+                || inputArr[0].equals("unmark")
+                || inputArr[0].equals("delete"))
                 && isInteger(inputArr[1])) {
             int taskIndex = Integer.parseInt(inputArr[1]) - 1;
             if (inputArr[0].equals("mark")) {

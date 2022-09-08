@@ -39,14 +39,14 @@ public class Event extends Task {
      * @return a string used to save the task
      */
     @Override
-    public String saveString() {
+    public String getSaveString() {
         String date = this.dueAtDate != null
-                ? this.dueAtDate.toString()
-                : this.dueAtStr;
+                      ? this.dueAtDate.toString()
+                      : this.dueAtStr;
         String time = this.dueAtTime != null
-                ? String.format(" %s", this.dueAtTime.format(DateTimeFormatter.ofPattern(("HHmm"))))
-                : "";
-        return String.format("E | %s | %s%s", super.saveString(), date, time);
+                      ? String.format(" %s", this.dueAtTime.format(DateTimeFormatter.ofPattern(("HHmm"))))
+                      : "";
+        return String.format("E | %s | %s%s", super.getSaveString(), date, time);
     }
 
     /**
@@ -56,11 +56,11 @@ public class Event extends Task {
     @Override
     public String toString() {
         String date = this.dueAtDate != null
-                ? this.dueAtDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
-                : this.dueAtStr;
+                      ? this.dueAtDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
+                      : this.dueAtStr;
         String time = this.dueAtDate != null && this.dueAtTime != null
-                ? String.format(" %s", this.dueAtTime.format(DateTimeFormatter.ofPattern("K:mma")))
-                : "";
+                      ? String.format(" %s", this.dueAtTime.format(DateTimeFormatter.ofPattern("K:mma")))
+                      : "";
         return String.format("[E]%s (at: %s%s)", super.toString(), date, time);
     }
 }

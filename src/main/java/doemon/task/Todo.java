@@ -14,8 +14,8 @@ public class Todo extends Task {
      * @return a string used to save the task
      */
     @Override
-    public String saveString() {
-        return String.format("T | %s", super.saveString());
+    public String getSaveString() {
+        return String.format("T | %s", super.getSaveString());
     }
 
     /**

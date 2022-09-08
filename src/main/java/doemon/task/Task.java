@@ -39,7 +39,7 @@ public class Task {
      * Returns a string used to save the task.
      * @return a string used to save the task
      */
-    public String saveString() {
+    public String getSaveString() {
         String isMarked = isDone ? "1" : "0";
         return String.format("%s | %s", isMarked, this.description);
     }

@@ -6,7 +6,6 @@ import doemon.task.TaskList;
 import doemon.ui.Ui;
 
 public class DeleteCommand extends Command {
-
     private int taskIndex;
 
     public DeleteCommand(int taskIndex) {

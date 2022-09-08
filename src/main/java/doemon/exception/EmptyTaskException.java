@@ -20,6 +20,7 @@ public class EmptyTaskException extends DoemonException {
      */
     @Override
     public String toString() {
-        return String.format("%s I can't put an empty %s on my bread...", super.toString(), this.task);
+        return String.format("%s I can't put an empty %s on my bread...",
+                super.toString(), this.task);
     }
 }

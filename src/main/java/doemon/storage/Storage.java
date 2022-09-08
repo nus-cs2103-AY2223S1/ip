@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Storage {
-
     private String filePath;
     private ArrayList<String> taskSaveStrings;
 
@@ -25,7 +24,7 @@ public class Storage {
     }
 
     public void addTaskData(Task task) throws TaskDataException {
-        this.taskSaveStrings.add(task.saveString());
+        this.taskSaveStrings.add(task.getSaveString());
         saveTasks();
     }
 
