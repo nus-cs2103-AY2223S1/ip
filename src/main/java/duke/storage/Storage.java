@@ -45,10 +45,8 @@ public class Storage {
         if (!directory.exists()) {
             directory.mkdir();
         }
-        String filePath = "data/duke.txt";
-        File data = new File(filePath);
-        // Write to data
         try {
+            String filePath = "data/duke.txt";
             FileWriter fileWriter = new FileWriter(filePath);
             List<Task> listOfTasks = taskList.getTaskList();
             for (Task t : listOfTasks) {
@@ -73,10 +71,9 @@ public class Storage {
         if (!directory.exists()) {
             directory.mkdir();
         }
-        String filePath = "data/duke.txt";
-        File data = new File(filePath);
-        // Load the file data into corresponding ArrayList
         try {
+            String existingFilePath = "data/duke.txt";
+            File data = new File(existingFilePath);
             if (data.exists()) {
                 Scanner scanner = new Scanner(data);
                 while (scanner.hasNext()) {

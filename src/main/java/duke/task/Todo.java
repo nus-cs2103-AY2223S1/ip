@@ -8,7 +8,8 @@ import java.time.LocalDate;
  * @author Derrick Khoo
  */
 public class Todo extends Task {
-
+    public static final int SPLIT_LIMIT_TODO = 3;
+    public static final int INDEX_OF_DESCRIPTION = 2;
     /**
      * Constructs a todo-type task.
      * @param description the description of the todo-type task
@@ -35,8 +36,9 @@ public class Todo extends Task {
      * @return the todo-type task
      */
     public static Todo fromFileDescription(String input) {
-        String[] strArray = input.split(" \\| ", 3);
-        Todo todo = new Todo(strArray[2]);
+        String[] strArray = input.split(" \\| ", SPLIT_LIMIT_TODO);
+        boolean isDone;
+        Todo todo = new Todo(strArray[INDEX_OF_DESCRIPTION]);
         if (strArray[1].equals("1")) {
             todo.markDone();
         }

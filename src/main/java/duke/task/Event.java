@@ -12,6 +12,9 @@ import duke.DukeException;
  * @author Derrick Khoo
  */
 public class Event extends Task {
+    public static final int SPLIT_LIMIT_EVENT = 4;
+    public static final int INDEX_OF_DESCRIPTION = 2;
+    public static final int INDEX_OF_DATE_AT = 3;
     protected LocalDate at;
 
     /**
@@ -44,9 +47,9 @@ public class Event extends Task {
      * @throws DukeException if there is an error parsing the input to a LocalDate
      */
     public static Event fromFileDescription(String input) throws DukeException {
-        String[] strArray = input.split(" \\| ", 4);
-        String description = strArray[2];
-        String at = strArray[3];
+        String[] strArray = input.split(" \\| ", SPLIT_LIMIT_EVENT);
+        String description = strArray[INDEX_OF_DESCRIPTION];
+        String at = strArray[INDEX_OF_DATE_AT];
         try {
             LocalDate dateAt = LocalDate.parse(at);
             Event event = new Event(description, dateAt);
