@@ -4,6 +4,10 @@ import javafx.application.Application;
 import ploopy.ui.Main;
 import ploopy.ui.TextUI;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 /**
  * Chatbot that can store and edit tasks.
  *
@@ -40,7 +44,7 @@ public class Ploopy {
     }
 
     /**
-     * Prompts user for an input. Parses input and
+     * Parses user's input and
      * tells user of any invalid inputs or any
      * file storage errors.
      *
@@ -56,6 +60,5 @@ public class Ploopy {
 
     public static void main(String[] args) {
         Application.launch(Main.class, args);
-
     }
 }
