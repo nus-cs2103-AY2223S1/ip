@@ -1,8 +1,8 @@
 package jenny.tasks;
 
-import java.time.LocalDate;
-
 import jenny.exceptions.JennyException;
+
+import java.time.LocalDate;
 
 
 /**
@@ -26,11 +26,16 @@ public class EventTask extends Task {
      */
     public EventTask(String description, LocalDate dueDate) throws JennyException {
         super(description);
-        if (description.trim().isEmpty()) {
+        boolean isEmpty = description.trim().isEmpty();
+        boolean isNull = dueDate == null;
+        if (isEmpty) {
+            assert isEmpty;
             throw new JennyException(MESSAGE_SCOPE, ERROR_INVALID_DESCRIPTION);
-        } else if (dueDate == null) {
+        } else if (isNull) {
+            assert isNull;
             throw new JennyException(MESSAGE_SCOPE, ERROR_INVALID_DUE_DATE);
         }
+        assert !isEmpty && !isNull;
         this.dueDate = dueDate;
     }
 

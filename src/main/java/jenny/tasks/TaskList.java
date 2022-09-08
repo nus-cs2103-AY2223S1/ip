@@ -1,11 +1,11 @@
 package jenny.tasks;
 
+import jenny.exceptions.JennyException;
+import jenny.storage.Storage;
+
 import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-
-import jenny.exceptions.JennyException;
-import jenny.storage.Storage;
 
 /**
  * Handles basic CRUD operations for a list of {@link Task}.
@@ -79,6 +79,7 @@ public class TaskList {
         try {
             return tasks.get(index);
         } catch (IndexOutOfBoundsException e) {
+            assert index < 0;
             throw new JennyException(MESSAGE_SCOPE, e.getMessage());
         }
     }

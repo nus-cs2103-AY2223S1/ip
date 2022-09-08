@@ -1,12 +1,12 @@
 package jenny.commands;
 
-import java.util.ArrayList;
-
 import jenny.exceptions.JennyException;
 import jenny.storage.Storage;
 import jenny.tasks.Task;
 import jenny.tasks.TaskList;
 import jenny.util.Ui;
+
+import java.util.ArrayList;
 
 
 /**
@@ -47,6 +47,7 @@ public class UnmarkCommand extends Command {
         try {
             int index = Integer.parseInt(arguments) - OFFSET;
             Task task = tasks.get(index);
+            assert index >= 0;
             task.unmark();
             tasks.save(storage);
             ui.print(new String[]{

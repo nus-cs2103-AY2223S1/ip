@@ -1,12 +1,12 @@
 package jenny.commands;
 
-import java.util.ArrayList;
-
 import jenny.exceptions.JennyException;
 import jenny.storage.Storage;
 import jenny.tasks.Task;
 import jenny.tasks.TaskList;
 import jenny.util.Ui;
+
+import java.util.ArrayList;
 
 
 /**
@@ -45,9 +45,13 @@ public class DeleteCommand extends Command {
      */
     @Override
     public void run(TaskList tasks, Ui ui, Storage<ArrayList<Task>> storage) throws JennyException {
-        if (tasks.isEmpty()) {
+        boolean isEmpty = tasks.isEmpty();
+        if (isEmpty) {
+            assert isEmpty;
             throw new JennyException(MESSAGE_SCOPE, ERROR_EMPTY_LIST);
         }
+        assert !isEmpty;
+
         try {
             int index = Integer.parseInt(arguments) - OFFSET;
             Task task = tasks.remove(index);
