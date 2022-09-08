@@ -77,7 +77,7 @@ public class TaskList {
             string += list.get(index).getTask() + "\n";
             storage.writeToFile();
             return string;
-        } catch (NullPointerException e) {
+        } catch (IndexOutOfBoundsException e) {
             return ("Oops! Looks like the task number is incorrect :(");
         }
     }
@@ -94,7 +94,7 @@ public class TaskList {
             string += list.get(index).getTask();
             storage.writeToFile();
             return string;
-        } catch (NullPointerException e) {
+        } catch (IndexOutOfBoundsException e) {
             return ("Oops! Looks like the task number is incorrect :(");
         }
     }
@@ -107,13 +107,7 @@ public class TaskList {
         assert item.length() != 0: "invalid string as argument";
         try {
             String string = "";
-            int slash = 0;
-            for (int i = 0; i < item.length(); i++) {
-                if (item.charAt(i) == '/') {
-                    slash = i;
-                    break;
-                }
-            }
+            int slash = findSlash(item);
             LocalDate date = LocalDate.parse(item.substring(slash + 4));
             list.add(new Deadline(item.substring(9, slash - 1), date));
             string += "Got it. I've added this task:\n";
@@ -138,13 +132,7 @@ public class TaskList {
         assert item.length() != 0: "invalid string as argument";
         try {
             String string = "";
-            int slash = 0;
-            for (int i = 0; i < item.length(); i++) {
-                if (item.charAt(i) == '/') {
-                    slash = i;
-                    break;
-                }
-            }
+            int slash = findSlash(item);
             list.add(new Event(item.substring(6, slash - 1), item.substring(slash + 4)));
             string += "Got it. I've added this task:\n";
             string += list.get(list.size() - 1).getTask() + "\n";
@@ -157,6 +145,23 @@ public class TaskList {
                     + " <task> /at <date and time>");
         }
     }
+
+    /**
+     * Finds the index of the slash in the string
+     * @param item string that is being checked
+     * @return the index of the slash
+     */
+    public int findSlash(String item) {
+        int index = 0;
+        for (int i = 0; i < item.length(); i++) {
+            if (item.charAt(i) == '/') {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+
 
     /**
      * Creates a to do object and stores it

@@ -54,45 +54,77 @@ public class Storage {
 
             while (s.hasNext()) {
                 String line = s.nextLine();
-                String[] parts = line.split("##");
-                assert parts.length != 0: "line incompatible i storage file";
-                switch(parts[0]) {
-                case("[T]"):
-                    Todo todo = new Todo(parts[2]);
-                    if (parts[1] == "[X]") {
-                        todo.setDone();
-                    }
-                    list.add(todo);
-                    this.count++;
-                    break;
-                case("[D]"):
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy", Locale.ENGLISH);
-                    LocalDate date = LocalDate.parse(parts[3], formatter);
-                    Deadline deadline = new Deadline(parts[2], date);
-                    if (parts[1] == "[X]") {
-                        deadline.setDone();
-                    }
-                    list.add(deadline);
-                    this.count++;
-                    break;
-                case("[E]"):
-                    Event event = new Event(parts[2], parts[3]);
-                    if (parts[1] == "[X]") {
-                        event.setDone();
-                    }
-                    list.add(event);
-                    this.count++;
-                    break;
-                default:
-                    break;
-                }
-
-
+                addToList(line);
             }
         } catch (IOException e) {
             System.out.println("File not found");
         }
     }
+
+    /**
+     * adds tasks from the line to the list according to the type of task
+     * @param line the line from the storage file
+     */
+    private void addToList(String line) {
+        String[] parts = line.split("##");
+        assert parts.length != 0: "line incompatible i storage file";
+        switch(parts[0]) {
+        case("[T]"):
+            addTodoToList(parts);
+            break;
+        case("[D]"):
+            addDeadlineToList(parts);
+            break;
+        case("[E]"):
+            addEventToList(parts);
+            break;
+        default:
+            break;
+        }
+    }
+
+    /**
+     * adds deadline task to the list
+     * @param parts line separated into  to the components of the deadline
+     */
+    private void addDeadlineToList(String[] parts) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy", Locale.ENGLISH);
+        LocalDate date = LocalDate.parse(parts[3], formatter);
+        Deadline deadline = new Deadline(parts[2], date);
+        if (parts[1] == "[X]") {
+            deadline.setDone();
+        }
+        list.add(deadline);
+        this.count++;
+    }
+
+    /**
+     * adds To do task to the list
+     * @param parts line separated into  to the components of the to do task
+     */
+    private void addTodoToList(String[] parts) {
+        Todo todo = new Todo(parts[2]);
+        if (parts[1] == "[X]") {
+            todo.setDone();
+        }
+        list.add(todo);
+        this.count++;
+    }
+
+    /**
+     * adds event task to the list
+     * @param parts line separated into  to the components of the event
+     */
+    private void addEventToList(String[] parts) {
+        Event event = new Event(parts[2], parts[3]);
+        if (parts[1] == "[X]") {
+            event.setDone();
+        }
+        list.add(event);
+        this.count++;
+    }
+
+
     /**
      * writes the data into the data file from the list
      */

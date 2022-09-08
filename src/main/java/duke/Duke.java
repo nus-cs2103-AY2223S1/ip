@@ -1,7 +1,6 @@
 package duke;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -33,6 +32,7 @@ public class Duke extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
+    private AnchorPane mainLayout;
 
     /**
      * Image of the user
@@ -50,20 +50,6 @@ public class Duke extends Application {
         this.ui = new Ui();
         this.storage = new Storage();
         this.tasks = new TaskList(storage);
-    }
-
-    /**
-     * Runs the main application of duke
-     */
-    public void run() {
-        ui.initialize();
-        Scanner scan = new Scanner(System.in);
-        String item = scan.nextLine();
-        while (!item.equals("bye")) {
-            Parser.parse(item, tasks);
-            item = scan.nextLine();
-        }
-        ui.exit();
     }
 
     /**
@@ -91,7 +77,20 @@ public class Duke extends Application {
 
 
     @Override
+    /**
+     * initialize javafx UI
+     */
     public void start(Stage stage) {
+        setUpComponents(stage);
+        setAlignment(stage);
+        setUpDialogue();
+    }
+
+    /**
+     * Sets up the javafx components of the program
+     * @param stage the stage object in which the UI is being built
+     */
+    private void setUpComponents(Stage stage) {
         //Step 1. Setting up required components
 
         //The container for the content of the chat to scroll.
@@ -102,14 +101,20 @@ public class Duke extends Application {
         userInput = new TextField();
         sendButton = new Button("Send");
 
-        AnchorPane mainLayout = new AnchorPane();
+        mainLayout = new AnchorPane();
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
 
         scene = new Scene(mainLayout);
 
         stage.setScene(scene);
         stage.show();
+    }
 
+    /**
+     * sets the alignment properties of the window and the components inside it.
+     * @param stage the stage object in which the UI is being built
+     */
+    private void setAlignment(Stage stage) {
         stage.setTitle("Duke");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
@@ -138,8 +143,12 @@ public class Duke extends Application {
 
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
+    }
 
-
+    /**
+     * Sets up the dialogue box and event handlers when text is being inputted by the user.
+     */
+    public void setUpDialogue() {
         dialogContainer.getChildren().add(getDialogLabel(ui.initialize()));
 
         sendButton.setOnMouseClicked((event) -> {
@@ -181,6 +190,5 @@ public class Duke extends Application {
     }
 
     public static void main(String[] args) throws IOException {
-        new Duke().run();
     }
 }
