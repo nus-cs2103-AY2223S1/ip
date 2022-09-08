@@ -4,7 +4,6 @@ import duke.Storage;
 import duke.Task;
 import duke.TaskList;
 import duke.Ui;
-import duke.command.Command;
 import duke.exceptions.DukeException;
 
 public class UnmarkStatusCommand extends Command {
@@ -23,5 +22,13 @@ public class UnmarkStatusCommand extends Command {
         Task success = taskList.unmarkStatus(this.toggleTask);
         storage.save(taskList);
         return ui.showToggleSuccess(success);
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof UnmarkStatusCommand) {
+            UnmarkStatusCommand x = (UnmarkStatusCommand) obj;
+            return this.toggleTask == x.toggleTask;
+        }
+        return false;
     }
 }

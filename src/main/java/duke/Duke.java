@@ -20,7 +20,7 @@ public class Duke {
             this.storage.load(this.taskList);
         } catch (FileNotFoundException e) {
             System.out.println("PLEASE RESTART DUKE");
-        } catch (ImproperFormatException e) {
+        } catch (DukeException e) {
             System.out.println("CORRUPTED DATA");
         }
     }

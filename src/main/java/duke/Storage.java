@@ -13,6 +13,7 @@ public class Storage {
 
     private final String FILE_NAME = "storage.txt";
     private final File storageFile;
+    private static final String DIVIDER = "[|]";
 
     public Storage() {
         this.storageFile = new File(FILE_NAME);
@@ -27,13 +28,17 @@ public class Storage {
                     + e.getMessage());
         }
     }
+
     public void load(TaskList taskList) throws FileNotFoundException, ImproperFormatException {
+        assert taskList.size() == 0: "task list should be empty before loading existing data";
         Scanner reader = new Scanner(this.storageFile);
         while (reader.hasNext()) {
             String curr = reader.nextLine();
-            String[] currArr = curr.split("[|]");
-            String isDone = currArr[1];
+            // curr: T/D/E|0/1|task|date
+            String[] currArr = curr.split(DIVIDER);
+            // currArr: ["T/D/E", "0/1", "task", "date"]
             String currKeyword = currArr[0];
+            String isDone = currArr[1];
             switch (currKeyword) {
                 case ("T"):
                     if (isDone.equals("1")) {
@@ -65,7 +70,9 @@ public class Storage {
             }
         }
     }
+
     public void save(String task) throws DukeException {
+        assert !task.isBlank(): "empty task should not be saved";
         try {
             FileWriter saver = new FileWriter(this.storageFile);
             saver.write(task);
@@ -82,8 +89,5 @@ public class Storage {
         } catch (IOException e) {
             System.out.println("CANNOT SAVE");
         }
-    }
-    public void update(String task) {
-
     }
 }

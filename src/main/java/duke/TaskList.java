@@ -33,14 +33,20 @@ public class TaskList {
 
 
     public TaskList findTask(String keyword) throws NoMatchingKeywordException {
+        assert !keyword.isBlank(): "keyword should not be blank";
         List<Task> filtered = this.taskList.stream()
                 .filter(task -> task.isMatchKeyword(keyword))
                 .collect(Collectors.toList());
-
+        TaskList filteredTaskList = new TaskList(filtered);
+        
+        if (filteredTaskList.size() == 0) {
+            throw new NoMatchingKeywordException(keyword);
+        }
         return new TaskList(filtered);
     }
 
     public Task markStatus(int task) throws DukeException {
+        assert task >= 0: "task index should be more than or equal to 0";
         try {
             Task curr = taskList.get(task - 1);
             if (curr.isDone()) {
@@ -54,6 +60,7 @@ public class TaskList {
     }
 
     public Task unmarkStatus(int task) throws DukeException {
+        assert task >= 0: "task index should be more than or equal to 0";
         try {
             Task curr = taskList.get(task - 1);
             if (!curr.isDone()) {
@@ -67,6 +74,7 @@ public class TaskList {
     }
 
     public Task deleteTask(int task) throws DukeException {
+        assert task >= 0: "task index should be more than or equal to 0";
         try {
             Task curr = taskList.get(task - 1);
             taskList.remove(task - 1);

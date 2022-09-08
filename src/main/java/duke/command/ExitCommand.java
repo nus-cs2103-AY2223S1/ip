@@ -3,7 +3,6 @@ package duke.command;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-import duke.command.Command;
 
 public class ExitCommand extends Command {
 
@@ -14,5 +13,12 @@ public class ExitCommand extends Command {
     public String execute(Ui ui, TaskList taskList, Storage storage) {
         toggleExit();
         return ui.showBye();
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof ExitCommand) {
+            return true;
+        }
+        return false;
     }
 }

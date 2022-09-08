@@ -3,8 +3,6 @@ package duke.command;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-import duke.command.Command;
-
 public class ListCommand extends Command {
 
     /*
@@ -13,5 +11,13 @@ public class ListCommand extends Command {
     @Override
     public String execute(Ui ui, TaskList taskList, Storage storage) {
         return ui.showList(taskList);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof ListCommand) {
+            return true;
+        }
+        return false;
     }
 }
