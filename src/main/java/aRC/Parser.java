@@ -3,14 +3,21 @@ package arc;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
  * Encapsulates a Parser that makes sense of the user input
  */
 public class Parser {
+    enum Datatype {
+        TASK,
+        NOTE
+    }
+
     private Storage storage;
     private TaskList tasks;
+    private NoteList notes;
 
     /**
      * Constructor for Parser
@@ -20,6 +27,7 @@ public class Parser {
     public Parser(Storage storage, TaskList tasks) {
         this.storage = storage;
         this.tasks = tasks;
+        this.notes = new NoteList(new ArrayList<>());
     }
 
     /**
@@ -52,6 +60,12 @@ public class Parser {
             return this.parseFind(commandArgs);
         case "bye":
             return this.parseBye(commandArgs);
+        case "notes":
+            return this.parseListNotes(commandArgs);
+        case "note":
+            return this.parseAddNote(commandArgs);
+        case "delete-note":
+            return this.parseDeleteNote(commandArgs);
         default:
             throw new InvalidCommandException();
         }
@@ -82,7 +96,7 @@ public class Parser {
             throw new InvalidArgumentException();
         }
 
-        int index = this.validateIndex(commandArgs[0]) - 1;
+        int index = this.validateIndex(commandArgs[0], Datatype.TASK) - 1;
         String output = this.tasks.getTask(index).mark();
 
         this.storage.save(this.tasks);
@@ -100,7 +114,7 @@ public class Parser {
             throw new InvalidArgumentException();
         }
 
-        int index = this.validateIndex(commandArgs[0]) - 1;
+        int index = this.validateIndex(commandArgs[0], Datatype.TASK) - 1;
         String output = this.tasks.getTask(index).unmark();
 
         this.storage.save(this.tasks);
@@ -201,7 +215,7 @@ public class Parser {
             throw new InvalidArgumentException();
         }
 
-        int index = this.validateIndex(commandArgs[0]) - 1;
+        int index = this.validateIndex(commandArgs[0], Datatype.TASK) - 1;
         String output = this.tasks.deleteTask(index);
 
         this.storage.save(this.tasks);
@@ -240,12 +254,72 @@ public class Parser {
     }
 
     /**
+     * Parses the notes command
+     * @param commandArgs Array of Strings representing command arguments
+     * @return An output message
+     * @throws InvalidArgumentException If additional arguments are entered
+     */
+    public String parseListNotes(String[] commandArgs) throws InvalidArgumentException {
+        if (commandArgs.length != 0) {
+            throw new InvalidArgumentException();
+        }
+
+        return this.notes.listNotes();
+    }
+
+    /**
+     * Parses the note command
+     * @param commandArgs Array of Strings representing command arguments
+     * @return An output message
+     * @throws DukeException Throws a aRC.DukeException specific to this program
+     */
+    public String parseAddNote(String[] commandArgs) throws DukeException {
+        if (commandArgs.length == 0) {
+            throw new InvalidArgumentException();
+        }
+
+        String title;
+        String description;
+
+        if (!Arrays.asList(commandArgs).contains("/desc")) {
+            title = String.join(" ", commandArgs);
+            description = "";
+        } else {
+            int indexOfDesc = Arrays.asList(commandArgs).indexOf("/desc");
+            title = String.join(" ", Arrays.copyOfRange(commandArgs, 0, indexOfDesc));
+            description = String.join(" ",
+                    Arrays.copyOfRange(commandArgs, indexOfDesc + 1, commandArgs.length));
+        }
+
+        String output = this.notes.addNote(new Note(title, description));
+
+        return output;
+    }
+
+    /**
+     * Parses the delete-note command
+     * @param commandArgs Array of Strings representing command arguments
+     * @return An output message
+     * @throws DukeException Throws a aRC.DukeException specific to this program
+     */
+    public String parseDeleteNote(String[] commandArgs) throws DukeException {
+        if (commandArgs.length != 1) {
+            throw new InvalidArgumentException();
+        }
+
+        int index = this.validateIndex(commandArgs[0], Datatype.NOTE) - 1;
+        String output = this.notes.deleteNote(index);
+
+        return output;
+    }
+
+    /**
      * Validates a given index String
      * @param index The index String
      * @return The integer index if it is valid
      * @throws InvalidArgumentException If the index String is invalid
      */
-    public int validateIndex(String index) throws InvalidArgumentException {
+    public int validateIndex(String index, Datatype type) throws InvalidArgumentException {
         int intIndex;
 
         try {
@@ -254,7 +328,11 @@ public class Parser {
             throw new InvalidArgumentException();
         }
 
-        if (intIndex <= 0 || intIndex > this.tasks.numTasks()) {
+        if (type == Datatype.TASK && (intIndex <= 0 || intIndex > this.tasks.numTasks())) {
+            throw new InvalidArgumentException();
+        }
+
+        if (type == Datatype.NOTE && (intIndex <= 0 || intIndex > this.notes.numNotes())) {
             throw new InvalidArgumentException();
         }
 
