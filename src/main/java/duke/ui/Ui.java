@@ -122,6 +122,16 @@ public class Ui {
     }
 
     /**
+     * Informs the user that they have entered invalid arguments for the "tag" command.
+     *
+     * @return A string informing the user that they did not enter the task index or tag correctly.
+     */
+    public static String invalidTagInput() {
+        return SAD_FACE
+                + "please enter a valid integer followed by the name of the tag in the format #<name>.";
+    }
+
+    /**
      * Sends when the user enters any commands not recognised by Duke.
      *
      * @return A string informing the user whenever Duke does not understand the input.
@@ -149,6 +159,16 @@ public class Ui {
      */
     public static String saveFail() {
         return START + "bye! i was unable to save your list to the hard drive, but i hope to see you again soon! :)";
+    }
+
+    /**
+     * Requests the user to enter a valid integer in the given range.
+     *
+     * @param size Size of the task list.
+     * @return A string requesting the user to enter a valid integer.
+     */
+    public static String requestValidInput(int size) {
+        return SAD_FACE + "please enter an integer from 1 - " + size;
     }
 
     /**

@@ -1,7 +1,11 @@
 package duke.task;
 
+import duke.tag.Tag;
+import duke.ui.Ui;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 /**
  * Represents a task the user wishes to complete.
@@ -14,6 +18,7 @@ public abstract class Task {
     );
     private String description;
     private boolean isDone;
+    private ArrayList<Tag> tagList = new ArrayList<>();
 
     /**
      * TaskType values are used to indicate the type of the Task
@@ -62,6 +67,24 @@ public abstract class Task {
     }
 
     /**
+     * Converts the tags the task has been tagged with into a format
+     * suitable for saving in a data file.
+     *
+     * @return A list of tags the task has been tagged with for saving to a data file.
+     */
+    public String fileTags() {
+        if (tagList.size() == 0) {
+            return "";
+        }
+
+        String tags = " |";
+        for (Tag tag : tagList) {
+            tags += " " + tag.toString();
+        }
+        return tags;
+    }
+
+    /**
      * Indicates whether the task description contains the given search term.
      *
      * @param searchTerm Search term to search for.
@@ -69,6 +92,55 @@ public abstract class Task {
      */
     public boolean containsSearchTerm(String searchTerm) {
         return this.description.contains(searchTerm);
+    }
+
+    /**
+     * Tags the task with the given tag.
+     *
+     * @param tag Tag to tag the task with.
+     * @return A string informing the user whether the task has been tagged.
+     */
+    public String addTag(Tag tag) {
+        if (tagList.contains(tag)) {
+            return Ui.START + "Hmm, this task already has the tag '" + tag.toString() + "'!";
+        }
+        tagList.add(tag);
+        Tag.addTaskToTag(this, tag);
+        return Ui.START + "Okay! The task has been tagged as '" + tag.toString() + "'.";
+    }
+
+    /**
+     * Deletes the given tag from the task.
+     *
+     * @param tag Tag to delete from the task.
+     * @return A string informing the user whether the tag has been deleted.
+     */
+    public String deleteTag(Tag tag) {
+        if (!tagList.contains(tag)) {
+            return Ui.START + "Hmm, this task has not been tagged as '" + tag.toString() + "'.";
+        }
+
+        tagList.remove(tag);
+        Tag.deleteTaskFromTag(this, tag);
+        return Ui.START + "Okay! The task is no longer tagged as '" + tag.toString() + "'.";
+    }
+
+    /**
+     * Prints out a list of tags the task has been tagged with, if any.
+     *
+     * @return A string containing a list of tags the task has been tagged with,
+     *     if any.
+     */
+    public String printTags() {
+        if (tagList.size() == 0) {
+            return Ui.START + "the task has not been tagged with any tags.";
+        }
+
+        String tags = Ui.START + "here's a list of the tags you have added so far: ";
+        for (Tag tag : tagList) {
+            tags += "\n  " + tag.toString();
+        }
+        return tags;
     }
 
     /**
