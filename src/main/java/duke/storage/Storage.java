@@ -52,7 +52,7 @@ public class Storage {
                 }
 
                 String[] taskSplit = currLine.split("\\|", 4);
-                Task newTask = null;
+                Task newTask;
                 String taskType = taskSplit[0].trim();
                 boolean isDone = taskSplit[1].trim().equals("1");
                 String taskDesc = taskSplit[2].trim();
@@ -68,8 +68,9 @@ public class Storage {
                     newTask = new Event(taskDesc, LocalDate.parse(taskDate), isDone);
                     break;
                 default:
-                    throw new DukeException("Corrupted storage.");
+                    newTask = null;
                 }
+                assert newTask != null : "Corrupted text file.";
                 taskList.addTask(newTask);
             }
             return taskList;
