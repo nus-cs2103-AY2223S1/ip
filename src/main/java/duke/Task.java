@@ -1,5 +1,11 @@
 package duke;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -35,13 +41,14 @@ public abstract class Task {
     }
 
     public boolean isMatchKeyword(String keyword) {
-        String[] descriptionArr = this.description.split(" ");
-        for (int i = 0; i < descriptionArr.length; i++) {
-            if (descriptionArr[i].equals(keyword)) {
-                return true;
-            }
-        }
-        return  false;
+        boolean result = false;
+        Stream<String> matched = Arrays.stream(
+                this.description.split(" "));
+        List<String> filtered = matched
+                .filter(
+                str -> str.equals(keyword))
+                .collect(Collectors.toList());
+        return filtered.size() > 0;
     }
     public abstract String toSaveVersion();
 }
