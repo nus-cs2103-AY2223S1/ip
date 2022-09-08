@@ -277,6 +277,7 @@ public class Parser {
         }
         try {
             String command = findArgument(input, 1).toLowerCase();
+            assert command.charAt(0) != ' ';
             switch (command) {
             case "bye":
                 if (countArguments(input) != 1) {
