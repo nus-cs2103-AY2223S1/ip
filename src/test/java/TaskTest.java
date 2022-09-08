@@ -1,10 +1,11 @@
 import duke.Todo;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
+
 class TaskTest {
-    Todo t = new Todo("123");
+    private Todo t = new Todo("123");
 
     @Test
     void testGetStatusIcon() {
