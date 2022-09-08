@@ -19,21 +19,21 @@ public class AddCommand extends Command {
             + "%1$s" + "\n"
             + "You have " + "%2$s" + " tasks in the list.\n";
 
-    private final Task toAdd;
+    private final Task taskToAdd;
 
-    public AddCommand(Task toAdd) {
-        this.toAdd = toAdd;
+    public AddCommand(Task taskToAdd) {
+        this.taskToAdd = taskToAdd;
     }
     public Task getTask() {
-        return toAdd;
+        return taskToAdd;
     }
 
     @Override
     public String execute(List tasks, Ui ui, Storage storage) {
         try {
-            tasks.addTask(toAdd);
+            tasks.addTask(taskToAdd);
             storage.save();
-            return ui.showToUser(String.format(MESSAGE_SUCCESS, toAdd, tasks.numberOfTasks()));
+            return ui.showToUser(String.format(MESSAGE_SUCCESS, taskToAdd, tasks.numberOfTasks()));
         } catch (DukeException e) {
             return ui.showErrorMessage(e.getMessage());
         }

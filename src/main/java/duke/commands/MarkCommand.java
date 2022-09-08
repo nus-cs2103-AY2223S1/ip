@@ -17,19 +17,19 @@ public class MarkCommand extends Command {
             + "%1$s" + "\n"
             + "You have " + "%2$s" + " tasks in the list.\n";
 
-    private final int taskToMark;
+    private final int taskNumberToMark;
 
     public MarkCommand(int taskToMark) {
-        this.taskToMark = taskToMark;
+        this.taskNumberToMark = taskToMark;
     }
     public int getTaskToMark() {
-        return taskToMark;
+        return taskNumberToMark;
     }
 
     @Override
     public String execute(List tasks, Ui ui, Storage storage) {
         try {
-            Task task = tasks.getTask(taskToMark);
+            Task task = tasks.getTask(taskNumberToMark);
             task.markTaskAsDone();
             storage.save();
             return ui.showToUser(String.format(MESSAGE_SUCCESS, task, tasks.numberOfTasks()));
