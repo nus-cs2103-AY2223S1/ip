@@ -22,10 +22,10 @@ public class Deadline extends Task {
     @Override
     public String taskInfo() {
         if (deadlineTime == null) {
-            return "[D] [" + getStatusIcon() + "] " + description + " (by:"
+            return "[D] [" + getStatusIcon() + "] " + "[" + taskPriority + "] " + description + " (by:"
                     + deadlineDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
         } else if (deadlineDate != null && deadlineTime != null) {
-            return "[D] [" + getStatusIcon() + "] " + description + " (by:"
+            return "[D] [" + getStatusIcon() + "] " + "[" + taskPriority + "] " + description + " (by:"
                     + deadlineDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + " " + deadlineTime + ")";
         } else {
             assert false : "No time and date for Deadline!";
@@ -37,10 +37,10 @@ public class Deadline extends Task {
     public String taskSaveInfo() {
         if (deadlineTime == null) {
             return "D," + getSavedStatusIcon() + "," + description
-                    + "," + deadlineDate;
+                    + "," + deadlineDate + "," + taskPriority;
         } else {
             return "D," + getSavedStatusIcon() + "," + description
-                    + "," + deadlineDate + "," + deadlineTime;
+                    + "," + deadlineDate + "," + deadlineTime + "," + taskPriority;
         }
 
     }
