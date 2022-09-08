@@ -41,7 +41,7 @@ public class Parser {
     }
 
     private final String[] commandWords = new String[]{"list", "mark",
-            "unmark", "todo", "event", "deadline", "delete", "bye", "find"};
+            "unmark", "todo", "event", "deadline", "delete", "bye", "find", "update"};
 
     /**
      * Makes sense of the user input text
@@ -79,6 +79,12 @@ public class Parser {
         } else if (checkCommand(text, 8)) {
             text = text.substring(commandWords[8].length() + 1);
             msg = this.ui.displayList(this.tasks.filter(text));
+
+        } else if (checkCommand(text, 9)) { //update {index} {category} {detail}, e.g update 1 date 2019-12-23
+            String[] temp = text.split(" ", 4);
+            int i = Integer.parseInt(temp[1]);
+            Task task = this.tasks.update(i, temp[2], temp[3]);
+            msg = ui.msg("OK, I've updated this task:\n" + "\t" + task);
 
         } else { // is a task, commandwords index 3-5 inclusive
             Task task = TaskSorter.sortTaskFromInput(text);

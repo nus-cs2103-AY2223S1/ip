@@ -47,6 +47,15 @@ public class TaskList {
     }
 
     /**
+     * Updates a Task from this TaskList at a specified Index
+     *
+     * @param i index of Task to be updated
+     */
+    public Task update(int i, String category, String details) {
+        return this.get(i).update(category, details);
+    }
+
+    /**
      * Returns the Task at the specified position in this TaskList.
      *
      * @param i index of the Task to return

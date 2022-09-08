@@ -5,12 +5,29 @@ import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
 
-    String type = "deadline";
+    protected LocalDate date;
 
     public Deadline (String description, LocalDate date) {
-        super(description, date);
+        super(description);
+        this.date = date;
     }
 
+    /**
+     * Updates the specified category of this Task
+     *
+     * @param category the category to be updated
+     * @param details the update
+     * @return this Task
+     */
+    @Override
+    public Task update (String category, String details) {
+        if ("description".equals(category)) {
+            this.description = details;
+        } else if ("date".equals(category)) {
+            this.date = LocalDate.parse(details);
+        }
+        return this;
+    }
 
     /**
      * Returns the short form of the type of this Task

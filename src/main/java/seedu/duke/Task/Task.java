@@ -1,5 +1,7 @@
 package seedu.duke.Task;
 
+import seedu.duke.Parser;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -9,15 +11,27 @@ import java.time.format.DateTimeFormatter;
 public abstract class Task {
     protected String description;
     protected boolean isDone;
-    protected LocalDate date;
 
     /**
      * Instantiates a new Task object
      */
-    public Task(String description, LocalDate date) {
+    public Task(String description) {
         this.description = description;
         this.isDone = false;
-        this.date = date;
+    }
+
+    /**
+     * Updates the specified category of this Task
+     *
+     * @param category the category to be updated
+     * @param details the update
+     * @return this Task
+     */
+    public Task update (String category, String details) {
+        if ("description".equals(category)) {
+            this.description = details;
+        }
+        return this;
     }
 
     /**
