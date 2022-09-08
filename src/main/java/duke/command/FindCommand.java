@@ -34,8 +34,7 @@ public class FindCommand implements Command {
     }
 
     /**
-     * Converts input array of strings into a singular string that can be used to call
-     * the find method on the given TaskList, and then converts the output to a
+     * Executes the find method on the given TaskList, and then converts the output to a
      * string suitable for the user interface before returning it.
      *
      * @param input array of strings input by user
@@ -43,6 +42,22 @@ public class FindCommand implements Command {
      * @throws DukeException if no items were found
      */
     private String executeFindItems(String[] input, TaskList itemList) throws DukeException {
+        String parsedInput = joinInput(input);
+        ArrayList<DukeTask> foundItems = itemList.find(parsedInput);
+        if (foundItems.size() == 0) {
+            throw new DukeException("No items were found.");
+        }
+        String parsedOutput = joinOutput(foundItems);
+        return parsedOutput;
+    }
+
+    /**
+     * Converts input array of strings into a singular string.
+     *
+     * @param input array of strings input by user
+     * @return the string that represents user input
+     */
+    private String joinInput(String[] input) {
         StringBuilder parsedInput = new StringBuilder();
         for (int i = 1; i < input.length; i++) {
             parsedInput.append(input[i]);
@@ -50,11 +65,18 @@ public class FindCommand implements Command {
                 parsedInput.append(" ");
             }
         }
-        ArrayList<DukeTask> foundItems = itemList.find(parsedInput.toString());
-        if (foundItems.size() == 0) {
-            throw new DukeException("No items were found.");
-        }
-        StringBuilder parsedOutput = new StringBuilder("Here are the matching tasks in your list: \n");
+        return parsedInput.toString();
+    }
+
+    /**
+     * Converts output ArrayList of DukeTasks into a string representation.
+     *
+     * @param foundItems list of items whose descriptions match input
+     * @return the string that represents the output
+     */
+    private String joinOutput(ArrayList<DukeTask> foundItems) {
+        StringBuilder parsedOutput =
+                new StringBuilder("Here are the matching tasks in your list: \n");
         for (int i = 0; i < foundItems.size(); i++) {
             if (i != 0) {
                 parsedOutput.append("\n");

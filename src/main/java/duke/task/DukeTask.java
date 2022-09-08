@@ -38,8 +38,7 @@ public abstract class DukeTask {
      */
     public String markAsDone() {
         isDone = true;
-        return "Good job! This task has been completed:\n  "
-                + this;
+        return "Good job! This task has been completed:\n  " + this;
     }
 
     /**
@@ -49,8 +48,7 @@ public abstract class DukeTask {
      */
     public String markAsNotDone() {
         isDone = false;
-        return "Whoops! This task is now yet to be completed:\n  "
-                + this;
+        return "Whoops! This task is now yet to be completed:\n  " + this;
     }
 
     /**
@@ -70,12 +68,13 @@ public abstract class DukeTask {
     public abstract String getStorageString();
 
     /**
-     * Returns description of task.
+     * Checks if the task's description contains input string.
      *
-     * @return description of task
+     * @param matcher input string
+     * @return true if the matcher exists in the task's description; false otherwise
      */
-    public String getDescription() {
-        return this.description;
+    public boolean checkDescriptionMatch(String matcher) {
+        return description.contains(matcher);
     }
 
     @Override

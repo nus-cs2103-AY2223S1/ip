@@ -52,11 +52,10 @@ public class AddItemCommand implements Command {
             try {
                 // Obtain description of task
                 newTask = new ToDo(s.split("todo ")[1]);
-                itemList.add(newTask);
-                return "Item added: " + newTask + itemList.listCount();
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("A todo task's description cannot be empty.");
             }
+            break;
         }
         case "deadline": {
             String[] deadlineSplit = s.split(" /by ");
@@ -67,8 +66,7 @@ public class AddItemCommand implements Command {
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("An incorrect deadline description was entered.");
             }
-            itemList.add(newTask);
-            return "Item added: " + newTask + itemList.listCount();
+            break;
         }
         case "event": {
             String[] deadlineSplit = s.split(" /at ");
@@ -79,12 +77,13 @@ public class AddItemCommand implements Command {
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("An incorrect event description was entered.");
             }
-            itemList.add(newTask);
-            return "Item added: " + newTask + itemList.listCount();
+            break;
         }
         default:
             throw new DukeException("\"" + newItem[0] + "\""
                     + " is not a recognised command.");
         }
+        itemList.add(newTask);
+        return "Item added: " + newTask + itemList.listCount();
     }
 }

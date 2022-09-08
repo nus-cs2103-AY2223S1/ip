@@ -108,7 +108,7 @@ public class TaskList {
     public ArrayList<DukeTask> find(String check) {
         ArrayList<DukeTask> tasks = new ArrayList<>();
         for (DukeTask t : items) {
-            if (t.getDescription().contains(check)) {
+            if (t.checkDescriptionMatch(check)) {
                 tasks.add(t);
             }
         }
