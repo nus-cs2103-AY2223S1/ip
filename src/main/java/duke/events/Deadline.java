@@ -15,6 +15,8 @@ public class Deadline extends Task {
     private String unformattedDate;
     private static final String TYPE = "[D]";
 
+    private static final int NUM_ELEMENTS_EXPECTED = 4;
+
     public Deadline(String description, String notFormattedDate) {
         super(description);
         this.unformattedDate = notFormattedDate;
@@ -28,11 +30,12 @@ public class Deadline extends Task {
     }
 
 
-    public static Deadline readTask(String[] values) {
-        assert values.length == 4 : "Save data was not parsed correctly, incorrect number of elements read";
-        boolean isDone = values[1].equals("0");
-        String description = values[2];
-        String unformattedDate = values[3];
+    public static Deadline readTask(String[] descriptionArgs) {
+        assert descriptionArgs.length == NUM_ELEMENTS_EXPECTED
+                : "Save data was not parsed correctly, incorrect number of elements read";
+        boolean isDone = descriptionArgs[1].equals("0");
+        String description = descriptionArgs[2];
+        String unformattedDate = descriptionArgs[3];
         return new Deadline(isDone, description, unformattedDate);
 
     }

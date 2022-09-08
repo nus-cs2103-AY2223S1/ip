@@ -6,6 +6,7 @@ package duke.events;
  */
 public class Todo extends Task {
     private static final String TYPE = "[T]";
+    private static final int NUM_ELEMENTS_EXPECTED = 3;
     public Todo(String description) {
 
         super(description);
@@ -17,7 +18,7 @@ public class Todo extends Task {
 
 
     public static Todo readTask(String[] values) {
-        assert values.length == 3 : "Save data was not parsed correctly, incorrect number of elements read";
+        assert values.length == NUM_ELEMENTS_EXPECTED : "Save data was not parsed correctly, incorrect number of elements read";
         boolean isDone = values[1].equals("0");
         String description = values[2];
         return new Todo(isDone, description);

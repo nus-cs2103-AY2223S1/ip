@@ -26,6 +26,7 @@ import javafx.scene.text.FontWeight;
  * containing text from the speaker.
  */
 public class DialogueBox extends HBox {
+    private static final double RADIUS_RATIO = 0.23;
     @FXML
     private Label dialog;
     @FXML
@@ -41,10 +42,10 @@ public class DialogueBox extends HBox {
             e.printStackTrace();
         }
 
-        Circle circle = new Circle();
-        circle.setCenterX(50);
-        circle.setCenterY(50);
-        circle.setRadius(60);
+        double circleRadius = displayPicture.getFitWidth() / RADIUS_RATIO;
+        double circleX = displayPicture.getX() + circleRadius;
+        double circleY = displayPicture.getY() + circleRadius;
+        Circle circle = new Circle(circleRadius, circleX, circleY);
         displayPicture.setClip(circle);
         dialog.setStyle("-fx-background-color: #00ffc4;" + "-fx-background-radius: 10;");
         dialog.setPadding(new Insets(8));
@@ -63,10 +64,10 @@ public class DialogueBox extends HBox {
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
-        Circle circle = new Circle();
-        circle.setCenterX(55);
-        circle.setCenterY(50);
-        circle.setRadius(60);
+        double circleRadius = displayPicture.getFitWidth() / RADIUS_RATIO;
+        double circleX = displayPicture.getX() + circleRadius;
+        double circleY = displayPicture.getY() + circleRadius;
+        Circle circle = new Circle(circleRadius, circleX, circleY);
         displayPicture.setClip(circle);
         dialog.setStyle("-fx-background-color: #00ffc4;" + "-fx-background-radius: 10;");
         dialog.setPadding(new Insets(8));
