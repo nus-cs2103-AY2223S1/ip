@@ -1,6 +1,7 @@
 package duke;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -70,5 +71,16 @@ public class Event extends Task {
                     + this.at
                     + "\n";
         }
+    }
+    private LocalDateTime getDateTime() {
+        return LocalDateTime.of(this.date, this.time);
+    }
+
+    public int compareChronologically(Event event) {
+        return this.getDateTime().compareTo(event.getDateTime());
+    }
+
+    public int compareLexicographically(Event event) {
+        return this.description.compareTo(event.description);
     }
 }

@@ -14,10 +14,8 @@ public class Parser {
                 throw new BlankCommandException();
             case ("bye"):
                 return new ExitCommand();
-
             case ("list"):
                 return new ListCommand();
-
             case ("find"):
                 return new FindCommand(inputArr[1]);
             case ("todo"):
@@ -25,7 +23,6 @@ public class Parser {
                     throw new BlankContentException();
                 }
                 return new AddCommand(new ToDo(inputArr[1]));
-
             case ("deadline"):
                 if (inputArr.length < 2) {
                     throw new BlankContentException();
@@ -38,7 +35,6 @@ public class Parser {
                     throw new NoDateException();
                 }
                 return new AddCommand(new Deadline(deadlineArr[0], deadlineArr[1]));
-
             case ("event"):
                 if (inputArr.length < 2) {
                     throw new BlankContentException();
@@ -51,7 +47,28 @@ public class Parser {
                     throw new NoDateException();
                 }
                 return new AddCommand(new Event(eventArr[0], eventArr[1]));
-
+            case ("sort"):
+                if (inputArr.length < 2) {
+                    throw new BlankContentException();
+                }
+                String[] sortArr = inputArr[1].split(" ", 3);
+                if (sortArr.length < 3) {
+                    throw new ImproperFormatException();
+                }
+                if (sortArr[1].equals("chrono")) {
+                    return new SortCommand(
+                            TypeOfTask.valueOf(sortArr[0]),
+                            Order.valueOf(sortArr[2]),
+                            true
+                    );
+                }
+                if (sortArr[1].equals("lexi")) {
+                    return new SortCommand(
+                            TypeOfTask.valueOf(sortArr[0]),
+                            Order.valueOf(sortArr[2]),
+                            false
+                    );
+                }
             case ("mark"):
                 if (inputArr.length < 2) {
                     throw new BlankContentException();
@@ -62,7 +79,6 @@ public class Parser {
                 } catch (NumberFormatException e) {
                     throw new InvalidNumberException();
                 }
-
             case ("unmark"):
                 if (inputArr.length < 2) {
                     throw new BlankContentException();
@@ -73,7 +89,6 @@ public class Parser {
                 } catch (NumberFormatException e) {
                     throw new InvalidNumberException();
                 }
-
             case ("delete"):
                 if (inputArr.length < 2) {
                     throw new BlankContentException();

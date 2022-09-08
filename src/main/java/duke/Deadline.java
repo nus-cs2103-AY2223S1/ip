@@ -3,6 +3,7 @@ package duke;
 import duke.exceptions.ImproperFormatException;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -69,5 +70,17 @@ public class Deadline extends Task {
                     + this.by
                     + "\n";
         }
+    }
+
+    private LocalDateTime getDateTime() {
+        return LocalDateTime.of(this.date, this.time);
+    }
+
+    public int compareChronologically(Deadline deadline) {
+        return this.getDateTime().compareTo(deadline.getDateTime());
+    }
+
+    public int compareLexicographically(Deadline deadline) {
+        return this.description.compareTo(deadline.description);
     }
 }

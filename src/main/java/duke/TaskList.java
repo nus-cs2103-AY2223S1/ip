@@ -1,13 +1,13 @@
 package duke;
 
-import duke.exceptions.DukeException;
-import duke.exceptions.CannotFindTaskException;
-import duke.exceptions.NoMatchingKeywordException;
-import duke.exceptions.TaskUnmarkedException;
-import duke.exceptions.TaskMarkedException;
+import duke.exceptions.*;
 
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Comparator;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TaskList {
 
@@ -17,10 +17,13 @@ public class TaskList {
         this.taskList = new ArrayList<>(100);
     }
 
+    public TaskList(List<? extends Task> taskList) {
+        this.taskList = new ArrayList<>(taskList);
+    }
+
     public void addTask(Task task) {
         this.taskList.add(task);
     }
-
 
     public TaskList findTask(String keyword) throws NoMatchingKeywordException {
         TaskList successList = new TaskList();
@@ -34,6 +37,101 @@ public class TaskList {
             throw new NoMatchingKeywordException(keyword);
         }
         return successList;
+    }
+
+    public TaskList sortDeadlineChronologically(Order order) {
+        Comparator<Deadline> deadlineComparator = (d1, d2) ->
+                d1.compareChronologically(d2);
+
+        Stream<Deadline> deadlineStream = taskList
+                .stream()
+                .filter(task -> task instanceof Deadline)
+                .map(task -> (Deadline) task);
+        if (order == Order.decreasing) {
+            List<Deadline> result = deadlineStream
+                    .sorted(deadlineComparator.reversed())
+                    .collect(Collectors.toList());
+            return new TaskList(result);
+        }
+        List<Deadline> result = deadlineStream
+                .sorted(deadlineComparator)
+                .collect(Collectors.toList());
+        return new TaskList(result);
+    }
+
+    public TaskList sortDeadlineLexicographically(Order order) {
+        Comparator<Deadline> deadlineComparator = (d1, d2) ->
+                d1.compareLexicographically(d2);
+        Stream<Deadline> deadlineStream = taskList.stream()
+                .filter(task -> task instanceof Deadline)
+                .map(task -> (Deadline) task);
+        if (order == Order.decreasing) {
+            List<Deadline> result = deadlineStream
+                    .sorted(deadlineComparator.reversed())
+                    .collect(Collectors.toList());
+            return new TaskList(result);
+        }
+        List<Task> result = deadlineStream
+                .sorted(deadlineComparator)
+                .collect(Collectors.toList());
+        return new TaskList(result);
+    }
+    public TaskList sortEventChronologically(Order order) {
+        Comparator<Event> eventComparator = (e1, e2) ->
+                e1.compareChronologically(e2);
+
+        Stream<Event> eventStream = taskList
+                .stream()
+                .filter(task -> task instanceof Event)
+                .map(task -> (Event) task);
+        if (order == Order.decreasing) {
+            List<Event> result = eventStream
+                    .sorted(eventComparator.reversed())
+                    .collect(Collectors.toList());
+            return new TaskList(result);
+        }
+        List<Event> result = eventStream
+                .sorted(eventComparator)
+                .collect(Collectors.toList());
+        return new TaskList(result);
+    }
+
+    public TaskList sortEventLexicographically(Order order) {
+        Comparator<Event> eventComparator = (e1, e2) ->
+                e1.compareLexicographically(e2);
+        Stream<Event> eventStream = taskList.stream()
+                .filter(task -> task instanceof Event)
+                .map(task -> (Event) task);
+        if (order == Order.decreasing) {
+            List<Event> result = eventStream
+                    .sorted(eventComparator.reversed())
+                    .collect(Collectors.toList());
+            return new TaskList(result);
+        }
+        List<Task> result = eventStream
+                .sorted(eventComparator)
+                .collect(Collectors.toList());
+        return new TaskList(result);
+    }
+
+    public TaskList sortLexicographically(TypeOfTask typeOfTask, Order order) throws CannotSortException {
+        if (typeOfTask == TypeOfTask.deadline) {
+            return sortDeadlineLexicographically(order);
+        }
+        if (typeOfTask == TypeOfTask.event) {
+            return sortEventLexicographically(order);
+        }
+        throw new CannotSortException("CANNOT SORT TODO LEXICOGRAPHICALLY");
+    }
+
+    public TaskList sortChronologically(TypeOfTask typeOfTask, Order order) throws CannotSortException {
+        if (typeOfTask == TypeOfTask.deadline) {
+            return sortDeadlineChronologically(order);
+        }
+        if (typeOfTask == TypeOfTask.event) {
+            return sortEventChronologically(order);
+        }
+        throw new CannotSortException("CANNOT SORT TODO CHRONOLOGICALLY");
     }
 
     public Task markStatus(int task) throws DukeException {
@@ -106,5 +204,4 @@ public class TaskList {
         }
         return result;
     }
-
 }
