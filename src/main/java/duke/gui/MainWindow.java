@@ -36,6 +36,17 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
+     * Greets the user when the program is first run.
+     */
+    public void sayHello() {
+        String message = "You must be desperate to come to me for help\n";
+        message += "How can duke be of use today?";
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog(message, dukeImage)
+        );
+    }
+
+    /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
