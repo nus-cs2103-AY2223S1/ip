@@ -92,6 +92,7 @@ public class TaskList {
         index--;
         Task del = tasks.get(index);
         for (int i = index; i < curr; i++) {
+            System.out.println("error here");
             tasks.set(i, tasks.get(i + 1));
         }
         ui.deletePrint(del, curr - 1);
