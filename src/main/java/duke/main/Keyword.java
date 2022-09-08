@@ -14,7 +14,8 @@ public enum Keyword {
     DEADLINE("deadline"),
     EVENT("event"),
     DELETE("delete"),
-    FIND("find");
+    FIND("find"),
+    TAG("tag");
 
     /* corresponding input key to Enum value */
     private final String inputKey;

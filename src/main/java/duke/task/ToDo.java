@@ -34,8 +34,9 @@ public class ToDo extends Task {
     public String convertToSaveFormat() {
         int status = isDone ? 1 : 0;
         String prefix = "T";
+        String tagString = tag == null ? "" : tag.getName();
 
-        return String.format("%s | %d | %s", prefix, status, name);
+        return String.format("%s | %d | %s | %s", prefix, status, name, tagString);
     }
 
 }

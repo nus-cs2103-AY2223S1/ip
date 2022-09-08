@@ -42,7 +42,8 @@ public class Deadline extends Task {
         int status = isDone ? 1 : 0;
         String prefix = "D";
         String by = DateTimeFormatUtils.convertToInputFormat(deadlineDate);
+        String tagString = tag == null ? "" : tag.getName();
 
-        return String.format("%s | %d | %s | %s", prefix, status, name, by);
+        return String.format("%s | %d | %s | %s | %s", prefix, status, name, by, tagString);
     }
 }

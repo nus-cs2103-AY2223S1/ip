@@ -19,17 +19,27 @@ public class Parser {
      */
     public static void parse(String input) throws DukeException {
         // Delimit over " " to extract first keyword
-        String[] inputTokens = input.split(" ", 2);
+        String[] inputTokens = input.split(" ", 3);
 
         try {
             command = Keyword.getKeyword(inputTokens[0]);
 
-            // List and Bye commands are not passed with arguments
-            if (command != Keyword.LIST && command != Keyword.BYE) {
-                String argumentString = inputTokens[1];
+            // List and Bye commands are not passed with argument
+            if (command == Keyword.LIST || command == Keyword.BYE) {
+                argument = null;
+            } else if (command == Keyword.TAG) {
+                String taskNumber = inputTokens[1]; // Throws AOOIBE
+                String tagName = inputTokens[2]; // Throws AOOIBE
+
+                // Only need to check task number, empty tag name is caught by AOOIBE
+                validateArgument(taskNumber, tagName);
+                argument = taskNumber + "|" + tagName;
+            } else {
+                String argumentString = inputTokens[1]; // Throws AOOIBE
                 validateArgument(argumentString);
                 argument = argumentString;
             }
+
         } catch (DukeException de) {
             throw de;
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -41,27 +51,35 @@ public class Parser {
      * Validates arguments for the respective command keywords parsed from input.
      * Throws DukeException if argument is missing or of invalid format.
      *
-     * @param argument String to be validated.
+     * @param arguments Strings to be validated.
      * @throws DukeException If argument is missing or of invalid format.
      */
-    private static void validateArgument(String argument) throws DukeException {
-        assert argument != null : "Missing argument string";
+    private static void validateArgument(String... arguments) throws DukeException {
         assert command != null : "Missing Command Type";
 
         try {
             switch (command) {
             case DEADLINE: {
-                validateDeadlineArgument(argument);
+                validateDeadlineArgument(arguments[0]);
                 break;
             }
             case EVENT: {
-                validateEventArgument(argument);
+                validateEventArgument(arguments[0]);
                 break;
             }
             case MARK: // Fallthrough
             case UNMARK: // Fallthrough
             case DELETE: {
-                validateTaskIndex(argument);
+                validateTaskIndex(arguments[0]);
+                break;
+            }
+            case TAG: {
+                validateTaskIndex(arguments[0]);
+                checkEmptyArgument(arguments[1]);
+                break;
+            }
+            case TODO: {
+                checkEmptyArgument(arguments[0]);
                 break;
             }
             default: {
@@ -74,7 +92,7 @@ public class Parser {
     }
 
     /**
-     * Validates argument for Deadline Task.
+     * Validates argument for Deadline Task
      *
      * @param argument String to be validated.
      * @throws DukeException If argument is invalid.
@@ -82,6 +100,12 @@ public class Parser {
     private static void validateDeadlineArgument(String argument) throws DukeException {
         try {
             String[] taskTokens = argument.split(" /by ");
+
+            // Check empty argument
+            String taskName = taskTokens[0];
+            checkEmptyArgument(taskName);
+
+            // Check deadline
             String deadline = taskTokens[1]; // Throws AIOOBE
             DateTimeFormatUtils.parseDate(deadline);
         } catch (ArrayIndexOutOfBoundsException aioobe) {
@@ -100,6 +124,12 @@ public class Parser {
     private static void validateEventArgument(String argument) throws DukeException {
         try {
             String[] taskTokens = argument.split(" /at ");
+
+            // Check empty argument
+            String taskName = taskTokens[0];
+            checkEmptyArgument(taskName);
+
+            // check valid duration
             String duration = taskTokens[1]; // Throws AIOOBE
             DateTimeFormatUtils.parseDuration(duration);
         } catch (ArrayIndexOutOfBoundsException aioobe) {
@@ -122,6 +152,19 @@ public class Parser {
             throw new DukeException("Sorry, that Task Number doesn't look right...");
         }
 
+    }
+
+    /**
+     * Checks if string passed is an empty string.
+     * Throw DukeException if empty.
+     *
+     * @param argument String to be checked.
+     * @throws DukeException If string is empty.
+     */
+    private static void checkEmptyArgument(String argument) throws DukeException {
+        if (argument.equals("")) {
+            throw new DukeException("You forgot to name this one!");
+        }
     }
 
     public static Keyword getCommand() {

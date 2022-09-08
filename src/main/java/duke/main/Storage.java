@@ -91,26 +91,31 @@ public class Storage {
      * @throws DukeException If unable to parse task from input.
      */
     private Task parseSaveText(String input) throws DukeException {
-        String[] taskProperties = input.split(" \\| ", 4);
+        String[] taskProperties = input.split(" \\| ", 5);
         try {
             String taskType = taskProperties[0];
             String taskStatus = taskProperties[1]; // Throws AIOOBE
             String taskName = taskProperties[2]; // Throws AIOOBE
+            String taskTag;
+
             Task task = null;
 
             switch (taskType) {
             case "T": {
+                taskTag = taskProperties[3];
                 task = new ToDo(taskName);
                 break;
             }
             case "E": {
                 String taskTiming = taskProperties[3];
+                taskTag = taskProperties[4];
                 LocalDateTime[] eventDates = DateTimeFormatUtils.parseDuration(taskTiming);
                 task = new Event(taskName, eventDates[0], eventDates[1]);
                 break;
             }
             case "D": {
                 String taskTiming = taskProperties[3];
+                taskTag = taskProperties[4];
                 LocalDateTime deadlineDate = DateTimeFormatUtils.parseDate(taskTiming);
                 task = new Deadline(taskName, deadlineDate);
                 break;
@@ -119,10 +124,17 @@ public class Storage {
                 throw new DukeException("Unexpected Error in parseSaveText");
             }
             }
+
             // Set task status
             if (taskStatus.equals("1")) {
                 task.markAsDone();
             }
+
+            // Tags Task
+            if (!taskTag.equals("")) {
+                task.tag(taskTag);
+            }
+            
             return task;
         } catch (ArrayIndexOutOfBoundsException | NullPointerException | DukeException e) {
             throw new DukeException("Error reading file");

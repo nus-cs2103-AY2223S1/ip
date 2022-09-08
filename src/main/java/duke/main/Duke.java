@@ -52,14 +52,12 @@ public class Duke {
             Keyword command = Parser.getCommand();
             String argument = Parser.getArgument();
 
-            assert command != null : "Invalid Command";
-            assert argument != null : "Invalid Argument";
-
             try {
                 switch (command) {
                 case TODO: {
                     Task task = new ToDo(argument);
                     tasks.addTask(task);
+                    storage.saveTaskListToFile(tasks);
                     return ui.displayTaskAddedMessage(task, tasks.size());
                 }
                 case DEADLINE: {
@@ -69,6 +67,7 @@ public class Duke {
                     LocalDateTime deadlineDate = DateTimeFormatUtils.parseDate(deadline);
                     Task task = new Deadline(taskName, deadlineDate);
                     tasks.addTask(task);
+                    storage.saveTaskListToFile(tasks);
                     return ui.displayTaskAddedMessage(task, tasks.size());
                 }
                 case EVENT: {
@@ -78,6 +77,7 @@ public class Duke {
                     LocalDateTime[] eventDuration = DateTimeFormatUtils.parseDuration(duration);
                     Task task = new Event(taskName, eventDuration[0], eventDuration[1]);
                     tasks.addTask(task);
+                    storage.saveTaskListToFile(tasks);
                     return ui.displayTaskAddedMessage(task, tasks.size());
                 }
                 case LIST: {
@@ -89,13 +89,24 @@ public class Duke {
                 case DELETE: {
                     Task deletedTask = tasks.getTask(argument);
                     tasks.deleteTask(argument);
+                    storage.saveTaskListToFile(tasks);
                     return ui.displayTaskDeletedMessage(deletedTask, tasks.size());
                 }
                 case MARK: // Fallthrough
                 case UNMARK: {
                     tasks.markUnmarkTask(argument, command);
                     Task task = tasks.getTask(argument);
+                    storage.saveTaskListToFile(tasks);
                     return ui.displayTaskMarkUnmarkMessage(task, command);
+                }
+                case TAG: {
+                    String[] taskTokens = argument.split("\\|");
+                    String taskNumber = taskTokens[0];
+                    String tagName = taskTokens[1];
+                    Task task = tasks.getTask(taskNumber);
+                    tasks.tagTask(taskNumber, tagName);
+                    storage.saveTaskListToFile(tasks);
+                    return ui.displayTagTaskMessage(task);
                 }
                 case BYE: {
                     return ui.sayGoodbye();
@@ -105,9 +116,6 @@ public class Duke {
                     break;
                 }
                 }
-
-                // Update Save File
-                storage.saveTaskListToFile(tasks);
 
             } catch (DukeException de) {
                 return ui.printErrorMessage(de);
