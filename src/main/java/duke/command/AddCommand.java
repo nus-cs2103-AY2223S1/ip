@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.exception.TaskDuplicatedException;
 import duke.task.Task;
 import duke.util.Storage;
 import duke.util.TaskList;
@@ -28,7 +29,7 @@ public abstract class AddCommand extends Command {
      * @return task command message
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) throws TaskDuplicatedException {
         tasks.addTask(task);
         storage.update(tasks);
         return String.format("%s\n%s", TASK_ADD, task);

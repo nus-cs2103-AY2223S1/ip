@@ -3,13 +3,11 @@ package duke.util;
 //import util
 import java.util.ArrayList;
 
+import duke.exception.TaskDuplicatedException;
 import duke.exception.TaskMarkException;
 import duke.exception.TaskNotFoundException;
 import duke.exception.TaskUnmarkException;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
+import duke.task.*;
 
 /**
  * Represents a list of Tasks and provides methods to modify the list.
@@ -97,8 +95,21 @@ public class TaskList {
      *
      * @param task To be added to tasks.
      */
-    public void addTask(Task task) {
+    public void addTask(Task task) throws TaskDuplicatedException {
+        if (isDuplicate(task)) {
+            throw new TaskDuplicatedException();
+        }
         tasks.add(task);
+    }
+
+    private boolean isDuplicate(Task task) {
+        for (int i = 0; i < tasks.size(); i++) {
+            Task taskInList = tasks.get(i);
+            if (taskInList.equals(task)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -203,7 +214,7 @@ public class TaskList {
      * @param description filter out task with description in it.
      * @return TaskList containing all filtered out task with description in it.
      */
-    public TaskList findTask(String description) {
+    public TaskList findTask(String description) throws TaskDuplicatedException {
         TaskList filteredTasks = new TaskList();
         for (int i = 0; i < tasks.size(); i++) {
             Task task = tasks.get(i);
