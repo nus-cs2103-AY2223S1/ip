@@ -16,10 +16,6 @@ You can tell Duke to add tasks and store them in a list. Your tasks will be stor
 
 Once you have completed a task, you can mark the status of it in Duke.
 
-### Searching
-
-###
-
 ## Usage
 
 ### `list` - List all tasks you have added
@@ -32,7 +28,10 @@ This command will list all the tasks in the task list.
 <summary><b>Expected outcome</b></summary>
 
 ```
-expected output
+list
+
+1. [T][x] read book
+2. [D][ ] sweep the floor (by: 10 Oct 2022)
 ```
 
 </details>
@@ -47,7 +46,11 @@ A todo task with the task description specified will be added to the task list.
 <summary><b>Expected outcome</b></summary>
 
 ```
-expected output
+todo do homework
+
+Task added:
+  [T][] do homework
+There are not 3 tasks in the list.
 ```
 
 </details>
@@ -65,14 +68,18 @@ A deadline task with the specified description and date will be added to the tas
 <summary><b>Expected outcome</b></summary>
 
 ```
-expected output
+deadline go home /by 2022-11-12
+
+Task added:
+  [D][ ] go home (by: 12 Nov 2022)
+There are not 4 tasks in the list.
 ```
 
 </details>
 
 ### `event` - Add an Event task to the task list
 
-**Usage:** `Event <task description> /at <date>`
+**Usage:** `event <task description> /at <date>`
 
 An event task with the specified description and date will be added to the task list.
 
@@ -83,7 +90,11 @@ An event task with the specified description and date will be added to the task 
 <summary><b>Expected outcome</b></summary>
 
 ```
-expected output
+event sale /at 2022-12-12
+
+Task added:
+  [E][ ] sale (at: 12 Dec 2022)
+There are not 5 tasks in the list.
 ```
 
 </details>
@@ -98,7 +109,11 @@ Remove the task specified by the index from the task list and the storage file.
 <summary><b>Expected outcome</b></summary>
 
 ```
-expected output
+delete 5
+
+Task deleted:
+  [E][ ] sale (at: 12 Dec 2022)
+There are not 4 tasks in the list.
 ```
 
 </details>
@@ -113,7 +128,10 @@ Mark the task specified by the index as complete.
 <summary><b>Expected outcome</b></summary>
 
 ```
-expected output
+mark 4
+
+I have marked this task as done:
+  [D][X] go home (by: 12 Nov 2022)
 ```
 
 </details>
@@ -128,7 +146,10 @@ Mark the task specified by the index as incomplete.
 <summary><b>Expected outcome</b></summary>
 
 ```
-expected output
+mark 4
+
+I have unmarked the completion of this task:
+  [D][ ] go home (by: 12 Nov 2022)
 ```
 
 </details>
@@ -143,7 +164,10 @@ Update the task specified by the index with a new description.
 <summary><b>Expected outcome</b></summary>
 
 ```
-expected output
+update 4 go back home
+
+I have updated the description of this task:
+  [D][ ] go back home (by: 12 Nov 2022)
 ```
 
 </details>
@@ -158,7 +182,11 @@ Search the task list for a task with a description containing the query specifie
 <summary><b>Expected outcome</b></summary>
 
 ```
-expected output
+find home
+
+This is what I found:
+  1. [T][] do homework
+  2. [D][] go back home (by: 12 Nov 2022)
 ```
 
 </details>
