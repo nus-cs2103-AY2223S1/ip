@@ -16,7 +16,7 @@ public class TaskList {
      * Constructor of a tasklist
      */
     public TaskList() {
-        this.list = new ArrayList<Task>();
+        this.list = new ArrayList<>();
     }
 
     /**
@@ -66,7 +66,7 @@ public class TaskList {
 
     /**
      * marks task with an X.
-     * @param task
+     * @param task The task in the list.
      */
     public static String markString(Task task) {
         task.mark();
@@ -75,7 +75,7 @@ public class TaskList {
 
     /**
      * Unmarks task by removing the X.
-     * @param task
+     * @param task The task in the list
      */
     public static String unMarkString(Task task) {
         task.unMark();
@@ -98,13 +98,13 @@ public class TaskList {
             part2 = parts[1];
             if (isInteger(part2)) {
                 int number = Integer.parseInt(part2);
-                if (this.list.size() < number || number <= 0) {
-                    throw new DukeException("There's no such task to mark!");
-                } else {
+                if (number <= 0 || number > this.list.size()) {
                     return markString(this.list.get(number - 1));
+                } else {
+                    throw new DukeException("Invalid number input");
                 }
             } else {
-                throw new DukeException("I don't know which to mark!");
+                throw new DukeException("I don't know which to unmark!");
             }
         case UNMARK:
             if (parts.length <= 1) {
@@ -113,16 +113,17 @@ public class TaskList {
             part2 = parts[1];
             if (isInteger(part2)) {
                 int number = Integer.parseInt(part2);
-                if (this.list.size() < number || number <= 0) {
-                    throw new DukeException("There's no such task to unmark!");
-                } else {
+                if (number <= 0 || number > this.list.size()) {
                     return unMarkString(this.list.get(number - 1));
+                } else {
+                    throw new DukeException("Invalid number input");
                 }
             } else {
                 throw new DukeException("I don't know which to unmark!");
             }
         default:
-            throw new DukeException(("Error! Update not specified."));
+            assert false : "Update not specified";
+            return null;
         }
     }
 
@@ -153,7 +154,7 @@ public class TaskList {
             if (deadlineParts[0].equals("")) {
                 throw new DukeException("There's no deadline task!");
             }
-            if (deadlineParts.length <= 1) {
+            if (deadlineParts.length == 1) {
                 throw new DukeException("You didn't specify the deadline! Please use /by.");
             }
             DeadlineTask deadline = new DeadlineTask(deadlineParts[0], deadlineParts[1]);
@@ -176,14 +177,15 @@ public class TaskList {
             if (eventParts[0].equals("")) {
                 throw new DukeException("There's no event task!");
             }
-            if (eventParts.length <= 1) {
+            if (eventParts.length == 1) {
                 throw new DukeException("You didn't specify the event time! Please use /at.");
             }
             EventTask event = new EventTask(eventParts[0], eventParts[1]);
             this.list.add(event);
             return addDetailedTask(event);
         default:
-            throw new DukeException("Error! What type of task are we adding?");
+            assert false : "Type not specified";
+            return null;
         }
     }
 
