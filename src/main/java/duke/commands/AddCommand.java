@@ -1,15 +1,14 @@
 package duke.commands;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.List;
 import duke.task.Task;
 import duke.ui.Ui;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Adds a task to the task list.
