@@ -1,8 +1,6 @@
 package duke.ui;
 
 import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import duke.Duke;
 import javafx.fxml.FXML;
