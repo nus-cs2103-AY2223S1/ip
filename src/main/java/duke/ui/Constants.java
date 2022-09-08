@@ -47,7 +47,7 @@ public class Constants {
     public static final String FIND = "find";
 
     // Find message
-    public static final String FIND_MESSAGE = "Here are the matching tasks in your list:";
+    public static final String FIND_MESSAGE = "Here are the tasks that match at least 3 characters of your key word in your list:";
 
     // Exit message
     public static final String EXIT_MESSAGE = "Great that you joined. See you soon. Bye!";
