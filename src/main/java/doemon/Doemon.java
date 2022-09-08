@@ -6,6 +6,7 @@ import doemon.exception.TaskDataException;
 import doemon.parser.Parser;
 import doemon.storage.Storage;
 import doemon.task.TaskList;
+import doemon.task.Todo;
 import doemon.ui.Ui;
 
 public class Doemon {
@@ -34,6 +35,8 @@ public class Doemon {
      * Starts the Doemon chatbot.
      */
     public void run() {
+        Todo t = new Todo("test string");
+        System.out.println(t.toString());
         ui.showWelcome();
         boolean isExit = false;
         while(!isExit) {
