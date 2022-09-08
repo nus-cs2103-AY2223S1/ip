@@ -156,4 +156,12 @@ public class EventHandler {
         return guiUserInterface.printMatches(matches);
     }
 
+    /**
+     * Handles output of user requesting for help.
+     *
+     * @return The response from Duke.
+     */
+    public String help() {
+        return guiUserInterface.printHelp();
+    }
 }

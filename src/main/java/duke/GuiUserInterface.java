@@ -12,14 +12,16 @@ public class GuiUserInterface {
     }
 
     /**
-     * Prints goodbye message.
+     * Returns goodbye message.
      */
     public String sayBye() {
         return "bai bai";
     }
 
     /**
-     * Prints all tasks currently in taskList.
+     * Returns all tasks currently in taskList.
+     *
+     * @return All tasks currently in tasklist.
      */
     public String printList() {
         String output = "Here are the tasks in your list:\n";
@@ -31,7 +33,7 @@ public class GuiUserInterface {
     }
 
     /**
-     * Prints message to confirm marking of a Task as done.
+     * Returns message to confirm marking of a Task as done.
      *
      * @param taskIndex Index of the task that was marked as done.
      */
@@ -42,7 +44,7 @@ public class GuiUserInterface {
     }
 
     /**
-     * Prints message to confirm unmarking of a Task as done.
+     * Returns message to confirm unmarking of a Task as done.
      *
      * @param taskIndex Index of the task that was marked as undone.
      */
@@ -53,7 +55,7 @@ public class GuiUserInterface {
     }
 
     /**
-     * Prints message to confirm deletion of new Task.
+     * Returns message to confirm deletion of new Task.
      *
      * @param taskIndex Index of Task that was deleted.
      */
@@ -64,7 +66,7 @@ public class GuiUserInterface {
     }
 
     /**
-     * Prints message to confirm addition of new Task.
+     * Returns message to confirm addition of new Task.
      *
      * @param task The new Task added to taskList.
      */
@@ -77,9 +79,10 @@ public class GuiUserInterface {
     }
 
     /**
-     * Given a TaskList of query matches, prints out the results.
+     * Given a TaskList of query matches, returns the results.
      *
      * @param matches TaskList of query matches.
+     * @return The output of Duke
      */
     public String printMatches(TaskList matches) {
         String output = "";
@@ -93,5 +96,23 @@ public class GuiUserInterface {
             }
             return output;
         }
+    }
+
+    /**
+     * Returns output when user asks for help.
+     *
+     * @return The predetermined help message.
+     */
+    public String printHelp() {
+        String output = "It looks like you're having some trouble!\n";
+        output = output + "Here are some example usages:\n" +
+                "   todo Laundry\n" +
+                "   deadline Math Assignment /by 20/20/2020 1200\n" +
+                "   event Concert /at 19/20/2020 1200\n" +
+                "   list\n" +
+                "   mark 1\n" +
+                "   unmark 1\n" +
+                "   find Laundry\n";
+        return output;
     }
 }
