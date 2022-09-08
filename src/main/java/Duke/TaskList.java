@@ -32,6 +32,7 @@ public class TaskList {
      * @param t task to add.
      */
     public String addTask(Task t) {
+        assert t != null:"Input task should not be null";
         this.lst.add(t);
         return "Got it. I've added this task: \n  " + t
                 + " \n Now you have " + Integer.toString(lst.size()) + " tasks in the list.\n";
@@ -44,6 +45,7 @@ public class TaskList {
      */
     public String deleteTask(int i) {
         Task removed = lst.get(i - 1);
+        assert removed != null:"Should not be null";
         lst.remove(i - 1);
         return "Noted. I've removed this task: \n  " + removed
                 + " \nNow you have " + lst.size() + " tasks in the list.\n";
