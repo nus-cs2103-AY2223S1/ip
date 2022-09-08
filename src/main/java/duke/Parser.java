@@ -30,21 +30,21 @@ public class Parser {
             if (first.equals("bye")) {
                 Platform.exit();
             } else if (first.equals("list")) {
-                output = listMessage(lst);
+                output = getList(lst);
             } else if (first.length() == 6 && first.substring(0, 4).equals("mark")) {
-                output = markMessage(first, lst, store);
+                output = markTask(first, lst, store);
             } else if (first.length() == 8 && first.substring(0, 6).equals("unmark")) {
-                output = unmarkMessage(first, lst, store);
+                output = unmarkTask(first, lst, store);
             } else if (first.length() >= 4 && first.substring(0, 4).equals("todo")) {
-                output = todoMessage(first, lst, store);
+                output = getTodo(first, lst, store);
             } else if (first.length() >= 8 && first.substring(0, 8).equals("deadline")) {
-                output = deadlineMessage(first, lst, store);
+                output = getDeadline(first, lst, store);
             } else if (first.length() >= 5 && first.substring(0, 5).equals("event")) {
-                output = eventMessage(first, lst, store);
+                output = getEvent(first, lst, store);
             } else if (first.length() == 8 && first.substring(0, 6).equals("delete")) {
-                output = deleteMessage(first, lst, store);
+                output = deleteTask(first, lst, store);
             } else if (first.length() >= 4 && first.substring(0, 4).equals("find")) {
-                output = findMessage(first, lst);
+                output = findTask(first, lst);
             }
             else {
                 throw new DukeException("I'm sorry, but I don't know what that means :-(");
@@ -63,15 +63,12 @@ public class Parser {
      * @param lst The tasklist
      * @return String The output of Duke when list is typed
      */
-    public static String listMessage(TaskList lst) throws DukeException {
-        String list = "";
+    public static String getList(TaskList lst) throws DukeException {
+        String list;
         if (lst.count() == 0) {
             throw new DukeException("Your list is empty!!");
         } else {
-            System.out.println("try");
-            for (int i = 1; i < lst.count() + 1; i++) {
-                list += (i) + ". " + lst.getTask(i - 1) + "\n";
-            }
+            list = Ui.getListMessage(lst);
         }
         return list;
     }
@@ -84,15 +81,15 @@ public class Parser {
      * @param storage the storage object
      * @return String The output of Duke when the user marks a task
      */
-    public static String markMessage(String str, TaskList lst, Storage storage) throws DukeException, IOException {
+    public static String markTask(String str, TaskList lst, Storage storage) throws DukeException, IOException {
         char index = str.charAt(5);
         int number = Integer.parseInt(String.valueOf(index));
         if (number > lst.count()) {
             throw new DukeException("No such task.");
         }
-        String reply = lst.markTask(number - 1);
+        Task t = lst.markTask(number - 1);
         storage.updateFile(lst);
-        return reply;
+        return Ui.getMarkMessage(t);
     }
 
     /**
@@ -102,15 +99,15 @@ public class Parser {
      * @param lst The tasklist
      * @return String The output of Duke when the user unmarks a task
      */
-    public static String unmarkMessage(String str, TaskList lst, Storage storage) throws DukeException, IOException {
+    public static String unmarkTask(String str, TaskList lst, Storage storage) throws DukeException, IOException {
         char index = str.charAt(7);
         int number = Integer.parseInt(String.valueOf(index));
         if(number > lst.count()) {
             throw new DukeException("No such task.");
         }
-        String reply = lst.unmarkTask(number - 1);
+        Task t = lst.unmarkTask(number - 1);
         storage.updateFile(lst);
-        return reply;
+        return Ui.getUnmarkMessage(t);
     }
 
     /**
@@ -121,14 +118,13 @@ public class Parser {
      * @param storage the storage object
      * @return String The output of Duke when the user adds a Todo task
      */
-    public static String todoMessage(String str, TaskList lst, Storage storage) throws DukeException, IOException {
+    public static String getTodo(String str, TaskList lst, Storage storage) throws DukeException, IOException {
         if(str.length() > 5) {
             String description = str.substring(5);
             Todo d = new Todo(description);
             lst.addTask(d);
             storage.updateFile(lst);
-            return "Got it. I've added this task:\n " + d +
-                    "\nNow you have " + lst.count() + " tasks in the list.";
+            return Ui.todoMessage(d, lst.count());
         } else {
             throw new DukeException("The description of a todo cannot be empty.");
         }
@@ -142,7 +138,7 @@ public class Parser {
      * @param storage the storage object
      * @return String The output of Duke when the user adds a Deadline task
      */
-    public static String deadlineMessage(String str, TaskList lst, Storage storage) throws DukeException, IOException {
+    public static String getDeadline(String str, TaskList lst, Storage storage) throws DukeException, IOException {
         if(str.length() > 9) {
             int sepPos = str.indexOf("/");
             if (sepPos != -1) {
@@ -157,8 +153,7 @@ public class Parser {
                 Deadline l = new Deadline(description, LocalDate.parse(by));
                 lst.addTask(l);
                 storage.updateFile(lst);
-                return "Got it. I've added this task:\n " + l +
-                        "\nNow you have " + lst.count() + " tasks in the list.";
+                return Ui.deadlineMessage(l, lst.count());
             } else {
                 throw new DukeException("You have to include the deadline");
             }
@@ -175,7 +170,7 @@ public class Parser {
      * @param storage the storage object
      * @return String The output of Duke when the user adds a Event task
      */
-    public static String eventMessage(String str, TaskList lst, Storage storage) throws DukeException, IOException {
+    public static String getEvent(String str, TaskList lst, Storage storage) throws DukeException, IOException {
         if (str.length() > 6) {
             int sepPos = str.indexOf("/");
             if (sepPos != -1) {
@@ -184,8 +179,7 @@ public class Parser {
                 Event e = new Event(description, at);
                 lst.addTask(e);
                 storage.updateFile(lst);
-                return "Got it. I've added this task:\n " + e +
-                        "\nNow you have " + lst.count() + " tasks in the list.";
+                return Ui.eventMessage(e, lst.count());
             } else {
                 throw new DukeException("You have to include the timings of an event");
             }
@@ -202,7 +196,7 @@ public class Parser {
      * @param storage the storage object
      * @return String The output of Duke when the user deletes a task
      */
-    public static String deleteMessage(String str, TaskList lst, Storage storage) throws DukeException, IOException {
+    public static String deleteTask(String str, TaskList lst, Storage storage) throws DukeException, IOException {
         if (str.length() > 7) {
             char index = str.charAt(7);
             int number = Integer.parseInt(String.valueOf(index));
@@ -212,8 +206,7 @@ public class Parser {
             Task t = lst.getTask(number - 1);
             lst.deleteTask(t);
             storage.updateFile(lst);
-            return "Noted. I've removed this task: \n " + t + "\nNow you have "
-                    + lst.count() + " tasks in the list.";
+            return Ui.deleteMessage(t, lst.count());
         }
         else {
             throw new DukeException("You have to enter the task index that you want to delete");
@@ -227,20 +220,15 @@ public class Parser {
      * @param lst The tasklist
      * @return String The output of Duke when the user finds a task
      */
-    public static String findMessage(String str, TaskList lst) throws DukeException, IOException {
+    public static String findTask(String str, TaskList lst) throws DukeException, IOException {
         if (str.length() > 6) {
             String keyword = str.substring(5);
-            ArrayList<Task> allTasks = lst.findTask(keyword);
+            ArrayList<Task> allTasks = lst.filterTask(keyword);
             int counter = 1;
             if (allTasks.isEmpty()) {
                 throw new DukeException("No such tasks with that keyword!!");
             } else {
-                String tasks = "Here are the matching tasks in your list:\n";
-                for (Task t: allTasks) {
-                    tasks += counter + ". " + t.toString() + "\n";
-                    counter++;
-                }
-                return tasks;
+                return Ui.findMessage(allTasks);
             }
         } else {
             throw new DukeException("Add keyword to find");

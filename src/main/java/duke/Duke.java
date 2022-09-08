@@ -24,19 +24,16 @@ public class Duke{
      * @param filePath the filepath of the Duke text file
      */
     public Duke(String filePath) {
-        Ui ui = new Ui();
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.load());
         } catch (FileNotFoundException e) {
             Ui.showLoadingError();
             tasks = new TaskList();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
-    String getResponse(String input) {
+    public String getResponse(String input) {
         return Parser.parse(input, tasks, storage);
     }
 }

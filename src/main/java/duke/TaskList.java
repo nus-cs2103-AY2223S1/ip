@@ -54,10 +54,10 @@ public class TaskList {
      *
      * @param index The index of the task
      */
-    public String markTask(int index) {
+    public Task markTask(int index) {
         Task t = this.lst.get(index);
         t.mark();
-        return "Nice! I've marked this task as done:\n  [X] " + t.description;
+        return t;
     }
 
     /**
@@ -65,28 +65,28 @@ public class TaskList {
      *
      * @param index The index of the task
      */
-    public String unmarkTask(int index) {
+    public Task unmarkTask(int index) {
         Task t = this.lst.get(index);
         t.unmark();
-        return "OK, I've marked this task as not done yet:\n  [ ] " + t.description;
+        return t;
     }
 
     /**
      * A method that adds a task into the tasklist
      *
-     * @param tsk The task
+     * @param t The task
      */
-    public void addTask(Task tsk) {
-        this.lst.add(tsk);
+    public void addTask(Task t) {
+        this.lst.add(t);
     }
 
     /**
      * A method that deletes a task into the tasklist
      *
-     * @param tsk The task
+     * @param t The task
      */
-    public void deleteTask(Task tsk) {
-        this.lst.remove(tsk);
+    public void deleteTask(Task t) {
+        this.lst.remove(t);
     }
 
     /**
@@ -95,7 +95,7 @@ public class TaskList {
      * @param keyword The keyword
      * @return Task The task with the keyword
      */
-    public ArrayList<Task> findTask(String keyword) {
+    public ArrayList<Task> filterTask(String keyword) {
         ArrayList<Task> allTasks = new ArrayList<>();
         for (Task t: lst) {
             if (t.description.contains(keyword)) {

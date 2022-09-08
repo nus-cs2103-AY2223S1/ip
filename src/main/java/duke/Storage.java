@@ -33,18 +33,6 @@ public class Storage {
     }
 
     /**
-     * Method to get the text file or create one if it does not exist
-     */
-    public void getFile() throws IOException {
-        File file = new File(this.filePath);
-        if (file.createNewFile()) {
-            System.out.println(file.getName() + " has been created");
-        } else {
-            System.out.println(file.getName() + " already exists");
-        }
-    }
-
-    /**
      * Method that updates the textfile with the latest tasklist
      *
      * @param lst latest tasklist
@@ -63,46 +51,28 @@ public class Storage {
      *
      * @return ArrayList<Task> arraylist containing tasks from the text file
      */
-    public ArrayList<Task> load() throws FileNotFoundException, IOException {
+    public ArrayList<Task> load() throws FileNotFoundException {
         ArrayList<Task> lst = new ArrayList<>();
-        File file = new File("./src/main/java/duke.txt");
-        Scanner sc = new Scanner(file);
-        while (sc.hasNextLine()) {
-            String currentLine = sc.nextLine();
-            String[] stringDetails = currentLine.split("\\|");
-            String taskType = stringDetails[0];
-            String markStatus = stringDetails[1];
-            String description = stringDetails[2];
-            switch (taskType) {
-                case "T ":
-                    Todo todo = new Todo(description.substring(1));
-                    if (markStatus.equals(" 1 ")) {
-                        todo.mark();
-                    }
-                    lst.add(todo);
-                    break;
-                case "D ": {
-                    String by = stringDetails[3].substring(1);
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
-                    LocalDate date = LocalDate.parse(by, formatter);
-                    Deadline deadline = new Deadline(description.substring(1), date);
-                    if (markStatus.equals(" 1 ")) {
-                        deadline.mark();
-                    }
-                    lst.add(deadline);
-                    break;
-                }
-                case "E ": {
-                    String at = stringDetails[3];
-                    Event event = new Event(description.substring(1), at.substring(1));
-                    if (markStatus.equals(" 1 ")) {
-                        event.mark();
-                    }
-                    lst.add(event);
-                    break;
-                }
+        File file = new File(filePath);
+        if (!file.getParentFile().exists()) {
+            new File(filePath).getParentFile().mkdirs();
+            try {
+                new File(filePath).createNewFile();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        } else if (!file.exists()) {
+            try {
+                new File(filePath).createNewFile();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
             }
         }
+        Scanner sc = new Scanner(file);
+        while (sc.hasNextLine()) {
+            lst = textConverter.textToTask(sc.nextLine(), lst);
+        }
+        sc.close();
         return lst;
     }
 }

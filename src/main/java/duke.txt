@@ -1,2 +1,3 @@
-T | 1 | borrow book
-E | 1 | borrow book   | Christmas
+T | 0 | book
+D | 1 | book  | Dec 12 2022
+E | 0 | book  | chirstmas
