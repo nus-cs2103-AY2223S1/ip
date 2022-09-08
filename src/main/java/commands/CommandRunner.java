@@ -23,7 +23,7 @@ public class CommandRunner {
     /**
      * Creates new CommandRunner
      */
-    public CommandRunner(TaskModel taskModel) throws StorageException {
+    public CommandRunner(TaskModel taskModel) {
         this.taskModel = taskModel;
 
         // Add new commands here

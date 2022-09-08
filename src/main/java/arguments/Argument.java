@@ -6,8 +6,6 @@ import java.util.List;
 import exceptions.DukeException;
 import input.Input;
 
-
-
 /**
  * Represents a CLI argument with type T. Implementors provide own implementation of validation
  * @param <T> Type of the argument expected from CLI

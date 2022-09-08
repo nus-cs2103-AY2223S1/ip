@@ -20,7 +20,6 @@ public class TodoCommand extends Command {
     protected TaskModel taskModel;
     protected DescriptionArgument description;
 
-
     /**
      * Creates new Todo command
      * @param taskModel TaskModel ot use

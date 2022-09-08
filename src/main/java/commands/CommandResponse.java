@@ -25,7 +25,4 @@ public class CommandResponse {
     public String getMessage() {
         return message;
     }
-    public boolean isExit() {
-        return isExit;
-    }
 }

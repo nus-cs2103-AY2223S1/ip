@@ -39,7 +39,6 @@ public class OutputLogger {
         StringBuilder out = new StringBuilder();
 
         for (int i = 0; i < linesList.size(); i++) {
-            int id = i + 1;
             String taskItem = String.format("%d. %s%n", i + 1, linesList.get(i));
             out.append(taskItem);
         }

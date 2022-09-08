@@ -16,7 +16,6 @@ import task.TaskResponse;
  */
 public class DeleteCommand extends Command {
     private TaskModel taskModel;
-    private TaskIdArgument taskIdArgument;
 
     /**
      * Creates new Delete command
@@ -29,7 +28,7 @@ public class DeleteCommand extends Command {
 
     @Override
     public CommandResponse run(Input input) throws DukeException {
-        taskIdArgument = new TaskIdArgument(input);
+        TaskIdArgument taskIdArgument = new TaskIdArgument(input);
         List<String> errs = Argument.validateArguments(taskIdArgument);
         if (errs.size() > 0) {
             return new CommandResponse(OutputLogger.errorOutput(errs));
