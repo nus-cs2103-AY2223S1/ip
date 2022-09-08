@@ -10,7 +10,8 @@ import java.util.ArrayList;
 public class TaskList {
     private int numOfTasks;
     private static List<Task> tasks;
-    private String indent = "    ";
+    private String INDENT = "    ";
+    private String PRINT_NUM_OF_TASKS = INDENT + "Now you have " + numOfTasks + " tasks in the list";
 
     public TaskList() {
         this.numOfTasks = 0;
@@ -28,41 +29,59 @@ public class TaskList {
 
     String add(Task task) {
         String response = "";
+
+        //update our taskList and numOfTasks
         tasks.add(task);
-        response += indent + "Got it. I've added this task:" + "\n";
-        response += "    " + task + "\n";
         numOfTasks += 1;
-        response +=  indent + "Now you have " + numOfTasks + " tasks in the list";
+
+        //Print the statement to indicate we are adding a task
+        response += INDENT + "Got it. I've added this task:" + "\n";
+        response += "    " + task + "\n";
+        response +=  PRINT_NUM_OF_TASKS;
+
         return response;
     }
 
     String delete(int taskIndex) {
         String response = "";
+
+        //First update the number of tasks left
         numOfTasks -= 1;
+
+        //Print the statement to indicate we are deleting a task
         response += "Noted. I've removed this task:" + "\n";
         response += "      " + tasks.get(taskIndex - 1) + "\n";
-        response += indent + "Now you have " + numOfTasks + " tasks in the list";
+        response += PRINT_NUM_OF_TASKS;
+
+        //We remove the task after printing our statements
         tasks.remove(taskIndex - 1);
+
         return response;
     }
 
     String mark(int taskIndex) {
+        String markStatement = INDENT + "Nice! I've marked this task as done:";
+
         Task task = tasks.get(taskIndex - 1);
         task.mark();
-        return indent + "Nice! I've marked this task as done:" + "\n      " + task;
+
+        return  markStatement + "\n      " + task;
     }
 
     String unmark(int taskIndex) {
+        String unmarkStatement = INDENT + "Ok, I've marked this task as not done yet:";
+
         Task task = tasks.get(taskIndex - 1);
         task.unmark();
-        return indent + "Ok, I've marked this task as not done yet:" + "\n       " + task;
+
+        return unmarkStatement + "\n       " + task;
     }
 
     String printTasks() {
         String taskList = "Here are your tasks: \n";
         for (int j = 0; j < numOfTasks; j++) {
             int taskNum = j + 1;
-            taskList += indent + taskNum + ". " + tasks.get(j) + "\n";
+            taskList += INDENT + taskNum + ". " + tasks.get(j) + "\n";
         }
         return taskList;
     }
@@ -77,6 +96,7 @@ public class TaskList {
         // initiate a boolean variable to check if the keyword exists in our task list
         String response = "";
         boolean isFindable = false;
+
         for (Task task : tasks) {
             if (task.getDescription().contains(keyword)) {
                 response += task + "\n";

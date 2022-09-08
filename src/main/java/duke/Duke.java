@@ -182,12 +182,15 @@ public class Duke extends Application {
             //we get the commandType to know how to process the command
             String commandType = Parser.getCommandType(input);
 
-            if (commandType.equals("EXIT")) {
+            switch (commandType) {
+            case "EXIT":
                 response += "Bye. Hope to see you again soon!";
                 isExit = true;
-            } else if (commandType.equals("PRINT")) {
+
+            case "PRINT":
                 response += tasks.printTasks();
-            } else if (commandType.equals("UPDATE")) {
+
+            case "UPDATE":
                 int[] arr = Parser.parseUpdateCommand(input);
 
                 //mark/unmark the task depending on the integer in the first entry of our array
@@ -196,30 +199,32 @@ public class Duke extends Application {
                 } else {
                     response += tasks.unmark(arr[1]);
                 }
-            } else if (commandType.equals("DELETE")) {
+
+            case "DELETE":
                 int taskIndex = Parser.getDeleteNum(input);
                 response += tasks.delete(taskIndex);
-            } else if (commandType.equals("ADD")) {
+
+            case "ADD":
                 if (input.startsWith("todo")) {
                     String task = input.substring(5);
                     response += tasks.add(new Todo(task));
                 } else {
                     LocalDateTime dateTime = Parser.parseDateTime(input);
                     if (input.startsWith("deadline")) {
-                        response += tasks.add(new Deadline(input.substring(9, input.indexOf("/"))
-                                , dateTime));
+                        response += tasks.add(new Deadline(input.substring(9, input.indexOf("/")), dateTime));
                     } else {
-                        response += tasks.add(new Event(input.substring(6, input.indexOf("/"))
-                                , dateTime));
+                        response += tasks.add(new Event(input.substring(6, input.indexOf("/")), dateTime));
                     }
                 }
-            } else if (commandType.equals("FIND")) {
+
+            case "FIND":
                 response += Parser.parseFindCommand(input, tasks);
-            } else {
+
+            default:
                 response += Parser.printUpcomingTasks(tasks);
+                storage.save(tasks);
+                return response;
             }
-            storage.save(tasks);
-            return response;
         } catch (DukeException e) {
             return ui.showError(e);
         } finally {
