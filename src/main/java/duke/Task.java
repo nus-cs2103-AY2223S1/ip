@@ -1,11 +1,17 @@
 package duke;
 
+import java.time.LocalDateTime;
+
 /**
  * Task class.
  */
 public class Task {
     protected String description;
     protected boolean isDone;
+    public LocalDateTime getDateTime() {
+        return null;
+    }
+
     protected enum Type { DEADLINE, TODO, EVENT }
 
     public Task(String description) {

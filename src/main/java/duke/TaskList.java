@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.stream.Collectors;
 
 /**
@@ -12,12 +13,23 @@ import java.util.stream.Collectors;
 public class TaskList {
     private static ArrayList<Task> taskList;
 
+    /**
+     * Constructor for generated TaskList object.
+     *
+     * @param taskList arraylist of tasks
+     * @throws DukeException if any errors
+     */
     public TaskList(ArrayList<Task> taskList) throws DukeException {
         try {
             this.taskList = taskList;
         } catch (Exception e) {
             throw new DukeException(e.getMessage());
         }
+    }
+
+    public static int taskListLength() {
+        assert (taskList.size() > 0);
+        return taskList.size();
     }
 
     public static ArrayList<Task> getTaskList() {
@@ -37,15 +49,15 @@ public class TaskList {
             switch (type) {
             case DEADLINE:
                 if (s.length() < 1) {
-                    throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+                    throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
                 }
                 String[] splitStringDL = s.split(" /by ");
                 if (splitStringDL.length < 2) {
-                    throw new DukeException("☹ Deadline requires a BY time typed correctly.");
+                    throw new DukeException("Deadline requires a BY time typed correctly.");
                 }
                 String taskStringDL = splitStringDL[0];
                 String by = splitStringDL[1];
-                
+
                 String[] dateDeadlineOnly = by.split(" ");
                 if (dateDeadlineOnly.length == 1) {
                     throw new DukeException("Time required!");
@@ -93,11 +105,6 @@ public class TaskList {
         }
     }
 
-    public static int taskListLength() {
-        assert (taskList.size() > 0);
-        return taskList.size();
-    }
-
     /**
      * Removes a task from the list.
      *
@@ -126,6 +133,9 @@ public class TaskList {
             throw new DukeException("Number larger than current list.");
         }
         Task tsk = taskList.get(numberToRemoveInt);
+        if (tsk.isDone) {
+            throw new DukeException("Task already marked done!");
+        }
         tsk.markAsDone();
         return UI.markAsDoneUI(tsk);
     }
@@ -142,6 +152,9 @@ public class TaskList {
             throw new DukeException("Number larger than current list.");
         }
         Task tsk = taskList.get(numberToRemoveInt);
+        if (!tsk.isDone) {
+            throw new DukeException("Task already marked undone!");
+        }
         tsk.markAsUndone();
         return UI.markAsUndoneUI(tsk);
     }
@@ -158,5 +171,13 @@ public class TaskList {
                 .collect(Collectors.toList()));
 
         return UI.findTasksUI(filteredList);
+    }
+
+    public static void rearrangeTasksChronologically() {
+        Collections.sort(TaskList.getTaskList(), (t1, t2) -> {
+            if (t1.getDateTime() == null || t2.getDateTime() == null)
+                return 0;
+            return t1.getDateTime().compareTo(t2.getDateTime());
+        });
     }
 }

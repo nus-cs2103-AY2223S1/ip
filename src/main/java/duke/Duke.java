@@ -6,8 +6,9 @@ package duke;
 public class Duke {
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Generate a response to user input.
+     *
+     * @param input returns a string of user input
      */
     public String getResponse(String input) {
         try {
@@ -16,5 +17,4 @@ public class Duke {
             return e.getMessage();
         }
     }
-
 }

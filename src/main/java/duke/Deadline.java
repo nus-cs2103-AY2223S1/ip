@@ -31,9 +31,13 @@ public class Deadline extends Task {
         return "D | " + super.toStringFileFormat() + " | " + this.by;
     }
 
+    @Override
+    public LocalDateTime getDateTime() {
+        return by;
+    }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by: " + by.format(DateTimeFormatter.ofPattern("d MMM yyyy, HH:mm")) + ")";
+        return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("d MMM yyyy, HH:mm")) + ")";
     }
 }

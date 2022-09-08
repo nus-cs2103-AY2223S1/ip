@@ -15,23 +15,32 @@ public class Parser {
 
     /**
      * Parses user input.
+     *
+     * @param string returns user input
      */
     public static String parseInput(String string) {
 
         String s = "";
         try {
             new TaskList(Storage.loadTask());
+            TaskList.rearrangeTasksChronologically();
             String[] wordArray = parseTypingInput(string);
             assert (wordArray.length > 0);
             String str2 = "";
 
-            if (wordArray.length >= 2) {
+            if (wordArray.length >= 2 && TaskList.getTaskList().contains(str2)) {
+                throw new DukeException("Duplication of tasks!");
+            } else if (wordArray.length >= 2) {
                 str2 = wordArray[1];
             }
+
+//            if (TaskList.getTaskList().contains(str2)) {
+//                throw new DukeException("Duplication of tasks!");
+//            }
+
             String firstWord = wordArray[0];
 
             switch (firstWord) {
-
             case "bye":
                 s = UI.end();
                 break;
@@ -42,7 +51,6 @@ public class Parser {
 
             case "mark":
                 s = TaskList.markAsDone(str2);
-
                 break;
 
             case "unmark":
@@ -71,16 +79,13 @@ public class Parser {
 
             default:
                 throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
-
             }
             Storage.save(TaskList.getTaskList());
             return s;
 
-        } catch (DukeException e) {
+        } catch (DukeException | IOException e) {
             return e.getMessage();
 
-        } catch (IOException e) {
-            return e.getMessage();
         }
     }
 }

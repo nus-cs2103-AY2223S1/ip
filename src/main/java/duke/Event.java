@@ -17,6 +17,11 @@ public class Event extends Task {
         this.at = at;
     }
 
+    @Override
+    public LocalDateTime getDateTime() {
+        return at;
+    }
+
     /**
      * String format for text file.
      *
@@ -34,6 +39,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at: " + at.format(DateTimeFormatter.ofPattern("d MMM yyyy, HH:mm")) + ")";
+        return "[E]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("d MMM yyyy, HH:mm")) + ")";
     }
 }
