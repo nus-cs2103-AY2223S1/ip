@@ -137,6 +137,10 @@ public class Ui {
         System.out.println("☹ OOPS!!! I'm sorry, but cannot print empty list");
     }
 
+
+    public void emptyListPrint() {
+        System.out.println("☹ OOPS!!! I'm sorry, but cannot print empty list");
+    }
     /**
      * prints at the end of programme, when bye is inserted as command
      */
@@ -152,7 +156,7 @@ public class Ui {
      * @param task to be mark as done
      * prints the task as marked
      */
-    public void markTask(Task task) {
+    public void markTaskPrint(Task task) {
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(task);
     }
@@ -161,7 +165,7 @@ public class Ui {
      * @param task to be unmarked as done
      * prints the task as unmarked
      */
-    public void unmarkTask(Task task) {
+    public void unmarkTaskPrint(Task task) {
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println(task);
     }
