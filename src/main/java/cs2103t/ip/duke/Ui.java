@@ -71,6 +71,10 @@ public class Ui {
                 "Now you have " + index + " tasks in the list. \n" + LINE;
     }
 
+    public String showStats(Statistics stat) {
+        return stat.toString();
+    }
+
     public void showLoadingError() {
         System.out.println("Error Loading from Database :( ");
     }

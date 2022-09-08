@@ -86,4 +86,31 @@ public class Storage {
         }
         return arr;
     }
+
+    public Statistics loadStatsFileData() throws DukeException {
+        int doneCount = 0;
+        int todoCount = 0;
+        int eventCount = 0;
+        int deadlineCount = 0;
+        try {
+            File folder = new File(folderPath);
+            folder.mkdir();
+            File file = new File(filePath);
+            if (!file.createNewFile()) {
+                Scanner scan = new Scanner(file);
+                String input = "";
+                while (scan.hasNext()) {
+                    input = scan.nextLine();
+                    String[] counts = input.split("/");
+                    doneCount = Integer.parseInt(counts[1]);
+                    todoCount = Integer.parseInt(counts[2]);
+                    eventCount = Integer.parseInt(counts[3]);
+                    deadlineCount = Integer.parseInt(counts[4]);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new Statistics(doneCount, todoCount, eventCount, deadlineCount);
+    }
 }
