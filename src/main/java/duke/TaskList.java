@@ -74,7 +74,7 @@ public class TaskList {
      * @return True if there was a change from done to undone, and false if the Task was already not done.
      */
     public boolean setUnDone(int i) {
-        return lst.get(i).setUnDone();
+        return lst.get(i).setUndone();
     }
 
     /**

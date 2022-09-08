@@ -36,14 +36,14 @@ public class Ui {
     public String printList() {
         if (this.taskList.size() == 0) {
             return "List is empty!";
-        } else {
-            String lst = "List of tasks:\n";
-            for (int i = 1; i <= this.taskList.size(); i++) {
-                lst = lst + "  " + i + ": " + this.taskList.get(i - 1) + "\n";
-            }
-            lst = lst + printListCount();
-            return lst;
         }
+
+        String lst = "List of tasks:\n";
+        for (int i = 1; i <= this.taskList.size(); i++) {
+            lst = lst + "  " + i + ": " + this.taskList.get(i - 1) + "\n";
+        }
+        lst = lst + printListCount();
+        return lst;
     }
 
     /**
@@ -53,11 +53,13 @@ public class Ui {
      * @return The string containing the list of all the tasks from the given input list.
      */
     public String printTasks(List lst) {
+        if (this.taskList.size() == 0) {
+            return "";
+        }
+
         String tasks = "";
-        if (this.taskList.size() != 0) {
-            for (int i = 1; i <= lst.size(); i++) {
-                tasks = tasks + i + ": " + lst.get(i - 1) + "\n";
-            }
+        for (int i = 1; i <= lst.size(); i++) {
+            tasks = tasks + i + ": " + lst.get(i - 1) + "\n";
         }
         return tasks;
     }

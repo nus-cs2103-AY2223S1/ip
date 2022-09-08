@@ -37,7 +37,7 @@ public class EventCommand extends Command {
     public void execute(TaskList taskList, Ui ui) throws EmptyTaskException, InvalidArgumentException,
             EmptyDurationException {
         String[] split = this.description.split("/at ");
-        if (this.description.trim().equals("") || split.length == 0 || split[0].equals("")) {
+        if (isEmptyTask(split)) {
             throw new EmptyTaskException("event");
         }
         if (split[0].equals(this.description)) {
@@ -48,5 +48,15 @@ public class EventCommand extends Command {
         }
         taskList.add(new Event(split[0].trim(), split[1]));
         this.response = "Added the event task: \n  " + taskList.getLast() + "\n" + ui.printListCount();
+    }
+
+    /**
+     * Checks if the input text is an empty command to add a task.
+     *
+     * @param split The string array of words split up.
+     * @return True if the task is empty, false otherwise.
+     */
+    private boolean isEmptyTask(String[] split) {
+        return this.description.trim().equals("") || split.length == 0 || split[0].equals("");
     }
 }

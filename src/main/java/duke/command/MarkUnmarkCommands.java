@@ -35,10 +35,10 @@ public class MarkUnmarkCommands extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui ui) throws InvalidTaskNumberException {
-        if (index.equals("") || !isInteger(index) || (Integer.parseInt(index) - 1) < 0
-                || (Integer.parseInt(index) - 1) >= taskList.size()) {
-            throw new InvalidTaskNumberException(type, index);
+        if (!isValidTaskNumber(taskList.size())) {
+            throw new InvalidTaskNumberException(this.type, this.index);
         }
+
         boolean change;
         int i = Integer.parseInt(this.index) - 1;
         switch (type) {
@@ -61,6 +61,17 @@ public class MarkUnmarkCommands extends Command {
         default:
         }
         this.response += "\n" + ui.printListCount();
+    }
+
+    /**
+     * Checks if the task number is valid.
+     *
+     * @param taskListSize The size of the taskList to be checked against.
+     * @return True if the task number is valid, false otherwise.
+     */
+    private boolean isValidTaskNumber(int taskListSize) {
+        return !this.index.equals("") && isInteger(this.index) && (Integer.parseInt(this.index) - 1) >= 0
+                && (Integer.parseInt(this.index) - 1) < taskListSize;
     }
 
     /**
