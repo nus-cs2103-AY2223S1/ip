@@ -98,6 +98,8 @@ public class Input {
             String strippedArg = currentArg.substring(currentArg.lastIndexOf(ARG_START) + ARG_START.length());
             parameters.put(strippedArg, String.join(DELIMITER, currentBuffer));
         }
+
+        assert !commandName.trim().equals("");
     }
 
     /**
