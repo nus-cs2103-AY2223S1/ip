@@ -79,13 +79,13 @@ public class TaskList {
      * @return list of tasks containing description.
      */
     public List<Task> findTasks(String description) {
-        List<Task> found = new ArrayList<>();
+        List<Task> tasksFound = new ArrayList<>();
         for (Task task: this.tasks) {
             if (task.getDescription().contains(description)) {
-                found.add(task);
+                tasksFound.add(task);
             }
         }
-        return found;
+        return tasksFound;
     }
 
     @Override
