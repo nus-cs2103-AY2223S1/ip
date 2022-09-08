@@ -148,7 +148,7 @@ public class Parser {
         }
         // start deletion process
         while (!pq.isEmpty()) {
-           sb.append(deleteTask(d, pq.remove(), isLoading) + "\n");
+            sb.append(deleteTask(d, pq.remove(), isLoading) + "\n");
         }
         return sb.toString();
     }
