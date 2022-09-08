@@ -29,13 +29,4 @@ public abstract class Command {
     public String response() {
         return this.response;
     }
-
-    /**
-     * Returns true if the command is "bye", and false otherwise.
-     *
-     * @return True if the command is "bye", and false otherwise.
-     */
-    public boolean isExit() {
-        return false;
-    }
 }

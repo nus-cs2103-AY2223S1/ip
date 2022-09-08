@@ -65,7 +65,9 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input);
+            assert c != null : "Error in parsing command";
             c.execute(taskList, ui);
+            assert !c.response().equals("") : "error in response";
             return c.response();
         } catch (DukeException e) {
             return e.toString();

@@ -12,11 +12,11 @@ public class UnknownCommandException extends DukeException {
             + "   -The deadline can also be in a date form of either \"DD-MM-YYYY\" or \"YYYY-MM-DD\"\n"
             + "- event - adds the task that happens at a specific time, e.g. event x /at Mon 2-4pm\n"
             + "   -The event time/date can also be in a form of either \"DD-MM-YYYY HH:MM\" or \"YYYY-MM-DD HH:MM\"\n"
-            + "Commands to edit tasks:\n"
+            + "\nCommands to edit tasks:\n"
             + "- mark - marks task number n as completed, e.g. mark n\n"
             + "- unmark - marks task number n as uncompleted, e.g. unmark n\n"
             + "- delete - deletes task number n, e.g. delete n\n"
-            + "Utility commands:\n"
+            + "\nUtility commands:\n"
             + "- find - finds all tasks which match the search input, e.g. find book\n"
             + "- list - lists out all your current tasks\n"
             + "- bye - exits the program:(\n";
