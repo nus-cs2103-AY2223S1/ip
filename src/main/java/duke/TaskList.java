@@ -22,10 +22,7 @@ public class TaskList {
     public TaskList(List<? extends Task> taskList) {
         this.taskList = new ArrayList<>(taskList);
     }
-    
-    public TaskList(ArrayList<? extends Task> taskList) {
-        this.taskList = taskList;
-    }
+
 
     public void addTask(Task task) {
         this.taskList.add(task);
@@ -70,7 +67,7 @@ public class TaskList {
         Stream<Deadline> deadlineStream = taskList.stream()
                 .filter(task -> task instanceof Deadline)
                 .map(task -> (Deadline) task);
-        if (order == Order.decreasing) {
+        if (order == Order.increasing) {
             List<Deadline> result = deadlineStream
                     .sorted(deadlineComparator.reversed())
                     .collect(Collectors.toList());
@@ -107,7 +104,7 @@ public class TaskList {
         Stream<Event> eventStream = taskList.stream()
                 .filter(task -> task instanceof Event)
                 .map(task -> (Event) task);
-        if (order == Order.decreasing) {
+        if (order == Order.increasing) {
             List<Event> result = eventStream
                     .sorted(eventComparator.reversed())
                     .collect(Collectors.toList());

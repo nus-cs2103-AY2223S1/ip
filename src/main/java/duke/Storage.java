@@ -1,6 +1,8 @@
 package duke;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.ImproperDeadlineFormatException;
+import duke.exceptions.ImproperEventFormatException;
 import duke.exceptions.ImproperFormatException;
 
 import java.io.File;
@@ -29,7 +31,11 @@ public class Storage {
         }
     }
 
-    public void load(TaskList taskList) throws FileNotFoundException, ImproperFormatException {
+    public void load(TaskList taskList)
+            throws FileNotFoundException,
+            ImproperFormatException,
+            ImproperDeadlineFormatException,
+            ImproperEventFormatException {
         assert taskList.size() == 0: "task list should be empty before loading existing data";
         Scanner reader = new Scanner(this.storageFile);
         while (reader.hasNext()) {
