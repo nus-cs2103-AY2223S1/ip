@@ -10,10 +10,6 @@ import java.util.Arrays;
  * Encapsulates a Parser that makes sense of the user input
  */
 public class Parser {
-    enum Datatype {
-        TASK,
-        NOTE
-    }
 
     private Storage storage;
     private TaskList tasks;
@@ -24,10 +20,10 @@ public class Parser {
      * @param storage Storage object that handles loading and saving of data
      * @param tasks TaskList object that stores all user tasks
      */
-    public Parser(Storage storage, TaskList tasks) {
+    public Parser(Storage storage, TaskList tasks, NoteList notes) {
         this.storage = storage;
         this.tasks = tasks;
-        this.notes = new NoteList(new ArrayList<>());
+        this.notes = notes;
     }
 
     /**
@@ -64,7 +60,7 @@ public class Parser {
             return this.parseListNotes(commandArgs);
         case "note":
             return this.parseAddNote(commandArgs);
-        case "delete-note":
+        case "deletenote":
             return this.parseDeleteNote(commandArgs);
         default:
             throw new InvalidCommandException();
@@ -96,7 +92,7 @@ public class Parser {
             throw new InvalidArgumentException();
         }
 
-        int index = this.validateIndex(commandArgs[0], Datatype.TASK) - 1;
+        int index = this.validateIndex(commandArgs[0], Duke.Datatype.TASK) - 1;
         String output = this.tasks.getTask(index).mark();
 
         this.storage.save(this.tasks);
@@ -114,7 +110,7 @@ public class Parser {
             throw new InvalidArgumentException();
         }
 
-        int index = this.validateIndex(commandArgs[0], Datatype.TASK) - 1;
+        int index = this.validateIndex(commandArgs[0], Duke.Datatype.TASK) - 1;
         String output = this.tasks.getTask(index).unmark();
 
         this.storage.save(this.tasks);
@@ -215,7 +211,7 @@ public class Parser {
             throw new InvalidArgumentException();
         }
 
-        int index = this.validateIndex(commandArgs[0], Datatype.TASK) - 1;
+        int index = this.validateIndex(commandArgs[0], Duke.Datatype.TASK) - 1;
         String output = this.tasks.deleteTask(index);
 
         this.storage.save(this.tasks);
@@ -293,6 +289,7 @@ public class Parser {
 
         String output = this.notes.addNote(new Note(title, description));
 
+        this.storage.save(this.notes);
         return output;
     }
 
@@ -307,9 +304,10 @@ public class Parser {
             throw new InvalidArgumentException();
         }
 
-        int index = this.validateIndex(commandArgs[0], Datatype.NOTE) - 1;
+        int index = this.validateIndex(commandArgs[0], Duke.Datatype.NOTE) - 1;
         String output = this.notes.deleteNote(index);
 
+        this.storage.save(this.notes);
         return output;
     }
 
@@ -319,7 +317,7 @@ public class Parser {
      * @return The integer index if it is valid
      * @throws InvalidArgumentException If the index String is invalid
      */
-    public int validateIndex(String index, Datatype type) throws InvalidArgumentException {
+    public int validateIndex(String index, Duke.Datatype type) throws InvalidArgumentException {
         int intIndex;
 
         try {
@@ -328,11 +326,11 @@ public class Parser {
             throw new InvalidArgumentException();
         }
 
-        if (type == Datatype.TASK && (intIndex <= 0 || intIndex > this.tasks.numTasks())) {
+        if (type == Duke.Datatype.TASK && (intIndex <= 0 || intIndex > this.tasks.numTasks())) {
             throw new InvalidArgumentException();
         }
 
-        if (type == Datatype.NOTE && (intIndex <= 0 || intIndex > this.notes.numNotes())) {
+        if (type == Duke.Datatype.NOTE && (intIndex <= 0 || intIndex > this.notes.numNotes())) {
             throw new InvalidArgumentException();
         }
 

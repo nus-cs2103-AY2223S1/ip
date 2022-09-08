@@ -34,6 +34,6 @@ public class Note {
      * @return String representation of Note
      */
     public String toFileFormat() {
-        return String.format("N|%s|%s", this.title, this.description);
+        return String.format("%s|%s", this.title, this.description);
     }
 }
