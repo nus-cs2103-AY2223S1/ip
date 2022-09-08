@@ -9,6 +9,8 @@ repositories {
 }
 
 dependencies {
+    implementation 'junit:junit:4.13.1'
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     String javaFxVersion = '11'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
@@ -40,7 +42,7 @@ test {
 }
 
 application {
-    mainClassName = "duke.Duke"
+    mainClassName = "duke.Launcher"
 }
 
 shadowJar {
