@@ -101,10 +101,16 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = caca.getResponse(input);
-        dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getCaCaDialog(response, cacaImage)
-        );
+
+        if (input.equals("help")) {
+            handleDetailedGuide();
+        } else {
+            dialogContainer.getChildren().addAll(
+                    DialogBox.getUserDialog(input, userImage),
+                    DialogBox.getCaCaDialog(response, cacaImage)
+            );
+        }
+
         userInput.clear();
 
         // Solution below adapted from
