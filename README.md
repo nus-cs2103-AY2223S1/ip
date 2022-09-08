@@ -22,3 +22,20 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    | |_| | |_| |   <  __/
    |____/ \__,_|_|\_\___|
    ```
+
+## Commands and Usage
+
+Key in the following commands and press enter to execute
+
+1. 'Bye' or 'bye': shuts down the program
+2. 'list' or 'List': displays all tasks in the tasklist
+3. 'delete' or 'Delete' followed by the number to be deleted: deletes a specified task from the list
+4. 'todo' <NAME>: creates a new Todo task
+5. 'deadline' <NAME> '/by' <DD-MM-YYYY>: creates a new Deadline
+6. 'event' <NAME> '/at' <NAME OF LOCATION>: creates a new Event
+7. 'showExpense': displays all expenses in a list
+8. 'delExpense' <TASK NUMBER>: deletes an expense
+9. 'totalSpent': shows the total amount spent of all time
+10. 'spentOn' + <DD-MM-YYYY>: shows the amount of money spent on this day
+
+Try it out yourself!
