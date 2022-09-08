@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private final static String FILE_LOCATION = "./data/duke.txt";
+    private static final String FILE_LOCATION = "./data/duke.txt";
 
     private Duke duke;
 

@@ -16,7 +16,7 @@ public class FindCommand extends Command {
     /**
      * Execute the find command.
      * @param tasks current tasklist.
-     * @param ui.
+     * @param ui interaction class.
      * @return the response of the duke.
      */
     String execute(TaskList tasks, Ui ui) {

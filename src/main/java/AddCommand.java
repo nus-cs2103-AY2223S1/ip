@@ -14,7 +14,7 @@ public class AddCommand extends Command {
     /**
      * Execute the add command.
      * @param tasks current tasklist.
-     * @param ui.
+     * @param ui interaction class.
      * @return response of Duke.
      */
     String execute(TaskList tasks, Ui ui) {

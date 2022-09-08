@@ -1,8 +1,6 @@
 package duke;
 
-import java.util.Scanner;
 import java.util.List;
-import java.util.ArrayList;
 
 /**
  * Represents the interaction with the users.
@@ -32,8 +30,7 @@ public class Ui {
 
     /**
      * Reply the users when the users' input is to add todo, deadline, and event.
-     * @return String : the reply by Duke that shows the task that is being added
-     * and the current number of tasks in the list.
+     * @return the reply by Duke : the task that is being added and the current number of tasks in the list.
      */
     String added(String taskFullDescription, int totalNoOfTask) {
         return "Got it, I've added this task:\n" + taskFullDescription + "\n"
@@ -42,8 +39,7 @@ public class Ui {
 
     /**
      * Reply the users when the users' input is to delete todo, deadline, and event.
-     * @return String : the reply by Duke that shows the task that is being deleted
-     * and the current number of tasks in the list.
+     * @return the reply by Duke : the task that is being deleted and the current number of tasks in the list.
      */
     String deleted(String taskFullDescription, int totalNoOfTask) {
         return "Noted. I've removed this task:\n" + taskFullDescription + "\n"
@@ -67,7 +63,7 @@ public class Ui {
     }
 
     private String getPrintedList(List<Task> taskList) {
-        String listString ="";
+        String listString = "";
         for (int i = 1; i < taskList.size() + 1; i++) {
             String task = taskList.get(i - 1).toString();
             listString = listString + i + ". " + task + "\n";
@@ -77,8 +73,7 @@ public class Ui {
 
     /**
      * Reply the users when the users' input is list.
-     * @return String : the reply by Duke that shows the current taskList.
-     * If there are no tasks in the current taskList, Duke will tell the users about it.
+     * @return the reply by Duke that shows the current taskList or no list.
      */
     String printList(List<Task> taskList) {
         String printedList = "";
@@ -95,8 +90,7 @@ public class Ui {
 
     /**
      * Reply the users when the users' input is to find tasks with a certain keyword.
-     * @return String : the reply by Duke that shows a list of matching tasks that contain the keyword.
-     * If no matching tasks, Duke will tell the user and ask the user to recheck the keyword.
+     * @return the reply by Duke that shows a list of matching tasks that contain the keyword or no matching task.
      */
     String printMatchingList(List<Task> taskList) {
         String printedList = "";

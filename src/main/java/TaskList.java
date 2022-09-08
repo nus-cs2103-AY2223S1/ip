@@ -1,18 +1,18 @@
 package duke;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Represents the list of task managed by the ChatBot.
  */
 public class TaskList {
 
-    private List<Task> list;
-    private static int noOfTasks;
-    private Ui ui;
     private static HashMap<String, List<Task>> taskByKeyword;
+    private static int noOfTasks;
+    private List<Task> list;
+    private Ui ui;
 
     /**
      * Create a tasklist.
@@ -66,8 +66,7 @@ public class TaskList {
      * Keep track of the number of tasks in the list.
      * Update the keyword hashtable.
      * @param int taskNo: TaskNo given by the users for deletion.
-     * @return String[] task info: which contains the deleted task description
-     * and the current number of tasks in the list after deletion.
+     * @return the deleted task description and the current number of tasks in the list after deletion.
      */
     String[] delete(int taskNo) {
         Task currentTask = this.list.get(taskNo - 1);
@@ -95,7 +94,7 @@ public class TaskList {
     /**
      * Find tasks that contain the keyword s and return the matching task list.
      * @param String keyword: Keyword given by the users.
-     * @return List</Task> : the list of tasks that contain the keyword.
+     * @return the list of tasks that contain the keyword.
      */
     List<Task> findTaskWithThisKeyword(String keyword) {
         List<Task> matchingTasks = taskByKeyword.get(keyword);
@@ -104,7 +103,7 @@ public class TaskList {
 
     /**
      * Return the current taskList.
-     * @return List</Tasks> : the current list of tasks.
+     * @return the current list of tasks.
      */
     List<Task> getList() {
         return this.list;

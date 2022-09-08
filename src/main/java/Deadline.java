@@ -11,10 +11,10 @@ class Deadline extends Task {
     private LocalDate time;
     private String timeInString;
 
-    Deadline(String description, String Date) {
+    Deadline(String description, String date) {
         super(description);
-        this.time = LocalDate.parse(Date);
-        this.timeInString = Date;
+        this.time = LocalDate.parse(date);
+        this.timeInString = date;
     }
 
     @Override
