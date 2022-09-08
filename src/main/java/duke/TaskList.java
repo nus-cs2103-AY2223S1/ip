@@ -52,6 +52,12 @@ public class TaskList {
         return this.list.get(i);
     }
 
+    /**
+     * Returns filtered ArrayList of tasks containing keyword.
+     *
+     * @param str The keyword to search against.
+     * @return ArrayList of tasks containing keyword.
+     */
     public ArrayList<Task> filterToArrayList(String str) {
         ArrayList<Task> newList = new ArrayList<>();
         for (Task task : list) {
@@ -73,10 +79,10 @@ public class TaskList {
     public Task delete(int i) throws DukeException {
         int size = this.size();
         if (size == 0) {
-            throw new DukeException("☹ OOPS!!! You do not have any task right now.");
+            throw new DukeException("OOPS!!! You do not have any task right now.");
         }
         if (i < 0 || i >= size) {
-            throw new DukeException("☹ OOPS!!! Please enter a valid task number.");
+            throw new DukeException("OOPS!!! Please enter a valid task number.");
         } else {
             return list.remove(i);
         }
@@ -91,10 +97,10 @@ public class TaskList {
     public void mark(int i) throws DukeException {
         int size = this.size();
         if (size == 0) {
-            throw new DukeException("☹ OOPS!!! You do not have any task right now.");
+            throw new DukeException("OOPS!!! You do not have any task right now.");
         }
         if (i < 0 || i >= size) {
-            throw new DukeException("☹ OOPS!!! Please enter a valid task number.");
+            throw new DukeException("OOPS!!! Please enter a valid task number.");
         } else {
             Task curTask = this.get(i);
             curTask.markAsDone();
@@ -110,10 +116,10 @@ public class TaskList {
     public void unmark(int i) throws DukeException {
         int size = this.size();
         if (size == 0) {
-            throw new DukeException("☹ OOPS!!! You do not have any task right now.");
+            throw new DukeException("OOPS!!! You do not have any task right now.");
         }
         if (i < 0 || i >= size) {
-            throw new DukeException("☹ OOPS!!! Please enter a valid task number.");
+            throw new DukeException("OOPS!!! Please enter a valid task number.");
         } else {
             Task curTask = this.get(i);
             curTask.markAsUndone();

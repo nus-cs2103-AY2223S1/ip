@@ -14,7 +14,7 @@ public class Ui {
      */
 
     public String dukeReply(String message) {
-        String lineBreak = "-------------------------------------------------";
+        String lineBreak = "------------------------------------------------------------------";
         String reply = String.format("%s\n%s\n%s", lineBreak, message, lineBreak);
         return reply;
     }
