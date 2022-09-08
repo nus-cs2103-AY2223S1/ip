@@ -7,6 +7,8 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import duke.exception.DukeException;
 
@@ -171,10 +173,10 @@ public class TaskList {
      * @param pred Condition to test the task elements against.
      * @return A new task list containing only elements that fulfil the specified condition.
      */
-    public TaskList filter(Function<Task, Boolean> pred) {
+    public TaskList filter(Predicate<Task> pred) {
         TaskList filtered = new TaskList();
         for (Task task : tasks) {
-            if (pred.apply(task)) {
+            if (pred.test(task)) {
                 filtered.addTask(task);
             }
         }
@@ -191,11 +193,7 @@ public class TaskList {
      *         each task of the task list.
      */
     public <T> LinkedList<T> transform(Function<Task, T> func) {
-        LinkedList<T> transformed = new LinkedList<>();
-        for (Task task : tasks) {
-            transformed.add(func.apply(task));
-        }
-        return transformed;
+        return tasks.stream().map(func).collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
