@@ -2,6 +2,7 @@ package duke;
 
 import duke.commands.AddDeadlineCommand;
 import duke.commands.AddEventCommand;
+import duke.commands.AddRecurringTaskCommand;
 import duke.commands.AddToDoCommand;
 import duke.commands.Command;
 import duke.commands.DeleteCommand;
@@ -39,6 +40,9 @@ public class Parser {
         }
         if (fullCommand.matches("^event.*")) {
             return new AddEventCommand(fullCommand);
+        }
+        if (fullCommand.matches("^recurring.*")) {
+            return new AddRecurringTaskCommand(fullCommand);
         }
         if (fullCommand.matches("^mark [0-9]*$")) {
             return new MarkCommand(fullCommand);

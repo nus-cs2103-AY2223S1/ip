@@ -56,4 +56,9 @@ public class Deadline extends Task {
         char done = isDone ? '1' : '0';
         return "D" + " | " + done + " | " + this.description + " | " + this.deadlineString + "\n";
     }
+
+    @Override
+    public boolean isRecurring() {
+        return false;
+    }
 }

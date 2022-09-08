@@ -1,6 +1,8 @@
 package duke.commands;
 
+import duke.RecurringTask;
 import duke.Storage;
+import duke.Task;
 import duke.TaskList;
 import duke.exceptions.DukeIndexOutOfBoundsException;
 
@@ -32,7 +34,14 @@ public class MarkCommand extends Command {
             assert index >= 0 : "Task index cannot be less than 0";
             assert index < tasks.getSize() : "Task index cannot be larger than the number of tasks.";
             tasks.markTaskAsDone(index);
-            String response = "Nice! I've marked this task as done:\n" + tasks.get(index);
+            Task task = tasks.get(index);
+            if (task.isRecurring()) {
+                RecurringTask recurringTask = (RecurringTask) task;
+                tasks.delete(index);
+                tasks.add(new RecurringTask(recurringTask));
+            }
+            String response = "Nice! I've marked this task as done:\n" + task
+                    + "\nAnd I've re-added this task for next week!";
             return response;
         } catch (IndexOutOfBoundsException e) {
             throw new DukeIndexOutOfBoundsException("OOPS!!! You cannot mark a non-existent task as done.");

@@ -1,7 +1,7 @@
 package duke;
 
 /**
- * Represents a generic task
+ * Represents a generic task.
  */
 public abstract class Task {
 
@@ -70,4 +70,6 @@ public abstract class Task {
     }
 
     public abstract String toStorageFormat();
+
+    public abstract boolean isRecurring();
 }

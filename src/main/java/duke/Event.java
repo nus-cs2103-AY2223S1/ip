@@ -56,4 +56,9 @@ public class Event extends Task {
         char done = isDone ? '1' : '0';
         return "E" + " | " + done + " | " + this.description + " | " + this.timeString + "\n";
     }
+
+    @Override
+    public boolean isRecurring() {
+        return false;
+    }
 }
