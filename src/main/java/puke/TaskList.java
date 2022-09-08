@@ -10,12 +10,13 @@ public class TaskList {
      * field to store the tasks
      */
     protected ArrayList<Task> tasks = new ArrayList<>();
-    protected int numTasks = tasks.size();
-    protected int removed = 0;
-
     /**
      * how many tasks in the list
      */
+    protected int numTasks = tasks.size();
+    protected int removed = 0;
+
+
 
     /**
      * Creates a TaskList
@@ -58,6 +59,11 @@ public class TaskList {
         this.removed++;
     }
 
+    /**
+     * Used to find the list of all tasks that contains a keyword
+     * @param s Keyword to search for
+     * @return String containing lists of tasks
+     */
     public String find(String s) {
         String str = "Here are the matching tasks in your list\n";
         int count = 1;

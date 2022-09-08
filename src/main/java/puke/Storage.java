@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +14,6 @@ import java.util.Scanner;
  * Deals with storing on Hard Disk
  */
 public class Storage {
-
-//    private String fileName;
 
     /**
      * File that is created on hard Disk
