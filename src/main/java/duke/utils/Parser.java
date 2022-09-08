@@ -110,7 +110,7 @@ public class Parser {
         String[] taskElements = save.split("\\|");
         Task newTask;
         try {
-            boolean isDone = taskElements[1].equals("0");
+            boolean isDone = taskElements[1].equals("1");
             switch (taskElements[0]) {
             case "T": {
                 newTask = new ToDo(taskElements[2], isDone);
