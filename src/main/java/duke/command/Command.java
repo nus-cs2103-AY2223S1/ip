@@ -9,5 +9,5 @@ import duke.task.TaskList;
  * Represents an executable duke command.
  */
 public abstract class Command {
-    public abstract Response execute(TaskList tasks, Storage storage) throws DukeException;
+    public abstract Response<?> execute(TaskList tasks, Storage storage) throws DukeException;
 }

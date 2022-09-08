@@ -1,5 +1,7 @@
 package duke.gui;
 
+import java.util.LinkedList;
+
 import duke.Duke;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -12,8 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
-import java.util.LinkedList;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -36,6 +36,10 @@ public class MainWindow extends AnchorPane {
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/bobo icon.png"));
     private Image studiousDukeImage = new Image(this.getClass().getResourceAsStream("/images/bobo studious.png"));
 
+    /**
+     * Initialises the MainWindow, called once on the implementing controller when the contents of its
+     * associated document have been completely loaded.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());

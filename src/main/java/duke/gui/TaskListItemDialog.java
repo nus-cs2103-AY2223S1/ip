@@ -1,21 +1,29 @@
 package duke.gui;
 
-import duke.task.*;
+import static java.util.Objects.nonNull;
+
+import java.io.IOException;
+import javax.annotation.Nullable;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskType;
+import duke.task.ToDo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javax.annotation.Nullable;
 
-import java.io.IOException;
-
-import static java.util.Objects.nonNull;
-
+/**
+ * This control represents a dialog box for a task list item.
+ */
 public class TaskListItemDialog extends HBox {
     @FXML
     private HBox root;
