@@ -25,7 +25,9 @@ public abstract class Task {
      * @return String representation of task status.
      */
     public String getStatusIcon() {
-        return (isDone ? "X" : " ");
+        String done = "X";
+        String notDone = " ";
+        return (isDone ? done : notDone);
     }
 
     /**

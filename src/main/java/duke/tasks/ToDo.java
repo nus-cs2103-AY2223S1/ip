@@ -27,7 +27,8 @@ public class ToDo extends Task {
         } else {
             isDone = "X";
         }
-        return String.format("T | %s | %s\n", isDone, super.description);
+        String toDoDataString = String.format("T | %s | %s\n", isDone, super.description);
+        return toDoDataString;
     }
 
     /**
@@ -37,6 +38,7 @@ public class ToDo extends Task {
      */
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        String toDo = "[T]" + super.toString();
+        return toDo;
     }
 }

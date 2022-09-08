@@ -36,8 +36,9 @@ public class Deadline extends Task {
         } else {
             isDone = "X";
         }
-        return String.format("D | %s | %s | %s\n", isDone, super.description,
+        String deadlineDataString = String.format("D | %s | %s | %s\n", isDone, super.description,
                 Parser.formatDateToData(date));
+        return deadlineDataString;
     }
 
     /**
@@ -47,7 +48,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(),
+        String deadline = String.format("[D]%s (by: %s)", super.toString(),
                 Parser.formatDateToPrint(date));
+        return deadline;
     }
 }

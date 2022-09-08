@@ -13,7 +13,8 @@ public class Ui {
      * @return Greeting message.
      */
     public static String formatGreetingString() {
-        return "Hello!\nHow may i help you today?";
+        String greeting = "Hello!\nHow may i help you today?";
+        return greeting;
     }
 
     /**
@@ -22,7 +23,8 @@ public class Ui {
      * @return Farewell message.
      */
     public static String formatFarewellString() {
-        return "Bye! Hope to see you again soon!";
+        String farewell = "Bye! Hope to see you again soon!";
+        return farewell;
     }
 
     /**
@@ -34,19 +36,19 @@ public class Ui {
      * @throws DukeException If taskList.getTask(i) takes in invalid index.
      */
     public static String formatListStatusString(TaskList taskList) throws DukeException {
-        String output;
+        String listStatus;
         if (taskList.getSize() == 0) {
-            output = "There are currently no tasks in your list";
+            listStatus = "There are currently no tasks in your list";
         } else {
-            output = "Here are the tasks in your list:\n";
+            listStatus = "Here are the tasks in your list:\n";
             for (int i = 0; i < taskList.getSize(); i++) {
-                output = output.concat(String.format("%d. %s\n", i + 1,
+                listStatus = listStatus.concat(String.format("%d. %s\n", i + 1,
                         taskList.getTask(i)));
             }
-            output.concat(String.format("Now you have %d tasks in the list.\n",
+            listStatus.concat(String.format("Now you have %d tasks in the list.\n",
                     taskList.getSize()));
         }
-        return output;
+        return listStatus;
     }
 
     /**
@@ -58,27 +60,27 @@ public class Ui {
      * @throws DukeException If taskList.getTask(i) takes in invalid index.
      */
     public static String formatFindTaskString(TaskList taskList, String keyword) throws DukeException {
-        String output;
+        String taskFindOutput;
         if (taskList.isEmpty()) {
-            output = "There are currently no tasks in your list";
+            taskFindOutput = "There are currently no tasks in your list";
         } else {
-            output = "Here are the matching tasks in your list:\n";
+            taskFindOutput = "Here are the matching tasks in your list:\n";
             int findCount = 0;
             for (int i = 0; i < taskList.getSize(); i++) {
                 if (taskList.getTask(i).isFoundInDescription(keyword)) {
-                    output = output.concat(String.format("%d. %s\n", i + 1,
+                    taskFindOutput = taskFindOutput.concat(String.format("%d. %s\n", i + 1,
                             taskList.getTask(i)));
                     findCount++;
                 }
             }
             if (findCount == 0) {
-                output = output.concat("Oh no, there are no matching tasks found :(");
+                taskFindOutput = taskFindOutput.concat("Oh no, there are no matching tasks found :(");
             } else {
-                output = output.concat(String.format("There are %d matching tasks found\n",
+                taskFindOutput = taskFindOutput.concat(String.format("There are %d matching tasks found\n",
                         findCount));
             }
         }
-        return output;
+        return taskFindOutput;
     }
 
     /**
@@ -89,8 +91,9 @@ public class Ui {
      * @return Message.
      */
     public static String formatMarkAsDoneString(int index, Task task) {
-        return String.format("Nice! I've marked this task as done:\n%d. %s",
+        String markAsDoneString = String.format("Nice! I've marked this task as done:\n%d. %s",
                 index + 1, task);
+        return markAsDoneString;
     }
 
     /**
@@ -101,8 +104,9 @@ public class Ui {
      * @return Message.
      */
     public static String formatMarkAsUndoneString(int index, Task task) {
-        return String.format("Ok! I've marked this task as not done yet:\n%d. %s",
+        String markAsUndoneString = String.format("Ok! I've marked this task as not done yet:\n%d. %s",
                 index + 1, task);
+        return markAsUndoneString;
     }
 
     /**
@@ -113,15 +117,17 @@ public class Ui {
      * @return Message.
      */
     public static String formatDeleteTaskString(int index, Task task) {
-        return String.format("Noted. I've removed this task:\n%d. %s",
+        String taskDeleteString = String.format("Noted. I've removed this task:\n%d. %s",
                 index + 1, task);
+        return taskDeleteString;
     }
 
     /**
      * Creates a message that TaskList is empty and no task can be deleted.
      */
     public static String formatNoTaskToDeleteString() {
-        return "OOPS!!! There are currently no task to delete";
+        String noTaskToDeleteString = "OOPS!!! There are currently no task to delete";
+        return noTaskToDeleteString;
     }
 
     /**
@@ -131,7 +137,8 @@ public class Ui {
      * @return Message.
      */
     public static String formatAddTaskString(Task task) {
-        return "Got it! I've added this task:\n> " + task;
+        String taskAddString = "Got it! I've added this task:\n> ";
+        return taskAddString + task;
     }
 
     /**

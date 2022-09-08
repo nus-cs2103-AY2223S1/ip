@@ -21,10 +21,11 @@ import duke.tasks.ToDo;
  * The TaskList is stored as a text file and is modified in real time with user command.
  */
 public class Storage {
-    /** Path to directory */
+    private static final String OOPS_STRING = "OOPS!!!";
+    private static final String FILE_CANNOT_BE_OPEN_STRING = "OOPS!!! File cannot be opened";
+
     private static Path directoryPath = Paths.get(System.getProperty("user.dir"), "data");
 
-    /** Path to file */
     private Path filePath;
 
     /**
@@ -72,16 +73,16 @@ public class Storage {
                         task = new Event(description, isDone, Parser.parseDateTime(storedInfo[3]));
                         break;
                     default:
-                        throw new DukeException("OOPS!!! No save data found");
+                        throw new DukeException(OOPS_STRING + " No save data found");
                     }
                     taskList.add(task);
                 } catch (IndexOutOfBoundsException e) {
-                    throw new DukeException("OOPS!!! Incorrect task format");
+                    throw new DukeException(OOPS_STRING + " Incorrect task format");
                 }
             }
             sc.close();
         } catch (FileNotFoundException e) {
-            throw new DukeException("OOPS!!! Data not found");
+            throw new DukeException(FILE_CANNOT_BE_OPEN_STRING);
         }
         return new TaskList(taskList);
     }
@@ -104,7 +105,7 @@ public class Storage {
             }
             fw.close();
         } catch (IOException e) {
-            throw new DukeException("OOPS!!! File cannot be opened");
+            throw new DukeException(FILE_CANNOT_BE_OPEN_STRING);
         }
     }
 
@@ -122,7 +123,7 @@ public class Storage {
             data.write(task.taskToDataString());
             data.close();
         } catch (IOException e) {
-            throw new DukeException("OOPS!!! File cannot be opened");
+            throw new DukeException(OOPS_STRING + " File cannot be opened");
         }
     }
 
@@ -149,7 +150,7 @@ public class Storage {
                 data.createNewFile();
             }
         } catch (IOException e) {
-            throw new DukeException("OOPS!!! Unable to create a new file. "
+            throw new DukeException(OOPS_STRING + " Unable to create a new file. "
                     + "Tasks might not be stored.");
         }
     }
