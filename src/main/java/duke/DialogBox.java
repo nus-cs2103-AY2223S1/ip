@@ -37,7 +37,7 @@ public class DialogBox extends HBox {
      * Creates a dialog box.
      *
      * @param text Text in the box.
-     * @param img The avatar.
+     * @param img  The avatar.
      */
     private DialogBox(String text, Image img) {
         try {
@@ -71,6 +71,8 @@ public class DialogBox extends HBox {
      * @return
      */
     public static DialogBox getUserDialog(String text, Image img) {
+        assert (text != null);
+        assert (img != null);
         return new DialogBox(text, img);
     }
 
@@ -82,6 +84,8 @@ public class DialogBox extends HBox {
      * @return
      */
     public static DialogBox getDukeDialog(String text, Image img) {
+        assert (text != null);
+        assert (img != null);
         var dialogBox = new DialogBox(text, img);
         dialogBox.flip();
         return dialogBox;
