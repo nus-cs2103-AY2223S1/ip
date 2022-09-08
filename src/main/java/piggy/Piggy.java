@@ -23,6 +23,7 @@ public class Piggy {
      * Runs the Piggy application.
      */
     public void run() {
+        assert ui != null;
         ui.showWelcome();
         boolean isExit = false;
         while (!isExit) {

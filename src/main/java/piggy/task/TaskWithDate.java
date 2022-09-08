@@ -31,6 +31,7 @@ public class TaskWithDate extends Task {
      * @return The datetime with format "MMM dd yyyy HH:mm".
      */
     String getDateTime() {
+        assert outDateTimeFormatter != null;
         return datetime.format(outDateTimeFormatter);
     }
 
