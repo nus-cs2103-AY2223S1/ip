@@ -119,7 +119,7 @@ public class TaskList {
      * To allow user to create a Todo task
      * @param userInput Input given by user
      * @return printStatement
-     * @throws DukeException Throws a Exception specific to the program
+     * @throws DukeException Throws an Exception specific to the program
      */
     public String todo(String userInput) throws DukeException {
         Todo todo = new Todo(userInput);

@@ -26,11 +26,9 @@ public class Duke extends Application {
     private ScrollPane scrollPane;
     private VBox dialogContainer;
     private TextField userInput;
-    private Button sendButton;
-    private Scene scene;
 
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private final Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private final Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
 
     /**
@@ -56,6 +54,10 @@ public class Duke extends Application {
         new Duke().run();
     }
 
+    /**
+     * Base Layout of GUI
+     * @param stage Window that is being created
+     */
     @Override
     public void start(Stage stage) {
         //Step 1. Setting up required components
@@ -66,12 +68,12 @@ public class Duke extends Application {
         scrollPane.setContent(dialogContainer);
 
         userInput = new TextField();
-        sendButton = new Button("Send");
+        Button sendButton = new Button("Send");
 
         AnchorPane mainLayout = new AnchorPane();
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
 
-        scene = new Scene(mainLayout);
+        Scene scene = new Scene(mainLayout);
 
         stage.setScene(scene);
         stage.show();
@@ -121,13 +123,9 @@ public class Duke extends Application {
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
 
         //Part 3. Add functionality to handle user input.
-        sendButton.setOnMouseClicked((event) -> {
-            handleUserInput();
-        });
+        sendButton.setOnMouseClicked((event) -> handleUserInput());
 
-        userInput.setOnAction((event) -> {
-            handleUserInput();
-        });
+        userInput.setOnAction((event) -> handleUserInput());
     }
 
     /**
@@ -151,7 +149,6 @@ public class Duke extends Application {
      */
     private void handleUserInput() {
         Label userText = new Label(userInput.getText());
-        Label dukeText = new Label(getResponse(userInput.getText()));
 
         String printStatement = parser.guiParseFunc(userText.getText());
         Label dukeResult = new Label(printStatement);
@@ -163,13 +160,7 @@ public class Duke extends Application {
         userInput.clear();
     }
 
-    /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
-     */
-    private String getResponse(String input) {
-        return "Duke heard: " + input;
-    }
+
 
     public static void echo(String userInput) {
         System.out.println(userInput);

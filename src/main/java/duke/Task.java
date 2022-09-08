@@ -10,7 +10,7 @@ public class Task {
 
     /**
      * Constructor that initializes Task object
-     * @param description Descripion of task
+     * @param description Description of task
      */
     public Task(String description) {
         this.description = description;
@@ -27,7 +27,7 @@ public class Task {
 
     /**
      * Alters isDone field to signify marked
-     * @return Return string to show its done
+     * @return Return string to show it is done
      */
     public String markAsDone() {
         this.isDone = true;
@@ -36,12 +36,10 @@ public class Task {
 
     /**
      * Alters isDone field to signify unmarked
-     * @return Return string to show its not done
+     * @return Return string to show it is not done
      */
     public String markAsNotDone() {
         this.isDone = false;
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println("\t[ ] " + this.description);
         return "OK, I've marked this task as not done yet:\n\t[ ] " + this.description;
     }
 
