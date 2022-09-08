@@ -1,10 +1,5 @@
 package duke;
 
-import duke.Deadline;
-import duke.EmptyDescriptionException;
-import duke.Event;
-import duke.OutOfRangeException;
-
 import java.util.ArrayList;
 
 
@@ -31,6 +26,9 @@ public class Parser {
      */
     public String parse(String input) {
 
+        assert !input.equals("") : "(Parse) input should not be empty";
+
+
         StringBuilder temp = new StringBuilder();
 
         if (input.equals("bye")) {
@@ -39,6 +37,7 @@ public class Parser {
         } else if (input.equals("list")) {
             temp.append(ui.print(2)).append("\n");
             for (int i = 0; i < count; i ++) {
+                assert i < tasks.length() : "(Parser) tasklist has error out of bound, check input.txt";
                 temp.append(i + 1).append(". ").append(tasks.get(i).toString()).append("\n");
             }
         } else if (input.contains("mark")) {

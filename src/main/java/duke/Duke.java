@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class Duke extends Application{
@@ -56,6 +57,7 @@ public class Duke extends Application{
      * Replace this stub with your completed method.
      */
     String getResponse(String input) {
+        assert !input.equals("") : "input should not be empty";
         return parser.parse(input);
     }
 

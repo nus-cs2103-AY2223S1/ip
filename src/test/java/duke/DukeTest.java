@@ -1,2 +1,15 @@
-package duke;public class DukeTest {
+package duke;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class DukeTest {
+
+    @Test
+    public void testGetResponse() {
+        Duke d = new Duke();
+        d.getResponse("");
+    }
+
 }
