@@ -3,7 +3,6 @@ package duke.events;
 /**
  * Deadline is an extension of the Task class
  * It contains a due date for the finished task
- * And prints it out in a readable format via the toString method
  */
 
 import java.time.LocalDate;

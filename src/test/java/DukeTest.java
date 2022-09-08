@@ -9,14 +9,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DukeTest {
     @Test
-    public void dummyTest(){
+    public void dummyTest() {
         assertEquals(2, 2);
     }
 
     //Testing Parser.GenerateTask() for the 3 different types of tasks
     // Also testing their toString() formatting
     @Test
-    public void TestTaskGeneration() {
+    public void testTaskGeneration() {
         Parser p = new Parser();
         Task todoTest = p.generateTask("todo borrow book");
         Task deadlineTest = p.generateTask("deadline return book /by 2019-10-15");
@@ -29,7 +29,7 @@ public class DukeTest {
 
     //Testing Task Marking/Unmarking in TaskList
     @Test
-    public void TestMarkUnmark() {
+    public void testMarkUnmark() {
         Task todoTest = Parser.generateTask("todo borrow book");
         List<Task> emptyTaskList = new ArrayList<Task>();
         TaskList tl = new TaskList(emptyTaskList);
