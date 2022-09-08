@@ -1,8 +1,9 @@
 package duke.task;
 
-import duke.common.DukeException;
 import java.util.ArrayList;
 import java.util.function.Predicate;
+
+import duke.common.DukeException;
 
 /**
  * Handles the list of tasks when duke is running.
@@ -54,7 +55,7 @@ public class TaskList {
      * @return The removed task.
      * @throws DukeException If specified task does not exist.
      */
-    public Task deleteItem(int index) throws DukeException{
+    public Task deleteItem(int index) throws DukeException {
         if (index > tasks.size() || index < 0) {
             throw new DukeException("Please select a valid item");
         }
@@ -70,7 +71,7 @@ public class TaskList {
      * @return The marked task.
      * @throws DukeException If specified task does not exist.
      */
-    public Task markItem(int index) throws DukeException{
+    public Task markItem(int index) throws DukeException {
         if (index > tasks.size() || index < 0) {
             throw new DukeException("Please select a valid item");
         }
@@ -108,6 +109,12 @@ public class TaskList {
         return encodedTaskList.toString();
     }
 
+    /**
+     * Returns a filtered task list using the given predicate.
+     *
+     * @param predicate The condition used to filter.
+     * @return The filtered task list.
+     */
     public TaskList filter(Predicate<Task> predicate) {
         return new TaskList(tasks.stream().filter(predicate)
                 .collect(ArrayList::new, ArrayList::add, ArrayList::addAll));
@@ -121,7 +128,7 @@ public class TaskList {
     @Override
     public String toString() {
         StringBuilder taskString = new StringBuilder();
-        for (int i = 0; i < tasks.size(); i ++) {
+        for (int i = 0; i < tasks.size(); i++) {
             taskString.append((i + 1) + ". " + tasks.get(i) + "\n");
         }
         return taskString.toString();

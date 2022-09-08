@@ -1,7 +1,8 @@
 package duke.task;
 
-import duke.common.DukeException;
 import java.time.LocalDate;
+
+import duke.common.DukeException;
 
 /**
  * Abstract class to capture a task's description and completion status.
@@ -14,11 +15,22 @@ public abstract class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Constructs a task with the given description.
+     *
+     * @param description The description of the task.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
+    /**
+     * Constructs a task with the given description and completion status.
+     *
+     * @param description The description of the task.
+     * @param isDone The completion status of the task.
+     */
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
@@ -51,17 +63,17 @@ public abstract class Task {
         String[] taskInfo = encodedTask.split(Task.ENCODING_SEPARATOR_REGEX);
         Task task;
         switch(taskInfo[0]) {
-            case "E":
-                task = new Event(taskInfo[2], LocalDate.parse(taskInfo[1]), Boolean.parseBoolean(taskInfo[3]));
-                break;
-            case "D":
-                task = new Deadline(taskInfo[2], LocalDate.parse(taskInfo[1]), Boolean.parseBoolean(taskInfo[3]));
-                break;
-            case "T":
-                task = new ToDo(taskInfo[1], Boolean.parseBoolean(taskInfo[2]));
-                break;
-            default:
-                throw new DukeException("Invalid task encoding: " + encodedTask);
+        case "E":
+            task = new Event(taskInfo[2], LocalDate.parse(taskInfo[1]), Boolean.parseBoolean(taskInfo[3]));
+            break;
+        case "D":
+            task = new Deadline(taskInfo[2], LocalDate.parse(taskInfo[1]), Boolean.parseBoolean(taskInfo[3]));
+            break;
+        case "T":
+            task = new ToDo(taskInfo[1], Boolean.parseBoolean(taskInfo[2]));
+            break;
+        default:
+            throw new DukeException("Invalid task encoding: " + encodedTask);
         }
         return task;
     }

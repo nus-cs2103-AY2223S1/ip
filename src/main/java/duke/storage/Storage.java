@@ -1,15 +1,15 @@
 package duke.storage;
 
-import duke.common.DukeException;
-import duke.task.Task;
-import duke.task.TaskList;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.common.DukeException;
+import duke.task.Task;
+import duke.task.TaskList;
 
 /**
  * Handles the storage of the task list in the file system.

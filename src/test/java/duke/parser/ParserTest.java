@@ -1,18 +1,22 @@
 package duke.parser;
 
-import duke.command.*;
-import duke.task.ToDo;
-import org.junit.jupiter.api.Test;
-
 import static duke.parser.Parser.parse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.Test;
+
+import duke.command.AddCommand;
+import duke.command.DeleteCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnmarkCommand;
 
 public class ParserTest {
     @Test
-    public void InvalidCommandTest(){
+    public void invalidCommandTest() {
         try {
             assertFalse(parse("happy meal").isExit());
             fail();
@@ -23,7 +27,7 @@ public class ParserTest {
     }
 
     @Test
-    public void listTest(){
+    public void listTest() {
         try {
             assertFalse(parse("list").isExit());
             assertTrue(parse("list") instanceof ListCommand);
@@ -35,7 +39,7 @@ public class ParserTest {
     }
 
     @Test
-    public void byeTest(){
+    public void byeTest() {
         try {
             assertTrue(parse("bye").isExit());
             assertTrue(parse("bye    ").isExit());
@@ -53,7 +57,7 @@ public class ParserTest {
     }
 
     @Test
-    public void markTest(){
+    public void markTest() {
         try {
             assertFalse(parse("mark 13").isExit());
             assertTrue(parse("mark 13") instanceof MarkCommand);
@@ -78,7 +82,7 @@ public class ParserTest {
     }
 
     @Test
-    public void unmarkTest(){
+    public void unmarkTest() {
         try {
             assertFalse(parse("unmark 13").isExit());
             assertTrue(parse("unmark 13") instanceof UnmarkCommand);
@@ -103,7 +107,7 @@ public class ParserTest {
     }
 
     @Test
-    public void deleteTest(){
+    public void deleteTest() {
         try {
             assertFalse(parse("delete 13").isExit());
             assertTrue(parse("delete 13") instanceof DeleteCommand);
@@ -128,7 +132,7 @@ public class ParserTest {
     }
 
     @Test
-    public void toDoTest(){
+    public void toDoTest() {
         try {
             assertFalse(parse("todo homework").isExit());
             assertTrue(parse("todo homework") instanceof AddCommand);
@@ -153,7 +157,7 @@ public class ParserTest {
     }
 
     @Test
-    public void deadlineTest(){
+    public void deadlineTest() {
         try {
             assertFalse(parse("deadline homework /by 2022-01-01").isExit());
             assertTrue(parse("deadline homework /by 2022-01-01") instanceof AddCommand);
@@ -191,7 +195,7 @@ public class ParserTest {
     }
 
     @Test
-    public void eventTest(){
+    public void eventTest() {
         try {
             assertFalse(parse("event homework /at 2022-01-01").isExit());
             assertTrue(parse("event homework /at 2022-01-01") instanceof AddCommand);

@@ -14,14 +14,14 @@ import javafx.stage.Stage;
  *
  * @author Tan Jun Wei
  */
-public class GUI extends Application {
+public class Gui extends Application {
 
     private Duke duke = new Duke("data/tasks.txt");
 
     @Override
     public void start(Stage stage) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(GUI.class.getResource("/view/MainWindow.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Gui.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
