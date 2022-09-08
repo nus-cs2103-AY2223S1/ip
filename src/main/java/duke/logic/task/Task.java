@@ -147,7 +147,7 @@ public class Task {
         }
 
         for (int j = 0; j < fullKeyword.length() - 2; j += 3) {
-            String partialKeyword = fullKeyword.substring(j, j+3);
+            String partialKeyword = fullKeyword.substring(j, j + 3);
             toPrint += partialKeyword + "\n";
             for (int i = 0; i < workList.size(); i++) {
                 if (workList.get(i).contain(partialKeyword)) {
