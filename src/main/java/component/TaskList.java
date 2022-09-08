@@ -37,14 +37,14 @@ public class TaskList {
                         .map(e -> new String(e))
                         .collect(Collectors.toList());
                 String description = stringList.get(2);
-                boolean isDone = stringList.get(1) == "X" ? true : false;
+                boolean isDone = stringList.get(1).equals("X") ? true : false;
                 if (stringList.size() == 3) {
                     newTask = new ToDo(description, isDone);
                 } else {
                     String code = stringList.get(0);
                     String stringDateTime = stringList.get(3);
                     LocalDateTime dateTime = Parser.processDateTime(stringDateTime);
-                    if (code == "E") {
+                    if (code.equals("E")) {
                         newTask = new Event(dateTime, description, isDone);
                     } else {
                         newTask = new Deadline(dateTime, description, isDone);
@@ -78,7 +78,9 @@ public class TaskList {
      * @return Boolean value indicating status of addition to task list
      */
     public boolean addTask(Task task) {
+        int size = this.list.size();
         boolean response = this.list.add(task);
+        assert (this.list.size() > size) : "Task addition failed";
         return response;
     }
 
@@ -88,7 +90,9 @@ public class TaskList {
      * @return Deleted Task object
      */
     public Task deleteTask(int taskIndex) {
+        int size = this.list.size();
         Task removedTask = this.list.remove(taskIndex);
+        assert (this.list.size() < size) : "Task deletion failed";
         return removedTask;
     }
 
@@ -98,8 +102,11 @@ public class TaskList {
      * @return Marked Task object
      */
     public Task markTask(int taskIndex) {
+        String previousStatusIcon = this.list.get(taskIndex).getStatusIcon();
         this.list.get(taskIndex).markAsDone();
-        return this.list.get(taskIndex);
+        Task currentTask = this.list.get(taskIndex);
+        assert (!previousStatusIcon.equals(currentTask.getStatusIcon())) : "Task marking failed";
+        return currentTask;
     }
 
     /**
@@ -108,8 +115,11 @@ public class TaskList {
      * @return Unmarked Task object
      */
     public Task unmarkTask(int taskIndex) {
+        String previousStatusIcon = this.list.get(taskIndex).getStatusIcon();
         this.list.get(taskIndex).unmarkAsDone();
-        return this.list.get(taskIndex);
+        Task currentTask = this.list.get(taskIndex);
+        assert (!previousStatusIcon.equals(currentTask.getStatusIcon())) : "Task unmarking failed";
+        return currentTask;
     }
 
     /**

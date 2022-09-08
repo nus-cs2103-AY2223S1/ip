@@ -22,6 +22,7 @@ public class Parser {
      * @return Type of input
      */
     public static Command parse(String input) {
+        assert (input.length() > 0) : "Empty input";
         List<String> inputList = Stream.of(input.split(" "))
                 .map(e -> new String(e))
                 .collect(Collectors.toList());
@@ -71,6 +72,7 @@ public class Parser {
      */
     public static Task parseTask(String input, String code)
             throws InputOverFlowException, InvalidDateTimeFormatException, DateTimeParseException {
+        assert code.length() == 1 : "Invalid task code";
         Task newTask = null;
         if (code.equals("T")) {
             String description = input.substring(5);
