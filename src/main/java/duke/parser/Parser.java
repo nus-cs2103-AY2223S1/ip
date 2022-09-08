@@ -38,7 +38,7 @@ public class Parser {
      * @return A boolean value to indicate if the command needs another input.
      */
     public static boolean hasMultipleVariables(String str) {
-        String[] commands = {"mark", "unmark", "todo", "deadline", "event", "delete"};
+        String[] commands = {"mark", "unmark", "todo", "deadline", "event", "delete", "find"};
         HashSet<String> checkList = new HashSet<String>(Arrays.asList(commands));
         return checkList.contains(str.toLowerCase());
     }

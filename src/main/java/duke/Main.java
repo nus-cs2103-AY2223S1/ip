@@ -2,6 +2,7 @@ package duke;
 
 import java.io.IOException;
 
+import duke.dukeexception.DukeException;
 import duke.ui.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +18,7 @@ public class Main extends Application {
     private Duke duke = new Duke();
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws DukeException {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();

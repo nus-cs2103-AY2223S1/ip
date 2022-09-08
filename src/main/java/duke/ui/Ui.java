@@ -204,10 +204,11 @@ public class Ui {
      */
     public static void find(String str, TaskList taskList) throws DateTimeFormatException {
         ArrayList<Task> findList = new ArrayList<Task>();
+        String[] strList = str.split(" ");
         Integer index = 0;
         printLine();
         for (Task task : taskList.getList()) {
-            if (task.hasName(str)) {
+            if (task.hasName(strList)) {
                 findList.add(task);
             }
         }
@@ -223,6 +224,6 @@ public class Ui {
      * Helper func to print a horizontal line.
      */
     private static void printLine() {
-        System.out.println("    ------------------------------------------------------------------------------------");
+        System.out.println("    ---------------------------------------------------------");
     }
 }
