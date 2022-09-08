@@ -9,7 +9,7 @@ import util.*;
  */
 public class Alan {
     public static Alan instance;
-    private Storage alanIO;
+    private Storage storage;
     private final Ui ui;
     private final FileParser fileParser;
     private final Executor executor;
@@ -25,7 +25,7 @@ public class Alan {
         this.fileParser = new FileParser();
 
         try {
-            this.alanIO = new Storage();
+            this.storage = Storage.getInstance();
         } catch(AlanException e) {
             executor.excException(e.getMessage());
         }
@@ -54,7 +54,7 @@ public class Alan {
 
     private void begin() {
         try {
-            this.taskList = new TaskList(fileParser.parseFile(alanIO.read()));
+            this.taskList = new TaskList(fileParser.parseFile(storage.read()));
         } catch (AlanException e) {
             executor.excException(e.getMessage());
         }
@@ -65,8 +65,9 @@ public class Alan {
         System.out.println("How may I be of service?");
 
         String command = input.split(" ", 2)[0];
-        command = Keywords.getInstance().getCommand(command);
+
         try {
+            command = keyword.Keywords.getInstance().getCommand(command);
             switch (command) {
                 case "bye":
                     response = executor.excBye();
@@ -96,12 +97,12 @@ public class Alan {
                     response = executor.excDelete(taskList, input);
                     break;
                 case "help":
-                    response = "Keywords: " + Keywords.getInstance().getDefaultKeywords();
+                    response = "keyword.Keywords.java: " + keyword.Keywords.getInstance().getDefaultKeywords();
                     break;
-                case "assign":
+                case "addkw":
                     response = executor.excAkw(input);
                     break;
-                case "remove":
+                case "delkw":
                     response = executor.excRkw(input);
                     break;
                 default:

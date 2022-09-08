@@ -8,3 +8,6 @@ E| |watch jame's tutorial|at|now (-:|
 E| |say hi|by|tonight|
 E| |kiss darren|at|now|
 E| |hello|by|now|
+T| |ververv|||
+E| |event|by|now|
+E| |event|by|now|

@@ -1,10 +1,8 @@
 package alanExceptions;
 
-import util.Keywords;
-
 public class NoSuchKeywordException extends AlanException{
-    public NoSuchKeywordException() {
+    public NoSuchKeywordException() throws AlanException {
         super("No such command keyword exists, choose from the following:\n" +
-                Keywords.getInstance().getDefaultKeywords());
+                    keyword.Keywords.getInstance().getDefaultKeywords());
     }
 }

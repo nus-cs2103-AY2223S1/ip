@@ -2,6 +2,7 @@ package util;
 
 import alanExceptions.AlanException;
 import alanExceptions.FileCorruptException;
+import keyword.KeywordPair;
 import tasks.Deadline;
 import tasks.Event;
 import tasks.Task;
@@ -46,6 +47,20 @@ public class FileParser {
             }
         }
         return result;
+    }
+
+    public List<KeywordPair> parseKeywords(String data) throws AlanException {
+        List<KeywordPair> keywordPairs = new ArrayList<>();
+        String[] lines = data.split("\n");
+        for (String line : lines) {
+            String[] d = line.split("\\|", 3);
+            if (line.length() > 0) {
+                System.out.println(d[0]);
+                System.out.println(d[1]);
+                keywordPairs.add(new KeywordPair(d[0], d[1]));
+            }
+        }
+        return keywordPairs;
     }
 
 }
