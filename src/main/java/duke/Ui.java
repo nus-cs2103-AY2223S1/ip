@@ -34,6 +34,14 @@ public class Ui {
         return ("Bye. Hope to see you again soon!");
     }
 
+    public static String noUndoMessage() {
+        return("There is no command to undo.");
+    }
+
+    public static String undoMessage() {
+        return("The previous command has been undone.");
+    }
+
     /**
      * Message shown when a task is deleted.
      * @param task task to be deleted.

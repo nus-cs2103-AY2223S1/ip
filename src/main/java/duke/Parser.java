@@ -12,9 +12,10 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.TodoCommand;
 import duke.command.UnmarkCommand;
+import duke.command.UndoCommand;
 
 /**
- * The Parser class parses the input received when running DUke.
+ * The Parser class parses the input received when running Duke.
  */
 
 public class Parser {
@@ -40,7 +41,10 @@ public class Parser {
             return new ByeCommand();
         } else if (input.equals("list")) {
             return new ListCommand();
-        } else if (split.length > 0 && Arrays.asList(validInputs).contains(split[0])) {
+        } else if (input.equals("undo")) {
+            return new UndoCommand(StoreUndo.getUndo());
+        }
+        else if (split.length > 0 && Arrays.asList(validInputs).contains(split[0])) {
             if (split.length < 2) {
                 throw new DukeException(split[0]);
             }

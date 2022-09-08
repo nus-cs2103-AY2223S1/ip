@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.Storage;
+import duke.StoreUndo;
 import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
@@ -33,6 +34,7 @@ public class TodoCommand extends Command {
     public String execute(TaskList list, Storage storage) {
         Task task = list.addTodo(description);
         storage.writeToFile(list);
+        StoreUndo.updateUndo(new DeleteCommand(list.getSize() - 1));
         return Ui.addTask(task);
     }
 }

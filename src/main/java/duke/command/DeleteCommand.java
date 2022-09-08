@@ -2,8 +2,13 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
+import duke.StoreUndo;
 import duke.Ui;
+
 import duke.task.Task;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Todo;
 
 /**
  * A command that is used to delete a Task.
@@ -33,6 +38,13 @@ public class DeleteCommand extends Command {
     public String execute(TaskList list, Storage storage) {
         Task task = list.deleteTask(id);
         storage.writeToFile(list);
+        if (task instanceof Deadline) {
+            StoreUndo.updateUndo(new DeadlineCommand(task.getDescription(), ((Deadline) task).getBy()));
+        } else if (task instanceof Event) {
+            StoreUndo.updateUndo(new EventCommand(task.getDescription(), ((Event) task).getWhen()));
+        } else {
+            StoreUndo.updateUndo(new TodoCommand(task.getDescription()));
+        }
         return Ui.deleteTask(task);
     }
 }

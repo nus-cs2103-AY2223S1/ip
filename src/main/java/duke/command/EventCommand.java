@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.Storage;
+import duke.StoreUndo;
 import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
@@ -36,6 +37,7 @@ public class EventCommand extends Command {
     public String execute(TaskList list, Storage storage) {
         Task task = list.addEvent(description, when);
         storage.writeToFile(list);
+        StoreUndo.updateUndo(new DeleteCommand(list.getSize() - 1));
         return Ui.addTask(task);
     }
 }

@@ -2,6 +2,7 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
+import duke.StoreUndo;
 import duke.Ui;
 import duke.task.Task;
 
@@ -31,8 +32,9 @@ public class MarkCommand extends Command {
      */
     @Override
     public String execute(TaskList list, Storage storage) {
-        Task task = list.markTask(id);
+        Task task = list.markTask(this.id);
         storage.writeToFile(list);
+        StoreUndo.updateUndo(new UnmarkCommand(this.id));
         return Ui.markTask(task);
     }
 }
