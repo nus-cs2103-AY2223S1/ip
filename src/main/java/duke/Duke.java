@@ -50,9 +50,7 @@ public class Duke {
                 }
 
             } catch (DukeException | IOException e) {
-                assert e != null : "The error is: " + e.toString();
                 return e.toString();
-
             }
 
     }
@@ -86,9 +84,7 @@ public class Duke {
             if (task.AddToList()) {
                 num++;
             }
-
             return task.toString();
-
         }
     }
 

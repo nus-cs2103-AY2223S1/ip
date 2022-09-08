@@ -64,6 +64,12 @@ public class Task {
             String target = command.split(" ")[1];
             return new Find(target, arrayList);
         }
+        if (command.split(" ")[0].equals("tag")) {
+            int num = Integer.parseInt(command.split(" ")[1]) - 1;
+            Task task = new Tag(arrayList.get(num));
+            arrayList.set(num, arrayList.get(num) + " #fun");
+            return task;
+        }
         if (command.equals("add")) {
             Task task = new Add(command);
             arrayList.add(number + "." + task.toString());
