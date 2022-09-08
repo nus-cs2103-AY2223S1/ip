@@ -42,6 +42,15 @@ public class TaskList {
     }
 
     /**
+     * Handles adding a Duration task to the list.
+     *
+     * @param task The duration task to be added to the list.
+     */
+    public void addDuration(Duration task) {
+        this.arrayList.add(task);
+    }
+
+    /**
      * Handles adding an event task to the list.
      *
      * @param task The event task to add to the list.
