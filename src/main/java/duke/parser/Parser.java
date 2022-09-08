@@ -81,7 +81,7 @@ public class Parser {
     }
 
     private Command prepareTodo(String args) {
-        return new TodoCommand(args);
+        return new TodoCommand(args.trim());
     }
 
     private Command prepareDeadline(String args) {
