@@ -10,16 +10,23 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 
 /**
  * Handle storing and retrieving of tasks from a file.
  */
 public class Storage {
-    private final File saveFile;
+    private File saveFile;
 
     /**
      * Constructor for creating new save file.
@@ -89,7 +96,6 @@ public class Storage {
             }
             }
         }
-//        assert !tasksArray.isEmpty() : "The task array should not be empty";
         return tasksArray;
     }
 
@@ -174,5 +180,19 @@ public class Storage {
         String str = convertToString(taskList.getTasks());
         fw.write(str);
         fw.close();
+    }
+
+    /**
+     * Save current taskList as an archive file and clear all existing tasks.
+     *
+     * @param filePath Path where the saved file is located.
+     * @throws IOException If error encountered with FileWriter.
+     */
+    public void archive(String filePath) throws IOException {
+        Path source = Paths.get(filePath);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
+        String curTime = formatter.format(new Date());
+        Files.move(source, source.resolveSibling("archive-" + curTime));
+        new FileWriter(filePath, false).close();
     }
 }

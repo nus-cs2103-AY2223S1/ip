@@ -11,8 +11,8 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private final Duke duke = new Duke(FILE_PATH);
     private static final String FILE_PATH = "data/tasks.txt";
+    private final Duke duke = new Duke(FILE_PATH);
 
     @Override
     public void start(Stage stage) {
