@@ -97,7 +97,7 @@ public class TaskList {
     }
 
     /**
-     * Marks a Task as done
+     * Marks a Task as done.
      * @param taskIndex Index of the current task
      * @return Marked Task object
      */
@@ -110,7 +110,7 @@ public class TaskList {
     }
 
     /**
-     * Unmarks a Task as undone
+     * Unmarks a Task as undone.
      * @param taskIndex Index of the current task
      * @return Unmarked Task object
      */
@@ -125,7 +125,7 @@ public class TaskList {
     /**
      * Finds a matching Task according to the keyword given.
      * @param keyword Search keyword
-     * @return TaskList object containing the matching tasks.
+     * @return TaskList object containing the matching tasks
      */
     public TaskList findTasks(String keyword) {
         TaskList foundTasks = new TaskList();

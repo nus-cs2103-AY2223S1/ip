@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 class DeadlineTest {
 
     @Test
-    void getDateTimeTest() {
+    void dateTimeTest_getDateTime() {
         LocalDateTime today = LocalDateTime.now();
         String todayString = " (by: " + today.format(DateTimeFormatter.ofPattern("MMM dd yyyy', ' hh:mm a")) + ")";
         Deadline newDeadline1 = new Deadline(today, "CS2103");
@@ -23,7 +23,7 @@ class DeadlineTest {
     }
 
     @Test
-    void getRawDateTimeTest() {
+    void dateTimeTest_rawDateTime() {
         LocalDateTime today = LocalDateTime.now();
         Deadline newDeadline1 = new Deadline(today, "CS2103");
         Deadline newDeadline2 = new Deadline(today, "PHS3122", false);

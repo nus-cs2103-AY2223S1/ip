@@ -40,12 +40,13 @@ public class Event extends Task {
     }
 
     /**
-     * Returns a LocalDateTime object that the event needs to be completed by
+     * Returns a LocalDateTime object that the event needs to be completed by.
      * @return Date and time of the event
      */
     public LocalDateTime getRawDateTime() {
         return this.dateTime;
     }
+
     /**
      * {@inheritDoc}
      */
