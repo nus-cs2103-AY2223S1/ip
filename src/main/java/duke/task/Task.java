@@ -8,6 +8,8 @@ public abstract class Task {
     protected String name;
     /* Flag representing if a task is completed */
     protected boolean isDone;
+    /* Task tag, each task has 1 or no tag */
+    protected Tag tag;
 
     /**
      * Returns string representation of Task object.
@@ -16,7 +18,9 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s] %s", this.getStatusIcon(), name);
+        return tag == null
+                ? String.format("[%s] %s", this.getStatusIcon(), name)
+                : String.format("[%s] %s [Tag: %s]", this.getStatusIcon(), name, tag);
     }
 
     /**
@@ -40,6 +44,15 @@ public abstract class Task {
      */
     public void markAsNotdone() {
         this.isDone = false;
+    }
+
+    /**
+     * Add tag with given tag name to task.
+     *
+     * @param tag Name of tag to be added.
+     */
+    public void tag(String tag) {
+        this.tag = new Tag(tag);
     }
 
     /**

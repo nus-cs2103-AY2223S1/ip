@@ -41,7 +41,7 @@ public class TaskList {
     public Task getTask(String indexString) throws DukeException {
         try {
             int index = Integer.parseInt(indexString); // Throw NFE if invalid int
-            assert (index > 0 && index < tasks.size()) : "Index out of range of task list";
+            //assert (index > 0 && index < tasks.size()) : "Index out of range of task list";
             Task task = this.tasks.get(index - 1); // Throws IOOBE if invalid index
             return task;
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
@@ -185,6 +185,15 @@ public class TaskList {
             return "I don't think we have that one..";
         }
         return output;
+    }
+
+    public void tagTask(String indexString, String tagName) throws DukeException {
+        try {
+            Task task = this.getTask(indexString);
+            task.tag(tagName);
+        } catch (DukeException de) {
+            throw de;
+        }
     }
 
 }

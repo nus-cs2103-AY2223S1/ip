@@ -85,11 +85,22 @@ public class Ui {
      * Outputs task deleted message to user when task is deleted successfully.
      *
      * @param task Task to be deleted.
-     * @param size Size of task list after deleting task.
+     * @param size Task deleted message.
      */
     public String displayTaskDeletedMessage(Task task, int size) {
         String output = String.format("You have deleted \"%s\" into your Task List!\n"
                 + "You have %d tasks in your Task List!", task, size);
+        return output;
+    }
+
+    /**
+     * Outputs task tagged message to user when task is tagged successfully.
+     *
+     * @param task Task to be tagged.
+     * @return Task tagged message.
+     */
+    public String displayTagTaskMessage(Task task) {
+        String output = String.format("Sure! I'll tag this task, take a look: %s", task);
         return output;
     }
 

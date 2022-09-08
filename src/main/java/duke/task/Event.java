@@ -48,7 +48,8 @@ public class Event extends Task {
         String start = DateTimeFormatUtils.convertToInputFormat(startDate);
         String end = DateTimeFormatUtils.convertToInputFormat(endDate);
         String duration = start + " to " + end;
+        String tagString = tag == null ? "" : tag.getName();
 
-        return String.format("%s | %d | %s | %s", prefix, status, name, duration);
+        return String.format("%s | %d | %s | %s | %s", prefix, status, name, duration, tagString);
     }
 }
