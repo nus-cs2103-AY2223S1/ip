@@ -7,17 +7,18 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
 public class Deadline extends Task {
-    /**
-     * A string the describes the due date/time of the deadline.
-     */
+    /** String describing the due date or time of the deadline. */
     private String dueByStr;
+    /** LocalDate instance of entered date. */
     private LocalDate dueByDate = null;
+    /** LocalTime instance of entered time. */
     private LocalTime dueByTime = null;
 
     /**
-     * Constructor for a deadline.
-     * @param description the description of the deadline
-     * @param dueBy the due date/time of the deadline
+     * Constructor for Deadline.
+     *
+     * @param description Description of the deadline.
+     * @param dueBy Due date and/or time of the deadline.
      */
     public Deadline(String description, String dueBy) {
         super(description);
@@ -35,8 +36,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns a string used to save the task.
-     * @return a string used to save the task
+     * {@inheritDoc}
      */
     @Override
     public String saveString() {
@@ -50,8 +50,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns a string representation of the deadline.
-     * @return a string representing the deadline
+     * {@inheritDoc}
      */
     @Override
     public String toString() {

@@ -7,17 +7,18 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
 public class Event extends Task {
-    /**
-     * A string the describes the date/time of the event.
-     */
+    /** String that describes the date/time of the event. */
     private String dueAtStr;
+    /** LocalDate instance of valid date input. */
     private LocalDate dueAtDate = null;
+    /** LocalTime instance of valid time input. */
     private LocalTime dueAtTime = null;
 
     /**
-     * Constructor for a deadline.
-     * @param description the description of the deadline
-     * @param dueAt the date/time of the event
+     * Constructor for Event.
+     *
+     * @param description Description of the event.
+     * @param dueAt Date or time of the event.
      */
     public Event(String description, String dueAt) {
         super(description);
@@ -35,8 +36,7 @@ public class Event extends Task {
     }
 
     /**
-     * Returns a string used to save the task.
-     * @return a string used to save the task
+     * {@inheritDoc}
      */
     @Override
     public String saveString() {
@@ -50,8 +50,7 @@ public class Event extends Task {
     }
 
     /**
-     * Returns a string representation of the event.
-     * @return a string representing the event
+     * {@inheritDoc}
      */
     @Override
     public String toString() {

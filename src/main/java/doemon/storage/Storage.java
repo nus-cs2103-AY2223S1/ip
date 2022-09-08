@@ -16,19 +16,39 @@ import java.util.ArrayList;
 
 public class Storage {
 
+    /** Path of the data file to write to. */
     private String filePath;
+
+    /** Lines of save strings to be saved in data file */
     private ArrayList<String> taskSaveStrings;
 
+    /**
+     * Constructor for Storage.
+     *
+     * @param filePath Path of the date file to write to.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
         this.taskSaveStrings = new ArrayList<>();
     }
 
+    /**
+     * Adds task data to save string list and updates the data file.
+     *
+     * @param task Task to be added.
+     * @throws TaskDataException If data file update fails.
+     */
     public void addTaskData(Task task) throws TaskDataException {
         this.taskSaveStrings.add(task.saveString());
         saveTasks();
     }
 
+    /**
+     * Marks task stored in save string list and updates the date file.
+     *
+     * @param taskIndex Index of task to be marked.
+     * @throws TaskDataException If data file update fails.
+     */
     public void markTaskData(int taskIndex) throws TaskDataException {
         this.taskSaveStrings.set(
                 taskIndex,
@@ -36,6 +56,12 @@ public class Storage {
         saveTasks();
     }
 
+    /**
+     * Unmarks task stored in save string list and updates the data file.
+     *
+     * @param taskIndex Index of task to be unmarked.
+     * @throws TaskDataException If data file update fails.
+     */
     public void unmarkTaskData(int taskIndex) throws TaskDataException {
         this.taskSaveStrings.set(
                 taskIndex,
@@ -43,11 +69,23 @@ public class Storage {
         saveTasks();
     }
 
+    /**
+     * Deletes task stored in save string list and updates the data file.
+     *
+     * @param taskIndex Index of task to be deleted.
+     * @throws TaskDataException If data file update fails.
+     */
     public void deleteTaskData(int taskIndex) throws TaskDataException {
         this.taskSaveStrings.remove(taskIndex);
         saveTasks();
     }
 
+    /**
+     * Loads previously stored tasks from data file and returns tasks as an ArrayList.
+     *
+     * @return List of tasks stored in data file.
+     * @throws TaskDataException If data file read fails.
+     */
     public ArrayList<Task> loadTasks() throws TaskDataException {
         ArrayList<Task> loadedTasks = new ArrayList<>();
 
@@ -107,6 +145,11 @@ public class Storage {
         return loadedTasks;
     }
 
+    /**
+     * Saves and updates latest list of task strings.
+     *
+     * @throws TaskDataException If data file update fails.
+     */
     private void saveTasks() throws TaskDataException {
         BufferedWriter bw = null;
         try {

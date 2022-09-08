@@ -2,16 +2,16 @@ package doemon.task;
 
 public class Todo extends Task {
     /**
-     * Constructor for this object.
-     * @param description the description of the task to do
+     * Constructor for Todo.
+     *
+     * @param description Description of the todo.
      */
     public Todo(String description) {
         super(description);
     }
 
     /**
-     * Returns a string used to save the task.
-     * @return a string used to save the task
+     * {@inheritDoc}
      */
     @Override
     public String saveString() {
@@ -19,8 +19,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Returns a string representation of this object.
-     * @return a string representing this object
+     * {@inheritDoc}
      */
     @Override
     public String toString() {
