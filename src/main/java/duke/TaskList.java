@@ -43,43 +43,45 @@ public class TaskList {
      * @param index The index of the task in the list that has to be removed.
      * @throws IOException
      */
-    public void delete(int index) throws IOException {
-        System.out.println("Noted I have removed this task:");
-        System.out.println(inputList.get(index - 1));
-        Integer newSize = inputList.size() - 1;
-        inputList.remove(index-1);
-        System.out.println("Now you have " + newSize + " tasks in the list.");
+    public String delete(int index) throws IOException {
+        Task deletedTask = inputList.remove(index - 1);
+        Integer newSize = inputList.size();
+        String response = "Noted I have removed this task:\n" + deletedTask
+                            + "\nNow you have " + newSize + " tasks in the list.";
         Storage.writeToFile(inputList);
+        return response;
     }
 
     /**
      * Method to mark a task as done.
      */
-    public void mark(int index) throws IOException {
-        System.out.println("Nice! I've marked this task as done:");
+    public String mark(int index) throws IOException {
         inputList.get(index - 1).mark();
-        System.out.println(inputList.get(index- 1));
+        String response = "Nice! I've marked this task as done:\n" + inputList.get(index- 1);
         Storage.writeToFile(inputList);
+        return response;
     }
 
     /**
      * Method to mark a task as undone.
      */
-    public void unmark(int index) throws IOException {
-        System.out.println("Nice! I've marked this task as done:");
+    public String unmark(int index) throws IOException {
         inputList.get(index - 1).unmark();
-        System.out.println(inputList.get(index- 1));
+        String response = "Nice! I've marked this task as undone:\n" + inputList.get(index- 1);
         Storage.writeToFile(inputList);
+        return response;
     }
 
     /**
      * Method to display the list of tasks.
      */
-    public void list() {
-        System.out.println("Here are the tasks in your list:\n");
+    public String list() {
+        String itemList = "";
         for (Task item : inputList) {
-            System.out.println(inputList.indexOf(item) + 1 + "." + item);
+            itemList += inputList.indexOf(item) + 1 + ". " + item + "\n";
         }
+        String response = "Here are the tasks in your list:\n" + itemList;
+        return response;
     }
 
     /**
@@ -87,13 +89,13 @@ public class TaskList {
      * @param content Description of the Todo task.
      * @throws IOException
      */
-    public void todo(String content) throws IOException {
+    public String todo(String content) throws IOException {
         Todo td = new Todo(content);
-        System.out.println("Got it. I've added this task:");
-        System.out.println(td);
         inputList.add(td);
-        System.out.println("Now you have " + inputList.size() + " tasks in the list.");
+        String response = "Got it. I've added this task: " + td.toString() + "\n"
+                + "Now you have " + inputList.size() + " tasks in the list.";
         Storage.writeToFile(inputList);
+        return response;
     }
 
     /**
@@ -101,13 +103,13 @@ public class TaskList {
      * @param content Description of the Deadline task.
      * @throws IOException
      */
-    public void deadline(String content, String date) throws IOException {
+    public String deadline(String content, String date) throws IOException {
         Deadline dl = new Deadline(content, date);
-        System.out.println("Got it. I've added this task:");
-        System.out.println(dl);
         inputList.add(dl);
-        System.out.println("Now you have " + inputList.size() + " tasks in the list.");
+        String response = "Got it. I've added this task: " + dl.toString() + "\n"
+                + "Now you have " + inputList.size() + " tasks in the list.";
         Storage.writeToFile(inputList);
+        return response;
     }
 
     /**
@@ -115,13 +117,13 @@ public class TaskList {
      * @param content Description of the Event task.
      * @throws IOException
      */
-    public void event(String content, String date) throws IOException {
+    public String event(String content, String date) throws IOException {
         Event ev = new Event(content, date);
-        System.out.println("Got it. I've added this task:");
-        System.out.println(ev);
         inputList.add(ev);
-        System.out.println("Now you have " + inputList.size() + " tasks in the list.");
+        String response = "Got it. I've added this task: " + ev.toString() + "\n"
+                            + "Now you have " + inputList.size() + " tasks in the list.";
         Storage.writeToFile(inputList);
+        return response;
     }
 
     /**
@@ -137,16 +139,18 @@ public class TaskList {
      * Method to search for tasks that have the keyword that is given by user.
      * @param str Keyword given by user.
      */
-    public void find(String str) {
+    public String find(String str) {
         ArrayList<Task> list = new ArrayList<>();
         for (int i = 0; i < inputList.size(); i++) {
             if (inputList.get(i).toString().contains(str)) {
                 list.add(inputList.get(i));
             }
         }
-        System.out.println("Here are the matching tasks in your list:\n");
+        String itemList = "";
         for (Task item : list) {
-            System.out.println(list.indexOf(item) + 1 + "." + item);
+            itemList += list.indexOf(item) + 1 + "." + item.toString() + "\n";
         }
+        String response = "Here are the matching tasks in your list:\n" + itemList;
+        return response;
     }
 }
