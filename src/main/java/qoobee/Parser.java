@@ -23,6 +23,7 @@ public class Parser {
      * @param input The user's input.
      */
     public String parse(String input) {
+        assert input.length() > 0: "Input cannot be empty";
         try {
             if (input.equals("bye")) {
                 this.ui.exit();
@@ -31,6 +32,7 @@ public class Parser {
                 return tasks.printTasks();
             } else {
                 String[] command = input.split(" ", 2);
+                assert command[1].length() > 0: "Description cannot be empty";
                 if (input.startsWith("mark")) {
                     try {
                         Task task = tasks.getTask(Integer.parseInt(command[1]) - 1);
