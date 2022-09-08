@@ -37,7 +37,7 @@ public class TaskList {
 
 
     public String deleteTask(int index, Storage storage) throws DukeException {
-        if (index > lst.size() - 1 || index == 0) {
+        if (index > lst.size() - 1 || index < 0) {
             throw new DukeException("There is no such task");
         }
         Task t = lst.get(index);
