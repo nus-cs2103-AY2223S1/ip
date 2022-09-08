@@ -13,7 +13,7 @@ public class Executor {
     private final Ui ui;
     private final FileFormatter fileFormatter;
     private final Parser parser;
-    private Storage alanIO;
+    private Storage storage;
 
     /**
      * Constructor for Executor
@@ -23,7 +23,7 @@ public class Executor {
         this.fileFormatter = new FileFormatter();
         this.parser = new Parser();
         try {
-            this.alanIO = new Storage();
+            this.storage = Storage.getInstance();
         } catch (AlanException e) {
             excException(e.getMessage());
         }
@@ -52,7 +52,7 @@ public class Executor {
         // At this point taskList should have at least one element
         assert taskList.size() > 0 : "TaskList is still empty after attempt to add task";
         // Append new task to save File
-        alanIO.append(fileFormatter.formatTask(currentTask));
+        storage.append(fileFormatter.formatTask(currentTask));
 
         return ui.addTask(currentTask, taskList.size());
     }
@@ -71,7 +71,7 @@ public class Executor {
         // At this point taskList should have at least one element
         assert taskList.size() > 0 : "TaskList is still empty after attempt to add task";
         // Append new task to save File
-        alanIO.append(fileFormatter.formatTask(currentTask));
+        storage.append(fileFormatter.formatTask(currentTask));
 
         return ui.addTask(currentTask, taskList.size());
     }
@@ -90,7 +90,7 @@ public class Executor {
         // At this point taskList should have at least one element
         assert taskList.size() > 0 : "TaskList is still empty after attempt to add task";
         // Append new task to save File
-        alanIO.append(fileFormatter.formatTask(currentTask));
+        storage.append(fileFormatter.formatTask(currentTask));
 
         return ui.addTask(currentTask, taskList.size());
     }
@@ -122,7 +122,7 @@ public class Executor {
             Task currentTask = taskList.get(parsedData.getListIndex());
             currentTask.markDone();
             // Append new task to save File
-            alanIO.write(fileFormatter.formatTaskList(taskList.getTaskList()));
+            storage.write(fileFormatter.formatTaskList(taskList.getTaskList()));
 
             return ui.markDone(currentTask);
         } catch (IndexOutOfBoundsException exception) {
@@ -143,7 +143,7 @@ public class Executor {
             Task currentTask = taskList.get(parsedData.getListIndex());
             currentTask.markUndone();
             // Append new task to save File
-            alanIO.write(fileFormatter.formatTaskList(taskList.getTaskList()));
+            storage.write(fileFormatter.formatTaskList(taskList.getTaskList()));
 
             return ui.markUndone(currentTask);
         } catch (IndexOutOfBoundsException exception) {
@@ -164,12 +164,26 @@ public class Executor {
             Task currentTask = taskList.get(parsedData.getListIndex());
             taskList.remove(parsedData.getListIndex());
             // Append new task to save File
-            alanIO.write(fileFormatter.formatTaskList(taskList.getTaskList()));
+            storage.write(fileFormatter.formatTaskList(taskList.getTaskList()));
 
             return ui.delete(currentTask, taskList.size());
         } catch (IndexOutOfBoundsException exception) {
             throw new InvalidValueException();
         }
+    }
+
+    public String excAkw(String userInput) throws AlanException {
+        ParsedData parsedData = parser.parse(InputType.akw, userInput);
+        keyword.Keywords.getInstance().assign(parsedData.getKw(), parsedData.getCommandkw());
+
+        return ui.akw(parsedData.getKw(), parsedData.getCommandkw());
+    }
+
+    public String excRkw(String userInput) throws AlanException {
+        ParsedData parsedData = parser.parse(InputType.rkw, userInput);
+        keyword.Keywords.getInstance().remove(parsedData.getDescription());
+
+        return ui.rkw(parsedData.getDescription());
     }
 
     public String excBye() {

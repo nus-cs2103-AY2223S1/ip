@@ -97,6 +97,14 @@ public class Ui {
                 + task + "\nYou currently have " + listLength + tasksGrammar + ".");
     }
 
+    public String akw(String kw, String commandkw) {
+        return addSeparator("I have assigned " + kw + " to " + commandkw + ".");
+    }
+
+    public String rkw(String kw) {
+        return addSeparator("I have removed " + kw + " as a keyword.");
+    }
+
     /**
      * Formats invalid input.
      *

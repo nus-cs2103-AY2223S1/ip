@@ -11,6 +11,8 @@ enum InputType {
     event,
     delete,
     find,
+    akw,
+    rkw,
 }
 
 /**
@@ -38,6 +40,12 @@ public class Parser {
                 break;
             case find:
                 result = parseFind(input);
+                break;
+            case akw:
+                result = parseAkw(input);
+                break;
+            case rkw:
+                result = parseRkw(input);
                 break;
             default:
                 //for now default is for mark and unmark
@@ -115,5 +123,34 @@ public class Parser {
         }
 
         return new ParsedData(task);
+    }
+
+    private ParsedData parseAkw(String input) throws AlanException {
+        String command, kw, commandkw;
+        String[] firstSplit = input.split(" ", 2);
+        command = firstSplit[0];
+
+        try {
+            String[] second = firstSplit[1].split(" ", 2);
+            kw = second[0];
+            commandkw = second[1];
+        } catch (IndexOutOfBoundsException e) {
+            throw new NoKeywordException(command);
+        }
+        return new ParsedData(kw, commandkw);
+    }
+
+    private ParsedData parseRkw(String input) throws AlanException {
+        String command, kw;
+        String[] firstSplit = input.split(" ", 2);
+        command = firstSplit[0];
+
+        try {
+            String[] second = firstSplit[1].split(" ", 2);
+            kw = second[0];
+        } catch (IndexOutOfBoundsException e) {
+            throw new NoKeywordException(command);
+        }
+        return new ParsedData(kw);
     }
 }

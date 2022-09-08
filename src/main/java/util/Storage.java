@@ -17,45 +17,37 @@ import java.nio.file.Paths;
  * This class is used to read and write files.
  */
 public class Storage {
+    public static Storage instance;
     private Path dirPath = Paths.get("data");
     private Path fileNamePath = Paths.get("alan.txt");
     private Path filePath = dirPath.resolve(fileNamePath);
+    private Path keywordFileNamePath = Paths.get("keywords.txt");
+    private Path keywordFilePath = dirPath.resolve(keywordFileNamePath);
     private final File SAVE_DIR;
     private final File SAVE_FILE;
+    private final File SAVE_KEYWORDS_FILE;
     private BufferedWriter writer;
 
-    /**
-     * Constructor
-     *
-     * @throws AlanException Exception in case of failure.
-     */
-    public Storage() throws AlanException {
-        this.SAVE_DIR = new File(dirPath.toString());
-        this.SAVE_FILE = new File(filePath.toString());
-        try {
-            SAVE_DIR.mkdirs();
-            SAVE_FILE.createNewFile();
-        } catch (IOException | SecurityException e) {
-            throw new SaveFileException();
+    public static Storage getInstance() throws AlanException {
+        if (Storage.instance == null) {
+            return new Storage();
         }
+        return Storage.instance;
     }
 
     /**
      * Constructor
      *
-     * @param directory Custom directory.
-     * @param file Custom file name.
      * @throws AlanException Exception in case of failure.
      */
-    public Storage(Path directory, Path file) throws AlanException {
-        this.dirPath = directory;
-        this.fileNamePath = file;
-        this.filePath = dirPath.resolve(fileNamePath);
-        this.SAVE_DIR = new File(directory.toString());
-        this.SAVE_FILE = new File(directory.resolve(file).toString());
+    private Storage() throws AlanException {
+        this.SAVE_DIR = new File(dirPath.toString());
+        this.SAVE_FILE = new File(filePath.toString());
+        this.SAVE_KEYWORDS_FILE = new File(keywordFilePath.toString());
         try {
             SAVE_DIR.mkdirs();
             SAVE_FILE.createNewFile();
+            SAVE_KEYWORDS_FILE.createNewFile();
         } catch (IOException | SecurityException e) {
             throw new SaveFileException();
         }
@@ -70,6 +62,16 @@ public class Storage {
     public void write(String data) throws AlanException {
         try {
             writer = new BufferedWriter(new FileWriter(filePath.toString()));
+            writer.write(data);
+            writer.close();
+        } catch (IOException e) {
+            throw new FileWriteException();
+        }
+    }
+
+    public void writeKeyword(String data) throws AlanException {
+        try {
+            writer = new BufferedWriter(new FileWriter(keywordFilePath.toString()));
             writer.write(data);
             writer.close();
         } catch (IOException e) {
@@ -92,6 +94,15 @@ public class Storage {
             throw new FileWriteException();
         }
     }
+    public void appendKeyword(String data) throws AlanException {
+        try {
+            writer = new BufferedWriter(new FileWriter(keywordFilePath.toString(), true));
+            writer.write(data);
+            writer.close();
+        } catch (IOException e) {
+            throw new FileWriteException();
+        }
+    }
 
     /**
      * Reads a file
@@ -103,6 +114,16 @@ public class Storage {
         String result;
         try {
             result = Files.readString(filePath);
+        } catch (IOException e) {
+            throw new FileReadException();
+        }
+        return result;
+    }
+
+    public String readKeywords() throws AlanException {
+        String result;
+        try {
+            result = Files.readString(keywordFilePath);
         } catch (IOException e) {
             throw new FileReadException();
         }

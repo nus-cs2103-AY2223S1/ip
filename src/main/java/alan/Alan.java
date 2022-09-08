@@ -2,17 +2,14 @@ package alan;
 
 import alanExceptions.AlanException;
 import tasks.TaskList;
-import util.Executor;
-import util.FileParser;
-import util.Storage;
-import util.Ui;
+import util.*;
 
 /**
  * This class encapsulates the Chat Bot.
  */
 public class Alan {
     public static Alan instance;
-    private Storage alanIO;
+    private Storage storage;
     private final Ui ui;
     private final FileParser fileParser;
     private final Executor executor;
@@ -28,7 +25,7 @@ public class Alan {
         this.fileParser = new FileParser();
 
         try {
-            this.alanIO = new Storage();
+            this.storage = Storage.getInstance();
         } catch(AlanException e) {
             executor.excException(e.getMessage());
         }
@@ -57,7 +54,7 @@ public class Alan {
 
     private void begin() {
         try {
-            this.taskList = new TaskList(fileParser.parseFile(alanIO.read()));
+            this.taskList = new TaskList(fileParser.parseFile(storage.read()));
         } catch (AlanException e) {
             executor.excException(e.getMessage());
         }
@@ -70,6 +67,7 @@ public class Alan {
         String command = input.split(" ", 2)[0];
 
         try {
+            command = keyword.Keywords.getInstance().getCommand(command);
             switch (command) {
                 case "bye":
                     response = executor.excBye();
@@ -99,8 +97,13 @@ public class Alan {
                     response = executor.excDelete(taskList, input);
                     break;
                 case "help":
-                    // TODO: 18/8/22
-                    response = "Sorry i cant help you just yet ):";
+                    response = "keyword.Keywords.java: " + keyword.Keywords.getInstance().getDefaultKeywords();
+                    break;
+                case "addkw":
+                    response = executor.excAkw(input);
+                    break;
+                case "delkw":
+                    response = executor.excRkw(input);
                     break;
                 default:
                     response = ui.invalid();

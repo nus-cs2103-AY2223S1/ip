@@ -1,5 +1,6 @@
 package util;
 
+import keyword.KeywordPair;
 import tasks.Task;
 
 import java.util.List;
@@ -33,6 +34,32 @@ public class FileFormatter {
         StringBuilder result = new StringBuilder();
         for (Task task : taskList) {
             result.append(formatTask(task));
+        }
+        return result.toString();
+    }
+
+    /**
+     * Formats a single keyword
+     *
+     * @param pair The keyword pair to be formatted.
+     * @return The formatted string.
+     */
+    public String formatKeyword(KeywordPair pair) {
+        return String.format("%s|%s|\n",
+                pair.getKeyword(),
+                pair.getCommand());
+    }
+
+    /**
+     * Formats a keyword list
+     *
+     * @param keywordPairs The keyword pair list to be formatted.
+     * @return The formatted string.
+     */
+    public String formatKeywordList(List<KeywordPair> keywordPairs) {
+        StringBuilder result = new StringBuilder();
+        for (KeywordPair pair : keywordPairs) {
+            result.append(formatKeyword(pair));
         }
         return result.toString();
     }
