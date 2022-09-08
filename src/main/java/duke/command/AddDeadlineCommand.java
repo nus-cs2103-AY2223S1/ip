@@ -12,7 +12,7 @@ import duke.task.Deadline;
  * Adds a deadline task to the list when command is called.
  */
 public class AddDeadlineCommand extends Command {
-    private String description;
+    private final String description;
     private String by;
     private LocalDateTime byDate;
 
@@ -49,7 +49,7 @@ public class AddDeadlineCommand extends Command {
 
         tasks.add(deadline);
         ui.outputMessage("\tGot it. I've added this task:\n\t"
-                + deadline.toString()
+                + deadline
                 + "\n\tNow you have " + tasks.size()
                 + " tasks in the list.");
         storage.save(tasks);

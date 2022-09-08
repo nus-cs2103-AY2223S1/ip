@@ -10,7 +10,7 @@ import duke.task.Todo;
  * Adds a todo task when command is called.
  */
 public class AddTodoCommand extends Command {
-    private String description;
+    private final String description;
 
     /**
      * Adds a todo based on command received
@@ -26,7 +26,7 @@ public class AddTodoCommand extends Command {
         Todo todo = new Todo(description);
         tasks.add(todo);
         ui.outputMessage("\tGot it. I've added this task:\n\t"
-                + todo.toString()
+                + todo
                 + "\n\tNow you have "
                 + tasks.size()
                 + " tasks in the list.");

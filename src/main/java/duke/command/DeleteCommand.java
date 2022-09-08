@@ -10,7 +10,7 @@ import duke.task.Task;
  * Delete a task when command is called.
  */
 public class DeleteCommand extends Command {
-    private int taskNum;
+    private final int taskNum;
 
      /**
      * Delete the task based on the index entered when command is called.
