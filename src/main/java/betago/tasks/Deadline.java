@@ -1,10 +1,10 @@
 package betago.tasks;
 
-import betago.DukeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import betago.DukeException;
 
 /**
  * Deadline class is a type of task where users can store their task description

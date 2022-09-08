@@ -1,7 +1,5 @@
 package betago;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -58,7 +56,6 @@ public class TaskList {
         for (int i = 0; i < this.list.size(); i++) {
             output = output + (i + 1) + ". " + this.list.get(i).toString() + "\n";
         }
-        output += ("\n");
         return output;
     }
 
@@ -82,13 +79,11 @@ public class TaskList {
                     this.list.get(marker - 1).markAsDone();
                     output = "Nice! I've marked this task as done:\n"
                             + this.list.get(marker - 1).toString() + "\n";
-                    output += ("\n");
                     return output;
                 } else {
                     this.list.get(marker - 1).markAsNotDone();
                     output = "Nice! I've marked this task as not done yet:\n"
                             + this.list.get(marker - 1).toString() + "\n";
-                    output += ("\n");
                     return output;
                 }
             } catch (NumberFormatException ex) {
@@ -157,14 +152,14 @@ public class TaskList {
         String output;
         if (inputs.length != 2) {
             throw new DukeException("Please indicate a task description for your Event task"
-                    + " in this format: 'deadline (description) /at (location)'\n");
+                    + " in this format: 'deadline (description) /at (date) (time)'\n");
         } else {
-            String[] where = inputs[1].split(" /at ", 2);
-            if (where.length != 2) {
+            String[] when = inputs[1].split(" /at ", 2);
+            if (when.length != 2) {
                 throw new DukeException("Please indicate a valid date and time for your Event task!\n"
                         + "Do enter the command in this format: 'deadline (description) /at (date) (time)'\n");
             } else {
-                Event temp = new Event(where[0], where[1]);
+                Event temp = new Event(when[0], when[1]);
                 this.list.add(temp);
                 output = "Got it. I've added this Event task:\n" + temp.toString() + "\n"
                         + "Now you have " + this.list.size() + " tasks in the list.\n";
@@ -236,37 +231,33 @@ public class TaskList {
         String[] inputs = str.split(" , ", 4);
         if (inputs.length != 4) {
             throw new DukeException("Invalid Input from Data File: Insufficient details");
-        } else {
-            try {
-                String[] dateTime = inputs[3].split(",", 2);
-                try {
-                    Deadline temp;
-                    if (dateTime.length == 2) {
-                        LocalDate d = LocalDate.parse(dateTime[0], DateTimeFormatter.ofPattern("MMM d yyyy"));
-                        String deadlineDateTime = d.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                        deadlineDateTime = deadlineDateTime + dateTime[1];
-                        temp = new Deadline(inputs[2], deadlineDateTime);
-                    } else {
-                        LocalDate d = LocalDate.parse(dateTime[0], DateTimeFormatter.ofPattern("MMM d yyyy"));
-                        String deadlineDateTime = d.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                        temp = new Deadline(inputs[2], deadlineDateTime);
-                    }
-                    if (inputs[1].equalsIgnoreCase("1")) {
-                        temp.markAsDone();
-                    } else if (inputs[1].equalsIgnoreCase("0")) {
-                        temp.markAsNotDone();
-                    } else {
-                        throw new DukeException("Invalid Input from Data File: Incorrect marker");
-                    }
-                    this.list.add(temp);
-                } catch (DateTimeParseException e) {
-                    //Need to check this
-                }
-            } catch (DukeException e) {
-                throw new DukeException(
-                        "Invalid Input from Data File: Invalid Deadline Task");
+        }
+        try {
+            String[] dateTime = inputs[3].split(",", 2);
+            Deadline temp;
+            if (dateTime.length == 2) {
+                LocalDate d = LocalDate.parse(dateTime[0], DateTimeFormatter.ofPattern("MMM d yyyy"));
+                String deadlineDateTime = d.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                deadlineDateTime = deadlineDateTime + dateTime[1];
+                temp = new Deadline(inputs[2], deadlineDateTime);
+            } else {
+                LocalDate d = LocalDate.parse(dateTime[0], DateTimeFormatter.ofPattern("MMM d yyyy"));
+                String deadlineDateTime = d.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                temp = new Deadline(inputs[2], deadlineDateTime);
             }
-
+            if (inputs[1].equalsIgnoreCase("1")) {
+                temp.markAsDone();
+            } else if (inputs[1].equalsIgnoreCase("0")) {
+                temp.markAsNotDone();
+            } else {
+                throw new DukeException("Invalid Input from Data File: Incorrect marker");
+            }
+            this.list.add(temp);
+        } catch (DukeException e) {
+            throw new DukeException(
+                    "Invalid Input from Data File: Invalid Deadline Task");
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Invalid Input from Data File: Incorrect Date/Time");
         }
     }
 
@@ -279,9 +270,21 @@ public class TaskList {
     public void loadEvent(String str) throws DukeException {
         String[] inputs = str.split(" , ", 4);
         if (inputs.length != 4) {
-            throw new DukeException("Invalid input from data file: Insufficient details");
-        } else {
-            Event temp = new Event(inputs[2], inputs[3]);
+            throw new DukeException("Invalid Input from Data File: Insufficient details");
+        }
+        try {
+            String[] dateTime = inputs[3].split(",", 2);
+            Event temp;
+            if (dateTime.length == 2) {
+                LocalDate d = LocalDate.parse(dateTime[0], DateTimeFormatter.ofPattern("MMM d yyyy"));
+                String eventDateTime = d.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                eventDateTime = eventDateTime + dateTime[1];
+                temp = new Event(inputs[2], eventDateTime);
+            } else {
+                LocalDate d = LocalDate.parse(dateTime[0], DateTimeFormatter.ofPattern("MMM d yyyy"));
+                String eventDateTime = d.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                temp = new Event(inputs[2], eventDateTime);
+            }
             if (inputs[1].equalsIgnoreCase("1")) {
                 temp.markAsDone();
             } else if (inputs[1].equalsIgnoreCase("0")) {
@@ -290,21 +293,11 @@ public class TaskList {
                 throw new DukeException("Invalid Input from Data File: Incorrect marker");
             }
             this.list.add(temp);
-        }
-    }
-    /**
-     * Save current items in the list to the file.
-     */
-    public void saveItems() {
-        try {
-            FileWriter fw = new FileWriter("data/duke.txt", false);
-            for (int i = 0; i < this.list.size(); i++) {
-                Task temp = this.list.get(i);
-                fw.write(temp.saveTask());
-            }
-            fw.close();
-        } catch (IOException e) {
-            Ui.printSaveError();
+        } catch (DukeException e) {
+            throw new DukeException(
+                    "Invalid Input from Data File: Invalid Deadline Task");
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Invalid Input from Data File: Incorrect Date/Time");
         }
     }
 
@@ -334,7 +327,7 @@ public class TaskList {
                 for (int i = 0; i < matched.size(); i++) {
                     output = output + (i + 1) + ". " + matched.get(i).toString() + "\n";
                 }
-                return output + "\n";
+                return output;
             }
         }
     }

@@ -1,17 +1,23 @@
 package betago.tasks;
 
-import betago.exceptions.InvalidCommandException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import betago.DukeException;
+
+
+
 
 public class DeadlineTest {
 
     @Test
-    public void newDeadlineTest(){
+    public void newDeadlineTest() {
         try {
             Deadline temp = new Deadline("do this task", "2012-01-21 6pm");
             assertEquals("[D][ ] do this task (by: Jan 21 2012, 6pm)", temp.toString());
-        } catch (InvalidCommandException e) {}
+        } catch (DukeException e) {
+            //This should not happen from the above input
+        }
     }
 }
