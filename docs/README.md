@@ -1,3 +1,5 @@
+{::options parse_block_html="true" /}
+
 # User Guide
 
 Duke is a desktop application for **tracking tasks** in the style of a chatbot. Developed with _love_ using JavaFX.
@@ -188,6 +190,19 @@ This is what I found:
   1. [T][] do homework
   2. [D][] go back home (by: 12 Nov 2022)
 ```
+
+</details>
+
+### `bye` - Exit the application
+
+**Usage:** `bye`
+
+Close the duke application
+
+<details>
+<summary><b>Expected outcome</b></summary>
+
+Duke application window will be close.
 
 </details>
 
