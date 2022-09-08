@@ -2,7 +2,6 @@ package puke;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -16,9 +15,8 @@ public class Duke {
      */
     protected String getResponse(String input) {
         try {
-            return "Puke says: " + puke(receiver, Duke.d, input);
+            return "Puke says: " + puke(Duke.d, input);
         } catch (DukeException e) {
-            System.out.println("error");
             return e.toString();
         }
     }
@@ -41,8 +39,12 @@ public class Duke {
      */
     private Parser p;
 
-    private Scanner receiver = new Scanner(System.in);
     protected static Duke d = new Duke();
+
+    /**
+     * tracks the status of Duke programme
+     */
+    private static boolean hasended = false;
 
     /**
      * Creates the chatbot
@@ -55,11 +57,11 @@ public class Duke {
     }
 
     
-    public static String puke(Scanner bc, Duke d,String input) throws DukeException {
+    public static String puke(Duke d,String input) throws DukeException {
         Scanner sc = new Scanner(input);
         String a = sc.next();
         if (a.equals("bye")) {
-            ended = true;
+            hasended = true;
             return Duke.d.ui.systemMessage(1,d, new ToDo(""));
         }
         if (a.equals("list")) {
@@ -103,7 +105,7 @@ public class Duke {
             Duke.d.storage.saveTasks(Duke.d.tasklist.tasks);
             return Duke.d.ui.systemMessage(3, d, temp);
         } else if (a.equals("find")) {
-            String temp = d.p.getFindTask(s);
+            String temp = d.p.getFindKeyword(s);
             return Duke.d.tasklist.find(temp);
 
         } else {
@@ -112,32 +114,4 @@ public class Duke {
                     );
         }
     }
-
-    private static boolean ended = false;
-    public static void startBot() {
-        try {
-            puke(Duke.d.receiver, d, "");
-        } catch (DukeException e) {
-            System.out.println(e);
-        } catch (StackOverflowError e) {
-            System.out.println("goodbye");
-        } finally {
-            if (ended) {
-                return;
-            } else {
-                startBot();
-            }
-        }
-    }
-
-    /**
-     * Entry point to application
-     * @param args
-     */
-
-    /*public static void main(String[] args) {
-        Duke.d.ui.intro();
-        Duke.startBot();
-        Duke.d.receiver.close();
-    } */
 }
