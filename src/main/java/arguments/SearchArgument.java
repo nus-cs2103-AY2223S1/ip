@@ -20,4 +20,13 @@ public class SearchArgument extends StringArgument {
     }
 
 
+    @Override
+    public String getShortDescription() {
+        return formatHelp("query", true);
+    }
+
+    @Override
+    public String getUsage() {
+        return formatHelp("book", false);
+    }
 }

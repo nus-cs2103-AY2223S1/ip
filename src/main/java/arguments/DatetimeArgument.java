@@ -25,6 +25,16 @@ public class DatetimeArgument extends CompulsoryArgument<LocalDateTime> {
                 ARG_NAME));
     }
 
+    @Override
+    public String getShortDescription() {
+        return formatHelp("date", true);
+    }
+
+    @Override
+    public String getUsage() {
+        return formatHelp("26-08-2022 0900", false);
+    }
+
     /**
      * Validates datetime argument
      * @throws DukeException if datetime is empty or incorrect date format provided

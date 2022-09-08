@@ -24,7 +24,7 @@ import exceptions.DukeException;
  * */
 public class Input {
     public static final String ARG_START = "/";
-    private static final String DELIMITER = " ";
+    public static final String DELIMITER = " ";
     protected String commandName;
     protected String inputString;
     protected Map<String, String> parameters; // store arguments without arg_start

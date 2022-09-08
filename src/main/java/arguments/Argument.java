@@ -23,6 +23,8 @@ public abstract class Argument<T> {
     public String getArgumentName() {
         return Input.ARG_START + argumentName;
     }
+    public abstract String getShortDescription();
+    public abstract String getUsage();
 
     /**
      * This method should process the input and set value for this argument, or throw exception if input is invalid
@@ -57,5 +59,16 @@ public abstract class Argument<T> {
         }
 
         return msgs;
+    }
+
+    /**
+     * Helper method to format short and usage descriptions
+     * @param text Text to include in description
+     * @param isTemplate Indicates if text should be surrounded in brackets or not
+     * @return Description string
+     */
+    protected String formatHelp(String text, boolean isTemplate) {
+        String formatString = isTemplate ? "<%s>" : "%s";
+        return String.join(Input.DELIMITER, getArgumentName(), String.format(formatString, text));
     }
 }

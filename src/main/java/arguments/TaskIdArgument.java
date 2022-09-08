@@ -11,6 +11,16 @@ public class TaskIdArgument extends Argument<Integer> {
         super(input, "id");
     }
 
+    @Override
+    public String getShortDescription() {
+        return formatHelp("id", true);
+    }
+
+    @Override
+    public String getUsage() {
+        return formatHelp("1", false);
+    }
+
     // This method exists so we can process arbitary no. of arguments and get error messages for all to show to user
     @Override
     public void validate() throws DukeException {

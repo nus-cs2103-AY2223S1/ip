@@ -6,7 +6,7 @@ import input.Input;
 /**
  * Argument for a string that should be non-empty - enables re-use for any such argument
  */
-public class StringArgument extends Argument<String> {
+public abstract class StringArgument extends Argument<String> {
     private String emptyMessage;
     private String missingMessage;
 
