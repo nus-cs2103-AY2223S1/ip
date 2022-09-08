@@ -16,6 +16,8 @@ public class Duke {
     /** The ui to handle user interactions */
     private Ui ui;
 
+    private static boolean hasFile = false;
+
     /**
      * Creates a new instance of the Duke class.
      */
@@ -24,9 +26,12 @@ public class Duke {
         storage = new Storage(DukeConstants.FILENAME);
         try {
             taskList = new TaskList(storage.load());
+            hasFile = true;
         } catch (FileNotFoundException e) {
-            ui.showError("file not found!");
+            //ui.showError("file not found!");
+            hasFile = false;
             taskList = new TaskList();
+            assert taskList.getSize() == 0 : "Tasks should be 0";
         }
 
     }
@@ -52,5 +57,12 @@ public class Duke {
         }
     }
 
+    public static boolean getFileStatus() {
+        return hasFile;
+    }
+
+    public boolean getSavedStatus() {
+        return storage.getSavedStatus();
+    }
 
 }

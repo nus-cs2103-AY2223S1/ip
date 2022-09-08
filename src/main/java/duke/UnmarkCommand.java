@@ -24,8 +24,9 @@ public class UnmarkCommand extends Command {
     public String execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.unmarkTask(index);
         Task temp = taskList.getTask(index);
-        storage.save(taskList, ui);
-        return ui.displayTask(ui.UNMARKED, temp);
+        boolean status = storage.save(taskList, ui);
+        String returnString = ui.displayTask(ui.UNMARKED, temp);
+        return status ? returnString : returnString + "Error saving";
     }
 
     /**
