@@ -1,6 +1,7 @@
 package duke.util;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import duke.Duke;
@@ -154,6 +155,13 @@ public class TaskList {
         }
 
         return stringBuilder.toString();
+    }
+
+    /**
+     * Sorts the task list by chronological order from earlier to later.
+     */
+    public void sort() {
+        tasks.sort(Comparator.comparing(Task::getDate));
     }
 
     /**

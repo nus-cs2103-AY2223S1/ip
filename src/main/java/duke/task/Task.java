@@ -1,5 +1,6 @@
 package duke.task;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -39,6 +40,22 @@ public abstract class Task {
         isDone = false;
     }
 
+    /**
+     * A LocalDateTime getter. By default, it is the max value.
+     *
+     * @return The date of the task.
+     */
+    public LocalDateTime getDate() {
+        return LocalDateTime.MAX;
+    }
+
+    /**
+     * Returns the string representation of a task that gives the information about the internal state of this task.
+     *
+     * @param label A capital letter that indicates the type of the task.
+     * @param displayedText Other text to append.
+     * @return The string representation of a task
+     */
     protected String getStringRepresentation(String label, String displayedText) {
         return "[" + (isDone ? "X" : " ") + "] " + "[" + label + "] " + displayedText;
     }
@@ -50,10 +67,12 @@ public abstract class Task {
      */
     public abstract String getFileRepresentation();
 
-    protected String getFileRepresentation(String label) {
-        return getFileRepresentation(label, null);
-    }
-
+    /**
+     * Returns a string representation of the task in the file.
+     *
+     * @param label A capital letter that indicates the type of the task.
+     * @return A string representation of the task in the file.
+     */
     protected String getFileRepresentation(String label, String dateTime) {
         String output = label + " " + FILE_WRITING_DELIMITER + " "
                 + (isDone ? "1" : "0")
@@ -62,6 +81,16 @@ public abstract class Task {
             output += " " + FILE_WRITING_DELIMITER + " " + dateTime;
         }
         return output;
+    }
+
+    /**
+     * An overloaded version of getFileRepresentation()
+     *
+     * @param label A capital letter that indicates the type of the task.
+     * @return A string representation of the task in the file.
+     */
+    protected String getFileRepresentation(String label) {
+        return getFileRepresentation(label, null);
     }
 
     /**

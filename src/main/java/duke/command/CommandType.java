@@ -14,7 +14,8 @@ public enum CommandType {
     FIND("find"),
     ADD_EVENT("event"),
     ADD_TODO("todo"),
-    ADD_DEADLINE("deadline");
+    ADD_DEADLINE("deadline"),
+    SORT("sort");
 
     private final String commandString;
 
