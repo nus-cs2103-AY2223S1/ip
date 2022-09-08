@@ -10,8 +10,8 @@ public class Ui {
     /**
      * Greets the user when they first run the program
      */
-    public void greet() {
-        System.out.println("woof! I'm scruffles the task tracking doggo\n" + "what can I woof for you today?");
+    public String greet() {
+        return "woof! I'm scruffles the task tracking doggo\n" + "what can I woof for you today?";
     }
 
     /**
@@ -33,7 +33,7 @@ public class Ui {
     /**
      * Greets the user when they exit the program
      */
-    public void bye() {
-        System.out.println("woof see you again woof!");
+    public static String bye() {
+        return "woof see you again woof!";
     }
 }

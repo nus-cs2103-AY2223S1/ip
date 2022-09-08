@@ -1,6 +1,14 @@
 package scruffles;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * The main class of the program, Scruffles, which is an app that helps track your tasks. With this app you can keep
@@ -9,10 +17,15 @@ import java.util.Scanner;
  *
  * @author Shamus Tan
  */
-public class Scruffles {
-    private Storage storage;
-    private TaskList tasks;
+public class Scruffles extends Application {
+    private ScrollPane scrollPane;
+    private VBox dialogContainer;
+    private TextField userInput;
+    private Button sendButton;
+    private Scene scene;
     private Ui ui;
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private Image scruffles = new Image(this.getClass().getResourceAsStream("/images/DaScruffles.jpeg"));
 
     enum Type {
         TODO,
@@ -20,40 +33,38 @@ public class Scruffles {
         EVENT
     }
 
-    public Scruffles(String filePath) {
-        ui = new Ui();
-        storage = new Storage(filePath);
-        try {
-            tasks = new TaskList(storage.load());
-        } catch (FileNotFoundException e) {
-            ui.showLoadingError();
-            tasks = new TaskList();
-        }
+    public Scruffles() {}
+
+    Parser parser = new Parser();
+
+    @Override
+    public void start(Stage stage) {
+
+        //The container for the content of the chat to scroll.
+        scrollPane = new ScrollPane();
+        dialogContainer = new VBox();
+        scrollPane.setContent(dialogContainer);
+
+        userInput = new TextField();
+        sendButton = new Button("Send");
+
+        AnchorPane mainLayout = new AnchorPane();
+        mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
+
+        scene = new Scene(mainLayout);
+
+        stage.setScene(scene);
+        stage.show();
     }
 
     /**
-     * The method that executes the program
+     * Gets the response from Scruffles when entering input
+     *
+     * @param input the input given to the program
+     * @return the output response
      */
-    public void run() {
-        ui.greet();
-        Scanner sc = new Scanner(System.in);
-
-        while (true) {
-            String input = sc.nextLine();
-
-            if (input.equals("bye")) {
-                break;
-            }
-            try {
-                Parser.parse(input, tasks);
-            } catch (UnknownArgumentException | DescriptionEmptyException e) {
-                ui.printMessage(e.getMessage());
-            }
-        }
-        storage.save(tasks);
-        ui.bye();
+    String getResponse(String input) {
+        return parser.parse(input);
     }
-    public static void main(String[] args) {
-        new Scruffles("/Users/shamustan/Desktop/University/AY22:23 S1/CS2103T/scruffles.txt").run();
-    }
+
 }

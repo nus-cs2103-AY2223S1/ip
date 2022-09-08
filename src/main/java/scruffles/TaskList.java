@@ -11,15 +11,11 @@ import java.util.ArrayList;
 public class TaskList {
     private ArrayList<Task> tasks;
     private int taskCount;
+    private Storage storage = new Storage();
 
     public TaskList() {
         this.tasks = new ArrayList<>();
         this.taskCount = 0;
-    }
-
-    public TaskList(ArrayList<Task> tasks) {
-        this.tasks = tasks;
-        this.taskCount = tasks.size();
     }
 
     /**
@@ -55,8 +51,9 @@ public class TaskList {
      *
      * @param str the input string of the Task
      * @param type the enumerated type of Task (TODO, DEADLINE, EVENT)
+     * @return the respective output messages
      */
-    public void add(String str, Scruffles.Type type) {
+    public String add(String str, Scruffles.Type type) {
         if (type.equals(Scruffles.Type.TODO)) {
             try {
                 if (str.equals("todo") || str.equals("todo ")) {
@@ -64,13 +61,13 @@ public class TaskList {
                 }
                 tasks.add(new Todo(str.replace("todo ", "")));
                 taskCount++;
-                System.out.println(String.format("woof! the task is added woof!\n" +
+                return String.format("woof! the task is added woof!\n" +
                                 "%s\n" +
                                 "you now have %d tasks in the list woof!",
                         tasks.get(taskCount - 1).toString(),
-                        taskCount));
+                        taskCount);
             } catch (DescriptionEmptyException e) {
-                System.out.println(e.getMessage());
+                return e.getMessage();
             }
         } else if (type.equals(Scruffles.Type.DEADLINE)) {
             try {
@@ -82,17 +79,17 @@ public class TaskList {
                 LocalDate date = LocalDate.parse(input[1]);
                 tasks.add(new Deadline(name, date));
                 taskCount++;
-                System.out.println(String.format("woof! the task is added woof!\n" +
+                return String.format("woof! the task is added woof!\n" +
                                 "%s\n" +
                                 "you now have %d tasks in the list woof!",
                         tasks.get(taskCount - 1).toString(),
-                        taskCount));
+                        taskCount);
             } catch (DescriptionEmptyException e) {
-                System.out.println(e.getMessage());
+                return e.getMessage();
             } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("grrrr >:( when is your deadline?? woof woof!");
+                return "grrrr >:( when is your deadline?? woof woof!";
             } catch (DateTimeParseException e) {
-                System.out.println("grrrr >:( please input deadline in yyyy-mm-dd format woof woof!");
+                return "grrrr >:( please input deadline in yyyy-mm-dd format woof woof!";
             }
         } else if (type.equals(Scruffles.Type.EVENT)) {
             try {
@@ -103,19 +100,21 @@ public class TaskList {
                 String name = input[0].replace("event", "");
                 tasks.add(new Event(name, input[1]));
                 taskCount++;
-                System.out.println(String.format("Got it. I've added this task:\n" +
+                return String.format("Got it. I've added this task:\n" +
                                 "%s\n" +
                                 "you now have %d tasks in the list woof!",
                         tasks.get(taskCount - 1).toString(),
-                        taskCount));
+                        taskCount);
             } catch (DescriptionEmptyException e) {
-                System.out.println(e.getMessage());
+                return e.getMessage();
             } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("grrrr >:( when is your event?? woof woof!");
+                return "grrrr >:( when is your event?? woof woof!";
             } catch (DateTimeParseException e) {
-                System.out.println("grrrr >:( please input event date as 'yyyy-mm-dd from hh:mm to hh:mm' format" +
-                        " woof woof!");
+                return "grrrr >:( please input event date as 'yyyy-mm-dd from hh:mm to hh:mm' format" +
+                        " woof woof!";
             }
+        } else {
+            return "";
         }
     }
 
@@ -123,8 +122,9 @@ public class TaskList {
      * Deletes the task of given number from the TaskList
      *
      * @param input the input string of the message
+     * @return the respective output messages
      */
-    public void delete(String input) {
+    public String delete(String input) {
         try {
             if (input.equals("delete") || input.equals("delete ")) {
                 throw new DescriptionEmptyException("grrrr >:( you need to delete something woof woof!");
@@ -140,13 +140,13 @@ public class TaskList {
                                     "you now have %d tasks in the list woof!",
                             t.toString(),
                             taskCount);
-                    System.out.println(str);
+                    return str;
                 }
             }
         } catch (OutOfBoundsException | DescriptionEmptyException e) {
-            System.out.println(e.getMessage());
+            return e.getMessage();
         } catch (NumberFormatException e) {
-            System.out.println("grrrr >:( you need to input an integer woof woof!");
+            return "grrrr >:( you need to input an integer woof woof!";
         }
     }
 
@@ -154,8 +154,9 @@ public class TaskList {
      * Marks or unmarks the task of given number from the TaskList
      *
      * @param input the input string of the message
+     * @return the respective output messages
      */
-    public void mark(String input) {
+    public String mark(String input) {
         try {
             if (input.equals("mark") || input.equals("mark ")) {
                 throw new DescriptionEmptyException("grrrr >:( you need to mark something woof woof!");
@@ -166,14 +167,14 @@ public class TaskList {
                     throw new OutOfBoundsException(j);
                 } else {
                     tasks.get(j - 1).setDone();
-                    System.out.println("woof! the task is now marked as done woof!\n"
-                            + tasks.get(j - 1).toString());
+                    return "woof! the task is now marked as done woof!\n"
+                            + tasks.get(j - 1).toString();
                 }
             }
         } catch (OutOfBoundsException | DescriptionEmptyException e) {
-            System.out.println(e.getMessage());
+            return e.getMessage();
         } catch (NumberFormatException e) {
-            System.out.println("grrrr >:( you need to input an integer woof woof!");
+            return "grrrr >:( you need to input an integer woof woof!";
         }
     }
 
@@ -181,8 +182,9 @@ public class TaskList {
      * Finds a task whose name contains the given keyword in the TaskList
      *
      * @param input the input string of the message
+     * @return the respective output messages
      */
-    public void find(String input) {
+    public String find(String input) {
         try {
             if (input.equals("find") || input.equals("find ")) {
                 throw new DescriptionEmptyException("grrrr >:( what do you want to find woof woof!");
@@ -195,11 +197,16 @@ public class TaskList {
                         output += "\n" + task.toString();
                     }
                 }
-                System.out.println(output);
+                return output;
             }
         } catch (DescriptionEmptyException e) {
-            System.out.println(e.getMessage());
+            return e.getMessage();
         }
+    }
+
+    public String bye() {
+        storage.save(this);
+        return Ui.bye();
     }
 
     /**

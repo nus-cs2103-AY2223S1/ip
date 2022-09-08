@@ -15,11 +15,9 @@ import java.util.Scanner;
  */
 public class Storage {
 
-    private static String filePath;
+    private static String filePath = "/Users/shamustan/Desktop/ip/src/main/resources/data/scruffles.txt";
 
-    public Storage(String filePath) {
-        this.filePath = filePath;
-    }
+    public Storage() {}
 
     /**
      * Loads the existing file from the filepath
@@ -60,8 +58,6 @@ public class Storage {
 
     /**
      * Saves the TaskList into the filepath
-     *
-     * @param tasks the TaskList that is being saved into the file
      */
     public static void save(TaskList tasks) {
         try {
