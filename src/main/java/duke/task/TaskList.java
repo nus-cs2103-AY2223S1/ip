@@ -45,6 +45,7 @@ public class TaskList {
      * @return The task object that was deleted.
      */
     public Task removeTask(int index) {
+        assert 0 <= index && index < tasks.size();
         Task task = tasks.get(index - 1);
         tasks.remove(index - 1);
         return task;
@@ -65,6 +66,7 @@ public class TaskList {
      * @return The task which status is set.
      */
     public Task changeTaskStatus(int taskId, boolean isDone) {
+        assert 0 <= taskId && taskId < tasks.size();
         Task task = tasks.get(taskId - 1);
         task.setIsDone(isDone);
         return task;
