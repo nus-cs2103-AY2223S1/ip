@@ -14,8 +14,10 @@ import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.MarkTaskCommand;
 import duke.command.PrintListCommand;
+import duke.command.SortCommand;
 import duke.command.ToDoCommand;
 import duke.command.UnmarkTaskCommand;
+
 
 
 /**
@@ -75,6 +77,8 @@ public class Parser {
         switch (command) {
         case ("bye"):
             return new ExitCommand();
+        case ("sort"):
+            return new SortCommand();
         case ("list"):
             return new PrintListCommand();
         case ("delete"):

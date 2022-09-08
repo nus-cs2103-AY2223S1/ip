@@ -1,5 +1,9 @@
 package duke.task;
 
+import duke.Date;
+
+import java.time.LocalDate;
+
 /**
  * Creates a Task object that needs to be done.
  * @author Jason
@@ -7,11 +11,11 @@ package duke.task;
 public class Todo extends Task {
 
     /**
-     * Constructs a To do object.
+     * Constructs a to do object, with an arbitrary date.
      * @param description Description of the to do object.
      */
-    public Todo(String description) {
-        super(description);
+    public Todo(String description, Date date) {
+        super(description, date);
     }
 
     @Override

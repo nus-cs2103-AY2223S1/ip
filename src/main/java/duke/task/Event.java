@@ -8,21 +8,18 @@ import duke.Date;
  */
 public class Event extends Task {
 
-    protected Date at;
-
     /**
      * Constructs an Event object.
      * @param description Description of the Event object.
      * @param at Date which the Event object is on.
      */
     public Event(String description, Date at) {
-        super(description);
-        this.at = at;
+        super(description, at);
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at + ")";
+        return "[E]" + super.toString() + " (at: " + this.date + ")";
     }
 
     /**
@@ -32,6 +29,6 @@ public class Event extends Task {
     @Override
     public String saveData() {
         String marked = this.isDone ? "1" : "0";
-        return "E | " + marked + " | " + this.description + " | " + this.at;
+        return "E | " + marked + " | " + this.description + " | " + this.date;
     }
 }

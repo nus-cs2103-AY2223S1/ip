@@ -75,7 +75,8 @@ public class Storage {
 
                 switch (command) {
                 case("T"):
-                    task = new Todo(description);
+                    Date date = Parser.parseDate("9999-12-31");
+                    task = new Todo(description, date);
                     break;
                 case("D"):
                     if (dataDetails.length != 4) {

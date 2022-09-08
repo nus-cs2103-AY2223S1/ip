@@ -8,21 +8,18 @@ import duke.Date;
  */
 public class Deadline extends Task {
 
-    protected Date by;
-
     /**
      * Constructs a Deadline object.
      * @param description Description of the Deadline object.
      * @param by Date which the Deadline object is due.
      */
     public Deadline(String description, Date by) {
-        super(description);
-        this.by = by;
+        super(description, by);
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + this.date + ")";
     }
 
     /**
@@ -32,6 +29,6 @@ public class Deadline extends Task {
     @Override
     public String saveData() {
         String marked = this.isDone ? "1" : "0";
-        return "D | " + marked + " | " + this.description + " | " + this.by;
+        return "D | " + marked + " | " + this.description + " | " + this.date;
     }
 }
