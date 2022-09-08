@@ -138,6 +138,7 @@ public class Duke extends Application {
         });
     }
 
+
     /**
      * Iteration 2:
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
@@ -150,6 +151,8 @@ public class Duke extends Application {
             // end program
             ui.showGoodbyeMessage();
         } else {
+            assert user != null;
+            assert duke != null;
             String dukeText = executeCommand(command, userInput.getText());
             dialogContainer.getChildren().addAll(
                     DialogBox.getUserDialog(userText, user),
@@ -159,6 +162,7 @@ public class Duke extends Application {
 
         userInput.clear();
     }
+
 
     /**
      * Processes and runs user commands.
