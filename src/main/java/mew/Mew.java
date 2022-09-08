@@ -10,8 +10,6 @@ import component.Parser;
 import component.Storage;
 import component.Task;
 import component.TaskList;
-//temp:
-import component.ToDo;
 import component.Ui;
 import javafx.application.Platform;
 import mew.MewDateTimeParseException.InputOverFlowException;
