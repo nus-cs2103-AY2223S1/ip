@@ -58,20 +58,14 @@ public class TaskList {
      * @throws DukeException thrown when index is out of bound or task is already marked.
      */
     public void markTask(int index) throws DukeException {
-        if (checkValidIndex(index)) {
-            //getting the task
-            Task current = taskLists.get(index);
-
-            //if already marked, throw exception
-            if (current.getStatus()) {
-                throw new DukeException("Task is already marked!");
-            }
-
-            //else mark it
-            current.markAsDone();
-        } else {
+        if (!checkValidIndex(index)) {
             throw new DukeException("Index given is out of bounds!");
         }
+        Task current = taskLists.get(index);
+        if (current.getStatus()) {
+            throw new DukeException("Task is already marked!");
+        }
+        current.markAsDone();
     }
 
     /**
@@ -81,20 +75,14 @@ public class TaskList {
      * @throws DukeException thrown when task is already unmarked or index is out of bounds.
      */
     public void unMarkTask(int index) throws DukeException {
-        if (checkValidIndex(index)) {
-            //getting the task
-            Task current = taskLists.get(index);
-
-            //if already unmarked, throw exception
-            if (!current.getStatus()) {
-                throw new DukeException("Task is already not marked!");
-            }
-
-            //else unmark task
-            current.markAsNotDone();
-        } else {
+        if (!checkValidIndex(index)) {
             throw new DukeException("Index given is out of bounds!");
         }
+        Task current = taskLists.get(index);
+        if (!current.getStatus()) {
+            throw new DukeException("Task is already not marked!");
+        }
+        current.markAsNotDone();
     }
 
     /**
@@ -105,16 +93,12 @@ public class TaskList {
      * @throws DukeException thrown when index is out of bound.
      */
     public Task deleteTask(int index) throws DukeException {
-        if (checkValidIndex(index)) {
-            //get the task
-            Task task = taskLists.get(index);
-
-            //remove from taskList
-            taskLists.remove(index);
-            return task;
-        } else {
+        if (!checkValidIndex(index)) {
             throw new DukeException("Index given is out of bounds!");
         }
+        Task task = taskLists.get(index);
+        taskLists.remove(index);
+        return task;
     }
 
     /**
@@ -131,7 +115,6 @@ public class TaskList {
         for (int i = 0; i < taskLists.size(); i++) {
             Task current = taskLists.get(i);
             if (current.toString().contains(keyword)) {
-
                 //if current task contains keyword, add it to filter TaskList
                 filteredTaskList.saveTask(current);
             }
@@ -149,7 +132,6 @@ public class TaskList {
         for (int i = 0; i < taskLists.size(); i++) {
             //get current ask
             Task current = taskLists.get(i);
-
             //concatenate String expression of current task
             output += (i + 1) + "." + current.toString();
             if (i != taskLists.size() - 1) {

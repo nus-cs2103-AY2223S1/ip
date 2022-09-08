@@ -29,66 +29,85 @@ public class Parser {
      * @throws DukeException If input is invalid.
      */
     public static Command parse(String input) throws DukeException {
-        if (input.equals("bye")) {
+        String[] words = input.split(" ", 2);
+        String command = words[0].trim();
+        String description = words.length > 1 ? words[1].trim() : "";
+
+        switch (command) {
+        case "bye":
             return new ExitCommand();
-        }
-        if (input.equals("list")) {
+        case "list":
             return new ListCommand();
+        case "mark":
+            return getMarkCommand(description);
+        case "unmark":
+            return getUnMarkCommand(description);
+        case "todo":
+            return AddToDo(description);
+        case "deadline":
+            return AddDeadline(description);
+        case "event":
+            return AddEvent(description);
+        case "delete":
+            return getDeleteCommand(description);
+        case "find":
+            return getFindCommand(description);
+        default:
+            throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }
-        String[] words = input.split(" ");
-        if (words[0].equals("mark")) {
-            // mark keyword: checks the box of an item in the list
-            String numString = words[1];
-            int index = Integer.parseInt(numString) - 1;
-            return new MarkCommand(index);
-        } else if (words[0].equals("unmark")) {
-            // unmark keyword: unchecks the box of an item in the list
-            String numString = words[1];
-            int index = Integer.parseInt(numString) - 1;
-            return new UnMarkCommand(index);
-        } else if (words[0].equals("todo")) {
-            // to do keyword: create new to do item
-            if (words.length == 1) {
-                throw new DukeException("Description cannot be empty!");
-            } else {
-                String desc = input.split("todo ", 2)[1];
-                return new AddCommand(new ToDo(desc, false));
-            }
-        } else if (words[0].equals("deadline")) {
-            // deadline keyword: create new deadline item
-            String[] splitStringByBy = input.split(" /by ", 2);
-            if (splitStringByBy.length <= 1) {
-                throw new DukeException("The date cannot be empty!");
-            }
-            LocalDateTime date = LocalDateTime.now();
-            try {
-                date = LocalDateTime.parse(splitStringByBy[1]);
-            } catch (DateTimeParseException e) {
-                System.out.println("Invalid Date format! Use a YYYY-MM-DD format!");
-            }
-            String desc = splitStringByBy[0].split("deadline ", 2)[1];
-            return new AddCommand(new Deadline(desc, false, date));
-        } else if (words[0].equals("event")) {
-            // event keyword: create new event item
-            String[] splitStringByAt = input.split(" /at ", 2);
-            if (splitStringByAt.length <= 1) {
-                throw new DukeException("The date cannot be empty!");
-            }
-            String desc = splitStringByAt[0].split("event ", 2)[1];
-            String date = splitStringByAt[1];
-            return new AddCommand(new Event(desc, false, date));
-        } else if (words[0].equals("delete")) {
-            // delete keyword: remove task from list
-            String numString = words[1];
-            int index = Integer.parseInt(numString) - 1;
-            return new DeleteCommand(index);
-        } else if (words[0].equals("find")) {
-            // find keyword: find matching tasks
-            String[] find = input.split("find ", 2);
-            String keyword = find[1];
-            return new FindCommand(keyword);
+    }
+
+    private static MarkCommand getMarkCommand(String description) {
+        int index = Integer.parseInt(description) - 1;
+        return new MarkCommand(index);
+    }
+
+    private static UnMarkCommand getUnMarkCommand(String description) {
+        int index = Integer.parseInt(description) - 1;
+        return new UnMarkCommand(index);
+    }
+
+    private static DeleteCommand getDeleteCommand(String description) {
+        int index = Integer.parseInt(description) - 1;
+        return new DeleteCommand(index);
+    }
+
+    private static AddCommand AddToDo(String description) throws DukeException {
+        if (description.length() == 0) {
+            throw new DukeException("Description cannot be empty!");
         } else {
-            throw new DukeException("Invalid Command entered!");
+            return new AddCommand(new ToDo(description, false));
         }
+    }
+
+    private static AddCommand AddDeadline(String description) throws DukeException {
+        String[] splitString = description.split(" /by ", 2);
+        if (splitString.length <= 1) {
+            throw new DukeException("The date cannot be empty!");
+        }
+        String task = splitString[0].trim();
+        String dateby = splitString[1].trim();
+        try {
+            LocalDateTime date = LocalDateTime.parse(dateby);
+            return new AddCommand(new Deadline(task, false, date));
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Invalid date format!");
+        }
+    }
+
+    private static AddCommand AddEvent(String description) throws DukeException {
+        String[] splitString = description.split(" /at ", 2);
+        String task = splitString[0].trim();
+        String date = splitString[1].trim();
+        if (splitString.length <= 1) {
+            throw new DukeException("The date cannot be empty!");
+        }
+        return new AddCommand(new Event(task, false, date));
+    }
+
+    private static FindCommand getFindCommand(String description) {
+        String[] splitString = description.split("find ", 2);
+        String keyword = splitString[1];
+        return new FindCommand(keyword);
     }
 }

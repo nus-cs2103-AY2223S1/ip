@@ -21,11 +21,15 @@ public class Duke {
      * @param filePath absolute file path of the storage file.
      */
     public Duke(String filePath) {
-        File file = new File(filePath);
-        storage = new Storage(file);
-        tasklist = new TaskList();
-        storage.loadFromFile(tasklist);
-        ui = new Ui(tasklist, storage);
+        try {
+            File file = new File(filePath);
+            storage = new Storage(file);
+            tasklist = new TaskList();
+            storage.loadFromFile(tasklist);
+            ui = new Ui(tasklist, storage);
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public String getResponse(String input) {
