@@ -21,12 +21,12 @@ public class Parser {
     }
 
     /**
-     * Method that runs to parse userInput
+     * Method that runs to parse userInput when using CLI
      */
     public void parseFunc() {
         Scanner scanner = new Scanner(System.in);
         String userInput = "";
-        String printStatement = "";
+        String printStatement;
 
         while (!userInput.equals("bye")) {
             userInput = scanner.nextLine();
@@ -40,19 +40,19 @@ public class Parser {
                 break;
             }
             if (userInput.split(" ", 2)[0].equals("mark")) {
-                int inputTaskIndex = Integer.parseInt(userInput.split(" ", 2)[1]) - 1;
+                int inputTaskIndex = getTaskIndex(userInput);
                 printStatement = tasks.mark(inputTaskIndex);
                 ui.print(printStatement);
                 continue;
             }
             if (userInput.split(" ", 2)[0].equals("unmark")) {
-                int inputTaskIndex = Integer.parseInt(userInput.split(" ", 2)[1]) - 1;
+                int inputTaskIndex = getTaskIndex(userInput);
                 printStatement = tasks.unmark(inputTaskIndex);
                 ui.print(printStatement);
                 continue;
             }
             if (userInput.split(" ", 2)[0].equals("delete")) {
-                int inputTaskIndex = Integer.parseInt(userInput.split(" ", 2)[1]) - 1;
+                int inputTaskIndex = getTaskIndex(userInput);
                 printStatement = tasks.deleteTask(inputTaskIndex);
                 ui.print(printStatement);
                 continue;
@@ -97,6 +97,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Method that runs to parse UserInput when GUI is being used
+     * @param userInput userInput that is parsed
+     * @return String that will be printed on the GUI
+     */
     public String guiParseFunc(String userInput) {
         if (userInput.equals("list")) {
             return tasks.list();
@@ -104,16 +109,16 @@ public class Parser {
         if (userInput.equals("bye")) {
         }
         if (userInput.split(" ", 2)[0].equals("mark")) {
-            int inputTaskIndex = Integer.parseInt(userInput.split(" ", 2)[1]) - 1;
+            int inputTaskIndex = getTaskIndex(userInput);
             return tasks.mark(inputTaskIndex);
 
         }
         if (userInput.split(" ", 2)[0].equals("unmark")) {
-            int inputTaskIndex = Integer.parseInt(userInput.split(" ", 2)[1]) - 1;
+            int inputTaskIndex = getTaskIndex(userInput);
             return tasks.unmark(inputTaskIndex);
         }
         if (userInput.split(" ", 2)[0].equals("delete")) {
-            int inputTaskIndex = Integer.parseInt(userInput.split(" ", 2)[1]) - 1;
+            int inputTaskIndex = getTaskIndex(userInput);
             return tasks.deleteTask(inputTaskIndex);
         }
         if(userInput.split(" ", 2)[0].equals("find")) {
@@ -144,6 +149,10 @@ public class Parser {
             return err.getMessage();
         }
         return tasks.addTask(userInput);
+    }
+
+    private static int getTaskIndex(String userInput) {
+        return Integer.parseInt(userInput.split(" ", 2)[1]) - 1;
     }
 
 
