@@ -32,6 +32,7 @@ public class DeadlineTask extends Task {
 
     /**
      * Sets the date and time according to the time package.
+     *
      * @param dateTime The array containing date and time separated.
      */
     public void setDateTime(String[] dateTime) {
@@ -48,6 +49,7 @@ public class DeadlineTask extends Task {
 
     /**
      * formats date and time to a string that would be added into the text document.
+     *
      * @return String added into the text document.
      */
     public String dateTimeString() {

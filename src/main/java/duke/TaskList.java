@@ -21,6 +21,7 @@ public class TaskList {
 
     /**
      * To check if an integer is given after user input "mark", "unmark" or "delete".
+     *
      * @param strNum The String after user input "mark", "unmark" or "delete".
      * @return True if it is an integer, false otherwise.
      */
@@ -33,6 +34,7 @@ public class TaskList {
 
     /**
      * Adds task from the text document to the arraylist.
+     *
      * @param task The task from the text document.
      */
     public void addStorageToList(Task task) {
@@ -41,6 +43,7 @@ public class TaskList {
 
     /**
      * gets index from the arraylist.
+     *
      * @param number The index
      * @return The task in that index.
      */
@@ -50,7 +53,8 @@ public class TaskList {
 
     /**
      * Gets the length of the arraylist.
-     * @return The length of the arraylist
+     *
+     * @return The length of the arraylist.
      */
     public int size() {
         return this.list.size();
@@ -64,7 +68,8 @@ public class TaskList {
     }
 
     /**
-     *  Views the entire list
+     * Views the entire list
+     *
      * @return the String of the entire list.
      * @throws DukeException If the list is empty.
      */
@@ -81,7 +86,8 @@ public class TaskList {
     }
 
     /**
-     * To mark or unmark the task.
+     * Marks or unmarks the task.
+     *
      * @param updater The action to be done.
      * @param index The string response broken down into its keywords.
      * @throws DukeException If the keywords are missing or invalid.
@@ -107,6 +113,7 @@ public class TaskList {
 
     /**
      * Deletes task from the list.
+     *
      * @param number The index to be removed.
      */
     public String deleteTask(int number) {
@@ -118,6 +125,7 @@ public class TaskList {
 
     /**
      * Finds all the task that fits the keyword.
+     *
      * @param keyword The word used for searching.
      * @return all tasks that have keyword in their description.
      */
@@ -136,6 +144,7 @@ public class TaskList {
 
     /**
      * Converts String into integer.
+     *
      * @param word The string to be converted.
      * @return The integer converted.
      * @throws DukeException If string cannot be converted into integer.
@@ -148,7 +157,8 @@ public class TaskList {
         }
     }
     /**
-     * marks task with an X.
+     * Marks task with an X.
+     *
      * @param number Index in the list for marking.
      */
     public String markString(int number) {
@@ -159,6 +169,7 @@ public class TaskList {
 
     /**
      * Unmarks task by removing the X.
+     *
      * @param number Index in the list for unmarking.
      */
     public String unMarkString(int number) {
@@ -169,6 +180,7 @@ public class TaskList {
 
     /**
      * Adds the right type of task to the list.
+     *
      * @param type     Type of task.
      * @param stringComponent    The string response broken down into its keywords.
      * @throws DukeException If the keywords are missing or invalid.
@@ -201,6 +213,7 @@ public class TaskList {
 
     /**
      * Adds task into the arraylist.
+     *
      * @param task The task added into the arraylist.
      */
     public String addTask(Task task) {
@@ -210,6 +223,7 @@ public class TaskList {
 
     /**
      * Verifies if the task input is valid.
+     *
      * @param parts Details of the task.
      * @param regex The keyword that separates task description and task date and time.
      * @return True if task input in valid. False, if otherwise.

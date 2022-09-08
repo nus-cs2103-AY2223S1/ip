@@ -4,9 +4,9 @@ package duke;
  * DukeException is an exception class when using Duke.
  */
 public class DukeException extends Exception {
-
     /**
      * Constructor of a DukeException object.
+     *
      * @param message Error message.
      */
     public DukeException(String message) {

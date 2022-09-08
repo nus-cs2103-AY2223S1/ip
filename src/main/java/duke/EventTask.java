@@ -16,6 +16,7 @@ public class EventTask extends Task {
 
     /**
      * Constructor of a EventTask object.
+     *
      * @param description      description of the task
      * @param at               Date of the event.
      */
@@ -31,6 +32,7 @@ public class EventTask extends Task {
 
     /**
      * Sets the date and time according to the time package.
+     *
      * @param dateTime The array containing date and time separated.
      */
     public void setDateTime(String[] dateTime) {
@@ -47,6 +49,7 @@ public class EventTask extends Task {
 
     /**
      * formats date and time to a string that would be added into the text document.
+     *
      * @return String added into the text document.
      */
     public String dateTimeString() {

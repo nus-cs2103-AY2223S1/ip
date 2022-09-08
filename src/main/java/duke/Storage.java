@@ -15,6 +15,7 @@ public class Storage {
 
     /**
      * Constructor for a Storage class.
+     *
      * @param filePath The relative path to the text document.
      */
     public Storage(String filePath) {
@@ -23,6 +24,7 @@ public class Storage {
 
     /**
      * To create the text document in the relevant file if it does not exist.
+     *
      * @throws IOException If the relative path to the text document is invalid.
      */
     public void load() throws IOException {
@@ -35,6 +37,7 @@ public class Storage {
 
     /**
      * Writes tasks from the arraylist into the text document.
+     *
      * @param textToAdd String information of the task.
      * @throws IOException If the relative path to the text document is invalid.
      */
@@ -46,6 +49,7 @@ public class Storage {
 
     /**
      * Formats the string of the task.
+     *
      * @param task Task in the arraylist.
      * @return The formatted string.
      */
@@ -67,6 +71,7 @@ public class Storage {
 
     /**
      * Adds tasks from the text document into the arraylist.
+     *
      * @param tasks The list added into.
      * @throws FileNotFoundException If the file does not exist.
      * @throws DukeException If information from the task in invalid.
@@ -74,6 +79,7 @@ public class Storage {
     public void addDukeToList(TaskList tasks) throws FileNotFoundException, DukeException {
         File file = new File(this.filePath);
         Scanner scanner = new Scanner(file);
+        assert this.filePath != null;
         while (scanner.hasNext()) {
             String line = scanner.nextLine();
             String[] keywords = line.split(" \\| ", 4);
@@ -96,6 +102,7 @@ public class Storage {
     /**
      * Checks if it contains the right number of keywords.
      * Starts to add into list if number of keywords is correct.
+     *
      * @param numberOfKeywords The number of keywords separated by | symbol.
      * @param keywords The array of words separated by | symbol.
      * @param tasks The list added into.
@@ -112,6 +119,7 @@ public class Storage {
 
     /**
      * Determines if task is marked or unmarked.
+     *
      * @param symbol Mark symbol if any.
      * @param task The task to mark or unmark.
      */
@@ -124,7 +132,8 @@ public class Storage {
     }
 
     /**
-     *  Set task into the list.
+     * Set task into the list.
+     *
      * @param type Task type.
      * @param keywords The array of words separated by | symbol.
      * @param tasks The list added into.

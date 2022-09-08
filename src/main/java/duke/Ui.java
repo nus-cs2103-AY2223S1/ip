@@ -13,6 +13,7 @@ public class Ui {
 
     /**
      * Constructs the Ui class.
+     *
      * @param parser The parser that interprets the user input.
      */
     public Ui(Parser parser) {
@@ -38,6 +39,7 @@ public class Ui {
                 System.out.println("Oh no! Deadline Date and Time is specified wrongly, " + e);
             }
         }
-        return "It's over?"; //Placeholder return statement.
+        assert false : "This should not be returned";
+        return "ui.run() should not return anything.";
     }
 }
