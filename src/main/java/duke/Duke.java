@@ -37,8 +37,12 @@ public class Duke extends Application {
         // ...
     }
 
-    @Override
-    public void start(Stage stage) {
+    /**
+     * A method to initialise the instance variables in Duke.
+     *
+     * @param stage The stage required to set up the other components.
+     */
+    private void initialise(Stage stage) {
         //Step 1. Setting up required components
         storage = new Storage(filePath);
         tasks = new TaskList(storage.load());
@@ -52,19 +56,26 @@ public class Duke extends Application {
 
         AnchorPane mainLayout = new AnchorPane();
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
+        mainLayout.setPrefSize(400.0, 600.0);
 
         scene = new Scene(mainLayout);
 
         stage.setScene(scene);
         stage.show();
+    }
 
+    /**
+     * A method to format different components of the GUI.
+     *
+     * @param stage The stage required to format the other components.
+     */
+    private void formatWindow(Stage stage) {
         //Step 2. Formatting the window to look as expected
         stage.setTitle("Duke");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
         stage.setMinWidth(400.0);
 
-        mainLayout.setPrefSize(400.0, 600.0);
 
         scrollPane.setPrefSize(385, 535);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -85,13 +96,17 @@ public class Duke extends Application {
         sendButton.setPrefWidth(55.0);
 
         AnchorPane.setTopAnchor(scrollPane, 1.0);
-
         AnchorPane.setBottomAnchor(sendButton, 1.0);
         AnchorPane.setRightAnchor(sendButton, 1.0);
-
         AnchorPane.setLeftAnchor(userInput, 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
+    }
 
+    /**
+     * A method to handle user input by reacting to mouseclick and
+     * scrolling of scrollpane.
+     */
+    private void setInputFunctionality() {
         //Part 3. Add functionality to handle user input.
         sendButton.setOnMouseClicked((event) -> {
             handleUserInput();
@@ -103,6 +118,13 @@ public class Duke extends Application {
 
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
+    }
+
+    @Override
+    public void start(Stage stage) {
+        initialise(stage);
+        formatWindow(stage);
+        setInputFunctionality();
     }
 
     /**

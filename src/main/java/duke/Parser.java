@@ -22,6 +22,7 @@ public class Parser {
     public Parser(TaskList tasks) {
         this.tasks = tasks;
     }
+
     /**
      * A method which evaluates if the command given by user is bye
      */
@@ -50,53 +51,95 @@ public class Parser {
      * as necessary.
      *
      * @param command The command word given by the user.
-     * @param str The entire user input.
+     * @param str     The entire user input.
      * @return String The output specified the operation done.
      * @throws DukeException Exception thrown when the input string is empty.
      */
     public String executeCommand(String command, String str) throws DukeException {
         try {
             switch (command) {
-                case "list":
-                    return this.tasks.displayList();
-                case "mark":
-                    String s1 = str.substring(5);
-                    int i1 = Integer.parseInt(s1);
-                    return this.tasks.markTask(i1 - 1);
-                case "unmark":
-                    String s2 = str.substring(7);
-                    int i2 = Integer.parseInt(s2);
-                    return this.tasks.unmarkTask(i2 - 1);
-                case "todo":
-                    if (str.length() == 4) throw new DukeException("OOPS!!! I'm sorry but description of a todo cannot be empty");
-                    String s3 = str.substring(5);
-                    if (s3.equals(" ") || s3.equals("")) throw new DukeException("OOPS!!! I'm sorry but description of a todo cannot be empty");
-                    Todo t = new Todo(s3);
-                    return this.tasks.addTask(t);
-                case "deadline":
-                    if (str.length() == 8) throw new DukeException("OOPS!!! I'm sorry but description of a deadline cannot be empty");
-                    String s4 = str.substring(9);
-                    String[] deadlineResult = s4.split(" /by ");
-                    Deadline d = new Deadline(deadlineResult[0], deadlineResult[1]);
-                    return this.tasks.addTask(d);
-                case "event":
-                    if (str.length() == 5) throw new DukeException("OOPS!!! I'm sorry but description or time period of an event cannot be empty");
-                    String s5 = str.substring(6);
-                    String[] eventResult = s5.split(" /at ");
-                    Event e = new Event(eventResult[0], eventResult[1]);
-                    return this.tasks.addTask(e);
-                case "delete":
-                    String s6 = str.substring(7);
-                    int i = Integer.parseInt(s6);
-                    return this.tasks.deleteTask(i - 1);
-                case "find":
-                    String s7 = str.substring(5);
-                    return this.tasks.findTask(s7);
+            case "list":
+                return this.tasks.displayList();
+            case "mark":
+                return this.tasks.markTask(taskIndex(str, command));
+            case "unmark":
+                return this.tasks.unmarkTask(taskIndex(str, command));
+            case "todo":
+                checkValidString(str, command);
+                String s3 = str.substring(5);
+                Todo t = new Todo(s3);
+                return this.tasks.addTask(t);
+            case "deadline":
+                checkValidString(str, command);
+                String s4 = str.substring(9);
+                String[] deadlineResult = s4.split(" /by ");
+                Deadline d = new Deadline(deadlineResult[0], deadlineResult[1]);
+                return this.tasks.addTask(d);
+            case "event":
+                checkValidString(str, command);
+                String s5 = str.substring(6);
+                String[] eventResult = s5.split(" /at ");
+                Event e = new Event(eventResult[0], eventResult[1]);
+                return this.tasks.addTask(e);
+            case "delete":
+                return this.tasks.deleteTask(taskIndex(str, command));
+            case "find":
+                String s7 = str.substring(5);
+                return this.tasks.findTask(s7);
             }
         } catch (DukeException e) {
             return e.getMessage();
         }
         return null;
+    }
+    /**
+     * A method which analyses the user input, as well as the command and returns
+     * the index of the task in question
+     *
+     * @param command The command word given by the user.
+     * @param str     The entire user input.
+     * @return int The index of the specific task.
+     */
+    private int taskIndex(String str, String command) {
+        String temp = "";
+        switch (command) {
+        case "mark":
+            temp = str.substring(5);
+            break;
+
+        case "unmark":
+        case "delete":
+            temp = str.substring(7);
+            break;
+        }
+        assert !temp.equals("") : "unable to obtain string";
+        return Integer.parseInt(temp) - 1;
+    }
+
+    /**
+     * A method which analyses the user input, as well as the command and throws
+     * an Exception if the description of the input is empty.
+     *
+     * @param command The command word given by the user.
+     * @param str     The entire user input.
+     * @throws DukeException Exception thrown when the input string is empty.
+     */
+    private void checkValidString(String str, String command) throws DukeException {
+        switch(command) {
+        case "todo":
+            if (str.length() == 4) {
+                throw new DukeException("OOPS!!! I'm sorry but description of a todo cannot be empty");
+            }
+        case "deadline":
+            if (str.length() == 8) {
+                throw new DukeException("OOPS!!! I'm sorry but description of a deadline cannot be empty");
+            }
+        case "event":
+            if (str.length() == 5) {
+                throw new DukeException("OOPS!!! I'm sorry but description or time period of an event cannot be empty");
+            }
+        }
+
     }
 
 }
