@@ -172,6 +172,27 @@ public class Ui {
     }
 
     /**
+     * Handles the task keyword and adds a duration task to the list.
+     *
+     * @param item The duration task to add to the list.
+     */
+    public String duration(Duration item) {
+
+        return ("Got it. I've added this task. \n" + item.toString()
+                + "\nNow you have " + storage.taskList.arrayList.size() + " tasks in the list");
+
+    }
+
+    /**
+     * Handles improper duration keyword entries.
+     */
+    public String durationError() {
+
+        return ("Please provide a task and an estimated time " +
+                "e.g. task <description of the task> /takes <time to complete task>");
+    }
+
+    /**
      * Handles mark keyword and marks tasks.
      *
      * @param text String to mark.

@@ -117,6 +117,13 @@ public class Parser {
         }
     }
 
+    private static String handleDuration(String text) {
+        String[] description = text.replace("task ", "").split("/takes ");
+        Duration item = new Duration(description[0], description[1]);
+        storage.taskList.addDuration(item);
+        return ui.duration(item);
+    }
+
     private static String handleDelerror(String text) {
         if (text.equalsIgnoreCase("delete") || text.equalsIgnoreCase("delete ")) {
             return ui.deleteNoNumber();
@@ -199,6 +206,14 @@ public class Parser {
         }
     }
 
+    private static String handleDurationwrapper(String text) {
+        try {
+            return handleDuration(text);
+        } catch (ArrayIndexOutOfBoundsException error) {
+            return ui.durationError();
+        }
+    }
+
     /**
      * Handles parsing of text input by the user.
      *
@@ -215,6 +230,9 @@ public class Parser {
 
         } else if (text.startsWith("delete")) {
             return handleDelwrapper(text);
+
+        } else if (text.startsWith("task")) {
+            return handleDurationwrapper(text);
 
         } else if (text.startsWith("todo")) {
             return handleTodowrapper(text);
