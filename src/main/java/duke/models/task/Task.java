@@ -3,6 +3,7 @@ package duke.models.task;
 import java.time.LocalDate;
 
 import duke.models.serializable.TaskSerializable;
+import duke.utils.DukeFormatter;
 
 /**
  * Encapsulates a task containing a description and a completion status.
@@ -10,8 +11,12 @@ import duke.models.serializable.TaskSerializable;
  * @author Emily Ong Hui Qi
  */
 public abstract class Task {
+    private static final String ASSERTION_DONE_AT_NOT_NULL_IF_IS_DONE = "doneAt should not be null if the task is"
+        + "marked as done.";
+
     protected String description;
     protected boolean isDone;
+    protected LocalDate doneAt;
 
     /**
      * Initializes the Task object with the provided description and sets the completion status to be undone.
@@ -21,6 +26,7 @@ public abstract class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        this.doneAt = null;
     }
 
     /**
@@ -28,10 +34,18 @@ public abstract class Task {
      *
      * @param description The received description.
      * @param isDone      The received completion status.
+     * @param doneAt      The received done at date where the task is marked as done.
      */
-    public Task(String description, boolean isDone) {
+    public Task(String description, boolean isDone, LocalDate doneAt) {
         this.description = description;
         this.isDone = isDone;
+
+        if (isDone) {
+            assert doneAt != null : Task.ASSERTION_DONE_AT_NOT_NULL_IF_IS_DONE;
+            this.doneAt = doneAt;
+        } else {
+            this.doneAt = null;
+        }
     }
 
     /**
@@ -39,6 +53,7 @@ public abstract class Task {
      */
     public void markAsDone() {
         this.isDone = true;
+        this.doneAt = LocalDate.now();
     }
 
     /**
@@ -46,10 +61,30 @@ public abstract class Task {
      */
     public void markAsUndone() {
         this.isDone = false;
+        this.doneAt = null;
     }
 
+    /**
+     * Returns the description of the task.
+     *
+     * @return Description of the task.
+     */
     public String getDescription() {
         return this.description;
+    }
+
+    /**
+     * Returns the doneAt date of the task. If the task is not marked as done, this method will return null.
+     *
+     * @return Date of the task where the task was marked as done.
+     */
+    public LocalDate getDoneAt() {
+        if (this.isDone) {
+            assert this.doneAt != null : Task.ASSERTION_DONE_AT_NOT_NULL_IF_IS_DONE;
+        } else {
+            assert this.doneAt == null : Task.ASSERTION_DONE_AT_NOT_NULL_IF_IS_DONE;
+        }
+        return this.doneAt;
     }
 
     /**
@@ -73,7 +108,10 @@ public abstract class Task {
      * @return Date of the current task, or null if there is no associated date.
      */
     private String getStatusIcon() {
-        return (this.isDone ? "X" : " "); // mark done task with X
+        if (this.isDone) {
+            return String.format("X (Done on: %s)", DukeFormatter.formatDate(this.doneAt));
+        }
+        return " ";
     }
 
     /**

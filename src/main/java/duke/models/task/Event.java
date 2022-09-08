@@ -32,9 +32,10 @@ public class Event extends Task {
      * @param description The received description.
      * @param date        The received date.
      * @param isDone      The received completion status.
+     * @param doneAt      The received done at date.
      */
-    public Event(String description, LocalDate date, boolean isDone) {
-        super(description, isDone);
+    public Event(String description, LocalDate date, boolean isDone, LocalDate doneAt) {
+        super(description, isDone, doneAt);
         this.date = date;
     }
 
@@ -45,7 +46,7 @@ public class Event extends Task {
 
     @Override
     public TaskSerializable serialize() {
-        return new TaskSerializable(Event.taskType, super.description, super.isDone, this.date);
+        return new TaskSerializable(Event.taskType, super.description, super.isDone, super.doneAt, this.date);
     }
 
     @Override

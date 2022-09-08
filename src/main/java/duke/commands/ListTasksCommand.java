@@ -64,31 +64,39 @@ public class ListTasksCommand implements Command {
     @Override
     public String execute(TaskManager taskManager) throws DukeException {
         if (this.arguments.length() == 0) {
-            return TaskManager.display(taskManager.list());
+            return TaskManager.display(taskManager.list(), taskManager.getUserProgress());
         }
 
         Matcher matchTasksOn = ListTasksCommand.MATCH_TASKS_ON.matcher(this.arguments);
         if (matchTasksOn.matches()) {
             LocalDate date = DukeValidator.parseDate(matchTasksOn.group("date"));
+            if (date == null) {
+                throw new DukeException(ListTasksCommand.ERROR_UNKNOWN_OPTION);
+            }
+
             List<Task> filteredTasks = taskManager.list(
                 task -> {
                     LocalDate taskDate = task.getDate();
                     return taskDate != null && taskDate.isEqual(date);
                 }
             );
-            return TaskManager.display(filteredTasks);
+            return TaskManager.display(filteredTasks, taskManager.getUserProgress());
         }
 
         Matcher matchTasksBefore = ListTasksCommand.MATCH_TASKS_BEFORE.matcher(this.arguments);
         if (matchTasksBefore.matches()) {
             LocalDate date = DukeValidator.parseDate(matchTasksBefore.group("date"));
+            if (date == null) {
+                throw new DukeException(ListTasksCommand.ERROR_UNKNOWN_OPTION);
+            }
+
             List<Task> filteredTasks = taskManager.list(
                 task -> {
                     LocalDate taskDate = task.getDate();
                     return taskDate != null && taskDate.isBefore(date);
                 }
             );
-            return TaskManager.display(filteredTasks);
+            return TaskManager.display(filteredTasks, taskManager.getUserProgress());
         }
 
         throw new DukeException(ListTasksCommand.ERROR_UNKNOWN_OPTION);
