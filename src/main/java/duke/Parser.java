@@ -55,10 +55,9 @@ public class Parser {
      * @return the boolean true, to stop the program when bye is inputted
      */
     public static String parse(String input, TaskList tasks) {
-        assert !firstWord.isEmpty(): "No string detected from input!";
-
         String[] arrOfInput = input.split(" ");
         String firstWord = arrOfInput[0];
+        assert !firstWord.isEmpty(): "No string detected from input!";
         try {
             if ("list".equals(firstWord)) {
                 return Ui.printList(tasks);
