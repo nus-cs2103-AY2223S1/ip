@@ -32,7 +32,6 @@ public abstract class Task {
     public Task(String name, String date) {
         this.name = name;
         this.done = false;
-
         if (date != null) {
             dateStringForm = date;
             this.dateTime = LocalDateTime.parse(date, INPUT_FORMATTER);

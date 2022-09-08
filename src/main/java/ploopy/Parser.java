@@ -16,20 +16,22 @@ public class Parser {
      * @throws PloopyException if input is invalid.
      */
     public static String parseInput(String input, TaskList taskList) throws PloopyException {
-        String[] inputSequence = input.split(" ");
         if (input.isBlank() || input.isEmpty()) {
             throw new PloopyException("blank");
         }
+        String[] inputSequence = input.split(" ");
         String command = inputSequence[0].toLowerCase();
         switch (command) {
         case "mark":
-            if (!isEmptyCommand(input, "mark".length())) {
+            if (!isIncompleteCommand(input, "mark".length())) {
+                assert inputSequence.length > 1 : "isIncompleteCommand is not working";
                 return taskList.markTask(Integer.parseInt(inputSequence[1]));
             } else {
                 throw new PloopyException("mark");
             }
         case "unmark":
-            if (!isEmptyCommand(input, "unmark".length())) {
+            if (!isIncompleteCommand(input, "unmark".length())) {
+                assert inputSequence.length > 1 : "isIncompleteCommand is not working";
                 return taskList.unmarkTask(Integer.parseInt(inputSequence[1]));
             } else {
                 throw new PloopyException("unmark");
@@ -37,19 +39,22 @@ public class Parser {
         case "list":
             return taskList.displayList();
         case "delete":
-            if (!isEmptyCommand(input, "delete".length())) {
+            if (!isIncompleteCommand(input, "delete".length())) {
+                assert inputSequence.length > 1 : "isIncompleteCommand is not working";
                 return taskList.deleteTask(Integer.parseInt(inputSequence[1]));
             } else {
                 throw new PloopyException("delete");
             }
         case "todo":
-            if (!isEmptyCommand(input, "todo".length())) {
+            if (!isIncompleteCommand(input, "todo".length())) {
+                assert inputSequence.length > 1 : "isIncompleteCommand is not working";
                 return taskList.createToDo(input.split("todo ")[1]);
             } else {
                 throw new PloopyException("todo");
             }
         case "deadline":
-            if (!isEmptyCommand(input, "deadline".length())) {
+            if (!isIncompleteCommand(input, "deadline".length())) {
+                assert inputSequence.length > 1 : "isIncompleteCommand is not working";
                 String date = getDate(input);
                 String name = input.split("deadline ")[1].split(" /")[0];
                 return taskList.createDeadline(name, date);
@@ -57,15 +62,18 @@ public class Parser {
                 throw new PloopyException("deadline");
             }
         case "event":
-            if (!isEmptyCommand(input, "mark".length())) {
+            if (!isIncompleteCommand(input, "mark".length())) {
+                assert inputSequence.length > 1 : "isIncompleteCommand is not working";
                 String date = getDate(input);
+                System.out.println(date);
                 String name = input.split("event ")[1].split(" /")[0];
                 return taskList.createEvent(name, date);
             } else {
                 throw new PloopyException("event");
             }
         case "find":
-            if (!isEmptyCommand(input, "mark".length())) {
+            if (!isIncompleteCommand(input, "mark".length())) {
+                assert inputSequence.length > 1 : "isIncompleteCommand is not working";
                 return taskList.findTasks(inputSequence[1]);
             } else {
                 throw new PloopyException("find");
@@ -81,10 +89,13 @@ public class Parser {
     private static String getDate(String input) {
         String dateString = input.split(" /")[1];
         String[] separate = dateString.split(" ");
-        return separate[1] + " " + separate[2];
+        String result = separate[1] + " " + separate[2];
+        assert result.split("/").length == 3 : "Date not correctly extracted";
+        return result;
     }
 
-    private static boolean isEmptyCommand(String command, int size) {
+    private static boolean isIncompleteCommand(String command, int size) {
+        assert !(command.isEmpty() || command.isBlank()) : "Input is empty";
         return command.trim().length() == size;
     }
 }

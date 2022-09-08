@@ -35,7 +35,7 @@ public class MainWindow extends AnchorPane {
     public void setPloopy(Ploopy p) {
         ploopy = p;
         dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog(p.start(), PLOOPY_IMAGE)
+                DialogBox.getPloopyDialog(p.start(), PLOOPY_IMAGE)
         );
     }
 
@@ -50,7 +50,7 @@ public class MainWindow extends AnchorPane {
         String response = ploopy.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, USER_IMAGE),
-                DialogBox.getDukeDialog(response, PLOOPY_IMAGE)
+                DialogBox.getPloopyDialog(response, PLOOPY_IMAGE)
         );
         userInput.clear();
     }
