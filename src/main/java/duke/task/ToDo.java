@@ -13,7 +13,6 @@ public class ToDo extends Task {
         String var10000 = super.getStatusIcon();
         return "[T] [" + var10000 + "] " + super.description;
     }
-
     public String toString() {
         String var10000 = super.getStatusIcon();
         return "T/" + var10000 + "/" + super.description;

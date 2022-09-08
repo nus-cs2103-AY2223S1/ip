@@ -56,6 +56,9 @@ public class Parser {
             } else if (first.equals("find")) {
                 return parseFind(words, lst);
 
+            } else if (first.equals("all")) {
+                return parseAll(words, lst);
+
             } else {
                 throw new DukeException("I'm sorry, but I don't know what that means");
             }
@@ -161,5 +164,37 @@ public class Parser {
         }
         return toReply;
     }
+
+    public static String parseAll(String[] words, TaskList lst) throws DukeException {
+        String category = words[1].toUpperCase();
+        String toReply = "Here are the " + category + "s in your list:\n";
+        if (category.length() == 0) {
+            throw new DukeException("Please enter a category!");
+        }
+
+        ArrayList<String> result = new ArrayList<>();
+        switch (category) {
+            case ("TODO"):
+                result = lst.findTodo();
+                break;
+
+            case ("EVENT"):
+                result = lst.findEvent();
+                break;
+
+            case ("DEADLINE"):
+                result = lst.findDeadline();
+                break;
+
+            default:
+                throw new DukeException("Please enter todo/ event / deadline");
+        }
+
+        for (int i = 0; i < result.size(); i++) {
+            toReply += result.get(i) + "\n";
+        }
+        return toReply;
+    }
+
 
 }
