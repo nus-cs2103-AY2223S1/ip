@@ -1,7 +1,5 @@
 package betago;
 
-import java.util.Scanner;
-
 import betago.commands.AddDeadlineCommand;
 import betago.commands.AddEventCommand;
 import betago.commands.AddTodoCommand;
@@ -36,10 +34,8 @@ public class Parser {
      * @return Respective command based on user input.
      */
     public Command readCommands(String input) {
-        Scanner sc = new Scanner(input); //can check if can juz use input
-        String str = sc.nextLine();
-        String[] inputs = str.split(" ", 2);
-        if (str.equalsIgnoreCase("list")) {
+        String[] inputs = input.split(" ", 2);
+        if (input.equalsIgnoreCase("list")) {
             return new ListCommand();
         } else if (inputs[0].equalsIgnoreCase("mark") || inputs[0].equalsIgnoreCase("unmark")) {
             return new MarkUnmarkCommand();
@@ -53,7 +49,7 @@ public class Parser {
             return new DeleteCommand();
         } else if (inputs[0].equalsIgnoreCase("find")) {
             return new FindCommand();
-        } else if (str.equalsIgnoreCase("bye")) {
+        } else if (input.equalsIgnoreCase("bye")) {
             return new ByeCommand();
         } else {
             return new InvalidCommand("Apologies Human. I do not understand that command.");
