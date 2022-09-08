@@ -101,6 +101,19 @@ public class TaskList {
         return task;
     }
 
+    public String findTaskThatContains(String query) throws DukeException {
+        int index = 1;
+        String message = "";
+        for (int i = 0; i < this.getTaskListSize(); i++) {
+            Task currentTask = this.getTaskAtIndex(i + 1);
+            if (currentTask.toString().contains(query)) {
+                message += index + ". " + currentTask + "\n";
+                index += 1;
+            }
+        }
+        return message;
+    }
+
     /**
      * Returns the string representation of the TaskList showing all the Tasks inside to be printed to user.
      *

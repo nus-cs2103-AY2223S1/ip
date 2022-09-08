@@ -3,8 +3,6 @@ package duke.command;
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
-import duke.task.Task;
 
 /** Represents the command to find tasks with given keyword that inherits from Command. */
 public class FindCommand extends Command {
@@ -15,7 +13,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
+    public String execute(TaskList taskList, Storage storage) throws DukeException {
         String message = "";
 
         if (userInput.split(" ").length == 1) {
@@ -24,14 +22,8 @@ public class FindCommand extends Command {
         String query = userInput.split(" ")[1];
         message += "Here are the matching tasks in your list:\n";
 
-        int index = 1;
-        for (int i = 0; i < taskList.getTaskListSize(); i++) {
-            Task currentTask = taskList.getTaskAtIndex(i + 1);
-            if (currentTask.toString().contains(query)) {
-                message += index + ". " + currentTask + "\n";
-                index += 1;
-            }
-        }
+        message += taskList.findTaskThatContains(query);
+
         return message;
     }
 

@@ -3,7 +3,6 @@ package duke.command;
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 import duke.task.Task;
 
 /** Represents the command to delete task that inherits from Command. */
@@ -15,7 +14,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
+    public String execute(TaskList taskList, Storage storage) throws DukeException {
         String message = "";
 
         String taskDetails = userInput.split(" ", 2)[1];

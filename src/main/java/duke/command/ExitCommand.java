@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.Storage;
 import duke.TaskList;
-import duke.Ui;
 
 /** Represents the command to end the Duke program. */
 public class ExitCommand extends Command {
@@ -14,8 +13,7 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList taskList, Storage storage, Ui ui) {
-        ui.printFarewellMessage();
+    public String execute(TaskList taskList, Storage storage) {
         storage.saveTaskList(taskList);
         return farewellMessage;
     }
