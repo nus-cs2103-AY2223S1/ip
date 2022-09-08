@@ -50,7 +50,7 @@ public class Executor {
         Task currentTask = new Event(parsedData);
         taskList.add(currentTask);
         // At this point taskList should have at least one element
-        assert taskList.size() > 0 : "Tasklist is still empty after attempt to add task";
+        assert taskList.size() > 0 : "TaskList is still empty after attempt to add task";
         // Append new task to save File
         alanIO.append(fileFormatter.formatTask(currentTask));
 
@@ -69,7 +69,7 @@ public class Executor {
         Task currentTask = new Deadline(parsedData);
         taskList.add(currentTask);
         // At this point taskList should have at least one element
-        assert taskList.size() > 0 : "Tasklist is still empty after attempt to add task";
+        assert taskList.size() > 0 : "TaskList is still empty after attempt to add task";
         // Append new task to save File
         alanIO.append(fileFormatter.formatTask(currentTask));
 
@@ -88,7 +88,7 @@ public class Executor {
         Task currentTask = new Todo(parsedData);
         taskList.add(currentTask);
         // At this point taskList should have at least one element
-        assert taskList.size() > 0 : "Tasklist is still empty after attempt to add task";
+        assert taskList.size() > 0 : "TaskList is still empty after attempt to add task";
         // Append new task to save File
         alanIO.append(fileFormatter.formatTask(currentTask));
 

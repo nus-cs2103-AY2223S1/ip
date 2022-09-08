@@ -29,9 +29,9 @@ public class Ui {
      * @return Formatted text.
      */
     public String addTask(Task task, int listLength) {
-        String taskss = listLength > 1 ? " tasks" : " task";
+        String tasksGrammar = listLength > 1 ? " tasks" : " task";
         return addSeparator("Alright, I have added the following task to the list!\n  "
-                + task + "\nYou currently have " + listLength + taskss + ".");
+                + task + "\nYou currently have " + listLength + tasksGrammar + ".");
     }
 
     /**
@@ -92,9 +92,9 @@ public class Ui {
      * @return Formatted text.
      */
     public String delete(Task task, int listLength) {
-        String taskss = listLength > 1 ? " tasks" : " task";
+        String tasksGrammar = listLength > 1 ? " tasks" : " task";
         return addSeparator("Alright, I have removed the following task from the list!\n  "
-                + task + "\nYou currently have " + listLength + taskss + ".");
+                + task + "\nYou currently have " + listLength + tasksGrammar + ".");
     }
 
     /**
