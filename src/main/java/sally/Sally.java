@@ -7,10 +7,17 @@ import sally.storage.Storage;
 import sally.task.TaskList;
 import sally.ui.Ui;
 
+/**
+ * Main class for Sally
+ *
+ * @author liviamil
+ */
+
 public class Sally {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    boolean isBye = false;
 
     public Sally(String filePath) {
         ui = new Ui();
@@ -34,7 +41,6 @@ public class Sally {
 
     public void run() {
         ui.showGreeting();
-        boolean isBye = false;
 
         while (!isBye) {
             try {
@@ -43,11 +49,9 @@ public class Sally {
                 command.execute(tasks, ui, storage);
                 isBye = command.isBye();
             } catch (SallyException e) {
-                System.out.println("Oops! File Not Found");
+                System.out.println(e);
             }
         }
-
-        ui.showGoodbye();
-
     }
+
 }
