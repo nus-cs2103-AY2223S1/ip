@@ -55,16 +55,6 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * Checks if it is the exit command in order to exit loop
-     *
-     * @return false since a UnmarkCommand does not end the ChatBot
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
-
-    /**
      * String representation of successfully executing the UnmarkCommand.
      *
      * @return String to notify the user that the specified task has been unmarked

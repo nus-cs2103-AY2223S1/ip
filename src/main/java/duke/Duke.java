@@ -9,6 +9,7 @@ import duke.task.TaskList;
 import duke.util.Parser;
 import duke.util.Storage;
 import duke.util.Ui;
+import javafx.stage.Stage;
 
 /**
  * An interactive ChatBot that provides functions of a to-do list
@@ -27,8 +28,8 @@ public class Duke {
      *
      * @param filePath String representation of the relative file path to store the data
      */
-    public Duke(String filePath) {
-        ui = new Ui();
+    public Duke(String filePath, Stage stage) {
+        ui = new Ui(stage);
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.load());

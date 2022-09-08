@@ -27,16 +27,6 @@ public class WrongCommand extends Command {
     }
 
     /**
-     * Checks if it is the exit command in order to exit loop.
-     *
-     * @return false since a WrongCommand does not end the ChatBot
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
-
-    /**
      * String representation of successfully executing the WrongCommand.
      *
      * @return String to notify the user that the input command is not recognised

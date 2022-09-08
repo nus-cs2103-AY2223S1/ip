@@ -84,6 +84,7 @@ public class Storage {
             String[] separateBy = s1.split(" \\(by: ", 2);
             return new Deadline(separateBy[0], separateBy[1].substring(0, separateBy[1].length() - 1), isCompleted);
         } else {
+            assert s2.contains("[E]");
             String[] separateAt = s1.split(" \\(at: ", 2);
             return new Event(separateAt[0], separateAt[1].substring(0, separateAt[1].length() - 1), isCompleted);
         }

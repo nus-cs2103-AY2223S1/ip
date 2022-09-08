@@ -5,8 +5,10 @@ import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
+import duke.command.HelpCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.UndoCommand;
 import duke.command.UnmarkCommand;
 import duke.command.WrongCommand;
 import duke.exception.DukeException;
@@ -26,12 +28,20 @@ public class Parser {
     public static final String UNMARKCOMMAND = "unmark";
     public static final String DELETECOMMAND = "delete";
     public static final String FINDCOMMAND = "find";
+    public static final String HELPCOMMAND = "--help";
 
     //The Strings representing the 3 types of Tasks
     public static final String TODO = "todo";
     public static final String DEADLINE = "deadline";
     public static final String EVENT = "event";
 
+    //Extensions implemented for C-Undo
+    public static final String UNDO = "undo";
+
+    //Keeps track of previous command details
+    private static String commandToUndo = "wrong";
+    private static String taskDescription = null;
+    private static int taskNumber = -1;
     /**
      * Default constructor to create an instance of a Parser.
      */
@@ -60,9 +70,18 @@ public class Parser {
         String firstText = array[0];
 
         if (fullCommand.equals(EXITCOMMAND)) {
+            Parser.setToNull();
             return new ExitCommand();
         } else if (fullCommand.equals(LISTCOMMAND)) {
+            Parser.setToNull();
             return new ListCommand();
+        } else if (fullCommand.equals(UNDO)) {
+            Command c = new UndoCommand(commandToUndo, taskDescription, taskNumber);
+            Parser.setToNull();
+            return c;
+        } else if (fullCommand.equals(HELPCOMMAND)) {
+            Parser.setToNull();
+            return new HelpCommand();
         } else if (firstText.equals(DELETECOMMAND)) {
             if (array.length == 1) {
                 String errorMessage = "________________________________________\n"
@@ -73,6 +92,9 @@ public class Parser {
 
             try {
                 int inputNumber = Integer.parseInt(array[1]);
+                Parser.commandToUndo = DELETECOMMAND;
+                Parser.taskDescription = null;
+                Parser.taskNumber = inputNumber;
                 return new DeleteCommand(inputNumber);
             } catch (NumberFormatException e) {
                 String errorMessage = "________________________________________\n"
@@ -90,6 +112,9 @@ public class Parser {
 
             try {
                 int inputNumber = Integer.parseInt(array[1]);
+                Parser.commandToUndo = MARKCOMMAND;
+                Parser.taskDescription = null;
+                Parser.taskNumber = inputNumber;
                 return new MarkCommand(inputNumber);
             } catch (NumberFormatException e) {
                 String errorMessage = "________________________________________\n"
@@ -107,6 +132,9 @@ public class Parser {
 
             try {
                 int inputNumber = Integer.parseInt(array[1]);
+                Parser.commandToUndo = UNMARKCOMMAND;
+                Parser.taskDescription = null;
+                Parser.taskNumber = inputNumber;
                 return new UnmarkCommand(inputNumber);
             } catch (NumberFormatException e) {
                 String errorMessage = "________________________________________\n"
@@ -121,6 +149,9 @@ public class Parser {
                         + "________________________________________";;
                 throw new DukeException(errorMessage);
             }
+            Parser.commandToUndo = TODO;
+            Parser.taskDescription = null;
+            Parser.taskNumber = -1;
             return new AddCommand(0, array[1]);
         } else if (firstText.equals(DEADLINE)) {
             if (array.length == 1) {
@@ -129,6 +160,9 @@ public class Parser {
                         + "________________________________________";;
                 throw new DukeException(errorMessage);
             }
+            Parser.commandToUndo = DEADLINE;
+            Parser.taskDescription = null;
+            Parser.taskNumber = -1;
             return new AddCommand(1, array[1]);
         } else if (firstText.equals(EVENT)) {
             if (array.length == 1) {
@@ -137,8 +171,12 @@ public class Parser {
                         + "________________________________________";;
                 throw new DukeException(errorMessage);
             }
+            Parser.commandToUndo = EVENT;
+            Parser.taskDescription = null;
+            Parser.taskNumber = -1;
             return new AddCommand(2, array[1]);
         } else if (firstText.equals(FINDCOMMAND)) {
+            Parser.setToNull();
             if (array.length == 1) {
                 String errorMessage = "________________________________________\n"
                         + "OOPS!!! The keyword to search cannot be empty.\n"
@@ -153,5 +191,15 @@ public class Parser {
         } else {
             return new WrongCommand();
         }
+    }
+
+    public static void setToNull() {
+        Parser.commandToUndo = "wrong";
+        Parser.taskDescription = null;
+        Parser.taskNumber = -1;
+    }
+
+    public static void setTaskDescription(String description) {
+        Parser.taskDescription = description;
     }
 }

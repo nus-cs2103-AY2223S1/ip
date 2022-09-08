@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Duke duke = new Duke("./data/tasks.txt");
+    private Duke duke;
 
     /**
      * Starts the Duke application by bridging the gap in Duke and the UI in MainWindow.
@@ -24,6 +24,7 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage stage) {
+        this.duke = new Duke("./data/tasks.txt", stage);
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();

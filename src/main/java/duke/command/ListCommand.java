@@ -28,16 +28,6 @@ public class ListCommand extends Command {
     }
 
     /**
-     * Checks if it is the exit command in order to exit loop.
-     *
-     * @return false since a ListCommand does not end the ChatBot
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
-
-    /**
      * String representation of successfully executing the ListCommand.
      *
      * @return String to notify the user of the tasks he has in his to-do list
