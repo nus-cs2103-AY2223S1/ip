@@ -5,8 +5,14 @@ import bro.Storage;
 import bro.TaskList;
 import bro.Ui;
 
+/**
+ * ModifyCommand Class.
+ */
 public class ModifyCommand extends Command {
-    public enum ModifyType{
+    /**
+     * An enum for modifyType.
+     */
+    public enum ModifyType {
         MARK, UNMARK
     }
 
@@ -44,6 +50,8 @@ public class ModifyCommand extends Command {
             } catch (IndexOutOfBoundsException e) {
                 throw new BroException("Index is out of bound. Enter a valid index");
             }
+            break;
+        default:
             break;
         }
     }

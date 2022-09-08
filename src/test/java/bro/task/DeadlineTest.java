@@ -1,11 +1,20 @@
 package bro.task;
 
-import bro.BroException;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import org.junit.jupiter.api.Test;
+
+import bro.BroException;
+
+/**
+ * DeadlineTest class.
+ */
 public class DeadlineTest {
+
+    /**
+     * Checks whether the output of the dateTime format is valid.
+     */
     @Test
     public void toString_inputString_returnsString() {
         try {

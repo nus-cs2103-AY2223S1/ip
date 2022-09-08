@@ -5,14 +5,17 @@ import bro.Storage;
 import bro.TaskList;
 import bro.Ui;
 
+/**
+ * Command class.
+ */
 public abstract class Command {
-    boolean isExit = false;
+    private boolean isExit = false;
 
     /**
      * Returns the boolean value of the isExit.
      * @return The boolean value.
      */
-    public boolean isExit(){
+    public boolean isExit() {
         return this.isExit;
     }
 

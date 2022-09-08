@@ -4,6 +4,9 @@ import bro.Storage;
 import bro.TaskList;
 import bro.Ui;
 
+/**
+ * ExitCommand class.
+ */
 public class ExitCommand extends Command {
 
     /**
@@ -25,7 +28,7 @@ public class ExitCommand extends Command {
      * Tells whether to exit the loop or not.
      * @return The value true for isExit variable.
      */
-    public boolean isExit(){
-        return this.isExit = true;
+    public boolean isExit() {
+        return true;
     }
 }

@@ -4,6 +4,9 @@ import bro.Storage;
 import bro.TaskList;
 import bro.Ui;
 
+/**
+ * ListCommand class.
+ */
 public class ListCommand extends Command {
 
     /**

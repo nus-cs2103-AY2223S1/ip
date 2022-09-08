@@ -1,14 +1,17 @@
 package bro.task;
 
-import bro.BroException;
-import bro.Parser;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import bro.BroException;
+import bro.Parser;
+
+/**
+ * Deadline class.
+ */
 public class Deadline extends Task {
-    private LocalDateTime byStore;
     protected String by;
+    private LocalDateTime byStore;
     private boolean isMonthFormat;
 
     /**
@@ -34,11 +37,11 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        if(isMonthFormat) {
+        if (isMonthFormat) {
             return "[D]" + super.toString() + " (by: " + by + ")";
         } else {
-            return "[D]" + super.toString() + " (by: " +
-                    byStore.format(DateTimeFormatter.ofPattern("MMM dd yyyy kkmm")) + ")";
+            return "[D]" + super.toString() + " (by: "
+                    + byStore.format(DateTimeFormatter.ofPattern("MMM dd yyyy kkmm")) + ")";
         }
     }
 }

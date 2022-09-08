@@ -5,6 +5,9 @@ import bro.Storage;
 import bro.TaskList;
 import bro.Ui;
 
+/**
+ * DeleteCommand class.
+ */
 public class DeleteCommand extends Command {
     private int index;
 

@@ -2,6 +2,9 @@ package bro;
 
 import bro.command.Command;
 
+/**
+ * The class for bot.
+ */
 public class Bro {
 
     private Storage storage;
@@ -32,17 +35,21 @@ public class Bro {
         ui.welcome();
         boolean isExit = false;
         while (!isExit) {
-           try {
-               String fullCommand = ui.readCommand();
-               Command c = new Parser().parse(fullCommand);
-               c.execute(tasks, ui, storage);
-               isExit = c.isExit();
-           } catch(BroException e) {
-               ui.errorMessage(e.getMessage());
-           }
+            try {
+                String fullCommand = ui.readCommand();
+                Command c = new Parser().parse(fullCommand);
+                c.execute(tasks, ui, storage);
+                isExit = c.isExit();
+            } catch (BroException e) {
+                ui.errorMessage(e.getMessage());
+            }
         }
     }
 
+    /**
+     * Entry point.
+     * @param args Command line arguments.
+     */
     public static void main(String[] args) {
         Bro bro = new Bro("./bro.Bro.txt");
         bro.run();

@@ -1,11 +1,14 @@
 package bro.task;
 
-import bro.BroException;
-import bro.Parser;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import bro.BroException;
+import bro.Parser;
+
+/**
+ * Event class.
+ */
 public class Event extends Task {
     protected LocalDateTime atStore;
     protected String at;
@@ -22,10 +25,10 @@ public class Event extends Task {
         super(description);
         this.at = at;
         isMonthFormat = false;
-        if(at.trim().split(" ").length == 4) {
+        if (at.trim().split(" ").length == 4) {
             isMonthFormat = true;
         } else {
-           atStore = parser.eventParser(at);
+            atStore = parser.eventParser(at);
         }
     }
 
@@ -36,11 +39,11 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        if(isMonthFormat) {
+        if (isMonthFormat) {
             return "[E]" + super.toString() + " (at: " + at + ")";
         } else {
-            return "[E]" + super.toString() + " (at: " +
-                    atStore.format(DateTimeFormatter.ofPattern("MMM dd yyyy hhmm")) + ")";
+            return "[E]" + super.toString() + " (at: "
+                    + atStore.format(DateTimeFormatter.ofPattern("MMM dd yyyy hhmm")) + ")";
         }
     }
 }

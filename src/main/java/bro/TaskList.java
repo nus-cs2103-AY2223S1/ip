@@ -1,37 +1,40 @@
 package bro;
 
-import bro.task.Task;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import bro.task.Task;
+
+/**
+ * TaskList class.
+ */
 public class TaskList {
 
     protected ArrayList<Task> tasks;
-    Ui ui = new Ui();
+    protected Ui ui = new Ui();
 
     /**
      * Constructor that initialises tasks variable.
      */
-    public TaskList(){
+    public TaskList() {
         tasks = new ArrayList<>();
     }
 
     /**
      * Constructor that initialises tasks variable with the given task.
      */
-    public TaskList(ArrayList<Task> task){
+    public TaskList(ArrayList<Task> task) {
         this.tasks = task;
     }
 
     /**
      * Lists all the task in the ArrayList tasks.
      */
-    public void listAll(){
+    public void listAll() {
         int count = 1;
-        for(Task t : this.tasks){
+        for (Task t : this.tasks) {
             System.out.println(count + "." + t.toString());
             count++;
         }
@@ -136,19 +139,23 @@ public class TaskList {
         ui.listSize(tasks);
     }
 
+    /**
+     * Returns tasks with the given keyword.
+     * @param keyword The word which has to be found in the file.
+     */
     public void findTask(String keyword) {
         boolean isContain = false;
         int count = 1;
-        for(Task task : this.tasks) {
+        for (Task task : this.tasks) {
             String[] sample = task.toString().split(" ");
             List<String> sampleList = new ArrayList<>(Arrays.asList(sample));
-            if(sampleList.contains(keyword)) {
+            if (sampleList.contains(keyword)) {
                 System.out.println(count + "." + task.toString());
                 isContain = true;
                 count++;
             }
         }
-        if(!isContain) {
+        if (!isContain) {
             System.out.println("Word could not be found!");
         }
     }

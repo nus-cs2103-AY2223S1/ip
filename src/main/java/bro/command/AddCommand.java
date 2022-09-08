@@ -5,6 +5,9 @@ import bro.TaskList;
 import bro.Ui;
 import bro.task.Task;
 
+/**
+ * Adds command to the tasklist.
+ */
 public class AddCommand extends Command {
     private Task task;
 
@@ -26,14 +29,16 @@ public class AddCommand extends Command {
         String type = this.task.getTaskType();
         switch (type) {
         case ("bro.task.Todo"):
-           tasklist.todoTask(this.task, storage);
-           break;
+            tasklist.todoTask(this.task, storage);
+            break;
         case ("bro.task.Deadline"):
-           tasklist.deadlineTask(this.task, storage);
-           break;
+            tasklist.deadlineTask(this.task, storage);
+            break;
         case ("bro.task.Event"):
-           tasklist.eventTask(this.task, storage);
-           break;
+            tasklist.eventTask(this.task, storage);
+            break;
+        default:
+            break;
         }
     }
 }

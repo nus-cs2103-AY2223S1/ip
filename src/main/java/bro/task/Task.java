@@ -1,5 +1,8 @@
 package bro.task;
 
+/**
+ * Task class.
+ */
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -39,7 +42,7 @@ public class Task {
      * Gets the task type of the given task.
      * @return A string with the task type.
      */
-    public String getTaskType(){
+    public String getTaskType() {
         return "bro.task.Task";
     }
 

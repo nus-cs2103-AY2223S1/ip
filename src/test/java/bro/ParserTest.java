@@ -1,12 +1,17 @@
 package bro;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class ParserTest {
+import org.junit.jupiter.api.Test;
 
+/**
+ * ParserTest class.
+ */
+public class ParserTest {
+    /**
+     * Tests whether if deadline date is invalid throws exception.
+     */
     @Test
     public void deadlineParser_invalidDateFormat_returnsBroException() {
         Parser parser = new Parser();
@@ -18,6 +23,10 @@ public class ParserTest {
         }
     }
 
+    /**
+     * Tests whether the Task description when given empty description
+     * throws exception if its in invalid format.
+     */
     @Test
     public void checkEmptyInput_invalidTaskDescription_returnsBroException() {
         Parser parser = new Parser();
@@ -29,6 +38,9 @@ public class ParserTest {
         }
     }
 
+    /**
+     * Tests whether the Task description throws exception if its in invalid format.
+     */
     @Test
     public void checkInput_invalidTaskDescription_returnsBroException() {
         Parser parser = new Parser();

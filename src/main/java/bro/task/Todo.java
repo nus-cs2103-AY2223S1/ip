@@ -1,5 +1,8 @@
 package bro.task;
 
+/**
+ * Todo class.
+ */
 public class Todo extends Task {
 
     /**

@@ -1,10 +1,5 @@
 package bro;
 
-import bro.command.*;
-import bro.task.Deadline;
-import bro.task.Event;
-import bro.task.Todo;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -12,6 +7,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import bro.command.AddCommand;
+import bro.command.Command;
+import bro.command.DeleteCommand;
+import bro.command.ExitCommand;
+import bro.command.FindCommand;
+import bro.command.ListCommand;
+import bro.command.ModifyCommand;
+import bro.task.Deadline;
+import bro.task.Event;
+import bro.task.Todo;
+
+/**
+ * Parser Class.
+ */
 public class Parser {
 
     /**
@@ -26,31 +35,31 @@ public class Parser {
         String input = in[0];
         this.checkEmptyInput(str);
         this.checkInput(input, str.split(" ").length);
-            switch (input) {
-            case "list":
-                return new ListCommand();
-            case "mark":
-                return new ModifyCommand(ModifyCommand.ModifyType.MARK, Integer.parseInt(in[1].trim()));
-            case "unmark":
-                return new ModifyCommand(ModifyCommand.ModifyType.UNMARK, Integer.parseInt(in[1].trim()));
-            case "todo":
-                return new AddCommand(new Todo(str.split(" ", 2)[1]));
-            case "deadline":
-                return new AddCommand(new Deadline(in[1].split("/by")[0].trim(),
-                        in[1].split("/by")[1].trim()));
-            case "event":
-                return new AddCommand(new Event(in[1].split("/by")[0].trim(),
-                        in[1].split("/at")[1].trim()));
-            case "delete":
-                return new DeleteCommand(Integer.parseInt(in[1].trim()));
-            case "bye":
-                return new ExitCommand();
-            case "find":
-                return new FindCommand(in[1]);
-            default:
-                throw new BroException("Idk what it means!");
-            }
+        switch (input) {
+        case "list":
+            return new ListCommand();
+        case "mark":
+            return new ModifyCommand(ModifyCommand.ModifyType.MARK, Integer.parseInt(in[1].trim()));
+        case "unmark":
+            return new ModifyCommand(ModifyCommand.ModifyType.UNMARK, Integer.parseInt(in[1].trim()));
+        case "todo":
+            return new AddCommand(new Todo(str.split(" ", 2)[1]));
+        case "deadline":
+            return new AddCommand(new Deadline(in[1].split("/by")[0].trim(),
+              in[1].split("/by")[1].trim()));
+        case "event":
+            return new AddCommand(new Event(in[1].split("/by")[0].trim(),
+              in[1].split("/at")[1].trim()));
+        case "delete":
+            return new DeleteCommand(Integer.parseInt(in[1].trim()));
+        case "bye":
+            return new ExitCommand();
+        case "find":
+            return new FindCommand(in[1]);
+        default:
+            throw new BroException("Idk what it means!");
         }
+    }
 
     /**
      * Checks whether the description has been given for the input tasks.
@@ -74,11 +83,13 @@ public class Parser {
     public void checkInput(String str, int n) throws BroException {
         switch (str) {
         case "todo":
-            if(n < 2) { throw new BroException("Please give the description!");}
+            if (n < 2) { throw new BroException("Please give the description!"); }
             break;
         case "deadline":
         case "event":
-            if(n < 4) { throw new BroException("Please give the description and time!"); }
+            if (n < 4) { throw new BroException("Please give the description and time!"); }
+            break;
+        default:
             break;
         }
     }
