@@ -56,7 +56,7 @@ public class Mew {
         } else if (Parser.parse(input).equals(Command.MARK)) {
             try {
                 int taskIndex = Parser.getTaskIndex(input);
-                Task markedTask = tasks.markTask(taskIndex);
+                Task markedTask = tasks.markTask(taskIndex - 1);
                 storage.saveData(tasks);
                 return Ui.showMarkDone(markedTask);
             } catch (StringIndexOutOfBoundsException | NumberFormatException e) {
@@ -67,7 +67,7 @@ public class Mew {
         } else if (Parser.parse(input).equals(Command.UNMARK)) {
             try {
                 int taskIndex = Parser.getTaskIndex(input);
-                Task unmarkedTask = tasks.unmarkTask(taskIndex);
+                Task unmarkedTask = tasks.unmarkTask(taskIndex - 1);
                 storage.saveData(tasks);
                 return Ui.showUnmarkAsDone(unmarkedTask);
             } catch (StringIndexOutOfBoundsException | NumberFormatException e) {
@@ -78,7 +78,7 @@ public class Mew {
         } else if (Parser.parse(input).equals(Command.DELETE)) {
             try {
                 int taskIndex = Parser.getTaskIndex(input);
-                Task deletedTask = tasks.deleteTask(taskIndex);
+                Task deletedTask = tasks.deleteTask(taskIndex - 1);
                 storage.saveData(tasks);
                 return Ui.showDeleteTaskDone(deletedTask, tasks.getNumberOfTasks());
             } catch (StringIndexOutOfBoundsException | NumberFormatException e) {
@@ -132,6 +132,17 @@ public class Mew {
             String keyword = Parser.getKeyword(input);
             TaskList foundTasks = tasks.findTasks(keyword);
             return Ui.showFoundTasks(foundTasks);
+        } else if (Parser.parse(input).equals(Command.EDIT)) {
+            try {
+                String newDescription = Parser.getNewDescription(input);
+                int taskIndex = Parser.getTaskIndex(input);
+                Task editedTask = tasks.editTaskDescription(taskIndex - 1, newDescription);
+                return Ui.showEditTaskDone(editedTask);
+            } catch (StringIndexOutOfBoundsException | NumberFormatException e) {
+                return Ui.askWhichTask();
+            } catch (Exception e) {
+                return Ui.printException(e);
+            }
         } else if (Parser.parse(input).equals(Command.UNKNOWN)) {
             return Ui.showUnknownCommand();
         }

@@ -48,6 +48,14 @@ public class Event extends Task {
     }
 
     /**
+     * Sets the date and time of an Event.
+     * @param newDateTime New date and time
+     */
+    public void setDateTime(LocalDateTime newDateTime) {
+        this.dateTime = newDateTime;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override

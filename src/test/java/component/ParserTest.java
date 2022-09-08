@@ -41,9 +41,9 @@ class ParserTest {
         String command1 = "unmark 3";
         String command2 = "delete 1";
         String command3 = "mark 9";
-        assertEquals(Parser.getTaskIndex(command1), 2);
-        assertEquals(Parser.getTaskIndex(command2), 0);
-        assertEquals(Parser.getTaskIndex(command3), 8);
+        assertEquals(Parser.getTaskIndex(command1), 3);
+        assertEquals(Parser.getTaskIndex(command2), 1);
+        assertEquals(Parser.getTaskIndex(command3), 9);
     }
 
     @Test
