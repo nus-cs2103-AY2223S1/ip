@@ -3,11 +3,10 @@ package duke.chatbot.util;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import duke.chatbot.command.AddTaskCommands.AddToDoCommand;
 import org.junit.jupiter.api.Test;
 
+import duke.chatbot.command.AddTaskCommands.AddToDoCommand;
 import duke.chatbot.command.Command;
-import duke.chatbot.data.task.TaskList;
 
 public class ParserTest {
     @Test
