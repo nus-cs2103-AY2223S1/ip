@@ -22,6 +22,7 @@ public class Parser {
         String rest = String.join(" ", split);
 
         if (first.equals("list")) {
+            assert(rest.length() == 0);
             //Handle listing of tasks
             return tasks.listTasks();
 
