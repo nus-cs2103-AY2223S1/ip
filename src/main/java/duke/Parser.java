@@ -57,25 +57,30 @@ public class Parser {
         case "MARK":
             int markIdx = Integer.parseInt(command.substring(5)) - 1;
             tasks.mark(markIdx);
+            assert tasks.getTask(markIdx).getStatusIcon().equals("X"); // For A-Assertions
             return ui.printMarked(tasks.getTask(markIdx));
             // Fallthrough
         case "UNMARK":
             int unmarkIdx = Integer.parseInt(command.substring(7)) - 1;
             tasks.unmark(unmarkIdx);
+            assert tasks.getTask(unmarkIdx).getStatusIcon().equals(" "); // For A-Assertions
             return ui.printUnmarked(tasks.getTask(unmarkIdx));
             // Fallthrough
         case "TODO":
+            assert command.startsWith("todo"); // For A-Assertions
             Task tD = new ToDo(command.substring(5));
             tasks.add(tD);
             return ui.printAddedTask(tD, tasks.getSize());
             // Fallthrough
         case "DEADLINE":
+            assert command.startsWith("deadline"); // For A-Assertions
             String dlAction = command.substring(9, command.indexOf("/") - 1);
             Task dl = new Deadline(dlAction, formatEventTime(command));
             tasks.add(dl);
             return ui.printAddedTask(dl, tasks.getSize());
             // Fallthrough
         case "EVENT":
+            assert command.startsWith("event"); // For A-Assertions
             String eAction = command.substring(6, command.indexOf("/") - 1);
             Task ev = new Event(eAction, formatEventTime(command));
             tasks.add(ev);
