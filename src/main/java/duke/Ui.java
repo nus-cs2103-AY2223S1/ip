@@ -16,6 +16,7 @@ public class Ui {
     private static final String MESSAGE_TASK_NOT_FOUND = "No task matched your query!";
     private static final String MESSAGE_TASK_ADDED = "Task added: ";
     private static final String MESSAGE_TASK_DELETED = "Task deleted: ";
+    private static final String MESSAGE_TASK_DESCRIPTION_UPDATED = "I have updated the description of this task: ";
     private static final String MESSAGE_TASK_UPDATED_COMPLETE = "I have marked this task as done: ";
     private static final String MESSAGE_TASK_UPDATED_INCOMPLETE = "I have unmarked the completion of this task: ";
     private static final String MESSAGE_EXIT = "Bye bye!";
@@ -40,7 +41,7 @@ public class Ui {
      * @param text text to pad.
      * @return Left padded text.
      */
-    public static String leftPad(String text) {
+    public static String padLeft(String text) {
         return PADDING + text;
     }
 
@@ -148,7 +149,7 @@ public class Ui {
      * @return Update task message.
      */
     public static String getUpdateTaskMessage(Task task) {
-        return getUpdateMessage(task, "I have updated the description of this task: ");
+        return getUpdateMessage(task, MESSAGE_TASK_DESCRIPTION_UPDATED);
     }
 
     /**
@@ -182,7 +183,7 @@ public class Ui {
     private static String getUpdateMessage(Task task, String updateMessage) {
         List<String> toPrint = new ArrayList<>();
         toPrint.add(updateMessage);
-        toPrint.add(leftPad(task.toString()));
+        toPrint.add(padLeft(task.toString()));
         return joinTextsWithNewLine(toPrint);
     }
 
@@ -205,8 +206,7 @@ public class Ui {
      */
     private static List<String> formatTaskList(List<Task> tasks) {
         return IntStream.range(0, tasks.size())
-                .mapToObj((index) ->
-                        String.format(STRING_FORMAT_INDEXED_TASK, index + 1, tasks.get(index).toString()))
+                .mapToObj((index) -> String.format(STRING_FORMAT_INDEXED_TASK, index + 1, tasks.get(index).toString()))
                 .collect(Collectors.toList());
     }
 
