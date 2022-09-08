@@ -135,4 +135,14 @@ public class Ui {
             return "There are no tasks matching that word.";
         }
     }
+
+    /**
+     * Prints task that has been updated.
+     *
+     * @param task Task that was updated.
+     * @return A string that confirm that the task has been updated.
+     */
+    public String showUpdate(Task task) {
+        return "The task has been updated:\n" + task;
+    }
 }

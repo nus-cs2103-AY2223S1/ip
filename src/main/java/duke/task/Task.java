@@ -69,4 +69,6 @@ public abstract class Task {
      * @return Time of the task.
      */
     public abstract LocalDate getTime();
+
+    public abstract void update(String update);
 }

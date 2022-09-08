@@ -51,4 +51,9 @@ public class ToDo extends Task {
     public LocalDate getTime() {
         return LocalDate.MIN;
     }
+
+    @Override
+    public void update(String update) {
+        this.description = update;
+    }
 }
