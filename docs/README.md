@@ -1,5 +1,3 @@
-{::options parse_block_html="true" /}
-
 # User Guide
 
 Duke is a desktop application for **tracking tasks** in the style of a chatbot. Developed with _love_ using JavaFX.
@@ -27,7 +25,7 @@ This command will list all the tasks in the task list.
 **Usage:** `list`
 
 <details>
-<summary><b>Expected outcome</b></summary>
+<summary>Expected outcome</summary>
 
 ```
 list
@@ -45,7 +43,7 @@ list
 A todo task with the task description specified will be added to the task list.
 
 <details>
-<summary><b>Expected outcome</b></summary>
+<summary>Expected outcome</summary>
 
 ```
 todo do homework
@@ -67,7 +65,7 @@ A deadline task with the specified description and date will be added to the tas
 > eg. `2022-10-01` for 1st October 2022
 
 <details>
-<summary><b>Expected outcome</b></summary>
+<summary>Expected outcome</summary>
 
 ```
 deadline go home /by 2022-11-12
@@ -89,7 +87,7 @@ An event task with the specified description and date will be added to the task 
 > eg. `2022-10-01` for 1st October 2022
 
 <details>
-<summary><b>Expected outcome</b></summary>
+<summary>Expected outcome</summary>
 
 ```
 event sale /at 2022-12-12
@@ -108,7 +106,7 @@ There are not 5 tasks in the list.
 Remove the task specified by the index from the task list and the storage file.
 
 <details>
-<summary><b>Expected outcome</b></summary>
+<summary>Expected outcome</summary>
 
 ```
 delete 5
@@ -127,7 +125,7 @@ There are not 4 tasks in the list.
 Mark the task specified by the index as complete.
 
 <details>
-<summary><b>Expected outcome</b></summary>
+<summary>Expected outcome</summary>
 
 ```
 mark 4
@@ -145,7 +143,7 @@ I have marked this task as done:
 Mark the task specified by the index as incomplete.
 
 <details>
-<summary><b>Expected outcome</b></summary>
+<summary>Expected outcome</summary>
 
 ```
 mark 4
@@ -163,7 +161,7 @@ I have unmarked the completion of this task:
 Update the task specified by the index with a new description.
 
 <details>
-<summary><b>Expected outcome</b></summary>
+<summary>Expected outcome</summary>
 
 ```
 update 4 go back home
@@ -181,7 +179,7 @@ I have updated the description of this task:
 Search the task list for a task with a description containing the query specified.
 
 <details>
-<summary><b>Expected outcome</b></summary>
+<summary>Expected outcome</summary>
 
 ```
 find home
@@ -200,7 +198,7 @@ This is what I found:
 Close the duke application
 
 <details>
-<summary><b>Expected outcome</b></summary>
+<summary>Expected outcome</summary>
 
 Duke application window will be close.
 
