@@ -20,12 +20,13 @@ public class Duke {
     public Duke() {
         this.taskList =  new TaskList();
         this.storage = new Storage("data/duke.txt", taskList);
+        TagList tagList = new TagList();
         try {
             storage.loadFile();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-        this.ui = new Ui(taskList, storage);
+        this.ui = new Ui(taskList, storage, tagList);
     }
 
     /**

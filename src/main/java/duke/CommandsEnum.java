@@ -1,5 +1,5 @@
 package duke;
 
 public enum CommandsEnum {
-    bye, list, mark, unmark, delete, todo, deadline, event, find
+    bye, list, mark, unmark, delete, todo, deadline, event, find,tag
 }
