@@ -18,7 +18,7 @@ public class Parser {
      */
     public static Command parse(String userInput) throws DukeException {
         String command;
-
+        assert !userInput.isEmpty() : "User input should not be empty";
         if (userInput.isEmpty()) {
             throw new DukeException("OOPS!!! The user input cannot be empty.");
         }
