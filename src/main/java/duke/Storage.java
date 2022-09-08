@@ -25,7 +25,6 @@ public class Storage {
      * @throws DukeException
      * @throws FileNotFoundException
      */
-
     public ArrayList<Task> load() throws DukeException, FileNotFoundException {
 
         ArrayList<Task> tasks = new ArrayList<Task>();
@@ -33,24 +32,25 @@ public class Storage {
         Scanner fileScanner = new Scanner(f);
 
         while (fileScanner.hasNext()) {
+
             String[] input = fileScanner.nextLine().split(" \\| ");
-            Task task = new Task("");
+            Task task;
 
             switch (input[0]) {
-                case "D":
-                    task = new Deadline(input[2], LocalDateTime.parse(input[3]));
-                    break;
+            case "D":
+                task = new Deadline(input[2], LocalDateTime.parse(input[3]));
+                break;
 
-                case "E":
-                    task = new Event(input[2], LocalDateTime.parse(input[3]));
-                    break;
+            case "E":
+                task = new Event(input[2], LocalDateTime.parse(input[3]));
+                break;
 
-                case "T":
-                    task = new Todo(input[2]);
-                    break;
+            case "T":
+                task = new Todo(input[2]);
+                break;
 
-                default:
-                    throw new DukeException("Duke couldn't understand what this file type is! " + input[0]);
+            default:
+                throw new DukeException("Duke couldn't understand what this file type is! " + input[0]);
             }
             if (input[1].equals("1")) {
                 task.mark();
@@ -67,7 +67,6 @@ public class Storage {
      * @param tasks
      * @throws IOException
      */
-
     public void save(ArrayList<Task> tasks) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         for (Task task : tasks) {

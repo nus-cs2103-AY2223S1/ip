@@ -38,7 +38,6 @@ public class Duke extends Application {
      *
      * @param filePath
      */
-
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);

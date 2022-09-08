@@ -12,7 +12,6 @@ public class Deadline extends Task {
      * @param description
      * @param by
      */
-
     public Deadline(String description, LocalDateTime by) {
         super(description);
         this.by = by;
@@ -28,7 +27,6 @@ public class Deadline extends Task {
      *
      * @return
      */
-
     @Override
     public String getWriteString() {
         return String.format("D | %s | %s", super.getWriteString(), this.by);

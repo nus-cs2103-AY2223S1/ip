@@ -7,7 +7,6 @@ public class Todo extends Task {
      *
      * @param action
      */
-
     public Todo(String action) {
         super(action);
     }

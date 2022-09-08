@@ -9,7 +9,6 @@ public class Ui {
     /**
      * Handles all system output messages.
      */
-
     public Ui() {
         scanner = new Scanner(System.in);
     }

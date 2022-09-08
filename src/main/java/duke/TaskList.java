@@ -9,7 +9,6 @@ public class TaskList {
     /**
      * Keep track of tasks.
      */
-
     protected ArrayList<Task> tasks;
 
     public TaskList() {

@@ -12,7 +12,6 @@ public class Event extends Task {
      * @param description
      * @param at
      */
-
     public Event(String description, LocalDateTime at) {
         super(description);
         this.at = at;
@@ -28,7 +27,6 @@ public class Event extends Task {
      *
      * @return
      */
-
     @Override
     public String getWriteString() {
         return String.format("E | %s | %s", super.getWriteString(), this.at);

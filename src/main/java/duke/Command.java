@@ -8,8 +8,8 @@ public class Command {
     /**
      * A command class to keep track of commands.
      *
-     * @param function
-     * @param isExit
+     * @param function The consumer object that holds the instructions to be executed.
+     * @param isExit Whether the command is "bye"
      */
     public Command(TripleConsumer function, boolean isExit) {
         this.function = function;
@@ -23,11 +23,10 @@ public class Command {
     /**
      * Execute the command
      *
-     * @param tasks
-     * @param ui
-     * @param storage
+     * @param tasks TaskList object.
+     * @param ui Ui object.
+     * @param storage Storage object.
      */
-
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         function.execute(tasks, ui, storage);
     }

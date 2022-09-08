@@ -13,11 +13,10 @@ public class Parser {
     /**
      * Parser to interpret the commands.
      *
-     * @param fullCommand
-     * @return
+     * @param fullCommand The instructions to execute.
+     * @return A command that holds the information as specified by fullCommand.
      * @throws DukeException
      */
-
     public static Command parse(String fullCommand) throws DukeException {
 
         String instruction = fullCommand.contains(" ") ? fullCommand.split(" ", 2)[0] : fullCommand;
@@ -265,6 +264,7 @@ public class Parser {
         default:
             throw new DukeException("Invalid Command!");
         }
+        
         return command;
     }
 }
