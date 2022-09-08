@@ -61,15 +61,4 @@ public class Duke {
             }
         }, 3000, TimeUnit.MILLISECONDS);
     }
-
-
-    /**
-     * Executes the program.
-     * @param args main method.
-     */
-    public static void main(String[] args) {
-        /* TODO: Add the printing of default statements on startup of the application */
-        System.out.println("Hello from Duke");
-        System.out.println("What can I do for you?");
-    }
 }
