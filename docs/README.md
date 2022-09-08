@@ -27,7 +27,7 @@ Start your task easily and boost your productivity with CaCa 🤖, a personal as
 4. Double-click `CaCa.jar` to start the app.
 5. Type the command in the text box and press Enter on your keyboard or click "Send" to execute it.
 
-<img width="450" alt="Ui" src="https://user-images.githubusercontent.com/97394017/189103714-dd3ea8a1-8b11-4985-831c-de3c1958d731.png">
+<img width="450" alt="Ui" src="https://carriezhengjr.github.io/ip/Ui.png">
 
 <hr>
 
