@@ -21,11 +21,12 @@ import javafx.scene.text.FontWeight;
 
 /**
  * An example of a custom control using FXML.
- * This control represents a dialog box consisting of an ImageView,
- * to represent the speaker's face and a label
+ * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a label
  * containing text from the speaker.
  */
 public class DialogueBox extends HBox {
+
+    private static final double RADIUS_RATIO = 2.2;
     @FXML
     private Label dialog;
     @FXML
@@ -41,18 +42,20 @@ public class DialogueBox extends HBox {
             e.printStackTrace();
         }
 
-        Circle circle = new Circle();
-        circle.setCenterX(50);
-        circle.setCenterY(50);
-        circle.setRadius(60);
+        double circleRadius = displayPicture.getFitWidth() / RADIUS_RATIO;
+        double circleX = displayPicture.getX() + circleRadius;
+        double circleY = displayPicture.getY() + circleRadius;
+
+        Circle circle = new Circle(circleX, circleY, circleRadius);
+
+        dialog.setText(text);
+        displayPicture.setImage(img);
         displayPicture.setClip(circle);
+
         dialog.setStyle("-fx-background-color: #00ffc4;" + "-fx-background-radius: 10;");
         dialog.setPadding(new Insets(8));
         dialog.setFont(Font.font("Courier New", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
 
-
-        dialog.setText(text);
-        displayPicture.setImage(img);
     }
 
     /**
@@ -63,11 +66,14 @@ public class DialogueBox extends HBox {
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
-        Circle circle = new Circle();
-        circle.setCenterX(55);
-        circle.setCenterY(50);
-        circle.setRadius(60);
+        double circleRadius = displayPicture.getFitWidth() / RADIUS_RATIO;
+        double circleX = displayPicture.getX() + circleRadius;
+        double circleY = displayPicture.getY() + circleRadius;
+
+        Circle circle = new Circle(circleX, circleY, circleRadius);
+
         displayPicture.setClip(circle);
+
         dialog.setStyle("-fx-background-color: #00ffc4;" + "-fx-background-radius: 10;");
         dialog.setPadding(new Insets(8));
         dialog.setFont(Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
@@ -79,8 +85,8 @@ public class DialogueBox extends HBox {
 
     /**
      * Duke's dialogue is exactly the same as user's dialogue, just flipped
-     * @param text to be displayed
-     * @param img image to be displayed
+     * @param text
+     * @param img
      * @return
      */
     public static DialogueBox getDukeDialog(String text, Image img) {

@@ -10,13 +10,16 @@ import duke.exceptions.InvalidCommandException;
 import duke.ui.Ui;
 
 import java.awt.Desktop;
+
 import java.io.IOException;
+
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URI;
-import java.time.LocalDate;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,13 +34,13 @@ public class Parser {
      * valid Task indicators
      * Each taskValue is encapsulated by a String
      */
-     enum TaskIndicator {
+    enum TaskIndicator {
         TODO("todo"),
         EVENT("event"),
         DEADLINE("deadline");
 
         private final String taskValue;
-        TaskIndicator (String val) {
+        TaskIndicator(String val) {
             taskValue = val;
         }
         public String getTask() {
@@ -86,52 +89,75 @@ public class Parser {
             return taskList.findTask(keyword);
 
         case "viewSchedule":
-            String[] inputTempArr = input.split(" ", 2);
-            String date = inputTempArr[1];
-            String decideValidDate = dateValidator(date);
-            if (!(decideValidDate.equals("Success"))) { //an error occurred somewhere
-                return decideValidDate;
-            }
-            return taskList.viewSchedule(date);
+            return scheduleFormatter(taskList, input);
 
         case "help":
-            try {
-                Desktop.getDesktop().browse(new URI(Ui.displayHelpURL()));
-
-            } catch (MalformedURLException | URISyntaxException e) {
-                return "This shouldn't happen, the server side URL is broken.";
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            return "Here's your help page!";
-
+            return openHelpPage();
         //formulation of task
         default:
-
-            try {
-                taskValidator(input);
-            } catch (InvalidCommandException ice) {
-                String message = "";
-                message += Ui.displayException(ice) + '\n';
-                message += Ui.displayMessage("This was your invalid command: " + input) + "\n";
-                return message;
-            } catch (EmptyTaskException ete) {
-                String message = "";
-                message += Ui.displayException(ete);
-                String[] taskArr = input.split(" ", 0);
-                if (taskArr[0].equals("todo")) {
-                    return message + "\n" +
-                            Ui.displayMessage("todo requires at least a task description");
-                } else {
-                    return message + "\n" +
-                            Ui.displayMessage("Event & Deadline requires both a task description and a date");
-                }
-            }
-
-            Task newTask = generateTask(input);
-            return taskList.addTask(newTask);
+            return taskMessageGenerator(taskList, input);
         }
     }
+
+    private static String openHelpPage() {
+        try {
+            Desktop.getDesktop().browse(new URI(Ui.displayHelpUrl()));
+
+        } catch (MalformedURLException | URISyntaxException e) {
+            return "This shouldn't happen, the server side URL is broken.";
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return "Here's your help page!";
+    }
+
+    /**
+     * Helper method to instruct taskList to view available dates
+     * @param taskList
+     * @param input
+     * @return
+     */
+    private static String scheduleFormatter(TaskList taskList, String input) {
+        String[] splitArgsByWhitespace = input.split(" ", 2);
+        String date = splitArgsByWhitespace[1];
+        String decideValidDate = dateValidator(date);
+        if (!(decideValidDate.equals("Success"))) { //an error occurred somewhere
+            return decideValidDate;
+        }
+        return taskList.viewSchedule(date);
+    }
+
+    /**
+     * Helper method to validate and generate the Task method when created
+     * Abstracted from the main switch statement
+     * Returns a valid string, and passes the task to be added into the tasklist
+     * @param input
+     */
+    private static String taskMessageGenerator(TaskList taskList, String input) {
+        try {
+            taskValidator(input);
+        } catch (InvalidCommandException ice) {
+            String message = "";
+            message += Ui.displayException(ice) + '\n';
+            message += Ui.displayMessage("This was your invalid command: " + input) + "\n";
+            return message;
+        } catch (EmptyTaskException ete) {
+            String message = "";
+            message += Ui.displayException(ete);
+            String[] taskArr = input.split(" ", 0);
+            if (taskArr[0].equals("todo")) {
+                return message + "\n"
+                        + Ui.displayMessage("todo requires at least a task description");
+            } else {
+                return message + "\n"
+                        + Ui.displayMessage("Event & Deadline requires both a task description and a date");
+            }
+        }
+
+        Task newTask = generateTask(input);
+        return taskList.addTask(newTask);
+    }
+
     /**
      * Helper method for input validation whenever an add task command is given
      * @param  input of type string
@@ -140,12 +166,12 @@ public class Parser {
      * @throws EmptyTaskException if the correct command is given
      * but not enough information is provided
      */
-    private static void taskValidator (String input) throws InvalidCommandException, EmptyTaskException {
+    private static void taskValidator(String input) throws InvalidCommandException, EmptyTaskException {
         String taskIndicator = input.split(" ", 0)[0]; //splits into words
         String[] descriptionInformation = input.split(" ", 0);
 
         //taskIndicator is invalid
-        if (! PERMISSIBLE_TASKS.contains(taskIndicator)) {
+        if (!PERMISSIBLE_TASKS.contains(taskIndicator)) {
             throw new InvalidCommandException("I'm sorry, I don't understand what that means \n"
                     + "Please enter a valid response in the future");
         }
@@ -156,33 +182,38 @@ public class Parser {
 
     }
 
-    private static String dateValidator (String dateInput) {
+    private static String dateValidator(String dateInput) {
         try {
             LocalDate.parse(dateInput);
-        } catch (DateTimeParseException e){
-            return "Invalid date entered! Ensure you enter date in the format: " +
-                    "YYYY-MM-DD";
+        } catch (DateTimeParseException e) {
+            return "Invalid date entered! Ensure you enter date in the format: "
+                + "YYYY-MM-DD";
         }
         return "Success";
     }
 
-    //changed to public for testing, TODO: change private after validation
+    /**
+     * Helper method to take in raw input string
+     * And returns the relevant task
+     * @param input
+     * @return
+     */
     public static Task generateTask(String input) {
         String taskIndicator = input.split(" ", 2)[0];
-        String descriptionInfo = input.split(" ", 2)[1];
+        String descriptionArgs = input.split(" ", 2)[1];
         //Logic for splitting based on TaskIndicator's Enums
 
         if (taskIndicator.equals(TaskIndicator.TODO.getTask())) {
-            return new Todo(descriptionInfo);
+            return new Todo(descriptionArgs);
         } else if (taskIndicator.equals(TaskIndicator.DEADLINE.getTask())) {
-            int deliminatorSplitIndex = descriptionInfo.indexOf("/by");
-            String eventName = descriptionInfo.substring(0, deliminatorSplitIndex);
-            String date = descriptionInfo.substring(deliminatorSplitIndex + 4);
+            int deliminatorSplitIndex = descriptionArgs.indexOf("/by");
+            String eventName = descriptionArgs.substring(0, deliminatorSplitIndex);
+            String date = descriptionArgs.substring(deliminatorSplitIndex + 4);
             return new Deadline(eventName, date);
         } else { //must be Event
-            int deliminatorSplitIndex = descriptionInfo.indexOf("/at");
-            String eventName = descriptionInfo.substring(0, deliminatorSplitIndex);
-            String date = descriptionInfo.substring(deliminatorSplitIndex + 4);
+            int deliminatorSplitIndex = descriptionArgs.indexOf("/at");
+            String eventName = descriptionArgs.substring(0, deliminatorSplitIndex);
+            String date = descriptionArgs.substring(deliminatorSplitIndex + 4);
             return new Event(eventName, date);
         }
     }

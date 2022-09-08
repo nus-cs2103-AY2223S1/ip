@@ -21,7 +21,7 @@ public class Ui {
      * Fetches the help page's URL
      * @return String help page URL
      */
-    public static final String displayHelpURL() {
+    public static final String displayHelpUrl() {
         return HELP_PAGE_URL;
     }
 
