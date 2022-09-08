@@ -26,7 +26,7 @@ public class BadTaskOperationException extends DukeException {
      */
     @Override
     public String toString() {
-        String ret = LINE + "\n Please provide input that is within the length of the list.\n" + LINE;
-        return ret;
+        String error = LINE + "\n Please provide input that is within the length of the list.\n" + LINE;
+        return error;
     }
 }

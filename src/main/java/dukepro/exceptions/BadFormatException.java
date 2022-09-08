@@ -12,7 +12,7 @@ public class BadFormatException extends DukeException {
     /**
      * Creates a BadFormatException.
      *
-     * @param message the errormMessage.
+     * @param message the error message.
      * @param taskType type of task.
      * @param format the correct format.
      * @return A BadFormatException.
@@ -31,8 +31,8 @@ public class BadFormatException extends DukeException {
      */
     @Override
     public String toString() {
-        String ret = LINE + "\n Oh no, the format of a " + this.taskType + " is: " + this.taskType
+        String error = LINE + "\n Oh no, the format of a " + this.taskType + " is: " + this.taskType
                 + " <YOUR TASK HERE> " + separator + this.format + "\n" + LINE;
-        return ret;
+        return error;
     }
 }

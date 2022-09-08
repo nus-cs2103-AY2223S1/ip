@@ -7,6 +7,7 @@ import dukepro.exceptions.DukeException;
 import dukepro.expenses.Expense;
 import dukepro.expenses.ExpenseCalculator;
 import dukepro.tasks.Task;
+import dukepro.tasks.TaskFunction;
 
 /**
  * Class for Interact.
@@ -47,11 +48,7 @@ public class Interact {
         } else if (word.startsWith("list") || word.startsWith("List")) {
             return tasksManager.showList();
         } else if (word.startsWith("done") || word.startsWith("Done")) {
-            int taskNo = Decoder.handleDone(word, tasksManager.numStored());
-            Task doneTask = tasksManager.operateOnList(arr -> TaskFunction.markAsDone(arr, taskNo));
-            tasksManager.updateFile();
-            String ret = "Nice! I've marked this task as done:\n" + doneTask;
-            return ret;
+            return handleDone(word);
         } else if (word.startsWith("delete") || word.startsWith("Delete")) {
             return tasksManager.delete(Decoder.handleDelete(word, tasksManager.numStored()));
         } else if (word.startsWith("todo") || word.startsWith("deadline") || word.startsWith("event")) {
@@ -70,14 +67,40 @@ public class Interact {
             int total = expenseManager.operateOnList(arr -> ExpenseCalculator.sumArrayList(arr));
             return "You spent a total of " + total;
         } else if (word.startsWith("spentOn")) {
-            LocalDate ld = Decoder.parseLD(word);
-            int total = expenseManager.operateOnList(arr -> ExpenseCalculator.spentDay(arr, ld));
-            return "You spent a total of " + total;
+            return handleSpentOn(word);
         } else {
             throw new DukeException("bad input");
         }
         assert false;
         return null;
+    }
+
+    /**
+     * Handles the 'done' command.
+     *
+     * @param word  A String read from the command line.
+     * @return String.
+     * @throws DukeException  If input is not proper.
+     */
+    public String handleDone(String word) throws DukeException {
+        int taskNo = Decoder.handleDone(word, tasksManager.numStored());
+        Task doneTask = tasksManager.operateOnList(arr -> TaskFunction.markAsDone(arr, taskNo));
+        tasksManager.updateFile();
+        String ret = "Nice! I've marked this task as done:\n" + doneTask;
+        return ret;
+    }
+
+    /**
+     * Handle the 'spentOn' command.
+     *
+     * @param word  A String read from the command line.
+     * @return String.
+     * @throws DukeException  If input is not proper.
+     */
+    public String handleSpentOn(String word) throws DukeException {
+        LocalDate ld = Decoder.parseLD(word);
+        int total = expenseManager.operateOnList(arr -> ExpenseCalculator.spentDay(arr, ld));
+        return "You spent a total of " + total;
     }
 
     /**

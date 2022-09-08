@@ -79,7 +79,7 @@ public class GeneralStorage<T extends StorableObjects> {
      * @param t A T to write to the file.
      */
     public void add(T t) {
-        printWriter.println(t.fileForm());
+        printWriter.println(t.toFileForm());
     }
 
     /**
@@ -101,7 +101,7 @@ public class GeneralStorage<T extends StorableObjects> {
         printWriter = new PrintWriter(fileWriter);
         for (int i = 0; i < objects.size(); i++) {
             T t = objects.get(i);
-            printWriter.println(t.fileForm());
+            printWriter.println(t.toFileForm());
         }
         return true;
     }

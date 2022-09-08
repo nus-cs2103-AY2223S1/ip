@@ -32,7 +32,7 @@ public class Expense extends StorableObjects {
      *
      * @return A String
      */
-    public String fileForm() {
+    public String toFileForm() {
         return name + "," + amount + "," + localDate;
     }
 

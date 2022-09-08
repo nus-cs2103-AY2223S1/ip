@@ -30,7 +30,7 @@ public class Todo extends Task {
      * @return A String.
      */
     @Override
-    public String fileForm() {
-        return "T" + "," + super.fileForm();
+    public String toFileForm() {
+        return "T" + "," + super.toFileForm();
     }
 }

@@ -76,33 +76,33 @@ public class Decoder {
      * @throws DukeException if input is not proper.
      */
     public static Task handleTasks(String word) throws DukeException {
-        String[] splitted = word.split(" ", 2);
-        if (splitted.length < 2) {
-            throw new EmptyDescException(splitted[0]);
+        String[] wordSplit = word.split(" ", 2);
+        if (wordSplit.length < 2) {
+            throw new EmptyDescException(wordSplit[0]);
         }
 
-        if (splitted[0].equals("todo")) {
-            return makeTask(splitted[1], null, 'T');
+        if (wordSplit[0].equals("todo")) {
+            return makeTask(wordSplit[1], null, 'T');
         }
 
         String[] stringAndDate;
-        if (splitted[0].equals("deadline")) {
-            stringAndDate = splitted[1].split("/by");
+        if (wordSplit[0].equals("deadline")) {
+            stringAndDate = wordSplit[1].split("/by");
         } else {
-            stringAndDate = splitted[1].split("/at");
+            stringAndDate = wordSplit[1].split("/at");
         }
 
         if (stringAndDate.length < 2) {
-            if (splitted[0].equals("deadline")) {
-                throw new BadFormatException("incorrect format", splitted[0], "<DATE in yyyy-mm-dd>", "/by");
-            } else if (splitted[0].equals("event")) {
-                throw new BadFormatException("incorrect format", splitted[0], "<LOCATION>", "/at");
+            if (wordSplit[0].equals("deadline")) {
+                throw new BadFormatException("incorrect format", wordSplit[0], "<DATE in yyyy-mm-dd>", "/by");
+            } else if (wordSplit[0].equals("event")) {
+                throw new BadFormatException("incorrect format", wordSplit[0], "<LOCATION>", "/at");
             }
             assert false;
             return null;
         }
 
-        if (splitted[0].equals("deadline")) {
+        if (wordSplit[0].equals("deadline")) {
             parseLD(stringAndDate[1]);
             return makeTask(stringAndDate[0], stringAndDate[1], 'D');
         } else {
@@ -118,17 +118,17 @@ public class Decoder {
      * @return a new Task.
      */
     public static Task parseFromFile(String word) {
-        String[] splitted = word.split(",");
+        String[] wordSplit = word.split(",");
 
         System.out.println(" ");
-        if (splitted[0].equals("T")) {
-            return makeTask(splitted[2], null, 'T', Boolean.parseBoolean(splitted[1]));
+        if (wordSplit[0].equals("T")) {
+            return makeTask(wordSplit[2], null, 'T', Boolean.parseBoolean(wordSplit[1]));
         }
-        if (splitted[0].equals("D")) {
-            return makeTask(splitted[2], splitted[splitted.length - 1], 'D', Boolean.parseBoolean(splitted[1]));
+        if (wordSplit[0].equals("D")) {
+            return makeTask(wordSplit[2], wordSplit[wordSplit.length - 1], 'D', Boolean.parseBoolean(wordSplit[1]));
         }
-        if (splitted[0].equals("E")) {
-            return makeTask(splitted[2], splitted[splitted.length - 1], 'E', Boolean.parseBoolean(splitted[1]));
+        if (wordSplit[0].equals("E")) {
+            return makeTask(wordSplit[2], wordSplit[wordSplit.length - 1], 'E', Boolean.parseBoolean(wordSplit[1]));
         }
         assert false;
         return null;
@@ -143,19 +143,19 @@ public class Decoder {
      * @throws DukeException if input is bad.
      */
     public static int deleteExpense(String word, int len) throws DukeException {
-        String[] deleteTasks = word.split(" ");
+        String[] delExpense = word.split(" ");
 
-        if (deleteTasks.length != 2) {
+        if (delExpense.length != 2) {
             throw new BadTaskOperationException("delete", "delete");
         }
-        if (!isValidNum(deleteTasks[1])) {
-            throw new BadFormatException("delete", "delete", "<TASK ID>", "");
+        if (!isValidNum(delExpense[1])) {
+            throw new BadFormatException("delete", "delete", "<EXPENSE ID>", "");
         }
-        int taskNo = Integer.parseInt(deleteTasks[1]);
-        if (taskNo > len) {
+        int expenseNo = Integer.parseInt(delExpense[1]);
+        if (expenseNo > len) {
             throw new BadTaskOperationException("delete", "delete");
         }
-        return taskNo;
+        return expenseNo;
     }
 
     /**
@@ -214,8 +214,8 @@ public class Decoder {
      */
     public static LocalDate parseLD(String str) throws BadFormatException {
         try {
-            String[] splitted = str.split(" ");
-            return LocalDate.parse(splitted[splitted.length - 1].stripLeading());
+            String[] wordSplit = str.split(" ");
+            return LocalDate.parse(wordSplit[wordSplit.length - 1].stripLeading());
         } catch (DateTimeParseException e) {
             throw new BadFormatException("date time error", "Date", "Date: <YYYY-MM-DD>", "");
         }
@@ -230,18 +230,18 @@ public class Decoder {
      * @throws EmptyDescException if input is bad.
      */
     public static String parseFind(String str) throws EmptyDescException {
-        String[] split = str.split(" ");
-        if (split.length < 2) {
+        String[] wordSplit = str.split(" ");
+        if (wordSplit.length < 2) {
             throw new EmptyDescException("empty description");
         }
-        return split[1];
+        return wordSplit[1];
     }
 
     /**
      * Returns is number is valid.
      *
      * @param num user input from command line.
-     * @return A boolean.
+     * @return true if number is valid.
      */
     public static boolean isValidNum(String num) {
         char[] charas = num.toCharArray();
@@ -261,22 +261,22 @@ public class Decoder {
      * @return An Expense.
      */
     public static Expense makeExpense(String input) throws DukeException {
-        String[] splitted = input.split(" ", 2);
+        String[] wordSplit = input.split(" ", 2);
 
-        if (splitted.length < 2) {
-            throw new EmptyDescException(splitted[0]);
+        if (wordSplit.length < 2) {
+            throw new EmptyDescException(wordSplit[0]);
         }
 
-        String[] segmentName = splitted[1].split("/amount", 2);
+        String[] segmentName = wordSplit[1].split("/amount", 2);
         String name = segmentName[0];
 
         if (segmentName.length < 2) {
-            throw new EmptyDescException(splitted[0]);
+            throw new EmptyDescException(wordSplit[0]);
         }
 
         String[] segmentAmt = segmentName[1].stripLeading().split("/on", 2);
         if (segmentAmt.length < 2) {
-            throw new EmptyDescException(splitted[0]);
+            throw new EmptyDescException(wordSplit[0]);
         }
         if (!isValidNum(segmentAmt[0].strip())) {
             throw new BadFormatException("expense", "expense", "<AMOUNT> /on <DATE>", "/amount");
@@ -297,7 +297,7 @@ public class Decoder {
      * @return An int.
      */
     public static Expense parseFromFileExpense(String word) {
-        String[] splitted = word.split(",");
-        return new Expense(splitted[0], Integer.parseInt(splitted[1]), LocalDate.parse(splitted[2]));
+        String[] wordSplit = word.split(",");
+        return new Expense(wordSplit[0], Integer.parseInt(wordSplit[1]), LocalDate.parse(wordSplit[2]));
     }
 }

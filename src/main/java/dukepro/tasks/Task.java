@@ -9,7 +9,7 @@ import dukepro.StorableObjects;
  */
 public class Task extends StorableObjects {
     private String name;
-    private boolean finished = false;
+    private boolean isFinished = false;
 
     /**
      * Creates a Task.
@@ -25,7 +25,7 @@ public class Task extends StorableObjects {
      * Marks this task as done.
      */
     public void markAsDone() {
-        finished = true;
+        isFinished = true;
     }
 
     /**
@@ -35,7 +35,7 @@ public class Task extends StorableObjects {
      */
     @Override
     public String toString() {
-        if (finished) {
+        if (isFinished) {
             return "[/] " + this.name;
         } else {
             return "[X] " + this.name;
@@ -48,8 +48,8 @@ public class Task extends StorableObjects {
      *
      * @return A String.
      */
-    public String fileForm() {
-        return this.finished + "," + this.name;
+    public String toFileForm() {
+        return this.isFinished + "," + this.name;
     }
 
     /**

@@ -35,7 +35,7 @@ public class Event extends Task {
      * @return A String.
      */
     @Override
-    public String fileForm() {
-        return "E" + "," + super.fileForm() + "," + this.at;
+    public String toFileForm() {
+        return "E" + "," + super.toFileForm() + "," + this.at;
     }
 }

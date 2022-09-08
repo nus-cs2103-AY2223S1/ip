@@ -15,7 +15,7 @@ public abstract class StorableObjects {
      *
      * @return String.
      */
-    public abstract String fileForm();
+    public abstract String toFileForm();
 
     /**
      * Returns if the name of this object

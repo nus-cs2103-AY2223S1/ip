@@ -1,2 +1,1 @@
-D,false,listen to music ,2022-10-10
-E,true,eat at frens house , bukit something
+D,true,listen to music ,2022-10-10

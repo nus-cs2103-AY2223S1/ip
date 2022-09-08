@@ -11,7 +11,7 @@ import dukepro.StorableObjects;
  */
 public class Manager <T extends StorableObjects> {
     private GeneralStorage<T> storage;
-    private ArrayList<T> storedObjects = new ArrayList<>();
+    private ArrayList<T> storedObjects;
     private String decorator;
 
     /**
@@ -26,6 +26,7 @@ public class Manager <T extends StorableObjects> {
      * @return Manager.
      */
     public Manager(String dir, String pathName, Function<? super String, ? extends T> decoder, String decorator) {
+        storedObjects = new ArrayList<>();
         storage = new GeneralStorage<>(dir, pathName);
         storage.readfile(this, decoder);
         this.decorator = decorator;

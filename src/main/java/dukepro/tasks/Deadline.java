@@ -40,8 +40,8 @@ public class Deadline extends Task {
      * @return A String in specific format.
      */
     @Override
-    public String fileForm() {
-        return "D" + "," + super.fileForm() + "," + this.by;
+    public String toFileForm() {
+        return "D" + "," + super.toFileForm() + "," + this.by;
     }
 
     /**

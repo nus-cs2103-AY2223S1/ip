@@ -1,8 +1,6 @@
-package dukepro.handlers;
+package dukepro.tasks;
 
 import java.util.ArrayList;
-
-import dukepro.tasks.Task;
 
 /**
  * Class for TaskFunction
