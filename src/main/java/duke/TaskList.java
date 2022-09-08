@@ -3,6 +3,7 @@ package duke;
 import task.Task;
 
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 /**
  * The class that contains the task list in the Duke program.
@@ -93,5 +94,29 @@ public class TaskList {
 
     public int size() {
         return TASKS.size();
+    }
+
+    public String filterToString(String keyword) {
+        Predicate<Task> predicate = task -> task.stringify().contains(keyword);
+        StringBuilder output = new StringBuilder();
+        for (Task task:TASKS) {
+            if (predicate.test(task)) {
+                output.append(String.format("%d. ", TASKS.indexOf(task) + 1));
+                output.append(task.toString());
+                output.append("\n");
+            }
+        }
+        return output.toString();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder output = new StringBuilder();
+        for (Task task:TASKS) {
+            output.append(String.format("%d. ", TASKS.indexOf(task) + 1));
+            output.append(task.toString());
+            output.append("\n");
+        }
+        return output.toString();
     }
 }

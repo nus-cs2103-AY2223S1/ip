@@ -14,16 +14,18 @@ public class TodoCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         String sub = str.substring(5).trim();
         if (!sub.isEmpty()) {
+            StringBuilder output = new StringBuilder();
             tasks.addTask(new Todo(str.substring(5)));
             storage.saveLocalData(tasks.getTasks());
-            System.out.println("Got it, I've added this task:");
-            System.out.println(tasks.getTasks().get(tasks.size() - 1));
-            System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+            output.append("Got it, I've added this task:\n");
+            output.append(tasks.getTasks().get(tasks.size() - 1).toString());
+            output.append(String.format("\nNow you have %d tasks in the list.\n", tasks.size()));
+            return output.toString();
         } else {
-            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+            throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
         }
     }
 }

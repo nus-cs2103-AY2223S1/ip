@@ -10,7 +10,11 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        Ui.list(tasks.getTasks());
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        StringBuilder output = new StringBuilder();
+        output.append("Here are your list of tasks!\n");
+        output.append(tasks.toString());
+        output.append(String.format("\nYou have %d tasks in the list.\n", tasks.size()));
+        return output.toString();
     }
 }

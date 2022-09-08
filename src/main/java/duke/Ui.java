@@ -52,8 +52,8 @@ public class Ui {
      * Prints out the goodbye message when the Duke program ends.
      */
 
-    public static void bye() {
-        System.out.println("Sayonara, Adios!");
+    public static String bye() {
+        return "Sayonara, Adios!";
     }
 
     /**
@@ -62,6 +62,14 @@ public class Ui {
 
     public void showError(String e) {
         System.out.println(e);
+    }
+
+    public void print(String str) {
+        System.out.println(str);
+    }
+
+    public String appendMessage(String str1, String str2) {
+        return str1 + "\n" + str2;
     }
 
     /**
