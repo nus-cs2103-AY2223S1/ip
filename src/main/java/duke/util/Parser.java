@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.IntStream;
 
 import duke.command.AddDeadlineCommand;
 import duke.command.AddEventCommand;
@@ -80,8 +81,8 @@ public class Parser {
                         LocalDateTime dateTime = getDate(commandArgument, AT_DATE_DELIMITER);
                         EventTask task = new EventTask(taskTitle, dateTime);
                         newCommand = new AddEventCommand(task);
-                    } catch (DukeMissingTaskTitleException | DukeCommandFormatException |
-                             DukeMissingTaskDateTimeException
+                    } catch (DukeMissingTaskTitleException | DukeCommandFormatException
+                             | DukeMissingTaskDateTimeException
                              | DukeDateTimeFormatException exception) {
                         newCommand = new ErrorCommand(exception.getMessage());
                     }
@@ -161,17 +162,40 @@ public class Parser {
                         UNKNOWN_COMMAND_SUPPLIER
                 );
 
+        private static List<String> instructions = List.of(
+                CommandType.ADD_DEADLINE.toString(),
+                CommandType.ADD_EVENT.toString(),
+                CommandType.ADD_TODO.toString(),
+                CommandType.DELETE.toString(),
+                CommandType.DISPLAY_LIST.toString(),
+                CommandType.EXIT.toString(),
+                CommandType.FIND.toString(),
+                CommandType.MARK_DONE.toString(),
+                CommandType.MARK_UNDONE.toString(),
+                CommandType.UNKNOWN.toString()
+        );
+
         /**
          * Returns a collection of all static command suppliers.
+         *
          * @return all static command suppliers.
          */
         public static List<Function<? super String, ? extends Command>> getSuppliers() {
             return suppliers;
         }
+
+        /**
+         * Returns a collection of all static command instructions.
+         *
+         * @return all static command instructions.
+         */
+        public static List<String> getInstructions() {
+            return instructions;
+        }
     }
 
 
-    private final Map<String, Function<String, Command>> commandMap;
+    private final Map<String, Function<? super String, ? extends Command>> commandMap;
 
     /**
      * Initialises the commandMap that maps command instructions to their corresponding Command supplier/generator.
@@ -179,10 +203,10 @@ public class Parser {
      */
     public Parser() {
         commandMap = new HashMap<>();
-        CommandSupplier
-                .getSuppliers()
-                .stream()
-                .forEach(x -> commandMap.put(x.get));
+        List<Function<? super String, ? extends Command>> suppliers = CommandSupplier.getSuppliers();
+        List<String> instructions = CommandSupplier.getInstructions();
+        IntStream.range(0, instructions.size())
+                .forEach(x -> commandMap.put(instructions.get(x), suppliers.get(x)));
     }
 
     /**
@@ -195,7 +219,8 @@ public class Parser {
         assert (input != null);
         String instruction = getCommandInstruction(input);
         String argument = getCommandArgument(input);
-        Function<String, Command> supplier = commandMap.getOrDefault(instruction, UNKNOWN_COMMAND_SUPPLIER);
+        Function<? super String, ? extends Command> supplier =
+                commandMap.getOrDefault(instruction, commandMap.get(CommandType.UNKNOWN.toString()));
         Command command = supplier.apply(argument);
         assert (command != null);
         return command;
