@@ -67,6 +67,7 @@ public class Ui {
             switch(input[0]) {
             case "mark":
                 // when user wants to mark as done
+                assert input.length == 2:"Unexpected case";
                 int num = Integer.parseInt(input[1]);
                 if (num > items.getSize()) {
                     return "No such task";
@@ -92,6 +93,7 @@ public class Ui {
             case "todo":
                 // when user wants to add todo task
                 Task t1 = new Todo(input[1]);
+                assert !t1.getDescription().equals(""):"Description cannot be empty";
                 output = items.addTask(t1);
                 break;
 

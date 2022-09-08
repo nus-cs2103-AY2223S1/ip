@@ -13,7 +13,7 @@ public class Parser {
         String[] words = phrases[0].split(" ", 2);
 
         if (words[0].equals("todo")) {
-            if (words.length != 2) {
+            if (words.length != 2 || words[1].equals("")) {
                 throw new DukeException("The description of a todo cannot be empty.");
             }
             return words;
@@ -41,7 +41,7 @@ public class Parser {
             return words;
 
         } else if (words[0].equals("mark") || words[0].equals("unmark") || words[0].equals("delete")) {
-            if (words.length != 2) {
+            if (words.length != 2 || words[1].equals("")) {
                 throw new DukeException("Please put in index");
             }
             return words;
