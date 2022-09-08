@@ -3,6 +3,7 @@ package duke.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
+import java.util.Optional;
 
 import duke.DukeException;
 
@@ -18,7 +19,7 @@ public class Deadline extends Task {
      * Constructs a new Deadline task.
      *
      * @param description description of the task
-     * @param by          the deadline of the task.
+     * @param by the deadline of the task.
      */
     public Deadline(String description, LocalDateTime by) {
         super(description);
@@ -29,7 +30,7 @@ public class Deadline extends Task {
      * Creates a Deadline task from an encoded string.
      *
      * @param encodedInput the encoded entry with format deadline|description.
-     * @param completed    the completion status of the Deadline task.
+     * @param completed the completion status of the Deadline task.
      * @return the Deadline task
      */
     public static Deadline decode(String encodedInput, boolean completed) throws DukeException {
@@ -38,6 +39,22 @@ public class Deadline extends Task {
         Deadline deadline = new Deadline(entries[1], datetime);
         deadline.setDone(completed);
         return deadline;
+    }
+
+    /**
+     * Creates an Optional Deadline task from an encoded string, returning an empty Optional if
+     * the task cannot be created.
+     *
+     * @param encodedInput the encoded entry with format deadline|description.
+     * @param completed the completion status of the Deadline task.
+     * @return the Optional Deadline task
+     */
+    public static Optional<Deadline> tryDecode(String encodedInput, boolean completed) {
+        try {
+            return Optional.of(Deadline.decode(encodedInput, completed));
+        } catch (DukeException e) {
+            return Optional.empty();
+        }
     }
 
     @Override

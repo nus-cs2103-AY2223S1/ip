@@ -30,6 +30,7 @@ public class Parser {
     public static String getNumberRegex(String name) {
         return "(?<" + name + ">\\d+)";
     }
+
     public static String getTextRegex(String name) {
         return "(?<" + name + ">[^/]+)";
     }
@@ -113,11 +114,13 @@ public class Parser {
     }
 
     private static Command processDeadline(String inputString) {
-        final Matcher matcher = Pattern.compile(combineRegexes(getTextRegex("description"),
+        final Matcher matcher = Pattern.compile(
+                combineRegexes(
+                        getTextRegex("description"),
                         "/by",
-                        getDateTimeRegex("datetime")))
-                .matcher(inputString.strip());
-        if (!matcher.matches() || !Parser.isValidDateTime(matcher.group("datetime"))) {
+                        getDateTimeRegex("datetime"))).matcher(inputString.strip());
+        boolean validDateTime = matcher.matches() && isValidDateTime(matcher.group("datetime"));
+        if (!validDateTime) {
             return new InvalidCommand("Invalid deadline format");
         }
         assert matcher.group("description") != null && matcher.group("datetime") != null;

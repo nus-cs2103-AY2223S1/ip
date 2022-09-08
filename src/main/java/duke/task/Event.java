@@ -22,9 +22,9 @@ public class Event extends Task {
     /**
      * Creates an Event task from an encoded string.
      *
-     * @param encodedInput the encoded entry with format eventTime|description
-     * @param completed the completion status of the Event task
-     * @return the Event task
+     * @param encodedInput the encoded entry with format eventTime|description.
+     * @param completed the completion status of the Event task.
+     * @return the Event task.
      */
     public static Event decode(String encodedInput, boolean completed) {
         String[] entries = encodedInput.split("\\|", 2);

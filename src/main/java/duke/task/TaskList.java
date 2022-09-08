@@ -28,7 +28,7 @@ public class TaskList extends ArrayList<Task> {
     public TaskList(Storage storage) {
         super(100);
         if (storage != null) {
-            this.addAll(storage.loadTasks().orElse(new ArrayList<>()));
+            this.addAll(storage.loadTasks().orElse(new TaskList()));
         }
         this.storage = storage;
     }
@@ -66,6 +66,22 @@ public class TaskList extends ArrayList<Task> {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Adds task to list, fails silently on error.
+     *
+     * @param task Task to be added
+     */
+    public void tryAddTask(Task task) {
+        if (task == null) {
+            return;
+        }
+        try {
+            addTask(task);
+        } catch (DukeException e) {
+            // ignore
+        }
     }
 
     /**

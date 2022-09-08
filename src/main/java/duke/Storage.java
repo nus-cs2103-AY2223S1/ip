@@ -16,6 +16,7 @@ import java.util.Optional;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
+import duke.task.TaskList;
 import duke.task.ToDo;
 
 /**
@@ -52,7 +53,7 @@ public class Storage {
         this.fileName = fileName;
     }
 
-    public Optional<ArrayList<Task>> loadTasks() {
+    public Optional<TaskList> loadTasks() {
         return loadTasks(this.fileName);
     }
 
@@ -62,9 +63,9 @@ public class Storage {
      * @param fileName Name of the file.
      * @return optional array list of tasks if no errors are found.
      */
-    public Optional<ArrayList<Task>> loadTasks(String fileName) {
+    public Optional<TaskList> loadTasks(String fileName) {
         this.fileName = fileName;
-        ArrayList<Task> tasks = new ArrayList<>();
+        TaskList tasks = new TaskList();
 
         File file = new File(tasksFolderPath.concat(File.separator + fileName));
         if (!file.exists()) {
@@ -79,17 +80,13 @@ public class Storage {
                 boolean isCompleted = entries[1].equals("1");
                 switch (type) {
                 case DEADLINE:
-                    try {
-                        tasks.add(Deadline.decode(entries[2], isCompleted));
-                        break;
-                    } catch (DukeException e) {
-                        break;
-                    }
+                    tasks.tryAddTask(Deadline.tryDecode(entries[2], isCompleted).orElse(null));
+                    break;
                 case EVENT:
-                    tasks.add(Event.decode(entries[2], isCompleted));
+                    tasks.tryAddTask(Event.decode(entries[2], isCompleted));
                     break;
                 case TODO:
-                    tasks.add(ToDo.decode(entries[2], isCompleted));
+                    tasks.tryAddTask(ToDo.decode(entries[2], isCompleted));
                     break;
                 default:
                     break;
