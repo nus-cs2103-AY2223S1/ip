@@ -32,6 +32,7 @@ public class AddCommand extends Command {
         taskList.add(createdTask);
         storage.writeToFile(taskList);
         String response = Ui.add(createdTask);
+        assert response != null : "response should not be null";
         return response;
     }
 }

@@ -18,6 +18,7 @@ public class ListCommand extends Command {
     @Override
     public String execute(TaskList taskList, Storage storage) {
         String response = Ui.list(taskList);
+        assert response != null : "response should not be null";
         return response;
     }
 }
