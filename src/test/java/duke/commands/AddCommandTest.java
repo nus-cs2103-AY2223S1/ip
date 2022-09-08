@@ -2,14 +2,13 @@ package duke.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Collections;
+import java.util.HashSet;
+
 import org.junit.jupiter.api.Test;
 
 import duke.exception.DukeException;
 import duke.task.ToDo;
-
-import java.util.Collections;
-import java.util.HashSet;
-
 
 public class AddCommandTest {
 
