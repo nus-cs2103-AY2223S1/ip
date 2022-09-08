@@ -31,7 +31,7 @@ public class TaskList {
      *
      *  @param toAdd Task to add
      */
-    public void silentAdd(Task toAdd) {
+    public void addSilently(Task toAdd) {
         itemList.add(toAdd);
     }
 
@@ -91,24 +91,13 @@ public class TaskList {
     }
 
     /**
-     * Marks the task as done.
+     * Edits the mark status of the task item.
      *
      * @param index Index of task to be marked
      */
-    public String markTask(int index) {
+    public String editMarkStatus(int index, boolean bool) {
         Task marked = itemList.get(index);
-        marked.setStatusIcon(true);
-        return marked.updateStatus();
-    }
-
-    /**
-     * Marks the task as not done.
-     *
-     * @param index Index of task to be marked
-     */
-    public String unmarkTask(int index) {
-        Task marked = itemList.get(index);
-        marked.setStatusIcon(false);
+        marked.setStatusIcon(bool);
         return marked.updateStatus();
     }
 
@@ -131,7 +120,7 @@ public class TaskList {
 
         for (int i = 0; i < itemList.size(); i++) {
             if (itemList.get(i).getDescription().contains(keyword)) {
-                matchingTasks.silentAdd(itemList.get(i));
+                matchingTasks.addSilently(itemList.get(i));
             }
         }
 

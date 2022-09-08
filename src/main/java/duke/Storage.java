@@ -79,24 +79,25 @@ public class Storage {
         String[] details = taskItem.split("[|]");
         Task toAdd = new ToDo("");
         switch (details[0]) {
-            case "T":
-                toAdd = new ToDo(details[2]);
-                break;
-            case "D":
-                toAdd = new Deadline(details[2], details[3], details[4]);
-                break;
-            case "E":
-                toAdd = new Event(details[2], details[3], details[4], details[5]);
-                break;
+        case "T":
+            toAdd = new ToDo(details[2]);
+            break;
+        case "D":
+            toAdd = new Deadline(details[2], details[3], details[4]);
+            break;
+        case "E":
+            toAdd = new Event(details[2], details[3], details[4], details[5]);
+            break;
         }
 
         switch (details[1]) {
-            case "0":
-                toAdd.setStatusIcon(false);
-                break;
-            case "1":
-                toAdd.setStatusIcon(true);
+        case "0":
+            toAdd.setStatusIcon(false);
+            break;
+        case "1":
+            toAdd.setStatusIcon(true);
         }
+
         itemList.add(toAdd);
     }
 

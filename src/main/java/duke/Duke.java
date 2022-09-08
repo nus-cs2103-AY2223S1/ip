@@ -33,7 +33,11 @@ public class Duke {
     }
 
     public String getResponse(String userInput) {
-        return ui.getOneInput(userInput);
+        try {
+            return ui.getOneInput(userInput);
+        } catch (DukeException e) {
+            return e.getMessage();
+        }
     }
 
     public static void main(String[] args) {
