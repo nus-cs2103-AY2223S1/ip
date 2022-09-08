@@ -38,7 +38,7 @@ public class TaskList {
      * @param taskToRemoveIndex Index of the Task to be removed.
      */
     public void removeTask(int taskToRemoveIndex) {
-        taskArray.remove(taskToRemoveIndex);
+        taskArray.remove(taskToRemoveIndex - 1);
     }
 
     /**
@@ -63,6 +63,7 @@ public class TaskList {
      * Find matching tasks based off the keyword.
      *
      * @param keywords Keyword used to find task.
+     * @param tasks TaskList containing the tasks.
      * @return ArrayList consisting of tasks matching the keyword.
      */
     public ArrayList<Task> findTasks(String[] keywords, TaskList tasks) {

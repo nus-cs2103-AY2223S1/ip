@@ -2,6 +2,7 @@ package duke.main;
 
 import duke.DukeException;
 import duke.task.Task;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -46,7 +47,7 @@ public class Ui {
         printLine();
         int count = 1;
         String msg = "Here are the tasks in your list:\n";
-        for(Task t : tasks.getTasks()) {
+        for (Task t : tasks.getTasks()) {
             msg += count++ + "." + t.toString() + "\n";
         }
         msg += "Now you have " + (count - 1) + " tasks in the list.";
@@ -63,7 +64,7 @@ public class Ui {
      */
     public String printMarkDone(Task taskToMark) {
         String msg = "Nice! I've marked this task as done:\n" +
-                      taskToMark.toString();
+                taskToMark.toString();
         printLine();
         System.out.println(msg);
         printLine();
@@ -77,8 +78,8 @@ public class Ui {
      * @return A String containing the message.
      */
     public String printMarkNotDone(Task taskToUnmark) {
-        String msg = "Nice! I've marked this task as not done yet:\n" +
-                taskToUnmark.toString();
+        String msg = "Nice! I've marked this task as not done yet:\n"
+                + taskToUnmark.toString();
         printLine();
         System.out.println(msg);
         printLine();
@@ -111,7 +112,6 @@ public class Ui {
         return "OOPS!!!" + ie.getMessage();
     }
 
-
     /**
      * Print the number of tasks message.
      *
@@ -132,9 +132,9 @@ public class Ui {
      * @return A String containing the message.
      */
     public String printAdd(Task taskToAdd, TaskList taskList) {
-        String msg = "Got it. I've added this task:\n" +
-                     taskToAdd.toString() + "\n" +
-                     printNumTasks(taskList);
+        String msg = "Got it. I've added this task:\n"
+                + taskToAdd.toString() + "\n"
+                + printNumTasks(taskList);
         printLine();
         System.out.println(msg);
         printLine();
@@ -149,20 +149,14 @@ public class Ui {
      * @return A String containing the message.
      */
     public String printDelete(int index, TaskList taskList) {
+        int count = taskList.getCount() - 1;
         printLine();
-        String msg = "Noted. I've removed this task:\n" +
-                      taskList.getTasks().get(index - 1).toString() + "\n" +
-                      "Now you have " + (taskList.getCount() - 1) + " tasks in the list.";
+        String msg = "Noted. I've removed this task:\n"
+                + taskList.getTasks().get(index - 1).toString() + "\n"
+                + "Now you have " + count + " tasks in the list.";
         System.out.println(msg);
         printLine();
         return msg;
-    }
-
-    /**
-     * Print a line.
-     */
-    public void printLine() {
-        System.out.println("____________________________________________________________");
     }
 
     /**
@@ -173,13 +167,20 @@ public class Ui {
      */
     public String printSomeTasks(ArrayList<Task> tasks) {
         printLine();
-        int count = 1;
+        int count = 0;
         String msg = "Here are the tasks in your list:\n";
-        for(Task t : tasks) {
+        for (Task t : tasks) {
             msg += count++ + "." + t.toString() + "\n";
         }
-        msg += "Now you have " + (count - 1) + " tasks in the list.";
+        msg += "Now you have " + (count) + " tasks in the list.";
         printLine();
         return msg;
+    }
+
+    /**
+     * Print a line.
+     */
+    public void printLine() {
+        System.out.println("____________________________________________________________");
     }
 }

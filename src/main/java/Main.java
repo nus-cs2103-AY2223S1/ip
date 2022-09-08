@@ -11,7 +11,8 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Duke duke = new Duke();
+    private final Duke duke = new Duke(FILE_PATH);
+    private static final String FILE_PATH = "data/tasks.txt";
 
     @Override
     public void start(Stage stage) {
@@ -20,7 +21,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setDuke(new Duke("data/tasks.txt"));
+            fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.setTitle("Duke Chatbot");
             stage.show();
         } catch (IOException e) {

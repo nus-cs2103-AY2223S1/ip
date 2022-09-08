@@ -29,7 +29,7 @@ public class Storage {
      * @throws IOException When error occur creating file
      */
     public Storage(String filePath) throws DukeException, IOException {
-        String [] path = filePath.split("/");
+        String[] path = filePath.split("/");
         File directory = new File(path[0]);
         // Check if directory exists
         if (!directory.exists()) {
@@ -64,35 +64,38 @@ public class Storage {
         while (scanner.hasNext()) {
             String cur = scanner.nextLine();
             String[] inputs = cur.split(" ", 3);
+            Boolean isDone;
+            isDone = inputs[1].equals("1");
             switch (inputs[0]) {
-                case "T": {
-                    Task newTask = new Todo(inputs[2], (inputs[1].equals("1")));
-                    tasksArray.add(newTask);
-                    break;
-                }
-                case "E": {
-                    String[] splits = inputs[2].split("/ ", 2);
-                    Task newTask = new Event(splits[0], LocalDate.parse(splits[1]), inputs[1].equals("1"));
-                    tasksArray.add(newTask);
-                    break;
-                }
-                case "D": {
-                    String[] splits = inputs[2].split("/ ", 2);
-                    Task newTask = new Deadline(splits[0], LocalDate.parse(splits[1]), inputs[1].equals("1"));
-                    tasksArray.add(newTask);
-                    break;
-                }
-                default: {
-                    throw new DukeException("Encountered error retrieving data from save file.");
-                }
+            case "T": {
+                Task newTask = new Todo(inputs[2], isDone);
+                tasksArray.add(newTask);
+                break;
+            }
+            case "E": {
+                String[] splits = inputs[2].split("/ ", 2);
+                Task newTask = new Event(splits[0], LocalDate.parse(splits[1]), isDone);
+                tasksArray.add(newTask);
+                break;
+            }
+            case "D": {
+                String[] splits = inputs[2].split("/ ", 2);
+                Task newTask = new Deadline(splits[0], LocalDate.parse(splits[1]), isDone);
+                tasksArray.add(newTask);
+                break;
+            }
+            default: {
+                throw new DukeException("Encountered error retrieving data from save file.");
+            }
             }
         }
-        assert !tasksArray.isEmpty() : "The task array should not be empty";
+//        assert !tasksArray.isEmpty() : "The task array should not be empty";
         return tasksArray;
     }
 
     /**
      * Store Tasks in taskArray in String format.
+     *
      * @param tasksArray ArrayList of tasks.
      * @return A String that represents the existing tasks.
      */
@@ -110,9 +113,18 @@ public class Storage {
                 text.append(toAppend);
             }
         }
+        if (!tasksArray.isEmpty()) {
+            assert text.length() != 0 : "There are tasks but they are not getting converted to String for storing";
+        }
         return text.toString();
     }
 
+    /**
+     * Convert Todo task to String format for storing in save file.
+     *
+     * @param todo The Todo task to convert into String.
+     * @return String format with the details of the Todo.
+     */
     public String convertTodo(Todo todo) {
         String str = "";
         str += "T ";
@@ -121,6 +133,12 @@ public class Storage {
         return str;
     }
 
+    /**
+     * Convert Deadline task to String format for storing in save file.
+     *
+     * @param deadline The Deadline task to convert into String.
+     * @return String format with the details of the Deadline.
+     */
     public String convertDeadline(Deadline deadline) {
         String str = "";
         str += "D ";
@@ -130,6 +148,12 @@ public class Storage {
         return str;
     }
 
+    /**
+     * Convert Event task to String format for storing in save file.
+     *
+     * @param event The Event task to convert into String.
+     * @return String format with the details of the Event.
+     */
     public String convertEvent(Event event) {
         String str = "";
         str += "E ";
@@ -141,6 +165,7 @@ public class Storage {
 
     /**
      * Updates the saveFile with the current duke.main.TaskList.
+     *
      * @param taskList The existing tasks.
      * @throws IOException If error encountered with FileWriter.
      */

@@ -5,6 +5,7 @@ import duke.main.Storage;
 import duke.main.TaskList;
 import duke.main.Ui;
 import duke.task.Task;
+
 import java.io.IOException;
 
 /**
@@ -15,6 +16,7 @@ public class AddCommand extends Command {
 
     /**
      * Constructor that populate the taskToAdd field
+     *
      * @param taskToAdd duke.task.Task to be added.
      */
     public AddCommand(Task taskToAdd) {
