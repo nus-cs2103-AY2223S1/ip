@@ -1,5 +1,4 @@
 package duke.events;
-
 import java.io.Serializable;
 public class Task implements Serializable {
     protected String description;
