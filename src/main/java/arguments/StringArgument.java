@@ -6,7 +6,7 @@ import input.Input;
 /**
  * Argument for a string that should be non-empty - enables re-use for any such argument
  */
-public abstract class StringArgument extends Argument<String> {
+public class StringArgument extends Argument<String> {
     private String emptyMessage;
     private String missingMessage;
 
@@ -33,6 +33,16 @@ public abstract class StringArgument extends Argument<String> {
         super(argumentName);
         this.emptyMessage = emptyMessage;
         this.missingMessage = missingMessage;
+    }
+
+    @Override
+    public String getShortDescription() {
+        return null;
+    }
+
+    @Override
+    public String getUsage() {
+        return null;
     }
 
     @Override

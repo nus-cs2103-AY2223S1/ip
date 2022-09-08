@@ -25,6 +25,9 @@ public class DatetimeArgument extends CompulsoryArgument<LocalDateTime> {
                 ARG_NAME));
     }
 
+    /**
+     * Constructs DatetimeArgument without Input
+     */
     public DatetimeArgument() {
         super(ARG_NAME, String.format("This command needs a datetime argument! e.g /%s 26-08-2022 0900",
                 ARG_NAME));

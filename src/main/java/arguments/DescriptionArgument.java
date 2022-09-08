@@ -15,6 +15,9 @@ public class DescriptionArgument extends StringArgument {
                 "This command needs a non-empty description.");
     }
 
+    /**
+     * Creates a DescriptionArgument without input
+     */
     public DescriptionArgument() {
         super("d", "The description should not be empty!",
                 "This command needs a non-empty description.");

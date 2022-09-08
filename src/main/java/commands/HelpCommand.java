@@ -1,11 +1,12 @@
 package commands;
 
+import java.util.Map;
+import java.util.StringJoiner;
+
 import exceptions.DukeException;
 import input.Input;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.StringJoiner;
+
 
 /**
  * Command to see help message for all or specific command
