@@ -5,6 +5,8 @@ import exceptions.EmptyNameException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import static duke.Tag.getTasksString;
+
 /**
  * Represents the state of the tasklist in the program.
  * Contains methods that handles the logic for adding, deleting and modifying tasks.
@@ -117,18 +119,7 @@ public class TaskList {
      * Displays all tasks in the command line
      */
     public String displayAllTasks() {
-        if(taskList.size() == 0 ) {
-            return "You do not have any tasks currently";
-        }
-
-        StringBuilder ret = new StringBuilder();
-            ret.append("Here are the tasks in your list: \n");
-        for (int i = 1; i <= taskList.size(); i++) {
-            Task task = taskList.get(i - 1);
-            ret.append(i).append(". ").append(task).append("\n");
-        }
-
-        return ret.toString();
+        return getTasksString(taskList);
     }
 
     /**
@@ -192,5 +183,36 @@ public class TaskList {
         return ret.toString();
 
     }
+
+
+    public String setTag(String taskName, Tag tag){
+        for (Task task : taskList) {
+            if (task.getTaskName().contains(taskName)) {
+                task.addTag(tag);
+            }
+        }
+        return "Tags have been added";
+
+    }
+
+    public boolean checkTaskExist(String name){
+        for(Task task: taskList){
+            if (name.equals(task.getTaskName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public Task getTaskByName(String name){
+        for(Task task: taskList){
+            if (name.equals(task.getTaskName())) {
+                return task;
+            }
+        }
+        return null;
+    }
+
 
 }

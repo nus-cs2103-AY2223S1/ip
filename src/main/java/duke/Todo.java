@@ -24,6 +24,6 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        return tag + "[" + this.getStatusIcon() + "] " + this.getTaskName();
+        return tag + "[" + this.getStatusIcon() + "] " + this.getTaskName() + " " + this.getTagString();
     }
 }

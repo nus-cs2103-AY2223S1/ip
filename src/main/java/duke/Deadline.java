@@ -28,7 +28,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        String tag = "[D]";
-        return tag + "[" + this.getStatusIcon() + "] " + this.getTaskName() + "(" + Parser.convertDateToString(date) + ")";
+        String type = "[D]";
+        return type + "[" + this.getStatusIcon() + "] " + this.getTaskName() + "(" + Parser.convertDateToString(date) + ") " + this.getTagString();
     }
 }
