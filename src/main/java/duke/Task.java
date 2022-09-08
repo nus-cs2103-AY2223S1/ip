@@ -1,5 +1,8 @@
 package duke;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents the job to be done, and whether it is done
  *
@@ -10,6 +13,7 @@ package duke;
 public class Task {
     protected String action;
     protected boolean isDone;
+    protected List<String> tags; // for C-Tagging
 
     /**
      * Constructor for Task
@@ -18,6 +22,7 @@ public class Task {
     public Task(String action) {
         this.action = action;
         this.isDone = false;
+        this.tags = new ArrayList<>();
     }
 
     /**
@@ -33,6 +38,25 @@ public class Task {
     public void unmarkIsDone() {
         this.isDone = false;
     }
+
+    /**
+     * Take in tag to be reflected and saves into the list of current tags
+     * @param tag input tag
+     */
+    public void addTag(String tag) {
+        this.tags.add(tag);
+    }
+
+    /*
+    public void removeTag(String tag) {
+        boolean isRemoved = false;
+        for (String insideTag : this.tags) {
+            if (insideTag.equals(tag)) {
+                this.tags.remove(tag);
+                isRemoved = true;
+            }
+        }
+    }*/
 
     /**
      * Getter to get the action description
@@ -51,12 +75,24 @@ public class Task {
     }
 
     /**
+     * Returns the list of tags
+     * @return list of tags
+     */
+    public List<String> getTags() {
+        return this.tags;
+    }
+
+    /**
      * Returns the generic description of a task
-     * @return [marked?] description
+     * @return [marked?] description + all its tags
      */
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "] " + this.action;
+        StringBuilder str = new StringBuilder("[" + this.getStatusIcon() + "] " + this.action);
+        for (String insideTag : this.tags) {
+            str.append(" #").append(insideTag);
+        }
+        return str.toString();
     }
 
 }

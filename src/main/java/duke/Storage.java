@@ -61,6 +61,12 @@ public class Storage {
                     int deleteIdx = Integer.parseInt(input.substring(7)) - 1;
                     ls.remove(deleteIdx);
                     break;
+                case "TAG":
+                    String[] inputs = input.split(" ");
+                    int taskIdx = Integer.parseInt(inputs[1]) - 1;
+                    String tag = inputs[2];
+                    ls.get(taskIdx).addTag(tag);
+                    break;
                 default:
                     System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }

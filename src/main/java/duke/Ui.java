@@ -61,6 +61,10 @@ public class Ui {
         return "OK, I've marked this task as not done yet:\n" + task;
     }
 
+    public String printAddedTag(Task task) {
+        return "Nice! I've tagged the task as per your request:\n" + task;
+    }
+
     /**
      * Informs user of the added task description and size of current TaskList
      * @param task description of added task

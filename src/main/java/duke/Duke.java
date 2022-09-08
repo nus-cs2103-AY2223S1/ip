@@ -137,7 +137,8 @@ public class Duke extends Application {
         try {
             String commandType = Parser.getCommandType(fullCommand);
             output = Parser.process(fullCommand, commandType, tasks, ui);
-            if (!fullCommand.equals("bye")) { // i.e. when not saying bye to Duke
+            // no need save when saying bye to Duke or listing
+            if (!fullCommand.equals("bye") && !fullCommand.equals("list")) {
                 storage.saveToFile(fullCommand);
             }
         } catch (IllegalArgumentException iae) {

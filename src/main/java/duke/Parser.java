@@ -36,6 +36,8 @@ public class Parser {
             return "FIND";
         } else if (input.equals("bye")) {
             return "BYE";
+        } else if (input.startsWith("tag ")) {
+            return "TAG";
         } else { // to handle unknown inputs, e.g. 'blah', 'todo'
             throw new IllegalArgumentException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
@@ -99,6 +101,13 @@ public class Parser {
         case "BYE":
             System.exit(0);
             return null;
+            // Fallthrough
+        case "TAG":
+            String[] inputs = command.split(" ");
+            int taskIdx = Integer.parseInt(inputs[1]) - 1;
+            String tag = inputs[2];
+            tasks.getTask(taskIdx).addTag(tag);
+            return ui.printAddedTag(tasks.getTask(taskIdx));
             // Fallthrough
         default:
             throw new IllegalArgumentException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
