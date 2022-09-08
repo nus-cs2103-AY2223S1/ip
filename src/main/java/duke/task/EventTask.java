@@ -70,7 +70,7 @@ public class EventTask extends Task {
             wordHour = "0" + wordHour;
         }
         if (hasTime) {
-            return String.format("[E][%d] %s | %s %s %d %s%s ", completed, getTaskDescription(),
+            return String.format("[E][%d] %s | %s %s %d %s%s", completed, getTaskDescription(),
                     wordDay, wordMonth, datetime.getYear(),
                     wordHour, wordMinute);
         } else {

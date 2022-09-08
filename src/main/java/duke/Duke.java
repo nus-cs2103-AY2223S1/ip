@@ -55,7 +55,11 @@ public class Duke {
         }
     }
 
-    public Duke() {}
+    public Duke() {
+        ui = new Ui();
+        storage = new Storage("data/Duke.txt");
+        tasks = new TaskList();
+    }
 
     /**
      * You should have your own function to generate a response to user input.

@@ -41,6 +41,9 @@ public class TaskList {
      * @return A line by line string representation of every task in the list.
      */
     public String list() {
+        if (taskList.size() == 0) {
+            return "No tasks yet";
+        }
         StringBuilder listOfTasks = new StringBuilder();
         for (Task task : taskList) {
             listOfTasks.append(task);
@@ -49,6 +52,14 @@ public class TaskList {
         int last = listOfTasks.lastIndexOf("\n");
         listOfTasks.deleteCharAt(last);
         return listOfTasks.toString();
+    }
+
+    public Task getTask(int taskNum) throws IndexOutOfBoundsException {
+        try {
+            return taskList.get(taskNum - 1);
+        } catch (IndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException("No such task!");
+        }
     }
 
     /**
