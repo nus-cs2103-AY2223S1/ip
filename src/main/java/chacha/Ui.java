@@ -7,6 +7,7 @@ import chacha.tasks.Task;
  * Handles all user interaction.
  */
 public class Ui {
+    private String response = "";
   
     /** 
      * Takes in user typed input as a string.
@@ -37,12 +38,14 @@ public class Ui {
      * @param taskList Task list to print tasks from.
      */
     public void printList(TaskList taskList) {
+        String res = "";    
         for (int i = 0; i < taskList.getSize();i++) {
             Task t = taskList.get(i);	      
-            System.out.println(i + 1 + 
+            res = res + i + 1 + 
                 "." + 
-                t.toString()); 		
-        }   
+                t.toString() + "\n"; 		
+        } 
+        response = res;  
     }
 
     /** 
@@ -52,9 +55,8 @@ public class Ui {
      * @param taskList Task list to add given task to.
      */
     public void printAdd(Task task, TaskList taskList) {
-        System.out.println("Got it. I've added this task:");
-            System.out.println(task.toString()); 
-            System.out.println("Now you have " + taskList.getSize() + " tasks in the list.");
+        response = "Got it. I've added this task:\n" + task.toString() + 
+        "\nNow you have " + taskList.getSize() + " tasks in the list.";
     }
 
     /** 
@@ -64,9 +66,8 @@ public class Ui {
      * @param size Number of remaining tasks in task list.
      */
     public void printDelete(Task task, int size) {
-        System.out.println("Noted. I've removed this task:");
-        System.out.println(task.toString());
-        System.out.println("Now you have " + size + " tasks in the list.");
+        response = "Noted. I've removed this task:\n" + task.toString() + 
+        "\nNow you have " + size + " tasks in the list.";
     }
     
     /** 
@@ -75,7 +76,7 @@ public class Ui {
      * @param task Task to be marked.
      */
     public void printMark(Task task) {
-        System.out.println("Nice! I've marked this task as done:\n" + task.toString());
+        response = "Nice! I've marked this task as done:\n" + task.toString();
     }
 
     
@@ -85,7 +86,7 @@ public class Ui {
      * @param task Task to be unmarked.
      */
     public void printUnmark(Task task) {
-        System.out.println("Nice! I've marked this task as not done yet:\n" + task.toString());
+        response = "Nice! I've marked this task as not done yet:\n" + task.toString();
     }
 
     /**
@@ -95,15 +96,16 @@ public class Ui {
      */
     public void printFind(TaskList taskList) {
         if (taskList.getSize() == 0) {
-            System.out.println("There are no matching tasks in your list.");
+            response = "There are no matching tasks in your list.";
         } else {
-            System.out.println("Here are the matching tasks in your list:");
+            String res = "";    
             for (int i = 0; i < taskList.getSize();i++) {
                 Task t = taskList.get(i);	      
-                System.out.println(i + 1 + 
+                res = res + i + 1 + 
                     "." + 
-                    t.toString()); 		
+                    t.toString() + "\n"; 		
             } 
+        response = "Here are the matching tasks in your list:\n" + res; 
         }
     } 
 
@@ -113,7 +115,11 @@ public class Ui {
      * @param message Custom error message to be printed.
      */
     public void printError(String message) {
-            System.out.println("Chacha error: " + message);
+            response = "Chacha error: " + message;
+    }
+
+    public String buildResponse() {
+        return response;
     }
     
 }

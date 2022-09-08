@@ -33,7 +33,7 @@ public class Chacha {
     }
     
     /** 
-     * Main class to initialise Chacha.
+     * Main method to initialise Chacha.
      * 
      * @param args Command line arguments.
      */
@@ -63,5 +63,21 @@ public class Chacha {
             System.out.println("Unable to save file");
         }
         System.out.println("Bye. Hope to see you again soon!");
+    }
+
+    /**
+     * Returns reponse.
+     *
+     * @param input User input.
+     * @return Response as a string.
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            c.execute(taskList, ui, storage);
+        } catch (ChachaException e) {
+            ui.printError(e.getMessage());
+        }
+        return ui.buildResponse();
     }
 }
