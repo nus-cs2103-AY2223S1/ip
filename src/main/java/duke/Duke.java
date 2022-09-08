@@ -57,51 +57,31 @@ public class Duke {
             String[] parsed = Parser.parseInput(s);
 
             if (parsed[0].equals("bye")) {
-                exit();
-                return ui.printFarewell();
+                return getByeResponse();
 
             } else if (parsed[0].equals("list")) {
-                return ui.printList(tList);
+                return getListResponse();
 
             } else if (parsed[0].equals("mark")) {
-                int a = Integer.parseInt(parsed[1]) - 1;
-                tList.getTask(a).markDone();
+                return getMarkResponse(parseInteger(parsed[1]));
 
-                return ui.printMarkTaskDone(tList.getTask(a));
-
-            } else if (parsed[0].equals("unmarked")) {
-                int a = Integer.parseInt(parsed[1]) - 1;
-                tList.getTask(a).markUndone();
-
-                return ui.printMarkTestUndone(tList.getTask(a));
+            } else if (parsed[0].equals("unmark")) {
+                return getUnmarkResponse(parseInteger(parsed[1]));
 
             } else if (parsed[0].equals("delete")) {
-                int a = Integer.parseInt(parsed[1]) - 1;
-
-                Task temp = tList.getTask(a);
-                tList.removeTask(a);
-                return ui.printDelete(temp, tList);
+                return getDeleteResponse(parseInteger(parsed[1]));
 
             } else if (parsed[0].equals("find")) {
-                ArrayList<Task> temp;
-                temp = tList.find(parsed[1]);
-                return ui.printFind(temp);
+                return getFindResponse(parsed[1]);
 
             } else if (parsed[0].equals("todo")) {
-                Todo a = new Todo(parsed[1]);
-                tList.addTask(a);
-                return ui.printTaskAdded(a, tList);
-
+                return getTodoResponse(parsed[1]);
 
             } else if (parsed[0].equals("deadline")) {
-                Deadline d = new Deadline(parsed[1], parsed[2]);
-                tList.addTask(d);
-                return ui.printTaskAdded(d, tList);
+                return getDeadlineResponse(parsed[1], parsed[2]);
 
             } else if (s.indexOf("event") == 0) {
-                Event e = new Event(parsed[1], parsed[2]);
-                tList.addTask(e);
-                return ui.printTaskAdded(e, tList);
+                return getEventResponse(parsed[1], parsed[2]);
 
             } else {
                 throw new InvalidTaskException("No valid task descriptor");
@@ -118,6 +98,60 @@ public class Duke {
             storage.saveFile(this.tList);
         }
 
+    }
+
+    private int parseInteger(String s) {
+        return Integer.parseInt(s) - 1;
+    }
+
+    private String getByeResponse() {
+        exit();
+        return ui.printFarewell();
+    }
+
+    private String getListResponse() {
+        return ui.printList(tList);
+    }
+
+    private String getMarkResponse(int index) {
+        tList.getTask(index).markDone();
+        return ui.printMarkTaskDone(tList.getTask(index));
+    }
+
+    private String getUnmarkResponse(int index) {
+        tList.getTask(index).markUndone();
+        return ui.printMarkTestUndone(tList.getTask(index));
+    }
+
+    private String getDeleteResponse(int index) {
+        Task temp = tList.getTask(index);
+        tList.removeTask(index);
+        return ui.printDelete(temp, tList);
+
+    }
+
+    private String getFindResponse(String target) {
+        ArrayList<Task> temp;
+        temp = tList.find(target);
+        return ui.printFind(temp);
+    }
+
+    private String getTodoResponse(String description) {
+        Todo a = new Todo(description);
+        tList.addTask(a);
+        return ui.printTaskAdded(a, tList);
+    }
+
+    private String getDeadlineResponse(String description, String by) {
+        Deadline d = new Deadline(description, by);
+        tList.addTask(d);
+        return ui.printTaskAdded(d, tList);
+    }
+
+    private String getEventResponse(String description, String at) {
+        Event e = new Event(description, at);
+        tList.addTask(e);
+        return ui.printTaskAdded(e, tList);
     }
 
 }
