@@ -47,15 +47,15 @@ public class Ui {
      * @return A list of all the commands in detail.
      */
     public static String showDetailedGuide() {
-        String detailedCommandsMessage = "*****A comprehensive guide to CaCa*****\n"
-                + "* help: access this detailed help page\n"
+        String detailedCommandsMessage = "*****Full command guide to CaCa*****\n"
+                + "* help\n"
                 + "* todo taskDescription \n"
                 + "    e.g. todo borrow book\n"
                 + "* deadline taskDescription /by dd/MM/yyyy HHmm\n"
                 + "    e.g. deadline return book /by 01/09/2022 1200\n"
                 + "* event taskDescription /at dd/MM/yyyy HHmm\n"
                 + "    e.g. event project meeting /at 01/09/2022 1600\n"
-                + "* list: displays a list of all your tasks.\n"
+                + "* list\n"
                 + "* mark taskIndex\n"
                 + "    e.g. mark 2\n"
                 + "* unmark taskIndex\n"
@@ -64,7 +64,7 @@ public class Ui {
                 + "    e.g. delete 3\n"
                 + "* find taskDescription\n"
                 + "    e.g. find book\n"
-                + "* bye: exit program\n";
+                + "* bye\n";
         return detailedCommandsMessage;
     }
 

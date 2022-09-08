@@ -46,29 +46,24 @@ public class Main {
 
 <hr>
 
-# User Guide
+# CaCa at a Glance 😎
 
-### Here are the detailed description of CaCa features.
+### Here is a quick summary of the powers of CaCa!
+(More details can be found in the [User Guide](/docs/README.md).)
 
-Functions with respective commands are listed below as Function (description): `command`. e.g...
-- Greet user (triggered as soon as the chatbot is run)
-- Exit program (end chatbot): `bye`
-- Add tasks:
-    - ToDos (tasks without any date & time): `todo taskDescription`
-        - e.g.`todo borrow book`
-    - Deadlines (deadlines by a date & time): `deadline taskDescription /by dateTime`
-        - e.g. `deadline return book /by 01/09/2022 1200`
-    - Events (events at a date & time): `event taskDescription /at dd/MM/yyyy HHmm`
-        - e.g. `event project meeting /at 01/09/2022 1600`
-- List task (displays a list of all tasks stored): `list`
-- Mark task (marks task as done with a "X"): `mark taskIndex` 
-    - e.g. `mark 2`
-- Unmark task (marks task as not done and removes "X"): `unmark taskIndex`
-    - e.g. `unmark 2`
-- Delete task (deletes task from list): `delete taskIndex`
-    - e.g. `delete 3`
-- Find task (finds all matching tasks from list): `find task`
-    - e.g. `find book`
+| Features                | Command                                                        |
+|-------------------------|----------------------------------------------------------------|
+| Greet user              | (triggered as soon as the chatbot is run)                      |
+| Show help page          | `help` <br/>(or via "Quick Start" or "Detailed Guide" buttons. |
+| Add ToDo                | `todo TODO_DESCRIPTION`                                        |
+| Add Deadline            | `deadline DEADLINE_DESCRIPTION /by dd/MM/yyyy HHmm`            |
+| Add Event               | `event EVENT_DESCRIPTION /at dd/MM/yyyy HHmm`                  |
+| List all tasks          | `list`                                                         |
+| Mark task               | `mark TASK_INDEX`                                              |
+| Unmark task             | `unmark TASK_INDEX`                                            |
+| Delete task             | `delete TASK_INDEX`                                            |
+| Find task using keyword | `find KEYWORD`                                                 |
+| Exit application        | `bye`                                                          |
 
 <hr>
 
@@ -84,3 +79,4 @@ This is your profile picture in the chat, matching perfectly with CaCa!
 
 Credits for [CaCa image](https://m.duitang.com/blog/?id=1325275816) and [User image](https://m.duitang.com/blog/?id=1325275817).
 
+## Looking good? Try it now! 🤩
