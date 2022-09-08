@@ -10,8 +10,7 @@ import duke.parser.DukeDateTimeFormatter;
  */
 public class Event extends DukeTask {
     // Time of event
-    private final String at;
-    private final String description;
+    private String at;
     private String formattedAt;
 
     /**
@@ -23,7 +22,6 @@ public class Event extends DukeTask {
      */
     public Event(String description, String at) throws DukeException {
         super(description);
-        this.description = description;
         this.at = at;
         formatTime();
     }
@@ -43,6 +41,20 @@ public class Event extends DukeTask {
     public String getStorageString() {
         return "E >> " + (this.isDone() ? "1" : "0") + " >> "
                 + this.description + " >> " + this.at;
+    }
+
+    /**
+     * Updates time of event.
+     *
+     * @param newAt new time of event
+     * @return the string confirming time of event has been updated
+     * @throws DukeException if the input is erroneous
+     */
+    @Override
+    public String updateTime(String newAt) throws DukeException {
+        this.at = newAt;
+        formatTime();
+        return "Event time updated!";
     }
 
     @Override

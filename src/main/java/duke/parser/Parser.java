@@ -9,6 +9,8 @@ import duke.command.FindCommand;
 import duke.command.ListItemsCommand;
 import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
+import duke.command.UpdateDescriptionCommand;
+import duke.command.UpdateTimeCommand;
 import duke.exception.DukeException;
 
 /**
@@ -48,6 +50,12 @@ public class Parser {
             }
             case "clear": {
                 return new ClearScreenCommand();
+            }
+            case "description": {
+                return new UpdateDescriptionCommand(inputString);
+            }
+            case "time": {
+                return new UpdateTimeCommand(inputString);
             }
             default: {
                 return new AddItemCommand(input);
