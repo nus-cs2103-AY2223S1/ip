@@ -23,7 +23,7 @@ public class Event extends Task {
     }
 
     public Event(String title, String time) {
-        this(title, false, time, time);
+        this(title, false, time);
     }
 
     public Event(String title, boolean isCompleted, String start, String end) throws IllegalArgumentException {
