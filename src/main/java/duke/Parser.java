@@ -45,6 +45,8 @@ public class Parser {
                 output = deleteTask(first, lst, store);
             } else if (first.length() >= 4 && first.substring(0, 4).equals("find")) {
                 output = findTask(first, lst);
+            } else if (first.length() >= 8 && first.substring(0, 8).equals("postpone")) {
+                output = postponeTask(first, lst, store);
             } else {
                 throw new DukeException("I'm sorry, but I don't know what that means :-(");
             }
@@ -175,7 +177,13 @@ public class Parser {
             if (sepPos != -1) {
                 String description = str.substring(6, sepPos);
                 String at = str.substring(sepPos + 4);
-                Event e = new Event(description, at);
+                DateTimeFormatter fromFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                try {
+                    LocalDate.parse(at, fromFormat);
+                } catch (DateTimeParseException e) {
+                    return "Event timing has to be in the format yyyy-MM-dd";
+                }
+                Event e = new Event(description, LocalDate.parse(at));
                 lst.addTask(e);
                 storage.updateFile(lst);
                 return Ui.eventMessage(e, lst.count());
@@ -232,4 +240,46 @@ public class Parser {
             throw new DukeException("Add keyword to find");
         }
     }
+
+    /**
+     * Postpone a task
+     *
+     * @param str The users input
+     * @param lst The tasklist
+     * @param store The storage
+     * @return String The output of Duke when the user postpones a Task
+     */
+    public static String postponeTask(String str, TaskList lst, Storage store) throws DukeException, IOException {
+        String[] stringDetails = str.split(" ");
+        if (stringDetails.length != 3) {
+            throw new DukeException("You are missing a field.");
+        }
+        String number = stringDetails[1];
+        int index = Integer.parseInt(String.valueOf(number));
+        if (index > lst.count()) {
+            throw new DukeException("No such task.");
+        }
+        String newDate = stringDetails[2];
+        DateTimeFormatter fromFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+            LocalDate.parse(newDate, fromFormat);
+        } catch (DateTimeParseException e) {
+            return "New timing has to be in the format yyyy-MM-dd";
+        }
+        Task t = lst.getTask(index - 1);
+        if (t instanceof Event) {
+            Event e = (Event) t;
+            e.changeDate(LocalDate.parse(newDate));
+        } else if (t instanceof Deadline) {
+            Deadline d = (Deadline) t;
+            d.changeDate(LocalDate.parse(newDate));
+        } else {
+            return "Task is a Todo and has no date to postpone";
+        }
+        store.updateFile(lst);
+        return Ui.postponeMessage(t);
+    }
+
+
+
 }

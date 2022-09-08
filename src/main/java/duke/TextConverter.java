@@ -61,13 +61,13 @@ public class TextConverter {
      * @param lst The list of all the tasks so far
      * @param markStatus Whether the Deadline is marked
      * @param description The description of the Deadline
-     * @param time The time of the Deadline
+     * @param date The date of the Deadline
      */
-    public static void textToDeadline(ArrayList<Task> lst, String markStatus, String description, String time) {
-        String by = time.substring(1);
+    public static void textToDeadline(ArrayList<Task> lst, String markStatus, String description, String date) {
+        String by = date.substring(1);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
-        LocalDate date = LocalDate.parse(by, formatter);
-        Deadline deadline = new Deadline(description.substring(1), date);
+        LocalDate newDate = LocalDate.parse(by, formatter);
+        Deadline deadline = new Deadline(description.substring(1), newDate);
         if (markStatus.equals(" 1 ")) {
             deadline.mark();
         }
@@ -80,10 +80,13 @@ public class TextConverter {
      * @param lst The list of all the tasks so far
      * @param markStatus Whether the Event is marked
      * @param description The description of the Event
-     * @param at The at of the Event
+     * @param time The time of the Event
      */
-    public static void textToEvent(ArrayList<Task> lst, String markStatus, String description, String at) {
-        Event event = new Event(description.substring(1), at.substring(1));
+    public static void textToEvent(ArrayList<Task> lst, String markStatus, String description, String time) {
+        String at = time.substring(1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+        LocalDate newTime = LocalDate.parse(at, formatter);
+        Event event = new Event(description.substring(1), newTime);
         if (markStatus.equals(" 1 ")) {
             event.mark();
         }

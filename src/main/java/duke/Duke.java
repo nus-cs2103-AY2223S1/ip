@@ -11,7 +11,7 @@ public class Duke{
      * Storage object that handles loading tasks from the
      * file and saving tasks in the file
      */
-    private Storage storage;
+    private final Storage storage;
 
     /**
      * TaskLists object that contains a task list containing Task objects
