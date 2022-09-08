@@ -40,9 +40,9 @@ public class Main {
 
 # CaCa at a glance 😎
 
-### Here is a quick summary of the powers of CaCa!
-More details can be found in the [User Guide](https://carriezhengjr.github.io/ip/).
+### A full detailed guide can be found in the [User Guide](https://carriezhengjr.github.io/ip/).
 
+### Here is a quick summary of the powers of CaCa!
 | Features                | Command                                                        |
 |-------------------------|----------------------------------------------------------------|
 | Greet user              | (triggered as soon as the chatbot is run)                      |
@@ -59,7 +59,7 @@ More details can be found in the [User Guide](https://carriezhengjr.github.io/ip
 
 <hr>
 
-# A small peek into CaCa 🤫
+# A _small_ peek into CaCa 🤫
 
 This is CaCa's profile picture in the chat!
 
@@ -71,4 +71,11 @@ This is your profile picture in the chat, matching perfectly with CaCa!
 
 Credits for [CaCa image](https://m.duitang.com/blog/?id=1325275816) and [User image](https://m.duitang.com/blog/?id=1325275817).
 
-## Looking good? Try it now! 🤩
+_~~Want to see CaCa's interface and functions?~~_  
+_Shhh... I'm not going to expose more details._ 😜
+
+<hr>
+
+# Looking good? Try it now! 🤩
+
+### Details on the installation and command guide can be found in the [User Guide](https://carriezhengjr.github.io/ip/).

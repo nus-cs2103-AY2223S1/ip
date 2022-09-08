@@ -25,7 +25,8 @@ Start your task easily and boost your productivity with CaCa 🤖, a personal as
 2. Download the latest `CaCa.jar` from [here](https://github.com/carriezhengjr/ip/releases).
 3. Move `CaCa.jar` to the folder you want to use as the home folder for your CaCa chatbot.
 4. Double-click `CaCa.jar` to start the app.
-5. Type the command in the text box and press Enter on your keyboard or click "Send" to execute it.
+5. You have successfully opened CaCa 🥳! Try typing some commands in the text box, press Enter on your keyboard or click "Send" to execute it.  
+More details on the available commands can be found under [Features & Usage](#features--usage).
 
 <img width="450" alt="Ui" src="https://carriezhengjr.github.io/ip/Ui.png">
 
@@ -33,23 +34,23 @@ Start your task easily and boost your productivity with CaCa 🤖, a personal as
 
 ## Features & Usage
 
-Here is a quick summary of the powers of CaCa! 😎
+Let's explore the powers of CaCa! 😎
 
-| Features                | Command                                                        |
-|-------------------------|----------------------------------------------------------------|
-| Greet user              | (triggered as soon as the chatbot is run)                      |
-| Show help page          | `help` <br/>(or via "Quick Start" or "Detailed Guide" buttons. |
- | Add ToDo                | `todo TODO_DESCRIPTION`                                        |
- | Add Deadline            | `deadline DEADLINE_DESCRIPTION /by dd/MM/yyyy HHmm`            |
-| Add Event               | `event EVENT_DESCRIPTION /at dd/MM/yyyy HHmm`                  |
-| List all tasks          | `list`                                                         |
-| Mark task               | `mark TASK_INDEX`                                              |
-| Unmark task             | `unmark TASK_INDEX`                                            |
-| Delete task             | `delete TASK_INDEX`                                            |
-| Find task using keyword | `find KEYWORD`                                                 |
-| Exit application        | `bye`                                                          |
+| Features                                                                        | Command                                                        |
+|---------------------------------------------------------------------------------|----------------------------------------------------------------|
+| Greet user                                                                      | (triggered as soon as the chatbot is run)                      |
+| [Show help page](#showing-help-page-help)                                       | `help` <br/>(or via "Quick Start" or "Detailed Guide" buttons) |
+ | [Add ToDo](#adding-todo-todo-todo_description)                                  | `todo TODO_DESCRIPTION`                                        |
+ | [Add Deadline](#adding-deadline-deadline-deadline_description-by-ddmmyyyy-hhmm) | `deadline DEADLINE_DESCRIPTION /by dd/MM/yyyy HHmm`            |
+| [Add Event](#adding-event-event-event_description-at-ddmmyyyy-hhmm)             | `event EVENT_DESCRIPTION /at dd/MM/yyyy HHmm`                  |
+| [List all tasks](#listing-all-tasks-list)                                       | `list`                                                         |
+| [Mark task](#marking-task-mark-task_index)                                      | `mark TASK_INDEX`                                              |
+| [Unmark task](#unmarking-task-unmark-task_index)                                | `unmark TASK_INDEX`                                            |
+| [Delete task](#deleting-task-delete-task_index)                                 | `delete TASK_INDEX`                                            |
+| [Find task using keyword](#finding-task-using-keyword-find-keyword)             | `find KEYWORD`                                                 |
+| [Exit application](#exiting-application-bye)                                    | `bye`                                                          |
 
-<br/>
+<br>
 
 ### Showing help page: `help`
 
@@ -198,11 +199,7 @@ Hope to see you again soon!
 __Q:__ Is my task list saved?  
 __A:__ Yes. All of your data will be saved and updated automatically when you use CaCa.
 
-__Q:__ How do I access all my saved data?  
-__A:__ You can go to the subfolder named `data` located in the same folder as `CaCa.jar`. Then, you can open the file named `caca.txt` located under `data`.
-
-__Q:__ Can I edit the saved file directly and load those data when I run CaCa?  
-__A:__ It is not recommended to make edits directly in `caca.txt` as doing so might corrupt the data. 
-
-__Q:__ What to do if my saved data is corrupted and could not be read?  
-__A:__ Unfortunately, your data cannot be restored. You can delete the `caca.txt` file or simply delete the whole `data` folder. A __fresh__ `caca.txt` will be created when you run the program again.
+__Q:__ Where can I report an issue?  
+__A:__ You can post issues [here](https://github.com/carriezhengjr/ip/issues). Simply click "New issue" and fill in the form.
+If you know Markdown, you can also use [GitHub flavored Markdown (GFMD)](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+to style your comments and preview it under the "Preview" tab.
