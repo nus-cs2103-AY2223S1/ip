@@ -1,16 +1,11 @@
 package duke;
 
-import tasks.Deadline;
-import tasks.Event;
 import tasks.Task;
-import tasks.Todo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -70,7 +65,7 @@ public class Storage {
         }
         Scanner sc = new Scanner(file);
         while (sc.hasNextLine()) {
-            lst = textConverter.textToTask(sc.nextLine(), lst);
+            lst = TextConverter.textToTask(sc.nextLine(), lst);
         }
         sc.close();
         return lst;

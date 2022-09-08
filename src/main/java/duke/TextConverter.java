@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class textConverter {
+public class TextConverter {
     public static ArrayList<Task> textToTask(String text, ArrayList<Task> lst) {
         String[] stringDetails = text.split("\\|");
         String taskType = stringDetails[0];
