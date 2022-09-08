@@ -14,24 +14,68 @@ public class Ui {
         return "Bye. Hope to see you again soon!";
     }
 
+    /**
+     * Returns String representing the task marked.
+     *
+     * @param task Task to be marked.
+     * @return String representing the task marked.
+     */
     public String showTaskMarked(Task task) {
         assert task != null : "Marked task cannot be null";
         return "Nice! I've marked this task as done:\n\t" + task;
     }
 
+    /**
+     * Returns String representing the task unmarked.
+     *
+     * @param task Task to be unmarked.
+     * @return String representing the task unmarked.
+     */
     public String showTaskUnmarked(Task task) {
         assert task != null : "Unmarked task cannot be null";
         return "OK, I've marked this task as not done yet:\n\t" + task;
     }
 
+    /**
+     * Returns String representing the task added.
+     *
+     * @param task Task to be added.
+     * @return String representing the task added.
+     */
     public String showTaskAdded(Task task) {
         assert task != null : "Added task cannot be null";
         return "Got it. I've added this task:\n\t" + task;
     }
 
+    /**
+     * Returns String representing the task deleted.
+     *
+     * @param task Task to be deleted.
+     * @return String representing the task deleted.
+     */
     public String showTaskDeleted(Task task) {
         assert task != null : "Deleted task cannot be null";
         return "Noted. I've removed this task:\n\t" + task;
+    }
+
+    /**
+     * Returns String representing the task tagged.
+     *
+     * @param task Task to be tagged.
+     * @return String representing the task tagged.
+     */
+    public String showTagAdded(Task task) {
+        return "Got it. I've tagged this task:\n\t" + task;
+    }
+
+    /**
+     * Returns String representing the task untagged.
+     *
+     * @param task Task to be untagged.
+     * @return String representing the task untagged.
+     */
+    public String showTagDeleted(Task task) {
+        return "Got it. I've untagged this task:\n\t" + task;
     }
 
     /**

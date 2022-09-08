@@ -25,7 +25,7 @@ public class Duke {
      * Represents all valid keyword inputs from user.
      */
     public enum Keyword {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND, TAG, UNTAG
     }
 
     public static String getWelcome() {
@@ -77,6 +77,12 @@ public class Duke {
             break;
         case FIND:
             reply = this.ui.showMatchingTasks(this.tasks.findTasks(sections[1]));
+            break;
+        case TAG:
+            reply = this.tasks.tag(this.parser.getIndex(sections[1]), this.parser.getTag(sections[1]));
+            break;
+        case UNTAG:
+            reply = this.tasks.untag(this.parser.getIndex(sections[1]));
             break;
         case BYE:
             reply = this.ui.showBye();

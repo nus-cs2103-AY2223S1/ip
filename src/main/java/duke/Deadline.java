@@ -29,8 +29,12 @@ public class Deadline extends Task {
      */
     @Override
     public String getStorageString() {
-        return "D | " + (this.isDone ? "1 | " : "0 | ") + this.description + " | "
+        String result = "D | " + (this.isDone ? "1 | " : "0 | ") + this.description + " | "
                 + this.by.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        if (this.getTag() != null) {
+            result += " | " + this.getTag();
+        }
+        return result;
     }
 
     /**
@@ -40,6 +44,11 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.by.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + ")";
+        String result = "[D]" + super.toString() + " (by: "
+                + this.by.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + ")";
+        if (this.getTag() != null) {
+            result += " #" + this.getTag();
+        }
+        return result;
     }
 }

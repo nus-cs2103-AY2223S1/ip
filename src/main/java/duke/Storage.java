@@ -52,15 +52,24 @@ public class Storage {
                 if (type.equals("T")) {
                     try {
                         Todo todo = new Todo(section[2], isDone);
+                        if (section.length > 3) {
+                            todo.setTag(section[3]);
+                        }
                         tasks.add(todo);
                     } catch (DukeException e) {
                         System.out.println(e.getMessage());
                     }
                 } else if (type.equals("D")) {
                     Deadline deadline = new Deadline(section[2], isDone, section[3]);
+                    if (section.length > 4) {
+                        deadline.setTag(section[4]);
+                    }
                     tasks.add(deadline);
                 } else {
                     Event event = new Event(section[2], isDone, section[3]);
+                    if (section.length > 4) {
+                        event.setTag(section[4]);
+                    }
                     tasks.add(event);
                 }
                 next = reader.readLine();

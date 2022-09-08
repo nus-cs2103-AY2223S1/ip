@@ -6,7 +6,8 @@ import java.util.Arrays;
  * Deals with making sense of the user command.
  */
 public class Parser {
-    private static String[] keywords = {"bye", "list", "mark", "unmark", "todo", "deadline", "event", "delete", "find"};
+    private static String[] keywords = {"bye", "list", "mark", "unmark", "todo", "deadline", "event", "delete", "find",
+        "tag", "untag"};
 
     public Parser() {}
 
@@ -27,7 +28,13 @@ public class Parser {
     }
 
     public int getIndex(String text) {
-        return Integer.parseInt(text);
+        String[] sections = text.split(" ");
+        return Integer.parseInt(sections[0]);
+    }
+
+    public String getTag(String text) {
+        String[] sections = text.split(" ", 2);
+        return sections[1];
     }
 
     /**

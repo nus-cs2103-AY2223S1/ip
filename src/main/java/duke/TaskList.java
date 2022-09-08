@@ -61,6 +61,31 @@ public class TaskList {
     }
 
     /**
+     * Tags task at particular index based on user input.
+     *
+     * @param index Index of task to be tagged.
+     * @param tag Name of tag.
+     * @return String representing tag added to task.
+     */
+    public String tag(int index, String tag) {
+        Task task = this.list.get(index - 1);
+        task.setTag(tag);
+        return this.ui.showTagAdded(task);
+    }
+
+    /**
+     * Untags task at particular index.
+     *
+     * @param index Index of task to be untagged.
+     * @return String representing tag of task deleted.
+     */
+    public String untag(int index) {
+        Task task = this.list.get(index - 1);
+        task.setTag(null);
+        return this.ui.showTagDeleted(task);
+    }
+
+    /**
      * Adds a task to the end of the TaskList.
      *
      * @param task Task to be added.

@@ -7,6 +7,7 @@ package duke;
 public abstract class Task {
     protected String description;
     protected boolean isDone;
+    private String tag;
 
     /**
      * Creates new Task object.
@@ -25,6 +26,14 @@ public abstract class Task {
 
     public void setDone(boolean done) {
         this.isDone = done;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getTag() {
+        return this.tag;
     }
 
     public String getDescription() {
