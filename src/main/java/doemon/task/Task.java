@@ -36,6 +36,19 @@ public class Task {
     }
 
     /**
+     * Checks if the specified keyword appears in the task description.
+     *
+     * @param keyword String to be checked.
+     * @return Boolean indicating if the keyword was found in the task description.
+     */
+    public boolean matchesDescription(String keyword) {
+        if (this.description.toLowerCase().contains(keyword.toLowerCase())) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Returns a string used to save the task.
      * @return a string used to save the task
      */

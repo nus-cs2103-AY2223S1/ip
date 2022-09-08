@@ -56,6 +56,16 @@ public class TaskList {
         return this.tasks.remove(taskIndex);
     }
 
+    public ArrayList<Task> findTasks(String keyword) {
+        ArrayList<Task> foundTasks = new ArrayList<>();
+        for (int i = 0; i < this.getSize(); i++) {
+            if (this.tasks.get(i).matchesDescription(keyword)) {
+                foundTasks.add(this.tasks.get(i));
+            }
+        }
+        return foundTasks;
+    }
+
     private boolean isInvalidTaskIndex(int taskIndex) {
         return taskIndex < 0 || taskIndex >= this.tasks.size();
     }
