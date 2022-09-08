@@ -6,6 +6,7 @@ public abstract class Ui {
      * Creates a new UI handler.
      */
     public Ui(InputAcceptor ia) {
+        assert ia != null;
         inputAcceptor = ia;
     }
 

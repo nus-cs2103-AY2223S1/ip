@@ -8,6 +8,7 @@ public class Parser {
      * @return String[2] containing the two parts.
      */
     public String[] splitOnFirst(String str, String target) {
+        assert target.length() > 0;
         int split = str.indexOf(target);
         if (split < 0) {
             return new String[] {str, ""};
