@@ -55,17 +55,17 @@ public class Parser {
         }
     }
 
-    private Task parseAddCommand(String strArr[]) throws TaskWithNoDescriptionException {
+    private Task parseAddCommand(String[] strArr) throws TaskWithNoDescriptionException {
         String[] taskDescription = splitDescriptionAndDate(strArr);
         String typeOfTask = strArr[0];
 
         if (typeOfTask.equals("todo")) {
             return new ToDo(taskDescription[0]);
 
-        } else if(typeOfTask.equals("deadline")) {
+        } else if (typeOfTask.equals("deadline")) {
             return new Deadline(taskDescription[0], taskDescription[1]);
 
-        } else if(typeOfTask.equals("event")) {
+        } else if (typeOfTask.equals("event")) {
             return new Event(taskDescription[0], taskDescription[1]);
         }
         return null;
@@ -84,7 +84,7 @@ public class Parser {
         for (int i = 2; i < strarr.length; i++) {
             boolean isBy = strarr[i].equals("/by");
             boolean isAt = strarr[i].equals("/at");
-            boolean haveDate = isBy || isAt ;
+            boolean haveDate = isBy || isAt;
 
             if (haveDate) {
                 date = strarr[i + 1];

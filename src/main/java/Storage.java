@@ -4,10 +4,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-
-import java.util.Scanner;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * Represents the storage for the list task managed by the ChatBot.
@@ -18,7 +17,7 @@ public class Storage {
 
     /**
      * Create storage with this filePath.
-     * @param filePath.
+     * @param filePath the path to the file.
      */
     Storage(String filePath) {
         this.fileLocation = filePath;
@@ -30,7 +29,7 @@ public class Storage {
      */
     boolean checkFile() {
         String base = System.getProperty("user.dir");
-        java.nio.file.Path path =  java.nio.file.Paths.get(base, fileLocation);
+        java.nio.file.Path path = java.nio.file.Paths.get(base, fileLocation);
         boolean hasFile = java.nio.file.Files.exists(path);
         return hasFile;
     }
@@ -62,7 +61,7 @@ public class Storage {
 
         FileReader file = new FileReader(fileLocation);
         Scanner sc = new Scanner(file);
-        while (sc.hasNextLine() ) {
+        while (sc.hasNextLine()) {
             String task = sc.nextLine();
             readTask(task, existingTasks);
         }
@@ -79,7 +78,7 @@ public class Storage {
         String taskDescription = strarr[3];
         assert taskDescription != null : "typeDescription should not be null";
         String dateOfTask = "";
-        if(haveDate) {
+        if (haveDate) {
             dateOfTask = strarr[4];
             assert dateOfTask != null : "dateOfTask should not be null";
         }
@@ -113,8 +112,8 @@ public class Storage {
         PrintWriter pw = new PrintWriter(taskFile);
         List<Task> newTasks = newList.getList();
 
-        for(int i = 0; i < newTasks.size(); i++) {
-            pw.println( (i+1) + ":" + newTasks.get(i).write());
+        for (int i = 0; i < newTasks.size(); i++) {
+            pw.println((i + 1) + ":" + newTasks.get(i).write());
         }
 
         pw.close();

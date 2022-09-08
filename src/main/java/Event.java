@@ -10,10 +10,10 @@ class Event extends Task {
     private LocalDate time;
     private String timeInString;
 
-    Event(String description, String Date) {
+    Event(String description, String date) {
         super(description);
-        this.time = LocalDate.parse(Date);
-        this.timeInString = Date;
+        this.time = LocalDate.parse(date);
+        this.timeInString = date;
     }
 
     @Override
