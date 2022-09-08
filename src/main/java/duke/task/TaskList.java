@@ -76,7 +76,7 @@ public class TaskList {
         if (index > numOfTasks) {
             throw new DukeException(String.format("That's magical! You only have %d task(s) at hand!", numOfTasks));
         }
-        assert index <= numOfTasks && numOfTasks > 0;
+        assert index <= numOfTasks;
         Task t = getTask(index);
         int indexInList = index - 1;
         this.tasks.remove(indexInList);
@@ -105,7 +105,7 @@ public class TaskList {
             throw new DukeException("Hey there! Are you sure you are referring to a correct task? "
                     + "It definitely has to be at least 1!");
         }
-        assert index <= numOfTasks && numOfTasks > 0;
+        assert index <= numOfTasks;
         return this.tasks.get(index - 1);
     }
 
