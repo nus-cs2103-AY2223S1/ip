@@ -3,7 +3,6 @@ package duke.command;
 import duke.enums.SortMetric;
 import duke.enums.SortOrder;
 import duke.exception.DukeException;
-import duke.exception.InvalidCommandFormatException;
 import duke.gui.Ui;
 import duke.task.TaskList;
 import duke.util.Storage;
@@ -57,31 +56,6 @@ public class SortCommand extends Command {
         this.sortMetric = sortMetric;
     }
 
-    /**
-     * Returns a SortCommand initialised with the correct sortOrder and sortMetric by parsing the command argument.
-     *
-     * @param commandArg The command argument to parse.
-     * @return SortCommand with the correct sortOrder and sortMetric.
-     * @throws InvalidCommandFormatException If the command argument cannot be parsed due to an incorrect sort metric
-     *              and/or sort order.
-     */
-    public static SortCommand parse(String commandArg) throws InvalidCommandFormatException {
-        if (commandArg.length() == 0) {
-            return new SortCommand();
-        }
-        String[] commandArgSplit = commandArg.split("\\s+");
-
-        if (commandArgSplit.length == 2) {
-            return new SortCommand(SortOrder.parse(commandArgSplit[0]), SortMetric.parse(commandArgSplit[1]));
-        } else if (commandArgSplit.length == 1) {
-            if (SortOrder.isValidOrder(commandArgSplit[0])) {
-                return new SortCommand(SortOrder.parse(commandArgSplit[0]));
-            } else if (SortMetric.isValidMetric(commandArgSplit[0])) {
-                return new SortCommand(SortMetric.parse(commandArgSplit[0]));
-            }
-        }
-        throw new InvalidCommandFormatException(getFormat());
-    }
 
     /**
      * Executes the mark command. Sorts the TaskList according to the sortMetric and sortOrder.

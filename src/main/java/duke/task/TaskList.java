@@ -20,9 +20,9 @@ public class TaskList {
     /** List of tasks. */
     private List<Task> tasks;
     /** Order of the tasks to sort by. */
-    private SortOrder sortOrder;
+    private SortOrder sortOrder = SortOrder.ASCENDING;
     /** Measurement used to determine the order of the tasks. */
-    private SortMetric sortMetric;
+    private SortMetric sortMetric = SortMetric.DEADLINE;
 
     /**
      * Creates a TaskList object from a List of tasks.
