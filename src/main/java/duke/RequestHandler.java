@@ -3,12 +3,21 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-import duke.command.*;
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TodoCommand;
+import duke.command.UnmarkCommand;
+import duke.command.UpdateDateCommand;
+import duke.command.UpdateDescriptionCommand;
 import duke.exception.IncompleteInputException;
 import duke.exception.InvalidCommandException;
 import duke.exception.InvalidInputException;
-
-
 
 /**
  * RequestHandler parses the user input and calls the corresponding commands.
@@ -107,9 +116,9 @@ public class RequestHandler {
                     } else if (updateCommandType.equals("DATE")) {
                         return new UpdateDateCommand(itemNumber, LocalDate.parse(splitUpdateCommand[2]));
                     } else {
-                        throw new InvalidInputException("Do you want to update description or date?" +
-                                "Please key in UPDATE index DESCRIPTION 'description' " +
-                                "or UPDATE index DATE 'yyyy-mm-dd'");
+                        throw new InvalidInputException("Do you want to update description or date?"
+                                + "Please key in UPDATE index DESCRIPTION 'description' "
+                                + "or UPDATE index DATE 'yyyy-mm-dd'");
                     }
 
                 }

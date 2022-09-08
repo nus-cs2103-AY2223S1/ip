@@ -1,7 +1,0 @@
-E | 0 | meeting  | Nov 11 2022
-D | 1 | hw  | Mar 8 2022
-T | 0 | yea im just testing out varargs
-T | 1 | go jog
-T | 1 | school
-T | 0 | gradle
-T | 0 | run

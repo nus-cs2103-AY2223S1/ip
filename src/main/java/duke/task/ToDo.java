@@ -1,9 +1,8 @@
 package duke.task;
 
-import duke.exception.InvalidCommandException;
-import duke.exception.InvalidInputException;
-
 import java.time.LocalDate;
+
+import duke.exception.InvalidInputException;
 
 /**
  * ToDo is a task that has to be done.
