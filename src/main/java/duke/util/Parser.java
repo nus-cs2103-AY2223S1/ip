@@ -179,18 +179,23 @@ public class Parser {
         if (isEmptyInput(commandArgument)) {
             return new SortCommand();
         }
+
         String[] commandArgSplit = commandArgument.split("\\s+");
+        if (commandArgSplit.length > 2) {
+            throw new InvalidCommandFormatException(SortCommand.getFormat());
+        }
 
         if (commandArgSplit.length == 2) {
             return new SortCommand(SortOrder.parse(commandArgSplit[0]), SortMetric.parse(commandArgSplit[1]));
-        } else if (commandArgSplit.length == 1) {
-            if (SortOrder.isValidOrder(commandArgSplit[0])) {
-                return new SortCommand(SortOrder.parse(commandArgSplit[0]));
-            } else if (SortMetric.isValidMetric(commandArgSplit[0])) {
-                return new SortCommand(SortMetric.parse(commandArgSplit[0]));
+        } else {
+            String arg = commandArgSplit[0];
+            if (!SortOrder.isValidOrder(arg) || !SortMetric.isValidMetric(arg)) {
+                throw new InvalidCommandFormatException(SortCommand.getFormat());
             }
+            return SortOrder.isValidOrder(arg)
+                    ? new SortCommand(SortOrder.parse(arg))
+                    : new SortCommand(SortMetric.parse(commandArgSplit[0]));
         }
-        throw new InvalidCommandFormatException(SortCommand.getFormat());
     }
 
     /**
@@ -212,7 +217,7 @@ public class Parser {
     }
 
     /**
-     * Parses a command argument and return a task index.
+     * Parses a command argument and returns a task index.
      *
      * @param commandArgument String representation of a task index.
      * @param commandFormat Command format of the command associated with the command argument.
