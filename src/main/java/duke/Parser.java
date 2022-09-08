@@ -70,7 +70,7 @@ public class Parser {
                 if (input.equals("todo")) {
                     throw new EmptyDescriptionException();
                 }
-                input = input.replaceAll("todo ", "");
+                input = input.replaceFirst("todo ", "");
                 tasks.add(new Todo(input));
 
                 //output
@@ -86,7 +86,7 @@ public class Parser {
             }
         } else if (input.contains("deadline")) {
 
-            input = input.replaceAll("deadline ", "");
+            input = input.replaceFirst("deadline ", "");
 
             if (!checker) {
                 String[] s_arr = input.split("/", -1); //split array
@@ -95,7 +95,7 @@ public class Parser {
             } else {
                 //string manipulation
                 String[] s_arr = input.split("/", 2); //split array
-                s_arr[1] = s_arr[1].replaceAll("by ", "");
+                s_arr[1] = s_arr[1].replaceFirst("by ", "");
                 tasks.add(new Deadline(s_arr[0], s_arr[1]));
             }
 
@@ -110,9 +110,9 @@ public class Parser {
         } else if (input.contains("event")) {
 
             //string manipulation
-            input = input.replaceAll("event ", "");
+            input = input.replaceFirst("event ", "");
             String[] s_arr = input.split("/", -1); //split array
-            s_arr[1] = s_arr[1].replaceAll("at ", "");
+            s_arr[1] = s_arr[1].replaceFirst("at ", "");
 
             tasks.add(new Event(s_arr[0], s_arr[1]));
 
