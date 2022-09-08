@@ -23,6 +23,8 @@ public class Parser {
         String markedDone = currStrArr[1];
         String description = currStrArr[2];
 
+        assert !firstLetter.isEmpty(): "No string detected from text!";
+
         if ("T ".equals(firstLetter)) {
             Task currTask = new Todo(description);
             if (markedDone.equals(" X ")) {
@@ -55,6 +57,8 @@ public class Parser {
     public static String parse(String input, TaskList tasks) {
         String[] arrOfInput = input.split(" ");
         String firstWord = arrOfInput[0];
+
+        assert !firstWord.isEmpty(): "No string detected from input!";
 
         try {
             if ("list".equals(firstWord)) {
