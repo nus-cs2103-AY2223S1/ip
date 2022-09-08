@@ -1,6 +1,7 @@
 package duke;
 
-import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import duke.data.TaskList;
 import duke.parser.Parser;
@@ -40,10 +41,7 @@ public class Duke {
     /** TaskList object to store the user's tasks */
     private TaskList storedTasks;
 
-
-    // GUI attributes
-    // private Image user = new Image(this.getClass().getResourceAsStream("./images/DaUser.png"));
-    // private Image duke = new Image(this.getClass().getResourceAsStream("./images/DaDuke.png"));
+    
 
 
     /**
@@ -51,18 +49,41 @@ public class Duke {
      */
     public Duke() {
         this.ui = new Ui();
-        // ui.printWelcomeMessage();
-
         this.storage = new Storage(DATA_FILE_PATH);
+    }
 
-        // Attempt to load the task list from the hard disk, if it exists
-        this.storedTasks = this.storage.readFromFile();
+
+    /**
+     * Reads the data file and returns the status message.
+     * 
+     * @return Status message.
+     */
+    public String initialize() {
+
+        try {
+            // Attempt to load the task list from the hard disk, if it exists
+            this.storedTasks = this.storage.readFromFile();
+
+        } catch (FileNotFoundException e) {
+            this.storedTasks = new TaskList();
+            return ui.getDataFileNotFoundErrorMessage() + ui.getCreateNewTaskListMessage();
+
+        } catch (IOException e) {
+            this.storedTasks = new TaskList();
+            return ui.getDataFileReadErrorMessage() + ui.getCreateNewTaskListMessage();
+
+        } catch (ClassNotFoundException e) {
+            this.storedTasks = new TaskList();
+            return ui.getDataFileDeserializeErrorMessage() + ui.getCreateNewTaskListMessage();
+        }
+
+        return ui.getDataFileSuccessMessage();
     }
 
 
     private String markTaskAsDoneOrUndone(String[] commands) {
 
-        String result = "";
+        String result;
 
         // First token is the action
         String action = commands[0];
@@ -78,20 +99,16 @@ public class Duke {
         // Mark the task as done or undone depending on the command
         if (action.equals(COMMAND_MARK_AS_DONE)) {
             t = t.markTask();
-            result = "Nice! I've marked this task as done:\n";
+            result = ui.getMarkTaskMessage(t);
 
         } else {
             t = t.unmarkTask();
-            result = "OK, I've marked this task as undone:\n";
+            result = ui.getUnmarkTaskMessage(t);
         }
 
         // Store the task back in the TaskList
         this.storedTasks.setTask(indexNumber, t);
 
-
-        // Add the string representation of the task to the result
-        result = result.concat(String.format("%s\n", t));
-        // ui.printMessage(result);
         return result;
     }
 
@@ -104,23 +121,18 @@ public class Duke {
         try {
             t = createTask(commands);
 
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             // Cannot create task due to invalid commands
-            String result = String.format("OOPS!!! Invalid syntax for a %s task\n", e.getMessage());
-            // ui.printMessage(result);
-            return result;
+            return ui.getAddTaskInvalidSyntaxErrorMessage(e);
         }
 
         this.storedTasks.addTask(t);
 
-        String result = String.format("Got it. I've added this task:\n%s\nNow you have %d tasks in the list.\n",
-                                        t, storedTasks.getSize());
-        // ui.printMessage(result);
-        return result;
+        return ui.getAddTaskMessage(t, storedTasks.getSize());
     }
 
 
-    private Task createTask(String[] commands) throws Exception {
+    private Task createTask(String[] commands) throws IllegalArgumentException {
 
         String description = "";
         boolean isDeadline = false;
@@ -131,7 +143,7 @@ public class Duke {
         case COMMAND_ADD_TODO:
             // Check if the given commands are valid
             if (!isValidToDoCommand(commands)) {
-                throw new Exception("todo");
+                throw new IllegalArgumentException("todo");
             }
 
             // Second token onwards is the description
@@ -152,7 +164,7 @@ public class Duke {
 
             // Check if the given commands are valid
             if (!isValidEventCommand(commands)) {
-                throw new Exception("deadline/event");
+                throw new IllegalArgumentException("deadline/event");
             }
 
             // Second token until /at is the description
@@ -246,15 +258,11 @@ public class Duke {
         // Remove the task from the TaskList object
         Task t = storedTasks.removeTask(indexNumber);
 
-        String result = String.format("Noted. I've removed this task:\n%s\nNow you have %d tasks in the list.\n",
-                                        t, storedTasks.getSize());
-        // ui.printMessage(result);
-        return result;
+        return ui.getDeleteTaskMessage(t, storedTasks.getSize());
     }
 
 
     private String exitDuke() {
-        // ui.printExitMessage();
         return ui.getExitMessage();
     }
 
@@ -264,7 +272,7 @@ public class Duke {
         // Keyword to search for is the second token
         TaskList searchResults = this.storedTasks.searchTasks(commands[1]);
 
-        return ui.listTasks(searchResults, true);
+        return ui.getListTasksMessage(searchResults, true);
     }
 
 
@@ -278,7 +286,7 @@ public class Duke {
         switch (commands[0]) {
 
         case COMMAND_LIST:
-            result = ui.listTasks(this.storedTasks, false);
+            result = ui.getListTasksMessage(this.storedTasks, false);
             break;
 
 
@@ -316,22 +324,19 @@ public class Duke {
         case COMMAND_EXIT:
             result = exitDuke();
             break;
-            // return true;
 
 
         // Command is invalid
         default:
             result = handleInvalidCommand();
         }
-
         
         return result;
     }
 
 
     private String handleInvalidCommand() {
-        // ui.printInvalidCommandMessage();
-        return ui.getInvalidCommandMessage();
+        return ui.getInvalidCommandErrorMessage();
     }
 
 

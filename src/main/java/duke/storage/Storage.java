@@ -54,7 +54,6 @@ public class Storage {
             System.out.println("Error when writing to file.");
             // System.out.println(e);
         }
-
     }
 
 
@@ -64,7 +63,7 @@ public class Storage {
      *
      * @return TaskList object that was deserialized from the data file.
      */
-    public TaskList readFromFile() {
+    public TaskList readFromFile() throws FileNotFoundException, IOException, ClassNotFoundException {
 
         try {
             FileInputStream inputFile = new FileInputStream(this.dataFilePath);
@@ -79,19 +78,18 @@ public class Storage {
         } catch (FileNotFoundException e) {
             System.out.println("Cannot find data.ser file.");
             // System.out.println(e);
+            throw e;
 
         } catch (IOException e) {
             System.out.println("Error when reading file.");
             // System.out.println(e);
+            throw e;
 
         } catch (ClassNotFoundException e) {
-            System.out.println("Error, serialized object can't be deserialized.");
+            System.out.println("Error, file can't be deserialized.");
             // System.out.println(e);
+            throw e;
         }
-
-        // Some error occured when reading from file so return an empty task list instead
-        System.out.println("Creating new task list instead.\n");
-        return new TaskList();
     }
 
 }

@@ -26,20 +26,31 @@ public class MainWindow extends AnchorPane {
 
     private Duke duke;
 
+    // Profile pictures of user and duke
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
+
+    /**
+     * initialize() is called first before setDuke().
+     * Hence, the duke attribute is still null when this function is called.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+    }
+
+
+    public void setDuke(Duke d) {
+        duke = d;
+
+        // Initialize Duke
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(duke.initialize(), dukeImage));
 
         // Print welcome message
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(Ui.getWelcomeMessage(), dukeImage));
     }
 
-    public void setDuke(Duke d) {
-        duke = d;
-    }
 
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
