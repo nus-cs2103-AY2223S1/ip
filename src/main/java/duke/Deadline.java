@@ -9,8 +9,8 @@ public class Deadline extends Task {
     /**
      * A deadline class which is a task with a date.
      *
-     * @param description
-     * @param by
+     * @param description Description of the task
+     * @param by Time of due date
      */
     public Deadline(String description, LocalDateTime by) {
         super(description);
@@ -25,7 +25,7 @@ public class Deadline extends Task {
     /**
      * Formats a string to be written in the file.
      *
-     * @return
+     * @return String to be written
      */
     @Override
     public String getWriteString() {

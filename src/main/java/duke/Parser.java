@@ -15,7 +15,7 @@ public class Parser {
      *
      * @param fullCommand The instructions to execute.
      * @return A command that holds the information as specified by fullCommand.
-     * @throws DukeException
+     * @throws DukeException The exception to be thrown when an error occurs.
      */
     public static Command parse(String fullCommand) throws DukeException {
 
@@ -264,7 +264,7 @@ public class Parser {
         default:
             throw new DukeException("Invalid Command!");
         }
-        
+
         return command;
     }
 }

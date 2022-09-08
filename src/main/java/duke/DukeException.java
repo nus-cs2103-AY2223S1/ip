@@ -4,7 +4,7 @@ public class DukeException extends Exception {
 
     /**
      * Handles Duke exceptions.
-     * @param errorMessage
+     * @param errorMessage Error Message to be called.
      */
     DukeException(String errorMessage) {
         super(errorMessage);

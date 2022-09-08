@@ -36,7 +36,7 @@ public class Duke extends Application {
     /**
      * The main game.
      *
-     * @param filePath
+     * @param filePath Directory of the filepath.
      */
     public Duke(String filePath) {
         ui = new Ui();

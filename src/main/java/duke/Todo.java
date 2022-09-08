@@ -5,7 +5,7 @@ public class Todo extends Task {
     /**
      * Keep track of things to do.
      *
-     * @param action
+     * @param action Description of the task.
      */
     public Todo(String action) {
         super(action);

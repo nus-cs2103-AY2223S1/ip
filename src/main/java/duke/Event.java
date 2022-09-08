@@ -9,8 +9,8 @@ public class Event extends Task {
     /**
      * An event class which is a task with a date.
      *
-     * @param description
-     * @param at
+     * @param description Description of the task
+     * @param at Time of due date
      */
     public Event(String description, LocalDateTime at) {
         super(description);
@@ -25,7 +25,7 @@ public class Event extends Task {
     /**
      * Formats a string to be written in the file.
      *
-     * @return
+     * @return String to be written
      */
     @Override
     public String getWriteString() {

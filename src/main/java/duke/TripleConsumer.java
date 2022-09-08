@@ -4,9 +4,9 @@ public interface TripleConsumer {
     /**
      * Interface for our command.
      *
-     * @param tasks
-     * @param ui
-     * @param storage
+     * @param tasks TaskList object.
+     * @param ui Ui object.
+     * @param storage Storage object.
      */
     void execute(TaskList tasks, Ui ui, Storage storage);
 }

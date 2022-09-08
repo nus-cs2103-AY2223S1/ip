@@ -21,9 +21,9 @@ public class Storage {
     /**
      * Load tasks from a file.
      *
-     * @return
-     * @throws DukeException
-     * @throws FileNotFoundException
+     * @return An ArrayList of tasks
+     * @throws DukeException The exception to be thrown when an error occurs.
+     * @throws FileNotFoundException The exception to be thrown if the file is not found.
      */
     public ArrayList<Task> load() throws DukeException, FileNotFoundException {
 
@@ -64,8 +64,8 @@ public class Storage {
     /**
      * Save tasks into a file.
      *
-     * @param tasks
-     * @throws IOException
+     * @param tasks Array of Tasks to be saved.
+     * @throws IOException The exception to be thrown if the file is not found.
      */
     public void save(ArrayList<Task> tasks) throws IOException {
         FileWriter fw = new FileWriter(filePath);
