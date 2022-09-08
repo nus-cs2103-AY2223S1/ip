@@ -55,6 +55,7 @@ public class Storage {
             while (s.hasNext()) {
                 String line = s.nextLine();
                 String[] parts = line.split("##");
+                assert parts.length != 0: "line incompatible i storage file";
                 switch(parts[0]) {
                 case("[T]"):
                     Todo todo = new Todo(parts[2]);
