@@ -18,16 +18,20 @@ public class Deadline extends Task {
 
     public Deadline(String description, boolean isDone, String time) {
         super(description, isDone);
-        //Ensure that the time input is proper.
-        String[] arr = time.split("-");
+        this.setTime(time);
+    }
+
+    @Override
+    public void setTime(String newTime) {
+        //Ensure that the newTime input are made out of numbers.
+        String[] arr = newTime.split("-");
         if (arr.length != 3) {
-            throw new IncompleteCommandException(description,
-                    "Deadline", "Enter an appropriate date and time format");
+            throw new IncompleteCommandException(newTime, "Event", "Enter an appropriate date and time format");
         }
         for (String s : arr) {
             Integer.parseInt(s);
         }
-        this.time = LocalDate.parse(time);
+        this.time = LocalDate.parse(newTime);
     }
 
     @Override

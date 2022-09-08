@@ -1,5 +1,7 @@
 package poolsheen.task;
 
+import poolsheen.PoolsheenException;
+
 /**
  * Represents a ToDo task for Poolsheen to remember.
  */
@@ -11,6 +13,11 @@ public class ToDo extends Task {
      */
     public ToDo(String description, boolean isDone) {
         super(description, isDone);
+    }
+
+    @Override
+    public void setTime(String newTime) {
+        throw new PoolsheenException("ToDo tasks have no time", "update", "Try again!");
     }
 
     @Override

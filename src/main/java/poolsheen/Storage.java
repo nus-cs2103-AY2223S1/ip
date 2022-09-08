@@ -49,52 +49,51 @@ public class Storage {
      *
      * @throws IOException Thrown if there is an error with parsing the file.
      */
-    public ArrayList<Task> load() throws PoolsheenException {
+    public ArrayList<Task> load() throws FileNotFoundException {
         ArrayList<Task> res = new ArrayList<>(100);
-        try {
-            Scanner s = new Scanner(this.saveFile);
-            while (s.hasNextLine()) {
-                String[] arr = s.nextLine().split("\\|");
-                ArrayList<String> arl = new ArrayList<>();
-                for (String str : arr) {
-                    arl.add(str);
-                }
-                Predicate<String> pred = x -> x.equals("");
-                arl.removeIf(pred);
-                //Uncomment to see how the file contents are parsed as arrays.
-                //System.out.println(arl.toString());
-                String taskType = arl.get(1);
-                boolean isDone = arl.get(2).equals("X");
-                assert taskType != null : "A task type loaded from the save file should not be null";
-                String taskDesc;
-                String time;
-                switch (taskType.toUpperCase()) {
-                case "T":
-                    taskDesc = arl.get(3);
-                    res.add(new ToDo(taskDesc, isDone));
-                    break;
-                case "D":
-                    if (arl.size() != 5) {
-                        throw new UnknownCommandException("Error with Deadline Task");
-                    }
-                    taskDesc = arl.get(3);
-                    time = arl.get(4);
-                    res.add(new Deadline(taskDesc, isDone, time));
-                    break;
-                case "E":
-                    if (arl.size() != 5) {
-                        throw new UnknownCommandException("Error with Event Task");
-                    }
-                    taskDesc = arl.get(3);
-                    time = arl.get(4);
-                    res.add(new Event(taskDesc, isDone, time));
-                    break;
-                default:
-                    throw new UnknownCommandException("An unidentified task type was found");
-                }
+        Scanner s = new Scanner(this.saveFile);
+        while (s.hasNextLine()) {
+            String[] arr = s.nextLine().split("\\|");
+            ArrayList<String> arl = new ArrayList<>();
+            for (String str : arr) {
+                arl.add(str);
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("Cannot find save file while loading\n" + e.getMessage());
+            Predicate<String> pred = x -> x.equals("");
+            arl.removeIf(pred);
+            //Uncomment to see how the file contents are parsed as arrays.
+            //System.out.println(arl.toString());
+            String taskType = arl.get(1);
+            boolean isDone = arl.get(2).equals("X");
+            assert taskType != null : "A task type loaded from the save file should not be null";
+            String taskDesc;
+            String time;
+            switch (taskType.toUpperCase()) {
+            case "T":
+                if (arl.size() != 4) {
+                    throw new PoolsheenException("Error with loading ToDoTask", "load", "Check SAVE.TXT");
+                }
+                taskDesc = arl.get(3);
+                res.add(new ToDo(taskDesc, isDone));
+                break;
+            case "D":
+                if (arl.size() != 5) {
+                    throw new PoolsheenException("Error with loading DeadlineTask", "load", "Check SAVE.TXT");
+                }
+                taskDesc = arl.get(3);
+                time = arl.get(4);
+                res.add(new Deadline(taskDesc, isDone, time));
+                break;
+            case "E":
+                if (arl.size() != 5) {
+                    throw new PoolsheenException("Error with loading EventTask", "load", "Check SAVE.TXT");
+                }
+                taskDesc = arl.get(3);
+                time = arl.get(4);
+                res.add(new Event(taskDesc, isDone, time));
+                break;
+            default:
+                throw new UnknownCommandException("An unidentified task type was loaded");
+            }
         }
         return res;
     }

@@ -1,5 +1,6 @@
 package poolsheen;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import poolsheen.command.Command;
@@ -27,16 +28,21 @@ public class Poolsheen {
     /**
      * A public constructor to initialise the Poolsheen object.
      */
-    public Poolsheen() {
+    public Poolsheen() throws IOException {
         assert SAVE_FILE_PATH != null : "SAVE_FILE_PATH should not be null";
         this.hasExited = false;
         this.ui = new Ui();
         this.storage = new Storage(SAVE_FILE_PATH);
         try {
             this.listOfTasks = new TaskList(storage.load());
+        } catch (FileNotFoundException e) {
+            forceExit();
+            throw new IOException("Cannot find save file while loading\n" + e.getMessage());
         } catch (PoolsheenException e) {
             ui.showLoadingError();
             this.listOfTasks = new TaskList();
+            forceExit();
+            throw new IOException("Error loading\n" + e);
         }
     }
 
@@ -66,7 +72,7 @@ public class Poolsheen {
         } catch (NumberFormatException e) {
             reply = "An error has occurred. Please use a number instead.";
         } catch (Exception e) {
-            reply = "The following error has occured:\n" + e.getMessage();
+            reply = "The following error has occurred:\n" + e.getMessage();
             Poolsheen.forceExit();
         }
         return reply;
