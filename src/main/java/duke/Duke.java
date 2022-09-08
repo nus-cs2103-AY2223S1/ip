@@ -12,6 +12,11 @@ public class Duke {
     private Storage s;
     private Ui ui;
 
+    /**
+     * Constructor for Duke.
+     *
+     * @param filePath Path of file to store data in or retrieve data from.
+     */
     public Duke(String filePath) {
         this.ui = new Ui();
         this.filePath = filePath;
@@ -20,8 +25,9 @@ public class Duke {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Generates a response to user input.
+     *
+     * @param input User input received to be executed by program.
      */
     public String getResponse(String input) {
         try {

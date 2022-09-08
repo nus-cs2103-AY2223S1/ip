@@ -5,7 +5,6 @@ import duke.Ui;
 import tasks.Deadlines;
 import tasks.Task;
 import tasks.TaskList;
-import tasks.Todos;
 
 /**
  * DeadlineCommand creates and adds a new deadline to the task list.
