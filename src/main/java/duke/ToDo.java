@@ -36,4 +36,9 @@ public class ToDo extends Task {
         char done = isDone ? '1' : '0';
         return "T" + " | " + done + " | " + this.description + "\n";
     }
+
+    @Override
+    public boolean isRecurring() {
+        return false;
+    }
 }

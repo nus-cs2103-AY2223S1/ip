@@ -97,6 +97,9 @@ public class Storage {
         case "E":
             taskList.add(new Event(taskElements[2], taskElements[3], isTaskDone));
             break;
+        case "R":
+            taskList.add(new RecurringTask(taskElements[2], taskElements[3], taskElements[4], isTaskDone));
+            break;
         default:
             break;
         }
