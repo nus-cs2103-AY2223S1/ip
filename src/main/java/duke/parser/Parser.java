@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import duke.commands.HelpCommand;
 import duke.exceptions.DukeException;
 import duke.tasklist.TaskList;
 
@@ -97,6 +98,10 @@ public class Parser {
             break;
         case "find":
             tasklist.findWithFilter(input[1]);
+            break;
+        case "help":
+            HelpCommand help = new HelpCommand();
+            help.executeCommand();
             break;
         default:
             throw new DukeException("Invalid command");
