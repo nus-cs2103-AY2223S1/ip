@@ -3,10 +3,10 @@ import java.util.Scanner;
 public class Ui {
 
     private static final Scanner SCANNER = new Scanner(System.in);
-    private final TaskList taskList;
+    private final TaskList tasks;
 
-    public Ui(TaskList taskList) {
-        this.taskList = taskList;
+    public Ui(TaskList tasks) {
+        this.tasks = tasks;
     }
 
     public void showLine() {
@@ -36,7 +36,7 @@ public class Ui {
     }
 
     public void showList() {
-        showFullMessage(this.taskList.toString());
+        showFullMessage(this.tasks.toString());
     }
 
     public void showAddition(Task task, int totalTasks) {
@@ -52,9 +52,7 @@ public class Ui {
     }
     
     public void showDeleted(Task task) {
-        showFullMessage("Noted. I've removed this task:\n" + task + "\nNow you have " + this.taskList.getCount() + " tasks in the list.");
+        showFullMessage("Noted. I've removed this task:\n" + task + "\nNow you have " + this.tasks.getCount() + " tasks in the list.");
     }
-
-
 
 }

@@ -16,7 +16,7 @@ public class Storage {
     }
 
     public TaskList load() throws DukeException{
-        TaskList taskList = new TaskList();
+        TaskList tasks = new TaskList();
         try {
             File localFile = new File(this.filePath);
             Scanner s = new Scanner(localFile);
@@ -25,12 +25,12 @@ public class Storage {
                 if (taskString.strip().equals("")) {
                     continue;
                 }
-                taskList.add(makeTask(taskString));
+                tasks.add(makeTask(taskString));
             }
         } catch (FileNotFoundException e) {
             makeNewFile(this.filePath);
         }
-        return taskList;
+        return tasks;
     }
 
     private void makeNewFile(String filePath) throws DukeException {
@@ -44,7 +44,7 @@ public class Storage {
             directory.mkdirs();
             newFile.createNewFile();
         } catch (Exception e) {
-            throw new DukeException("Error in creating memory space");
+            throw new DukeException(Message.FILE_CREATE_ERROR);
         }
     }
 
@@ -58,13 +58,17 @@ public class Storage {
         return newEvent;
     }
 
-    private Deadline makeDeadline(String markIndex, String description, String by) {
-        Deadline newDeadline = new Deadline(description, LocalDate.parse(by));
-        if (markIndex.strip().equals("1")) {
-            newDeadline.markAsDone();
+    private Deadline makeDeadline(String markIndex, String description, String by) throws DukeException{
+        try {
+            Deadline newDeadline = new Deadline(description, LocalDate.parse(by));
+            if (markIndex.strip().equals("1")) {
+                newDeadline.markAsDone();
+                return newDeadline;
+            }
             return newDeadline;
+        } catch (java.time.format.DateTimeParseException e) {
+            throw new DukeException(Message.FILE_READ_ERROR);
         }
-        return newDeadline;
     }
 
     private ToDo makeToDo(String markIndex, String description){
@@ -109,11 +113,11 @@ public class Storage {
         }
     }
 
-    public void save(TaskList taskList) throws DukeException {
+    public void save(TaskList tasks) throws DukeException {
         try {
             FileWriter fw = new FileWriter(this.filePath);
-            for (int i = 1; i <= taskList.getCount(); i++) {
-                fw.write(taskList.getTask(i).toSimpleString() + "\n");
+            for (int i = 1; i <= tasks.getCount(); i++) {
+                fw.write(tasks.getTask(i).toSimpleString() + "\n");
             }
             fw.close();
         } catch (IOException e) {

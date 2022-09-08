@@ -27,15 +27,6 @@ public class UnmarkCommand extends Command {
                 }
             }
         }
-//        catch (IndexOutOfBoundsException e) {
-//        if (commandList.length <= 1) {
-//            throw new DukeException(Message.INVALID_UNMARK_TASK_FORMAT);
-//        } else if (this.taskList.getCount() == 0) {
-//            throw new DukeException(Message.INVALID_ACCESS_EMPTY_TASKLIST);
-//        } else {
-//            throw new DukeException(taskNotFoundMessage());
-//        }
-//    }
     }
 
 

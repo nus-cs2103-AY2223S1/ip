@@ -6,11 +6,8 @@ public class Parser {
         String[] commandList = fullCommand.strip().split(" ");
         String command = commandList[0].toLowerCase();
         if (command.equals("bye") && commandList.length == 1) {
-//            exitNow = true;
-//            ui.showBye();
             return new ByeCommand();
         } else if (command.equals("list") && commandList.length == 1) {
-//            ui.showList();
             return new ListCommand();
         } else if (command.equals("mark")) {
             return markTask(fullCommand);
@@ -25,10 +22,6 @@ public class Parser {
         } else if (command.equals("delete")){
             return deleteTask(fullCommand);
         }
-//        else if (!fullCommand.strip().equals("")) {
-//            System.out.println(Message.INVALID_USER_INPUT);
-//        }
-//            return deleteTask(fullCommand);
         throw new DukeException(Message.INVALID_USER_INPUT);
     }
 
@@ -74,12 +67,6 @@ public class Parser {
         try {
             int taskIndexNum = Integer.parseInt(commandList[1]);
             return new MarkCommand(taskIndexNum);
-
-//            this.taskList.markTaskAtPos(taskIndexNum);
-//            Task currentTask = this.taskList.getTask(taskIndexNum);
-//            storage.save(this.taskList);
-//            ui.showMarked(currentTask);
-
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new DukeException(Message.INVALID_MARK_TASK_FORMAT);
         }
@@ -89,45 +76,20 @@ public class Parser {
         String[] commandList = input.strip().split(" ");
         try {
             int taskIndexNum = Integer.parseInt(commandList[1]);
-//            this.taskList.unmarkTaskAtPos(taskIndexNum);
-//            Task currentTask = this.taskList.getTask(taskIndexNum);
-//            storage.save(this.taskList);
-//            ui.showUnmarked(currentTask);
             return new UnmarkCommand(taskIndexNum);
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new DukeException(Message.INVALID_UNMARK_TASK_FORMAT);
         }
-//         catch (IndexOutOfBoundsException e) {
-//            if (commandList.length <= 1) {
-//                throw new DukeException(Message.INVALID_UNMARK_TASK_FORMAT);
-//            } else if (this.taskList.getCount() == 0) {
-//                throw new DukeException(Message.INVALID_ACCESS_EMPTY_TASKLIST);
-//            } else {
-//                throw new DukeException(taskNotFoundMessage());
-//            }
-//        }
     }
 
     private static DeleteCommand deleteTask(String command) throws DukeException {
         String[] commandList = command.strip().split(" ");
         try {
             int taskIndexNum = Integer.parseInt(commandList[1]);
-//            Task deletedTask = this.taskList.deleteTaskAtPos(taskIndexNum);
-//            storage.save(this.taskList);
-//            ui.showDeleted(deletedTask);
             return new DeleteCommand(taskIndexNum);
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new DukeException(Message.INVALID_DELETE_TASK_FORMAT);
         }
-//        } catch (IndexOutOfBoundsException e){
-//            if (commandList.length <= 1) {
-//                throw new DukeException(Message.INVALID_DELETE_TASK_FORMAT);
-//            } else if (this.taskList.getCount() == 0){
-//                throw new DukeException(Message.INVALID_ACCESS_EMPTY_TASKLIST);
-//            } else {
-//                throw new DukeException(taskNotFoundMessage());
-//            }
-//        }
     }
 
 }

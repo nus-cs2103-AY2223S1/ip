@@ -1,5 +1,4 @@
 public class Message {
-    public static final String SAVED_PATH = "data/duke.txt";
     public static final String HORIZONTAL_BORDER = "________________________________________________________";
     public static final String WELCOME_MESSAGE = "Hello! I'm Duke\nWhat can I do for you?";
     public static final String BYE_MESSAGE = "Bye. Hope to see you again soon!";
@@ -13,9 +12,9 @@ public class Message {
     public static final String INVALID_DELETE_TASK_FORMAT = "To delete a task, please input this format: delete {task number}";
     public static final String INVALID_USER_INPUT = "Please use one of these keywords: {deadline, event, todo} followed by \\\"by\\\" and \\\"at\\\" for deadline and event tasks respectively.";
     public static final String INVALID_DATE_INPUT = "The date given should not be before today's date";
-    public static final String FILE_NOT_FOUND = "The file cannot be found.\n";
-    public static final String FILE_READ_ERROR = "There is an error when reading the file.\n";
-
+    public static final String FILE_NOT_FOUND = "The memory file cannot be found.";
+    public static final String FILE_READ_ERROR = "There is an error when reading the memory file.";
+    public static final String FILE_CREATE_ERROR = "There is an error when creating the memory file";
 
     public static String returnTaskNotFound(TaskList tasks) {
         return "Task does not exist. Try another number between 1 and " + tasks.getCount();
