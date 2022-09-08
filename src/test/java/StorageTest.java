@@ -16,7 +16,7 @@ public class StorageTest {
     @Test
     public void loadTest_existingFile_taskList() {
         try {
-            TaskList taskList = storage.load();
+            TaskList taskList = storage.getTaskList();
             assertFalse(taskList.tasks.isEmpty());
         } catch (IOException e) {
             fail();
@@ -26,7 +26,7 @@ public class StorageTest {
     @Test
     public void loadTest_emptyExistingFile_emptyList() {
         try {
-            TaskList taskList = storage.load("src/test/emptyData.txt");
+            TaskList taskList = storage.getTaskList("src/test/emptyData.txt");
             assertTrue(taskList.tasks.isEmpty());
         } catch (IOException e) {
             fail();
@@ -36,7 +36,7 @@ public class StorageTest {
     @Test
     public void loadTest_noExistingFile_emptyList() {
         try {
-            TaskList taskList = storage.load("src/test/badFile.txt");
+            TaskList taskList = storage.getTaskList("src/test/badFile.txt");
             storage.wipe();
             assertTrue(taskList.tasks.isEmpty());
         } catch (IOException e) {

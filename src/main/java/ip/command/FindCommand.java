@@ -11,12 +11,12 @@ import ip.utility.TaskList;
  */
 public class FindCommand extends DukeCommand {
     /** Options following the find command */
-    private final Scanner options;
+    private final Scanner commandParameters;
     private final LinkedList<Task> results = new LinkedList<>();
     private String keyword = "";
 
-    public FindCommand(Scanner options) {
-        this.options = options;
+    public FindCommand(Scanner commandParameters) {
+        this.commandParameters = commandParameters;
     }
 
     /**
@@ -26,12 +26,11 @@ public class FindCommand extends DukeCommand {
      */
     @Override
     public String execute(TaskList taskList) {
-        if (options.hasNext()) {
-            keyword = options.nextLine().trim();
+        if (commandParameters.hasNext()) {
+            keyword = commandParameters.nextLine().trim();
         }
-        assert !keyword.isBlank() : "Blank keyword.";
-        for (Task task : taskList.tasks) {
-            if (task.hasString(keyword)) {
+        for (Task task : taskList.getTasks()) {
+            if (task.containsString(keyword)) {
                 results.add(task);
             }
         }

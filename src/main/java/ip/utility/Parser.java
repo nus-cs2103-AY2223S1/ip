@@ -24,7 +24,7 @@ public class Parser {
      *
      * @param input String to be stored.
      */
-    public void load(String input) {
+    public void loadUserInput(String input) {
         inputLine = new Scanner(input);
     }
 

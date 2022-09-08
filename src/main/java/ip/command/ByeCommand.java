@@ -9,11 +9,11 @@ import javafx.application.Platform;
 public class ByeCommand extends DukeCommand {
 
     /**
-     * Does nothing.
+     * Quits the GUI instance
      */
     @Override
     public String execute(TaskList taskList) {
         Platform.exit();
-        return "Bye!";
+        return "";
     }
 }

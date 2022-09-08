@@ -11,7 +11,11 @@ import ip.task.Task;
  * @author Jonathan Lam
  */
 public class TaskList {
-    public final LinkedList<Task> tasks = new LinkedList<>();
+    private final LinkedList<Task> tasks = new LinkedList<>();
+
+    public LinkedList<Task> getTasks() {
+        return tasks;
+    }
 
     /**
      * Adds the given task to the task list.
@@ -25,42 +29,42 @@ public class TaskList {
     /**
      * Deletes the task at the specified index.
      *
-     * @param index Index of task to be deleted.
+     * @param taskIndex Index of task to be deleted.
      * @throws NoTaskFound If there is no task at that index.
      */
-    public void delete(int index) throws NoTaskFound {
+    public void delete(int taskIndex) throws NoTaskFound {
         try {
-            tasks.remove(index);
+            tasks.remove(taskIndex);
         } catch (IndexOutOfBoundsException e) {
-            throw new NoTaskFound(index);
+            throw new NoTaskFound(taskIndex);
         }
     }
 
     /**
      * Marks the task at the specified index.
      *
-     * @param index Index of task to be unmarked.
+     * @param taskIndex Index of task to be unmarked.
      * @throws NoTaskFound If there is no task at that index.
      */
-    public void mark(int index) throws NoTaskFound {
+    public void mark(int taskIndex) throws NoTaskFound {
         try {
-            tasks.get(index).mark();
+            tasks.get(taskIndex).markComplete();
         } catch (IndexOutOfBoundsException e) {
-            throw new NoTaskFound(index);
+            throw new NoTaskFound(taskIndex);
         }
     }
 
     /**
      * Unmarks the task at the specified index.
      *
-     * @param index Index of task to be unmarked.
+     * @param taskIndex Index of task to be unmarked.
      * @throws NoTaskFound If there is no task at that index.
      */
-    public void unmark(int index) throws NoTaskFound {
+    public void unmark(int taskIndex) throws NoTaskFound {
         try {
-            tasks.get(index).unmark();
+            tasks.get(taskIndex).markIncomplete();
         } catch (IndexOutOfBoundsException e) {
-            throw new NoTaskFound(index);
+            throw new NoTaskFound(taskIndex);
         }
     }
 
@@ -69,16 +73,16 @@ public class TaskList {
      *
      * @return String describing every task in the list.
      */
-    public String list() {
-        StringBuilder output = new StringBuilder();
+    public String listAllTasks() {
+        StringBuilder allTasks = new StringBuilder();
         int i = 1;
         for (Task task : tasks) {
-            output.append(i).append(".\t");
-            output.append(task);
-            output.append("\n");
+            allTasks.append(i).append(".\t");
+            allTasks.append(task);
+            allTasks.append("\n");
             i++;
         }
-        return output.toString();
+        return allTasks.toString();
     }
 
     @Override
@@ -86,4 +90,5 @@ public class TaskList {
         int taskCount = tasks.size();
         return String.format("You have %d tasks. Get started now!\n", taskCount);
     }
+
 }

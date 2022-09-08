@@ -15,47 +15,47 @@ public class Event extends Task {
     /**
      * Constructor to create an event object.
      *
-     * @param options Contains the description and timespan of the event.
+     * @param taskMetadata Contains the description and timespan of the event.
      * @throws MissingDescription If there is no description in options.
      * @throws BadTimespan If the timespan is missing.
      */
-    public Event(Scanner options) throws MissingDescription, BadTimespan {
-        if (options.hasNext()) {
-            options.useDelimiter(" /at ");
-            String description = options.next().substring(1);
-            if (options.hasNext()) {
-                String timespan = options.next();
-                super.describe(description);
-                this.timespan = timespan;
-                System.out.println("CREATED EVENT: " + description + " AT: " + timespan);
-            } else {
-                throw new BadTimespan("");
-            }
-        } else {
+    public Event(Scanner taskMetadata) throws MissingDescription, BadTimespan {
+        // No event description
+        if (!taskMetadata.hasNext()) {
             throw new MissingDescription();
         }
+        // Set task metadata to split on " /at "
+        taskMetadata.useDelimiter(" /at ");
+        String taskDescription = taskMetadata.next().substring(1);
+        // No event timespan
+        if (!taskMetadata.hasNext()) {
+            throw new BadTimespan("");
+        }
+        String timespan = taskMetadata.next();
+        super.setTaskDescription(taskDescription);
+        this.timespan = timespan;
     }
 
     /**
      * Constructor to create event object from formatted string.
      *
-     * @param props Contains data used to build the event object.
+     * @param taskMetadata Contains data used to build the event object.
      */
-    public Event(String[] props) {
-        super.describe(props[2]);
-        this.timespan = props[3];
-        if (props[1].equals("true")) {
-            super.mark();
+    public Event(String[] taskMetadata) {
+        super.setTaskDescription(taskMetadata[2]);
+        this.timespan = taskMetadata[3];
+        if (taskMetadata[1].equals("true")) {
+            super.markComplete();
         }
     }
 
-    public String writeFormat() {
-        return "e|" + isComplete + "|" + description + "|" + timespan + "|\n";
+    public String formatToSave() {
+        return "e|" + isComplete + "|" + taskDescription + "|" + timespan + "|\n";
     }
 
     @Override
-    public boolean hasString(String s) {
-        return super.description.contains(s);
+    public boolean containsString(String keyword) {
+        return super.taskDescription.contains(keyword);
     }
 
     @Override

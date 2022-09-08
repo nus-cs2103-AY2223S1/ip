@@ -4,41 +4,35 @@ package ip.task;
  * Abstract class describing a task object.
  */
 public abstract class Task {
-    /** Description of the task. */
-    protected String description;
-    /** Completion status of the task. */
+    protected String taskDescription;
     protected boolean isComplete;
 
     public Task() {
         isComplete = false;
     }
-    /**
-     * Sets task description to the given string.
-     *
-     * @param s The given string description of the task.
-     */
-    public void describe(String s) {
-        this.description = s;
+
+    public abstract String formatToSave();
+    public abstract boolean containsString(String keyword);
+
+    public void setTaskDescription(String taskDescription) {
+        this.taskDescription = taskDescription;
     }
 
-    public void mark() {
+    public void markComplete() {
         isComplete = true;
     }
 
-    public void unmark() {
+    public void markIncomplete() {
         isComplete = false;
     }
 
 
-    private String check() {
+    private String getCheckbox() {
         return isComplete ? "[X]" : "[ ]";
     }
 
-    public abstract String writeFormat();
-    public abstract boolean hasString(String s);
-
     @Override
     public String toString() {
-        return check() + " " + description;
+        return getCheckbox() + " " + taskDescription;
     }
 }

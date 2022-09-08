@@ -16,7 +16,7 @@ public class ParserTest {
 
     @Test
     public void getCommandTest_blankInput_returnByeCommand() {
-        parser.load("");
+        parser.loadUserInput("");
         try {
             DukeCommand command = parser.getCommand();
             assertTrue(command instanceof ByeCommand);
@@ -27,7 +27,7 @@ public class ParserTest {
 
     @Test
     public void getCommandTest_listCommand_returnListCommand() {
-        parser.load("list");
+        parser.loadUserInput("list");
         try {
             DukeCommand command = parser.getCommand();
             assertTrue(command instanceof ListCommand);
