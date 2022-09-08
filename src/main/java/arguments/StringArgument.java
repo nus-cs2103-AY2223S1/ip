@@ -23,6 +23,28 @@ public class StringArgument extends Argument<String> {
         this.missingMessage = missingMessage;
     }
 
+    /**
+     * Creates new StringArgument with necessary parameters
+     * @param argumentName Name for argument
+     * @param emptyMessage Message to show if argument is empty
+     * @param missingMessage Message to show if argument is missing
+     */
+    public StringArgument(String argumentName, String emptyMessage, String missingMessage) {
+        super(argumentName);
+        this.emptyMessage = emptyMessage;
+        this.missingMessage = missingMessage;
+    }
+
+    @Override
+    public String getShortDescription() {
+        return null;
+    }
+
+    @Override
+    public String getUsage() {
+        return null;
+    }
+
     @Override
     public void validate() throws DukeException {
         if (super.value != null) {

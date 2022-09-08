@@ -23,7 +23,7 @@ public class ListCommand extends Command {
      * @param taskModel TaskModel to use
      */
     public ListCommand(TaskModel taskModel) {
-        super("list");
+        super("list", "Lists all tasks");
         this.taskModel = taskModel;
     }
 
@@ -35,5 +35,15 @@ public class ListCommand extends Command {
         }
         List<String> stringList = allTasks.stream().map(Task::toString).collect(Collectors.toList());
         return new CommandResponse(OutputLogger.numberedOutput(stringList));
+    }
+
+    @Override
+    public String getShortDescription() {
+        return makeShortDescription();
+    }
+
+    @Override
+    public String getUsageDescription() {
+        return makeUsage();
     }
 }

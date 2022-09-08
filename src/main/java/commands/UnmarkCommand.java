@@ -26,8 +26,9 @@ public class UnmarkCommand extends Command {
      * @param taskModel TaskModel to use
      */
     public UnmarkCommand(TaskModel taskModel) {
-        super("unmark");
+        super("unmark", "Unmarks the specified task from done to not done");
         this.taskModel = taskModel;
+        taskId = new TaskIdArgument();
     }
 
     // Template: initialise arguments, validate, return errorOutput if errs. then get parameters,
@@ -50,5 +51,14 @@ public class UnmarkCommand extends Command {
         } catch (IllegalArgumentException | DukeException ex) {
             return new CommandResponse(ex.getMessage());
         }
+    }
+    @Override
+    public String getShortDescription() {
+        return makeShortDescription(taskId);
+    }
+
+    @Override
+    public String getUsageDescription() {
+        return makeUsage(taskId);
     }
 }

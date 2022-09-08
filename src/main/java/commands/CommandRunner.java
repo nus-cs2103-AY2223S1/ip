@@ -24,6 +24,7 @@ public class CommandRunner {
      */
     public CommandRunner(TaskModel taskModel) {
         this.taskModel = taskModel;
+        commandMap = new HashMap<>();
 
         // Add new commands here
         Command list = new ListCommand(taskModel);
@@ -35,9 +36,11 @@ public class CommandRunner {
         Command delete = new DeleteCommand(taskModel);
         Command exit = new ExitCommand(taskModel);
         Command find = new FindCommand(taskModel);
+        Command help = new HelpCommand(commandMap);
 
-        Command[] commands = new Command[] { list, add, mark, exit, unmark, deadline, event, delete, find };
-        commandMap = new HashMap<>();
+
+        Command[] commands = new Command[] { list, add, mark, exit, unmark, deadline, event, delete, find, help };
+
 
         for (int i = 0; i < commands.length; i++) {
             Command cmd = commands[i];

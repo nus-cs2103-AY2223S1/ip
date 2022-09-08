@@ -25,8 +25,9 @@ public class TodoCommand extends Command {
      * @param taskModel TaskModel ot use
      */
     public TodoCommand(TaskModel taskModel) {
-        super("todo");
+        super("todo", "Adds a todo task");
         this.taskModel = taskModel;
+        description = new DescriptionArgument();
 
     }
 
@@ -41,5 +42,15 @@ public class TodoCommand extends Command {
 
         TaskResponse res = taskModel.addTodo(description.getParameter());
         return new CommandResponse(TaskResponseFormatter.addedTask(res));
+    }
+
+    @Override
+    public String getShortDescription() {
+        return makeShortDescription(description);
+    }
+
+    @Override
+    public String getUsageDescription() {
+        return makeUsage(description);
     }
 }

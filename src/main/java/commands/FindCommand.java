@@ -24,8 +24,9 @@ public class FindCommand extends Command {
      * @param taskModel TaskModel to use
      */
     public FindCommand(TaskModel taskModel) {
-        super("find");
+        super("find", "Finds tasks that contain specified text in their descriptions.");
         this.taskModel = taskModel;
+        search = new SearchArgument();
     }
 
     @Override
@@ -50,5 +51,15 @@ public class FindCommand extends Command {
             return new CommandResponse(String.format("No matching tasks found for query: '%s'", searchQuery));
         }
         return new CommandResponse(OutputLogger.numberedOutput(stringList));
+    }
+
+    @Override
+    public String getShortDescription() {
+        return makeShortDescription(search);
+    }
+
+    @Override
+    public String getUsageDescription() {
+        return makeUsage(search);
     }
 }

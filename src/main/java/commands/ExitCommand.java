@@ -16,7 +16,7 @@ public class ExitCommand extends Command {
      * @param taskModel Task model to use
      */
     public ExitCommand(TaskModel taskModel) {
-        super("bye");
+        super("bye", "Exits the chatbot.");
         this.taskModel = taskModel;
     }
 
@@ -24,5 +24,15 @@ public class ExitCommand extends Command {
     public CommandResponse run(Input input) throws DukeException {
         taskModel.save();
         return new CommandResponse("Bye. See you again soon!", true);
+    }
+
+    @Override
+    public String getShortDescription() {
+        return makeShortDescription();
+    }
+
+    @Override
+    public String getUsageDescription() {
+        return makeUsage();
     }
 }

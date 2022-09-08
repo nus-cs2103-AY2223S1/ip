@@ -1,6 +1,7 @@
 package input;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,9 +23,8 @@ import exceptions.DukeException;
  * Provides information about command name, argument name and parameters (if any), and the original input string.
  * */
 public class Input {
-    private static final String DELIMITER = " ";
-    private static final String ARG_START = "/";
-
+    public static final String ARG_START = "/";
+    public static final String DELIMITER = " ";
     protected String commandName;
     protected String inputString;
     protected Map<String, String> parameters; // store arguments without arg_start
@@ -33,7 +33,9 @@ public class Input {
     /**
      * A dummy constructor for use with stub classes
      */
-    protected Input() { return; }
+    protected Input() {
+        return;
+    }
     /**
      * Parses the input string received from the user and stores command name, parameters and arguments
      * @param input Input string received from CLI
@@ -55,6 +57,7 @@ public class Input {
         }
         commandName = tokens[0];
         initialiseParameters();
+        stripTokens();
     }
 
     /**
@@ -104,6 +107,20 @@ public class Input {
     }
 
     /**
+     * Removes all empty strings from tokens. This is done after initialisation of parameters
+     * to preserve spaces in provided arguments.
+     */
+    private void stripTokens() {
+        assert parameters != null;
+        assert tokens != null;
+        this.tokens = Arrays
+                .stream(tokens)
+                .filter(s -> !s.trim().equals(""))
+                .toArray(String[]::new);
+    }
+
+
+    /**
      * @return Command name from the input according to input rules
      */
     public String getCommandName() {
@@ -131,6 +148,19 @@ public class Input {
         }
 
         return parameters.get(argument);
+    }
+
+    /**
+     * Returns token of input string specified by index.
+     * @param index 0 to number of tokens - 1
+     * @return token
+     * @throws IllegalArgumentException if index is invalid
+     */
+    public String getTokenAtIndex(int index) throws IllegalArgumentException {
+        if (index < 0 || index >= tokens.length) {
+            throw new IllegalArgumentException("Invalid index");
+        }
+        return tokens[index];
     }
 
     /**
