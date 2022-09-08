@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 import duke.dukeexception.DukeException;
 import duke.dukeexception.TypeNotExistException;
+import duke.parser.OutputRedirector;
 import duke.tasks.Task;
 import duke.ui.Ui;
 
@@ -51,7 +52,7 @@ public class Cache {
                 return Ui.loading(file);
             } else {
                 file.createNewFile();
-                assert (file.exists());
+                assert (file.exists()) : "The input file has not been created. Please check!";
                 return new TaskList();
             }
         } catch (IOException e) {

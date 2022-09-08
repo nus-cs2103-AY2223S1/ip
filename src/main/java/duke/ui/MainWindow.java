@@ -1,6 +1,7 @@
 package duke.ui;
 
 import duke.Duke;
+import duke.dukeexception.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -8,6 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
+import java.io.IOException;
 
 
 /**
@@ -33,8 +36,13 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setDuke(Duke d) {
+    public void setDuke(Duke d) throws DukeException, IOException {
         duke = d;
+        String response = duke.getResponse();
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(response, dukeImage)
+        );
+        userInput.clear();
     }
 
     /**
@@ -43,7 +51,7 @@ public class MainWindow extends AnchorPane {
      */
 
     @FXML
-    private void handleUserInput() {
+    private void handleUserInput() throws DukeException, IOException {
         String input = userInput.getText();
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
