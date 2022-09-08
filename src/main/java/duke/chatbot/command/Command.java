@@ -1,7 +1,7 @@
 package duke.chatbot.command;
 
+import duke.chatbot.Duke;
 import duke.chatbot.data.exception.InvalidInputException;
-import duke.chatbot.data.task.TaskList;
 import duke.chatbot.util.MessageBuilder;
 
 /**
@@ -10,7 +10,7 @@ import duke.chatbot.util.MessageBuilder;
  * @author jq1836
  */
 public abstract class Command {
-    protected TaskList taskList;
+    protected Duke duke;
 
     protected String arguments;
 
@@ -39,7 +39,7 @@ public abstract class Command {
      * @throws InvalidInputException If arguments passed to Command is invalid.
      */
     public CommandResult execute() throws InvalidInputException {
-        assert (taskList != null);
+        assert (duke != null);
         return new CommandResult(buildMessage());
     }
 
@@ -52,7 +52,12 @@ public abstract class Command {
         return command.arguments.equals(arguments);
     }
 
-    public void initData(TaskList taskList) {
-        this.taskList = taskList;
+    /**
+     * Initialises the command by providing the required for the command to act on.
+     *
+     * @param duke The instance of duke the command is to be run in.
+     */
+    public void initCommand(Duke duke) {
+        this.duke = duke;
     }
 }

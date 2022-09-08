@@ -1,4 +1,4 @@
-package duke.chatbot.command.FilterCommands;
+package duke.chatbot.command.filtercommands;
 
 import java.time.LocalDate;
 import java.util.function.Predicate;

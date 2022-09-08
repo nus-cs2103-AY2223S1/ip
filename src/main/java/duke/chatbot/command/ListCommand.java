@@ -3,6 +3,8 @@ package duke.chatbot.command;
 import static duke.chatbot.common.Message.MESSAGE_EMPTY_LIST;
 import static duke.chatbot.common.Message.MESSAGE_LIST;
 
+import duke.chatbot.data.task.TaskList;
+
 /**
  * A command that displays the list of tasks in the application. Displays an empty list message if the list is empty.
  *
@@ -16,12 +18,13 @@ public class ListCommand extends Command {
 
     @Override
     protected String buildMessage() {
-        if (taskList.isEmpty()) {
+        TaskList tasks = duke.getTasks();
+        if (tasks.isEmpty()) {
             messageBuilder.buildLines(MESSAGE_EMPTY_LIST);
         } else {
             messageBuilder.buildLines(MESSAGE_LIST);
         }
-        messageBuilder.buildLine(taskList.toString());
+        messageBuilder.buildLine(tasks.toString());
         return messageBuilder.toString();
     }
 

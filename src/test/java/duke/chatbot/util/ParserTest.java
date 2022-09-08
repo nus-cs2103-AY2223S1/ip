@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import duke.chatbot.command.AddTaskCommands.AddToDoCommand;
 import duke.chatbot.command.Command;
+import duke.chatbot.command.addcommands.AddToDoCommand;
 
 public class ParserTest {
     @Test

@@ -1,4 +1,4 @@
-package duke.chatbot.command.TargetTaskCommands;
+package duke.chatbot.command.taskcommands;
 
 import static duke.chatbot.common.Message.MESSAGE_MARKED;
 
@@ -8,7 +8,7 @@ import static duke.chatbot.common.Message.MESSAGE_MARKED;
  *
  * @author jq1836
  */
-public class MarkCommand extends TargetTaskCommand {
+public class MarkCommand extends TaskCommand {
     /**
      * The command word to invoke this command.
      */

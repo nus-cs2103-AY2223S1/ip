@@ -1,4 +1,4 @@
-package duke.chatbot.command.FilterCommands;
+package duke.chatbot.command.filtercommands;
 
 import static duke.chatbot.common.Message.MESSAGE_EMPTY_LIST;
 import static duke.chatbot.common.Message.MESSAGE_FILTERED_TASKS;
@@ -40,7 +40,8 @@ public abstract class FilterCommand extends Command {
 
     @Override
     public CommandResult execute() throws InvalidInputException {
-        filteredTasks = taskList.filter(supplyCondition());
+        TaskList tasks = duke.getTasks();
+        filteredTasks = tasks.filter(supplyCondition());
         return super.execute();
     }
 
