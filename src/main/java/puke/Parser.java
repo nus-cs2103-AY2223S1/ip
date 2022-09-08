@@ -26,9 +26,7 @@ public class Parser {
         assert !(result.length() == 0) : "message should not be empty";
 
         if (result.length() == 0) {
-            throw new DukeException("    ____________________________________________________________\n" +
-                    "     OOPS!!! The Description of a " + type + " cannot be empty.\n" +
-                    "    ____________________________________________________________");
+            throw new DukeException("     OOPS!!! The Description of a " + type + " cannot be empty.\n");
         }
         return result;
     }
@@ -53,10 +51,17 @@ public class Parser {
 
     }
 
-    public static String getFindTask(String s) {
+    /**
+     * Used when parsing find command to get keyword to find for
+     * @param s keyword to find
+     * @return String containing keyword to use
+     */
+    public static String getFindKeyword(String s) {
         String temp = "";
         for (int i = 0; i < s.length(); i++ ) {
-            if (i == 0) { continue;}
+            if (i == 0) {
+                continue;
+            }
             temp += s.charAt(i);
         }
         return temp;

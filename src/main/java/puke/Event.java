@@ -1,6 +1,5 @@
 package puke;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -24,7 +23,7 @@ public class Event extends Task {
     }
 
     /**
-     * Get string representation of Event
+     * Gets string representation of Event
      * @return string representation of Event
      */
     @Override
