@@ -35,9 +35,6 @@ public class Duke {
      * Replace this stub with your completed method.
      */
     String getResponse(String command, Duke duke, Storage storage) {
-//
-//        System.out.println("Hello from\n" + logo);
-
             try {
                 if (command.equals("bye")) {
                     return "Bye. Hope to see you again soon!";
@@ -70,41 +67,6 @@ public class Duke {
         }
     }
 
-//    public static void main(String[] args) {
-//        String command;
-//        String logo = " ____        _        \n"
-//                + "|  _ \\ _   _| | _____ \n"
-//                + "| | | | | | | |/ / _ \\\n"
-//                + "| |_| | |_| |   <  __/\n"
-//                + "|____/ \\__,_|_|\\_\\___|\n";
-//        System.out.println("Hello from\n" + logo);
-//        Scanner sc = new Scanner(System.in);
-//        command = sc.nextLine();
-//        Duke duke = new Duke();
-//
-//        while (true) {
-//            try {
-//                if (command.equals("bye")) {
-//                    System.out.println("Bye. Hope to see you again soon!");
-//                    break;
-//                }
-//                if (command.equals("list")) {
-//                    System.out.println(duke.tasks.get());
-//                }
-//                else {
-//                    Storage storage = new Storage("D:\\cs2103t\\duke.txt");
-//                    duke.printCommand(command);
-//
-//                    storage.push(duke.getList());
-//                    duke.tasks.set(storage.load());
-//                }
-//                command = sc.nextLine();
-//            } catch (DukeException | IOException e) {
-//                System.out.println(e);
-//                command = sc.nextLine();
-//            }
-//        }
-//    }
 
     /**
      * PrintCommand function to print out the current command.
