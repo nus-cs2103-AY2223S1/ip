@@ -4,8 +4,8 @@ package duke.exception;
  * Throws an exception when index given is out of range.
  */
 public class TaskNotFoundException extends DukeException {
-    public static String EXCEPTION_FRONT_DESCRIPTION = "Task at index ";
-    public static String EXCEPTION_BACK_DESCRIPTION = " cannot be found!";
+    public static final String EXCEPTION_FRONT_DESCRIPTION = "Task at index ";
+    public static final String EXCEPTION_BACK_DESCRIPTION = " cannot be found!";
     /**
      * Throws an error messgae when index given is out of range.
      *

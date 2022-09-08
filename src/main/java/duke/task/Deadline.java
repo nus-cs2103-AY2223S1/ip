@@ -7,6 +7,9 @@ import duke.exception.UnexpectedDateTimeFormatException;
  * Represents a task to be done by a certain date and time.
  */
 public class Deadline extends ScheduleTask {
+    public static final String LEAD_KEYWORD = "[D]";
+    public static final String MIDDLE_KEYWORD = " (by: ";
+    public static final String END_KEYWORD = ")";
 
     /**
      * Constructs Deadline object with a description, date and time.
@@ -37,6 +40,6 @@ public class Deadline extends ScheduleTask {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + showDateTime() + ")";
+        return LEAD_KEYWORD + super.toString() + MIDDLE_KEYWORD + showDateTime() + END_KEYWORD;
     }
 }
