@@ -275,114 +275,144 @@ public class Parser {
         if (input.equals("blank")) {
             return new NullCommand();
         }
-        try {
-            String command = findArgument(input, 1).toLowerCase();
-            assert command.charAt(0) != ' ';
-            switch (command) {
-            case "bye":
-                if (countArguments(input) != 1) {
-                    throw new IllegalArgumentException("Who is that?");
-                }
-                return new ByeCommand();
-            case "list":
-                if (countArguments(input) != 1) {
-                    throw new IllegalArgumentException("Just use 'list'!");
-                }
-                return new ListCommand();
-            case "mark":
-                if (countArguments(input) != 2) {
-                    throw new IllegalArgumentException("Incorrect number of arguments for command mark");
-                }
-                try {
-                    input = (removeWhitespace(input));
-                    int taskNum = Integer.parseInt(input.substring(4));
-                    return new MarkCommand(taskNum);
-                } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("Must input a number!");
-                }
-            case "unmark":
-                if (countArguments(input) != 2) {
-                    throw new IllegalArgumentException("Incorrect number of arguments for command unmark");
-                }
-                try {
-                    input = (removeWhitespace(input));
-                    int taskNum = Integer.parseInt(input.substring(6));
-                    return new UnmarkCommand(taskNum);
-                } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("Must input a number!");
-                }
-            case "delete":
-                if (countArguments(input) != 2) {
-                    throw new IllegalArgumentException("Incorrect number of arguments for command delete");
-                }
-                try {
-                    input = (removeWhitespace(input));
-                    int taskNum = Integer.parseInt(input.substring(6));
-                    return new DeleteCommand(taskNum);
-                } catch (NumberFormatException e) {
-                    throw new IllegalArgumentException("Must input a number!");
-                }
-            case "deadline": {
-                if (countArguments(input) < 4) {
-                    String message = "To add a deadline task, enter a task name followed by /by and then a deadline";
-                    throw new IllegalArgumentException(message);
-                }
-                if (countArguments(input) > 5) {
-                    throw new IllegalArgumentException("Incorrect number of arguments for command deadline");
-                }
-                if (!findArgument(input, 3).equalsIgnoreCase("/by")) {
-                    throw new IllegalArgumentException("You need to include /by to specify the deadline");
-                }
-                String taskName = findArgument(input, 2);
-                String date = findArgument(input, 4);
-                date = parseDate(date);
-                if (countArguments(input) == 5) {
-                    String time = findArgument(input, 5);
-                    time = parseTime(time);
-                    return new AddDeadlineCommand(taskName, date, time);
-                } else {
-                    return new AddDeadlineCommand(taskName, date);
-                }
-            }
-            case "event": {
-                if (countArguments(input) < 4) {
-                    String message = "To add an event task, enter a task name followed by /at and then the event datetime";
-                    throw new IllegalArgumentException(message);
-                }
-                if (countArguments(input) > 5) {
-                    throw new IllegalArgumentException("Incorrect number of arguments for command deadline");
-                }
-                if (!findArgument(input, 3).equalsIgnoreCase("/at")) {
-                    throw new IllegalArgumentException("You need to include /at to specify the datetime");
-                }
-                String taskName = findArgument(input, 2);
-                String date = findArgument(input, 4);
-                date = parseDate(date);
-                if (countArguments(input) == 5) {
-                    String time = findArgument(input, 5);
-                    time = parseTime(time);
-                    return new AddEventCommand(taskName, date, time);
-                } else {
-                    return new AddEventCommand(taskName, date);
-                }
-            }
-            case "todo":
-                if (countArguments(input) != 2) {
-                    throw new IllegalArgumentException("Incorrect number of arguments for command todo");
-                }
-                String taskName = findArgument(input, 2);
-                return new AddTodoCommand(taskName);
-            case "find":
-                if (countArguments(input) != 2) {
-                    throw new IllegalArgumentException("Please enter only 1 keyword!");
-                }
-                String keyword = findArgument(input, 2);
-                return new FindCommand(keyword);
-            default:
-                return new UnrecognisedCommand();
-            }
-        } catch (DateTimeException | IllegalArgumentException e) {
-            throw new DukeException(e.getMessage());
+        String command = findArgument(input, 1).toLowerCase();
+        assert command.charAt(0) != ' ';
+        switch (command) {
+        case "bye":
+            return parseBye(input);
+        case "list":
+            return parseList(input);
+        case "mark":
+            return parseMark(input);
+        case "unmark":
+            return parseUnmark(input);
+        case "delete":
+            return parseDelete(input);
+        case "deadline":
+            return parseDeadline(input);
+        case "event":
+            return parseEvent(input);
+        case "todo":
+            return parseTodo(input);
+        case "find":
+            return parseFind(input);
+        default:
+            return new UnrecognisedCommand();
         }
+    }
+
+    private static Command parseBye(String input) {
+        if (countArguments(input) != 1) {
+            throw new DukeException("Who is that?");
+        }
+        return new ByeCommand();
+    }
+
+    private static Command parseList(String input) {
+        if (countArguments(input) != 1) {
+            throw new DukeException("Just use 'list'!");
+        }
+        return new ListCommand();
+    }
+
+    private static Command parseMark(String input) {
+        if (countArguments(input) != 2) {
+            throw new DukeException("Incorrect number of arguments for command mark");
+        }
+        try {
+            input = (removeWhitespace(input));
+            int taskNum = Integer.parseInt(input.substring(4));
+            return new MarkCommand(taskNum);
+        } catch (NumberFormatException e) {
+            throw new DukeException("Must input a number!");
+        }
+    }
+
+    private static Command parseUnmark(String input) {
+        if (countArguments(input) != 2) {
+            throw new DukeException("Incorrect number of arguments for command unmark");
+        }
+        try {
+            input = (removeWhitespace(input));
+            int taskNum = Integer.parseInt(input.substring(6));
+            return new UnmarkCommand(taskNum);
+        } catch (NumberFormatException e) {
+            throw new DukeException("Must input a number!");
+        }
+    }
+
+    private static Command parseDelete(String input) {
+        if (countArguments(input) != 2) {
+            throw new DukeException("Incorrect number of arguments for command delete");
+        }
+        try {
+            input = (removeWhitespace(input));
+            int taskNum = Integer.parseInt(input.substring(6));
+            return new DeleteCommand(taskNum);
+        } catch (NumberFormatException e) {
+            throw new DukeException("Must input a number!");
+        }
+    }
+
+    private static Command parseDeadline(String input) {
+        if (countArguments(input) < 4) {
+            String message = "To add a deadline task, enter a task name followed by /by and then a deadline";
+            throw new DukeException(message);
+        }
+        if (countArguments(input) > 5) {
+            throw new DukeException("Incorrect number of arguments for command deadline");
+        }
+        if (!findArgument(input, 3).equalsIgnoreCase("/by")) {
+            throw new DukeException("You need to include /by to specify the deadline");
+        }
+        String taskName = findArgument(input, 2);
+        String date = findArgument(input, 4);
+        date = parseDate(date);
+        if (countArguments(input) == 5) {
+            String time = findArgument(input, 5);
+            time = parseTime(time);
+            return new AddDeadlineCommand(taskName, date, time);
+        } else {
+            return new AddDeadlineCommand(taskName, date);
+        }
+    }
+
+    private static Command parseEvent(String input) {
+        if (countArguments(input) < 4) {
+            String message = "To add an event task, enter a task name followed by /at and then the event datetime";
+            throw new DukeException(message);
+        }
+        if (countArguments(input) > 5) {
+            throw new DukeException("Incorrect number of arguments for command deadline");
+        }
+        if (!findArgument(input, 3).equalsIgnoreCase("/at")) {
+            throw new DukeException("You need to include /at to specify the datetime");
+        }
+        String taskName = findArgument(input, 2);
+        String date = findArgument(input, 4);
+        date = parseDate(date);
+        if (countArguments(input) == 5) {
+            String time = findArgument(input, 5);
+            time = parseTime(time);
+            return new AddEventCommand(taskName, date, time);
+        } else {
+            return new AddEventCommand(taskName, date);
+        }
+    }
+
+    private static Command parseTodo(String input) {
+        if (countArguments(input) != 2) {
+            throw new DukeException("Incorrect number of arguments for command todo");
+        }
+        String taskName = findArgument(input, 2);
+        return new AddTodoCommand(taskName);
+    }
+
+    private static Command parseFind(String input) {
+        if (countArguments(input) != 2) {
+            throw new DukeException("Please enter only 1 keyword!");
+        }
+        String keyword = findArgument(input, 2);
+        return new FindCommand(keyword);
     }
 }
