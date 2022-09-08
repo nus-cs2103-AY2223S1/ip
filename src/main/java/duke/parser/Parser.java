@@ -53,7 +53,6 @@ public class Parser {
         String[] dateAndTime = dateTime.trim().split(" ");
         String hour;
         String min;
-
         
         if (dateAndTime.length != 2) {
             throw new DateTimeFormatException("The correct Format: YYYY-MM-DD HH:mm");
