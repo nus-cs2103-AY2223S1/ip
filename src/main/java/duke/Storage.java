@@ -57,6 +57,7 @@ public class Storage {
 
     private Task parseLine(String entry) {
         String[] entryArray = entry.split(",");
+        assert entryArray.length >= 3;
         String taskType = entryArray[0];
         String name = entryArray[2];
         boolean isMarked = entryArray[1].equals("X");

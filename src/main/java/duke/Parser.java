@@ -89,6 +89,7 @@ public class Parser {
     }
 
     private String combineStringArray(String[] inputStringArray, int start, int end) {
+        assert end <= inputStringArray.length && start >= 0;
         String[] subArray = Arrays.asList(inputStringArray).subList(start, end).toArray(new String[0]);
         String combinedString = Arrays.stream(subArray).reduce("", (a, b) -> a + " " + b).trim();
         return combinedString;
