@@ -44,6 +44,7 @@ public class Parser {
             String[] deadline = input.replace("deadline ", "").split(" /by ");
             if (isDate(deadline[1])) {
                 LocalDateTime byDate = parseDate(deadline[1]);
+                assert isDate(deadline[1]);
                 return new AddDeadlineCommand(deadline[0], byDate);
             } else {
                 return new AddDeadlineCommand(deadline[0], deadline[1]);
@@ -51,6 +52,7 @@ public class Parser {
         } else if (input.startsWith("todo ")) {
             String todo = input.replace("todo ", "");
             validateTodo(todo);
+            assert !todo.isEmpty();
             return new AddTodoCommand(todo);
         } else if (input.startsWith("event ")) {
             String[] event = input.replace("event ", "").split(" /at ");
@@ -62,6 +64,7 @@ public class Parser {
         } else if (input.startsWith("find ")) {
             String toFind = input.replace("find ", "");
             validateFind(toFind);
+            assert !toFind.isEmpty();
             return new FindCommand(toFind);
         } else {
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
