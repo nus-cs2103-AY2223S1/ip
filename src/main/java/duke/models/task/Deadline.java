@@ -32,9 +32,10 @@ public class Deadline extends Task {
      * @param description The received description.
      * @param deadline    The received deadline.
      * @param isDone      The received completion status.
+     * @param doneAt      The received done at date.
      */
-    public Deadline(String description, LocalDate deadline, boolean isDone) {
-        super(description, isDone);
+    public Deadline(String description, LocalDate deadline, boolean isDone, LocalDate doneAt) {
+        super(description, isDone, doneAt);
         this.deadline = deadline;
     }
 
@@ -45,7 +46,7 @@ public class Deadline extends Task {
 
     @Override
     public TaskSerializable serialize() {
-        return new TaskSerializable(Deadline.taskType, super.description, super.isDone, this.deadline);
+        return new TaskSerializable(Deadline.taskType, super.description, super.isDone, super.doneAt, this.deadline);
     }
 
     @Override

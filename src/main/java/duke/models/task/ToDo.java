@@ -27,14 +27,15 @@ public class ToDo extends Task {
      *
      * @param description The received description.
      * @param isDone      The received completion status.
+     * @param doneAt      The received done at date.
      */
-    public ToDo(String description, boolean isDone) {
-        super(description, isDone);
+    public ToDo(String description, boolean isDone, LocalDate doneAt) {
+        super(description, isDone, doneAt);
     }
 
     @Override
     public TaskSerializable serialize() {
-        return new TaskSerializable(ToDo.taskType, super.description, super.isDone, null);
+        return new TaskSerializable(ToDo.taskType, super.description, super.isDone, super.doneAt, null);
     }
 
     @Override

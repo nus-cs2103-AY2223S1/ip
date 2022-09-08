@@ -1,5 +1,6 @@
 package duke.managers;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -19,6 +20,8 @@ public class TaskManager {
     private static final String MESSAGE_NO_TASKS_AVAILABLE = "There are currently no tasks available. Add one now!";
     private static final String MESSAGE_TASK_LIST_STATUS = "Now you have %s task(s) in the list.";
     private static final String MESSAGE_TASK_LIST_CANNOT_READ_STATUS = "Uh oh, I cannot read the tasks in the list!";
+    private static final String MESSAGE_TASK_COMPLETION_PROGRESS = "Keep it up! "
+        + "You have completed %.2f%% of the tasks.";
 
     private final TaskStorage taskStorage;
 
@@ -33,13 +36,14 @@ public class TaskManager {
 
     /**
      * Displays the list of tasks in numerical order by implicitly invoking the string representation
-     * of the tasks
+     * of the tasks, along with the progress of the user.
      *
-     * @param tasks The tasks to be displayed.
+     * @param tasks        The tasks to be displayed.
+     * @param userProgress The progress of the user.
      *
      * @return String representation of the tasks.
      */
-    public static String display(List<Task> tasks) {
+    public static String display(List<Task> tasks, String userProgress) {
         if (tasks.size() == 0) {
             return TaskManager.MESSAGE_NO_TASKS_AVAILABLE;
         }
@@ -47,9 +51,9 @@ public class TaskManager {
         String taskManagerDisplay = IntStream
             .range(0, tasks.size())
             .mapToObj(index -> String.format("%d. %s\n", index + 1, tasks.get(index)))
-            .collect(Collectors.joining()) + "\n";
+            .collect(Collectors.joining());
 
-        return taskManagerDisplay.strip();
+        return (taskManagerDisplay + "\n\n" + userProgress + "\n").strip();
     }
 
     /**
@@ -121,6 +125,32 @@ public class TaskManager {
     public String getStatus() {
         try {
             return String.format(TaskManager.MESSAGE_TASK_LIST_STATUS, this.count());
+        } catch (DukeException e) {
+            return String.format("%s: %s", TaskManager.MESSAGE_TASK_LIST_CANNOT_READ_STATUS, e.getMessage());
+        }
+    }
+
+    /**
+     * Returns the progress of the user encapsulated in the form of the number of tasks completed in the past
+     * week.
+     *
+     * @return Progress of the user.
+     */
+    public String getUserProgress() {
+        try {
+            LocalDate oneWeekAgo = LocalDate.now().minusWeeks(1);
+            int numTasksCompleted = this.list(
+                task -> task.getDoneAt() != null
+                    && (task.getDoneAt().isAfter(oneWeekAgo) || task.getDoneAt().isEqual(oneWeekAgo))
+            ).size();
+            int totalNumTasks = this.count();
+            double userProgress = (numTasksCompleted * 100.0) / totalNumTasks;
+
+            if (numTasksCompleted == 0) {
+                return "";
+            }
+
+            return String.format(TaskManager.MESSAGE_TASK_COMPLETION_PROGRESS, userProgress);
         } catch (DukeException e) {
             return String.format("%s: %s", TaskManager.MESSAGE_TASK_LIST_CANNOT_READ_STATUS, e.getMessage());
         }

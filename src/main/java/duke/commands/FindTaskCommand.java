@@ -59,7 +59,7 @@ public class FindTaskCommand implements Command {
             return String.format(
                     "%s\n%s",
                     FindTaskCommand.MESSAGE_MATCHING_TASKS_FOUND,
-                    TaskManager.display(filteredTasks)
+                    TaskManager.display(filteredTasks, taskManager.getUserProgress())
             );
         }
     }

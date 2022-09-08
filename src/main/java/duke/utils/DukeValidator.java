@@ -31,10 +31,14 @@ public class DukeValidator {
      * @throws DukeException If the provided date string does not match the expected format.
      */
     public static LocalDate parseDate(String date) throws DukeException {
-        Matcher matcher = MATCH_DATE.matcher(date);
+        String strippedDate = date.strip();
+        if (strippedDate.length() == 0) {
+            return null;
+        }
+        Matcher matcher = MATCH_DATE.matcher(strippedDate);
         if (!matcher.find()) {
             throw new DukeException(DukeValidator.ERROR_INVALID_DATE);
         }
-        return LocalDate.parse(date);
+        return LocalDate.parse(strippedDate);
     }
 }
