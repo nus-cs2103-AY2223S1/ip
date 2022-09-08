@@ -102,7 +102,7 @@ public class Parser {
     }
 
     /**
-     * Returning the first word of the string.
+     * Returns the first word of the string.
      *
      * @param input the user's input
      * @return the index of the character in the string

@@ -1,26 +1,22 @@
 package Rabbit.util;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import Rabbit.RabbitException.FindFormatException;
 import Rabbit.Task.Task;
-import Rabbit.Task.Event;
-import Rabbit.Task.Deadline;
-import Rabbit.Task.Todo;
 import Rabbit.RabbitException.AddToListException;
 import Rabbit.RabbitException.MarkUnmarkException;
 import Rabbit.RabbitException.DeleteException;
 
 
 public class TaskList {
-    private ArrayList<Task> list;
+    private ArrayList<Task> taskList;
     public enum TaskType {
         TODO, DEADLINE, EVENT;
     }
 
     public TaskList() {
-        this.list = new ArrayList<>();
+        this.taskList = new ArrayList<>();
     }
 
     /**
@@ -38,8 +34,8 @@ public class TaskList {
                 throw new FindFormatException();
             }
             String output = "";
-            for (int i = 0; i < this.list.size(); i++) {
-                String content = this.list.get(i).getContent();
+            for (int i = 0; i < this.taskList.size(); i++) {
+                String content = this.taskList.get(i).getContent();
 
                 if (content.length() < keyword.length()) {
                     continue;
@@ -47,7 +43,7 @@ public class TaskList {
 
                 for (int j = 0; j < content.length() - keyword.length() + 1; j++) {
                     if (content.substring(j, j + keyword.length()).equals(keyword)) {
-                        output += list.get(i).toString();
+                        output += taskList.get(i).toString();
                     }
                 }
             }
@@ -66,7 +62,7 @@ public class TaskList {
      * @return the content of the task.
      */
     public String addToList(TaskType taskType, String input) throws AddToListException {
-        if (this.list.size() == 100) {
+        if (this.taskList.size() == 100) {
             // throws an exception when there are already 100 lines in
             // the list when the user is trying to input a new line.
             throw new AddToListException(AddToListException.Type.FULL);
@@ -74,7 +70,7 @@ public class TaskList {
 
         try {
             Task task = Parser.parseTask(taskType, input);
-            list.add(task);
+            taskList.add(task);
             return task.getContent();
         } catch (AddToListException e) {
             throw e;
@@ -90,13 +86,13 @@ public class TaskList {
     public String list() {
         String output = "";
 
-        if (list.size() == 0) {
+        if (taskList.size() == 0) {
             output = "There is no task in the list.";
         }
 
-        for (int i  = 0; i < list.size(); i++ ) {
+        for (int i = 0; i < taskList.size(); i++ ) {
             int index = i + 1;
-            output += index + ". " + list.get(i) + "\n";
+            output += index + ". " + taskList.get(i) + "\n";
         }
         return output;
     }
@@ -110,8 +106,9 @@ public class TaskList {
      */
     public String mark(String input) throws MarkUnmarkException {
         int i = Parser.parseMark(input, this);
-        list.get(i - 1).markDone();
-        return list.get(i - 1).getContent();
+        assert taskList.get(i - 1) != null;
+        taskList.get(i - 1).markDone();
+        return taskList.get(i - 1).getContent();
     }
 
     /**
@@ -123,8 +120,9 @@ public class TaskList {
      */
     public String unmark(String input) throws MarkUnmarkException {
         int i = Parser.parseUnmark(input, this);
-        list.get(i - 1).unmark();
-        return list.get(i - 1).getContent();
+        assert taskList.get(i - 1) != null;
+        taskList.get(i - 1).unmark();
+        return taskList.get(i - 1).getContent();
     }
 
     /**
@@ -133,7 +131,7 @@ public class TaskList {
      * @param task the task to be added.
      */
     public void add(Task task) {
-        list.add(task);
+        taskList.add(task);
     }
 
     /**
@@ -144,9 +142,10 @@ public class TaskList {
      * @throws DeleteException The task to be deleted is not in the list.
      */
     public String delete(String input) throws DeleteException {
+        assert this.taskList.size() > 0 : "The size of the list should be larger than 0.";
         int i = Parser.parseDelete(input, this);
-        String content = list.get(i -1).getContent();
-        list.remove(i - 1);
+        String content = taskList.get(i -1).getContent();
+        taskList.remove(i - 1);
         return content;
     }
 
@@ -156,7 +155,7 @@ public class TaskList {
      * @return the size of the list.
      */
     public int size() {
-        return this.list.size();
+        return this.taskList.size();
     }
 
     /**
@@ -166,6 +165,6 @@ public class TaskList {
      * @return the task.
      */
     public Task get(int i) {
-        return this.list.get(i);
+        return this.taskList.get(i);
     }
 }
