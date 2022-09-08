@@ -38,7 +38,8 @@ public class FindCommand extends Command {
     @Override
     public String handle(Storage storage, Ui ui, TaskList taskList) throws DukeException {
         ArrayList<Task> list = taskList.getTaskList();
-        List<Task> filteredList = list.stream().filter(task -> task.containsKeyword(keyword))
+        List<Task> filteredList = list.stream()
+                .filter(task -> task.containsKeyword(keyword))
                 .collect(Collectors.toList());
         if (filteredList.size() == 0) {
             throw new DukeException("Sorry! You don't have tasks related to this keyword you entered");
