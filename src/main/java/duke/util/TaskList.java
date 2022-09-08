@@ -39,35 +39,57 @@ public class TaskList {
      */
     public TaskList(String text) {
         this();
-        if (text != "") {
-            String[] texts = text.split("\n");
-            String taskType;
-            String description;
-            for (int i = 0; i < texts.length; i++) {
-                taskType = texts[i].substring(START_SQUARE_BRACKET_INDEX, END_SQUARE_BRACKET_INDEX);
-                String[] descriptions;
-                switch (taskType) {
-                case "[T]":
-                    description = texts[i].substring(START_DESCRIPTION_INDEX);
-                    tasks.add(new Todo(description, texts[i].charAt(7) == 'X'));
-                    break;
-                case "[D]":
-                    description = texts[i].substring(START_DESCRIPTION_INDEX);
-                    descriptions = description.split("by");
-                    tasks.add(new Deadline(descriptions[0].substring(0, description.indexOf("(") - 1),
-                            descriptions[1].substring(2, descriptions[1].length() - 1), texts[i].charAt(IS_DONE_INDEX) == 'X'));
-                    break;
-                case "[E]":
-                    description = texts[i].substring(START_DESCRIPTION_INDEX);
-                    descriptions = description.split("at");
-                    tasks.add(new Event(descriptions[0].substring(0, description.indexOf("(") - 1),
-                            descriptions[1].substring(2, descriptions[1].length() - 1), texts[i].charAt(IS_DONE_INDEX) == 'X'));
-                    break;
-                default:
-                    break;
-                }
+        assert text != "" : "You should not be reading from an empty file.";
+        addTaskFromFile(text);
+    }
+
+    /**
+     * Reads text from file and parse into Task object.
+     *
+     * @param text text read from file.
+     */
+    private void addTaskFromFile(String text) {
+        String[] texts = text.split("\n");
+        String taskType;
+        String description;
+        String information;
+        String date;
+        boolean isDone;
+        for (int i = 0; i < texts.length; i++) {
+            taskType = texts[i].substring(START_SQUARE_BRACKET_INDEX, END_SQUARE_BRACKET_INDEX);
+            String[] descriptions;
+            switch (taskType) {
+            case "[T]":
+                description = texts[i].substring(START_DESCRIPTION_INDEX);
+                tasks.add(new Todo(description, texts[i].charAt(7) == 'X'));
+                break;
+            case "[D]":
+                description = texts[i].substring(START_DESCRIPTION_INDEX);
+                descriptions = filterDescription(description, "by");
+                information = descriptions[0];
+                date = descriptions[1];
+                isDone = texts[i].charAt(IS_DONE_INDEX) == 'X';
+                tasks.add(new Deadline(information, date, isDone));
+                break;
+            case "[E]":
+                description = texts[i].substring(START_DESCRIPTION_INDEX);
+                descriptions = filterDescription(description, "at");
+                information = descriptions[0];
+                date = descriptions[1];
+                isDone = texts[i].charAt(IS_DONE_INDEX) == 'X';
+                tasks.add(new Event(information, date, isDone));
+                break;
+            default:
+                break;
             }
         }
+    }
+
+    private String[] filterDescription(String description, String keyword) {
+        String[] descriptions = description.split(keyword);
+        descriptions[0] = descriptions[0].substring(0, description.indexOf("(") - 1);
+        descriptions[1] = descriptions[1].substring(2, descriptions[1].length() - 1);
+        return descriptions;
     }
 
     /**
