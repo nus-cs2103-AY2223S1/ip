@@ -168,13 +168,12 @@ public class TaskList {
     }
 
     /**
-     * Returns a copy of the ArrayList.
+     * Retrieves the current taskList.
      *
-     * @return a copy of the ArrayList.
+     * @return the ArrayList.
      */
-    public ArrayList<Task> getList() {
-        ArrayList<Task> temp = this.taskList;
-        return temp;
+    protected ArrayList<Task> getList() {
+        return taskList;
     }
 
     /**

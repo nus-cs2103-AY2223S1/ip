@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Represent the abstract class Task
  */
-public abstract class Task {
+public abstract class Task implements Comparable<Task>{
 
     protected static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
     private String desc;
@@ -22,6 +22,16 @@ public abstract class Task {
         isDone = false;
     }
 
+    @Override
+    public int compareTo(Task task) {
+        if (getType().equals("T")) {
+            return 1;
+        } else if (task.getType().equals("T")) {
+            return -1;
+        } else {
+            return this.getTime().compareTo(task.getTime());
+        }
+    }
     /**
      * Returns a String representing the type of the task.
      *

@@ -1,6 +1,7 @@
 package doke;
 
 import java.io.IOException;
+import java.util.Collections;
 
 import javafx.util.Pair;
 
@@ -18,6 +19,14 @@ public class Command {
 
     static boolean listCommand(TaskList taskList, Ui ui) {
         taskList.listOut(ui);
+        return true;
+    }
+
+    static boolean sortCommand(Storage storage, Ui ui, TaskList taskList) {
+        Collections.sort(taskList.getList());
+        ui.printOut("Here's the sorted task");
+        taskList.listOut(ui);
+        storage.updateFile(taskList.getList(), ui);
         return true;
     }
 

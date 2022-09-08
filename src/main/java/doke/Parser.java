@@ -2,6 +2,8 @@ package doke;
 
 import javafx.util.Pair;
 
+import java.util.Collections;
+
 /**
  * A class to represent the making sense of the inputted text.
  *
@@ -75,6 +77,8 @@ public class Parser {
             return Command.deleteCommand(taskList, ui, storage, Miscellaneous.toInt(strings[1]));
         } else if (action.equals("find")) {
             return Command.findCommand(taskList, ui, input);
+        } else if (input.equals("sort")) {
+            return Command.sortCommand(storage, ui, taskList);
         } else {
             try {
                 throw new DokeException();
