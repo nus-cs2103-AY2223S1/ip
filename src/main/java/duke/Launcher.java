@@ -8,6 +8,7 @@ import javafx.application.Application;
 public class Launcher {
     /**
      * Start the Launcher
+     *
      * @param args
      */
     public static void main(String[] args) {
