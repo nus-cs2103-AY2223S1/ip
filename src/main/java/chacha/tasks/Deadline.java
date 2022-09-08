@@ -11,7 +11,7 @@ public class Deadline extends Task {
     private LocalDateTime date;
     private boolean isDone;
     private String type;
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
 
     /**
      * Constructor for deadline.

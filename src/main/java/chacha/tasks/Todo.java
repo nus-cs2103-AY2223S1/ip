@@ -39,7 +39,7 @@ public class Todo extends Task {
      * @return X if done and empty string if not done.
      */
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : " ");
     }
 
     /** 

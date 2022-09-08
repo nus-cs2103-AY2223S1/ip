@@ -30,7 +30,6 @@ public class TaskList {
             }
         }
 
-        
         /** 
          * Gets the length of task list.
          * 
@@ -39,7 +38,6 @@ public class TaskList {
         public int getSize() {
             return tasks.size();
         }
-
         
         /** 
          * Gets the task at a certain index.
@@ -51,7 +49,6 @@ public class TaskList {
             return tasks.get(taskIndex);
         }
 
-        
         /** 
          * Adds a task to task list.
          * 
@@ -60,7 +57,6 @@ public class TaskList {
         public void add(Task task) {
             tasks.add(task);
         }
-
         
         /** 
          * Removes task at a certain index.

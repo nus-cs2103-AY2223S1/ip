@@ -11,7 +11,7 @@ public class Event extends Task {
     private LocalDateTime date;
     private boolean isDone;
     private String type;
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
 
     /**
      * Constructor for event.
@@ -45,7 +45,7 @@ public class Event extends Task {
      * @return X if done and empty string if not done.
      */
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : " ");
     }
 
     /** 
