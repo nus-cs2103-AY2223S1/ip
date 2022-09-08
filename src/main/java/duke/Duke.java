@@ -58,14 +58,17 @@ public class Duke {
                     this.ui.printTasks(this.tasks);
                     break;
                 case "mark":
+                    checkIndex(parts[1],tasks);
                     Task marked = this.tasks.changeTaskStatus(Integer.parseInt(parts[1]), true);
                     this.ui.printChangeTaskStatus(marked, true);
                     break;
                 case "unmark":
+                    checkIndex(parts[1],tasks);
                     Task unmarked = this.tasks.changeTaskStatus(Integer.parseInt(parts[1]), false);
                     this.ui.printChangeTaskStatus(unmarked, false);
                     break;
                 case "delete":
+                    checkIndex(parts[1],tasks);
                     Task deleted = this.tasks.removeTask(Integer.parseInt(parts[1]));
                     System.out.println(Integer.parseInt(parts[1]));
                     this.ui.printDeleteTask(deleted, this.tasks);
@@ -145,14 +148,17 @@ public class Duke {
                     response = this.ui.printTasks(this.tasks);
                     break;
                 case "mark":
+                    checkIndex(infoArray[1],tasks);
                     Task marked = this.tasks.changeTaskStatus(Integer.parseInt(infoArray[1]), true);
                     response = this.ui.printChangeTaskStatus(marked, true);
                     break;
                 case "unmark":
+                    checkIndex(infoArray[1],tasks);
                     Task unmarked = this.tasks.changeTaskStatus(Integer.parseInt(infoArray[1]), false);
                     response = this.ui.printChangeTaskStatus(unmarked, false);
                     break;
                 case "delete":
+                    checkIndex(infoArray[1],tasks);
                     Task deleted = this.tasks.removeTask(Integer.parseInt(infoArray[1]));
                     response = this.ui.printDeleteTask(deleted, this.tasks);
                     break;
@@ -201,6 +207,19 @@ public class Duke {
             this.ui.printIoException(e);
         }
         return response;
+    }
+
+    /**
+     * Checks if index input is valid
+     * @param inputIndex The user input index
+     * @param tasks The current tasks
+     * @throws DukeException Handles when user index is invalid
+     */
+    public static void checkIndex(String inputIndex, TaskList tasks) throws DukeException {
+        int index = Integer.parseInt(inputIndex);
+        if (index <= 0 || index > tasks.getNumberOfTasks()) {
+            throw new DukeException("I'm sorry invalid index!");
+        }
     }
 
     /**
