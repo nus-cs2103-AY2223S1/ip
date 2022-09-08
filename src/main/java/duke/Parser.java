@@ -27,6 +27,7 @@ public class Parser {
      */
     public static Command parse(String fullCommand) throws DukeUnknownCommandException {
 
+        assert fullCommand != "";
         if (fullCommand.equals("bye")) {
             return new ExitCommand(fullCommand);
         }

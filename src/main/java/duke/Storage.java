@@ -57,7 +57,7 @@ public class Storage {
             directory.mkdirs();
             file.createNewFile();
         }
-
+        assert file.exists();
         Scanner sc = new Scanner(file);
 
         while (sc.hasNextLine()) {
