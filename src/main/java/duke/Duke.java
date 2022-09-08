@@ -53,6 +53,7 @@ public class Duke {
                 }
 
             } catch (DukeException | IOException e) {
+                assert e != null : "The error is: " + e.toString();
                 return e.toString();
 
             }
