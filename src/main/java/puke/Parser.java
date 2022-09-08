@@ -25,9 +25,7 @@ public class Parser {
         }
 
         if (result.length() == 0) {
-            throw new DukeException("    ____________________________________________________________\n" +
-                    "     OOPS!!! The Description of a " + type + " cannot be empty.\n" +
-                    "    ____________________________________________________________");
+            throw new DukeException("     OOPS!!! The Description of a " + type + " cannot be empty.\n");
         }
         return result;
     }
