@@ -42,15 +42,19 @@ public class Duke {
     public String getResponse(String fullCommand) throws IOException {
         String response = "";
         String [] strArr = fullCommand.split(" ");
+
         try {
             Command c = parser.parse(fullCommand);
-            response = c.execute(tasks, ui, storage);
+            response = c.execute(tasks, ui);
+
         } catch (MismatchInputException e) {
             response = ":( OOPS!!! I'm sorry, but I don't know what that means";
+
         } catch (TaskWithNoDescriptionException e) {
             response = ":( OOPS!!! The description of a "
                     + strArr[0] + " cannot be empty.";
         }
+
         storage.saveNewChanges(tasks);
         return response;
     }

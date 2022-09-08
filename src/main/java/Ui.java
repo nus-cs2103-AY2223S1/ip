@@ -66,23 +66,13 @@ public class Ui {
         return "OK! I've marked this task as not done yet:\n" + taskFullDescription + "\n";
     }
 
-    /**
-     * Reply the users when the users' input is to find tasks with a certain keyword.
-     * @return String : the reply by Duke that shows a list of matching tasks that contain the keyword.
-     * If no matching tasks, Duke will tell the user and ask the user to recheck the keyword.
-     */
-    String printMatchingList(List<Task> taskList) {
-        String printedList = "";
-        if (taskList != null) {
-            printedList = "Here are the matching tasks in your list:\n";
-            for (int i = 1; i < taskList.size() + 1; i++) {
-                String task = taskList.get(i - 1).toString();
-                printedList = printedList + i + ". " + task + "\n";
-            }
-        }  else {
-            printedList = "There are no matching tasks, please recheck your keyword.";
+    private String getPrintedList(List<Task> taskList) {
+        String listString ="";
+        for (int i = 1; i < taskList.size() + 1; i++) {
+            String task = taskList.get(i - 1).toString();
+            listString = listString + i + ". " + task + "\n";
         }
-        return printedList;
+        return listString;
     }
 
     /**
@@ -92,16 +82,34 @@ public class Ui {
      */
     String printList(List<Task> taskList) {
         String printedList = "";
-        if (taskList != null) {
-            printedList = "Here are the tasks in your list:\n";
-            for (int i = 1; i < taskList.size() + 1; i++) {
-                String task = taskList.get(i - 1).toString();
-                printedList = printedList + i + ". " + task + "\n";
-            }
-        }  else {
+
+        if (taskList == null) {
             printedList = "There are no tasks in the list.";
+        } else if (taskList != null) {
+            printedList = "Here are the tasks in your list:\n";
         }
+
+        printedList = printedList + getPrintedList(taskList);
         return printedList;
     }
+
+    /**
+     * Reply the users when the users' input is to find tasks with a certain keyword.
+     * @return String : the reply by Duke that shows a list of matching tasks that contain the keyword.
+     * If no matching tasks, Duke will tell the user and ask the user to recheck the keyword.
+     */
+    String printMatchingList(List<Task> taskList) {
+        String printedList = "";
+
+        if (taskList == null) {
+            printedList = "There are no matching tasks, please recheck your keyword.";
+        } else if (taskList != null) {
+            printedList = "Here are the matching tasks in your list:\n";
+        }
+
+        printedList = printedList + getPrintedList(taskList);
+        return printedList;
+    }
+
 
 }

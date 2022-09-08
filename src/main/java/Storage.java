@@ -54,46 +54,53 @@ public class Storage {
      */
     List<Task> readFile() throws Exception {
         List<Task> existingTasks = new ArrayList<Task>();
-        if (this.checkFile() == true) {
-            FileReader file = new FileReader(fileLocation);
-            Scanner sc = new Scanner(file);
-            while (sc.hasNextLine() ) {
-                String task = sc.nextLine();
-                String[] strarr = task.split(":");
-                String typeOfTask = strarr[1];
-                assert typeOfTask != null : "typeOfTask should not be null";
-                String statusOfTask = strarr[2];
-                assert statusOfTask.equals(" ") || statusOfTask.equals("X") : "statusOfTask should be null or X";
-                String taskDescription = strarr[3];
-                assert taskDescription != null : "typeDescription should not be null";
-                if (typeOfTask.equals("T")) {
-                    Task pastTask = new ToDo(taskDescription);
-                    if (statusOfTask.equals("X")) {
-                        pastTask.markAsDone();
-                    }
-                    existingTasks.add(pastTask);
-                } else if (typeOfTask.equals("D")) {
-                    String dateOfTask = strarr[4];
-                    assert dateOfTask != null : "dateOfTask should not be null";
-                    Task pastTask = new Deadline(taskDescription, dateOfTask);
-                    if (statusOfTask.equals("X")) {
-                        pastTask.markAsDone();
-                    }
-                    existingTasks.add(pastTask);
-                } else if (typeOfTask.equals("E")) {
-                    String dateOfTask = strarr[4];
-                    assert dateOfTask != null : "dateOfTask should not be null";
-                    Task pastTask = new Event(taskDescription, dateOfTask);
-                    if (statusOfTask.equals("X")) {
-                        pastTask.markAsDone();
-                    }
-                    existingTasks.add(pastTask);
-                }
-            }
-        } else {
+
+        if (this.checkFile() == false) {
             this.createFile();
+            return existingTasks;
+        }
+
+        FileReader file = new FileReader(fileLocation);
+        Scanner sc = new Scanner(file);
+        while (sc.hasNextLine() ) {
+            String task = sc.nextLine();
+            readTask(task, existingTasks);
         }
         return existingTasks;
+    }
+
+    private void readTask(String task, List<Task> existingTasks) {
+        String[] strarr = task.split(":");
+        boolean haveDate = strarr.length == 5;
+        String typeOfTask = strarr[1];
+        assert typeOfTask != null : "typeOfTask should not be null";
+        String statusOfTask = strarr[2];
+        assert statusOfTask.equals(" ") || statusOfTask.equals("X") : "statusOfTask should be null or X";
+        String taskDescription = strarr[3];
+        assert taskDescription != null : "typeDescription should not be null";
+        String dateOfTask = "";
+        if(haveDate) {
+            dateOfTask = strarr[4];
+            assert dateOfTask != null : "dateOfTask should not be null";
+        }
+
+        if (typeOfTask.equals("T")) {
+            Task pastTask = new ToDo(taskDescription);
+            existingTasks.add(pastTask);
+
+        } else if (typeOfTask.equals("D")) {
+            Task pastTask = new Deadline(taskDescription, dateOfTask);
+            existingTasks.add(pastTask);
+
+        } else if (typeOfTask.equals("E")) {
+            Task pastTask = new Event(taskDescription, dateOfTask);
+            existingTasks.add(pastTask);
+        }
+
+        if (statusOfTask.equals("X")) {
+            int currIndex = existingTasks.size() - 1;
+            existingTasks.get(currIndex).markAsDone();
+        }
     }
 
     /**
@@ -105,9 +112,11 @@ public class Storage {
         File taskFile = new File(this.fileLocation);
         PrintWriter pw = new PrintWriter(taskFile);
         List<Task> newTasks = newList.getList();
+
         for(int i = 0; i < newTasks.size(); i++) {
             pw.println( (i+1) + ":" + newTasks.get(i).write());
         }
+
         pw.close();
     }
 

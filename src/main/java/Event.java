@@ -18,7 +18,8 @@ class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " at " + this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        String timeString = this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        return "[E]" + super.toString() + " at " + timeString;
     }
 
     public String write() {

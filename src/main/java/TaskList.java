@@ -23,11 +23,13 @@ public class TaskList {
         this.noOfTasks = pastList.size();
         this.ui = new Ui();
         this.taskByKeyword = new HashMap<String, List<Task>>();
+
         for (int i = 0; i < pastList.size(); i++) {
             Task pastTask = pastList.get(i);
             String stringDescription = pastTask.getTaskDescription();
             updateKeyword(stringDescription, pastTask);
         }
+
     }
 
     /**
@@ -50,6 +52,7 @@ public class TaskList {
         for (int i = 0; i < strarr.length; i++) {
             if (taskByKeyword.containsKey(strarr[i])) {
                 taskByKeyword.get(strarr[i]).add(newTask);
+
             } else {
                 List<Task> listForHashMap = new ArrayList<Task>();
                 listForHashMap.add(newTask);
@@ -82,6 +85,7 @@ public class TaskList {
         for (int i = 0; i < strarr.length; i++) {
             if (taskByKeyword.get(strarr[i]).size() == 1) {
                 taskByKeyword.remove(strarr[i]);
+
             } else {
                 taskByKeyword.get(strarr[i]).remove(deletedTask);
             }
@@ -94,9 +98,8 @@ public class TaskList {
      * @return List</Task> : the list of tasks that contain the keyword.
      */
     List<Task> findTaskWithThisKeyword(String keyword) {
-        System.out.println("Here are the matching tasks in your list:");
-        List<Task> tasks = taskByKeyword.get(keyword);
-        return tasks;
+        List<Task> matchingTasks = taskByKeyword.get(keyword);
+        return matchingTasks;
     }
 
     /**

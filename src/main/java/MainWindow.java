@@ -44,7 +44,7 @@ public class MainWindow extends AnchorPane {
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
-     * If the input command is bye, then the system will exit -> The chatbot will end.
+     * Ends chatbot when the user's input is bye.
      */
     @FXML
     private void handleUserInput() throws IOException {
@@ -54,9 +54,11 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage)
         );
+
         if (input.equals("bye")) {
             System.exit(0);
         }
+
         userInput.clear();
     }
 }

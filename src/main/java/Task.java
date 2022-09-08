@@ -39,6 +39,7 @@ class Task {
     String getStatus() {
         if (this.isDone == true) {
             return "X";
+
         } else {
             return " ";
         }
