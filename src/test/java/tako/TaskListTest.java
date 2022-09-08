@@ -3,14 +3,14 @@ package tako;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
 
 import tako.task.Deadline;
 import tako.task.Event;
 import tako.task.Task;
 import tako.task.Todo;
-
-import java.time.LocalDateTime;
 
 public class TaskListTest {
     @Test
