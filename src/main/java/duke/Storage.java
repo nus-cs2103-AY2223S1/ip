@@ -8,13 +8,27 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 
+/**
+ * Manages the file where all the tasks are read or written into
+ */
 public class Storage {
     protected Path outputFile;
 
+    /**
+     * A constructor for the Storage class
+     *
+     * @param f The path of the output file to contain the list of tasks
+     */
     public Storage(Path f) {
         this.outputFile = f;
     }
 
+    /**
+     * Updates or refreshes the list of tasks and synchronises it to the output file
+     *
+     * @param taskList The list of tasks recorded so far
+     * @throws IOException If the file cannot be written into
+     */
     public void refreshList(List<Task> taskList) throws IOException{
         BufferedWriter writer = Files.newBufferedWriter(this.outputFile);
         writer.write("");
@@ -33,6 +47,12 @@ public class Storage {
         writer.close();
     }
 
+    /**
+     * Reads in all the tasks recorded from the output file
+     *
+     * @return The list of tasks
+     * @throws IOException If the output file cannot be read
+     */
     public List<Task> loadTasks() throws IOException {
         List<Task> inputTasks = new ArrayList<>();
         BufferedReader reader = Files.newBufferedReader(this.outputFile);

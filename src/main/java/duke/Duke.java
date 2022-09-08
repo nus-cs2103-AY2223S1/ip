@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.nio.file.Paths;
 import java.io.IOException;
 
+/**
+ * A program that manages and stores tasks inputted by a user
+ */
 public class Duke {
     private static final String EXIT_COMMAND = "bye";
     private static final String FILE_NAME = "dukeList.txt";
@@ -11,6 +14,11 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * A constructor for the Duke class
+     *
+     * @param filePath Path of the file that stores the list of tasks
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(Paths.get(FILE_NAME));
@@ -23,6 +31,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the Duke program
+     */
     public void run() {
         ui.printWelcomeMessage();
         boolean isExit = false;

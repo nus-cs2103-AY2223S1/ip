@@ -3,7 +3,21 @@ package duke;
 import java.io.IOException;
 import java.util.Arrays;
 
+/**
+ * The Parser class parses any command inputted by the user
+ */
 public class Parser {
+
+    /**
+     * A constructor for the Parser class
+     *
+     * @param input The command inputted by the user
+     * @param tl The <code>TaskList</code> given to manage
+     * @param ui The <code>Ui</code> given to print any outputs
+     * @return A boolean indicating whether the program is to be closed
+     * @throws DukeException If there is a Duke-specific error encountered
+     * @throws IOException If the input cannot be handled by the parser
+     */
     public static boolean parse(String input, TaskList tl, Ui ui) throws DukeException, IOException {
         String[] inputArray = input.split(" ");
         boolean isExitCommand = false;
