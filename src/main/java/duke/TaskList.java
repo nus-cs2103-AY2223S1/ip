@@ -23,6 +23,7 @@ public class TaskList {
 
 
     public TaskList findTask(String keyword) throws NoMatchingKeywordException {
+        assert !keyword.isBlank(): "keyword should not be blank";
         TaskList successList = new TaskList();
         for (int i = 0; i < taskList.size(); i ++) {
             Task curr = taskList.get(i);
@@ -37,6 +38,7 @@ public class TaskList {
     }
 
     public Task markStatus(int task) throws DukeException {
+        assert task >= 0: "task index should be more than or equal to 0";
         try {
             Task curr = taskList.get(task - 1);
             if (curr.isDone()) {
@@ -50,6 +52,7 @@ public class TaskList {
     }
 
     public Task unmarkStatus(int task) throws DukeException {
+        assert task >= 0: "task index should be more than or equal to 0";
         try {
             Task curr = taskList.get(task - 1);
             if (!curr.isDone()) {
@@ -63,6 +66,7 @@ public class TaskList {
     }
 
     public Task deleteTask(int task) throws DukeException {
+        assert task >= 0: "task index should be more than or equal to 0";
         try {
             Task curr = taskList.get(task - 1);
             taskList.remove(task - 1);
