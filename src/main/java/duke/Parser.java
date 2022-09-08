@@ -61,6 +61,12 @@ public class Parser {
      */
     static int getDeleteNum(String deleteCommand) {
         String[] parsedCommand = deleteCommand.split("\\s+");
+
+        //Here we introduce an assertion to ensure that the second part of the delete
+        // command is an integer
+        assert Integer.valueOf(parsedCommand[1]) == (int) Integer.valueOf(parsedCommand[1])
+                :"Task Index to delete is not an Integer!";
+
         return Integer.valueOf(parsedCommand[1]);
     }
 
@@ -83,7 +89,8 @@ public class Parser {
 
             return LocalDateTime.of(date, time);
         } catch (Exception e) {
-            throw new DukeException("Date and Time is not of correct format!");
+            throw new DukeException("Date and Time is not of correct format!\n" +
+                    "Please input in the format dd/MM/yyyy!");
         }
     }
 
