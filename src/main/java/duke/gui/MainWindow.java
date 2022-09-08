@@ -16,6 +16,10 @@ import javafx.util.Duration;
  * Controller for MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
+
+    private static final String MESSAGE_WELCOME = "Hi there! Baymax at your service. "
+            + "Let me retrieve your stored task list!";
+
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -30,9 +34,9 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Baymax.jpg"));
 
-    private static final String MESSAGE_WELCOME = "Hi there! Baymax at your service. "
-            + "Let me retrieve your stored task list!";
-
+    /**
+     * Initializes the Main Window
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());

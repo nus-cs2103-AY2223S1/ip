@@ -82,7 +82,7 @@ public class Storage {
             throw new DukeException("You don't have any previously saved tasks!");
         }
     }
-    
+
     private void stringToTask(String str, ArrayList<Task> taskList) {
         String[] taskElements = str.split(" \\| ");
         boolean isTaskDone = taskElements[1].equals("1");
