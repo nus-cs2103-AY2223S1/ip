@@ -37,10 +37,12 @@ public class Storage {
                 Task task;
                 switch (s.charAt(1)) {
                 case 'T':
+                    assert s.length() >= 8 : "Loaded todo task is not long enough";
                     task = new ToDoTask(s.substring(7));
                     break;
                 case 'D':
                     String[] parts = s.substring(7).split(" \\(by: ");
+                    assert parts.length > 0 : "Loaded deadline task has no description";
                     DateTimeFormatter pattern = new DateTimeFormatterBuilder()
                             // case-insensitive to parse JAN and FEB
                             .parseCaseInsensitive()
@@ -53,6 +55,7 @@ public class Storage {
                     break;
                 case 'E':
                     String[] sections = s.substring(7).split(" \\(at: ");
+                    assert sections.length > 0 : "Loaded event task has no description";
                     task = new EventTask(sections[0], sections[1]);
                     break;
                 default:

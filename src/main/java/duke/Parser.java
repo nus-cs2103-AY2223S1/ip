@@ -34,6 +34,7 @@ public class Parser {
             throw new DukeException("OOPS!!! The description cannot be empty.");
         }
         
+        assert spacedArr.length >= 1 : "User input should have more than 1 word";
         String suffix = spacedArr[1];
 
         switch (command) {

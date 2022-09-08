@@ -14,6 +14,8 @@ public class AddCommand extends Command {
     private String description;
     
     public AddCommand(String type, String description) {
+        assert type.equals("todo") || type.equals("deadline") || type.equals("event") : "AddCommand type is incorrect";
+        assert description.length() > 0 : "AddCommand description should not be empty";
         this.type = type;
         this.description = description; 
     }
@@ -43,12 +45,14 @@ public class AddCommand extends Command {
             Task tTask = new ToDoTask(description);
             return tasks.addTask(tTask);
         case "deadline":
+            assert description.contains(" /by") : "Deadline command should have /by";
             String by = description.split(" /by ")[1];
             LocalDate date = LocalDate.parse(by);
             String info = description.split(" /by ")[0];
             Task dTask = new DeadlineTask(info, date);
             return tasks.addTask(dTask);
         case "event":
+            assert description.contains(" /at") : "Event command should have /at";
             String at = description.split(" /at ")[1];
             String about = description.split(" /at ")[0];
             Task eTask = new EventTask(about, at);
