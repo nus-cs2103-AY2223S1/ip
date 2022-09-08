@@ -64,17 +64,18 @@ public class Ui {
         List<String> texts = new ArrayList<>();
         // for add, delete, mark / unmark
         assert !command.equals("") : "empty command.";
+        if (command.equals("delete")) {
+            // special case: index represents a task string instead of a task index
+            texts.add("Noted. I've removed this task:\n" + String.format("  %s", index));
+            texts.add(String.format("Now you have %d tasks in the list.", taskList.getSize()));
+            return texts;
+        }
         assert index.matches("[0-9]+") : "wrong index.";
         assert Integer.parseInt(index) <= taskList.getSize() : "Index out of bound.";
         Task task = taskList.getTask(Integer.parseInt(index) - 1);
         if (command.equals("todo") || command.equals("event") || command.equals("deadline")) { //add
             texts.add("Got it. I've added this task:\n"
                             + String.format("  %s %s", task.getStatusIcon(), task.getDescription()));
-            texts.add(String.format("Now you have %d tasks in the list.", taskList.getSize()));
-        } else if (command.equals("delete")) { //delete
-            taskList.deleteTaskAtIndex(Integer.parseInt(index));
-            texts.add("Noted. I've removed this task:\n"
-                    + String.format("  %s %s", task.getStatusIcon(), task.getDescription()));
             texts.add(String.format("Now you have %d tasks in the list.", taskList.getSize()));
         } else if (command.equals("mark")) {
             texts.add("Nice! I've marked this task as done:"

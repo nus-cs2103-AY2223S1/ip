@@ -35,11 +35,12 @@ public class Duke {
     public List<String> getResponse(String input) {
         try {
             String line = input.trim();
-            String[] parsedCommand = parser.parseCommand(line, tasks).split(" ");
+            String[] parsedCommand = parser.parseCommand(line, tasks).split(" ", 2);
             assert parsedCommand.length >= 1 : "Parsed command length is incorrect.";
             if (parsedCommand[0].equals("mark") || parsedCommand[0].equals("unmark")
                     || parsedCommand[0].equals("todo") || parsedCommand[0].equals("event")
                     || parsedCommand[0].equals("deadline") || parsedCommand[0].equals("delete")) {
+                storage.save(tasks);
                 return ui.printAddCommandUi(parsedCommand[0], parsedCommand[1], tasks);
             } else if (parsedCommand[0].equals("list")) {
                 return ui.printListCommandUi(parsedCommand[0], parsedCommand[1], tasks);
@@ -48,6 +49,7 @@ public class Duke {
             } else {
                 return ui.printEndingUi();
             }
+
         } catch (Exception e) {
             return ui.showException(e);
         }

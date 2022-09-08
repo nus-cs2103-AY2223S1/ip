@@ -3,6 +3,7 @@ package duke;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.ToDo;
+import duke.task.Task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -125,6 +126,10 @@ public class Parser {
                 taskList.markAsUndone(Integer.parseInt(taskIndex));
             } else if (taskType.equals("mark")) {
                 taskList.markAsDone(Integer.parseInt(taskIndex));
+            } else {
+                // delete task and return task (optional argument)
+                Task t = taskList.deleteTaskAtIndex(Integer.parseInt(taskIndex));
+                return String.format("%s %s %s", taskType, t.getStatusIcon(), t.getDescription());
             }
             return String.format("%s %s", taskType, taskIndex);
         } else if (taskType.equals("bye") || taskType.equals("help")) {
