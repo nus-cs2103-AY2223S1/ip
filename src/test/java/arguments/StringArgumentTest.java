@@ -21,7 +21,7 @@ public class StringArgumentTest {
             StringArgument s = new StringArgument(valid, "d", "Empty", "Missing");
             s.validate();
             assertEquals(s.getParameter(), "description");
-        } catch (DukeException e) {
+        } catch (DukeException err) {
             fail();
         }
     }
@@ -35,8 +35,8 @@ public class StringArgumentTest {
             Input invalid = new InputStub("deadline /d");
             StringArgument s = new StringArgument(invalid, "d", "Empty", "Missing");
             s.validate();
-        } catch (DukeException e) {
-            assertEquals(e.getMessage(), "Empty");
+        } catch (DukeException err) {
+            assertEquals(err.getMessage(), "Empty");
         }
     }
 
@@ -49,8 +49,8 @@ public class StringArgumentTest {
             Input invalid = new InputStub("deadline ");
             StringArgument s = new StringArgument(invalid, "d", "Empty", "Missing");
             s.validate();
-        } catch (DukeException e) {
-            assertEquals(e.getMessage(), "Missing");
+        } catch (DukeException err) {
+            assertEquals(err.getMessage(), "Missing");
         }
     }
 }

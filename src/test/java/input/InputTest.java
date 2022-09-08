@@ -6,10 +6,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
 
 import exceptions.DukeException;
-
-
-
-
 public class InputTest {
     /**
      * Tests Input with valid input string - command name, parameters, number of tokens correct
