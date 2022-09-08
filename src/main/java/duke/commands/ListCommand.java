@@ -4,6 +4,8 @@ import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 
+import java.util.Arrays;
+
 /**
  * Command that represents the list command.
  */
@@ -24,6 +26,7 @@ public class ListCommand implements Command {
             output += index + ". " + tasks.get(i) + "\n";
         }
         return output;
+
     }
 
     @Override
