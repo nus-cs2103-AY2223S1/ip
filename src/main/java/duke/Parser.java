@@ -51,6 +51,7 @@ public class Parser {
 
             //Handle case when user wants to handleMark task
             case "mark": {
+                checkForMissingArgs(splitInput);
                 //-1 to get index in 0 indexing
                 int index = Integer.parseInt(splitInput[1]) - 1;
                 return duke.handleMark(index);
@@ -58,6 +59,7 @@ public class Parser {
 
             //Handle case when user wants to handleUnmark task
             case "unmark": {
+                checkForMissingArgs(splitInput);
                 //-1 to get index in 0 indexing
                 int index = Integer.parseInt(splitInput[1]) - 1;
                 return duke.handleUnmark(index);
@@ -65,6 +67,7 @@ public class Parser {
 
             //Handle case when user wants to handleDelete task
             case "delete": {
+                checkForMissingArgs(splitInput);
                 //-1 to get in 0 indexing
                 int index = Integer.parseInt(splitInput[1]) - 1;
                 return duke.handleDelete(index);
@@ -72,6 +75,7 @@ public class Parser {
 
             //Handle case when user wants to find tasks
             case "find":
+                checkForMissingArgs(splitInput);
                 String str = splitInput[1].trim();
                 return duke.find(str);
 
