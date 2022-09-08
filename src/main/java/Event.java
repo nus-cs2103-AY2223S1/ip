@@ -1,8 +1,7 @@
-import java.io.FileWriter;
-import java.io.IOException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Event extends Task {
     protected final LocalDate at;
@@ -12,8 +11,13 @@ public class Event extends Task {
         this.at = LocalDate.parse(at);
     }
 
-    public void writeToFile(FileWriter writer) throws IOException {
-        writer.write(String.format("E;%s;%s;%s\n", getStatusIcon(), description, at));
+    @Override
+    public List<String> toList() {
+        List<String> result = new ArrayList<>();
+        result.add("E");
+        result.addAll(super.toList());
+        result.add(at.toString());
+        return result;
     }
 
     @Override

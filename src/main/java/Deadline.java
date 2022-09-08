@@ -1,8 +1,7 @@
-import java.io.FileWriter;
-import java.io.IOException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Deadline extends Task {
 
@@ -13,8 +12,13 @@ public class Deadline extends Task {
         this.by = LocalDate.parse(by);
     }
 
-    public void writeToFile(FileWriter writer) throws IOException {
-        writer.write(String.format("D;%s;%s;%s\n", getStatusIcon(), description, by));
+    @Override
+    public List<String> toList() {
+        List<String> result = new ArrayList<>();
+        result.add("D");
+        result.addAll(super.toList());
+        result.add(by.toString());
+        return result;
     }
 
     @Override
