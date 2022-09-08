@@ -26,8 +26,8 @@ public class Event extends Task{
      * @param time deadline of task
      * @param status completed status of task
      */
-    public Event(String name, String time, boolean status) {
-        super(name, status);
+    public Event(String name, String time, boolean status, PriorityLevel priority) {
+        super(name, status, priority);
         this.time = LocalDate.parse(time);
     }
 

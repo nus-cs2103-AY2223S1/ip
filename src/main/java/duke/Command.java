@@ -3,6 +3,7 @@ package duke;
 import duke.controller.MainWindow;
 import duke.task.Deadline;
 import duke.task.Event;
+import duke.task.Task;
 import duke.task.ToDos;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -45,6 +46,7 @@ public class Command {
         UNMARK,
         DELETE,
         FIND,
+        PRIORITY
     }
 
     /**
@@ -74,32 +76,36 @@ public class Command {
                 response += taskList.listTasks();
                 break;
             case TODO:
-                response += addToDo(fullCommand) + "\n";
+                response += addToDo() + "\n";
                 response += taskList.displayListSize();
                 storage.writeToFile(taskList.createTxtFile());
                 break;
             case DEADLINE:
-                response += addDeadline(fullCommand) + "\n";
+                response += addDeadline() + "\n";
                 response += taskList.displayListSize();
                 storage.writeToFile(taskList.createTxtFile());
                 break;
             case EVENT:
-                response += addEvent(fullCommand) + "\n";
+                response += addEvent() + "\n";
                 response += taskList.displayListSize();
                 storage.writeToFile(taskList.createTxtFile());
                 break;
             case MARK:
             case UNMARK:
-                response += changeMark(fullCommand);
+                response += changeMark();
                 storage.writeToFile(taskList.createTxtFile());
                 break;
             case DELETE:
-                response += deleteTask(fullCommand);
+                response += deleteTask() + "\n";
                 response += taskList.displayListSize();
                 storage.writeToFile(taskList.createTxtFile());
                 break;
             case FIND:
-                response += findTask(fullCommand);
+                response += findTask();
+                break;
+            case PRIORITY:
+                response += setTaskPriority();
+                storage.writeToFile(taskList.createTxtFile());
                 break;
             default:
                 response = "I am sorry, I do not comprehend such commands. Please Try again...";
@@ -110,11 +116,10 @@ public class Command {
 
     /**
      * Changes isCompleted of the task according to index given
-     *
-     * @param command change mark command from user
      */
-    private String changeMark(String command) throws Exception {
-        String[] splitComm = command.split(" ");
+    private String changeMark() throws Exception {
+        String[] splitComm = fullCommand.split(" ");
+        assert splitComm.length == 2;
         String action = splitComm[0];
         int index = Integer.parseInt(splitComm[1]) - 1;
 
@@ -129,11 +134,10 @@ public class Command {
 
     /**
      * Deletes task according to index given
-     *
-     * @param command delete task command from user
      */
-    private String deleteTask(String command) {
-        String[] splitComm = command.split(" ");
+    private String deleteTask() {
+        String[] splitComm = fullCommand.split(" ");
+        assert splitComm.length == 2;
         int index = Integer.parseInt(splitComm[1]) - 1;
 
         return taskList.delete(index);
@@ -142,14 +146,13 @@ public class Command {
     /**
      * Creates a duke.task.ToDos instance and adds it to duke.ToDoList
      *
-     * @param command todo command from user
      * @throws Exception
      */
-    private String addToDo(String command) throws Exception {
-        if (!command.matches("todo \\S.*")) {
+    private String addToDo() throws Exception {
+        if (!fullCommand.matches("todo \\S.*")) {
             throw new Exception("The description of a todo cannot be empty.");
         }
-        String name = command.substring(command.indexOf(" ") + 1);
+        String name = fullCommand.substring(fullCommand.indexOf(" ") + 1);
 
         return taskList.addTask(new ToDos(name));
     }
@@ -157,17 +160,16 @@ public class Command {
     /**
      * Creates a duke.task.Deadline instance and adds it to duke.ToDoList
      *
-     * @param command deadline command from user
      * @throws Exception
      */
-    private String addDeadline(String command) throws Exception {
-        if (!command.matches("deadline \\S.*")) {
+    private String addDeadline() throws Exception {
+        if (!fullCommand.matches("deadline \\S.*")) {
             throw new Exception("The description of a deadline cannot be empty.");
-        } else if (!command.contains("/by")) {
+        } else if (!fullCommand.contains("/by")) {
             throw new Exception("The description is missing a deadline.");
         }
 
-        String details = command.substring(command.indexOf(" ") + 1);
+        String details = fullCommand.substring(fullCommand.indexOf(" ") + 1);
         String name = details.split(" /by ")[0];
         String deadline = details.split(" /by ")[1];
 
@@ -177,17 +179,16 @@ public class Command {
     /**
      * Creates a duke.task.Event instance and adds it to duke.ToDoList
      *
-     * @param command event command from user
      * @throws Exception
      */
-    private String addEvent(String command) throws Exception {
-        if (!command.matches("event \\S.*")) {
+    private String addEvent() throws Exception {
+        if (!fullCommand.matches("event \\S.*")) {
             throw new Exception("The description of an event cannot be empty.");
-        } else if (!command.contains("/at")) {
+        } else if (!fullCommand.contains("/at")) {
             throw new Exception("The description is missing a time.");
         }
 
-        String details = command.substring(command.indexOf(" ") + 1);
+        String details = fullCommand.substring(fullCommand.indexOf(" ") + 1);
         String name = details.split(" /at ")[0];
         String time = details.split(" /at ")[1];
 
@@ -196,21 +197,58 @@ public class Command {
 
     /**
      * Finds tasks whose name matches search
-     * @param command
      * @throws Exception
      */
-    private String findTask(String command) throws Exception {
-        String searchString = command.substring(command.indexOf(" ") + 1);
-        return taskList.findTasks(searchString);
+    private String findTask() throws Exception {
+        if (isFindPriority()) {
+            String priority = fullCommand.substring(fullCommand.indexOf("/p") + 2);
+            return findTaskPriority(priority);
+        } else {
+            String searchString = fullCommand.substring(fullCommand.indexOf(" ") + 1);
+            return taskList.findTaskName(searchString);
+        }
+    }
+
+    /**
+     * Find Task Priority using taskList
+     * @param priorityString
+     * @return response from duke after trying to find task with specified priority
+     * @throws Exception
+     */
+    private String findTaskPriority (String priorityString) throws Exception{
+        if (!priorityString.matches("[lmh-]")) {
+            throw new Exception("Please specify a valid priority:\nLOW: l\nMEDIUM: m\nHIGH: h\nNONE: -");
+        }
+        return taskList.findTaskPriority(priorityString);
+    }
+
+    /**
+     * Sets task priority from user input
+     * @return Response after trying to set priority of a task
+     * @throws Exception
+     */
+    private String setTaskPriority() throws Exception{
+        if(!fullCommand.matches( "priority [0-9]+.+")) {
+            throw new Exception("Please specify a valid index");
+        } else if (!fullCommand.matches("priority [0-9]+ [lmh-]")){
+            throw new Exception("Please specify a valid priority:\nLOW: l\nMEDIUM: m\nHIGH: h\nNONE: -");
+        }
+        String[] splitComm = fullCommand.split(" ");
+        assert splitComm.length == 3 : "priority is missing fields";
+        int index = Integer.parseInt(splitComm[1]) - 1;
+        Task.PriorityLevel priorityLevel = Task.commandToPriorityLevel(splitComm[2]);
+        return taskList.setTaskPriority(index, priorityLevel);
+    }
+
+    private boolean isFindPriority() throws Exception {
+        return fullCommand.startsWith("find /p");
     }
 
     public static class DialogBox extends HBox {
-
         @FXML
         private Label dialog;
         @FXML
         private ImageView displayPicture;
-
 
         private DialogBox(String text, Image img) {
             Circle clip = new Circle(img.getWidth()/3, img.getWidth()/3,50);

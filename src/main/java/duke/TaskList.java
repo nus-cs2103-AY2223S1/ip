@@ -96,7 +96,7 @@ public class TaskList {
         else {
             Task tempTask = taskList.get(index);
             taskList.remove(index);
-            return "Noted. I've removed this task:/n" + tempTask;
+            return "Noted. I've removed this task:\n" + tempTask;
         }
     }
 
@@ -118,21 +118,27 @@ public class TaskList {
         }
     }
 
+    /**
+     *
+     * @param task
+     * @return
+     */
     public Task createTaskFromString(String task) {
 
         String[] details = task.split(" # ");
         String taskType = details[0];
         boolean isComplete = Boolean.parseBoolean(details[1]);
         String taskName = details[2];
-        String eventInfo = details.length > 3 ? details[3] : "";
+        Task.PriorityLevel priority = Task.symbolToPriority(details[3]);
+        String eventInfo = details.length > 4 ? details[4] : "";
 
         switch (taskType) {
             case "T":
-                return new ToDos(taskName, isComplete);
+                return new ToDos(taskName, isComplete, priority);
             case "D":
-                return new Deadline(taskName, eventInfo, isComplete);
+                return new Deadline(taskName, eventInfo, isComplete, priority);
             case "E":
-                return new Event(taskName, eventInfo, isComplete);
+                return new Event(taskName, eventInfo, isComplete, priority);
             default:
                 return null;
         }
@@ -147,15 +153,15 @@ public class TaskList {
         for (Task t : taskList) {
             if (t instanceof ToDos) {
                 ToDos td = (ToDos) t;
-                result += String.format("T # %b # %s\n", td.getStatus(), td.getName());
+                result += String.format("T # %b # %s # %s\n", td.getStatus(), td.getName(), td.getPriority());
             } 
             else if (t instanceof Deadline){
                 Deadline d = (Deadline) t;
-                result += String.format("D # %b # %s # %s\n", d.getStatus(), d.getName(), d.getDeadline());
+                result += String.format("D # %b # %s # %s # %s\n", d.getStatus(), d.getName(), d.getPriority(), d.getDeadline());
             }
             else if (t instanceof Event) {
                 Event e = (Event) t;
-                result += String.format("E # %b # %s # %s\n", e.getStatus(), e.getName(), e.getTime());
+                result += String.format("E # %b # %s # %s # %s\n", e.getStatus(), e.getName(), e.getPriority(), e.getTime());
             }
         }
         return result;
@@ -170,9 +176,9 @@ public class TaskList {
 
     /**
      * Searches for searchString by iterating through all the names of the tasks in toDoList
-     * @param searchString
+     * @param searchString substring of names user is interested in
      */
-    public String findTasks(String searchString) {
+    public String findTaskName(String searchString) {
         int findCount = 0;
         String response = "Here are the matching tasks in your list:\n";
         for (int i = 0; i < taskList.size(); i++) {
@@ -187,5 +193,46 @@ public class TaskList {
             response = String.format("No tasks were found matching: %s\n", searchString);
         }
         return response;
+    }
+
+    /**
+     * Searches for priority by iterating through all the prioriteis of the tasks in toDoList
+     * @param priorityString priorities users are interested in
+     * @return list of tasks with the same priority as specified
+     */
+    public String findTaskPriority(String priorityString) throws Exception {
+        int findCount = 0;
+        Task.PriorityLevel priority = Task.commandToPriorityLevel(priorityString);
+        String response = String.format("Here are the tasks of priority %s in your list:\n", priorityString);
+        for (int i = 0; i < taskList.size(); i++) {
+            Task currentTask = taskList.get(i);
+            if (currentTask.hasPriority(priority)){
+                findCount++;
+                response += String.format("%d. %s\n", findCount, currentTask);
+            }
+        }
+
+        if (findCount == 0) {
+            response = String.format("No tasks were with priority: %s\n", priorityString);
+        }
+        return response;
+    }
+
+    /**
+     * Sets priority of existing task
+     * @param index index of task in list to change
+     * @param priorityLevel priority level to set the task to
+     * @return Response for duke to reply
+     * @throws IndexOutOfBoundsException
+     */
+    public String setTaskPriority(int index, Task.PriorityLevel priorityLevel) throws IndexOutOfBoundsException {
+        assert (index < taskList.size() && index >=0): "index needs to be within bounds of list";
+        if (index >= taskList.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        else {
+            Task task = taskList.get(index);
+            return task.setPriority(priorityLevel);
+        }
     }
 }
