@@ -8,6 +8,7 @@ import chacha.commands.AddCommand;
 import chacha.commands.Command;
 import chacha.commands.DeleteCommand;
 import chacha.commands.ExitCommand;
+import chacha.commands.FindCommand;
 import chacha.commands.ListCommand;
 import chacha.commands.MarkCommand;
 import chacha.commands.UnmarkCommand;
@@ -97,6 +98,14 @@ public class Parser {
                     return new ExitCommand();
                 } else {
                     throw new ChachaException("Sorry, I don't recognise this command.");
+                }
+            case "find":
+                if (inputArray.length == 2) {
+                    String[] split = userInput.split("\\s+");
+                    String keyword = split[1];
+                    return new FindCommand(keyword);
+                } else {
+                    throw new ChachaException("Please enter valid keyword.");
                 }
             default:
                 throw new ChachaException("Invalid input.");
