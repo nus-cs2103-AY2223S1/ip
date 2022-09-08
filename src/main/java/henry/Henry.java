@@ -72,7 +72,7 @@ public class Henry extends Application {
             return TextUtils.TASKS_SAVED_MESSAGE;
         }
 
-        Command parsed = parser.parseCommand(input.toLowerCase());
+        Command parsed = parser.parseCommand(input);
         CommandResult result = executeCommand(parsed);
         return result.toString();
     }

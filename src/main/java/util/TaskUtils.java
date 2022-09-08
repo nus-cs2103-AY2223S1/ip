@@ -1,7 +1,9 @@
 package util;
 
+import static util.DateUtils.parseDateTime;
+import static util.DateUtils.parseMultipleDateTimes;
+
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +16,6 @@ import henry.Task;
  */
 public class TaskUtils {
 
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
     private static final String MALFORMED = "[T][ ] MALFORMED TASK";
 
     private static String getStatusIcon(boolean isDone) {
@@ -39,17 +40,17 @@ public class TaskUtils {
             return "[T]" + getStatusIcon(completionStatus) + " " + description;
         case DEADLINE:
             return "[D]" + getStatusIcon(completionStatus) + " " + description + " (by: "
-                   + dateTime.format(formatter).replace("T", " ") + ")";
+                   + DateUtils.dateToString(dateTime) + ")";
         case EVENT:
             if (tentativeDates.isEmpty()) {
                 return "[E]" + getStatusIcon(completionStatus) + " " + description + " (at: "
-                       + dateTime.format(formatter).replace("T", " ") + ")";
+                       + DateUtils.dateToString(dateTime) + ")";
             } else {
                 StringBuilder sb = new StringBuilder();
                 sb.append("[E]").append(getStatusIcon(completionStatus)).append(" ").append(description)
                   .append(" (at: ");
                 for (LocalDateTime tentativeDate : tentativeDates) {
-                    sb.append(tentativeDate.format(formatter).replace("T", " ")).append(", ");
+                    sb.append(DateUtils.dateToString(tentativeDate)).append(", ");
                 }
                 sb.delete(sb.length() - 2, sb.length());
                 sb.append(")");
@@ -80,16 +81,16 @@ public class TaskUtils {
             return "T | " + completionStatus + " | " + description;
         case DEADLINE:
             return "D | " + completionStatus + " | " + description + " | (by: "
-                   + dateTime.format(formatter).replace("T", " ") + ")";
+                   + DateUtils.dateToString(dateTime) + ")";
         case EVENT:
             if (tentativeDates.isEmpty()) {
                 return "E | " + completionStatus + " | " + description + " | (at: "
-                       + dateTime.format(formatter).replace("T", " ") + ")";
+                       + DateUtils.dateToString(dateTime) + ")";
             } else {
                 StringBuilder sb = new StringBuilder();
                 sb.append("E | ").append(completionStatus).append(" | ").append(description).append(" | (at: ");
                 for (LocalDateTime tentativeDate : tentativeDates) {
-                    sb.append(tentativeDate.format(formatter).replace("T", " ")).append(", ");
+                    sb.append(DateUtils.dateToString(tentativeDate)).append(", ");
                 }
                 sb.delete(sb.length() - 2, sb.length());
                 sb.append(")");
@@ -139,33 +140,5 @@ public class TaskUtils {
             throw new HenryException("INPUT TASK IS MALFORMED!");
         }
         return new Task(type, description, date, isComplete, tentativeDates);
-    }
-
-    private static LocalDateTime parseDateTime(String input) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        return LocalDateTime.parse(input, formatter);
-    }
-
-    /**
-     * Parses a list of LocalDateTime objects from the given String input
-     * and adds them to a List. Any LocalDateTime objects in the past
-     * are not added.
-     *
-     * @param input the String to be converted into a List of LocalDateTime objects
-     * @return a List of LocalDateTime objects representing the input
-     */
-    private static List<LocalDateTime> parseMultipleDateTimes(String input) {
-        List<LocalDateTime> dates = new ArrayList<>();
-        String[] tokens = input.split(",");
-        LocalDateTime now = LocalDateTime.now();
-
-        for (String token : tokens) {
-            LocalDateTime date = parseDateTime(token.trim());
-            if (date.isAfter(now)) {
-                dates.add(date);
-            }
-        }
-
-        return dates;
     }
 }

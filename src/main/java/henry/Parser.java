@@ -1,7 +1,6 @@
 package henry;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,6 +17,7 @@ import command.TentativeCommand;
 import command.TodoCommand;
 import command.UnmarkCommand;
 import exceptions.HenryException;
+import util.DateUtils;
 import util.TextUtils;
 
 /**
@@ -29,17 +29,11 @@ public class Parser {
     // REGEX PATTERNS
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<command>\\S*)(?<args>.*)");
     private static final Pattern DATE_FORMAT = Pattern.compile("(?<desc>.+) /(at|by) "
-                                                               + "(?<dateTime>\\d{2}-\\d{2}-\\d{4} "
-                                                               + "\\d{2}:\\d{2})");
+                                                               + "(?<dateTime>.*)");
     private static final Pattern TENTATIVE_NEW_DATE_FORMAT =
-        Pattern.compile("(?<index>\\d+) (?<dateTime>\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2})");
+        Pattern.compile("(?<index>\\d+) (?<dateTime>.*)");
     private static final Pattern TENTATIVE_CONFIRM_DATE_FORMAT =
         Pattern.compile("(?<index>\\d+) (--confirm) (?<chosenDateIndex>\\d+)");
-
-    // OTHER STATIC VARIABLES
-    private static final String DATE_FORMATTER = "dd-MM-yyyy HH:mm";
-
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
 
     /**
      * Parses a command from a string. There are two types of commands:
@@ -86,7 +80,7 @@ public class Parser {
         if (!matcher.matches()) {
             throw new HenryException(TextUtils.EMPTY_INPUT_ERROR);
         }
-        String command = matcher.group("command").trim();
+        String command = matcher.group("command").toLowerCase().trim();
         String args = matcher.group("args").trim();
         return new String[]{command, args};
     }
@@ -111,10 +105,7 @@ public class Parser {
             String dateTime = newDateMatcher.group("dateTime");
 
             try {
-                LocalDateTime parsed = LocalDateTime.parse(dateTime, formatter);
-                if (!isDateValid(parsed)) {
-                    throw new HenryException(TextUtils.DATE_IN_PAST_ERROR);
-                }
+                LocalDateTime parsed = DateUtils.parseDateTime(dateTime);
                 return new TentativeCommand(index, parsed);
             } catch (NumberFormatException e) {
                 throw new HenryException(TextUtils.DATE_FORMAT_ERROR);
@@ -185,11 +176,7 @@ public class Parser {
         String dateTime = cleanedArgs[1];
 
         try {
-            LocalDateTime parsed = LocalDateTime.parse(dateTime, formatter);
-            if (!isDateValid(parsed)) {
-                throw new HenryException(TextUtils.DATE_IN_PAST_ERROR);
-            }
-
+            LocalDateTime parsed = DateUtils.parseDateTime(dateTime);
             switch (type) {
             case DEADLINE:
                 return new DeadlineCommand(description, parsed);
@@ -211,9 +198,5 @@ public class Parser {
     private boolean isInputNumeric(String args) {
         assert args != null : "Arguments are null!";
         return args.matches("\\d+");
-    }
-
-    private boolean isDateValid(LocalDateTime dateTime) {
-        return !dateTime.isBefore(LocalDateTime.now());
     }
 }
