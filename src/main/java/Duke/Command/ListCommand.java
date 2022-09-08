@@ -5,7 +5,7 @@ import Duke.Ui;
 import Duke.FileStorage.Storage;
 
 /**
- * This class represents the list command that returns the current todo list
+ * This class represents the list command that returns the current task list
  * kept by Duke.
  */
 public class ListCommand extends Command{

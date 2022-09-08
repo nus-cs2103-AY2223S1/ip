@@ -7,7 +7,7 @@ import Duke.Task.Task;
 
 /**
  * This class represents the delete command that removes tasks
- * from the todo list.
+ * from the task list.
  */
 public class DelCommand extends Command{
 

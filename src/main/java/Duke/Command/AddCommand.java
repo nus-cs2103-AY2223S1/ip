@@ -7,11 +7,11 @@ import Duke.Task.Task;
 
 /**
  * This class represents the add command that inserts new tasks
- * into the todo list.
+ * into the task list.
  */
 public class AddCommand extends Command{
 
-    /** The task to be inserted into todo list. */
+    /** The task to be inserted into task list. */
     private Task task;
 
     /** Constructs the task insertion command.

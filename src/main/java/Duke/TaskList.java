@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import Duke.Task.Task;
 
 /**
- * This class represents the todo-list that allows users
+ * This class represents the task-list that allows users
  * to insert and remove different tasks, and also to mark or
  * unmark the tasks as completed.
  */
 public class TaskList {
 
-    /** This represents the todo-list to be populated with tasks. */
+    /** This represents the task-list to be populated with tasks. */
     private ArrayList<Task> tasks = new ArrayList<>();
 
-    /** Constructs tan empty todo list. */
+    /** Constructs tan empty task list. */
     public TaskList() {
         this.tasks = new ArrayList<>();
     } 
 
     /**
-     * Constructs the todo list given a set of tasks.
+     * Constructs the task list given a set of tasks.
      * 
-     * @param tasks The current tasks to be put into todo list.
+     * @param tasks The current tasks to be put into task list.
      */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
@@ -46,7 +46,7 @@ public class TaskList {
     }
 
     /**
-     * Inserts the given task into the todo list.
+     * Inserts the given task into the task list.
      * 
      * @param task The task to be inserted.
      * @return True if the task completed successfully.
@@ -113,7 +113,7 @@ public class TaskList {
      * Print the output in customised format.
      * 
      * @param list The list to print
-     * @return String representation of the todo-list
+     * @return String representation of the task-list
      */
     @Override
     public String toString() {

@@ -7,7 +7,7 @@ import Duke.FileStorage.Storage;
 
 /**
  * This class represents the chatbot interface that allows
- * user to interact with the todo list.
+ * user to interact with the task list.
  */
 public class Duke {
 
@@ -21,7 +21,7 @@ public class Duke {
     private Ui ui;
 
     /**
-     * Constructs the Duke todo list agent.
+     * Constructs the Duke task list agent.
      * 
      * @param filePath The file path where the list will be written to and
      * retrieved from.
@@ -46,7 +46,7 @@ public class Duke {
     /**
      * Runs the main logic of Duke.
      */
-    public void run() {
+    public void run() { 
         ui.showWelcome();
         boolean isExit = false;
         while (!isExit) {

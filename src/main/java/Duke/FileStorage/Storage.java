@@ -16,7 +16,7 @@ import Duke.Task.Task;
 import Duke.Task.ToDoTask;
 
 /**
- * This class handles the writing and retrieval of todo list from
+ * This class handles the writing and retrieval of task list from
  * a given filepath.
  */
 public class Storage {
@@ -29,7 +29,7 @@ public class Storage {
      * Constructs the storage for Duke.
      * Assumes the input file path to be of the form "/_dir_/_subdir_/_filename_.txt".
      * 
-     * @param filepath The path to the text file that will store the todo list.
+     * @param filepath The path to the text file that will store the task list.
      */
     public Storage (String filepath) {
         filepath = filepath.replace('/', File.separatorChar);
@@ -39,9 +39,9 @@ public class Storage {
     }
 
     /**
-     * Loads the todo list from the file.
+     * Loads the task list from the file.
      * 
-     * @return The todo list retrieved from the file.
+     * @return The task list retrieved from the file.
      * @throws InvalidStorageException
      */
     public ArrayList<Task> load() 
