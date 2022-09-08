@@ -1,9 +1,19 @@
 package duke.parser;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.time.format.DateTimeParseException;
 
+import duke.Duke;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.HelpFormatter;
+
+
 import duke.commands.*;
-import duke.storage.Storage;
 import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.Task;
@@ -24,6 +34,10 @@ public class DukeParser {
     private TaskList taskList;
     private String keyword;
     private String restOfInputString;
+    private CommandLineParser parser = new DefaultParser();
+    private HelpFormatter formatter = new HelpFormatter();
+    private CommandLine cmd;
+
 
     /**
      * Default constructor for the DukeParser object.
@@ -146,15 +160,27 @@ public class DukeParser {
      * @throws DukeException Index is invalid
      */
     public Command numericalInstructionHandler() throws DukeException {
-
-        // First, try to parse the numerical part of the instruction, if error, throw it
-        int instructionNum;
+        StringWriter out = new StringWriter();
+        PrintWriter pw = new PrintWriter(out);
+        Options numericalInstructionOptions = new Options();
+        Option targetNum = new Option("t", "target", true, "target task num");
+        targetNum.setRequired(true);
+        numericalInstructionOptions.addOption(targetNum);
+        String[] splitRest = this.restOfInputString.split(" ");
         try {
-            instructionNum = Integer.valueOf(this.restOfInputString) - 1;
+            cmd = parser.parse(numericalInstructionOptions, splitRest);
         } catch (Exception e) {
-            throw new DukeException("Error when parsing user input - did you supply a valid "
-                    + "number as an index?");
+            String errorMessage = e.getMessage();
+            formatter.printHelp(pw, 80, this.keyword + " -t [target]",
+                    "", numericalInstructionOptions,
+                    formatter.getLeftPadding(), formatter.getDescPadding(), "");
+            pw.flush();
+            errorMessage += "\n" + out.toString();
+            throw new DukeException(errorMessage);
         }
+
+        int instructionNum = Integer.valueOf(cmd.getOptionValue("target")) - 1;
+
 
         if (instructionNum >= this.taskList.getSize() || instructionNum < 0) {
             throw new DukeException("Invalid index provided. Try again?");
@@ -191,61 +217,81 @@ public class DukeParser {
      * @throws DukeException User input provided is incomplete / does not match required format.
      */
     public Command addTaskInstructionHandler() throws DukeException {
-        if (this.restOfInputString.equals("")) {
-            throw new DukeException("Oops! Descriptions for tasks cannot be blank!");
+
+        StringWriter out = new StringWriter();
+        PrintWriter pw = new PrintWriter(out);
+        Options numericalInstructionOptions = new Options();
+
+        // Set command-line options for add task instruction
+        Option taskDesc = new Option("d", "description", true, "new task description");
+        taskDesc.setArgs(Option.UNLIMITED_VALUES);
+        taskDesc.setRequired(true);
+
+        Option taskDeadline = new Option("by", "bydeadline", true, "new task deadline");
+        taskDeadline.setArgs(2);
+
+        Option taskTime = new Option("at", "attime", true, "new task occurrence time");
+        taskTime.setArgs(2);
+
+        numericalInstructionOptions.addOption(taskDesc);
+        numericalInstructionOptions.addOption(taskDeadline);
+        numericalInstructionOptions.addOption(taskTime);
+
+        String[] splitRest = this.restOfInputString.split(" ");
+        try {
+            cmd = parser.parse(numericalInstructionOptions, splitRest);
+        } catch (Exception e) {
+            String errorMessage = e.getMessage();
+            formatter.printHelp(pw, 80, this.keyword + " -d [description] -by [DD-MM-YYYY HH:MM] -at [DD-MM-YYYY HH:MM]",
+                    "", numericalInstructionOptions,
+                    formatter.getLeftPadding(), formatter.getDescPadding(), "");
+            pw.flush();
+            errorMessage += "\n" + out.toString();
+            throw new DukeException(errorMessage);
         }
 
-        int slashIndex = this.restOfInputString.indexOf("/");
-        String divider = null;
-        String[] splitInput = this.restOfInputString.split(" ");
-
-        for (String s: splitInput) {
-            if (s.startsWith("/")) {
-                divider = s;
-            }
-        }
-
-        Task newTask = createNewTask(keyword, restOfInputString, divider, slashIndex);
+        Task newTask = createNewTask(keyword, cmd);
 
         return new AddCommand(newTask);
     }
 
     /**
      * Abstract logic to create a task based on keyword.
-     * @param keyword Task keyword
-     * @param restOfInputString Rest of the task input string
-     * @param divider Divider for the input string
-     * @param slashIndex Index for required slash in rest of input string
+     * @param keyword Task keyword of input string
+     * @param cmd CommandLine object to parse user's command string
      * @return Task object according to keyword
      * @throws DukeException If input string provided has invalid values
      */
-    public Task createNewTask(String keyword, String restOfInputString, String divider, int slashIndex) throws DukeException {
+    public Task createNewTask(String keyword, CommandLine cmd) throws DukeException {
         Task newTask;
         switch (this.keyword) {
         case "todo":
-            newTask = new Todo(this.restOfInputString);
+            for (String s: cmd.getOptionValues("description")) {
+                System.out.println(s);
+            }
+            newTask = new Todo(String.join(" ", cmd.getOptionValues("description")));
             break;
         case "event":
-            if (divider == null || !divider.equals("/at")) {
+            if (!cmd.hasOption("at")) {
                 throw new DukeException("Oops! To create an event, please format your input in "
-                        + "this manner:\n<Event Name> /at dd-mm-yyyy hh:mm");
+                        + "this manner:\nevent -d [description] -at [DD-MM-YYYY HH:MM]");
             }
             try {
-                newTask = new Event(this.restOfInputString.substring(0, slashIndex - 1),
-                        this.restOfInputString.substring(slashIndex + 4));
+                newTask = new Event(String.join(" ", cmd.getOptionValues("description")),
+                        String.join(" ", cmd.getOptionValues("at")));
             } catch (DateTimeParseException e) {
                 throw new DukeException("Oops! Events must have a date of occurrence, formatted "
                         + "as dd-mm-yyyy hh:mm.");
             }
             break;
         case "deadline":
-            if (divider == null || !divider.equals("/by")) {
+            if (!cmd.hasOption("by")) {
                 throw new DukeException("Oops! To create a deadline, please format your input in "
-                        + "this manner:\n<Deadline Name> /by dd-mm-yyyy hh:mm");
+                        + "this manner:\ndeadline -d [description] -by [DD-MM-YYYY HH:MM]");
             }
             try {
-                newTask = new Deadline(this.restOfInputString.substring(0, slashIndex - 1),
-                        this.restOfInputString.substring(slashIndex + 4));
+                newTask = new Deadline(String.join(" ", cmd.getOptionValues("description")),
+                        String.join(" ", cmd.getOptionValues("by")));
             } catch (DateTimeParseException e) {
                 throw new DukeException("Oops! Deadlines must have a valid deadline, "
                         + "formatted as dd-mm-yyyy hh:mm.");
