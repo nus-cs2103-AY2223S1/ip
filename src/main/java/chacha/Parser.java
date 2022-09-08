@@ -15,7 +15,18 @@ import chacha.tasks.Deadline;
 import chacha.tasks.Event;
 import chacha.tasks.Todo;
 
+/**
+ * Parser to parse user input into Chacha commands.
+ */
 public class Parser {
+    
+    /** 
+     * Parses user input into command.
+     * 
+     * @param userInput User input from user interaction with Chacha.
+     * @return Chacha command.
+     * @throws ChachaException If user input cannot be parsed.
+     */
     public static Command parse(String userInput) throws ChachaException {
         String[] inputArray = userInput.split(" ");
         String command = inputArray[0];

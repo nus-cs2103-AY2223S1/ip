@@ -14,6 +14,9 @@ import chacha.tasks.Event;
 import chacha.tasks.Task;
 import chacha.tasks.Todo;
 
+/**
+ * Storage class to handle saving and loading data.
+ */
 public class Storage {
     private Path path;
 
@@ -21,6 +24,13 @@ public class Storage {
         this.path = Paths.get(path);
     }
 
+    
+    /** 
+     * Saves task list of tasks to a file.
+     * 
+     * @param tasks Tasks to save.
+     * @throws IOException If the file does not exist.
+     */
     public void saveToFile(TaskList tasks) throws IOException {
         BufferedWriter writer = Files.newBufferedWriter(path);
         for (int i = 0; i < tasks.getSize(); i++) {
@@ -31,6 +41,13 @@ public class Storage {
         writer.close();
     }
 
+    /** 
+     * Loads tasks from file into task list of tasks.
+     * Creates new file if path does not exist.
+     * 
+     * @return List of tasks.
+     * @throws IOException If error when reading file.
+     */
     public ArrayList<Task> load() throws IOException {
         Path parent = path.getParent();
         if (!Files.isDirectory(parent)) {
@@ -64,6 +81,11 @@ public class Storage {
         return task.getType() + " , " + task.getStatusIcon() + " , " + task.getDescription() + " , " + date;
     }
 
+    
+    /** 
+     * @param text
+     * @return Task
+     */
     private Task textToTask(String text) {
         String[] textArray = text.split(" , "); 
         String type = textArray[0];

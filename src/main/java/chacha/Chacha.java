@@ -3,12 +3,23 @@ package chacha;
 import chacha.commands.Command;
 import java.io.IOException;
 
+
+/**
+ * Chatbot for task tracking.
+ * 
+ * @author Singh Abdullah Alexander
+ */
 public class Chacha {
 
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
 
+    /**
+     * Constructor for Chacha.
+     * 
+     * @param filePath File path to save data to and load data from.
+     */
     public Chacha(String filePath) {
         
         ui = new Ui();
@@ -20,10 +31,19 @@ public class Chacha {
             taskList = new TaskList();
         }
     }
+    
+    /** 
+     * Main class to initialise Chacha.
+     * 
+     * @param args Command line arguments.
+     */
     public static void main(String[] args) {
         new Chacha("data/tasks.txt").run();
     }     
 
+    /**
+     * Runs an instantiated Chacha.
+     */
     public void run() {
         System.out.println(ui.printWelcome());
         boolean isExit = false;
