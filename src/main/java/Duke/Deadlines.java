@@ -53,7 +53,7 @@ public class Deadlines extends Task {
     public String addMessage(int listSize) {
         return String.format("     Got it. I've added this task:\n" +
                         "     %s\n" +
-                        "     Now you have %d tasks in the list.\n" , this, listSize + 1);
+                        "     Now you have %d tasks in the list.\n" , this, listSize);
     }
 
     /**

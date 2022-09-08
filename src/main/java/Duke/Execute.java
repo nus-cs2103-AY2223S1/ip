@@ -99,7 +99,7 @@ public class Execute {
             Task toDelete = tasks.getTaskArray().get(num - 1);
             tasks.delete(toDelete);
             String str = ui.showDeleteMessage(toDelete, tasks.getSize());
-            storage.writeToFile(toDelete);
+            storage.rewriteFile(tasks.getTaskArray());
             return str;
 
         } catch (NumberFormatException e) {

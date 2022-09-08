@@ -144,7 +144,8 @@ public class TaskList {
             taskArray.add(newToDo);
             return newToDo;
         } else {
-            if (Objects.equals(inputArr[0], "deadline") || Objects.equals(inputArr[0], "event")) {
+            if (Objects.equals(inputArr[0], "deadline")
+                    || Objects.equals(inputArr[0], "event")) {
                 try {
                     String[] date = commands[1].split(" ", 2);
                     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -173,6 +174,20 @@ public class TaskList {
                 } catch (DateTimeParseException e) {
                     throw new DukeException.InvalidParameterException("Please input in date time format 'yyyy-MM-dd HH:mm'");
                 }
+            } else if (Objects.equals(inputArr[0], "fixedtask")) {
+                try {
+                    String[] duration = commands[1].split(" ", 2);
+                    if (Objects.equals(duration[0].toLowerCase(), "for")) {
+                        FixedDurationTask newFixedTask = new FixedDurationTask(inputArr[1], init, false, duration[1], getSize());
+                        taskArray.add(newFixedTask);
+                        return newFixedTask;
+                    } else {
+                        throw new DukeException.InvalidParameterException("Include /for after fixedtask");
+                    }
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    throw new DukeException.InvalidParameterException("fixedtask requires a third parameter after /for");
+                }
+
             } else {
                 throw new DukeException.UnkownCommandException("OOPS! Indicate todo/deadline/event before a task");
             }
