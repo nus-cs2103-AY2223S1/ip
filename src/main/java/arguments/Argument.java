@@ -20,6 +20,10 @@ public abstract class Argument<T> {
         this.argumentName = argumentName;
     }
 
+    public String getArgumentName() {
+        return Input.ARG_START + argumentName;
+    }
+
     /**
      * This method should process the input and set value for this argument, or throw exception if input is invalid
      * @throws exceptions.DukeException - if input does not contain what this argument needs

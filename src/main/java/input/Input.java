@@ -22,9 +22,8 @@ import exceptions.DukeException;
  * Provides information about command name, argument name and parameters (if any), and the original input string.
  * */
 public class Input {
+    public static final String ARG_START = "/";
     private static final String DELIMITER = " ";
-    private static final String ARG_START = "/";
-
     protected String commandName;
     protected String inputString;
     protected Map<String, String> parameters; // store arguments without arg_start
@@ -131,6 +130,19 @@ public class Input {
         }
 
         return parameters.get(argument);
+    }
+
+    /**
+     * Returns token of input string specified by index.
+     * @param index 0 to number of tokens - 1
+     * @return token
+     * @throws IllegalArgumentException if index is invalid
+     */
+    public String getTokenAtIndex(int index) throws IllegalArgumentException {
+        if (index < 0 || index >= tokens.length) {
+            throw new IllegalArgumentException("Invalid index");
+        }
+        return tokens[index];
     }
 
     /**
