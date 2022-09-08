@@ -1,4 +1,4 @@
-# Duke project template
+# duke.Duke project template
 
 This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
 
@@ -13,12 +13,31 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    1. If there are any further prompts, accept the defaults.
 1. Configure the project to use **JDK 11** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
    In the same dialog, set the **Project language level** field to the `SDK default` option.
-3. After that, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
+3. After that, locate the `src/main/java/duke.Duke.java` file, right-click it, and choose `Run duke.Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
    ```
    Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
+   _____________   _       _______________
+   |___   __||  | | |     | |__  __| ____|
+       | |  | __ ||  \   /  |  | | | |___
+    _  | | | |__| |   \_/   |  | | |  ___|
+   | |_| | |  __  | |\   /| |__| |_| |___
+   |_____| |_|  |_|_| \_/ |_|______|_____|
    ```
+## Commands
+
+`list`
+
+### Operations
+
+1. `mass` {operation} {ALL/numbers}
+2. `delete` {number}
+3. `mark` {number}
+4. `unmark` {number}
+5. `find` {keyword}
+
+### Creating tasks
+
+1. `todo` {description}
+2. `event` {description} `/at` {dd/MM/YYYY,HHmm}
+3. `deadline` {description} `/by` {dd/MM/YYYY,HHmm}
+4. `fixed` {description} `/takes` {duration in hours}
