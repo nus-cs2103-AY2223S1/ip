@@ -19,6 +19,7 @@ public class Deadline extends Task {
      */
     public Deadline(String taskName, String endDate) throws DukeException {
         super(taskName);
+        assert !endDate.isEmpty() : "End date should not be empty";
         try {
             this.endDate = LocalDateTime.parse(endDate, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
         } catch (DateTimeParseException dateTimeParseException){

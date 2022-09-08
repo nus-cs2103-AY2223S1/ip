@@ -7,6 +7,7 @@ package duke;
 public class DukeException extends Exception {
     public DukeException(String errorMessage) {
         super(errorMessage);
+        assert !errorMessage.isEmpty() : "Error message should not be empty";
     }
 
     /**

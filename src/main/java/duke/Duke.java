@@ -7,6 +7,7 @@ public class Duke {
     private Storage storage;
 
     public Duke(String filePath) {
+        assert !filePath.isEmpty() : "Filepath should not be empty";
         storage = new Storage(filePath);
         taskList = new TaskList(storage.loadTaskList());
     }
@@ -28,6 +29,7 @@ public class Duke {
 
     public String getResponse(String userInput) {
         try {
+            assert !userInput.isEmpty() : "User input should not be empty";
             Command command = Parser.parse(userInput);
             return command.execute(taskList, storage);
         } catch (DukeException exception) {

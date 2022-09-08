@@ -25,6 +25,7 @@ public class Storage {
      */
     public Storage(String filePath) {
         this.ui = new Ui();
+        assert !filePath.isEmpty() : "Filepath should not be empty";
         this.filePath = filePath;
     }
 

@@ -19,6 +19,7 @@ public class Event extends Task {
      */
     public Event(String taskName, String dateTime) throws DukeException {
         super(taskName);
+        assert !dateTime.isEmpty() : "date time should not be empty";
         try {
             this.dateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
         } catch (DateTimeParseException dateTimeParseException){
