@@ -36,10 +36,11 @@ test {
 
 checkstyle {
     toolVersion = '10.2'
+    checkstyleTest.enabled = false
 }
 
 application {
-    mainClassName = "duke.Duke.Launcher"
+    mainClassName = "duke.Launcher"
 }
 
 shadowJar {
