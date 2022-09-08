@@ -25,4 +25,8 @@ public class Duke {
     String getResponse(String input) {
         return parser.execute(input);
     }
+
+    public static void main(String[] args) {
+        Launcher.main(args);
+    }
 }
