@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import chad.exception.ChadException;
 import chad.task.Deadline;
 import chad.task.Event;
 import chad.task.Task;
@@ -19,7 +20,7 @@ public class Ui {
     public static String greet() {
         String startChat = "Hello! I'm Chadbot\nWhat can I do for you?\n";
         startChat += "To see all available commands, type help";
-        return startChat;
+        return Utility.printText(startChat);
     }
 
     /**
@@ -27,7 +28,19 @@ public class Ui {
      */
     public static String closeChat() {
         String exitChat = "Bye. Hope to see you again soon!";
-        return exitChat;
+        return Utility.printText(exitChat);
+    }
+
+    public static String helpCommands() {
+        String output = "";
+        output += "list - List all tasks in task list\n";
+        output += "bye - Close chat\n";
+        output += "mark 'task' - Mark a task as done\n";
+        output += "unmark 'task' - Unmark a task\n";
+        output += "todo 'task' - Add a todo to task list\n";
+        output += "delete 'task' - Delete a task from task list\n";
+        output += "find 'keyword' - Find a task by matching keywords\n";
+        return Utility.printText(output);
     }
 
     /**
@@ -40,7 +53,7 @@ public class Ui {
             Task task = tasks.get(i);
             outputText.append(i + 1).append(".").append(task.toString()).append("\n");
         }
-        return outputText.toString().trim();
+        return Utility.printText(outputText.toString().trim());
     }
 
     /**
@@ -49,14 +62,14 @@ public class Ui {
      * @param taskID index of task
      * @throws IOException throws error if file can't be open in chad.Storage
      */
-    public static String markTask(ArrayList<Task> tasks, int taskID) throws IOException {
+    public static String markTask(ArrayList<Task> tasks, int taskID) throws ChadException {
         String outputText = "";
         outputText += "Nice! I've marked this task as done:\n";
         Task currentTask = tasks.get(taskID);
         currentTask.markAsDone();
         outputText += " " + currentTask;
         Storage.toggleMarkTaskInFile(taskID);
-        return outputText;
+        return Utility.printText(outputText);
     }
 
     /**
@@ -65,14 +78,14 @@ public class Ui {
      * @param taskID index of task
      * @throws IOException throws error if file can't be open in chad.Storage
      */
-    public static String unmarkTask(ArrayList<Task> tasks, int taskID) throws IOException {
+    public static String unmarkTask(ArrayList<Task> tasks, int taskID) throws ChadException {
         String outputText = "";
         outputText += "OK, I've marked this task as not done yet:\n";
         Task currentTask = tasks.get(taskID);
         currentTask.markAsUndone();
         outputText += " " + currentTask;
         Storage.toggleMarkTaskInFile(taskID);
-        return outputText;
+        return Utility.printText(outputText);
     }
 
     public static String searchTaskByKeyword(ArrayList<Task> tasks, String userInput) {
@@ -90,9 +103,9 @@ public class Ui {
         }
 
         if (output.equals(baseText)) {
-            return "No matching tasks were found";
+            return Utility.printText("No matching tasks were found");
         } else {
-            return output.trim();
+            return Utility.printText(output.trim());
         }
     }
 
@@ -108,7 +121,7 @@ public class Ui {
         LocalDate theDate = LocalDate.parse(date, format);
 
         if (theDate == null) {
-            return "";
+            return Utility.printText("");
         }
 
         for (Task t: tasks) {
@@ -130,6 +143,6 @@ public class Ui {
         if (text.equals("")) {
             text = "No such record for " + theDate;
         }
-        return text;
+        return Utility.printText(text);
     }
 }

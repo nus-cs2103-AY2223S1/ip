@@ -17,8 +17,8 @@ public class Chad {
     public Chad() {
         try {
              taskList = Storage.initializeArrayList();
-        } catch ( IOException ce) {
-            ce.printStackTrace();
+        } catch (ChadException ce) {
+            System.out.println(ce.getMessage());
             taskList = new ArrayList<>();
         }
 
@@ -38,8 +38,10 @@ public class Chad {
         }
     }
 
-    public String getResponse(String input) throws ChadException, IOException {
-        return Parser.readUserInput(taskList, input);
+    public String getResponse(String input) {
+        String output = Parser.readUserInput(taskList, input);
+        return output;
+
     }
 
     public static void main(String[] args) throws ChadException, IOException {

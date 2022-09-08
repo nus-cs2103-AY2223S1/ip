@@ -11,13 +11,16 @@ public class Deadline extends Task {
 
     /**
      * Constructor for Deadline
+     * Example: deadline return book /by 2/12/2019 1800
      * @param description description of deadline
      * @param dateTime date and time of when deadline is due
      */
-    public Deadline(String description, String dateTime) {
+    public Deadline(String description, LocalDateTime dateTime) {
         super(description);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HHmm");
-        this.dateTime = LocalDateTime.parse(dateTime, formatter);
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HHmm");
+//        this.dateTime = LocalDateTime.parse(dateTime, formatter);
+        this.dateTime = dateTime;
+
     }
 
     public LocalDateTime getDateTime() {
@@ -27,6 +30,6 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: "
-                + this.dateTime.format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm a")) + ")";
+                + this.dateTime.format(OUTPUT_DATEFORMAT) + ")";
     }
 }

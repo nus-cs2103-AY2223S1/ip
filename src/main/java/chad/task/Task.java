@@ -1,9 +1,13 @@
 package chad.task;
 
+import java.time.format.DateTimeFormatter;
+
 /**
  * chad.Task is the core functionality of the Chadbot
  */
 public class Task {
+    protected static final DateTimeFormatter OUTPUT_DATEFORMAT =
+            DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm a");
     protected String description;
     protected boolean isDone;
 

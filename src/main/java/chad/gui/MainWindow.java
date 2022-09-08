@@ -3,6 +3,7 @@ package chad.gui;
 import chad.Chad;
 import chad.Ui;
 import chad.exception.ChadException;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -12,6 +13,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import static java.lang.System.exit;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -46,13 +50,18 @@ public class MainWindow extends AnchorPane {
      * the dialog container. Clears the user input after processing.
      */
     @FXML
-    private void handleUserInput() throws ChadException, IOException {
+    private void handleUserInput() throws ChadException, IOException, InterruptedException {
         String input = userInput.getText();
         String response = chad.getResponse(input);
+
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getChadDialog(response, chadImage)
         );
         userInput.clear();
+
+        if(input.equals("bye")) {
+            Platform.exit();
+        }
     }
 }

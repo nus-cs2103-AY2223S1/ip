@@ -10,7 +10,6 @@ import chad.task.Task;
  * Contains commands for user to interact with Chadbot
  */
 public class Parser {
-
     /**
      * Reads user input in command line
      * @param taskList arraylist of tasks
@@ -18,7 +17,7 @@ public class Parser {
      * @throws ChadException Thrown when invalid error occurs
      * @throws IOException Thrown when helper file cannot be open
      */
-    public static String readUserInput(ArrayList<Task> taskList, String userInput) throws ChadException, IOException {
+    public static String readUserInput(ArrayList<Task> taskList, String userInput) {
         String[] tempArr = userInput.split(" ");
         String keyword = tempArr[0];
 
@@ -57,9 +56,12 @@ public class Parser {
             case "find": {
                 return Ui.searchTaskByKeyword(taskList, userInput);
             }
-            default: {
-                throw new ChadException("I'm sorry, but I don't know what that means :-(");
+            case "help": {
+                return Ui.helpCommands();
             }
+            default:
+                return "I'm sorry, but I don't know what that means :-(";
+//                throw new ChadException("I'm sorry, but I don't know what that means :-(");
             }
         } catch (ChadException ce) {
             return ce.getMessage();

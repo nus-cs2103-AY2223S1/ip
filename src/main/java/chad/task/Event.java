@@ -11,13 +11,15 @@ public class Event extends Task {
 
     /**
      * Constructor for event
+     * Example: event party /at 2/12/2020 1800
      * @param description description of event
      * @param dateTime date and time of event
      */
-    public Event(String description, String dateTime) {
+    public Event(String description, LocalDateTime dateTime) {
         super(description);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HHmm");
-        this.dateTime = LocalDateTime.parse(dateTime, formatter);
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HHmm");
+//        this.dateTime = LocalDateTime.parse(dateTime, formatter);
+        this.dateTime = dateTime;
     }
 
     public LocalDateTime getDateTime() {
@@ -27,7 +29,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: "
-                + this.dateTime.format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm a")) + ")";
+                + this.dateTime.format(OUTPUT_DATEFORMAT) + ")";
     }
 
 }

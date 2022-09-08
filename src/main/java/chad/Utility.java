@@ -8,9 +8,9 @@ public class Utility {
      * Formats response text from Chadbot and print
      * @param text text to be printed
      */
-    public static void printText(String text) {
-        String line = "____________________________________________________________";
+    public static String printText(String text) {
+        String line = "_______________________________________________________";
         String output = line + "\n" + text + "\n" + line;
-        System.out.println(output);
+        return output;
     }
 }
