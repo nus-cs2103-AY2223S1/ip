@@ -44,9 +44,7 @@ public class Duke {
         try {
             switch (parsedCommands[0]) {
             case "list":
-                return (parsedCommands.length == 1)
-                    ? ui.showTasks(tasks)
-                    : ui.showTasks(tasks, parsedCommands[1]);
+                return ui.showTasks(tasks);
 
             case "todo":
                 Todo todo = new Todo(parsedCommands[1]);
@@ -69,6 +67,9 @@ public class Duke {
             case "sort":
                 tasks.sort();
                 return ui.showTasks(tasks);
+
+            case "schedule":
+                return ui.viewScheduleOnDate(tasks, parsedCommands[1]);
 
             case "find":
                 return ui.showTasks(tasks.filter(parsedCommands[1]));

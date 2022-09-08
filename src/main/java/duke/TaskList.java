@@ -72,10 +72,10 @@ public class TaskList {
     public TaskList getTasksByDate(String date) throws DukeException {
         LocalDate convertedDate;
         try {
-            convertedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern(TimedTask.getFormat()));
+            convertedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern(TimedTask.getDateFormat()));
         } catch (DateTimeParseException e) {
             throw new DukeException("\u2639 OOPS!!! Wrong date format. Please input date in the format %s.",
-                    TimedTask.getFormat());
+                    TimedTask.getDateFormat());
         }
         return new TaskList(tasks.stream()
                 .filter(x -> isSameDate(x, convertedDate))

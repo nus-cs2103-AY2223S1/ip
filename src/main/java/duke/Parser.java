@@ -23,6 +23,7 @@ public class Parser {
         case "todo":
         case "format":
         case "find":
+        case "schedule":
             assert splitCommands.length == 2 : "\u2639 OOPS!!! Missing argument.";
             return splitCommands;
 

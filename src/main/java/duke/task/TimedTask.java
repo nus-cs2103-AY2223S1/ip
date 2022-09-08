@@ -30,6 +30,10 @@ public abstract class TimedTask extends Task {
         return format;
     }
 
+    public static String getDateFormat() {
+        return format.split(" ")[0];
+    }
+
     /**
      * Sets a new datetime format for existing and future tasks to follow.
      * @param format A String representing the datetime format. Must be valid.
