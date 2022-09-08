@@ -1,20 +1,10 @@
 package jenny.util;
 
+import jenny.commands.*;
+import jenny.exceptions.JennyException;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import jenny.commands.ByeCommand;
-import jenny.commands.Command;
-import jenny.commands.DeadlineCommand;
-import jenny.commands.DeleteCommand;
-import jenny.commands.EventCommand;
-import jenny.commands.FindCommand;
-import jenny.commands.InvalidCommand;
-import jenny.commands.ListCommand;
-import jenny.commands.MarkCommand;
-import jenny.commands.TodoCommand;
-import jenny.commands.UnmarkCommand;
-import jenny.exceptions.JennyException;
 
 
 /**
@@ -38,10 +28,12 @@ public class Parser {
      */
     public static Command parse(String nextLine) throws JennyException {
         Matcher matcher = VALID_COMMAND.matcher(nextLine);
-        if (!matcher.matches()) {
+        boolean isMatch = matcher.matches();
+        if (!isMatch) {
+            assert !isMatch;
             return new InvalidCommand();
         }
-
+        assert isMatch;
         try {
             String command = matcher.group("command").strip();
             String arguments = matcher.group("arguments").strip();

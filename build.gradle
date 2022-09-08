@@ -60,7 +60,7 @@ sourceSets {
 
 shadowJar {
     archiveBaseName = "jenny"
-    archiveVersion = "v0.3"
+    archiveVersion = "v0.5"
     archiveClassifier = null
 }
 

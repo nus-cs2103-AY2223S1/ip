@@ -1,5 +1,12 @@
 package jenny.storage;
 
+import jenny.exceptions.JennyException;
+import jenny.tasks.DeadlineTask;
+import jenny.tasks.EventTask;
+import jenny.tasks.Task;
+import jenny.tasks.TodoTask;
+import jenny.util.Validator;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -10,13 +17,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
-
-import jenny.exceptions.JennyException;
-import jenny.tasks.DeadlineTask;
-import jenny.tasks.EventTask;
-import jenny.tasks.Task;
-import jenny.tasks.TodoTask;
-import jenny.util.Validator;
 
 
 /**
@@ -56,18 +56,27 @@ public class TaskStorage<T> extends Storage<T> {
      */
     @Override
     public void save(T t) throws JennyException {
-        if (!(t instanceof ArrayList)) {
+        boolean isArrayList = t instanceof ArrayList;
+        if (!isArrayList) {
+            assert !isArrayList;
             throw new JennyException(MESSAGE_SCOPE, ERROR_INVALID_TYPE);
         }
+        assert isArrayList;
 
         ArrayList<?> tArrayList = (ArrayList<?>) t;
-        if (tArrayList.isEmpty()) {
+        boolean isEmpty = tArrayList.isEmpty();
+        if (isEmpty) {
+            assert isEmpty;
             throw new JennyException(MESSAGE_SCOPE, ERROR_NOTHING_TO_SAVE);
         }
+        assert !isEmpty;
 
-        if (!(tArrayList.get(0) instanceof Task)) {
+        boolean isTask = tArrayList.get(0) instanceof Task;
+        if (!isTask) {
+            assert !isTask;
             throw new JennyException(MESSAGE_SCOPE, ERROR_INVALID_TYPE);
         }
+        assert isTask;
 
         @SuppressWarnings("unchecked")
         ArrayList<Task> tasks = (ArrayList<Task>) tArrayList;

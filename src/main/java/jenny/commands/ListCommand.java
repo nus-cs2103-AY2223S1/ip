@@ -39,9 +39,12 @@ public class ListCommand extends Command {
      */
     @Override
     public void run(TaskList tasks, Ui ui, Storage<ArrayList<Task>> storage) throws JennyException {
-        if (tasks.isEmpty()) {
+        boolean isEmpty = tasks.isEmpty();
+        if (isEmpty) {
+            assert isEmpty;
             throw new JennyException(MESSAGE_SCOPE, ERROR_EMPTY_LIST);
         }
+        assert !isEmpty;
         ui.print(tasks);
     }
 }

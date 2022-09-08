@@ -20,9 +20,12 @@ public class TodoTask extends Task {
      */
     public TodoTask(String description) throws JennyException {
         super(description);
-        if (description.equals("")) {
+        boolean isBlank = description.equals("");
+        if (isBlank) {
+            assert isBlank;
             throw new JennyException(MESSAGE_SCOPE, ERROR_MISSING_DESCRIPTION);
         }
+        assert !isBlank;
     }
 
     /**

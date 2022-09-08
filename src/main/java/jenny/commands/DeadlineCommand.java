@@ -1,10 +1,5 @@
 package jenny.commands;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import jenny.exceptions.JennyException;
 import jenny.storage.Storage;
 import jenny.tasks.DeadlineTask;
@@ -12,6 +7,11 @@ import jenny.tasks.Task;
 import jenny.tasks.TaskList;
 import jenny.util.Ui;
 import jenny.util.Validator;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -53,9 +53,13 @@ public class DeadlineCommand extends Command {
     @Override
     public void run(TaskList tasks, Ui ui, Storage<ArrayList<Task>> storage) throws JennyException {
         Matcher matcher = VALID_DEADLINE_TASK.matcher(arguments);
-        if (!matcher.matches()) {
+        boolean isMatch = matcher.matches();
+        if (!isMatch) {
+            assert !isMatch;
             throw new JennyException(MESSAGE_SCOPE, ERROR_INVALID_FORMAT);
         }
+        assert isMatch;
+
         try {
             String description = matcher.group("description").strip();
             String dueDate = matcher.group("dueDate").strip();

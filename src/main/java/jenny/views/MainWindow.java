@@ -53,8 +53,11 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
 
         if (jennyBot.isExit) {
+            assert jennyBot.isExit;
             userInput.setDisable(true);
             sendButton.setDisable(true);
+            assert userInput.isDisabled();
+            assert sendButton.isDisabled();
         }
     }
 }

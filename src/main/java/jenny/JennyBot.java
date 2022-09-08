@@ -59,6 +59,7 @@ public final class JennyBot {
                 ui.print(e.getMessage());
             }
         }
+        assert isExit;
     }
 
     /**

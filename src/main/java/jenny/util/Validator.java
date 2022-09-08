@@ -1,11 +1,11 @@
 package jenny.util;
 
+import jenny.exceptions.JennyException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import jenny.exceptions.JennyException;
 
 
 /**
@@ -31,9 +31,12 @@ public class Validator {
      */
     public static LocalDate parseDate(String date) throws JennyException {
         Matcher matcher = VALID_DATE_PATTERN.matcher(date);
-        if (!matcher.find()) {
+        boolean isFound = matcher.find();
+        if (!isFound) {
+            assert !isFound;
             throw new JennyException(MESSAGE_SCOPE, ERROR_INVALID_DATE);
         }
+        assert isFound;
         try {
             return LocalDate.parse(date);
         } catch (DateTimeParseException e) {
