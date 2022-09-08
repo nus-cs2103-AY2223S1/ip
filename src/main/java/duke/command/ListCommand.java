@@ -15,6 +15,7 @@ public class ListCommand extends Command {
 
     /**
      * Handles the command to list out all <code>Task</code> in the list of tasks.
+     *
      * @param storage  the <code>Storage</code> dealing with loading and saving tasks in a file
      * @param ui       the user interfaces that deals with user inputs
      * @param taskList the list of tasks

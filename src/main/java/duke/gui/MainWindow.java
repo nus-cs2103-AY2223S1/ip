@@ -58,7 +58,8 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
-        if (response.equals("Duke says:\n" + "Bye. Hope to see you again soon!")) {
+        String dukeResponseToBye = "Duke says:\n" + "Bye. Hope to see you again soon!";
+        if (response.equals(dukeResponseToBye)) {
             new Timer().schedule(new TimerTask() {
                 @Override
                 public void run() {
