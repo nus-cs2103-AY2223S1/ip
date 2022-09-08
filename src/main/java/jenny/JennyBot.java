@@ -62,10 +62,12 @@ public final class JennyBot {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Run the user input as a command and returns the response from the application.
+     *
+     * @param input the command to be run.
+     * @return the response from the application after running the command.
      */
-    String getResponse(String input) {
+    public String getResponse(String input) {
         ByteArrayOutputStream res = new ByteArrayOutputStream();
         PrintStream out = new PrintStream(res, true, StandardCharsets.UTF_8);
         ui.setPrintStream(out);
