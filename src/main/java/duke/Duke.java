@@ -34,30 +34,26 @@ public class Duke {
     }
 
     /**
-     * Drives the duke chat bot.
+     * Returns the response to the user input.
+     *
+     * @param input The user input.
+     * @return The response from duke.
      */
-    public void run() {
-        ui.showWelcome();
+    public String getResponse(String input) {
         boolean isExit = false;
-        while(!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine(); // show the divider line ("_______")
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
-            }
+        try {
+            ui.showLine();
+            Command c = Parser.parse(input);
+            c.execute(tasks, ui, storage);
+            isExit = c.isExit();
+        } catch (DukeException e) {
+            ui.showError(e.getMessage());
+        } finally {
+            ui.showLine();
         }
-    }
-
-    /**
-     * Starts the duke program.
-     */
-    public static void main(String[] args) {
-        new Duke("data/tasks.txt").run();
+        if (isExit) {
+            System.exit(0);
+        }
+        return ui.getOutput();
     }
 }
