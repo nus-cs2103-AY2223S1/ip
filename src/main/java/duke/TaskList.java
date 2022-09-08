@@ -53,6 +53,7 @@ public class TaskList {
      * A method that marks a specific task in the tasklist
      *
      * @param index The index of the task
+     * @return Task The newly marked task
      */
     public Task markTask(int index) {
         Task t = this.lst.get(index);
@@ -64,6 +65,7 @@ public class TaskList {
      * A method that unmarks a specific task in the tasklist
      *
      * @param index The index of the task
+     * @return Task The newly unmarked task
      */
     public Task unmarkTask(int index) {
         Task t = this.lst.get(index);
