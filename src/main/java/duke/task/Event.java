@@ -28,10 +28,13 @@ public class Event extends Task {
     }
 
     /**
-     * Changes the date format of the date that the <code>Event</code> occurs on.
+     * Returns a String with a different date format.
+     * @return A <code>Event</code> with a different date format.
      */
-    public void changeDateFormat() {
-        this.at.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    public String changeDateFormat() {
+        String updatedDate = this.at.format(DateTimeFormatter.ofPattern("d MMM uuuu"));
+        return "[E]" + super.toString()
+                + "(at: " + updatedDate + ")";
     }
 
     /**
