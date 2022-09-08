@@ -20,16 +20,17 @@ public class TaskList {
      * Constructs an empty task list.
      */
     public TaskList() {
-        this.tasks = new LinkedList<>();
+        tasks = new LinkedList<>();
     }
 
     /**
      * Constructs a task list from a saved file.
      *
-     * @param savedTasks The file the tasks are to be loaded from
+     * @param savedTasks The file the tasks are to be loaded from.
      */
     public TaskList(File savedTasks) {
-        this.tasks = new LinkedList<>();
+        tasks = new LinkedList<>();
+        // list of description of error messages generated for unparsable tasks
         LinkedList<String> unparsableTasks = new LinkedList<>();
         try {
             Scanner sc = new Scanner(savedTasks);
@@ -37,8 +38,9 @@ public class TaskList {
                 String ln = sc.nextLine();
                 try {
                     // try to parse the saved task
-                    TaskType savedTask = TaskType.readSavedTaskType(ln.charAt(0));
-                    this.tasks.add(savedTask.parseSavedFormat(ln));
+                    char rawTaskType = ln.charAt(0);
+                    TaskType savedTaskType = TaskType.readSavedTaskType(rawTaskType);
+                    tasks.add(savedTaskType.parseSavedFormat(ln));
                 } catch (DukeException e) {
                     // could not parse this task, ignore it and raise it as an error later
                     unparsableTasks.add(e.getMessage());
@@ -50,10 +52,16 @@ public class TaskList {
 
         if (!unparsableTasks.isEmpty()) {
             String unparsableTasksList = String.join("\n", unparsableTasks);
-            System.out.println(String.format("Could not parse saved tasks:\n %s", unparsableTasksList));
+            String errorLog = String.format("Could not parse saved tasks:\n %s", unparsableTasksList);
+            System.out.println(errorLog);
         }
     }
 
+    /**
+     * Returns the size of the task list.
+     *
+     * @return The number of tasks in the task list.
+     */
     public int size() {
         return tasks.size();
     }
@@ -61,7 +69,7 @@ public class TaskList {
     /**
      * Returns the display message of the number of tasks in the task list.
      *
-     * @return The display String representation of the number of tasks in the task list
+     * @return The display String representation of the number of tasks in the task list.
      */
     public String numberOfTasks() {
         int numTasks = size();
@@ -71,7 +79,7 @@ public class TaskList {
             // TODO pluralise properly
             int numUncompletedTasks = filter((Task t) -> !t.isDone).size();
             if (numUncompletedTasks == 0) {
-                return String.format("yay, you checked everything off your list! ヽ(˘◡˘)ノ", numTasks);
+                return "yay, you checked everything off your list! ヽ(˘◡˘)ノ";
             } else {
                 return String.format("you have %d uncompleted tasks- it's time to get to work! *（･v･)つ *",
                         numUncompletedTasks);
@@ -82,13 +90,14 @@ public class TaskList {
     /**
      * Checks that the specified task is a task that exists.
      *
-     * @param i The task number of the task to be verified
-     * @return True if the task exists, false otherwise
+     * @param i The task number of the task to be verified.
+     * @return True if the task exists.
+     * @throws DukeException If the task number does not exist.
      */
     public boolean isValidTask(int i) throws DukeException {
         boolean isValid = i > 0 && i <= tasks.size();
         if (!isValid) {
-            throw new DukeException("uhoh... bobo can't find this task (・へ・)?? ");
+            throw new DukeException("uhoh... bobo can't find this task (・へ・)??");
         }
         return true;
     }
@@ -96,7 +105,7 @@ public class TaskList {
     /**
      * Marks the specified task number as done, if it exists.
      *
-     * @param i The task number to be marked as done
+     * @param i The task number to be marked as done.
      */
     public String markTaskDone(int i) throws DukeException {
         isValidTask(i);
@@ -108,8 +117,8 @@ public class TaskList {
     /**
      * Marks the specified task number as not done, if it exists.
      *
-     * @param i The task number to be marked as not done
-     * @throws DukeException An exception is thrown when the specified task does not exist
+     * @param i The task number to be marked as not done.
+     * @throws DukeException An exception is thrown when the specified task does not exist.
      */
     public String markTaskNotDone(int i) throws DukeException {
         isValidTask(i);
@@ -121,37 +130,39 @@ public class TaskList {
     /**
      * Adds a specified task to the task list.
      *
-     * @param task The task to be added to the task list
+     * @param task The task to be added to the task list.
      * @return String representation of task completion, displays task added and number
-     *         of tasks in the task list
+     *         of tasks in the task list.
      */
     public String addTask(Task task) {
         tasks.add(task);
-        return (String.format("aye aye! bobo added this task ( ･o･) you now have %d items in your list!",
-                tasks.size()));
+        String taskAddedSuccessfullyMessage = String.format("aye aye! bobo added this task ( ･o･)"
+                + " you now have %d items in your list!", tasks.size());
+        return taskAddedSuccessfullyMessage;
     }
 
     /**
      * Deletes a specified task from the task list.
      *
-     * @param i The task number of the task to be deleted from the task list
+     * @param i The task number of the task to be deleted from the task list.
      * @return String representation of the task deletion, displays task removed and
-     *         the number of remaining tasks in the task list
-     * @throws DukeException Exception thrown when the specified task does not exist
+     *         the number of remaining tasks in the task list.
+     * @throws DukeException Exception thrown when the specified task does not exist.
      */
     public String deleteTask(int i) throws DukeException {
         isValidTask(i);
         tasks.remove(i - 1);
-        return (String.format("okayy! bobo removed this task (´･ω･`)┐ you now have %d tasks in your list",
-                tasks.size()));
+        String taskDeletedSuccessfully = String.format("okayy! bobo removed this task (´･ω･`)┐"
+                + " you now have %d tasks in your list", tasks.size());
+        return taskDeletedSuccessfully;
     }
 
     /**
      * Filters the task list and returns a new task list containing only elements
      * that fulfil the specified condition.
      *
-     * @param pred Condition to test the task elements against
-     * @return A new task list containing only elements that fulfil the specified condition
+     * @param pred Condition to test the task elements against.
+     * @return A new task list containing only elements that fulfil the specified condition.
      */
     public TaskList filter(Function<Task, Boolean> pred) {
         TaskList filtered = new TaskList();
@@ -163,6 +174,15 @@ public class TaskList {
         return filtered;
     }
 
+    /**
+     * Transforms the task list into a linked list containing elements of type T
+     * by applying the given unary function to every task in the task list.
+     *
+     * @param func The unary function to apply to every task in the task list.
+     * @param <T> The type of object the unary function transforms each task into.
+     * @return A linked list of type T obtained by applying the specified function to
+     *         each task of the task list.
+     */
     public <T> LinkedList<T> transform(Function<Task, T> func) {
         LinkedList<T> transformed = new LinkedList<>();
         for (Task task : tasks) {
@@ -171,16 +191,33 @@ public class TaskList {
         return transformed;
     }
 
+    /**
+     * Transforms the task list into a linked list containing elements of type T
+     * by applying the given bi-function to every task and its corresponding
+     * task number in the task list.
+     *
+     * @param func The bi-function to apply to every task in the task list.
+     * @param <T> The type of object the bi-function transforms each task and its task number into.
+     * @return A linked list of type T obtained by applying the specified function to
+     *         each task, and its corresponding task number, of the task list.
+     */
     public <T> LinkedList<T> transform(BiFunction<Task, Integer, T> func) {
         LinkedList<T> transformed = new LinkedList<>();
-        int count = 1;
+        int taskNumber = 1;
         for (Task task : tasks) {
-            transformed.add(func.apply(task, count));
-            count++;
+            transformed.add(func.apply(task, taskNumber));
+            taskNumber++;
         }
         return transformed;
     }
 
+    /**
+     * Returns the task in the task list corresponding to the specified task number.
+     *
+     * @param taskNumber The task number of the task to be retrieved from the task list.
+     * @return The task in the task list corresponding to the specified task number.
+     * @throws DukeException If the specified task number is invalid.
+     */
     public Task getTask(int taskNumber) throws DukeException {
         isValidTask(taskNumber);
         return tasks.get(taskNumber - 1);
@@ -189,7 +226,7 @@ public class TaskList {
     /**
      * Parses the task list into a string format ready to be saved to the hard disk.
      *
-     * @return A savable string representation of the task list
+     * @return A savable string representation of the task list.
      */
     public String toSaveFormat() {
         String formatted = "";
@@ -202,7 +239,7 @@ public class TaskList {
     /**
      * Stringifies the task list without printing any information.
      *
-     * @return The string representation of the task list
+     * @return The string representation of the task list.
      */
     public String stringify() {
         String taskList = "";
@@ -215,8 +252,7 @@ public class TaskList {
     }
 
     /**
-     * Lists all the tasks entered thus far by the user.
-     * Will print 'No tasks' if no tasks are found.
+     * Lists all the tasks entered thus far by the user with a description header.
      */
     @Override
     public String toString() {

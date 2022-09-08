@@ -6,20 +6,18 @@ import duke.exception.DukeException;
  * Parsers user inputs of the duke program.
  */
 public class Parser {
-    private static int parseInt(String taskNumber) throws DukeException {
-        try {
-            return Integer.parseInt(taskNumber);
-        } catch (NumberFormatException e) {
-            throw new DukeException("yikes! bobo can't handle this number...");
-        }
-    }
+    /** Error message for unknown commands */
+    private static final String UNKNOWN_COMMAND_ERROR_MESSAGE = "hmmm..."
+        + " bobo doesn't understand what that means (・へ・；)?";
+    /** Error message for inputted numbers that could not be parsed to integers */
+    private static final String INVALID_INTEGER_ERROR_MESSAGE = "yikes! bobo can't handle this number...";
 
     /**
      * Parses user input, identifying the command to run and returns that command.
      *
-     * @param userInput The command string the user has submitted
-     * @return A command based on the user's input
-     * @throws DukeException If the user input is invalid and a command can't be instantiated
+     * @param userInput The command string the user has submitted.
+     * @return A command based on the user's input.
+     * @throws DukeException If the user input is invalid and a command can't be instantiated.
      */
     public static Command parse(String userInput) throws DukeException {
         if (userInput.equals("list")) {
@@ -40,7 +38,16 @@ public class Parser {
         } else if (userInput.equals("bye")) {
             return new ExitCommand();
         } else {
-            throw new DukeException("hmmm...bobo doesn't understand what that means (・へ・；)?");
+            throw new DukeException(UNKNOWN_COMMAND_ERROR_MESSAGE);
+        }
+    }
+
+    /** Guards against integer overflow */
+    private static int parseInt(String taskNumber) throws DukeException {
+        try {
+            return Integer.parseInt(taskNumber);
+        } catch (NumberFormatException e) {
+            throw new DukeException(INVALID_INTEGER_ERROR_MESSAGE);
         }
     }
 }
