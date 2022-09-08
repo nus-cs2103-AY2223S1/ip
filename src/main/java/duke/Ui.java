@@ -1,5 +1,6 @@
 package duke;
 
+import exceptions.TagNotFoundException;
 import exceptions.TaskNotFoundException;
 import exceptions.UnknownCommandException;
 
@@ -122,10 +123,20 @@ public class Ui {
                     return "Tag created and Task added to tag";
                 }
             } else {
-               return new TaskNotFoundException().getMessage();
+                return new TaskNotFoundException().getMessage();
             }
 
         }
+        else if (nextCommand.startsWith(CommandsEnum.showTag.toString())) {
+            String tagName = nextCommand.split(" ")[1];
+            if (tagList.checkTagExist(tagName)) {
+                Tag tag = tagList.getTagByName(tagName);
+                return tag.showAllTaskUnderList();
+            } else {
+                return new TagNotFoundException().getMessage();
+            }
+        }
+
         else {
             return  new UnknownCommandException().getMessage();
         }
