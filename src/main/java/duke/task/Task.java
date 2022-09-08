@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.Date;
+
 /**
  * Represents a skeleton for a Task Class.
  * @author Jason
@@ -7,14 +9,16 @@ package duke.task;
 public abstract class Task {
     protected String description;
     protected boolean isDone;
+    protected Date date;
 
     /**
      * Constructs a Task object.
      * @param description Description of the task object.
      */
-    public Task(String description) {
+    public Task(String description, Date date) {
         this.description = description;
         this.isDone = false;
+        this.date = date;
     }
 
     /**
@@ -58,4 +62,25 @@ public abstract class Task {
      * @return String to be stored in save file.
      */
     public abstract String saveData();
+
+    /**
+     * Returns the date of the Task object, if there is no date return null.
+     * @return Date of task object.
+     */
+    public Date getDate() {
+        return this.date;
+    }
+
+    /**
+     * Compare 2 Tasks based on their dates.
+     * @param   anotherTask - The task to be compared.
+     * @return  A negative integer, zero, or a positive integer as this task
+     * is less than, equal to, or greater than the supplied task object.
+     */
+    public int compareTo(Task anotherTask) {
+        if (this instanceof Todo || anotherTask instanceof Todo) {
+            return 1;
+        }
+        return this.getDate().compareTo(anotherTask.getDate());
+    }
 }
