@@ -84,6 +84,11 @@ public final class Ui {
         pr.print(messages);
     }
 
+    /**
+     * Converts the given TaskList into a String and formats it to send a series of messages to the output stream.
+     *
+     * @param tasks an {@link TaskList} of {@link jenny.tasks.Task}.
+     */
     public void print(TaskList tasks) {
         String tempStr = tasks.toString();
         int tempStrLen = tempStr.length();
