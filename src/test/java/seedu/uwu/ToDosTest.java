@@ -12,7 +12,7 @@ public class ToDosTest {
     @Test
     public void toString_nonNullTask_success() {
         ToDos task = new ToDos("read book");
-        assertEquals("[T][ ]\tread book", task.toString());
+        assertEquals("[T][ ] read book", task.toString());
     }
 
     @Test

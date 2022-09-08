@@ -16,7 +16,7 @@ public class ExitCommand extends Command {
      * @param storage The task list that is stored in the user's hard disk.
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        return ui.leaveChat();
+        return ui.displayLeaveChat();
     }
 
     /**

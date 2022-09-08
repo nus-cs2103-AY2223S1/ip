@@ -14,7 +14,7 @@ import uwu.task.ToDos;
 public class TaskListTest {
     @Test
     public void taskListToString_zeroTasks_success() {
-        assertEquals("\n\n\tyou currently have no tasks, feed me <:", new TaskList().taskListToString());
+        assertEquals("\nyou currently have no tasks, feed me <:", new TaskList().taskListToString());
     }
 
     @Test
@@ -23,7 +23,7 @@ public class TaskListTest {
                 new ToDos("return book")));
         TaskList tasks = new TaskList();
         tasks.setTaskList(tasksTemp);
-        assertEquals("\n1.\t[T][ ]\tread book\n2.\t[T][ ]\treturn book", tasks.taskListToString());
+        assertEquals("\n 1. [T][ ] read book\n 2. [T][ ] return book", tasks.taskListToString());
     }
 
     @Test

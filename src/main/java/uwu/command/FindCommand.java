@@ -45,7 +45,7 @@ public class FindCommand extends Command {
             }
         }
 
-        return ui.findTask(matchedTasks);
+        return ui.displayFoundTask(matchedTasks);
     }
 
     /**

@@ -61,7 +61,7 @@ public class AddCommand extends Command {
             ToDos todo = new ToDos(description);
             tasks.add(todo);
             storage.save(tasks.taskListToStorageString());
-            response = ui.addTask(todo, tasks.size());
+            response = ui.displayAddTask(todo, tasks.size());
             break;
         case "deadline":
         // Fallthrough.
@@ -94,7 +94,7 @@ public class AddCommand extends Command {
             Task task = taskType.equals("deadline") ? new Deadline(description, start) : new Event(description, start);
             tasks.add(task);
             storage.save(tasks.taskListToStorageString());
-            response = ui.addTask(task, tasks.size());
+            response = ui.displayAddTask(task, tasks.size());
             break;
         default:
             throw new NullTaskException("\tsomething went wrong while adding your task..."

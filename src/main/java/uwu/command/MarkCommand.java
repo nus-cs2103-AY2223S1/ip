@@ -54,13 +54,13 @@ public class MarkCommand extends Command {
             Task markedTask = tasks.get(index);
             markedTask.setIsDone(true);
             storage.save(tasks.taskListToStorageString());
-            response = ui.markTask(markedTask);
+            response = ui.displayMarkedTask(markedTask);
             break;
         case "unmark":
             Task unmarkedTask = tasks.get(index);
             unmarkedTask.setIsDone(false);
             storage.save(tasks.taskListToStorageString());
-            response = ui.unmarkTask(unmarkedTask);
+            response = ui.displayUnmarkedTask(unmarkedTask);
             break;
         default:
             throw new NullTaskException("\toops something went wrong!");

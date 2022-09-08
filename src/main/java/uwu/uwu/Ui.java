@@ -8,17 +8,9 @@ import uwu.task.TaskList;
  */
 public class Ui {
     /**
-     * Prints greetings to users.
-     */
-    public String greetUsers() {
-        String greetings = "hellu!\ni am oo woo <:\nhow can i be of service today?";
-        return greetings;
-    }
-
-    /**
      * Prints farewell words to users.
      */
-    public String leaveChat() {
+    public String displayLeaveChat() {
         String farewellWords = "good work today!\nhope to see you again soon~";
         return farewellWords;
     }
@@ -29,7 +21,7 @@ public class Ui {
      * @param task The task to be added.
      * @param tasksLength The length of the task list.
      */
-    public String addTask(Task task, int tasksLength) {
+    public String displayAddTask(Task task, int tasksLength) {
         String addToDoString = "oo new task! ^^"
                 + "\n added: " + task.toString()
                 + "\nyou have " + String.valueOf(tasksLength) + " task(s) <:";
@@ -41,7 +33,7 @@ public class Ui {
      *
      * @param tasks The stored TaskList.
      */
-    public String listTasks(TaskList tasks) {
+    public String displayTasks(TaskList tasks) {
         if (tasks.size() == 0) {
             return "looks like there are no tasks on your list uwu"
                     + "\nfeed me a task to get started~ <:";
@@ -55,7 +47,7 @@ public class Ui {
      *
      * @param task The marked task.
      */
-    public String markTask(Task task) {
+    public String displayMarkedTask(Task task) {
         String markedAsDone = "yey! good job~ keep it up <3";
         return markedAsDone + "\n\t" + task.toString();
     }
@@ -65,7 +57,7 @@ public class Ui {
      *
      * @param task The unmarked task.
      */
-    public String unmarkTask(Task task) {
+    public String displayUnmarkedTask(Task task) {
         String unmarked = "keep going~";
         return unmarked + "\n\t" + task.toString();
     }
@@ -76,7 +68,7 @@ public class Ui {
      * @param task The deleted task.
      * @param tasksLength The length of the task list.
      */
-    public String deleteTask(Task task, int tasksLength) {
+    public String displayDeletedTask(Task task, int tasksLength) {
         return "removing this task from your list...\n\t"
                 + task.toString()
                 + "\ntask removed~! now you have " + String.valueOf(tasksLength) + " task(s) <:";
@@ -97,7 +89,7 @@ public class Ui {
      * @param tasks The tasks containing the keyword.
      * @return The list of tasks containing the keyword.
      */
-    public String findTask(TaskList tasks) {
+    public String displayFoundTask(TaskList tasks) {
         if (tasks.size() == 0) {
             return "hm...looks like there are no tasks matching the keyword ><\ntry another one~";
         } else {
