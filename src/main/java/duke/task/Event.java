@@ -58,4 +58,17 @@ public class Event extends Task {
     public LocalDate getTime() {
         return this.time;
     }
+
+    @Override
+    public void update(String update) {
+        String[] splitEvent = update.split(" /at ", 2);
+        if (splitEvent.length == 1) {
+            this.description = splitEvent[0];
+        } else if (splitEvent[0].equals(" ")) {
+            this.time = LocalDate.parse(splitEvent[1]);
+        } else {
+            this.description = splitEvent[0];
+            this.time = LocalDate.parse(splitEvent[1]);
+        }
+    }
 }

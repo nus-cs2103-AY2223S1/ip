@@ -58,4 +58,17 @@ public class Deadline extends Task {
     public LocalDate getTime() {
         return this.by;
     }
+
+    @Override
+    public void update(String update) {
+        String[] splitDeadline = update.split(" /by ", 2);
+        if (splitDeadline.length == 1) {
+            this.description = splitDeadline[0];
+        } else if (splitDeadline[0].equals(" ")) {
+            this.by = LocalDate.parse(splitDeadline[1]);
+        } else {
+            this.description = splitDeadline[0];
+            this.by = LocalDate.parse(splitDeadline[1]);
+        }
+    }
 }

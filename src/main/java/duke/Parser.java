@@ -11,6 +11,7 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.ToDoCommand;
 import duke.command.UnmarkCommand;
+import duke.command.UpdateCommand;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -44,6 +45,7 @@ public class Parser {
         } else {
             int num = Integer.parseInt(task.get()) - 1;
             assert num >= 0 : "Input should be larger than 0";
+            return num;
         }
     }
 
@@ -126,6 +128,27 @@ public class Parser {
         }
     }
 
+    public int getUpdateNum() throws DukeException {
+        if (task.isEmpty()) {
+            throw new DukeException("Error! No task found.");
+        } else {
+            return Integer.parseInt(task.get().split(" /update ", 2)[0]) - 1;
+        }
+    }
+
+    public String getUpdate() throws DukeException {
+        if (task.isEmpty()) {
+            throw new DukeException("Error! No task found.");
+        } else {
+            String[] splitTask = task.get().split(" /update ", 2);
+            if (splitTask.length == 1) {
+                throw new DukeException("Update not found. Please provide an update.");
+            } else {
+                return splitTask[1];
+            }
+        }
+    }
+
     public Command getCommand() throws DukeException {
         if (cmd.equals("mark")) {
             return new MarkCommand(getTaskNumber());
@@ -147,6 +170,8 @@ public class Parser {
             return new DateCommand(getDate());
         } else if (cmd.equals("find")) {
             return new FindCommand(getFindWord());
+        } else if (cmd.equals("update")) {
+            return new UpdateCommand(getUpdateNum(), getUpdate());
         } else {
             throw new DukeException("Unknown command. Please enter a valid command");
         }
