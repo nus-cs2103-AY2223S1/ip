@@ -1,5 +1,1 @@
 deadline,hw /by 2022-09-01
-todo,buy bread
-todo,walk dog
-todo,eat bread
-todo,make bread

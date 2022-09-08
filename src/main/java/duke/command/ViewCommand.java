@@ -23,13 +23,14 @@ public class ViewCommand extends Command {
      * @param storage The storage used to save the task to file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
          if (this.keyword.equals("list")) {
-             ui.listTasks(tasks);
+             return ui.listTasks(tasks);
          } else if (this.keyword.equals("find")) {
              String wordToSearch = this.userInput.split(" ", 2)[1];
-             tasks.findTasks(wordToSearch, ui);
+             return tasks.findTasks(wordToSearch, ui);
          }
+         return "oops, I am unable to execute your command";
     }
 
     @Override

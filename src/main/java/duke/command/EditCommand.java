@@ -24,8 +24,8 @@ public class EditCommand extends Command {
      * @param storage The storage used to save the task to file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.markTask(this.keyword, this.input, ui);
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return tasks.markTask(this.keyword, this.input, ui);
     }
 
     @Override

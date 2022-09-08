@@ -25,16 +25,16 @@ public class DeleteCommand extends Command {
      * @param storage The storage used to save the task to file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         try {
-            tasks.deleteTask(this.input, ui);
             storage.removeFromFile(this.input);
+            return tasks.deleteTask(this.input, ui);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (DukeException e) {
-            ui.showError(e.getMessage());
+            return ui.showError(e.getMessage());
         }
-
+        return "oops, I am unable to execute the command";
     }
 
     @Override

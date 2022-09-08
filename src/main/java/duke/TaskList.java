@@ -41,6 +41,9 @@ public class TaskList {
             taskArr.add(todoTask);
         } else {
             int slashChar = input.indexOf("/");
+            if (slashChar == -1) {
+                throw new DukeException("oops, looks like you're missing the command to tell me the deadline");
+            }
             String taskDesc = input.substring(0, slashChar);
             String deadlineInput = input.substring(slashChar + 1);
             if (taskDesc.isBlank() || deadlineInput.isBlank()) {
@@ -56,7 +59,7 @@ public class TaskList {
                         taskArr.add(new Event(taskDesc, deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy"))));
                     }
                 } catch (DateTimeParseException e) {
-                    e.printStackTrace();
+                    throw new DukeException("oops, your date seems to be of an invalid format");
                 }
             }
         }
@@ -68,10 +71,11 @@ public class TaskList {
      * @param input The task number to delete.
      * @param ui The UI to display relevant messages to the user.
      */
-    public void deleteTask(String input, Ui ui) {
+    public String deleteTask(String input, Ui ui) {
         Integer taskNo = Integer.valueOf(input) - 1;
-        ui.showDeletingTask(this.taskArr.get(taskNo).toString());
+        Task taskToRemove = this.taskArr.get(taskNo);
         this.taskArr.remove(getTask(taskNo));
+        return ui.showDeletingTask(taskToRemove.toString());
     }
 
     /**
@@ -81,17 +85,17 @@ public class TaskList {
      * @param input The task number to mark.
      * @param ui The UI to display relevant messages to the user.
      */
-    public void markTask(String keyword, String input, Ui ui) {
+    public String markTask(String keyword, String input, Ui ui) {
         Integer taskNo = Integer.valueOf(input) - 1;
         switch (keyword) {
             case "mark":
                 this.taskArr.get(taskNo).markAsDone();
-                ui.showMarkedTask(this.taskArr.get(taskNo).toString());
-                break;
+                return ui.showMarkedTask(this.taskArr.get(taskNo).toString());
             case "unmark":
                 this.taskArr.get(taskNo).markAsUndone();
-                ui.showUnmarkedTask(this.taskArr.get(taskNo).toString());
+                return ui.showUnmarkedTask(this.taskArr.get(taskNo).toString());
         }
+        return "oops, I am unable to mark your task";
     }
 
     /**
@@ -100,7 +104,7 @@ public class TaskList {
      * @param wordToSearch The keyword given by the user.
      * @param ui The Ui object to display the found tasks to the user.
      */
-    public void findTasks(String wordToSearch, Ui ui) {
+    public String findTasks(String wordToSearch, Ui ui) {
         ArrayList<Integer> taskNo = new ArrayList<>();
         ArrayList<Task> relevantTasks = new ArrayList<>();
         for (Integer i = 0; i < taskArr.size(); i++) {
@@ -109,7 +113,7 @@ public class TaskList {
                 relevantTasks.add(taskArr.get(i));
             }
         }
-        ui.showFoundTasks(taskNo, relevantTasks);
+        return ui.showFoundTasks(taskNo, relevantTasks);
     }
 
     /**

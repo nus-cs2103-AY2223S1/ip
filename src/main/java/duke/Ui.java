@@ -27,11 +27,8 @@ public class Ui {
     /**
      * Displays the welcome message to the user.
      */
-    public void showWelcome() {
-        System.out.println("\n" + DOUBLE_INDENT + INDENT + " Hello there!\n" + DOUBLE_INDENT + INDENT + "  My name is"
-                + NAME);
-        System.out.println("\n" + DOUBLE_INDENT + "   it's nice to meet you :)" + "\n"
-                + DOUBLE_INDENT + "what can I do for you today?" + "\n" + DIVIDER);
+    public String showWelcome() {
+        return "Hello there! My name is Zelk, it's nice to meet you :) what can I do for you today?";
     }
 
     /**
@@ -48,16 +45,9 @@ public class Ui {
      *
      * @param tasks The TaskList object that is keeping track of all the current tasks.
      */
-    public void showAddedTask(TaskList tasks) {
-        System.out.println(INDENT + "new task added: " + tasks.getRecentTask()
-                + "\n" + INDENT + "you now have " + tasks.getNoOfTasks() + " tasks in your list\n");
-    }
-
-    /**
-     * Tells the user that the task they have added has been saved to the file.
-     */
-    public void showWrittenTask() {
-        System.out.println(INDENT + "Task is saved in memory :)\n" + DIVIDER);
+    public String showAddedTask(TaskList tasks) {
+        return "new task added: \n" + tasks.getRecentTask() + "\nyou now have "
+                + tasks.getNoOfTasks() + " tasks in your list";
     }
 
     /**
@@ -65,9 +55,8 @@ public class Ui {
      *
      * @param task The TaskList object keeping track of all the current tasks in the to-do list.
      */
-    public void showMarkedTask(String task) {
-        System.out.println(INDENT + "alright! I've marked this task as done :)\n"
-                + DOUBLE_INDENT + task + "\n" + DIVIDER);
+    public String showMarkedTask(String task) {
+        return "alright! I've marked this task as done :)\n" + task;
     }
 
     /**
@@ -75,9 +64,8 @@ public class Ui {
      *
      * @param task The TaskList object keeping track of all the current tasks in the to-do list.
      */
-    public void showUnmarkedTask(String task) {
-        System.out.println(INDENT + "Okay, I'll mark this task as undone:\n"
-                + DOUBLE_INDENT + task + "\n" + DIVIDER);
+    public String showUnmarkedTask(String task) {
+        return "okay, I'll mark this task as undone:\n" + task;
     }
 
     /**
@@ -85,13 +73,13 @@ public class Ui {
      *
      * @param tasks The TaskList object keeping track of all the current tasks.
      */
-    public void listTasks(TaskList tasks) {
-        System.out.println(INDENT + "These are the tasks in your list so far!\n"
-                + INDENT + "You currently have " + tasks.getNoOfTasks() + " tasks in your list:");
+    public String listTasks(TaskList tasks) {
+        String s = "";
         for (int i = 0; i < tasks.getNoOfTasks(); i++) {
-            System.out.println(INDENT + (i + 1) + ". " +  tasks.getTask(i));
+            s = s + (i + 1) + ". " + tasks.getTask(i) + "\n";
         }
-        System.out.println(DIVIDER);
+        return "these are the tasks in your list so far!\n" + "you currently have " + tasks.getNoOfTasks()
+                + " tasks in your list:\n" + s;
     }
 
     /**
@@ -99,9 +87,8 @@ public class Ui {
      *
      * @param task The TaskList object keeping track of all the current tasks in the to-do list.
      */
-    public void showDeletingTask(String task) {
-        System.out.println(INDENT + "got it, removing this task from your list...\n"
-                + INDENT + task + "\n" + DIVIDER);
+    public String showDeletingTask(String task) {
+        return "got it, removing this task from your list...\n" + task;
     }
 
     /**
@@ -110,12 +97,12 @@ public class Ui {
      * @param taskNo The list of task numbers whose tasks matches the keyword.
      * @param relevantTasks The list of matching tasks.
      */
-    public void showFoundTasks(ArrayList<Integer> taskNo, ArrayList<Task> relevantTasks) {
-        System.out.println(INDENT + "alright, I've found " + taskNo.size() +  " matching tasks in your list \n");
+    public String showFoundTasks(ArrayList<Integer> taskNo, ArrayList<Task> relevantTasks) {
+        String s = "";
         for (int i = 0; i < taskNo.size(); i++) {
-            System.out.println(INDENT + (taskNo.get(i) + 1) + ". " + relevantTasks.get(i).toString());
+            s = s + (taskNo.get(i) + 1) + ". " + relevantTasks.get(i).toString();
         }
-        System.out.println(DIVIDER);
+        return "alright, I've found " + taskNo.size() + " matching tasks in your list\n + s";
     }
 
     /**
@@ -123,15 +110,15 @@ public class Ui {
      *
      * @param message The error message to display to the user.
      */
-    public void showError(String message) {
-        System.out.println(INDENT + message + "\n" + DIVIDER);
+    public String showError(String message) {
+        return message;
     }
 
     /**
      * Displays the exit message to the user before deactivating.
      */
-    public void showExit() {
-        System.out.println(INDENT + "Bye! Hope to see you again soon! Thank You for using Zelk :D\n" + DIVIDER);
+    public String showExit() {
         s.close();
+        return "bye! hope to see you again soon! thank you for using Zelk :D";
     }
 }

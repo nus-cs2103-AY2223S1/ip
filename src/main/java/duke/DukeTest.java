@@ -15,10 +15,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
-/** A bot to help you to keep track of your tasks in a to-do list. */
-public class Duke extends Application {
-
+public class DukeTest extends Application {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
@@ -32,16 +29,8 @@ public class Duke extends Application {
     private Image user = new Image(this.getClass().getResourceAsStream("/DaUser.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/DaDuke.png"));
 
-
-    public Duke(String filepath) {
-        ui = new Ui();
-        storage = new Storage(filepath);
-        try {
-            tasks = new TaskList(storage.load());
-        } catch (DukeException e) {
-            ui.showError(e.getMessage());
-            tasks = new TaskList();
-        }
+    public static void main(String[] args) {
+        // ...
     }
 
     @Override
@@ -54,8 +43,6 @@ public class Duke extends Application {
             ui.showError(e.getMessage());
             tasks = new TaskList();
         }
-
-        //Step 1. Setting up required components
 
         //The container for the content of the chat to scroll.
         scrollPane = new ScrollPane();
@@ -138,30 +125,5 @@ public class Duke extends Application {
         } catch (DukeException e) {
             return ui.showError(e.getMessage());
         }
-    }
-
-    /**
-     * Starts up the bot.
-     * Allows user to interact with the bot and give commands, until the bot is given the command to deactivate.
-     */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String nextCommand = ui.readCommand();
-                Command c = Parser.parse(nextCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            }
-        }
-        ui.showExit();
-    }
-
-
-    public static void main(String[] args) {
-        //new Duke("data/duke.txt").run();
     }
 }
