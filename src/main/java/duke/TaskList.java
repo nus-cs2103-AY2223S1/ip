@@ -14,7 +14,6 @@ public class TaskList {
     private int numOfTasks;
     private static List<Task> tasks;
     private final String INDENT = "    ";
-    private final String PRINT_NUM_OF_TASKS = INDENT + "Now you have " + numOfTasks + " tasks in the list";
 
     public TaskList() {
         this.numOfTasks = 0;
@@ -40,7 +39,7 @@ public class TaskList {
         //Print the statement to indicate we are adding a task
         response += INDENT + "Got it. I've added this task:" + "\n";
         response += "    " + task + "\n";
-        response +=  PRINT_NUM_OF_TASKS;
+        response +=  INDENT + "Now you have " + numOfTasks + " tasks in the list";;
 
         return response;
     }
@@ -54,7 +53,7 @@ public class TaskList {
         //Print the statement to indicate we are deleting a task
         response += "Noted. I've removed this task:" + "\n";
         response += "      " + tasks.get(taskIndex - 1) + "\n";
-        response += PRINT_NUM_OF_TASKS;
+        response += INDENT + "Now you have " + numOfTasks + " tasks in the list";;
 
         //We remove the task after printing our statements
         tasks.remove(taskIndex - 1);
