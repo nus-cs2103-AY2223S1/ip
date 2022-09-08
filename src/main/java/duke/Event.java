@@ -6,9 +6,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import duke.exceptions.ImproperFormatException;
-
-import javax.sound.midi.SysexMessage;
+import duke.exceptions.ImproperEventFormatException;
 
 public class Event extends Task {
 
@@ -17,11 +15,17 @@ public class Event extends Task {
 
     private String at;
 
+    private static final DateTimeFormatter DATE_FORMAT =
+            DateTimeFormatter.ofPattern("MMM dd yyyy");
+    private static final DateTimeFormatter TIME_FORMAT =
+            DateTimeFormatter.ofPattern("h:mm a");
+
     /*
      * Create Event with description, date in MMM DD YYYY, time in hh:mm aa
      * @throws ImproperFormatException when by does not follow specified format
      */
-    public Event(String description, String at) throws ImproperFormatException {
+     
+    public Event(String description, String at) throws ImproperEventFormatException {
         super(description);
         this.at = at;
         try {
@@ -29,9 +33,9 @@ public class Event extends Task {
             this.date = LocalDate.parse(arr[1]);
             this.time = LocalTime.parse(arr[2]);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ImproperFormatException();
+            throw new ImproperEventFormatException();
         } catch (DateTimeParseException e) {
-            throw new ImproperFormatException();
+            throw new ImproperEventFormatException();
         }
     }
 
@@ -39,14 +43,15 @@ public class Event extends Task {
      * @return String representation in
      *         "[T] [status] task (at: MMM DD YYYY h:mm a)"
      */
+     
     @Override
     public String toString() {
         return "[E] " + this.getStatusIcon() + " "
                 + super.description
                 + " (at: "
-                + date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"))
+                + date.format(DATE_FORMAT)
                 + ", "
-                + time.format(DateTimeFormatter.ofPattern("h:mm a"))
+                + time.format(TIME_FORMAT)
                 + ")";
     }
 
@@ -56,6 +61,7 @@ public class Event extends Task {
      *         "T|0 or 1|task|at|"
      *         where 1 represents the task is marked and 0 otherwise
      */
+     
     @Override
     public String toSaveVersion() {
         if (this.isDone()) {
@@ -72,6 +78,7 @@ public class Event extends Task {
                     + "\n";
         }
     }
+    
     private LocalDateTime getDateTime() {
         return LocalDateTime.of(this.date, this.time);
     }
@@ -82,5 +89,22 @@ public class Event extends Task {
 
     public int compareLexicographically(Event event) {
         return this.description.compareTo(event.description);
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Event) {
+            Event x = (Event) obj;
+            if (this.description == null
+                    || this.at == null
+                    || x.description == null
+                    || x.at == null) {
+                return false;
+            }
+            return this.description.equals(x.description)
+                    && this.at.equals(x.at);
+        }
+
+        return false;
     }
 }

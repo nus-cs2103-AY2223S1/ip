@@ -22,11 +22,11 @@ public class TaskListTest {
     {
         try {
             deadline1 = new Deadline("test1", " 2000-10-10 23:00");
-            deadline2 = new Deadline("test2", " 2000-10-10 22:00");
-            deadline3 = new Deadline("test3", " 2001-11-10 23:00");
+            deadline2 = new Deadline("test2", " 2000-10-10 23:00");
+            deadline3 = new Deadline("test3", " 2000-10-10 23:00");
             event1 = new Event("test1", " 2000-10-10 23:00");
-            event2 = new Event("test2", " 2000-10-10 23:01");
-            event3 = new Event("test3", " 2001-11-10 03:00");
+            event2 = new Event("test2", " 2000-10-10 23:00");
+            event3 = new Event("test3", " 2000-10-10 23:00");
         } catch (ImproperFormatException e) {
             throw new RuntimeException(e);
         }

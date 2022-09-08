@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 public class TaskList {
 
@@ -17,8 +18,13 @@ public class TaskList {
         this.taskList = new ArrayList<>(100);
     }
 
+
     public TaskList(List<? extends Task> taskList) {
         this.taskList = new ArrayList<>(taskList);
+    }
+    
+    public TaskList(ArrayList<? extends Task> taskList) {
+        this.taskList = taskList;
     }
 
     public void addTask(Task task) {
@@ -26,17 +32,16 @@ public class TaskList {
     }
 
     public TaskList findTask(String keyword) throws NoMatchingKeywordException {
-        TaskList successList = new TaskList();
-        for (int i = 0; i < taskList.size(); i ++) {
-            Task curr = taskList.get(i);
-            if (curr.isMatchKeyword(keyword)) {
-                successList.addTask(curr);
-            }
-        }
-        if (successList.size() == 0) {
+        assert !keyword.isBlank(): "keyword should not be blank";
+        List<Task> filtered = this.taskList.stream()
+                .filter(task -> task.isMatchKeyword(keyword))
+                .collect(Collectors.toList());
+        TaskList filteredTaskList = new TaskList(filtered);
+        
+        if (filteredTaskList.size() == 0) {
             throw new NoMatchingKeywordException(keyword);
         }
-        return successList;
+        return new TaskList(filtered);
     }
 
     public TaskList sortDeadlineChronologically(Order order) {
@@ -135,6 +140,7 @@ public class TaskList {
     }
 
     public Task markStatus(int task) throws DukeException {
+        assert task >= 0: "task index should be more than or equal to 0";
         try {
             Task curr = taskList.get(task - 1);
             if (curr.isDone()) {
@@ -148,6 +154,7 @@ public class TaskList {
     }
 
     public Task unmarkStatus(int task) throws DukeException {
+        assert task >= 0: "task index should be more than or equal to 0";
         try {
             Task curr = taskList.get(task - 1);
             if (!curr.isDone()) {
@@ -161,6 +168,7 @@ public class TaskList {
     }
 
     public Task deleteTask(int task) throws DukeException {
+        assert task >= 0: "task index should be more than or equal to 0";
         try {
             Task curr = taskList.get(task - 1);
             taskList.remove(task - 1);
@@ -169,10 +177,11 @@ public class TaskList {
             throw new CannotFindTaskException();
         }
     }
+
     @Override
     public String toString() {
-        Object[] taskArr = this.taskList.toArray();
         String result = "";
+        Object[] taskArr = this.taskList.toArray();
         for (int i = 0; i < this.taskList.size(); i++) {
             result += (i + 1)
                     + ". "
@@ -198,10 +207,10 @@ public class TaskList {
     }
 
     public String generateSave() {
-        String result = "";
-        for (int i = 0; i < taskList.size(); i++) {
-            result += this.taskList.get(i).toSaveVersion();
-        }
+        String result = taskList
+                .stream()
+                .map(task -> task.toSaveVersion())
+                .reduce("", (res, task) -> res + task);
         return result;
     }
 }
