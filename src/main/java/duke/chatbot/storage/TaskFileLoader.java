@@ -29,7 +29,7 @@ public class TaskFileLoader {
      * @throws FileNotFoundException If a file is not found.
      * @throws InvalidInputException If the date and time portion of the encoded task is not in the correct format.
      */
-    public TaskList getTaskList() throws FileNotFoundException, InvalidInputException {
+    public TaskList getTasks() throws FileNotFoundException {
         return Parser.parseFile(file);
     }
 }

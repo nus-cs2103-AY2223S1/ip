@@ -1,4 +1,4 @@
-package duke.chatbot.command.AddTaskCommands;
+package duke.chatbot.command.addcommands;
 
 import duke.chatbot.data.task.Task;
 import duke.chatbot.data.task.ToDo;

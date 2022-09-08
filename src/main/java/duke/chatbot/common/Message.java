@@ -22,7 +22,15 @@ public class Message {
     public static final String MESSAGE_DELETED = "Hey! I've deleted this task as requested:";
     public static final String MESSAGE_FILTERED_TASKS = "These are the tasks that correspond to your query:";
 
-    public static final String MESSAGE_INVALID_ARGUMENT = "It seems you have keyed your arguments in wrongly! "
+    public static final String MESSAGE_NEW_FILE = "I've created this new file just like you asked:";
+    public static final String MESSAGE_CHANGE_FILE = "I've changed the working file to:";
+    public static final String MESSAGE_DELETE_FILE = "I've deleted this file:";
+
+    public static final String MESSAGE_FILE_ALREADY_EXISTS = "Hey! The file you want to create already exists!";
+    public static final String MESSAGE_CANNOT_DELETE_FILE = "Hey! You can't delete the file you are viewing! Change "
+            + "files before trying again!";
+    public static final String MESSAGE_INVALID_FILE_NAME = "It seems that your file does not exist! Try again!";
+    public static final String MESSAGE_INVALID_ARGUMENT = "It seems that you have keyed your arguments in wrongly! "
             + "Try again!";
     public static final String MESSAGE_OUT_OF_LIST_RANGE = "It seems that the entry number you have keyed in "
             + "does not exist. Try again!";

@@ -1,4 +1,4 @@
-package duke.chatbot.command.AddTaskCommands;
+package duke.chatbot.command.addcommands;
 
 import static duke.chatbot.common.Message.MESSAGE_ADDED_TASK;
 
@@ -26,7 +26,7 @@ public abstract class AddTaskCommand extends Command {
      * Adds an instance of {@link Task} to the list.
      */
     private void addTask() {
-        taskList.add(task);
+        duke.getTasks().add(task);
     }
 
     @Override

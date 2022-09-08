@@ -1,4 +1,4 @@
-package duke.chatbot.command.TargetTaskCommands;
+package duke.chatbot.command.taskcommands;
 
 import static duke.chatbot.common.Message.MESSAGE_DELETED;
 
@@ -8,7 +8,7 @@ import static duke.chatbot.common.Message.MESSAGE_DELETED;
  *
  * @author jq1836
  */
-public class DeleteCommand extends TargetTaskCommand {
+public class DeleteCommand extends TaskCommand {
     /**
      * The command word to invoke this command.
      */
@@ -20,7 +20,7 @@ public class DeleteCommand extends TargetTaskCommand {
 
     @Override
     protected void executeOnTask() {
-        taskList.remove(taskIndex);
+        duke.getTasks().remove(taskIndex);
     }
 
     @Override

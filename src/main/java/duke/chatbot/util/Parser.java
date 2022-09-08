@@ -16,18 +16,22 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import duke.chatbot.command.AddTaskCommands.AddDeadlineCommand;
-import duke.chatbot.command.AddTaskCommands.AddEventCommand;
-import duke.chatbot.command.AddTaskCommands.AddToDoCommand;
+import duke.chatbot.command.addcommands.AddDeadlineCommand;
+import duke.chatbot.command.addcommands.AddEventCommand;
+import duke.chatbot.command.addcommands.AddToDoCommand;
 import duke.chatbot.command.Command;
 import duke.chatbot.command.ExitCommand;
-import duke.chatbot.command.FilterCommands.CheckDateCommand;
-import duke.chatbot.command.FilterCommands.FindKeywordCommand;
+import duke.chatbot.command.filecommands.ChangeFileCommand;
+import duke.chatbot.command.filecommands.DeleteFileCommand;
+import duke.chatbot.command.filecommands.NewFileCommand;
+import duke.chatbot.command.filtercommands.CheckDateCommand;
+import duke.chatbot.command.filtercommands.FindKeywordCommand;
 import duke.chatbot.command.ListCommand;
-import duke.chatbot.command.TargetTaskCommands.DeleteCommand;
-import duke.chatbot.command.TargetTaskCommands.MarkCommand;
-import duke.chatbot.command.TargetTaskCommands.UnmarkCommand;
+import duke.chatbot.command.taskcommands.DeleteCommand;
+import duke.chatbot.command.taskcommands.MarkCommand;
+import duke.chatbot.command.taskcommands.UnmarkCommand;
 import duke.chatbot.data.exception.InvalidInputException;
+import duke.chatbot.data.exception.InvalidStorageFileException;
 import duke.chatbot.data.task.TaskList;
 
 /**
@@ -63,6 +67,14 @@ public class Parser {
             return new AddDeadlineCommand(arguments);
         case AddEventCommand.COMMAND_WORD:
             return new AddEventCommand(arguments);
+
+        // File commands
+        case NewFileCommand.COMMAND_WORD:
+            return new NewFileCommand(arguments);
+        case DeleteFileCommand.COMMAND_WORD:
+            return new DeleteFileCommand(arguments);
+        case ChangeFileCommand.COMMAND_WORD:
+            return new ChangeFileCommand(arguments);
 
         // Filter query commands
         case FindKeywordCommand.COMMAND_WORD:
