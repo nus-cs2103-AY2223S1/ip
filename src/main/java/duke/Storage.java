@@ -21,12 +21,9 @@ public class Storage {
     /**
      * Creates a new Storage from the file path.
      * @param filePath The path to the file that data will be stored in.
-     * @throws DukeException
      */
-    public Storage(String filePath) throws DukeException {
-        if (filePath.isEmpty()) {
-            throw new DukeException("\u2639 OOPS!!! File path cannot be empty.");
-        }
+    public Storage(String filePath) {
+        assert !filePath.isEmpty() : "File path cannot be empty!";
         this.file = new File(filePath);
     }
 
