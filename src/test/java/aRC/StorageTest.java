@@ -19,7 +19,7 @@ public class StorageTest {
         String fileRelativePath = "dataTest/aRC.txt";
 
         boolean hasFileStart = new File(fileRelativePath).exists();
-        new Storage(fileRelativePath).load();
+        new Storage(fileRelativePath, "").loadTasks();
         boolean hasFileEnd = new File(fileRelativePath).exists();
 
         assertFalse(hasFileStart);
@@ -35,8 +35,8 @@ public class StorageTest {
         String fileRelativePath = "dataTest1/aRC.txt";
 
         File testDataFile = new File(fileRelativePath);
-        Storage storageTest = new Storage(fileRelativePath);
-        storageTest.load();
+        Storage storageTest = new Storage(fileRelativePath, "");
+        storageTest.loadTasks();
 
         int numberOfTestTests = 5;
         ArrayList<String> testData = new ArrayList<>();
