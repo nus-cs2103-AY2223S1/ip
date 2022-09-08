@@ -79,7 +79,7 @@ public class Storage {
                 task = new Task(taskStrings[2]);
                 break;
             }
-            if(Integer.parseInt(taskStrings[1]) == 1) {
+            if (Integer.parseInt(taskStrings[1]) == 1) {
                 task.markAsDone();
             } else {
                 task.markAsUndone();

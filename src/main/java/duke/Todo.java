@@ -22,7 +22,7 @@ public class Todo extends Task {
     @Override
     public String formatToSave() {
         int value;
-        if(isDone) {
+        if (isDone) {
             value = 1;
         } else {
             value = 0;

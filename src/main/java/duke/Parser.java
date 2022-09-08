@@ -29,7 +29,7 @@ public class Parser {
      */
     public Command parse(TaskList taskList, String input, Ui ui) throws DukeException {
         input = input.toLowerCase();
-        if(input.equals(EXIT)) {
+        if (input.equals(EXIT)) {
             return new ExitCommand();
         } else if (input.equals("list")) {
             return new ListCommand();

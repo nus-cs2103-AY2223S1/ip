@@ -50,8 +50,7 @@ public class Ui {
     }
 
     /**
-     * Displays the total amount of tasks
-     * in the taskList.
+     * Displays the total amount of tasks in the taskList.
      *
      * @param taskList Tasklist to be used.
      * @return String containing the total number of tasks.
@@ -67,7 +66,7 @@ public class Ui {
      * @return String showing tasks with matching keyword.
      */
     public String showMatchingTasks(TaskList taskList) {
-        if(taskList.getSize() > 0) {
+        if (taskList.getSize() > 0) {
             return "here are the matching tasks: \n" + taskList + "\n";
         } else {
            return "there are no tasks matching this keyword!\n";
