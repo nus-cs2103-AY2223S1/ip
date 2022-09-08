@@ -3,6 +3,9 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * A subclass of Task that focuses on processing Deadline inputs
+ */
 public class Deadline extends Task {
 
     protected String by;
@@ -27,7 +30,7 @@ public class Deadline extends Task {
         String d = "-";
         String another_format = date_slots[2] + d + date_slots[1] + d + date_slots[0];
 
-        // change format to Month
+        //to change format to Month
         LocalDate d1 = LocalDate.parse(another_format);
         this.final_format = d1.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
