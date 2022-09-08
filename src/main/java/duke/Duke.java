@@ -35,6 +35,9 @@ public class Duke {
         } catch (DukeException e) {
             taskList = new TaskList(new ArrayList<>());
         }
+
+        assert taskList != null : "TaskList must be initialised";
+        assert storage != null : "Storage must be initialised";
     }
 
     /**
@@ -51,6 +54,9 @@ public class Duke {
         } catch (DukeException e) {
             taskList = new TaskList(new ArrayList<>());
         }
+
+        assert taskList != null : "TaskList must be initialised";
+        assert storage != null : "Storage must be initialised";
     }
 
     /**

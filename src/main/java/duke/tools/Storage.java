@@ -135,6 +135,7 @@ public class Storage {
         if (!folder.exists()) {
             folder.mkdir();
         }
+        assert folder.exists() : "Directory should exist";
     }
 
     /**
