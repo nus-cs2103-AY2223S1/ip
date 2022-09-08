@@ -136,6 +136,12 @@ public class Duke {
         return ui.echoDelete(taskToDelete, tasks);
     }
 
+    /**
+     * Returns matching list of tasks containing case-sensitive keyword.
+     *
+     * @param keyword The keyword to search against.
+     * @return String of list containing matching keyword.
+     */
     public String handleFind(String keyword) {
         ArrayList<Task> newList = tasks.filterToArrayList(keyword);
         storage.save(tasks);
