@@ -20,6 +20,8 @@ public class TaskList {
      */
     private static ArrayList<Task> taskList;
 
+    private static final String NO_TAG = " ";
+
     /**
      * Initialises a <code>TaskList</code> object that contains the user's tasks.
      * It takes in tasks so that it can process tasks that were stored on the user's
@@ -35,36 +37,73 @@ public class TaskList {
             String description = splitCommand[2];
             switch (taskType) {
             case "T ": {
-                taskList.add(new Todo(description));
-                int numOfTasks = taskList.size();
-                if (isMarked) {
-                    taskList.get(numOfTasks - 1).markAsCompleted();
+                if (description.contains("|")) {
+                    String[] splitBy = description.split("\\|", 2);
+                    taskList.add(new Todo(splitBy[0], splitBy[1]));
+                    int numOfTasks = taskList.size();
+                    if (isMarked) {
+                        taskList.get(numOfTasks - 1).markAsCompleted();
+                    } else {
+                        taskList.get(numOfTasks - 1).markAsNotCompleted();
+                    }
                 } else {
-                    taskList.get(numOfTasks - 1).markAsNotCompleted();
+                    taskList.add(new Todo(description, " "));
+                    int numOfTasks = taskList.size();
+                    if (isMarked) {
+                        taskList.get(numOfTasks - 1).markAsCompleted();
+                    } else {
+                        taskList.get(numOfTasks - 1).markAsNotCompleted();
+                    }
                 }
                 break;
             }
             case "D ": {
-                String[] splitBy = description.split("\\| ", 2);
-                LocalDate byDate = LocalDate.parse(splitBy[1]);
-                taskList.add(new Deadline(splitBy[0], byDate));
-                int numOfTasks = taskList.size();
-                if (isMarked) {
-                    taskList.get(numOfTasks - 1).markAsCompleted();
+                String[] splitTag = description.split("\\| ", 2);
+                String dateAndOrTag = splitTag[1];
+                if (dateAndOrTag.contains("|")) {
+                    String[] splitDate = dateAndOrTag.split("\\| ", 2);
+                    LocalDate byDate = LocalDate.parse(splitDate[1]);
+                    taskList.add(new Deadline(splitTag[0], splitDate[0], byDate));
+                    int numOfTasks = taskList.size();
+                    if (isMarked) {
+                        taskList.get(numOfTasks - 1).markAsCompleted();
+                    } else {
+                        taskList.get(numOfTasks - 1).markAsNotCompleted();
+                    }
                 } else {
-                    taskList.get(numOfTasks - 1).markAsNotCompleted();
+                    LocalDate byDate = LocalDate.parse(dateAndOrTag);
+                    taskList.add(new Deadline(splitTag[0], " ", byDate));
+                    int numOfTasks = taskList.size();
+                    if (isMarked) {
+                        taskList.get(numOfTasks - 1).markAsCompleted();
+                    } else {
+                        taskList.get(numOfTasks - 1).markAsNotCompleted();
+                    }
                 }
                 break;
             }
             case "E ": {
-                String[] splitAt = description.split("\\| ", 2);
-                LocalDate atDate = LocalDate.parse(splitAt[1]);
-                taskList.add(new Event(splitAt[0], atDate));
-                int numOfTasks = taskList.size();
-                if (isMarked) {
-                    taskList.get(numOfTasks - 1).markAsCompleted();
+                String[] splitTag = description.split("\\| ", 2);
+                String dateAndOrTag = splitTag[1];
+                if (dateAndOrTag.contains("|")) {
+                    String[] splitDate = dateAndOrTag.split("\\| ", 2);
+                    LocalDate atDate = LocalDate.parse(splitDate[1]);
+                    taskList.add(new Event(splitTag[0], splitDate[0], atDate));
+                    int numOfTasks = taskList.size();
+                    if (isMarked) {
+                        taskList.get(numOfTasks - 1).markAsCompleted();
+                    } else {
+                        taskList.get(numOfTasks - 1).markAsNotCompleted();
+                    }
                 } else {
-                    taskList.get(numOfTasks - 1).markAsNotCompleted();
+                    LocalDate byDate = LocalDate.parse(dateAndOrTag);
+                    taskList.add(new Event(splitTag[0], " ", byDate));
+                    int numOfTasks = taskList.size();
+                    if (isMarked) {
+                        taskList.get(numOfTasks - 1).markAsCompleted();
+                    } else {
+                        taskList.get(numOfTasks - 1).markAsNotCompleted();
+                    }
                 }
                 break;
             }
@@ -79,7 +118,12 @@ public class TaskList {
      * @param s Description of the todo task.
      */
     public void addTodo(String s) {
-        taskList.add(new Todo(s));
+        if (s.contains("tag")) {
+            String[] splitWord = s.split("/tag ", 2);
+            taskList.add(new Todo(splitWord[0], splitWord[1]));
+        } else {
+            taskList.add(new Todo(s, NO_TAG));
+        }
     }
 
     /**
@@ -87,11 +131,21 @@ public class TaskList {
      * @param s Description of the Deadline task.
      */
     public void addDeadline(String s) {
-        String[] splitWord = s.split("/by ", 2);
-        String description = splitWord[0];
-        String by = splitWord[1];
-        LocalDate byDate = LocalDate.parse(by);
-        taskList.add(new Deadline(description, byDate));
+        if (s.contains("tag")) {
+            String[] splitDescription = s.split("/tag ", 2);
+            String[] splitTag = splitDescription[1].split("/by ", 2);
+            String description = splitDescription[0];
+            String tag = splitTag[0];
+            String by = splitTag[1];
+            LocalDate byDate = LocalDate.parse(by);
+            taskList.add(new Deadline(description, tag, byDate));
+        } else {
+            String[] splitDescription = s.split("/by ", 2);
+            String description = splitDescription[0];
+            String by = splitDescription[1];
+            LocalDate byDate = LocalDate.parse(by);
+            taskList.add(new Deadline(description, NO_TAG, byDate));
+        }
     }
 
     /**
@@ -99,11 +153,21 @@ public class TaskList {
      * @param s Description of the Event task.
      */
     public void addEvent(String s) {
-        String[] splitWord = s.split("/at ", 2);
-        String description = splitWord[0];
-        String at = splitWord[1];
-        LocalDate atDate = LocalDate.parse(at);
-        taskList.add(new Event(description, atDate));
+        if (s.contains("tag")) {
+            String[] splitDescription = s.split("/tag ", 2);
+            String[] splitTag = splitDescription[1].split("/at ", 2);
+            String description = splitDescription[0];
+            String tag = splitTag[0];
+            String at = splitTag[1];
+            LocalDate atDate = LocalDate.parse(at);
+            taskList.add(new Event(description, tag, atDate));
+        } else {
+            String[] splitDescription = s.split("/at ", 2);
+            String description = splitDescription[0];
+            String at = splitDescription[1];
+            LocalDate atDate = LocalDate.parse(at);
+            taskList.add(new Event(description, NO_TAG, atDate));
+        }
     }
 
     /**
@@ -174,14 +238,23 @@ public class TaskList {
      * @param date The date associated with the <code>Task</code>
      * @return A String format suitable for the taskFile.
      */
-    public String storeIntoFileFormat(String type, String status, String description, String date) {
+    public String storeIntoFileFormat(String type, String status, String description, String tag, String date) {
         switch (type) {
-        case "T":
-            return "T | " + status + " | " + description;
-        case "D":
-            return "D | " + status + " | " + description + "| " + date;
-        case "E":
-            return "E | " + status + " | " + description + "| " + date;
+        case "T": {
+            return tag.equals(" ")
+                    ? "T | " + status + " | " + description
+                    : "T | " + status + " | " + description + "| " + tag;
+        }
+        case "D": {
+            return tag.equals(" ")
+                    ? "D | " + status + " | " + description + "| " + date
+                    : "D | " + status + " | " + description + "| " + tag + " | " + date;
+        }
+        case "E": {
+            return tag.equals(" ")
+                    ? "E | " + status + " | " + description + "| " + date
+                    : "E | " + status + " | " + description + "| " + tag + " | " + date;
+        }
         default:
             return "";
         }
@@ -227,5 +300,14 @@ public class TaskList {
         } else {
             return "There is no date for this task.";
         }
+    }
+
+    /**
+     * Returns the tag of the task.
+     * @param index The index of the task in the list.
+     * @return The tag of the task.
+     */
+    public String getTag(int index) {
+        return taskList.get(index).getTag();
     }
 }

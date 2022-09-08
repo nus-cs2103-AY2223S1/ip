@@ -12,10 +12,11 @@ public class Event extends Task {
     /**
      * Initialises a <code>Event</code> task with its description and the date that it occurs.
      * @param name The description of the <code>Task</code>.
+     * @param tag The tag of the <code>Task</code>.
      * @param at The date that the <code>Task</code> occurs on.
      */
-    public Event(String name, LocalDate at) {
-        super(name);
+    public Event(String name, String tag, LocalDate at) {
+        super(name, tag);
         this.at = at;
     }
 

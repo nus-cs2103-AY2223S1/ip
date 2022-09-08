@@ -12,10 +12,11 @@ public class Deadline extends Task {
     /**
      * Initialises a <code>Deadline</code> task with its description and deadline.
      * @param name The description of the <code>Task</code>.
+     * @param tag The tag of the <code>Task</code>.
      * @param by The deadline of the <code>Task</code>.
      */
-    public Deadline(String name, LocalDate by) {
-        super(name);
+    public Deadline(String name, String tag,LocalDate by) {
+        super(name, tag);
         this.by = by;
     }
 
