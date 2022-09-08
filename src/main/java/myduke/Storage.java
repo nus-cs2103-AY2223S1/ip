@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
+import exception.DukeException;
 import task.Deadline;
 import task.Event;
 import task.ToDo;
@@ -33,7 +34,7 @@ public class Storage {
      *
      * @param taskLists the taskList you want to store the data in.
      */
-    public void loadFromFile(TaskList taskLists) {
+    public void loadFromFile(TaskList taskLists) throws DukeException {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(storageFile));
             String currentLine;
@@ -58,6 +59,7 @@ public class Storage {
                             status, currentLine.substring(divider + 2)));
                     break;
                 default:
+                    throw new DukeException("Error reading from file, data stored in file in wrong format!");
                 }
             }
             reader.close();
