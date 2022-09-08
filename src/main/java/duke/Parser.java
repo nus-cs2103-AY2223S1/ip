@@ -1,16 +1,17 @@
 package duke;
 
 import duke.command.ByeCommand;
-import duke.command.Command;
+import duke.command.ToDoCommand;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
 import duke.command.EventCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
-import duke.command.ToDoCommand;
+import duke.command.UndoCommand;
 import duke.command.UnmarkCommand;
 import duke.command.WrongCommand;
+import duke.command.Command;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -52,6 +53,9 @@ public class Parser {
         if (lowercaseCommand.startsWith("todo")) {
             String description = parseToDo(command);
             return new ToDoCommand(description);
+        }
+        if (lowercaseCommand.startsWith("undo")) {
+            return new UndoCommand();
         }
         if (lowercaseCommand.startsWith("deadline")) {
            String[] taskWithDeadline = parseDeadline(command);

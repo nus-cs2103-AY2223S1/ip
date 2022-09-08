@@ -1,7 +1,9 @@
 package duke.command;
 
+import duke.CommandHistory;
 import duke.Storage;
 import duke.TaskList;
+import duke.task.Deadline;
 import duke.task.ToDo;
 import duke.Ui;
 
@@ -28,13 +30,34 @@ public class ToDoCommand extends Command {
      * @param ui Ui object which handles the interaction with the user.
      * @param storage Storage object which handles interaction with data in file.
      * @param taskList List of tasks.
+     * @param commandHistory History of commands made.
      * @return The string representation of message of task being added.
      */
     @Override
-    public String execute(Ui ui, Storage storage, TaskList taskList) {
+    public String execute(Ui ui, Storage storage, TaskList taskList,
+            CommandHistory commandHistory) {
         ToDo toDo = new ToDo(description);
+        commandHistory.addCommand(this);
         taskList.add(toDo, storage);
         String message = "Nice! This task has been successfully added!";
         return ui.displayCommandMessage(message, toDo, taskList.getSize());
+    }
+
+    /**
+     * Removes the ToDo task that has just been added is removed.
+     *
+     * @param ui Ui object which handles the interaction with the user.
+     * @param storage Storage object which handles interaction with data in file.
+     * @param taskList List of tasks.
+     * @param commandHistory History of commands made.
+     * @return Message that ToDo task has been removed.
+     */
+    @Override
+    public String undoExecute(Ui ui, Storage storage, TaskList taskList,
+            CommandHistory commandHistory) {
+        ToDo deletedToDo = new ToDo(this.description);
+        taskList.remove(taskList.getSize() - 1, storage);
+        String message = "This ToDo is no longer added!";
+        return ui.displayCommandMessage(message,deletedToDo, taskList.getSize());
     }
 }

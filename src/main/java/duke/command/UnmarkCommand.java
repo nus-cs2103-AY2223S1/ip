@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.CommandHistory;
 import duke.Storage;
 import duke.task.Task;
 import duke.TaskList;
@@ -28,13 +29,33 @@ public class UnmarkCommand extends Command {
      * @param ui Ui object which handles the interaction with the user.
      * @param storage Storage object which handles interaction with data in file.
      * @param taskList List of tasks.
+     * @param commandHistory History of commands made.
      * @return String representation of message of task being removed.
      */
     @Override
-    public String execute(Ui ui, Storage storage, TaskList taskList) {
+    public String execute(Ui ui, Storage storage, TaskList taskList,
+            CommandHistory commandHistory) {
         Task unmarkedTask = taskList.getTask(position - 1);
+        commandHistory.addCommand(this);
         taskList.unmark(position - 1, storage);
         String commandMessage = "Congratulations! This task has been successfully unmarked!";
         return ui.displayCommandMessage(commandMessage, unmarkedTask, null);
+    }
+
+    /**
+     * Re-marks the task that has just been unmarked.
+     *
+     * @param ui Ui object which handles the interaction with the user.
+     * @param storage Storage object which handles interaction with data in file.
+     * @param taskList List of tasks.
+     * @param commandHistory History of commands made.
+     * @return The message that the task has been marked again.
+     */
+    @Override
+    public String undoExecute(Ui ui, Storage storage, TaskList taskList, CommandHistory commandHistory) {
+        Task markedTask = taskList.getTask(position - 1);
+        taskList.mark(position - 1, storage);
+        String markedMessage = "This task has been re-marked!";
+        return ui.displayCommandMessage(markedMessage, markedTask, null);
     }
 }

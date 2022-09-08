@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.CommandHistory;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -9,7 +10,11 @@ import duke.Ui;
  */
 public abstract class Command {
 
-    public abstract String execute(Ui ui, Storage storage, TaskList taskList);
+    public abstract String execute(Ui ui, Storage storage, TaskList taskList,
+            CommandHistory commandHistory);
+
+    public abstract String undoExecute(Ui ui, Storage storage, TaskList taskList,
+            CommandHistory commandHistory);
 
     /**
      * Checks whether the current command is a ByeCommand.

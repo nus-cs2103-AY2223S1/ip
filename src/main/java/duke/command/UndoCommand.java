@@ -6,28 +6,29 @@ import duke.TaskList;
 import duke.Ui;
 
 /**
- * WrongCommand class represents wrong command given by the user.
+ * The UndoCommand class represents the Undo command made by the user.
  */
-public class WrongCommand extends Command {
-
+public class UndoCommand extends Command{
     /**
-     * Returns the message that the command is invalid.
+     * Undoes changes made by the command to revert to original state.
      *
      * @param ui Ui object which handles the interaction with the user.
      * @param storage Storage object which handles interaction with data in file.
      * @param taskList List of tasks.
      * @param commandHistory History of commands made.
-     * @return The message that command is invalid.
+     * @return The message that the changes made have been undone.
      */
     @Override
-    public String execute(Ui ui, Storage storage, TaskList taskList,
-            CommandHistory commandHistory) {
-        String message = "Please enter some valid Command";
-        return ui.displayCommandMessage(message, null, null);
+    public String execute(Ui ui, Storage storage, TaskList taskList, CommandHistory commandHistory) {
+        Command lastCommand = commandHistory.getLastCommand();
+        if (lastCommand == null) {
+            return ui.displayCommandMessage("There are no changes to be undone!", null, null);
+        }
+        return lastCommand.undoExecute(ui, storage, taskList, commandHistory);
     }
 
     /**
-     * Returns message that this command cannot be undone.
+     * This command cannot be undone!
      *
      * @param ui Ui object which handles the interaction with the user.
      * @param storage Storage object which handles interaction with data in file.
@@ -37,6 +38,6 @@ public class WrongCommand extends Command {
      */
     @Override
     public String undoExecute(Ui ui, Storage storage, TaskList taskList, CommandHistory commandHistory) {
-        return "This cannot be undone!";
+        return "This is not supposed to be undone!";
     }
 }

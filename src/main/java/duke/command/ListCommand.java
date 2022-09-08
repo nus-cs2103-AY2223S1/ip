@@ -1,10 +1,7 @@
 package duke.command;
 
-import duke.MultiLineFormatter;
-import duke.Storage;
+import duke.*;
 import duke.task.Task;
-import duke.TaskList;
-import duke.Ui;
 
 /**
  * ListCommand class represents the list command given by the user.
@@ -18,10 +15,12 @@ public class ListCommand extends Command {
      * @param ui Ui object which handles the interaction with the user.
      * @param storage Storage object which handles interaction with data in file.
      * @param taskList List of tasks.
+     * @param commandHistory History of commands made.
      * @return String representing list of tasks.
      */
     @Override
-    public String execute(Ui ui, Storage storage, TaskList taskList) {
+    public String execute(Ui ui, Storage storage, TaskList taskList,
+            CommandHistory commandHistory) {
         MultiLineFormatter mFormatter = new MultiLineFormatter();
         if (taskList.getSize() == 0) {
             String message = "\t\t\t" + "No items are in the list";
@@ -33,5 +32,20 @@ public class ListCommand extends Command {
             mFormatter.add(itemDisplayed);
         }
         return mFormatter.getFullMessage();
+    }
+
+    /**
+     * Returns message that this command cannot be undone.
+     *
+     * @param ui Ui object which handles the interaction with the user.
+     * @param storage Storage object which handles interaction with data in file.
+     * @param taskList List of tasks.
+     * @param commandHistory History of commands made.
+     * @return Message that this command cannot be undone.
+     */
+    @Override
+    public String undoExecute(Ui ui, Storage storage, TaskList taskList,
+            CommandHistory commandHistory) {
+        return "There are no more changes to be undone!";
     }
 }

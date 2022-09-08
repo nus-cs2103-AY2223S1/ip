@@ -1,5 +1,7 @@
 package duke.command;
 
+import duke.CommandHistory;
+import duke.task.Deadline;
 import duke.task.Event;
 import duke.Storage;
 import duke.TaskList;
@@ -34,13 +36,33 @@ public class EventCommand extends Command {
      * @param ui Ui object which handles the interaction with the user.
      * @param storage Storage object which handles interaction with data in file.
      * @param taskList List of tasks.
+     * @param commandHistory History of commands made.
      * @return The message that event was added.
      */
     @Override
-    public String execute(Ui ui, Storage storage, TaskList taskList) {
+    public String execute(Ui ui, Storage storage, TaskList taskList,
+            CommandHistory commandHistory) {
         Event event = new Event(this.description, this.period);
+        commandHistory.addCommand(this);
         taskList.add(event,storage);
         String message = "Nice! This task has been successfully added!";
         return ui.displayCommandMessage(message, event, taskList.getSize());
+    }
+
+    /**
+     * Deletes the event that has just been added.
+     *
+     * @param ui Ui object which handles the interaction with the user.
+     * @param storage Storage object which handles interaction with data in file.
+     * @param taskList List of tasks.
+     * @param commandHistory History of commands made.
+     * @return The message that the event has been deleted.
+     */
+    @Override
+    public String undoExecute(Ui ui, Storage storage, TaskList taskList, CommandHistory commandHistory) {
+        Event deletedEvent = new Event(this.description, this.period);
+        taskList.remove(taskList.getSize() - 1, storage);
+        String message = "This event is no longer added!";
+        return ui.displayCommandMessage(message,deletedEvent, taskList.getSize());
     }
 }

@@ -15,6 +15,7 @@ public class Duke {
     private Storage storage;
     private Ui ui;
     private TaskList taskList;
+    private CommandHistory commandHistory;
 
     /**
      * Constructor of the Duke class.
@@ -25,6 +26,7 @@ public class Duke {
             ui = new Ui();
             storage = new Storage();
             taskList = new TaskList(storage.readFile());
+            commandHistory = new CommandHistory();
         } catch (FileNotFoundException e) {
             System.out.println("File should have been created by now!");
             taskList = new TaskList(new ArrayList<Task>());
@@ -44,7 +46,7 @@ public class Duke {
         String reply;
         try {
             Command command = Parser.parse(input, taskList);
-            reply = command.execute(ui, storage, taskList);
+            reply = command.execute(ui, storage, taskList, commandHistory);
         } catch (DukeException e) {
             reply = ui.showExceptionMessage(e.toString());
         } catch (NumberFormatException e) {
