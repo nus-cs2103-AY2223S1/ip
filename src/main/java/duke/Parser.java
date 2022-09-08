@@ -11,6 +11,7 @@ import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.ScheduleCommand;
 import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
 import duke.exception.EmptyDateException;
@@ -79,6 +80,11 @@ public class Parser {
             String[] find = input.split("find ", 2);
             String keyword = find[1];
             return new FindCommand(keyword);
+        } else if (words[0].equals("schedule")) {
+            String[] schedule = input.split("schedule ", 2);
+            String date = schedule[1];
+            String formattedDate = formatDate(date);
+            return new ScheduleCommand(formattedDate);
         } else {
             throw new UnknownCommandException();
         }

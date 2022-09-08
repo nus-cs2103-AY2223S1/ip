@@ -3,3 +3,4 @@ E # 0 # birthday # Aug 14 2022
 T # 1 # random
 D # 0 # testing # Aug 30 2022
 E # 0 # group project meeting # Sep 07 2022
+E # 0 # testing event # Sep 14 2022
