@@ -91,6 +91,7 @@ public class TaskList {
      * @return the task that is at the given index of the array
      */
     public Task get(int index) {
+        assert (1 <= index && index <= taskList.size());
         return this.taskList.get(index);
     }
 
@@ -101,6 +102,7 @@ public class TaskList {
      * @param task the task to be added to the list of tasks
      */
     public void add(Task task) {
+        assert task != null;
         this.taskList.add(task);
     }
 
@@ -110,6 +112,7 @@ public class TaskList {
      * @param str the given string that is used to find the tasks
      */
     public String find(String str) {
+        assert !str.isEmpty();
         return Ui.printFoundTasksStart(str, this);
     }
 
