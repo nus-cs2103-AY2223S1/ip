@@ -91,16 +91,6 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Checks if it is the exit command.
-     *
-     * @return false since an AddCommand does not terminate the ChatBot.
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
-
-    /**
      * String representation of successfully executing the AddCommand.
      *
      * @return String to notify user that task has been successfully added

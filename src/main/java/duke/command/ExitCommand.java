@@ -27,17 +27,8 @@ public class ExitCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
+        ui.stopDuke();
         return this.toString();
-    }
-
-    /**
-     * Checks if it is the ExitCommand in order to exit loop.
-     *
-     * @return true since it is the ExitCommand
-     */
-    @Override
-    public boolean isExit() {
-        return true;
     }
 
     /**
@@ -48,7 +39,8 @@ public class ExitCommand extends Command {
     @Override
     public String toString() {
         return "________________________________________\n"
-                + "Adios Amigo! See you soon!\n"
+                + "Sayonara! Mata ne!\n"
+                + "--- The window will close in 5 seconds ---\n"
                 + "________________________________________";
     }
 }

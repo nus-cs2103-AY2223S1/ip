@@ -25,11 +25,4 @@ public abstract class Command {
      * @throws IOException if an error occurs when writing/reading from a txt file
      */
     public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException;
-
-    /**
-     * Checks if it is the exit command in order to exit loop.
-     *
-     * @return true if it is the 'bye' command, else returns false
-     */
-    public abstract boolean isExit();
 }

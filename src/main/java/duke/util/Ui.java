@@ -2,6 +2,10 @@ package duke.util;
 
 import java.util.Scanner;
 
+import javafx.animation.PauseTransition;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+
 /**
  * Handles the interactions with the user.
  *
@@ -10,12 +14,14 @@ import java.util.Scanner;
  */
 public class Ui {
     private Scanner scanner;
+    private Stage stage;
 
     /**
      * Constructor to create an instance of Ui.
      */
-    public Ui() {
+    public Ui(Stage stage) {
         this.scanner = new Scanner(System.in);
+        this.stage = stage;
     }
 
     /**
@@ -38,5 +44,14 @@ public class Ui {
      */
     public void showError(String errorMessage) {
         System.out.println(errorMessage);
+    }
+
+    /**
+     * Stops the ChatBot and closes the window after 5 seconds.
+     */
+    public void stopDuke() {
+        PauseTransition closeWindow = new PauseTransition(Duration.seconds(5));
+        closeWindow.setOnFinished(e -> this.stage.close());
+        closeWindow.play();
     }
 }

@@ -55,16 +55,6 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Checks if it is the exit command in order to exit loop.
-     *
-     * @return false since a MarkCommand does not end the ChatBot
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
-
-    /**
      * String representation of successfully executing the MarkCommand.
      *
      * @return String to notify the user that the specified task has been marked

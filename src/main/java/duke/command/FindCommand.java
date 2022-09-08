@@ -41,16 +41,6 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Checks if the command is the ExitCommand to end the ChatBot.
-     *
-     * @return false since the FindCommand does not terminate the ChatBot
-     */
-    @Override
-    public boolean isExit() {
-        return false;
-    }
-
-    /**
      * String representation to indicate that FindCommand has been successfully executed.
      *
      * @return String to notify user of the following tasks

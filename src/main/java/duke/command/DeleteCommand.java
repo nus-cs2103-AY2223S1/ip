@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import duke.exception.DukeException;
 import duke.task.TaskList;
+import duke.util.Parser;
 import duke.util.Storage;
 import duke.util.Ui;
 
@@ -53,27 +54,18 @@ public class DeleteCommand extends Command {
                     + "________________________________________";;
             throw new DukeException(errorMessage);
         }
-
+        String taskDescription = tasks.getTask(taskNumber - 1).toString();
         String respondMessage = this
                 + "  "
-                + tasks.getTask(taskNumber - 1).toString()
+                + taskDescription
                 + "\n Now you have "
                 + (tasks.size() - 1)
                 + " tasks in the list."
                 + "\n________________________________________";
+        Parser.setTaskDescription(taskDescription);
         tasks.delete(this.taskNumber - 1);
         storage.writeToFile(tasks);
         return respondMessage;
-    }
-
-    /**
-     * Checks if it is the exit command in order to exit loop.
-     *
-     * @return false since a DeleteCommand does not end the ChatBot
-     */
-    @Override
-    public boolean isExit() {
-        return false;
     }
 
     /**
