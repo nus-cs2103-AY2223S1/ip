@@ -60,7 +60,6 @@ public class Storage {
                 Task toWrite = taskList.retrieveTask(i);
                 fw.write(toWrite.fileString());
                 fw.write(System.lineSeparator());
-
             }
             fw.flush();
             fw.close();
