@@ -2,8 +2,13 @@ package duke.data;
 
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
+import duke.task.Deadline;
+import duke.task.Event;
 import duke.task.Task;
+import duke.task.ToDo;
 
 /**
  * Stores and retrieves the Task objects.
@@ -79,14 +84,16 @@ public class TaskList implements Serializable {
      */
     public TaskList searchTasks(String keyword) {
 
-        LinkedList<Task> results = new LinkedList<>();
+        Collector<Task, ?, LinkedList<Task>> c = Collectors.toCollection(() -> (new LinkedList<Task>()));
 
-        for (Task t : this.tasks) {
-            if (t.getDescription().contains(keyword)) {
-                results.add(t);
-            }
-        }
+        // Stream the Task objects, filter the Tasks that contain the keyword
+        LinkedList<Task> results = this.tasks.stream()
+            // Filter the Tasks that contain the keyword
+            .filter((t) -> t.getDescription().contains(keyword))
+            // Collect the results back into a linked list
+            .collect(c);
 
+        
         return new TaskList(results);
     }
 
@@ -99,6 +106,21 @@ public class TaskList implements Serializable {
     @Override
     public String toString() {
         return String.format("%s", this.tasks.toString());
+    }
+
+
+    public static void main(String[] args) {
+        
+        LinkedList<Task> s = new LinkedList<>();
+
+        s.add(new ToDo("Todo task 1"));
+        s.add(new Deadline("Deadline task 1", "2022-12-16 18:00"));
+        s.add(new Event("Event task 1", "Mon 2-4pm"));
+
+        TaskList tl = new TaskList(s);
+
+        System.out.println(tl.searchTasks("Event"));
+
     }
 
 }
