@@ -3,6 +3,7 @@ package commands;
 import exceptions.DukeException;
 import input.Input;
 
+import java.util.Arrays;
 import java.util.Map;
 
 /**
@@ -23,7 +24,6 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResponse run(Input input) throws DukeException {
-        System.out.println(commandMap);
         if (input.getNumberOfTokens() <= 1) {
             return new CommandResponse("long help");
         }

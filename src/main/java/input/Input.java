@@ -1,6 +1,7 @@
 package input;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +55,7 @@ public class Input {
         }
         commandName = tokens[0];
         initialiseParameters();
+        stripTokens();
     }
 
     /**
@@ -101,6 +103,20 @@ public class Input {
 
         assert !commandName.trim().equals("");
     }
+
+    /**
+     * Removes all empty strings from tokens. This is done after initialisation of parameters
+     * to preserve spaces in provided arguments.
+     */
+    private void stripTokens() {
+        assert parameters != null;
+        assert tokens != null;
+        this.tokens = Arrays
+                .stream(tokens)
+                .filter(s -> !s.trim().equals(""))
+                .toArray(String[]::new);
+    }
+
 
     /**
      * @return Command name from the input according to input rules
