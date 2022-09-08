@@ -1,26 +1,104 @@
-# Duke project template
+# chatNUS Project - An Overview
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+Welcome to **chatNUS**, a chatbot targeted at users who prefer text-based todo lists!
 
-## Setting up in Intellij
+## Setting up Duke
 
-Prerequisites: JDK 11, update Intellij to the most recent version.
+### Prerequisites
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 11** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-3. After that, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+JDK 11, any IDE that supports Java, Gradle
+
+### Running Duke
+
+From the command line, run the following:
+
+```
+gradle run
+```
+
+# User Guide
+
+## chatNUS Overview
+
+chatNUS is a messaging app built to store and manage your todo lists. Interact with the chatNUS bot 
+with the following commands to create, delete, update and display your tasks!
+
+## list
+
+A Standalone command with no trailing arguments. Lists all the tasks currently on your list, task type
+and the task status. For example:
+
+```
+1. [T][ ] Do My Laundry
+2. [D][X] Finish my essay (By: 16 SEPTEMBER 2022 3 PM)
+3. [E][ ] Some Event (At: 9 PM)
+```
+
+The above indicates:
+
+1. Type: Todo, Status: Not Completed, Name: Do My Laundry
+2. Type: Deadline, Status: Completed, Name: Finish my essay (By: 16 SEPTEMBER 2022 3 PM)
+3. Type: Event, Status: Not Completed, Name Some Event (At: 9 PM)
+
+Thus, the general format:
+
+SN. [Type][Status] Task Name
+
+## Adding Tasks
+
+### Adding a Todo
+To add a todo (Task without a time limitation), type the following command into the input bar:
+
+```
+todo Do My Laundry
+```
+
+### Adding a Deadline
+Deadlines have a time limit, which are indicated using the /by command. 
+To add a deadline, use the following command:
+
+```
+deadline Finish My Essay /by 2022-03-04 1800
+```
+
+Both, the date and time have to be specified. The format for the same is YYYY-MM-DD HHmm
+
+### Adding an event
+Events have a time limit too, but they are indicated using the /at command. 
+To add an event, use the following command:
+
+```
+event My Event /at 9 PM
+```
+
+## Edit Task Status
+
+### Mark a Task as Done
+To mark a task as done, you need to know the serial number of the task. 
+Use the following command:
+
+```
+mark 2
+```
+
+### Unmark a Previously marked Task
+To unmark a task you have previously marked, you need to know the serial number again!
+Use the following command:
+
+```
+unmark 2
+```
+
+## End Session and store task list
+To end the session, simply use the bye command! chatNUS will store your list and
+load it the next time you run chatNUS!
+
+```
+bye
+```
+
+## Adieu
+
+And that's it to get you started! Hope you have fun using chatNUS
 
 
