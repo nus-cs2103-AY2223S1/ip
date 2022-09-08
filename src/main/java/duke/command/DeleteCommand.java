@@ -3,7 +3,6 @@ package duke.command;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Command to delete a task from the task list.
@@ -19,20 +18,8 @@ public class DeleteCommand extends Command {
         this.index = index;
     }
 
-    /**
-     * Deletes a task from the task list.
-     * @param tasks
-     * @param ui
-     * @param storage
-     */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        Task removedTask = tasks.removeTask(index);
-        ui.showRemoveTask(removedTask);
-    }
-
-    @Override
-    public String getResponse(TaskList tasks, Ui ui, Storage storage) {
+    public String getResponse(TaskList tasks, Storage storage) {
         Task removedTask = tasks.removeTask(index);
         return "Done! I have removed this task from your todo list\n"
                 + removedTask.toString();

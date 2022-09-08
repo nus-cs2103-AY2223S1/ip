@@ -3,7 +3,6 @@ package duke.command;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Command to add a task to the task list.
@@ -22,17 +21,11 @@ public class AddCommand extends Command {
     /**
      * Adds a task into the task list.
      * @param tasks
-     * @param ui
      * @param storage
      */
-    @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.addTask(task);
-        ui.showAddTask(task, tasks.getNumberOfTasks());
-    }
 
     @Override
-    public String getResponse(TaskList tasks, Ui ui, Storage storage) {
+    public String getResponse(TaskList tasks, Storage storage) {
         tasks.addTask(task);
         return "Added " + task.toString() + " to the list.\n"
                 + "There are " + tasks.getNumberOfTasks() + " tasks in the list.";
