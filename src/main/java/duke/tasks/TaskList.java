@@ -12,8 +12,8 @@ import duke.exceptions.DukeException;
  */
 public class TaskList {
 
-    private static ArrayList<Task> taskList;
-    private static ArrayList<Task> prevTaskList = null;
+    private ArrayList<Task> taskList;
+    private ArrayList<Task> prevTaskList;
 
     /**
      * Constructs new TaskList using the given ArrayList<Task>.
@@ -23,14 +23,14 @@ public class TaskList {
      * @throws DukeException to handle if the given ArrayList is empty or invalid
      */
     public TaskList(ArrayList<Task> taskArrayList) throws DukeException {
-        taskList = taskArrayList;
+        this.taskList = taskArrayList;
     }
 
     /**
      * Constructs an empty TaskList if no ArrayList<Task> is given.
      */
     public TaskList() {
-        taskList = new ArrayList<>();
+        this.taskList = new ArrayList<>();
     }
 
     /**
@@ -39,7 +39,7 @@ public class TaskList {
      * @return true if the task list is empty
      */
     public boolean isEmpty() {
-        return taskList.size() == 0;
+        return this.taskList.size() == 0;
     }
 
     /**
@@ -48,7 +48,7 @@ public class TaskList {
      * @return an Integer representing the current number of tasks
      */
     public int getSize() {
-        return taskList.size();
+        return this.taskList.size();
     }
 
     /**
@@ -59,8 +59,8 @@ public class TaskList {
             if (isEmpty()) {
                 throw new DukeException(" ☹ OOPS!!! Seems like your list is empty.");
             } else {
-                for (int i = 0; i < taskList.size(); i++) {
-                    System.out.println("     " + (i + 1) + ". " + taskList.get(i).toString());
+                for (int i = 0; i < this.taskList.size(); i++) {
+                    System.out.println("     " + (i + 1) + ". " + this.taskList.get(i).toString());
                 }
             }
         } catch (DukeException e) {
@@ -75,8 +75,8 @@ public class TaskList {
      */
     public void findTask(String input) {
         boolean noMatches = true;
-        for (int i = 0; i < taskList.size(); i++) {
-            Task task = taskList.get(i);
+        for (int i = 0; i < this.taskList.size(); i++) {
+            Task task = this.taskList.get(i);
             if (task.getDesc().contains(input)) {
                 noMatches = false;
                 System.out.println("     " + (i + 1) + ". " + task);
@@ -97,7 +97,7 @@ public class TaskList {
      * @param taskIndex the index of the task to be marked
      */
     public void markTask(int taskIndex) {
-        taskList.get(taskIndex).mark();
+        this.taskList.get(taskIndex).mark();
     }
 
     /**
@@ -106,7 +106,7 @@ public class TaskList {
      * @param taskIndex the index of the task to be marked
      */
     public void unmarkTask(int taskIndex) {
-        taskList.get(taskIndex).unmark();
+        this.taskList.get(taskIndex).unmark();
     }
 
     /**
@@ -115,7 +115,7 @@ public class TaskList {
      * @param task the task to be added
      */
     public void addTask(Task task) {
-        taskList.add(task);
+        this.taskList.add(task);
     }
 
     /**
@@ -126,7 +126,7 @@ public class TaskList {
      * @return the task at the given index
      */
     public Task getTask(int taskId) {
-        return taskList.get(taskId);
+        return this.taskList.get(taskId);
     }
 
     /**
@@ -135,14 +135,14 @@ public class TaskList {
      * @param index index of the task to be deleted
      */
     public void deleteTask(int index) {
-        taskList.remove(index);
+        this.taskList.remove(index);
     }
 
     /**
      * Clears out the task list.
      */
     public void deleteAll() {
-        taskList = new ArrayList<>();
+        this.taskList = new ArrayList<>();
     }
 
     /**
@@ -151,24 +151,7 @@ public class TaskList {
      * @return an ArrayList containing all the tasks in the task list
      */
     public ArrayList<Task> getAllTasks() {
-        return taskList;
+        return this.taskList;
     }
 
-    /**
-     * Saves the previous task list, so it can be fetched later.
-     */
-    public void storePrevTaskList() {
-        prevTaskList = taskList;
-        System.out.println(prevTaskList);
-    }
-
-    /**
-     * Undoes the previous command by reverting to the previously saved task list.
-     */
-    public void undo() {
-        System.out.println(prevTaskList);
-        taskList = prevTaskList;
-        prevTaskList = null;
-        System.out.println(taskList);
-    }
 }

@@ -21,7 +21,6 @@ public class DeleteAllCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
-        taskList.storePrevTaskList();
         taskList.deleteAll();
         ui.deleteAllMessage();
         storage.store(taskList);

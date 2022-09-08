@@ -36,7 +36,6 @@ public class UnmarkTaskCommand extends Command {
      */
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
-        taskList.storePrevTaskList();
         taskList.unmarkTask(this.taskId);
         ui.unmarkTaskMessage(taskList.getTask(this.taskId));
         storage.store(taskList);

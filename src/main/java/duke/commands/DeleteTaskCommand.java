@@ -38,7 +38,6 @@ public class DeleteTaskCommand extends Command {
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
         ui.deleteTaskMessage(taskList.getTask(taskId), taskList.getSize());
-        taskList.storePrevTaskList();
         taskList.deleteTask(taskId);
         storage.store(taskList);
     }
