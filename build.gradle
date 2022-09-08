@@ -38,8 +38,19 @@ dependencies {
     implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'linux'
 }
 shadowJar {
-    archiveBaseName.set('Olivia')
-    archiveClassifier.set('')
-    archiveVersion.set('')
+    archiveBaseName.set("Olivia")
+    archiveClassifier.set("")
+    archiveVersion.set("")
+    from ("$rootDir"){
+        include "images/**"
+    }
+    manifest {
+        attributes "Main-Class": "org.Olivia.Launcher"
+    }
 }
 
+tasks.register('copyTaskWithPatterns', Copy) {
+    from '$rootDir'
+    into layout.buildDirectory.dir('')
+    include '**/*.jpg'
+}
