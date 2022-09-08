@@ -35,6 +35,7 @@ public class AddCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         tasks.addItem(task);
+        assert tasks.filter(x -> x.equals(task)).size() >= 1 : "Task should be added.";
         storage.saveTask(task);
         ui.showOutput("OK, I've added the following task:\n  " + task + "\n");
         ui.showOutput("Now you have " + tasks.size() + " tasks in the list.");
