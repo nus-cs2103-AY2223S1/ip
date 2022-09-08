@@ -25,6 +25,7 @@ public class TaskDeserializer {
             LocalDateTime by = LocalDateTime.parse(taskObj.getString("by"), Deadline.DATE_FORMATTER);
             return new Deadline(description, by, isDone);
         default:
+            assert false; // assert that default case is never reached
             return null;
         }
     }
