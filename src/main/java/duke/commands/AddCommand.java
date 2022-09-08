@@ -31,6 +31,7 @@ public class AddCommand extends Command {
     @Override
     public String execute(List tasks, Ui ui, Storage storage) {
         try {
+            assert toAdd != null;
             tasks.addTask(toAdd);
             storage.save();
             return ui.showToUser(String.format(MESSAGE_SUCCESS, toAdd, tasks.numberOfTasks()));
