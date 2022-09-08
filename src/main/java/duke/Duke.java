@@ -1,5 +1,8 @@
 package duke;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import duke.data.TaskList;
 import duke.parser.Parser;
 import duke.storage.Storage;
@@ -8,6 +11,7 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 import duke.ui.Ui;
+
 
 /**
  * Main driver class.
@@ -37,6 +41,7 @@ public class Duke {
     /** TaskList object to store the user's tasks */
     private TaskList storedTasks;
 
+    
 
 
     /**
@@ -44,18 +49,50 @@ public class Duke {
      */
     public Duke() {
         this.ui = new Ui();
-        ui.printWelcomeMessage();
-
         this.storage = new Storage(DATA_FILE_PATH);
-
-        // Attempt to load the task list from the hard disk, if it exists
-        this.storedTasks = this.storage.readFromFile();
     }
 
 
-    private void markTaskAsDoneOrUndone(String[] commands) {
+    /**
+     * Reads the data file and returns the status message.
+     * 
+     * @return Status message.
+     */
+    public String initialize() {
 
-        String result = "";
+        try {
+            // Attempt to load the task list from the hard disk, if it exists
+            this.storedTasks = this.storage.readFromFile();
+
+        } catch (FileNotFoundException e) {
+            this.storedTasks = new TaskList();
+            return ui.getDataFileNotFoundErrorMessage() + ui.getCreateNewTaskListMessage();
+
+        } catch (IOException e) {
+            this.storedTasks = new TaskList();
+            return ui.getDataFileReadErrorMessage() + ui.getCreateNewTaskListMessage();
+
+        } catch (ClassNotFoundException e) {
+            this.storedTasks = new TaskList();
+            return ui.getDataFileDeserializeErrorMessage() + ui.getCreateNewTaskListMessage();
+        }
+
+        return ui.getDataFileSuccessMessage();
+    }
+
+
+    private String findTasks(String[] commands) {
+
+        // Keyword to search for is the second token
+        TaskList searchResults = this.storedTasks.searchTasks(commands[1]);
+
+        return ui.getListTasksMessage(searchResults, true);
+    }
+
+
+    private String markTaskAsDoneOrUndone(String[] commands) {
+
+        String result;
 
         // First token is the action
         String action = commands[0];
@@ -71,24 +108,21 @@ public class Duke {
         // Mark the task as done or undone depending on the command
         if (action.equals(COMMAND_MARK_AS_DONE)) {
             t = t.markTask();
-            result = "Nice! I've marked this task as done:\n";
+            result = ui.getMarkTaskMessage(t);
 
         } else {
             t = t.unmarkTask();
-            result = "OK, I've marked this task as undone:\n";
+            result = ui.getUnmarkTaskMessage(t);
         }
 
         // Store the task back in the TaskList
         this.storedTasks.setTask(indexNumber, t);
 
-
-        // Add the string representation of the task to the result
-        result = result.concat(String.format("%s\n", t));
-        ui.printMessage(result);
+        return result;
     }
 
 
-    private void addTask(String[] commands) {
+    private String addTask(String[] commands) {
 
         // Create the correct type of task based on the first token
         Task t = null;
@@ -96,22 +130,18 @@ public class Duke {
         try {
             t = createTask(commands);
 
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             // Cannot create task due to invalid commands
-            String result = String.format("OOPS!!! Invalid syntax for a %s task\n", e.getMessage());
-            ui.printMessage(result);
-            return;
+            return ui.getAddTaskInvalidSyntaxErrorMessage(e);
         }
 
         this.storedTasks.addTask(t);
 
-        String result = String.format("Got it. I've added this task:\n%s\nNow you have %d tasks in the list.\n",
-                                        t, storedTasks.getSize());
-        ui.printMessage(result);
+        return ui.getAddTaskMessage(t, storedTasks.getSize());
     }
 
 
-    private Task createTask(String[] commands) throws Exception {
+    private Task createTask(String[] commands) throws IllegalArgumentException {
 
         String description = "";
         boolean isDeadline = false;
@@ -122,7 +152,7 @@ public class Duke {
         case COMMAND_ADD_TODO:
             // Check if the given commands are valid
             if (!isValidToDoCommand(commands)) {
-                throw new Exception("todo");
+                throw new IllegalArgumentException("todo");
             }
 
             // Second token onwards is the description
@@ -143,7 +173,7 @@ public class Duke {
 
             // Check if the given commands are valid
             if (!isValidEventCommand(commands)) {
-                throw new Exception("deadline/event");
+                throw new IllegalArgumentException("deadline/event");
             }
 
             // Second token until /at is the description
@@ -192,7 +222,7 @@ public class Duke {
         try {
             delimiterIndex = findDelimiter(commands);
 
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             // Cannot find delimiter, i.e. delimiter doesn't exist
             return false;
         }
@@ -208,14 +238,14 @@ public class Duke {
 
 
     // Return the index of the first delimiter in the commands array
-    private int findDelimiter(String[] commands) throws Exception {
+    private int findDelimiter(String[] commands) throws IllegalArgumentException {
         for (int i = 0; i < commands.length; i++) {
             if (commands[i].charAt(0) == TIME_DELIMITER) {
                 return i;
             }
         }
 
-        throw new Exception();
+        throw new IllegalArgumentException();
     }
 
 
@@ -228,7 +258,7 @@ public class Duke {
     }
 
 
-    private void deleteTask(String[] commands) {
+    private String deleteTask(String[] commands) {
 
         // Task number is the second token
         // Task number is 1 index, so subtract 1 to make it 0 index
@@ -237,40 +267,36 @@ public class Duke {
         // Remove the task from the TaskList object
         Task t = storedTasks.removeTask(indexNumber);
 
-        String result = String.format("Noted. I've removed this task:\n%s\nNow you have %d tasks in the list.\n",
-                                        t, storedTasks.getSize());
-        ui.printMessage(result);
+        return ui.getDeleteTaskMessage(t, storedTasks.getSize());
     }
 
 
-    private void exitDuke() {
-        ui.printExitMessage();
+    private String exitDuke() {
+        return ui.getExitMessage();
     }
 
 
-    private void findTasks(String[] commands) {
-
-        // Keyword to search for is the second token
-        TaskList searchResults = this.storedTasks.searchTasks(commands[1]);
-
-        ui.listTasks(searchResults, true);
-    }
+    private String handleInvalidCommand() {
+        return ui.getInvalidCommandErrorMessage();
+    }    
 
 
     // Calls the relevant function based on the given command
-    // Return true if need to exit program
-    private boolean executeCommand(String[] commands) {
+    // Returns the response of the command
+    private String executeCommand(String[] commands) {
+
+        String result;
 
         // The first token is used to identify which action to take
         switch (commands[0]) {
 
         case COMMAND_LIST:
-            ui.listTasks(this.storedTasks, false);
+            result = ui.getListTasksMessage(this.storedTasks, false);
             break;
 
 
         case COMMAND_FIND:
-            findTasks(commands);
+            result = findTasks(commands);
             break;
 
 
@@ -278,7 +304,7 @@ public class Duke {
         case COMMAND_MARK_AS_DONE:
             // Fall through
         case COMMAND_MARK_AS_UNDONE:
-            markTaskAsDoneOrUndone(commands);
+            result = markTaskAsDoneOrUndone(commands);
             storage.writeToFile(this.storedTasks);
             break;
 
@@ -289,58 +315,54 @@ public class Duke {
         case COMMAND_ADD_DEADLINE:
             // Fall through
         case COMMAND_ADD_EVENT:
-            addTask(commands);
+            result = addTask(commands);
             storage.writeToFile(this.storedTasks);
             break;
 
 
         case COMMAND_DELETE:
-            deleteTask(commands);
+            result = deleteTask(commands);
             storage.writeToFile(this.storedTasks);
             break;
 
 
         case COMMAND_EXIT:
-            exitDuke();
-            return true;
+            result = exitDuke();
+            break;
 
 
         // Command is invalid
         default:
-            handleInvalidCommand();
+            result = handleInvalidCommand();
         }
-
-        // Don't exit the program if something goes wrong
-        return false;
+        
+        return result;
     }
 
 
-    private void handleInvalidCommand() {
-        ui.printInvalidCommandMessage();
-    }
-
-
-    private void run() {
-
-        while (true) {
-
-            String[] commands = Parser.parseCommand(ui.readCommand());
-
-            // If need to exit
-            if (executeCommand(commands)) {
-                ui.stopReadingUserInput();
-                return;
-            }
-        }
+    /**
+     * Returns the response to the specified input.
+     * 
+     * @param input User input string.
+     * @return Response string.
+     */
+    public String getResponse(String input) {
+        String[] commands = Parser.parseCommand(input);
+        return executeCommand(commands);
     }
 
 
     public static void main(String[] args) {
+        
+        // Duke d = new Duke();
 
-        Duke d = new Duke();
+        // String input = "todo buy bread";
+        // String input = "deadline return book /by 2022-12-16 18:00";
+        // String input = "event book club /at Mon 2-4pm";
+        // String input = "delete 2";
+        // String input = "list";
+        // String[] command = Parser.parseCommand(input);
 
-        // Process user commands
-        d.run();
-
+        // System.out.println(d.executeCommand(command));
     }
 }
