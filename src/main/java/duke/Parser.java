@@ -55,60 +55,27 @@ public class Parser {
      * @return the boolean true, to stop the program when bye is inputted
      */
     public static String parse(String input, TaskList tasks) {
-        String[] arrOfInput = input.split(" ");
-        String firstWord = arrOfInput[0];
-
         assert !firstWord.isEmpty(): "No string detected from input!";
 
+        String[] arrOfInput = input.split(" ");
+        String firstWord = arrOfInput[0];
         try {
             if ("list".equals(firstWord)) {
-                // list out the current list
                 return Ui.printList(tasks);
-
             } else if ("mark".equals(firstWord)) {
-                // throw exception if no number after mark
-                if (arrOfInput.length < 2) {
-                    throw new DukeException("Input a number after mark!");
-                }
-
-                // to mark an element as done
-                int index = Integer.parseInt(arrOfInput[1]);
-                return tasks.markTaskAsDone(index);
-
+                return parseMarkTask(arrOfInput, tasks);
             } else if ("unmark".equals(firstWord)) {
-                // throw exception if no number after unmark
-                if (arrOfInput.length < 2) {
-                    throw new DukeException("Input a number after unmark!");
-                }
-
-                // to mark an element as undone
-                int index = Integer.parseInt(arrOfInput[1]);
-                return tasks.unmarkTask(index);
-
-            } else if ("todo".equals(firstWord) || "deadline".equals(firstWord) || "event".equals(firstWord)) {
-                // adding the event, deadline or to-do to the list
-                return createNewTask(firstWord, arrOfInput, tasks);
-
+                return parseUnmarkTask(arrOfInput, tasks);
+            } else if ("todo".equals(firstWord)) {
+                return createNewTodo(arrOfInput, tasks);
+            } else if ("deadline".equals(firstWord)) {
+                return createNewDeadline(arrOfInput, tasks);
+            } else if ("event".equals(firstWord)) {
+                return createNewEvent(arrOfInput, tasks);
             } else if ("delete".equals(firstWord)) {
-                // throw exception if no number after delete
-                if (arrOfInput.length < 2) {
-                    throw new DukeException("Input a number after delete!");
-                }
-
-                // deleting a task
-                int index = Integer.parseInt(arrOfInput[1]);
-                return tasks.deleteTask(index);
-
+                return parseDeleteTask(arrOfInput, tasks);
             } else if ("find".equals(firstWord)) {
-                // throw exception if no word after find
-                if (arrOfInput.length < 2) {
-                    throw new DukeException("Input a word after find!");
-                }
-
-                // finding a task from the list
-                String str = arrOfInput[1];
-                return tasks.find(str);
-
+                return parseFindTask(arrOfInput, tasks);
             } else {
                 throw new DukeException("I'm sorry, but I don't know what that means :-(");
             }
@@ -120,138 +87,250 @@ public class Parser {
         return "Error! Please try again.";
     }
 
+
     /**
-     * Creates a new task and adds it to the task list.
+     * Method for marking tasks when the command is mark.
      *
-     * @param firstWord the first word typed in by the user
+     * @param arrOfInput array of the words from the input
+     * @param tasks the TaskList to access
+     * @return the String to show after marking the task
+     */
+    public static String parseMarkTask(String[] arrOfInput, TaskList tasks) throws DukeException, IOException {
+        if (arrOfInput.length < 2) {
+            throw new DukeException("Input a number after mark!");
+        }
+        int index = Integer.parseInt(arrOfInput[1]);
+        return tasks.markTaskAsDone(index);
+    }
+
+
+    /**
+     * Method for marking tasks as undone when the command is unmark.
+     *
+     * @param arrOfInput array of the words from the input
+     * @param tasks the TaskList to access
+     * @return the String to show after marking the task as undone
+     */
+    public static String parseUnmarkTask(String[] arrOfInput, TaskList tasks) throws DukeException, IOException {
+        if (arrOfInput.length < 2) {
+            throw new DukeException("Input a number after unmark!");
+        }
+        int index = Integer.parseInt(arrOfInput[1]);
+        return tasks.unmarkTask(index);
+    }
+
+
+    /**
+     * Method for deleting tasks when the command is delete.
+     *
+     * @param arrOfInput array of the words from the input
+     * @param tasks the TaskList to access
+     * @return the String to show after deleting a task
+     */
+    public static String parseDeleteTask(String[] arrOfInput, TaskList tasks) throws DukeException, IOException {
+        if (arrOfInput.length < 2) {
+            throw new DukeException("Input a number after delete!");
+        }
+        int index = Integer.parseInt(arrOfInput[1]);
+        return tasks.deleteTask(index);
+    }
+
+
+    /**
+     * Method for finding tasks when the command is find.
+     *
+     * @param arrOfInput array of the words from the input
+     * @param tasks the TaskList to access
+     * @return the String to show after finding the tasks
+     */
+    public static String parseFindTask(String[] arrOfInput, TaskList tasks) throws DukeException {
+        if (arrOfInput.length < 2) {
+            throw new DukeException("Input a word after find!");
+        }
+        String str = arrOfInput[1];
+        return tasks.find(str);
+    }
+
+
+    /**
+     * Creates a new to-do and adds it to the task list.
+     *
      * @param strArray the array of strings of the words typed in by the user
      * @param tasks the task list of which the task is to be added to
      */
-    public static String createNewTask(String firstWord, String[] strArray, TaskList tasks)
-            throws DukeException, IOException {
-        if ("todo".equals(firstWord)) {
-            // throw exception if no word after to-do
-            if (strArray.length < 2) {
-                throw new DukeException("The description of a todo cannot be empty.");
-            }
-
-            StringBuilder todoStr = new StringBuilder();
-            for (int i = 1; i < strArray.length; i++) {
-                todoStr.append(" ").append(strArray[i]);
-            }
-            String currString = todoStr.toString();
-            tasks.add(new Todo(currString));
-            Task currTask = tasks.get(tasks.size() - 1);
-
-            Storage.writeToFile(tasks);
-
-            // print message when to-do is added
-            return "Got it. I've added this task:\n  " + currTask +
-                    "\nNow you have " + tasks.size() + " tasks in the list.";
-
-        } else if ("deadline".equals(firstWord)) {
-            // throw exception if no word after deadline
-            if (strArray.length < 2) {
-                throw new DukeException("The description of a deadline cannot be empty.");
-            }
-
-            // throw exception if no deadline time
-            int indexCheck = 1000;
-            for (int i = 1; i < strArray.length; i++) {
-                if (strArray[i].equals("/by")) {
-                    indexCheck = i;
-                }
-            }
-            if (indexCheck == 1000) {
-                throw new DukeException("This description needs a timing! "
-                        + "Add again with /by followed by the deadline timing.");
-            }
-
-            // create deadline description and deadline date
-            StringBuilder deadlineStr = new StringBuilder();
-            String deadline = "";
-            for (int i = 1; i < strArray.length; i++) {
-                if (strArray[i].equals("/by")) {
-                    if (i + 1 > strArray.length - 1) {
-                        return "Please type a deadline after /by";
-                    } else {
-                        deadline = strArray[i + 1];
-                    }
-                    break;
-                } else {
-                    deadlineStr.append(" ");
-                    deadlineStr.append(strArray[i]);
-                }
-            }
-            String deadlineDescription = deadlineStr.toString();
-
-            // make sure deadline is in correct format to accept input
-            String deadlinePattern = "yyyy-MM-dd";
-            DateTimeFormatter deadlineFormatter = DateTimeFormatter.ofPattern(deadlinePattern);
-            try {
-                LocalDate.parse(deadline, deadlineFormatter);
-            } catch (DateTimeParseException e) {
-                return "Invalid deadline format! Please type in deadline format as yyyy-MM-dd";
-            }
-
-            // add deadline tasks to ArrayList once conditions are satisfied
-            tasks.add(new Deadline(deadlineDescription, LocalDate.parse(deadline)));
-            Task currTask = tasks.get(tasks.size() - 1);
-
-            Storage.writeToFile(tasks);
-
-            // print message when deadline is added
-            return "Got it. I've added this task:\n  " + currTask +
-                    "\nNow you have " + tasks.size() + " tasks in the list.";
-
-        } else if ("event".equals(firstWord)) {// throw exception if no word after event
-            if (strArray.length < 2) {
-                throw new DukeException("The description of an event cannot be empty.");
-            }
-
-            // throw exception if no event time
-            int indexCheck = 1000;
-            for (int i = 1; i < strArray.length; i++) {
-                if (strArray[i].equals("/at")) {
-                    indexCheck = i;
-                }
-            }
-            if (indexCheck == 1000) {
-                throw new DukeException("This description needs a timing! "
-                        + "Add again with /at followed by the deadline timing.");
-            }
-
-            // create event string and deadline
-            StringBuilder eventStr = new StringBuilder();
-            StringBuilder eventTime = new StringBuilder();
-            for (int i = 1; i < strArray.length; i++) {
-                if (strArray[i].equals("/at")) {
-                    break;
-                } else {
-                    eventStr.append(" ");
-                    eventStr.append(strArray[i]);
-                }
-            }
-            for (int i = 1; i < strArray.length; i++) {
-                if (strArray[i].equals("/at")) {
-                    for (int j = i + 1; j < strArray.length; j++) {
-                        eventTime.append(" ");
-                        eventTime.append(strArray[j]);
-                    }
-                    break;
-                }
-            }
-            String eventDescription = eventStr.toString();
-            String eventDate = eventTime.toString();
-            tasks.add(new Event(eventDescription, eventDate));
-            Task currTask = tasks.get(tasks.size() - 1);
-
-            Storage.writeToFile(tasks);
-
-            // print message when event is added
-            return "Got it. I've added this task:\n  " + currTask +
-                    "\nNow you have " + tasks.size() + " tasks in the list.";
+    public static String createNewTodo(String[] strArray, TaskList tasks) throws DukeException, IOException {
+        // throw exception if no word after to-do
+        if (strArray.length < 2) {
+            throw new DukeException("The description of a todo cannot be empty.");
         }
-        return "Error! Please try again.";
+
+        StringBuilder todoStr = new StringBuilder();
+        for (int i = 1; i < strArray.length; i++) {
+            todoStr.append(" ").append(strArray[i]);
+        }
+        String currString = todoStr.toString();
+        tasks.add(new Todo(currString));
+        Task currTask = tasks.get(tasks.size() - 1);
+        Storage.writeToFile(tasks);
+
+        // print message when to-do is added
+        return "Got it. I've added this task:\n  " + currTask +
+                "\nNow you have " + tasks.size() + " tasks in the list.";
+    }
+
+
+    /**
+     * Creates a new deadline and adds it to the task list.
+     *
+     * @param strArray the array of strings of the words typed in by the user
+     * @param tasks the task list of which the task is to be added to
+     */
+    public static String createNewDeadline(String[] strArray, TaskList tasks) throws IOException, DukeException {
+        // check for exceptions
+        deadlineExceptionsCheck(strArray);
+
+        String[] deadlineDescDate = deadlineDescDate(strArray);
+        String deadlineDescription = deadlineDescDate[0];
+        String deadlineDate = deadlineDescDate[1];
+
+        // make sure deadline is in correct format to accept input
+        String deadlinePattern = "yyyy-MM-dd";
+        DateTimeFormatter deadlineFormatter = DateTimeFormatter.ofPattern(deadlinePattern);
+        try {
+            LocalDate.parse(deadlineDate, deadlineFormatter);
+        } catch (DateTimeParseException e) {
+            return "Invalid deadline format! Please type in deadline format as yyyy-MM-dd";
+        }
+
+        // add deadline tasks to ArrayList once conditions are satisfied
+        tasks.add(new Deadline(deadlineDescription, LocalDate.parse(deadlineDate)));
+        Task currTask = tasks.get(tasks.size() - 1);
+
+        Storage.writeToFile(tasks);
+
+        // print message when deadline is added
+        return "Got it. I've added this task:\n  " + currTask +
+                "\nNow you have " + tasks.size() + " tasks in the list.";
+    }
+
+
+    /**
+     * Method to return the deadline description and date.
+     *
+     * @param strArray the array of strings to get the description and date from
+     * @return the String array containing the deadline description and date
+     */
+    public static String[] deadlineDescDate(String[] strArray) throws DukeException {
+        String[] endArray = new String[2];
+        StringBuilder deadlineStr = new StringBuilder();
+        String deadline = "";
+        for (int i = 1; i < strArray.length; i++) {
+            if (strArray[i].equals("/by")) {
+                if (i + 1 > strArray.length - 1) {
+                    throw new DukeException("Please type a deadline after /by");
+                } else {
+                    deadline = strArray[i + 1];
+                }
+                break;
+            } else {
+                deadlineStr.append(" ");
+                deadlineStr.append(strArray[i]);
+            }
+        }
+        endArray[0] = deadlineStr.toString();
+        endArray[1] = deadline;
+        return endArray;
+    }
+
+
+    /**
+     * Method to check for exceptions for the deadline command.
+     *
+     * @param strArray the array of strings to check for exceptions
+     */
+    public static void deadlineExceptionsCheck(String[] strArray) throws DukeException {
+        // throw exception if no word after deadline
+        if (strArray.length < 2) {
+            throw new DukeException("The description of a deadline cannot be empty.");
+        }
+
+        // throw exception if no deadline time
+        int indexCheck = 1000;
+        for (int i = 1; i < strArray.length; i++) {
+            if (strArray[i].equals("/by")) {
+                indexCheck = i;
+            }
+        }
+        if (indexCheck == 1000) {
+            throw new DukeException("This description needs a timing! "
+                    + "Add again with /by followed by the deadline timing.");
+        }
+    }
+
+
+    /**
+     * Creates a new event and adds it to the task list.
+     *
+     * @param strArray the array of strings of the words typed in by the user
+     * @param tasks the task list of which the task is to be added to
+     */
+    public static String createNewEvent(String[] strArray, TaskList tasks) throws DukeException, IOException {
+        // check for exceptions
+        eventExceptionsCheck(strArray);
+
+        // create event string and deadline
+        StringBuilder eventStr = new StringBuilder();
+        StringBuilder eventTime = new StringBuilder();
+        for (int i = 1; i < strArray.length; i++) {
+            if (strArray[i].equals("/at")) {
+                break;
+            } else {
+                eventStr.append(" ");
+                eventStr.append(strArray[i]);
+            }
+        }
+        for (int i = 1; i < strArray.length; i++) {
+            if (strArray[i].equals("/at")) {
+                for (int j = i + 1; j < strArray.length; j++) {
+                    eventTime.append(" ");
+                    eventTime.append(strArray[j]);
+                }
+                break;
+            }
+        }
+        String eventDescription = eventStr.toString();
+        String eventDate = eventTime.toString();
+        tasks.add(new Event(eventDescription, eventDate));
+        Task currTask = tasks.get(tasks.size() - 1);
+        Storage.writeToFile(tasks);
+
+        // print message when event is added
+        return "Got it. I've added this task:\n  " + currTask +
+                "\nNow you have " + tasks.size() + " tasks in the list.";
+    }
+
+
+    /**
+     * Method to check for exceptions for the event command.
+     *
+     * @param strArray the array of strings to check for exceptions
+     */
+    public static void eventExceptionsCheck(String[] strArray) throws DukeException {
+        // throw exception if no word after event
+        if (strArray.length < 2) {
+            throw new DukeException("The description of an event cannot be empty.");
+        }
+
+        // throw exception if no event time
+        int indexCheck = 1000;
+        for (int i = 1; i < strArray.length; i++) {
+            if (strArray[i].equals("/at")) {
+                indexCheck = i;
+            }
+        }
+        if (indexCheck == 1000) {
+            throw new DukeException("This description needs a timing! "
+                    + "Add again with /at followed by the event timing.");
+        }
     }
 }
