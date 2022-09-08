@@ -71,12 +71,8 @@ public class Parser {
      */
     public static Command parseTodoCommand(String input) throws DukeException {
         String[] splitInput = input.split(" ", 2);
-        if (!isValidSplit(splitInput, 2)) {
-            throw new DukeException("OOPS!!! Invalid todo command.");
-        }
-        if (splitInput[1].trim().length() == 0) {
-            throw new DukeException("OOPS!!! duke.task.Todo description cannot be empty.");
-        }
+        assert splitInput.length != 2 : "OOPS!!! Invalid todo command.";
+        assert splitInput[1].trim().length() == 0: "OOPS!!! duke.task.Todo description cannot be empty.";
         return new AddCommand(new Todo(splitInput[1]));
     }
 
@@ -88,12 +84,8 @@ public class Parser {
      */
     public static Command parseDeadlineCommand(String input) throws DukeException {
         String[] splitInput = input.split(" ", 2);
-        if (!isValidSplit(splitInput, 2)) {
-            throw new DukeException("OOPS!!! Invalid deadline command.");
-        }
-        if (splitInput[1].trim().length() == 0) {
-            throw new DukeException("OOPS!!! duke.task.Deadline description cannot be empty.");
-        }
+        assert splitInput.length != 2 : "OOPS!!! Invalid deadline command.";
+        assert splitInput[1].trim().length() == 0: "OOPS!!! duke.task.Deadline description cannot be empty.";
         String[] splitInputByDeadlineSplit = splitInput[1].split(DEADLINE_SPLIT, 2);
         if (!isValidSplit(splitInputByDeadlineSplit, 2)) {
             throw new DukeException("OOPS!!! Invalid deadline command.");
@@ -121,12 +113,8 @@ public class Parser {
      */
     public static Command parseEventCommand(String input) throws DukeException {
         String[] splitInput = input.split(" ", 2);
-        if (!isValidSplit(splitInput, 2)) {
-            throw new DukeException("OOPS!!! Invalid event command.");
-        }
-        if (splitInput[1].trim().length() == 0) {
-            throw new DukeException("OOPS!!! duke.task.Event description cannot be empty.");
-        }
+        assert splitInput.length != 2 : "OOPS!!! Invalid event command.";
+        assert splitInput[1].trim().length() == 0: "OOPS!!! duke.task.Event description cannot be empty.";
         String[] splitInputByEventSplit = splitInput[1].split(EVENT_SPLIT, 2);
         if (!isValidSplit(splitInputByEventSplit, 2)) {
             throw new DukeException("OOPS!!! Invalid event command.");
@@ -208,12 +196,8 @@ public class Parser {
      */
     public static Command parseFindCommand(String input) throws DukeException {
         String[] splitInput = input.split(" ", 2);
-        if (!isValidSplit(splitInput, 2)) {
-            throw new DukeException("OOPS!!! Invalid find command.");
-        }
-        if (splitInput[1].trim().length() == 0) {
-            throw new DukeException("OOPS!!! Find command description cannot be empty.");
-        }
+        assert splitInput.length != 2 : "OOPS!!! Invalid deadline command.";
+        assert splitInput[1].trim().length() == 0: "OOPS!!! duke.task.Deadline description cannot be empty.";
         return new FindCommand(splitInput[1].trim());
     }
 
