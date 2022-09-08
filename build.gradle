@@ -54,8 +54,8 @@ shadowJar {
 
 checkstyle {
     toolVersion = '10.2'
-    checkstyleMain = false
-    checkstyleTest = false
+    checkstyleMain.enabled = false
+    checkstyleTest.enabled = false
 }
 
 run{
