@@ -142,67 +142,101 @@ public class Duke {
     }
 
 
-    private Task createTask(String[] commands) throws IllegalArgumentException {
+    private Task createTodoTask(String[] commands) throws IllegalArgumentException {
 
-        String description = "";
-        boolean isDeadline = false;
+        // Check if the given commands are valid
+        if (!isValidToDoCommand(commands)) {
+            throw new IllegalArgumentException("todo");
+        }
+
+        // Second token onwards is the description
+        String description = commands[1];
+        for (int i = 2; i < commands.length; i++) {
+            description = description.concat(String.format(" %s", commands[i]));
+        }
+
+        return new ToDo(description);
+    }
+
+
+    // Same method used for a deadline and event task.
+    // Differentiate between the two types of tasks using a boolean flag.
+    private Task createDeadlineOrEventTask(String[] commands, boolean isDeadlineTask) {
+
+        // Check if the given commands are valid
+        if (!isValidEventCommand(commands)) {
+            String taskType = isDeadlineTask ? "deadline" : "event";
+            throw new IllegalArgumentException(taskType);
+        }
+
+        // Second token until /at is the description
+        String description = commands[1];
+
+        int i = 0;
+        for (i = 2; i < commands.length; i++) {
+            if (commands[i].charAt(0) == TIME_DELIMITER) {
+                // Stop adding tokens to the description
+                break;
+            }
+            description = description.concat(String.format(" %s", commands[i]));
+        }
+
+        // Skip over the delimiter token
+        // The tokens after the delimiter are the date and time
+        i++;
+        String dateAndTime = commands[i];
+        for (i++; i < commands.length; i++) {
+            dateAndTime = dateAndTime.concat(String.format(" %s", commands[i]));
+        }
+
+        return isDeadlineTask ? new Deadline(description, dateAndTime) : new Event(description, dateAndTime);
+    }
+
+
+    private Task createTask(String[] commands) throws IllegalArgumentException {
 
         // The first token is used to identify which type of task to create
         switch (commands[0]) {
 
         case COMMAND_ADD_TODO:
-            // Check if the given commands are valid
-            if (!isValidToDoCommand(commands)) {
-                throw new IllegalArgumentException("todo");
+            try {
+                return createTodoTask(commands);
+            } catch (IllegalArgumentException e) {
+                // Unable to create ToDo task
+                throw e;
             }
 
-            // Second token onwards is the description
-            description = commands[1];
-            for (int i = 2; i < commands.length; i++) {
-                description = description.concat(String.format(" %s", commands[i]));
-            }
 
-            return new ToDo(description);
-
-
-        // Handle adding a Deadline task and an Event task the same way
         case COMMAND_ADD_DEADLINE:
-            isDeadline = true;
-            // Fall through
+            try {
+                return createDeadlineOrEventTask(commands, true);
+            } catch (IllegalArgumentException e) {
+                // Unable to create Deadline task
+                throw e;
+            }
+
 
         case COMMAND_ADD_EVENT:
-
-            // Check if the given commands are valid
-            if (!isValidEventCommand(commands)) {
-                throw new IllegalArgumentException("deadline/event");
+            try {
+                return createDeadlineOrEventTask(commands, false);
+            } catch (IllegalArgumentException e) {
+                // Unable to create Event task
+                throw e;
             }
-
-            // Second token until /at is the description
-            description = commands[1];
-
-            int i = 0;
-            for (i = 2; i < commands.length; i++) {
-                if (commands[i].charAt(0) == TIME_DELIMITER) {
-                    // Stop adding tokens to the description
-                    break;
-                }
-                description = description.concat(String.format(" %s", commands[i]));
-            }
-
-            // Skip over the delimiter token
-            // The tokens after the delimiter are the date and time
-            i++;
-            String dateAndTime = commands[i];
-            for (i++; i < commands.length; i++) {
-                dateAndTime = dateAndTime.concat(String.format(" %s", commands[i]));
-            }
-
-            return isDeadline ? new Deadline(description, dateAndTime) : new Event(description, dateAndTime);
 
 
         default:
             return null;
         }
+    }
+
+
+    private boolean isValidToDoCommand(String[] commands) {
+        // Format of ToDo task: todo description
+
+        // Therefore, second token onwards is the description
+        // So check if there is a second token
+        return commands.length >= 2;
     }
 
 
@@ -247,15 +281,6 @@ public class Duke {
         }
 
         throw new IllegalArgumentException();
-    }
-
-
-    private boolean isValidToDoCommand(String[] commands) {
-        // Format of ToDo task: todo description
-
-        // Therefore, second token onwards is the description
-        // So check if there is a second token
-        return commands.length >= 2;
     }
 
 
