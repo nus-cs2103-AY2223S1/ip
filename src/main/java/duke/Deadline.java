@@ -29,6 +29,16 @@ public class Deadline extends Task {
     }
 
     /**
+     * A method to check if the given dateTime is equal to that of the Deadline object.
+     *
+     * @param at The dateTime to check against.
+     * @return boolean Whether the dateTimes are equal.
+     */
+    public boolean sameTime(String at) {
+        return false;
+    }
+
+    /**
      * A method which adds a task to the given taskList input.
      *
      * @param taskList The taskList before a Deadline Task is added.

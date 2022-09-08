@@ -153,4 +153,18 @@ public class TaskList {
         }
     }
 
+    /**
+     * A method to check if the timing of an event clashes with that of another.
+     *
+     * @param dateTime The String containing the date and time that an event is at.
+     * @throws DukeException Thrown when there is a clash between the dates of the Events.
+     */
+    public void checkClash(String dateTime) throws DukeException {
+        for (Task t : this.tasks) {
+            if (t.sameTime(dateTime)) {
+                throw new DukeException("Sorry, there is a clash in the Events!");
+            }
+        }
+    }
+
 }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author Alvin Jiang Min Jun
  * @version v0.1
  */
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -49,9 +49,15 @@ public class Task {
      * @param taskList The taskList before a Task is added.
      * @return ArrayList of type Task The taskList after the Task is added.
      */
-    public String printAndStoreTask(ArrayList<Task> taskList) {
-        return null;
-    }
+    public abstract String printAndStoreTask(ArrayList<Task> taskList);
+
+    /**
+     * A method to check if there is a clash in dates between the tasks.
+     *
+     * @param dateTime dateTime of the given Task.
+     * @return boolean Whether there is a clash.
+     */
+    public abstract boolean sameTime(String dateTime);
 
     /**
      * A method to toggle the status of the task to Done.

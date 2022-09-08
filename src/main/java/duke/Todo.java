@@ -1,5 +1,6 @@
 package duke;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -18,6 +19,16 @@ public class Todo extends Task {
      */
     public Todo(String description) {
         super(description);
+    }
+
+    /**
+     * A method to check if the given dateTime is equal to that of the Todo object.
+     *
+     * @param at The dateTime to check against.
+     * @return boolean Whether the dateTimes are equal.
+     */
+    public boolean sameTime(String at) {
+        return false;
     }
 
     /**
