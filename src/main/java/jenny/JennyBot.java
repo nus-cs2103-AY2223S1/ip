@@ -69,6 +69,8 @@ public final class JennyBot {
      * @return the response from the application after running the command.
      */
     public String getResponse(String input) {
+        // We already used java Streams here to implement a feature in a previous commit so this comment here is just
+        // for branching/merging/grading purposes and will be removed in a future commit.
         ByteArrayOutputStream res = new ByteArrayOutputStream();
         PrintStream out = new PrintStream(res, true, StandardCharsets.UTF_8);
         ui.setPrintStream(out);
