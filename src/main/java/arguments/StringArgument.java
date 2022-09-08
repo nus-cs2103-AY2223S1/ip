@@ -41,5 +41,7 @@ public class StringArgument extends Argument<String> {
         } catch (EmptyArgumentException e) {
             throw new DukeException(e.getMessage());
         }
+
+        assert super.value != null;
     }
 }

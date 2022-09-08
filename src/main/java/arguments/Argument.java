@@ -34,6 +34,7 @@ public abstract class Argument<T> {
      */
     public T getParameter() throws DukeException {
         validate();
+        assert value != null;
         return value;
     }
 

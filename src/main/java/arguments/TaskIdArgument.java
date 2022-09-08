@@ -27,5 +27,7 @@ public class TaskIdArgument extends Argument<Integer> {
         } catch (DukeException ex) {
             throw new DukeException("This command needs a task number e.g 1");
         }
+
+        assert super.value != null;
     }
 }
