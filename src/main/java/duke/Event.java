@@ -1,6 +1,7 @@
 package duke;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -23,6 +24,7 @@ public class Event extends Task {
      * Create Event with description, date in MMM DD YYYY, time in hh:mm aa
      * @throws ImproperFormatException when by does not follow specified format
      */
+     
     public Event(String description, String at) throws ImproperEventFormatException {
         super(description);
         this.at = at;
@@ -41,6 +43,7 @@ public class Event extends Task {
      * @return String representation in
      *         "[T] [status] task (at: MMM DD YYYY h:mm a)"
      */
+     
     @Override
     public String toString() {
         return "[E] " + this.getStatusIcon() + " "
@@ -58,6 +61,7 @@ public class Event extends Task {
      *         "T|0 or 1|task|at|"
      *         where 1 represents the task is marked and 0 otherwise
      */
+     
     @Override
     public String toSaveVersion() {
         if (this.isDone()) {
@@ -74,6 +78,19 @@ public class Event extends Task {
                     + "\n";
         }
     }
+    
+    private LocalDateTime getDateTime() {
+        return LocalDateTime.of(this.date, this.time);
+    }
+
+    public int compareChronologically(Event event) {
+        return this.getDateTime().compareTo(event.getDateTime());
+    }
+
+    public int compareLexicographically(Event event) {
+        return this.description.compareTo(event.description);
+    }
+    
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Event) {

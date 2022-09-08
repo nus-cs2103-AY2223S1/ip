@@ -25,7 +25,6 @@ public class Parser {
         switch (keyword) {
             case ("bye"):
                 return new ExitCommand();
-
             case ("list"):
                 return new ListCommand();
             default:
@@ -41,7 +40,7 @@ public class Parser {
                 ToDo toDo = new ToDo(description);
                 return new AddCommand(toDo);
             case ("deadline"):
-                // description: "(deadlineTask) /by (by)
+                // description: "(deadlineTask) /by (by)"
                 String[] deadlineArr = description.split(" /by", 2);
                 // deadlineArr: ["deadlineTask", " by"]
                 if (deadlineArr.length == 1) {
@@ -68,6 +67,28 @@ public class Parser {
                 }
                 Event event = new Event(evenTask, at);
                 return new AddCommand(event);
+            case ("sort"):
+                // description: "(deadline/ event) (chrono/ lexi) (increasing/ decreasing)"
+                String[] sortArr = description.split(" ", 3);
+                // sortArr: ["(deadline/ event)", "chrono/ lexi)", "increasing/ decreasing)"]
+                if (sortArr.length < 3) {
+                    throw new ImproperEventFormatException();
+                }
+                if (sortArr[1].equals("chrono")) {
+                    return new SortCommand(
+                            TypeOfTask.valueOf(sortArr[0]),
+                            Order.valueOf(sortArr[2]),
+                            true
+                    );
+                }
+                if (sortArr[1].equals("lexi")) {
+                    return new SortCommand(
+                            TypeOfTask.valueOf(sortArr[0]),
+                            Order.valueOf(sortArr[2]),
+                            false
+                    );
+                }
+                throw new ImproperEventFormatException();
             case ("mark"):
                 try {
                     int x = Integer.valueOf(description);

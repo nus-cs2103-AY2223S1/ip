@@ -33,11 +33,6 @@ public class TaskListTest {
     }
 
     @Test
-    void testAddTask() {
-
-    }
-
-    @Test
     void testToString() {
         TaskList testTaskList = new TaskList();
         testTaskList.addTask(toDo1);
