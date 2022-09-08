@@ -135,10 +135,24 @@ public class Task {
      */
     public static String find(ArrayList<Task> workList, String userInput) {
         String toPrint = Constants.FIND_MESSAGE + "\n";
-        String keyword = userInput.substring(5);
-        for (int i = 0; i < workList.size(); i++) {
-            if (workList.get(i).contain(keyword)) {
-                toPrint += workList.get(i).toString() + "\n";
+        String fullKeyword = userInput.substring(5);
+        // Key word is too short, only find the full keyword
+        if (fullKeyword.length() < 3) {
+            for (int i = 0; i < workList.size(); i++) {
+                if (workList.get(i).contain(fullKeyword)) {
+                    toPrint += workList.get(i).toString() + "\n";
+                }
+            }
+            return toPrint;
+        }
+
+        for (int j = 0; j < fullKeyword.length() - 2; j += 3) {
+            String partialKeyword = fullKeyword.substring(j, j+3);
+            toPrint += partialKeyword + "\n";
+            for (int i = 0; i < workList.size(); i++) {
+                if (workList.get(i).contain(partialKeyword)) {
+                    toPrint += workList.get(i).toString() + "\n";
+                }
             }
         }
         return toPrint;
