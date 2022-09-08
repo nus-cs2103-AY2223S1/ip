@@ -25,6 +25,7 @@ public class Duke {
                     String command = parsedUserInput[0];
                     String arg1 = parsedUserInput[1];
                     String arg2 = parsedUserInput[2];
+                    arg2 = arg2.replaceAll(" ","");
                     switch(command) {
                     case COMMAND_LIST:
                         chat("Here are the tasks in your list: \n" + list());
@@ -69,6 +70,8 @@ public class Duke {
                 } catch (MissingArgumentException e) {
                     chat(e.getLocalizedMessage() + "\n");
                 } catch (InvalidCommandException e) {
+                    chat(e.getLocalizedMessage() + "\n");
+                } catch (InvalidDateException e) {
                     chat(e.getLocalizedMessage() + "\n");
                 }
             }
