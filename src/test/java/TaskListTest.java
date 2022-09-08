@@ -22,7 +22,7 @@ public class TaskListTest {
             tasklist.addTask(new ToDo("Print out lab worksheet"));
             tasklist.isValidTask(0);
         } catch (DukeException e) {
-            assertEquals("Hm... Duke can't find this task.", e.getMessage());
+            assertEquals("uhoh... bobo can't find this task (・へ・)??", e.getMessage());
         }
     }
 
@@ -33,7 +33,7 @@ public class TaskListTest {
             tasklist.addTask(new ToDo("Buy bread"));
             tasklist.isValidTask(2);
         } catch (DukeException e) {
-            assertEquals("Hm... Duke can't find this task.", e.getMessage());
+            assertEquals("uhoh... bobo can't find this task (・へ・)??", e.getMessage());
         }
     }
 }

@@ -13,23 +13,26 @@ import duke.task.TaskType;
  * the user's input upon its execution.
  */
 public class AddTaskCommand extends Command {
-    private TaskType taskType;
-    private String userInput;
+    /** The type of task to be added to the task list */
+    private final TaskType taskType;
+    /** The input entered by the user into the command line*/
+    private final String userInput;
 
     /**
      * Constructs an AddTaskCommand that will add the task to specified
      * task list upon execution. Supports only to-do, deadline, and event tasks.
      *
-     * @param userInput The command input by the user
+     * @param userInput The command input by the user.
      */
     public AddTaskCommand(String userInput) {
         this.userInput = userInput;
         if (userInput.matches("(?i)^(todo)(.*)")) {
-            this.taskType = TaskType.TODO;
+            taskType = TaskType.TODO;
         } else if (userInput.matches("(?i)^(deadline)(.*)")) {
-            this.taskType = TaskType.DEADLINE;
-        } else if (userInput.matches("(?i)^(event)(.*)")) {
-            this.taskType = TaskType.EVENT;
+            taskType = TaskType.DEADLINE;
+        } else {
+            // should have regex (?i)^(event)(.*)
+            taskType = TaskType.EVENT;
         }
     }
 
@@ -37,13 +40,17 @@ public class AddTaskCommand extends Command {
      * Runs the command and stores the specified task (to-do, event, deadline) into the linked list,
      * provided the respective task formats are properly followed.
      *
-     * @param tasks The task list the task is to be added to
-     * @param storage The storage manager that deals with loading and saving tasks to the hard disk
-     * @throws DukeException If the command is not properly formatted, or lacks information
+     * @param tasks The task list the task is to be added to.
+     * @param storage The storage manager that deals with loading and saving tasks to the hard disk.
+     * @return Type task Response containing the added task and an added successfully message.
+     * @throws DukeException If the command is not properly formatted, or lacks information.
      */
     @Override
     public Response<Task> execute(TaskList tasks, Storage storage) throws DukeException {
-        Task addedTask = this.taskType.validateCommand(this.userInput);
-        return new Response<Task>(ResponseType.TASK, tasks.addTask(addedTask), addedTask);
+        // checks that the user input is correctly formatted for the task type before
+        // adding it to the task list
+        Task addedTask = taskType.validateCommand(userInput);
+        String successMessage = tasks.addTask(addedTask);
+        return new Response<>(ResponseType.TASK, successMessage, addedTask);
     }
 }
