@@ -7,11 +7,14 @@ import org.junit.jupiter.api.Test;
 import duke.exception.DukeException;
 import duke.task.ToDo;
 
+import java.util.Collections;
+import java.util.HashSet;
 
 
 public class AddCommandTest {
 
-    private final AddCommand addToDo = new AddCommand(new ToDo("submit iP week 3"));
+    private final AddCommand addToDo = new AddCommand(new ToDo("submit iP week 3"),
+            new HashSet(Collections.singleton("submit iP week 3")));
 
     public AddCommandTest() throws DukeException {
     }
