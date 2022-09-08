@@ -8,10 +8,12 @@ import duke.command.EventCommand;
 import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.PriorityCommand;
 import duke.command.ToDoCommand;
 import duke.command.UnmarkCommand;
 import duke.exception.InvalidDateTimeException;
 import duke.exception.InvalidInputException;
+import duke.exception.InvalidPriorityException;
 import duke.exception.MissingDeadlineDescriptionException;
 import duke.exception.MissingDescriptionException;
 import duke.exception.MissingEventDescriptionException;
@@ -54,6 +56,8 @@ public class Parser {
                 commandToReturn = handleEventParse(inputSpilt[1]);
             } else if (firstChar.compareTo(FindCommand.COMMAND_WORD) == 0) {
                 commandToReturn = new FindCommand(inputSpilt[1]);
+            } else if (firstChar.compareTo(PriorityCommand.COMMAND_WORD) == 0) {
+                commandToReturn = handlePriorityParse(inputSpilt[1]);
             } else {
                 throw new InvalidInputException();
             }
@@ -84,6 +88,20 @@ public class Parser {
         }
     }
 
+    private Command handlePriorityParse(String input) throws InvalidPriorityException {
+        String[] prioritySpilt = input.split(" ", 2);
+        int taskToChangePriority = handleParseInt(prioritySpilt[0], "change priority level");
+        switch (prioritySpilt[1]) {
+            case "high" :
+            case "medium" :
+            case "low" :
+                return new PriorityCommand(taskToChangePriority, prioritySpilt[1]);
+            default:
+                throw new InvalidPriorityException();
+        }
+
+    }
+
     private Command handleDeadlineParse(String input) throws MissingDeadlineDescriptionException {
         String[] deadlineSpilt = input.split("/by ", 2);
         try {
@@ -110,7 +128,7 @@ public class Parser {
 
     private Command handleEventParse(String input) throws MissingEventDescriptionException {
         String[] eventSpilt = input.split("/at ", 2);
-        if (eventSpilt.length == 2) {
+        if (eventSpilt.length != 2) {
             throw new MissingEventDescriptionException();
         } else {
             return new EventCommand(eventSpilt[0], eventSpilt[1]);

@@ -75,6 +75,16 @@ public class TaskList {
     }
 
     /**
+     * Change the priority of the specific task in the task list.
+     * @param taskNum The index of the task to change its priority level.
+     * @param priority The priority level to change to.
+     */
+    public void changeTaskPriority(int taskNum, String priority) {
+        Task currTask = listOfTasks.get(taskNum);
+        currTask.setTaskPriority(priority);
+    }
+
+    /**
      * Returns an arraylist containing all the tasks that matches the keyword by the user input.
      * @param keyword The keyword used to find list of tasks that matches it.
      * @return Returns an arraylist containing all the tasks that matches the keyword.

@@ -6,10 +6,17 @@ package duke.task;
 public class Task {
     protected String description;
     protected boolean isDone;
+    protected Priority taskPriority;
+    public enum Priority {
+        HIGH,
+        MEDIUM,
+        LOW;
+    }
 
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        this.taskPriority = Priority.LOW;
     }
 
     protected String getStatusIcon() {
@@ -59,6 +66,36 @@ public class Task {
      */
     public boolean containKeyword(String keyword) {
         return this.description.contains(keyword);
+    }
+
+    public String getTaskPriority() {
+        switch (this.taskPriority) {
+            case HIGH:
+                return "HIGH";
+            case MEDIUM:
+                return "MEDIUM";
+            case LOW :
+                return "LOW";
+            default:
+                assert false;
+                return null;
+        }
+    }
+
+    public void setTaskPriority(String priority) {
+        switch (priority) {
+            case "high" :
+                this.taskPriority = taskPriority.HIGH;
+                break;
+            case "medium" :
+                this.taskPriority = taskPriority.MEDIUM;
+                break;
+            case "low" :
+                this.taskPriority = taskPriority.LOW;
+                break;
+            default:
+                assert false;
+        }
     }
 
 }

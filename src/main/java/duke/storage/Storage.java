@@ -33,39 +33,39 @@ public class Storage {
             String currLine = s.nextLine();
             String[] spiltCurrLine = currLine.split(",", 2);
             if (spiltCurrLine[0].equals("T")) {
-                String[] spiltCurrTodo = spiltCurrLine[1].split(",", 2);
+                String[] spiltCurrTodo = spiltCurrLine[1].split(",", 3);
                 ToDo currTodo = new ToDo(spiltCurrTodo[1]);
-                if (spiltCurrTodo[0].equals("1")) {
-                    currTodo.markAsDone();
-                } else {
-                    currTodo.markAsNotDone();
-                }
+                checkMarkAsDone(currTodo, spiltCurrTodo[0]);
+                checkPriority(currTodo, spiltCurrTodo[2]);
                 tasks.addTask(currTodo);
             } else if (spiltCurrLine[0].equals("D")) {
-                String[] spiltCurrDeadline = spiltCurrLine[1].split(",", 4);
+                String[] spiltCurrDeadline = spiltCurrLine[1].split(",", 5);
                 LocalDate localDate = null;
                 LocalTime localTime = null;
-                if (spiltCurrDeadline.length == 4) {
+                if (spiltCurrDeadline.length == 5) {
                     localDate = LocalDate.parse(spiltCurrDeadline[2]);
                     localTime = LocalTime.parse(spiltCurrDeadline[3]);
-                } else {
+                } else if (spiltCurrLine.length == 4){
                     localDate = LocalDate.parse(spiltCurrDeadline[2]);
+                } else {
+                    assert false;
                 }
                 Deadline currDeadline = new Deadline(spiltCurrDeadline[1], localDate, localTime);
-                if (spiltCurrDeadline[0].equals("1")) {
-                    currDeadline.markAsDone();
+
+                if (spiltCurrDeadline.length == 5) {
+                    checkPriority(currDeadline, spiltCurrDeadline[4]);
+                } else if (spiltCurrDeadline.length == 4) {
+                    checkPriority(currDeadline, spiltCurrDeadline[3]);
                 } else {
-                    currDeadline.markAsNotDone();
+                    assert false;
                 }
+                checkMarkAsDone(currDeadline, spiltCurrDeadline[0]);
                 tasks.addTask(currDeadline);
             } else if (spiltCurrLine[0].equals("E")) {
-                String[] spiltCurrEvent = spiltCurrLine[1].split(",", 3);
+                String[] spiltCurrEvent = spiltCurrLine[1].split(",", 4);
                 Event currEvent = new Event(spiltCurrEvent[1], spiltCurrEvent[2]);
-                if (spiltCurrEvent[0].equals("1")) {
-                    currEvent.markAsDone();
-                } else {
-                    currEvent.markAsNotDone();
-                }
+                checkMarkAsDone(currEvent, spiltCurrEvent[0]);
+                checkPriority(currEvent, spiltCurrEvent[3]);
                 tasks.addTask(currEvent);
             } else {
                 assert false;
@@ -73,6 +73,26 @@ public class Storage {
             }
         }
 
+    }
+
+    private void checkMarkAsDone(Task task, String input) {
+        if (input.equals("1")) {
+            task.markAsDone();
+        } else {
+            task.markAsNotDone();
+        }
+    }
+
+    private void checkPriority(Task task, String priority) {
+        if (priority.equals("HIGH")) {
+            task.setTaskPriority("high");
+        } else if (priority.equals("MEDIUM")) {
+            task.setTaskPriority("medium");
+        } else if (priority.equals("LOW")) {
+            task.setTaskPriority("low");
+        } else {
+            assert false;
+        }
     }
 
 
