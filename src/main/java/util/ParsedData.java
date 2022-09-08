@@ -32,8 +32,7 @@ public class ParsedData {
             this.formatter = DateTimeFormatter.ofPattern(DEFAULT_TIME_FORMAT);
             this.dateTime = LocalDateTime.parse(time, this.formatter);
             DateTimeFormatter printFormat = DateTimeFormatter.ofPattern(PRINT_TIME_FORMAT);
-            this.timeText = printFormat.format(this.dateTime).
-                    toString().replaceAll("-", "/").
+            this.timeText = printFormat.format(this.dateTime).replaceAll("-", "/").
                     replace('T', ' ');
         } catch (DateTimeParseException e) {
             //System.out.println("You could enter the time in this format: dd/MM/yyyy HH:mm");
@@ -57,8 +56,7 @@ public class ParsedData {
             this.formatter = DateTimeFormatter.ofPattern(DEFAULT_TIME_FORMAT);
             this.dateTime = LocalDateTime.parse(time, this.formatter);
             DateTimeFormatter printFormat = DateTimeFormatter.ofPattern(PRINT_TIME_FORMAT);
-            this.timeText = printFormat.format(this.dateTime).
-                    toString().replaceAll("-", "/").
+            this.timeText = printFormat.format(this.dateTime).replaceAll("-", "/").
                     replace('T', ' ');
         } catch (DateTimeParseException e) {
             //System.out.println("You could enter the time in this format: dd/MM/yyyy HH:mm");

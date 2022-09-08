@@ -7,8 +7,6 @@ import util.FileParser;
 import util.Storage;
 import util.Ui;
 
-import java.util.Scanner;
-
 /**
  * This class encapsulates the Chat Bot.
  */
@@ -116,20 +114,20 @@ public class Alan {
         return response;
     }
 
-    // Prints a greeting
-    private void greet() {
-        final String logo = " $$$$$$\\  $$\\        $$$$$$\\  $$\\   $$\\\n"
-                + "$$  __$$\\ $$ |      $$  __$$\\ $$$\\  $$ |\n"
-                + "$$ /  $$ |$$ |      $$ /  $$ |$$$$\\ $$ |\n"
-                + "$$$$$$$$ |$$ |      $$$$$$$$ |$$ $$\\$$ |\n"
-                + "$$  __$$ |$$ |      $$  __$$ |$$ \\$$$$ |\n"
-                + "$$ |  $$ |$$ |      $$ |  $$ |$$ |\\$$$ |\n"
-                + "$$ |  $$ |$$$$$$$$\\ $$ |  $$ |$$ | \\$$ |\n"
-                + "\\__|  \\__|\\________|\\__|  \\__|\\__|  \\__|\n";
-
-        System.out.println(getTimeGreeting() +
-                "!\nMy name is\n\n" + logo);
-    }
+    // Prints a greeting (Deprecated with GUI)
+//    private void greet() {
+//        final String logo = " $$$$$$\\  $$\\        $$$$$$\\  $$\\   $$\\\n"
+//                + "$$  __$$\\ $$ |      $$  __$$\\ $$$\\  $$ |\n"
+//                + "$$ /  $$ |$$ |      $$ /  $$ |$$$$\\ $$ |\n"
+//                + "$$$$$$$$ |$$ |      $$$$$$$$ |$$ $$\\$$ |\n"
+//                + "$$  __$$ |$$ |      $$  __$$ |$$ \\$$$$ |\n"
+//                + "$$ |  $$ |$$ |      $$ |  $$ |$$ |\\$$$ |\n"
+//                + "$$ |  $$ |$$$$$$$$\\ $$ |  $$ |$$ | \\$$ |\n"
+//                + "\\__|  \\__|\\________|\\__|  \\__|\\__|  \\__|\n";
+//
+//        System.out.println(getTimeGreeting() +
+//                "!\nMy name is\n\n" + logo);
+//    }
 
     // Checks hour of day and returns appropriate greeting
     private String getTimeGreeting() {

@@ -48,12 +48,12 @@ public class Parser {
     }
 
     private ParsedData parseFind(String input) throws AlanException {
-        String first[] = input.split(" ", 2);
-        String command = first[0];
+        String[] firstSplit = input.split(" ", 2);
+        String command = firstSplit[0];
         String keyword;
 
         try {
-            keyword = first[1];
+            keyword = firstSplit[1];
         } catch (IndexOutOfBoundsException e) {
             throw new NoKeywordException(command);
         }
@@ -62,11 +62,11 @@ public class Parser {
 
     private ParsedData parseListMod(String input) throws AlanException {
         int listIndex;
-        String[] first = input.split(" ", 2);
-        String command = first[0];
+        String[] firstSplit = input.split(" ", 2);
+        String command = firstSplit[0];
 
         try {
-            listIndex = Integer.parseInt(first[1]);
+            listIndex = Integer.parseInt(firstSplit[1]);
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new NoValueException(command);
         }
@@ -77,24 +77,24 @@ public class Parser {
 
     private ParsedData parseTimedTask(String input) throws AlanException {
         String command, task, during, time;
-        String[] first, second, third;
+        String[] firstSplit, secondSplit, thirdSplit;
 
-        first = input.split(" ", 2);
-        command = first[0];
+        firstSplit = input.split(" ", 2);
+        command = firstSplit[0];
 
         //if second split is null then no description was added
         try {
-            second = first[1].split(" /", 2);
+            secondSplit = firstSplit[1].split(" /", 2);
         } catch (IndexOutOfBoundsException e) {
             throw new NoDescriptionException(command);
         }
-        task = second[0];
+        task = secondSplit[0];
 
         //if third split is null then no time was added
         try {
-            third = second[1].split(" ", 2);
-            during = third[0];
-            time = third[1];
+            thirdSplit = secondSplit[1].split(" ", 2);
+            during = thirdSplit[0];
+            time = thirdSplit[1];
         } catch (IndexOutOfBoundsException e) {
             throw new NoTimeException(command);
         }
@@ -104,11 +104,11 @@ public class Parser {
 
     private ParsedData parseUntimedTask(String input) throws AlanException {
         String command, task;
-        String[] first = input.split(" ", 2);
-        command = first[0];
+        String[] firstSplit = input.split(" ", 2);
+        command = firstSplit[0];
 
         try {
-            String[] second = first[1].split(" /", 2);
+            String[] second = firstSplit[1].split(" /", 2);
             task = second[0];
         } catch (IndexOutOfBoundsException e) {
             throw new NoDescriptionException(command);
