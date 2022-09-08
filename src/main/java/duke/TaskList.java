@@ -61,6 +61,7 @@ public class TaskList {
     public Task getTask(int idx) {
         return tasks.get(idx);
     }
+
     public int getSize() {
         return tasks.size();
     }

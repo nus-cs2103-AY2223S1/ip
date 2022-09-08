@@ -6,5 +6,3 @@ mark 2
 mark 3
 unmark 3
 deadline cs2103 lvl8 /by 25-08-2022 2359
-list
-mark 4
