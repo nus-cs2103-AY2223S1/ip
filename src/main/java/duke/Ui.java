@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Class that handles user interface of Duke Bot.
  */
 public class Ui {
-    public static String LOGO = " ____        _        \n"
+    public static final String LOGO = " ____        _        \n"
                              + "|  _ \\ _   _| | _____ \n"
                              + "| | | | | | | |/ / _ \\\n"
                              + "| |_| | |_| |   <  __/\n"
@@ -24,7 +24,7 @@ public class Ui {
 
     /**
      * Gets the next line of user input.
-     * 
+     *
      * @return Next line of user input.
      */
     public String getNextLine() {
@@ -42,7 +42,7 @@ public class Ui {
 
     /**
      * Formats and prints a string.
-     * 
+     *
      * @param message Message string to be printed.
      */
     public void printMessage(String message) {
@@ -57,7 +57,7 @@ public class Ui {
     /**
      * Sets the verbosity of user interface.
      * Verbosity determines whether the user interface prints messages.
-     * 
+     *
      * @param verbosity Value of verbosity.
      */
     public void setVerbose(boolean verbosity) {

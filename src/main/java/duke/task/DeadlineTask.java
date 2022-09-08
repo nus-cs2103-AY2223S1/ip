@@ -1,10 +1,10 @@
 package duke.task;
 
-import duke.DukeException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import duke.DukeException;
 
 /**
  * Class representing a DeadlineTask.
@@ -14,7 +14,7 @@ public class DeadlineTask extends Task {
 
     /**
      * Class constructor for DeadlineTask.
-     * 
+     *
      * @param description Command string being used to create DeadlineTask.
      * @throws DateTimeParseException If datetime given cannot be parsed.
      * @throws DukeException If command is invalid.

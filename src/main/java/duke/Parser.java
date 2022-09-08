@@ -1,11 +1,11 @@
 package duke;
 
+import java.time.format.DateTimeParseException;
+
+import duke.task.DeadlineTask;
 import duke.task.EventTask;
 import duke.task.Task;
-import duke.task.DeadlineTask;
 import duke.task.TodoTask;
-
-import java.time.format.DateTimeParseException;
 
 /**
  * Class that handles parsing and execution of command strings for Duke Bot commands.
@@ -17,7 +17,7 @@ public class Parser {
 
     /**
      * Class constructor for Parser.
-     * 
+     *
      * @param taskList TaskList instance tracking tasks in Duke Bot.
      * @param dukeInstance Duke instance representing Duke Bot.
      * @param uiInstance Ui instance representing user interface for Duke Bot.
@@ -31,7 +31,7 @@ public class Parser {
     /**
      * Parses and executes a command for Duke Bot.
      * Verbose argument can be used to control output of Ui.
-     * 
+     *
      * @param command Command string for parsing and execution.
      * @param isVerbose Boolean to indicate verbosity of Ui.
      * @throws DukeException If command cannot be parsed or is invalid.
@@ -54,7 +54,7 @@ public class Parser {
     /**
      * Parses and executes task commands for Duke Bot.
      * Task commands are in the format "task description separator time".
-     * 
+     *
      * @param command Task command string.
      * @throws DukeException If command cannot be parsed or is invalid.
      */
@@ -78,7 +78,7 @@ public class Parser {
      * Parses and executes commands that are two parts long for Duke Bot.
      * Two part long commands contains one whitespace after command.
      * Two part long commands are in the format "command description".
-     * 
+     *
      * @param command Two part long command.
      * @throws DukeException If command cannot be parsed or is invalid.
      */
@@ -107,7 +107,7 @@ public class Parser {
 
     /**
      * Parses and executes find command for Duke Bot.
-     * 
+     *
      * @param command Find command.
      * @throws DukeException If command cannot be parsed or is invalid.
      */
@@ -118,7 +118,7 @@ public class Parser {
         }
         tasks.findTask(split[1]);
     }
-    
+
     /**
      * Parses and executes commands that are one part long for Duke Bot.
      * One part long commands are in the format "command".

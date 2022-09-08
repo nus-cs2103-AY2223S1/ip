@@ -14,7 +14,7 @@ public class Storage {
 
     /**
      * Class constructor for Storage.
-     * 
+     *
      * Calling the constructor will:
      * 1. Create a data folder if it doesn't already exist.
      * 2. Load text at data/duke.txt if it exists.
@@ -42,7 +42,7 @@ public class Storage {
 
     /**
      * Returns saved text from previous instance of Duke Bot.
-     * 
+     *
      * @return Saved text from previous instance of Duke Bot.
      */
     public String getPreviousText() {
@@ -51,7 +51,7 @@ public class Storage {
 
     /**
      * Writes a string to save file of Duke Bot.
-     * 
+     *
      * @param text String to be written to save file.
      * @param nextLine Boolean, if true newline character will be written after string is written.
      */

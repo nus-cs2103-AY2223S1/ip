@@ -1,8 +1,8 @@
 package duke.task;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 public class DeadlineTaskTest {
     @Test
@@ -13,7 +13,7 @@ public class DeadlineTaskTest {
             assertEquals(e.getMessage(), "Deadline time (indicated by /by separator) is missing.");
         }
     }
-    
+
     @Test
     public void multipleSeparator_exceptionThrown() {
         try {

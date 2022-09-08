@@ -1,8 +1,8 @@
 package duke;
 
-import duke.task.Task;
-
 import java.util.ArrayList;
+
+import duke.task.Task;
 
 /**
  * Class that stores and manipulates tasks for Duke Bot.
@@ -14,7 +14,7 @@ public class TaskList {
 
     /**
      * Class constructor for TaskList.
-     * 
+     *
      * @param uiInstance Ui instance being used in Duke Bot.
      */
     public TaskList(Ui uiInstance) {
@@ -25,35 +25,35 @@ public class TaskList {
 
     /**
      * Adds a task to TaskList.
-     * 
+     *
      * @param task Task to be added.
      */
     public void addTask(Task task) {
         tasks.add(task);
-        ui.printMessage("Got it. I've added this task:\n      " +
-                task +
-                "\n    Now you have " +
-                tasks.size() +
-                " tasks in the list.");
+        ui.printMessage("Got it. I've added this task:\n      "
+                + task
+                + "\n    Now you have "
+                + tasks.size()
+                + " tasks in the list.");
     }
 
     /**
      * Deletes a task from TaskList.
-     * 
+     *
      * @param id Index of task to be deleted. Index is numbering from calling "list" command.
      */
     public void deleteTask(int id) {
         Task t = tasks.remove(id);
-        ui.printMessage("Noted. I've removed this task:\n      " +
-                t +
-                "\n    Now you have " +
-                tasks.size() +
-                " tasks in the list.");
+        ui.printMessage("Noted. I've removed this task:\n      "
+                + t
+                + "\n    Now you have "
+                + tasks.size()
+                + " tasks in the list.");
     }
 
     /**
      * Marks a task from TaskList as done.
-     * 
+     *
      * @param id Index of task to be marked. Index is numbering from calling "list" command.
      */
     public void markTask(int id) {
@@ -64,7 +64,7 @@ public class TaskList {
 
     /**
      * Marks a task from TaskList as undone.
-     * 
+     *
      * @param id Index of task to be unmarked. Index is numbering from calling "list" command.
      */
     public void unmarkTask(int id) {
@@ -75,7 +75,7 @@ public class TaskList {
 
     /**
      * Prints list of tasks in TaskList that contains identifier.
-     * 
+     *
      * @param identifier String to search for tasks.
      */
     public void findTask(String identifier) {
@@ -115,13 +115,13 @@ public class TaskList {
      * Loads tasks from previous instance of Duke Bot.
      * Previous tasks are obtained from an instance of Storage.
      * These previous tasks are presented as Duke Bot commands and are loaded back into TaskList by parsing them.
-     * 
+     *
      * @param parser Parser being used for Duke Bot.
      */
     public void loadTasks(Parser parser) {
         String tasks = store.getPreviousText();
         if (tasks != null && tasks.length() <= 0) {
-            return ;
+            return;
         }
         for (String s: tasks.split("\n")) {
             try {

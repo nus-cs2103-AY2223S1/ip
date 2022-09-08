@@ -1,17 +1,17 @@
 package duke.task;
 
-import duke.DukeException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import duke.DukeException;
 
 /**
  * Class representing an EventTask.
  */
 public class EventTask extends Task {
     protected LocalDate at;
-    
+
     /**
      * Class constructor for EventTask.
      *

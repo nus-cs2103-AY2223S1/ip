@@ -8,7 +8,7 @@ import duke.DukeException;
 public class TodoTask extends Task {
     /**
      * Class constructor for TodoTask.
-     * 
+     *
      * @param description Command string being used to create TodoTask.
      * @throws DukeException If command is invalid.
      */

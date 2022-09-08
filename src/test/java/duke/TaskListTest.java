@@ -1,8 +1,9 @@
 package duke;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TaskListTest {
     @Test
@@ -11,7 +12,7 @@ public class TaskListTest {
         duke.parseCommand("deadline return book /by 2022-08-28");
         assertEquals(duke.tasks.getSize(), 1);
     }
-    
+
     @Test
     public void markTask_correct() {
         Duke duke = new Duke();

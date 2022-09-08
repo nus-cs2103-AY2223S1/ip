@@ -9,7 +9,7 @@ public class Duke {
     protected Parser parser;
 
     private boolean isDukeRunning;
-    
+
     /**
      * Class constructor for Duke Bot.
      */
@@ -24,7 +24,7 @@ public class Duke {
 
     /**
      * Returns the next line input by user.
-     * 
+     *
      * @return String input by user.
      */
     public String getNextLine() {
@@ -33,7 +33,7 @@ public class Duke {
 
     /**
      * Parses and executes a command string.
-     * 
+     *
      * @param command Command string to be parsed and executed.
      */
     public void parseCommand(String command) {
@@ -52,6 +52,10 @@ public class Duke {
         isDukeRunning = false;
     }
 
+    /**
+     * Main method to run Duke Bot.
+     * @param args Unused input arguments.
+     */
     public static void main(String[] args) {
         Duke duke = new Duke();
         while (duke.isDukeRunning) {
