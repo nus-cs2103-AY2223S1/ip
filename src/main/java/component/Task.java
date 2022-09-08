@@ -19,8 +19,8 @@ public class Task {
      * @param code Code of the task
      */
     public Task(String description, String code) {
-        this.description = description;
         this.code = code;
+        setDescription(description);
         setIsDone(false);
     }
 
@@ -36,8 +36,8 @@ public class Task {
      * @param isDone Status of the task
      */
     public Task(String description, String code, boolean isDone) {
-        this.description = description;
         this.code = code;
+        setDescription(description);
         setIsDone(isDone);
     }
 
@@ -59,6 +59,14 @@ public class Task {
      */
     public String getDescription() {
         return this.description;
+    }
+
+    /**
+     * Sets the description of the Task.
+     * @param newDescription New description of task
+     */
+    public void setDescription(String newDescription) {
+        this.description = newDescription;
     }
 
     /**

@@ -13,5 +13,6 @@ public enum Command {
     LIST,
     EXIT,
     FIND,
+    EDIT,
     UNKNOWN
 }

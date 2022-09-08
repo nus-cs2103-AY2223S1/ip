@@ -44,6 +44,8 @@ public class Parser {
             return Command.LIST;
         case "find":
             return Command.FIND;
+        case "edit":
+            return Command.EDIT;
         case "bye":
             return Command.EXIT;
         default:
@@ -57,10 +59,27 @@ public class Parser {
      * @return integer index of task
      */
     public static int getTaskIndex(String input) {
-        return Integer.parseInt(input.substring(input.length() - 1)) - 1;
+        String[] splitedInput = input.split(" ");
+        for (String content : splitedInput) {
+            if (content.length() == 1) {
+                return Integer.parseInt(content);
+            }
+        }
+        return -1;
     }
+
     public static String getKeyword(String input) {
         return input.substring(6);
+    }
+
+    /**
+     * Parses the new description of a Task to be edited.
+     * @param input Input of the user
+     * @return New description of task
+     */
+    public static String getNewDescription(String input) {
+        String[] splitedInput = input.split(" ");
+        return splitedInput[splitedInput.length - 1];
     }
 
     /**

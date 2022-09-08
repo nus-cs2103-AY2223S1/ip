@@ -138,6 +138,20 @@ public class TaskList {
     }
 
     /**
+     * Edits the currently available task.
+     * @param taskIndex Index of the task to be edited
+     * @param newDescription New description of the task
+     * @return The edited task
+     */
+    public Task editTaskDescription(int taskIndex, String newDescription) {
+        Task currentTask = this.list.get(taskIndex);
+        String previousDescription = currentTask.getDescription();
+        currentTask.setDescription(newDescription);
+        assert (!currentTask.getDescription().equals(previousDescription)) : "Edit description failed";
+        return currentTask;
+    }
+
+    /**
      * Returns the number of tasks in the task list.
      * @return Number of tasks
      */

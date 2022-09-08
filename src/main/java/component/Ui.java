@@ -11,6 +11,7 @@ public class Ui {
     protected static final String TASK_LIST_STATEMENT = "Here are the tasks in your list:\n";
     protected static final String MARK_AS_DONE_STATEMENT = "Nice! I've marked this task as done:\n";
     protected static final String UNMARK_AS_DONE_STATEMENT = "Okay, I've marked this task as not done yet:\n";
+    protected static final String EDIT_TASK_DONE_STATEMENT = "Okay, I've edited this task:\n";
     protected static final String ADD_TASK_STATEMENT = "Got it. I've added this task:\n";
     protected static final String DELETE_TASK_STATEMENT = "Noted, I've removed this task:\n";
     protected static final String ASK_WHICH_TASK_STATEMENT = "Wait, which task are you referring to?";
@@ -96,6 +97,15 @@ public class Ui {
     public static String showDeleteTaskDone(Task deletedTask, int numberOfTasks) {
         return DELETE_TASK_STATEMENT + deletedTask + "\n"
                 + "Now you have " + numberOfTasks + " tasks in your list.\n";
+    }
+
+    /**
+     * Shows that edit process of a Task is completed.
+     * @param editedTask Edited task
+     * @return Edit task done statement, the edited task
+     */
+    public static String showEditTaskDone(Task editedTask) {
+        return EDIT_TASK_DONE_STATEMENT + editedTask + "\n";
     }
 
     /**

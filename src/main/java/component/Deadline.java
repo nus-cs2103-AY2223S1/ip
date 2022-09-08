@@ -17,7 +17,7 @@ public class Deadline extends Task {
      */
     public Deadline(LocalDateTime dateTime, String description) {
         super(description, "D");
-        this.dateTime = dateTime;
+        setDateTime(dateTime);
     }
 
     /**
@@ -28,7 +28,7 @@ public class Deadline extends Task {
      */
     public Deadline(LocalDateTime dateTime, String description, boolean isDone) {
         super(description, "D", isDone);
-        this.dateTime = dateTime;
+        setDateTime(dateTime);
     }
 
     /**
@@ -47,6 +47,15 @@ public class Deadline extends Task {
     public LocalDateTime getRawDateTime() {
         return this.dateTime;
     }
+
+    /**
+     * Sets the date and time of a Deadline.
+     * @param newDateTime New date and time
+     */
+    public void setDateTime(LocalDateTime newDateTime) {
+        this.dateTime = newDateTime;
+    }
+
 
     /**
      * {@inheritDoc}
