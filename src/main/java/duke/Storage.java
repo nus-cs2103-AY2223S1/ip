@@ -51,7 +51,6 @@ public class Storage {
     public ArrayList<Task> loadLocalData() throws DukeException {
         ArrayList<Task> taskList = new ArrayList<>();
         try {
-
             File file = new File(this.FILE_PATH);
             Scanner sc = new Scanner(file);
             while (sc.hasNext()) {

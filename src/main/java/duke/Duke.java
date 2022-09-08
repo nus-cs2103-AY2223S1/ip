@@ -188,7 +188,9 @@ public class Duke extends Application {
     public String getResponse(String input) {
         try {
             Command command = parser.parse(input);
-            return command.execute(tasks, ui, storage);
+            String response = command.execute(tasks, ui, storage);
+            assert !response.isEmpty();
+            return response;
         } catch (DukeException e) {
             return e.getMessage();
         }
