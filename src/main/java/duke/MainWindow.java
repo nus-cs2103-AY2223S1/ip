@@ -42,7 +42,7 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
-        userInput.setFont(new Font("Monospaced", 36));
+        userInput.setFont(new Font("Monospaced", 24));
         String input = userInput.getText();
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
