@@ -34,7 +34,13 @@ public class Duke {
      * Replace this stub with your completed method.
      */
     String getResponse(String input) {
-        return "Duke heard: " + input;
+        String res = "";
+        try {
+            res = parser.parse(input);
+        } catch (DukeException e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 
     /**
@@ -49,10 +55,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        try {
-            new Duke().run();
-        } catch (DukeException e) {
-            System.out.println(e.getMessage());
-        }
+        System.out.println((new Duke().getResponse("list")));
     }
 }
