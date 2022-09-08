@@ -21,6 +21,7 @@ public class Parser {
 
     /**
      * Reads user input and performs action depending on input
+     *
      * @param str User input.
      * @return String representing bot's reply to user.
      * @throws DukeException If input command is not recognised or if input is blank.

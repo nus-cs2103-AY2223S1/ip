@@ -17,6 +17,7 @@ public class Task implements Comparable<Task> {
 
     /**
      * Checks if a task is done.
+     *
      * @return String indicating whether a task is completed.
      */
     public String getStatusIcon() {
@@ -31,6 +32,7 @@ public class Task implements Comparable<Task> {
 
     /**
      * Returns a string representation of Task.
+     *
      * @return String representation of Task.
      */
     @Override
@@ -38,6 +40,12 @@ public class Task implements Comparable<Task> {
         return "[" + getStatusIcon()+ "] " + this.description;
     }
 
+    /**
+     * Allows comparing of Task deadline.
+     *
+     * @param o Task to be compared with.
+     * @return An integer representing if a task should be arranged before another task.
+     */
     @Override
     public int compareTo(Task o) {
         if(this.date == null && o.date == null) {

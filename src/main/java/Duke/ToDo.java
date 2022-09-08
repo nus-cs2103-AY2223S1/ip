@@ -8,6 +8,7 @@ import java.time.LocalDate;
 public class ToDo extends Task {
     public ToDo(String description, LocalDate date) {
         super(description, date);
+        assert date == null : "A ToDo should not have a date";
     }
     @Override
     public String toString() {
