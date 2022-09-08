@@ -15,6 +15,12 @@ public class Ui {
     protected static final String DELETE_TASK_STATEMENT = "Noted, I've removed this task:\n";
     protected static final String ASK_WHICH_TASK_STATEMENT = "Wait, which task are you referring to?";
     protected static final String FIND_MATCHING_TASK_STATEMENT = "Here are the matching tasks in your list:\n";
+    protected static final String EMPTY_EVENT_DESCRIPTION_STATEMENT = "Oops, description and time of an Event cannot "
+            + "be empty.";
+    protected static final String EMPTY_DEADLINE_DESCRIPTION_STATEMENT = "Oops, description and time of a Deadline "
+            + "cannot be empty.";
+    protected static final String EMPTY_TODO_DESCRIPTION_STATEMENT = "Oops, description of a To-do "
+            + "cannot be empty.";
     protected static final String UNKNOWN_STATEMENT = "Oops, sorry! I don't know what that means :(";
 
     /**
@@ -105,6 +111,31 @@ public class Ui {
      */
     public static String showFoundTasks(TaskList tasks) {
         return FIND_MATCHING_TASK_STATEMENT + tasks;
+    }
+
+
+    /**
+     * Shows warning when a description and/or date time of an Event is not given.
+     * @return Warning statement
+     */
+    public static String showEmptyEventDescriptionWarning() {
+        return EMPTY_EVENT_DESCRIPTION_STATEMENT;
+    }
+
+    /**
+     * Shows warning when a description and/or date time of a Deadline is not given.
+     * @return Warning statement
+     */
+    public static String showEmptyDeadlineDescriptionWarning() {
+        return EMPTY_DEADLINE_DESCRIPTION_STATEMENT;
+    }
+
+    /**
+     * Shows warning when a description of a To-do is not given.
+     * @return Warning statement
+     */
+    public static String showEmptyToDoDescriptionWarning() {
+        return EMPTY_TODO_DESCRIPTION_STATEMENT;
     }
 
     /**

@@ -51,9 +51,9 @@ public class Mew {
         if (Parser.parse(input).equals(Command.LIST)) {
             return Ui.showTaskList(tasks);
         } else if (Parser.parse(input).equals(Command.MARK)) {
-            int taskIndex = Parser.getTaskIndex(input);
-            Task markedTask = tasks.markTask(taskIndex);
             try {
+                int taskIndex = Parser.getTaskIndex(input);
+                Task markedTask = tasks.markTask(taskIndex);
                 storage.saveData(tasks);
                 return Ui.showMarkDone(markedTask);
             } catch (StringIndexOutOfBoundsException | NumberFormatException e) {
@@ -62,9 +62,9 @@ public class Mew {
                 return Ui.printException(e);
             }
         } else if (Parser.parse(input).equals(Command.UNMARK)) {
-            int taskIndex = Parser.getTaskIndex(input);
-            Task unmarkedTask = tasks.unmarkTask(taskIndex);
             try {
+                int taskIndex = Parser.getTaskIndex(input);
+                Task unmarkedTask = tasks.unmarkTask(taskIndex);
                 storage.saveData(tasks);
                 return Ui.showUnmarkAsDone(unmarkedTask);
             } catch (StringIndexOutOfBoundsException | NumberFormatException e) {
@@ -78,26 +78,44 @@ public class Mew {
                 Task deletedTask = tasks.deleteTask(taskIndex);
                 storage.saveData(tasks);
                 return Ui.showDeleteTaskDone(deletedTask, tasks.getNumberOfTasks());
-            } catch (StringIndexOutOfBoundsException e) {
+            } catch (StringIndexOutOfBoundsException | NumberFormatException e) {
                 return Ui.askWhichTask();
             } catch (Exception e) {
                 return Ui.printException(e);
             }
         } else if (Parser.parse(input).equals(Command.CREATE_EVENT)) {
-            Task newTask = Parser.parseTask(input, "E");
-            tasks.addTask(newTask);
-            storage.saveData(tasks);
-            return Ui.showAddTaskDone(newTask, tasks.getNumberOfTasks());
+            try {
+                Task newTask = Parser.parseTask(input, "E");
+                tasks.addTask(newTask);
+                storage.saveData(tasks);
+                return Ui.showAddTaskDone(newTask, tasks.getNumberOfTasks());
+            } catch (StringIndexOutOfBoundsException e) {
+                return Ui.showEmptyEventDescriptionWarning();
+            } catch (Exception e) {
+                return Ui.printException(e);
+            }
         } else if (Parser.parse(input).equals(Command.CREATE_DEADLINE)) {
-            Task newTask = Parser.parseTask(input, "D");
-            tasks.addTask(newTask);
-            storage.saveData(tasks);
-            return Ui.showAddTaskDone(newTask, tasks.getNumberOfTasks());
+            try {
+                Task newTask = Parser.parseTask(input, "D");
+                tasks.addTask(newTask);
+                storage.saveData(tasks);
+                return Ui.showAddTaskDone(newTask, tasks.getNumberOfTasks());
+            } catch (StringIndexOutOfBoundsException e) {
+                return Ui.showEmptyDeadlineDescriptionWarning();
+            } catch (Exception e) {
+                return Ui.printException(e);
+            }
         } else if (Parser.parse(input).equals(Command.CREATE_TODO)) {
-            Task newTask = Parser.parseTask(input, "T");
-            tasks.addTask(newTask);
-            storage.saveData(tasks);
-            return Ui.showAddTaskDone(newTask, tasks.getNumberOfTasks());
+            try {
+                Task newTask = Parser.parseTask(input, "T");
+                tasks.addTask(newTask);
+                storage.saveData(tasks);
+                return Ui.showAddTaskDone(newTask, tasks.getNumberOfTasks());
+            } catch (StringIndexOutOfBoundsException e) {
+                return Ui.showEmptyToDoDescriptionWarning();
+            } catch (Exception e) {
+                return Ui.printException(e);
+            }
         } else if (Parser.parse(input).equals(Command.FIND)) {
             String keyword = Parser.getKeyword(input);
             TaskList foundTasks = tasks.findTasks(keyword);
