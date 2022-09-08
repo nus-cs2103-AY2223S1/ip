@@ -1,10 +1,11 @@
-import mia.Todo;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
+
+import mia.Todo;
+
 public class TodoTest {
-    private final String DUMMY_TODO = "0;;Title;;";
+    private static final String DUMMY_TODO = "0;;Title;;";
 
     @Test
     public void saveFormatTest() {

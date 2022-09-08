@@ -1,11 +1,11 @@
 package mia;
 
-import general.utils.RegexHelper;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+
+import general.utils.RegexHelper;
 
 /**
  * A {@code Deadline} is a {@code Task} that has a due date and time.

@@ -7,7 +7,7 @@ package mia;
  *
  * @author Richard Dominick
  */
-abstract public class Task {
+public abstract class Task {
     private String title;
     private boolean isCompleted = false;
 

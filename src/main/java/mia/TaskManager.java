@@ -1,12 +1,12 @@
 package mia;
 
-import general.utils.StoredFile;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import general.utils.StoredFile;
 
 /**
  * A {@code TaskManager} contains a list of tasks that the user can add, edit, view, and delete.
@@ -40,7 +40,8 @@ public class TaskManager {
                                 case 'D':
                                     return Stream.of(Deadline.fromSaveFormat(line.substring(3)));
                                 default:
-                                    System.out.printf("Invalid save file format: %s\nSkipping this line... please check for corrupted data.\n", line);
+                                    System.out.printf("Invalid save file format: %s\n"
+                                            + "Skipping this line... please check for corrupted data.\n", line);
                                     return Stream.empty();
                                 }
                             }

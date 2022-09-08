@@ -1,11 +1,11 @@
 package mia;
 
-import general.utils.RegexHelper;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+
+import general.utils.RegexHelper;
 
 /**
  * An {@code Event} is a {@code Task} that has a start and end time.
