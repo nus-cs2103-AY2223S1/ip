@@ -90,7 +90,8 @@ class Storage {
         FileWriter writer = null;
         try {
             writer = new FileWriter(file);
-            for (Task task : tasks) {
+            FileWriter finalWriter = writer;
+            tasks.toList().stream().<String>map(task -> {
                 List<String> line = new ArrayList<>();
                 if (task instanceof Todo) {
                     line.add("T");
@@ -99,7 +100,7 @@ class Storage {
                 } else if (task instanceof Event) {
                     line.add("E");
                 } else {
-                    continue;
+                    return "";
                 }
 
                 line.add(Boolean.toString(task.isDone()));
@@ -108,8 +109,14 @@ class Storage {
                 if (task instanceof TaskWithDate) {
                     line.add(((TaskWithDate) task).getLocalDateTime().toString());
                 }
-                writer.write(String.join(",", line) + "\n");
-            }
+                return String.join(",", line) + "\n";
+            }).forEach(line -> {
+                try {
+                    finalWriter.write(line);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
