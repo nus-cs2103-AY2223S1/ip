@@ -31,6 +31,8 @@ public class Storage {
             System.out.println("An error occurred.");
             makeFile();
             isLoaded = false;
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -75,9 +77,9 @@ public class Storage {
      *
      * @param taskItem Information about the task to add
      */
-    public void addToList(String taskItem) {
+    public void addToList(String taskItem) throws DukeException{
         String[] details = taskItem.split("[|]");
-        Task toAdd = new ToDo("");
+        Task toAdd;
         switch (details[0]) {
             case "T":
                 toAdd = new ToDo(details[2]);
@@ -88,6 +90,9 @@ public class Storage {
             case "E":
                 toAdd = new Event(details[2], details[3], details[4], details[5]);
                 break;
+            default:
+                //empty;
+                throw new DukeException("Error reading file");
         }
 
         switch (details[1]) {
@@ -106,7 +111,7 @@ public class Storage {
      * @param fileLocation Location of save file
      * @throws FileNotFoundException File is not found at the specified location
      */
-    public void readFile(String fileLocation) throws FileNotFoundException {
+    public void readFile(String fileLocation) throws FileNotFoundException, DukeException {
         File dukeHistory = new File(fileLocation);
         Scanner myReader = new Scanner(dukeHistory);
         while (myReader.hasNextLine()) {

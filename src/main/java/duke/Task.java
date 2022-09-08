@@ -16,6 +16,7 @@ abstract public class Task {
      */
     public Task(String description) {
         this.description = description;
+        assert !description.isEmpty() : "All tasks should have descriptions";
         this.isDone = false;
     }
 

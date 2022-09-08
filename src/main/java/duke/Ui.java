@@ -75,7 +75,7 @@ public class Ui {
         } catch (DukeException e) {
             return e.getMessage();
         }
-}
+    }
 
     public void getUserInputs() {
         Scanner sc = new Scanner(System.in);
