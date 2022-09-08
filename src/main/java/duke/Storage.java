@@ -32,6 +32,7 @@ public class Storage {
      *
      * @param taskList Tasklist to be written.
      * @param ui Ui for display.
+     * @return True if data has saved to file and false otherwise.
      */
     public boolean save(TaskList taskList, Ui ui) {
         try {
@@ -40,7 +41,6 @@ public class Storage {
             fw.close();
             isSaved = true;
         } catch (IOException e) {
-            //ui.showError("there is a problem with saving");
             isSaved = false;
         } finally {
             return isSaved;
@@ -61,8 +61,16 @@ public class Storage {
             String dataStr = scanner.nextLine();
             String[] taskStrings = dataStr.split(KEY_SEPARATOR);
             Task task;
+            task = populateTask(taskStrings);
+            tasks.add(task);
+        }
+        scanner.close();
+        return tasks;
+    }
 
-            switch (taskStrings[0]) {
+    private Task populateTask(String[] taskStrings) {
+        Task task;
+        switch (taskStrings[0]) {
             case "T":
                 task = new Todo(taskStrings[2]);
                 break;
@@ -70,28 +78,31 @@ public class Storage {
                 task = new Deadline(taskStrings[2], LocalDate.parse(taskStrings[3]));
                 break;
             case "E":
-                String[] timeDescs = taskStrings[3].split(" ", 2);
-                if(timeDescs.length > 1) {
-                    LocalDate date = LocalDate.parse(timeDescs[0]);
-                    task = new Event(taskStrings[2], date, timeDescs[1]);
-                } else {
-                    LocalDate date = LocalDate.parse(taskStrings[3]);
-                    task = new Event(taskStrings[2], date);
-                }
+                task = loadEvent(taskStrings);
                 break;
             default:
                 task = new Task(taskStrings[2]);
                 break;
-            }
-            if (Integer.parseInt(taskStrings[1]) == 1) {
-                task.markAsDone();
-            } else {
-                task.markAsUndone();
-            }
-            tasks.add(task);
         }
-        scanner.close();
-        return tasks;
+        if (Integer.parseInt(taskStrings[1]) == 1) {
+            task.markAsDone();
+        } else {
+            task.markAsUndone();
+        }
+        return task;
+    }
+
+    private Task loadEvent(String[] taskDescriptions) {
+        Task task;
+        String[] timeDescs = taskDescriptions[3].split(" ", 2);
+        if(timeDescs.length > 1) {
+            LocalDate date = LocalDate.parse(timeDescs[0]);
+            task = new Event(taskDescriptions[2], date, timeDescs[1]);
+        } else {
+            LocalDate date = LocalDate.parse(taskDescriptions[3]);
+            task = new Event(taskDescriptions[2], date);
+        }
+        return task;
     }
 
     public boolean getSavedStatus() {
