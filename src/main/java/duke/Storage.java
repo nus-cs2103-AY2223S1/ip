@@ -72,6 +72,7 @@ public class Storage {
      * @throws DukeException If information from the task in invalid.
      */
     public void addDukeToList(TaskList tasks) throws FileNotFoundException, DukeException {
+        assert this.filePath != null;
         File file = new File(this.filePath); // create a File for the given file path
         Scanner scanner = new Scanner(file); // create a Scanner using the File as the source
         while (scanner.hasNext()) {

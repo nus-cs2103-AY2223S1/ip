@@ -25,16 +25,17 @@ public class DeadlineTask extends Task {
         String[] dateParts = by.split(" ");
         if (dateParts.length != 2) {
             throw new DukeException("Deadline Date and Time is specified wrongly");
-        }
-        this.date = LocalDate.parse(dateParts[0]);
-        String temp = "";
-        for (int i = 0; i < dateParts[1].length(); i++) {
-            temp += dateParts[1].charAt(i);
-            if (i == 1) {
-                temp += COLON;
+        } else {
+            this.date = LocalDate.parse(dateParts[0]);
+            String temp = "";
+            for (int i = 0; i < dateParts[1].length(); i++) {
+                temp += dateParts[1].charAt(i);
+                if (i == 1) {
+                    temp += COLON;
+                }
             }
+            this.time = LocalTime.parse(temp);
         }
-        this.time = LocalTime.parse(temp);
     }
 
     /**
