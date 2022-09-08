@@ -41,6 +41,7 @@ public class AddCommand extends DukeCommand {
      */
     @Override
     public String execute(TaskList taskList) throws MissingDescription, BadTimespan, BadDeadline {
+        assert !taskType.isEmpty() : "No task type.";
         switch (taskType) {
         case "todo":
             taskList.add(new ToDo(options));
