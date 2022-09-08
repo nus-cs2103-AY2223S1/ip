@@ -15,6 +15,7 @@ public class Todo extends Task {
      */
     public Todo(String description) {
         super(description);
+        assert !description.isBlank();
     }
 
     /**
@@ -35,7 +36,6 @@ public class Todo extends Task {
      */
     public static Todo fromFileDescription(String input) {
         String[] strArray = input.split(" \\| ", 3);
-        boolean isDone;
         Todo todo = new Todo(strArray[2]);
         if (strArray[1].equals("1")) {
             todo.markDone();
