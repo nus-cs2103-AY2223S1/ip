@@ -28,4 +28,9 @@ public class DeleteCommand extends TargetTaskCommand {
         messageBuilder.buildLines(MESSAGE_DELETED, targetTask.toString());
         return messageBuilder.toString();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj) && obj instanceof DeleteCommand;
+    }
 }

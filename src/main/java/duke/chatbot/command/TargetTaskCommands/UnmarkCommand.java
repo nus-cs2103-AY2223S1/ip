@@ -28,4 +28,9 @@ public class UnmarkCommand extends TargetTaskCommand {
         messageBuilder.buildLines(MESSAGE_UNMARKED, targetTask.toString());
         return messageBuilder.toString();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj) && obj instanceof UnmarkCommand;
+    }
 }

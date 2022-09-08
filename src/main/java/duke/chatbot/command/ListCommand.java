@@ -24,4 +24,9 @@ public class ListCommand extends Command {
         messageBuilder.buildLine(taskList.toString());
         return messageBuilder.toString();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj) && obj instanceof ListCommand;
+    }
 }

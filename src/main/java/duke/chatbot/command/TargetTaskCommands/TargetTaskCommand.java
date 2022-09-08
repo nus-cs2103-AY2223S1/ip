@@ -58,4 +58,9 @@ public abstract class TargetTaskCommand extends Command {
         executeOnTask();
         return super.execute();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj) && obj instanceof TargetTaskCommand;
+    }
 }

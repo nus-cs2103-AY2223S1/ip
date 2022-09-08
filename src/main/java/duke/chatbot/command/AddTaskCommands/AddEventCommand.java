@@ -43,4 +43,9 @@ public class AddEventCommand extends AddTaskCommand {
         LocalDateTime dateTime = Parser.parseDateTime(matcher.group("dateTime").strip());
         return new Event(description, dateTime);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj) && obj instanceof AddEventCommand;
+    }
 }

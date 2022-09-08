@@ -42,7 +42,7 @@ public class EventTest {
     public void encode_noBoolean_stringWithZero() {
         String description = "Lecture";
         LocalDateTime dateTime = LocalDateTime.of(2000, 1, 1, 0, 0);
-        String expected = "E,,,0,,,Lecture,,,2000-01-01 0000";
+        String expected = "E`0`Lecture`2000-01-01 0000";
         String actual = new Event(description, dateTime).encode();
         assertEquals(expected, actual);
     }
@@ -51,7 +51,7 @@ public class EventTest {
     public void encode_haveBoolean_stringWithOne() {
         String description = "Lecture";
         LocalDateTime dateTime = LocalDateTime.of(2000, 1, 1, 0, 0);
-        String expected = "E,,,1,,,Lecture,,,2000-01-01 0000";
+        String expected = "E`1`Lecture`2000-01-01 0000";
         String actual = new Event(description, dateTime, true).encode();
         assertEquals(expected, actual);
     }
@@ -60,7 +60,7 @@ public class EventTest {
     public void encode_emptyDescription_manyCommas() {
         String description = "";
         LocalDateTime dateTime = LocalDateTime.of(2000, 1, 1, 0, 0);
-        String expected = "E,,,0,,,,,,2000-01-01 0000";
+        String expected = "E`0``2000-01-01 0000";
         String actual = new Event(description, dateTime).encode();
         assertEquals(expected, actual);
     }

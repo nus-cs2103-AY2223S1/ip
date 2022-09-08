@@ -43,6 +43,15 @@ public abstract class Command {
         return new CommandResult(buildMessage());
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Command)) {
+            return false;
+        }
+        Command command = (Command) obj;
+        return command.arguments.equals(arguments);
+    }
+
     public void initData(TaskList taskList) {
         this.taskList = taskList;
     }

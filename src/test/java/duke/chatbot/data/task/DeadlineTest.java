@@ -42,7 +42,7 @@ public class DeadlineTest {
     public void encode_noBoolean_stringWithZero() {
         String description = "Complete unit testing";
         LocalDateTime dateTime = LocalDateTime.of(2000, 1, 1, 0, 0);
-        String expected = "D,,,0,,,Complete unit testing,,,2000-01-01 0000";
+        String expected = "D`0`Complete unit testing`2000-01-01 0000";
         String actual = new Deadline(description, dateTime).encode();
         assertEquals(expected, actual);
     }
@@ -51,7 +51,7 @@ public class DeadlineTest {
     public void encode_haveBoolean_stringWithOne() {
         String description = "Complete unit testing";
         LocalDateTime dateTime = LocalDateTime.of(2000, 1, 1, 0, 0);
-        String expected = "D,,,1,,,Complete unit testing,,,2000-01-01 0000";
+        String expected = "D`1`Complete unit testing`2000-01-01 0000";
         String actual = new Deadline(description, dateTime, true).encode();
         assertEquals(expected, actual);
     }
@@ -60,7 +60,7 @@ public class DeadlineTest {
     public void encode_emptyDescription_manyCommas() {
         String description = "";
         LocalDateTime dateTime = LocalDateTime.of(2000, 1, 1, 0, 0);
-        String expected = "D,,,0,,,,,,2000-01-01 0000";
+        String expected = "D`0``2000-01-01 0000";
         String actual = new Deadline(description, dateTime).encode();
         assertEquals(expected, actual);
     }

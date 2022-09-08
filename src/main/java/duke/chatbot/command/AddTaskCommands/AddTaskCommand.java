@@ -41,4 +41,9 @@ public abstract class AddTaskCommand extends Command {
         addTask();
         return super.execute();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj) && obj instanceof AddTaskCommand;
+    }
 }

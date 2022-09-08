@@ -22,4 +22,9 @@ public class AddToDoCommand extends AddTaskCommand {
     protected Task supplyTask() {
         return new ToDo(arguments);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj) && obj instanceof AddToDoCommand;
+    }
 }
