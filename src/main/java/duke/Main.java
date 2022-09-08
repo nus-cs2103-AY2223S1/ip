@@ -9,8 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-//TODO Delete this line
-
 /**
  * A GUI for Duke using FXML.
  */
