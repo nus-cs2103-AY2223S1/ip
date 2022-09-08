@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import mew.MewDateTimeParseException.InputOverFlowException;
+import mew.MewDateTimeParseException.InvalidDateTimeFormatException;
+
 /**
  * Parser class that parses user input.
  */
@@ -66,22 +69,26 @@ public class Parser {
      * @param code String code of task
      * @return parsed Task object
      */
-    public static Task parseTask(String input, String code) {
+    public static Task parseTask(String input, String code)
+            throws InputOverFlowException, InvalidDateTimeFormatException, DateTimeParseException {
         Task newTask = null;
-        if (code == "T") {
+        if (code.equals("T")) {
             String description = input.substring(5);
             newTask = new ToDo(description);
             return newTask;
         }
-        String separator = code == "E" ? "/at" : "/by";
+        String separator = code.equals("E") ? "/at" : "/by";
         int indexOfDateTime = input.indexOf(separator);
+        if (indexOfDateTime == -1) {
+            throw new DateTimeParseException("No date given", input, input.length() - 1);
+        }
         String stringDateTime = input.substring(indexOfDateTime + 4);
         LocalDateTime dateTime = Parser.processDateTime(stringDateTime);
-        String description = null;
-        if (code == "E") {
+        String description;
+        if (code.equals("E")) {
             description = input.substring(6, indexOfDateTime - 1);
             newTask = new Event(dateTime, description);
-        } else if (code == "D") {
+        } else if (code.equals("D")) {
             description = input.substring(9, indexOfDateTime - 1);
             newTask = new Deadline(dateTime, description);
         }
@@ -93,40 +100,46 @@ public class Parser {
      * @param stringDateTime String formatted date and time
      * @return LocalDateTime parsed date time
      */
-    public static LocalDateTime processDateTime(String stringDateTime) {
-        LocalDateTime dateTime = LocalDateTime.now();
+    public static LocalDateTime processDateTime(String stringDateTime)
+            throws InputOverFlowException, InvalidDateTimeFormatException, DateTimeParseException {
+        System.out.println(stringDateTime);
         String date = "None";
         String time = "None";
-        if (stringDateTime.length() > 9) {
+        if (stringDateTime.length() > 9) { // date and time and given
+            if (stringDateTime.length() > 13) {
+                throw new InputOverFlowException("Date time input too long");
+            }
             date = stringDateTime.substring(0, stringDateTime.indexOf(" "));
             time = stringDateTime.substring(stringDateTime.indexOf(" ") + 1);
-        } else if (stringDateTime.length() == 8) {
+        } else if (stringDateTime.length() == 8) { // date given only
             date = stringDateTime;
-        } else {
+        } else if (stringDateTime.length() <= 4 && stringDateTime.length() >= 1) { // time given only
+            System.out.println("this condition");
             time = stringDateTime;
+        } else if (stringDateTime.length() == 0) {
+            throw new DateTimeParseException("Empty input", stringDateTime, 0);
+        } else {
+            throw new InvalidDateTimeFormatException("Invalid input");
         }
-        try {
-            if (!date.equals("None") && !time.equals("None")) {
-                DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("yyyyMMdd");
-                DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HHmm");
-                LocalDate localDate = LocalDate.parse(date, formatDate);
-                LocalTime localTime = LocalTime.parse(time, formatTime);
-                return LocalDateTime.of(localDate, localTime);
-            } else if (!date.equals("None")) {
-                DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("yyyyMMdd");
-                DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HHmm");
-                LocalDate localDate = LocalDate.parse(date, formatDate);
-                LocalTime localTime = LocalTime.parse("0000", formatTime);
-                return LocalDateTime.of(localDate, localTime);
-            } else {
-                DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HHmm");
-                LocalTime localTime = LocalTime.parse(time, formatTime);
-                return LocalDateTime.of(LocalDate.now(), localTime);
-            }
-        } catch (DateTimeParseException exception) {
-            System.out.println(exception);
-            System.out.println("Please enter date and time in YYYYMMDD HHMM format");
+        if (!date.equals("None") && !time.equals("None")) { // date and time are given
+            System.out.println("date and time are given");
+            DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("yyyyMMdd");
+            DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HHmm");
+            LocalDate localDate = LocalDate.parse(date, formatDate);
+            LocalTime localTime = LocalTime.parse(time, formatTime);
+            return LocalDateTime.of(localDate, localTime);
+        } else if (!date.equals("None")) { // just the date is given
+            System.out.println("Just date is given");
+            DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("yyyyMMdd");
+            DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HHmm");
+            LocalDate localDate = LocalDate.parse(date, formatDate);
+            LocalTime localTime = LocalTime.parse("0000", formatTime);
+            return LocalDateTime.of(localDate, localTime);
+        } else { // just the time is given
+            System.out.println("Just time is given");
+            DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HHmm");
+            LocalTime localTime = LocalTime.parse(time, formatTime);
+            return LocalDateTime.of(LocalDate.now(), localTime);
         }
-        return dateTime;
     }
 }

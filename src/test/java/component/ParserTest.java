@@ -8,6 +8,9 @@ import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
+import mew.MewDateTimeParseException.InputOverFlowException;
+import mew.MewDateTimeParseException.InvalidDateTimeFormatException;
+
 class ParserTest {
 
     @Test
@@ -45,36 +48,44 @@ class ParserTest {
 
     @Test
     void parseTaskTest() {
-        String command1 = "event CS2103 /at 0900";
-        String command2 = "deadline PHS3116 /by 2359";
-        String command3 = "todo Do laundry";
-        Task task1 = Parser.parseTask(command1, "E");
-        Task task2 = Parser.parseTask(command2, "D");
-        Task task3 = Parser.parseTask(command3, "T");
-        LocalDateTime dateTime1 = Parser.processDateTime("0900");
-        LocalDateTime dateTime2 = Parser.processDateTime("2359");
-        Task testTask1 = new Event(dateTime1, "CS2103");
-        Task testTask2 = new Deadline(dateTime2, "PHS3116");
-        Task testTask3 = new ToDo("Do laundry");
-        assertEquals(task1.getDescription(), testTask1.getDescription());
-        assertEquals(task1.getCode(), testTask1.getCode());
-        assertEquals(task1.getStatusIcon(), testTask1.getStatusIcon());
-        assertEquals(task1.printText(), testTask1.printText());
-        assertEquals(task2.getDescription(), testTask2.getDescription());
-        assertEquals(task2.getCode(), testTask2.getCode());
-        assertEquals(task2.getStatusIcon(), testTask2.getStatusIcon());
-        assertEquals(task2.printText(), testTask2.printText());
-        assertEquals(task3.getDescription(), testTask3.getDescription());
-        assertEquals(task3.getCode(), testTask3.getCode());
-        assertEquals(task3.getStatusIcon(), testTask3.getStatusIcon());
-        assertEquals(task3.printText(), testTask3.printText());
+        try {
+            String command1 = "event CS2103 /at 0900";
+            String command2 = "deadline PHS3116 /by 2359";
+            String command3 = "todo Do laundry";
+            Task task1 = Parser.parseTask(command1, "E");
+            Task task2 = Parser.parseTask(command2, "D");
+            Task task3 = Parser.parseTask(command3, "T");
+            LocalDateTime dateTime1 = Parser.processDateTime("0900");
+            LocalDateTime dateTime2 = Parser.processDateTime("2359");
+            Task testTask1 = new Event(dateTime1, "CS2103");
+            Task testTask2 = new Deadline(dateTime2, "PHS3116");
+            Task testTask3 = new ToDo("Do laundry");
+            assertEquals(task1.getDescription(), testTask1.getDescription());
+            assertEquals(task1.getCode(), testTask1.getCode());
+            assertEquals(task1.getStatusIcon(), testTask1.getStatusIcon());
+            assertEquals(task1.printText(), testTask1.printText());
+            assertEquals(task2.getDescription(), testTask2.getDescription());
+            assertEquals(task2.getCode(), testTask2.getCode());
+            assertEquals(task2.getStatusIcon(), testTask2.getStatusIcon());
+            assertEquals(task2.printText(), testTask2.printText());
+            assertEquals(task3.getDescription(), testTask3.getDescription());
+            assertEquals(task3.getCode(), testTask3.getCode());
+            assertEquals(task3.getStatusIcon(), testTask3.getStatusIcon());
+            assertEquals(task3.printText(), testTask3.printText());
+        } catch (InputOverFlowException | InvalidDateTimeFormatException e) {
+            System.out.println(e);
+        }
     }
 
     @Test
     void processDateTime() {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime testDate = LocalDateTime.parse("2022-08-26 09:00", format);
-        LocalDateTime date = Parser.processDateTime("20220826 0900");
-        assertEquals(date, testDate);
+        try {
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            LocalDateTime testDate = LocalDateTime.parse("2022-08-26 09:00", format);
+            LocalDateTime date = Parser.processDateTime("20220826 0900");
+            assertEquals(date, testDate);
+        } catch (InputOverFlowException | InvalidDateTimeFormatException e) {
+            System.out.println(e);
+        }
     }
 }

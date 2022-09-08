@@ -21,6 +21,8 @@ public class Ui {
             + "cannot be empty.";
     protected static final String EMPTY_TODO_DESCRIPTION_STATEMENT = "Oops, description of a To-do "
             + "cannot be empty.";
+    protected static final String INVALID_DATETIME_FORMAT_STATEMENT = "Please enter date and time in YYYYMMDD HHMM "
+            + "format";
     protected static final String UNKNOWN_STATEMENT = "Oops, sorry! I don't know what that means :(";
 
     /**
@@ -136,6 +138,14 @@ public class Ui {
      */
     public static String showEmptyToDoDescriptionWarning() {
         return EMPTY_TODO_DESCRIPTION_STATEMENT;
+    }
+
+    /**
+     * Shows warning when invalid date time format is given.
+     * @return Warning statement
+     */
+    public static String showInvalidDatetimeInput() {
+        return INVALID_DATETIME_FORMAT_STATEMENT;
     }
 
     /**

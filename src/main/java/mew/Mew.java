@@ -1,6 +1,7 @@
 package mew;
 
 import java.nio.file.Path;
+import java.time.format.DateTimeParseException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -11,6 +12,8 @@ import component.Task;
 import component.TaskList;
 import component.Ui;
 import javafx.application.Platform;
+import mew.MewDateTimeParseException.InputOverFlowException;
+import mew.MewDateTimeParseException.InvalidDateTimeFormatException;
 
 /**
  * Main class Mew that runs the application.
@@ -89,9 +92,14 @@ public class Mew {
                 tasks.addTask(newTask);
                 storage.saveData(tasks);
                 return Ui.showAddTaskDone(newTask, tasks.getNumberOfTasks());
-            } catch (StringIndexOutOfBoundsException e) {
+            } catch (InvalidDateTimeFormatException | InputOverFlowException e) {
+                System.out.println("input datetime trouble");
+                return Ui.showInvalidDatetimeInput();
+            } catch (StringIndexOutOfBoundsException | DateTimeParseException e) {
+                System.out.println("empty description event");
                 return Ui.showEmptyEventDescriptionWarning();
             } catch (Exception e) {
+                System.out.println("other exceptions");
                 return Ui.printException(e);
             }
         } else if (Parser.parse(input).equals(Command.CREATE_DEADLINE)) {
@@ -102,6 +110,8 @@ public class Mew {
                 return Ui.showAddTaskDone(newTask, tasks.getNumberOfTasks());
             } catch (StringIndexOutOfBoundsException e) {
                 return Ui.showEmptyDeadlineDescriptionWarning();
+            } catch (InvalidDateTimeFormatException | InputOverFlowException | DateTimeParseException e) {
+                return Ui.showInvalidDatetimeInput();
             } catch (Exception e) {
                 return Ui.printException(e);
             }
@@ -113,6 +123,8 @@ public class Mew {
                 return Ui.showAddTaskDone(newTask, tasks.getNumberOfTasks());
             } catch (StringIndexOutOfBoundsException e) {
                 return Ui.showEmptyToDoDescriptionWarning();
+            } catch (InvalidDateTimeFormatException | InputOverFlowException | DateTimeParseException e) {
+                return Ui.showInvalidDatetimeInput();
             } catch (Exception e) {
                 return Ui.printException(e);
             }
