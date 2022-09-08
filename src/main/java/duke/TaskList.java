@@ -60,15 +60,6 @@ public class TaskList {
     }
 
     /**
-     * Gets task list.
-     *
-     * @return List of task.
-     */
-    public ArrayList<Task> getListOfTasks() {
-        return tasks;
-    }
-
-    /**
      * Gets a specific task.
      *
      * @param index index of task to get.

@@ -67,19 +67,22 @@ public class Storage {
             while (sc.hasNextLine()) {
                 String[] strArr = sc.nextLine().split("\\|");
                 if (strArr[0].contains("T")) {
-                    taskArr.add(new ToDos(strArr[2]));
+                    String subStr = strArr[2].substring(1, strArr[2].length() - 1);
+                    taskArr.add(new ToDos(subStr));
                 }
                 if (strArr[0].contains("E")) {
                     String str = strArr[3];
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern(" dd MMM yyyy HH:mm");
                     LocalDateTime ldt = LocalDateTime.parse(str, formatter);
-                    taskArr.add(new Events(strArr[2], ldt));
+                    String subStr = strArr[2].substring(1, strArr[2].length() - 1);
+                    taskArr.add(new Events(subStr, ldt));
                 }
                 if (strArr[0].contains("D")) {
                     String str = strArr[3];
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern(" dd MMM yyyy HH:mm");
                     LocalDateTime ldt = LocalDateTime.parse(str, formatter);
-                    taskArr.add(new Deadlines(strArr[2], ldt));
+                    String subStr = strArr[2].substring(1, strArr[2].length() - 1);
+                    taskArr.add(new Deadlines(subStr, ldt));
                 }
             }
             sc.close();
