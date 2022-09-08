@@ -16,4 +16,9 @@ public class UnrecognisedCommand extends Command {
         ui.display("Sorry, I don't recognise that command :(");
     }
 
+    @Override
+    public String execute(TaskList taskList, Storage storage) {
+        return "Sorry, I don't know what that means :(";
+    }
+
 }

@@ -35,4 +35,17 @@ public class MarkCommand extends Command {
         }
     }
 
+    @Override
+    public String execute(TaskList taskList, Storage storage) {
+        try {
+            Task task = taskList.mark(taskNum);
+            storage.writeToFile(taskList.list());
+            return String.format("I've marked this task as complete:%n%s%n", task);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("No such task!");
+        } catch (IOException e) {
+            throw new DukeException("Could not write to file");
+        }
+    }
+
 }

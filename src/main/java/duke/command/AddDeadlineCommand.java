@@ -37,4 +37,15 @@ public class AddDeadlineCommand extends Command {
         }
     }
 
+    @Override
+    public String execute(TaskList taskList, Storage storage) {
+        try {
+            taskList.add(deadlineTask);
+            storage.writeToFile(taskList.list());
+            return String.format("I've added a new deadline task:%n%s%n", deadlineTask);
+        } catch (IOException e) {
+            throw new DukeException("Could not write to file");
+        }
+    }
+
 }

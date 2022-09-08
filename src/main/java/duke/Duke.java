@@ -1,6 +1,19 @@
 package duke;
 
 import duke.command.Command;
+import javafx.application.Application;
+import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.util.Scanner;
 
@@ -12,6 +25,19 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+
+    ScrollPane scrollPane;
+    VBox dialogContainer;
+    TextField userInput;
+    Button sendButton;
+    Scene scene;
+
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+
+    public static void main(String[] args) {
+        new Duke("data/Duke.txt").run();
+    }
 
     /**
      * Creates a new ChatBot that you can interact with.
@@ -26,6 +52,21 @@ public class Duke {
         } catch (Exception e) {
             ui.showLoadingError();
             tasks = new TaskList();
+        }
+    }
+
+    public Duke() {}
+
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) {
+        try {
+            Command command = Parser.parse(input);
+            return command.execute(tasks, storage);
+        } catch (DukeException e) {
+            return e.getMessage();
         }
     }
 
@@ -46,10 +87,6 @@ public class Duke {
                ui.displayError(e);
             }
         }
-    }
-
-    public static void main(String[] args) {
-        new Duke("data/Duke.txt").run();
     }
 
 }

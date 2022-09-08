@@ -1,11 +1,8 @@
 package duke.command;
 
-import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-
-import java.io.IOException;
 
 public class FindCommand extends Command {
 
@@ -25,5 +22,11 @@ public class FindCommand extends Command {
         TaskList filteredTaskList = taskList.filter(keyword);
         String output = filteredTaskList.list();
         ui.display(output);
+    }
+
+    @Override
+    public String execute(TaskList taskList, Storage storage) {
+        TaskList filteredTaskList = taskList.filter(keyword);
+        return filteredTaskList.list();
     }
 }

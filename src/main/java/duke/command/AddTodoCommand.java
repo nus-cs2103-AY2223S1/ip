@@ -34,4 +34,15 @@ public class AddTodoCommand extends Command {
         }
     }
 
+    @Override
+    public String execute(TaskList taskList, Storage storage) {
+        try {
+            taskList.add(todoTask);
+            storage.writeToFile(taskList.list());
+            return String.format("I've added a new todo task:%n%s%n", todoTask);
+        } catch (IOException e) {
+            throw new DukeException("Could not write to file");
+        }
+    }
+
 }

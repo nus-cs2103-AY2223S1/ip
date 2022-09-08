@@ -37,4 +37,15 @@ public class AddEventCommand extends Command {
         }
     }
 
+    @Override
+    public String execute(TaskList taskList, Storage storage) {
+        try {
+            taskList.add(eventTask);
+            storage.writeToFile(taskList.list());
+            return String.format("I've added a new event task:%n%s%n", eventTask);
+        } catch (IOException e) {
+            throw new DukeException("Could not write to file");
+        }
+    }
+
 }

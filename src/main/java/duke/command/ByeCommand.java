@@ -13,8 +13,14 @@ public class ByeCommand extends Command {
 
 
     @Override
-        public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(TaskList taskList, Ui ui, Storage storage) {
         ui.showGoodbye();
     }
+
+    @Override
+    public String execute(TaskList taskList, Storage storage) {
+        return "You can't leave!";
+    }
+
 
 }
