@@ -29,6 +29,7 @@ public class MarkCommand extends Command {
     @Override
     public String execute(List tasks, Ui ui, Storage storage) {
         try {
+            assert taskNumberToMark >= 0;
             Task task = tasks.getTask(taskNumberToMark);
             task.markTaskAsDone();
             storage.save();

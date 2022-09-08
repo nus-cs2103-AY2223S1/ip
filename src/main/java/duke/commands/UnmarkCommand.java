@@ -26,6 +26,7 @@ public class UnmarkCommand extends Command {
     @Override
     public String execute(List tasks, Ui ui, Storage storage) {
         try {
+            assert taskNumberToUnmark >= 0;
             Task task = tasks.getTask(taskNumberToUnmark);
             task.markTaskAsNotDone();
             storage.save();
