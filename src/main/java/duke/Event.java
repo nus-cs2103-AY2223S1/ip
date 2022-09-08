@@ -1,8 +1,5 @@
 package duke;
 
-/**
- * A subclass of Task that focuses on processing Event inputs
- */
 public class Event extends Task {
 
     protected String at;
@@ -15,7 +12,7 @@ public class Event extends Task {
     /**
      * toString method that turns the input of event into a String type
      *
-     * @return String to process Event input
+     * @return String
      */
     @Override
     public String toString() {

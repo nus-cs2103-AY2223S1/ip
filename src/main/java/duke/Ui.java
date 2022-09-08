@@ -9,20 +9,20 @@ public class Ui {
     }
 
     //methods
-    public String print(String s) {
+    public String print(int i) {
 
-        switch (s) {
-            case "bye": //bye
+        switch (i) {
+            case 1: //bye
                 return "Bye. Hope to see you again soon!";
-            case "list": //list
+            case 2: //list
                 return "\nHere are the tasks in your list:";
-            case "mark": //mark
+            case 3: //mark
                 return "Nice! I've marked this task as done:\n";
-            case "event":
-            case "deadline":
-            case "todo": //todo deadline event
+            case 4:
+            case 5:
+            case 6: //todo deadline event
                 return "Got it. I've added this task:";
-            case "delete": //delete
+            case 7: //delete
                 return "Noted. I've removed this task:";
             default:
                 return "";

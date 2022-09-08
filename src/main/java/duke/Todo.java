@@ -1,8 +1,7 @@
 package duke;
 
-/**
- * A subclass of Task that focuses on processing Todo inputs
- */
+import duke.Task;
+
 public class Todo extends Task {
 
     public Todo(String description) {

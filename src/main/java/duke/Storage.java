@@ -3,12 +3,14 @@ package duke;
 import java.io.*;
 import java.util.ArrayList;
 
-/**
- * A storage class to save and load user input from current session to next session
- */
-public class Storage {
-    private final String filePath = "duke.txt";
 
+public class Storage {
+
+    private final String filePath = "duke.txt";
+    private ArrayList<Task> arr;
+
+
+    //constructor
     public Storage() {
 
     }
@@ -42,7 +44,7 @@ public class Storage {
      * @return object of type String which is a String of saved information to be processed
      */
     public String reader() {
-        String s;
+        String s = "";
         int counter_mark = 1;
         StringBuilder builder = new StringBuilder();
         try {

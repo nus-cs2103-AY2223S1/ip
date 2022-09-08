@@ -1,14 +1,13 @@
 package duke;
 
+import duke.Task;
+
 import java.util.ArrayList;
 
-/**
- * A class that handles storage of user input in current session using ArrayList
- */
 public class TaskList {
 
     int count = 0;
-    private final ArrayList<Task> arr = new ArrayList<>();
+    private ArrayList<Task> arr = new ArrayList<>();
 
 
     //constructor

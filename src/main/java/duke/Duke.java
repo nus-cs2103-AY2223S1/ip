@@ -9,10 +9,22 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
 
 
 public class Duke extends Application{
 
+    private ScrollPane scrollPane;
+    private VBox dialogContainer;
+    private TextField userInput;
+    private Button sendButton;
+    private Scene scene;
+
+    ArrayList<Task> arr = new ArrayList<>();
+
+
+
+    //duke.duke.Parser
     Parser parser = new Parser();
 
 
@@ -20,17 +32,17 @@ public class Duke extends Application{
     public void start(Stage stage) {
 
 
-        ScrollPane scrollPane = new ScrollPane();
-        VBox dialogContainer = new VBox();
+        scrollPane = new ScrollPane();
+        dialogContainer = new VBox();
         scrollPane.setContent(dialogContainer);
 
-        TextField userInput = new TextField();
-        Button sendButton = new Button("Send");
+        userInput = new TextField();
+        sendButton = new Button("Send");
 
         AnchorPane mainLayout = new AnchorPane();
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
 
-        Scene scene = new Scene(mainLayout);
+        scene = new Scene(mainLayout);
 
         stage.setScene(scene);
         stage.show();
