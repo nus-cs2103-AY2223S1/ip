@@ -1,6 +1,6 @@
 package duke.command;
 
-import duke.exception.NoTaskFoundExcpetion;
+import duke.exception.NoTaskFoundException;
 import duke.util.Storage;
 import duke.util.TaskList;
 
@@ -17,12 +17,12 @@ public class ListCommand extends Command {
      * @param tasks every task in tasks to be displayed.
      * @param storage
      * @return list command message
-     * @throws NoTaskFoundExcpetion when tasks is empty.
+     * @throws NoTaskFoundException when tasks is empty.
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) throws NoTaskFoundExcpetion {
+    public String execute(TaskList tasks, Storage storage) throws NoTaskFoundException {
         if (tasks.isEmpty()) {
-            throw new NoTaskFoundExcpetion();
+            throw new NoTaskFoundException();
         }
         return String.format("%s\n%s\n%s", TASK_LIST, tasks, tasks.getStatus());
     }

@@ -4,7 +4,8 @@ package duke.exception;
  * Throws an exception when duke requirements is not statisfied.
  */
 public abstract class DukeException extends Exception {
+    public static String EXCEPTION_KEYWORD = "OOPS!!! ";
     protected DukeException(String message) {
-        super("OOPS!!! " + message);
+        super(EXCEPTION_KEYWORD + message);
     }
 }

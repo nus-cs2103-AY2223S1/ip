@@ -4,12 +4,14 @@ package duke.exception;
  * Throws an exception when a keyword required for the command is not found
  */
 public class ScheduleTaskKeywordNotFoundException extends DukeException {
+    public static String EXCEPTION_FRONT_DESCRIPTION =  " command expects a ";
+    public static String EXCEPTION_BACK_DESCRIPTION = " keyword after specifying the task.";
     /**
      * Throws an error message when a keyword required for the command is not found.
      * @param command command that requires a keyword.
      * @param keyword keyword required by the command.
      */
     public ScheduleTaskKeywordNotFoundException(String command, String keyword) {
-        super(command + " command expects a " + keyword + " keyword after specifying the task.");
+        super(command + EXCEPTION_FRONT_DESCRIPTION + keyword + EXCEPTION_BACK_DESCRIPTION);
     }
 }
