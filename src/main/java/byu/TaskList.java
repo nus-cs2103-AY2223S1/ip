@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import exceptions.DuplicateException;
 import exceptions.InvalidIndexException;
 import task.Task;
 
@@ -31,7 +32,12 @@ public class TaskList {
      *
      * @param task the Task to be added.
      */
-    public void addTask(Task task) {
+    public void addTask(Task task) throws DuplicateException {
+        for (int i = 0; i < numOfTasks; i++) {
+            if (task.equals(tasks.get(i))) {
+                throw new DuplicateException();
+            }
+        }
         this.tasks.add(task);
         this.numOfTasks += 1;
         String output = String.format("added: %s\n", task.toString());

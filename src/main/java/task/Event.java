@@ -29,4 +29,18 @@ public class Event extends Task {
     public String toString() {
         return String.format(Event.FORMAT, super.toString(), this.period);
     }
+
+    @Override
+    public boolean equals(Task task) {
+        if (task == null) {
+            return false;
+        } else if (!(task instanceof Event)) {
+            return false;
+        } else if (this.getName().equals(task.getName())) {
+            Event e = (Event) task;
+            return this.period.equals(e.period);
+        } else {
+            return false;
+        }
+    }
 }
