@@ -77,7 +77,7 @@ public class Parser {
                     break;
                 }
             }
-            return "";
+            return ui.getGoodbyeMessage();
         case "list": {
             int numOfTasks = taskList.getNumOfTasks();
             if (numOfTasks == 0) {

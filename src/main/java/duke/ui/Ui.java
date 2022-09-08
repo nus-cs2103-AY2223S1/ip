@@ -93,4 +93,12 @@ public class Ui {
     public String getMatchingTaskMessage() {
         return "Here are the matching tasks in your list:";
     }
+
+    /**
+     * Returns a goodbye message for the user.
+     * @return A goodbye message.
+     */
+    public String getGoodbyeMessage() {
+        return "Seaward out!";
+    }
 }
