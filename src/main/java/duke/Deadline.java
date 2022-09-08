@@ -54,6 +54,7 @@ public class Deadline extends Task {
         char X = 'X';
         boolean isDone = isDoneString == X;
         int idxOfBy = s.indexOf("(by:");
+        assert(idxOfBy > 0);
 
         String description = s.substring(7, idxOfBy);
 
