@@ -1,3 +1,7 @@
+package duke;
+
+import duke.task.TaskList;
+
 public class Message {
     public static final String HORIZONTAL_BORDER = "________________________________________________________";
     public static final String WELCOME_MESSAGE = "Hello! I'm Duke\nWhat can I do for you?";

@@ -1,5 +1,10 @@
-import java.util.Scanner;
-import java.time.LocalDate;
+package duke;
+
+import duke.command.Command;
+import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 public class Duke {
 
