@@ -21,9 +21,12 @@ public class ProcessUserInput {
      * @param workList
      */
     public static String process(ArrayList<Task> workList, String userInput) {
-        //assert userInput.split("").length == 0 : "User input cannot be empty";
+        assert userInput.split("").length > 0 : "User input cannot be empty";
         String typeOfTask = userInput.split(" ")[0];
+
         switch (typeOfTask) {
+        case Constants.EXIT:
+            return Constants.EXIT_MESSAGE;
         case Constants.LIST:
             return Task.listItems(workList);
         case Constants.UNMARK:
