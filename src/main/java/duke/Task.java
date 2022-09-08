@@ -10,20 +10,20 @@ public abstract class Task {
     /**
      * Information of task completion.
      */
-    private boolean completed;
+    private boolean isComplete;
 
     public Task(String name) {
         this.taskName = name;
-        this.completed = false;
+        this.isComplete = false;
     }
 
 
     public void setComplete() {
-        this.completed = true;
+        this.isComplete = true;
     }
 
     public void setIncomplete() {
-        this.completed = false;
+        this.isComplete = false;
     }
 
     public String getTaskName() {
@@ -31,7 +31,7 @@ public abstract class Task {
     }
 
     public boolean isCompleted() {
-        return this.completed;
+        return this.isComplete;
     }
 
     public abstract String getTaskType();
@@ -51,6 +51,6 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return (this.completed ? "[X] " : "[ ] ") + this.taskName;
+        return (this.isComplete ? "[X] " : "[ ] ") + this.taskName;
     }
 }

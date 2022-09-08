@@ -4,7 +4,6 @@ import duke.Deadline;
 import duke.Duke;
 import duke.DukeException;
 import duke.Storage;
-import duke.Task;
 import duke.TaskList;
 import duke.Ui;
 import java.time.LocalDate;
@@ -15,6 +14,10 @@ public class DeadlineCommand extends Command {
      * Command line input information for deadline task.
      */
     private String input;
+
+    private static final String ddmmyyyyRegex = "[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}";
+    private static final String yyyymmddRegex = "[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}";
+    private static final String timeRegex = "[0-9]{4}";
 
     public DeadlineCommand (String input) {
         this.input = input;
@@ -50,56 +53,90 @@ public class DeadlineCommand extends Command {
     /**
      * Sets the date for deadline task.
      *
-     * @param t Deadline task.
+     * @param d Deadline task.
      * @param date Date deadline for task.
      * @throws DukeException
      */
-    private static void dateSetter(Task t, String date) throws DukeException{
+    private static void dateSetter(Deadline d, String date) throws DukeException{
         String[] dateTime = date.split(" ", 2);
 
-        String ddmmyyyyRegex = "[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}";
-        String yyyymmddRegex = "[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}";
-        String timeRegex = "[0-9]{4}";
-
         if (dateTime[0].matches(ddmmyyyyRegex)) {
-            String[] info = dateTime[0].split("/");
-
-            String dd = info[0];
-            String mm = info[1];
-            String yyyy = info[2];
-
-            dd = dd.length() == 1 ? "0" + dd : dd;
-            mm = mm.length() == 1 ? "0" + mm : mm;
-            LocalDate toAdd = LocalDate.parse(yyyy + "-" + mm + "-" + dd);
-            t.setDate(toAdd);
-
-            if (dateTime.length == 2 ) {
-                if (dateTime[1].matches(timeRegex)) {
-                    t.setTime(dateTime[1]);
-                }
-            }
+            ddmmyyyyFormatSetter(d, dateTime);
         } else if (dateTime[0].matches(yyyymmddRegex)){
-            String[] info = dateTime[0].split("-");
-
-            String dd = info[2];
-            String mm = info[1];
-            String yyyy = info[0];
-
-            dd = dd.length() == 1 ? "0" + dd : dd;
-            mm = mm.length() == 1 ? "0" + mm : mm;
-            LocalDate toAdd = LocalDate.parse(yyyy + "-" + mm + "-" + dd);
-            t.setDate(toAdd);
-
-            if (dateTime.length == 2) {
-                if (dateTime[1].matches(timeRegex)) {
-                    t.setTime(dateTime[1]);
-                } else {
-                    throw new DukeException("Please input your time properly, it should be in 24h time.");
-                }
-            }
+            yyyymmddFormatSetter(d, dateTime);
         } else {
             throw new DukeException("Please input your deadline properly, I can only accept in dd/mm/yyyy OR yyyy-mm-dd.");
         }
     }
+
+    /**
+     * Helper to set date with yyyymmdd format, for deadline task.
+     *
+     * @param d Deadline task.
+     * @param dateTime User input for date (and time).
+     * @throws DukeException
+     */
+    private static void yyyymmddFormatSetter(Deadline d, String[] dateTime) throws DukeException{
+        String[] info = dateTime[0].split("-");
+
+        String dd = info[2];
+        String mm = info[1];
+        String yyyy = info[0];
+
+        dd = dd.length() == 1 ? "0" + dd : dd;
+        mm = mm.length() == 1 ? "0" + mm : mm;
+        LocalDate toAdd = LocalDate.parse(yyyy + "-" + mm + "-" + dd);
+        d.setDate(toAdd);
+
+        if (dateTime.length == 2 ) {
+            if (dateTime[1].matches(timeRegex)) {
+                d.setTime(dateTime[1]);
+            }
+        }
+        if (dateTime.length == 2) {
+            if (dateTime[1].matches(timeRegex)) {
+                d.setTime(dateTime[1]);
+            } else {
+                throw new DukeException("Please input your time properly, it should be in 24h time.");
+            }
+        }
+    }
+
+
+    /**
+     * Helper to set date with ddmmyyyy format, for deadline task.
+     *
+     * @param d Deadline task.
+     * @param dateTime User input for date (and time).
+     * @throws DukeException
+     */
+    private static void ddmmyyyyFormatSetter(Deadline d, String[] dateTime) throws DukeException{
+        String[] info = dateTime[0].split("/");
+
+        String dd = info[0];
+        String mm = info[1];
+        String yyyy = info[2];
+
+        dd = dd.length() == 1 ? "0" + dd : dd;
+        mm = mm.length() == 1 ? "0" + mm : mm;
+        LocalDate toAdd = LocalDate.parse(yyyy + "-" + mm + "-" + dd);
+        d.setDate(toAdd);
+
+        if (dateTime.length == 2 ) {
+            if (dateTime[1].matches(timeRegex)) {
+                d.setTime(dateTime[1]);
+            }
+        }
+        if (dateTime.length == 2) {
+            if (dateTime[1].matches(timeRegex)) {
+                d.setTime(dateTime[1]);
+            } else {
+                throw new DukeException("Please input your time properly, it should be in 24h time.");
+            }
+        }
+
+    }
+
+
 
 }

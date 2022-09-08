@@ -20,12 +20,12 @@ public class Duke {
      * User interface for duke bot.
      */
     private Ui ui;
-
+    /**
+     * Indicates when user inputs exit command.
+     */
     private boolean isExit = false;
 
-    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
-
+    
     public Duke() {
         ui = new Ui();
         storage = new Storage("./data/dukeInfo.txt");
