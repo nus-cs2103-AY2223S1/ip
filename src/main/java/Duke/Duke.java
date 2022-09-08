@@ -42,12 +42,14 @@ public class Duke extends Application {
      */
     private final Parser parser;
 
+    /**
+     * executer object to run commands.
+     */
+    private static final Execute executer = new Execute();
 
-    private ScrollPane scrollPane;
+
     private VBox dialogContainer;
     private TextField userInput;
-    private Button sendButton;
-    private Scene scene;
     private Image user = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
 
@@ -82,12 +84,12 @@ public class Duke extends Application {
     @Override
     public void start(Stage stage) {
         // step 1
-        scrollPane = new ScrollPane();
+        ScrollPane scrollPane = new ScrollPane();
         dialogContainer = new VBox();
         scrollPane.setContent(dialogContainer);
 
         userInput = new TextField();
-        sendButton = new Button("Send");
+        Button sendButton = new Button("Send");
 
         AnchorPane mainLayout = new AnchorPane();
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
@@ -170,87 +172,22 @@ public class Duke extends Application {
      */
     static String executeCommand(Commands command, String input) {
         if (command == Commands.LIST) {
-            StringBuilder list = new StringBuilder();
-            for (int i = 1; i <= tasks.getSize(); i++) {
-                String index = String.format("%d.", i);
-                String entry = index + tasks.getItem(i).toString() + "\n";
-                //ui.showEntry(entry);
-                list.append(entry);
-            }
-            return list.toString();
+            return executer.executeList(tasks);
 
         } else if (command == Commands.MARK) {
-            String number = input.split(" ", 2)[1];
-            try {
-                int num = Integer.parseInt(number);
-                String str = tasks.markTasks("mark", num);
-                storage.rewriteFile(tasks.getTaskArray());
-                return str;
+            return executer.executeMark(tasks, input, storage, ui);
 
-            } catch (NumberFormatException e) {
-                ui.showInvalidTaskMessage();
-            } catch (IOException e) {
-                ui.showErrorWritingMessage();
-            }
         } else if (command == Commands.UNMARK) {
-            try {
-                String number = input.split(" ", 2)[1];
-                int num = Integer.parseInt(number);
-                String str = tasks.markTasks("unmark", num);
-                storage.rewriteFile(tasks.getTaskArray());
-                return str;
+            return executer.executeUnmark(tasks, input, storage, ui);
 
-            } catch (NumberFormatException e) {
-                ui.showInvalidTaskMessage();
-            } catch (IOException e) {
-                ui.showErrorWritingMessage();
-            }
         } else if (command == Commands.DELETE) {
-            String number = input.split(" ", 2)[1];
-            try {
-                int num = Integer.parseInt(number);
-                Task toDelete = tasks.getTaskArray().get(num - 1);
-                tasks.delete(toDelete);
-                String str = ui.showDeleteMessage(toDelete, tasks.getSize());
-                storage.writeToFile(toDelete);
-                return str;
+            return executer.executeDelete(tasks, input, storage, ui);
 
-            } catch (NumberFormatException e) {
-                return ui.showInvalidTaskMessage();
-            } catch (IndexOutOfBoundsException e) {
-                return ui.showInvalidIndexMessage();
-            } catch (IOException e) {
-                return ui.showErrorWritingMessage();
-            }
         } else if (command == Commands.CREATETASK) {
-            try {
-                Task newTask = tasks.createTask(input, false);
-                if (newTask != null) {
-                    storage.writeToFile(newTask);
-                    return newTask.addMessage(tasks.getSize());
-                }
+            return executer.executeCreateTask(tasks, input, storage, ui);
 
-            } catch (DukeException.EmptyTaskException | DukeException.UnkownCommandException | DukeException.InvalidParameterException error) {
-                return error.getMessage();
-            } catch (IOException e) {
-                return ui.showErrorWritingMessage();
-            }
         } else if (command == Commands.FIND) {
-            try {
-                String word = input.split(" ", 2)[1];
-                StringBuilder list = new StringBuilder();
-                for (int i = 1; i <= tasks.getSize(); i++) {
-                    String index = String.format("%d.", i);
-                    String entry = index + tasks.getItem(i).toString();
-                    if (entry.contains(word)) {
-                        //ui.showEntry(entry);
-                        list.append(entry);
-                    }
-                }
-                return list.toString();
-            } catch (ArrayIndexOutOfBoundsException e) {
-                return ui.showInvalidFindFiledMessage();
-            }
+            return executer.executeFind(tasks, input, ui);
         }
         return "";
     }
