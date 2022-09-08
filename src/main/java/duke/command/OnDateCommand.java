@@ -39,7 +39,8 @@ public class OnDateCommand extends Command {
      */
     public String handle(Storage storage, Ui ui, TaskList taskList) {
         ArrayList<Task> list = taskList.getTaskList();
-        List<Task> filteredList = list.stream().filter(task -> task.isHappeningOnDate(localDate))
+        List<Task> filteredList = list.stream()
+                .filter(task -> task.isHappeningOnDate(localDate))
                 .collect(Collectors.toList());
         String output = "Duke says:\n" + "Hey, these are what you need to do on this date: "
                 + localDate.format(DateTimeFormatter.ofPattern("MMMM d yyyy"))
