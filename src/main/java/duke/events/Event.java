@@ -9,8 +9,6 @@ public class Event extends Task {
     protected LocalDate at;
     private String unformattedDate;
 
-    private static final int NUM_ELEMENTS_READ = 4;
-
     public Event(String description, String unformattedDate) {
         super(description);
         this.unformattedDate = unformattedDate;
@@ -25,7 +23,7 @@ public class Event extends Task {
 
 
     public static Event readTask(String[] values) {
-        assert values.length == NUM_ELEMENTS_READ : "Save data was not parsed correctly, incorrect number of elements read";
+        assert values.length == 4 : "Save data was not parsed correctly, incorrect number of elements read";
         boolean isDone = values[1].equals("0");
         String description = values[2];
         String unformattedDate = values[3];

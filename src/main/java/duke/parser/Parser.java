@@ -20,7 +20,6 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.XMLFormatter;
 
 /**
  * Handles the main logic of parsing raw input
@@ -87,7 +86,13 @@ public class Parser {
             return taskList.findTask(keyword);
 
         case "viewSchedule":
-            return scheduleFormatter(taskList, input);
+            String[] inputTempArr = input.split(" ", 2);
+            String date = inputTempArr[1];
+            String decideValidDate = dateValidator(date);
+            if (!(decideValidDate.equals("Success"))) { //an error occurred somewhere
+                return decideValidDate;
+            }
+            return taskList.viewSchedule(date);
 
         case "help":
             try {
@@ -102,33 +107,7 @@ public class Parser {
 
         //formulation of task
         default:
-            return taskMessageGenerator(taskList, input);
-        }
-    }
 
-    /**
-     * Helper method to instruct taskList to view available dates
-     * @param taskList
-     * @param input
-     * @return
-     */
-    private static String scheduleFormatter(TaskList taskList, String input) {
-        String[] splitArgsByWhitespace= input.split(" ", 2);
-        String date = splitArgsByWhitespace[1];
-        String decideValidDate = dateValidator(date);
-        if (!(decideValidDate.equals("Success"))) { //an error occurred somewhere
-            return decideValidDate;
-        }
-        return taskList.viewSchedule(date);
-    }
-
-    /**
-     * Helper method to validate and generate the Task method when created
-     * Abstracted from the main switch statement
-     * Returns a valid string, and passes the task to be added into the tasklist
-     * @param input
-     */
-    private static String taskMessageGenerator(TaskList taskList, String input){
             try {
                 taskValidator(input);
             } catch (InvalidCommandException ice) {
@@ -152,7 +131,7 @@ public class Parser {
             Task newTask = generateTask(input);
             return taskList.addTask(newTask);
         }
-
+    }
     /**
      * Helper method for input validation whenever an add task command is given
      * @param  input of type string
@@ -187,28 +166,23 @@ public class Parser {
         return "Success";
     }
 
-    /**
-     * Helper method to take in raw input string
-     * And returns the relevant task
-     * @param input
-     * @return
-     */
+    //changed to public for testing, TODO: change private after validation
     public static Task generateTask(String input) {
         String taskIndicator = input.split(" ", 2)[0];
-        String descriptionArgs = input.split(" ", 2)[1];
+        String descriptionInfo = input.split(" ", 2)[1];
         //Logic for splitting based on TaskIndicator's Enums
 
         if (taskIndicator.equals(TaskIndicator.TODO.getTask())) {
-            return new Todo(descriptionArgs);
+            return new Todo(descriptionInfo);
         } else if (taskIndicator.equals(TaskIndicator.DEADLINE.getTask())) {
-            int deliminatorSplitIndex = descriptionArgs.indexOf("/by");
-            String eventName = descriptionArgs.substring(0, deliminatorSplitIndex);
-            String date = descriptionArgs.substring(deliminatorSplitIndex + 4);
+            int deliminatorSplitIndex = descriptionInfo.indexOf("/by");
+            String eventName = descriptionInfo.substring(0, deliminatorSplitIndex);
+            String date = descriptionInfo.substring(deliminatorSplitIndex + 4);
             return new Deadline(eventName, date);
         } else { //must be Event
-            int deliminatorSplitIndex = descriptionArgs.indexOf("/at");
-            String eventName = descriptionArgs.substring(0, deliminatorSplitIndex);
-            String date = descriptionArgs.substring(deliminatorSplitIndex + 4);
+            int deliminatorSplitIndex = descriptionInfo.indexOf("/at");
+            String eventName = descriptionInfo.substring(0, deliminatorSplitIndex);
+            String date = descriptionInfo.substring(deliminatorSplitIndex + 4);
             return new Event(eventName, date);
         }
     }
