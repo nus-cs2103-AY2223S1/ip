@@ -32,6 +32,7 @@ public class DeadlineDateTime extends Date {
         if (splitted.length < 2 || splitted[0].strip().equals("") || splitted[1].strip().equals("")) {
             throw new DukeException(DukeException.ErrorCode.INVALID_DEADLINE_DATETIME_FORMAT);
         }
+        assert splitted.length >= 2 : "Date time not formatted properly";
         try {
             return new DeadlineDateTime(splitted[0], splitted[1]);
         } catch (DateTimeParseException e) {

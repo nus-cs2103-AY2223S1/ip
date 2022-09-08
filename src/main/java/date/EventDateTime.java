@@ -37,6 +37,7 @@ public class EventDateTime extends Date {
                 || splitted[2].strip().equals("")) {
             throw new DukeException(DukeException.ErrorCode.INVALID_EVENT_DATETIME_FORMAT);
         }
+        assert splitted.length >= 3 : "Date time not properly formatted";
         try {
             return new EventDateTime(splitted[0], splitted[1], splitted[2]);
         } catch (DateTimeParseException e) {
