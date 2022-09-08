@@ -27,6 +27,6 @@ public class Deadline extends Task {
     /** @inheritdoc */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by: " + DateTimeConverter.formatString(by) + ")";
+        return "[D]" + super.toString() + " (by: " + DateTimeConverter.formatString(by) + ")";
     }
 }

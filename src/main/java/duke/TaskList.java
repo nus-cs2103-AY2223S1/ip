@@ -6,19 +6,19 @@ public class TaskList {
 
     private ArrayList<Task> taskList;
 
-    public TaskList(){
+    public TaskList() {
         this.taskList = new ArrayList<>();
     }
 
-    public void load(Task task){
+    public void load(Task task) {
         this.taskList.add(task);
     }
 
-    public ArrayList<Task> getTaskList(){
+    public ArrayList<Task> getTaskList() {
         return this.taskList;
     }
 
-    public String handleList(){
+    public String handleList() {
         String log = "Tasks that you have:";
         for (int i = 0; i < taskList.size(); i++) {
             log += String.format("\n %d. %s", i + 1, this.taskList.get(i));
@@ -59,17 +59,19 @@ public class TaskList {
         }
     }
 
-
-
-    public String handleToDo(String cmd) throws DukeException{
+    public String handleToDo(String cmd) throws DukeException {
         int min_length = "todo ".length();
         if (cmd.length() <= min_length) {
             throw new IncompleteParamException(cmd);
         } else {
             String taskdes = cmd.substring("todo ".length());
             Task task = new ToDo(taskdes);
-            this.taskList.add(task);
-            return String.format("Got it. I've added this task: \n %s \n  Now you have %d tasks in the list.", task ,this.taskList.size());
+            if (this.taskList.contains(task)) {
+                throw new DuplicateItemException(taskdes);
+            } else {
+                this.taskList.add(task);
+                return String.format("Got it. I've added this task: \n %s \n  Now you have %d tasks in the list.", task, this.taskList.size());
+            }
         }
     }
 
@@ -78,11 +80,15 @@ public class TaskList {
         if (cmd.length() <= endPointer + 3 || endPointer == -1) {
             throw new IncompleteParamException(cmd);
         } else {
-            String taskdes = cmd.substring("deadline ".length(), endPointer);
+            String taskdes = cmd.substring("deadline ".length(), endPointer - 1);
             String by = cmd.substring(endPointer + 4);
             Task task = new Deadline(taskdes, by);
-            this.taskList.add(task);
-            return String.format("Got it. I've added this task: \n %s \n  Now you have %d tasks in the list.", task, this.taskList.size());
+            if (this.taskList.contains(task)) {
+                throw new DuplicateItemException(taskdes);
+            } else {
+                this.taskList.add(task);
+                return String.format("Got it. I've added this task: \n %s \n  Now you have %d tasks in the list.", task, this.taskList.size());
+            }
         }
     }
 
@@ -91,16 +97,19 @@ public class TaskList {
         if (cmd.length() <= endPointer + 3 || endPointer == -1) {
             throw new IncompleteParamException(cmd);
         } else {
-            String taskdes = cmd.substring("event ".length(), endPointer);
+            String taskdes = cmd.substring("event ".length(), endPointer - 1);
             String at = cmd.substring(endPointer + 4);
             Task task = new Event(taskdes, at);
-            this.taskList.add(task);
-            return String.format("Got it. I've added this task: \n %s \n  Now you have %d tasks in the list.", task, this.taskList.size());
-
+            if (this.taskList.contains(task)) {
+                throw new DuplicateItemException(taskdes);
+            } else {
+                this.taskList.add(task);
+                return String.format("Got it. I've added this task: \n %s \n  Now you have %d tasks in the list.", task, this.taskList.size());
+            }
         }
     }
 
-    public String handleDelete(String cmd) throws DukeException{
+    public String handleDelete(String cmd) throws DukeException {
         int min_length = "delete ".length();
         if (cmd.length() <= min_length) {
             throw new IncompleteParamException(cmd);
@@ -111,7 +120,7 @@ public class TaskList {
             } else {
                 Task task = this.taskList.get(taskNumber - 1);
                 this.taskList.remove(taskNumber - 1);
-                return String.format("Got it. I've removed this task: \n %s \n  Now you have %d tasks in the list.", task ,this.taskList.size());
+                return String.format("Got it. I've removed this task: \n %s \n  Now you have %d tasks in the list.", task, this.taskList.size());
             }
         }
     }
@@ -123,7 +132,7 @@ public class TaskList {
         } else {
             String taskToFind = cmd.substring(minLength);
             ArrayList<Task> tempList = new ArrayList<>();
-            this.taskList.forEach( (task) -> {
+            this.taskList.forEach((task) -> {
                 if (task.checkMatch(taskToFind)) {
                     tempList.add(task);
                 }
@@ -135,4 +144,15 @@ public class TaskList {
             return log;
         }
     }
+
+//    public Boolean contains(Object o) {
+//        Boolean isInside = false;
+//        for (int i = 0; i < this.taskList.size(); i++) {
+//            if (this.taskList.get(i).equals(o)) {
+//                isInside = true;
+//                break;
+//            }
+//        }
+//        return isInside;
+//    }
 }

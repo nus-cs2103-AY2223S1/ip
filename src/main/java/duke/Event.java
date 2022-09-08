@@ -26,6 +26,6 @@ public class Event extends Task {
     /** @inheritdoc */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at: " + DateTimeConverter.formatString(at) + ")";
+        return "[E]" + super.toString() + " (at: " + DateTimeConverter.formatString(at) + ")";
     }
 }
