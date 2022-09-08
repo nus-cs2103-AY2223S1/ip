@@ -21,6 +21,7 @@ public class Parser {
      * @throws JarvisException exception for invalid commands.
      */
     public static Command parseUserCommand(String command) throws JarvisException {
+        assert command != null;
         String[] arguments = command.trim().split(" ");
         switch (arguments[0]) {
         case "bye":
