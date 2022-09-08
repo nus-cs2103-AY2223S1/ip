@@ -46,4 +46,8 @@ public class OutputRedirector {
 
         return capturedString;
     }
+
+    public static boolean isCaptured() {
+        return isCaptured;
+    }
 }

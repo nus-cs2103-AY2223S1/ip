@@ -44,7 +44,7 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         Cache cache = new Cache(System.getProperty("user.dir") + "\\data\\duke.txt");
         taskList = cache.printPath();
-        run();
+        cliRun();
         cache.update(taskList);
     }
 
@@ -61,7 +61,7 @@ public class Duke {
      * 9. find [String]: to find the corresponding task.
      * 10. list: to list all ongoing tasks.
      */
-    public static void run() throws IncompleteCommandException, TaskOutOfBoundException,
+    public static void cliRun() throws IncompleteCommandException, TaskOutOfBoundException,
             NoSuchCommandException, TaskCompletionException, DateTimeFormatException {
         Scanner in = new Scanner(System.in);
         boolean lastCommandOrNot = false;
@@ -157,8 +157,6 @@ public class Duke {
                 }
                 throw new IncompleteCommandException(e.getMessage(), suggestion);
 
-                //IndexOutOfBoundsException mark 1 > totalNumber
-                //check mark/ unmark
             } catch (IndexOutOfBoundsException e) {
                 if (command.equals("mark") || command.equals("unmark") || command.equals("delete")) {
                     System.out.println("     :( OOPS!!! You have less than " + (taskIndex + 1) + " task(s).");
@@ -171,10 +169,13 @@ public class Duke {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Returns a greeting msg after recovering all the previous tasks from cache.
+     * @return a string which contains the greeting msg of Duke.
+     * @throws DukeException
+     * @throws IOException
      */
     public String getResponse() throws DukeException, IOException {
+        assert (OutputRedirector.isCaptured() == false) : "The output stream is somehow alr captured. Please check!";
         OutputRedirector.start();
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -184,10 +185,19 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         cache = new Cache(System.getProperty("user.dir") + "\\data\\duke.txt");
         taskList = cache.printPath();
+        Ui.greet();
         return OutputRedirector.stop();
     }
 
+    /**
+     * Returns a string which contains the response of Duke.
+     * @param input the command taken from GUI.
+     * @return a string which contains the response of Duke.
+     * @throws DukeException
+     * @throws IOException
+     */
     public String getResponse(String input) throws DukeException, IOException {
+        assert (OutputRedirector.isCaptured() == false) : "The output stream is somehow alr captured. Please check!";
         OutputRedirector.start();
         Task task;
         String command;

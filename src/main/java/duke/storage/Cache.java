@@ -12,7 +12,6 @@ import java.util.Scanner;
 
 import duke.dukeexception.DukeException;
 import duke.dukeexception.TypeNotExistException;
-import duke.parser.OutputRedirector;
 import duke.tasks.Task;
 import duke.ui.Ui;
 
