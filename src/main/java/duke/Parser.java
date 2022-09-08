@@ -1,16 +1,11 @@
 package duke;
 
-import duke.Deadline;
-import duke.EmptyDescriptionException;
-import duke.Event;
-import duke.OutOfRangeException;
-
 import java.util.ArrayList;
 
-
+/**
+ * A parser class to parse/process user input
+ */
 public class Parser {
-
-
     int count = 0;
     TaskList tasks = new TaskList();
     boolean terminator = false;
@@ -28,6 +23,7 @@ public class Parser {
      * Processes the input given by the user of Duke
      *
      * @param input what the user typed
+     * @return String of output after processing user input
      */
     public String parse(String input) {
 
@@ -35,9 +31,9 @@ public class Parser {
 
         if (input.equals("bye")) {
             storage.writer(tasks.getArr());
-            return ui.print(1);
+            return ui.print("bye");
         } else if (input.equals("list")) {
-            temp.append(ui.print(2)).append("\n");
+            temp.append(ui.print("list")).append("\n");
             for (int i = 0; i < count; i ++) {
                 temp.append(i + 1).append(". ").append(tasks.get(i).toString()).append("\n");
             }
@@ -57,8 +53,9 @@ public class Parser {
                     tasks.get(index).setDone();
                 }
 
+                //to output in GUI once parser processes inputs from storage
                 if (checker) {
-                    temp = new StringBuilder(ui.print(3) + tasks.get(index).toString());
+                    temp = new StringBuilder(ui.print("mark") + tasks.get(index).toString());
                     return temp.toString();
                 }
 
@@ -73,9 +70,14 @@ public class Parser {
                 input = input.replaceFirst("todo ", "");
                 tasks.add(new Todo(input));
 
-                //output
+                //to output in GUI once parser processes inputs from storage
                 if (checker) {
-                    temp.append(ui.print(4)).append("\n").append(tasks.get(count).toString()).append("\n").append("Now you have ").append(count + 1).append(" tasks in the list.");
+                    temp.append(ui.print("todo"))
+                            .append("\n")
+                            .append(tasks.get(count).toString())
+                            .append("\n").append("Now you have ")
+                            .append(count + 1)
+                            .append(" tasks in the list.");
                     count++;
                     return temp.toString();
                 }
@@ -85,21 +87,22 @@ public class Parser {
                 return e.getMessage();
             }
         } else if (input.contains("deadline")) {
+            String[] s_arr;
 
             input = input.replaceFirst("deadline ", "");
 
-            if (!checker) {
-                String[] s_arr = input.split("/", -1); //split array
-                s_arr[1] = s_arr[1].replaceAll("by ", "");
-                tasks.add(new Deadline(s_arr[0], s_arr[1]));
-            } else {
-                //string manipulation
-                String[] s_arr = input.split("/", 2); //split array
-                s_arr[1] = s_arr[1].replaceFirst("by ", "");
-                tasks.add(new Deadline(s_arr[0], s_arr[1]));
-            }
 
-            //output
+
+            if (!checker) {
+                s_arr = input.split("/", -1);
+                s_arr[1] = s_arr[1].replaceAll("by ", "");
+            } else {
+                s_arr = input.split("/", 2);
+                s_arr[1] = s_arr[1].replaceFirst("by ", "");
+            }
+            tasks.add(new Deadline(s_arr[0], s_arr[1]));
+
+            //to output in GUI once parser processes inputs from storage
             if (checker) {
                 temp.append("Got it. I've added this task:\n").append(tasks.get(count).toString()).append("\n").append("Now you have ").append(count + 1).append( " tasks in the list.");
                 count++;
@@ -109,7 +112,7 @@ public class Parser {
 
         } else if (input.contains("event")) {
 
-            //string manipulation
+
             input = input.replaceFirst("event ", "");
             String[] s_arr = input.split("/", -1); //split array
             s_arr[1] = s_arr[1].replaceFirst("at ", "");
@@ -117,9 +120,15 @@ public class Parser {
             tasks.add(new Event(s_arr[0], s_arr[1]));
 
 
-            //output
+            //to output in GUI once parser processes inputs from storage
             if (checker) {
-                temp.append("\n").append(ui.print(4)).append("\n").append(tasks.get(count).toString()).append("\n").append("Now you have ").append(count + 1).append(" tasks in the list.");
+                temp.append("\n")
+                        .append(ui.print("event"))
+                        .append("\n")
+                        .append(tasks.get(count).toString())
+                        .append("\n").append("Now you have ")
+                        .append(count + 1)
+                        .append(" tasks in the list.");
                 count++;
                 return temp.toString();
             }
@@ -133,7 +142,11 @@ public class Parser {
             index = Integer.parseInt(input) - 1;
 
             //output
-            temp.append(ui.print(7) + "\n").append(tasks.get(index).toString() + "\n").append("Now you have ").append(count - 1).append(" tasks in the list.");
+            temp.append(ui.print("delete")).append("\n")
+                    .append(tasks.get(index).toString())
+                    .append("\n").append("Now you have ")
+                    .append(count - 1)
+                    .append(" tasks in the list.");
 
             tasks.remove(index);
             count--;
