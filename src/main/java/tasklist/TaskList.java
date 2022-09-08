@@ -32,12 +32,12 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        String res = Ui.formatLine("Here are the tasks in your list:");
+        StringBuilder res = new StringBuilder(Ui.formatLine("Here are the tasks in your list:"));
         for (int i = 0; i < this.list.size(); i++) {
             String nextListItem = String.format("%d.%s", i + 1, this.list.get(i));
-            res += Ui.formatLine(nextListItem);
+            res.append(Ui.formatLine(nextListItem));
         }
-        return res;
+        return res.toString();
     }
 
     /**
