@@ -15,11 +15,11 @@ public class ToDo extends Task {
      */
     public ToDo(String name, boolean init, boolean completed, int listSize) {
         super(name, completed);
-        if (!init) {
-            addMessage(listSize);
-        }
+//        if (!init) {
+//            addMessage(listSize);
+//        }
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -32,13 +32,10 @@ public class ToDo extends Task {
      * {@inheritDoc}
      */
     @Override
-    public void addMessage(int listSize) {
-        System.out.printf(
-                "    ____________________________________________________________\n" +
-                        "     Got it. I've added this task:\n" +
+    public String addMessage(int listSize) {
+        return String.format("     Got it. I've added this task:\n" +
                         "     %s\n" +
-                        "     Now you have %d tasks in the list.\n" +
-                        "    ____________________________________________________________\n", this, listSize + 1);
+                        "     Now you have %d tasks in the list.\n", this, listSize + 1);
     }
 
     /**

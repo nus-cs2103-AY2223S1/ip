@@ -28,35 +28,27 @@ public class Task {
     /**
      * Sets complete to true.
      */
-    public void mark() {
+    public String mark() {
         completed = true;
-        System.out.printf(
-                "    ____________________________________________________________\n" +
-                        "     Nice! I've marked task %s as done:\n" +
-                        "     " + this + "\n" +
-                        "    ____________________________________________________________\n", taskName);
+        return String.format("     Nice! I've marked task %s as done:\n" +
+                        "     " + this + "\n", taskName);
     }
 
     /**
      * Sets complete to false.
      */
-    public void unMark() {
+    public String unMark() {
         completed = false;
-        System.out.printf(
-                "    ____________________________________________________________\n" +
+        return String.format(
                         "     Ok, I've marked task %s as not done yet:\n" +
-                        "     " + this + "\n" +
-                        "    ____________________________________________________________\n", taskName);
+                        "     " + this + "\n", taskName);
     }
 
     /**
      * Printed message when object is created.
      */
-    public void addMessage(int listSize) {
-        System.out.printf(
-                "    ____________________________________________________________\n" +
-                        "     added: %s\n" +
-                        "    ____________________________________________________________\n", taskName);
+    public String addMessage(int listSize) {
+        return String.format("     added: %s\n", taskName);
     }
 
     /**
