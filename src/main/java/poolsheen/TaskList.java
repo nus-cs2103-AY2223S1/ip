@@ -71,7 +71,6 @@ public class TaskList {
      * @param pos The index+1 position of the task that is to be deleted.
      */
     public void deleteTask(int pos) {
-        Task t = this.arl.get(pos - 1);
         this.arl.remove(pos - 1);
     }
 
@@ -98,5 +97,25 @@ public class TaskList {
         Predicate<Task> hasWord = task -> taskDescStream.apply(task).anyMatch(word -> keyword.equalsIgnoreCase(word));
         taskStream.filter(hasWord).forEach(x -> finalArl.add(x));
         return new TaskList(finalArl);
+    }
+
+    /**
+     * Update the task description at the specified position.
+     * @param pos The position of the task to be updated.
+     * @param newDesc The new description of the task.
+     */
+    public void updateDesc(int pos, String newDesc) {
+        Task selectedTask = this.arl.get(pos - 1);
+        selectedTask.setDesc(newDesc);
+    }
+
+    /**
+     * Updates the task time at the specified position.
+     * @param pos The position of the task to be updated.
+     * @param newTime Thew new time of the task.
+     */
+    public void updateTime(int pos, String newTime) {
+        Task selectedTask = this.arl.get(pos - 1);
+        selectedTask.setTime(newTime);
     }
 }

@@ -1,5 +1,7 @@
 package poolsheen;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -35,7 +37,10 @@ public class MainWindow extends AnchorPane {
         );
     }
 
-    public void setPoolsheen(Poolsheen p) {
+    public void setPoolsheen(Poolsheen p) throws IOException {
+        if (Poolsheen.getExited()) {
+            throw new IOException("Error with loading");
+        }
         poolsheen = p;
     }
 

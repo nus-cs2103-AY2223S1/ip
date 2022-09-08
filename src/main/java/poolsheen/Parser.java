@@ -12,6 +12,7 @@ import poolsheen.command.ListCommand;
 import poolsheen.command.MarkCommand;
 import poolsheen.command.ToDoCommand;
 import poolsheen.command.UnmarkCommand;
+import poolsheen.command.UpdateCommand;
 
 /**
  * Represents a class that can parse strings into commands.
@@ -51,6 +52,8 @@ public class Parser {
             return new EventCommand(arl);
         case "FIND":
             return new FindCommand(arl);
+        case "UPDATE":
+            return new UpdateCommand(arl);
         default:
             throw new PoolsheenException(firstWord, "unknown command", "Input a valid command.");
         }

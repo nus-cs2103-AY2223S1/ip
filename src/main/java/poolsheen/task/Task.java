@@ -60,6 +60,20 @@ public abstract class Task {
     }
 
     /**
+     * Sets this task's description to a new description.
+     * @param newDesc The new description of the task.
+     */
+    public void setDesc(String newDesc) {
+        this.description = newDesc;
+    }
+
+    /**
+     * Sets this task's time to a new time.
+     * @param newTime The new time of the task.
+     */
+    public abstract void setTime(String newTime);
+
+    /**
      * Returns an array of strings which can be written into the save file.
      *
      * @return An array of strings.

@@ -39,4 +39,25 @@ public class ToDoTest {
         ToDo td = new ToDo("desc", false);
         assertEquals("-", td.getStatusIcon());
     }
+
+    @Test
+    public void setDesc_zeroSpaceDesc_success() {
+        ToDo td = new ToDo("desc", false);
+        td.setDesc("newDesc");
+        assertEquals(td.getDescription(), "newDesc");
+    }
+
+    @Test
+    public void setDesc_singleSpaceDesc_success() {
+        ToDo td = new ToDo("desc", false);
+        td.setDesc("new Desc");
+        assertEquals(td.getDescription(), "new Desc");
+    }
+
+    @Test
+    public void setDesc_doubleSpaceDesc_success() {
+        ToDo td = new ToDo("desc", false);
+        td.setDesc("new Desc Desc");
+        assertEquals(td.getDescription(), "new Desc Desc");
+    }
 }

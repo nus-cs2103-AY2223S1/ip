@@ -12,12 +12,10 @@ import javafx.stage.Stage;
  * A GUI for Poolsheen using FXML.
  */
 public class Main extends Application {
-
-    private Poolsheen poolsheen = new Poolsheen();
-
     @Override
     public void start(Stage stage) {
         try {
+            Poolsheen poolsheen = new Poolsheen();
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);

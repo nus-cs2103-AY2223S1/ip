@@ -24,6 +24,11 @@ public class TaskListTest {
         public String[] toArr() {
             return new String[]{"Code should not reach here"};
         }
+
+        @Override
+        public void setTime(String newTime) {
+            throw new PoolsheenException("ToDo tasks have no time", "update", "Try again!");
+        }
     }
 
     @Test
