@@ -11,6 +11,7 @@ import duke.DukeException;
  */
 public class Task {
     protected String description;
+    protected String tag = "";
     protected boolean isDone;
 
     /**
@@ -56,7 +57,8 @@ public class Task {
      * @return the string description
      */
     public String toFileDescription() {
-        return (this.isDone ? "1 " : "0 ") + "| " + this.description;
+        return (this.isDone ? "1 " : "0 ") + "| " + this.description
+                + this.tag;
     }
 
     /**
@@ -89,6 +91,25 @@ public class Task {
     public boolean containsKeyword(String keyword) {
         return description.contains(keyword);
     }
+    public void tagTask(String tag) {
+        this.tag = tag;
+    }
+
+    public void untagTask() {
+        this.tag = "";
+    }
+
+    /**
+     * Representation of a tagging given to a task.
+     *
+     * @return the string representation of the tagging
+     */
+    public String tagToString() {
+        if (!tag.isBlank()) {
+            return tag;
+        }
+        return "";
+    }
 
     /**
      * Returns the string representation of the task.
@@ -97,6 +118,6 @@ public class Task {
      */
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " + this.description;
+        return "[" + getStatusIcon() + "] " + this.description + tagToString();
     }
 }

@@ -11,6 +11,7 @@ import duke.command.ListCommand;
 import duke.command.MarkDoneCommand;
 import duke.command.MarkUndoneCommand;
 import duke.command.OnDateCommand;
+import duke.command.TagCommand;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
@@ -120,6 +121,37 @@ public class Parser {
     }
 
     /**
+     * Method that handles a tagging command.
+     *
+     * @param input the given input command from the user
+     * @return a formatted array of Strings
+     * @throws DukeException if input  from user is invalid
+     */
+    public static String[] handleTag(String input) throws DukeException {
+        if (input.length() == 0) {
+            throw new DukeException("Please specify which task to tag and to tag as what");
+        }
+        if (input.length() == 1) {
+            throw new DukeException("Hello! What do you want to tag it with?");
+        }
+        String[] strArray = input.split("", 2);
+        return strArray;
+    }
+
+    /**
+     * Method to untag a task.
+     *
+     * @param input the input from the user
+     * @return the integer index of the task
+     * @throws DukeException if input from user is invalid
+     */
+    public static int handleUntag(String input) throws DukeException {
+        if (input.length() == 0) {
+            throw new DukeException("Maybe you want to specify which task to untag?");
+        }
+        return Integer.parseInt(input);
+    }
+    /**
      * Handles the reading of the input from the user.
      *
      * @param   input the input from the user
@@ -165,6 +197,12 @@ public class Parser {
             break;
         case "find":
             cmd = new FindCommand(handleFind(second));
+            break;
+        case "tag":
+            String[] args = handleTag(second);
+            int index = Integer.parseInt(args[0]);
+            String tag = args[1];
+            cmd = new TagCommand(tag, index);
             break;
         default:
             throw new DukeException("Invalid command entered. I don't recognize it. Sorry!");

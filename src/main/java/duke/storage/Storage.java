@@ -46,7 +46,6 @@ public class Storage {
             directory.mkdir();
         }
         try {
-            String filePath = "data/duke.txt";
             FileWriter fileWriter = new FileWriter(filePath);
             List<Task> listOfTasks = taskList.getTaskList();
             for (Task t : listOfTasks) {
@@ -54,7 +53,7 @@ public class Storage {
             }
             fileWriter.close();
         } catch (IOException e) {
-            throw new DukeException("Hey! Are you in the wrong directory? You are currently at"
+            throw new DukeException("Hey! Are you in the wrong directory? You are currently at "
                     + e.getMessage());
         }
     }
@@ -72,8 +71,7 @@ public class Storage {
             directory.mkdir();
         }
         try {
-            String existingFilePath = "data/duke.txt";
-            File data = new File(existingFilePath);
+            File data = new File(filePath);
             if (data.exists()) {
                 Scanner scanner = new Scanner(data);
                 while (scanner.hasNext()) {
