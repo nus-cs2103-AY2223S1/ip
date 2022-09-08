@@ -21,6 +21,7 @@ import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.MarkDoneCommand;
 import duke.command.MarkUndoneCommand;
+import duke.command.SortCommand;
 import duke.command.UnknownCommand;
 import duke.exception.DukeCommandFormatException;
 import duke.exception.DukeDateTimeFormatException;
@@ -148,6 +149,8 @@ public class Parser {
         private static final Function<? super String, ? extends Command> UNKNOWN_COMMAND_SUPPLIER =
                 commandArgument -> new UnknownCommand();
 
+        private static final Function<? super String, ? extends Command> SORT_COMMAND_SUPPLIER = x -> new SortCommand();
+
         private static final List<Function<? super String, ? extends Command>> suppliers =
                 List.of(
                         ADD_DEADLINE_COMMAND_SUPPLIER,
@@ -159,7 +162,8 @@ public class Parser {
                         FIND_COMMAND_SUPPLIER,
                         MARK_DONE_COMMAND_SUPPLIER,
                         MARK_UNDONE_COMMAND_SUPPLIER,
-                        UNKNOWN_COMMAND_SUPPLIER
+                        UNKNOWN_COMMAND_SUPPLIER,
+                        SORT_COMMAND_SUPPLIER
                 );
 
         private static final List<String> instructions = List.of(
@@ -172,7 +176,8 @@ public class Parser {
                 CommandType.FIND.toString(),
                 CommandType.MARK_DONE.toString(),
                 CommandType.MARK_UNDONE.toString(),
-                CommandType.UNKNOWN.toString()
+                CommandType.UNKNOWN.toString(),
+                CommandType.SORT.toString()
         );
 
         /**

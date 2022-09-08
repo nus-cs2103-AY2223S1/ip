@@ -1,28 +1,28 @@
 package duke.command;
 
-import duke.exception.DukeException;
-import duke.task.DeadlineTask;
+import static duke.Duke.TAB;
+
 import duke.ui.CliUi;
 import duke.util.Storage;
 import duke.util.TaskList;
 
 /**
- * A command class that adds a deadline task, displays the output, and saves the file.
+ * A command class that sorts all tasks in the list by chronological order from earlier to later.
  */
-public class AddDeadlineCommand extends Command {
+public class SortCommand extends Command {
 
-    private final DeadlineTask task;
+    private static final String OUTPUT_MESSAGE = "Sure! I have sorted the list!";
 
     /**
      * The standard constructor.
      */
-    public AddDeadlineCommand(DeadlineTask task) {
-        super(CommandType.ADD_DEADLINE);
-        this.task = task;
+    public SortCommand() {
+        super(CommandType.SORT);
     }
 
     /**
      * Executes the command concretely.
+     * Sorts all the tasks.
      *
      * @param cliUi An object that facilitates output that might be required by the command.
      * @param taskList An object that facilitates basic insert, edit, search, and delete operations
@@ -32,13 +32,9 @@ public class AddDeadlineCommand extends Command {
      */
     @Override
     protected String executeConcretely(CliUi cliUi, TaskList taskList, Storage storage) {
-        String output;
-
-        try {
-            output = taskList.addNewTask(task);
-        } catch (DukeException exception) {
-            output = exception.getMessage();
-        }
+        String output = OUTPUT_MESSAGE;
+        taskList.sort();
+        output += "\n" + TAB + taskList.getListInfo();
 
         cliUi.printOutput(output);
 

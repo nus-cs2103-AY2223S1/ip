@@ -41,4 +41,14 @@ public class EventTask extends Task {
     public String getFileRepresentation() {
         return super.getFileRepresentation(LABEL, dateTime.format(Task.OUTPUT_FORMATTER));
     }
+
+    /**
+     * A LocalDateTime getter.
+     *
+     * @return The date of the task.
+     */
+    @Override
+    public LocalDateTime getDate() {
+        return dateTime;
+    }
 }
