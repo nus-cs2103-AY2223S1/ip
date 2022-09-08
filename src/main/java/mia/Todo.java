@@ -7,11 +7,11 @@ package mia;
  */
 public class Todo extends Task {
 
-    Todo(String title, boolean isCompleted) {
+    public Todo(String title, boolean isCompleted) {
         super(title, isCompleted);
     }
 
-    Todo(String title) {
+    public Todo(String title) {
         super(title);
     }
 

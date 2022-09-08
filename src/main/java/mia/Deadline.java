@@ -16,11 +16,11 @@ public class Deadline extends Task {
     private LocalDate byDate;
     private LocalTime byTime;
 
-    Deadline(String title, String deadline) throws IllegalArgumentException {
+    public Deadline(String title, String deadline) throws IllegalArgumentException {
         this(title, false, deadline);
     }
 
-    Deadline(String title, boolean isCompleted, String deadline) throws IllegalArgumentException {
+    public Deadline(String title, boolean isCompleted, String deadline) throws IllegalArgumentException {
         super(title, isCompleted);
         byDate = RegexHelper.extractAndParseDate(deadline)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid deadline date: " + deadline));
