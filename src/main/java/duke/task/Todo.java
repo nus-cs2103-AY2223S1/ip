@@ -4,6 +4,7 @@ package duke.task;
  * Represents a Task with no specified date and time.
  */
 public class Todo extends Task {
+    public static final String LEAD_KEYWORD = "[T]";
     /**
      * Constructs a Todo object with a description.
      *
@@ -30,6 +31,6 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[T]%s", super.toString());
+        return LEAD_KEYWORD + super.toString();
     }
 }

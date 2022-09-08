@@ -6,7 +6,7 @@ import duke.task.Event;
 /**
  * Represents EventCommand object to be called when user inputs 'event'.
  */
-public class EventCommand extends TaskCommand {
+public class EventCommand extends AddCommand {
     public static final String COMMAND_WORD = "event";
 
     /**

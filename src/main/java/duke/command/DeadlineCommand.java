@@ -6,7 +6,7 @@ import duke.task.Deadline;
 /**
  * Represents a DeadlineCommand object to be called when user inputs 'deadline'.
  */
-public class DeadlineCommand extends TaskCommand {
+public class DeadlineCommand extends AddCommand {
     public static final String COMMAND_WORD = "deadline";
 
     /**

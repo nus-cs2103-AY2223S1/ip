@@ -36,6 +36,4 @@ public class DeleteCommand extends Command {
         storage.update(tasks);
         return String.format("%s\n%s", TASK_DELETE, task);
     }
-
-
 }

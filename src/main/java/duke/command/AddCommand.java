@@ -5,23 +5,23 @@ import duke.util.Storage;
 import duke.util.TaskList;
 
 /**
- * Represents a TaskCommand object.
+ * Represents a AddCommand object.
  */
-public abstract class TaskCommand extends Command {
+public abstract class AddCommand extends Command {
     public static final String TASK_ADD = "Got it. I've added this task";
     private Task task;
 
     /**
-     * Constructs TaskCommand object with task.
+     * Constructs AddCommand object with task.
      *
      * @param task Task to be added.
      */
-    public TaskCommand(Task task) {
+    public AddCommand(Task task) {
         this.task = task;
     }
 
     /**
-     * Executes TaskCommand by adding the task to tasks.
+     * Executes AddCommand by adding the task to tasks.
      *
      * @param tasks task to be added to tasks.
      * @param storage update the storage when task is added to tasks.

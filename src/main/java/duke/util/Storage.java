@@ -12,6 +12,7 @@ import java.util.Scanner;
  * Represents a Storage to store task input by the user.
  */
 public class Storage {
+    public static final String STORAGE_UPDATE_MESSAGE = "Storage: duke.txt updated";
     private File dukeFile;
     private FileWriter fileWriter;
     private Scanner scanner;
@@ -58,7 +59,7 @@ public class Storage {
             fileWriter = new FileWriter(dukeFile);
             fileWriter.write(tasks.toString());
             fileWriter.close();
-            return "Storage: duke.txt updated";
+            return STORAGE_UPDATE_MESSAGE;
         } catch (IOException e) {
             return e.getMessage();
         }
