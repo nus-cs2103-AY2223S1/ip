@@ -45,6 +45,7 @@ public class Parser {
     public String readInputString(String s) throws InvalidCommandException,
             InvalidDescriptionException, IOException {
         String[] splitCommand = s.split(" ", 2);
+        assert splitCommand[0] != null : "Invalid command";
         String command = splitCommand[0];
         switch (command) {
         case "bye":
@@ -109,9 +110,11 @@ public class Parser {
             return ui.getUnmarkedTaskMessage() + taskList.readTask(index);
         }
         case "delete": {
+            if (splitCommand.length == 1) {
+                throw new InvalidDescriptionException("Please add a number.");
+            }
             int index = Integer.parseInt(splitCommand[1]) - 1;
             int numOfTasks = taskList.getNumOfTasks();
-            int newNumOfTasks = numOfTasks - 1;
             if (index + 1 > numOfTasks) {
                 throw new InvalidCommandException("Task does not exist.");
             }
@@ -163,5 +166,4 @@ public class Parser {
             throw new InvalidCommandException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
-
 }
