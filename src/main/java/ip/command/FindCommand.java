@@ -29,6 +29,7 @@ public class FindCommand extends DukeCommand {
         if (options.hasNext()) {
             keyword = options.nextLine().trim();
         }
+        assert !keyword.isBlank() : "Blank keyword.";
         for (Task task : taskList.tasks) {
             if (task.hasString(keyword)) {
                 results.add(task);

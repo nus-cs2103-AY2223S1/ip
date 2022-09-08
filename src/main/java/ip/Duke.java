@@ -42,6 +42,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Returns Duke's response to specified string.
+     *
+     * @param input String that Duke will respond to.
+     * @return Response to given string.
+     */
     public String getResponse(String input) {
         parser.load(input);
         try {

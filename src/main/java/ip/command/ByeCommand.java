@@ -13,7 +13,6 @@ public class ByeCommand extends DukeCommand {
      */
     @Override
     public String execute(TaskList taskList) {
-        // do nothing
         Platform.exit();
         return "Bye!";
     }

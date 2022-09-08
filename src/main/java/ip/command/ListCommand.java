@@ -13,6 +13,10 @@ public class ListCommand extends DukeCommand {
      */
     @Override
     public String execute(TaskList taskList) {
-        return taskList.list();
+        String tasks = taskList.list();
+        if (tasks.isEmpty()) {
+            return "You have no tasks. Add some now!";
+        }
+        return "Your outstanding tasks:\n" + taskList.list();
     }
 }
