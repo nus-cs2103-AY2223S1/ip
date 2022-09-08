@@ -40,6 +40,7 @@ public class Storage {
             directory.mkdir();
         }
         File file = new File(this.filePath);
+        assert file != null : "file does not exist";
         try {
             file.createNewFile();
             ArrayList<String> result = new ArrayList<>();
@@ -48,6 +49,7 @@ public class Storage {
                 String data = sc.nextLine();
                 result.add(data);
             }
+            assert !result.isEmpty() : "result not added";
             return result;
 
         } catch (IOException e) {
