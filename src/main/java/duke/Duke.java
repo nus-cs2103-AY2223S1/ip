@@ -27,9 +27,9 @@ public class Duke {
 
 
     /**
-     * Constructor for Duke class
+     * Constructor for Duke class.
      *
-     * Creates Ui and Storage instance
+     * Creates Ui and Storage instance.
      */
 
     public Duke() {
@@ -41,8 +41,10 @@ public class Duke {
 
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Generates a response to user input.
+     *
+     * @param input User input.
+     * @return String response by Duke.
      */
     public String getResponse(String input) {
         if (input.equals("bye")) {

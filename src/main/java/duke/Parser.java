@@ -62,27 +62,17 @@ public class Parser {
                     assert s.contains("/by") : "Please enter task in the format <desc> /by <date>";
                     String[] arr = s.split("/by");
                     desc = arr[0];
-                    String time = arr[1].strip();
-                    LocalDate d;
-                    try {
-                        d = LocalDate.parse(time);
-                    } catch (java.time.format.DateTimeParseException e) {
-                        throw new DukeException("Please provide a date in the format yyyy-mm-dd.");
-                    }
-
+                    String date = arr[1].strip();
+                    LocalDate d = dateStringToLocalDate(date);
                     t = new Deadline(desc, d);
                     lst.addNewTask(t);
+
                 } else if (first.equals("event")) {
                     assert s.contains("/at") : "Please enter task in the format <desc> /at <date>";
                     String[] arr = s.split("/at");
                     desc = arr[0];
-                    String time = arr[1].strip();
-                    LocalDate d;
-                    try {
-                        d = LocalDate.parse(time);
-                    } catch (java.time.format.DateTimeParseException e) {
-                        throw new DukeException("Please provide a date in the format yyyy-mm-dd.");
-                    }
+                    String date = arr[1].strip();
+                    LocalDate d = dateStringToLocalDate(date);
                     t = new Event(desc, d);
                     lst.addNewTask(t);
 
@@ -101,7 +91,7 @@ public class Parser {
                 }
                 int index = Integer.parseInt(words[1]) - 1;
                 assert index >= 0 && index < lst.size(): "Task index should be from 1 to length of list";
-                return(lst.deleteTask(index, storage));
+                return (lst.deleteTask(index, storage));
 
             } else if (first.equals("find")) {
                 String toFind = words[1];
@@ -122,5 +112,22 @@ public class Parser {
         } catch (DukeException d) {
             return(d.getMessage());
         }
+    }
+
+    /**
+     * Converts date in String format to LocalDate object.
+     *
+     * @param date Date input by user.
+     * @return LocalDate object converted from date input
+     * @throws DukeException
+     */
+    public static LocalDate dateStringToLocalDate(String date) throws DukeException {
+        LocalDate d;
+        try {
+            d = LocalDate.parse(date);
+        } catch (java.time.format.DateTimeParseException e) {
+            throw new DukeException("Please provide a date in the format yyyy-mm-dd.");
+        }
+        return d;
     }
 }
