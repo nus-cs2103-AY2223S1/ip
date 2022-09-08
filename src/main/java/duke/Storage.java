@@ -21,8 +21,8 @@ public class Storage {
     /* Const fields for representation of the various paths. */
     private static final String PROJECT_ROOT = System.getProperty("user.dir");
     private static final Path SAVE_LOCATION = Path.of(PROJECT_ROOT, "data");
-    private static final Path SAVE_FILE_PATH = (SAVE_LOCATION).resolve(SAVE_FILE_NAME);
     private static final String SAVE_FILE_NAME = "Task List.txt";
+    private static final Path SAVE_FILE_PATH = (SAVE_LOCATION).resolve(SAVE_FILE_NAME);
     private static final String TASK_DONE = "1";
     private static final String EVENT = "event";
     private static final String DEADLINE = "deadline";
