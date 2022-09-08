@@ -33,6 +33,8 @@ public class Parser {
             return "UPCOMING";
         } else if (input.startsWith("find")) {
             return "FIND";
+        } else if (input.startsWith("sort")) {
+            return "SORT";
         } else {
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
@@ -109,5 +111,16 @@ public class Parser {
         } catch (DukeException e) {
             return e.getMessage();
         }
+    }
+
+    static String parseSortCommand(String command) throws DukeException {
+        String sortKeyword = command.substring(5);
+        if (sortKeyword.equals("deadlines") || sortKeyword.equals("events")) {
+            return sortKeyword;
+        } else {
+            throw new DukeException("sort keyword is not deadlines or events!\n"
+                    + "Please input sort deadlines OR sort events!");
+        }
+
     }
 }

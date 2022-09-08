@@ -226,6 +226,15 @@ public class Duke extends Application {
                 response += Parser.parseFindCommand(input, tasks);
                 break;
 
+            case "SORT":
+                String sortKeyword = Parser.parseSortCommand(input);
+                if (sortKeyword.equals("deadlines")) {
+                    response += tasks.printSortedDeadlines();
+                } else {
+                    response += tasks.printSortedEvents();
+                }
+                break;
+
             default:
                 response += tasks.printUpcomingTasks();
                 storage.save(tasks);

@@ -1,8 +1,10 @@
 package duke;
 
 import java.time.LocalDateTime;
+
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *  Contains the task list that is generated from our stored data, or newly created
@@ -11,8 +13,8 @@ import java.util.ArrayList;
 public class TaskList {
     private int numOfTasks;
     private static List<Task> tasks;
-    private String INDENT = "    ";
-    private String PRINT_NUM_OF_TASKS = INDENT + "Now you have " + numOfTasks + " tasks in the list";
+    private final String INDENT = "    ";
+    private final String PRINT_NUM_OF_TASKS = INDENT + "Now you have " + numOfTasks + " tasks in the list";
 
     public TaskList() {
         this.numOfTasks = 0;
@@ -22,6 +24,10 @@ public class TaskList {
     public TaskList(List<Task> taskList) {
         this.numOfTasks = taskList.size();
         this.tasks = taskList;
+    }
+
+    List<Task> getTasks() {
+        return tasks;
     }
 
     String add(Task task) {
@@ -84,6 +90,54 @@ public class TaskList {
     }
 
     /**
+     * Prints deadlines sorted in chronological order
+     * @return Deadlines sorted in chronological order
+     */
+    String printSortedDeadlines() {
+        String taskList = "Here are your deadlines in chronological order:\n";
+
+        //we initalise a list of deadlines and go through all our tasks
+        List<Deadline> deadlineList = new ArrayList<>();
+        for (int i = 0; i<numOfTasks; i++) {
+            Task task = tasks.get(i);
+            if (task instanceof Deadline) {
+                deadlineList.add((Deadline) task);
+            }
+        }
+
+        // we then sort our deadlines in chronological order before printing it out
+        deadlineList.sort((d1,d2) -> d1.getTime().compareTo(d2.getTime()));
+        for (Deadline deadline : deadlineList) {
+            taskList += INDENT + deadline + "\n";
+        }
+        return taskList;
+    }
+
+    /**
+     * Prints events sorted in chronological order
+     * @return events sorted in chronological order
+     */
+    String printSortedEvents() {
+        String taskList = "Here are your events in chronological order:\n";
+
+        //we initalise a list of event and go through all our tasks
+        List<Event> eventList = new ArrayList<>();
+        for (int i = 0; i<numOfTasks; i++) {
+            Task task = tasks.get(i);
+            if (task instanceof Event) {
+                eventList.add((Event) task);
+            }
+        }
+
+        // we then sort our deadlines in chronological order before printing it out
+        eventList.sort((d1,d2) -> d1.getTime().compareTo(d2.getTime()));
+        for (Event event : eventList) {
+            taskList += INDENT + event + "\n";
+        }
+        return taskList;
+    }
+
+    /**
      * Prints out all the tasks in our task list associated with the given keyword by the user
      *
      * @param keyword input user is trying to find
@@ -108,6 +162,10 @@ public class TaskList {
         return response;
     }
 
+    /**
+     * Returns all deadlines/events due within a week from now
+     * @return tasks due within 1 week from now
+     */
 
     String printUpcomingTasks() {
         String taskList = "";
