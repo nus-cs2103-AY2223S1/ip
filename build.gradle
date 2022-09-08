@@ -56,7 +56,6 @@ shadowJar {
     archiveClassifier = null
 }
 
-run {
+run{
     standardInput = System.in
-    enableAssertions = true
 }

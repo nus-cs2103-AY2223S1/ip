@@ -39,7 +39,7 @@ public class Duke {
         storage = new Storage(filePath);
 
         // Loading the tasks in the file to the taskList
-        tasks = new TaskList(storage.loadFromFile());
+        tasks = new TaskList(storage.load());
 
         // Initialises the parser to read user commands
         parser = new Parser(tasks, storage, ui);
@@ -64,8 +64,6 @@ public class Duke {
             return response;
         } catch (InvalidDescriptionException | InvalidCommandException | IOException e) {
             return e.getMessage();
-        } catch (NumberFormatException e) {
-            return "Please type in a valid integer!";
         }
     }
 }
