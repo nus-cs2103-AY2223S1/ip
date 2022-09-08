@@ -8,9 +8,10 @@ public class Todo extends Task {
     /**
      * Initialises a <code>Todo</code> object with the name as its description.
      * @param name The description of the <code>Todo</code> task.
+     * @param tag The tag of the <code>Todo</code> task.
      */
-    public Todo(String name) {
-        super(name);
+    public Todo(String name, String tag) {
+        super(name, tag);
     }
 
     /**

@@ -6,15 +6,19 @@ package duke.task;
 public class Task {
     protected String description;
     protected boolean isCompleted;
+    protected String tag;
+    protected static final String NO_TAG = " ";
 
     /**
      * Initialises a <code>Task</code> object that represents the task that
      * the user has added. The task is marked incomplete by default.
-     * @param name Description of the task.
+     * @param name Description of the <code>Task</code>.
+     * @param tag Tag of the <code>Task</code>.
      */
-    public Task(String name) {
+    public Task(String name, String tag) {
         this.description = name;
         this.isCompleted = false;
+        this.tag = tag;
     }
 
     /**
@@ -48,12 +52,21 @@ public class Task {
     }
 
     /**
-     * Returns the status and description of the task.
-     * @return The status and description of the task.
+     * Returns the tag of the task.
+     * @return Tag of the task.
+     */
+    public String getTag() {
+        return this.tag;
+    }
+
+    /**
+     * Returns the status, tag and description of the task.
+     * @return The status, tag and description of the task.
      */
     @Override
     public String toString() {
-        return "[" + this.getStatus() + "] "
-                + this.description;
+        return this.tag.equals(NO_TAG)
+                ? "[" + this.getStatus() + "] " + this.description
+                : "[" + this.getStatus() + "] " + this.description + " #" + this.tag;
     }
 }

@@ -53,22 +53,23 @@ public class Parser {
             for (int i = 0; i < taskList.getNumOfTasks(); i++) {
                 char taskType = taskList.readTask(i).charAt(1);
                 String status = taskList.readStatus(i);
+                String tag = taskList.getTag(i);
                 switch (taskType) {
                 case 'T': {
                     String taskToAppend = taskList.storeIntoFileFormat("T", taskList.convertStatus(status),
-                            taskList.getDescription(i), "");
+                            taskList.getDescription(i), tag, "");
                     storage.appendToFile(taskToAppend);
                     break;
                 }
                 case 'D': {
                     String taskToAppend = taskList.storeIntoFileFormat("D", taskList.convertStatus(status),
-                            taskList.getDescription(i), taskList.getDate(i));
+                            taskList.getDescription(i), tag, taskList.getDate(i));
                     storage.appendToFile(taskToAppend);
                     break;
                 }
                 case 'E': {
                     String taskToAppend = taskList.storeIntoFileFormat("E", taskList.convertStatus(status),
-                            taskList.getDescription(i), taskList.getDate(i));
+                            taskList.getDescription(i), tag, taskList.getDate(i));
                     storage.appendToFile(taskToAppend);
                     break;
                 }
@@ -116,7 +117,7 @@ public class Parser {
             if (index + 1 > numOfTasks) {
                 throw new InvalidCommandException("Task does not exist.");
             }
-            String result = ui.getDeleteMessage(taskList.readTask(index), index);
+            String result = ui.getDeleteMessage(taskList.readTask(index), numOfTasks - 1);
             taskList.deleteTask(index);
             return result;
         }
