@@ -1,7 +1,6 @@
 package duke;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 
 /**
  * The class of the Duke bot
@@ -28,11 +27,15 @@ public class Duke{
         try {
             tasks = new TaskList(storage.load());
         } catch (FileNotFoundException e) {
-            Ui.showLoadingError();
             tasks = new TaskList();
         }
     }
 
+    /**
+     * A method that takes in the users input and return Dukes output
+     * @param input Users input
+     * @return String Duke's output
+     */
     public String getResponse(String input) {
         return Parser.parse(input, tasks, storage);
     }

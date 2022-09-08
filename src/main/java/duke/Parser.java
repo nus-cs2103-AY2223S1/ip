@@ -45,8 +45,7 @@ public class Parser {
                 output = deleteTask(first, lst, store);
             } else if (first.length() >= 4 && first.substring(0, 4).equals("find")) {
                 output = findTask(first, lst);
-            }
-            else {
+            } else {
                 throw new DukeException("I'm sorry, but I don't know what that means :-(");
             }
         } catch (DukeException ex) {
@@ -224,7 +223,6 @@ public class Parser {
         if (str.length() > 6) {
             String keyword = str.substring(5);
             ArrayList<Task> allTasks = lst.filterTask(keyword);
-            int counter = 1;
             if (allTasks.isEmpty()) {
                 throw new DukeException("No such tasks with that keyword!!");
             } else {
