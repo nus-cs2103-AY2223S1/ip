@@ -1,6 +1,9 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import duke.tasks.Task;
 
@@ -54,20 +57,19 @@ public class TaskList {
         return this.taskList.size();
     }
 
+    public Task[] toArray() {
+        return this.taskList.toArray(new Task[0]);
+    }
+
     /**
      * Return the TaskList with Tasks containing the search keyword.
      * @param searchKeyword Keyword found inside the task.
      * @return TaskList with Tasks containing the search keyword.
      */
-    public TaskList search(String searchKeyword) {
-        TaskList taskListWithKeyword = new TaskList();
-        for (int i = 0; i < this.getSize(); i++) {
-            Task task = this.get(i);
-            if (task.getName().contains(searchKeyword)) {
-                taskListWithKeyword.add(task);
-            }
-        }
-
-        return taskListWithKeyword;
+    public List search(String searchKeyword) {
+        return this.taskList
+                .stream()
+                .filter((task) -> task.getName().contains(searchKeyword))
+                .collect(Collectors.toList());
     }
 }

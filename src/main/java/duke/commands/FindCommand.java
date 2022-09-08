@@ -4,6 +4,8 @@ import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 
+import java.util.List;
+
 /**
  * Command that represents the find command.
  */
@@ -28,11 +30,11 @@ public class FindCommand implements Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
-        TaskList taskListWithKeyword = tasks.search(searchKeyword);
-        if (taskListWithKeyword.getSize() > 0) {
+        List taskListWithKeyword = tasks.search(searchKeyword);
+        if (taskListWithKeyword.size() > 0) {
             String output = "";
             output += "Here are the matching tasks in your list:\n";
-            for (int i = 0; i < taskListWithKeyword.getSize(); i++) {
+            for (int i = 0; i < taskListWithKeyword.size(); i++) {
                 int printedIndex = i + 1;
                 output += printedIndex + ": " + taskListWithKeyword.get(i) + "\n";
             }
