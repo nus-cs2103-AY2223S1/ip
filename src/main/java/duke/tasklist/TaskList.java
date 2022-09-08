@@ -157,16 +157,49 @@ public class TaskList {
     }
 
     /**
-     * Changes the date format of the Deadline or Event task in the list.
+     * Converts the status of the task to either 1 or 0 that would be stored in the taskFile in
+     * <code>Storage</code>.
+     * @param status The status of the <code>Task</code>.
+     * @return A representation of the <code>Task</code> status in taskFile.
+     */
+    public String convertStatus(String status) {
+        return status.equals("X") ? "1" : "0";
+    }
+
+    /**
+     * Returns an appropriate format that will represent a <code>Task</code> in the taskFile.
+     * @param type The type of <code>Task</code>
+     * @param status Status of the <code>Task</code>.
+     * @param description Description of the <code>Task</code>.
+     * @param date The date associated with the <code>Task</code>
+     * @return A String format suitable for the taskFile.
+     */
+    public String storeIntoFileFormat(String type, String status, String description, String date) {
+        switch (type) {
+        case "T":
+            return "T | " + status + " | " + description;
+        case "D":
+            return "D | " + status + " | " + description + "| " + date;
+        case "E":
+            return "E | " + status + " | " + description + "| " + date;
+        default:
+            return "";
+        }
+    }
+
+    /**
+     * Returns the different date format of the Deadline or Event task in the list.
      * @param index The index of the task in the list.
      */
-    public void changeDateFormat(int index) {
+    public String changeDateFormat(int index) {
         if (taskList.get(index) instanceof Deadline) {
-            Deadline temp = (Deadline) taskList.get(index);
-            temp.changeDateFormat();
+            Deadline updatedDeadline = (Deadline) taskList.get(index);
+            return updatedDeadline.changeDateFormat();
         } else if (taskList.get(index) instanceof Event) {
-            Event temp = (Event) taskList.get(index);
-            temp.changeDateFormat();
+            Event updatedEvent = (Event) taskList.get(index);
+            return updatedEvent.changeDateFormat();
+        } else {
+            return "";
         }
     }
 
