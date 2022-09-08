@@ -104,6 +104,8 @@ public class Parser {
                 return this.tasks.updateTask(TaskUpdater.DELETE, component2);
             case "find":
                 return this.tasks.findTask(component2);
+            case "tag":
+                return this.tasks.tagTask(component2);
             default:
                 throw new DukeException("Invalid command. PLease check again.");
 
