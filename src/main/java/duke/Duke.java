@@ -31,6 +31,7 @@ public class Duke {
             //ui.showError("file not found!");
             hasFile = false;
             taskList = new TaskList();
+            assert taskList.getSize() == 0 : "Tasks should be 0";
         }
 
     }

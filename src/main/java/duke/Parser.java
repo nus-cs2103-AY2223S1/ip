@@ -37,6 +37,7 @@ public class Parser {
             return new NullCommand("poyo");
         } else {
             String[] subStrs = input.split(" ", 2); // to identify the keyword used
+            assert subStrs.length < 3 : "There should be 2 or less strings";
             try {
                 return parseTaskCommands(taskList, subStrs);
             } catch (DukeException e) {
@@ -99,8 +100,8 @@ public class Parser {
             int index = Integer.parseInt(subStrs[1]) - 1;
             if (index < 0 || index >= taskList.getSize()) {
                 throw new DukeException(DukeException.OUT_OF_RANGE);
-
             }
+            assert taskList.getSize() > 0 : "Tasklist should contain items";
             return new DeleteCommand(index);
         } catch (NumberFormatException e) {
             return new NullCommand("invalid input");
