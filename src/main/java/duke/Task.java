@@ -5,7 +5,7 @@ package duke;
  */
 public class Task {
 
-    private boolean done;
+    private boolean isDone;
     private String title;
     private Types type;
     private enum Types { TODO, DEADLINE, EVENT }
@@ -15,9 +15,9 @@ public class Task {
      *
      * @param title The title of the task.
      * @param type The type of the task - todo, deadline, event.
-     * @param done The completion status of the task.
+     * @param isDone The completion status of the task.
      */
-    public Task(String title, String type, boolean done) {
+    public Task(String title, String type, boolean isDone) {
         switch(type) {
         case "todo":
             this.type = Types.TODO;
@@ -34,7 +34,7 @@ public class Task {
         default:
             break;
         }
-        this.done = done;
+        this.isDone = isDone;
         this.title = title;
     }
 
@@ -48,7 +48,7 @@ public class Task {
      * Changing the boolean done to true.
      */
     public void mark() {
-        this.done = true;
+        this.isDone = true;
     }
 
     /**
@@ -56,7 +56,7 @@ public class Task {
      * Changing the boolean done to false.
      */
     public void unmark() {
-        this.done = false;
+        this.isDone = false;
     }
 
     /**
@@ -65,7 +65,7 @@ public class Task {
      * @return boolean If the task has been completed
      */
     public boolean isDone() {
-        return this.done;
+        return this.isDone;
     }
 
     /**
