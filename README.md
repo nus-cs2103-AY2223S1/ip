@@ -18,7 +18,7 @@ gradle run
 
 # User Guide
 
-## chatNUS Overview
+## Meet chatNUS!
 
 chatNUS is a messaging app built to store and manage your todo lists. Interact with the chatNUS bot 
 with the following commands to create, delete, update and display your tasks!
