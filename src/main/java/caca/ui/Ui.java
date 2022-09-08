@@ -37,7 +37,7 @@ public class Ui {
      */
     public static String showQuickStart() {
         String quickStartMessage = "*****A quick start guide to CaCa*****\n"
-                + "todo, deadline, event, list, mark, unmark, delete, find, bye.";
+                + "help, todo, deadline, event, list, mark, unmark, delete, find, bye.";
         return quickStartMessage;
     }
 

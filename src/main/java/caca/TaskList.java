@@ -187,7 +187,7 @@ public class TaskList {
                 response = String.format("%s%d.%s\n", response, i + 1, task);
             }
 
-            String responseHeader = "Here are the tasks in your list:";
+            String responseHeader = "Your task list (っ•ω•)っ✎";
             return String.format("%s\n%s", responseHeader, response);
         }
     }
@@ -320,7 +320,7 @@ public class TaskList {
 
         int taskCount = 1;
 
-        String response = "Here are the matching tasks in your list:\n";
+        String response = "Matching tasks in your list (◍•◡•◍)ﾉ\n";
 
         for (Task task : tasks) {
             if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
