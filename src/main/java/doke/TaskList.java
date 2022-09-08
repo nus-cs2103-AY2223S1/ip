@@ -48,6 +48,7 @@ public class TaskList {
         if (Miscellaneous.equalsStringZero(strings[1])) {
             return;
         }
+        assert strings[1].equals("1") : "If the doneness is not 0, it should be 1";
         task.markDone();
     }
 
@@ -142,6 +143,8 @@ public class TaskList {
      * @param i the position + 1 of the task to delete
      */
     public void deleteTask(int i) {
+        assert i >= 0 : "the index can't be smaller than 0";
+        assert i <= taskList.size() : "we can't delete non-existent task";
         this.taskList.remove(i - 1);
     }
 
