@@ -1,15 +1,15 @@
 package duke.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import duke.DukeException;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TaskTest {
     @Test
     public void unmark_unmarkedTask_Error() {
-        Task task = new Task("Test task");
         try {
+            Task task = new Task("Test task");
             task.unmarkIsDone();
         } catch (DukeException e) {
             assertEquals("Task is not done", e.getMessage());
