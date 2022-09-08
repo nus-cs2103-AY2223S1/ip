@@ -6,24 +6,21 @@ package duke;
 public class AddCommand extends Command {
 
     private final Task task;
-    private static boolean isExit;
 
     AddCommand(Task task) {
         this.task = task;
-        this.isExit = false;
     }
 
     /**
      * Execute the add command.
      * @param tasks current tasklist.
-     * @param ui .
-     * @param storage .
-     * @return String : the response of the duke.
+     * @param ui.
+     * @return response of Duke.
      */
-    String execute(TaskList tasks, Ui ui, Storage storage) {
+    String execute(TaskList tasks, Ui ui) {
         int noOfTasks = tasks.add(this.task);
-        String response = ui.added(this.task.toString(), noOfTasks);
-        assert this.isExit == false : "IsExit should be false";
+        String task = this.task.toString();
+        String response = ui.added(task, noOfTasks);
         return response;
     }
 

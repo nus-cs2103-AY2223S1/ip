@@ -6,24 +6,22 @@ package duke;
 public class DeleteCommand extends Command {
 
     private final int taskNo;
-    private static boolean isExit;
 
     DeleteCommand(int taskNo) {
         this.taskNo = taskNo;
-        this.isExit = false;
     }
 
     /**
      * Execute the delete command.
      * @param tasks current tasklist.
-     * @param ui .
-     * @param storage .
-     * @return String : the response of the duke.
+     * @param ui.
+     * @return the response of the duke.
      */
-    String execute(TaskList tasks, Ui ui, Storage storage) {
+    String execute(TaskList tasks, Ui ui) {
         String[] taskInfo = tasks.delete(this.taskNo);
-        String response = ui.deleted(taskInfo[0], Integer.parseInt(taskInfo[1]));
-        assert this.isExit == false : "IsExit should be false";
+        int noOfTasks = Integer.parseInt(taskInfo[1]);
+        String task = taskInfo[0];
+        String response = ui.deleted(task, noOfTasks);
         return response;
     }
 
