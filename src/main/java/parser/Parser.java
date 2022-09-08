@@ -40,9 +40,11 @@ public class Parser {
                 return taskList.add(new Todo(str.substring(5)));
             case EVENT:
                 int posE = str.indexOf("/") + 1;
+                assert posE < str.length() : "String position cannot be longer than string";
                 return taskList.add(new Event(str.substring(6, posE - 1), str.substring(posE + 3)));
             case DEADLINE:
                 int posD = str.indexOf("/by") + 1;
+                assert posD < str.length() : "String position cannot be longer than string";
                 return taskList.add(new Deadline(str.substring(9, posD - 1), str.substring(posD + 3)));
             case DELETE:
                 return Delete.delete(input, taskList);

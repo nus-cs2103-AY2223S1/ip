@@ -34,6 +34,7 @@ public class Duke {
         storage = new Storage(filePath);
         try {
             this.tasks = new TaskList(storage.load());
+            assert !this.tasks.getTaskList().isEmpty() : "Task should not be empty";
             this.tasks.printContent();
             ui.showGotTask();
         } catch (DukeException e) {

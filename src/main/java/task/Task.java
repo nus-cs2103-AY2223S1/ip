@@ -3,7 +3,7 @@ package task;
 public class Task {
     protected String description;
 
-    protected String splitDesscription[];
+    protected String[] splitDesscription;
     protected boolean isDone;
 
     /**

@@ -11,21 +11,18 @@ import java.util.ArrayList;
 public class Bye {
 
     public static String bye(String[] str, TaskList taskList, File file) {
-        if (str.length == 1) {
-            ArrayList<Task> listOfActions = taskList.getTaskList();
-            try {
-                FileWriter writer = new FileWriter(file.getPath());
-                for (Task t : listOfActions) {
-                    writer.write(t.toString() + System.lineSeparator());
-                }
-                writer.close();
-            } catch (IOException e) {
-                System.out.println("Oops");
+        assert str.length == 1 : "must be a single word";
+        ArrayList<Task> listOfActions = taskList.getTaskList();
+        try {
+            FileWriter writer = new FileWriter(file.getPath());
+            for (Task t : listOfActions) {
+                writer.write(t.toString() + System.lineSeparator());
             }
-            return "hehe";
-        } else {
-            return "Errorrrrr";
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Oops");
         }
+        return "hehe";
     }
 
     @Override
