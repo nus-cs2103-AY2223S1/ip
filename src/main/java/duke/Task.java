@@ -30,7 +30,7 @@ public class Task {
 
 
     /**
-     * Changes state of task to done/
+     * Changes state of task to done.
      */
     public void setDone() {
         if (this.isDone) {

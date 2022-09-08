@@ -34,6 +34,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Create a string in response to a command for GUI use.
+     *
+     * @param line Command from gui.
+     * @return Response to the Command.
+     */
     public String getResponse(String line) {
         try {
             Command command = Parser.parse(line);
