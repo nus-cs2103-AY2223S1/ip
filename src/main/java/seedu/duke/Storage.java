@@ -33,7 +33,7 @@ public class Storage {
      * @return an arraylist of tasks stored.
      * @throws IOException if file cannot be opened or read.
      */
-    public ArrayList<Task> load() throws IOException {
+    public ArrayList<Task> load() throws IOException, DukeException {
         ArrayList<Task> tasks = new ArrayList<>();
         try {
             Path path = Paths.get("./data/");
@@ -65,8 +65,12 @@ public class Storage {
 
                     if (action == 'E') {
                         task = new Event(data.substring(7, symbol), date);
-                    } else {
+                    } else if (action == 'D') {
                         task = new Deadline(data.substring(7, symbol), date);
+                    } else  {
+                        reader.close();
+                        throw new DukeException("Task loaded is not of the right format");
+                        
                     }
 
 
@@ -88,6 +92,8 @@ public class Storage {
         } catch (IOException e) {
             return tasks;
 
+        } catch (DukeException e) {
+            return tasks;
         }
 
     }

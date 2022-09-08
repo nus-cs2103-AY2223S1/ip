@@ -1,8 +1,5 @@
 package seedu.duke;
 
-// import java.io.IOException;
-// import java.util.Scanner;
-
 /**
  * Handles the user interface of the program.
  */
@@ -14,14 +11,16 @@ public class Ui {
     private final String ADDED_TASK = "Got it. I've added this task:";
     /* Message to be displayed when a task is removed */
     private final String REMOVED_TASK = "Noted. I've removed this task:";
-    /* A scanner object to scan user input */
-    // private Scanner scanner;
+    /* Message to be displayed when user exit the program */
+    private final String GOODBYE = "Bye! Thanks for using Luke!";
+   
+    
 
     /**
      * A constructor for Ui
      */
     public Ui() {
-        // this.scanner = new Scanner(System.in);
+        
     }
 
     /**
@@ -30,16 +29,6 @@ public class Ui {
     public static String showWelcome() {
         return WELCOME;
     }
-
-    /**
-     * Reads the input from the command line from the user.
-     *
-     * @return the input with prevailing spaces removed.
-     */
-    // public String readCommand() {
-    //     String input = scanner.nextLine().strip();
-    //     return input;
-    // }
 
     /**
      * Prints message after adding a task
@@ -63,26 +52,9 @@ public class Ui {
      * Prints the exit message.
      */
     public String showGoodbye() {
-        return "Bye! Thanks for using Luke!";
-        // scanner.close();
+        return GOODBYE;
+        
     }
 
-    /**
-     * Prints Duke Exception message.
-     *
-     * @param e Duke exception.
-     */
-    // public void showError(DukeException e) {
-    //     System.out.println(e.getMessage());
-    // }
-
-    /**
-     * Prints IOException message.
-     *
-     * @param e IOException.
-     */
-    // public void showLoadingError(IOException e) {
-    //     System.out.println(e.getMessage());
-    // }
 
 }

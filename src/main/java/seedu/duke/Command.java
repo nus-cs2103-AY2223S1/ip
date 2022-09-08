@@ -68,10 +68,7 @@ public enum Command {
                 }
 
                 task = new Todo(input.substring(5));
-                tasks.add(task);
-                ui.add(task);
-                output += "Now you have " + tasks.size() + (tasks.size() == 1 ? " task" : " tasks")
-                + " in the list.";
+                output = addTask(tasks, task, ui, output);
                 break;
 
             case EVENT:
@@ -85,10 +82,7 @@ public enum Command {
 
                 split = input.substring(6).split("/");
                 task = new Event(split[0], split[1].substring(3));
-                tasks.add(task);
-                ui.add(task);
-                output += "Now you have " + tasks.size() + (tasks.size() == 1 ? " task" : " tasks")
-                + " in the list.";
+                output = addTask(tasks, task, ui, output);
                 break;
 
             case DEADLINE:
@@ -103,10 +97,7 @@ public enum Command {
 
                 split = input.substring(9).split("/");
                 task = new Deadline(split[0], split[1].substring(3));
-                tasks.add(task);
-                ui.add(task);
-                output += "Now you have " + tasks.size() + (tasks.size() == 1 ? " task" : " tasks")
-                + " in the list.";
+                output = addTask(tasks, task, ui, output);
                 break;
 
             case DELETE:
@@ -156,5 +147,11 @@ public enum Command {
         }
     }
 
+    private String addTask(ArrayList<Task> tasks, Task task, Ui ui, String output) {
+        tasks.add(task);
+        ui.add(task);
+        return output += "Now you have " + tasks.size() + (tasks.size() == 1 ? " task" : " tasks")
+        + " in the list.";
+    }
 
 }

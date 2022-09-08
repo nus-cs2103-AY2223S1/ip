@@ -30,33 +30,16 @@ public class Duke  {
             tasks = new TaskList(storage.load());
 
         } catch (IOException e) {
-            // ui.showLoadingError(e);
             e.printStackTrace();
             tasks = new TaskList();
-        }
+        } catch (DukeException e) {
+            e.printStackTrace();
+            tasks = new TaskList();
+        } 
 
 
     }
     
-
-    /**
-     * Runs the Duke program.
-     */
-    // public void run() {
-    //     // ui.showWelcome();
-    //     boolean isExit = false;
-    //     while (!isExit) {
-    //         try {
-    //             String input = ui.readCommand();
-    //             Command command = parser.parse(input);
-    //             command.execute(tasks, ui, storage, input);
-    //             isExit = command.isExit();
-    //         } catch (DukeException e) {
-    //             ui.showError(e);
-    //         }
-    //     }
-    // }
-
 
     public String getResponse(String input) {
         try {
