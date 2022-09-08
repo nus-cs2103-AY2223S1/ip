@@ -26,6 +26,7 @@ public class Event extends Task {
     public Event(String description, LocalDate at) {
         super(description);
         this.at = at;
+        assert !description.isBlank();
     }
 
     /**

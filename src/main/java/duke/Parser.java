@@ -127,12 +127,11 @@ public class Parser {
      * @throws DukeException if there is an error parsing the input from the user
      */
     public static Command parse(String input) throws DukeException {
+        assert !input.isEmpty() && !input.isBlank();
         String[] strArray = input.split(" ", 2);
+        assert strArray.length >= 1;
         String first = strArray[0];
-        String second = "";
-        if (strArray.length == 2) {
-            second = strArray[1];
-        }
+        String second = strArray[1];
         Command cmd;
         switch (first) {
         case "bye":
