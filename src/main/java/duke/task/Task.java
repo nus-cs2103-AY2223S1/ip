@@ -6,6 +6,10 @@ public class Task {
     private String content;
     private Boolean isDone;
 
+    final static String DATE_OUTPUT_FORMAT = "MMM dd yyyy hh:mm a";
+    final static String DATE_INPUT_FORMAT = "yyyy-MM-dd HH:mm";
+
+
     public Task(String content) throws DukeException {
         if (content == "") {
             throw new DukeException("You need to provide a content");

@@ -1,16 +1,17 @@
 package duke;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.ToDo;
 import duke.utils.Parser;
 import duke.utils.Storage;
 import duke.utils.TaskList;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 /**
  * The main class of the Duke program.
@@ -35,9 +36,22 @@ public class Duke {
     }
 
     /**
-     * Runs the Duke object after instantiation.
+     * Gets response from Duke, and saves the changes afterwards.
+     *
+     * @param inputText String that represents user input.
      */
-    public String getResponse(String inputText) {
+    public String getResponseAndSave(String inputText) {
+        String response = getResponse(inputText);
+        try {
+            storage.save(taskList.getTasks());
+        } catch (IOException e) {
+            return e.getMessage();
+        }
+
+        return response;
+    }
+
+    private String getResponse(String inputText) {
         Parser parser = new Parser(inputText);
 
         try {
@@ -48,7 +62,7 @@ public class Duke {
                 String byeMessage = "Goodbye. Hope to see you again soon!";
                 return byeMessage;
             case LIST:
-                return taskList.tasksToString();
+                return taskList.listTasks();
             case MARK:
                 return taskList.markTask(content);
             case UNMARK:
@@ -75,11 +89,11 @@ public class Duke {
             }
             case FIND:
                 return taskList.findTasks(content);
+            default:
+                return "I don't understand your command.";
             }
-            storage.save(taskList.getTasks());
         } catch (Exception e) {
             return e.getMessage();
         }
-        return "IDK";
     }
 }

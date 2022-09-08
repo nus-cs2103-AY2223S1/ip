@@ -1,9 +1,9 @@
 package duke.task;
 
-import duke.DukeException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import duke.DukeException;
 
 public class Deadline extends duke.task.Task {
     private LocalDateTime by;
@@ -20,15 +20,12 @@ public class Deadline extends duke.task.Task {
 
     @Override
     public String toString() {
-        // can abstract these constants out into a constants file
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_OUTPUT_FORMAT);
         return "[D] " + super.toString() + " (by: " + by.format(formatter) + ")";
     }
 
     public String toSaveString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_INPUT_FORMAT);
         return "D|" + super.toSaveString() + "|" + by.format(formatter);
     }
 }

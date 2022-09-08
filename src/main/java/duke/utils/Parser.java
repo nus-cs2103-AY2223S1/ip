@@ -1,17 +1,17 @@
 package duke.utils;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Arrays;
+import java.util.List;
+
 import duke.Command;
 import duke.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Parse the commands that have been inputted into Duke.
@@ -83,6 +83,12 @@ public class Parser {
         return commandArray;
     }
 
+    /**
+     * Returns formatted date time from string input.
+     *
+     * @return the correctly formatted date time.
+     * @throws DukeException if the input date is in wrong format.
+     */
     public static LocalDateTime stringToDateTime(String str) throws DukeException {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -114,14 +120,14 @@ public class Parser {
                 String dateString = taskElements[3];
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
                 LocalDateTime dateTime = LocalDateTime.parse(dateString, formatter);
-                newTask = new Deadline(taskElements[2], dateTime);
+                newTask = new Deadline(taskElements[2], dateTime, isDone);
                 break;
             }
             case "E": {
                 String dateString = taskElements[3];
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
                 LocalDateTime dateTime = LocalDateTime.parse(dateString, formatter);
-                newTask = new Event(taskElements[2], dateTime);
+                newTask = new Event(taskElements[2], dateTime, isDone);
                 break;
             }
             default: {

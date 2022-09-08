@@ -34,8 +34,9 @@ public class TaskList {
      * Marks a task as done.
      *
      * @param input The string representation of the index of the task to be marked.
+     * @throws DukeException if task number is incorrectly provided.
      */
-    public String markTask(String input) throws Exception {
+    public String markTask(String input) throws DukeException {
         int taskNum = Integer.parseInt(input) - 1;
         Task task = getTask(taskNum);
         return task.markIsDone();
@@ -45,28 +46,35 @@ public class TaskList {
      * Unmark a task if it is done.
      *
      * @param input The string representation of the index of the task to be unmarked.
+     * @throws DukeException if task number is incorrectly provided.
      */
-    public String unmarkTask(String input) throws Exception {
+    public String unmarkTask(String input) throws DukeException {
         int taskNum = Integer.parseInt(input) - 1;
         Task task = getTask(taskNum);
         return task.unmarkIsDone();
     }
 
-    public String deleteTask(String input) throws Exception {
+    /**
+     * Deletes a task.
+     *
+     * @param input The string representation of the index of the task to be deleted.
+     * @throws DukeException if task number is incorrectly provided.
+     */
+    public String deleteTask(String input) throws DukeException {
         int taskNum = Integer.parseInt(input) - 1;
         Task task = getTask(taskNum);
         try {
             Integer initialSize = tasks.size();
             tasks.remove(taskNum);
             assert tasks.size() == initialSize - 1 : "Task deletion is broken";
-            
+
             return "Removed: " + task + "\n" + String.format("Now you have %d tasks in the list", tasks.size());
         } catch (Exception e) {
             throw new DukeException(String.format("Task number %d not found", taskNum));
         }
     }
 
-    public Task getTask(int taskNum) throws Exception {
+    private Task getTask(int taskNum) throws DukeException {
         Task task;
         try {
             task = tasks.get(taskNum);
@@ -80,7 +88,10 @@ public class TaskList {
         return tasks;
     }
 
-    public String tasksToString() {
+    /**
+     * Lists out all the tasks.
+     */
+    public String listTasks() {
         if (tasks.size() == 0) {
             return "You have no tasks";
         }
@@ -96,6 +107,11 @@ public class TaskList {
         return str;
     }
 
+    /**
+     * Finds all task that contains the input.
+     *
+     * @param input Input string to match the tasks with.
+     */
     public String findTasks(String input) {
         ArrayList<Task> results = tasks.stream().filter(task -> task.isContain(input))
                 .collect(Collectors.toCollection(ArrayList::new));
