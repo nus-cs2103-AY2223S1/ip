@@ -10,6 +10,8 @@ import duke.exception.DukeException;
  * and encapsulates the logic of an Event task.
  */
 public class Event extends Task {
+    private static final String MISFORMAT_EVENT = "Please follow the format of ~description~ /by dd-MM-yyyy HHmm!";
+
     /* Duration field */
     private LocalDateTime at;
 
@@ -33,7 +35,7 @@ public class Event extends Task {
     public static Event createEvent(String in) throws DukeException {
         String[] inputArr = in.split(" */at* ");
         if (inputArr.length != 2) {
-            throw new DukeException("-Event- Please follow the format of ~description~ /at dd-MM-yyyy HHmm!\n");
+            throw new DukeException(MISFORMAT_EVENT);
         }
         String description = inputArr[0];
         String duration = inputArr[1];
@@ -41,7 +43,7 @@ public class Event extends Task {
         try {
             event = LocalDateTime.parse(duration, INPUT_DATE_FORMAT);
         } catch (DateTimeParseException e) {
-            throw new DukeException("-Event- Your date needs to be in dd-MM-yyyy HHmm format!\n");
+            throw new DukeException(MISFORMAT_DATE);
         }
 
         return new Event(description, event);

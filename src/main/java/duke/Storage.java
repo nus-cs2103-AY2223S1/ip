@@ -23,6 +23,7 @@ public class Storage {
     private static final Path SAVE_LOCATION = Path.of(PROJECT_ROOT, "data");
     private static final String SAVE_FILE_NAME = "Task List.txt";
     private static final Path SAVE_FILE_PATH = (SAVE_LOCATION).resolve(SAVE_FILE_NAME);
+    private static final String TASK_DONE = "1";
 
     /**
      * Loads the data from the file found in the saved location into the task list.
@@ -130,7 +131,7 @@ public class Storage {
             throw new DukeException("Something went wrong, please try again with correct formatting!");
         }
         }
-        if (taskDone.equals("1")) {
+        if (taskDone.equals(TASK_DONE)) {
             task.markDone();
         }
 

@@ -11,6 +11,10 @@ import duke.task.Task;
  * This class is the main logic unit for Duke
  */
 public class Duke {
+    /* Defined Constants for output */
+    private static final String NO_INDEX_MESSAGE = "Did you forget to input an index behind your command?";
+    private static final String UNEXPECTED_TERMINATION_MESSAGE = "Unexpected error in Duke";
+
     /* Handles task list logic. */
     private TaskList taskList;
 
@@ -36,7 +40,7 @@ public class Duke {
         } catch (IllegalArgumentException e) {
             return e.getMessage();
         } catch (IndexOutOfBoundsException e) {
-            return ("Did you forget to input an index behind your command?\n");
+            return NO_INDEX_MESSAGE;
         }
         Command command = Parser.getUserCommand();
         String userInstructions = Parser.getUserInstructions();
@@ -76,6 +80,6 @@ public class Duke {
                 return e.getMessage();
             }
         }
-        return "Unexpected error";
+        return UNEXPECTED_TERMINATION_MESSAGE;
     }
 }

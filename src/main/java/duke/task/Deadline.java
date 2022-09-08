@@ -5,13 +5,13 @@ import java.time.format.DateTimeParseException;
 
 import duke.exception.DukeException;
 
-
-
 /**
  * This class inherits from the abstract Task class
  * and encapsulates the logic of a Deadline task.
  */
 public class Deadline extends Task {
+    private static final String MISFORMAT_DEADLINE = "Please follow the format of ~description~ /by dd-MM-yyyy HHmm!";
+
     /* Due Date field */
     private LocalDateTime dueDate;
 
@@ -35,7 +35,7 @@ public class Deadline extends Task {
     public static Deadline createDeadline(String in) throws DukeException {
         String[] inputArr = in.split(" */by* ");
         if (inputArr.length != 2) {
-            throw new DukeException("-Deadline- Please follow the format of ~description~ /by dd-MM-yyyy HHmm!\n");
+            throw new DukeException(MISFORMAT_DEADLINE);
         }
         String description = inputArr[0];
         String dateString = inputArr[1];
@@ -43,7 +43,7 @@ public class Deadline extends Task {
         try {
             dateTime = LocalDateTime.parse(dateString, INPUT_DATE_FORMAT);
         } catch (DateTimeParseException e) {
-            throw new DukeException("-Deadline- Your date needs to be in dd-MM-yyyy HHmm format!\n");
+            throw new DukeException(MISFORMAT_DATE);
         }
 
         return new Deadline(description, dateTime);

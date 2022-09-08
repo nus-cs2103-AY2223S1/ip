@@ -9,6 +9,7 @@ public abstract class Task {
     /* Constant fields representing the input and output format of the dates. */
     public static final DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
     public static final DateTimeFormatter OUTPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy HHmm");
+    protected static final String MISFORMAT_DATE = "Your date needs to be in dd-MM-yyyy HHmm format!";
     /* Task Information */
     protected String description;
     protected boolean isDone;
