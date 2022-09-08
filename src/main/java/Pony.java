@@ -1,5 +1,9 @@
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.util.Scanner;
 import java.util.ArrayList;
+
 public class Pony {
 
     private String greet = "Hello! I'm Pony" + "\n" + "What can I do for you?";
@@ -13,6 +17,10 @@ public class Pony {
     };
 
     public void initialise() {
+        // Load data from hard disk
+//        try {
+//            Path path = Paths.get
+//        }
         System.out.println(this.greet);
     }
 
@@ -130,7 +138,7 @@ public class Pony {
                     throw new PonyException.taskMissingError();
                 } else {
                     // format of command: event <task> /at <time>
-                    String[] taskInfoArr = command[1].split(" /by ", 2);
+                    String[] taskInfoArr = command[1].split(" /at ", 2);
                     if (taskInfoArr.length != 2) {
                         String format = "<task> /at <time>";
                         throw new PonyException.taskFormatError(format);
@@ -139,7 +147,8 @@ public class Pony {
                         String time = taskInfoArr[1];
                         Task newTask = new Event(description, time);
                         this.tasks.add(newTask);
-                        System.out.println("Got it. I've added this task: " + newTask.toString());
+//                        System.out.println("Got it. I've added this task: " + newTask.toString());
+                        System.out.println("Added: " + newTask.toString());
                         System.out.println("Now you have " + this.tasks.size() + " tasks in the list.");
                     }
                 }
@@ -188,8 +197,11 @@ public class Pony {
     }
 
     public static void main(String[] args) {
-        Pony myPony = new Pony();
-        myPony.initialise();
-        myPony.run();
+//        Pony myPony = new Pony();
+//        myPony.initialise();
+//        myPony.run();
+        Path currDir = Paths.get(".");
+        System.out.println(currDir.toAbsolutePath());
+//        System.out.println("Working Directory = " + System.getProperty("user.dir"));
     }
 }
