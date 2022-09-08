@@ -28,8 +28,7 @@ public class Duke {
         }
     }
 
-    public void run() {
-        ui.getUserInputs();
+    public void exit() {
         storage.updateFile(tasks.getItemList());
     }
 
@@ -38,6 +37,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("dukeHistory.txt").run();
+        new Duke("dukeHistory.txt");
     }
 }

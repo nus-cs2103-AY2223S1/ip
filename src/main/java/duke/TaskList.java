@@ -67,10 +67,10 @@ public class TaskList {
         if (index > itemList.size()) {
             throw new DukeException("Item to be deleted not found");
         } else {
-            String msg = "Noted. I've removed this task:";
+            String msg = "Noted. I've removed this task:\n";
             msg = msg + "\t" + itemList.get(index - 1);
             itemList.remove(index - 1);
-            return msg + "Now you have " + itemList.size() + " tasks in the list.";
+            return msg + "\nNow you have " + itemList.size() + " tasks in the list.";
         }
     }
 

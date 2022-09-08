@@ -58,6 +58,7 @@ public class MainWindow extends AnchorPane {
         if (input.equalsIgnoreCase("bye")) {
             Stage stage = (Stage) dialogContainer.getScene().getWindow();
             stage.close();
+            duke.exit();
         }
         userInput.clear();
     }
