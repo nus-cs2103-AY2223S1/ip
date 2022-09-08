@@ -21,9 +21,11 @@ public class Storage {
     /* Const fields for representation of the various paths. */
     private static final String PROJECT_ROOT = System.getProperty("user.dir");
     private static final Path SAVE_LOCATION = Path.of(PROJECT_ROOT, "data");
-    private static final String SAVE_FILE_NAME = "Task List.txt";
     private static final Path SAVE_FILE_PATH = (SAVE_LOCATION).resolve(SAVE_FILE_NAME);
+    private static final String SAVE_FILE_NAME = "Task List.txt";
     private static final String TASK_DONE = "1";
+    private static final String EVENT = "event";
+    private static final String DEADLINE = "deadline";
 
     /**
      * Loads the data from the file found in the saved location into the task list.
@@ -72,7 +74,7 @@ public class Storage {
     /**
      * Saves the task to the text file in the user's hard drive.
      *
-     * @param tasks Task list.
+     * @param tasks     Task list.
      * @param isDeleted If the contents of the file should be deleted and reset.
      */
     public static void save(ArrayList<Task> tasks, boolean isDeleted) {
@@ -118,14 +120,12 @@ public class Storage {
 
         case "E":
             String taskDuration = taskArr[3];
-            LocalDateTime duration = LocalDateTime.parse(taskDuration, Task.OUTPUT_DATE_FORMAT);
-            task = new Event(taskDescription, duration);
+            task = outputDateFormat(taskDescription, taskDuration, EVENT);
             break;
 
         case "D":
             String taskDue = taskArr[3];
-            LocalDateTime due = LocalDateTime.parse(taskDue, Task.OUTPUT_DATE_FORMAT);
-            task = new Deadline(taskDescription, due);
+            task = outputDateFormat(taskDescription, taskDue, DEADLINE);
             break;
         default: {
             throw new DukeException("Something went wrong, please try again with correct formatting!");
@@ -134,7 +134,6 @@ public class Storage {
         if (taskDone.equals(TASK_DONE)) {
             task.markDone();
         }
-
         return task;
     }
 
@@ -146,6 +145,17 @@ public class Storage {
             Files.newBufferedWriter(SAVE_FILE_PATH, StandardOpenOption.TRUNCATE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private static Task outputDateFormat(String taskDescription, String taskTime, String type) throws DukeException {
+        LocalDateTime time = LocalDateTime.parse(taskTime, Task.OUTPUT_DATE_FORMAT);
+        if (type.equals("event")) {
+            return new Event(taskDescription, time);
+        } else if (type.equals("deadline")) {
+            return new Deadline(taskDescription, time);
+        } else {
+            throw new DukeException("Something went wrong, unexpected todo");
         }
     }
 }
