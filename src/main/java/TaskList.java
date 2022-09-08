@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,6 +15,8 @@ public class TaskList {
     private List<Task> list;
     private Ui ui;
 
+    private List<Deadline> sortedDeadlines;
+
     /**
      * Create a tasklist.
      * @param pastList
@@ -23,13 +26,27 @@ public class TaskList {
         this.noOfTasks = pastList.size();
         this.ui = new Ui();
         this.taskByKeyword = new HashMap<String, List<Task>>();
+        this.sortedDeadlines = new ArrayList<Deadline>();
 
         for (int i = 0; i < pastList.size(); i++) {
             Task pastTask = pastList.get(i);
             String stringDescription = pastTask.getTaskDescription();
             updateKeyword(stringDescription, pastTask);
+            addDeadlines(pastTask);
         }
 
+    }
+
+    private void addDeadlines(Task task) {
+        if (task instanceof Deadline) {
+            this.sortedDeadlines.add((Deadline) task);
+        }
+    }
+
+    private void deleteDeadlines(Task task) {
+        if (task instanceof Deadline) {
+            this.sortedDeadlines.remove((Deadline) task);
+        }
     }
 
     /**
@@ -44,6 +61,7 @@ public class TaskList {
         this.noOfTasks++;
         updateKeyword(task.getTaskDescription(), task);
         assert noOfTasks > 0 : "NoOfTasks should be more than 0";
+        addDeadlines(task);
         return this.noOfTasks;
     }
 
@@ -76,6 +94,7 @@ public class TaskList {
         this.noOfTasks--;
         assert noOfTasks >= 0 : "NoOfTasks should not be negative";
         String[] tasklistInfo = {currentTask.toString(), String.valueOf(noOfTasks)};
+        deleteDeadlines(currentTask);
         return tasklistInfo;
     }
 
@@ -107,6 +126,12 @@ public class TaskList {
      */
     List<Task> getList() {
         return this.list;
+    }
+
+    List<Deadline> getSortedDeadlinesList() {
+        TimeComparator timeComp = new duke.TimeComparator();
+        Collections.sort(this.sortedDeadlines, timeComp);
+        return this.sortedDeadlines;
     }
 
     /**
