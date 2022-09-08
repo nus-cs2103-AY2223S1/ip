@@ -10,19 +10,17 @@ import duke.exceptions.InvalidCommandException;
 import duke.ui.Ui;
 
 import java.awt.Desktop;
-
 import java.io.IOException;
-
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URI;
-
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.XMLFormatter;
 
 /**
  * Handles the main logic of parsing raw input
@@ -34,13 +32,13 @@ public class Parser {
      * valid Task indicators
      * Each taskValue is encapsulated by a String
      */
-    enum TaskIndicator {
+     enum TaskIndicator {
         TODO("todo"),
         EVENT("event"),
         DEADLINE("deadline");
 
         private final String taskValue;
-        TaskIndicator(String val) {
+        TaskIndicator (String val) {
             taskValue = val;
         }
         public String getTask() {
@@ -92,23 +90,20 @@ public class Parser {
             return scheduleFormatter(taskList, input);
 
         case "help":
-            return openHelpPage();
+            try {
+                Desktop.getDesktop().browse(new URI(Ui.displayHelpURL()));
+
+            } catch (MalformedURLException | URISyntaxException e) {
+                return "This shouldn't happen, the server side URL is broken.";
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            return "Here's your help page!";
+
         //formulation of task
         default:
             return taskMessageGenerator(taskList, input);
         }
-    }
-
-    private static String openHelpPage() {
-        try {
-            Desktop.getDesktop().browse(new URI(Ui.displayHelpURL()));
-
-        } catch (MalformedURLException | URISyntaxException e) {
-            return "This shouldn't happen, the server side URL is broken.";
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return "Here's your help page!";
     }
 
     /**
@@ -118,7 +113,7 @@ public class Parser {
      * @return
      */
     private static String scheduleFormatter(TaskList taskList, String input) {
-        String[] splitArgsByWhitespace = input.split(" ", 2);
+        String[] splitArgsByWhitespace= input.split(" ", 2);
         String date = splitArgsByWhitespace[1];
         String decideValidDate = dateValidator(date);
         if (!(decideValidDate.equals("Success"))) { //an error occurred somewhere
@@ -133,30 +128,30 @@ public class Parser {
      * Returns a valid string, and passes the task to be added into the tasklist
      * @param input
      */
-    private static String taskMessageGenerator(TaskList taskList, String input) {
-        try {
-            taskValidator(input);
-        } catch (InvalidCommandException ice) {
-            String message = "";
-            message += Ui.displayException(ice) + '\n';
-            message += Ui.displayMessage("This was your invalid command: " + input) + "\n";
-            return message;
-        } catch (EmptyTaskException ete) {
-            String message = "";
-            message += Ui.displayException(ete);
-            String[] taskArr = input.split(" ", 0);
-            if (taskArr[0].equals("todo")) {
-                return message + "\n"
-                        + Ui.displayMessage("todo requires at least a task description");
-            } else {
-                return message + "\n"
-                        + Ui.displayMessage("Event & Deadline requires both a task description and a date");
+    private static String taskMessageGenerator(TaskList taskList, String input){
+            try {
+                taskValidator(input);
+            } catch (InvalidCommandException ice) {
+                String message = "";
+                message += Ui.displayException(ice) + '\n';
+                message += Ui.displayMessage("This was your invalid command: " + input) + "\n";
+                return message;
+            } catch (EmptyTaskException ete) {
+                String message = "";
+                message += Ui.displayException(ete);
+                String[] taskArr = input.split(" ", 0);
+                if (taskArr[0].equals("todo")) {
+                    return message + "\n" +
+                            Ui.displayMessage("todo requires at least a task description");
+                } else {
+                    return message + "\n" +
+                            Ui.displayMessage("Event & Deadline requires both a task description and a date");
+                }
             }
-        }
 
-        Task newTask = generateTask(input);
-        return taskList.addTask(newTask);
-    }
+            Task newTask = generateTask(input);
+            return taskList.addTask(newTask);
+        }
 
     /**
      * Helper method for input validation whenever an add task command is given
@@ -166,12 +161,12 @@ public class Parser {
      * @throws EmptyTaskException if the correct command is given
      * but not enough information is provided
      */
-    private static void taskValidator(String input) throws InvalidCommandException, EmptyTaskException {
+    private static void taskValidator (String input) throws InvalidCommandException, EmptyTaskException {
         String taskIndicator = input.split(" ", 0)[1]; //splits into words
         String[] descriptionInformation = input.split(" ", 0);
 
         //taskIndicator is invalid
-        if (!PERMISSIBLE_TASKS.contains(taskIndicator)) {
+        if (! PERMISSIBLE_TASKS.contains(taskIndicator)) {
             throw new InvalidCommandException("I'm sorry, I don't understand what that means \n"
                     + "Please enter a valid response in the future");
         }
@@ -182,12 +177,12 @@ public class Parser {
 
     }
 
-    private static String dateValidator(String dateInput) {
+    private static String dateValidator (String dateInput) {
         try {
             LocalDate.parse(dateInput);
-        } catch (DateTimeParseException e) {
-            return "Invalid date entered! Ensure you enter date in the format: "
-                + "YYYY-MM-DD";
+        } catch (DateTimeParseException e){
+            return "Invalid date entered! Ensure you enter date in the format: " +
+                    "YYYY-MM-DD";
         }
         return "Success";
     }

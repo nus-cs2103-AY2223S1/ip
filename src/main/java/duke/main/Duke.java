@@ -35,9 +35,7 @@ public class Duke {
 
     private static TaskList tasks;
 
-    public Duke() {
-        tasks = Storage.load();
-    }
+
 
     private void handleUserInput() {
         dialogContainer.getChildren().addAll(
@@ -56,7 +54,9 @@ public class Duke {
     public String getResponse(String input) {
         return Parser.parseData(input, tasks);
     }
-
+    public Duke() {
+        tasks = Storage.load();
+    }
 
 
     public static void main(String[] args) {

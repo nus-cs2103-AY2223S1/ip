@@ -3,17 +3,13 @@ package duke.events;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Extension class from Task which accepts 4 arguments in its description
- * Has notion of date
- */
 public class Event extends Task {
 
     private static final String TYPE = "[E]";
     protected LocalDate at;
     private String unformattedDate;
 
-    private static final Integer NUM_ELEMENTS_READ = 4;
+    private static final int NUM_ELEMENTS_READ = 4;
 
     public Event(String description, String unformattedDate) {
         super(description);
@@ -49,6 +45,7 @@ public class Event extends Task {
      * @param ld LocalDate object passed in
      * @return Event
      */
+
 
     public String customFormatter(LocalDate ld) {
         return ld.format(DateTimeFormatter.ofPattern("MMM d yyyy"));

@@ -1,5 +1,4 @@
 package duke.events;
-
 import java.io.Serializable;
 public class Task implements Serializable {
     protected String description;
@@ -40,13 +39,12 @@ public class Task implements Serializable {
      * Default method when comparing whether a date clashes with the above
      * To be overriden by tasks that are bound by date (e.g: Event/Deadline)
      * Returns True if the task occurs on the same date as given
-     * @param date Unformatted date
+     * @param date Pseudo Date
      * @return
      */
     public boolean compareDate(String date) {
         return false;
     }
-
 
     public static Task readTask(String[] values) {
         boolean isDone = values[1].equals("0");
@@ -56,12 +54,12 @@ public class Task implements Serializable {
     }
 
     /**
-     * Converts the task into a string, deliminated by "//" that is savable.
-     * @returns a string that will be saved into text file, representing a single task
+     * Converts the task into a string, seperated by "//" that is savable.
+     * @return
      */
     public String savableString() {
         String savedString = "";
-        savedString += isDone ? "//0" : "//1"; //isDone is represented by 0 (done) or 1 (undone)
+        savedString += isDone ? "//0" : "//1";
         savedString += "//" + description;
         return savedString;
 
