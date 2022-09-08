@@ -73,4 +73,17 @@ public class TaskList {
         return inputs.indexOf(task);
     }
 
+    /**
+     * Checks if the input task is a duplicate.
+     *
+     * @param task
+     * @return boolean determining whether the task is a duplicate within tasklist.
+     */
+    public boolean isDuplicateTask(Task task) {
+        for (int i = 0; i < inputs.size(); i++ ) {
+            if (inputs.get(i).toString().equals(task.toString())) {
+                return true;
+            }
+        } return false;
+    }
 }

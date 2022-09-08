@@ -13,12 +13,18 @@ public class Parser {
     Parser() {
 
     }
-    private static String parseToDo(String str, TaskList taskList) throws DukeException {
+    private static String parseToDo(String todo, TaskList taskList) throws DukeException {
         //parses a string to obtain a to do event description and its date  and adds it to the task list
         Ui ui = new Ui(taskList);
         try {
-            str = str.split(" ", 2)[1].trim();
-            ToDo taskToDo = new ToDo(str);
+            todo = todo.split(" ", 2)[1].trim();
+            ToDo taskToDo = new ToDo(todo);
+            if (taskList.isDuplicateTask(taskToDo)) {
+                taskList.addTask(taskToDo);
+                throw new DukeException("Duplicated task detected, I have added\n" +
+                        "the task to your list but you might want\n" +
+                        "to check on it.");
+            }
             taskList.addTask(taskToDo);
             return (ui.printAddedTask(taskToDo.toString()));
 
@@ -30,14 +36,21 @@ public class Parser {
 
     }
 
-    private static String parseDeadline(String str, TaskList taskList) throws DukeException {
+    private static String parseDeadline(String deadline, TaskList taskList) throws DukeException {
         Ui ui = new Ui(taskList);
         try {
             //splits away deadline
-            str = str.split(" ", 2)[1];
-            String desc = str.split("/by")[0].trim();
-            String by = str.split("/by")[1].trim();
+            deadline = deadline.split(" ", 2)[1];
+            String desc = deadline.split("/by")[0].trim();
+            String by = deadline.split("/by")[1].trim();
             Deadline taskDeadline = new Deadline(desc, by);
+            if (taskList.isDuplicateTask(taskDeadline)) {
+                //throws exception for duplicate warning and adds task to the list.
+                taskList.addTask(taskDeadline);
+                throw new DukeException("Duplicated task detected, I have added\n" +
+                        "the task to your list but you might want\n" +
+                        "to check on it.");
+            }
             taskList.addTask(taskDeadline);
             return (ui.printAddedTask(taskDeadline.toString()));
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -47,14 +60,20 @@ public class Parser {
         }
     }
 
-    private static String parseEvent(String str, TaskList taskList) throws DukeException {
+    private static String parseEvent(String event, TaskList taskList) throws DukeException {
         Ui ui = new Ui(taskList);
         try {
             //splits away event into its description and date
-            str = str.split(" ", 2)[1];
-            String desc = str.split("/at")[0].trim();
-            String at = str.split("/at")[1].trim();
+            event = event.split(" ", 2)[1];
+            String desc = event.split("/at")[0].trim();
+            String at = event.split("/at")[1].trim();
             Event taskEvent = new Event(desc, at);
+            if (taskList.isDuplicateTask(taskEvent)) {
+                taskList.addTask(taskEvent);
+                throw new DukeException("Duplicated task detected, I have added\n" +
+                        "the task to your list but you might want\n" +
+                        "to check on it.");
+            }
             taskList.addTask(taskEvent);
             return (ui.printAddedTask(taskEvent.toString()));
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -64,11 +83,11 @@ public class Parser {
         }
     }
 
-    private static String parseDelete(String str, TaskList taskList) throws DukeException {
+    private static String parseDelete(String deletedTask, TaskList taskList) throws DukeException {
         try {
             Ui ui = new Ui(taskList);
-            str = str.split(" ", 2)[1].trim();
-            int index = Integer.valueOf(str) - 1;
+            deletedTask = deletedTask.split(" ", 2)[1].trim();
+            int index = Integer.valueOf(deletedTask) - 1;
             String msg = taskList.getTask(index).toString();
             taskList.removeTask(index);
             return (ui.printRemovedTask(msg));
@@ -93,6 +112,10 @@ public class Parser {
             }
         }
         return (ui.printFindTask(msg));
+    }
+
+    private static boolean findDuplicate(Storage storage, Task task) {
+        return true;
     }
 
     /**
@@ -130,6 +153,8 @@ public class Parser {
                     response += (ui.printMarkUndone(taskList.getTask(index).toString()));
 
                 } else if (instruction.equals("todo")) {
+                    String todoTask = str.split(" ", 2)[1].trim();
+
                     response += parseToDo(str, taskList);
 
                 } else if (instruction.equals("deadline")) {
