@@ -7,7 +7,7 @@
 
 <fx:root alignment="TOP_RIGHT" fillHeight="true" maxHeight="Infinity" maxWidth="Infinity" prefWidth="370.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="dialog" minHeight="-Infinity" text="Label" wrapText="true" HBox.hgrow="ALWAYS" maxHeight="Infinity"/>
+        <Label fx:id="dialog" minHeight="-Infinity" text="Label" wrapText="true" HBox.hgrow="ALWAYS"/>
         <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
     </children>
     <padding>
