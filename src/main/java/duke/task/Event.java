@@ -21,7 +21,7 @@ public class Event extends Task {
     }
 
     /**
-     * Constructor for task in save file.
+     * Constructor for Event in save file.
      *
      * @param description Description of the Event.
      * @param done If the Event task is done or not done.
@@ -38,6 +38,7 @@ public class Event extends Task {
 
     /**
      * Getter to access at field.
+     *
      * @return The due time
      */
     public LocalDate getAt() {

@@ -4,12 +4,13 @@ import duke.main.Parser;
 import duke.main.Storage;
 import duke.main.TaskList;
 import duke.main.Ui;
+
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Duke {
-    private static final Scanner scan = new Scanner( System.in );
-    private static final String filePath = "data/tasks.txt";
+    private static final Scanner scan = new Scanner(System.in);
+    private static final String FILE_PATH = "data/tasks.txt";
     private static Storage storage;
     private static TaskList tasks;
     private static Ui ui;
@@ -17,7 +18,8 @@ public class Duke {
     /**
      * Default constructor to fix javafx issue.
      */
-    public Duke() { }
+    public Duke() {
+    }
 
     /**
      * Constructor to initialise Duke using the save file.
@@ -43,7 +45,7 @@ public class Duke {
      * @throws DukeException If invalid command encountered.
      */
     public static void main(String[] args) throws DukeException {
-        new Duke(filePath).run();
+        new Duke(FILE_PATH).run();
     }
 
     /**

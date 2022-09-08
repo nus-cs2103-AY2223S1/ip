@@ -41,7 +41,7 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         displayPicture.setImage(img);
-        displayPicture.setClip(new Circle(48,48,48));
+        displayPicture.setClip(new Circle(48, 48, 48));
     }
 
     private DialogBox(String text, Image img, Paint colour) {
@@ -59,7 +59,7 @@ public class DialogBox extends HBox {
                 Insets.EMPTY)));
         dialog.setText(text);
         displayPicture.setImage(img);
-        displayPicture.setClip(new Circle(48,48,48));
+        displayPicture.setClip(new Circle(48, 48, 48));
     }
 
     /**
@@ -74,6 +74,7 @@ public class DialogBox extends HBox {
 
     /**
      * Get a User Dialog box.
+     *
      * @param text Input text by user.
      * @param img Image of user.
      * @return User Dialog box.
@@ -84,6 +85,7 @@ public class DialogBox extends HBox {
 
     /**
      * Get a Duke Dialog box.
+     *
      * @param text Response text by duke.
      * @param img Image of duke.
      * @return Duke Dialog box.

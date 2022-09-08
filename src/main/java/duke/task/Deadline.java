@@ -36,13 +36,12 @@ public class Deadline extends Task {
         return "[D]" + super.toString() + " (by: " + this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
-
     /**
      * Getter to access by field.
+     *
      * @return The due date
      */
     public LocalDate getBy() {
         return this.by;
     }
-
 }
