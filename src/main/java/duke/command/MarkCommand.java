@@ -26,6 +26,7 @@ public class MarkCommand extends Command{
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         int i = Integer.parseInt(arg[1]);
+        assert i >= 0;
         if (i  <= tasks.getCount()) {
             tasks.get(i - 1).setComplete();
             storage.write(tasks);

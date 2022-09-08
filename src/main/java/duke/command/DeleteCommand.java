@@ -29,8 +29,8 @@ public class DeleteCommand extends Command {
         Task removed = tasks.remove(i - 1);
         StringBuilder toReturn = new StringBuilder();
         toReturn.append("Noted. I have removed this task:\n");
-        System.out.println(removed + "\n");
-        System.out.println("Now you have " + tasks.getCount() + " tasks in the list.\n");
+        toReturn.append(removed + "\n");
+        toReturn.append("Now you have " + tasks.getCount() + " tasks in the list.\n");
         return toReturn.toString();
     }
 }

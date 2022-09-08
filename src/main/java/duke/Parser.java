@@ -12,6 +12,7 @@ import duke.command.TodoCommand;
 import duke.command.UnknownCommand;
 import duke.command.UnmarkCommand;
 
+
 public class Parser {
 
     /**
@@ -39,15 +40,15 @@ public class Parser {
     public static Command parse (String input) throws DukeException{
         String[] arr = input.split(" ", 2);
 
-        if (input.equals("bye")) {
+        if ((input).equalsIgnoreCase("bye")) {
             return new ExitCommand();
         }
 
-        else if (input.equals("list")) {
+        else if (input.equalsIgnoreCase("list")) {
             return new ListCommand();
         }
 
-        else if (arr[0].equals("mark")){
+        else if (arr[0].equalsIgnoreCase("mark")){
             if (!inputChecker(arr)) {
                 throw DukeException.MarkIndexEmptyException();
             } else {
@@ -55,7 +56,7 @@ public class Parser {
             }
 
         }
-        else if (arr[0].equals("unmark")) {
+        else if (arr[0].equalsIgnoreCase("unmark")) {
             if (!inputChecker(arr)) {
                 throw DukeException.UnmarkIndexEmptyException();
             } else {
@@ -72,7 +73,7 @@ public class Parser {
 
         }
 
-        else if (arr[0].equals("deadline")) {
+        else if (arr[0].equalsIgnoreCase("deadline")) {
             if (!inputChecker(arr)) {
                 throw DukeException.EmptyTaskException();
             } else {
@@ -80,14 +81,14 @@ public class Parser {
             }
 
         }
-        else if (arr[0].equals("event")) {
+        else if (arr[0].equalsIgnoreCase("event")) {
             if (!inputChecker(arr)) {
                 throw DukeException.EmptyTaskException();
             } else {
                 return new EventCommand(arr[1]);
             }
         }
-        else if (arr[0].equals("delete")) {
+        else if (arr[0].equalsIgnoreCase("delete")) {
             if (!inputChecker(arr)) {
                 throw new DukeException("Index not found in the list!");
             } else {
@@ -95,17 +96,15 @@ public class Parser {
             }
 
         }
-        else if (arr[0].equals("find")) {
+        else if (arr[0].equalsIgnoreCase("find")) {
             if (!inputChecker(arr)) {
                 throw new DukeException("Input the word that you want to find/match!");
             } else {
                 return new FindCommand(arr[1]);
             }
         }
-
         else {
             return new UnknownCommand();
         }
-
     }
 }
