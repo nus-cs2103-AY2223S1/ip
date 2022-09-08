@@ -1,10 +1,14 @@
 import jdk.jfr.Event;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Stream;
 /*Week 2 done*/
 /*Level 1*/
-/*Need Fixing */.
+/*Need Fixing */
 public class Duke {
     /*testing branch*/
     private static final List<Task> ListofMessages  = new ArrayList<>();
@@ -53,19 +57,46 @@ public class Duke {
         return NumberOfItems;
     }
 
-    public static void main(String[] args) throws DukeException {
+    public static void main(String[] args) throws DukeException, IOException {
 
         Openingmessage(); /*Opening Message*/
         Scanner input = new Scanner(System.in);
         int tasktobedone;
 
-            while (true) { //Main start
+        //Task for level 7 -> The file created will be in testui test
+            Create file
+            File myObj = new File("text.txt");
+//        FileWriter fw = new FileWriter(myObj);
+//        PrintWriter pw = new PrintWriter(fw);
+//        pw.close();
+//
+        String currentdirectory = System.getProperty("user.dir");
+        System.out.println(currentdirectory);
+
+
+        File log = new File(currentdirectory + "text.txt");
+        try {
+            if (log.exists() == true) {
+                System.out.println("We had to make a new file.");
+                log.createNewFile();
+            }
+        }finally {
+                System.out.println("fk");
+            }
+
+
+
+
+
+
+
+        while (true) { //Main start
 
                 String message = input.next();
 
                 //Make sure message is valid
                 if(!(message.equals("list")) &&!(message.equals("todo"))&& !(message.equals("event"))&&
-                        !(message.equals("deadline"))&&!(message.equals("delete"))){
+                        !(message.equals("deadline"))&&!(message.equals("delete"))&&!(message.equals("bye"))){
                     throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-();");
                 }
 
@@ -189,14 +220,21 @@ public class Duke {
                     String DisplayItemWithTask = DisplayItem + getStatus + firsthalf + "(" + "at: " + secondhalf + ")";
                     System.out.println(DisplayItemWithTask);
                     System.out.println(NumberOfItemsInList());
-
-
                 }
                 //Command is list
                 String ToShowMessagesInArrayList = "list";
                 if (message.equals(ToShowMessagesInArrayList)) {
                     DisplayListOfMessages();
                 }
+
+                //Command is Exit
+                String ToExit = "bye";
+                if (message.equals(ToExit)) {
+                    System.out.println("Bye. Hope to see you again soon!");
+                    break;
+                }
+
+
 
                 //Check if the message is done
                 String CheckIfTaskIsDone = "done";
@@ -217,7 +255,6 @@ public class Duke {
                         ListofMessages.set(tasktobedone, TheTask);
                         System.out.println("Nice! I've marked this task as done");
                         String ToBeprinted = TheTask.getStatusIcon();
-                        //   String ToAdd = ((Deadlines) ListofMessages.get(tasktobedone)).getDeadLineTask();
                         ToBeprinted = "[" + ToBeprinted + "]" + TheTask.getTask();
                         System.out.println(ToBeprinted);
                     } else {
@@ -226,19 +263,12 @@ public class Duke {
                         System.out.println("Nice! I've marked this task as done");
                         String ToBeprinted = TheTask.getStatusIcon();
                         String ToAdd = ((Events) ListofMessages.get(tasktobedone)).getEventsDescription();
-                        //    System.out.println("hello world");
-                        // System.out.println(ToAdd);
                         ToBeprinted = "[" + ToBeprinted + "]" + TheTask.getTask();
                         System.out.println(ToBeprinted);
                     }
 
                 }
-                //Command is Exit
-                String ToExit = "bye";
-                if (message.equals(ToExit)) {
-                    System.out.println("Bye. Hope to see you again soon!");
-                    break;
-                }
+
 
             }//Main End
 
