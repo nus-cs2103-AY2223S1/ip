@@ -28,6 +28,7 @@ public class DeadlineHandler {
         if (deadlineInputs.length < 2 || deadlineInputs[1].trim().equals("")) {
             throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
         }
+        assert deadlineInputs.length == 2;
         Task newTask = new Deadline(deadlineInputs[0], deadlineInputs[1]);
         list.add(newTask);
         return("Deadline added!");
