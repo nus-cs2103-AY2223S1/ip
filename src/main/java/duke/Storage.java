@@ -58,14 +58,17 @@ public class Storage {
         if (task instanceof DeadlineTask) {
             DeadlineTask deadlineTask = (DeadlineTask) task;
             return "D | " + temp + " | "
-                    + deadlineTask.getDescription() + " | " + deadlineTask.dateTimeString();
+                    + deadlineTask.getDescription() + " | " + deadlineTask.dateTimeString()
+                    + deadlineTask.formatTagsForFile();
         } else if (task instanceof EventTask) {
             EventTask eventTask = (EventTask) task;
             return "E | " + temp + " | "
-                    + eventTask.getDescription() + " | " + eventTask.dateTimeString();
+                    + eventTask.getDescription() + " | " + eventTask.dateTimeString()
+                    + eventTask.formatTagsForFile();
         } else {
             TodoTask todoTask = (TodoTask) task;
-            return "T | " + temp + " | " + todoTask.getDescription();
+            return "T | " + temp + " | " + todoTask.getDescription()
+                    + todoTask.formatTagsForFile();
         }
     }
 
@@ -110,7 +113,7 @@ public class Storage {
      */
     public void validateTask(int numberOfKeywords, String[] keywords, TaskList tasks, Parser.Type type)
             throws DukeException {
-        if (keywords.length != numberOfKeywords) {
+        if (keywords.length < numberOfKeywords) {
             throw new DukeException("Incorrect information for deadline from input or file");
         } else {
             setTaskIntoList(type, keywords, tasks);
@@ -144,20 +147,37 @@ public class Storage {
         case DEADLINE:
             DeadlineTask deadlineTask = new DeadlineTask(keywords[2], keywords[3]);
             verifyMarkTask(keywords[1], deadlineTask);
+            addTagsToTask(4, keywords.length, deadlineTask, keywords);
             tasks.addStorageToList(deadlineTask);
             break;
         case EVENT:
             EventTask eventTask = new EventTask(keywords[2], keywords[3]);
             verifyMarkTask(keywords[1], eventTask);
             tasks.addStorageToList(eventTask);
+            addTagsToTask(4, keywords.length, eventTask, keywords);
             break;
         case TODO:
             TodoTask todoTask = new TodoTask(keywords[2]);
             verifyMarkTask(keywords[1], todoTask);
+            addTagsToTask(3, keywords.length, todoTask, keywords);
             tasks.addStorageToList(todoTask);
             break;
         default:
             assert false : "Adding tasks from text into the list should not reach this error.";
+        }
+    }
+
+    /**
+     * Add all the tags back into the task.
+     *
+     * @param start The index of the first tag
+     * @param end The index of the last tag.
+     * @param task The task where all the tags are added into.
+     * @param keywords the array containing the tags.
+     */
+    public void addTagsToTask(int start, int end, Task task, String[] keywords) {
+        for (int i = start; i < end; i++) {
+            task.addTag(keywords[i]);
         }
     }
 }
