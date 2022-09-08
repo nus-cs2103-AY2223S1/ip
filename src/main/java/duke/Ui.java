@@ -14,7 +14,7 @@ public class Ui {
     private static final String EXIT = "See you later :)";
     private static final String SEPARATOR = "------------------------------------";
     private static final String ASK_FOR_COMMAND = "What do you want me to do?";
-    private static final Scanner myScanner = new Scanner(System.in);
+    private static final Scanner MYSCANNER = new Scanner(System.in);
 
     /**
      * Prints separator.
@@ -147,7 +147,7 @@ public class Ui {
      * @return String representing input by user
      */
     public static String getCommand() {
-        return myScanner.nextLine().trim();
+        return MYSCANNER.nextLine().trim();
     }
 
 
