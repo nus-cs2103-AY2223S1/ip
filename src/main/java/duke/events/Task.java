@@ -14,6 +14,11 @@ public class Task implements Serializable {
         this.isDone = isDone;
     }
 
+    /**
+     * Helper method to generate status icon based on boolean value of isDone
+     * @returns 2 types of indicators, if task is marked as done: "X"
+     * else, returns " "
+     */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
