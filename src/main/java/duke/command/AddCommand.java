@@ -4,7 +4,6 @@ import duke.Storage;
 import duke.Task;
 import duke.TaskList;
 import duke.Ui;
-import duke.exceptions.DukeException;
 
 public class AddCommand extends Command {
 
@@ -14,7 +13,6 @@ public class AddCommand extends Command {
      * Represents a command to add task into UI and Storage
      */
     public AddCommand(Task task) {
-
         this.task = task;
     }
 
@@ -24,9 +22,22 @@ public class AddCommand extends Command {
      * @throws DukeException if task description does not fit specified format.
      */
     @Override
-    public String execute(Ui ui, TaskList taskList, Storage storage) throws DukeException {
+    public String execute(Ui ui, TaskList taskList, Storage storage) {
         taskList.addTask(task);
         storage.save(taskList);
         return ui.addSuccess(task, taskList.numOfTask());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof AddCommand) {
+            AddCommand x = (AddCommand) obj;
+            if (this.task == null || x.task == null) {
+                return false;
+            }
+            return this.task.equals(x.task);
+        }
+
+        return false;
     }
 }

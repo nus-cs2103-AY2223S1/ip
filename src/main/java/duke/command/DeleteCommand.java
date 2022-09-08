@@ -14,7 +14,6 @@ public class DeleteCommand extends Command {
      * Command that represents the removal of task from Storage.
      */
     public DeleteCommand(int deleteTask) {
-
         this.deleteTask = deleteTask;
     }
 
@@ -29,5 +28,14 @@ public class DeleteCommand extends Command {
         Task success = taskList.deleteTask(this.deleteTask);
         storage.save(taskList);
         return ui.showDeleteSuccess(success, taskList.numOfTask());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof DeleteCommand) {
+            DeleteCommand x = (DeleteCommand) obj;
+            return this.deleteTask == (x.deleteTask);
+        }
+        return false;
     }
 }

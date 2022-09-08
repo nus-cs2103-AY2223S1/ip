@@ -24,4 +24,16 @@ public class FindCommand extends Command {
         TaskList success = taskList.findTask(this.keyword);
         return ui.showFind(success);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof FindCommand) {
+            FindCommand x = (FindCommand) obj;
+            if (this.keyword == null || x.keyword == null) {
+                return false;
+            }
+            return this.keyword.equals(x.keyword);
+        }
+        return false;
+    }
 }
