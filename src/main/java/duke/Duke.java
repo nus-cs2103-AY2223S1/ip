@@ -186,9 +186,11 @@ public class Duke extends Application {
             case "EXIT":
                 response += "Bye. Hope to see you again soon!";
                 isExit = true;
+                break;
 
             case "PRINT":
                 response += tasks.printTasks();
+                break;
 
             case "UPDATE":
                 int[] arr = Parser.parseUpdateCommand(input);
@@ -199,10 +201,12 @@ public class Duke extends Application {
                 } else {
                     response += tasks.unmark(arr[1]);
                 }
+                break;
 
             case "DELETE":
                 int taskIndex = Parser.getDeleteNum(input);
                 response += tasks.delete(taskIndex);
+                break;
 
             case "ADD":
                 if (input.startsWith("todo")) {
@@ -216,15 +220,17 @@ public class Duke extends Application {
                         response += tasks.add(new Event(input.substring(6, input.indexOf("/")), dateTime));
                     }
                 }
+                break;
 
             case "FIND":
                 response += Parser.parseFindCommand(input, tasks);
+                break;
 
             default:
-                response += Parser.printUpcomingTasks(tasks);
+                response += tasks.printUpcomingTasks();
                 storage.save(tasks);
-                return response;
             }
+            return response;
         } catch (DukeException e) {
             return ui.showError(e);
         } finally {

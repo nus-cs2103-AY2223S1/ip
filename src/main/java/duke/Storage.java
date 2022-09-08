@@ -64,10 +64,10 @@ public class Storage {
                     } else {
                         //again assign the date and time separately to local variables
                         String[] splitTime = dateTime.split("\\s+");
-                        LocalDate date = LocalDate.parse(splitTime[1]
-                                , DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                        LocalTime time = LocalTime.parse(splitTime[2]
-                                , DateTimeFormatter.ofPattern("HHmm"));
+                        LocalDate date = LocalDate.parse(splitTime[1],
+                                DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                        LocalTime time = LocalTime.parse(splitTime[2],
+                                DateTimeFormatter.ofPattern("HHmm"));
 
                         //create a new event to add to our task list
                         Event newEvent = new Event(task, LocalDateTime.of(date, time));

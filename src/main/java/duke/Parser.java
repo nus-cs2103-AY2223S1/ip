@@ -110,28 +110,4 @@ public class Parser {
             return e.getMessage();
         }
     }
-
-
-    static String printUpcomingTasks(TaskList tasks) {
-        String response = "";
-        LocalDateTime dateTime = LocalDateTime.now();
-        for (Task task : tasks.getTasks()) {
-            if (task instanceof Deadline) {
-                //we specify that the task is of the Deadline class by type casting
-                Deadline deadline = (Deadline) task;
-
-                if (deadline.getTime().isBefore(dateTime.plusWeeks(1))) {
-                    response += deadline + "\n";
-                }
-            } else if (task instanceof Event) {
-                //we specify that the task is of the Event class by type casting
-                Event event = (Event) task;
-
-                if (event.getTime().isBefore(dateTime.plusWeeks(1))) {
-                    response += event + "\n";
-                }
-            }
-        }
-        return response;
-    }
 }

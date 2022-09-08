@@ -1,5 +1,6 @@
 package duke;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -21,10 +22,6 @@ public class TaskList {
     public TaskList(List<Task> taskList) {
         this.numOfTasks = taskList.size();
         this.tasks = taskList;
-    }
-
-    List<Task> getTasks() {
-        return this.tasks;
     }
 
     String add(Task task) {
@@ -109,5 +106,29 @@ public class TaskList {
             throw new DukeException("There exists no such keyword in the task list!");
         }
         return response;
+    }
+
+
+    String printUpcomingTasks() {
+        String taskList = "";
+        LocalDateTime dateTime = LocalDateTime.now();
+        for (Task task : tasks) {
+            if (task instanceof Deadline) {
+                //we specify that the task is of the Deadline class by type casting
+                Deadline deadline = (Deadline) task;
+
+                if (deadline.getTime().isBefore(dateTime.plusWeeks(1))) {
+                    taskList += deadline + "\n";
+                }
+            } else if (task instanceof Event) {
+                //we specify that the task is of the Event class by type casting
+                Event event = (Event) task;
+
+                if (event.getTime().isBefore(dateTime.plusWeeks(1))) {
+                    taskList += event + "\n";
+                }
+            }
+        }
+        return taskList;
     }
 }

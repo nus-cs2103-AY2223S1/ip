@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ParserTest {
 
     @Test
-    void test1() throws DukeException {
+    void testTodo() throws DukeException {
         try {
             String commandType = Parser.getCommandType("todo   ");
         } catch (DukeException e) {
@@ -19,7 +19,7 @@ public class ParserTest {
     }
 
     @Test
-    void test2() {
+    void testNotAcceptedCommand() {
         try {
             String commandType = Parser.getCommandType("idk what to type");
         } catch (DukeException e) {
@@ -28,7 +28,7 @@ public class ParserTest {
     }
 
     @Test
-    void test3() {
+    void testDeadlineCommand() {
         try {
             String commandType = Parser.getCommandType("deadline submit project/by 22/2/22 17:00");
         } catch (DukeException e) {
@@ -37,7 +37,7 @@ public class ParserTest {
     }
 
     @Test
-    void test4() throws DukeException {
+    void testEventCommand() throws DukeException {
         LocalDateTime dateTime = Parser.parseDateTime("event proj meeting/at 25/08/2022 2000");
         assertEquals(dateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm")), "25/08/2022 2000");
     }
