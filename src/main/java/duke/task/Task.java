@@ -46,12 +46,13 @@ public abstract class Task {
      * @return true if the task has changed state.
      */
     public boolean setDone() {
-        if (!this.isDone) {
-            Task.totalDone++;
-            this.isDone = true;
-            return true;
+        if (this.isDone) {
+            return false;
         }
-        return false;
+
+        Task.totalDone++;
+        this.isDone = true;
+        return true;
     }
 
     /**
@@ -59,13 +60,14 @@ public abstract class Task {
      *
      * @return true if the task has changed state.
      */
-    public boolean setUnDone() {
-        if (this.isDone) {
-            Task.totalDone--;
-            this.isDone = false;
-            return true;
+    public boolean setUndone() {
+        if (!this.isDone) {
+            return false;
         }
-        return false;
+
+        Task.totalDone--;
+        this.isDone = false;
+        return true;
     }
 
     /**

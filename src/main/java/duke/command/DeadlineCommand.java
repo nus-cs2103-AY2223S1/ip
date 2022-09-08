@@ -38,7 +38,7 @@ public class DeadlineCommand extends Command {
     public void execute(TaskList taskList, Ui ui) throws EmptyTaskException, InvalidArgumentException,
             EmptyDurationException {
         String[] split = this.description.split("/by ");
-        if (this.description.trim().equals("") || split.length == 0 || split[0].equals("")) {
+        if (isEmptyTask(split)) {
             throw new EmptyTaskException("deadline");
         }
         if (split[0].equals(this.description)) {
@@ -49,5 +49,15 @@ public class DeadlineCommand extends Command {
         }
         taskList.add(new Deadline(split[0].trim(), split[1]));
         this.response = "Added the task with deadline: \n" + taskList.getLast() + "\n" + ui.printListCount();
+    }
+
+    /**
+     * Checks if the input text is an empty command to add a task.
+     *
+     * @param split The string array of words split up.
+     * @return True if the task is empty, false otherwise.
+     */
+    private boolean isEmptyTask(String[] split) {
+        return this.description.trim().equals("") || split.length == 0 || split[0].equals("");
     }
 }
