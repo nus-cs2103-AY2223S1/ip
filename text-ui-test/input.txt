@@ -1,0 +1,13 @@
+todo do dishes
+deadline read book /by tomorrow
+event buy stuff /at next week
+deadline go for a run /by 4th september
+list
+mark 3
+mark 2
+list
+unmark 2
+mark 1
+unmark 3
+list
+bye
