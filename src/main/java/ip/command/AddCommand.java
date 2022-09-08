@@ -18,17 +18,17 @@ public class AddCommand extends DukeCommand {
     /** DukeCommand given by the user */
     private final String taskType;
     /** Options following the command given */
-    private final Scanner options;
+    private final Scanner taskMetadata;
 
     /**
      * Constructor for AddCommand.
      *
      * @param taskType Type of task to be added.
-     * @param options Options to be used to add a new task.
+     * @param taskMetadata Data to be used to add a new task.
      */
-    public AddCommand(String taskType, Scanner options) {
+    public AddCommand(String taskType, Scanner taskMetadata) {
         this.taskType = taskType;
-        this.options = options;
+        this.taskMetadata = taskMetadata;
     }
 
     /**
@@ -43,13 +43,13 @@ public class AddCommand extends DukeCommand {
     public String execute(TaskList taskList) throws MissingDescription, BadTimespan, BadDeadline {
         switch (taskType) {
         case "todo":
-            taskList.add(new ToDo(options));
+            taskList.add(new ToDo(taskMetadata));
             break;
         case "deadline":
-            taskList.add(new Deadline(options));
+            taskList.add(new Deadline(taskMetadata));
             break;
         case "event":
-            taskList.add(new Event(options));
+            taskList.add(new Event(taskMetadata));
             break;
         default:
             return "Cannot add task of that type.";

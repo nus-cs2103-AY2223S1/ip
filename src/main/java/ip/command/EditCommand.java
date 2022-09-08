@@ -36,21 +36,21 @@ public class EditCommand extends DukeCommand {
      */
     @Override
     public String execute(TaskList taskList) throws IndexNotSpecified, NoTaskFound {
-        int index;
+        int taskIndex;
         try {
-            index = options.nextInt();
+            taskIndex = options.nextInt();
         } catch (NoSuchElementException e) {
             throw new IndexNotSpecified();
         }
         switch (editType) {
         case "mark":
-            taskList.mark(index - 1);
+            taskList.mark(taskIndex - 1);
             break;
         case "unmark":
-            taskList.unmark(index - 1);
+            taskList.unmark(taskIndex - 1);
             break;
         case "delete":
-            taskList.delete(index - 1);
+            taskList.delete(taskIndex - 1);
             break;
         default:
             return "Cannot edit task with this edit type.";

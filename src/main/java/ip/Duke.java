@@ -10,45 +10,47 @@ import ip.utility.TaskList;
 
 
 /**
- * <h1>Task management program</h1>
- * Record to-do's, deadlines, and events.
- * Mark them as done or not.
- * Delete them when no longer needed!
- *
- * @author Jonathan Lam
+ * Task management program.
  */
 public class Duke {
-    /** Extract commands given to the ui */
+    /** Extracts command from string inputs */
     private static Parser parser;
-    /** Encapsulation of tasks */
+    /** List of all tasks in Duke */
     private static TaskList taskList;
-    /** File that task data is read from and written to */
+    /** Loads and saves task information to hard drive */
     private static Storage storage;
 
     /**
      * Constructor for Duke.
      *
-     * @param path Path to load the task data to.
+     * @param dataFilePath Path of file to load task data from.
      */
-    public Duke(String path) {
-        storage = new Storage(path);
+    public Duke(String dataFilePath) {
+        storage = new Storage(dataFilePath);
         parser = new Parser();
         try {
-            taskList = storage.load();
+            taskList = storage.getTaskList();
         } catch (IOException e) {
             System.out.println("Error in loading file from specified path.");
             System.out.println("Duke will not save any task data this run.");
+            // Initialize new empty task list.
             taskList = new TaskList();
         }
     }
 
-    public String getResponse(String input) {
-        parser.load(input);
+    /**
+     * Replies to the user's input.
+     *
+     * @param userInput User's input.
+     * @return Duke's reply.
+     */
+    public String getResponse(String userInput) {
+        parser.loadUserInput(userInput);
         try {
             DukeCommand command = parser.getCommand();
-            String executionReply = command.execute(taskList);
-            storage.write(taskList);
-            return executionReply;
+            String response = command.execute(taskList);
+            storage.saveTasks(taskList);
+            return response;
         } catch (DukeException e) {
             return e.toString();
         }

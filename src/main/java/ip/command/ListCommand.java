@@ -13,6 +13,6 @@ public class ListCommand extends DukeCommand {
      */
     @Override
     public String execute(TaskList taskList) {
-        return taskList.list();
+        return taskList.listAllTasks();
     }
 }
