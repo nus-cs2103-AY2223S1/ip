@@ -104,59 +104,11 @@ public class TaskStorage<T> extends Storage<T> {
             FileReader fileReader = new FileReader(filePath.toFile());
             Scanner scanner = new Scanner(fileReader);
             ArrayList<Task> tasks = new ArrayList<>();
-            Task task;
-            LocalDate dueDate;
 
             while (scanner.hasNextLine()) {
                 String jennyTask = scanner.nextLine();
                 String[] data = jennyTask.split(",");
-
-                switch (data[0]) {
-                case "DeadlineTask":
-                    try {
-                        dueDate = Validator.parseDate(data[3]);
-                        task = new DeadlineTask(data[2], dueDate);
-                        tasks.add(task);
-                        if ((Objects.equals(data[1], "true"))) {
-                            task.mark();
-                        } else {
-                            task.unmark();
-                        }
-                    } catch (JennyException e) {
-                        throw new JennyException(MESSAGE_SCOPE,
-                            String.format("Tried to parse [%s] as a date. Failed Reason: %s", data[2], e.getMessage()));
-                    }
-                    break;
-
-                case "EventTask":
-                    try {
-                        dueDate = Validator.parseDate(data[3]);
-                        task = new EventTask(data[2], dueDate);
-                        tasks.add(task);
-                        if ((Objects.equals(data[1], "true"))) {
-                            task.mark();
-                        } else {
-                            task.unmark();
-                        }
-                    } catch (JennyException e) {
-                        throw new JennyException(MESSAGE_SCOPE,
-                            String.format("Tried to parse [%s] as a date. Failed Reason: %s", data[2], e.getMessage()));
-                    }
-                    break;
-
-                case "TodoTask":
-                    task = new TodoTask(data[2]);
-                    tasks.add(task);
-                    if ((Objects.equals(data[1], "true"))) {
-                        task.mark();
-                    } else {
-                        task.unmark();
-                    }
-                    break;
-
-                default:
-                    throw new JennyException(MESSAGE_SCOPE, ERROR_CORRUPTED_SAVE);
-                }
+                loadHelper(tasks, data); // Throws JennyException
             }
 
             @SuppressWarnings("unchecked")
@@ -164,6 +116,64 @@ public class TaskStorage<T> extends Storage<T> {
             return t;
         } catch (FileNotFoundException e) {
             throw new JennyException(MESSAGE_SCOPE, e.getMessage());
+        }
+    }
+
+    private void loadHelper(ArrayList<Task> tasks, String[] data) throws JennyException {
+        switch (data[0]) {
+        case "DeadlineTask":
+            loadDeadline(tasks, data);
+            break;
+        case "EventTask":
+            loadEvent(tasks, data);
+            break;
+        case "TodoTask":
+            loadTodo(tasks, data);
+            break;
+        default:
+            throw new JennyException(MESSAGE_SCOPE, ERROR_CORRUPTED_SAVE);
+        }
+    }
+
+    private void loadDeadline(ArrayList<Task> tasks, String[] data) throws JennyException {
+        try {
+            LocalDate dueDate = Validator.parseDate(data[3]);
+            Task task = new DeadlineTask(data[2], dueDate);
+            tasks.add(task);
+            if ((Objects.equals(data[1], "true"))) {
+                task.mark();
+            } else {
+                task.unmark();
+            }
+        } catch (JennyException e) {
+            throw new JennyException(MESSAGE_SCOPE,
+                String.format("Tried to parse [%s] as a date. Failed Reason: %s", data[2], e.getMessage()));
+        }
+    }
+
+    private void loadEvent(ArrayList<Task> tasks, String[] data) throws JennyException {
+        try {
+            LocalDate dueDate = Validator.parseDate(data[3]);
+            Task task = new EventTask(data[2], dueDate);
+            tasks.add(task);
+            if ((Objects.equals(data[1], "true"))) {
+                task.mark();
+            } else {
+                task.unmark();
+            }
+        } catch (JennyException e) {
+            throw new JennyException(MESSAGE_SCOPE,
+                String.format("Tried to parse [%s] as a date. Failed Reason: %s", data[2], e.getMessage()));
+        }
+    }
+
+    private void loadTodo(ArrayList<Task> tasks, String[] data) throws JennyException {
+        Task task = new TodoTask(data[2]);
+        tasks.add(task);
+        if ((Objects.equals(data[1], "true"))) {
+            task.mark();
+        } else {
+            task.unmark();
         }
     }
 
