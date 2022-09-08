@@ -1,10 +1,10 @@
 package duke.utils;
 
-import duke.DukeException;
-import duke.task.Task;
-
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+
+import duke.DukeException;
+import duke.task.Task;
 
 /**
  * Represents the list of tasks that Duke keeps track of.
@@ -22,7 +22,10 @@ public class TaskList {
      * @param task The new task to be added.
      */
     public String addTask(Task task) {
+        Integer initialSize = tasks.size();
         tasks.add(task);
+        assert tasks.size() == initialSize + 1 : "Task addition is broken";
+
         String str = "Added: " + task + "\n" + String.format("Now you have %d tasks in the list", tasks.size());
         return str;
     }
@@ -53,7 +56,10 @@ public class TaskList {
         int taskNum = Integer.parseInt(input) - 1;
         Task task = getTask(taskNum);
         try {
+            Integer initialSize = tasks.size();
             tasks.remove(taskNum);
+            assert tasks.size() == initialSize - 1 : "Task deletion is broken";
+            
             return "Removed: " + task + "\n" + String.format("Now you have %d tasks in the list", tasks.size());
         } catch (Exception e) {
             throw new DukeException(String.format("Task number %d not found", taskNum));
@@ -75,6 +81,12 @@ public class TaskList {
     }
 
     public String tasksToString() {
+        if (tasks.size() == 0) {
+            return "You have no tasks";
+        }
+
+        assert tasks.size() > 0 : "Task list should not be empty";
+
         String str = "Your tasks:\n";
         for (Task task : tasks) {
             int taskIndex = tasks.indexOf(task) + 1;
