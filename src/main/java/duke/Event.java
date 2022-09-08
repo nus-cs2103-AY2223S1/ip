@@ -57,6 +57,7 @@ public class Event extends Task {
         boolean isDone = isDoneString == X;
 
         int idxOfAt = s.indexOf("(at:");
+        assert(idxOfAt > 0);
 
         String description = s.substring(7, idxOfAt);
         String dateString = s.substring(idxOfAt + 5, s.length() - 1); // to avoid the brackets
