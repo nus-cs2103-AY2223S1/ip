@@ -19,6 +19,7 @@ public abstract class AddCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        UndoCommand.addHistory(tasks);
         this.add(tasks); //add into tasks
         ui.sayAdded(tasks.getArr());
         storage.overwrite(); //overwrite

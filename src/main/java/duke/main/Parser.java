@@ -13,6 +13,7 @@ import duke.command.IncomprehensibleCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.ToDoCommand;
+import duke.command.UndoCommand;
 import duke.command.UnmarkCommand;
 
 /**
@@ -50,6 +51,8 @@ public class Parser {
             return dateParse(userInput);
         case "find":
             return findParse(userInput);
+        case "undo":
+            return undoParse();
         default:
             return incomprehensibleCommand();
         }
@@ -139,5 +142,9 @@ public class Parser {
 
     private static Command incomprehensibleCommand() {
         return new IncomprehensibleCommand();
+    }
+
+    private static Command undoParse() {
+        return new UndoCommand();
     }
 }

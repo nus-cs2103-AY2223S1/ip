@@ -129,13 +129,7 @@ public class Ui {
         reply = s;
     }
 
-    /**
-     * Read the command from the user.
-     *
-     * @return String of command from the user.
-     */
-    public String readCommand() {
-        String s = "Me: \t";
-        return s + sc.nextLine();
+    public void sayUndo() {
+        reply = "Undo successful!";
     }
 }

@@ -34,6 +34,7 @@ public class DeadlineCommand extends AddCommand {
         try {
             taskList.add(new Deadline(description, LocalDate.parse(date)));
         } catch(DateTimeException e) {
+            UndoCommand.deleteLast();
             throw new DukeException("Please give a valid date in YYYY-MM-DD format!");
         }
     }

@@ -75,4 +75,8 @@ public class TaskList {
     public ArrayList<Task> getArr() {
         return arr;
     }
+
+    public void overwrite(ArrayList<Task> newArr) {
+        arr = newArr;
+    }
 }

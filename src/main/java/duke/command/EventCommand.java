@@ -37,6 +37,7 @@ public class EventCommand extends AddCommand {
         try {
             taskList.add(new Event(description, LocalDate.parse(this.date)));
         } catch (DateTimeException e) {
+            UndoCommand.deleteLast();
             throw new DukeException("Please give a valid date in YYYY-MM-DD format!");
         }
     }

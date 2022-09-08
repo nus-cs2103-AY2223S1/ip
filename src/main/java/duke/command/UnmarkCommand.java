@@ -31,11 +31,11 @@ public class UnmarkCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             tasks.getTask(this.num - 1).unmark();
+            ui.sayUnmarked(this.num, tasks.getTask(this.num - 1));
+            storage.overwrite();
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("How to mark something that is not inside??");
         }
-        ui.sayUnmarked(this.num, tasks.getTask(this.num - 1));
-        storage.overwrite();
     }
 
     /**
