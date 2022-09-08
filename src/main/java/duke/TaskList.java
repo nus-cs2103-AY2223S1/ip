@@ -97,6 +97,7 @@ public class TaskList {
     }
 
     public String filterToString(String keyword) {
+        assert !keyword.isEmpty();
         Predicate<Task> predicate = task -> task.stringify().contains(keyword);
         StringBuilder output = new StringBuilder();
         for (Task task:TASKS) {
