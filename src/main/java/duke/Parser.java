@@ -19,6 +19,7 @@ public class Parser {
         Command command = null;
         command = Command.getCommand(inputCommand);
         userCommand = command;
+        assert userCommand != null : "no user command found";
         if (command != Command.LIST && command != Command.BYE) {
             userInstructions = inputArr[1];
         }
