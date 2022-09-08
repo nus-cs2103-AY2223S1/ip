@@ -1,5 +1,7 @@
 package duke.storage;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -19,12 +21,14 @@ public class DukeEncoder {
      */
     public static void rewriteList(ArrayList<Task> workList) {
         try {
-            Path file = Paths.get("src/main/java/duke/Storage/List.txt");
-            ArrayList<String> stringArrayList = new ArrayList<>();
+            File directory = new File("./data");
+            FileWriter fileWriter = new FileWriter(new File(directory, "List.txt"));
+            String stringToAdd = "";
             for (int i = 0; i < workList.size(); i++) {
-                stringArrayList.add(workList.get(i).storedData());
+                stringToAdd += workList.get(i).storedData() + "\n";
             }
-            Files.write(file, stringArrayList, StandardCharsets.UTF_8);
+            fileWriter.write(stringToAdd);
+            fileWriter.close();
         } catch (FileNotFoundException e) {
             System.out.println("File not found!");
         } catch (IOException e) {
