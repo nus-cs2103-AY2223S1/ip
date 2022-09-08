@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.model.TaskList;
 import duke.storage.Storage;
-import duke.ui.Ui;
 
 /**
  * The command to be executed with respect to the user's input.

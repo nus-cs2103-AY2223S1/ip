@@ -29,7 +29,7 @@ public class DeleteCommand extends Command {
     @Override
     public String execute(TaskList taskList, Storage storage) {
         String response = Ui.delete(taskList.delete(this.taskNumber));
-        storage.save(taskList);
+        storage.writeToFile(taskList);
         assert response != null : "response should not be null";
         return response;
     }

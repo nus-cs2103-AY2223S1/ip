@@ -29,7 +29,7 @@ public class MarkCommand extends Command {
     @Override
     public String execute(TaskList taskList, Storage storage) {
         taskList.mark(this.taskNumber);
-        storage.save(taskList);
+        storage.writeToFile(taskList);
         String response = Ui.mark(taskList.getTask(this.taskNumber));
         assert response != null : "response should not be null";
         return response;

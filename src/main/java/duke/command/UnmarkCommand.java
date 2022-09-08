@@ -28,7 +28,7 @@ public class UnmarkCommand extends Command {
     @Override
     public String execute(TaskList taskList, Storage storage) {
         taskList.unmark(this.taskNumber);
-        storage.save(taskList);
+        storage.writeToFile(taskList);
         String response = Ui.unmark(taskList.getTask(this.taskNumber));
         assert response != null : "response should not be null";
         return response;
