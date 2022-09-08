@@ -36,6 +36,8 @@ public class Storage {
      */
     public void writeToFile(TaskList tasks) {
 
+        assert tasks != null : "tasks cannot be null";
+
         try {
             FileOutputStream outputFile = new FileOutputStream(this.dataFilePath);
             ObjectOutputStream outputStream = new ObjectOutputStream(outputFile);
