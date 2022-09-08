@@ -7,8 +7,6 @@ public class Messages {
 
     public static final String MESSAGE_DEADLINE = "When does this need to get completed by?";
     public static final String MESSAGE_EVENT = "When is this event happening? (Input your date as YYYY-MM-DD)";
-
-    public static final String MESSAGE_TASK_NUMBER = "Task number: ";
     public static final String MESSAGE_TASK_LIST = "Here are the tasks in your list:";
     public static final String MESSAGE_TASK_DESCRIPTION = "Give a brief overview of your task:";
     public static final String MESSAGE_TASK_ADDED =  "I have added the task! Type 'list' to show all tasks.";
@@ -18,7 +16,6 @@ public class Messages {
     public static final String MESSAGE_TASK_MARKED = "You have marked task %s as complete! Congrats!\n" +
             "If you want to mark another duke.task as complete, please type 'mark' again.\n" +
             "Else, you can input a new task!\n";
-    public static final String MESSAGE_FIND_TASK = "What task are you looking for? Enter a keyword: ";
     public static final String MESSAGE_TASK_UPDATED = "Task specified has been updated.";
 
     public static final String MESSAGE_INVALID_TASK_NUMBER = "Are you sure this number corresponds to a task?\n";
