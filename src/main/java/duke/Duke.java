@@ -27,45 +27,16 @@ public class Duke {
     }
 
     /**
-     * Runs the duke chatbot,
-     * starts the chatbot up, interacts with user commands, and ends until user enters 'bye' command.
+     * Get response from duke chatbot,
+     * @param input
+     * @return list of strings
      */
-    /*
-    public void run() {
-        ui.printStartUpUi();
-        while (true) {
-            Scanner input = new Scanner(System.in);
-            try {
-                String line = input.nextLine().trim();
-                String[] parsedCommand = parser.parseCommand(line, tasks).split(" ");
-                if (parsedCommand[0].equals("mark") || parsedCommand[0].equals("unmark")
-                        || parsedCommand[0].equals("to do") || parsedCommand[0].equals("event")
-                        || parsedCommand[0].equals("deadline") || parsedCommand[0].equals("delete")) {
-                    ui.printAddCommandUi(parsedCommand[0], parsedCommand[1], tasks);
-                } else if (parsedCommand[0].equals("list")) {
-                    ui.printListCommandUi(parsedCommand[0], parsedCommand[1], tasks);
-                } else if (parsedCommand[0].equals("help")) {
-                    ui.printDukeInfo();
-                } else {
-                    ui.printEndingUi();
-                    break;
-                }
-            } catch (Exception e) {
-                ui.printException(e);
-            }
-        }
-        storage.save(tasks);
-    }
-
-    public static void main(String[] args) {
-        new Duke("data/Duke.txt").run();
-    }
-    */
 
     public List<String> getResponse(String input) {
         try {
             String line = input.trim();
             String[] parsedCommand = parser.parseCommand(line, tasks).split(" ");
+            assert parsedCommand.length >= 1 : "Parsed command length is incorrect.";
             if (parsedCommand[0].equals("mark") || parsedCommand[0].equals("unmark")
                     || parsedCommand[0].equals("todo") || parsedCommand[0].equals("event")
                     || parsedCommand[0].equals("deadline") || parsedCommand[0].equals("delete")) {

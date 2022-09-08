@@ -20,7 +20,7 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "[X]" : "[_]"); // mark done task with X
+        return (isDone ? "[X]" : "[ ]"); // mark done task with X
     }
 
     public boolean getStatus() {
@@ -45,6 +45,9 @@ public class Task {
 
     public static Task stringToTask(String str) {
         String[] line = str.split("\\|");
+        assert line.length >= 3 : "missing task attribute in input string";
+        assert line[0].equals("Todo      ") || line[0].equals("Deadline  ") || line[0].equals("Event     ")
+                : "invalid task type in input string";
         if (line[0].equals("Todo      ")) {
             return new ToDo(line[2].trim(), " Done   ".equals(line[1]));
         } else if (line[0].equals("Deadline  ")) {
@@ -55,6 +58,8 @@ public class Task {
             String end = time[1].trim();
             LocalDate endDate = LocalDate.parse(end);
             LocalDate startDate = LocalDate.parse(start);
+            assert startDate.isBefore(endDate) || startDate.isEqual(endDate)
+                    : "invalid date range (start date after end date).";
             return new Event(line[2].trim(), " Done   ".equals(line[1]), startDate, endDate);
         }
     }

@@ -18,6 +18,8 @@ public class Event extends Task {
 
     public Event(String description, Boolean isDone, LocalDate startDate, LocalDate endDate) {
         super(description, isDone);
+        assert startDate.isBefore(endDate) || startDate.isEqual(endDate)
+                : "invalid date range (start date after end date).";
         this.startDate = startDate;
         this.endDate = endDate;
     }

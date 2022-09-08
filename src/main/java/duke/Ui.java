@@ -63,6 +63,9 @@ public class Ui {
     public List<String> printAddCommandUi(String command, String index, TaskList taskList) {
         List<String> texts = new ArrayList<>();
         // for add, delete, mark / unmark
+        assert !command.equals("") : "empty command.";
+        assert index.matches("[0-9]+") : "wrong index.";
+        assert Integer.parseInt(index) <= taskList.getSize() : "Index out of bound.";
         Task task = taskList.getTask(Integer.parseInt(index) - 1);
         if (command.equals("todo") || command.equals("event") || command.equals("deadline")) { //add
             texts.add("Got it. I've added this task:\n"
@@ -92,6 +95,7 @@ public class Ui {
      */
     public List<String> printListCommandUi(String command, String str, TaskList taskList) {
         List<String> texts = new ArrayList<>();
+        assert !command.equals("") : "empty command.";
         // for list, list date, search
         if (str.trim().equals("0")) { //list
             texts.add("Here are the tasks in your list:");

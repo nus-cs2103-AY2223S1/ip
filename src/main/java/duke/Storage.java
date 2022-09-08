@@ -1,11 +1,11 @@
 package duke;
 
+import duke.task.Task;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-
-import duke.task.Task;
 
 
 /**
@@ -50,6 +50,7 @@ public class Storage {
      */
     public TaskList load() {
         int i = filepath.lastIndexOf('/');
+        assert i >= 0 : "Incorrect filepath.";
         File dir = new File(filepath.substring(0, i));
         if (!dir.exists()) {
             dir.mkdirs();

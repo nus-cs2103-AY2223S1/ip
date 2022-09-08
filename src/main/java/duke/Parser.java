@@ -1,12 +1,12 @@
 package duke;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
-
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.ToDo;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 
 
@@ -59,7 +59,7 @@ public class Parser {
      * @throws DukeException If the command is regarded invalid/incomplete by duke chatbot.
      */
     public String parseCommand(String line, TaskList taskList) throws DukeException {
-        String[] taskString = line.split(" ", 2);
+        String[] taskString = line.split(" ", 2); //split by first white space
         String taskType = taskString[0];
         if (taskString.length == 1 && !taskType.equals("list") && !taskType.equals("bye") && !taskType.equals("help")) {
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
@@ -120,6 +120,7 @@ public class Parser {
             } else if (Integer.parseInt(taskIndex) > taskList.getSize() || Integer.parseInt(taskIndex) < 1) {
                 throw new DukeException("☹ OOPS!!! The task index exceeds task list size limit.");
             }
+            assert taskIndex.matches("[0-9]+") : "Wrong format of task Index.";
             if (taskType.equals("unmark")) {
                 taskList.markAsUndone(Integer.parseInt(taskIndex));
             } else if (taskType.equals("mark")) {

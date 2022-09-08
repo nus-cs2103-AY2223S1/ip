@@ -76,6 +76,7 @@ public class TaskList {
      * @return Task object.
      */
     public Task getTask(int index) {
+        assert index >= 0 && index < this.getSize() : "index out of bound." ;
         return tasks.get(index);
     }
 
@@ -86,6 +87,7 @@ public class TaskList {
      * @return Task object.
      */
     public Task deleteTaskAtIndex(int index) {
+        assert index >= 1 && index <= this.getSize() : "index out of bound." ;
         return this.tasks.remove(index - 1);
     }
 
@@ -105,6 +107,7 @@ public class TaskList {
      * @return marked task.
      */
     public Task markAsDone(int index) {
+        assert index >= 1 && index <= this.getSize() : "index out of bound." ;
         Task task = this.tasks.get(index - 1);
         task.markAsDone();
         return task;
@@ -117,6 +120,7 @@ public class TaskList {
      * @return marked task.
      */
     public Task markAsUndone(int index) {
+        assert index >= 1 && index <= this.getSize() : "index out of bound." ;
         Task task = this.tasks.get(index - 1);
         task.markAsUndone();
         return task;
@@ -133,6 +137,7 @@ public class TaskList {
     public TaskList searchByDate(LocalDate date) {
         List<Task> tasksAtDate = new ArrayList<Task>();
         for (Task t : tasks) {
+            assert t.equals("deadline") || t.equals("todo") || t.equals("event") : "Invalid task type.";
             if (!t.getStatus() && t.taskType().equals("event")) {
                 Event e = (Event) t;
                 if ((date.isAfter(e.getStartDate()) && date.isBefore(e.getEndDate()))
