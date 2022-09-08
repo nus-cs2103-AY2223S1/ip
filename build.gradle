@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'checkstyle'
+    id 'com.github.johnrengelman.shadow' version '5.1.0'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+}
+
+checkstyle {
+    toolVersion = '10.2'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.testng:testng:7.1.0'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
+}
+
+test {
+    useJUnitPlatform()
+
+    testLogging {
+        events "passed", "skipped", "failed"
+
+        showExceptions true
+        exceptionFormat "full"
+        showCauses true
+        showStackTraces true
+        showStandardStreams = false
+    }
+}
+
+application {
+    mainClassName = "mort.Launcher"
+}
+
+shadowJar {
+    archiveBaseName = "mort"
+    archiveClassifier = null
+}
+
+javafx {
+    version = "18.0.2"
+    modules = ['javafx.controls', 'javafx.base', 'javafx.fxml']
+}
+
+run{
+    enableAssertions = true
+    standardInput = System.in
+}
