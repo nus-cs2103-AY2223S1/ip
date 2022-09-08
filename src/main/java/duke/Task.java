@@ -1,11 +1,15 @@
 package duke;
 
+import java.util.ArrayList;
+
 /**
  * The task class.
  */
 public class Task {
-    protected String description;
-    protected boolean isDone;
+    private ArrayList<String> tags = new ArrayList<>();
+
+    private String description;
+    private boolean isDone;
 
     /**
      * Constructor for a Task Object.
@@ -59,4 +63,20 @@ public class Task {
                 + this.getDescription();
     }
 
+    public void addTag(String tag) {
+        this.tags.add(tag);
+    }
+
+    /**
+     * Formats tags into File.
+     *
+     * @return String added into file.
+     */
+    public String formatTagsForFile() {
+        String temp = "";
+        for (int i = 0; i < tags.size(); i++) {
+            temp += " | " + tags.get(i);
+        }
+        return temp;
+    }
 }

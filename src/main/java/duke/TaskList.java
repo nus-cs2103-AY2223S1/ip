@@ -224,18 +224,37 @@ public class TaskList {
     /**
      * Verifies if the task input is valid.
      *
-     * @param parts Details of the task.
+     * @param components Details of the task.
      * @param regex The keyword that separates task description and task date and time.
      * @return True if task input in valid. False, if otherwise.
      * @throws DukeException If the task input in invalid.
      */
-    public boolean verifyTask(String[] parts, String regex, Parser.Type type) throws DukeException {
-        if (parts[0].trim().equals("")) {
+    public boolean verifyTask(String[] components, String regex, Parser.Type type) throws DukeException {
+        if (components[0].trim().equals("")) {
             throw new DukeException("There's no " + type.toString().toLowerCase() + " task!");
-        } else if (parts.length == 1) {
+        } else if (components.length == 1) {
             throw new DukeException("You didn't specify the deadline! Please use " + regex);
         } else {
             return true;
         }
+    }
+
+    /**
+     * Add tags into the task
+     *
+     * @param string The tag instructions.
+     * @return String of tags added.
+     * @throws DukeException if no task index was indicated.
+     */
+    public String tagTask(String string) throws DukeException {
+        String printTags = "Tags added: ";
+        String[] stringComponents = string.split(" ");
+        int taskIndex = stringToInteger(stringComponents[0]) - 1;
+        Task taskChosen = this.list.get(taskIndex);
+        for (int i = 1; i < stringComponents.length; i++) {
+            taskChosen.addTag(stringComponents[i]);
+            printTags += stringComponents[i] + " ";
+        }
+        return printTags;
     }
 }
