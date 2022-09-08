@@ -1,13 +1,22 @@
 package duke;
 
-import commands.*;
+import commands.ByeCommand;
+import commands.Command;
+import commands.DeadlineCommand;
+import commands.DeleteCommand;
+import commands.EventCommand;
+import commands.FindCommand;
+import commands.ListCommand;
+import commands.MarkCommand;
+import commands.TodoCommand;
+import commands.UnMarkCommand;
 import dukeexceptions.DukeException;
 import dukeexceptions.NoDescriptionException;
 import dukeexceptions.NoSuchCommandException;
 
 public class Parser {
     private enum Commands {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND, STATISTICS
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND
     }
 
     /**
@@ -39,8 +48,6 @@ public class Parser {
             return new ByeCommand();
         case LIST:
             return new ListCommand();
-        case STATISTICS:
-            return new StatisticsCommand();
         case UNMARK:
             throw new NoDescriptionException("unmark");
         case DEADLINE:
