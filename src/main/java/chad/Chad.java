@@ -13,21 +13,38 @@ import chad.task.Task;
  * Main way for users to interact with Chadbot
  */
 public class Chad {
+    private static ArrayList<Task> taskList;
+    public Chad() {
+        try {
+             taskList = Storage.initializeArrayList();
+        } catch (ChadException ce) {
+            System.out.println(ce.getMessage());
+            taskList = new ArrayList<>();
+        }
 
+    }
     /**
      * Main Function of Chad
-     * @param args Reads input
      * @throws IOException Thrown when helper file cannot be open
      * @throws ChadException Thrown when invalid error occurs
      */
-    public static void main(String[] args) throws IOException, ChadException {
+    public static void run() throws IOException, ChadException {
         Scanner sc = new Scanner(System.in);
-        ArrayList<Task> taskList = Storage.initializeArrayList();
         Ui.greet();
 
         while (true) {
             String userInput = sc.nextLine();
             Parser.readUserInput(taskList, userInput);
         }
+    }
+
+    public String getResponse(String input) {
+        String output = Parser.readUserInput(taskList, input);
+        return output;
+
+    }
+
+    public static void main(String[] args) throws ChadException, IOException {
+        run();
     }
 }

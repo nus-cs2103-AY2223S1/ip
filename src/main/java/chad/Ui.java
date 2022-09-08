@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import chad.exception.ChadException;
 import chad.task.Deadline;
 import chad.task.Event;
 import chad.task.Task;
@@ -16,32 +17,43 @@ public class Ui {
     /**
      * Greets user when program runs
      */
-    public static void greet() {
+    public static String greet() {
         String startChat = "Hello! I'm Chadbot\nWhat can I do for you?\n";
         startChat += "To see all available commands, type help";
-        Utility.printText(startChat);
+        return Utility.printText(startChat);
     }
 
     /**
      * Exit message when user close program
      */
-    public static void closeChat() {
+    public static String closeChat() {
         String exitChat = "Bye. Hope to see you again soon!";
-        Utility.printText(exitChat);
-        System.exit(0);
+        return Utility.printText(exitChat);
+    }
+
+    public static String helpCommands() {
+        String output = "";
+        output += "list - List all tasks in task list\n";
+        output += "bye - Close chat\n";
+        output += "mark 'task' - Mark a task as done\n";
+        output += "unmark 'task' - Unmark a task\n";
+        output += "todo 'task' - Add a todo to task list\n";
+        output += "delete 'task' - Delete a task from task list\n";
+        output += "find 'keyword' - Find a task by matching keywords\n";
+        return Utility.printText(output);
     }
 
     /**
      * List all tasks in task list
      * @param tasks arraylist of tasks
      */
-    public static void listTask(ArrayList<Task> tasks) {
+    public static String listTask(ArrayList<Task> tasks) {
         StringBuilder outputText = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
             Task task = tasks.get(i);
             outputText.append(i + 1).append(".").append(task.toString()).append("\n");
         }
-        Utility.printText(outputText.toString().trim());
+        return Utility.printText(outputText.toString().trim());
     }
 
     /**
@@ -50,14 +62,14 @@ public class Ui {
      * @param taskID index of task
      * @throws IOException throws error if file can't be open in chad.Storage
      */
-    public static void markTask(ArrayList<Task> tasks, int taskID) throws IOException {
+    public static String markTask(ArrayList<Task> tasks, int taskID) throws ChadException {
         String outputText = "";
         outputText += "Nice! I've marked this task as done:\n";
         Task currentTask = tasks.get(taskID);
         currentTask.markAsDone();
         outputText += " " + currentTask;
         Storage.toggleMarkTaskInFile(taskID);
-        Utility.printText(outputText);
+        return Utility.printText(outputText);
     }
 
     /**
@@ -66,17 +78,17 @@ public class Ui {
      * @param taskID index of task
      * @throws IOException throws error if file can't be open in chad.Storage
      */
-    public static void unmarkTask(ArrayList<Task> tasks, int taskID) throws IOException {
+    public static String unmarkTask(ArrayList<Task> tasks, int taskID) throws ChadException {
         String outputText = "";
         outputText += "OK, I've marked this task as not done yet:\n";
         Task currentTask = tasks.get(taskID);
         currentTask.markAsUndone();
         outputText += " " + currentTask;
         Storage.toggleMarkTaskInFile(taskID);
-        Utility.printText(outputText);
+        return Utility.printText(outputText);
     }
 
-    public static void searchTaskByKeyword(ArrayList<Task> tasks, String userInput) {
+    public static String searchTaskByKeyword(ArrayList<Task> tasks, String userInput) {
         String keyword = userInput.replaceFirst("find", "").trim();
         String baseText = "Here are the matching tasks in your list:\n";
         String output = baseText;
@@ -91,11 +103,10 @@ public class Ui {
         }
 
         if (output.equals(baseText)) {
-            Utility.printText("No matching tasks were found");
+            return Utility.printText("No matching tasks were found");
         } else {
-            Utility.printText(output.trim());
+            return Utility.printText(output.trim());
         }
-
     }
 
     /**
@@ -103,14 +114,14 @@ public class Ui {
      * @param tasks arraylist of tasks
      * @param date date specified by user
      */
-    public static void printTaskAtDate(ArrayList<Task> tasks, String date) {
+    public static String printTaskAtDate(ArrayList<Task> tasks, String date) {
         StringBuilder output = new StringBuilder();
         date = date.split(" ", 2)[1];
         DateTimeFormatter format = DateTimeFormatter.ofPattern("d/MM/yyyy");
         LocalDate theDate = LocalDate.parse(date, format);
 
         if (theDate == null) {
-            return;
+            return Utility.printText("");
         }
 
         for (Task t: tasks) {
@@ -132,7 +143,6 @@ public class Ui {
         if (text.equals("")) {
             text = "No such record for " + theDate;
         }
-
-        Utility.printText(text);
+        return Utility.printText(text);
     }
 }

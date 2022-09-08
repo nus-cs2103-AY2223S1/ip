@@ -6,8 +6,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import chad.exception.ChadException;
 import chad.task.Deadline;
 import chad.task.Event;
 import chad.task.Task;
@@ -20,9 +22,9 @@ public class Storage {
     /**
      * Returns an empty array list if no saved array list else read line by line
      * @return arraylist of tasks
-     * @throws IOException If there is trouble opening the file
+     * @throws ChadException If there is trouble opening the file
      */
-    public static ArrayList<Task> initializeArrayList() throws IOException {
+    public static ArrayList<Task> initializeArrayList() throws ChadException {
         ArrayList<Task> taskList = new ArrayList<>();
         try {
             File currentFile = new File("./data/chad_data.txt");
@@ -39,11 +41,11 @@ public class Storage {
                 String strIsMark = tempArr[1].trim();
                 String desc = tempArr[2].trim();
 
-
                 switch (taskType) {
                 case "D": {
-                    String byDate = tempArr[3].trim();
-                    Task t = new Deadline(desc, byDate);
+                    String byDateString = tempArr[3].trim();
+                    LocalDateTime dateTime = LocalDateTime.parse(byDateString);
+                    Task t = new Deadline(desc, dateTime);
                     if (strIsMark.equals("1")) {
                         t.markAsDone();
                     }
@@ -52,7 +54,8 @@ public class Storage {
                 }
                 case "E": {
                     String byDateTime = tempArr[3].trim();
-                    Task t = new Event(desc, byDateTime);
+                    LocalDateTime dateTime = LocalDateTime.parse(byDateTime);
+                    Task t = new Event(desc, dateTime);
                     if (strIsMark.equals("1")) {
                         t.markAsDone();
                     }
@@ -75,10 +78,9 @@ public class Storage {
                 line = reader.readLine();
             }
             reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            throw new ChadException(e.getMessage());
         }
-
         return taskList;
     }
 
@@ -87,15 +89,15 @@ public class Storage {
      * @param str formatted string
      * @throws IOException Thrown when file cannot be opened
      */
-    public static void writeToFile(String str) throws IOException {
+    public static void writeToFile(String str) throws ChadException {
         try {
             FileWriter fileWriter = new FileWriter("./data/chad_data.txt", true);
             BufferedWriter writer = new BufferedWriter(fileWriter);
             writer.write(str);
             writer.newLine();
             writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            throw new ChadException(e.getMessage());
         }
     }
 
@@ -104,7 +106,7 @@ public class Storage {
      * @param index index of text to be deleted
      * @throws IOException Thrown when file cannot be opened
      */
-    public static void deleteTaskInFile(int index) throws IOException {
+    public static void deleteTaskInFile(int index) throws ChadException {
         try {
             File tempFile = new File("tempFile.txt");
             File currentFile = new File("./data/chad_data.txt");
@@ -127,8 +129,8 @@ public class Storage {
             currentFile.delete();
             tempFile.renameTo(currentFile);
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            throw new ChadException(e.getMessage());
         }
     }
 
@@ -137,7 +139,7 @@ public class Storage {
      * @param index index of task
      * @throws IOException Thrown when file cannot be opened
      */
-    public static void toggleMarkTaskInFile(int index) throws IOException {
+    public static void toggleMarkTaskInFile(int index) throws ChadException {
         try {
             File tempFile = new File("tempFile.txt");
             File currentFile = new File("./data/chad_data.txt");
@@ -175,8 +177,8 @@ public class Storage {
 
             currentFile.delete();
             tempFile.renameTo(currentFile);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            throw new ChadException(e.getMessage());
         }
     }
 }
