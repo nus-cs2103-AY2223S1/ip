@@ -29,6 +29,11 @@ public class Input {
     protected String inputString;
     protected Map<String, String> parameters; // store arguments without arg_start
     protected String[] tokens;
+
+    /**
+     * A dummy constructor for use with stub classes
+     */
+    protected Input() { return; }
     /**
      * Parses the input string received from the user and stores command name, parameters and arguments
      * @param input Input string received from CLI
