@@ -54,6 +54,15 @@ public abstract class Command {
     }
 
     /**
+     * Returns that instruction string that invokes this command, such as "deadline" and "event".
+     *
+     * @return the string that represents the instruction that invokes this command.
+     */
+    public String getInstruction() {
+        return commandType.toString();
+    }
+
+    /**
      * Executes the command concretely. The command will follow prescribed instructions depending on their command type.
      *
      * @param cliUi An object that facilitates output that might be required by the command.

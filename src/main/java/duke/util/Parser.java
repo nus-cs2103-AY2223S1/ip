@@ -56,9 +56,6 @@ public class Parser {
      */
     private static final class CommandSupplier {
 
-        public static final List<Function<? super String, ? extends Command>> suppliers =
-                List.of()
-
         private static final Function<? super String, ? extends Command> ADD_DEADLINE_COMMAND_SUPPLIER =
                 commandArgument -> {
                     Command newCommand;
@@ -67,8 +64,8 @@ public class Parser {
                         LocalDateTime deadline = getDate(commandArgument, BY_DATE_DELIMITER);
                         DeadlineTask task = new DeadlineTask(taskTitle, deadline);
                         newCommand = new AddDeadlineCommand(task);
-                    } catch (DukeMissingTaskTitleException | DukeCommandFormatException |
-                             DukeMissingTaskDateTimeException
+                    } catch (DukeMissingTaskTitleException | DukeCommandFormatException
+                             | DukeMissingTaskDateTimeException
                              | DukeDateTimeFormatException exception) {
                         newCommand = new ErrorCommand(exception.getMessage());
                     }
@@ -149,6 +146,28 @@ public class Parser {
 
         private static final Function<? super String, ? extends Command> UNKNOWN_COMMAND_SUPPLIER =
                 commandArgument -> new UnknownCommand();
+
+        private static final List<Function<? super String, ? extends Command>> suppliers =
+                List.of(
+                        ADD_DEADLINE_COMMAND_SUPPLIER,
+                        ADD_EVENT_COMMAND_SUPPLIER,
+                        ADD_TODO_COMMAND_SUPPLIER,
+                        DELETE_COMMAND_SUPPLIER,
+                        DISPLAY_LIST_COMMAND_SUPPLIER,
+                        EXIT_COMMAND_SUPPLIER,
+                        FIND_COMMAND_SUPPLIER,
+                        MARK_DONE_COMMAND_SUPPLIER,
+                        MARK_UNDONE_COMMAND_SUPPLIER,
+                        UNKNOWN_COMMAND_SUPPLIER
+                );
+
+        /**
+         * Returns a collection of all static command suppliers.
+         * @return all static command suppliers.
+         */
+        public static List<Function<? super String, ? extends Command>> getSuppliers() {
+            return suppliers;
+        }
     }
 
 
@@ -160,15 +179,10 @@ public class Parser {
      */
     public Parser() {
         commandMap = new HashMap<>();
-        commandMap.put(CommandType.ADD_DEADLINE.toString(), ADD_DEADLINE_COMMAND_SUPPLIER);
-        commandMap.put(CommandType.ADD_EVENT.toString(), ADD_EVENT_COMMAND_SUPPLIER);
-        commandMap.put(CommandType.ADD_TODO.toString(), ADD_TODO_COMMAND_SUPPLIER);
-        commandMap.put(CommandType.DELETE.toString(), DELETE_COMMAND_SUPPLIER);
-        commandMap.put(CommandType.DISPLAY_LIST.toString(), DISPLAY_LIST_COMMAND_SUPPLIER);
-        commandMap.put(CommandType.EXIT.toString(), EXIT_COMMAND_SUPPLIER);
-        commandMap.put(CommandType.FIND.toString(), FIND_COMMAND_SUPPLIER);
-        commandMap.put(CommandType.MARK_DONE.toString(), MARK_DONE_COMMAND_SUPPLIER);
-        commandMap.put(CommandType.MARK_UNDONE.toString(), MARK_UNDONE_COMMAND_SUPPLIER);
+        CommandSupplier
+                .getSuppliers()
+                .stream()
+                .forEach(x -> commandMap.put(x.get));
     }
 
     /**
