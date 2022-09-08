@@ -3,6 +3,7 @@ package ip;
 import java.io.IOException;
 
 import ip.command.DukeCommand;
+import ip.exception.BadLineFormat;
 import ip.exception.DukeException;
 import ip.utility.Parser;
 import ip.utility.Storage;
@@ -25,7 +26,7 @@ public class Duke {
      *
      * @param dataFilePath Path of file to load task data from.
      */
-    public Duke(String dataFilePath) {
+    public Duke(String dataFilePath) throws BadLineFormat {
         storage = new Storage(dataFilePath);
         parser = new Parser();
         try {
