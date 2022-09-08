@@ -35,6 +35,12 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
+    /**
+     * Takes created Duke class, initialises, and then output the greeting msg.
+     * @param d created Duke class.
+     * @throws DukeException
+     * @throws IOException
+     */
     public void setDuke(Duke d) throws DukeException, IOException {
         duke = d;
         String response = duke.getResponse();
