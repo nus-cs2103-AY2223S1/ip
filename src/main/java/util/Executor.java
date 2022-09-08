@@ -1,5 +1,6 @@
 package util;
 
+import alan.Alan;
 import alanExceptions.AlanException;
 import alanExceptions.InvalidValueException;
 import tasks.*;
@@ -170,6 +171,20 @@ public class Executor {
         } catch (IndexOutOfBoundsException exception) {
             throw new InvalidValueException();
         }
+    }
+
+    public String excAkw(String userInput) throws AlanException {
+        ParsedData parsedData = parser.parse(InputType.akw, userInput);
+        Keywords.getInstance().assign(parsedData.getKw(), parsedData.getCommandkw());
+
+        return ui.akw(parsedData.getKw(), parsedData.getCommandkw());
+    }
+
+    public String excRkw(String userInput) throws AlanException {
+        ParsedData parsedData = parser.parse(InputType.rkw, userInput);
+        Keywords.getInstance().remove(parsedData.getDescription());
+
+        return ui.rkw(parsedData.getDescription());
     }
 
     public String excBye() {

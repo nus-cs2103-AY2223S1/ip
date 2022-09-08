@@ -2,10 +2,7 @@ package alan;
 
 import alanExceptions.AlanException;
 import tasks.TaskList;
-import util.Executor;
-import util.FileParser;
-import util.Storage;
-import util.Ui;
+import util.*;
 
 /**
  * This class encapsulates the Chat Bot.
@@ -68,7 +65,7 @@ public class Alan {
         System.out.println("How may I be of service?");
 
         String command = input.split(" ", 2)[0];
-
+        command = Keywords.getInstance().getCommand(command);
         try {
             switch (command) {
                 case "bye":
@@ -99,8 +96,13 @@ public class Alan {
                     response = executor.excDelete(taskList, input);
                     break;
                 case "help":
-                    // TODO: 18/8/22
-                    response = "Sorry i cant help you just yet ):";
+                    response = "Keywords: " + Keywords.getInstance().getDefaultKeywords();
+                    break;
+                case "assign":
+                    response = executor.excAkw(input);
+                    break;
+                case "remove":
+                    response = executor.excRkw(input);
                     break;
                 default:
                     response = ui.invalid();

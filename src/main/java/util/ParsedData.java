@@ -17,6 +17,8 @@ public class ParsedData {
     private String timeText;
     private LocalDateTime dateTime;
     private int listIndex;
+    private String kw;
+    private String commandkw;
 
     /**
      * Constructor
@@ -77,6 +79,17 @@ public class ParsedData {
     /**
      * Constructor
      *
+     * @param kw Keyword.
+     * @param commandkw Command Keyword.
+     */
+    public ParsedData(String kw, String commandkw) {
+        this.kw = kw;
+        this.commandkw = commandkw;
+    }
+
+    /**
+     * Constructor
+     *
      * @param listIndex Index.
      */
     public ParsedData(int listIndex) {
@@ -109,5 +122,13 @@ public class ParsedData {
 
     public int getListIndex() {
         return listIndex;
+    }
+
+    public String getKw() {
+        return this.kw;
+    }
+
+    public String getCommandkw() {
+        return this.commandkw;
     }
 }
