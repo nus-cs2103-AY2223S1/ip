@@ -24,62 +24,29 @@ public class Parser {
     }
 
     /**
-     * Handles user input and calls methods accordingly.
-     * @return Boolean to indicate end command has been sent.
+     * Handles user input and calls methods accordingly, was originally for CLI
+     * version, but kept for test cases.
+     *
      * @throws DukeException In the event that the command is not recognised.
      */
-    public boolean handleInput() throws DukeException {
-        TaskList tasklist = TaskList.getInstance();
-
+    public void handleInput() throws DukeException {
         while (in.hasNext()) {
             String[] temp = in.nextLine().trim().split(" ", 2);
             String[] next = new String[2];
             for (int i = 0; i < temp.length; i++) {
-                next[i] = temp[i].trim();
+                next[i] = temp[i].trim().toLowerCase();
             }
-
-            next[0] = next[0].toLowerCase();
-            String command = next[0];
-
-            switch (command) {
-            case "bye":
-                System.out.println("Bye. Hope to see you again soon!");
-                return true;
-            case "list":
-                tasklist.list();
-                break;
-            case "unmark":
-                tasklist.unmark(next[1]);
-                break;
-            case "mark":
-                tasklist.mark(next[1]);
-                break;
-            case "todo":
-            case "deadline":
-            case "event":
-                tasklist.addTask(next);
-                break;
-            case "find":
-                tasklist.findWithFilter(next[1]);
-                break;
-            case "delete":
-                tasklist.delete(next[1]);
-                break;
-            default:
-                throw new DukeException("Invalid command");
-            }
+            identifyCommand(next);
         }
-        return false;
     }
 
     /**
-     * Handles user input and calls methods accordingly.
+     * Handles user input and calls methods accordingly (GUI).
      *
-     * @return Boolean to indicate end command has been sent.
+     * @return String that represents the output from Duke.
      * @throws DukeException In the event that the command is not recognised.
      */
     public String handleGuiInput(String input) throws DukeException {
-        TaskList tasklist = TaskList.getInstance();
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(baos);
@@ -89,47 +56,48 @@ public class Parser {
         String[] temp = input.trim().split(" ", 2);
         String[] next = new String[2];
         for (int i = 0; i < temp.length; i++) {
-            next[i] = temp[i].trim();
+            next[i] = temp[i].trim().toLowerCase();
         }
 
-        next[0] = next[0].toLowerCase();
-        String command = next[0];
+        identifyCommand(next);
+        System.out.flush();
+        System.setOut(old);
+        return baos.toString();
+    }
+
+    /**
+     * Identifies command and calls appropriate functions.
+     *
+     * @param input User input packaged into a string array.
+     */
+    public void identifyCommand(String[] input) throws DukeException {
+        TaskList tasklist = TaskList.getInstance();
+        String command = input[0];
 
         switch (command) {
         case "bye":
-            return "Bye. Hope to see you again soon!";
+            System.out.println("Bye. Hope to see you again soon!");
+            break;
         case "list":
             tasklist.list();
-            System.out.flush();
-            System.setOut(old);
-            return baos.toString();
+            break;
         case "unmark":
-            tasklist.unmark(next[1]);
-            System.out.flush();
-            System.setOut(old);
-            return baos.toString();
+            tasklist.unmark(input[1]);
+            break;
         case "mark":
-            tasklist.mark(next[1]);
-            System.out.flush();
-            System.setOut(old);
-            return baos.toString();
+            tasklist.mark(input[1]);
+            break;
         case "todo":
         case "deadline":
         case "event":
-            tasklist.addTask(next);
-            System.out.flush();
-            System.setOut(old);
-            return baos.toString();
+            tasklist.addTask(input);
+            break;
         case "delete":
-            tasklist.delete(next[1]);
-            System.out.flush();
-            System.setOut(old);
-            return baos.toString();
+            tasklist.delete(input[1]);
+            break;
         case "find":
-            tasklist.findWithFilter(next[1]);
-            System.out.flush();
-            System.setOut(old);
-            return baos.toString();
+            tasklist.findWithFilter(input[1]);
+            break;
         default:
             throw new DukeException("Invalid command");
         }

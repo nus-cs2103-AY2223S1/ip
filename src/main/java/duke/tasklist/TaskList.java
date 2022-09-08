@@ -15,6 +15,11 @@ import duke.storage.Storage;
 public class TaskList {
     private static TaskList tasklist;
     private final ArrayList<Task> storage;
+    private final DateTimeFormatter formatterForInput = DateTimeFormatter
+            .ofPattern("yyyy-MM-dd HHmm");
+    private final DateTimeFormatter formatterForSavedFile = DateTimeFormatter
+            .ofPattern("yyyy-MM-dd HH:mm");
+    private Storage outputFile = Storage.getInstance();
 
     /**
      * Constructor for the TaskList object.
@@ -31,12 +36,11 @@ public class TaskList {
     public void list() {
         if (this.storage.size() == 0) {
             System.out.println("List is currently empty");
-        } else {
-            System.out.println("Here are your tasks:");
-            for (int i = 0; i < this.storage.size(); i++) {
-                System.out.printf("%d.%s\n", i + 1,
-                        this.storage.get(i).toString());
-            }
+        }
+        System.out.println("Here are your tasks:");
+        for (int i = 0; i < this.storage.size(); i++) {
+            System.out.printf("%d.%s\n", i + 1,
+                    this.storage.get(i).toString());
         }
     }
 
@@ -46,39 +50,82 @@ public class TaskList {
      * @param input String containing input from saved file.
      */
     public void addTasksFromSave(String input) {
-        DateTimeFormatter formatter = DateTimeFormatter
-                .ofPattern("yyyy-MM-dd HH:mm");
         String[] curr = input.split("\\s*\\|\\s*");
-        String command = curr[0];
+        taskIdentifierForSavedFile(curr);
+    }
+
+    /**
+     * Identifies tasks from saved file and creates accordingly.
+     *
+     * @param input Input from saved file.
+     */
+    public void taskIdentifierForSavedFile(String[] input) {
+        String command = input[0];
 
         switch (command) {
         case "T": {
-            Task currTask = new Todo(curr[2]);
-            if (curr[1].equals("1")) {
-                currTask.markSavedTaskAsDone();
-            }
-            this.storage.add(currTask);
+            addTodoFromSave(input);
             break;
         }
         case "D": {
-            Task currTask = new Deadline(curr[2],
-                        LocalDateTime.parse(curr[3].trim(), formatter));
-            if (curr[1].equals("1")) {
-                currTask.markSavedTaskAsDone();
-            }
-            this.storage.add(currTask);
+            addDeadlineFromSave(input);
             break;
         }
         case "E": {
-            Task currTask = new Event(curr[2],
-                    LocalDateTime.parse(curr[3].trim(), formatter));
-            if (curr[1].equals("1")) {
-                currTask.markSavedTaskAsDone();
-            }
-            this.storage.add(currTask);
+            addEventFromSave(input);
             break;
         }
         default:
+        }
+    }
+
+    /**
+     * Creates a todo task and adds it to storage, and marks as done if appropriate.
+     * This is used for input from the saved file.
+     *
+     * @param input String array containing task description.
+     */
+    public void addTodoFromSave(String[] input) {
+        Task currTask = new Todo(input[2]);
+        savedInputTaskCompletionChecker(currTask, input[1]);
+        this.storage.add(currTask);
+    }
+
+    /**
+     * Creates a deadline task and adds it to storage, and marks as done if appropriate.
+     * This is used for input from the saved file.
+     *
+     * @param input String array containing task description and due date.
+     */
+    public void addDeadlineFromSave(String[] input) {
+        Task currTask = new Deadline(input[2],
+                LocalDateTime.parse(input[3].trim(), formatterForSavedFile));
+        savedInputTaskCompletionChecker(currTask, input[1]);
+        this.storage.add(currTask);
+    }
+
+    /**
+     * Creates a event task and adds it to storage, and marks as done if appropriate.
+     * This is used for input from the saved file.
+     *
+     * @param input String array containing task description and event date.
+     */
+    public void addEventFromSave(String[] input) {
+        Task currTask = new Event(input[2],
+                LocalDateTime.parse(input[3].trim(), formatterForSavedFile));
+        savedInputTaskCompletionChecker(currTask, input[1]);
+        this.storage.add(currTask);
+    }
+
+    /**
+     * Marks tasks as done according to their value in the saved file.
+     *
+     * @param t Task to be marked.
+     * @param flag String that indicates whether task was marked as done in file.
+     */
+    public void savedInputTaskCompletionChecker(Task t, String flag) {
+        if (flag.equals("1")) {
+            t.markSavedTaskAsDone();
         }
     }
 
@@ -93,52 +140,94 @@ public class TaskList {
             throw new DukeException("Description of a " + input[0]
                     + " cannot be empty!");
         }
+
         try {
-            DateTimeFormatter formatter = DateTimeFormatter
-                    .ofPattern("yyyy-MM-dd HHmm");
-            Storage outputFile = Storage.getInstance();
-            switch (input[0]) {
-            case "todo":
-                Todo todo = new Todo(input[1].trim());
-                storage.add(todo);
-                outputFile.writeToSavedFile();
-                System.out.printf("added %s\n", todo);
-                break;
-            case "deadline":
-                if (!input[1].contains("/by")
-                        || input[1].indexOf("/by") == input[1].length() - 3) {
-                    throw new DukeException("No date inserted for deadline");
-                }
-                String[] deadlineInfo = input[1].split("/by", 2);
-                Deadline deadline = new Deadline(deadlineInfo[0].trim(),
-                        LocalDateTime.parse(deadlineInfo[1].trim(),
-                                formatter));
-                storage.add(deadline);
-                outputFile.writeToSavedFile();
-                System.out.printf("added %s\n", deadline);
-                break;
-            case "event":
-                if (!input[1].contains("/at")
-                        || input[1].indexOf("/at") == input[1].length() - 3) {
-                    throw new DukeException("No date inserted for event");
-                }
-                String[] eventInfo = input[1].split("/at", 2);
-                Event event = new Event(eventInfo[0].trim(),
-                        LocalDateTime.parse(eventInfo[1].trim(),
-                                formatter));
-                storage.add(event);
-                outputFile.writeToSavedFile();
-                System.out.printf("added %s\n", event);
-                break;
-            default: throw new DukeException("Invalid task");
-            }
-            System.out.printf("Now you have %d tasks in the list\n",
-                    storage.size());
+            taskIdentifierForUserInput(input);
         } catch (DateTimeParseException e) {
             throw new DukeException("Invalid date format!\n "
                     + "please enter date in yyyy-mm-dd hhMM format");
         }
 
+    }
+
+    /**
+     * Identifies task according to user input and calls appropriate functions
+     * to create the task.
+     *
+     * @param input User input from GUI.
+     */
+    public void taskIdentifierForUserInput(String[] input) throws DukeException {
+        switch (input[0]) {
+        case "todo":
+            addTodo(input);
+            break;
+        case "deadline":
+            addDeadline(input);
+            break;
+        case "event":
+            addEvent(input);
+            break;
+        default:
+            throw new DukeException("Invalid task");
+        }
+        printStorageSize();
+        outputFile.writeToSavedFile();
+    }
+
+    /**
+     * Creates a todo task and adds it to storage.
+     *
+     * @param input String array containing task description.
+     */
+    public void addTodo(String[] input) {
+        Todo todo = new Todo(input[1].trim());
+        storage.add(todo);
+        System.out.printf("added %s\n", todo);
+    }
+
+    /**
+     * Creates a deadline task and adds it to storage.
+     *
+     * @param input String array containing task description and due date.
+     */
+    public void addDeadline(String[] input) throws DukeException {
+        if (!input[1].contains("/by")
+                || input[1].indexOf("/by") == input[1].length() - 3) {
+            throw new DukeException("No date inserted for deadline");
+        }
+        String[] deadlineInfo = input[1].split("/by", 2);
+        Deadline deadline = new Deadline(deadlineInfo[0].trim(),
+                LocalDateTime.parse(deadlineInfo[1].trim(),
+                        formatterForInput));
+        storage.add(deadline);
+        System.out.printf("added %s\n", deadline);
+    }
+
+    /**
+     * Creates a event task and adds it to storage.
+     *
+     * @param input String array containing task description and event date.
+     */
+    public void addEvent(String[] input) throws DukeException {
+        if (!input[1].contains("/at")
+                || input[1].indexOf("/at") == input[1].length() - 3) {
+            throw new DukeException("No date inserted for event");
+        }
+        String[] eventInfo = input[1].split("/at", 2);
+        Event event = new Event(eventInfo[0].trim(),
+                LocalDateTime.parse(eventInfo[1].trim(),
+                        formatterForInput));
+        storage.add(event);
+        System.out.printf("added %s\n", event);
+    }
+
+
+    /**
+     *
+     */
+    public void printStorageSize() {
+        System.out.printf("Now you have %d tasks in the list\n",
+                storage.size());
     }
 
     /**
@@ -155,15 +244,11 @@ public class TaskList {
         }
         String s = input.replaceAll("\\D+", "");
         if (!s.equals("")) {
-            int idx = Integer.parseInt(s);
-            if (idx - 1 >= storage.size() || idx < 1) {
-                throw new DukeException("Invalid selection for deletion");
-            } else {
-                Task t = storage.get(idx - 1);
-                storage.remove(idx - 1);
-                System.out.println("Removed the following task:\n"
-                        + t);
-            }
+            Task t = taskGetter(s, "deletion");
+            storage.remove(t);
+            System.out.println("Removed the following task:\n"
+                    + t);
+            outputFile.writeToSavedFile();
         } else {
             throw new DukeException("Invalid selection for deletion");
         }
@@ -177,22 +262,17 @@ public class TaskList {
     public void unmark(String input) throws DukeException {
         if (this.storage.size() == 0) {
             throw new DukeException("No tasks to unmark!");
+        }
+        if (input == null) {
+            throw new DukeException("No input provided for unmarking");
+        }
+        String s = input.replaceAll("\\D+", "");
+        if (!s.equals("")) {
+            Task t = taskGetter(s, "unmarking");
+            t.markAsNotDone();
+            outputFile.writeToSavedFile();
         } else {
-            if (input == null) {
-                throw new DukeException("No input provided for unmarking");
-            }
-            String s = input.replaceAll("\\D+", "");
-            if (!s.equals("")) {
-                int idx = Integer.parseInt(s);
-                if (idx - 1 >= this.storage.size() || idx < 1) {
-                    throw new DukeException("Invalid selection for unmarking");
-                } else {
-                    Task t = this.storage.get(idx - 1);
-                    t.markAsNotDone();
-                }
-            } else {
-                throw new DukeException("Invalid selection for unmarking");
-            }
+            throw new DukeException("Invalid selection for unmarking");
         }
     }
 
@@ -203,23 +283,34 @@ public class TaskList {
     public void mark(String input) throws DukeException {
         if (this.storage.size() == 0) {
             throw new DukeException("No tasks to mark!");
-        } else {
-            if (input == null) {
-                throw new DukeException("No input provided for marking");
-            }
-            String s = input.replaceAll("\\D+", "");
-            if (!s.equals("")) {
-                int idx = Integer.parseInt(s);
-                if (idx - 1 >= this.storage.size() || idx < 1) {
-                    throw new DukeException("Invalid selection for marking");
-                } else {
-                    Task t = this.storage.get(idx - 1);
-                    t.markAsDone();
-                }
-            } else {
-                throw new DukeException("Invalid selection for marking");
-            }
         }
+        if (input == null) {
+            throw new DukeException("No input provided for marking");
+        }
+        String s = input.replaceAll("\\D+", "");
+        if (!s.equals("")) {
+            Task t = taskGetter(s, "marking");
+            t.markAsDone();
+            outputFile.writeToSavedFile();
+        } else {
+            throw new DukeException("Invalid selection for marking");
+        }
+    }
+
+    /**
+     * Gets the task that is meant to be updated (unmarked, marked, deleted).
+     * Only used for the above mentioned methods.
+     *
+     * @param index String containing index of item to be updated.
+     * @param command String indicating command called.
+     * @throws DukeException If selection is invalid.
+     */
+    public Task taskGetter(String index, String command) throws DukeException {
+        int idx = Integer.parseInt(index) - 1;
+        if (idx >= this.storage.size() || idx < 0) {
+            throw new DukeException("Invalid selection for " + command);
+        }
+        return this.storage.get(idx);
     }
 
     /**
@@ -255,12 +346,12 @@ public class TaskList {
 
         if (filteredList.isEmpty()) {
             System.out.println("No matching tasks found");
-        } else {
-            System.out.println("Here are the tasks that match:");
-            for (int i = 0; i < filteredList.size(); i++) {
-                System.out.printf("%d.%s\n", i + 1,
-                        filteredList.get(i).toString());
-            }
+            return;
+        }
+        System.out.println("Here are the tasks that match:");
+        for (int i = 0; i < filteredList.size(); i++) {
+            System.out.printf("%d.%s\n", i + 1,
+                    filteredList.get(i).toString());
         }
     }
 

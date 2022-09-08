@@ -17,7 +17,6 @@ import duke.ui.Ui;
  */
 public class Duke {
 
-    private TaskList tasks;
     private Ui ui;
     private Storage storage;
 
@@ -31,37 +30,8 @@ public class Duke {
     public Duke() {
         this.ui = new Ui();
         this.storage = new Storage();
-        this.tasks = new TaskList();
 
         storage.readSavedTasks();
-    }
-
-    /**
-     * Main method that starts up the chatbot (CLI version).
-     * Starts the boot-up phase and calls method to handle user input.
-     */
-    public void run() {
-        ui.bootUpDuke();
-        loopInputRead();
-    }
-
-    /**
-     * Reads and handles user input until parser returns boolean to indicate end.
-     *
-     */
-    private void loopInputRead() {
-        Parser parser = new Parser(new Scanner(System.in));
-        while (true) {
-            try {
-                boolean complete = parser.handleInput();
-                if (complete) {
-                    break;
-                }
-            } catch (DukeException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
     }
 
     /**
