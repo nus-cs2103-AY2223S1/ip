@@ -2,26 +2,25 @@ package doke;
 
 /**
  * An Exception to handle the Exception specific to the Doke program.
- *
- * @author Stevan Gerard Gunawan
  */
-public class DokeException extends RuntimeException {
+public class DokeException extends RuntimeException{
     private String text = null;
 
     /**
-     * Constructs the DokeException with the string field set to the given text
+     * a public constructor for the DokeException class.
      *
      * @param text the text to be outputted.
      */
     public DokeException(String text) {
+        assert text.equals("todo") || text.equals("deadline") || text.equals("event")
+                : "we only have 3 types of task";
         this.text = text;
     }
 
     /**
-     * Constructs the DokeException with the string field set to the given text
+     * a public constructor for the DokeException class.
      */
-    public DokeException() {
-    }
+    public DokeException() {}
 
     /**
      * Returns a String representation of the DokeException.
@@ -32,7 +31,7 @@ public class DokeException extends RuntimeException {
     public String toString() {
         String temp = text == null
                 ? "What language are you talking? JK. Something went wrong."
-                : "I'm sorry, your " + text + "'s need more information.";
+                : "I'm sorry, your " + text + "'s description can't be empty";
         return "_________________________" + "\n" + temp
                 + "\n" + "_________________________";
     }
