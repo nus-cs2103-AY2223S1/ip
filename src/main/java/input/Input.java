@@ -42,7 +42,7 @@ public class Input {
         // remove trailing space
         inputString = input.trim();
 
-        if (this.inputString.length() == 0) {
+        if (inputString.length() == 0) {
             throw new DukeException("Input should not be empty!");
         }
 
@@ -52,8 +52,15 @@ public class Input {
         if (tokens[0].startsWith(ARG_START)) {
             throw new DukeException(String.format("Commands do not start with %s :)", ARG_START));
         }
-
         commandName = tokens[0];
+        initialiseParameters();
+    }
+
+    /**
+     * Initialises parameters mapping from parameter name to argument using tokens array
+     */
+    private void initialiseParameters() {
+        assert tokens != null; // assert that tokens has been initialised
         parameters = new HashMap<>();
 
         // currArg string and buffer for the strings that are in its param
@@ -82,7 +89,6 @@ public class Input {
                     currentBuffer = new ArrayList<>();
                 }
 
-                // set currentArg to new token
                 currentArg = token;
             }
         }

@@ -29,8 +29,8 @@ public class TaskModel {
                     .stream()
                     .map(TaskDeserializer::deserializeTaskString)
                     .collect(Collectors.toList());
-        } catch (StorageException e) {
-            throw e;
+        } catch (StorageException err) {
+            throw err;
         }
     }
 
