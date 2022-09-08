@@ -19,6 +19,7 @@ public class Storage {
 
     /**
      * Constructor for Storage Object.
+     *
      * @param filepath path where the tasks are saved locally.
      */
     public Storage(String filepath) {
@@ -27,21 +28,22 @@ public class Storage {
 
     /**
      * Adds the task to the <code>TaskList</code> from the saved file.
+     *
      * @param taskname the description of the saved task.
      */
-    private void addToListfromFile(String taskname) {
+    protected void addToListfromFile(String taskname) {
         boolean bool = (taskname.charAt(4) == 'X' ? true : false);
-        if (taskname.charAt(1) == 'T'){
-            Task newTask = new ToDo(taskname.substring(7),bool);
+        if (taskname.charAt(1) == 'T') {
+            Task newTask = new ToDo(taskname.substring(7), bool);
             tasks.add(newTask);
         } else if (taskname.charAt(1) == 'E') {
-            String des = taskname.substring(7,taskname.indexOf("(")-1);
-            String at = taskname.substring(taskname.indexOf(":")+2,taskname.indexOf(")"));
+            String des = taskname.substring(7, taskname.indexOf("(") - 1);
+            String at = taskname.substring(taskname.indexOf(":") + 2, taskname.indexOf(")"));
             Task newTask = new Event(des, bool, at);
             tasks.add(newTask);
         } else {
-            String des = taskname.substring(7,taskname.indexOf("(")-1);
-            String by = taskname.substring(taskname.indexOf(":")+2, taskname.indexOf(")"));
+            String des = taskname.substring(7, taskname.indexOf("(") - 1);
+            String by = taskname.substring(taskname.indexOf(":") + 2, taskname.indexOf(")"));
             LocalDate deadline = LocalDate.parse(by);
             Task newTask = new Deadline(des, bool, deadline);
             tasks.add(newTask);
@@ -50,30 +52,28 @@ public class Storage {
 
     /**
      * Loads the tasks from the locally saved file to the Task List of the user.
+     *
      * @param ui the ui to display confirmatory message once tasks are loaded.
      * @return a <code>TaskList</code> with the loaded tasks
      * @throws DukeException if no saved tasks are found.
      */
-    public ArrayList<Task> load(Ui ui) throws DukeException {
-            if (Files.exists(Path.of(this.filepath))) {
-                File taskList = new File(this.filepath);
-                Scanner tasks = null;
-                try {
-                    tasks = new Scanner(taskList);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                while (tasks.hasNext()) {
-                    addToListfromFile(tasks.nextLine());
-                }
-            } else {
-                throw new DukeException("No saved tasks found");
+    protected ArrayList<Task> load(Ui ui) throws DukeException {
+        if (Files.exists(Path.of(this.filepath))) {
+            File taskList = new File(this.filepath);
+            Scanner tasks = null;
+            try {
+                tasks = new Scanner(taskList);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
-
-        ui.tasksLoadedMsg(tasks.size());
+            while (tasks.hasNext()) {
+                addToListfromFile(tasks.nextLine());
+            }
+        } else {
+            throw new DukeException("No saved tasks found");
+        }
         return tasks;
     }
-
 
 
 }

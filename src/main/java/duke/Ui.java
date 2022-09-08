@@ -14,21 +14,18 @@ public class Ui {
     }
 
     /**
-     * Displays to the user the message when no saved tasks are found.
-     */
-    public void showLoadingError() {
-        String msg = ("No saved tasks were found.");
-        System.out.println(msg);
-    }
-
-    /**
      * Displays to the user the confirmatory message after saved tasks are loaded.
      *
      * @param size number of tasks loaded.
      */
-    public void tasksLoadedMsg(int size) {
-        String msg = (size + " tasks were loaded.");
-        System.out.println(msg);
+    public String tasksLoadedMsg(int size) {
+        String msg;
+        if (size == 0) {
+            msg = ("\tNo saved tasks were found.");
+        } else {
+            msg = ("\t" + size + " tasks were loaded.");
+        }
+        return msg;
     }
 
     /**
@@ -37,18 +34,17 @@ public class Ui {
      * @return the welcome message.
      */
     public String welcomeMessage() {
-        String msg = ("Hello! I'm Duke\n" +
-                "What can I do for you?");
-        printMsgWithLine(msg);
+        String msg = ("\tHello! I'm Baymax\n" +
+                "\tWhat can I do for you?");
         return msg;
     }
 
     /**
      * Displays to the user the exit message on closing duke.
      */
-    public void exitMessage() {
+    public String exitMessage() {
         String msg = ("\tBye. Hope to see you again soon!");
-        printMsgWithLine(msg);
+        return msg;
     }
 
     /**
@@ -57,11 +53,11 @@ public class Ui {
      * @param task deleted task.
      * @param size number of tasks in the list after given tasks is deleted.
      */
-    public void deleteTaskMsg(Task task, int size) {
+    public String deleteTaskMsg(Task task, int size) {
         String msg = ("\tNoted, I have removed this task: \n" +
                 "\t\t" + task.toString() + "\n" + "\tNow you have " +
                 size + " tasks in the list.");
-        printMsgWithLine(msg);
+        return msg;
     }
 
     /**
@@ -73,7 +69,6 @@ public class Ui {
     public String taskDoneMsg(Task task) {
         String msg = ("\tNice! I've marked this task as done:\n" +
                 "\t\t" + task.toString());
-        printMsgWithLine(msg);
         return msg;
     }
 
@@ -82,30 +77,29 @@ public class Ui {
      *
      * @param task task marked as undone.
      */
-    public void taskUndoneMsg(Task task) {
+    public String taskUndoneMsg(Task task) {
         String msg = ("\tOK, I've marked this task as not done yet:\n" +
                 "\t\t" + task.toString());
-        printMsgWithLine(msg);
+        return msg;
     }
 
-    public void viewListMsg(ArrayList<Task> tasks) {
+    public String viewListMsg(ArrayList<Task> tasks) {
         String msg = ("\tHere are the tasks in your list:\n");
         for (int i = 0; i < tasks.size(); i++) {
             int num = i + 1;
             msg += ("\t" + num + "." + tasks.get(i).toString() + "\n");
         }
-        printMsgWithLine(msg);
+        return msg;
     }
 
 
     public String taskAddMsg(Task task, int size) {
         String msg = ("\tGot it. I've added this task:\n" + "\t" + task.toString() +
                 "\n\tNow you have " + size + " tasks in the list.");
-        printMsgWithLine(msg);
         return msg;
     }
 
-    public void viewFoundTasks(String keyword, ArrayList<Task> tasks) {
+    public String viewFoundTasks(String keyword, ArrayList<Task> tasks) {
         String msg = ("\tHere are the matching tasks in your list:\n");
         for (int i = 0; i < tasks.size(); i++) {
             if (tasks.get(i).taskName.contains(keyword)) {
@@ -113,18 +107,8 @@ public class Ui {
                 msg += ("\t" + num + "." + tasks.get(i).toString() + "\n");
             }
         }
-        printMsgWithLine(msg);
+        return msg;
     }
 
-
-    public static void drawLine() {
-        System.out.println(HOR_LINE);
-    }
-
-    public static void printMsgWithLine(String msg) {
-        drawLine();
-        System.out.println("\n" + msg + "\n");
-        drawLine();
-    }
 
 }

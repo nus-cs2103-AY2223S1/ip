@@ -41,13 +41,13 @@ public class TaskList {
      * @param ui       ui to print the confirmation messages after task is added
      *                 to the list.
      */
-    public void addToList(String taskName, Ui ui) {
+    public String addToList(String taskName, Ui ui) {
         try {
             //if task is a to-do
             if (taskName.matches("\\btodo\\s.*\\b")) {
                 Task newTask = new ToDo(taskName.substring(5), false);
                 tasks.add(newTask);
-                ui.taskAddMsg(newTask, tasks.size());
+                return ui.taskAddMsg(newTask, tasks.size());
             }
             //if task is an event
             else if (taskName.matches("\\bevent\\s.*\\s/at\\s.*\\b")) {
@@ -55,16 +55,16 @@ public class TaskList {
                 String at = taskName.substring(taskName.indexOf("/") + 4, taskName.length());
                 Task newTask = new Event(des, false, at);
                 tasks.add(newTask);
-                ui.taskAddMsg(newTask, tasks.size());
+                return ui.taskAddMsg(newTask, tasks.size());
             }
-            ////if task is a deadline
+            //if task is a deadline
             else if (taskName.matches("\\bdeadline\\s.*\\s/by\\s.*\\b")) {
                 String des = taskName.substring(9, taskName.indexOf("/") - 1);
                 String by = taskName.substring(taskName.indexOf("/") + 4);
                 LocalDate deadline = LocalDate.parse(by);
                 Task newTask = new Deadline(des, false, deadline);
                 tasks.add(newTask);
-                ui.taskAddMsg(newTask, tasks.size());
+                return ui.taskAddMsg(newTask, tasks.size());
             } else if (taskName.matches("\\btodo\\s+") || taskName.matches("\\btodo\\b")) {
                 throw new DukeException("Sorry please provide a task to be done!");
             } else {
@@ -72,7 +72,7 @@ public class TaskList {
             }
         } catch (Exception e) {
             String msg = e.getMessage();
-            Ui.printMsgWithLine(msg);
+            return msg;
         }
     }
 
@@ -81,8 +81,8 @@ public class TaskList {
      *
      * @param ui ui to display the list of tasks to the user.
      */
-    public void viewList(Ui ui) {
-        ui.viewListMsg(tasks);
+    public String viewList(Ui ui) {
+        return ui.viewListMsg(tasks);
     }
 
     /**
@@ -91,10 +91,10 @@ public class TaskList {
      * @param num the index of task to be marked as done.
      * @param ui  ui to display confirmatory message.
      */
-    public void taskDone(int num, Ui ui) {
+    public String taskDone(int num, Ui ui) {
         Task task = tasks.get(num - 1);
         tasks.get(num - 1).markAsDone();
-        ui.taskDoneMsg(task);
+        return ui.taskDoneMsg(task);
 
     }
 
@@ -105,10 +105,10 @@ public class TaskList {
      * @param num index of task to be marked as undone.
      * @param ui  ui to display confirmatory message.
      */
-    public void taskUndone(int num, Ui ui) {
+    public String taskUndone(int num, Ui ui) {
         Task task = tasks.get(num - 1);
         tasks.get(num - 1).markAsUndone();
-        ui.taskUndoneMsg(task);
+        return ui.taskUndoneMsg(task);
     }
 
     /**
@@ -117,14 +117,14 @@ public class TaskList {
      * @param num index of task to be deleted
      * @param ui  ui to display confirmatory message
      */
-    public void deleteTask(int num, Ui ui) {
+    public String deleteTask(int num, Ui ui) {
         Task task = tasks.get(num - 1);
         tasks.remove(num - 1);
-        ui.deleteTaskMsg(task, tasks.size());
+        return ui.deleteTaskMsg(task, tasks.size());
     }
 
-    public void findTask(String keyword, Ui ui) {
-        ui.viewFoundTasks(keyword, tasks);
+    public String findTask(String keyword, Ui ui) {
+        return ui.viewFoundTasks(keyword, tasks);
     }
 
     /**
@@ -140,6 +140,10 @@ public class TaskList {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public int size() {
+        return tasks.size();
     }
 
 
