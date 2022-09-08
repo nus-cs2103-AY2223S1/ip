@@ -10,6 +10,7 @@ import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.NullCommand;
+import duke.command.SetPathCommand;
 import duke.command.UnmarkCommand;
 import duke.command.UnrecognisedCommand;
 
@@ -296,6 +297,8 @@ public class Parser {
             return parseTodo(input);
         case "find":
             return parseFind(input);
+        case "file":
+            return parseFile(input);
         default:
             return new UnrecognisedCommand();
         }
@@ -415,4 +418,13 @@ public class Parser {
         String keyword = findArgument(input, 2);
         return new FindCommand(keyword);
     }
+
+    private static Command parseFile(String input) {
+        if (countArguments(input) != 2) {
+            throw new DukeException("Enter a valid filepath");
+        }
+        String filePath = findArgument(input, 2);
+        return new SetPathCommand(filePath);
+    }
+
 }

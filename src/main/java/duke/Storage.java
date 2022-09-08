@@ -19,7 +19,7 @@ import java.util.InputMismatchException;
  */
 public class Storage {
 
-    private final String filePath;
+    private String filePath;
 
     public Storage(String filePath) {
         this.filePath = filePath;
@@ -42,6 +42,15 @@ public class Storage {
         }
         reader.close();
         return outputMessage.toString();
+    }
+
+    /**
+     * Updates the filepath for storage to read from.
+     *
+     * @param path New filepath to read from.
+     */
+    public void setFilePath(String path) {
+        filePath = path;
     }
 
     /**
