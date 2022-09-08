@@ -1,8 +1,5 @@
 package duke;
 
-
-import java.util.Locale;
-
 /**
  * Parser class that parses input string and dispatches relevant responses.
  */
@@ -33,47 +30,62 @@ public class Parser {
             }
             if (trimmedInput.toLowerCase().startsWith("mark")) {
                 String[] parts = trimmedInput.split(" ");
+                validateCommand(parts, 2);
                 int index = Integer.parseInt(parts[1]) - 1;
                 return duke.handleMark(index);
             }
             if (trimmedInput.toLowerCase().startsWith("unmark")) {
                 String[] parts = trimmedInput.split(" ");
+                validateCommand(parts, 2);
                 int index = Integer.parseInt(parts[1]) - 1;
                 return duke.handleUnmark(index);
             }
             if (trimmedInput.toLowerCase().startsWith("todo")) {
-                try {
-                    String desc = trimmedInput.substring(5);
-                    return duke.handleToDo(desc);
-                } catch (StringIndexOutOfBoundsException e) {
-                    throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
-                }
+                String[] parts = trimmedInput.split(" ", 2);
+                validateCommand(parts, 2);
+                String desc = parts[1];
+                return duke.handleToDo(desc);
             }
             if (trimmedInput.toLowerCase().startsWith("deadline")) {
-                int end = trimmedInput.indexOf('/');
-                String desc = trimmedInput.substring(9, end - 1);
-                String by = trimmedInput.substring(end + 4);
+                String[] parts = trimmedInput.split(" ", 2);
+                validateCommand(parts, 2);
+                String[] details = parts[1].split("/by", 2);
+                validateCommand(details, 2);
+                String desc = details[0].trim();
+                String by = details[1].trim();
                 return duke.handleDeadline(desc, by);
             }
             if (trimmedInput.toLowerCase().startsWith("event")) {
-                int end = trimmedInput.indexOf('/');
-                String desc = trimmedInput.substring(6, end - 1);
-                String at = trimmedInput.substring(end + 4);
+                String[] parts = trimmedInput.split(" ");
+                validateCommand(parts, 4);
+                String desc = parts[1];
+                String at = parts[3];
                 return duke.handleEvent(desc, at);
             }
             if (trimmedInput.toLowerCase().startsWith("delete")) {
                 String[] parts = trimmedInput.split(" ");
+                validateCommand(parts, 2);
                 int index = Integer.parseInt(parts[1]) - 1;
                 return duke.handleDelete(index);
             }
             if (trimmedInput.toLowerCase().startsWith("find")) {
                 String[] parts = trimmedInput.split(" ");
+                validateCommand(parts, 2);
                 String keyword = parts[1];
                 return duke.handleFind(keyword);
             }
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         } catch (DukeException e) {
             return e.getMessage();
+        }
+    }
+
+    private void validateCommand(String[] input, int expectedLength) throws DukeException {
+        if (input.length == 1 || input[0].trim().isEmpty() || input[1].trim().isEmpty()) {
+            throw new DukeException("OOPS!!! Your command is incomplete!");
+        }
+        if (input.length < expectedLength) {
+            throw new DukeException("OOPS!!! Your command is of the wrong format!");
         }
     }
 }
