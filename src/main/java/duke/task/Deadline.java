@@ -10,8 +10,7 @@ import duke.parser.DukeDateTimeFormatter;
  */
 public class Deadline extends DukeTask {
     // Time of deadline
-    private final String by;
-    private final String description;
+    private String by;
     private String formattedBy;
 
     /**
@@ -23,7 +22,6 @@ public class Deadline extends DukeTask {
      */
     public Deadline(String description, String by) throws DukeException {
         super(description);
-        this.description = description;
         this.by = by;
         formatTime();
     }
@@ -43,6 +41,19 @@ public class Deadline extends DukeTask {
     public String getStorageString() {
         return "D >> " + (this.isDone() ? "1" : "0") + " >> "
                 + this.description + " >> " + this.by;
+    }
+
+    /**
+     * Updates time of event.
+     *
+     * @param newBy new time of event
+     * @return the string confirming time of event has been updated
+     * @throws DukeException if the input is erroneous
+     */
+    public String updateAt(String newBy) throws DukeException {
+        this.by = newBy;
+        formatTime();
+        return "Event time updated!";
     }
 
     @Override

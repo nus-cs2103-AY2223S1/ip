@@ -12,6 +12,7 @@ import duke.task.DukeTask;
  * @author Kartikeya
  */
 public class TaskList {
+    private static final String ITEM_DOESNT_EXIST = "This item does not exist.";
     // Stores the items given to Apollo
     private final ArrayList<DukeTask> items;
 
@@ -46,7 +47,7 @@ public class TaskList {
             return "Success! The following item has been deleted:\n "
                     + item + listCount();
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("This item does not exist.");
+            throw new DukeException(ITEM_DOESNT_EXIST);
         }
     }
 
@@ -61,7 +62,7 @@ public class TaskList {
         try {
             return items.get(i - 1).markAsDone();
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("This item does not exist.");
+            throw new DukeException(ITEM_DOESNT_EXIST);
         }
     }
 
@@ -76,7 +77,7 @@ public class TaskList {
         try {
             return items.get(i - 1).markAsNotDone();
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("This item does not exist.");
+            throw new DukeException(ITEM_DOESNT_EXIST);
         }
     }
 
@@ -113,6 +114,21 @@ public class TaskList {
             }
         }
         return tasks;
+    }
+
+    /**
+     * Updates description of given task.
+     *
+     * @param taskNumber  given task, 1-indexed
+     * @param description new description of task
+     * @return the string confirming the description has been updated
+     */
+    public String updateDescription(int taskNumber, String description) throws DukeException {
+        try {
+            return items.get(taskNumber - 1).updateDescription(description);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(ITEM_DOESNT_EXIST);
+        }
     }
 
     /**

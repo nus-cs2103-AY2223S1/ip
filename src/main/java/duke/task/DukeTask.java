@@ -7,7 +7,7 @@ package duke.task;
  */
 public abstract class DukeTask {
     // Description of task
-    private final String description;
+    protected String description;
 
     // Indicates if the task has been completed
     private boolean isDone;
@@ -75,6 +75,17 @@ public abstract class DukeTask {
      */
     public boolean checkDescriptionMatch(String matcher) {
         return description.contains(matcher);
+    }
+
+    /**
+     * Updates task description.
+     *
+     * @param newDescription updated description
+     * @return the string confirming the updating of the description
+     */
+    public String updateDescription(String newDescription) {
+        this.description = newDescription;
+        return "Description updated!";
     }
 
     @Override
