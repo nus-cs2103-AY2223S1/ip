@@ -18,7 +18,7 @@ public class Duke {
     /**
      * Constructor for duke.
      *
-     * @param filePath absolute file path of the storage file.
+     * @param filePath file path of the storage file.
      */
     public Duke(String filePath) {
         File file = new File(filePath);
@@ -31,7 +31,10 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input);
-            return c.execute(tasklist, ui, storage);
+            assert c instanceof Command;
+            String response = c.execute(tasklist, ui, storage);
+            assert !response.equals("");
+            return response;
         } catch (DukeException e) {
             return e.getMessage();
         }
