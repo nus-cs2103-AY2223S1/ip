@@ -173,6 +173,11 @@ public class Duke extends Application {
     public String getResponse(String input) {
         String response = "";
         boolean isExit = false;
+
+        // Use assertion to ensure that Duke is properly intialized
+        assert ui.showWelcome() == "Hello! I'm Duke" + "\n" + "What can I do for you?"
+                :"UI is not initialized!";
+
         try {
             //we get the commandType to know how to process the command
             String commandType = Parser.getCommandType(input);
