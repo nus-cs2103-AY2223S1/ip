@@ -115,6 +115,7 @@ public abstract class Parser {
         default:
             throw new DukeException("Please specify a valid command.");
         }
+        assert command != null;
         return command;
     }
 }

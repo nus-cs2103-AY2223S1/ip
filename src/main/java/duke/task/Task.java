@@ -44,6 +44,10 @@ public abstract class Task {
         return description;
     }
 
+    public boolean getCompletionStatus() {
+        return isDone;
+    }
+
     /**
      * Returns an encoded string representing the task.
      *
