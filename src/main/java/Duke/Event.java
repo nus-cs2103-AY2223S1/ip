@@ -11,7 +11,7 @@ public class Event extends Task {
     private LocalDate at;
 
     public Event(String description, LocalDate at) {
-        super(description);
+        super(description, at);
         this.at = at;
     }
 

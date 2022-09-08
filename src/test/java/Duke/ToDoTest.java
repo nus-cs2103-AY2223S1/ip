@@ -9,6 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ToDoTest {
     @Test
     public void testStringConversion() {
-        assertEquals("[T][ ] eat shit", new ToDo("eat shit").toString());
+        assertEquals("[T][ ] eat shit", new ToDo("eat shit", null).toString());
     }
 }

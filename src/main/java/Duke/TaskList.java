@@ -1,6 +1,7 @@
 package Duke;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -83,6 +84,10 @@ public class TaskList {
      */
     public List<Task> getOldTasks() {
         return oldTasks;
+    }
+
+    public void sort() {
+        Collections.sort(oldTasks);
     }
 
 

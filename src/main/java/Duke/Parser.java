@@ -34,6 +34,11 @@ public class Parser {
             List<String> matchlist = tasklist.findMatches(str.substring(5));
             stringReturned = bot.printMatches2(matchlist);
         }
+        else if (str.equals("sort")) {
+            tasklist.sort();
+            stringReturned = "tasks have been sorted";
+
+        }
         else if (arr[0].equals("delete")) {
             System.out.println(arr[1]);
             int index = Integer.parseInt(arr[1]);
@@ -65,7 +70,7 @@ public class Parser {
             if (todoDes.equals("")) {
                 bot.displayError();
             } else {
-                Task task = new ToDo(todoDes);
+                Task task = new ToDo(todoDes, null);
                 tasklist.addTask(task);
                 int total = tasklist.size();
                 stringReturned = bot.addTask2(total,task);

@@ -57,7 +57,7 @@ public class Storage {
                 }
                 lst.add(task1);
             } else {
-                Task task1 = new ToDo(task.substring(7));
+                Task task1 = new ToDo(task.substring(7), null);
                 char c = task.charAt(4);
                 if(c == 'X'){
                     task1.markDone();

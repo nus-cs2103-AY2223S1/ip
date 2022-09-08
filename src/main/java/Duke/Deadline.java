@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
     private LocalDate by;
     public Deadline(String description, LocalDate by) {
-        super(description);
+        super(description, by);
         this.by = by;
     }
     @Override

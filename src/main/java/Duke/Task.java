@@ -1,14 +1,18 @@
 package Duke;
 
+import java.time.LocalDate;
+
 /**
  * Represents a task.
  */
-public class Task {
+public class Task implements Comparable<Task> {
     private String description;
     private boolean isDone;
-    public Task(String description) {
+    private LocalDate date;
+    public Task(String description, LocalDate date) {
         this.description = description;
         this.isDone = false;
+        this.date = date;
     }
 
     /**
@@ -32,5 +36,19 @@ public class Task {
     @Override
     public String toString() {
         return "[" + getStatusIcon()+ "] " + this.description;
+    }
+
+    @Override
+    public int compareTo(Task o) {
+        if(this.date == null && o.date == null) {
+            return 0;
+        } else if(this.date == null) {
+            return -1;
+        } else if(o.date == null) {
+            return 1;
+        } else {
+            return this.date.compareTo(o.date);
+        }
+
     }
 }
