@@ -20,18 +20,35 @@ public class TaskList {
             }
         }
 
+        
+        /** 
+         * @return int
+         */
         public int getSize() {
             return tasks.size();
         }
 
+        
+        /** 
+         * @param taskIndex
+         * @return Task
+         */
         public Task get(int taskIndex) {
             return tasks.get(taskIndex);
         }
 
+        
+        /** 
+         * @param task
+         */
         public void add(Task task) {
             tasks.add(task);
         }
 
+        
+        /** 
+         * @param taskIndex
+         */
         public void remove(int taskIndex) {
             tasks.remove(taskIndex);
         }
