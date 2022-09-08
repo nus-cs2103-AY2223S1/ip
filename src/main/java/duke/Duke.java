@@ -48,10 +48,7 @@ public class Duke {
      */
     public void run() throws DukeException {
         Ui.showWelcome();
-
-        while (parser.isScanning()) {
-            parser.parse();
-        }
+        parser.parse();
     }
 
     public static void main(String[] args) {

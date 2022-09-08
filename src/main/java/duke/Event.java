@@ -6,6 +6,9 @@ package duke;
 public class Event extends Task {
 
     protected String at;
+    private final static String EVENT_START_STR = "[E][";
+    private final static int IS_DONE_INDEX = 4;
+
 
     /**
      * Constructor for Event.
@@ -45,11 +48,11 @@ public class Event extends Task {
      */
     // duke.Event strings look like: [E][ ] project meeting (at: Aug 6th 2-4pm)
     public static Event stringToEvent(String s) throws DukeException {
-        if (!s.startsWith("[E][")) {
+        if (!s.startsWith(EVENT_START_STR)) {
             throw new DukeException("This string is not a duke.Event string!");
         }
 
-        char isDoneString = s.charAt(4); //[E][X] checks if X is present
+        char isDoneString = s.charAt(IS_DONE_INDEX); //[E][X] checks if X is present
         char X = 'X';
         boolean isDone = isDoneString == X;
 

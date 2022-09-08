@@ -1,8 +1,7 @@
 package duke;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.time.format.DateTimeParseException;
+import commands.*;
+
 import java.util.Scanner;
 
 /**
@@ -11,10 +10,8 @@ import java.util.Scanner;
 public class Parser {
     private TaskList taskList;
     private Scanner scanner;
-    private boolean isScanning;
-    private ByteArrayOutputStream baos;
-    private PrintStream pStream;
-    private PrintStream old;
+    private ConsoleRecorder consoleRecorder;
+    private String line;
 
     /**
      * Constructor for Parser
@@ -24,170 +21,59 @@ public class Parser {
     public Parser(TaskList taskList) {
         this.taskList = taskList;
         this.scanner = new Scanner(System.in);
-        this.isScanning = true;
+        this.consoleRecorder = new ConsoleRecorder();
     }
 
-    public boolean isScanning() {
-        return this.isScanning;
+    public void closeScanner() {
+        scanner.close();
     }
 
-    private void startRecording() {
-        baos = new ByteArrayOutputStream();
-        pStream = new PrintStream(baos);
-        old = System.out;
-        System.setOut(pStream);
+    public TaskList getTaskList() {
+        return taskList;
     }
 
-    private String stopAndReturnRecording() { // String recorded will be in baos.toString()
-        System.out.flush();
-        System.setOut(old);
-        return baos.toString();
+    public String getLine() {
+        return line;
     }
 
     /**
-     * Takes in user input, then updates the taskList with the appropriate Tasks
+     * Takes in user input, then executes the appropriate command
      *
      * @throws DukeException When command is unclear or string is given in a wrong format
      */
     public String parse(String... args) throws DukeException {
-        String line;
-
         if (args.length == 0) {
             line = scanner.nextLine();
         } else {
             line = args[0];
         }
 
-        startRecording();
+        consoleRecorder.start();
 
         if (line.equals("bye")) {
-            this.isScanning = false;
-            scanner.close();
-            Storage.save(this.taskList);
-            Ui.showGoodbye();
-            return stopAndReturnRecording();
+            new ByeCommand().execute(this);
         } else if (line.equals("list")) {
-            Ui.showLine();
-            System.out.println("\tHere are the tasks in your list:");
-            taskList.showList();
-            Ui.showLine();
-            return stopAndReturnRecording();
+            new ListCommand().execute(this);
         } else if (line.startsWith("unmark")) {
-            if (taskList.isEmpty()) {
-                throw new DukeException("OOPS!!! Cannot unmark when list is empty");
-            }
-            if (line.length() <= 7) {
-                throw new DukeException("OOPS!!! Please enter a number after unmark");
-            }
-            int index = Integer.parseInt(line.replaceAll("[^0-9]", ""));
-            taskList.get(index - 1).markAsUndone();
-            Ui.show("\tNice! I've marked this task as not done yet:");
-            Ui.show("\t" + taskList.get(index - 1));
-            return stopAndReturnRecording();
+            new UnmarkCommand().execute(this);
         } else if (line.startsWith("mark")) {
-            if (taskList.isEmpty()) {
-                throw new DukeException("OOPS!!! Cannot mark when list is empty");
-            }
-            if (line.length() <= 5) {
-                throw new DukeException("OOPS!!! Please enter a number after mark");
-            }
-            int index = Integer.parseInt(line.replaceAll("[^0-9]", ""));
-            taskList.get(index - 1).markAsDone();
-            Ui.show("\tNice! I've marked this task as done:");
-            Ui.show("\t" + taskList.get(index - 1));
-            return stopAndReturnRecording();
+            new MarkCommand().execute(this);
         } else if (line.startsWith("todo")) {
-            if (line.length() <= 5) {
-                throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
-            }
-            Todo todo = new Todo(line.replace("todo ", ""));
-            taskList.add(todo);
-            Ui.showLine();
-            Ui.show("\tGot it. I've added this task:");
-            Ui.show("\t\t" + todo);
-            Ui.show("\tNow you have " + taskList.size() + " tasks in the list.");
-            Ui.showLine();
-            return stopAndReturnRecording();
+            new TodoCommand().execute(this);
         } else if (line.startsWith("deadline")) {
-            if (line.length() <= 9) {
-                throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
-            }
-            int idxOfBy = line.indexOf("/by");
-            if (idxOfBy == -1) {
-                throw new DukeException("OOPS!!! The description of a deadline must include /by");
-            }
-            try {
-                new Deadline(line.substring(9, idxOfBy), line.substring(idxOfBy + 4));
-            } catch (DateTimeParseException e) {
-                throw new DukeException("Error! Please enter deadlines in this format:\t\ndeadline TASK /by DD-MM-YYYY");
-            }
-            Deadline deadline = new Deadline(line.substring(9, idxOfBy), line.substring(idxOfBy + 4));
-            taskList.add(deadline);
-            Ui.showLine();
-            Ui.show("\tGot it. I've added this task:");
-            Ui.show("\t\t" + deadline);
-            Ui.show("\tNow you have " + taskList.size() + " tasks in the list.");
-            Ui.showLine();
-            return stopAndReturnRecording();
+            new DeadlineCommand().execute(this);
         } else if (line.startsWith("event")) {
-            if (line.length() <= 6) {
-                throw new DukeException("OOPS!!! The description of a event cannot be empty.");
-            }
-            int idxOfAt = line.indexOf("/at");
-            if (idxOfAt == -1) {
-                throw new DukeException("OOPS!!! The description of a event must include /at");
-            }
-            Event event = new Event(line.substring(6, idxOfAt), line.substring(idxOfAt + 4));
-            taskList.add(event);
-            Ui.showLine();
-            Ui.show("\tGot it. I've added this task:");
-            Ui.show("\t\t" + event);
-            Ui.show("\tNow you have " + taskList.size() + " tasks in the list.");
-            Ui.showLine();
-            return stopAndReturnRecording();
+            new EventCommand().execute(this);
         } else if (line.startsWith("delete")) {
-            if (line.length() <= 7) {
-                throw new DukeException("OOPS!!! Please enter a number after delete");
-            }
-            int index = Integer.parseInt(line.replaceAll("[^0-9]", ""));
-            if (index > taskList.size() || index < 0) {
-                throw new DukeException("OOPS!!! Invalid number to delete");
-            }
-            Ui.showLine();
-            Ui.show("\tNoted. I've removed this task:");
-            Ui.show("\t\t" + taskList.get(index - 1));
-            taskList.remove(index - 1);
-            Ui.show("\tNow you have " + taskList.size() + " tasks in the list.");
-            Ui.showLine();
-            return stopAndReturnRecording();
+            new DeleteCommand().execute(this);
         } else if (line.startsWith("save")) {
-            Ui.show("Saving progress...");
-            Storage.save(taskList);
-            Ui.show("Successfully saved!");
-            return stopAndReturnRecording();
+            new SaveCommand().execute(this);
         } else if (line.startsWith("find")) {
-            if (line.length() < 5) {
-                throw new DukeException("Please enter a term to find!");
-            }
-            String term = line.substring(5);
-            TaskList res = taskList.find(term);
-            if (res.isEmpty()) {
-                Ui.showLine();
-                Ui.show("\tSorry! No tasks match your term. Make sure your term is the exact capitalization" +
-                    "as in your task list!");
-                Ui.showLine();
-                return stopAndReturnRecording();
-            } else {
-                Ui.showLine();
-                Ui.show("\tHere are the matching tasks in your list:");
-                res.showList();
-                Ui.showLine();
-                return stopAndReturnRecording();
-            }
+            new FindCommand().execute(this);
         } else {
             Ui.show("OOPS!!! I'm sorry, but I don't know that that means :(");
-            return stopAndReturnRecording();
         }
+        return consoleRecorder.stopAndReturn();
     }
 
 }

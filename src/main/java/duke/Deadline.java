@@ -11,6 +11,9 @@ public class Deadline extends Task {
     protected String by;
     protected LocalDate byDate;
 
+    private final static String DEADLINE_START_STR = "[D][";
+    private final static int IS_DONE_INDEX = 4;
+
 
     /**
      * Constructor for duke.Deadline
@@ -47,10 +50,10 @@ public class Deadline extends Task {
      * @throws DukeException when the string doesn't start with deadline tag [D]
      */
     public static Deadline stringToDeadline(String s) throws DukeException {
-        if (!s.startsWith("[D][")) {
+        if (!s.startsWith(DEADLINE_START_STR)) {
             throw new DukeException("This string is not a duke.Deadline string!");
         }
-        char isDoneString = s.charAt(4); //[T][X] checks if X is present
+        char isDoneString = s.charAt(IS_DONE_INDEX); //[T][X] checks if X is present
         char X = 'X';
         boolean isDone = isDoneString == X;
         int idxOfBy = s.indexOf("(by:");
