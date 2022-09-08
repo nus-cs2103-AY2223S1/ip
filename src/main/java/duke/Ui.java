@@ -25,7 +25,6 @@ public class Ui {
         str += "What tasks do you have to do today?\n";
         str += "To input a deadline or event, \n" +
                 "type the date and time in the format: 'yyyy-mm-ddThh:mm'\n";
-        str += "Type 'bye' to save your tasks before leaving the application!";
         return str;
     }
 
@@ -61,7 +60,7 @@ public class Ui {
      */
     public String printDone(Task task) {
         String str = "Nice! I've marked this task as done:\n";
-        str += "[" + task.getStatusIcon() + "]" + task.description;
+        str += "[" + task.getStatusIcon() + "] " + task.description;
         return str;
     }
 

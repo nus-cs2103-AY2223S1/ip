@@ -10,7 +10,7 @@ public class Parser {
 
     private static Ui ui;
     private static TaskList tasklist;
-    private Storage storage;
+    private static Storage storage;
 
     public Parser(Ui ui, TaskList tasklist, Storage storage) {
         this.ui = ui;
@@ -49,7 +49,6 @@ public class Parser {
         } else if (userInput.equals("count event")) {
             return countTasks("event");
         } else if (userInput.equals("bye")) {
-            storage.save(tasklist);
             return ui.printGoodbyeMessage();
         } else {
             return "I'm sorry, but I don't know what that means. Try typing something else!";
@@ -77,6 +76,7 @@ public class Parser {
         if (taskNum <= tasklist.getSize()) {
             Task task = tasklist.mark(taskNum - 1);
             assert task.isDone : "task should be marked done";
+            storage.save(tasklist);
             return ui.printDone(tasklist.mark(taskNum - 1));
         } else {
             throw new DukeException("An invalid number is inputted!");
@@ -95,6 +95,7 @@ public class Parser {
         if (taskNum <= tasklist.getSize()) {
             Task task = tasklist.unmark(taskNum - 1);
             assert task.isDone : "task should be marked as not done";
+            storage.save(tasklist);
             return ui.printUndone(tasklist.unmark(taskNum - 1));
         } else {
             throw new DukeException("An invalid number is inputted!");
@@ -112,10 +113,10 @@ public class Parser {
         if (str.length() > lengthOfWordTodo) {
             String finalStr = "";
             ToDos newToDo = new ToDos(str.substring(lengthOfWordTodo));
-            tasklist.increaseTodoCount();
             int size = tasklist.getSize();
             assert size > 0 : "size should be more than 0";
             finalStr += ui.printTodo(tasklist.addTask(newToDo)) + "\n" + ui.printTasksLeft(tasklist.getSize());
+            storage.save(tasklist);
             return finalStr;
         } else {
             throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
@@ -140,12 +141,11 @@ public class Parser {
 
             String date = str.substring(k + 4);
             Deadlines newDeadline = new Deadlines(desc, LocalDateTime.parse(date));
-
-            tasklist.increaseDeadlineCount();
             String finalStr = "";
             int size = tasklist.getSize();
             assert size > 0 : "size should be more than 0";
             finalStr += ui.printTodo(tasklist.addTask(newDeadline)) + "\n" + ui.printTasksLeft(tasklist.getSize());
+            storage.save(tasklist);
             return finalStr;
         } else {
             throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
@@ -170,12 +170,11 @@ public class Parser {
 
             String eventTime = str.substring(k + 4);
             Events newEvent = new Events(desc, LocalDateTime.parse(eventTime));
-
-            tasklist.increaseEventCount();
             String finalStr = "";
             int size = tasklist.getSize();
             assert size > 0 : "size should be more than 0";
-            finalStr += ui.printTodo(tasklist.addTask(newEvent)) + "\n"+ ui.printTasksLeft(tasklist.getSize());
+            finalStr += ui.printTodo(tasklist.addTask(newEvent)) + "\n" + ui.printTasksLeft(tasklist.getSize());
+            storage.save(tasklist);
             return finalStr;
         } else {
             throw new DukeException("OOPS!!! The description of an event cannot be empty.");
@@ -197,6 +196,7 @@ public class Parser {
             finalStr += ui.printDelete(tasklist.getTask(taskToDel - 1));
             tasklist.deleteTask(taskToDel - 1);
             finalStr += ui.printTasksLeft(tasklist.getSize());
+            storage.save(tasklist);
             return finalStr;
         } else {
             throw new DukeException("No such task exist. Try again!");
