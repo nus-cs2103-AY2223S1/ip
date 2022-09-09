@@ -42,10 +42,33 @@ public class Ui {
             return addEvent(input);
         case "find":
             return itemList.findTask(Parser.getDescription(input));
+        case "/help":
+            return listCommands();
         // unrecognised commands
         default:
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
+    }
+
+    public static String greetUser() {
+        String greeting = "Welcome to your personal assistant Duke! How may I help you today?";
+        return greeting + "\nFor more information about available commands, enter '/help' into the text box";
+    }
+
+    private String listCommands() {
+        String commands = "Here is a list of possible commands";
+        String addTaskCommands = "\n\tAdd tasks:" +
+                "\n1. todo DESCRIPTION" +
+                "\n2. deadline DESCRIPTION /by YYYY-MM-DD HH:mm" +
+                "\n3. event DESCRIPTION /by YYYY-MM-DD HH:mm-HH:mm";
+        String others = "\n\tOther functions include:" +
+                "\n4. mark TASK_INDEX" +
+                "\n5. unmark TASK_INDEX" +
+                "\n6. find TASK_INDEX" +
+                "\n7. delete TASK_INDEX" +
+                "\n7. list" +
+                "\n7. bye";
+        return commands + addTaskCommands + others;
     }
 
     private String addTodo(String input) throws DukeException {
