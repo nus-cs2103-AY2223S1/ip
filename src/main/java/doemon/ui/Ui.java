@@ -10,7 +10,8 @@ public class Ui {
     /**
      * Picture of Doemon made using text
      */
-    private static final String logo = "                       _______________\n" +
+    private static final String logo =
+            "                       _______________\n" +
             "                      /  --. --.      \\ \n" +
             "                     /  | '| ' |   \\   \\ \n" +
             "                    / /  `-O--'     \\   \\ \n" +
@@ -70,16 +71,19 @@ public class Ui {
     }
 
     public void showMarkTask(Task task) {
-        System.out.println(output(String.format("Yay! This task is now marked as done:\n\t  %s", task)));
+        System.out.println(output(
+                String.format("Yay! This task is now marked as done:\n\t  %s", task)));
     }
 
     public void showUnmarkTask(Task task) {
-        System.out.println(output(String.format("I guess you weren't done with that one:\n\t  %s", task)));
+        System.out.println(output(
+                String.format("I guess you weren't done with that one:\n\t  %s", task)));
     }
 
     public void showDeleteTask(Task task, int numTasks) {
-        System.out.println(output(String.format("I used a knife to slice off this task from my bread:\n\t  %s" +
-                "\n\tThere are %d items left on my bread.", task, numTasks)));
+        System.out.println(output(
+                String.format("I used a knife to slice off this task from my bread:\n\t  %s"
+                + "\n\tThere are %d items left on my bread.", task, numTasks)));
     }
 
     public void showError(DoemonException e) {
