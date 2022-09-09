@@ -35,6 +35,7 @@ public class Ui {
 
     /**
      * Returns user command based on user input.
+     *
      * @param input user input.
      * @return command (usually first word of input).
      */

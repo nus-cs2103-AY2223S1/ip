@@ -13,6 +13,7 @@ public class Deadline extends Task {
 
     /**\
      * Creates a Deadline task that has a date but no time included.
+     *
      * @param description description of Deadline.
      * @param dueDate Due date of Deadline.
      */
@@ -24,6 +25,7 @@ public class Deadline extends Task {
 
     /**
      * Creates a Deadline task that has both a due date and due time.
+     *
      * @param description description of Deadline.
      * @param dueDate Due date of Deadline.
      * @param dueTime Due time of Deadline.
@@ -36,17 +38,18 @@ public class Deadline extends Task {
 
     /**
      * Returns String representation of due date, and due time if it is included.
+     *
      * @return String of due date and time.
      */
     public String dueDateToString() {
         String dueDateString = this.dueDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        String output;
         if (this.dueTime.equals("")) {
-            String output = String.format("%s",dueDateString);
-            return output;
+            output = String.format("%s", dueDateString);
         } else {
-            String output = String.format("%s, %s",dueDateString, this.dueTime);
-            return output;
+            output = String.format("%s, %s", dueDateString, this.dueTime);
         }
+        return output;
     }
 
     @Override
