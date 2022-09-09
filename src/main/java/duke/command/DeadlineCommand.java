@@ -2,9 +2,9 @@ package duke.command;
 
 import java.io.IOException;
 
+import duke.internal.MessageBuilder;
 import duke.internal.Parser;
 import duke.internal.Storage;
-import duke.internal.Ui;
 import duke.task.Deadline;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -36,12 +36,13 @@ public class DeadlineCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Storage storage, Ui ui, Parser parser) throws IOException {
+    public void execute(TaskList tasks, Storage storage, MessageBuilder messageBuilder,
+                        Parser parser) throws IOException {
         Task task = new Deadline(description, deadline);
         tasks.addTask(task);
-        ui.showMessage("I've added your deadline.")
-                .showMessage(task.toString())
-                .showTaskListSize(tasks);
+        messageBuilder.addLine("I've added your deadline.")
+                .addLine(task.toString())
+                .addTaskListSize(tasks);
         storage.saveTasks(tasks);
     }
 }

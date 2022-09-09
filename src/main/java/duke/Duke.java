@@ -2,13 +2,17 @@ package duke;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import duke.command.Command;
 import duke.internal.DukeException;
+import duke.internal.MessageBuilder;
 import duke.internal.Parser;
 import duke.internal.Storage;
-import duke.internal.Ui;
 import duke.task.TaskList;
+import javafx.application.Platform;
 
 /**
  * The main class of the Duke application.
@@ -17,7 +21,7 @@ public class Duke {
     private final Parser parser;
     private final TaskList tasks;
     private final Storage storage;
-    private final Ui ui;
+    private final MessageBuilder messageBuilder;
 
     /**
      * Returns a new Duke object.
@@ -27,7 +31,7 @@ public class Duke {
     public Duke(Path path) {
         this.parser = new Parser();
         this.storage = new Storage(path);
-        this.ui = new Ui();
+        this.messageBuilder = new MessageBuilder();
         TaskList tasks;
         try {
             tasks = storage.loadTasks();
@@ -40,8 +44,16 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Command command = parser.parseString(input);
-            command.execute(tasks, storage, ui, parser);
-            return ui.flush();
+            command.execute(tasks, storage, messageBuilder, parser);
+            if (command.isTerminal()) {
+                ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+                executor.schedule(() -> {
+                    Platform.exit();
+                    System.exit(0);
+                }, 3, TimeUnit.SECONDS);
+                executor.shutdown();
+            }
+            return messageBuilder.build();
         } catch (DukeException e) {
             return e.getMessage();
         } catch (Exception e) {

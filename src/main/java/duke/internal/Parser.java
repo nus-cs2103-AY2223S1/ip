@@ -23,10 +23,7 @@ import duke.command.UnmarkCommand;
 /**
  * A parser object can parse a command from a string,
  * and determine which Command object should be used to execute it.
- * 
  * TODO: add default commands
- * TODO: fix bye command
- * TODO: resizability
  */
 public class Parser {
     private static final Map<String, String> DEFAULT_ALIASES = Map.of("t",
@@ -201,7 +198,7 @@ public class Parser {
             throw new DukeException(String.format("The alias `%s` already exists!", alias));
         }
         if (aliases.containsValue(alias)) {
-            throw new DukeException(String.format("Sorry! I can't bind a command as an alias.", alias));
+            throw new DukeException("Sorry! I can't bind a command as an alias.");
         }
         aliases.put(alias, command);
     }

@@ -2,9 +2,9 @@ package duke.command;
 
 import java.io.IOException;
 
+import duke.internal.MessageBuilder;
 import duke.internal.Parser;
 import duke.internal.Storage;
-import duke.internal.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -27,12 +27,13 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Storage storage, Ui ui, Parser parser) throws IOException {
+    public void execute(TaskList tasks, Storage storage, MessageBuilder messageBuilder,
+                        Parser parser) throws IOException {
         Task task = tasks.getTask(index);
         tasks.deleteTask(index);
-        ui.showMessage("I've deleted this task.")
-                .showMessage(task.toString())
-                .showTaskListSize(tasks);
+        messageBuilder.addLine("I've deleted this task.")
+                .addLine(task.toString())
+                .addTaskListSize(tasks);
         storage.saveTasks(tasks);
     }
 }
