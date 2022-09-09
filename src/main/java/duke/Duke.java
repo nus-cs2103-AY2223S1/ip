@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 public class Duke extends Application {
     private static final double WINDOW_MIN_WIDTH = 400.0;
     private static final double WINDOW_MIN_HEIGHT = 600.0;
+    private static final double STAGE_WIDTH_OFFSET = 15.0;
+    private static final double STAGE_HEIGHT_OFFSET = 40.0;
 
     /**
      * main
@@ -32,16 +34,17 @@ public class Duke extends Application {
     @Override
     public void start(Stage stage) {
         // Setting the scene
-        MainWindow mainWindow = new MainWindow(new ChatBot("Christina"), WINDOW_MIN_WIDTH, WINDOW_MIN_HEIGHT);
+        MainWindow mainWindow = new MainWindow(new ChatBot("Christina"));
         mainWindow.initialize();
+        mainWindow.setMinSize(WINDOW_MIN_WIDTH, WINDOW_MIN_HEIGHT);
 
         Scene scene = new Scene(mainWindow);
 
         // Styling the scene
         stage.setTitle("DukePro");
         stage.setResizable(false);
-        stage.setMinWidth(WINDOW_MIN_WIDTH);
-        stage.setMinHeight(WINDOW_MIN_HEIGHT);
+        stage.setMinWidth(WINDOW_MIN_WIDTH + STAGE_WIDTH_OFFSET);
+        stage.setMinHeight(WINDOW_MIN_HEIGHT + STAGE_HEIGHT_OFFSET);
 
         stage.setScene(scene);
         stage.show();

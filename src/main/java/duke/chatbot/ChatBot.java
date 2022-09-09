@@ -24,7 +24,6 @@ public class ChatBot {
     /**
      * Constructor for a chatbot that can be intialized or terminated.
      * Primarily used for processing commands to update its own task manager.
-     * Default state of the chat bot is runningState = false
      *
      * @param name string of the name of the chatbot
      */
@@ -83,6 +82,7 @@ public class ChatBot {
      * @param input string of the input provided by the user
      */
     public void processCommand(String input) {
+        assert isRunning == true : "chatbot should be running";
         Scanner inputScanner = new Scanner(input);
         String response = "";
         try {

@@ -2,21 +2,25 @@ package duke.gui;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 
 /**
  * DialogBox is a HBox that contains a single entry of display text and display picture.
  */
 public class DialogBox extends HBox {
+    private static final double DISPLAY_TEXT_PADDING = 10.0;
+    private static final double DISPLAY_TEXT_FONT_SIZE = 12.0;
     private Label displayText;
     private ImageView displayPicture;
 
     /**
-     * Creates a new dialog box with a display picture and display text.
+     * Creates a new dialog box with a display text and display picture.
      *
      * @param displayText Label containing String of text to be displayed
      * @param displayPicture ImageView containing Image of the display picture
@@ -25,9 +29,12 @@ public class DialogBox extends HBox {
         this.displayText = displayText;
         this.displayPicture = displayPicture;
 
-        displayText.setWrapText(true);
-        displayPicture.setFitWidth(100.0);
-        displayPicture.setFitHeight(100.0);
+        this.displayText.setPadding(new Insets(DISPLAY_TEXT_PADDING));
+        this.displayText.setFont(new Font(DISPLAY_TEXT_FONT_SIZE));
+        this.displayText.setWrapText(true);
+
+        this.displayPicture.setFitWidth(100.0);
+        this.displayPicture.setFitHeight(100.0);
 
         this.setAlignment(Pos.TOP_RIGHT);
         this.getChildren().addAll(displayText, displayPicture);
@@ -35,7 +42,7 @@ public class DialogBox extends HBox {
 
     /**
      * Flips the orientation of the dialog box, swapping the position of the
-     * display texta and display picture. Used for factory methods getResponseDialog.
+     * display text and display picture. Used for factory methods getResponseDialog.
      */
     private void flip() {
         this.setAlignment(Pos.TOP_LEFT);

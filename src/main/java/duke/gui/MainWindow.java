@@ -1,7 +1,9 @@
 package duke.gui;
 
 import duke.chatbot.ChatBot;
+import javafx.geometry.Insets;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 
 /**
  * MainWindow is an AnchorPane that anchors the various containers present in the main application.
@@ -15,16 +17,12 @@ public class MainWindow extends AnchorPane {
      * Creates a main window to contain the dialog container and the user input container.
      *
      * @param chatBot the chatbot that interacts with the user
-     * @param windowMinWidth minimum width of the window to set preferred width
-     * @param windowMinHeight minimum height of the window to set preferred height
      */
-    public MainWindow(ChatBot chatBot, double windowMinWidth, double windowMinHeight) {
+    public MainWindow(ChatBot chatBot) {
         this.chatBot = chatBot;
-        this.dialogContainer = new DialogContainer(windowMinWidth, windowMinHeight);
+        this.dialogContainer = new DialogContainer();
         this.userInputContainer = new InputContainer();
         this.getChildren().addAll(this.dialogContainer, this.userInputContainer);
-
-        this.setPrefSize(windowMinWidth, windowMinHeight);
 
         this.setTopAnchor(dialogContainer, 1.0);
         this.setBottomAnchor(userInputContainer, 1.0);
