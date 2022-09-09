@@ -42,6 +42,15 @@ public class Deadline extends Task {
     }
 
     /**
+     * Updates the deadline with a new date.
+     *
+     * @param newDate New date to be updated.
+     */
+    public void updateDate(LocalDate newDate) {
+        date = newDate;
+    }
+
+    /**
      * Returns string representation of deadline task.
      *
      * @return String representation.

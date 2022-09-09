@@ -15,6 +15,7 @@ import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
 import duke.commands.TodoCommand;
 import duke.commands.UnmarkCommand;
+import duke.commands.UpdateCommand;
 import duke.exceptions.DukeException;
 
 /**
@@ -22,6 +23,8 @@ import duke.exceptions.DukeException;
  * Parses text command from user into instructions understood by Duke.
  */
 public class Parser {
+    public static final String DATE_SPECIFIER = "/by";
+    public static final String DATETIME_SPECIFIER = "/at";
     /** Date format for user input and date stored in storage */
     private static final DateTimeFormatter DATE_PARSE_FORMAT = DateTimeFormatter
             .ofPattern("dd/MM/yyyy HHmm");
@@ -65,12 +68,15 @@ public class Parser {
                 return parseForDeadline(input[1].strip());
             case "event":
                 return parseForEvent(input[1].strip());
+            case "update":
+                return parseForUpdate(input[1].strip());
             default:
-                throw new DukeException(OOPS_STRING
-                        + "I'm sorry, but I don't know what that means :(");
+                throw new DukeException(OOPS_STRING + " I'm sorry, but I don't know what that means :(");
             }
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(OOPS_STRING + "Wrong command parameters!");
+            throw new DukeException(OOPS_STRING + " Wrong command parameters!");
+        } catch (NumberFormatException e) {
+            throw new DukeException(OOPS_STRING + " Invalid task index");
         }
     }
 
@@ -92,7 +98,7 @@ public class Parser {
      * @throws DukeException If date format is invalid.
      */
     private static DeadlineCommand parseForDeadline(String str) throws DukeException {
-        String[] descDate = str.split("/by", 2);
+        String[] descDate = str.split(DATE_SPECIFIER, 2);
         return new DeadlineCommand(descDate[0].strip(),
                 parseDate(descDate[1].strip()));
 
@@ -106,9 +112,21 @@ public class Parser {
      * @throws DukeException If date time format is invalid.
      */
     private static EventCommand parseForEvent(String str) throws DukeException {
-        String[] descDateTime = str.split("/at", 2);
+        String[] descDateTime = str.split(DATETIME_SPECIFIER, 2);
         return new EventCommand(descDateTime[0].strip(),
                 parseDateTime(descDateTime[1].strip()));
+    }
+
+    /**
+     * Parses user input to an update task command.
+     *
+     * @param str Input string from user specifying update details.
+     * @return Update command representing user input.
+     */
+    private static UpdateCommand parseForUpdate(String str) {
+        String[] indexAndInput = str.split(" ", 2);
+        int index = parseIndex(indexAndInput[0].strip());
+        return new UpdateCommand(index, indexAndInput[1].strip());
     }
 
     /**

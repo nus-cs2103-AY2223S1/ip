@@ -1,6 +1,5 @@
 package duke.tools;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 import duke.exceptions.DukeException;
@@ -52,8 +51,6 @@ public class Ui {
                 .collect(Collectors.joining());
 
         listStatus = listStatus.concat(taskToString);
-        listStatus = listStatus.concat(String.format("Now you have %d tasks in the list.\n",
-                taskList.getSize()));
         return listStatus;
     }
 
@@ -130,7 +127,7 @@ public class Ui {
      * Creates a message that TaskList is empty and no task can be deleted.
      */
     public static String formatNoTaskToDeleteString() {
-        String noTaskToDeleteString = "OOPS!!! There are currently no task to delete";
+        String noTaskToDeleteString = "Im sorry, there are currently no task to delete";
         return noTaskToDeleteString;
     }
 
@@ -143,6 +140,18 @@ public class Ui {
     public static String formatAddTaskString(Task task) {
         String taskAddString = "Got it! I've added this task:\n> ";
         return taskAddString + task;
+    }
+
+    /**
+     * Creates a message of updating task in TaskList.
+     *
+     * @param index Index of task that was updated.
+     * @param task Task that was updated.
+     * @return
+     */
+    public static String formatUpdateString(int index, Task task) {
+        String taskUpdateString = "Done! I've updated this task:\n%d. %s";
+        return String.format(taskUpdateString, index + 1, task);
     }
 
     /**

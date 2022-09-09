@@ -45,6 +45,18 @@ public abstract class Task {
     }
 
     /**
+     * Updates the task with a new description.
+     *
+     * @param newDescription New description to be updated.
+     */
+    public void updateDescription(String newDescription) {
+        String emptyString = "";
+        if (newDescription != emptyString) {
+            description = newDescription;
+        }
+    }
+
+    /**
      * Returns data string representation of task to be stored in storage.
      *
      * @return Data string representation.

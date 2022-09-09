@@ -56,6 +56,8 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, botImage)
         );
+        double height = userInput.getMaxHeight();
+        dialogContainer.setPrefHeight(height);
         userInput.clear();
     }
 }

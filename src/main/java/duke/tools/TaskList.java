@@ -32,24 +32,6 @@ public class TaskList {
     }
 
     /**
-     * Returns current number of tasks in TaskList.
-     *
-     * @return Number of tasks in TaskList.
-     */
-    public int getSize() {
-        return taskList.size();
-    }
-
-    /**
-     * Returns true if taskList is empty, else false.
-     *
-     * @return If taskList is empty.
-     */
-    public Boolean isEmpty() {
-        return taskList.isEmpty();
-    }
-
-    /**
      * Returns task in TaskList specified by index.
      *
      * @param index Index of task to return.
@@ -88,12 +70,12 @@ public class TaskList {
     }
 
     /**
-     * Converts TaskList into a stream of tasks.
+     * Returns current number of tasks in TaskList.
      *
-     * @return Stream of tasks.
+     * @return Number of tasks in TaskList.
      */
-    public Stream<Task> toStream() {
-        return taskList.stream();
+    public int getSize() {
+        return taskList.size();
     }
 
     /**
@@ -104,5 +86,23 @@ public class TaskList {
      */
     public int getIndexOf(Task task) {
         return taskList.indexOf(task);
+    }
+
+    /**
+     * Returns true if taskList is empty, else false.
+     *
+     * @return If taskList is empty.
+     */
+    public Boolean isEmpty() {
+        return taskList.isEmpty();
+    }
+
+    /**
+     * Converts TaskList into a stream of tasks.
+     *
+     * @return Stream of tasks.
+     */
+    public Stream<Task> toStream() {
+        return taskList.stream();
     }
 }

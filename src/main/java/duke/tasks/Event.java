@@ -26,6 +26,15 @@ public class Event extends Task {
     }
 
     /**
+     * Updates the event with a new datetime.
+     *
+     * @param newDateTime New datetime to be updated.
+     */
+    public void updateDateTime(LocalDateTime newDateTime) {
+        dateAndTime = newDateTime;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
