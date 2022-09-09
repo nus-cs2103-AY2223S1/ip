@@ -34,11 +34,11 @@ public class AddTodoCommand extends AddTaskCommand {
      */
     @Override
     public void execute(VBox dialogContainer, DialogBox userDialog, Storage storage) throws DukeException {
-        String[] splitTodo = input.split(" ");
+        String[] splitTodo = input.split(" ", 2);
         if (isEmptyDescription(splitTodo)) {
             throw new DukeException(EMPTY_TASK_NAME_ERROR_MESSAGE);
         }
-        Todo todo = new Todo(splitTodo[1], false);
+        Todo todo = new Todo(splitTodo[1].trim(), false);
         this.addTask(todo);
         ui.printAddedTaskMessage(todo, dialogContainer, userDialog);
         ui.printTaskCountMessage(tasks, dialogContainer);

@@ -21,9 +21,9 @@ import javafx.scene.shape.Circle;
  * an ImageView.
  */
 public class DialogBox extends HBox {
-    public static final String UNCLE_CHEONG_DIALOG_STYLE = "-fx-background-color: "
+    private static final String UNCLE_CHEONG_DIALOG_STYLE = "-fx-background-color: "
             + "lightblue; -fx-background-radius: 20;";
-    public static final String ERROR_DIALOG_STYLE = "-fx-background-color: red; -fx-background-radius: 20;";
+    private static final String ERROR_DIALOG_STYLE = "-fx-background-color: red; -fx-background-radius: 20;";
     @FXML
     private Label dialog;
     @FXML
