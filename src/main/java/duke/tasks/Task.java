@@ -25,7 +25,9 @@ public abstract class Task {
      * @return String representation of task status.
      */
     public String getStatusIcon() {
-        return (isDone ? "X" : " ");
+        String done = "X";
+        String notDone = " ";
+        return (isDone ? done : notDone);
     }
 
     /**
@@ -66,6 +68,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s] %s", this.getStatusIcon(), description);
+        String taskStringFormat = "[%s] %s";
+        return String.format(taskStringFormat, this.getStatusIcon(), description);
     }
 }

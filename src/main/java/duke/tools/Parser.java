@@ -22,10 +22,10 @@ import duke.exceptions.DukeException;
  * Parses text command from user into instructions understood by Duke.
  */
 public class Parser {
-    /** Date format for user input, and format for date stored in storage */
+    /** Date format for user input and date stored in storage */
     private static final DateTimeFormatter DATE_PARSE_FORMAT = DateTimeFormatter
             .ofPattern("dd/MM/yyyy HHmm");
-    /** Date and time format for user input, and format for date and time stored in storage */
+    /** Date and time format for user input and datetime stored in storage */
     private static final DateTimeFormatter DATETIME_PARSE_FORMAT = DateTimeFormatter
             .ofPattern("dd/MM/yyyy");
     /** Date format for message printed by Duke */
@@ -34,6 +34,7 @@ public class Parser {
     /** Date and time format for message printed by Duke */
     private static final DateTimeFormatter DATETIME_PRINT_FORMAT = DateTimeFormatter
             .ofPattern("MMM dd yyyy");
+    private static final String OOPS_STRING = "OOPS!!!";
 
     /**
      * Returns command representing user input.
@@ -65,12 +66,11 @@ public class Parser {
             case "event":
                 return parseForEvent(input[1].strip());
             default:
-                throw new DukeException("OOPS!!! "
+                throw new DukeException(OOPS_STRING
                         + "I'm sorry, but I don't know what that means :(");
             }
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("OOPS!!! "
-                    + "Wrong command parameters!");
+            throw new DukeException(OOPS_STRING + "Wrong command parameters!");
         }
     }
 
