@@ -18,24 +18,15 @@ public class Parser {
      */
     public static Command parse(String fullCommand) throws DukeException {
         String[] spacedArr = fullCommand.split(" ", 2);
-        String command = spacedArr[0];
         
-        if (command.equals("bye")) {
-            return new ExitCommand();
-        } else if (command.equals("list")) {
-            return new ListCommand();
-        }
-        
-        if (!command.equals("mark") && !command.equals("unmark") && !command.equals("todo") && !command.equals("deadline") && !command.equals("event") && !command.equals("delete") && !command.equals("find")) {
-            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
-        }
-
         if (spacedArr.length == 1) {
-            throw new DukeException("OOPS!!! The description cannot be empty.");
+            return parseSingleWordCommand(spacedArr[0]);
+        } else {
+            return parseMultipleWordCommand(spacedArr[0], spacedArr[1]);
         }
-        
-        String suffix = spacedArr[1];
+    }
 
+    private static Command parseMultipleWordCommand(String command, String suffix) throws DukeException {
         switch (command) {
         case "mark": {
             int pos = Integer.parseInt(suffix) - 1;
@@ -45,18 +36,35 @@ public class Parser {
             int pos = Integer.parseInt(suffix) - 1;
             return new MarkCommand(false, pos);
         }
-        case "todo":
+        case "todo": {
             return new AddCommand("todo", suffix);
-        case "deadline":
+        }
+        case "deadline": {
             return new AddCommand("deadline", suffix);
-        case "event":
-            return new AddCommand("event", suffix); 
-        case "find": 
+        }
+        case "event": {
+            return new AddCommand("event", suffix);
+        }
+        case "find": {
             return new FindCommand(suffix);
-        default: {
+        }
+        case "delete": {
             int pos = Integer.parseInt(suffix) - 1;
             return new DeleteCommand(pos);
         }
+        default: {
+            throw new DukeException("Sorry, I don't understand that command :(");
+        }
+        }
+    }
+
+    private static Command parseSingleWordCommand(String command) throws DukeException {
+        if (command.equals("bye")) {
+            return new ExitCommand();
+        } else if (command.equals("list")) {
+            return new ListCommand();
+        } else {
+            throw new DukeException("Sorry, I don't understand that command :(");
         }
     }
 }

@@ -15,8 +15,11 @@ public class DeadlineTask extends Task {
 
     @Override
     public String toString() {
-        int month = by.getDayOfMonth();
-        String formattedDate = by.getMonth().toString().substring(0, 3) + " " + (month < 10 ? "0" + month : month) + " " + by.getYear();
+        int day = by.getDayOfMonth();
+        String dayOfMonth = day < 10 ? "0" + day : "" + day;
+        String month = by.getMonth().toString().substring(0, 3);
+        String year = by.getYear() + "";
+        String formattedDate = month + " " + dayOfMonth + " " + year;
         return "[D]" + super.toString() + " (by: " + formattedDate + ")";
     }
 }
