@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-import duke.domain.Task;
+import duke.domain.task.Task;
 
 /**
  * Storage class in charge of storing the tasks in a text file.

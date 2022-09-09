@@ -2,6 +2,8 @@ package duke.domain;
 
 import java.util.Objects;
 
+import duke.domain.task.Task;
+
 /**
  * The type Todo.
  */

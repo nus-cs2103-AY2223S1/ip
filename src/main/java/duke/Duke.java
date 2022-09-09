@@ -5,12 +5,8 @@ import duke.commands.CommandResult;
 import duke.commands.ErrorCommand;
 import duke.commands.ExitCommand;
 import duke.commands.tasks.BaseTaskCommand;
-import duke.exceptions.IncorrectArgumentException;
-import duke.exceptions.InvalidDateTimeException;
-import duke.exceptions.InvalidTaskSpecificationException;
-import duke.exceptions.MissingArgumentException;
 import duke.exceptions.NoCommandException;
-import duke.exceptions.UnknownCommandException;
+import duke.exceptions.ParseException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.tasklist.TaskList;
@@ -69,8 +65,7 @@ public class Duke {
             String userCommandText = ui.getUserCommand();
             try {
                 command = parser.parse(userCommandText);
-            } catch (MissingArgumentException | InvalidDateTimeException | InvalidTaskSpecificationException
-                    | IncorrectArgumentException | UnknownCommandException | NoCommandException e) {
+            } catch (NoCommandException | ParseException e) {
                 command = new ErrorCommand(e.getMessage());
             }
             CommandResult result = runCommand(command);
@@ -158,8 +153,7 @@ public class Duke {
         BaseCommand command;
         try {
             command = parser.parse(text);
-        } catch (MissingArgumentException | InvalidDateTimeException | InvalidTaskSpecificationException
-                | IncorrectArgumentException | UnknownCommandException | NoCommandException e) {
+        } catch (NoCommandException | ParseException e) {
             command = new ErrorCommand(e.getMessage());
         }
         CommandResult result = runCommand(command);

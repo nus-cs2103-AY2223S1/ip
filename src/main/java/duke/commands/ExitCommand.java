@@ -4,6 +4,8 @@ package duke.commands;
  * ExitCommand Class
  */
 public class ExitCommand implements BaseCommand {
+    public static final String COMMAND_WORD = "exit";
+
     @Override
     public CommandResult execute() {
         String successMessage = "Thank you for using aladdin services!\n";

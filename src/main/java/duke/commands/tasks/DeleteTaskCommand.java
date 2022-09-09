@@ -3,21 +3,23 @@ package duke.commands.tasks;
 import java.util.Objects;
 
 import duke.commands.CommandResult;
-import duke.domain.Task;
+import duke.domain.task.Task;
+import duke.domain.task.TaskIndex;
 import duke.exceptions.TaskNotFoundException;
 
 /**
  * DeleteTaskCommand class
  */
 public class DeleteTaskCommand extends BaseTaskCommand {
+    public static final String COMMAND_WORD = "delete";
     private String successMessage = "This task has been successfully deleted!\n";
     private String errorMessage = "An error occurred when deleting this task:\n";
-    private final int taskIndex;
+    private final TaskIndex taskIndex;
 
     /**
      *
      */
-    public DeleteTaskCommand(Integer taskIndex) {
+    public DeleteTaskCommand(TaskIndex taskIndex) {
         assert Objects.nonNull(taskIndex);
         this.taskIndex = taskIndex;
     }
