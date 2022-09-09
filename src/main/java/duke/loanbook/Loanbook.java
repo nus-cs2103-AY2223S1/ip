@@ -26,6 +26,14 @@ public class Loanbook {
      *
      */
     public String addContact(String name, String phoneNumber, double amount, boolean isOwe) {
+        for (Contact contact : Loanbook.contacts) {
+            String contactName = contact.getName();
+
+            if (contactName.equals(name)) {
+                throw new DukeException("Sorry, this name already exist in the loanbook, try something else!");
+            }
+        }
+
         Contact newContact = new Contact(name, phoneNumber, amount, isOwe);
 
         Loanbook.contacts.add(newContact);
