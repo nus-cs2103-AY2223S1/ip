@@ -1,5 +1,7 @@
 package commands;
 
+import java.time.format.DateTimeParseException;
+
 import duke.Storage;
 import duke.Ui;
 import tasks.Events;
@@ -24,15 +26,22 @@ public class EventCommand extends Command {
         this.atTime = atTime;
     }
 
-    @Override
     /**
      * Executes EventCommand by creating and adding new Events object to the task list.
      *
      * @param taskList Task list to add new Events task to.
+     * @param ui Ui to retrieve return string from.
+     * @param s Storage containing the list of tasks or where tasks should be saved.
+     * @return Add string to be displayed by program.
      */
+    @Override
     public String execute(TaskList taskList, Ui ui, Storage s) {
-        Task toAdd = new Events(this.descript, this.atTime);
-        taskList.addTask(toAdd);
-        return Ui.printAddStatement(toAdd.toString(), taskList.getSize());
+        try {
+            Task toAdd = new Events(this.descript, this.atTime);
+            taskList.addTask(toAdd);
+            return Ui.printAddStatement(toAdd.toString(), taskList.getSize());
+        } catch (DateTimeParseException e) {
+            return "Please enter the date in the DD/MM/YYYY HH:MM format as so: 12/11/2022 15:30";
+        }
     }
 }

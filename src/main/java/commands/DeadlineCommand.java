@@ -1,5 +1,7 @@
 package commands;
 
+import java.time.format.DateTimeParseException;
+
 import duke.Storage;
 import duke.Ui;
 import tasks.Deadlines;
@@ -24,15 +26,22 @@ public class DeadlineCommand extends Command {
         this.doBy = doBy;
     }
 
-    @Override
     /**
      * Executes DeadlineCommand by creating and adding new Deadlines object into task list.
      *
      * @param taskList List of tasks to add deadline into.
+     * @param ui Ui to retrieve return string from.
+     * @param s Storage containing the list of tasks or where tasks should be saved.
+     * @return Add string to be displayed by program.
      */
+    @Override
     public String execute(TaskList taskList, Ui ui, Storage s) {
-        Task toAdd = new Deadlines(this.descript, this.doBy);
-        taskList.addTask(toAdd);
-        return ui.printAddStatement(toAdd.toString(), taskList.getSize());
+        try {
+            Task toAdd = new Deadlines(this.descript, this.doBy);
+            taskList.addTask(toAdd);
+            return ui.printAddStatement(toAdd.toString(), taskList.getSize());
+        } catch (DateTimeParseException e) {
+            return "Please enter the date in the DD/MM/YYYY HH:MM format as so: 12/11/2022 15:30";
+        }
     }
 }

@@ -23,12 +23,14 @@ public class TodoCommand extends Command {
         this.isDone = false;
     }
 
-    @Override
     /**
      * Executes TodoCommand by creating and adding the new Todos task to the task list.
-     *
      * @param taskList Task list to which the new Todos should be added to.
+     * @param ui Ui to retrieve return string from.
+     * @param s Storage containing the list of tasks or where tasks should be saved.
+     * @return Add string to be displayed by program.
      */
+    @Override
     public String execute(TaskList taskList, Ui ui, Storage s) {
         Task toAdd = new Todos(this.descript);
         taskList.addTask(toAdd);

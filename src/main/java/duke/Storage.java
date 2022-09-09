@@ -17,12 +17,22 @@ public class Storage {
     String fileDirectory;
     String actualFile;
 
+    /**
+     * Constructor for Storage.
+     *
+     * @param filePath Path of file to retrieve task list from and to store tasks in.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
         this.fileDirectory = this.filePath.split("/", 2)[0];
         this.actualFile = this.filePath.split("/", 2)[1];
     }
 
+    /**
+     * Opens the text file containing the task list and retrieves tasks from it.
+     *
+     * @return TaskList containing the tasks from the text file.
+     */
     public TaskList open() {
         TaskList taskList = new TaskList();
         try {
@@ -53,6 +63,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Stores the current task list to the text file.
+     *
+     * @param taskList Task list to be stored in file.
+     */
     public void end(TaskList taskList) {
         try {
             FileWriter fw = new FileWriter(this.filePath);

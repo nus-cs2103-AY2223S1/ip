@@ -17,12 +17,15 @@ public class ByeCommand extends Command {
         super();
     }
 
-    @Override
     /**
      * Prints exit statement for program.
      *
      * @param taskList List of tasks to save before exiting.
+     * @param ui Ui to retrieve return string from.
+     * @param s Storage containing the list of tasks or where tasks should be saved.
+     * @return Bye string to be displayed by program.
      */
+    @Override
     public String execute(TaskList taskList, Ui ui, Storage s) {
         s.end(taskList);
         return ui.printByeStatement();

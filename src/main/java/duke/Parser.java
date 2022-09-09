@@ -12,6 +12,7 @@ public class Parser {
 
     /**
      * Returns Command that program is to execute from String input.
+     *
      * @param input String to be converted to command.
      * @return Command for program to execute.
      * @throws DukeException If an illegal command is entered or not enough information was given.

@@ -5,18 +5,30 @@ import duke.Ui;
 import tasks.Task;
 import tasks.TaskList;
 
+/**
+ * FindCommand allows users to search for tasks containing a keyword.
+ */
 public class FindCommand extends Command {
     String keyword;
 
     /**
      * Constructor for FindCommand.
      *
-     * @param keyword Keyword that is to be found in all the tasks returned
+     * @param keyword Keyword that is to be found in all the tasks returned.
      */
     public FindCommand(String keyword) {
         this.keyword = keyword;
     }
 
+    /**
+     * Executes FindCommand by iterating through the tasklist and returning the string of tasks containing the keyword.
+     *
+     * @param taskList Task list to find tasks from.
+     * @param ui Ui to retrieve return string from.
+     * @param s Storage containing the list of tasks or where tasks should be saved.
+     * @return String of tasks in the list that contain the keyword.
+     */
+    @Override
     public String execute(TaskList taskList, Ui ui, Storage s) {
         TaskList found = new TaskList();
         String str = "";

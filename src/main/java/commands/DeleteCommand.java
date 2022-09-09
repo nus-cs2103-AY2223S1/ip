@@ -19,12 +19,15 @@ public class DeleteCommand extends Command {
         this.index = index;
     }
 
-    @Override
     /**
      * Executes DeleteCommand by deleting chosen task from task list.
      *
      * @param taskList Task list containing the task to be deleted.
+     * @param ui Ui to retrieve return string from.
+     * @param s Storage containing the list of tasks or where tasks should be saved.
+     * @return Delete string to be displayed by program.
      */
+    @Override
     public String execute(TaskList taskList, Ui ui, Storage s) {
         String descript = taskList.retrieveTask(index).toString();
         taskList.deleteTask(index);

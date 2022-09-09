@@ -1,6 +1,5 @@
 package duke;
 
-import commands.ByeCommand;
 import commands.Command;
 import dukeexceptions.DukeException;
 import tasks.TaskList;
@@ -28,6 +27,7 @@ public class Duke {
      * Generates a response to user input.
      *
      * @param input User input received to be executed by program.
+     * @return String to be displayed by program.
      */
     public String getResponse(String input) {
         try {
