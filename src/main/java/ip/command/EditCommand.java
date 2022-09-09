@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import ip.exception.IndexNotSpecified;
 import ip.exception.NoTaskFound;
+import ip.utility.Storage;
 import ip.utility.TaskList;
 
 /**
@@ -31,12 +32,14 @@ public class EditCommand extends DukeCommand {
      * Execute the given command to the specified task.
      *
      * @param taskList The task list to search the task for.
+     * @param storage
      * @throws IndexNotSpecified If no index number was specified.
-     * @throws NoTaskFound If there is no task at the index number specified.
+     * @throws NoTaskFound       If there is no task at the index number specified.
      */
     @Override
-    public String execute(TaskList taskList) throws IndexNotSpecified, NoTaskFound {
+    public String execute(TaskList taskList, Storage storage) throws IndexNotSpecified, NoTaskFound {
         assert !editType.isEmpty() : "No edit type specified.";
+        storage.saveToBackup(taskList);
         int taskIndex;
         try {
             taskIndex = options.nextInt();
@@ -56,6 +59,7 @@ public class EditCommand extends DukeCommand {
         default:
             return "Cannot edit task with this edit type.";
         }
+        storage.saveToLatest(taskList);
         return "Task successfully edited.";
     }
 }

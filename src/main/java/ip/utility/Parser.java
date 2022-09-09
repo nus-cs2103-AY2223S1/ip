@@ -2,12 +2,7 @@ package ip.utility;
 
 import java.util.Scanner;
 
-import ip.command.AddCommand;
-import ip.command.ByeCommand;
-import ip.command.DukeCommand;
-import ip.command.EditCommand;
-import ip.command.FindCommand;
-import ip.command.ListCommand;
+import ip.command.*;
 import ip.exception.InvalidCommand;
 
 /**
@@ -59,6 +54,8 @@ public class Parser {
             return new EditCommand(commandGiven, inputLine);
         case "find":
             return new FindCommand(inputLine);
+        case "undo":
+            return new UndoCommand();
         default:
             throw new InvalidCommand(commandGiven);
         }

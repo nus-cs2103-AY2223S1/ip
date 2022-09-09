@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
     /** The instance of Duke that the GUI interacts with */
-    private final Duke duke = new Duke("data/taskData.txt");
+    private final Duke duke = new Duke("data");
 
     /**
      * Entry point for this JavaFX application.

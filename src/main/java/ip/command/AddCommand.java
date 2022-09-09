@@ -8,6 +8,7 @@ import ip.exception.MissingDescription;
 import ip.task.Deadline;
 import ip.task.Event;
 import ip.task.ToDo;
+import ip.utility.Storage;
 import ip.utility.TaskList;
 
 /**
@@ -34,13 +35,15 @@ public class AddCommand extends DukeCommand {
      * Creates and adds the task to the task list.
      *
      * @param taskList The task list to add the task to.
+     * @param storage
      * @throws MissingDescription If there is no task description given.
-     * @throws BadTimespan If the event's timespan is missing.
-     * @throws BadDeadline If the deadline is incorrectly formatted or missing.
+     * @throws BadTimespan        If the event's timespan is missing.
+     * @throws BadDeadline        If the deadline is incorrectly formatted or missing.
      */
     @Override
-    public String execute(TaskList taskList) throws MissingDescription, BadTimespan, BadDeadline {
+    public String execute(TaskList taskList, Storage storage) throws MissingDescription, BadTimespan, BadDeadline {
         assert !taskType.isEmpty() : "No task type.";
+        storage.saveToBackup(taskList);
         switch (taskType) {
         case "todo":
             taskList.add(new ToDo(taskMetadata));
@@ -54,6 +57,7 @@ public class AddCommand extends DukeCommand {
         default:
             return "Cannot add task of that type.";
         }
+        storage.saveToLatest(taskList);
         return "Task successfully added.";
     }
 }

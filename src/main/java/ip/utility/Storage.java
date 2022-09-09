@@ -21,8 +21,10 @@ import ip.task.ToDo;
 public class Storage {
     /** Path of the task data file */
     private final String dataFilePath;
+    private final String backupFilePath;
     /** Task data file */
     private final File dataFile;
+    private final File backupFile;
 
     /**
      * Constructor to initialize storage with given path.
@@ -30,43 +32,78 @@ public class Storage {
      * @param specifiedPath Path of the file that storage holds.
      */
     public Storage(String specifiedPath) {
-        dataFilePath = specifiedPath;
+        dataFilePath = specifiedPath + "/taskData.txt";
+        backupFilePath = specifiedPath + "/backupFile.txt";
         dataFile = new File(dataFilePath);
+        backupFile = new File(backupFilePath);
+        initializeFiles();
+    }
+
+    private void initializeFiles() {
+        try {
+            if (!new File("data/").isDirectory()) {
+                Files.createDirectory(Path.of("data"));
+            }
+            if (!dataFile.exists()) {
+                dataFile.createNewFile();
+            }
+            if (!backupFile.exists()) {
+                backupFile.createNewFile();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public TaskList getLatestTaskList() {
+        return getTaskList(false);
+    }
+
+    public TaskList getBackupTaskList() {
+        return getTaskList(true);
+    }
+
+    public void saveToLatest(TaskList taskList) {
+        saveTasks(taskList, false);
+    }
+
+    public void saveToBackup(TaskList taskList) {
+        saveTasks(taskList, true);
     }
 
     /**
      * Loads the storage's file into a TaskList.
      *
      * @return The TaskList built from the task data file.
-     * @throws IOException If an issue was encountered in opening the file.
      */
-    public TaskList getTaskList() throws IOException, BadLineFormat {
-        if (!dataFile.exists()) {
-            Files.createDirectory(Path.of("data"));
-            dataFile.createNewFile();
+    private TaskList getTaskList(boolean isFromBackup) {
+        String filePath = isFromBackup ? backupFilePath : dataFilePath;
+        try {
+            TaskList taskListFromStorage = new TaskList();
+            String fileContent = new String(Files.readAllBytes(Path.of(filePath)));
+            String[] linesInFile = fileContent.split("\\r?\\n");
+            for (String line : linesInFile) {
+                String[] taskMetadata = line.split("\\|");
+                String taskType = taskMetadata[0];
+                switch (taskType) {
+                case "t":
+                    taskListFromStorage.add(new ToDo(taskMetadata));
+                    break;
+                case "d":
+                    taskListFromStorage.add(new Deadline(taskMetadata));
+                    break;
+                case "e":
+                    taskListFromStorage.add(new Event(taskMetadata));
+                    break;
+                default:
+                    throw new BadLineFormat(line);
+                }
+            }
+            return taskListFromStorage;
+        } catch (IOException | BadLineFormat e) {
+            e.printStackTrace();
             return new TaskList();
         }
-        TaskList taskListFromStorage = new TaskList();
-        String fileContent = new String(Files.readAllBytes(Path.of(dataFilePath)));
-        String[] linesInFile = fileContent.split("\\r?\\n");
-        for (String line : linesInFile) {
-            String[] taskMetadata = line.split("\\|");
-            String taskType = taskMetadata[0];
-            switch (taskType) {
-            case "t":
-                taskListFromStorage.add(new ToDo(taskMetadata));
-                break;
-            case "d":
-                taskListFromStorage.add(new Deadline(taskMetadata));
-                break;
-            case "e":
-                taskListFromStorage.add(new Event(taskMetadata));
-                break;
-            default:
-                throw new BadLineFormat(line);
-            }
-        }
-        return taskListFromStorage;
     }
 
     /**
@@ -74,9 +111,10 @@ public class Storage {
      *
      * @param taskList The TaskList to copy from.
      */
-    public void saveTasks(TaskList taskList) {
+    private void saveTasks(TaskList taskList, boolean isToBackup) {
+        String filePath = isToBackup ? backupFilePath : dataFilePath;
         try {
-            FileWriter destinationFile = new FileWriter(dataFilePath);
+            FileWriter destinationFile = new FileWriter(filePath);
             for (Task task : taskList.getTasks()) {
                 destinationFile.append(task.formatToSave());
             }

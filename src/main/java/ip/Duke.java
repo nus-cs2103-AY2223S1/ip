@@ -1,9 +1,6 @@
 package ip;
 
-import java.io.IOException;
-
 import ip.command.DukeCommand;
-import ip.exception.BadLineFormat;
 import ip.exception.DukeException;
 import ip.utility.Parser;
 import ip.utility.Storage;
@@ -24,19 +21,12 @@ public class Duke {
     /**
      * Constructor for Duke.
      *
-     * @param dataFilePath Path of file to load task data from.
+     * @param dataPath Path of file to load task data from.
      */
-    public Duke(String dataFilePath) {
-        storage = new Storage(dataFilePath);
+    public Duke(String dataPath) {
+        storage = new Storage(dataPath);
         parser = new Parser();
-        try {
-            taskList = storage.getTaskList();
-        } catch (IOException | BadLineFormat e) {
-            System.out.println("Error in loading file from specified path.");
-            System.out.println("Duke will not save any task data this run.");
-            // Initialize new empty task list.
-            taskList = new TaskList();
-        }
+        taskList = storage.getLatestTaskList();
     }
 
     /**
@@ -49,8 +39,8 @@ public class Duke {
         parser.loadUserInput(userInput);
         try {
             DukeCommand command = parser.getCommand();
-            String response = command.execute(taskList);
-            storage.saveTasks(taskList);
+            String response = command.execute(taskList, storage);
+            System.out.println(taskList.listAllTasks());
             return response;
         } catch (DukeException e) {
             return e.toString();

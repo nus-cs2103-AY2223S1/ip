@@ -1,5 +1,6 @@
 package ip.command;
 
+import ip.utility.Storage;
 import ip.utility.TaskList;
 
 /**
@@ -10,9 +11,10 @@ public class ListCommand extends DukeCommand {
      * Lists all tasks in the given task list.
      *
      * @param taskList The task list to list out.
+     * @param storage
      */
     @Override
-    public String execute(TaskList taskList) {
+    public String execute(TaskList taskList, Storage storage) {
         String tasks = taskList.listAllTasks();
         if (tasks.isEmpty()) {
             return "You have no tasks. Add some now!";

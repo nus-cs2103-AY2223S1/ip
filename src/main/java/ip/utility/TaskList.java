@@ -11,7 +11,11 @@ import ip.task.Task;
  * @author Jonathan Lam
  */
 public class TaskList {
-    private final LinkedList<Task> tasks = new LinkedList<>();
+    private LinkedList<Task> tasks = new LinkedList<>();
+
+    public void set(TaskList taskList) {
+        this.tasks = taskList.tasks;
+    }
 
     public LinkedList<Task> getTasks() {
         return tasks;

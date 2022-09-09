@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 import ip.task.Task;
+import ip.utility.Storage;
 import ip.utility.TaskList;
 
 /**
@@ -23,9 +24,10 @@ public class FindCommand extends DukeCommand {
      * Finds tasks with descriptions matching given keyword.
      *
      * @param taskList List to search.
+     * @param storage
      */
     @Override
-    public String execute(TaskList taskList) {
+    public String execute(TaskList taskList, Storage storage) {
         if (commandParameters.hasNext()) {
             keyword = commandParameters.nextLine().trim();
         }
