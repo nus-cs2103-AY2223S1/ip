@@ -10,6 +10,6 @@ public class EmptyCommandException extends DukeException {
      * Constructs a new default EmptyCommandException.
      */
     public EmptyCommandException() {
-        super("The command cannot be empty");
+        super("The command cannot be empty.");
     }
 }
