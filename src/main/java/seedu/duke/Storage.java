@@ -87,6 +87,10 @@ public class Storage {
     public void addDeadlineOrEvent(ArrayList<Task> taskList, String s, String isMarked, String description,
                                    String datetime) {
 //        System.out.println("type:" + s);
+        ArrayList assertionList = new ArrayList();
+        assertionList.add("D");
+        assertionList.add("E");
+        assert assertionList.contains(s);
         if (s.equals("D")) {
 //            System.out.println("added D");
             String[] dateAndTime = datetime.split(" ");

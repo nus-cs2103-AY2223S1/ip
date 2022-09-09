@@ -28,6 +28,7 @@ public class Parser {
      *                 //     * @param scanner Scanner object.
      */
     public static String parse(String command, String input, TaskList taskList, Duke duke) {
+        assert input != "" : "input must not be empty!";
         String[] inputArr = input.split(" ");
 //        String command = inputArr[0];
 //        System.out.println("____________________________________________________");
@@ -61,6 +62,7 @@ public class Parser {
             return output2;
 //            break;
         case "delete":
+
             try {
                 int taskNum3 = Integer.parseInt(inputArr[1]);
                 String deleteLine = taskList.deleteTask(taskNum3);

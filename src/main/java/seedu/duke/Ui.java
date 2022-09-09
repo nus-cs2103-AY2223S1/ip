@@ -49,6 +49,7 @@ public class Ui {
         for (int i = 0; i < tasks.size(); i++) {
             matchingTasks += String.format("\n%s. %s", i + 1, tasks.get(i));
         }
+        assert matchingTasks instanceof String;
         return matchingTasks;
     }
 }
