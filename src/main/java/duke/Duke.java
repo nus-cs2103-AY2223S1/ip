@@ -58,8 +58,16 @@ public class Duke {
      * Replace this stub with your completed method.
      */
     String getResponse(String input) {
-        String response = this.parser.execute(input, tasks);
-        return response;
+        try {
+            String response = this.parser.execute(input, tasks);
+            return response;
+        }
+        catch (Parser.EmptyInputException e) {
+            return e.getMessage();
+        }
+        catch (Parser.InvalidInputException e) {
+            return e.getMessage();
+        }
     }
 
     public static void main(String[] args) {
