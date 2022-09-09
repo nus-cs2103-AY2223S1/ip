@@ -16,6 +16,10 @@ public class Deadline extends Task {
         return String.format("deadline | %s | %s | %b", super.description, by, super.isDone);
     }
 
+    /**
+     * Returns string representation of this task.
+     * @return String representation of this task.
+     */
     @Override
     public String toString() {
         return String.format("[D]%s (by: %s)", super.toString(), by.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));

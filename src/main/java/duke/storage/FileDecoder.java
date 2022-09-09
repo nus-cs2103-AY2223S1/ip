@@ -13,6 +13,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileDecoder {
+    /**
+     * Decode the tasks from file and store in task list. Finally, return the task list.
+     *
+     * @param dataFile File to be read from.
+     * @return Task list containing tasks.
+     * @throws FileNotFoundException If file not found when trying to read from the said file.
+     */
     static TaskList decodeFile(File dataFile) throws FileNotFoundException {
         TaskList taskList = new TaskList(new ArrayList<>());
         Scanner fileReader = new Scanner(dataFile);
@@ -20,6 +27,12 @@ public class FileDecoder {
         return taskList;
     }
 
+    /**
+     * Decode line by line in file and store the task in task list.
+     *
+     * @param taskList Task list to store the decoded task.
+     * @param fileReader Line read by scanner.
+     */
     private static void decodeLine(TaskList taskList, Scanner fileReader) {
         while (fileReader.hasNextLine()) {
             fileReader.useDelimiter(" \\| ");

@@ -15,6 +15,12 @@ import duke.commands.UserCommandList;
 import java.util.Scanner;
 
 public class Parser {
+    /**
+     * Parse user input and returns the command to be executed.
+     *
+     * @param userInput User input.
+     * @return Command to be executed.
+     */
     public static Command parseUserInput(Scanner userInput) {
         UserCommandList command;
         try {
