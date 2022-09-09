@@ -26,7 +26,7 @@ public class Duke {
         this.storage = new Storage(this.tasks);
         this.commander = new Parser(this.tasks, this.storage);
         Ui.greet();
-        this.storage.loadFile();
+        this.storage.loadDefaultFile();
     }
     /**
      * Returns a response to the user's input by calling the appropriate command

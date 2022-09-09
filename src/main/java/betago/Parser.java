@@ -9,6 +9,7 @@ import betago.commands.DeleteCommand;
 import betago.commands.FindCommand;
 import betago.commands.InvalidCommand;
 import betago.commands.ListCommand;
+import betago.commands.LoadCommand;
 import betago.commands.MarkUnmarkCommand;
 
 /**
@@ -49,6 +50,8 @@ public class Parser {
             return new DeleteCommand();
         } else if (inputs[0].equalsIgnoreCase("find")) {
             return new FindCommand();
+        } else if (inputs[0].equalsIgnoreCase("load")) {
+            return new LoadCommand();
         } else if (input.equalsIgnoreCase("bye")) {
             return new ByeCommand();
         } else {
