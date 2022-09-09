@@ -25,11 +25,11 @@ import task.Todo;
  * tasks can be used the next time the chat bot is run.
  */
 public class Storage {
-    public static final String DEADLINE_REGEX = " \\(by: ";
-    public static final String EVENT_REGEX = " \\(at: ";
-    public static final String OUTPUT_FOLDER_NAME = "data";
-    public static final String OUTPUT_FILE_NAME = "duke.txt";
-    public static final String EMPTY_STRING = "";
+    private static final String DEADLINE_REGEX = " \\(by: ";
+    private static final String EVENT_REGEX = " \\(at: ";
+    private static final String OUTPUT_FOLDER_NAME = "data";
+    private static final String OUTPUT_FILE_NAME = "duke.txt";
+    private static final String EMPTY_STRING = "";
     private final String folderPath;
     private final String filename;
     private final String userDirectory = System.getProperty("user.dir");

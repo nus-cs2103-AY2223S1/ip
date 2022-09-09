@@ -14,19 +14,19 @@ import task.TaskList;
  * output to the user.
  */
 public class Ui {
-    public static final String GREETING = "Eh hello, my name is Uncle Cheong."
+    private static final String GREETING = "Eh hello, my name is Uncle Cheong."
             + "\nWhat you want?\n";
-    public static final String GOODBYE_MESSAGE = "Eh you leaving me so soon?\n";
-    public static final String ERROR_MESSAGE_PREFIX = "Eh something went wrong! ";
-    public static final String TASK_ADDED_MESSAGE = "Swee lah! I added this task liao:\n";
-    public static final String TASK_DELETED_MESSAGE = "Okay boss, this task I delete le:\n";
-    public static final String UNMARK_TASK_MESSAGE = "Eh? Not done yet? Okay I change liao: \n";
-    public static final String SCHEDULE_MESSAGE_PREFIX = "Here are your tasks at ";
-    public static final String EMPTY_SCHEDULE_MESSAGE = "You have no tasks scheduled on ";
-    public static final String TASK_COUNT_MESSAGE_PREFIX = "Boss, you got ";
-    public static final String TASK_COUNT_MESSAGE_SUFFIX = " tasks now\n";
-    public static final String NEXT_LINE_STRING = "\n";
-    public static final String DOT_INDICATOR = ". ";
+    private static final String GOODBYE_MESSAGE = "Eh you leaving me so soon?\n";
+    private static final String ERROR_MESSAGE_PREFIX = "Eh something went wrong! ";
+    private static final String TASK_ADDED_MESSAGE = "Swee lah! I added this task liao:\n";
+    private static final String TASK_DELETED_MESSAGE = "Okay boss, this task I delete le:\n";
+    private static final String UNMARK_TASK_MESSAGE = "Eh? Not done yet? Okay I change liao: \n";
+    private static final String SCHEDULE_MESSAGE_PREFIX = "Here are your tasks at ";
+    private static final String EMPTY_SCHEDULE_MESSAGE = "You have no tasks scheduled on ";
+    private static final String TASK_COUNT_MESSAGE_PREFIX = "Boss, you got ";
+    private static final String TASK_COUNT_MESSAGE_SUFFIX = " tasks now\n";
+    private static final String NEXT_LINE_STRING = "\n";
+    private static final String DOT_INDICATOR = ". ";
     private Image uncleCheongImage = new Image(this.getClass().getResourceAsStream("/images/unclecheong.jpeg"));
     private Image errorImage = new Image(this.getClass().getResourceAsStream("/images/error.png"));
 

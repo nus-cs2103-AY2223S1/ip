@@ -1,7 +1,5 @@
 package parser;
 
-import java.util.Scanner;
-
 import command.AddDeadlineCommand;
 import command.AddEventCommand;
 import command.AddTodoCommand;

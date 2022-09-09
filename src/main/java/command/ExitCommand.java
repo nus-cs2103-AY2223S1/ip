@@ -15,6 +15,9 @@ import ui.Ui;
  * Class that prints out the exit message in the Ui and exits the application
  */
 public class ExitCommand extends Command {
+
+    private static final double EXIT_DURATION = 2.0;
+
     /**
      * Creates the ExitCommand
      *
@@ -44,7 +47,7 @@ public class ExitCommand extends Command {
     }
 
     private void executeDelay() {
-        PauseTransition delay = new PauseTransition(Duration.seconds(2.0));
+        PauseTransition delay = new PauseTransition(Duration.seconds(EXIT_DURATION));
         delay.setOnFinished(event -> Platform.exit());
         delay.play();
     }
