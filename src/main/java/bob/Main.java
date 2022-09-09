@@ -15,6 +15,11 @@ public class Main extends Application {
 
     private Bob bob = new Bob();
 
+    /**
+     * Start method to launch the GUI stage
+     *
+     * @param stage stage for the GUI
+     */
     @Override
     public void start(Stage stage) {
         try {

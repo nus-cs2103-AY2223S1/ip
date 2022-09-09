@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
 
 public class EventTest {
     @Test
-    public void testOne() {
+    public void newEvent() {
         Task task = new Event("party", LocalDate.parse("2019-12-12"));
         assertEquals("[E][ ] party (at: Dec 12 2019)", task.toString());
     }
 
     @Test
-    public void testTwo() {
+    public void markEvent() {
         TaskList tasks = new TaskList();
         Task task = new Event("track competition", LocalDate.parse("2022-08-28"));
         tasks.addTask(task);

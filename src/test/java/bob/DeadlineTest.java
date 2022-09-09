@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
 
 public class DeadlineTest {
     @Test
-    public void testOne() {
+    public void newDeadline() {
         Task task = new Deadline("assignment", LocalDate.parse("2019-12-12"));
         assertEquals("[D][ ] assignment (by: Dec 12 2019)", task.toString());
     }
 
     @Test
-    public void testTwo() {
+    public void markDeadline() {
         TaskList tasks = new TaskList();
         Task task = new Deadline("math submission", LocalDate.parse("2022-08-28"));
         tasks.addTask(task);

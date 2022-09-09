@@ -19,9 +19,11 @@ public class Ui {
 
     /**
      * Displays welcome message with list of commands
+     *
+     * @return welcome message
      */
     public String displayWelcomeMessage() {
-        String response = "hey, i'm bob!👻\ndo you need help?\n"
+        String response = "hey, i'm bob!\ndo you need help?\n"
                 + this.printLine()
                 + "    ↓ here's what you can do! ↓\n"
                 + "    ---------------------------\n"
@@ -38,25 +40,19 @@ public class Ui {
     }
 
     /**
-     * Reads the user input
-     *
-     * @return user input
-     */
-    public String getReply() {
-        String reply = this.sc.nextLine();
-        return reply;
-    }
-
-    /**
      * Displays goodbye message
+     *
+     * @return goodbye message
      */
     public String sayGoodbye() {
-        String response = this.printLine() + "bye\nsee you again!\n" + this.printLine();
-        return response;
+        String response = "bye\nsee you again!";
+        return print(response);
     }
 
     /**
      * Prints dashed line
+     *
+     * @return a dotted line
      */
     public String printLine() {
 
@@ -68,6 +64,7 @@ public class Ui {
      *
      * @param taskList list of tasks
      * @param outputMessage header to be printed with tasks
+     * @return list of tasks
      */
     public String displayTaskList(TaskList taskList, String outputMessage) {
         if (taskList.getLength() == 0) {
@@ -79,8 +76,8 @@ public class Ui {
             list = list + "\n" + (index) + ". " + taskList.getTask(index).toString();
             index += 1;
         }
-        String response = this.printLine() + outputMessage + "\n" + list + "\n" + this.printLine();
-        return response;
+        String response = outputMessage + "\n" + list;
+        return print(response);
     }
 
     /**
@@ -88,11 +85,11 @@ public class Ui {
      *
      * @param tasks list of tasks
      * @param index index of marked task
+     * @return task marked
      */
     public String displayMarked(TaskList tasks, int index) {
-        String response = this.printLine() + "yay! you've completed a task!\n"
-                + tasks.getTask(index).toString() + "\n" + this.printLine();
-        return response;
+        String response = "yay! you've completed a task!\n" + tasks.getTask(index).toString();
+        return print(response);
     }
 
     /**
@@ -100,11 +97,11 @@ public class Ui {
      *
      * @param tasks list of tasks
      * @param index index of unmarked task
+     * @return task unmarked
      */
     public String displayUnmarked(TaskList tasks, int index) {
-        String response = this.printLine() + "aw...i guess there's another task.\n"
-                + tasks.getTask(index).toString() + "\n" + this.printLine();
-        return response;
+        String response = "aw...i guess there's another task.\n" + tasks.getTask(index).toString();
+        return print(response);
     }
 
     /**
@@ -112,11 +109,12 @@ public class Ui {
      *
      * @param tasks list of tasks
      * @param task task removed
+     * @return task removed and number of tasks left
      */
     public String displayRemoved(TaskList tasks, Task task) {
-        String response = this.printLine() + "that's one less task for you! removed:" + "\n  "
-                + task.toString() + "\njust " + (tasks.getLength()) + " tasks left!\n" + this.printLine();
-        return response;
+        String response = "that's one less task for you! removed:" + "\n  "
+                + task.toString() + "\njust " + (tasks.getLength()) + " tasks left!";
+        return print(response);
     }
 
     /**
@@ -124,20 +122,31 @@ public class Ui {
      *
      * @param tasks list of tasks
      * @param task task added
+     * @return task added and number of tasks
      */
     public String displayAddedTask(TaskList tasks, Task task) {
-        String response = this.printLine() + "okay! new task:" + "\n  " + task.toString()
-                + "\njust " + tasks.getLength() + " tasks left!\n" + this.printLine();
-        return response;
+        String response = "okay! new task:" + "\n  " + task.toString()
+                + "\njust " + tasks.getLength() + " tasks left!";
+        return print(response);
     }
 
     /**
      * Displays error message
      *
      * @param error the error message to be displayed
+     * @return error message
      */
     public String displayError(String error) {
-        String response = this.printLine() + error + "\n" + this.printLine();
-        return response;
+        return print(error);
+    }
+
+    /**
+     * Formats and returns string input
+     *
+     * @param response string to be formatted
+     * @return formatted string
+     */
+    public String print(String response) {
+        return this.printLine() + response + "\n" + this.printLine();
     }
 }

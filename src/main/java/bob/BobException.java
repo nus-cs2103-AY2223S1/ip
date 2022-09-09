@@ -6,9 +6,11 @@ package bob;
 public class BobException extends Exception {
 
     /**
-     * Returns error message
+     * Constructor for BobException
+     *
+     * @param string the error message to be printed
      */
-    public String toString() {
-        return "Bob does not understand...";
+    public BobException(String string) {
+        super(string);
     }
 }
