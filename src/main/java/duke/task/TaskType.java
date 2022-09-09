@@ -1,11 +1,8 @@
 package duke.task;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.format.DateTimeParseException;
 
+import duke.DateTimeParse;
 import duke.exception.DukeException;
 
 /**
@@ -60,8 +57,8 @@ public enum TaskType {
             String description = sp[0];
             String startDate = sp[1];
             String endDate = sp[2];
-            LocalDateTime startDatetime = TaskType.dateTimeParser(startDate);
-            LocalDateTime endDatetime = TaskType.dateTimeParser(endDate);
+            LocalDateTime startDatetime = DateTimeParse.parseDateTime(startDate);
+            LocalDateTime endDatetime = DateTimeParse.parseDateTime(endDate);
 
             // ensures that the start and end datetime is valid (start cannot be after end)
             if (startDatetime.isAfter(endDatetime)) {
@@ -106,7 +103,7 @@ public enum TaskType {
             String[] sp = cmd.substring(9).split("/(by)\\s", 2);
             String description = sp[0];
             String dateTimeString = sp[1];
-            LocalDateTime datetime = TaskType.dateTimeParser(dateTimeString);
+            LocalDateTime datetime = DateTimeParse.parseDateTime(dateTimeString);
             return new Deadline(description, datetime);
         }
 
@@ -129,49 +126,7 @@ public enum TaskType {
     };
 
     private static final String END_BEFORE_START_ERROR_MESSAGE = "Start datetime %s cannot be after end datetime %s";
-    private static final String UNKNOWN_DATE_FORMAT_ERROR = "Unknown date format %s!";
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = new DateTimeFormatterBuilder()
-            .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-            .appendOptional(DateTimeFormatter.ofPattern(("dd/M/yyyy")))
-            .appendOptional(DateTimeFormatter.ofPattern(("d/MM/yyyy")))
-            .appendOptional(DateTimeFormatter.ofPattern(("d/M/yyyy")))
-            .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
-            .appendOptional(DateTimeFormatter.ofPattern("dd/M/yyyy HH:mm"))
-            .appendOptional(DateTimeFormatter.ofPattern("d/MM/yyyy HH:mm"))
-            .appendOptional(DateTimeFormatter.ofPattern("d/M/yyyy HH:mm"))
-            .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yy"))
-            .appendOptional(DateTimeFormatter.ofPattern(("dd/M/yy")))
-            .appendOptional(DateTimeFormatter.ofPattern(("d/MM/yy")))
-            .appendOptional(DateTimeFormatter.ofPattern(("d/M/yy")))
-            .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yy HH:mm"))
-            .appendOptional(DateTimeFormatter.ofPattern("dd/M/yy HH:mm"))
-            .appendOptional(DateTimeFormatter.ofPattern("d/MM/yy HH:mm"))
-            .appendOptional(DateTimeFormatter.ofPattern("d/M/yy HH:mm"))
-            .appendOptional(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
-            .appendOptional(DateTimeFormatter.ofPattern(("dd-M-yyyy")))
-            .appendOptional(DateTimeFormatter.ofPattern(("d-MM-yyyy")))
-            .appendOptional(DateTimeFormatter.ofPattern(("d-M-yyyy")))
-            .appendOptional(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"))
-            .appendOptional(DateTimeFormatter.ofPattern("dd-M-yyyy HH:mm"))
-            .appendOptional(DateTimeFormatter.ofPattern("d-MM-yyyy HH:mm"))
-            .appendOptional(DateTimeFormatter.ofPattern("d-M-yyyy HH:mm"))
-            .appendOptional(DateTimeFormatter.ofPattern("dd-MM-yy"))
-            .appendOptional(DateTimeFormatter.ofPattern(("dd-M-yy")))
-            .appendOptional(DateTimeFormatter.ofPattern(("d-MM-yy")))
-            .appendOptional(DateTimeFormatter.ofPattern(("d-M-yy")))
-            .appendOptional(DateTimeFormatter.ofPattern("dd-MM-yy HH:mm"))
-            .appendOptional(DateTimeFormatter.ofPattern("dd-M-yy HH:mm"))
-            .appendOptional(DateTimeFormatter.ofPattern("d-MM-yy HH:mm"))
-            .appendOptional(DateTimeFormatter.ofPattern("d-M-yy HH:mm"))
-            .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a"))
-            .appendOptional(DateTimeFormatter.ofPattern("dd/M/yyyy hh:mm a"))
-            .appendOptional(DateTimeFormatter.ofPattern("d/MM/yyyy hh:mm a"))
-            .appendOptional(DateTimeFormatter.ofPattern("d/M/yyyy hh:mm a"))
-            .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yy hh:mm a"))
-            .appendOptional(DateTimeFormatter.ofPattern("dd/M/yy hh:mm a"))
-            .appendOptional(DateTimeFormatter.ofPattern("d/MM/yy hh:mm a"))
-            .appendOptional(DateTimeFormatter.ofPattern("d/M/yy hh:mm a"))
-            .toFormatter();
+
     /**
      * Takes in a user's command and validates that it is a valid command (follows the
      * required format) based on the TaskType.
@@ -224,28 +179,5 @@ public enum TaskType {
             result[i] = result[i].replace("\\\\|", "|");
         }
         return result;
-    }
-
-    /**
-     * Parses a given date or datetime string into a datetime object. If the string provided
-     * is a date string, the time is set to the beginning of the day.
-     *
-     * @param dateTimeString The date or datetime string to be parsed.
-     * @return A LocalDateTime object, where the time is set to the start of the day on
-     *         default if the time is not specified.
-     * @throws DukeException If the specified string could not be parsed into a datetime object.
-     */
-    private static LocalDateTime dateTimeParser(String dateTimeString) throws DukeException {
-        LocalDateTime dateObject;
-        try {
-            dateObject = LocalDateTime.parse(dateTimeString, DATE_TIME_FORMATTER);
-        } catch (DateTimeParseException e) {
-            try {
-                dateObject = LocalDate.parse(dateTimeString, DATE_TIME_FORMATTER).atStartOfDay();
-            } catch (DateTimeParseException d) {
-                throw new DukeException(String.format(UNKNOWN_DATE_FORMAT_ERROR, dateTimeString));
-            }
-        }
-        return dateObject;
     }
 }
