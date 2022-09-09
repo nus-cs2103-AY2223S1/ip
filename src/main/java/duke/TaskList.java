@@ -21,6 +21,10 @@ public class TaskList {
         this.numTasks = taskList.size();
     }
 
+    public Task getItem(int position) {
+        return this.taskList.get(position - 1);
+    }
+
     public ArrayList<Task> getList() {
         return this.taskList;
     }
