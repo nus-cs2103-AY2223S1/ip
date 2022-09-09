@@ -1,5 +1,7 @@
 package duke.commands.tasks;
 
+import java.util.Objects;
+
 import duke.commands.CommandResult;
 import duke.domain.task.Task;
 import duke.domain.task.TaskIndex;
@@ -18,6 +20,7 @@ public class DeleteTaskCommand extends BaseTaskCommand {
      *
      */
     public DeleteTaskCommand(TaskIndex taskIndex) {
+        assert Objects.nonNull(taskIndex);
         this.taskIndex = taskIndex;
     }
 

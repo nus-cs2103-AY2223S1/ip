@@ -44,6 +44,8 @@ public class Event extends Task {
      * @return the event
      */
     public static Event of(String text, LocalDateTime dateTime) {
+        assert Objects.nonNull(text);
+        assert Objects.nonNull(dateTime);
         return new Event(text, dateTime);
     }
 
@@ -59,6 +61,9 @@ public class Event extends Task {
      * @return the event
      */
     public static Event of(String done, String text, LocalDateTime dateTime) {
+        assert Objects.nonNull(done);
+        assert Objects.nonNull(text);
+        assert Objects.nonNull(dateTime);
         Event newEvent = Event.of(text, dateTime);
         if (Objects.equals(done, "1")) {
             newEvent.setComplete();

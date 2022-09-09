@@ -1,6 +1,7 @@
 package duke.commands.tasks;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import duke.commands.CommandResult;
 
@@ -13,6 +14,7 @@ public class ListTasksAfterCommand extends ListTasksCommand {
     private String successMessage = "Here are your tasks:\n";
 
     public ListTasksAfterCommand(LocalDateTime dateTime) {
+        assert Objects.nonNull(dateTime);
         this.dateTime = dateTime;
     }
 

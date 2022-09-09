@@ -1,5 +1,7 @@
 package duke.commands.tasks;
 
+import java.util.Objects;
+
 import duke.commands.CommandResult;
 
 /**
@@ -16,6 +18,7 @@ public class FindTaskCommand extends BaseTaskCommand {
      * @param searchTerm
      */
     public FindTaskCommand(String searchTerm) {
+        assert Objects.nonNull(searchTerm);
         this.searchTerm = searchTerm;
     }
 

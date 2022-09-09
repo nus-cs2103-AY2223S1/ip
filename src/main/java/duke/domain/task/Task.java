@@ -87,6 +87,10 @@ public class Task {
             String text,
             String dateTimeInput)
             throws InvalidDateTimeException, InvalidTaskSpecificationException {
+        assert Objects.nonNull(type);
+        assert Objects.nonNull(done);
+        assert Objects.nonNull(text);
+        assert Objects.nonNull(dateTimeInput);
         Boolean isEvent = Objects.equals(type, "E");
         Boolean isDeadline = Objects.equals(type, "D");
         Boolean isTodo = Objects.equals(type, "T");

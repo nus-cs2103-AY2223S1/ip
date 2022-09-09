@@ -44,6 +44,8 @@ public class Deadline extends Task {
      * @return the deadline
      */
     public static Deadline of(String text, LocalDateTime dateTime) {
+        assert Objects.nonNull(text);
+        assert Objects.nonNull(dateTime);
         return new Deadline(text, dateTime);
     }
 
@@ -62,6 +64,9 @@ public class Deadline extends Task {
             String done,
             String text,
             LocalDateTime dateTime) {
+        assert Objects.nonNull(done);
+        assert Objects.nonNull(text);
+        assert Objects.nonNull(dateTime);
         Deadline newDeadline = Deadline.of(text, dateTime);
         if (Objects.equals(done, "1")) {
             newDeadline.setComplete();

@@ -31,6 +31,7 @@ public class Todo extends Task {
      * @return the todo
      */
     public static Todo of(String todoText) {
+        assert Objects.nonNull(todoText);
         return new Todo(todoText);
     }
 
@@ -44,6 +45,8 @@ public class Todo extends Task {
      * @return the todo
      */
     public static Todo of(String done, String todoText) {
+        assert Objects.nonNull(done);
+        assert Objects.nonNull(todoText);
         Todo newTodo = Todo.of(todoText);
         if (Objects.equals(done, "1")) {
             newTodo.setComplete();
