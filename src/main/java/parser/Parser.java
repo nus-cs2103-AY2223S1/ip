@@ -14,6 +14,7 @@ import commands.MarkCommand;
 import commands.SaveCommand;
 import commands.UnmarkCommand;
 import exception.FredException;
+import fred.Fred;
 import task.TaskType;
 
 
@@ -81,14 +82,17 @@ public class Parser {
             throw new FredException("The input of mark cannot be empty!");
         }
 
-        int index;
+        int indexToMark;
         try {
-            index = Integer.parseInt(command.substring(5));
+            String commandWord = "mark";
+            int indexOfCommandArgument = command.indexOf(commandWord) + commandWord.length() + 1;
+            String commandArgument = command.substring(indexOfCommandArgument).trim();
+            indexToMark = Integer.parseInt(commandArgument);
         } catch (NumberFormatException e) {
             throw new FredException("mark can only take in an integer!");
         }
 
-        return new MarkCommand(index);
+        return new MarkCommand(indexToMark);
     }
 
     /**
@@ -102,14 +106,17 @@ public class Parser {
             throw new FredException("The input of unmark cannot be empty!");
         }
 
-        int index;
+        int indexToUnmark;
         try {
-            index = Integer.parseInt(command.substring(7));
+            String commandWord = "unmark";
+            int indexOfCommandArgument = command.indexOf(commandWord) + commandWord.length() + 1;
+            String commandArgument = command.substring(indexOfCommandArgument).trim();
+            indexToUnmark = Integer.parseInt(commandArgument);
         } catch (NumberFormatException e) {
             throw new FredException("unmark can only take in an integer!");
         }
 
-        return new UnmarkCommand(index);
+        return new UnmarkCommand(indexToUnmark);
     }
 
     /**
@@ -122,7 +129,11 @@ public class Parser {
         if (command.trim().equals("todo")) {
             throw new FredException("The description of a todo cannot be empty.");
         }
-        return new AddCommand(TaskType.TODO, command.substring(5));
+
+        String commandWord = "todo";
+        int indexOfCommandArgument = command.indexOf(commandWord) + commandWord.length() + 1;
+        String commandArgument = command.substring(indexOfCommandArgument).trim();
+        return new AddCommand(TaskType.TODO, commandArgument);
     }
 
     /**
@@ -134,19 +145,25 @@ public class Parser {
     public static Command parseEventCommand(String command) throws FredException {
         if (command.trim().equals("event")) {
             throw new FredException("The description of a event cannot be empty.");
-        }
-        int split = command.indexOf("/at");
-        if (split == -1) {
+        } else if (!command.contains("/at")) {
             throw new FredException("No date provided! Usage: \"TASK /at DATE\"");
         }
 
+        String commandWord = "event";
+        int indexOfCommandArgument = command.indexOf(commandWord) + commandWord.length() + 1;
+        String commandArgument = command.substring(indexOfCommandArgument).trim();
+
+        String[] commandArgumentParts = commandArgument.split(" /at ");
+        String eventDescription = commandArgumentParts[0].trim();
+        String eventDateString = commandArgumentParts[1].trim();
+
         LocalDate date;
         try {
-            date = LocalDate.parse(command.substring(split + 4), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            date = LocalDate.parse(eventDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         } catch (DateTimeParseException e) {
             throw new FredException("Input date as yyyy-MM-dd!");
         }
-        return new AddCommand(TaskType.EVENT, command.substring(6, split - 1), date);
+        return new AddCommand(TaskType.EVENT, eventDescription, date);
     }
 
     /**
@@ -158,19 +175,25 @@ public class Parser {
     public static Command parseDeadlineCommand(String command) throws FredException {
         if (command.trim().equals("deadline")) {
             throw new FredException("The description of a deadline cannot be empty.");
-        }
-        int split = command.indexOf("/by");
-        if (split == -1) {
+        } else if (!command.contains("/by")) {
             throw new FredException("No date provided! Usage: \"TASK /by DATE\"");
         }
 
+        String commandWord = "deadline";
+        int indexOfCommandArgument = command.indexOf(commandWord) + commandWord.length() + 1;
+        String commandArgument = command.substring(indexOfCommandArgument).trim();
+
+        String[] commandArgumentParts = commandArgument.split(" /by ");
+        String deadlineDescription = commandArgumentParts[0].trim();
+        String deadlineDateString = commandArgumentParts[1].trim();
+
         LocalDate date;
         try {
-            date = LocalDate.parse(command.substring(split + 4), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            date = LocalDate.parse(deadlineDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         } catch (DateTimeParseException e) {
             throw new FredException("Input date as yyyy-MM-dd!");
         }
-        return new AddCommand(TaskType.DEADLINE, command.substring(9, split - 1), date);
+        return new AddCommand(TaskType.DEADLINE, deadlineDescription, date);
     }
 
     /**
@@ -184,14 +207,17 @@ public class Parser {
             throw new FredException("The input of delete cannot be empty!");
         }
 
-        int index;
+        int indexToDelete;
         try {
-            index = Integer.parseInt(command.substring(7));
+            String commandWord = "delete";
+            int indexOfCommandArgument = command.indexOf(commandWord) + commandWord.length() + 1;
+            String commandArgument = command.substring(indexOfCommandArgument).trim();
+            indexToDelete = Integer.parseInt(commandArgument);
         } catch (NumberFormatException e) {
             throw new FredException("delete can only take in an integer!");
         }
 
-        return new DeleteCommand(index);
+        return new DeleteCommand(indexToDelete);
     }
 
     /**
@@ -213,6 +239,10 @@ public class Parser {
         if (command.trim().equals("find")) {
             throw new FredException("The input of delete cannot be empty!");
         }
-        return new FindCommand(command.substring(5));
+
+        String commandWord = "find";
+        int indexOfCommandArgument = command.indexOf(commandWord) + commandWord.length() + 1;
+        String commandArgument = command.substring(indexOfCommandArgument).trim();
+        return new FindCommand(commandArgument);
     }
 }
