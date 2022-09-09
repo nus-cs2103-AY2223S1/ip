@@ -25,6 +25,7 @@ public class TaskList {
      * @param task
      */
     public void add(Task task) {
+        assert task != null: "task cannot be null";
         tasks.add(task);
     }
 
@@ -42,6 +43,7 @@ public class TaskList {
      * @return the Task stored at the index
      */
     public Task get(int index) {
+        assert index < tasks.size(): "Invalid index passed";
         return tasks.get(index);
     }
 

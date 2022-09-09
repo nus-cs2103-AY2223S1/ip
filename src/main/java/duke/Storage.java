@@ -61,6 +61,7 @@ public class Storage {
         return tasks;
     }
     public void writeFile(TaskList tasks) {
+        assert tasks != null : "Task should not be null";
         try {
             FileWriter myWriter = new FileWriter(this.filePath);
             for (int i = 0; i < tasks.getSize(); i++) {
