@@ -20,7 +20,6 @@ public class ListContactsCommand extends LoanbookCommand {
      */
     @Override
     public String execute(Loanbook loanbook, Ui ui, Storage storage) {
-        String allContacts = loanbook.getContacts();
-        return Ui.getLoanbookContacts(allContacts);
+        return Ui.getLoanbookContacts(loanbook.toString());
     }
 }

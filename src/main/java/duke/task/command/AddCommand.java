@@ -1,4 +1,4 @@
-package duke.command;
+package duke.task.command;
 
 import duke.exception.DukeException;
 import duke.storage.Storage;

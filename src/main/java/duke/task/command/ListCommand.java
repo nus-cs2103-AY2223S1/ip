@@ -1,22 +1,27 @@
-package duke.command;
+package duke.task.command;
 
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
 /**
- * Abstract class Command that represents commands on tasks.
+ * Represents a List Command, which lists all tasks.
  *
  * @author Elgin
  */
-public abstract class Command {
+public class ListCommand extends Command {
     /**
-     * Abstract method that executes the command.
+     * Executes the command and lists all tasks to the user.
      *
      * @param tasks All tasks present in Duke.
      * @param ui The UI controller that handles interaction between user and Duke.
      * @param storage Storage that stores all tasks on Disk.
      * @return Duke's message to the user.
      */
-    public abstract String execute(TaskList tasks, Ui ui, Storage storage);
+    @Override
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        String items = tasks.toString();
+
+        return ui.getAllTasksMsg(items);
+    }
 }

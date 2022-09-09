@@ -7,10 +7,11 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 import duke.exception.DukeException;
+import duke.loanbook.Contact;
+import duke.loanbook.Loanbook;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -24,33 +25,60 @@ import duke.task.ToDo;
  */
 public class Storage {
     /** Path to file where tasks are stored. */
-    private static Path filePath;
+    private static Path tasksFilePath = Paths.get(System.getProperty("user.dir"), "src", "data", "tasks.txt");
+
+    /** Path to file where loans are stored. */
+    private static Path loansFilePath = Paths.get(System.getProperty("user.dir"), "src", "data", "loans.txt");
 
     /** File reference where tasks are stored. */
-    private static File file;
+    private static File taskFile = new File(tasksFilePath.toString());
+
+    /** File reference where loans are stored. */
+    private static File loanFile = new File(loansFilePath.toString());
 
     /**
-     * Constructor for Storage.
+     * Constructor for Storage. Create directories and files if missing.
      *
-     * @param filePath Path to file (e.g. 'src/data/tasks.txt')
      */
-    public Storage(String filePath) {
-        String[] directories = filePath.split("/");
-        Storage.filePath = Paths.get(System.getProperty("user.dir"), directories);
-        Storage.file = new File(Storage.filePath.toString());
+    public Storage() {
+        createDirectories("src/data");
+        createFiles();
+    }
+
+    /**
+     * Create directories leading up to the file if it is missing.
+     *
+     * @param pathToDirectory The path to the directory where the file resides.
+     */
+    public void createDirectories(String pathToDirectory) {
+        String[] directories = pathToDirectory.split("/");
 
         // Path to directory where file that stores tasks is at
-        Path dirPath = Paths.get(System.getProperty("user.dir"), Arrays.copyOf(directories, directories.length - 1));
+        Path dirPath = Paths.get(System.getProperty("user.dir"), directories);
 
-        // Making sure that missing folders / files are created.
+        // Making sure that missing directories are created.
         File dir = new File(dirPath.toString());
         if (!dir.exists()) {
             dir.mkdirs();
         }
+    }
 
-        if (!Storage.file.exists()) {
+    /**
+     * Creates the files if it is missing to store the data.
+     *
+     */
+    public void createFiles() {
+        if (!Storage.taskFile.exists()) {
             try {
-                this.writeToFile("", true);
+                this.writeToFile(Storage.tasksFilePath, "", true);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        if (!Storage.loanFile.exists()) {
+            try {
+                this.writeToFile(Storage.loansFilePath, "", true);
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
@@ -58,15 +86,15 @@ public class Storage {
     }
 
     /**
-     * Loads tasks from data/duke.txt file.
+     * Loads tasks from data/tasks.txt file.
      *
      * @throws FileNotFoundException If file cannot be opened by Scanner.
      */
     public ArrayList<Task> load() throws FileNotFoundException {
         ArrayList<Task> tempList = new ArrayList<>();
 
-        if (Storage.file.exists() && !Storage.file.isDirectory()) {
-            Scanner fileScanner = new Scanner(Storage.file);
+        if (Storage.taskFile.exists() && !Storage.taskFile.isDirectory()) {
+            Scanner fileScanner = new Scanner(Storage.taskFile);
             while (fileScanner.hasNext()) {
                 String line = fileScanner.nextLine();
                 String[] details = line.split(" \\| ");
@@ -86,11 +114,46 @@ public class Storage {
                 }
             }
 
+            // Prevents duplicate loads.
             try {
-                this.writeToFile("", true);
+                this.writeToFile(Storage.tasksFilePath, "", true);
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
+        }
+
+        return tempList;
+    }
+
+    /**
+     * Loads loanbook with contacts from data/loans.txt file.
+     *
+     * @return An arraylist of all contacts loaded from file.
+     * @throws FileNotFoundException If file cannot be opened by scanner.
+     */
+    public ArrayList<Contact> loadLoanbook() throws FileNotFoundException {
+        ArrayList<Contact> tempList = new ArrayList<>();
+
+        if (Storage.loanFile.exists() && !Storage.loanFile.isDirectory()) {
+            Scanner fileScanner = new Scanner(Storage.loanFile);
+
+            while (fileScanner.hasNext()) {
+                String line = fileScanner.nextLine();
+                String[] details = line.split(" \\| ");
+
+                String name = details[0];
+                String phoneNumber = details[1];
+                double amount = Double.parseDouble(details[2]);
+                boolean isOwe = details[3].equals("1");
+                tempList.add(new Contact(name, phoneNumber, amount, isOwe));
+            }
+        }
+
+        // Prevents duplicate loads.
+        try {
+            this.writeToFile(Storage.loansFilePath, "", true);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
 
         return tempList;
@@ -102,10 +165,10 @@ public class Storage {
      * @param textToAdd The text to be added to the file.
      * @throws IOException If there are errors in input/output to the file.
      */
-    private void writeToFile(String textToAdd, boolean isOverwrite) throws IOException {
+    private void writeToFile(Path filePath, String textToAdd, boolean isOverwrite) throws IOException {
         FileWriter fw = isOverwrite
-                ? new FileWriter(Storage.filePath.toString())
-                : new FileWriter(Storage.filePath.toString(), true);
+                ? new FileWriter(filePath.toString())
+                : new FileWriter(filePath.toString(), true);
         fw.write(textToAdd);
         fw.close();
     }
@@ -121,16 +184,33 @@ public class Storage {
             String taskDone = t.isDone() ? "1" : "0";
             try {
                 if (t instanceof ToDo) {
-                    this.writeToFile("T | " + taskDone + " | " + t.getTaskName() + "\n", false);
+                    this.writeToFile(Storage.tasksFilePath, "T | " + taskDone + " | " + t.getTaskName() + "\n", false);
                 } else if (t instanceof Deadline) {
-                    this.writeToFile("D | " + taskDone + " | " + t.getTaskName() + " | "
+                    this.writeToFile(Storage.tasksFilePath, "D | " + taskDone + " | " + t.getTaskName() + " | "
                             + ((Deadline) t).getDate() + "\n", false);
                 } else if (t instanceof Event) {
-                    this.writeToFile("E | " + taskDone + " | " + t.getTaskName() + " | "
+                    this.writeToFile(Storage.tasksFilePath, "E | " + taskDone + " | " + t.getTaskName() + " | "
                             + ((Event) t).getDate() + "\n", false);
                 } else {
                     throw new DukeException("Invalid event found in save! Aborting...");
                 }
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    /**
+     * Saves loan in a text file.
+     *
+     * @param loanbook The loanbook that contains all entries of the loan.
+     */
+    public void saveLoans(Loanbook loanbook) {
+        for (Contact contact : loanbook.getAllContacts()) {
+            String line = contact.getName() + " | " + contact.getPhoneNumber() + " | "
+                    + contact.getAmount() + " | " + contact.isOwe() + "\n";
+            try {
+                this.writeToFile(Storage.loansFilePath, line, false);
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }

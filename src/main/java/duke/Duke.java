@@ -3,13 +3,14 @@ package duke;
 import java.io.FileNotFoundException;
 import java.time.format.DateTimeParseException;
 
-import duke.command.Command;
 import duke.exception.DukeException;
 import duke.loanbook.Loanbook;
 import duke.loanbook.command.LoanbookCommand;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
+import duke.task.command.Command;
+import duke.task.command.ExitCommand;
 import duke.ui.Ui;
 
 /**
@@ -19,32 +20,36 @@ import duke.ui.Ui;
  * @author Elgin
  */
 public class Duke {
-    /** All Tasks */
     private static TaskList tasks;
 
-    /** Loan Book */
-    private static Loanbook loanbook = new Loanbook();
+    private static Loanbook loanbook;
 
-    /** Storage for tasks. */
     private static Storage storage;
 
-    /** Ui for Duke. */
     private static Ui ui;
 
     /**
      * Constructor for Duke.
      *
-     * @param filePath Path to storage file from root folder (e.g. 'src/data/duke.txt').
      */
-    public Duke(String filePath) {
-        Duke.storage = new Storage(filePath);
+    public Duke() {
+        Duke.storage = new Storage();
         Duke.ui = new Ui();
 
+        // Load tasks from storage.
         try {
             Duke.tasks = new TaskList(Duke.storage.load());
         } catch (FileNotFoundException e) {
-            System.out.println(Duke.ui.getLoadingErrorMsg());
+            System.out.println(Duke.ui.getTaskLoadingErrorMsg());
             Duke.tasks = new TaskList();
+        }
+
+        // Load loanbook from storage.
+        try {
+            Duke.loanbook = new Loanbook(Duke.storage.loadLoanbook());
+        } catch (FileNotFoundException e) {
+            System.out.println(Duke.ui.getLoanbookLoadingErrorMsg());
+            Duke.loanbook = new Loanbook();
         }
     }
 
@@ -55,11 +60,17 @@ public class Duke {
      * @return The message Duke wants to say to the user.
      */
     public String handleUserInput(String userInput) {
-        String dukeMessage = "";
+        String dukeMessage;
 
         try {
             if (Parser.isTaskCommand(userInput)) {
                 Command c = Parser.parse(userInput);
+
+                if (c instanceof ExitCommand) {
+                    Duke.storage.save(Duke.tasks);
+                    Duke.storage.saveLoans(Duke.loanbook);
+                }
+
                 dukeMessage = c.execute(Duke.tasks, Duke.ui, Duke.storage);
             } else {
                 LoanbookCommand c = Parser.parseLoanbookCommand(userInput);

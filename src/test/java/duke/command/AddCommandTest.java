@@ -15,8 +15,8 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.ToDo;
+import duke.task.command.AddCommand;
 import duke.ui.Ui;
-
 
 /**
  * Tests for AddCommand class.
@@ -35,7 +35,7 @@ public class AddCommandTest {
 
         TaskList tasks = new TaskList();
         Ui ui = new Ui();
-        Storage storage = new Storage("src/data/duke.txt");
+        Storage storage = new Storage();
 
         addCommand.execute(tasks, ui, storage);
 
@@ -59,7 +59,7 @@ public class AddCommandTest {
 
         TaskList tasks = new TaskList();
         Ui ui = new Ui();
-        Storage storage = new Storage("src/data/duke.txt");
+        Storage storage = new Storage();
 
         addCommand.execute(tasks, ui, storage);
 
@@ -83,7 +83,7 @@ public class AddCommandTest {
 
         TaskList tasks = new TaskList();
         Ui ui = new Ui();
-        Storage storage = new Storage("src/data/duke.txt");
+        Storage storage = new Storage();
 
         addCommand.execute(tasks, ui, storage);
 
@@ -108,7 +108,7 @@ public class AddCommandTest {
 
         TaskList tasks = new TaskList();
         Ui ui = new Ui();
-        Storage storage = new Storage("src/data/duke.txt");
+        Storage storage = new Storage();
 
         try {
             addCommand.execute(tasks, ui, storage);
@@ -130,7 +130,7 @@ public class AddCommandTest {
 
         TaskList tasks = new TaskList();
         Ui ui = new Ui();
-        Storage storage = new Storage("src/data/duke.txt");
+        Storage storage = new Storage();
 
         try {
             addCommand.execute(tasks, ui, storage);

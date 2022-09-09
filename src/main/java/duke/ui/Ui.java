@@ -9,17 +9,19 @@ import duke.task.Task;
  */
 public class Ui {
     /**
-     * Bye to user (End process message).
+     * Gets a goodbye message.
      *
-     * @return String representation of Bye message.
+     * @return Goodbye message.
      */
     public String getByeMsg() {
         return "Bye. Hope to see you again soon!\n" + "Application closing in 3 seconds...";
     }
 
     /**
-     * Formats a task added message for Duke.
+     * Gets a message saying that task is successfully added.
      *
+     * @param newTaskCount The number of tasks after addition.
+     * @param task The task that is added by Duke.
      * @return Message conveying that task has successfully been added, and the current number of tasks.
      */
     public String getTaskAddedMsg(int newTaskCount, Task task) {
@@ -28,8 +30,10 @@ public class Ui {
     }
 
     /**
-     * Formats a task deleted message for Duke.
+     * Gets a message for successfully deleting a task.
      *
+     * @param newTaskCount The number of tasks left after deletion.
+     * @param taskDescription The string representation of the task that is deleted.
      * @return Message conveying that user that has successfully deleted a task, and the number of tasks left
      */
     public String getTaskDeletedMsg(int newTaskCount, String taskDescription) {
@@ -38,28 +42,30 @@ public class Ui {
     }
 
     /**
-     * Formats a message signaling a task has been successfully marked.
+     * Gets a message signaling a task has been successfully marked.
      *
      * @param taskDescription The description of the task marked.
+     * @return Message saying that a task has been marked.
      */
     public String getTaskMarkedMsg(String taskDescription) {
         return "Nice! I've marked this task as done:\n" + taskDescription;
     }
 
     /**
-     * Formats a message signaling a task has been successfully unmarked.
+     * Gets a message for a successful task unmarked.
      *
      * @param taskDescription The description of the task unmarked.
+     * @return Message signaling a successful task unmarked.
      */
     public String getTaskUnmarkedMsg(String taskDescription) {
         return "OK, I've marked this task as not done yet:\n" + taskDescription;
     }
 
     /**
-     * Formats a message that lists all tasks for Duke.
+     * Gets a message that lists all tasks for Duke.
      *
      * @param allTasks String representation of allTasks.
-     * @return A formatted string representation of all tasks.
+     * @return Message of all tasks.
      */
     public String getAllTasksMsg(String allTasks) {
         if (allTasks.trim().isEmpty()) {
@@ -72,12 +78,21 @@ public class Ui {
     }
 
     /**
-     * File Loading Tasks Error.
+     * Gets task file loading error.
      *
      * @return String representation of loading error.
      */
-    public String getLoadingErrorMsg() {
+    public String getTaskLoadingErrorMsg() {
         return "OOPS!!! Failed to load tasks because file cannot be opened!";
+    }
+
+    /**
+     * Gets loanbook file loading error.
+     *
+     * @return String representation of loading error.
+     */
+    public String getLoanbookLoadingErrorMsg() {
+        return "OOPS!!! Failed to load loanbook because file cannot be opened!";
     }
 
     /**
@@ -91,7 +106,7 @@ public class Ui {
     }
 
     /**
-     * Formats a date parsing error message (Invalid date format).
+     * Gets a date parsing error message (Invalid date format).
      *
      * @return Formatted invalid date error message.
      */
@@ -100,7 +115,7 @@ public class Ui {
     }
 
     /**
-     * Formats String to Number cast error message (because user did not input a number).
+     * Gets String to Number cast error message (because user did not input a number).
      *
      * @return Formatted invalid number error message.
      */
@@ -109,7 +124,7 @@ public class Ui {
     }
 
     /**
-     * Formats all search results message for Duke.
+     * Gets all search results message for Duke.
      *
      * @param searchResults String representation of all string results.
      * @return String representation of all search results.
@@ -118,10 +133,22 @@ public class Ui {
         return "Here are the matching tasks in your list:\n" + searchResults;
     }
 
+    /**
+     * Gets a contact added message for Duke.
+     *
+     * @param addedContact The contact that is added.
+     * @return Message representing contact has been successfully added.
+     */
     public static String getContactAddedMsg(String addedContact) {
         return "Yes sir! I have added " + addedContact + " into the loanbook";
     }
 
+    /**
+     * Gets a string representation of all contacts in Loanbook.
+     *
+     * @param loanbookContacts String representation of all contacts in Loanbook.
+     * @return Message to the user (everything in the loanbook).
+     */
     public static String getLoanbookContacts(String loanbookContacts) {
         if (loanbookContacts.isEmpty()) {
             return "No records are found in the loanbook...";
@@ -131,6 +158,12 @@ public class Ui {
                 + loanbookContacts;
     }
 
+    /**
+     * Gets contact deleted successful message.
+     *
+     * @param nameToRemove The name of the contact to remove.
+     * @return Message for successful delete.
+     */
     public static String getContactDeletedMsg(String nameToRemove) {
         return "Alright! I've just removed this contact: \n"
                 + nameToRemove;

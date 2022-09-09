@@ -176,11 +176,12 @@ public class TaskList {
     }
 
     /**
-     * Returns all tasks in a list format that is stored.
+     * Returns String representation in a list format of all tasks stored.
      *
      * @return String representation of all tasks
      */
-    public String allItems() {
+    @Override
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < TaskList.tasks.size(); i++) {
             int itemIndex = i + 1;

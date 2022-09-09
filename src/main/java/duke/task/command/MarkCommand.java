@@ -1,15 +1,15 @@
-package duke.command;
+package duke.task.command;
 
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
 /**
- * Represents an Unmark Command, which unmarks a task as completed.
+ * Represents a Mark Command, which marks a task as completed.
  *
  * @author Elgin
  */
-public class UnmarkCommand extends Command {
+public class MarkCommand extends Command {
     /** The arguments of the command (e.g. 'sleep /at 2020-12-12'). */
     private static String arguments;
 
@@ -18,12 +18,12 @@ public class UnmarkCommand extends Command {
      *
      * @param arguments The arguments of the command.
      */
-    public UnmarkCommand(String arguments) {
-        UnmarkCommand.arguments = arguments;
+    public MarkCommand(String arguments) {
+        MarkCommand.arguments = arguments;
     }
 
     /**
-     * Executes the Unmark command, and unmarks the task as not done.
+     * Executes the Mark command, and marks the task as done.
      *
      * @param tasks All tasks present in Duke.
      * @param ui The UI controller that handles interaction between user and Duke.
@@ -32,10 +32,10 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        String taskDescription = tasks.markOrUnmark(UnmarkCommand.arguments, false);
+        String taskDescription = tasks.markOrUnmark(MarkCommand.arguments, true);
 
-        assert !taskDescription.isEmpty() : "Task unmarked should not be empty string, even if operation fails";
+        assert !taskDescription.isEmpty() : "Task that is marked should not be empty string, even if operation fails";
 
-        return ui.getTaskUnmarkedMsg(taskDescription);
+        return ui.getTaskMarkedMsg(taskDescription);
     }
 }

@@ -3,19 +3,19 @@ package duke.parser;
 import java.util.Arrays;
 import java.util.List;
 
-import duke.command.AddCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.ExitCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
 import duke.loanbook.command.AddContactCommand;
 import duke.loanbook.command.DeleteContactCommand;
 import duke.loanbook.command.ListContactsCommand;
 import duke.loanbook.command.LoanbookCommand;
+import duke.task.command.AddCommand;
+import duke.task.command.Command;
+import duke.task.command.DeleteCommand;
+import duke.task.command.ExitCommand;
+import duke.task.command.FindCommand;
+import duke.task.command.ListCommand;
+import duke.task.command.MarkCommand;
+import duke.task.command.UnmarkCommand;
 
 /**
  * Parser class that deals with making sense of the user command.
@@ -28,9 +28,8 @@ public class Parser {
      *
      * @param userInput The user input into the CLI.
      * @return Command that the user wants to execute.
-     * @throws DukeException If no matching command is found that Duke supports.
      */
-    public static Command parse(String userInput) throws DukeException {
+    public static Command parse(String userInput) {
         if (Parser.isWrongDukeUsage(userInput)) {
             throw new DukeException(Parser.getErrorMessage(userInput));
         }
@@ -78,6 +77,7 @@ public class Parser {
             "unmark",
             "find",
             "delete",
+            "loanbook",
             "loanbook delete",
             "loanbook add"
         };
@@ -115,7 +115,7 @@ public class Parser {
         case "loanbook delete":
             return "Usage 'loanbook delete name'";
         default:
-            return "There is no error in this user input!";
+            return "There is no error in this user input OR there are no error message for this error!";
         }
     }
 
@@ -129,7 +129,7 @@ public class Parser {
         String[] inputWords = userInput.trim().split(" ");
 
         // Because loanbook commands are 2 words, we need to concatenate them.
-        return inputWords[0].equals("loanbook")
+        return inputWords[0].equals("loanbook") && inputWords.length != 1
                 ? inputWords[0] + " " + inputWords[1]
                 : inputWords[0];
     }
@@ -185,6 +185,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Gets the LoanbookCommand that the user is intending to execute.
+     *
+     * @param userCommand The user command (e.g. loanbook add, loanbook delete).
+     * @param arguments The String preceding the user command.
+     * @return LoanbookCommand that can be executed.
+     */
     public static LoanbookCommand getLoanbookCommand(String userCommand, String arguments) {
         switch (userCommand) {
         case "loanbook add":

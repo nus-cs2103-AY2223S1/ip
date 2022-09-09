@@ -46,6 +46,18 @@ public class Contact {
         return this.name;
     }
 
+    public String getPhoneNumber() {
+        return this.phoneNumber;
+    }
+
+    public double getAmount() {
+        return this.amount;
+    }
+
+    public String isOwe() {
+        return isOwe ? "1" : "0";
+    }
+
     @Override
     public String toString() {
         String amountDescription = this.isOwe
