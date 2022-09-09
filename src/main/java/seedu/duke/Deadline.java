@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
 
     protected LocalDate dueDate;
+    protected String dueDateString;
     protected String dueTime;
 
     /**\
@@ -17,10 +18,11 @@ public class Deadline extends Task {
      * @param description description of Deadline.
      * @param dueDate Due date of Deadline.
      */
-    public Deadline(String description, LocalDate dueDate) {
+    public Deadline(String description, LocalDate dueDate, String dueDateString) {
         super(description);
         this.dueDate = dueDate;
         this.dueTime = "";
+        this.dueDateString = dueDateString;
     }
 
     /**
@@ -30,10 +32,15 @@ public class Deadline extends Task {
      * @param dueDate Due date of Deadline.
      * @param dueTime Due time of Deadline.
      */
-    public Deadline(String description, LocalDate dueDate, String dueTime) {
+    public Deadline(String description, LocalDate dueDate, String dueTime, String dueDateString) {
         super(description);
         this.dueDate = dueDate;
         this.dueTime = dueTime;
+        this.dueDateString = dueDateString;
+    }
+
+    public String getDueDateInString() {
+        return dueDateString;
     }
 
     /**
@@ -42,6 +49,7 @@ public class Deadline extends Task {
      * @return String of due date and time.
      */
     public String dueDateToString() {
+        System.out.println("I called date to string");
         String dueDateString = this.dueDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
         String output;
         if (this.dueTime.equals("")) {
@@ -50,6 +58,15 @@ public class Deadline extends Task {
             output = String.format("%s, %s", dueDateString, this.dueTime);
         }
         return output;
+    }
+
+    public static Deadline reschedule(Deadline deadline, LocalDate rescheduledDate, String rescheduledTime,
+                                      String dateTimeString) {
+        return new Deadline(deadline.getDescription(), rescheduledDate, rescheduledTime, dateTimeString);
+    }
+
+    public static Deadline reschedule(Deadline deadline, LocalDate rescheduledDate, String dateTimeString) {
+        return new Deadline(deadline.getDescription(), rescheduledDate, dateTimeString);
     }
 
     @Override

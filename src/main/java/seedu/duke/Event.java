@@ -25,6 +25,10 @@ public class Event extends Task {
         return this.dueTime;
     }
 
+    public static Event reschedule(Event event, String rescheduledTime) {
+        return new Event(event.getDescription(), rescheduledTime);
+    }
+
     @Override
     public String toString() {
         String output = String.format("[E][%s] %s (at: %s)", this.getStatusIcon(), this.description, this.dueTime);

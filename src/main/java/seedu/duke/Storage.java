@@ -95,12 +95,14 @@ public class Storage {
         assertionList.add("E");
         assert assertionList.contains(s);
         if (s.equals("D")) {
+
             String[] dateAndTime = datetime.split(" ");
             if (dateAndTime.length == 2) {
                 String dueDate = dateAndTime[0];
                 String dueTime = dateAndTime[1];
                 LocalDate localDate = getLocalDate(dueDate);
-                Task deadline = new Deadline(description, localDate, dueTime);
+                String dueDateTime = dueDate + " " + dueTime;
+                Task deadline = new Deadline(description, localDate, dueTime, dueDateTime);
                 if (isMarked.equals("1")) {
                     deadline.mark();
                 }
@@ -108,7 +110,7 @@ public class Storage {
             } else {
                 String dueDate = dateAndTime[0];
                 LocalDate localDate = getLocalDate(dueDate);
-                Task deadline = new Deadline(description, localDate);
+                Task deadline = new Deadline(description, localDate, dueDate);
                 if (isMarked.equals("1")) {
                     deadline.mark();
                 }
@@ -134,8 +136,8 @@ public class Storage {
         Scanner s = new Scanner(f);
         while (s.hasNext()) {
             String[] taskInList = s.nextLine().split(" \\| ");
-            if (taskInList.length == 4) {
-                addDeadlineOrEvent(taskList, taskInList[0], taskInList[1],taskInList[2],taskInList[3]);
+            if (taskInList[0].equals("D") || taskInList[0].equals("E")) {
+                addDeadlineOrEvent(taskList, taskInList[0], taskInList[1], taskInList[2], taskInList[3]);
             } else {
                 addToDo(taskList, taskInList[1],taskInList[2]);
             }
@@ -162,8 +164,6 @@ public class Storage {
         return deadline.dueDateToString();
     }
 
-    // delete file, add lines to write, put string together and write in file writer
-    // NEVER DELETE WRITE THE FILE IN THE SAME METHOD
     /**
      * Updates data/duke.txt whenever there is a change to the list of tasks.
      *
@@ -171,6 +171,7 @@ public class Storage {
      * @throws IOException
      */
     public static void rewriteTasks(TaskList tl) throws IOException{
+        System.out.println("I am rewriting");
         ArrayList<Task> currTaskList = tl.taskList;
         String path = "data/duke.txt";
         FileWriter fw = new FileWriter(path);
@@ -183,12 +184,12 @@ public class Storage {
                 taskListArray.add(taskString);
             } else if (currTaskList.get(i) instanceof Deadline) {
                 System.out.println("task is a deadline");
-                String taskString = String.format("T | %s | %s | %s", currTaskList.get(i).getIsDone() ? 1 : 0,
-                        currTaskList.get(i).getDescription(), getDeadlineDueDate((Deadline) currTaskList.get(i)));
+                String taskString = String.format("D | %s | %s | %s", currTaskList.get(i).getIsDone() ? 1 : 0,
+                        currTaskList.get(i).getDescription(), ((Deadline) currTaskList.get(i)).dueDateString);
                 taskListArray.add(taskString);
             } else {
                 System.out.println("task is an event");
-                String taskString = String.format("T | %s | %s | %s", currTaskList.get(i).getIsDone() ? 1 : 0,
+                String taskString = String.format("E | %s | %s | %s", currTaskList.get(i).getIsDone() ? 1 : 0,
                         currTaskList.get(i).getDescription(), getEventDueDate((Event) currTaskList.get(i)));
                 taskListArray.add(taskString);
             }

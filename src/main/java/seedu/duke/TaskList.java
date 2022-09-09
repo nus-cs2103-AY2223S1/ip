@@ -48,13 +48,19 @@ public class TaskList {
         String addLine = "Got it. I've added this task:";
         switch (taskType) {
             case "todo":
-                addToDo(input, addLine);
+                ToDo todo = addToDo(input);
+                taskList.add(todo);
+                addLine += ("\n  " + todo);
                 break;
             case "deadline":
-                addDeadline(input, addLine);
+                Deadline deadline = addDeadline(input);
+                taskList.add(deadline);
+                addLine += ("\n  " + deadline);
                 break;
             case "event":
-                addEvent(input, addLine);
+                Event event = addEvent(input);
+                taskList.add(event);
+                addLine += ("\n  " + event);
                 break;
 
         }
@@ -65,50 +71,58 @@ public class TaskList {
     }
 
 
-    private static void addToDo(String input, String addLine) throws DukeException {
+    private static ToDo addToDo(String input) throws DukeException {
         String[] removeTaskType = input.split("todo ");
         String description = String.join("", removeTaskType);
         if (description.equals("todo")) {
             throw new DukeException("");
         }
-        Task todo = new ToDo(description);
-        taskList.add(todo);
-        addLine += ("\n  " + todo);
+        return new ToDo(description);
+
     }
 
-    private static void addDeadline(String input, String addLine) {
-        String[] removeTaskType2 = input.split("deadline ");
-        String desAndBy = String.join("", removeTaskType2);
+    private static Deadline addDeadline(String input) {
+        // deadline return book /by 2-12-2019 1800
+        System.out.println(input);
+        String[] removeTaskType = input.split("deadline ");
+        for (int i=0; i< removeTaskType.length; i++ ){
+            System.out.println(removeTaskType[i]);
+        }
+        String desAndBy = String.join("", removeTaskType);
+        System.out.println(desAndBy);
         String[] sliceByDesAndBy = desAndBy.split(" /by ");
-        String description2 = sliceByDesAndBy[0];
+        String description = sliceByDesAndBy[0];
+
         String dueDateAndTime = sliceByDesAndBy[1];
+        System.out.println("description: "+ description);
+        System.out.println("due date and time " + dueDateAndTime);
         String[] dateAndTime = dueDateAndTime.split(" ");
         System.out.println(dateAndTime.length);
         if (dateAndTime.length == 2) {
             String dueDate = dateAndTime[0];
             String dueTime = dateAndTime[1];
+            System.out.println("dueDate: " + dueDate);
+            System.out.println("dueTime: "+ dueTime);
+            String dueDateString = dueDate + " " + dueTime;
             LocalDate localDate = Storage.getLocalDate(dueDate);
-            Task deadline = new Deadline(description2, localDate, dueTime);
-            taskList.add(deadline);
-            addLine += ("\n  " + deadline);
+            System.out.println(new Deadline(description, localDate, dueTime, dueDateString));
+            return new Deadline(description, localDate, dueTime, dueDateString);
+
         } else {
             String dueDate = dateAndTime[0];
             LocalDate localDate = Storage.getLocalDate(dueDate);
-            Task deadline = new Deadline(description2, localDate);
-            taskList.add(deadline);
-            addLine += ("\n  " + deadline);
+            return new Deadline(description, localDate, dueDate);
         }
     }
 
-    private static void addEvent(String input, String addLine) {
-        String[] removeTaskType3 = input.split("event ");
-        String desAndBy2 = String.join("", removeTaskType3);
-        String[] sliceByDesAndBy2 = desAndBy2.split(" /at ");
-        String description3 = sliceByDesAndBy2[0];
-        String dueTime2 = sliceByDesAndBy2[1];
-        Task event = new Event(description3, dueTime2);
-        taskList.add(event);
-        addLine += ("\n  " + event);
+    private static Event addEvent(String input) {
+        String[] removeTaskType = input.split("event ");
+        String desAndBy = String.join("", removeTaskType);
+        String[] sliceByDesAndBy = desAndBy.split(" /at ");
+        String description = sliceByDesAndBy[0];
+        String dueTime = sliceByDesAndBy[1];
+        return new Event(description, dueTime);
+
     }
 
     /**
@@ -122,6 +136,35 @@ public class TaskList {
         this.taskList.remove(num - 1);
         deleteLine += String.format("\nNow you have %s tasks in the list.", this.taskList.size());
         return deleteLine;
+    }
+
+
+    public String rescheduleTask(int num, ArrayList<String> rescheduleDateAndTime) {
+        String line = "Noted. I've snoozed this task:";
+        line += "\n  " + this.taskList.get(num - 1) + "\nto\n  ";
+        if (this.taskList.get(num - 1) instanceof Deadline) {
+            Deadline currTask = (Deadline) this.taskList.get(num - 1);
+            System.out.println(currTask);
+            String dueDateString = rescheduleDateAndTime.get(0);
+            LocalDate newDate = Storage.getLocalDate(rescheduleDateAndTime.get(0));
+            rescheduleDateAndTime.remove(0);
+            String newTime = String.join(" ", rescheduleDateAndTime);
+            String dueDateTimeString = dueDateString + " " + newTime;
+            System.out.println(newTime);
+            if (!newTime.equals("")) {
+                this.taskList.set(num - 1, Deadline.reschedule(currTask, newDate, newTime,dueDateTimeString));
+            } else {
+                this.taskList.set(num - 1, Deadline.reschedule(currTask, newDate, dueDateTimeString));
+            }
+            line += this.taskList.get(num - 1);
+        } else if (this.taskList.get(num - 1) instanceof Event) {
+            Event currTask = (Event) this.taskList.get(num - 1);
+            String newDate = String.join(" ", rescheduleDateAndTime);
+            this.taskList.set(num - 1, Event.reschedule(currTask, newDate));
+            line += this.taskList.get(num - 1);
+        }
+        line += String.format("\nNow you have %s tasks in the list.", this.taskList.size());
+        return line;
     }
 
     /**

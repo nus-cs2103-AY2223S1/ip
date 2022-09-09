@@ -54,7 +54,6 @@ public class Parser {
                     taskList.taskList.get(taskNum2 - 1));
             return output2;
         case "delete":
-
             try {
                 int taskNum3 = Integer.parseInt(inputArr[1]);
                 String deleteLine = taskList.deleteTask(taskNum3);
@@ -76,6 +75,7 @@ public class Parser {
         case "deadline":
             try {
                 String addLine = TaskList.addTask("deadline", input);
+                System.out.println("I added this deadline");
                 Storage.rewriteTasks(taskList);
                 return addLine;
             } catch (IndexOutOfBoundsException | DukeException | IOException e) {
@@ -98,6 +98,21 @@ public class Parser {
         case "bye":
             duke.closeWindow();
             return Ui.showGoodbyeMessage();
+        case "reschedule":
+            try {
+                int taskToRescheduleNum = Integer.parseInt(inputArr[1]);
+                ArrayList<String> rescheduleDateAndTime = new ArrayList<>();
+                for (int i = 0; i < inputArr.length; i++) {
+                    rescheduleDateAndTime.add(inputArr[i]);
+                }
+                rescheduleDateAndTime.remove(0);
+                rescheduleDateAndTime.remove(0);
+                String rescheduledTaskLine = taskList.rescheduleTask(taskToRescheduleNum, rescheduleDateAndTime);
+                Storage.rewriteTasks(taskList);
+                return rescheduledTaskLine;
+            } catch (IOException e) {
+                // just catching error
+            }
         default:
             try {
                 validate(inputArr[0]);
