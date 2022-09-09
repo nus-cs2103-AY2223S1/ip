@@ -103,6 +103,6 @@ public class EventTask extends Task {
      */
     @Override
     public String toString() {
-        return "[" + TASK_TYPE + "]" + super.toString() + " (at:" + getTaskTime() + ")";
+        return "[" + TASK_TYPE + "]" + super.toString() + " (at: " + getTaskTime() + ")";
     }
 }

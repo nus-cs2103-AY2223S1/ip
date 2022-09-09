@@ -54,7 +54,7 @@ public class ToDoTask extends Task {
      */
     @Override
     public String getFormattedString() {
-        return TASK_TYPE + " | " + (isCompleted() ? 1 : 0) + " | " + getTaskName() + "\n";
+        return TASK_TYPE + "<>" + (isCompleted() ? 1 : 0) + "<>" + getTaskName() + "\n";
     }
 
     /**
