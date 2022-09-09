@@ -5,10 +5,16 @@ import java.time.LocalTime;
 
 /** A class that creates a Task object. */
 public class Task {
+    enum Priority {
+        LOW,
+        MEDIUM,
+        HIGH
+    }
     protected String description;
     protected boolean isDone;
     protected LocalDate date;
     protected LocalTime time;
+    protected Priority priority;
 
     /**
      * A constructor that initialises the Task object.
@@ -62,12 +68,65 @@ public class Task {
     }
 
     /**
-     * Returns the description of the task and the status of it.
+     * Set the priority of the task based on user input.
      *
-     * @return String that describes the activity and the status of the task.
+     * @param priority String input representing desired priority.
+     */
+    public void setPriority(String priority) {
+        try {
+            switch (priority) {
+            case "high":
+                this.priority = Priority.HIGH;
+                break;
+            case "medium":
+                this.priority = Priority.MEDIUM;
+                break;
+            case "low":
+                this.priority = Priority.LOW;
+                break;
+            default:
+                throw new DukeException("Invalid Priority Input!");
+            }
+        } catch (DukeException e) {
+            e.getMessage();
+        }
+    }
+
+    /**
+     * Get priority of the task.
+     *
+     * @return String representing the priority of the task.
+     */
+    public String getPriority() {
+        //Return blank space if no priority is set
+        if (this.priority == null) {
+            return " ";
+        }
+
+        //Return strings according to the respective priority values
+        try {
+            switch (this.priority) {
+            case HIGH:
+                return "H";
+            case MEDIUM:
+                return "M";
+            case LOW:
+                return "L";
+            default:
+                throw new DukeException("Invalid Priority!");
+            }
+        } catch(DukeException e) {
+            return e.getMessage();
+        }
+    }
+
+    /**
+     * Returns the description, status and priority of the task.
+     *
+     * @return String that describes the activity, status and priority of the task.
      */
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "]" + this.description;
+        return "[" + this.getStatusIcon() + "]" + "[" + this.getPriority() + "]" + this.description;
     }
 }

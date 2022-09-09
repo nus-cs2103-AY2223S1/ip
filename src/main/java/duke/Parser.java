@@ -47,6 +47,8 @@ public class Parser {
                 return this.markTask(inputString);
             } else if (firstWord.equals("unmark")) {
                 return this.unmarkTask(inputString);
+            } else if (firstWord.equals("high") || firstWord.equals("medium") || firstWord.equals("low")) {
+                return this.setPriority(inputString);
             } else if (firstWord.equals("todo")) {
                 return this.parseToDo(restOfString);
             } else if (firstWord.equals("deadline")) {
@@ -68,10 +70,31 @@ public class Parser {
     }
 
     /**
+     * Set priority of the task.
+     *
+     * @param inputString String array containing all the words in the user input.
+     * @return String showing that the priority of the task has been set.
+     * @throws IOException From the writeToFile() method.
+     */
+    public String setPriority(String[] inputString) throws IOException {
+        //Get the task number to set priority for
+        int number = Integer.parseInt(inputString[1]);
+
+        //Set priority of task
+        this.taskList.setTaskPriority(number, inputString[0]);
+
+        //Update the contents of the task list file
+        this.storage.writeToFile();
+
+        return "Nice! I've set this task as " + inputString[0] + " priority:\n "
+                + this.taskList.getTask(number - 1).toString() + '\n';
+    }
+
+    /**
      * Commands the Duke bot to mark a task.
      *
      * @param inputString String array that contains all the words in the user input.
-     * @return List of tasks with the chosen task marked as done.
+     * @return String showing that the chosen task is marked as done.
      * @throws IOException From the writeToFile() method.
      */
     public String markTask(String[] inputString) throws IOException {
@@ -92,7 +115,7 @@ public class Parser {
      * Commands the Duke bot to unmark a task.
      *
      * @param inputString String array that contains all the words in the user input.
-     * @return List of tasks with the chosen task unmarked as not done.
+     * @return String showing that the chosen task is unmarked as not done.
      * @throws IOException From the writeToFile() method.
      */
     public String unmarkTask(String[] inputString) throws IOException {

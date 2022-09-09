@@ -117,5 +117,15 @@ public class TaskList {
         this.taskArray.get(index - 1).unMarkTask();
         assert this.taskArray.get(index - 1).isDone == false;
     }
+
+    /**
+     * Set the priority of the task in the taskList array.
+     *
+     * @param index Index of the task involved.
+     * @param priority String representing the priority of the task to be set.
+     */
+    public void setTaskPriority(int index, String priority) {
+        this.taskArray.get(index - 1).setPriority(priority);
+    }
 }
 

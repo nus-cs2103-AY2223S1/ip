@@ -1,2 +1,4 @@
 Here are the tasks in your list:
-1.[T][ ] study math
+1.[T][ ][M] study
+2.[D][ ][L] homework (by: Sep 24 2022 03:00)
+3.[E][ ][H] soccer match (at: Sep 12 2022 06:00)
