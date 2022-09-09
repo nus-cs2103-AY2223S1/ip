@@ -95,13 +95,9 @@ public class Duke extends Application {
                         ui.tasksLoadedMsg(tasks.size())), dukeImage)
         );
 
-        sendButton.setOnMouseClicked((event) -> {
-            handleUserInput();
-        });
+        sendButton.setOnMouseClicked(event -> handleUserInput());
 
-        userInput.setOnAction((event) -> {
-            handleUserInput();
-        });
+        userInput.setOnAction((event) -> handleUserInput());
     }
 
     private String getResponse(String input) {
