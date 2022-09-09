@@ -43,6 +43,18 @@ public class Task {
         return "OK, I've marked this task as not done yet:\n\t[ ] " + this.description;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof Task) {
+            Task task = (Task) obj;
+            return task.description.equals(this.description);
+        }
+        return false;
+    }
+
 
     @Override
     public String toString() {

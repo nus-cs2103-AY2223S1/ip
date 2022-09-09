@@ -8,3 +8,5 @@
 [T][ ] go where
 [D][ ] drink coke  (by: Sunday)
 [T][ ] bye bye
+[T][ ] go where
+[T][ ] read book

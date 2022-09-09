@@ -33,6 +33,18 @@ public class Deadline extends Task {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if(obj == this) {
+            return true;
+        }
+        if (obj instanceof Deadline) {
+            Deadline deadline = (Deadline) obj;
+            return super.equals(deadline) && this.by.equals(deadline.by);
+        }
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";
     }

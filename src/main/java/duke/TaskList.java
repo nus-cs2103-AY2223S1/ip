@@ -127,6 +127,9 @@ public class TaskList {
         if (userInput.isEmpty()) {
             throw new DukeException("\t☹ OOPS!!! The description of a todo cannot be empty.");
         }
+        if(duplicateCheck(todo)) {
+            return "Duplicate item entered";
+        }
         storeTasks.add(todo);
         printStatement = "Got it. I've added this task:\n";
         printStatement += "\t" + todo.toString() + "\n";
@@ -145,6 +148,9 @@ public class TaskList {
     public String deadline(String userInput, String by) {
         Deadline deadline = new Deadline(userInput, by);
         dateProcessor(deadline);
+        if(duplicateCheck(deadline)) {
+            return "Duplicate item entered";
+        }
         storeTasks.add(deadline);
         printStatement = "Got it. I've added this task:\n";
         printStatement += "\t" + deadline.toString() + "\n";
@@ -161,6 +167,9 @@ public class TaskList {
      */
     public String event(String userInput, String duration) {
         Event event = new Event(userInput, duration);
+        if(duplicateCheck(event)) {
+            return "Duplicate item entered";
+        }
         storeTasks.add(event);
         printStatement = "Got it. I've added this task:\n";
         printStatement += "\t" + event.toString() + "\n";
@@ -185,6 +194,16 @@ public class TaskList {
         if((firstCommand.equals("deadline") || firstCommand.equals("event")) && userInput.split("/", 2).length == 1) {
             throw new DukeException("\t ☹ OOPS!!! The time due or needed cannot be empty.");
         }
+    }
+
+    public boolean duplicateCheck(Task task) {
+        System.out.println("check");
+        for(int i = 0; i < storeTasks.size(); i++) {
+            if(storeTasks.get(i).equals(task)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

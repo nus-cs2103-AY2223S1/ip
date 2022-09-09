@@ -18,6 +18,18 @@ public class Event extends Task {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if(obj == this) {
+            return true;
+        }
+        if (obj instanceof Event) {
+            Event event = (Event) obj;
+            return super.equals(event) && this.duration.equals(event.duration);
+        }
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + duration + ")";
     }
