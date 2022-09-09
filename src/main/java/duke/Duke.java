@@ -1,6 +1,5 @@
 package duke;
 
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -17,11 +16,6 @@ public class Duke {
     private boolean isExit;
     private TaskList tasks;
     private Ui ui;
-
-
-    public boolean isExit() {
-        return isExit;
-    }
 
     /**
      * Constructor that initializes Duke.
@@ -44,14 +38,20 @@ public class Duke {
     }
 
 
+    public boolean isExit() {
+        return isExit;
+    }
 
 
+    /**
+     * Return a String that represents welcome message.
+     *
+     * @return String that represents welcome message.
+     */
     public String sayHi() {
         ui.showWelcome();
         return ui.displayDescription();
     }
-
-
 
     /**
      * You should have your own function to generate a response to user input.
