@@ -36,6 +36,10 @@ public class Ui {
         printLine();
     }
 
+    public String addTwoLines(String message) {
+        return HORIZONTAL_BAR + "\n" + message + "\n" + HORIZONTAL_BAR;
+    }
+
     public String listAllItems(List<Task> tasks) {
         //printLine();
         String result = "";

@@ -5,7 +5,7 @@ import duke.command.*;
 
 public class Parser {
     public static Command parse(String input) throws DukeException {
-        String[] inputArray = input.split(" ");
+        String[] inputArray = input.split(" ", 2);
         String inputCommand = inputArray[0];
         switch (inputCommand) {
         case "bye":
