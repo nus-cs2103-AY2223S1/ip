@@ -70,6 +70,13 @@ Example of usage:
 
 `find 12 Dec` returns tasks with "12 Dec" as their dates.
 
+### `count completed` - Get the number of completed tasks.
+
+Get the number of completed tasks in Duke's taskList.
+
+### `count uncompleted` - Get the number of uncompleted tasks.
+
+Get the number of uncompleted tasks in Duke's taskList.
 
 ### `bye` - Exit the program
 
