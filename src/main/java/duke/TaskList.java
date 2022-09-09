@@ -1,5 +1,6 @@
 package duke;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import duke.task.Task;
@@ -13,6 +14,10 @@ public class TaskList {
         this.data = storage.load();
         this.storage = storage;
         this.ui = ui;
+    }
+    
+    public TaskList(ArrayList<Task> data) {
+        this.data = data;
     }
     /**
      * Adds the task to the list and to the data file. 
@@ -73,6 +78,23 @@ public class TaskList {
             }
         }
         return sb.toString();
+    }
+
+
+    /**
+     * Sorts a copy of the list of tasks in chronological order of deadlines.
+     * DeadlineTasks are placed above all other Tasks with no deadlines.
+     * All other Tasks' relative positions to one another remain.
+     * Original list of tasks is not modified, and subsequent commands like delete 
+     * or mark have to be done in relation to the original list. 
+     *
+     * @return String representation of sorted list.
+     */
+    public String sort() {
+        ArrayList<Task> copy = new ArrayList<>(data);
+        copy.sort(null);
+        TaskList sortedTaskList = new TaskList(copy);
+        return "Sorted in chronological order of deadlines\n" + sortedTaskList;
     }
 
     @Override

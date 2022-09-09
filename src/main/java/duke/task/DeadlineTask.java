@@ -22,4 +22,16 @@ public class DeadlineTask extends Task {
         String formattedDate = month + " " + dayOfMonth + " " + year;
         return "[D]" + super.toString() + " (by: " + formattedDate + ")";
     }
+    
+    public int compareTo(Task task) {
+        if (!(task instanceof DeadlineTask)) {
+            return -1;
+        }
+        DeadlineTask dTask = (DeadlineTask) task;
+        return this.by.isBefore(dTask.by)
+                ? -1
+                : this.by.isAfter(dTask.by)
+                ? 1
+                : 0;
+    }
 }
