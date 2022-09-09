@@ -38,7 +38,7 @@ public class Parser {
             String deadlineTime = deadlineArr[1];
             return new AddDeadlineCommand(deadlineName, deadlineTime);
         default:
-            throw new DukeException("Shindo, I am confused (T＿T)(T＿T)(T＿T)");
+            throw new DukeException("Shindo, I am confused...");
         }
     }
 }
