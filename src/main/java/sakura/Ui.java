@@ -2,12 +2,31 @@ package sakura;
 
 import java.util.List;
 
+import javafx.application.Platform;
+
 public class Ui {
     static String DIV = "_________________________________________________________________";
     static String DIV2 = "========================================";
 
     public String printDiv() {
         return "\t" + DIV;
+    }
+
+    /**
+     * The logo
+     * @return the logo
+     */
+    public static String logo() {
+        String logo =
+         "  ######   #                   ##########           #       \n"
+        +"           #   ###    ######            # ######### #   ### \n"
+        +"########## ####            #           #  #       # ####    \n"
+        +"     #     #               #   ########   #       # #       \n"
+        +"     #     #               #       ##     #       # #       \n"
+        +"    #      #        ##########   ##       ######### #       \n"
+        +"  ##        #######            ##                    #######\n";
+
+        return logo;
     }
 
     /**
@@ -30,6 +49,21 @@ public class Ui {
     public String showExit() {
         return "Bye Senpai! It was a pleasure serving you, see you again soon!" + "\t" + DIV2 + "\n";
     }
+
+    /**
+     * To wait for 1.5 seconds before closing the program
+     */
+    public static void exitProgram() {
+        new Thread(() -> {
+            try{
+                Thread.sleep(1500);
+            } catch (Exception e){
+            }finally{
+                Platform.exit();
+            }
+        }).start();
+    }
+
 
     /**
      * Adds a particular task input by the user into the list of tasks.
@@ -78,11 +112,11 @@ public class Ui {
 
     public static String searchTaskDescription(List<Task> searchTask) {
         if (searchTask.size() > 0) {
-            StringBuilder searcher = new StringBuilder("Senpai, these are the tasks in your list:");
+            StringBuilder searcher = new StringBuilder("Senpai, these are the tasks in your list: \n");
             for (int i = 0; i < searchTask.size(); i++) {
                 int index = i + 1;
                 Task task = searchTask.get(i);
-                searcher.append("\t").append(index).append(".").append(task);
+                searcher.append("\t").append(index).append(".").append(task).append("\n");
             }
             return searcher.toString();
         } else {

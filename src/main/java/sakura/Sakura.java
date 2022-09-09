@@ -43,7 +43,6 @@ public class Sakura {
     }
 
     public String getResponse(String input) {
-        System.out.println(Ui.greet());
         return Parser.parseCommand(input, taskList);
     }
 }
