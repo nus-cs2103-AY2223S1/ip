@@ -1,10 +1,20 @@
 package duke;
 
+/**
+ * Represents a client of the user.
+ */
 public class Client {
     private final String name;
-    private int phoneNumber;
-    private String address;
+    private final int phoneNumber;
+    private final String address;
 
+    /**
+     * Constructor for client class.
+     *
+     * @param name name of client.
+     * @param phoneNumber phone number of client.
+     * @param address address of client.
+     */
     public Client(String name, int phoneNumber, String address) {
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -15,13 +25,11 @@ public class Client {
         return this.phoneNumber == phoneNumber;
     }
 
-    public void changePhoneNumber(int newNumber) {
-        this.phoneNumber = newNumber;
-    }
-
-    public void changeAddress(String newAddress) {
-        this.address = newAddress;
-    }
+    /**
+     * Returns String representation of client.
+     *
+     * @return String representation of client.
+     */
     @Override
     public String toString() {
         return "Name: " + name + "\n" +
@@ -29,6 +37,11 @@ public class Client {
                 "Address: " + address;
     }
 
+    /**
+     * Returns String representation of client in save file format.
+     *
+     * @return String representation of client in save file format.
+     */
     public String toSaveString() {
         return name + " " + phoneNumber + " " + address;
     }

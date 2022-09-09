@@ -42,7 +42,7 @@ public class AddTaskCommand extends Command {
      *
      * @param taskList task list.
      * @param storage files storing task list.
-     * @return String response of Duke regarding user input.
+     * @return String representation of how task list changed.
      * @throws DukeException if timing is of the wrong format.
      */
     @Override

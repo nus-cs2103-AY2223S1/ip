@@ -24,7 +24,8 @@ public class ExitCommand extends Command {
      *
      * @param taskList task list.
      * @param storage  files storing task list.
-     * @return
+     * @param clientList client list.
+     * @return String representation of goodbye.
      */
     @Override
     public String execute(TaskList taskList, Storage storage, ClientList clientList) {

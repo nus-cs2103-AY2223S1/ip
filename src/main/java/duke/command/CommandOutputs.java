@@ -33,7 +33,7 @@ public class CommandOutputs {
      * @return return String of list of the tasks in Duke.
      * @throws DukeException thrown if list is empty.
      */
-    public static String showListOut(TaskList taskList) throws DukeException {
+    public static String showTaskList(TaskList taskList) throws DukeException {
         if (taskList.size() == 0) {
             throw new DukeException("You do not have any tasks in the list");
         }
@@ -69,7 +69,7 @@ public class CommandOutputs {
     }
 
     /**
-     * Returns String of marked task
+     * Returns String of marked task.
      *
      * @param taskList list of tasks.
      * @param index index of marked task in list of tasks.
@@ -105,6 +105,13 @@ public class CommandOutputs {
                 taskList;
     }
 
+    /**
+     * Returns String of added client and updated number of clients.
+     *
+     * @param client added client.
+     * @param clientList client list added to.
+     * @return String of added client and updated number of clients.
+     */
     public static String showNewClient(Client client, ClientList clientList) {
         String output = "Nice! Added this client:\n" +
                 client.toString() + "\n";
@@ -112,6 +119,13 @@ public class CommandOutputs {
                 : output + String.format("Now you have %d clients", clientList.size());
     }
 
+    /**
+     * Returns String representation of client list.
+     *
+     * @param clientList client list.
+     * @return String representation of client list.
+     * @throws DukeException if there are no clients in the list.
+     */
     public static String showClientList(ClientList clientList) throws DukeException {
         if (clientList.size() == 0) {
             throw new DukeException("You have no clients right now rip");
@@ -120,6 +134,13 @@ public class CommandOutputs {
                 clientList;
     }
 
+
+    /**
+     * Returns String representation of deleted client.
+     *
+     * @param client deleted client.
+     * @return String representation of deleted client.
+     */
     public static String showDeletedClient(Client client) {
         return "Deleted Client:\n" +
                 client;

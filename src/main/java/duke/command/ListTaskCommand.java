@@ -25,11 +25,12 @@ public class ListTaskCommand extends Command {
      *
      * @param taskList task list.
      * @param storage  files storing task list.
-     * @return
-     * @throws DukeException if list is empty.
+     * @param clientList client list.
+     * @return String representation of task list.
+     * @throws DukeException if no tasks.
      */
     @Override
     public String execute(TaskList taskList, Storage storage, ClientList clientList) throws DukeException {
-        return CommandOutputs.showListOut(taskList);
+        return CommandOutputs.showTaskList(taskList);
     }
 }

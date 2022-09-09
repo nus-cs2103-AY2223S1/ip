@@ -45,6 +45,11 @@ public class TaskList {
         return findList;
     }
 
+    /**
+     * Returns String representation of task list in saved file format.
+     *
+     * @return String representation of task list in saved file format.
+     */
     public String toSaveString() {
         StringBuilder output = new StringBuilder();
         for(Task task : taskList) {
@@ -53,6 +58,11 @@ public class TaskList {
         return output.toString();
     }
 
+    /**
+     * Returns String representation of task list.
+     *
+     * @return String representation of task list.
+     */
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();

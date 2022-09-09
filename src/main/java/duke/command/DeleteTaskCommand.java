@@ -10,7 +10,7 @@ import duke.task.Task;
  * Represents a command to delete a task from task list.
  */
 public class DeleteTaskCommand extends Command {
-    private int index;
+    private final int index;
 
     /**
      * Constructor for DeleteCommand class.
@@ -25,9 +25,10 @@ public class DeleteTaskCommand extends Command {
      * Deletes task from task list and saves changes made to task list.
      *
      * @param taskList task list.
-     * @param commandOutputs       user interface of program.
      * @param storage  files storing task list.
-     * @return
+     * @param clientList client list.
+     * @return String representation of deleted task.
+     * @throws DukeException if index does is out of bounds in the task list.
      */
     @Override
     public String execute(TaskList taskList, Storage storage, ClientList clientList) throws DukeException {

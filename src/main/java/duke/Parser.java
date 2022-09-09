@@ -10,9 +10,9 @@ public class Parser {
     /**
      * Returns specific command to execute from processing user input.
      *
-     * @param input user input from UI.
+     * @param input user input.
      * @return specific command to execute.
-     * @throws DukeException if user input is of wrong format or unknown instruction
+     * @throws DukeException if user input is of wrong format or unknown instruction.
      */
     public static Command parseInput(String input) throws DukeException {
         if (!input.contains(" ")) {
@@ -140,8 +140,11 @@ public class Parser {
         return new FindCommand(info);
     }
 
-    private static Command parseClient(String info) {
+    private static Command parseClient(String info) throws DukeException {
         String[] nameNumberAddress = info.split(" ", 3);
+        if (nameNumberAddress.length != 3) { //Guard clause
+            throw new DukeException("client needs to have a name, phone number and address");
+        }
         String name = nameNumberAddress[0];
         int number = Integer.parseInt(nameNumberAddress[1]);
         String address = nameNumberAddress[2];
@@ -155,12 +158,12 @@ public class Parser {
     /**
      * Interprets information from saved file and returns the command to add the task on the line.
      *
-     * @param input saved file line of contents.
+     * @param input saved file line of tasks.
      * @return specific command to execute.
      * @throws DukeException If the file format is incorrect.
      */
     public static Command parseSavedTaskList(String input) throws DukeException {
-        //Saved input is in the format: Instruction int(indicating mark) task etc.
+        //Saved input is in the format: Instruction integer(indicating mark) task etc.
         String[] inputSplit = input.split(" ", 3);
         String instruction = inputSplit[0];
         boolean done = inputSplit[1].equals("1");
@@ -179,14 +182,26 @@ public class Parser {
             String eventTiming = taskAndAt[1];
             return new AddSavedTaskCommand(eventTask, Instructions.event, eventTiming, done);
         default:
-            throw new DukeException("Saved file input format incorrect");
+            throw new DukeException("task list saved file input format incorrect");
         }
     }
 
+    /**
+     * Interprets information from saved file and returns the command to add the client on the line
+     *
+     * @param input saved file line of clients.
+     * @return AddSavedClientCommand
+     * @throws DukeException if client list saved file is in wrong format
+     */
     public static Command parseSavedClientList(String input) throws DukeException {
         String[] inputSplit = input.split(" ", 3);
         String name = inputSplit[0];
-        int phoneNumber = Integer.parseInt(inputSplit[1]);
+        int phoneNumber;
+        try {
+            phoneNumber = Integer.parseInt(inputSplit[1]);
+        } catch (NumberFormatException e) {
+            throw new DukeException("Client List saved file is in wrong format.");
+        }
         String address = inputSplit[2];
         return new AddSavedClientCommand(name, phoneNumber, address);
     }

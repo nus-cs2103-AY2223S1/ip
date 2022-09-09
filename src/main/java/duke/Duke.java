@@ -1,7 +1,6 @@
 package duke;
 
 import duke.command.Command;
-import duke.command.CommandOutputs;
 import duke.task.TaskList;
 
 
@@ -25,7 +24,6 @@ public class Duke {
 
     /**
      * Constructor for class Duke.
-     *
      */
     public Duke() {
         this.taskList = new TaskList();

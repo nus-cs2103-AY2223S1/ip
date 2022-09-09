@@ -19,7 +19,6 @@ public class Deadlines extends Task {
      * @param isDone whether task is done.
      *             true if marked.
      *             false if unmarked.
-     *
      * @throws DukeException if deadline is not in the format dd/MM/yyyy HHmm.
      */
     public Deadlines(String task, String deadline, boolean isDone) throws DukeException {

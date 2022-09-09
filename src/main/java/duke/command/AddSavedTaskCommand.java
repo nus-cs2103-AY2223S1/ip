@@ -49,14 +49,13 @@ public class AddSavedTaskCommand extends Command {
     }
 
     /**
-     * Adds saved task into task list.
+     * Adds task to task list.
      *
-     * @param taskList task list.
+     * @param taskList list of tasks.
      * @param storage files storing task list.
-     *
-     * @return String response of Duke regarding user input
-     *
-     * @throws DukeException if timing is of the wrong format.
+     * @param clientList list of clients.
+     * @return nothing.
+     * @throws DukeException if format of save file is wrong.
      */
     @Override
     public String execute(TaskList taskList, Storage storage, ClientList clientList) throws DukeException {
@@ -72,7 +71,7 @@ public class AddSavedTaskCommand extends Command {
             savedTask = new Events(task, timing, done);
             break;
         default:
-            throw new DukeException("Unknown Error");
+            throw new DukeException("Format of saved file is wrong");
         }
         taskList.add(savedTask);
         return null;

@@ -20,7 +20,7 @@ public class Storage {
     /**
      * Constructor for Storage class.
      *
-     * @param folderPath The filepath to the data folder.
+     * @param folderPath   The filepath to the data folder.
      * @param taskFilePath The filepath to the text file containing the task list.
      */
     public Storage(String folderPath, String taskFilePath, String clientFilePath) {
@@ -81,14 +81,18 @@ public class Storage {
     }
 
     /**
-     * Pulls from task list file and inputs
-     * the tasks into application's task list.
+     * Pulls from task and client list file and inputs
+     * the tasks and clients into application's task and client list.
      *
      * @param taskList list of tasks.
      */
     private void pullSavedInformation(TaskList taskList, ClientList clientList) {
+        pullSavedTasks(taskList, clientList);
+        pullSavedClients(taskList, clientList);
+    }
+
+    private void pullSavedTasks(TaskList taskList, ClientList clientList) {
         File savedTasks = new File(taskFilePath);
-        File savedClients = new File(clientFilePath);
         try {
             Scanner scanner = new Scanner(savedTasks);
             while (scanner.hasNextLine()) {
@@ -96,7 +100,15 @@ public class Storage {
                 Command c = Parser.parseSavedTaskList(nextInput);
                 c.execute(taskList, this, clientList);
             }
-            scanner = new Scanner(savedClients);
+        } catch (FileNotFoundException | DukeException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void pullSavedClients(TaskList taskList, ClientList clientList) {
+        File savedClients = new File(clientFilePath);
+        try {
+            Scanner scanner = new Scanner(savedClients);
             while (scanner.hasNextLine()) {
                 String nextInput = scanner.nextLine();
                 Command c = Parser.parseSavedClientList(nextInput);
@@ -106,4 +118,5 @@ public class Storage {
             throw new RuntimeException(e);
         }
     }
+
 }

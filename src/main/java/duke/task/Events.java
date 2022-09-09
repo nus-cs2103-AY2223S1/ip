@@ -19,7 +19,6 @@ public class Events extends Task {
      * @param isDone whether task is done.
      *             true if marked.
      *             false if unmarked.
-     *
      * @throws DukeException if timing is not in the format dd/MM/yyyy HHmm.
      */
     public Events(String task, String timing, boolean isDone) throws DukeException {

@@ -26,7 +26,8 @@ public class MarkCommand extends Command {
      *
      * @param taskList task list.
      * @param storage  files storing task list.
-     * @return
+     * @param clientList client list.
+     * @return String representation of task being marked.
      * @throws DukeException if task is already marked or index does not exist.
      */
     @Override

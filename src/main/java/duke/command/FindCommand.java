@@ -24,9 +24,9 @@ public class FindCommand extends Command {
      * Finds all tasks in task list that contains keyword and runs a list keyword command.
      *
      * @param taskList task list.
-     * @param commandOutputs       user interface of program.
      * @param storage  files storing task list.
-     * @return
+     * @param clientList client list.
+     * @return String of tasks that contain the keyword.
      * @throws DukeException if keyword list is empty.
      */
     @Override

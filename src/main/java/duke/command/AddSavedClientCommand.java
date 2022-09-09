@@ -12,16 +12,15 @@ public class AddSavedClientCommand extends Command {
     }
 
     /**
-     * Runs command that will do various changes based on the command.
+     * Adds client to client list.
      *
-     * @param taskList task list.
+     * @param taskList list of tasks.
      * @param storage files storing task list.
-     * @param clientList
-     * @return String response of Duke regarding user input
-     * @throws DukeException if error occurs during execution of command.
+     * @param clientList list of clients.
+     * @return nothing.
      */
     @Override
-    public String execute(TaskList taskList, Storage storage, ClientList clientList) throws DukeException {
+    public String execute(TaskList taskList, Storage storage, ClientList clientList) {
         clientList.add(client);
         return null;
     }
