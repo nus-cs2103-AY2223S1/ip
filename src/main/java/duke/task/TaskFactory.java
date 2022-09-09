@@ -8,6 +8,10 @@ import duke.Duke;
  * Constructs tasks from strings
  */
 public class TaskFactory {
+    private static boolean isTrue(String str) {
+        return str.equals("true");
+    }
+
     /**
      * Constructs the task.
      *
@@ -19,17 +23,21 @@ public class TaskFactory {
         if (taskData == null || taskData.length < 1) {
             throw new IllegalArgumentException("taskData cannot be null or of length 1");
         }
-        if (taskData[0].equals("Task") && taskData.length >= 3) {
-            return new Task(taskData[1], taskData[2].equals("true"));
+        boolean isTask = taskData[0].equals("Task") && taskData.length >= 3;
+        if (isTask) {
+            return new Task(taskData[1], isTrue(taskData[2]));
         }
-        if (taskData[0].equals("ToDo") && taskData.length >= 3) {
-            return new ToDo(taskData[1], taskData[2].equals("true"));
+        boolean isToDo = taskData[0].equals("ToDo") && taskData.length >= 3;
+        if (isToDo) {
+            return new ToDo(taskData[1], isTrue(taskData[2]));
         }
-        if (taskData[0].equals("Deadline") && taskData.length >= 4) {
-            return new Deadline(taskData[1], taskData[3], taskData[2].equals("true"));
+        boolean isDeadline = taskData[0].equals("Deadline") && taskData.length >= 4;
+        if (isDeadline) {
+            return new Deadline(taskData[1], taskData[3], isTrue(taskData[2]));
         }
-        if (taskData[0].equals("Event") && taskData.length >= 4) {
-            return new Event(taskData[1], taskData[3], taskData[2].equals("true"));
+        boolean isEvent = taskData[0].equals("Event") && taskData.length >= 4;
+        if (isEvent) {
+            return new Event(taskData[1], taskData[3], isTrue(taskData[2]));
         }
         throw new IllegalArgumentException("Unsupported task type or incorrect task data length");
     }

@@ -32,7 +32,7 @@ public class ToDo extends Task {
     }
 
     /**
-     * Get a string array representation suitable for printing to files.
+     * Gets a string array representation suitable for printing to files.
      *
      * @return String array representation.
      */

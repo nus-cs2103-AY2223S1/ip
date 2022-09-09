@@ -3,6 +3,7 @@ package duke;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiFunction;
+import java.util.function.Predicate;
 
 /**
  * Makes a command matcher based on prefix.
@@ -18,7 +19,7 @@ public class PrefixCommandMatcher extends CommandMatcher {
      * @param action Action to do.
      */
     public PrefixCommandMatcher(String prefix, BiFunction<String, Map<String, String>, DukeResponse> action) {
-        super((cmd) -> cmd.strip().startsWith(prefix + " ") || cmd.strip().equals(prefix),
+        super(makePrefixMatcher(prefix),
                 DukeExceptionFunction.toFunction((cmd) -> {
                     // preprocessing
                     cmd = cmd.strip();
@@ -53,6 +54,10 @@ public class PrefixCommandMatcher extends CommandMatcher {
                 }));
         assert prefix != null;
         assert action != null;
+    }
+
+    private static Predicate<String> makePrefixMatcher(String prefix) {
+        return (cmd) -> cmd.strip().startsWith(prefix + " ") || cmd.strip().equals(prefix);
     }
 
     /**

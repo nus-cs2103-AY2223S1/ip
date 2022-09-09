@@ -32,6 +32,8 @@ public class DukeResponse {
 
     /**
      * Prints the output if not printed yet.
+     *
+     * @param ui User interface to use.
      */
     public void print(UiInterface ui) {
         assert ui != null;
