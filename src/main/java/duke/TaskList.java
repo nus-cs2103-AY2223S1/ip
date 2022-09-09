@@ -71,6 +71,7 @@ public class TaskList {
         if (!input.equals("delete")) {
             try {
                 int index = Integer.parseInt(input.substring(7)) - 1;
+                assert index >= 0 : "index should at least 0";
                 Task removedTask = taskList.remove(index);
                 return Ui.deleteMsg(removedTask);
             } catch (IndexOutOfBoundsException e) {

@@ -44,6 +44,7 @@ public class TaskHandler {
      */
     public String markChild(String input) {
         int index = Integer.parseInt(input.substring(5)) - 1;
+        assert index >= 0 : "index should at least 0";
         return taskList.markChild(index);
     }
 
@@ -54,6 +55,7 @@ public class TaskHandler {
      */
     public String unmarkChild(String input) {
         int index = Integer.parseInt(input.substring(7)) - 1;
+        assert index >= 0 : "index should at least 0";
         return taskList.unmarkChild(index);
     }
 
