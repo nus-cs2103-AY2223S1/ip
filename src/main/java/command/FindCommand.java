@@ -29,6 +29,32 @@ public class FindCommand extends Command {
     public String deconstruct(ArrayList<DukeTask> tasklist, Ui ui, Storage storage) throws InvalidFormatException {
         StringBuilder output = new StringBuilder("Ok! Here are some things I found that matched your description:\n");
 
+        if (cmd.equals("T")) {
+            for (int j = 0; j < tasklist.size(); j++) {
+                if (tasklist.get(j).toString().startsWith("[T]")) {
+                    output.append(String.format("List %d: ", j) + tasklist.get(j).toString());
+                    output.append("\n");
+                }
+            }
+            return output.toString();
+        } else if (cmd.equals("E")) {
+            for (int j = 0; j < tasklist.size(); j++) {
+                if (tasklist.get(j).toString().startsWith("[E]")) {
+                    output.append(String.format("List %d: ", j) + tasklist.get(j).toString());
+                    output.append("\n");
+                }
+            }
+            return output.toString();
+        } else if (cmd.equals("D")) {
+            for (int j = 0; j < tasklist.size(); j++) {
+                if (tasklist.get(j).toString().startsWith("[D]")) {
+                    output.append(String.format("List %d: ", j) + tasklist.get(j).toString());
+                    output.append("\n");
+                }
+            }
+            return output.toString();
+        }
+
         Pattern intPattern = Pattern.compile("\\d+");
         Pattern negativeintPattern = Pattern.compile("-");
 
