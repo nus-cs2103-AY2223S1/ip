@@ -19,7 +19,8 @@ enum COMMANDS {
     DEADLINE,
     EVENT,
     DELETE,
-    FIND
+    FIND,
+    STATISTICS,
 }
 
 /**
@@ -41,7 +42,7 @@ public class Parser {
         String[] args = Arrays.copyOfRange(userInputs, 1, userInputs.length);
 
         // Check if command is valid
-        if (!validCommandEnum(unparsedCommand.toUpperCase())) {
+        if (!isValidCommandEnum(unparsedCommand.toUpperCase())) {
             throw new UnknownCommandException();
         }
 
@@ -81,6 +82,10 @@ public class Parser {
             FindCommand.validateArguments(args);
             return new FindCommand(args);
         }
+        case STATISTICS: {
+            StatisticsCommand.validateArguments(args);
+            return new StatisticsCommand(args);
+        }
         default:
             return new InvalidCommand();
         }
@@ -92,7 +97,7 @@ public class Parser {
      * @param str String to check if the enum exists.
      * @return True if the provided string is a valid common.COMMANDS enum.
      */
-    public static boolean validCommandEnum(String str) {
+    public static boolean isValidCommandEnum(String str) {
         for (COMMANDS cmd : COMMANDS.values()) {
             if (str.equalsIgnoreCase(cmd.name())) {
                 return true;
