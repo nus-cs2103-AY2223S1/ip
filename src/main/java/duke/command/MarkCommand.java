@@ -27,9 +27,9 @@ public class MarkCommand extends Command {
      * @param storage Storage on hard disk that stores the task list.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.changeDoneStatus(this.index, this.isDone);
         storage.overwriteData(tasks);
-        ui.notifyMarked(tasks.get(this.index), this.isDone);
+        return ui.notifyMarked(tasks.get(this.index), this.isDone);
     }
 }

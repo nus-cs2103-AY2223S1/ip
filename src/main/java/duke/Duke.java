@@ -13,6 +13,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.layout.Region;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Duke extends Application {
     private Ui ui;
@@ -24,6 +26,8 @@ public class Duke extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
+    private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
+    private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
     public Duke() {
     }
@@ -40,7 +44,9 @@ public class Duke extends Application {
     }
 
     public static void main(String[] args) {
+        System.out.println("Duke starting");
         Duke duke = new Duke("./data/duke.txt");
+        System.out.println("Duke started");
         duke.run();
     }
 
@@ -115,19 +121,31 @@ public class Duke extends Application {
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
         //Step 3. Add functionality to handle user input.
-        sendButton.setOnMouseClicked((event) -> {
-            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            userInput.clear();
-        });
-
-        userInput.setOnAction((event) -> {
-            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            userInput.clear();
-        });
+//        sendButton.setOnMouseClicked((event) -> {
+//            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
+//            userInput.clear();
+//        });
+//
+//        userInput.setOnAction((event) -> {
+//            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
+//            userInput.clear();
+//        });
 
         //Scroll down to the end every time dialogContainer's height changes.
         dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
 
+        System.out.println("Duke starting");
+        Duke duke = new Duke("./data/duke.txt");
+        duke.storage.readData(duke.tasks);
+        System.out.println("Duke started");
+
+        sendButton.setOnMouseClicked((event) -> {
+            handleUserInput(duke);
+        });
+
+        userInput.setOnAction((event) -> {
+            handleUserInput(duke);
+        });
 
     }
 
@@ -142,6 +160,40 @@ public class Duke extends Application {
         textToAdd.setWrapText(true);
 
         return textToAdd;
+    }
+
+    /**
+     * Iteration 2:
+     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
+     * the dialog container. Clears the user input after processing.
+     */
+    private void handleUserInput(Duke bot) {
+        Label userText = new Label(userInput.getText());
+        Label dukeText = new Label(bot.getResponse(userInput.getText()));
+        dialogContainer.getChildren().addAll(
+                DialogBox.getUserDialog(userText, new ImageView(user)),
+                DialogBox.getDukeDialog(dukeText, new ImageView(duke))
+        );
+        userInput.clear();
+    }
+
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    private String getResponse(String input) {
+        try {
+            String fullCommand = input;
+        //    this.ui.printLine(); // show the divider line ("_______")
+            Command c = Parser.parse(fullCommand);
+            return c.execute(this.tasks, this.ui, this.storage);
+        } catch (DukeException e) {
+            return "That command was not valid. Try again!";
+        } finally {
+        //    this.ui.printLine();
+        }
+
+        //return "Duke heard: " + input;
     }
 
 }

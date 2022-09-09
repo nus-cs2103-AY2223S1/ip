@@ -15,8 +15,8 @@ public class ExitCommand extends Command {
      * @param storage Storage on hard disk that stores the task list.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.farewell();
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         System.exit(0);
+        return ui.farewell();
     }
 }

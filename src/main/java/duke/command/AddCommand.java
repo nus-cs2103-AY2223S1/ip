@@ -26,9 +26,9 @@ public class AddCommand extends Command {
      * @param storage Storage on hard disk that stores the task list.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.add(this.task);
         storage.writeData(this.task);
-        ui.notifyAdded(this.task);
+        return ui.notifyAdded(this.task);
     }
 }

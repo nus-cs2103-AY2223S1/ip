@@ -24,9 +24,9 @@ public class DeleteCommand extends Command {
      * @param storage Storage on hard disk that stores the task list.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.delete(this.index);
         storage.overwriteData(tasks);
-        ui.notifyDeleted(tasks.get(this.index));
+        return ui.notifyDeleted(tasks.get(this.index));
     }
 }
