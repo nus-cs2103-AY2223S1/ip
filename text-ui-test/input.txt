@@ -1,0 +1,24 @@
+todo read book
+deadline return book /by 2022-08-25 2359
+list
+event project meeting /at 2022-11-11 1100
+todo join sports club
+list
+mark 1
+list
+mark 4
+list
+todo borrow book
+list
+deadline return book /by 2022-12-25 1130
+event project meeting /at 2022-09-09 1200
+list
+mark 7
+list
+unmark 7
+list
+unmark 6
+list
+delete 4
+list
+bye
