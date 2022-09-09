@@ -1,6 +1,7 @@
 package duke.tools;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import duke.exceptions.DukeException;
 import duke.tasks.Task;
@@ -84,5 +85,24 @@ public class TaskList {
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("OOPS!!! Invalid task number.");
         }
+    }
+
+    /**
+     * Converts TaskList into a stream of tasks.
+     *
+     * @return Stream of tasks.
+     */
+    public Stream<Task> toStream() {
+        return taskList.stream();
+    }
+
+    /**
+     * Returns index of task in the TaskList.
+     *
+     * @param task Task to check index of.
+     * @return Index of task.
+     */
+    public int getIndexOf(Task task) {
+        return taskList.indexOf(task);
     }
 }

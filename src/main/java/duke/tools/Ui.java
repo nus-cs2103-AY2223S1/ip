@@ -1,5 +1,8 @@
 package duke.tools;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import duke.exceptions.DukeException;
 import duke.tasks.Task;
 
@@ -34,19 +37,22 @@ public class Ui {
      * @throws DukeException If taskList.getTask(i) takes in invalid index.
      */
     public static String formatListStatusString(TaskList taskList) throws DukeException {
-        String output;
+        String listStatus;
         if (taskList.getSize() == 0) {
-            output = "There are currently no tasks in your list";
-        } else {
-            output = "Here are the tasks in your list:\n";
-            for (int i = 0; i < taskList.getSize(); i++) {
-                output = output.concat(String.format("%d. %s\n", i + 1,
-                        taskList.getTask(i)));
-            }
-            output.concat(String.format("Now you have %d tasks in the list.\n",
-                    taskList.getSize()));
+            listStatus = "There are currently no tasks in your list";
+            return listStatus;
         }
-        return output;
+        listStatus = "Here are the tasks in your list:\n";
+
+        String taskStringFormat = "%d. %s\n";
+        String taskToString = taskList.toStream()
+                .map(task -> String.format(taskStringFormat, taskList.getIndexOf(task) + 1, task))
+                .collect(Collectors.joining());
+
+        listStatus = listStatus.concat(taskToString);
+        listStatus = listStatus.concat(String.format("Now you have %d tasks in the list.\n",
+                taskList.getSize()));
+        return listStatus;
     }
 
     /**
@@ -58,27 +64,28 @@ public class Ui {
      * @throws DukeException If taskList.getTask(i) takes in invalid index.
      */
     public static String formatFindTaskString(TaskList taskList, String keyword) throws DukeException {
-        String output;
+        String taskFindOutput;
         if (taskList.isEmpty()) {
-            output = "There are currently no tasks in your list";
-        } else {
-            output = "Here are the matching tasks in your list:\n";
-            int findCount = 0;
-            for (int i = 0; i < taskList.getSize(); i++) {
-                if (taskList.getTask(i).isFoundInDescription(keyword)) {
-                    output = output.concat(String.format("%d. %s\n", i + 1,
-                            taskList.getTask(i)));
-                    findCount++;
-                }
-            }
-            if (findCount == 0) {
-                output = output.concat("Oh no, there are no matching tasks found :(");
-            } else {
-                output = output.concat(String.format("There are %d matching tasks found\n",
-                        findCount));
-            }
+            taskFindOutput = "There are currently no tasks in your list";
+            return taskFindOutput;
         }
-        return output;
+        String taskStringFormat = "%d. %s\n";
+        String taskFoundList = taskList.toStream()
+                .filter(task -> task.isFoundInDescription(keyword))
+                .map(task -> String.format(taskStringFormat, taskList.getIndexOf(task) + 1, task))
+                .collect(Collectors.joining());
+        long taskFoundCount = taskList.toStream()
+                .filter(task -> task.isFoundInDescription(keyword))
+                .count();
+
+        if (taskFoundCount == 0) {
+            taskFindOutput = "There are no matching task found";
+            return taskFindOutput;
+        }
+
+        taskFindOutput = String.format("There are %d matching task found: \n", taskFoundCount);
+        taskFindOutput = taskFindOutput.concat(taskFoundList);
+        return taskFindOutput;
     }
 
     /**
