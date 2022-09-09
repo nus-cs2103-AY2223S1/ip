@@ -1,11 +1,15 @@
 package duke.taskmanager.task;
 
-import duke.taskmanager.exceptions.EmptyTaskException;
-import duke.taskmanager.exceptions.InvalidDeadlineException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import duke.taskmanager.exceptions.EmptyTaskException;
+import duke.taskmanager.exceptions.InvalidDeadlineException;
+
+/**
+ * Deadline Task is a Task with the additional deadline information.
+ */
 public class DeadlineTask extends Task {
     private static final String TASK_TYPE = "D";
     private final LocalDateTime taskTime;

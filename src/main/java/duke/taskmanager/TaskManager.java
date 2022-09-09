@@ -1,15 +1,23 @@
 package duke.taskmanager;
 
-import duke.taskmanager.task.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
+import duke.taskmanager.task.DeadlineTask;
+import duke.taskmanager.task.EmptyTask;
+import duke.taskmanager.task.EventTask;
+import duke.taskmanager.task.Task;
+import duke.taskmanager.task.ToDoTask;
+
+/**
+ * TaskManager class manages a list of task and provide functions to manipulate the list.
+ */
 public class TaskManager {
-    private static final String FILEPATH = "tasklist.txt";
+    private static final String FILE_PATH = "tasklist.txt";
     private static final String DATE_FORMAT = "dd/MM/yyyy,HHmm";
     private final List<Task> taskList;
 
@@ -61,7 +69,7 @@ public class TaskManager {
      *
      * @return response message detailing the task present in the task list
      */
-    public String list() {
+    public String listTask() {
         if (taskList.size() == 0) {
             return "\tYou have no tasks in your list.\n";
         } else {
@@ -94,7 +102,7 @@ public class TaskManager {
      * @param itemNumber index of the task to be marked as completed
      * @return response message indicating the marking of the task
      */
-    public String mark(int itemNumber) {
+    public String markTask(int itemNumber) {
         if (itemNumber > 0 && itemNumber <= this.taskList.size()) {
             if (this.taskList.get(itemNumber - 1).isCompleted()) {
                 return "\tThe task is already marked you dummy.\n";
@@ -115,7 +123,7 @@ public class TaskManager {
      * @param itemNumber index of the marked task to be unmarked as completed
      * @return response message indicating the unmarking of the task
      */
-    public String unmark(int itemNumber) {
+    public String unmarkTask(int itemNumber) {
         if (itemNumber > 0 && itemNumber <= this.taskList.size()) {
             if (!(this.taskList.get(itemNumber - 1).isCompleted())) {
                 return "\tThe task is still not done you idiot.\n";
@@ -135,7 +143,7 @@ public class TaskManager {
      * @param itemNumber index of the task to be deleted
      * @return response message indicating the deletion of the task
      */
-    public String delete(int itemNumber) {
+    public String deleteTask(int itemNumber) {
         StringBuilder stringBuilder = new StringBuilder();
         if (itemNumber > 0 && itemNumber <= this.taskList.size()) {
             stringBuilder.append("The following item has been removed.\n");
@@ -153,7 +161,7 @@ public class TaskManager {
      * @param keyword string of the keyword to match in the task list
      * @return a response message listing out the task containing the keyword
      */
-    public String find(String keyword) {
+    public String findTask(String keyword) {
         List<Integer> keywordList = new ArrayList<>();
         for (int i = 0; i < this.taskList.size(); i++) {
             if (this.taskList.get(i).getTaskName().contains(keyword)) {
@@ -179,7 +187,7 @@ public class TaskManager {
      */
     public void save() {
         try {
-            File file = new File(FILEPATH);
+            File file = new File(FILE_PATH);
             if (!(file.exists())) {
                 file.createNewFile();
             }
@@ -200,7 +208,7 @@ public class TaskManager {
      */
     public void load() {
         try {
-            File file = new File(FILEPATH);
+            File file = new File(FILE_PATH);
             if (!(file.exists())) {
                 file.createNewFile();
             }

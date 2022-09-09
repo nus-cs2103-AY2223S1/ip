@@ -1,7 +1,8 @@
 package duke.taskmanager.task;
 
-import duke.taskmanager.exceptions.EmptyTaskException;
-
+/**
+ * Task is am abstract class to be inherited by other types of tasks.
+ */
 public abstract class Task {
     private final String taskName;
     private boolean isCompleted;
@@ -47,6 +48,6 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return "[" + (isCompleted ? "X":" ") + "] " + this.taskName;
+        return "[" + (isCompleted ? "X" : " ") + "] " + this.taskName;
     }
 }
