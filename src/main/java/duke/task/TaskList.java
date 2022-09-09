@@ -1,10 +1,12 @@
+package duke.task;
+
 import java.util.List;
 import java.util.ListIterator;
 
 public class TaskList {
     private final List<Task> taskList;
 
-    TaskList(List<Task> taskList) {
+    public TaskList(List<Task> taskList) {
         this.taskList = taskList;
     }
 

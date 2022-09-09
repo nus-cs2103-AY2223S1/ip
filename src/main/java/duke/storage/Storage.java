@@ -1,10 +1,14 @@
+package duke.storage;
+
+import duke.task.TaskList;
+
 import java.io.File;
 import java.io.IOException;
 
 public class Storage {
     private final File dataFile;
 
-    Storage(String filePath) {
+    public Storage(String filePath) {
         dataFile = new File(filePath);
     }
 

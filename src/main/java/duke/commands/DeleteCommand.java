@@ -1,9 +1,15 @@
+package duke.commands;
+
+import duke.storage.Storage;
+import duke.task.Task;
+import duke.task.TaskList;
+
 import java.util.Scanner;
 
 public class DeleteCommand extends Command {
     private final int deleteIndex;
 
-    DeleteCommand(Scanner scanner) {
+    public DeleteCommand(Scanner scanner) {
         deleteIndex = scanner.nextInt();
     }
 

@@ -1,10 +1,16 @@
+package duke.commands;
+
+import duke.storage.Storage;
+import duke.task.Deadline;
+import duke.task.TaskList;
+
 import java.util.Scanner;
 
 public class DeadlineCommand extends Command {
     private final String deadlineDescription;
     private final String deadlineBy;
 
-    DeadlineCommand(Scanner scanner) {
+    public DeadlineCommand(Scanner scanner) {
         scanner.useDelimiter("/by");
         deadlineDescription = scanner.next().strip();
         scanner.reset().skip("/by");

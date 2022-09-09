@@ -1,3 +1,10 @@
+package duke.ui;
+
+import duke.commands.Command;
+import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.task.TaskList;
+
 import java.util.Scanner;
 
 public class Ui {

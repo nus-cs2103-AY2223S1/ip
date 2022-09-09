@@ -1,9 +1,15 @@
+package duke.commands;
+
+import duke.storage.Storage;
+import duke.task.TaskList;
+import duke.task.ToDo;
+
 import java.util.Scanner;
 
 public class ToDoCommand extends Command {
     private final String toDoDescription;
 
-    ToDoCommand(Scanner scanner) {
+    public ToDoCommand(Scanner scanner) {
         toDoDescription = scanner.nextLine().strip();
     }
 

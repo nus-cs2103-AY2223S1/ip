@@ -1,9 +1,14 @@
+package duke.commands;
+
+import duke.storage.Storage;
+import duke.task.TaskList;
+
 import java.util.Scanner;
 
 public class MarkCommand extends Command {
     private final int markIndex;
 
-    MarkCommand(Scanner scanner) {
+    public MarkCommand(Scanner scanner) {
         markIndex = scanner.nextInt();
     }
 

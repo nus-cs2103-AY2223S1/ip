@@ -1,9 +1,14 @@
+package duke.commands;
+
+import duke.storage.Storage;
+import duke.task.TaskList;
+
 import java.util.Scanner;
 
 public class UnmarkCommand extends Command {
     private final int unmarkIndex;
 
-    UnmarkCommand(Scanner scanner) {
+    public UnmarkCommand(Scanner scanner) {
         unmarkIndex = scanner.nextInt();
     }
 

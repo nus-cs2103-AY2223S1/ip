@@ -1,7 +1,12 @@
+package duke.commands;
+
+import duke.storage.Storage;
+import duke.task.TaskList;
+
 import java.util.Scanner;
 
 public class IncorrectCommand extends Command {
-    IncorrectCommand(Scanner scanner) {
+    public IncorrectCommand(Scanner scanner) {
         scanner.nextLine();
     }
 

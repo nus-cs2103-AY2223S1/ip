@@ -1,10 +1,16 @@
+package duke.commands;
+
+import duke.storage.Storage;
+import duke.task.Event;
+import duke.task.TaskList;
+
 import java.util.Scanner;
 
 public class EventCommand extends Command {
     private final String eventDescription;
     private final String eventAt;
 
-    EventCommand(Scanner scanner) {
+    public EventCommand(Scanner scanner) {
         scanner.useDelimiter("/at");
         eventDescription = scanner.next().strip();
         scanner.reset().skip("/at");
