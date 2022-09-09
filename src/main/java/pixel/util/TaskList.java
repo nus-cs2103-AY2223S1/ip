@@ -19,7 +19,7 @@ public class TaskList {
         this.filePath = filePath;
     }
 
-    public String handleNewTask(String userInput, String type) throws IOException {
+    public String handleNewTask(String userInput, String type) throws IOException, DuplicateEntryException {
         int indexOfSlash = userInput.indexOf("/"); // returns -1 if such a string doesn't exist
         // If there's a "/by" or "/at" in the input string, then the info behind the "/by" or "/at" is the due
         // if there's no "/by" and "/at" string, then due should be empty
@@ -62,7 +62,15 @@ public class TaskList {
 
         }
 
+
+        // CHECK IF TASK ALREADY EXISTS
+        // If yes, throw exception
+        if (Storage.INPUT_TASKS.contains(newTask)) {
+            throw new DuplicateEntryException("Same task already exists in database!");
+        }
         Storage.INPUT_TASKS.add(Pixel.count, newTask);
+
+
         // index of last element in ArrayList is always smaller than size
         assert Storage.INPUT_TASKS.size() == (Pixel.count + 1)
             : "Size of ArrayList did not increase by 1 after adding new task";
