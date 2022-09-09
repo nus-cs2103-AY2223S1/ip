@@ -45,12 +45,14 @@ public class TaskList {
         try {
             //if task is a to-do
             if (taskName.matches("\\btodo\\s.*\\b")) {
+                assert taskName.length() >= 6 : "addToList function is not working for todo";
                 Task newTask = new ToDo(taskName.substring(5), false);
                 tasks.add(newTask);
                 return ui.taskAddMsg(newTask, tasks.size());
             }
             //if task is an event
             else if (taskName.matches("\\bevent\\s.*\\s/at\\s.*\\b")) {
+                assert taskName.length() >= 13 : "addToList function is not working for event";
                 String des = taskName.substring(6, taskName.indexOf("/") - 1);
                 String at = taskName.substring(taskName.indexOf("/") + 4, taskName.length());
                 Task newTask = new Event(des, false, at);

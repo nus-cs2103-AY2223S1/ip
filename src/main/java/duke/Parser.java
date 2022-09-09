@@ -4,7 +4,6 @@ package duke;
  * Represents the Parser, which deals with making sense of the user commands.
  */
 public class Parser {
-
     /**
      * Reads the user command, and then does the required action.
      *
@@ -16,6 +15,7 @@ public class Parser {
         if (command.equals("list")) {
             return tasklist.viewList(ui);
         } else if (command.matches("\\bmark\\s\\d+\\b")) {
+            assert command.length() >= 6 : "commandParser is not working";
             int num = Integer.parseInt(command.replaceAll("[^0-9]", ""));
             return tasklist.taskDone(num, ui);
         } else if (command.matches("\\bunmark\\s\\d+\\b")) {
