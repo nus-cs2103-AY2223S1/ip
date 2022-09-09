@@ -15,96 +15,112 @@ public class Parser {
     }
 
     public String parse(String command) throws DukeException {
-        boolean taskAdded = false;
         if (command.equals("bye")) {
-            return ui.showGoodbye();
+            return executeBye();
         } else if (command.equals("list")) {
-            String result = "";
-            for (int i = 0; i < tasks.getSize(); i++) {
-                Task nextTask = tasks.get(i);
-                result += "\n" + ((i + 1) + ". " + nextTask.toString());
-            }
-            return result;
-
-        //else if command is done
+            return executeList();
         } else if (command.startsWith("done")) {
-            int completedIndex = Character.getNumericValue(command.charAt(5));
-            Task currentTask = tasks.get(completedIndex - 1);
-            currentTask.setComplete(true);
-            s.writeFile(tasks);
-            return("Nice! I've marked this task as done: [X] " + currentTask.getTaskName());
-
-        //delete task
+           return executeDone(command);
         } else if (command.startsWith("delete")) {
-            int deleteIndex = Character.getNumericValue(command.charAt(7));
-            Task deletedTask = tasks.get(deleteIndex - 1);
-            tasks.delete(deleteIndex - 1);
-            s.writeFile(tasks);
-            return("Noted. I've removed this task:" + deletedTask.toString()
-                    + "\nNow you have " +  tasks.getSize() +  " tasks in the list.");
-            //save the tasks in hard disk
-
+           return executeDelete(command);
         } else if (command.startsWith("find")) {
-            String result = "";
-            result += "Here are the matching tasks in your list";
-            String keyword = command.substring(5);
-            for (int i = 0; i < tasks.getSize(); i++) {
-                if(tasks.get(i).toString().contains(keyword)) {
-                    result += "\n"+ tasks.get(i).toString() ;
-                }
-            }
-            return result;
+            return executeFind(command);
+        } else if (command.startsWith("todo")) {
+            return executeTodo(command);
+        } else if (command.startsWith("event")) {
+            return executeEvent(command);
+        } else if (command.startsWith("deadline")) {
+           return executeDeadline(command);
+        } else {
+            throw new DukeException("Sorry, I don't know what that means");
         }
-        else {
-            //Add a todo
-            if (command.startsWith("todo")) {
-                try {
-                    if (command.length() == 4) {
-                        throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
-                    }
-                    Task newTask = new Todo(command, false);
-                    tasks.add(newTask);
-                    taskAdded = true;
-                } catch (DukeException e) {
-                   return (e.getMessage());
-                }
-            //event
-            } else if (command.startsWith("event")) {
-                try {
-                    if (command.length() == 5) {
-                        throw new DukeException("OOPS!!! The description of an event cannot be empty.");
-                    }
-                    Task newTask = new Event(command, false);
-                    tasks.add(newTask);
-                    taskAdded = true;
-                } catch (DukeException e) {
-                    return (e.getMessage());
-                }
+    }
 
-            //deadline
-            } else if (command.startsWith("deadline")) {
-                try {
-                    if (command.length() == 8) {
-                        throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
-                    }
-                    Task newTask = new Deadline(command, false);
-                    tasks.add(newTask);
-                    taskAdded = true;
-                } catch (DukeException e) {
-                   return(e.getMessage());
-                }
-            } else {
-                throw new DukeException("Sorry, I don't know what that means");
+    public String executeBye() {
+        return ui.showGoodbye();
+    }
+
+    public String executeList() {
+        String result = "";
+        for (int i = 0; i < tasks.getSize(); i++) {
+            Task nextTask = tasks.get(i);
+            result += "\n" + ((i + 1) + ". " + nextTask.toString());
+        }
+        return result;
+    }
+
+    public String executeDone(String command) {
+        int completedIndex = Character.getNumericValue(command.charAt(5));
+        Task currentTask = tasks.get(completedIndex - 1);
+        currentTask.setComplete(true);
+        s.writeFile(tasks);
+        return("Nice! I've marked this task as done: [X] " + currentTask.getTaskName());
+    }
+
+    public String executeDelete(String command) {
+        int deleteIndex = Character.getNumericValue(command.charAt(7));
+        Task deletedTask = tasks.get(deleteIndex - 1);
+        tasks.delete(deleteIndex - 1);
+        s.writeFile(tasks);
+        return("Noted. I've removed this task:" + deletedTask.toString()
+                + "\nNow you have " +  tasks.getSize() +  " tasks in the list.");
+    }
+
+    public String executeFind(String command) {
+        String result = "";
+        result += "Here are the matching tasks in your list";
+        String keyword = command.substring(5);
+        for (int i = 0; i < tasks.getSize(); i++) {
+            if(tasks.get(i).toString().contains(keyword)) {
+                result += "\n"+ tasks.get(i).toString() ;
             }
         }
-        if (taskAdded) {
-            Task addedTask = tasks.get(tasks.getSize() - 1);
-            s.writeFile(tasks);
-            return ("Got it. I've added this task: \n" + addedTask.toString() +
-                    "\nNow you have " +  tasks.getSize() +  " tasks in the list.");
-            //save the tasks in hard disk
+        return result;
+    }
 
+    public String executeTodo(String command) {
+        try {
+            if (command.length() == 4) {
+                throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
+            }
+            Task newTask = new Todo(command, false);
+            tasks.add(newTask);
+            return AddTask();
+        } catch (DukeException e) {
+            return (e.getMessage());
         }
-        return "error";
+    }
+
+    public String executeDeadline(String command) {
+        try {
+            if (command.length() == 8) {
+                throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
+            }
+            Task newTask = new Deadline(command, false);
+            tasks.add(newTask);
+            return AddTask();
+        } catch (DukeException e) {
+            return(e.getMessage());
+        }
+    }
+
+    public String executeEvent(String command) {
+        try {
+            if (command.length() == 5) {
+                throw new DukeException("OOPS!!! The description of an event cannot be empty.");
+            }
+            Task newTask = new Event(command, false);
+            tasks.add(newTask);
+           return AddTask();
+        } catch (DukeException e) {
+            return (e.getMessage());
+        }
+    }
+
+    public String AddTask() {
+        Task addedTask = tasks.get(tasks.getSize() - 1);
+        s.writeFile(tasks);
+        return ("Got it. I've added this task: \n" + addedTask.toString() +
+                "\nNow you have " +  tasks.getSize() +  " tasks in the list.");
     }
 }
