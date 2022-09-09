@@ -79,7 +79,7 @@ public class Storage {
                 } else if (firstLetter == 'D') {
                     loadDeadline(taskList, entry);
                 } else {
-                    assert(!start.equals("T") && !start.equals("E") && !start.equals("D"));
+                    assert(!(firstLetter == 'T') && !(firstLetter == 'T') && !(firstLetter == 'T'));
                     throw new FredException("Loading... Data file entry is wrong!");
                 }
             }
