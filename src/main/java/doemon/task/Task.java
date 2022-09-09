@@ -42,7 +42,9 @@ public class Task {
      * @return Boolean indicating if the keyword was found in the task description.
      */
     public boolean matchesDescription(String keyword) {
-        if (this.description.toLowerCase().contains(keyword.toLowerCase())) {
+        // Remove task and mark label
+        String taskString = this.toString().substring(7);
+        if (taskString.toLowerCase().contains(keyword.toLowerCase())) {
             return true;
         }
         return false;
