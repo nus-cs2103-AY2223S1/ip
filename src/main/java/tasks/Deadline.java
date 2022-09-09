@@ -42,6 +42,15 @@ public class Deadline extends Task {
     }
 
     /**
+     * Gets the timing of the deadline.
+     * @return the timing of the deadline.
+     */
+    @Override
+    public LocalDateTime getTaskDateTime() {
+        return timing;
+    }
+
+    /**
      * Returns a formatted deadline task to the user.
      * @return Formatted deadline task to the user.
      */

@@ -10,6 +10,7 @@ import commands.ListUserTextCommand;
 import commands.MarkTaskCommand;
 import commands.TodoCommand;
 import commands.UnmarkTaskCommand;
+import commands.SortCommand;
 import exceptions.TumuException;
 import exceptions.UnrecognisedCommandException;
 
@@ -26,6 +27,7 @@ public class Parser {
     private static final String EVENT_CMD = "event";
     private static final String DELETE_CMD = "delete";
     private static final String FIND_CMD = "find";
+    private static final String SORT_CMD = "sort";
 
     /**
      * Parse the command and calls the correct classes
@@ -61,6 +63,8 @@ public class Parser {
             return new DeleteCommand(body);
         case FIND_CMD:
             return new FindCommand(body);
+        case SORT_CMD:
+            return new SortCommand();
         default:
             throw new UnrecognisedCommandException(command);
         }

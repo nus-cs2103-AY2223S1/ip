@@ -1,6 +1,7 @@
 package drivers;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import exceptions.NoTaskException;
@@ -137,5 +138,17 @@ public class TaskList {
             }
         }
         return wantedTasks;
+    }
+
+    /**
+     * Sorts the tasks in the task list
+     * according to chronological order. If there is
+     * no timing for the tasks, make sure the tasks
+     * appear at the bottom.
+     */
+    public void sortTasks() {
+        userTasks.sort(Comparator.nullsLast(
+                Comparator.comparing(Task :: getTaskDateTime,
+                        Comparator.nullsLast(Comparator.naturalOrder()))));
     }
 }

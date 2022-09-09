@@ -42,6 +42,15 @@ public class Event extends Task {
     }
 
     /**
+     * Gets the timing of the event.
+     * @return the timing of the event.
+     */
+    @Override
+    public LocalDateTime getTaskDateTime() {
+        return timing;
+    }
+
+    /**
      * Returns a formatted event task to the user.
      * @return Formatted event task to the user.
      */
