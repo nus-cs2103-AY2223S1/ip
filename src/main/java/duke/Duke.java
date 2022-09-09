@@ -7,6 +7,10 @@ import duke.storage.Storage;
 import duke.tasks.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Entry point of the Duke application.
+ * Initializes the application and starts the interaction with the user.
+ */
 public class Duke {
 
     private static final String LINE = "    __________________________________________________________________________";
@@ -20,6 +24,10 @@ public class Duke {
     private Storage storage;
     private Parser parser;
 
+
+    /**
+     * Initialises the Duke object. Initialises the fields ui, storage and parser.
+     */
     public Duke() {
         ui = new Ui();
         storage = new Storage();
@@ -32,6 +40,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Sets up the required objects, loads up the data from the storage file, and prints the welcome message.
+     *
+     * @param args arguments supplied by the user at program launch
+     */
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.run();

@@ -6,11 +6,22 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.LocalDate;
 
+/**
+ * Encapsulates a Date object for use in the Deadline and
+ * Event classes
+ */
 public class Date {
 
     protected LocalDate date = LocalDate.now();
     protected int time;
 
+    /**
+     * Initialises the Date object
+     *
+     * @param str A string containing the date and time in a specific format
+     * @throws DukeInvalidDateException if the date and time does not follow the
+     *     correct format
+     */
     public Date(String str) throws DukeInvalidDateException {
         String[] splitted = str.split("\\s+");
         this.date = parse(splitted[0]);
@@ -19,6 +30,14 @@ public class Date {
         }
     }
 
+    /**
+     * Parses the date string to the LocalDate object
+     *
+     * @param str A string containing the date in a specific format
+     * @return A LocalDate containing the date representation of str
+     * @throws DukeInvalidDateException if the string does not follow the correct
+     *     date format
+     */
     private LocalDate parse(String str) throws DukeInvalidDateException {
         LocalDate date;
         try {
@@ -29,10 +48,20 @@ public class Date {
         return date;
     }
 
+    /**
+     * Returns the string representation of the date field
+     *
+     * @return the string representation of the date field in the "MMM d YYYY" format
+     */
     private String dateToString() {
         return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
+    /**
+     * Returns the string representation of the time field
+     *
+     * @return the string representation of the time field in the "a.m/p.m" format
+     */
     private String timeToString() {
         int hours = (int) Math.floor(time / 100);
         int minutes = time % 100;
@@ -64,6 +93,11 @@ public class Date {
         return result;
     }
 
+    /**
+     * Returns the string representation of the Date object
+     *
+     * @return the string representation of the Date object
+     */
     @Override
     public String toString() {
         return dateToString() + " " + timeToString();

@@ -7,7 +7,7 @@ import duke.tasks.Todo;
 import duke.ui.Ui;
 
 /**
- * Adds a person to the address book.
+ * Command to add a todo task to the list of tasks
  */
 public class TodoCommand extends Command {
 
@@ -16,22 +16,36 @@ public class TodoCommand extends Command {
 
     private Todo todo;
 
+    /**
+     * Constructs the TodoCommand instance
+     *
+     * @param description the description of the task
+     */
     public TodoCommand(String description) {
         super();
         todo = new Todo(description);
     }
 
-    public TodoCommand(String description, boolean isMarked) {
-        super();
-        todo = new Todo(description);
-        todo.markAsDone();
-    }
-
+    /**
+     * Returns a boolean value true if the command is a bye command,
+     * false otherwise.
+     *
+     * @return a boolean value on whether the command is a bye command
+     */
     @Override
     public boolean isByeCommand() {
         return false;
     }
 
+    /**
+     * Executes the command to add the specified todo task to the
+     * list of tasks
+     *
+     * @param tasks The current list of tasks
+     * @param ui The Ui instance to return the result to the user
+     * @param storage The Storage instance to store the result to local storage
+     * @throws DukeException if errors are encountered during execution
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         tasks.add(todo);
