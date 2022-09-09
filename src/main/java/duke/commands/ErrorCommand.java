@@ -10,6 +10,7 @@ public class ErrorCommand implements BaseCommand {
 
     /**
      * Constructor for the ErrorCommand class
+     *
      * @param message
      */
     public ErrorCommand(String message) {

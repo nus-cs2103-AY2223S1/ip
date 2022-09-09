@@ -12,6 +12,7 @@ import duke.commands.tasks.DeleteTaskCommand;
 import duke.commands.tasks.FindTaskCommand;
 import duke.commands.tasks.ListTasksCommand;
 import duke.commands.tasks.MarkTaskCommand;
+import duke.commands.tasks.SortTasksCommand;
 import duke.commands.tasks.UnmarkTaskCommand;
 import duke.exceptions.NoCommandException;
 import duke.exceptions.ParseException;
@@ -67,6 +68,8 @@ public class Parser {
             return new UnmarkTaskParser().parse(arguments);
         case DeleteTaskCommand.COMMAND_WORD:
             return new DeleteTaskParser().parse(arguments);
+        case SortTasksCommand.COMMAND_WORD:
+            return new SortTasksParser().parse(arguments);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         default:

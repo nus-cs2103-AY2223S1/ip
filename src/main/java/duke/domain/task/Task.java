@@ -14,7 +14,7 @@ import duke.exceptions.InvalidTaskSpecificationException;
 /**
  * The type Task.
  */
-public class Task {
+public class Task implements Comparable<Task> {
 
     /**
      * The constant FORMATTER.
@@ -182,5 +182,10 @@ public class Task {
             return this.text.contains(searchTerm);
         }
         return false;
+    }
+
+    @Override
+    public int compareTo(Task o) {
+        return this.text.compareTo(o.text);
     }
 }

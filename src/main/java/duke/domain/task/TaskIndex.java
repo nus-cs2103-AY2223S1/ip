@@ -10,6 +10,7 @@ public class TaskIndex {
 
     /**
      * TaskIndex constructor method
+     *
      * @param zeroBasedTaskIndex
      */
     private TaskIndex(int zeroBasedTaskIndex) {
@@ -21,6 +22,7 @@ public class TaskIndex {
 
     /**
      * Return index with the count start at 0
+     *
      * @return index starting from 0
      */
     public int getZeroBased() {
@@ -29,6 +31,7 @@ public class TaskIndex {
 
     /**
      * Return index with the count start at 1
+     *
      * @return index starting from 1
      */
     public int getOneBased() {
@@ -37,6 +40,7 @@ public class TaskIndex {
 
     /**
      * Return new TaskIndex object based on zero based indexing from given index
+     *
      * @return TaskIndex object
      */
     public static TaskIndex fromZeroBased(int zeroBasedTaskIndex) {
@@ -45,6 +49,7 @@ public class TaskIndex {
 
     /**
      * Return new TaskIndex object based on one based indexing from given index
+     *
      * @return TaskIndex object
      */
     public static TaskIndex fromOneBased(int oneBasedTaskIndex) {

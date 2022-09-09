@@ -1,6 +1,7 @@
 package duke.tasklist;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -8,6 +9,7 @@ import java.util.stream.Collectors;
 
 import duke.domain.task.Task;
 import duke.domain.task.TaskIndex;
+import duke.enums.SortTaskEnum;
 import duke.exceptions.TaskNotFoundException;
 
 /**
@@ -167,11 +169,12 @@ public class TaskList {
      * @return A string containing the tasks that are after the datetime
      */
     public String outputTasksAfterString(LocalDateTime dateTime) {
-        return convertTaskListToString(
-                this.taskList
-                        .stream()
-                        .filter(task -> task.isAfter(dateTime))
-                        .collect(Collectors.toList()));
+        List<Task> filteredTasks = this.taskList
+                .stream()
+                .filter(task -> task.isAfter(dateTime))
+                .collect(Collectors.toList());
+        Collections.sort(filteredTasks);
+        return convertTaskListToString(filteredTasks);
     }
 
     /**
@@ -183,10 +186,24 @@ public class TaskList {
      * @return A string
      */
     public String searchTasks(String... searchTerms) {
-        return convertTaskListToString(
-                this.taskList
-                        .stream()
-                        .filter(task -> task.textContains(searchTerms))
-                        .collect(Collectors.toList()));
+        List<Task> filteredTasks = this.taskList
+                .stream()
+                .filter(task -> task.textContains(searchTerms))
+                .collect(Collectors.toList());
+        return convertTaskListToString(filteredTasks);
+    }
+
+    /**
+     * The sortTaskList function sorts the taskList in ascending order.
+     *
+     * @param direction
+     *            Determine whether the sort is ascending or descending
+     */
+    public void sortTaskList(SortTaskEnum direction) {
+        if (direction == SortTaskEnum.ASC) {
+            Collections.sort(this.taskList);
+        }
+        Collections.reverse(this.taskList);
+        System.out.println(this.taskList);
     }
 }

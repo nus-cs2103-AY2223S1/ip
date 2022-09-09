@@ -10,6 +10,7 @@ public class CommandResult {
 
     /**
      * Constructor for CommandResult Class
+     *
      * @param message
      */
     public CommandResult(String message) {

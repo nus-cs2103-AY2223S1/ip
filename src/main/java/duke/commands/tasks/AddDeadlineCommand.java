@@ -14,6 +14,7 @@ public class AddDeadlineCommand extends BaseTaskCommand {
 
     /**
      * The AddDeadlineCommand constructor
+     *
      * @param deadline
      */
     public AddDeadlineCommand(Deadline deadline) {

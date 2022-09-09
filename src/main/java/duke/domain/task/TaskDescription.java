@@ -11,6 +11,7 @@ public class TaskDescription {
 
     /**
      * TaskDescription constructor method
+     *
      * @param description
      */
     public TaskDescription(String description) {

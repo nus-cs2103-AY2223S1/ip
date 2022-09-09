@@ -103,4 +103,18 @@ public class Deadline extends Task {
     public Boolean isAfter(LocalDateTime dateTime) {
         return this.deadline.isAfter(dateTime);
     }
+
+    /**
+     * The compareTo function compares two objects of the same type.
+     *
+     * @param o
+     *            The Deadline to compare to
+     * @return 1 if the current event is before the other event and -1 otherwise
+     */
+    public int compareTo(Deadline o) {
+        if (this.deadline == o.deadline) {
+            return super.compareTo(o);
+        }
+        return this.deadline.isBefore(o.deadline) ? 1 : -1;
+    }
 }

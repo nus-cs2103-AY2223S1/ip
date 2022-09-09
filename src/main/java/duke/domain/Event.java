@@ -100,4 +100,19 @@ public class Event extends Task {
     public Boolean isAfter(LocalDateTime dateTime) {
         return this.dateTime.isAfter(dateTime);
     }
+
+    /**
+     * The compareTo function compares two events by their date and time.
+     * If the dates are equal, then it compares them by their name.
+     *
+     * @param o
+     *            Compare the datetime of this object with another
+     * @return 1 if the current event is before the other event and -1 otherwise
+     */
+    public int compareTo(Event o) {
+        if (this.dateTime == o.dateTime) {
+            return super.compareTo(o);
+        }
+        return this.dateTime.isBefore(o.dateTime) ? 1 : -1;
+    }
 }
