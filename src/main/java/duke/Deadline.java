@@ -7,10 +7,20 @@ public class Deadline extends Task {
 
     protected String by;
     protected String final_format;
+    protected String day;
+    protected String month;
+    protected String year;
 
     public Deadline(String description, String by) {
         super(description);
         this.by = by;
+    }
+
+    public Deadline(String description, String d, String m, String y) {
+        super(description);
+        this.day = d;
+        this.month = m;
+        this.year = y;
     }
 
     protected void date_formatter() {

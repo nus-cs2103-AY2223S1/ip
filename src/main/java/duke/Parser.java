@@ -1,11 +1,12 @@
 package duke;
 
-import duke.Deadline;
-import duke.EmptyDescriptionException;
-import duke.Event;
-import duke.OutOfRangeException;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class Parser {
@@ -89,7 +90,7 @@ public class Parser {
             input = input.replaceFirst("deadline ", "");
 
             if (!checker) {
-                String[] s_arr = input.split("/", -1); //split array
+                String[] s_arr = input.split("/", 2); //split array
                 s_arr[1] = s_arr[1].replaceAll("by ", "");
                 tasks.add(new Deadline(s_arr[0], s_arr[1]));
             } else {
@@ -182,6 +183,21 @@ public class Parser {
             s = s.replace("(", "/");
             s = s.replace(":", "");
             s = s.replace(")", "");
+        }
+        if (s.contains("deadline")) {
+            int len = s.length();
+//          String year = s.substring(len-10, len-5);
+//          String day = s.substring(len-12,len-10);
+//          String month = s.substring(len-16,len-13);
+
+            String date = s.substring(len - 17, len - 6);
+            if (date.charAt(0) == ' ') {
+                date = date.replaceFirst(" ", "");
+            }
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");;
+            LocalDate d1 = LocalDate.parse(date, formatter);
+            s = s.replaceAll(date ,d1.format(DateTimeFormatter.ofPattern("d/MM/yyyy")));
+            System.out.println(s);
         }
         while (true) {
             if (s.equals("")) {
