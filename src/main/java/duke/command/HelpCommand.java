@@ -9,7 +9,11 @@ public class HelpCommand implements Command {
 
     public static final String COMMAND_WORD = "help";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays program usage instructions. Example: "
-            + COMMAND_WORD + " " + ListCommand.COMMAND_WORD;
+            + COMMAND_WORD + " " + ListCommand.COMMAND_WORD + "\nHere are the commands available: "
+            + ByeCommand.COMMAND_WORD + " " + DeadlineCommand.COMMAND_WORD + " " + DeleteCommand.COMMAND_WORD + " "
+            + EventCommand.COMMAND_WORD + " " + FindCommand.COMMAND_WORD + " " + HelpCommand.COMMAND_WORD + " "
+            + ListCommand.COMMAND_WORD + " " + MarkCommand.COMMAND_WORD + " " + SortCommand.COMMAND_WORD + " "
+            + TodoCommand.COMMAND_WORD + " " + UnmarkCommand.COMMAND_WORD;
 
     private String command;
 
