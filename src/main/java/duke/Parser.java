@@ -1,5 +1,8 @@
 package duke;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Used to parse user's commands entered and execute the command
  */
@@ -31,6 +34,8 @@ public class Parser {
             return executeEvent(command);
         } else if (command.startsWith("deadline")) {
            return executeDeadline(command);
+        } else if (command.startsWith("view")) {
+            return executeViewShedule(command);
         } else {
             throw new DukeException("Sorry, I don't know what that means");
         }
@@ -115,6 +120,20 @@ public class Parser {
         } catch (DukeException e) {
             return (e.getMessage());
         }
+    }
+
+    public String executeViewShedule(String command) {
+        String dateString = command.substring(5);
+        LocalDate date = LocalDate.parse(dateString);
+        String formattedDate = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        String result = "";
+        for (int i = 0; i < tasks.getSize(); i++) {
+            String taskString = tasks.get(i).toString();
+            if (taskString.contains(formattedDate)) {
+                result += (i+1) + ". " + taskString + "\n";
+            }
+        }
+        return "Here are the tasks on " + formattedDate + ":" + "\n" + result;
     }
 
     public String AddTask() {
