@@ -81,27 +81,28 @@ public class Storage {
         String[] details = taskItem.split("[|]");
         Task toAdd;
         switch (details[0]) {
-            case "T":
-                toAdd = new ToDo(details[2]);
-                break;
-            case "D":
-                toAdd = new Deadline(details[2], details[3], details[4]);
-                break;
-            case "E":
-                toAdd = new Event(details[2], details[3], details[4], details[5]);
-                break;
-            default:
-                //empty;
-                throw new DukeException("Error reading file");
+        case "T":
+            toAdd = new ToDo(details[2]);
+            break;
+        case "D":
+            toAdd = new Deadline(details[2], details[3], details[4]);
+            break;
+        case "E":
+            toAdd = new Event(details[2], details[3], details[4], details[5]);
+            break;
+        default:
+        //empty;
+        throw new DukeException("Error reading file");    
         }
 
         switch (details[1]) {
-            case "0":
-                toAdd.setStatusIcon(false);
-                break;
-            case "1":
-                toAdd.setStatusIcon(true);
+        case "0":
+            toAdd.setStatusIcon(false);
+            break;
+        case "1":
+            toAdd.setStatusIcon(true);
         }
+
         itemList.add(toAdd);
     }
 
