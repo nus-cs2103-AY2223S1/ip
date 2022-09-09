@@ -1,15 +1,15 @@
 import java.util.ArrayList;
 
 public class TaskList {
-    private static ArrayList<Task> tasks;
+    private ArrayList<Task> tasks;
 
     TaskList() {
         tasks = new ArrayList<Task>();
     }
 
-    TaskList(ArrayList<? extends Task> tasks) {
+    TaskList(TaskList tasklist) {
         this.tasks = new ArrayList<Task>();
-        this.tasks.addAll(tasks); //deep copy ArrayList
+        this.tasks.addAll(tasklist.tasks); //deep copy ArrayList
     }
 
     @Override

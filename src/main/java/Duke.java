@@ -1,11 +1,18 @@
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 public class Duke {
     private static ArrayList<Task> tasks = new ArrayList<Task>();
     private static boolean isEnd = false;
 
+    private static String logFileAddress = "./dukeLog.txt";
+
     private static final String UI_LINE_SPACING = "----------------------------------------\n";
 
+    private static final String COMMAND_LOAD = "load"; 
     private static final String COMMAND_LIST = "list";
     private static final String COMMAND_BYE = "bye";
     private static final String COMMAND_DELETE = "delete";
@@ -14,9 +21,9 @@ public class Duke {
     private static final String COMMAND_EVENT = "event";
     private static final String COMMAND_MARK = "mark";
     private static final String COMMAND_UNMARK = "unmark";
+    private static final String greeting = "Hello! I'm Duke  \n" + "What can I do for you?\n";
 
     public static void main(String[] args) {
-        String greeting = "Hello! I'm Duke  \n" + "What can I do for you?\n";
         Scanner userInput = new Scanner(System.in);
         chat(greeting);
             while (!isEnd) {
@@ -26,10 +33,15 @@ public class Duke {
                     String arg1 = parsedUserInput[1];
                     String arg2 = parsedUserInput[2];
                     switch(command) {
+                    case COMMAND_LOAD:
+                        loadLog(logFileAddress);
+                        chat("Tasks have been loaded\n`");
+                        break;
                     case COMMAND_LIST:
                         chat("Here are the tasks in your list: \n" + list());
                         break;
                     case COMMAND_BYE:
+                        chat(cleanUp());
                         chat("Bye! Hope to see you again!\n");
                         isEnd = true;
                         userInput.close();
@@ -70,9 +82,12 @@ public class Duke {
                     chat(e.getLocalizedMessage() + "\n");
                 } catch (InvalidCommandException e) {
                     chat(e.getLocalizedMessage() + "\n");
+                } catch (IOException e) {
+                    chat (e.getLocalizedMessage() + "\n");
                 }
             }
         }
+
 
     public static String[] parseCommand(String userCommand) throws InvalidCommandException {
         String[] parsedCommand = {"","",""};
@@ -105,6 +120,8 @@ public class Duke {
 
     public static boolean isValidCommand(String command) {
         switch(command) { //no breaks as all cases lead to return
+            case COMMAND_LOAD:
+                return true;
             case COMMAND_LIST:
                 return true;
             case COMMAND_BYE:
@@ -124,6 +141,55 @@ public class Duke {
             default:
                 return false;
             }
+    }
+
+
+    public static void loadLog(String fileAddress) throws InvalidCommandException, MissingArgumentException, FileNotFoundException{
+        try {
+            Scanner fileReader = new Scanner(new File(fileAddress));
+            ArrayList<String[]> loggedTasks = new ArrayList<String[]>();
+            ArrayList<Task> existingTasks = new ArrayList<Task>();
+            while (fileReader.hasNextLine()) {
+                String nextLogLine = fileReader.nextLine();
+                String[] parsedLogLine = nextLogLine.split(",", 2);
+                loggedTasks.add(parsedLogLine);
+            }
+            fileReader.close();
+            for (String[] loggedTask : loggedTasks) {
+                boolean isDone = Integer.parseInt(loggedTask[0]) == 1;
+                String[] parsedCommand = parseCommand(loggedTask[1]);
+                String command = parsedCommand[0];
+                String arg1 = parsedCommand[1];
+                String arg2 = parsedCommand[2];
+                switch(command) {
+                case COMMAND_TODO:
+                    if (arg1.equals("")) {
+                        error("ToDo task requires a description");
+                        break;
+                    }
+                    ToDo toDoToAdd = new ToDo(arg1, isDone);
+                    existingTasks.add(toDoToAdd);
+                    break;
+                case COMMAND_DEADLINE:            
+                    Deadline deadlineToAdd = new Deadline(arg1, arg2, isDone);
+                    existingTasks.add(deadlineToAdd);
+                    break;
+                case COMMAND_EVENT:          
+                    Event eventToAdd = new Event(arg1, arg2, isDone);
+                    existingTasks.add(eventToAdd);
+                    break;
+                default:
+                    throw new InvalidCommandException("Logged task not valid type, log file corrupt");
+                }
+            }
+            tasks = existingTasks;
+        } catch (MissingArgumentException e) {
+            throw e;
+        } catch (InvalidCommandException e) {
+            throw e;
+        } catch (FileNotFoundException e) {
+            throw e;
+        }
     }
 
     public static String list() {
@@ -167,6 +233,26 @@ public class Duke {
 
     public static void error(String message) {
         chat(":( OOPS: " + message + "\n");
+    } 
+
+    public static String cleanUp() throws IOException {
+        if (tasks.size() == 0) {
+            return "No tasks saved to log file \n";
+        }
+        try {
+            FileWriter fileWriter = new FileWriter(logFileAddress);
+            int numOfTasks = 0;
+            for (Task task : tasks) {
+                chat(task.log());
+                fileWriter.write(task.log());
+                numOfTasks += 1;
+            }
+            fileWriter.close();
+            return (String.format("Saved %d tasks to log file\n", numOfTasks));
+        }
+        catch (IOException e) {
+            throw new IOException("Error in saving Tasks\n");
+        }
     }
 
     public static void end() {
