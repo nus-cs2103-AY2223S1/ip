@@ -36,11 +36,11 @@ public class Storage {
     /**
      * Initialises the TaskList storage with save data from the hard disk.
      *
-     * @param storage Where tasks are stored in the TaskList.
+     * @param tempStorage Where tasks are stored in the TaskList.
      */
-    public void initialise(ArrayList<Task> storage) {
-        assert storage != null : "No storage provided.";
-        storage.clear();
+    public void initialise(ArrayList<Task> tempStorage) {
+        assert tempStorage != null : "No storage provided.";
+        tempStorage.clear();
 
         try {
             Scanner s = new Scanner(save);
@@ -59,14 +59,17 @@ public class Storage {
                     DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
 
                     LocalDateTime dateTime = LocalDateTime.parse(temp[3], inputFormatter);
-                    newTask = new Deadline(temp[2], dateTime.format(outputFormatter));
 
+                    newTask = new Deadline(temp[2], dateTime.format(outputFormatter));
                     assert newTask != null : "Deadline not created.";
 
                 } else if (temp[0].equals("E")) {
                     newTask = new Event(temp[2], temp[3]);
-
                     assert newTask != null : "Event not created.";
+
+                } else if (temp[0].equals("F")) {
+                    newTask = new FixedDurationTask(temp[2], temp[3]);
+                    assert newTask != null : "FixedDurationTask not created.";
 
                 } else {
                     throw new DukeException("");
@@ -77,8 +80,8 @@ public class Storage {
                     newTask.markDone();
                 }
 
-                assert storage != null : "No storage provided.";
-                storage.add(newTask);
+                assert tempStorage != null : "No storage provided.";
+                tempStorage.add(newTask);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

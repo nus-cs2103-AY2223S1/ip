@@ -46,7 +46,7 @@ public class Task {
      * @return Returns an "X" or " " depending on whether this task is done.
      */
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : "  "); // mark done task with X
     }
 
     @Override

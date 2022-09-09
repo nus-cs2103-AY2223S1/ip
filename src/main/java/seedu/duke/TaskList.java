@@ -30,17 +30,14 @@ public class TaskList {
         assert tempStorage != null : "No temporary storage created.";
         assert saveFile != null : "No save file provided.";
 
+        Task newTask;
+
         if (command.startsWith("todo")) {
             if (command.length() <= 5) {
                 return Ui.emptyDescription("Todo");
             }
 
-            Task newTask = new Todo(command.substring(5));
-            tempStorage.add(newTask);
-            saveFile.addTask(newTask.toStore());
-
-            assert tempStorage.contains(newTask) : "Todo failed to be added to temporary storage";
-
+            newTask = new Todo(command.substring(5));
         } else if (command.startsWith("deadline")) {
             try {
                 if (command.length() <= 9) {
@@ -48,15 +45,11 @@ public class TaskList {
                 }
 
                 String[] temp = command.substring(9).split("/by ");
-
-                Task newTask = new Deadline(temp[0], temp[1]);
-                tempStorage.add(newTask);
-                saveFile.addTask(newTask.toStore());
-
-                assert tempStorage.contains(newTask) : "Deadline failed to be added to temporary storage";
+                newTask = new Deadline(temp[0], temp[1]);
 
             } catch (DateTimeParseException e) {
                 return Ui.wrongDateFormat();
+
             }
         } else if (command.startsWith("event")) {
             if (command.length() <= 6) {
@@ -64,16 +57,25 @@ public class TaskList {
             }
 
             String[] temp = command.substring(6).split("/at ");
+            newTask = new Event(temp[0], temp[1]);
 
-            Task newTask = new Event(temp[0], temp[1]);
-            tempStorage.add(newTask);
-            saveFile.addTask(newTask.toStore());
+        } else if (command.startsWith("FixedDuration")) {
+            if (command.length() <= 14) {
+                return Ui.emptyDescription("FixedDuration");
+            }
 
-            assert tempStorage.contains(newTask) : "Event failed to be added to temporary storage";
+            String[] temp = command.substring(14).split("/needs ");
+            newTask = new FixedDurationTask(temp[0], temp[1]);
 
         } else {
             return Ui.unknownCommand();
+
         }
+
+        tempStorage.add(newTask);
+        assert tempStorage.contains(newTask) : "Task failed to be added to temporary storage";
+
+        saveFile.addTask(newTask.toStore());
 
         return Ui.addText(tempStorage.get(tempStorage.size() - 1).toString(), tempStorage.size());
     }
