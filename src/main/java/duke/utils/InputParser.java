@@ -28,6 +28,8 @@ public class InputParser {
             return new UnmarkTaskCommand(storage, ui, tasks, body);
         } else if ("delete".equals(command)) {
             return new DeleteTaskCommand(storage, ui, tasks, body);
+        } else if ("find".equals(command)) {
+            return new FindTaskCommand(tasks, ui, body);
         } else if (isTaskType(command)) {
             TaskType type = getTaskType(command);
             return new AddTaskCommand(storage, ui, tasks, type, body);
