@@ -59,9 +59,9 @@ public class Task {
         case "todo":
             return String.format("%d,todo %s\n", binIsDone, this.description);
         case "deadline":
-            return String.format("%d,deadline %s/by%s\n", binIsDone, this.description, this.dateTime);
+            return String.format("%d,deadline %s/by%s\n", binIsDone, this.description, this.dateTime.format(inputDateFormatter));
         case "event":
-            return String.format("%d,event %s/at%s\n", binIsDone, this.description, this.dateTime);
+            return String.format("%d,event %s/at%s\n", binIsDone, this.description, this.dateTime.format(inputDateFormatter));
         default:
             return "N";
         }

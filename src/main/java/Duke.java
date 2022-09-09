@@ -8,7 +8,7 @@ public class Duke {
     private static ArrayList<Task> tasks = new ArrayList<Task>();
     private static boolean isEnd = false;
 
-    private static String logFileAddress = "./dukeLog.txt";
+    private static String logFileAddress = "./ip/dukeLog.txt";
 
     private static final String UI_LINE_SPACING = "----------------------------------------\n";
 
@@ -163,6 +163,7 @@ public class Duke {
                 String command = parsedCommand[0];
                 String arg1 = parsedCommand[1];
                 String arg2 = parsedCommand[2];
+                arg2 = arg2.replaceAll(" ","");
                 switch(command) {
                 case COMMAND_TODO:
                     if (arg1.equals("")) {
