@@ -21,12 +21,12 @@ public class Event extends Task {
     public Event(String description, String at) throws DukeException {
         super(description);
         if (at.equals(" ")) {
-            throw new DukeException("☹ OOPS!!! The event needs to have specific start time and end time");
+            throw new DukeException("The event needs to have specific start time and end time nya.");
         }
         try {
             this.at = LocalDate.parse(at);
         } catch (DateTimeParseException e) {
-            throw new DukeException("date after /at should be in YYYY-MM-DD Format.");
+            throw new DukeException("Date after /at should be in YYYY-MM-DD Format nya.");
         }
 
     }

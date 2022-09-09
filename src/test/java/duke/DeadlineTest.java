@@ -14,7 +14,7 @@ public class DeadlineTest {
                     new Deadline("testing", "blah").toString());
             fail();
         } catch (Exception e) {
-            assertEquals("date after /by should be in YYYY-MM-DD Format.", e.getMessage());
+            assertEquals("Date after /by should be in YYYY-MM-DD Format nya.", e.getMessage());
         }
     }
 
