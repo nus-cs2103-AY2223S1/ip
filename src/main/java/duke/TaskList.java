@@ -34,6 +34,7 @@ public class TaskList {
      * @return The Task at the given index.
      */
     public Task getTask(int i) {
+        assert getTaskListSize() > i;
         return this.tasks.get(i);
     }
 
@@ -42,6 +43,7 @@ public class TaskList {
      * @param i - An int specifying the index of the Task in the TaskList.
      */
     public void removeTask(int i) {
+        assert getTaskListSize() > i;
         this.tasks.remove(i);
     }
 
