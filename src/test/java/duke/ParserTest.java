@@ -24,26 +24,26 @@ public class ParserTest {
 
     @Test
     public void exitCommandTest() throws DukeException {
-        c = Parser.parse(tasks, "bye");
+        c = Parser.parse("bye");
         assertTrue(c instanceof ExitCommand);
     }
 
     @Test
     public void listCommandTest() throws DukeException {
-        c = Parser.parse(tasks, "list");
+        c = Parser.parse("list");
         assertTrue(c instanceof ListCommand);
     }
 
     @Test
     public void todoCommandTest() throws DukeException {
-        c = Parser.parse(tasks, "todo abc");
+        c = Parser.parse("todo abc");
         assertTrue(c instanceof TodoCommand);
     }
 
     @Test
     public void todoCommandTest2() {
         try {
-            c = Parser.parse(tasks, "todo");
+            c = Parser.parse("todo");
         } catch (DukeException e) {
             assertEquals("\t ☹ OOPS!!!\n\t The description of todo cannot be empty.", e.getMessage());
         }
@@ -51,13 +51,13 @@ public class ParserTest {
 
     @Test
     public void invalidCommandTest() throws DukeException {
-        c = Parser.parse(tasks, "");
+        c = Parser.parse("");
         assertTrue(c instanceof InvalidCommand);
     }
 
     @Test
     public void markCommandTest() throws DukeException {
-        c = Parser.parse(tasks, "mark 2");
+        c = Parser.parse("mark 2");
         assertTrue(c instanceof MarkCommand);
     }
 }

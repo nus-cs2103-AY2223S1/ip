@@ -4,9 +4,19 @@ import duke.command.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+/**
+ * {@code Parser} parse the user input and perform input sanitization to ensure no invalid input
+ */
 public class Parser {
 
-    public static Command parse(TaskList tasks, String s) throws DukeException {
+    /**
+     * The main function to parse user input
+     *
+     * @param s The user input
+     * @return a {@code Command} after performing input sanitization
+     * @throws DukeException if user enters an invalid input
+     */
+    public static Command parse( String s) throws DukeException {
         String[] str = s.split(" ", 2);
         String[] splitDescription;
 
