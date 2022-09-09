@@ -98,6 +98,22 @@ public class TaskList {
     }
 
     /**
+     * Finds and returns a list of tasks that matches the specified keyword.
+     *
+     * @param keyword String to be matched with tasks.
+     * @return List of tasks that match the keyword.
+     */
+    public ArrayList<Task> findTasks(String keyword) {
+        ArrayList<Task> foundTasks = new ArrayList<>();
+        for (int i = 0; i < this.getSize(); i++) {
+            if (this.tasks.get(i).matchesDescription(keyword)) {
+                foundTasks.add(this.tasks.get(i));
+            }
+        }
+        return foundTasks;
+    }
+
+    /**
      * Checks if the specified index is invalid. A valid index is one that lies between
      * 0 and 1 less than the size of the task list, both inclusive.
      *

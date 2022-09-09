@@ -4,6 +4,7 @@ import doemon.exception.DoemonException;
 import doemon.task.Task;
 import doemon.task.TaskList;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -117,6 +118,24 @@ public class Ui {
         System.out.println(output(
                 String.format("I used a knife to slice off this task from my bread:\n\t  %s"
                 + "\n\tThere are %d items left on my bread.", task, numTasks)));
+    }
+
+    /**
+     * Displays all tasks found using the find keyword.
+     *
+     * @param tasks List of tasks found.
+     */
+    public void showFoundTasks(ArrayList<Task> tasks) {
+        int taskNum = 1;
+        if (tasks.size() == 0) {
+            System.out.println(output("I couldn't find any matches on my bread..."));
+        } else {
+            StringBuilder sb = new StringBuilder("Here are the matches I found on my bread: ");
+            for (Task task : tasks) {
+                sb.append("\n\t").append(taskNum++).append(".").append(task.toString());
+            }
+            System.out.println(output(sb.toString()));
+        }
     }
 
     /**

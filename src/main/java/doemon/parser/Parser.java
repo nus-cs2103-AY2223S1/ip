@@ -4,6 +4,7 @@ import doemon.command.AddCommand;
 import doemon.command.Command;
 import doemon.command.DeleteCommand;
 import doemon.command.ExitCommand;
+import doemon.command.FindCommand;
 import doemon.command.ListCommand;
 import doemon.command.MarkCommand;
 import doemon.command.UnmarkCommand;
@@ -58,6 +59,9 @@ public class Parser {
         // Used for deadline/event case
         String[] details = null;
         switch (inputArr[0]) {
+        case "find":
+            String keyword = inputString.substring(5);
+            return new FindCommand(keyword);
         case "todo":
             detail = inputString.substring(4).trim();
             if (detail.trim().equals("")) {
