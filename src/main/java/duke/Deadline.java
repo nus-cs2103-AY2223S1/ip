@@ -1,27 +1,24 @@
 package duke;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Deadline extends Task {
 
     protected String by;
     protected String final_format;
-    protected String day;
-    protected String month;
-    protected String year;
+    protected boolean check_delete = false;
+
 
     public Deadline(String description, String by) {
         super(description);
         this.by = by;
     }
 
-    public Deadline(String description, String d, String m, String y) {
-        super(description);
-        this.day = d;
-        this.month = m;
-        this.year = y;
-    }
 
     protected void date_formatter() {
         // date_str gives date only
@@ -42,6 +39,18 @@ public class Deadline extends Task {
         this.final_format = d1.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
+    protected void date_increment(int num) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");;
+        LocalDate d1 = LocalDate.parse(this.final_format, formatter);
+        d1 = d1.plusDays(num);
+
+        String[] str_arr = this.by.split(" ", 2);
+        this.by = this.by.replaceFirst(str_arr[0], d1.format(DateTimeFormatter.ofPattern("d/MM/yyyy")));
+    }
+
+
+
     /**
      * toString method that turns the input of deadline into a String type
      *
@@ -49,7 +58,10 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        date_formatter();
+        if (!check_delete) {
+            date_formatter();
+        }
+        check_delete = false;
         String time = this.by.substring(this.by.length() - 4);
         String new_format = this.final_format + " " + time;
         return "[D]" + super.toString() + "(by: " + new_format + ")";

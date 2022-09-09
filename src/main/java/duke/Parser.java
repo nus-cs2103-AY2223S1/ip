@@ -76,7 +76,13 @@ public class Parser {
 
                 //output
                 if (checker) {
-                    temp.append(ui.print(4)).append("\n").append(tasks.get(count).toString()).append("\n").append("Now you have ").append(count + 1).append(" tasks in the list.");
+                    temp.append(ui.print(4))
+                            .append("\n")
+                            .append(tasks.get(count).toString())
+                            .append("\n")
+                            .append("Now you have ")
+                            .append(count + 1)
+                            .append(" tasks in the list.");
                     count++;
                     return temp.toString();
                 }
@@ -102,7 +108,12 @@ public class Parser {
 
             //output
             if (checker) {
-                temp.append("Got it. I've added this task:\n").append(tasks.get(count).toString()).append("\n").append("Now you have ").append(count + 1).append( " tasks in the list.");
+                temp.append("Got it. I've added this task:\n")
+                        .append(tasks.get(count).toString())
+                        .append("\n")
+                        .append("Now you have ")
+                        .append(count + 1)
+                        .append( " tasks in the list.");
                 count++;
                 return temp.toString();
             }
@@ -120,7 +131,14 @@ public class Parser {
 
             //output
             if (checker) {
-                temp.append("\n").append(ui.print(4)).append("\n").append(tasks.get(count).toString()).append("\n").append("Now you have ").append(count + 1).append(" tasks in the list.");
+                temp.append("\n")
+                        .append(ui.print(4))
+                        .append("\n")
+                        .append(tasks.get(count).toString())
+                        .append("\n")
+                        .append("Now you have ")
+                        .append(count + 1)
+                        .append(" tasks in the list.");
                 count++;
                 return temp.toString();
             }
@@ -134,7 +152,11 @@ public class Parser {
             index = Integer.parseInt(input) - 1;
 
             //output
-            temp.append(ui.print(7) + "\n").append(tasks.get(index).toString() + "\n").append("Now you have ").append(count - 1).append(" tasks in the list.");
+            temp.append(ui.print(7) + "\n")
+                    .append(tasks.get(index).toString() + "\n")
+                    .append("Now you have ")
+                    .append(count - 1)
+                    .append(" tasks in the list.");
 
             tasks.remove(index);
             count--;
@@ -142,7 +164,7 @@ public class Parser {
         } else if (input.contains("find")) {
             //string manipulation
             int count = 1;
-            input = input.replaceAll("find ", "");
+            input = input.replaceFirst("find ", "");
             ArrayList<Task> filtered_List = new ArrayList<>();
             for (Task item: tasks.getArr()) {
                 if (item.description.contains(input)) {
@@ -153,6 +175,18 @@ public class Parser {
             for (Task item: filtered_List) {
                 temp.append(count + ". " + item.toString());
                 count++;
+            }
+        } else if (input.contains("snooze")) {
+            input = input.replaceFirst("snooze ", "");
+            String[] split_num = input.split(" ",2);
+
+            if (tasks.getArr().get(Integer.parseInt(split_num[0]) - 1) instanceof Deadline) {
+                Deadline curr_task = (Deadline) tasks.getArr().get(Integer.parseInt(split_num[0]) - 1);
+                curr_task.date_increment(Integer.parseInt(split_num[1]));
+                temp.append("The following task has been snoozed by " + split_num[1] + " days!\n")
+                        .append(tasks.get(Integer.parseInt(split_num[0]) - 1).toString());
+            } else {
+                temp.append("Sorry! Only deadlines can be snoozed!");
             }
         } else {
             try {
@@ -186,9 +220,6 @@ public class Parser {
         }
         if (s.contains("deadline")) {
             int len = s.length();
-//          String year = s.substring(len-10, len-5);
-//          String day = s.substring(len-12,len-10);
-//          String month = s.substring(len-16,len-13);
 
             String date = s.substring(len - 17, len - 6);
             if (date.charAt(0) == ' ') {
@@ -197,7 +228,7 @@ public class Parser {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");;
             LocalDate d1 = LocalDate.parse(date, formatter);
             s = s.replaceAll(date ,d1.format(DateTimeFormatter.ofPattern("d/MM/yyyy")));
-            System.out.println(s);
+
         }
         while (true) {
             if (s.equals("")) {
