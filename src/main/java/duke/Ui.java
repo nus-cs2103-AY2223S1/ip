@@ -51,6 +51,11 @@ public class Ui {
                 + " tasks in the list.";
     }
 
+    public String printEdit(Task task) {
+        return "Edited task to:" + "\n"
+                + " " + task.toString();
+    }
+
     public String printDelete(Task task, int index) {
         return "Noted. I've removed this task:" + "\n"
                 + "  "

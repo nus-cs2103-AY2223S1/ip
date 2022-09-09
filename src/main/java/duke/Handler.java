@@ -126,6 +126,33 @@ public class Handler {
         return ui.printFind(toFind);
     }
 
+    public String handleEdit(String toEcho) throws DukeUnknownTaskException {
+        int index1 = toEcho.indexOf(" ");
+        int index2 = toEcho.indexOf(" ", index1 + 1);
+        int index = Integer.parseInt(toEcho.substring(index1 + 1, index2)) - 1;
+        assert index >= 0 : "index should at least 0";
+        String newTask = toEcho.substring(index2 + 1);
+        if (newTask.startsWith("event")) {
+            String time = newTask.substring(newTask.indexOf("/") + 4);
+            String task = newTask.substring(6, newTask.indexOf("/"));
+            Event event = new Event(task, time);
+            TaskList.taskList.set(index,event);
+            return ui.printEdit(event);
+        } else if (newTask.startsWith("todo")) {
+            String task = newTask.substring(5);
+            ToDo todo = new ToDo(task);
+            TaskList.taskList.set(index,todo);
+            return ui.printEdit(todo);
+        } else if (newTask.startsWith("deadline")) {
+            String time = newTask.substring(newTask.indexOf("/") + 4);
+            String task = newTask.substring(9, newTask.indexOf("/"));
+            Deadline deadline = new Deadline(task, time);
+            TaskList.taskList.set(index,deadline);
+            return ui.printEdit(deadline);
+        } else {
+            throw new DukeUnknownTaskException();
+        }
+    }
     public String addTask(Task task) {
         taskList.add(task);
         return ui.printTask(task);

@@ -61,6 +61,9 @@ public class Duke {
             } else if (input.startsWith("find")) {
                 storage.save();
                 return handler.handleFind(input);
+            } else if (input.startsWith("edit")) {
+                storage.save();
+                return handler.handleEdit(input);
             } else {
                 throw new DukeUnknownTaskException();
             }
