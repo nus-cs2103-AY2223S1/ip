@@ -27,6 +27,8 @@ public class Parser {
             return Command.DELETE;
         } else if (command.startsWith("find")) {
             return Command.FIND;
+        } else if (command.startsWith("update")) {
+            return Command.UPDATE;
         } else {
             return Command.INVALID;
         }

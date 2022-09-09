@@ -11,7 +11,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.layout.Region;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Duke extends Application {
     private ScrollPane scrollPane;
@@ -94,6 +96,38 @@ public class Duke extends Application {
                 TaskList filtered = tasks.find(command.replace("find", "").trim());
                 Ui.printTasks(filtered);
                 continue;
+            case UPDATE:
+                Pattern pattern = Pattern.compile("update (?<index>\\d+) (?<newTask>.*)");
+                Matcher matcher = pattern.matcher(command);
+                matcher.find();
+                int index = Integer.parseInt(matcher.group("index"));
+                String newTask = matcher.group("newTask");
+                switch (Parser.parse(newTask)) {
+                case TODO:
+                    Todo todo = new Todo(newTask.replace("todo", "").trim(), false);
+                    tasks.update(index, todo);
+                    Ui.printAddedMessage(todo, tasks.getSize());
+                    storage.writeToFile(tasks);
+                case DEADLINE: {
+                    String[] splitStr = newTask.trim().split("/by");
+                    String date = splitStr[1].replace("by", "").trim();
+                    Deadline deadline = new Deadline(splitStr[0].replace("deadline", "").trim(),
+                            false, date);
+                    tasks.update(index, deadline);
+                    Ui.printAddedMessage(deadline, tasks.getSize());
+                    storage.writeToFile(tasks);
+                }
+                case EVENT: {
+                    String[] splitStr = newTask.trim().split("/at");
+                    String date = splitStr[1].replace("at", "").trim();
+                    Event event = new Event(splitStr[0].replace("event", "").trim(), false, date);
+                    tasks.update(index, event);
+                    Ui.printAddedMessage(event, tasks.getSize());
+                    storage.writeToFile(tasks);
+                }
+                default:
+                    assert false : command;
+                }
             default:
                 assert false : command;
             }
