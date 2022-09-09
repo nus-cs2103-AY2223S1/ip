@@ -14,6 +14,7 @@ import commands.MarkCommand;
 import commands.SaveCommand;
 import commands.UnmarkCommand;
 import exception.FredException;
+import fred.Fred;
 import task.TaskType;
 
 
@@ -30,104 +31,218 @@ public class Parser {
      */
     public static Command parse(String command) throws FredException {
         if (command.equals("bye")) {
-            return new ExitCommand();
-
+            return parseByeCommand();
         } else if (command.equals("list")) {
-            return new ListCommand();
-
+            return parseListCommand();
         } else if (command.startsWith("mark")) {
-            if (command.trim().equals("mark")) {
-                throw new FredException("The input of mark cannot be empty!");
-            }
-
-            int index;
-            try {
-                index = Integer.parseInt(command.substring(5));
-            } catch (NumberFormatException e) {
-                throw new FredException("mark can only take in an integer!");
-            }
-
-            return new MarkCommand(index);
-
+            return parseMarkCommand(command);
         } else if (command.startsWith("unmark")) {
-            if (command.trim().equals("unmark")) {
-                throw new FredException("The input of unmark cannot be empty!");
-            }
-
-            int index;
-            try {
-                index = Integer.parseInt(command.substring(7));
-            } catch (NumberFormatException e) {
-                throw new FredException("unmark can only take in an integer!");
-            }
-
-            return new UnmarkCommand(index);
-
+            return parseUnmarkCommand(command);
         } else if (command.startsWith("todo")) {
-            if (command.trim().equals("todo")) {
-                throw new FredException("The description of a todo cannot be empty.");
-            }
-            return new AddCommand(TaskType.TODO, command.substring(5));
-
+            return parseTodoCommand(command);
         } else if (command.startsWith("event")) {
-            if (command.trim().equals("event")) {
-                throw new FredException("The description of a event cannot be empty.");
-            }
-            int split = command.indexOf("/at");
-            if (split == -1) {
-                throw new FredException("No date provided! Usage: \"TASK /at DATE\"");
-            }
-
-            LocalDate date;
-            try {
-                date = LocalDate.parse(command.substring(split + 4), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            } catch (DateTimeParseException e) {
-                throw new FredException("Input date as yyyy-MM-dd!");
-            }
-            return new AddCommand(TaskType.EVENT, command.substring(6, split - 1), date);
-
+            return parseEventCommand(command);
         } else if (command.startsWith("deadline")) {
-            if (command.trim().equals("deadline")) {
-                throw new FredException("The description of a deadline cannot be empty.");
-            }
-            int split = command.indexOf("/by");
-            if (split == -1) {
-                throw new FredException("No date provided! Usage: \"TASK /by DATE\"");
-            }
-
-            LocalDate date;
-            try {
-                date = LocalDate.parse(command.substring(split + 4), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            } catch (DateTimeParseException e) {
-                throw new FredException("Input date as yyyy-MM-dd!");
-            }
-            return new AddCommand(TaskType.DEADLINE, command.substring(9, split - 1), date);
-
+            return parseDeadlineCommand(command);
         } else if (command.startsWith("delete")) {
-            if (command.trim().equals("delete")) {
-                throw new FredException("The input of delete cannot be empty!");
-            }
-
-            int index;
-            try {
-                index = Integer.parseInt(command.substring(7));
-            } catch (NumberFormatException e) {
-                throw new FredException("delete can only take in an integer!");
-            }
-
-            return new DeleteCommand(index);
-
+            return parseDeleteCommand(command);
         } else if (command.equals("save")) {
-            return new SaveCommand();
-
+            return parseSaveCommand();
         } else if (command.startsWith("find")) {
-            if (command.trim().equals("find")) {
-                throw new FredException("The input of delete cannot be empty!");
-            }
-            return new FindCommand(command.substring(5));
-
+            return parseFindCommand(command);
         } else {
             throw new FredException("I'm sorry, but I don't know what that means :(");
         }
+    }
+
+    /**
+     * Parse bye
+     * @return ExitCommand
+     */
+    private static Command parseByeCommand() {
+        return new ExitCommand();
+    }
+
+    /**
+     * Parse list
+     * @return ListCommand
+     */
+    private static Command parseListCommand() {
+        return new ListCommand();
+    }
+
+    /**
+     * Parse mark
+     * @param command command string
+     * @return MarkCommand
+     * @throws FredException
+     */
+    private static Command parseMarkCommand(String command) throws FredException {
+        if (command.trim().equals("mark")) {
+            throw new FredException("The input of mark cannot be empty!");
+        }
+
+        int indexToMark;
+        try {
+            String commandWord = "mark";
+            int indexOfCommandArgument = command.indexOf(commandWord) + commandWord.length() + 1;
+            String commandArgument = command.substring(indexOfCommandArgument).trim();
+            indexToMark = Integer.parseInt(commandArgument);
+        } catch (NumberFormatException e) {
+            throw new FredException("mark can only take in an integer!");
+        }
+
+        return new MarkCommand(indexToMark);
+    }
+
+    /**
+     * Parse unmark
+     * @param command command string
+     * @return UnmarkCommand
+     * @throws FredException
+     */
+    private static Command parseUnmarkCommand(String command) throws FredException {
+        if (command.trim().equals("unmark")) {
+            throw new FredException("The input of unmark cannot be empty!");
+        }
+
+        int indexToUnmark;
+        try {
+            String commandWord = "unmark";
+            int indexOfCommandArgument = command.indexOf(commandWord) + commandWord.length() + 1;
+            String commandArgument = command.substring(indexOfCommandArgument).trim();
+            indexToUnmark = Integer.parseInt(commandArgument);
+        } catch (NumberFormatException e) {
+            throw new FredException("unmark can only take in an integer!");
+        }
+
+        return new UnmarkCommand(indexToUnmark);
+    }
+
+    /**
+     * Parse todo
+     * @param command command string
+     * @return AddCommand for ToDo
+     * @throws FredException
+     */
+    private static Command parseTodoCommand(String command) throws FredException {
+        if (command.trim().equals("todo")) {
+            throw new FredException("The description of a todo cannot be empty.");
+        }
+
+        String commandWord = "todo";
+        int indexOfCommandArgument = command.indexOf(commandWord) + commandWord.length() + 1;
+        String commandArgument = command.substring(indexOfCommandArgument).trim();
+        return new AddCommand(TaskType.TODO, commandArgument);
+    }
+
+    /**
+     * Parse event
+     * @param command command string
+     * @return AddCommand for Event
+     * @throws FredException
+     */
+    private static Command parseEventCommand(String command) throws FredException {
+        if (command.trim().equals("event")) {
+            throw new FredException("The description of a event cannot be empty.");
+        } else if (!command.contains("/at")) {
+            throw new FredException("No date provided! Usage: \"TASK /at DATE\"");
+        }
+
+        String commandWord = "event";
+        int indexOfCommandArgument = command.indexOf(commandWord) + commandWord.length() + 1;
+        String commandArgument = command.substring(indexOfCommandArgument).trim();
+
+        String[] commandArgumentParts = commandArgument.split(" /at ");
+        String eventDescription = commandArgumentParts[0].trim();
+        String eventDateString = commandArgumentParts[1].trim();
+
+        LocalDate date;
+        try {
+            date = LocalDate.parse(eventDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        } catch (DateTimeParseException e) {
+            throw new FredException("Input date as yyyy-MM-dd!");
+        }
+        return new AddCommand(TaskType.EVENT, eventDescription, date);
+    }
+
+    /**
+     * Parse deadline
+     * @param command command string
+     * @return AddCommand for Deadline
+     * @throws FredException
+     */
+    private static Command parseDeadlineCommand(String command) throws FredException {
+        if (command.trim().equals("deadline")) {
+            throw new FredException("The description of a deadline cannot be empty.");
+        } else if (!command.contains("/by")) {
+            throw new FredException("No date provided! Usage: \"TASK /by DATE\"");
+        }
+
+        String commandWord = "deadline";
+        int indexOfCommandArgument = command.indexOf(commandWord) + commandWord.length() + 1;
+        String commandArgument = command.substring(indexOfCommandArgument).trim();
+
+        String[] commandArgumentParts = commandArgument.split(" /by ");
+        String deadlineDescription = commandArgumentParts[0].trim();
+        String deadlineDateString = commandArgumentParts[1].trim();
+
+        LocalDate date;
+        try {
+            date = LocalDate.parse(deadlineDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        } catch (DateTimeParseException e) {
+            throw new FredException("Input date as yyyy-MM-dd!");
+        }
+        return new AddCommand(TaskType.DEADLINE, deadlineDescription, date);
+    }
+
+    /**
+     * Parse delete
+     * @param command command string
+     * @return DeleteCommand
+     * @throws FredException
+     */
+    private static Command parseDeleteCommand(String command) throws FredException {
+        if (command.trim().equals("delete")) {
+            throw new FredException("The input of delete cannot be empty!");
+        }
+
+        int indexToDelete;
+        try {
+            String commandWord = "delete";
+            int indexOfCommandArgument = command.indexOf(commandWord) + commandWord.length() + 1;
+            String commandArgument = command.substring(indexOfCommandArgument).trim();
+            indexToDelete = Integer.parseInt(commandArgument);
+        } catch (NumberFormatException e) {
+            throw new FredException("delete can only take in an integer!");
+        }
+
+        return new DeleteCommand(indexToDelete);
+    }
+
+    /**
+     * Parse save
+     * @return SaveCommand
+     * @throws FredException
+     */
+    private static Command parseSaveCommand() throws FredException {
+        return new SaveCommand();
+    }
+
+    /**
+     * Parse find
+     * @param command command string
+     * @return FindCommand
+     * @throws FredException
+     */
+    private static Command parseFindCommand(String command) throws FredException {
+        if (command.trim().equals("find")) {
+            throw new FredException("The input of find cannot be empty!");
+        }
+
+        String commandWord = "find";
+        int indexOfCommandArgument = command.indexOf(commandWord) + commandWord.length() + 1;
+        String commandArgument = command.substring(indexOfCommandArgument).trim();
+        return new FindCommand(commandArgument);
     }
 }

@@ -8,27 +8,7 @@ import java.util.Scanner;
  */
 public class Ui {
 
-    protected Scanner scanner;
-    protected String input;
     protected String fredMessage;
-
-    public Ui() {
-        scanner = new Scanner(System.in);
-    }
-
-    /**
-     * Shows welcome message upon starting Fred chat bot.
-     */
-    public void showWelcome() {
-        System.out.println("Hello! I'm fred.Fred! What can I do for you?");
-    }
-
-    /**
-     * Shows line that separates chat bot messages and user input.
-     */
-    public void showLine() {
-        System.out.println("___________________________________________________");
-    }
 
     /**
      * Show loading error from start of chat bot.
@@ -38,31 +18,18 @@ public class Ui {
     }
 
     /**
-     * Read command from user and passes it to the rest of the program.
-     * @return String containing command from user.
-     */
-    public String readCommand() {
-        return scanner.nextLine();
-    }
-
-    /**
-     * Store message that is to be sent to user.
+     * Store message that Fred is supposed to show to the user.
      * @param message
      */
     public void storeMessage(String message) {
         fredMessage = message;
     }
 
+    /**
+     * Return the message that Fred is supposed to show to the user.
+     * @return String containing message to be shown to the user
+     */
     public String getMessage() {
         return fredMessage;
     }
-
-    /**
-     * Show error message when an error is detected in the program.
-     * @param errorMessage
-     */
-    public void showError(String errorMessage) {
-        System.out.println("Error: " + errorMessage);
-    }
-
 }

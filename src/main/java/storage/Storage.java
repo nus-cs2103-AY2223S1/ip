@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -66,27 +69,15 @@ public class Storage {
             Scanner scanner = new Scanner(file).useDelimiter("\\s\\|\\s");
 
             while (scanner.hasNext()) {
-                String start = scanner.next();
-                if (start.equals("T")) {
-                    String isDoneSymbol = scanner.next();
-                    scanner.skip("\\s\\|\\s");
-                    String description = scanner.nextLine();
-                    Task t = new ToDo(description, (isDoneSymbol.equals("1")));
-                    taskList.add(t);
-                } else if (start.equals("E")) {
-                    String isDoneSymbol = scanner.next();
-                    String description = scanner.next();
-                    scanner.skip("\\s\\|\\s");
-                    String at = scanner.nextLine();
-                    Task t = new Event(description, at, (isDoneSymbol.equals("1")));
-                    taskList.add(t);
-                } else if (start.equals("D")) {
-                    String isDoneSymbol = scanner.next();
-                    String description = scanner.next();
-                    scanner.skip("\\s\\|\\s");
-                    String by = scanner.nextLine();
-                    Task t = new Deadline(description, by, (isDoneSymbol.equals("1")));
-                    taskList.add(t);
+                String entry = scanner.nextLine();
+                char firstLetter = entry.charAt(0);
+
+                if (firstLetter == 'T') {
+                    loadTodo(taskList, entry);
+                } else if (firstLetter == 'E') {
+                    loadEvent(taskList, entry);
+                } else if (firstLetter == 'D') {
+                    loadDeadline(taskList, entry);
                 } else {
                     assert(!start.equals("T") && !start.equals("E") && !start.equals("D"));
                     throw new FredException("Loading... Data file entry is wrong!");
@@ -98,5 +89,66 @@ public class Storage {
         } catch (FileNotFoundException e) {
             throw new FredException("Loading Error!");
         }
+    }
+
+    /**
+     * Load Todo into taskList
+     * @param taskList Fred's tasklist
+     * @param entry entry in data file
+     */
+    private void loadTodo(ArrayList<Task> taskList, String entry) {
+        String[] entryParts = entry.split(" \\| ");
+        String isDoneSymbol = entryParts[1].trim();
+        boolean isDone = isDoneSymbol.equals("1");
+        String description = entryParts[2].trim();
+        Task todo = new ToDo(description, isDone);
+
+        taskList.add(todo);
+    }
+
+    /**
+     * Load Event into taskList
+     * @param taskList Fred's tasklist
+     * @param entry entry in data file
+     */
+    private void loadEvent(ArrayList<Task> taskList, String entry) {
+        String[] entryParts = entry.split(" \\| ");
+        String isDoneSymbol = entryParts[1].trim();
+        boolean isDone = isDoneSymbol.equals("1");
+        String description = entryParts[2].trim();
+        String dateString = entryParts[3].trim();
+
+        LocalDate date = null;
+        try {
+            date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        } catch (DateTimeParseException e) {
+            e.printStackTrace();
+        }
+        Task event = new Event(description, date, isDone);
+
+        taskList.add(event);
+    }
+
+    /**
+     * Load Deadline into taskList
+     * @param taskList Fred's tasklist
+     * @param entry entry in data file
+     */
+    private void loadDeadline(ArrayList<Task> taskList, String entry) {
+        String[] entryParts = entry.split(" \\| ");
+        String isDoneSymbol = entryParts[1].trim();
+        boolean isDone = isDoneSymbol.equals("1");
+        String description = entryParts[2].trim();
+        String dateString = entryParts[3].trim();
+
+        LocalDate date = null;
+        try {
+            date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        } catch (DateTimeParseException e) {
+            e.printStackTrace();
+        }
+        Task deadline = new Deadline(description, date, isDone);
+
+        taskList.add(deadline);
     }
 }

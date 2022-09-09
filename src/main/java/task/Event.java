@@ -24,12 +24,12 @@ public class Event extends Task {
     /**
      * Create new Event
      * @param description description of event
-     * @param dateString date of event
+     * @param date date of event
      * @param isDone boolean that is true when event is marked done otherwise it is false
      */
-    public Event(String description, String dateString, boolean isDone) {
+    public Event(String description, LocalDate date, boolean isDone) {
         super(description, isDone);
-        at = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        at = date;
     }
 
     @Override
