@@ -21,12 +21,12 @@ public class Duke {
     }
 
     /**
-     * Parses the given text using the Parser.
+     * Returns the corresponding Command after parsing the given text with the Parser.
      *
      * @param text The text to parse.
      * @return The corresponding command after parsing the text.
      */
-    public Command parseText(String text) {
+    public Command getCommand(String text) {
         return Parser.parseText(text, this.taskList);
     }
 

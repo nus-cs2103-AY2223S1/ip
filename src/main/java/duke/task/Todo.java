@@ -37,6 +37,7 @@ public class Todo extends Task {
      * @throws DukeException If the String is empty.
      */
     public static Todo decode(String s) throws DukeException {
+        // Solution below adapted from https://github.com/teikjun/duke
         String[] arguments = s.split(";");
         boolean isDone = arguments[0].equals("1");
         return new Todo(arguments[1], isDone);

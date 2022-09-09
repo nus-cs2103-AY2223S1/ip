@@ -140,6 +140,7 @@ public class TaskList {
      */
     @Override
     public String toString() {
+        // Solution below adapted from https://github.com/teikjun/duke
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < this.tasks.size(); i++) {
             Task task = this.tasks.get(i);

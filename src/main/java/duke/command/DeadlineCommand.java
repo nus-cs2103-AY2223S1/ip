@@ -7,6 +7,7 @@ import duke.task.TaskList;
  * This class encapsulates a deadline command from the user.
  */
 public class DeadlineCommand extends AddCommand {
+    // Solution below adapted from https://github.com/teikjun/duke
     public static final String COMMAND_WORD = "deadline";
     public static final String COMMAND_SEPARATOR = "/by";
 

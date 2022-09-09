@@ -6,6 +6,7 @@ import duke.task.TaskList;
  * This class encapsulates a list command from the user.
  */
 public class ListCommand extends Command {
+    // Solution below adapted from https://github.com/teikjun/duke
     public static final String COMMAND_WORD = "list";
 
     private TaskList taskList;

@@ -17,6 +17,9 @@ import javafx.scene.layout.VBox;
  * Controller for MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
+    // @@author jorrdansoh-reused
+    // Reused from https://se-education.org/guides/tutorials/javaFx.html
+    // with minor modifications
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -32,6 +35,7 @@ public class MainWindow extends AnchorPane {
             new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private Image dukeImage =
             new Image(this.getClass().getResourceAsStream("/images/Duke.png"));
+    // @@author
 
     // @@author jorrdansoh-reused
     // Reused from https://se-education.org/guides/tutorials/javaFx.html
@@ -60,7 +64,7 @@ public class MainWindow extends AnchorPane {
 
     // @@author jorrdansoh-reused
     // Reused from https://se-education.org/guides/tutorials/javaFx.html
-    // with minor modifications
+    // with modifications
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply
      * and then appends them to the dialog container.
@@ -72,7 +76,7 @@ public class MainWindow extends AnchorPane {
             String userText = this.userInput.getText();
             assert userText != null : "userText should not be null";
 
-            Command command = this.duke.parseText(userText);
+            Command command = this.duke.getCommand(userText);
             assert command != null : "command should not be null";
 
             String dukeText = command.execute();

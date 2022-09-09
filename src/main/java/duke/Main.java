@@ -35,7 +35,7 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-    //    @@author
+    // @@author
 
     /**
      * Closes the Stage.

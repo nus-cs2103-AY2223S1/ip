@@ -42,7 +42,11 @@ public class DialogBox extends HBox {
             this.displayPicture.setImage(image);
         }
     }
+    // @@author
 
+    // @@author jorrdansoh-reused
+    // Reused from https://se-education.org/guides/tutorials/javaFx.html
+    // with minor modifications
     /**
      * Flips the dialog box such that the ImageView is on the left and text on the right.
      */
@@ -54,6 +58,7 @@ public class DialogBox extends HBox {
     }
     // @@author
 
+    // Solution below adapted from https://se-education.org/guides/tutorials/javaFx.html
     /**
      * Returns the dialog box for the user.
      *
@@ -65,6 +70,7 @@ public class DialogBox extends HBox {
         return new DialogBox(text, image);
     }
 
+    // Solution below adapted from https://se-education.org/guides/tutorials/javaFx.html
     /**
      * Returns the dialog box for Duke.
      *

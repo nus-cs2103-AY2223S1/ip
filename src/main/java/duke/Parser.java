@@ -29,49 +29,49 @@ public class Parser {
      * @return The Command corresponding to the user input.
      */
     public static Command parseText(String text, TaskList taskList) {
-        // @@author jorrdansoh-reused
-        // Reused from https://github.com/teikjun/duke
-        // with minor modifications
+        // Solution below adapted from https://github.com/teikjun/duke
         String[] words = text.split(" ", 2);
         String commandWord = words[0];
         String argument = words.length > 1 ? words[1] : "";
-        // @@author
 
         try {
             return getCommand(commandWord, argument, taskList);
         } catch (DukeException e) {
             return new InvalidCommand(e.getMessage());
-        } catch (NumberFormatException e) {
-            return new InvalidCommand("Oops! That's not a proper number.");
         }
     }
 
     private static Command getCommand(String commandWord, String argument, TaskList taskList) throws DukeException {
-        switch (commandWord) {
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand(taskList);
-        case MarkCommand.COMMAND_WORD:
-            return new MarkCommand(taskList, Integer.parseInt(argument) - 1);
-        case UnmarkCommand.COMMAND_WORD:
-            return new UnmarkCommand(taskList, Integer.parseInt(argument) - 1);
-        case TodoCommand.COMMAND_WORD:
-            return new TodoCommand(taskList, new Todo(argument));
-        case DeadlineCommand.COMMAND_WORD:
-            String[] arguments = splitArgument(argument, DeadlineCommand.COMMAND_SEPARATOR);
-            return new DeadlineCommand(taskList, new Deadline(arguments[0], arguments[1]));
-        case EventCommand.COMMAND_WORD:
-            arguments = splitArgument(argument, EventCommand.COMMAND_SEPARATOR);
-            return new EventCommand(taskList, new Event(arguments[0], arguments[1]));
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommand(taskList, Integer.parseInt(argument) - 1);
-        case FindCommand.COMMAND_WORD:
-            return new FindCommand(taskList, argument);
-        case SortCommand.COMMAND_WORD:
-            return new SortCommand(taskList);
-        default:
-            throw new DukeException("I'm sorry, but I don't know what that means.");
+        // Solution below adapted from https://github.com/teikjun/duke
+        try {
+            switch (commandWord) {
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
+            case ListCommand.COMMAND_WORD:
+                return new ListCommand(taskList);
+            case MarkCommand.COMMAND_WORD:
+                return new MarkCommand(taskList, Integer.parseInt(argument) - 1);
+            case UnmarkCommand.COMMAND_WORD:
+                return new UnmarkCommand(taskList, Integer.parseInt(argument) - 1);
+            case TodoCommand.COMMAND_WORD:
+                return new TodoCommand(taskList, new Todo(argument));
+            case DeadlineCommand.COMMAND_WORD:
+                String[] arguments = splitArgument(argument, DeadlineCommand.COMMAND_SEPARATOR);
+                return new DeadlineCommand(taskList, new Deadline(arguments[0], arguments[1]));
+            case EventCommand.COMMAND_WORD:
+                arguments = splitArgument(argument, EventCommand.COMMAND_SEPARATOR);
+                return new EventCommand(taskList, new Event(arguments[0], arguments[1]));
+            case DeleteCommand.COMMAND_WORD:
+                return new DeleteCommand(taskList, Integer.parseInt(argument) - 1);
+            case FindCommand.COMMAND_WORD:
+                return new FindCommand(taskList, argument);
+            case SortCommand.COMMAND_WORD:
+                return new SortCommand(taskList);
+            default:
+                throw new DukeException("I'm sorry, but I don't know what that means.");
+            }
+        } catch (NumberFormatException e) {
+            throw new DukeException("That's not a proper number.");
         }
     }
 

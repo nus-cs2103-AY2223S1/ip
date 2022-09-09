@@ -15,7 +15,7 @@ public class Date {
      * @return The LocalDate object obtained from the String.
      * @throws DateTimeException If the given String is not of the correct format.
      */
-    public static LocalDate parse(String s) throws DateTimeException {
+    public static LocalDate getDate(String s) throws DateTimeException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return LocalDate.parse(s, formatter);
     }

@@ -8,6 +8,7 @@ import duke.task.TaskList;
  * This class encapsulates an unmark command from the user.
  */
 public class UnmarkCommand extends Command {
+    // Solution below adapted from https://github.com/teikjun/duke
     public static final String COMMAND_WORD = "unmark";
 
     private TaskList taskList;

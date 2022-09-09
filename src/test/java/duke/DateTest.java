@@ -13,13 +13,13 @@ public class DateTest {
     public void parse_dateString_success() throws Exception {
         assertEquals(
                 LocalDate.parse("2020-02-19"),
-                Date.parse("19-02-2020"));
+                Date.getDate("19-02-2020"));
         assertEquals(
                 LocalDate.parse("1970-01-20"),
-                Date.parse("20-01-1970"));
+                Date.getDate("20-01-1970"));
         assertEquals(
                 LocalDate.parse("2050-12-31"),
-                Date.parse("31-12-2050"));
+                Date.getDate("31-12-2050"));
 
     }
 
@@ -56,7 +56,7 @@ public class DateTest {
         try {
             assertEquals(
                     "",
-                    Date.parse("21/08/2022"));
+                    Date.getDate("21/08/2022"));
             fail(); // the test should not reach this line
         } catch (DateTimeException e) {
             assertEquals("Text '21/08/2022' could not be parsed at index 2", e.getMessage());

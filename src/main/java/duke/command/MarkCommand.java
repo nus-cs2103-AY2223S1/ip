@@ -8,6 +8,7 @@ import duke.task.TaskList;
  * This class encapsulates a mark command from the user.
  */
 public class MarkCommand extends Command {
+    // Solution below adapted from https://github.com/teikjun/duke
     public static final String COMMAND_WORD = "mark";
 
     private TaskList taskList;

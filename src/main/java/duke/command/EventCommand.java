@@ -7,6 +7,7 @@ import duke.task.TaskList;
  * This class encapsulates an event command from the user.
  */
 public class EventCommand extends AddCommand {
+    // Solution below adapted from https://github.com/teikjun/duke
     public static final String COMMAND_WORD = "event";
     public static final String COMMAND_SEPARATOR = "/at";
 

@@ -25,7 +25,7 @@ public class Event extends Task {
     public Event(String description, String date) throws DukeException {
         super(description, false);
         try {
-            this.date = Date.parse(date);
+            this.date = Date.getDate(date);
         } catch (DateTimeException e) {
             throw new DukeException("That's not a proper date.");
         }
@@ -42,7 +42,7 @@ public class Event extends Task {
     public Event(String description, boolean isDone, String date) throws DukeException {
         super(description, isDone);
         try {
-            this.date = Date.parse(date);
+            this.date = Date.getDate(date);
         } catch (DateTimeException e) {
             throw new DukeException("That's not a proper date.");
         }
@@ -65,6 +65,7 @@ public class Event extends Task {
      * @throws DukeException If the String is empty, or if the format of the date in the String is wrong.
      */
     public static Event decode(String s) throws DukeException {
+        // Solution below adapted from https://github.com/teikjun/duke
         String[] arguments = s.split(";");
         boolean isDone = arguments[0].equals("1");
         return new Event(arguments[1], isDone, arguments[2]);

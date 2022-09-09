@@ -8,6 +8,7 @@ import duke.task.TaskList;
  * This class encapsulates a delete command from the user.
  */
 public class DeleteCommand extends Command {
+    // Solution below adapted from https://github.com/teikjun/duke
     public static final String COMMAND_WORD = "delete";
 
     private TaskList taskList;

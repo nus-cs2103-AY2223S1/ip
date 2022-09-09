@@ -31,6 +31,7 @@ public class Storage {
      * @throws DukeException If there is a problem with reading the file.
      */
     public TaskList load() throws DukeException {
+        // Solution below adapted from https://github.com/teikjun/duke
         try {
             createFile();
             return TaskList.decode(Files.readAllLines(this.filePath));
@@ -46,6 +47,7 @@ public class Storage {
      * @throws DukeException If there is a problem with writing to the file.
      */
     public void save(TaskList taskList) throws DukeException {
+        // Solution below adapted from https://github.com/teikjun/duke
         try {
             Files.write(this.filePath, taskList.encode());
         } catch (IOException e) {
