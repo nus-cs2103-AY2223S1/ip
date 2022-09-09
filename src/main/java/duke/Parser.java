@@ -9,7 +9,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class Parser {
 
-    /** Returns String date in a nicer format.
+    /**
+     * Returns String date in a nicer format.
      *
      * @param date
      * @return String date in nicer format
