@@ -30,6 +30,5 @@ Enter the corresponding input as required!
 
 | Command Functionality | Syntax/Format Examples | Description |
 | --- | --- | --- | 
-| Add todo |todo <description>  | E.g: todo clean dishes
-Adds a todo event to the list |
+| Add todo |todo (description) \n E.g: todo clean dishes | Adds a todo event to the list |
 
