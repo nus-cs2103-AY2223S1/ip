@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -112,7 +115,14 @@ public class Storage {
         boolean isDone = isDoneSymbol.equals("1");
         String description = entryParts[2].trim();
         String dateString = entryParts[3].trim();
-        Task event = new Event(description, dateString, isDone);
+
+        LocalDate date = null;
+        try {
+            date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        } catch (DateTimeParseException e) {
+            e.printStackTrace();
+        }
+        Task event = new Event(description, date, isDone);
 
         taskList.add(event);
     }
@@ -128,7 +138,14 @@ public class Storage {
         boolean isDone = isDoneSymbol.equals("1");
         String description = entryParts[2].trim();
         String dateString = entryParts[3].trim();
-        Task deadline = new Deadline(description, dateString, isDone);
+
+        LocalDate date = null;
+        try {
+            date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        } catch (DateTimeParseException e) {
+            e.printStackTrace();
+        }
+        Task deadline = new Deadline(description, date, isDone);
 
         taskList.add(deadline);
     }

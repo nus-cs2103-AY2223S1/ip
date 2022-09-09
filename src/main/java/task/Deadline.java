@@ -24,12 +24,12 @@ public class Deadline extends Task {
     /**
      * Create new Deadline
      * @param description description of deadline
-     * @param dateString date of deadline
+     * @param date date of deadline
      * @param isDone boolean that is true when deadline is marked done otherwise it is false
      */
-    public Deadline(String description, String dateString, boolean isDone) {
+    public Deadline(String description, LocalDate date, boolean isDone) {
         super(description, isDone);
-        by = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        by = date;
     }
 
     @Override
