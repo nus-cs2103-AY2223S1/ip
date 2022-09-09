@@ -16,8 +16,10 @@ import javafx.scene.layout.VBox;
  * Source: https://se-education.org/guides/tutorials/javaFxPart4.html
  */
 public class MainWindow extends AnchorPane {
+    // Image retrieved from https://hollowknight.fandom.com/wiki/Hornet
     private static final Image USER_IMAGE = new Image(Objects.requireNonNull(MainWindow.class.getResourceAsStream(
             "/images/hornet.png")));
+    // Image retrieved from https://hollowknight.fandom.com/wiki/Knight
     private static final Image DUKE_IMAGE = new Image(Objects.requireNonNull(MainWindow.class.getResourceAsStream(
             "/images/knight.png")));
     @FXML
