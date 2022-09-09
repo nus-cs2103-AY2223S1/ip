@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * required to do.
  */
 public class TaskList {
-    private ArrayList<Task> tasks;
+    private final ArrayList<Task> tasks;
 
     /**
      * Creates the TaskList object with the input Task
@@ -17,7 +17,7 @@ public class TaskList {
      * @param tasks ArrayList of Task objects the TaskList is
      *              to contain.
      */
-    public TaskList(ArrayList tasks) {
+    public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
 

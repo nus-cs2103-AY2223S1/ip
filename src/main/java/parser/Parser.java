@@ -23,7 +23,6 @@ import ui.Ui;
  * Parses the user's input and generates the appropriate command.
  */
 public class Parser {
-    private Scanner sc;
     private TaskList tasks;
     private Ui ui;
 
@@ -34,7 +33,6 @@ public class Parser {
      * @param ui the User Interface that prints out the output.
      */
     public Parser(TaskList tasks, Ui ui) {
-        this.sc = new Scanner(System.in);
         this.tasks = tasks;
         this.ui = ui;
     }

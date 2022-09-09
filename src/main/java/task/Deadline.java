@@ -33,18 +33,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + DateTimeParser.getReadingLocalDateTimeString(deadlineDateTime) + ")";
-    }
-
-    public String getCommandLineFormatDateTime() {
-        return deadlineDateTime.toString();
-    }
-
-    public String getOutputFormatDateTime() {
-        return DateTimeParser.getReadingLocalDateTimeString(deadlineDateTime);
-    }
-
-    public String getLocalDateTimeString() {
-        return deadlineDateTime.toString();
+        return "[D]" + super.toString() + " (by: "
+                + DateTimeParser.getReadingLocalDateTimeString(deadlineDateTime) + ")";
     }
 }

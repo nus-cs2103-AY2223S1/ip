@@ -10,14 +10,14 @@ import java.time.format.DateTimeFormatter;
  * LocalDateTime with an appropriate format.
  */
 public class DateTimeParser {
-    public static final String DATE_TIME_READING_FORMAT = "d-MMM-yyyy hh:mm a";
-    public static final String DATE_TIME_PARSING_FORMAT = "MMM d yyyy hh:mm a";
-    private static DateTimeFormatter parsingDateTimeFormatter = java.time.format
+    private static final String DATE_TIME_READING_FORMAT = "d-MMM-yyyy hh:mm a";
+    private static final String DATE_TIME_PARSING_FORMAT = "MMM d yyyy hh:mm a";
+    private static final DateTimeFormatter parsingDateTimeFormatter = java.time.format
             .DateTimeFormatter.ofPattern(DATE_TIME_PARSING_FORMAT);
-    public static final String DATE_PARSING_FORMAT = "MMM d yyyy";
-    private static DateTimeFormatter parsingDateFormatter = java.time.format
+    private static final String DATE_PARSING_FORMAT = "MMM d yyyy";
+    private static final DateTimeFormatter parsingDateFormatter = java.time.format
             .DateTimeFormatter.ofPattern(DATE_PARSING_FORMAT);
-    private static DateTimeFormatter readingFormatter = java.time.format
+    private static final DateTimeFormatter readingFormatter = java.time.format
             .DateTimeFormatter.ofPattern(DATE_TIME_READING_FORMAT);
 
     /**
