@@ -17,7 +17,7 @@ import javafx.scene.layout.VBox;
  */
 public class MainWindow extends AnchorPane {
     private static final Image USER_IMAGE = new Image(Objects.requireNonNull(MainWindow.class.getResourceAsStream(
-            "/images/DaUser.png")));
+            "/images/hornet.png")));
     private static final Image DUKE_IMAGE = new Image(Objects.requireNonNull(MainWindow.class.getResourceAsStream(
             "/images/knight.png")));
     @FXML
