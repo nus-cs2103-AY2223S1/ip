@@ -129,6 +129,6 @@ public class Bob extends Application{
         while (parser.getToExit() == false) {
             return parser.parse(input, taskList, storage, ui);
         }
-        return ui.displayError("pls input something?");
+        return ui.displayError("please input something?");
     }
 }
