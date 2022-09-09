@@ -13,6 +13,7 @@ import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
 import duke.loanbook.command.AddContactCommand;
+import duke.loanbook.command.DeleteContactCommand;
 import duke.loanbook.command.ListContactsCommand;
 import duke.loanbook.command.LoanbookCommand;
 
@@ -76,7 +77,9 @@ public class Parser {
             "mark",
             "unmark",
             "find",
-            "delete"
+            "delete",
+            "loanbook delete",
+            "loanbook add"
         };
 
         // Convert String array to list
@@ -107,6 +110,10 @@ public class Parser {
             return "Usage 'find title'";
         case "loanbook":
             return "Wrong usage of loanbook!";
+        case "loanbook add":
+            return "Usage 'loanbook add name phone amount isOwe(true/false)";
+        case "loanbook delete":
+            return "Usage 'loanbook delete name'";
         default:
             return "There is no error in this user input!";
         }
@@ -184,6 +191,8 @@ public class Parser {
             return new AddContactCommand(arguments.split(" "));
         case "loanbook list":
             return new ListContactsCommand();
+        case "loanbook delete":
+            return new DeleteContactCommand(arguments);
         default:
             throw new DukeException("I'm sorry, I don't understand what that means :-(");
         }

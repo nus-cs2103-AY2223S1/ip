@@ -1,5 +1,10 @@
 package duke.loanbook;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import duke.exception.DukeException;
+
 /**
  * Represents a Contact in the loan book.
  *
@@ -20,10 +25,25 @@ public class Contact {
      * @param isOwe True if you owe this contact money, false otherwise.
      */
     public Contact(String name, String phoneNumber, double amount, boolean isOwe) {
+        // Checks that phone number provided is of a valid pattern (Singapore number).
+        Pattern pattern = Pattern.compile("^[689][0-9]{7}$");
+        Matcher matcher = pattern.matcher(phoneNumber);
+        if (!matcher.matches()) {
+            throw new DukeException("Please provide a valid phone number!");
+        }
+
+        if (amount < 0) {
+            throw new DukeException("Amount cannot be negative!");
+        }
+
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.amount = amount;
         this.isOwe = isOwe;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     @Override
