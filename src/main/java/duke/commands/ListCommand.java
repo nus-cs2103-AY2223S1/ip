@@ -15,9 +15,12 @@ public class ListCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.sendMessage("Here are the tasks in your list:");
+        StringBuilder stringBuilder = new StringBuilder("Here are the tasks in your list:\n");
+
         for (int i = 0; i < tasks.getSize(); i++) {
-            ui.sendMessage((i + 1) + ". " + tasks.getTask(i));
+            stringBuilder.append((i + 1) + ". " + tasks.getTask(i) + '\n');
         }
+
+        ui.sendMessage(stringBuilder.toString());
     }
 }
