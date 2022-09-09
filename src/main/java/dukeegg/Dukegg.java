@@ -42,9 +42,10 @@ public class Dukegg {
      * Generates the response based on user input.
      *
      * @param input The specified user input.
-     * @return The response after parsing the user's input..
+     * @return The response after parsing the user's input.
      */
     public String getResponse(String input) {
+        assert input != null;
         try {
             Command command = Parser.parse(input);
             String response = command.execute(this.tasks, this.ui, this.storage);
