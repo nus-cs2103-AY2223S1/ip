@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  */
 public class Event extends Task {
     private LocalDateTime date;
-    private final String TASK_TYPE = "E";
+    private static final String TASK_TYPE = "E";
 
     /**
      * Creates an Event object when given task name and date.
@@ -33,8 +33,12 @@ public class Event extends Task {
      * @throws DateTimeException if invalid date format is given.
      */
     public Event(String taskName, boolean hasCompleted, String date) throws DateTimeException {
-        super(taskName, hasCompleted);
-        this.date = DateTimeParser.getDateTime(date);
+        this(taskName, date);
+        if (hasCompleted) {
+            setComplete();
+        } else {
+            setIncomplete();
+        }
     }
 
     /**

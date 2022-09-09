@@ -16,17 +16,6 @@ public abstract class Task {
         this.taskName = taskName;
     }
 
-    /**
-     * Creates a task when given a task name and completeness.
-     *
-     * @param taskName name of the task.
-     * @param hasCompleted whether the task has been completed.
-     */
-    public Task(String taskName, boolean hasCompleted) {
-        this.taskName = taskName;
-        this.hasCompleted = hasCompleted;
-    }
-
     public String getTaskName() {
         return taskName;
     }

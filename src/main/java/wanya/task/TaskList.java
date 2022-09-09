@@ -1,6 +1,7 @@
 package wanya.task;
 
 import wanya.WanyaException;
+import wanya.ui.Ui;
 
 import java.time.DateTimeException;
 import java.util.ArrayList;
@@ -96,47 +97,42 @@ public class TaskList {
     }
 
     /**
-     * Adds a Deadline task to the TaskList.
+     * Adds deadline or event task to task list.
      *
-     * @param commandInput user input with command deadline.
-     * @throws WanyaException if input does not contain /by and date.
-     * @throws DateTimeException if invalid date time format is provided.
-     * @return String message for adding a Deadline task.
+     * @param command the first word of the user input.
+     * @param commandDescription contains information about the task to be added.
+     * @return String message whether task has been added successfully.
+     * @throws WanyaException if invalid input is given with command.
      */
-    public String addDeadline(String commandInput) throws WanyaException, DateTimeException {
-        String[] inputs = commandInput.split("/by");
-        //no deadline provided
-        if (inputs.length == 1) {
+    public String addTaskWithDate(String command, String commandDescription) throws WanyaException {
+        boolean isDeadline = command.equals("deadline");
+        String[] inputs = isDeadline
+                          ? commandDescription.split("/by")
+                          : commandDescription.split("/at");
+        //no date provided
+        if (inputs.length == 1 && isDeadline) {
             throw new WanyaException("Deadline must have a due date\n" +
                     "Include '/by' and date with format " +
                     "\"yyyy-mm-dd\" at the back");
         }
-        String taskName = inputs[0];
-        String dueDate = inputs[1].trim();
-        Task newTask = new Deadline(taskName, dueDate);
-        return addTask(newTask);
-    }
-
-    /**
-     * Adds an Event task to the TaskList.
-     *
-     * @param commandInput user input with command event.
-     * @throws WanyaException if input does not contain /at and date.
-     * @throws DateTimeException if invalid date time format is provided.
-     * @return String message for adding an Event task.
-     */
-    public String addEvent(String commandInput) throws WanyaException, DateTimeException {
-        String[] inputs = commandInput.split("/at");
-        //no date provided
+        //must be event
         if (inputs.length == 1) {
             throw new WanyaException("Event must have a date\n" +
                     "Include '/at' and date with format " +
                     "\"yyyy-mm-dd\" at the back");
         }
+
         String taskName = inputs[0];
         String date = inputs[1].trim();
-        Task newTask = new Event(taskName, date);
-        return addTask(newTask);
+        try {
+            Task newTask = isDeadline ? new Deadline(taskName, date) : new Event(taskName, date);
+            return addTask(newTask);
+        } catch (DateTimeException e) {
+             WanyaException exception = isDeadline
+                                        ? new WanyaException(Ui.showDateTimeFormat("D"))
+                                        : new WanyaException(Ui.showDateTimeFormat("E"));
+             throw exception;
+        }
     }
 
     /**
@@ -147,9 +143,10 @@ public class TaskList {
      */
     private String addTask(Task task) {
         tasks.add(task);
-        return("You have added: \n"
+        String addTaskString = "You have added:\n"
                 + task
-                + "\nNow you have " + size() + " tasks in your list.");
+                + getSizeString();
+        return addTaskString;
     }
 
     /**
@@ -161,9 +158,15 @@ public class TaskList {
     public String deleteTask(int index) {
         Task task = tasks.get(index - 1);
         tasks.remove(index - 1);
-        return("WWaku WWaku!!! Wanya has used her magic powers to remove this task:\n"
+        String deleteTaskString = "WWaku WWaku!!! Wanya has used her magic powers to remove this task:\n"
                 + task
-                + "\nNow you have " + size() + " tasks in your list.");
+                + getSizeString();
+        return deleteTaskString;
+    }
+
+    private String getSizeString() {
+        String numTaskString = "\nNow you have " + size() + " tasks in your list.";
+        return numTaskString;
     }
 
     /**
@@ -173,7 +176,8 @@ public class TaskList {
      */
     public String showTasks() {
         if (isEmpty()) {
-            return("List is empty! Wheee slack time!");
+            String emptyListString = "List is empty! Wheee slack time!";
+            return emptyListString;
         }
 
         StringBuilder taskString = new StringBuilder();
@@ -216,8 +220,9 @@ public class TaskList {
         }
 
         if (matchingTasks.isEmpty()) {
-            return("Oopsie! There are no matching tasks in your list?\n"
-                    + "Maybe you have typed in wrongly...");
+            String noMatchTasks = "Oopsie! There are no matching tasks in your list?\n"
+                    + "Maybe you have typed in wrongly..."
+            return noMatchTasks;
         }
 
         StringBuilder matchingTasksString = new StringBuilder();
