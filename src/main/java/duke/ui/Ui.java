@@ -204,6 +204,6 @@ public class Ui {
         String temp = String.format("Now you have %d tasks in the list.", tasks.size());
         printTab(temp);
         showLine();
-        duke.getResponse("Noted. I've removed this task:\n" + t + "\n" + temp);
+        duke.setResponse("Noted. I've removed this task:\n" + t + "\n" + temp);
     }
 }
