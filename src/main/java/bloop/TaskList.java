@@ -55,7 +55,7 @@ public class TaskList {
     public String mark(Task task) throws IOException {
         task.mark();
         storage.rewriteFile(tasks);
-        return "This task has been marked as done -\n\t\t" + task;
+        return "This task has been marked as done -\n\t" + task;
     }
 
     /**
@@ -68,7 +68,7 @@ public class TaskList {
     public String unmark(Task task) throws IOException {
         task.unmark();
         storage.rewriteFile(tasks);
-        return "This task has been marked as not done -\n\t\t" + task;
+        return "This task has been marked as not done -\n\t" + task;
     }
 
     /**
@@ -81,7 +81,7 @@ public class TaskList {
     public String remove(Task task) throws IOException {
         tasks.remove(task);
         storage.rewriteFile(tasks);
-        return "This task has been removed -\n\t\t" + task
+        return "This task has been removed -\n\t" + task
                 + "\n\tNow you have " + tasks.size() + " tasks in the list";
     }
 
@@ -91,9 +91,9 @@ public class TaskList {
      * @return message.
      */
     public String listOut() {
-        String list = "\tTasks in your list -";
+        String list = "Tasks in your list -";
         for (int i = 0; i < tasks.size(); i++) {
-            list += "\n\t\t" + (i + 1) + ". " + tasks.get(i);
+            list += "\n\t" + (i + 1) + ". " + tasks.get(i);
         }
         return list;
     }

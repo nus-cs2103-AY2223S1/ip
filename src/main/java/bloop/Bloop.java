@@ -31,8 +31,6 @@ public class Bloop {
         }
     }
 
-
-
     public static void main(String[] args) {
         chatStart();
         Application.launch(Main.class, args);
