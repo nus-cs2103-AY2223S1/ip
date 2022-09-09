@@ -21,7 +21,7 @@ public class ParsedDateTime {
     private String input;
 
     /**
-     * Creates an object to handle if the date/time can be parsed.
+     * Constructs an object to handle if the date/time can be parsed.
      *
      * @param input String that may represent date/time.
      */

@@ -7,6 +7,10 @@ import java.io.Reader;
  * Handles console-based user interface. Used for sanity checks.
  */
 public class ConsoleUi implements UiInterface {
+    private static String UPPER_BAR = ",----------------------------------------------------------------";
+    private static String LOWER_BAR = "\"'----------------------------------------------------------------\"";
+    private static String LEFT_BAR = "| ";
+
     /**
      * {@inheritDoc}
      */
@@ -20,13 +24,13 @@ public class ConsoleUi implements UiInterface {
      */
     @Override
     public void printStyledMessage(String... lines) {
-        System.out.println(",----------------------------------------------------------------");
+        System.out.println(UPPER_BAR);
         for (String str : lines) {
             assert str != null;
-            System.out.print("| ");
+            System.out.print(LEFT_BAR);
             System.out.println(str);
         }
-        System.out.println("'----------------------------------------------------------------");
+        System.out.println(LOWER_BAR);
     }
 
     /**

@@ -13,7 +13,7 @@ public class CommandMatcher {
     private Function<String, DukeResponse> action;
 
     /**
-     * Creates an object that handles checking and executing a command.
+     * Constructs an object that handles checking and executing a command.
      *
      * @param shouldRunAction Predicate to check if the command should be run.
      * @param action Action to run.
@@ -26,7 +26,7 @@ public class CommandMatcher {
     }
 
     /**
-     * Creates an object that handles checking and executing a command.
+     * Constructs an object that handles checking and executing a command.
      *
      * @param shouldRunAction Predicate to check if the command should be run.
      * @param action Action to run.
@@ -37,7 +37,7 @@ public class CommandMatcher {
     }
 
     /**
-     * Creates an object that handles checking and executing a command.
+     * Constructs an object that handles checking and executing a command.
      *
      * @param prefix Prefix of the command which is checked.
      * @param action Action to run.

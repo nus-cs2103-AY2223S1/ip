@@ -104,9 +104,9 @@ public class MainWindow extends AnchorPane {
                 result.append(line);
                 result.append('\n');
             }
-            String response = result.substring(0, result.length() - 1);
+            String responseWithoutTrailingNewline = result.substring(0, result.length() - 1);
             dialogContainer.getChildren().addAll(
-                    DialogBox.getDukeDialog(response, dukeImage)
+                    DialogBox.getDukeDialog(responseWithoutTrailingNewline, dukeImage)
             );
         } catch (IOException ex) {
             dialogContainer.getChildren().addAll(

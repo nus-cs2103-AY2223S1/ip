@@ -8,12 +8,24 @@ public class Task {
     private static final char MARKER_NOT_DONE = ' ';
     private String name;
     private boolean isDone;
-    Task(String name) {
+
+    /**
+     * Constructs a task which is not done.
+     *
+     * @param name Name of task.
+     */
+    public Task(String name) {
         this(name, false);
         assert name != null;
     }
 
-    Task(String name, boolean isDone) {
+    /**
+     * Constructs a task.
+     *
+     * @param name Name of task.
+     * @param isDone True if and only if the task is done.
+     */
+    public Task(String name, boolean isDone) {
         assert name != null;
         this.name = name;
         this.isDone = isDone;
@@ -23,14 +35,14 @@ public class Task {
      * Marks the task as done.
      */
     public void markAsDone() {
-        this.isDone = true;
+        isDone = true;
     }
 
     /**
      * Marks the task as not done.
      */
     public void markAsNotDone() {
-        this.isDone = false;
+        isDone = false;
     }
 
     /**
@@ -44,7 +56,7 @@ public class Task {
     }
 
     private char getDoneMarker() {
-        return this.isDone ? MARKER_DONE : MARKER_NOT_DONE;
+        return isDone ? MARKER_DONE : MARKER_NOT_DONE;
     }
 
     /**

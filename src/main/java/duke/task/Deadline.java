@@ -9,7 +9,7 @@ public class Deadline extends Task {
     protected ParsedDateTime datetime;
 
     /**
-     * Creates a Deadline object.
+     * Constructs a Deadline object.
      *
      * @param description Description of deadline.
      * @param by Time of deadline.
@@ -19,7 +19,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Creates a Deadline object.
+     * Constructs a Deadline object.
      *
      * @param description Description of deadline.
      * @param by Time of deadline.
