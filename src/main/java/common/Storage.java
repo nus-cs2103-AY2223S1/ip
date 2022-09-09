@@ -87,20 +87,20 @@ public class Storage {
         while (s.hasNext()) {
             String[] encodedTask = s.nextLine().split("#");
             switch (encodedTask[0]) {
-                case "[T]": {
-                    taskList.addTask(new ToDo(encodedTask[1], Boolean.parseBoolean(encodedTask[2])));
-                    break;
-                }
-                case "[D]": {
-                    taskList.addTask(new Deadline(encodedTask[1], Boolean.parseBoolean(encodedTask[2]), DeadlineCommand.parseDeadlineDatetimeFromStorage(encodedTask[3])));
-                    break;
-                }
-                case "[E]": {
-                    taskList.addTask(new Event(encodedTask[1], Boolean.parseBoolean(encodedTask[2]), EventCommand.parseEventDatetimeFromStorage(encodedTask[3]), EventCommand.parseEventDatetimeFromStorage(encodedTask[4])));
-                    break;
-                }
-                default:
-                    throw new IOException();
+            case "[T]": {
+                taskList.addTask(new ToDo(encodedTask[1], Boolean.parseBoolean(encodedTask[2])));
+                break;
+            }
+            case "[D]": {
+                taskList.addTask(new Deadline(encodedTask[1], Boolean.parseBoolean(encodedTask[2]), DeadlineCommand.parseDeadlineDatetimeFromStorage(encodedTask[3])));
+                break;
+            }
+            case "[E]": {
+                taskList.addTask(new Event(encodedTask[1], Boolean.parseBoolean(encodedTask[2]), EventCommand.parseEventDatetimeFromStorage(encodedTask[3]), EventCommand.parseEventDatetimeFromStorage(encodedTask[4])));
+                break;
+            }
+            default:
+                throw new IOException();
             }
         }
     }
