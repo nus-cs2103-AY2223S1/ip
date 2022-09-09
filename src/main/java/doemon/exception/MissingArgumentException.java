@@ -1,19 +1,16 @@
 package doemon.exception;
 
 public class MissingArgumentException extends DoemonException {
-    /**
-     * A string indicating the type of task that threw this exception.
-     */
+    /** A string indicating the type of task that threw this exception. */
     private String task;
-    /**
-     * The flag that this type of task requires.
-     */
+    /** The flag that this type of task requires. */
     private String flag;
 
     /**
      * Constructor for a MissingArgumentException.
-     * @param task a string indicating the type of task that threw this exception
-     * @param flag the related flag that the type of task requires
+     *
+     * @param task A string indicating the type of task that threw this exception.
+     * @param flag The related flag that the type of task requires.
      */
     public MissingArgumentException(String task, String flag) {
         this.task = task;

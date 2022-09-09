@@ -1,22 +1,21 @@
 package doemon.exception;
 
 public class EmptyTaskException extends DoemonException {
-    /**
-     * A string indicating the type of task that threw this exception.
-     */
+
+    /** A string indicating the type of task that threw this exception. */
     private String task;
 
     /**
      * Constructor for an EmptyTaskException.
-     * @param task a string indicating the type of task that threw this exception
+     *
+     * @param task A string indicating the type of task that threw this exception.
      */
     public EmptyTaskException(String task) {
         this.task = task;
     }
 
     /**
-     * Returns a string representation of the exception.
-     * @return a string representing the exception
+     * {@inheritDoc}
      */
     @Override
     public String toString() {

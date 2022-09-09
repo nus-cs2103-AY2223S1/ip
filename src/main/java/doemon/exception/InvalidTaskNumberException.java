@@ -1,22 +1,20 @@
 package doemon.exception;
 
 public class InvalidTaskNumberException extends DoemonException {
-    /**
-     * The action being performed.
-     */
+    /** The action being performed. */
     private String action;
 
     /**
      * Constructor for an InvalidTaskNumberException.
-     * @param action the action being performed
+     *
+     * @param action The action being performed.
      */
     public InvalidTaskNumberException(String action) {
         this.action = action;
     }
 
     /**
-     * Returns a string representation of the exception.
-     * @return a string representing the exception
+     * {@inheritDoc}
      */
     @Override
     public String toString() {

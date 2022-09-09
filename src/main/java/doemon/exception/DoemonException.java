@@ -2,8 +2,7 @@ package doemon.exception;
 
 public class DoemonException extends RuntimeException {
     /**
-     * Returns a string representation of the exception.
-     * @return a string representing the exception
+     * {@inheritDoc}
      */
     @Override
     public String toString() {

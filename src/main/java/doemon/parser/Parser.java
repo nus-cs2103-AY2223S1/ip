@@ -18,11 +18,12 @@ public class Parser {
 
     /**
      * Parses the user-input string and returns the related command.
-     * @param inputString the user-inputted string
-     * @return the command to be executed
-     * @throws EmptyTaskException if task description is empty
-     * @throws InvalidCommandException if the add task command given is invalid
-     * @throws MissingArgumentException if there is a missing argument from a deadline or event
+     *
+     * @param inputString User-inputted string.
+     * @return Command to be executed.
+     * @throws EmptyTaskException If task description is empty.
+     * @throws InvalidCommandException If the add task command given is invalid.
+     * @throws MissingArgumentException If there is a missing argument from a deadline or event.
      */
     public static Command parse(String inputString) throws EmptyTaskException, InvalidCommandException,
             MissingArgumentException {
@@ -86,9 +87,10 @@ public class Parser {
     }
 
     /**
-     * Checks if the input string after mark/unmark is an integer.
-     * @param text the string input to be checked
-     * @return a boolean indicating if the text can be parsed into an integer
+     * Checks if the input string after mark or unmark is an integer.
+     *
+     * @param text String input to be checked.
+     * @return A boolean indicating if the text can be parsed into an integer.
      */
     private static boolean isInteger(String text) {
         try {

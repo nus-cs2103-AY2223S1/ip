@@ -10,15 +10,21 @@ import doemon.ui.Ui;
 
 public class Doemon {
 
-    /**
-     * The file path of the file where tasks will be saved to.
-     */
+    /** The file path of the file where tasks will be saved to. */
     private static final String TASK_FILE_PATH = "./data/duke.txt";
 
+    /** The storage instance used to load and save tasks to data file. */
     private Storage storage;
+    /** List of tasks. */
     private TaskList tasks;
+    /** Ui helper class that deals with interactions with the user. */
     private Ui ui;
 
+    /**
+     * Constructor for Doemon.
+     *
+     * @param filePath Path of the file where tasks will be saved to.
+     */
     public Doemon(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);

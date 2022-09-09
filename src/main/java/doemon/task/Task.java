@@ -3,18 +3,17 @@ package doemon.task;
 import java.util.ArrayList;
 
 public class Task {
-    /**
-     * The description of the task.
-     */
+
+    /** Description of the task. */
     private String description;
-    /**
-     * A boolean indicating if the task is marked as done.
-     */
+
+    /** Boolean indicating if the task is marked as done. */
     private boolean isDone;
 
     /**
-     * Constructor for a Task object.
-     * @param description the string description of the task
+     * Constructor for Task.
+     *
+     * @param description Description of the task.
      */
     public Task(String description) {
         this.description = description;
@@ -37,7 +36,8 @@ public class Task {
 
     /**
      * Returns a string used to save the task.
-     * @return a string used to save the task
+     *
+     * @return A string used to save the task.
      */
     public String saveString() {
         String isMarked = isDone ? "1" : "0";
@@ -45,8 +45,7 @@ public class Task {
     }
 
     /**
-     * Returns a string representation of this task.
-     * @return a string representing this task
+     * {@inheritDoc}
      */
     @Override
     public String toString() {
