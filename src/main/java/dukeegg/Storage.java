@@ -45,6 +45,7 @@ public class Storage {
         if (parent != null && !parent.exists() && !parent.mkdirs()) {
             throw new DukeException("Unable to create storage file");
         }
+        assert file.exists();
     }
 
     /**
