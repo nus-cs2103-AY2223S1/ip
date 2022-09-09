@@ -32,6 +32,7 @@ public class Parser {
 
     private static final String DEADLINE_SPLIT = " /by ";
     private static final String EVENT_SPLIT = " /at ";
+    private static final String TAG_SPLIT = " /tag ";
 
     /**
      * Parse an input string from user to a suitable command.
@@ -73,7 +74,9 @@ public class Parser {
         String[] splitInput = input.split(" ", 2);
         assert splitInput.length != 2 : "OOPS!!! Invalid todo command.";
         assert splitInput[1].trim().length() == 0: "OOPS!!! duke.task.Todo description cannot be empty.";
-        return new AddCommand(new Todo(splitInput[1]));
+        String[] contentTagsSplit = splitInput[1].split(TAG_SPLIT, 2);
+        String[] tagsList = contentTagsSplit[1].split(",");
+        return new AddCommand(new Todo(contentTagsSplit[0], tagsList));
     }
 
     /**

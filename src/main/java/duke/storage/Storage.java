@@ -42,10 +42,14 @@ public class Storage {
             ArrayList<Task> tasks = new ArrayList<>();
             while (sc.hasNext()) {
                 String storedTask = sc.nextLine();
-                String[] splitTask = storedTask.split(" \\| ");
+                String[] splitTask = storedTask.split(" | ", 4);
                 Task task;
                 if (splitTask[0].equals("T")) {
-                    task = new Todo(splitTask[2]);
+                    String[] tags = {};
+                    if (splitTask[3].trim().length() != 0) {
+                        tags = splitTask[3].split(",");
+                    }
+                    task = new Todo(splitTask[2], tags);
                 } else if (splitTask[0].equals("D")) {
                     if (DateParser.isDateValid(splitTask[2])) {
                         task = new Deadline(splitTask[2], DateParser.convertToLocalDate(splitTask[2]));
