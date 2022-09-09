@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class TaskList {
     ArrayList<Task> tasks;
     Ui ui;
+    MainWindow mainWindow;
     Storage storage;
 
     /**
@@ -16,7 +17,8 @@ public class TaskList {
      * @param ui of type Ui
      * @param storage of type Ui
      */
-    public TaskList(Ui ui, Storage storage) {
+    public TaskList(Ui ui, Storage storage, MainWindow mainWindow) {
+        this.mainWindow = mainWindow;
         this.tasks = storage.load();
         this.ui = ui;
         this.storage = storage;
@@ -29,7 +31,7 @@ public class TaskList {
     public void add(Task task) {
         if (storage.updateFile(task)) {
             tasks.add(task);
-            ui.printAddSuccessfulMsg(task, tasks.size());
+            mainWindow.printAddSuccessfulMsg(task, tasks.size());
         }
     }
 
@@ -58,7 +60,7 @@ public class TaskList {
         Task task = tasks.get(i);
         task.setTaskAsDone();
         if (storage.rewriteEntireFile(tasks)) {
-            ui.printMarkTaskSuccessfulMsg(task);
+            mainWindow.printMarkTaskSuccessfulMsg(task);
         }
     }
 
@@ -70,7 +72,7 @@ public class TaskList {
         Task task = tasks.get(i);
         task.setTaskAsUnDone();
         if (storage.rewriteEntireFile(tasks)) {
-            ui.printUnMarkTaskSuccessfulMsg(task);
+            mainWindow.printUnMarkTaskSuccessfulMsg(task);
         }
     }
 
@@ -82,7 +84,7 @@ public class TaskList {
         Task task = tasks.get(i);
         tasks.remove(i);
         if (storage.rewriteEntireFile(tasks)) {
-            ui.printDeleteSuccessfulMsg(task, tasks.size());
+            mainWindow.printDeleteSuccessfulMsg(task, tasks.size());
         }
     }
 }

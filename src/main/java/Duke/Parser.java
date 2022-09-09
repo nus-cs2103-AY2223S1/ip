@@ -14,12 +14,12 @@ public class Parser {
      *
      * @param tasks of type TaskList
      */
-    public static void readLine(Ui ui, String command, TaskList tasks) {
+    public static void readLine(Ui ui, String command, TaskList tasks, MainWindow mainWindow) {
         String[] strs = command.split(" ");
         if (command.equals("bye")) {
             ui.closeApplication();
         } else if (command.equals("list")) {
-            ui.printList(tasks);
+            mainWindow.printList(tasks);
         } else if (strs.length == 2 && (strs[0].equals("mark") || strs[0].equals("unmark"))) {
             int index = Integer.parseInt(strs[1]) - 1;
             if (strs[0].equals("mark")) {
@@ -37,7 +37,7 @@ public class Parser {
                     tempTasks.add(tasks.getTask(i));
                 }
             }
-            ui.printFindTasks(tempTasks);
+            mainWindow.printFindTasks(tempTasks);
         } else {
             try {
                 String[] details;
@@ -59,10 +59,10 @@ public class Parser {
                     tasks.add(task);
                     break;
                 default:
-                    ui.printDontUnderstandMsg();
+                    mainWindow.printDontUnderstandMsg();
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
-                ui.printDescriptionCantBeEmptyMsg(strs[0]);
+                mainWindow.printDescriptionCantBeEmptyMsg(strs[0]);
             }
         }
     }

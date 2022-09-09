@@ -16,6 +16,7 @@ public class Storage {
     static String filePath;
     BufferedReader bR;
     File dukeFile;
+    MainWindow mainWindow;
     Ui ui;
 
     /**
@@ -23,8 +24,9 @@ public class Storage {
      * @param pathName of type String
      * @param fileName of type String
      */
-    public Storage(Ui ui, String pathName, String fileName) {
+    public Storage(Ui ui, String pathName, String fileName, MainWindow mainWindow) {
         this.ui = ui;
+        this.mainWindow = mainWindow;
         Path file = Paths.get(pathName);
         File curr = new File(String.valueOf(pathName), fileName);
         filePath = pathName + "/" + fileName;
@@ -33,7 +35,7 @@ public class Storage {
             try {
                 curr.createNewFile();
             } catch (IOException e) {
-                e.printStackTrace();
+                this.mainWindow.printErrorMessage(e.toString());
             }
         }
         this.dukeFile = curr;
@@ -72,7 +74,7 @@ public class Storage {
             }
             return tasksToDo;
         } catch (IOException e) {
-            ui.printErrorMessage(e.toString());
+            mainWindow.printErrorMessage(e.toString());
         }
         return null;
     }
@@ -90,7 +92,7 @@ public class Storage {
             Files.write(Paths.get(filePath), (taskStr + System.lineSeparator()).getBytes(), StandardOpenOption.APPEND);
             return true;
         } catch (IOException e) {
-            ui.printErrorMessage(e.toString());
+            mainWindow.printErrorMessage(e.toString());
             return false;
         }
     }
@@ -109,7 +111,7 @@ public class Storage {
             }
             return true;
         } catch (IOException e) {
-            ui.printErrorMessage(e.toString());
+            mainWindow.printErrorMessage(e.toString());
             return false;
         }
     }
