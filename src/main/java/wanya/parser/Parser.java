@@ -44,7 +44,9 @@ public class Parser {
         }
         try {
             int index = Integer.parseInt(inputs[1]);
-            if (index > tasks.size() || index < 1) {
+            boolean isWithinSize = index > tasks.size();
+            boolean isSmallerThanOne = index < 1;
+            if (isWithinSize || isSmallerThanOne) {
                 throw new WanyaException("Invalid task number!");
             }
             return index;
@@ -64,6 +66,7 @@ public class Parser {
     public static String parseCommand(String commandInput, TaskList tasks, Ui ui, Storage storage) {
         try {
             String[] inputs = commandInput.split(" ", 2);
+            assert inputs.length > 0: "Invalid command inputted! Command cannot be empty";
             String command = inputs[0];
             String response = "";
 

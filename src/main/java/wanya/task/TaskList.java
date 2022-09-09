@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class TaskList {
     private final List<Task> tasks;
+    private final static String saveFileCorruptedMessage = "Saved data is corrupted! ";
 
     /**
      * Initialises an array of Task.
@@ -26,9 +27,17 @@ public class TaskList {
      */
     public TaskList(List<String> data) {
         this();
+        assert tasks.size() == 0: "New task list must be empty!";
+
         for (String encodedTask : data) {
             String[] inputs = encodedTask.split("\\|");
+            assert inputs.length >= 3: saveFileCorruptedMessage + "There is missing information!";
+
             String taskType = inputs[0];
+            assert taskType.equals("T") || taskType.equals("D") || taskType.equals("E")
+                    : saveFileCorruptedMessage + "Invalid task type!";
+            assert inputs[1].equals("1") || inputs[1].equals("0") : saveFileCorruptedMessage;
+
             boolean completed = inputs[1].equals("1");
             String description = inputs[2];
             switch(taskType) {
@@ -37,11 +46,13 @@ public class TaskList {
                 tasks.add(toDo);
                 break;
             case "D":
+                assert inputs.length == 4: saveFileCorruptedMessage + "Date required for Deadline task!";
                 String dueDate = inputs[3];
                 Deadline deadline = new Deadline(description, completed, dueDate);
                 tasks.add(deadline);
                 break;
             case "E":
+                assert inputs.length == 4: saveFileCorruptedMessage + "Date required for Event task!";
                 String date = inputs[3];
                 Event event = new Event(description, completed, date);
                 tasks.add(event);
