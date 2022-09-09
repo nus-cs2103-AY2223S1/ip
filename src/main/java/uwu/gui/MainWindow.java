@@ -35,6 +35,11 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().add(DialogBox.getUwuDialog("hellu!\ni am oo woo <:"
                 + "\nhow can i be of service today?", uwuImage));
+
+        assert this.scrollPane != null : "[scrollPane] FXML was improperly configured.";
+        assert this.dialogContainer != null : "[dialogContainer] FXML was improperly configured.";
+        assert this.userInput != null : "[userInput] FXML was improperly configured.";
+        assert this.sendButton != null : "[sendButton] FXML was improperly configured.";
     }
 
     public void setUwu(UwuBot uwu) {

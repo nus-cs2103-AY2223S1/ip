@@ -43,7 +43,7 @@ test {
 }
 
 application {
-    mainClassName = "uwu.uwu.UwuBot"
+    mainClassName = "uwu.gui.Launcher"
 }
 
 shadowJar {
@@ -53,6 +53,7 @@ shadowJar {
 
 run{
     standardInput = System.in
+    enableAssertions = true
 }
 
 checkstyle {

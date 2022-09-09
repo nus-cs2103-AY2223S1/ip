@@ -3,6 +3,8 @@ package uwu.uwu;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 import uwu.exception.LoadingFileErrorException;
@@ -17,7 +19,7 @@ import uwu.task.ToDos;
  */
 public class Storage {
     /** The path to the file where the task list is stored. */
-    protected String filePath;
+    protected String fileName;
 
     /**
      * Constructor for Storage object.
@@ -25,7 +27,7 @@ public class Storage {
      * @param filePath The path to the file where the task list is stored.
      */
     public Storage(String filePath) {
-        this.filePath = filePath;
+        this.fileName = filePath;
     }
 
     /**
@@ -54,15 +56,10 @@ public class Storage {
         TaskList result = new TaskList();
 
         try {
-            File directory = new File("data");
-            if (!directory.exists()) {
-                directory.mkdir();
-            }
+            File taskFile = new File(fileName);
+            taskFile.createNewFile();
 
-            File taskFile = new File(filePath);
-            if (!taskFile.exists()) {
-                taskFile.createNewFile();
-            }
+            assert Files.exists(Paths.get(this.fileName)) : "The file, " + this.fileName + ", does not exist.";
 
             Scanner scanner = new Scanner(taskFile);
             while (scanner.hasNextLine()) {
@@ -86,12 +83,12 @@ public class Storage {
                     result.add(event);
                     break;
                 default:
-                    throw new LoadingFileErrorException("\n\toops! seems like there is trouble "
+                    throw new LoadingFileErrorException("\noops! seems like there is trouble "
                             + "loading the task list file TT");
                 }
             }
         } catch (IOException e) {
-            throw new LoadingFileErrorException("\n\toops! seems like there is trouble loading the task list file TT");
+            throw new LoadingFileErrorException("\noops! seems like there is trouble loading the task list file TT");
         }
 
         return result;

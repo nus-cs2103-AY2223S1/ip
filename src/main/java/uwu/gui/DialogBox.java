@@ -36,6 +36,9 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
+        assert this.dialog != null : "[dialog] FXML was improperly configured.";
+        assert this.displayPicture != null : "[displayPicture] FXML was improperly configured.";
+
         dialog.setText(text);
         displayPicture.setImage(img);
         dialog.setMinHeight(Region.USE_PREF_SIZE);
