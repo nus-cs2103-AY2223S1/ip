@@ -13,6 +13,7 @@ public class Event extends Task implements Serializable {
 
     /**
      * Constructor for Event class.
+     * 
      * @param event full event description.
      * @param eventTime time the event occurs.
      * @param isCompleted true if event has ended.

@@ -7,6 +7,6 @@ import javafx.application.Application;
  */
 public class Launcher {
     public static void main(String[] args) {
-        Application.launch(iana.ui.controller.Main.class, args);
+        Application.launch(iana.ui.Main.class, args);
     }
 }

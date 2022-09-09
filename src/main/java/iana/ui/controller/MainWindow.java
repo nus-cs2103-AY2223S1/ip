@@ -26,11 +26,17 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.jpg"));
     private Image ianaImage = new Image(this.getClass().getResourceAsStream("/images/cat.jpg"));
 
+    /**
+     * Initialize main window.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
+    /**
+     * Initialize Iana.
+     */
     public void setIana(Iana i) {
         iana = i;
     }
