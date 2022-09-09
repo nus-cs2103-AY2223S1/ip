@@ -51,7 +51,7 @@ public class TaskList {
                 return ui.taskAddMsg(newTask, tasks.size());
             }
             //if task is an event
-            else if (taskName.matches("\\bevent\\s.*\\s/at\\s.*\\b")) {
+            if (taskName.matches("\\bevent\\s.*\\s/at\\s.*\\b")) {
                 assert taskName.length() >= 13 : "addToList function is not working for event";
                 String des = taskName.substring(6, taskName.indexOf("/") - 1);
                 String at = taskName.substring(taskName.indexOf("/") + 4, taskName.length());
@@ -60,14 +60,15 @@ public class TaskList {
                 return ui.taskAddMsg(newTask, tasks.size());
             }
             //if task is a deadline
-            else if (taskName.matches("\\bdeadline\\s.*\\s/by\\s.*\\b")) {
+            if (taskName.matches("\\bdeadline\\s.*\\s/by\\s.*\\b")) {
                 String des = taskName.substring(9, taskName.indexOf("/") - 1);
                 String by = taskName.substring(taskName.indexOf("/") + 4);
                 LocalDate deadline = LocalDate.parse(by);
                 Task newTask = new Deadline(des, false, deadline);
                 tasks.add(newTask);
                 return ui.taskAddMsg(newTask, tasks.size());
-            } else if (taskName.matches("\\btodo\\s+") || taskName.matches("\\btodo\\b")) {
+            }
+            if (taskName.matches("\\btodo\\s+") || taskName.matches("\\btodo\\b")) {
                 throw new DukeException("Sorry please provide a task to be done!");
             } else {
                 throw new DukeException("I'm sorry, I don't know what that means!");
