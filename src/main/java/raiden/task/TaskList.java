@@ -365,7 +365,7 @@ public class TaskList {
             }
         }
         if (count > 0) {
-            return "Here are the matching tasks in your list:" + result.toString();
+            return "Here are the matching tasks in your list:\n" + result.toString();
         } else {
             return "Hm...I found no matching task in your list.";
         }

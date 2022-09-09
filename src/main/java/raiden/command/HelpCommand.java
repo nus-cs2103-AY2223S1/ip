@@ -26,10 +26,11 @@ public class HelpCommand extends Command {
         sb.append("- <date/time> is written in DD-MM-YYYY HH:mm format, where the time (HH:mm) is optional.\n");
         sb.append("6. mark <task_id>\n- Mark the task with the given id in your list as done.\n");
         sb.append("7. unmark <task_id>\n- Mark the task with the given id in your list as not done.\n");
-        sb.append("8. bye\n- Exit Raiden bot.\n");
-        sb.append("9. editD <task_id> <new_description>\n- Edit the description of the task with the given id in "
+        sb.append("8. delete <task_id>\n- Remove the task with the given id from your list.\n");
+        sb.append("9. bye\n- Exit Raiden bot.\n");
+        sb.append("10. editD <task_id> <new_description>\n- Edit the description of the task with the given id in "
                 + "your list\n");
-        sb.append("10. editT <task_id> <new_date/time>\n- Edit the date/time of the task with the given id in "
+        sb.append("11. editT <task_id> <new_date/time>\n- Edit the date/time of the task with the given id in "
                 + "your list");
         return sb.toString();
     }
