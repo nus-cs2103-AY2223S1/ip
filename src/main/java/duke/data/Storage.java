@@ -40,7 +40,7 @@ public class Storage {
     public void setup(String filePath) {
         String curDirectory = System.getProperty("user.dir");
         String directoryName = "data";
-
+        
         File directory = new File(curDirectory + "/" + directoryName);
         if (!directory.exists()) {
             directory.mkdir();

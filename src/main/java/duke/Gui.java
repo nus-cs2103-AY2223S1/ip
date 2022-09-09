@@ -16,6 +16,7 @@ public class Gui extends Application {
     @Override
     public void start(Stage stage) {
         try {
+            assert stage != null : "Stage is null";
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/MainWindow.fxml"));
             fxmlLoader.setRoot(new MainWindow());
 
