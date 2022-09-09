@@ -9,6 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**
+ * Main class for Gui Application
+ */
 public class Gui extends Application {
 
     private Duke duke = new Duke("data/duke.txt");
@@ -23,7 +26,7 @@ public class Gui extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            
+
             // By specifying fx:controller in fxml, it creates a new instance of a controller when you load it.
             // Hence we need to get that instance in the following line:
             fxmlLoader.<MainWindow>getController().setDuke(duke);
