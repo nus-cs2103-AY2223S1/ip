@@ -228,6 +228,7 @@ public class TaskList {
             if (dateTime.length == 2) {
                 deadlineDateTime = deadlineDateTime + dateTime[1];
             }
+            assert dateTime.length == 1 : "There should be only one date for Deadline task in data file.";
             Deadline temp = new Deadline(inputs[2], deadlineDateTime);
             if (inputs[1].equalsIgnoreCase("1")) {
                 temp.markAsDone();
@@ -262,6 +263,7 @@ public class TaskList {
             if (dateTime.length == 2) {
                 eventDateTime = eventDateTime + dateTime[1];
             }
+            assert dateTime.length == 1 : "There should be only one date for Event task in data file.";
             Event temp = new Event(inputs[2], eventDateTime);
             if (inputs[1].equalsIgnoreCase("1")) {
                 temp.markAsDone();
