@@ -23,15 +23,13 @@ public class FindCommand extends Command {
     /**
      * Searches for tasks that fit the search string.
      *
-     * @return Returns true for the main Duke class to know to
-     *         continue asking for input.
+     * @return Returns the message that MumBot should send to the GUI.
      */
     @Override
-    public boolean performAction() {
+    public String performAction() {
         TaskList foundTasks = tasks.searchUsingString(commandArgs[1]);
-        Ui.print("Sweetie, here is the list of tasks containing your search input <333");
-        foundTasks.list();
-        return true;
+        return "Sweetie, here is the list of tasks containing your search input <333\n"
+            + foundTasks.list();
     }
 }
 

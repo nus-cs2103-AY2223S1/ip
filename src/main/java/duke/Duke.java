@@ -1,6 +1,7 @@
 package duke;
 
 import java.util.Scanner;
+import javafx.application.Application;
 
 import duke.exception.DukeException;
 import duke.parse.Parser;
@@ -18,44 +19,45 @@ public class Duke {
     /**
      * Stores all the tasks of the user.
      */
-    private static TaskList tasks;
+    private TaskList tasks;
+
+    private Storage storage;
 
     /**
-     * Handles the start up, running, and terminating of the Duke programme.
+     * Loads a previously stored list of tasks if present - if not,
+     * creates a new file.
      */
-    public static void main(String[] args) throws DukeException {
-        // Welcome message
-        Ui.print("MumBot: Hi dear! You are precious <3\n");
-
+    public void loadFile() throws DukeException {
         // Handling of the .txt file containing the list of tasks.
         String filePath = "/Users/kw/Library/Mobile Documents/com~apple~CloudDocs/MODS/"
                 + "cs2103/projects/ip/data/duke.txt";
-        Storage storage = new Storage(filePath);
+        storage = new Storage(filePath);
         tasks = storage.getTasks();
+    }
 
-        String input;
-        Scanner sc = new Scanner(System.in);
-        input = Ui.awaitUserInput(sc);
+    /**
+     * You should have your own function to generate a response to user input.
+     * Replace this stub with your completed method.
+     */
+    public String getResponse(String input) throws DukeException {
+        return Parser.settleInput(input, tasks);
+    }
 
-        while (true) {
-            boolean shouldContinueInput;
+    /**
+     * Returns a message that should be sent to the GUI whenever the
+     * programme starts.
+     *
+     * @return The welcome message.  */
+    static public String getWelcomeMsg() {
+        return "MumBot: Hi dear, welcome to MumBot! You are precious <3";
+    }
 
-            try {
-                shouldContinueInput = Parser.settleInput(input, tasks);
-            } catch (DukeException e) {
-                Ui.print(e + "\n");
-                input = Ui.awaitUserInput(sc);
-                continue;
-            }
-
-            if (shouldContinueInput) {
-                input = Ui.awaitUserInput(sc);
-            } else {
-                break;
-            }
-        }
-
+    /**
+     * Saves the current list of tasks and closes the programme.
+     */
+    private void exit() throws DukeException {
         storage.save();
         System.exit(0);
     }
 }
+

@@ -23,13 +23,11 @@ public class ListCommand extends Command {
     /**
      * Lists all the tasks of the user's TaskList.
      *
-     * @return Returns true for the main Duke class to know to
-     *         continue asking for input.
+     * @return Returns the message that MumBot should send to the GUI.
      */
     @Override
-    public boolean performAction() {
-        Ui.print("Sweetie, here is the list of tasks that you have <3");
-        tasks.list();
-        return true;
+    public String performAction() {
+        return "Sweetie, here is the list of tasks that you have <3\n"
+                + tasks.list();
     }
 }

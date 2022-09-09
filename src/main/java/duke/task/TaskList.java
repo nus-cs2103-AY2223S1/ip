@@ -56,11 +56,11 @@ public class TaskList {
     }
 
     /**
-     * Sends a list of all of the user's tasks to the
-     * ui.
+     * Returns a list of all the user's tasks.
+     *
+     * @return The list of all tasks.
      */
-    public void list() {
-        Ui.print("Sweetie, here is the list of tasks that you have <3");
+    public String list() {
         String output = "";
         for (int i = 0; i < tasks.size(); i++) {
             output += ((
@@ -69,7 +69,7 @@ public class TaskList {
                     + tasks.get(i)
                     + "\n");
         }
-        Ui.print(output);
+        return output;
     }
 
     /**

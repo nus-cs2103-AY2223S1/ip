@@ -22,17 +22,15 @@ public class MarkCommand extends Command {
     /**
      * Marks or unmarks a task to denote its completion.
      *
-     * @return Returns true for the main Duke class to know to
-     *         continue asking for user input.
+     * @return Returns the message that MumBot should send to the GUI.
      */
     @Override
-    public boolean performAction() {
+    public String performAction() {
         if (commandArgs[0].equals("mark")) {
             tasks.mark(Integer.parseInt(commandArgs[1]) - 1);
         } else if (this.commandArgs[0].equals("unmark")) {
             tasks.unmark(Integer.parseInt(commandArgs[1]) - 1);
         }
-
-        return true;
+        return "Your " + commandArgs[0] + " command has been carried out! <3";
     }
 }

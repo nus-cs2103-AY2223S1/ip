@@ -23,11 +23,10 @@ public class TaskCommand extends Command {
     /**
      * Adds this task to the current list of tasks.
      *
-     * @return Returns true for the main Duke class to know to
-     *         continue asking for input.
+     * @return Returns the message that MumBot should send to the GUI.
      */
     @Override
-    public boolean performAction() {
+    public String performAction() {
 
         if (this.commandArgs[0].equals("todo")) {
             tasks.addTask(new Task(this.commandArgs[1]), true);
@@ -38,6 +37,6 @@ public class TaskCommand extends Command {
         } else if (this.commandArgs[0].equals("event")) {
             tasks.addTask(new Task(this.commandArgs[1], this.commandArgs[2], Task.Type.EVENT), true);
         }
-        return true;
+        return "Your " + commandArgs[0] + " command has been carried out! <3";
     }
 }

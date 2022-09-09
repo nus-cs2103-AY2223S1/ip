@@ -90,11 +90,10 @@ public class Parser {
      * @param input The input given by the user.
      * @param tasks The TaskList to perform appropriate actions on, after
      *              parsing the input.
-     * @return Returns true if the programme should continue prompting the user
-     *         for inputs. Returns false if the programme is to be terminated.
+     * @return Returns the message that MumBot should output, in response to the input.
      * @throws DukeException When there are invalid inputs.
      */
-    public static boolean settleInput(String input, TaskList tasks) throws DukeException {
+    public static String settleInput(String input, TaskList tasks) throws DukeException {
         String[] splitInput = input.split(" ");
         String action = splitInput[0];
         if (action.equals("Bye")) {
@@ -187,9 +186,8 @@ public class Parser {
             Command command = new DeleteCommand(splitInput, tasks);
             return command.performAction();
         } else {
-            throw new DukeException(
-                    "Your input is not recognised :(. It has to start with a command "
-                    + "(todo, deadline, event, mark, unmark, list, Bye)");
+            return "Your input is not recognised :(. It has to start with a command "
+                    + "(todo, deadline, event, mark, unmark, list, Bye)";
         }
     }
 }

@@ -6,7 +6,7 @@ import java.io.IOException;
 import duke.exception.DukeException;
 import duke.task.Task;
 import duke.task.TaskList;
-import duke.ui.Ui;
+import duke.ui.MainWindow;
 
 /**
  * Assists with the saving of a `TaskList` to a txt format.
@@ -32,8 +32,6 @@ class SaveFile {
                 writer.write(System.getProperty("line.separator"));
             }
             writer.close();
-            Ui.print("Mumbot: Your list of tasks has been successfully saved to "
-                    + filePath + " , hunbun~!");
         } catch (IOException e) {
             throw new DukeException("Honey! There was a problem with saving your list of "
                     + "tasks to " + filePath + " ! :(");

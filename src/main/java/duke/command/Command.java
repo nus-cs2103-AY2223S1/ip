@@ -19,10 +19,11 @@ public abstract class Command {
         this.tasks = tasks;
     }
 
-    /*
-     * @return Returns true if the programme should continue seeking user input.
-     *         Returns false if the programme is to be terminated.
+    /**
+     * Performs actions specific to the command, then returns a response message.
+     *
+     * @return Returns the message that MumBot should send to the GUI.
      */
-    public abstract boolean performAction();
+    public abstract String performAction();
 }
 

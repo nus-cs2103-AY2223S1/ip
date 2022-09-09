@@ -22,9 +22,9 @@ public class DeleteCommand extends Command {
      *         prompting for user input.
      */
     @Override
-    public boolean performAction() {
+    public String performAction() {
         Integer index = Integer.parseInt(this.commandArgs[1]) - 1;
         tasks.deleteTaskByIndex(index.intValue());
-        return true;
+        return "The task has been deleted :(";
     }
 }

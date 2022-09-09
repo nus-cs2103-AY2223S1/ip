@@ -21,9 +21,8 @@ public class ByeCommand extends Command {
      * Sends a goodbye message to the ui.
      */
     @Override
-    public boolean performAction() {
-        Ui.print("MumBot: Goodbyeeee sweetheart <3");
-        return false;
+    public String performAction() {
+        return "MumBot: Goodbyeeee sweetheart <3";
     }
 }
 
