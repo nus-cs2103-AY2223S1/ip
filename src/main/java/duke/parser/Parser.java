@@ -48,11 +48,13 @@ public class Parser {
     private static AddCommand addDeadline(String input) throws DukeException {
         String[] stringArray = input.substring("deadline".length()).strip().split("/by");
         try {
-            LocalDate deadlineDate = LocalDate.parse(stringArray[1].strip());
-            if (deadlineDate.isBefore(LocalDate.now())){
+            String description = stringArray[0].strip();
+            String by = stringArray[1].strip();
+            LocalDate deadlineDate = LocalDate.parse(by);
+            if (deadlineDate.isBefore(LocalDate.now()) || description.equals("")) {
                 throw new DukeException(Message.INVALID_DATE_INPUT);
             }
-            Deadline newDeadline = new Deadline(stringArray[0].strip(), deadlineDate);
+            Deadline newDeadline = new Deadline(description, deadlineDate);
             return new AddCommand(newDeadline);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new DukeException(Message.INVALID_DEADLINE_INPUT);
@@ -62,11 +64,16 @@ public class Parser {
     }
 
     private static AddCommand addEvent(String input) throws DukeException {
-        String[] stringArray = input.substring("event".length()).strip().split("/at");
-        if (stringArray.length > 1) {
-            Event newEvent = new Event(stringArray[0].strip(), stringArray[1].strip());
+        try {
+            String[] stringArray = input.substring("event".length()).strip().split("/at");
+            String description = stringArray[0].strip();
+            String at = stringArray[1].strip();
+            if (description.equals("") || at.equals("")) {
+                throw new DukeException(Message.INVALID_EVENT_INPUT);
+            }
+            Event newEvent = new Event(description, at);
             return new AddCommand(newEvent);
-        } else {
+        } catch (IndexOutOfBoundsException e) {
             throw new DukeException(Message.INVALID_EVENT_INPUT);
         }
     }
