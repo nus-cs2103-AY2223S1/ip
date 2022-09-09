@@ -25,6 +25,6 @@ public class AliasListCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Storage storage, Ui ui, Parser parser) throws IOException {
-        ui.showMessage("Here are your aliases:").showMessage(aliases);
+        ui.showMessage("Here are your aliases!").showMessage(aliases);
     }
 }
