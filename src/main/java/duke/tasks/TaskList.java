@@ -7,12 +7,10 @@ import duke.exceptions.EmptyCommandException;
 import duke.exceptions.NoBeforeException;
 import duke.exceptions.NoTimeException;
 import duke.exceptions.OutOfRangeException;
-import duke.parser.TimeParser;
 
 public class TaskList {
 
     private final ArrayList<Task> tasks;
-//    private static final TimeParser TIME_PARSER = new TimeParser();
 
     public TaskList() {
         this.tasks = new ArrayList<>();
@@ -23,7 +21,8 @@ public class TaskList {
     }
 
     private String printAddedTask(Task task) {
-        return "Got it. I've added this task: \n" + task.toString() + "\n Now you have " + tasks.size() + " in the list.";
+        return String.format("Got it. I've added this task: \n%s \nNow you have %d tasks in the list",
+                task.toString(), tasks.size());
     }
 
     /**b
@@ -38,7 +37,7 @@ public class TaskList {
             throw new OutOfRangeException();
         } else {
             tasks.get(index).markAsDone();
-            return "Nice! I've marked this task as done:" + printTask(index);
+            return String.format("Nice! I've marked this task as done: \n%s", printTask(index));
         }
     }
 
@@ -55,7 +54,8 @@ public class TaskList {
         } else {
             Task currentTask = tasks.get(index);
             tasks.remove(index);
-            return "Noted. I've removed this task:\n" + currentTask + "\nNow you have " +  tasks.size() + " in the list.";
+            return String.format("Noted. I've removed this task: \n%s \nNow you have %d tasks in the list",
+                    currentTask, tasks.size());
         }
     }
 
@@ -79,7 +79,7 @@ public class TaskList {
             throw new EmptyCommandException("todo");
         }
         ToDo newTask = new ToDo(desc);
-        tasks.add(newTask);
+        addTask(newTask);
         return printAddedTask(newTask);
     }
 
@@ -98,7 +98,7 @@ public class TaskList {
             throw new NoTimeException("deadline");
         }
         Deadline newTask = new Deadline(desc, time);
-        tasks.add(newTask);
+        addTask(newTask);
         return printAddedTask(newTask);
     }
 
@@ -117,7 +117,7 @@ public class TaskList {
             throw new NoTimeException("event");
         }
         Event newTask = new Event(desc, time);
-        tasks.add(newTask);
+        addTask(newTask);
         return printAddedTask(newTask);
     }
 
