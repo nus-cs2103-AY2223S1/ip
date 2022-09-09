@@ -48,41 +48,41 @@ public class Parser {
         COMMANDS command = COMMANDS.valueOf(userInputs[0].toUpperCase());
 
         switch (command) {
-            case BYE: {
-                return new GoodbyeCommand();
-            }
-            case LIST: {
-                return new ListCommand();
-            }
-            case MARK: {
-                MarkCommand.validateArguments(args);
-                return new MarkCommand(args);
-            }
-            case UNMARK: {
-                UnmarkCommand.validateArguments(args);
-                return new UnmarkCommand(args);
-            }
-            case TODO: {
-                ToDoCommand.validateArguments(args);
-                return new ToDoCommand(args);
-            }
-            case DEADLINE: {
-                DeadlineCommand.validateArguments(args);
-                return new DeadlineCommand(args);
-            }
-            case EVENT: {
-                EventCommand.validateArguments(args);
-                return new EventCommand(args);
-            }
-            case DELETE: {
-                return new DeleteCommand(args);
-            }
-            case FIND: {
-                FindCommand.validateArguments(args);
-                return new FindCommand(args);
-            }
-            default:
-                return new InvalidCommand();
+        case BYE: {
+            return new GoodbyeCommand();
+        }
+        case LIST: {
+            return new ListCommand();
+        }
+        case MARK: {
+            MarkCommand.validateArguments(args);
+            return new MarkCommand(args);
+        }
+        case UNMARK: {
+            UnmarkCommand.validateArguments(args);
+            return new UnmarkCommand(args);
+        }
+        case TODO: {
+            ToDoCommand.validateArguments(args);
+            return new ToDoCommand(args);
+        }
+        case DEADLINE: {
+            DeadlineCommand.validateArguments(args);
+            return new DeadlineCommand(args);
+        }
+        case EVENT: {
+            EventCommand.validateArguments(args);
+            return new EventCommand(args);
+        }
+        case DELETE: {
+            return new DeleteCommand(args);
+        }
+        case FIND: {
+            FindCommand.validateArguments(args);
+            return new FindCommand(args);
+        }
+        default:
+            return new InvalidCommand();
         }
     }
 
@@ -144,5 +144,19 @@ public class Parser {
         }
         res.add(builder.toString().trim());
         return res;
+    }
+
+    /**
+     * Splits a string according to a given delimiter, and returns the
+     * string at the specified index.
+     *
+     * @param target    String to split.
+     * @param delimiter Delimiter to split string at.
+     * @param idx       Index to return after string split.
+     * @return Substring specified by the index after string is split.
+     */
+    public static String splitString(String target, String delimiter, Integer idx) {
+        assert !idx.equals(null) : "No parameter provided";
+        return target.split(delimiter)[idx].strip();
     }
 }
