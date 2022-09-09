@@ -12,6 +12,7 @@ public class ToDo extends Task {
      */
     public ToDo(String description) {
         this(description, false);
+        assert description != null;
     }
 
     /**
@@ -22,6 +23,7 @@ public class ToDo extends Task {
      */
     public ToDo(String description, boolean isDone) {
         super(description, isDone);
+        assert description != null;
     }
 
     @Override
@@ -37,6 +39,7 @@ public class ToDo extends Task {
     @Override
     public String[] getAsStringArray() {
         String[] data = super.getAsStringArray();
+        assert data != null;
         return new String[]{ "ToDo", data[1], data[2] };
     }
 }

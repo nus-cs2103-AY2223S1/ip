@@ -17,6 +17,7 @@ public interface DukeExceptionBiFunction<T, U> {
      * @return Constructed DukeExceptionBiFunction.
      */
     public static <A, B> DukeExceptionBiFunction<A, B> of(BiFunction<A, B, DukeResponse> lambda) {
+        assert lambda != null;
         return (a, b) -> lambda.apply(a, b);
     }
 
@@ -28,6 +29,7 @@ public interface DukeExceptionBiFunction<T, U> {
      * @return Constructed Function.
      */
     public static <A, B> BiFunction<A, B, DukeResponse> toBiFunction(DukeExceptionBiFunction<A, B> lambda) {
+        assert lambda != null;
         return (a, b) -> {
             try {
                 return lambda.apply(a, b);

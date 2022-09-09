@@ -16,6 +16,7 @@ public interface DukeExceptionFunction<T> {
      * @return Constructed DukeExceptionFunction.
      */
     public static <A> DukeExceptionFunction<A> of(Function<A, DukeResponse> lambda) {
+        assert lambda != null;
         return a -> lambda.apply(a);
     }
 
@@ -27,6 +28,7 @@ public interface DukeExceptionFunction<T> {
      * @return Constructed Function.
      */
     public static <A> Function<A, DukeResponse> toFunction(DukeExceptionFunction<A> lambda) {
+        assert lambda != null;
         return a -> {
             try {
                 return lambda.apply(a);

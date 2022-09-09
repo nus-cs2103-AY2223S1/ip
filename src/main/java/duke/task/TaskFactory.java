@@ -41,6 +41,7 @@ public class TaskFactory {
      * @return Optional of Task according to taskData, Optional.empty() if cannot construct.
      */
     public static Optional<Task> constructOptionalTask(String[] taskData) {
+        assert taskData != null;
         try {
             return Optional.of(constructTask(taskData));
         } catch (IllegalArgumentException ex) {

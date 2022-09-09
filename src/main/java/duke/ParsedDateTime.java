@@ -26,6 +26,7 @@ public class ParsedDateTime {
      * @param input String that may represent date/time.
      */
     public ParsedDateTime(String input) {
+        assert input != null;
         this.input = input;
         parsedDateTime = Optional.empty();
         for (DateTimeFormatter formatter : formatters) {
@@ -46,6 +47,7 @@ public class ParsedDateTime {
     @Override
     public String toString() {
         return parsedDateTime.map((dateTime) -> {
+            assert dateTime != null;
             return dateTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HHmm"));
         }).orElse(input);
     }

@@ -22,6 +22,7 @@ public class ConsoleUi implements UiInterface {
     public void printStyledMessage(String... lines) {
         System.out.println(",----------------------------------------------------------------");
         for (String str : lines) {
+            assert str != null;
             System.out.print("| ");
             System.out.println(str);
         }

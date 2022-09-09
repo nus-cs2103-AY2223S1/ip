@@ -10,9 +10,11 @@ public class Task {
     private boolean isDone;
     Task(String name) {
         this(name, false);
+        assert name != null;
     }
 
     Task(String name, boolean isDone) {
+        assert name != null;
         this.name = name;
         this.isDone = isDone;
     }

@@ -26,6 +26,7 @@ public class DukeResponse {
      * @param printer Method to print only once.
      */
     public DukeResponse(Consumer<UiInterface> printer) {
+        assert printer != null;
         this.responsePrinter = printer;
     }
 
@@ -33,6 +34,7 @@ public class DukeResponse {
      * Prints the output if not printed yet.
      */
     public void print(UiInterface ui) {
+        assert ui != null;
         if (hasPrinted) {
             return;
         }

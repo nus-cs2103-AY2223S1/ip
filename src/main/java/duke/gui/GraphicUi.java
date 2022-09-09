@@ -46,11 +46,13 @@ public class GraphicUi implements UiInterface {
     public void printStyledMessage(String... lines) {
         StringBuilder result = new StringBuilder();
         for (String line : lines) {
+            assert line != null;
             result.append(line);
             result.append('\n');
         }
         result.append('\n');
         try {
+            assert bufferedWriter != null;
             bufferedWriter.write(result.toString(), 0, result.length());
             bufferedWriter.flush();
         } catch (IOException e) {
