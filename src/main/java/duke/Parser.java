@@ -63,6 +63,8 @@ public class Parser {
                 return parseAddEvent(subStrs);
             case "find":
                 return parseFind(subStrs);
+            case "archive":
+                return parseArchive(taskList, subStrs);
             default:
                 throw new DukeException(DukeException.UNRECOGNISED_COMMAND);
             }
@@ -162,6 +164,32 @@ public class Parser {
             throw new DukeException(DukeException.MISSING_DESCRIPTION);
         } else {
             return new FindCommand(subStrs[1]);
+        }
+    }
+
+    private Command parseArchive(TaskList taskList, String[] subStrs) throws DukeException {
+        if (subStrs.length == 1) { // no number was given
+            throw new DukeException(DukeException.MISSING_DESCRIPTION);
+        }
+        if (subStrs.length > 2) {
+            throw new DukeException(DukeException.UNRECOGNISED_COMMAND);
+        }
+        String keyword = subStrs[1];
+        if (keyword.equals("load")) {
+            return new ArchiveCommand(ArchiveCommand.ArchiveType.LOAD);
+        }
+        if (keyword.equals("all")) {
+            return new ArchiveCommand(ArchiveCommand.ArchiveType.ARCHIVE);
+        }
+        try {
+            int index = Integer.parseInt(subStrs[1]) - 1;
+            if (index < 0 || index >= taskList.getSize()) {
+                throw new DukeException(DukeException.OUT_OF_RANGE);
+            }
+            assert taskList.getSize() > 0 : "Tasklist should contain items";
+            return new ArchiveCommand(ArchiveCommand.ArchiveType.INDEX, index);
+        } catch (NumberFormatException e) {
+            throw new DukeException(DukeException.UNRECOGNISED_COMMAND);
         }
     }
 }

@@ -14,7 +14,7 @@ public class DeleteCommandTest {
         tasks.add(new Todo("test 2"));
         TaskList taskList = new TaskList(tasks);
         Command c = new DeleteCommand(1);
-        c.execute(taskList, new Ui(), new Storage("bin/tests.txt"));
+        c.execute(taskList, new Ui(), new Storage("bin/tests.txt", "bin/testsArchive.txt"));
         assertEquals(1, taskList.getSize());
     }
 }

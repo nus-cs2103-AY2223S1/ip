@@ -14,7 +14,7 @@ public class TaskList {
      * Constructor for the TaskList class.
      */
     public TaskList() {
-        this.tasks = new ArrayList<>();
+        clear();
     }
 
     /**
@@ -26,6 +26,21 @@ public class TaskList {
         this.tasks = tasks;
     }
 
+    /**
+     * Appends List of Task objects to this tasklist.
+     *
+     * @param lst List to append.
+     */
+    public void append(List<Task> lst) {
+        this.tasks.addAll(lst);
+    }
+
+    /**
+     * Clears the current list of tasks.
+     */
+    public void clear() {
+        this.tasks = new ArrayList<>();
+    }
     /**
      * Adds a task to the TaskList.
      *

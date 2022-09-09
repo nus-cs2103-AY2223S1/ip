@@ -23,12 +23,11 @@ public class Duke {
      */
     public Duke() {
         ui = new Ui();
-        storage = new Storage(DukeConstants.FILENAME);
+        storage = new Storage(DukeConstants.FILENAME_DATA, DukeConstants.FILENAME_ARCHIVE);
         try {
-            taskList = new TaskList(storage.load());
+            taskList = new TaskList(storage.loadData());
             hasFile = true;
         } catch (FileNotFoundException e) {
-            //ui.showError("file not found!");
             hasFile = false;
             taskList = new TaskList();
             assert taskList.getSize() == 0 : "Tasks should be 0";
@@ -41,8 +40,10 @@ public class Duke {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Gets response to user input.
+     *
+     * @param input User input.
+     * @return Response to display.
      */
     public String getResponse(String input) {
         Parser parser = new Parser();

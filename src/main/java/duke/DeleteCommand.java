@@ -25,7 +25,7 @@ public class DeleteCommand extends Command {
     public String execute(TaskList taskList, Ui ui, Storage storage) {
         Task temp = taskList.getTask(index);
         taskList.removeTask(index);
-        boolean status = storage.save(taskList, ui);
+        boolean status = storage.saveData(taskList);
 
         String str = ui.displayTask(ui.DELETED, temp);
         str += ui.showTotalTasks(taskList);

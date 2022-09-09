@@ -9,6 +9,7 @@ public class Ui {
     protected final String DELETED = "oke i deleted this:";
     protected final String MARKED = "oke this is done now:";
     protected final String UNMARKED = "oke this is undone now:";
+    protected final String ARCHIVED_TASK = "this has been archived:";
 
 
     /**
@@ -46,6 +47,9 @@ public class Ui {
      * @return String containing all the tasks.
      */
     public String printTasks(TaskList taskList) {
+        if (taskList.getSize() == 0) {
+            return "u currently have no tasks!";
+        }
         return "here! ur tasks:\n" + taskList + "\n";
     }
 
@@ -82,6 +86,7 @@ public class Ui {
     public String showError(String message) {
         return "error! " + message + "\n";
     }
+
 
 
 }
