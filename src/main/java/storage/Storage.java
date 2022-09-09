@@ -66,14 +66,12 @@ public class Storage {
         String done = Character.toString(str.charAt(4));
         boolean isDone = !done.equals(" ");
 
-
         if (isTodo(task)) {
             if (isDone) {
                 addTaskWithMark(new Todo(str.substring(7)), arr);
 
             } else {
                 addTaskWithoutMark(new Todo(str.substring(7)), arr);
-
             }
         }
 

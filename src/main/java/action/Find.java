@@ -19,14 +19,16 @@ public class Find {
             }
         }
 
+
+        if (output.isBlank()) {
+            return "----------------------\n" + "Oops nothing fits the description :(\n"
+
         if (output.toString().isBlank()) {
-            String out = "----------------------\n" + "Oops nothing fits the description :(\n"
+
                     + "----------------------\n";
-            return out;
         } else {
-            String out = "----------------------\n" +
+            return "----------------------\n" +
                     output + "----------------------\n";
-            return out;
         }
     }
 }
