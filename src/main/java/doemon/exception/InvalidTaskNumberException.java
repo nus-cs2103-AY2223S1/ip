@@ -1,5 +1,9 @@
 package doemon.exception;
 
+/**
+ * Exception thrown when an invalid task number is inputted for
+ * mark/unmark/delete commands.
+ */
 public class InvalidTaskNumberException extends DoemonException {
     /** The action being performed. */
     private String action;

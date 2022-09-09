@@ -6,6 +6,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
+/**
+ * Event task with date/time that it will occur.
+ */
 public class Event extends Task {
     /** String that describes the date/time of the event. */
     private String dueAtStr;

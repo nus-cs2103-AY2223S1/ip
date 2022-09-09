@@ -1,5 +1,8 @@
 package doemon.exception;
 
+/**
+ * Exception thrown when user-inputted task has an empty description.
+ */
 public class EmptyTaskException extends DoemonException {
     /** A string indicating the type of task that threw this exception. */
     private String task;

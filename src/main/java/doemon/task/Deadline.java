@@ -6,6 +6,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
+/**
+ * Deadline task with due date and/or time.
+ */
 public class Deadline extends Task {
     /** String describing the due date or time of the deadline. */
     private String dueByStr;

@@ -4,6 +4,9 @@ import doemon.storage.Storage;
 import doemon.task.TaskList;
 import doemon.ui.Ui;
 
+/**
+ * Command to exit the Doemon chat bot.
+ */
 public class ExitCommand extends Command {
     /**
      * {@inheritDoc}

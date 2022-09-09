@@ -8,6 +8,9 @@ import doemon.storage.Storage;
 import doemon.task.TaskList;
 import doemon.ui.Ui;
 
+/**
+ * Doemon chat bot and task manager.
+ */
 public class Doemon {
 
     /** The file path of the file where tasks will be saved to. */
@@ -30,7 +33,7 @@ public class Doemon {
         this.storage = new Storage(filePath);
         try {
             this.tasks = new TaskList(storage.loadTasks());
-        } catch (TaskDataException tde){
+        } catch (TaskDataException tde) {
             ui.showError(tde);
             this.tasks = new TaskList();
         }
@@ -42,7 +45,7 @@ public class Doemon {
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
-        while(!isExit) {
+        while (!isExit) {
             try {
                 String inputString = ui.readCommand();
                 Command c = Parser.parse(inputString);

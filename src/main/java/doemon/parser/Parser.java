@@ -15,6 +15,9 @@ import doemon.task.Deadline;
 import doemon.task.Event;
 import doemon.task.Todo;
 
+/**
+ * Handles parsing of user-input.
+ */
 public class Parser {
     /**
      * Parses the user-input string and returns the related command.
@@ -33,6 +36,8 @@ public class Parser {
             return new ExitCommand();
         case "list":
             return new ListCommand();
+        default:
+            break;
         }
 
         String[] inputArr = inputString.split(" ");

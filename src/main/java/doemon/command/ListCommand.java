@@ -4,6 +4,9 @@ import doemon.storage.Storage;
 import doemon.task.TaskList;
 import doemon.ui.Ui;
 
+/**
+ * Command to list all tasks currently recorded.
+ */
 public class ListCommand extends Command {
     /**
      * {@inheritDoc}

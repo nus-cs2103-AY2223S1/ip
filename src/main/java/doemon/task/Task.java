@@ -1,9 +1,9 @@
 package doemon.task;
 
-import java.util.ArrayList;
-
+/**
+ * Represents a task with a description.
+ */
 public class Task {
-
     /** Description of the task. */
     private String description;
 
