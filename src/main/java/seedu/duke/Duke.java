@@ -158,16 +158,12 @@ public class Duke extends Application {
      */
     public void run() {
         try {
-            File file = new File("data/duke.txt");
             System.out.println("Current Tasks:");
             printFileContents("data/duke.txt");
-            // no need to get tasks here, alr done in load at constructor
-//            System.out.println(this.tasks);
         } catch (FileNotFoundException e) {
             System.out.println("File not found, added file");
         }
 
-        // put as attributes in ui
         ui.showWelcomeMessage();
 
         Scanner scanner = new Scanner(System.in);
@@ -180,7 +176,6 @@ public class Duke extends Application {
                 String input = scanner.nextLine();
                 String command = this.ui.getUserCommand(input);
                 Parser.parse(command, input, tasks, this);
-//                System.out.println(isOpen.get(0));
             }
         } catch (IllegalStateException e) {
             // just catching error
@@ -207,7 +202,6 @@ public class Duke extends Application {
         return this.isClose;
     }
 
-    // dealt with getting from file initially and saving, but need to call function for rewrite somewhere
     public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
     }

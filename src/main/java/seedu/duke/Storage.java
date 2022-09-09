@@ -29,6 +29,7 @@ public class Storage {
 
     /**
      * Returns list of tasks in an ArrayList based on lines in data/duke.txt
+     *
      * @return list of tasks.
      * @throws FileNotFoundException
      */
@@ -40,6 +41,7 @@ public class Storage {
 
     /**
      * Returns LocalDate object of task.
+     *
      * @param date given by user input
      * @return LocalDate object.
      */
@@ -63,6 +65,7 @@ public class Storage {
 
     /**
      * Adds ToDo object to tasklist in TaskList.
+     *
      * @param taskList this.tasklist of TaskList object.
      * @param isMarked true if the task being read is marked.
      * @param description Task description.
@@ -78,6 +81,7 @@ public class Storage {
 
     /**
      * Adds Deadline or Event object to tasklist in TaskList.
+     *
      * @param taskList this.tasklist of TaskList object.
      * @param s String differentiates between a Deadline or Event object.
      * @param isMarked true if the task being read is marked.
@@ -86,11 +90,8 @@ public class Storage {
      */
     public void addDeadlineOrEvent(ArrayList<Task> taskList, String s, String isMarked, String description,
                                    String datetime) {
-//        System.out.println("type:" + s);
         if (s.equals("D")) {
-//            System.out.println("added D");
             String[] dateAndTime = datetime.split(" ");
-            System.out.println(dateAndTime.length);
             if (dateAndTime.length == 2) {
                 String dueDate = dateAndTime[0];
                 String dueTime = dateAndTime[1];
@@ -110,7 +111,6 @@ public class Storage {
                 taskList.add(deadline);
             }
         } else {
-//            System.out.println("added E");
             Event event = new Event(description, datetime);
             if (isMarked.equals("1")) {
                 event.mark();
@@ -121,16 +121,15 @@ public class Storage {
 
     /**
      * Reads lines from data/duke.txt and updates Duke.tasks with tasks stored in duke.txt.
+     *
      * @param taskList tasklist of Storage object.
      * @throws FileNotFoundException
      */
-    // settled reading task from text file
     public void getTasks(ArrayList<Task> taskList) throws FileNotFoundException {
         File f = new File("data/duke.txt");
-        Scanner s = new Scanner(f); // create a Scanner using the File as the source
+        Scanner s = new Scanner(f);
         while (s.hasNext()) {
             String[] taskInList = s.nextLine().split(" \\| ");
-//            System.out.println(taskInList.length);
             if (taskInList.length == 4) {
                 addDeadlineOrEvent(taskList, taskInList[0], taskInList[1],taskInList[2],taskInList[3]);
             } else {
@@ -141,6 +140,7 @@ public class Storage {
 
     /**
      * Returns the string representation of the Event object.
+     *
      * @param event
      * @return string representation of the Event object.
      */
@@ -150,6 +150,7 @@ public class Storage {
 
     /**
      * Returns the string representation of the Deadline object.
+     *
      * @param deadline
      * @return string representation of the Deadline object.
      */
@@ -161,6 +162,7 @@ public class Storage {
     // NEVER DELETE WRITE THE FILE IN THE SAME METHOD
     /**
      * Updates data/duke.txt whenever there is a change to the list of tasks.
+     *
      * @param tl
      * @throws IOException
      */
