@@ -1,13 +1,13 @@
 package dan;
 
+
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
-
 import java.util.Scanner;
 
+import dan.parser.Parser;
 import dan.task.TaskList;
 import dan.tasklistreader.TaskListReader;
-import dan.parser.Parser;
 import dan.ui.Ui;
 
 /**
