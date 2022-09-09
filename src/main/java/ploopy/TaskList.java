@@ -22,6 +22,8 @@ public class TaskList {
         taskList = new ArrayList<>();
         this.storage = storage;
     }
+
+
     /**
      * Prints the list of tasks in the order they were added.
      *
@@ -79,45 +81,53 @@ public class TaskList {
         return TextUI.deleteTaskMessage(deletedTask, taskList.size());
     }
 
-    /**
-     * Creates a ToDo task and adds it to the taskList.
-     * Prints acknowledgement and writes task to storage file.
-     *
-     * @param input Name of task.
-     * @throws PloopyException If a storage file error occurs.
-     */
-    public String createToDo(String input) throws PloopyException {
-        Task newTask = new ToDo(input);
-        taskList.add(newTask);
-        storage.writeToFile(newTask);
-        return TextUI.addTaskMessage(newTask, taskList.size());
-    }
+//    /**
+//     * Creates a ToDo task and adds it to the taskList.
+//     * Prints acknowledgement and writes task to storage file.
+//     *
+//     * @param input Name of task.
+//     * @throws PloopyException If a storage file error occurs.
+//     */
+//    public String createToDo(String input) throws PloopyException {
+//        Task newTask = new ToDo(input);
+//        taskList.add(newTask);
+//        storage.writeToFile(newTask);
+//        return TextUI.addTaskMessage(newTask, taskList.size());
+//    }
+//
+//    /**
+//     * Creates a Deadline task and adds it to the taskList.
+//     * Prints acknowledgement and writes task to storage file.
+//     *
+//     * @param name Name of task.
+//     * @param date Date of task.
+//     * @throws PloopyException If a storage file error occurs.
+//     */
+//    public String createDeadline(String name, String date) throws PloopyException {
+//        Task newTask = new Deadline(name, date);
+//        taskList.add(newTask);
+//        storage.writeToFile(newTask);
+//        return TextUI.addTaskMessage(newTask, taskList.size());
+//    }
+//
+//    /**
+//     * Creates an Event task and adds it to the taskList.
+//     * Prints acknowledgement and writes task to storage file.
+//     *
+//     * @param name Name of task
+//     * @param date Date of task
+//     * @throws PloopyException If a storage file error occurs.
+//     */
+//    public String createEvent(String name, String date) throws PloopyException {
+//        Task newTask = new Event(name, date);
+//        taskList.add(newTask);
+//        storage.writeToFile(newTask);
+//        return TextUI.addTaskMessage(newTask, taskList.size());
+//    }
 
-    /**
-     * Creates a Deadline task and adds it to the taskList.
-     * Prints acknowledgement and writes task to storage file.
-     *
-     * @param name Name of task.
-     * @param date Date of task.
-     * @throws PloopyException If a storage file error occurs.
-     */
-    public String createDeadline(String name, String date) throws PloopyException {
-        Task newTask = new Deadline(name, date);
-        taskList.add(newTask);
-        storage.writeToFile(newTask);
-        return TextUI.addTaskMessage(newTask, taskList.size());
-    }
 
-    /**
-     * Creates an Event task and adds it to the taskList.
-     * Prints acknowledgement and writes task to storage file.
-     *
-     * @param name Name of task
-     * @param date Date of task
-     * @throws PloopyException If a storage file error occurs.
-     */
-    public String createEvent(String name, String date) throws PloopyException {
-        Task newTask = new Event(name, date);
+    public String createTask(String type, String name, String date) throws PloopyException {
+        Task newTask = Task.of(type, name, date);
         taskList.add(newTask);
         storage.writeToFile(newTask);
         return TextUI.addTaskMessage(newTask, taskList.size());
@@ -163,7 +173,7 @@ public class TaskList {
         String type = inputSequence[0];
         String name = inputSequence[2];
         String date = inputSequence.length > 3 ? inputSequence[3] : "";
-        Task createdTask = Task.addTaskFromFile(type, name, date);
+        Task createdTask = Task.of(type, name, date);
         if (inputSequence[1].equals("1")) {
             createdTask.markDone();
         }

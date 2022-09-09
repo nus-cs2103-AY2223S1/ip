@@ -58,13 +58,13 @@ public abstract class Task {
      * @param date Date of the task.
      * @return Created task.
      */
-    public static Task addTaskFromFile(String type, String name, String date) {
-        switch (type) {
-        case "T":
+
+    public static Task of(String type, String name, String date) {
+        if (type.equals("todo") || type.equals("T")) {
             return new ToDo(name);
-        case "D":
+        } else if (type.equals("deadline") || type.equals("D")) {
             return new Deadline(name, date);
-        default:
+        } else {
             return new Event(name, date);
         }
     }
