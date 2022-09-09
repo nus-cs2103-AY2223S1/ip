@@ -167,7 +167,7 @@ public class Ui {
      * Show bye message to the user.
      */
     public void showBye() {
-        description  = "Bye, hope to see you again next time!";
+        description = "Bye, hope to see you again next time!";
     }
 
 }
