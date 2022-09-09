@@ -42,7 +42,7 @@ public class ParserTest {
             parser.reply("what");
             fail("No exception thrown");
         } catch (DukeException e) {
-            assertEquals("I'm sorry, but I don't know what that means.", e.getMessage());
+            assertEquals("Invalid command. Please check again.", e.getMessage());
         } catch (IOException e) {
             fail("Wrong exception thrown");
         }
