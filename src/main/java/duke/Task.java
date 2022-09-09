@@ -8,6 +8,7 @@ package duke;
 public class Task {
     protected String description;
     protected boolean isDone;
+    protected String tag;
 
     /**
      * Constructor for tasks.
@@ -17,7 +18,9 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        this.tag = "";
     }
+
 
     /**
      * Gets the status of the task, done or undone.
@@ -28,6 +31,7 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+
     /**
      * Marks a task as done.
      */
@@ -35,12 +39,34 @@ public class Task {
         this.isDone = true;
     }
 
+
     /**
      * Unmarks a task as undone.
      */
     public void markUndone() {
         this.isDone = false;
     }
+
+
+    /**
+     * Sets the tag of a task.
+     *
+     * @param str the tag to set it as
+     */
+    public void setTag(String str) {
+        this.tag = str;
+    }
+
+
+    /**
+     * Returns the tag of a task.
+     *
+     * @return the tag of the specified task
+     */
+    public String getTag() {
+        return this.tag;
+    }
+
 
     /**
      * toString method of a task.

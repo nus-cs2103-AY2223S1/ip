@@ -24,25 +24,44 @@ public class Parser {
         String description = currStrArr[2];
 
         assert !firstLetter.isEmpty(): "No string detected from text!";
-
         if ("T ".equals(firstLetter)) {
-            Task currTask = new Todo(description);
+            String[] lastStrArr = currStrArr[2].split("#");
+            Task currTask = new Todo(lastStrArr[0]);
             if (markedDone.equals(" X ")) {
                 currTask.markAsDone();
             }
+            setTagFromText(currLine, currTask);
             return currTask;
         } else if ("D ".equals(firstLetter)) {
-            Task currTask = new Deadline(description, LocalDate.parse(currStrArr[3]));
+            String[] lastStrArr = currStrArr[3].split("#");
+            Task currTask = new Deadline(description, LocalDate.parse(lastStrArr[0]));
             if (markedDone.equals(" X ")) {
                 currTask.markAsDone();
             }
+            setTagFromText(currLine, currTask);
             return currTask;
         } else {
-            Task currTask = new Event(description, currStrArr[3]);
+            String[] lastStrArr = currStrArr[3].split("#");
+            Task currTask = new Event(description, lastStrArr[0]);
             if (markedDone.equals(" X ")) {
                 currTask.markAsDone();
             }
+            setTagFromText(currLine, currTask);
             return currTask;
+        }
+    }
+
+
+    /**
+     * Method to set the tag of the task from the text.
+     *
+     * @param currLine the text to get the information from
+     * @param currTask the current task to set the tag
+     */
+    public static void setTagFromText(String currLine, Task currTask) {
+        String[] strArrTag = currLine.split("#");
+        if (strArrTag.length > 1) {
+            currTask.setTag(strArrTag[1]);
         }
     }
 
@@ -75,11 +94,15 @@ public class Parser {
                 return parseDeleteTask(arrOfInput, tasks);
             } else if ("find".equals(firstWord)) {
                 return parseFindTask(arrOfInput, tasks);
+            } else if ("tag".equals(firstWord)) {
+                return parseTagTask(arrOfInput, tasks);
+            } else if ("findtag".equals(firstWord)) {
+                return parseFindTag(arrOfInput, tasks);
             } else {
-                throw new DukeException("I'm sorry, but I don't know what that means :-(");
+                throw new DukeException("I'm sorry, I don't know what that means :-(");
             }
         } catch (DukeException e) {
-            return "Something went wrong " + e.getMessage();
+            return e.getMessage();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -148,6 +171,63 @@ public class Parser {
         }
         String str = arrOfInput[1];
         return tasks.find(str);
+    }
+
+
+    /**
+     * Method to tag the task according to the user input.
+     *
+     * @param arrOfInput the array of words from the input
+     * @param tasks the TaskList to access
+     * @return the String to show after tagging the task
+     */
+    public static String parseTagTask(String[] arrOfInput, TaskList tasks) throws DukeException, IOException {
+        // check for exceptions
+        tagExceptionsCheck(arrOfInput);
+
+        int index = Integer.parseInt(arrOfInput[1]);
+        String tag = arrOfInput[3];
+        return tasks.tagTask(index, tag);
+    }
+
+
+    /**
+     * Method to check for exceptions when tagging a task.
+     *
+     * @param strArray the array of words from the input
+     */
+    public static void tagExceptionsCheck(String[] strArray) throws DukeException {
+        // throw exception if no word after tag
+        if (strArray.length != 4) {
+            throw new DukeException("Please input a task number after tag followed by # and the tag name.");
+        }
+
+        // throw exception if no tag
+        int indexCheck = 1000;
+        for (int i = 1; i < strArray.length; i++) {
+            if (strArray[i].equals("#")) {
+                indexCheck = i;
+            }
+        }
+        if (indexCheck == 1000) {
+            throw new DukeException("Please input the tag right after #, like # homework");
+        }
+    }
+
+
+    /**
+     * Method to find the tasks that have the specific tag according to the user input.
+     *
+     * @param arrOfInput the array of words from the input
+     * @param tasks the TaskList to find the tasks from
+     * @return
+     */
+    public static String parseFindTag(String[] arrOfInput, TaskList tasks) throws DukeException {
+        if (arrOfInput.length < 2) {
+            throw new DukeException("Input a word after find!");
+        }
+        String str = arrOfInput[1];
+        return tasks.findTag(str);
     }
 
 

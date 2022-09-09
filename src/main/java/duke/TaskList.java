@@ -24,6 +24,7 @@ public class TaskList {
         }
     }
 
+
     /**
      * Marks the specified task as done.
      *
@@ -39,6 +40,7 @@ public class TaskList {
             throw new DukeException("Input a valid task index!");
         }
     }
+
 
     /**
      * Unmarks the specified task as not done.
@@ -56,10 +58,12 @@ public class TaskList {
         }
     }
 
+
     /**
      * Deletes the specified task.
      *
-     * @param index The index of the task to be deleted
+     * @param index the index of the task to be deleted
+     * @return the string to show after a task has been deleted
      */
     public String deleteTask(int index) throws DukeException, IOException {
         if (1 <= index && index <= taskList.size()) {
@@ -68,6 +72,25 @@ public class TaskList {
             Storage.writeToFile(this);
             return "Noted. I've removed this task:\n  " + tempTask + "\nNow you have " + taskList.size() +
                     " tasks in the list.";
+        } else {
+            throw new DukeException("Input a valid task index!");
+        }
+    }
+
+
+    /**
+     * Tags the specified task.
+     *
+     * @param index the index of the task to be deleted
+     * @param tag the string to set the tag as
+     * @return the string to show after a task has been tagged
+     */
+    public String tagTask(int index, String tag) throws DukeException, IOException {
+        if (1 <= index && index <= taskList.size()) {
+            Task tempTask = taskList.get(index - 1);
+            tempTask.setTag(tag);
+            Storage.writeToFile(this);
+            return "Noted. I've tagged this task:\n  " + tempTask + "\nwith #" + tag;
         } else {
             throw new DukeException("Input a valid task index!");
         }
@@ -106,15 +129,30 @@ public class TaskList {
         this.taskList.add(task);
     }
 
+
     /**
      * Finds the tasks in the task list that contain the given string.
      *
      * @param str the given string that is used to find the tasks
+     * @return the string to show after the tasks have been found
      */
     public String find(String str) {
         assert !str.isEmpty();
-        return Ui.printFoundTasksStart(str, this);
+        return Ui.printFoundTasks(str, this);
     }
+
+
+    /**
+     * Finds the tasks in the task list that have the given tag.
+     *
+     * @param tag the given tag that is used to find the tasks
+     * @return the string to show after the tasks with the given tag have been found
+     */
+    public String findTag(String tag) {
+        assert !tag.isEmpty();
+        return Ui.printTaggedTasks(tag, this);
+    }
+
 
     /**
      * Returns the String representation of a TaskList object.

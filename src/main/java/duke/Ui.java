@@ -33,6 +33,7 @@ public class Ui {
         return "OK, I've marked this task as not done yet:\n  " + task.toString();
     }
 
+
     /**
      * Prints the current task.
      *
@@ -42,14 +43,38 @@ public class Ui {
         return "Here is your current task list:\n" + tasks;
     }
 
+
     /**
-     * Print the starting message output when finding tasks.
+     * Print the message output when finding tasks.
+     *
+     * @param str the keyword to use to find the tasks
+     * @param tasks the TaskList to access
+     * @return the message output after the tasks have been found
      */
-    public static String printFoundTasksStart(String str, TaskList tasks) {
+    public static String printFoundTasks(String str, TaskList tasks) {
         StringBuilder res = new StringBuilder("Here are the matching tasks in your list:\n");
         for (int i = 0; i < tasks.size(); i++) {
             Task currTask = tasks.get(i);
             if (currTask.toString().contains(str)) {
+                res.append(currTask).append("\n");
+            }
+        }
+        return res.toString();
+    }
+
+
+    /**
+     * Print the message output when finding the tasks with the given tag.
+     *
+     * @param tag the tag to be used to find the tasks
+     * @param tasks the TaskList to access
+     * @return the message output after the tasks have been found
+     */
+    public static String printTaggedTasks(String tag, TaskList tasks) {
+        StringBuilder res = new StringBuilder("Here are the matching tasks in your list:\n");
+        for (int i = 0; i < tasks.size(); i++) {
+            Task currTask = tasks.get(i);
+            if (currTask.getTag().equals(tag)) {
                 res.append(currTask).append("\n");
             }
         }
