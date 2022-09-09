@@ -144,7 +144,7 @@ Unmarks the task with specified task index to update task status as not done, an
 - Expected outcome: The task will be unmarked with "[ ]" and updated locally.
 
 ```
-OK (｡•́︿•̀｡)
+OK (｡•︿•｡)
 I've marked this task as not done yet:
 [T][ ] revision
 ```
@@ -198,6 +198,15 @@ Hope to see you again soon!
 
 __Q:__ Is my task list saved?  
 __A:__ Yes. All of your data will be saved and updated automatically when you use CaCa.
+
+__Q:__ How do I access all my saved data?  
+__A:__ You can go to the subfolder named `data` located in the same folder as `CaCa.jar`. Then, you can open the file named `caca.txt` located under `data`.
+
+__Q:__ Can I edit the saved file directly and load those data when I run CaCa?  
+__A:__ It is possible but not recommended to make edits directly in `caca.txt`, as doing so might corrupt the data if not done correctly.
+
+__Q:__ What to do if my saved data is corrupted and could not be read?  
+__A:__ Unfortunately, your data cannot be restored. You can delete the `caca.txt` file or simply delete the whole `data` folder. A __fresh__ `caca.txt` will be created when you run the program again.
 
 __Q:__ Where can I report an issue?  
 __A:__ You can post issues [here](https://github.com/carriezhengjr/ip/issues). Simply click "New issue" and fill in the form.

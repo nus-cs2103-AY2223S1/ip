@@ -283,7 +283,7 @@ public class TaskList {
             }
 
             taskToModify.markAsUndone();
-            response = String.format("OK (｡•́︿•̀｡)\n"
+            response = String.format("OK (｡•︿•｡)\n"
                     + "I've marked this task as not done yet:\n%s", taskToModify);
             break;
 
