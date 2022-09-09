@@ -66,6 +66,16 @@ public class Deadline extends Task {
         return "D | " + super.saveString() + " | " + this.hasTime + " | " + this.date + " | " 
                 + (this.hasTime ? this.time.format(DateTimeFormatter.ofPattern("HHmm")) : "");
     }
+    
+    @Override
+    public LocalDate getDate() {
+        return this.date;
+    }
+    
+    @Override
+    public LocalTime getTime() {
+        return this.hasTime ? this.time : null;
+    }
 
     /**
      * Returns a string representation of the Deadline.

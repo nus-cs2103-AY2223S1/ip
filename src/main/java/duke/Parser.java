@@ -7,6 +7,8 @@ import duke.tasks.Event;
 import duke.tasks.Task;
 import duke.tasks.ToDo;
 
+import java.util.Collection;
+
 /**
  * Represents a Parser class that is responsible for parsing user inputs.
  * 
@@ -25,9 +27,9 @@ public class Parser {
         String[] tokens = input.split(" ", 2);
         String command = tokens[0];
         String arguments = tokens.length == 2 ? tokens[1] : null;
-        
+
         switch (command) {
-        case "bye": 
+        case "bye":
             return "exit";
         case "list":
             return taskList.toString();
@@ -37,7 +39,7 @@ public class Parser {
             }
             Task newTask = new ToDo(arguments.trim());
             taskList.addTask(newTask);
-            return "I've added: " + newTask + " you have " + taskList.getTaskListSize() +" duke.tasks left";   
+            return "I've added: " + newTask + " you have " + taskList.getTaskListSize() + " duke.tasks left";
         }
         case "deadline": {
             if (arguments == null) {
@@ -51,7 +53,7 @@ public class Parser {
             System.out.println(deadlineArgs[1]);
             Task newTask = new Deadline(deadlineArgs[0].trim(), deadlineArgs[1].trim());
             taskList.addTask(newTask);
-            return "I've added: " + newTask + " you have " + taskList.getTaskListSize() +" tasks left";
+            return "I've added: " + newTask + " you have " + taskList.getTaskListSize() + " tasks left";
         }
         case "event": {
             if (arguments == null) {
@@ -65,7 +67,7 @@ public class Parser {
 
             Task newTask = new Event(deadlineArgs[0].trim(), deadlineArgs[1].trim());
             taskList.addTask(newTask);
-            return "I've added: " + newTask + " you have " + taskList.getTaskListSize() +" tasks left";
+            return "I've added: " + newTask + " you have " + taskList.getTaskListSize() + " tasks left";
         }
         case "mark": {
             try {
@@ -107,17 +109,20 @@ public class Parser {
             }
         }
         case "find": {
-                if (arguments == null) {
-                    throw new DukeException("Please enter a keyword to search");
+            if (arguments == null) {
+                throw new DukeException("Please enter a keyword to search");
+            }
+            TaskList matchingTasks = new TaskList();
+            for (int i = 0; i < taskList.getTaskListSize(); i++) {
+                if (taskList.getTask(i).containsKeyword(arguments.trim())) {
+                    matchingTasks.addTask(taskList.getTask(i));
                 }
-                TaskList matchingTasks = new TaskList();
-                for (int i = 0; i < taskList.getTaskListSize(); i++) {
-                    if (taskList.getTask(i).containsKeyword(arguments.trim())) {
-                        matchingTasks.addTask(taskList.getTask(i));
-                    }
-                }
-
-                return "Here are your matching tasks:\n" + matchingTasks.listTasks();
+            }
+            return "Here are your matching tasks:\n" + matchingTasks.toString();
+        }
+        case "sort": {
+            taskList.sort();
+            return taskList.toString();
         }
         default:
             return "I don't know that command please enter a valid command";

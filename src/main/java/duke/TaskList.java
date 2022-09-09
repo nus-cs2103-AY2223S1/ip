@@ -3,6 +3,7 @@ package duke;
 import duke.tasks.Task;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Represents a TaskList class that is responsible for managing the tasks.
@@ -56,6 +57,10 @@ public class TaskList {
      */
     public int getTaskListSize() {
         return this.tasks.size();
+    }
+    
+    public void sort() {
+        tasks.sort(Comparator.naturalOrder());
     }
 
     /**
