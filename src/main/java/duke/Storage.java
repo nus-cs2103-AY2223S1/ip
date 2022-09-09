@@ -43,15 +43,15 @@ public class Storage {
                 String[] temp = line.split("/");
                 if (temp.length == 3) {
                     tasklist.add(new DukeTask(temp[2], temp[1].contains("X"), temp[0].charAt(0)));
+                } else if (temp[0].contains("D")) {
+                    LocalDateTime ldt1 = LocalDateTime.parse(temp[3].substring(1, temp[3].length() - 1));
+                    tasklist.add(new DukeTaskDeadline(temp[2], temp[1].contains("X"), temp[0].charAt(0), ldt1));
+                } else if (temp[0].contains("E")) {
+                    tasklist.add(new DukeTaskEvent(temp[2], temp[1].contains("X"), temp[0].charAt(0), temp[3]));
                 } else {
-                    // OOP will be made better later on
-                    if (temp[0].contains("D")){
-                        LocalDateTime ldt1 = LocalDateTime.parse(temp[3].substring(1, temp[3].length() - 1));
-                        tasklist.add(new DukeTaskDeadline(temp[2], temp[1].contains("X"), temp[0].charAt(0), ldt1));
-                    } else if (temp[0].contains("E")) {
-                        tasklist.add(new DukeTaskEvent(temp[2], temp[1].contains("X"), temp[0].charAt(0), temp[3]));
-                    }
+                    assert false : "Something went wrong in reading your tasklist file";
                 }
+                
             }
             reader.close();
         } catch (IOException e) {
