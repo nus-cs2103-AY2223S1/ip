@@ -16,7 +16,8 @@ public class Ui {
      * @return Greeting message.
      */
     public static String formatGreetingString() {
-        return "Hello!\nHow may i help you today?";
+        String greeting = "Hello!\nHow may i help you today?";
+        return greeting;
     }
 
     /**
@@ -25,7 +26,8 @@ public class Ui {
      * @return Farewell message.
      */
     public static String formatFarewellString() {
-        return "Bye! Hope to see you again soon!";
+        String farewell = "Bye! Hope to see you again soon!";
+        return farewell;
     }
 
     /**
@@ -96,8 +98,8 @@ public class Ui {
      * @return Message.
      */
     public static String formatMarkAsDoneString(int index, Task task) {
-        return String.format("Nice! I've marked this task as done:\n%d. %s",
-                index + 1, task);
+        String markAsDoneString = "Nice! I've marked this task as done:";
+        return String.format(markAsDoneString + "\n%d. %s", index + 1, task);
     }
 
     /**
@@ -108,8 +110,8 @@ public class Ui {
      * @return Message.
      */
     public static String formatMarkAsUndoneString(int index, Task task) {
-        return String.format("Ok! I've marked this task as not done yet:\n%d. %s",
-                index + 1, task);
+        String markAsUndoneString = "Ok! I've marked this task as not done yet:";
+        return String.format(markAsUndoneString + "\n%d. %s", index + 1, task);
     }
 
     /**
@@ -120,15 +122,16 @@ public class Ui {
      * @return Message.
      */
     public static String formatDeleteTaskString(int index, Task task) {
-        return String.format("Noted. I've removed this task:\n%d. %s",
-                index + 1, task);
+        String taskDeleteString = "Noted. I've removed this task:";
+        return String.format(taskDeleteString + "\n%d. %s", index + 1, task);
     }
 
     /**
      * Creates a message that TaskList is empty and no task can be deleted.
      */
     public static String formatNoTaskToDeleteString() {
-        return "OOPS!!! There are currently no task to delete";
+        String noTaskToDeleteString = "OOPS!!! There are currently no task to delete";
+        return noTaskToDeleteString;
     }
 
     /**
@@ -138,7 +141,8 @@ public class Ui {
      * @return Message.
      */
     public static String formatAddTaskString(Task task) {
-        return "Got it! I've added this task:\n> " + task;
+        String taskAddString = "Got it! I've added this task:\n> ";
+        return taskAddString + task;
     }
 
     /**
