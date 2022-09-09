@@ -9,6 +9,7 @@ public class FindCommand implements Command {
     public static final String COMMAND_WORD = "find";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Find tasks in the task list. Parameters: DESCRIPTION. Example: " + COMMAND_WORD + " book";
+    public static final String REGEX = "(.+)";
 
     private String description;
 

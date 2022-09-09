@@ -11,6 +11,7 @@ public class EventCommand implements Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Add an event. Parameters: DESCRIPTION DATETIME. Example: " + COMMAND_WORD
             + " go to library /at 2022-08-22";
+    public static final String REGEX = "(?<description>.+?)\\s/at\\s(?<dateTime>.+)";
 
     private String description;
     private String dateTime;

@@ -10,6 +10,7 @@ public class TodoCommand implements Command {
     public static final String COMMAND_WORD = "todo";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add a todo task. Parameters: DESCRIPTION. Example: "
             + COMMAND_WORD + " borrow book";
+    public static final String REGEX = "(.+)";
 
     private String description;
 
