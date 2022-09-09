@@ -19,6 +19,7 @@ public class FindCommand extends Command {
      * @param query the query to search for
      */
     public FindCommand(String query) {
+        assert query != null : "Query cannot be null";
         this.query = query;
     }
 

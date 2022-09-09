@@ -2,13 +2,13 @@ package duke;
 
 import java.time.LocalDate;
 
-import duke.command.Command;
 import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
 import duke.command.FindCommand;
-import duke.command.QuackCommand;
 import duke.command.InvalidCommand;
 import duke.command.ListCommand;
-import duke.command.DeleteCommand;
+import duke.command.QuackCommand;
 import duke.models.Deadline;
 import duke.models.Event;
 import duke.models.Task;
@@ -39,6 +39,7 @@ public class Parser {
      * @return
      */
     public static Command parse(String command) {
+        assert command != null : "Command cannot be null";
         // Idea from : https://stackoverflow.com/questions/70683058/using-startswith-in-switch-case-in-java
         String verb = command.split(Constants.EMPTY_SPACE)[0];
         switch (verb) {

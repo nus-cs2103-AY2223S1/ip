@@ -3,6 +3,8 @@ package duke.command;
 import duke.TaskList;
 import duke.models.Task;
 
+import static duke.Constants.INVALID_COMMAND_MESSAGE;
+
 /**
  * Parses the command entered by the user
  */
@@ -26,10 +28,9 @@ public class CommandParser {
         case SUCCESSFUL_UNMARK:
             break;
         default:
-            return "INVALID COMMAND";
+            return INVALID_COMMAND_MESSAGE;
         }
-
-        return "INVALID COMMAND";
+        return INVALID_COMMAND_MESSAGE;
     }
 
 }

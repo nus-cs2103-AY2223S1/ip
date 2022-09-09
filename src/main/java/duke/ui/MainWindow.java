@@ -1,5 +1,7 @@
 package duke.ui;
 
+import java.util.Objects;
+
 import duke.Constants;
 import duke.Duke;
 import javafx.fxml.FXML;
@@ -9,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -46,6 +49,8 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
+        //Check if user input is empty
+        assert !Objects.equals(userInput.getText(), "") : "User input is null";
         String input = userInput.getText();
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
