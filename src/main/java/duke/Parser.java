@@ -83,6 +83,7 @@ public class Parser {
             taskList.add(new Deadline(deadlineName, false, deadlineDueDate));
             return String.format("Duke: I have added the deadline %s.\n", deadlineName);
         } else { // a 'todo'
+            assert userCommand.startsWith("todo");
             String toDoName = userCommand.substring(5).strip();
             taskList.add(new ToDo(toDoName, false));
             return String.format("Duke: I have added the to-do %s.\n", toDoName);
