@@ -71,12 +71,12 @@ public class TaskManager {
      */
     public String listTask() {
         if (taskList.size() == 0) {
-            return "\tYou have no tasks in your list.\n";
+            return "You have no tasks in your list.\n";
         } else {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("\tI have your list of tasks displayed below:\n");
+            stringBuilder.append("I have your list of tasks displayed below:\n");
             for (int i = 0; i < this.taskList.size(); i++) {
-                stringBuilder.append("\t").append(i + 1).append(") ").append(taskList.get(i)).append("\n");
+                stringBuilder.append(i + 1).append(") ").append(taskList.get(i)).append("\n");
             }
             return stringBuilder.toString();
         }
@@ -91,7 +91,7 @@ public class TaskManager {
      */
     public String addTask(Task task) {
         this.taskList.add(task);
-        return ("\t> Added: " + task.getTaskName() + "\n");
+        return ("> Added: " + task.getTaskName() + "\n");
     }
 
     /**
@@ -105,13 +105,13 @@ public class TaskManager {
     public String markTask(int itemNumber) {
         if (itemNumber > 0 && itemNumber <= this.taskList.size()) {
             if (this.taskList.get(itemNumber - 1).isCompleted()) {
-                return "\tThe task is already marked you dummy.\n";
+                return "The task is already marked you dummy.\n";
             } else {
                 this.taskList.get(itemNumber - 1).setIsCompleted(true);
-                return "\tI've marked this task as done. Good Job!\n";
+                return "I've marked this task as done. Good Job!\n";
             }
         } else {
-            return "\tThere is no such task!!\n";
+            return "There is no such task!!\n";
         }
     }
 
@@ -126,13 +126,13 @@ public class TaskManager {
     public String unmarkTask(int itemNumber) {
         if (itemNumber > 0 && itemNumber <= this.taskList.size()) {
             if (!(this.taskList.get(itemNumber - 1).isCompleted())) {
-                return "\tThe task is still not done you idiot.\n";
+                return "The task is still not done you idiot.\n";
             } else {
                 this.taskList.get(itemNumber - 1).setIsCompleted(false);
-                return "\tThe task has been unmarked.\n";
+                return "The task has been unmarked.\n";
             }
         } else {
-            return "\tThere is no such task!!\n";
+            return "There is no such task!!\n";
         }
     }
 
@@ -150,7 +150,7 @@ public class TaskManager {
             stringBuilder.append(this.taskList.remove(itemNumber - 1).toString()).append("\n");
             stringBuilder.append("You have ").append(this.taskList.size()).append(" item(s) remaining.\n");
         } else {
-            return "\tThere is no such task!!\n";
+            return "There is no such task!!\n";
         }
         return stringBuilder.toString();
     }
@@ -169,12 +169,12 @@ public class TaskManager {
             }
         }
         if (keywordList.size() == 0) {
-            return "\tYou have no tasks in your list with the keyword \"" + keyword + "\".\n";
+            return "You have no tasks in your list with the keyword \"" + keyword + "\".\n";
         } else {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("\tI have the matching tasks displayed below:\n");
+            stringBuilder.append("I have the matching tasks displayed below:\n");
             for (Integer index : keywordList) {
-                stringBuilder.append("\t").append(index + 1).append(") ").append(this.taskList.get(index)).append("\n");
+                stringBuilder.append(index + 1).append(") ").append(this.taskList.get(index)).append("\n");
             }
             return stringBuilder.toString();
         }

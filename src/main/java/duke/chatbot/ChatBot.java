@@ -24,7 +24,6 @@ public class ChatBot {
     /**
      * Constructor for a chatbot that can be intialized or terminated.
      * Primarily used for processing commands to update its own task manager.
-     * Default state of the chat bot is runningState = false
      *
      * @param name string of the name of the chatbot
      */
