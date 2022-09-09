@@ -43,6 +43,9 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
+    /**
+     * Initializes the main window, sets up the background, font and logo
+     */
     @FXML
     public void initialize() {
         Background background = new Background(new BackgroundFill(Color.valueOf("203649"), new CornerRadii(0), new Insets(0)));

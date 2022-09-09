@@ -65,10 +65,22 @@ public class DialogBox extends HBox {
         setAlignment(Pos.CENTER_LEFT);
     }
 
+    /**
+     * To get the user's input and show it in a dialog box
+     * @param s the user's input
+     * @param img the user's image
+     * @return a dialog box that contains s and img
+     */
     public static DialogBox getUserDialog(String s, Image img) {
         return new DialogBox("\n" + s + "\n", img, TextAlignment.RIGHT);
     }
 
+    /**
+     * To get the program's response and show it in a dialog box
+     * @param s the program's response
+     * @param img the program's image
+     * @return a dialog box that contains s and img
+     */
     public static DialogBox getDukeDialog(String s, Image img) {
         var db = new DialogBox("\n" + s, img, TextAlignment.LEFT);
         db.flip();

@@ -29,7 +29,7 @@ public class EventCommand extends Command {
      * @param tasks   the current {@code TaskList}
      * @param ui      the current {@code Ui}
      * @param storage the current {@code Storage}
-     * @return
+     * @return a string to be printed onto the dialog box
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {

@@ -84,6 +84,7 @@ public class TaskList {
 
     /**
      * To list out all the tasks in the list
+     * @return a string representation of the list
      */
     public String listTasks() {
         String list = "";

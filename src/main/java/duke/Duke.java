@@ -26,10 +26,20 @@ public class Duke {
         }
     }
 
+    /**
+     * The program's main function to start the application
+     * @param args
+     */
     public static void main(String[] args) {
         Launcher.main(args);
     }
 
+    /**
+     * To get the program's response given a user's input
+     * @param input user's input
+     * @return the program's response
+     * @throws DukeException if input is invalid
+     */
     public String getResponse(String input) throws DukeException {
         return Parser.parse(input).execute(tasks, ui, storage);
     }
