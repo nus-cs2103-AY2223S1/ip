@@ -32,6 +32,7 @@ public class Duke {
                     String command = parsedUserInput[0];
                     String arg1 = parsedUserInput[1];
                     String arg2 = parsedUserInput[2];
+                    arg2 = arg2.replaceAll(" ","");
                     switch(command) {
                     case COMMAND_LOAD:
                         loadLog(logFileAddress);
@@ -82,12 +83,13 @@ public class Duke {
                     chat(e.getLocalizedMessage() + "\n");
                 } catch (InvalidCommandException e) {
                     chat(e.getLocalizedMessage() + "\n");
+                } catch (InvalidDateException e) {
+                    chat(e.getLocalizedMessage() + "\n");
                 } catch (IOException e) {
                     chat (e.getLocalizedMessage() + "\n");
                 }
             }
         }
-
 
     public static String[] parseCommand(String userCommand) throws InvalidCommandException {
         String[] parsedCommand = {"","",""};
