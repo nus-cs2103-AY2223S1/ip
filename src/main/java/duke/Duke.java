@@ -40,9 +40,14 @@ public class Duke {
      * @return A string representing the outcome of the attempt.
      */
     public String loadTasks() {
-        String ret = "Loaded tasks from storage";
+        String ret;
         try {
-            tasks.loadTasksFromStorage(storage);
+            int numTasks = tasks.loadTasksFromStorage(storage);
+            if (numTasks > 0) {
+                ret = "Loaded " + numTasks + " tasks from storage";
+            } else {
+                ret = "No tasks in storage";
+            }
         } catch (DukeException e) {
             ret = "Error loading tasks from storage: " + e.getMessage();
         }

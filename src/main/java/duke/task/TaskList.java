@@ -21,8 +21,9 @@ public class TaskList {
     /**
      * Loads a list of tasks from storage.
      * @param storage Hard disk storage that contains tasks.
+     * @return Number of loaded tasks.
      */
-    public void loadTasksFromStorage(Storage storage) {
+    public int loadTasksFromStorage(Storage storage) {
         assert storage != null : "Storage is null";
         if (size() != 0) {
             throw new DukeException("Current list of tasks is not empty!");
@@ -31,6 +32,7 @@ public class TaskList {
         for (String taskStr : taskStrings) {
             tasks.add(Parser.fromStorage(taskStr));
         }
+        return taskStrings.size();
     }
 
     public void addTask(Task t) {
