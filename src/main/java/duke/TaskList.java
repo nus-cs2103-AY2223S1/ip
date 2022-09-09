@@ -2,6 +2,8 @@ package duke;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import duke.task.Task;
 
@@ -57,13 +59,11 @@ public class TaskList {
      * @return ArrayList that represents all tasks on specified date.
      */
     public ArrayList<Task> getTasksOnDate(LocalDate date) {
-        ArrayList<Task> temp = new ArrayList<>();
-        for (Task t : taskList) {
-            if (t.compareDate(date)) {
-                temp.add(t);
-            }
-        }
-        return temp;
+        ArrayList<Task> tasksOnDate = taskList.stream()
+                .filter(x -> x.isSameDate(date))
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        return tasksOnDate;
     }
 
     /**
@@ -72,13 +72,10 @@ public class TaskList {
      * @return ArrayList that represents all tasks with keyword.
      */
     public ArrayList<Task> findTasks(String keyword) {
-        ArrayList<Task> temp = new ArrayList<>();
-        for (Task t : taskList) {
-            if (t.toString().contains(keyword)) {
-                temp.add(t);
-            }
-        }
-        return temp;
+        ArrayList<Task> tasksFound = taskList.stream()
+                .filter(x -> x.toString().contains(keyword))
+                .collect(Collectors.toCollection(ArrayList::new));
+        return tasksFound;
     }
 
     /**

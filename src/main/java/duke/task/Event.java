@@ -53,8 +53,9 @@ public class Event extends Task {
         }
     }
     @Override
-    public boolean compareDate(LocalDate date) {
-        assert date != null : "Task::compareDate has null LocalDate input.";
+
+    public boolean isSameDate(LocalDate date) {
+        assert date != null : "Task::isSameDate has null LocalDate input.";
         return date.equals(this.eventDate);
     }
 

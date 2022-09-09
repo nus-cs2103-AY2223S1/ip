@@ -36,7 +36,7 @@ public class ToDo extends Task {
     }
 
     @Override
-    public boolean compareDate(LocalDate date) {
+    public boolean isSameDate(LocalDate date) {
         return false;
     }
 

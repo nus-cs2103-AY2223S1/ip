@@ -1,9 +1,7 @@
 package duke.task;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+
 
 /**
  * The Task class represents a task
@@ -55,6 +53,14 @@ public abstract class Task {
     public String toStore() {
         return this.isDone ? "1" : "0" + " | " + this.description;
     }
+
+    /**
+     * Compare date between tasks.
+     * @param date Specified date of task.
+     * @return true only if both task on the same date.
+     */
+    public abstract boolean isSameDate(LocalDate date);
+
 
     /**
      * Overriding method of toString() for duke.task.Task.
