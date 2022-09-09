@@ -44,4 +44,8 @@ public class TaskList {
         return new TaskList((ArrayList) tasks.stream().filter(s -> s.toString().contains(task)).collect(Collectors.<Task>toList()));
     }
 
+    public void update(int index, Task task) {
+        tasks.set(index - 1, task);
+    }
+
 }

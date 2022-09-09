@@ -10,5 +10,6 @@ public enum Command {
     QUIT,
     LIST,
     INVALID,
-    FIND
+    FIND,
+    UPDATE
 }
