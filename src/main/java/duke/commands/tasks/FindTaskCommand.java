@@ -6,6 +6,7 @@ import duke.commands.CommandResult;
  * Find Task Command Class
  */
 public class FindTaskCommand extends BaseTaskCommand {
+    public static final String COMMAND_WORD = "find";
     private final String searchTerm;
     private String successMessage = "Here are the matching tasks:\n";
 

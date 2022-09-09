@@ -8,12 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import duke.commands.BaseCommand;
 import duke.commands.ErrorCommand;
-import duke.exceptions.IncorrectArgumentException;
-import duke.exceptions.InvalidDateTimeException;
-import duke.exceptions.InvalidTaskSpecificationException;
-import duke.exceptions.MissingArgumentException;
 import duke.exceptions.NoCommandException;
-import duke.exceptions.UnknownCommandException;
+import duke.exceptions.ParseException;
 
 public class ParserTest {
     private Parser parser;
@@ -92,8 +88,7 @@ public class ParserTest {
         BaseCommand result;
         try {
             result = parser.parse(input);
-        } catch (MissingArgumentException | InvalidDateTimeException | InvalidTaskSpecificationException
-                | IncorrectArgumentException | UnknownCommandException | NoCommandException e) {
+        } catch (NoCommandException | ParseException e) {
             result = new ErrorCommand(e.getMessage());
         }
         assertTrue(result.getClass().isAssignableFrom(expectedCommandClass));

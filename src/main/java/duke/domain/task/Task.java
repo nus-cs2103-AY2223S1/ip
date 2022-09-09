@@ -1,10 +1,13 @@
-package duke.domain;
+package duke.domain.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
+import duke.domain.Deadline;
+import duke.domain.Event;
+import duke.domain.Todo;
 import duke.exceptions.InvalidDateTimeException;
 import duke.exceptions.InvalidTaskSpecificationException;
 
