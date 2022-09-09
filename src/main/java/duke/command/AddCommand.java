@@ -10,11 +10,11 @@ import duke.task.Task;
 import duke.task.ToDoTask;
 
 public class AddCommand extends Command {
-    private String type;
-    private String description;
+    private final String commandType;
+    private final String description;
     
-    public AddCommand(String type, String description) {
-        this.type = type;
+    public AddCommand(String commandType, String description) {
+        this.commandType = commandType;
         this.description = description; 
     }
    
@@ -24,7 +24,7 @@ public class AddCommand extends Command {
             return true;
         } else if (o instanceof AddCommand) {
             AddCommand command = (AddCommand) o;
-            return command.type.equals(this.type) && command.description.equals(this.description);
+            return command.commandType.equals(this.commandType) && command.description.equals(this.description);
         } else {
             return false;
         }
@@ -38,7 +38,7 @@ public class AddCommand extends Command {
      * @throws DukeException If the data file cannot be accessed.
      */
     public String execute(TaskList tasks) throws DukeException {
-        switch(type) {
+        switch(commandType) {
         case "todo":
             Task tTask = new ToDoTask(description);
             return tasks.addTask(tTask);
