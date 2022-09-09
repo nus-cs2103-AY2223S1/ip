@@ -1,14 +1,13 @@
+import java.io.IOException;
+
+import technical.Parser;
+import technical.TaskList;
+import technical.Ui;
+
 /**
  * The main class
  * @author Nicholas Patrick
  */
-
-import functional.Deadline;
-import functional.Event;
-import functional.Todo;
-import technical.*;
-import java.io.IOException;
-
 public class Duke {
     /**
      * The main runner program.
@@ -23,21 +22,7 @@ public class Duke {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        SaveFile.loadSaveFile();
-        for (SaveLine i : SaveFile.getFileData()) {
-            if (i.getInfoType().equals("todo")) {
-                TaskList.taskList.add(new Todo(i));
-                continue;
-            }
-            if (i.getInfoType().equals("deadline")) {
-                TaskList.taskList.add(new Deadline(i));
-                continue;
-            }
-            if (i.getInfoType().equals("event")) {
-                TaskList.taskList.add(new Event(i));
-                continue;
-            }
-        }
+        TaskList.loadFromSaveFile();
         Ui.reply("What can I do for you?");
         while (Parser.parseExecute(Ui.readLine()));
     }
