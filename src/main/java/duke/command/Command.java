@@ -6,6 +6,8 @@ import duke.ui.Ui;
 
 /**
  * Abstract class to handle commands
+ *
+ * @author Kang Yue Hern
  */
 public abstract class Command {
 

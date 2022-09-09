@@ -9,11 +9,15 @@ import duke.ui.Ui;
 
 
 /**
- * When find commmand is needed
+ * Command that searches for a {@link Task} in the {@link TaskList}
  */
 public class FindCommand extends Command {
     private String query;
 
+    /**
+     * Constructor for FindCommand
+     * @param query the query to search for
+     */
     public FindCommand(String query) {
         this.query = query;
     }

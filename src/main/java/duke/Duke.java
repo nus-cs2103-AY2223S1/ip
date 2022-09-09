@@ -42,7 +42,6 @@ public class Duke {
      * Starts the program with welcome message and initialize saved data if any
      */
     public void run() {
-
         ui.showWelcome();
         Scanner sc = new Scanner(System.in);
         this.storage.run();
@@ -60,8 +59,8 @@ public class Duke {
      * @param args
      * @throws DukeException
      */
-    public static void main(String[] args) throws DukeException {
-        new Duke("saved.txt").run();
+    public static void main(String[] args) {
+        new Duke("./data/saved.txt").run();
     }
 
     public String getResponse(String input) {
