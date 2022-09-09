@@ -39,6 +39,8 @@ public class Parser {
                 storage.save(tasks);
             } catch (ArrayIndexOutOfBoundsException e) {
                 output = ui.displayError("which task to mark?");
+            } catch (IndexOutOfBoundsException e) {
+                output = ui.displayError("you don't have so many tasks!");
             }
             break;
         case "unmark":
@@ -49,6 +51,8 @@ public class Parser {
                 storage.save(tasks);
             } catch (ArrayIndexOutOfBoundsException e) {
                 output = ui.displayError("which task to unmark?");
+            } catch (IndexOutOfBoundsException e) {
+                output = ui.displayError("you don't have so many tasks!");
             }
             break;
         case "remove":
@@ -60,6 +64,8 @@ public class Parser {
                 storage.save(tasks);
             } catch (ArrayIndexOutOfBoundsException e) {
                 output = ui.displayError("which task to remove?");
+            } catch (IndexOutOfBoundsException e) {
+                output = ui.displayError("you don't have so many tasks!");
             }
             break;
         case "filter":

@@ -21,7 +21,7 @@ public class Ui {
      * Displays welcome message with list of commands
      */
     public String displayWelcomeMessage() {
-        String response = "hey, i'm bob!👻\ndo you need help?\n"
+        String response = "hey, i'm bob!\ndo you need help?\n"
                 + this.printLine()
                 + "    ↓ here's what you can do! ↓\n"
                 + "    ---------------------------\n"
@@ -70,6 +70,7 @@ public class Ui {
      * @param outputMessage header to be printed with tasks
      */
     public String displayTaskList(TaskList taskList, String outputMessage) {
+        assert taskList.getLength() > 0 : "length of taskList should never be negative";
         if (taskList.getLength() == 0) {
             return this.displayError("you have no tasks!");
         }
@@ -90,6 +91,7 @@ public class Ui {
      * @param index index of marked task
      */
     public String displayMarked(TaskList tasks, int index) {
+        assert tasks.getLength() > 0 : "length of taskList should never be negative";
         String response = this.printLine() + "yay! you've completed a task!\n"
                 + tasks.getTask(index).toString() + "\n" + this.printLine();
         return response;
@@ -102,6 +104,7 @@ public class Ui {
      * @param index index of unmarked task
      */
     public String displayUnmarked(TaskList tasks, int index) {
+        assert tasks.getLength() > 0 : "length of taskList should never be negative";
         String response = this.printLine() + "aw...i guess there's another task.\n"
                 + tasks.getTask(index).toString() + "\n" + this.printLine();
         return response;
@@ -114,6 +117,7 @@ public class Ui {
      * @param task task removed
      */
     public String displayRemoved(TaskList tasks, Task task) {
+        assert tasks.getLength() > 0 : "length of taskList should never be negative";
         String response = this.printLine() + "that's one less task for you! removed:" + "\n  "
                 + task.toString() + "\njust " + (tasks.getLength()) + " tasks left!\n" + this.printLine();
         return response;
@@ -126,6 +130,7 @@ public class Ui {
      * @param task task added
      */
     public String displayAddedTask(TaskList tasks, Task task) {
+        assert tasks.getLength() > 0 : "length of taskList should never be negative";
         String response = this.printLine() + "okay! new task:" + "\n  " + task.toString()
                 + "\njust " + tasks.getLength() + " tasks left!\n" + this.printLine();
         return response;
