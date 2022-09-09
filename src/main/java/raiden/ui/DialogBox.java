@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Polygon;
 
 /**
  * @@author HowSuen-reused
@@ -27,6 +28,8 @@ public class DialogBox extends HBox {
     private Label dialog;
     @FXML
     private ImageView displayPicture;
+    @FXML
+    private Polygon triangle;
 
     private DialogBox(String text, Image img) {
         try {
@@ -50,6 +53,7 @@ public class DialogBox extends HBox {
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
         setStyle("-fx-background-color: #FFCCFF");
+        this.triangle.setStyle("-fx-scale-x: -1; -fx-translate-y: 10");
     }
 
     /**
