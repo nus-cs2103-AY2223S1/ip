@@ -43,7 +43,7 @@ public class TaskListTest {
         String addDuplicateTask = TaskList.addTask(duplicateTask);
         assertEquals(1, taskList.getTasks().size());
 
-        assertEquals("OOPS!!! (•﹏•)\n"
+        assertEquals("OOPS!!! (*_*)\n"
                 + "Duplicate task:\n"
                 + "[ ][ ] stub 1\n"
                 + "This is not added again.",
@@ -83,7 +83,7 @@ public class TaskListTest {
             TaskList.indexOperation("delete", "4");
             fail(); // Test should not reach this line.
         } catch (InvalidIndexException e) {
-            assertEquals("OOPS!!! (•﹏•)\n"
+            assertEquals("OOPS!!! (*_*)\n"
                     + "You have entered an invalid task index. It should be between 1 and 3.",
                     e.getMessage());
         }
@@ -106,7 +106,7 @@ public class TaskListTest {
             TaskList.indexOperation("delete", "hi");
             fail(); // Test should not reach this line.
         } catch (InvalidIndexException e) {
-            assertEquals("OOPS!!! (•﹏•)\n"
+            assertEquals("OOPS!!! (*_*)\n"
                     + "You have entered an invalid task index. It must be a number.",
                     e.getMessage());
         }
@@ -129,7 +129,7 @@ public class TaskListTest {
             TaskList.indexOperation("delete", null);
             fail(); // Test should not reach this line.
         } catch (InvalidIndexException e) {
-            assertEquals("OOPS!!! (•﹏•)\n"
+            assertEquals("OOPS!!! (*_*)\n"
                     + "Task index cannot be empty. "
                     + "It must be specified and must be a number.",
                     e.getMessage());
@@ -152,7 +152,7 @@ public class TaskListTest {
 
         String actualOutput = TaskList.indexOperation("mark", "1");
 
-        assertEquals("Nice! (๑•̀ㅂ•́)و✧\n"
+        assertEquals("Nice! (> O <)\n"
                 + "I've marked this task as done:\n[ ][X] stub 1", actualOutput);
     }
 
@@ -173,8 +173,8 @@ public class TaskListTest {
         TaskList.indexOperation("mark", "1");
         String actualOutput = TaskList.indexOperation("mark", "1");
 
-        assertEquals("OOPS!!! (•﹏•)\nYou have already completed this task!\n"
-                + "But GOOD JOB (๑•̀ㅂ•́)و✧\n"
+        assertEquals("OOPS!!! (*_*)\nYou have already completed this task!\n"
+                + "But GOOD JOB (> O <)\n"
                 + "You can enter \"delete 1\" to remove it.", actualOutput);
     }
 
@@ -194,7 +194,7 @@ public class TaskListTest {
         TaskList.indexOperation("mark", "1");
         String actualOutput = TaskList.indexOperation("unmark", "1");
 
-        assertEquals("OK (｡•́︿•̀｡)\n"
+        assertEquals("OK (O_O)\n"
                 + "I've marked this task as not done yet:\n[ ][ ] stub 1", actualOutput);
     }
 
@@ -216,9 +216,9 @@ public class TaskListTest {
         TaskList.indexOperation("unmark", "1");
         String actualOutput = TaskList.indexOperation("unmark", "1");
 
-        assertEquals("OOPS!!! (•﹏•)\n"
+        assertEquals("OOPS!!! (*_*)\n"
                 + "You have not completed this task yet, so it is already unmarked!\n"
                 + "You may want to start working on it now.\n"
-                + "ALL THE BEST (ง •̀_•́)ง", actualOutput);
+                + "ALL THE BEST (^ O ^)", actualOutput);
     }
 }

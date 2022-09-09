@@ -39,7 +39,7 @@ public class TodoTest {
         String addDuplicateTodo = TaskList.addTask(duplicateTodo);
         assertEquals(1, todoList.getTasks().size());
 
-        assertEquals("OOPS!!! (•﹏•)\n"
+        assertEquals("OOPS!!! (*_*)\n"
                 + "Duplicate task:\n"
                 + "[T][ ] revision\n"
                 + "This is not added again.",

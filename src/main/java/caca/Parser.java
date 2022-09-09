@@ -60,7 +60,7 @@ public class Parser {
 
         try {
             if (taskType.isBlank()) {
-                throw new EmptyInputException("OOPS!!! (•﹏•)\n"
+                throw new EmptyInputException("OOPS!!! (*_*)\n"
                         + "You have entered an empty input.");
             }
 
@@ -99,7 +99,7 @@ public class Parser {
                 break;
 
             default:
-                response = "OOPS!!! (•﹏•)\n"
+                response = "OOPS!!! (*_*)\n"
                         + "I'm sorry, but I don't know what that means...";
             }
 

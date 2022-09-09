@@ -73,7 +73,7 @@ Add a todo without any date & time.
 - Expected outcome: The todo will be added to your task list and saved locally.
 
 ```
-Got it. I've added this task:
+Got it. I've added this task (^_^)
 [T][ ] revision
 Now you have 1 tasks in the list.
 ```
@@ -87,7 +87,7 @@ Add a deadline to be completed by a date & time.
 - Expected outcome: The deadline will be added to your task list and saved locally.
 
 ```
-Got it. I've added this task:
+Got it. I've added this task (^_^)
 [D][ ] iP (by: Sep 16 2022 23:59)
 Now you have 2 tasks in the list.
 ```
@@ -101,7 +101,7 @@ Add an event that occurs at a date & time.
 - Expected outcome: The event will be added to your task list and saved locally.
 
 ```
-Got it. I've added this task:
+Got it. I've added this task (^_^)
 [E][ ] talk (at: Sep 30 2022 11:00)
 Now you have 3 tasks in the list.
 ```
@@ -115,7 +115,7 @@ Display a list of all your tasks.
 - Expected outcome: The list of tasks stored locally will be displayed.
 
 ```
-Your task list (っ•ω•)っ✎
+Your task list (^_^)
 1.[T][ ] revision
 2.[D][ ] iP (by: Sep 16 2022 23:59)
 3.[E][ ] talk (at: Sep 30 2022 11:00)
@@ -130,7 +130,7 @@ Marks the task with specified task index as done, using a "X".
 - Expected outcome: The task will be marked with "[X]" and updated locally.
 
 ```
-Nice! (๑•̀ㅂ•́)و✧
+Nice! (> O <)
 I've marked this task as done:
 [T][X] revision
 ```
@@ -144,7 +144,7 @@ Unmarks the task with specified task index to update task status as not done, an
 - Expected outcome: The task will be unmarked with "[ ]" and updated locally.
 
 ```
-OK (｡•︿•｡)
+OK (O_O)
 I've marked this task as not done yet:
 [T][ ] revision
 ```
@@ -158,7 +158,7 @@ Deletes the task with specified task index from your task list.
 - Expected outcome: The task will be deleted from your task list and updated locally.
 
 ```
-Noted (｡◕‿◕｡)
+Noted (^_^)
 I've removed this task:
 [E][ ] talk (at: Sep 30 2022 11:00)
 Now you have 2 tasks in the list.
@@ -174,7 +174,7 @@ Finds all matching tasks containing the keyword from your task list.
 Note: The output from this example is obtained by first adding `todo week 5 iP` and `deadline week 5 quiz /by 09/09/2022 1600`.
 
 ```
-Matching tasks in your list (◍•◡•◍)ﾉ
+Matching tasks in your list (^_^)
 1.[T][ ] week 5 iP
 2.[D][ ] week 5 quiz (by: Sep 09 2022 16:00)
 ```
@@ -188,7 +188,7 @@ Ends CaCa chatbot and exits the application.
 - Expected outcome: A goodbye message is shown. The program window will close automatically after 1.5 seconds. 
 
 ```
-Bye (╥﹏╥)
+Bye (T_T)
 Hope to see you again soon!
 ```
 

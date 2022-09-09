@@ -38,7 +38,7 @@ public class Deadline extends Task {
             by = LocalDateTime.parse(dateTimeInput, formatter);
 
         } catch (DateTimeParseException e) {
-            throw new InvalidDateException("OOPS!!! (•﹏•)\n"
+            throw new InvalidDateException("OOPS!!! (*_*)\n"
                     + "You have keyed in an invalid date and time!\n"
                     + "Please specify date and time in the format: dd/MM/yyyy HHmm\n"
                     + "E.g. 24/08/2022 2359");
