@@ -66,6 +66,10 @@ public class Parser {
     }
 
     private String handleAddCommand(String userCommand) {
+        // TODO: Ensure that the user does not use the '|' character.
+        //       (The '|' character is used as a separator when encoding the tasks as a text file.)
+        assert(!userCommand.contains("|"));
+
         if (userCommand.startsWith("event")) {
             // TODO: Ensure that the string contains a "@" and a time range is specified.
             String eventName = userCommand.substring(6).split("@ ")[0].strip();
@@ -89,6 +93,7 @@ public class Parser {
     private String handleRemoveCommand(String userCommand) {
         // TODO: Ensure that the index is reasonable.
         int index = Integer.parseInt(userCommand.substring(7)) - 1;
+        assert (index >= 0 && index <= taskList.size());
         String stringToReturn = String.format("Duke: I have removed the task %s.\n", taskList.get(index));
         taskList.remove(index);
         return stringToReturn;
@@ -97,6 +102,7 @@ public class Parser {
     private String handleMarkAsDoneCommand(String userCommand) {
         // TODO: Ensure that the index is reasonable.
         int index = Integer.parseInt(userCommand.substring(5)) - 1;
+        assert (index >= 0 && index <= taskList.size());
         taskList.get(index).setComplete(true);
 
         return ("Task marked as complete.\n" + taskList.get(index).toString());
@@ -105,6 +111,7 @@ public class Parser {
     private String handleMarkAsUndoneCommand(String userCommand) {
         // TODO: Ensure that the index is reasonable.
         int index = Integer.parseInt(userCommand.substring(7)) - 1;
+        assert (index >= 0 && index <= taskList.size());
         taskList.get(index).setComplete(false);
 
         return ("Task marked as not complete.\n" + taskList.get(index).toString());
