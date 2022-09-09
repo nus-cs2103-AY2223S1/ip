@@ -78,17 +78,17 @@ public class Storage {
 
         try {
             switch(arr[0]) {
-                case "[T]":
-                    ret = new Todo(arr[2]);
-                    break;
-                case "[D]":
-                    ret = new Deadline(arr[2], DateParser.stringToDate(arr[3]));
-                    break;
-                case "[E]":
-                    ret = new Event(arr[2], DateParser.stringToDate(arr[3]));
-                    break;
-                default:
-                    return null;
+            case "[T]":
+                ret = new Todo(arr[2]);
+                break;
+            case "[D]":
+                ret = new Deadline(arr[2], DateParser.stringToDate(arr[3]));
+                break;
+            case "[E]":
+                ret = new Event(arr[2], DateParser.stringToDate(arr[3]));
+                break;
+            default:
+                return null;
             }
         } catch (UnrecognisedDateException e) {
             return null;
