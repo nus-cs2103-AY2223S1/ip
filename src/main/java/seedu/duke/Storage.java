@@ -1,4 +1,5 @@
 package seedu.duke;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -38,6 +39,7 @@ public class Storage {
      * @param storage Where tasks are stored in the TaskList.
      */
     public void initialise(ArrayList<Task> storage) {
+        assert storage != null : "No storage provided.";
         storage.clear();
 
         try {
@@ -50,6 +52,8 @@ public class Storage {
                 if (temp[0].equals("T")) {
                     newTask = new Todo(temp[2]);
 
+                    assert newTask != null : "Todo not created.";
+
                 } else if (temp[0].equals("D")) {
                     DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a");
                     DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
@@ -57,17 +61,23 @@ public class Storage {
                     LocalDateTime dateTime = LocalDateTime.parse(temp[3], inputFormatter);
                     newTask = new Deadline(temp[2], dateTime.format(outputFormatter));
 
+                    assert newTask != null : "Deadline not created.";
+
                 } else if (temp[0].equals("E")) {
                     newTask = new Event(temp[2], temp[3]);
+
+                    assert newTask != null : "Event not created.";
 
                 } else {
                     throw new DukeException("");
                 }
 
                 if (temp[1].equals("1")) {
+                    assert newTask != null : "No Task.";
                     newTask.markDone();
                 }
 
+                assert storage != null : "No storage provided.";
                 storage.add(newTask);
             }
         } catch (FileNotFoundException e) {
@@ -83,6 +93,8 @@ public class Storage {
      * @param taskToAdd The task to be added to the save file.
      */
     public void addTask(String taskToAdd) {
+        assert taskToAdd != null : "No Task description provided.";
+
         try {
             // create a FileWriter in append mode
             PrintWriter fw = new PrintWriter(new FileWriter(filePath, true));

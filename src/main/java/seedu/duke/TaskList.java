@@ -13,6 +13,8 @@ public class TaskList {
      * @param saveFile Handles storing Tasks in the hard disk.
      */
     public TaskList(Storage saveFile) {
+        assert saveFile != null : "No save file provided.";
+
         this.saveFile = saveFile;
         saveFile.initialise(tempStorage);
     }
@@ -24,6 +26,9 @@ public class TaskList {
      * @return A response to be displayed to the user.
      */
     public String addTask(String command) {
+        assert command != null : "No command provided.";
+        assert tempStorage != null : "No temporary storage created.";
+        assert saveFile != null : "No save file provided.";
 
         if (command.startsWith("todo")) {
             if (command.length() <= 5) {
@@ -33,6 +38,9 @@ public class TaskList {
             Task newTask = new Todo(command.substring(5));
             tempStorage.add(newTask);
             saveFile.addTask(newTask.toStore());
+
+            assert tempStorage.contains(newTask) : "Todo failed to be added to temporary storage";
+
         } else if (command.startsWith("deadline")) {
             try {
                 if (command.length() <= 9) {
@@ -44,6 +52,9 @@ public class TaskList {
                 Task newTask = new Deadline(temp[0], temp[1]);
                 tempStorage.add(newTask);
                 saveFile.addTask(newTask.toStore());
+
+                assert tempStorage.contains(newTask) : "Deadline failed to be added to temporary storage";
+
             } catch (DateTimeParseException e) {
                 return Ui.wrongDateFormat();
             }
@@ -57,6 +68,9 @@ public class TaskList {
             Task newTask = new Event(temp[0], temp[1]);
             tempStorage.add(newTask);
             saveFile.addTask(newTask.toStore());
+
+            assert tempStorage.contains(newTask) : "Event failed to be added to temporary storage";
+
         } else {
             return Ui.unknownCommand();
         }
@@ -74,6 +88,10 @@ public class TaskList {
      * @return A response to be displayed to the user.
      */
     public String delete(int index) {
+        assert index >= 0 : "Index does not exist.";
+        assert tempStorage != null : "No temporary storage created.";
+        assert saveFile != null : "No save file provided.";
+
         try {
             Task toRemove = tempStorage.remove(index);
             saveFile.reload(tempStorage);
@@ -112,6 +130,8 @@ public class TaskList {
      * @return A response to be displayed to the user.
      */
     public String markOrUnmarkAsDone(String command) {
+        assert command != null : "No command provided.";
+
         int index = Character.getNumericValue(command.charAt(command.length() - 1));
 
         try {
@@ -130,6 +150,8 @@ public class TaskList {
      * @return A response to be displayed to the user.
      */
     public String find(String command) {
+        assert command != null : "No command provided.";
+
         ArrayList<Task> result = new ArrayList<>();
         String toFind = command.substring(5);
 

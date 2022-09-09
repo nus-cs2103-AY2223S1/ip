@@ -20,6 +20,8 @@ public class Task {
      * @return A response to be displayed to the user.
      */
     public String markOrUnmarkAsDone(String command) {
+        assert command != null : "No command provided.";
+
         if (command.startsWith("mark ")) {
             this.isDone = true;
             return "Nice! I've marked this task as done: \n" + this;
@@ -71,6 +73,8 @@ public class Task {
      * @return true if the description contains the String to be found, false otherwise.
      */
     public boolean checkMatching(String toMatch) {
+        assert toMatch != null : "String to match not provided.";
+
         return description.contains(toMatch);
     }
 }

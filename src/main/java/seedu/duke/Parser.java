@@ -19,6 +19,8 @@ public class Parser {
      * @return A response to be displayed to the user.
      */
     public String parse(String command) {
+        assert command != null : "No command provided.";
+
         if (command.equals("list")) {
             return this.taskList.list();
         } else if (command.startsWith("mark") || command.startsWith("unmark")) {
