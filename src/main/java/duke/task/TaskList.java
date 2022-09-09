@@ -81,15 +81,6 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
-     * Prints the tasks in the list, with their indices starting from 1.
-     */
-    public void printList() {
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(i + 1 + ". " + list.get(i));
-        }
-    }
-
-    /**
      * Converts <code>TaskList</code> to a string that is formatted to be written to <code>Storage</code>.
      *
      * @return the formatted string.
@@ -100,6 +91,15 @@ public class TaskList implements Iterable<Task> {
             data.append(task.toString() + "\n");
         }
         return data.toString();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < list.size(); i++) {
+            stringBuilder.append(i + 1 + ". " + list.get(i) + "\n");
+        }
+        return stringBuilder.toString();
     }
 
     @Override

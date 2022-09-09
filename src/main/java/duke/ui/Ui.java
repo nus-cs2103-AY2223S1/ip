@@ -9,41 +9,40 @@ import duke.task.TaskList;
  * @author ish1506
  */
 public class Ui {
-
-    public void printWelcome() {
-        System.out.println("Hello! I'm Duke" + "\nHow can I help you?");
+    public String getWelcomeMessage() {
+        return "Hello! I'm Duke" + "\nHow can I help you?";
     }
 
-    public void printGoodbye() {
-        System.out.println("Bye! See you again :)");
+    public String getGoodbyeMessage() {
+        return "Bye! See you again :)";
     }
 
-    public void printMark(Task task) {
-        System.out.println("Great! This task is completed:\n" + task);
+    public String getMarkMessage(Task task) {
+        return "Great! This task is completed:\n" + task;
     }
 
-    public void printUnmark(Task task) {
-        System.out.println("Okay, this task is now unchecked:\n" + task);
+    public String getUnmarkMessage(Task task) {
+        return "Okay, this task is now unchecked:\n" + task;
     }
 
-    public void printAdd(Task task) {
-        System.out.println("Got it. I've added this task:\n" + task);
+    public String getAddTaskMessage(Task task) {
+        return "Got it. I've added this task:\n" + task;
     }
 
-    public void printDelete(Task task) {
-        System.out.println("Noted. I've removed this task:\n" + task);
+    public String getDeleteTaskMessage(Task task) {
+        return "Noted. I've removed this task:\n" + task;
     }
 
-    public void printFoundTasksList(TaskList list) {
+    public String getFoundTasksListString(TaskList list) {
         if (list.isEmpty()) {
-            System.out.println("OOPS!! No matching tasks found :( ");
-            return;
+            return "OOPS!! No matching tasks found :( ";
         }
-        System.out.println("Here are the matching tasks in your list: ");
+        StringBuilder stringBuilder = new StringBuilder("Here are the matching tasks in your list:\n");
         int i = 1;
         for (Task task : list) {
-            System.out.println(i + ". " + task);
+            stringBuilder.append(i + ". " + task + "\n");
             i++;
         }
+        return stringBuilder.toString();
     }
 }
