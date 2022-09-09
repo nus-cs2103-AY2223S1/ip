@@ -29,9 +29,13 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
 
+    /**
+     * Sets user input color to lighter color readable in dark mode.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        userInput.setStyle("-fx-background-color: #010101; -fx-text-fill: #94a1b2;");
     }
 
     public void setDuke(Duke d) {
