@@ -140,4 +140,8 @@ public class TextUI {
         return "No tasks found";
     }
 
+    public static String changeTaskPriority(Task task) {
+        return "Changed this task's priority: " + task;
+    }
+
 }

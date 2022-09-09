@@ -12,10 +12,9 @@ public class Event extends Task {
 
     /**
      * {@inheritDoc}
-     * Adds string representation of date.
      */
     @Override
-    public String toString() {
-        return String.format("%s (at: %s)", super.toString(), getDate());
+    public String getDate() {
+        return String.format("(at %s)", super.getDate());
     }
 }

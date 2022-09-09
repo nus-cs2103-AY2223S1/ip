@@ -57,6 +57,12 @@ public class Parser {
                 return taskList.findTasks(input.split("find ")[1]);
             }
             break;
+        case "priority":
+            if (!isIncompleteCommand(input, "priority".length())) {
+                assert inputSequence.length > 1 : "isIncompleteCommand is not working";
+                return taskList.setTaskPriority(Integer.parseInt(inputSequence[1]), inputSequence[2]);
+            }
+            break;
         case "bye":
             return TextUI.bye();
         default:
@@ -95,7 +101,7 @@ public class Parser {
 
     private static String getName(String input, String taskType) {
         if (!taskType.equals("todo")) {
-            return taskType.split(taskType + " ")[1].split(" /")[0];
+            return input.split(taskType + " ")[1].split(" /")[0];
         } else {
             return input.split("todo ")[1];
         }

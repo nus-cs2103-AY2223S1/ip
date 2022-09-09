@@ -20,7 +20,6 @@ public class Storage {
     /**
      * Constructor that takes in a UI object
      *
-     * @param ui UI object used to interact with user.
      * @throws PloopyException If a file storage error occurs.
      */
     public Storage() throws PloopyException {
@@ -54,8 +53,15 @@ public class Storage {
         String done = task.isDone() ? "1" : "0";
         String name = task.getName();
         String date = task.getDateForFileWrite();
-        return String.format("%s%s%s%s%s%s%s", type, sep, done, sep, name, sep, date);
-
+        int priority = task.getPriorityForFile();
+        String line = String.format("%s%s%s%s%s",
+                type, sep, done, sep, name);
+        if (type.equals("T")) {
+            line += sep + priority;
+        } else {
+            line += sep + date + sep + priority;
+        }
+        return line;
     }
 
     /**

@@ -39,8 +39,6 @@ public class Ploopy {
         } catch (PloopyException e) {
             return introString + TextUI.exceptionMessage(e.getMessage());
         }
-
-
     }
 
     /**
@@ -49,7 +47,6 @@ public class Ploopy {
      * file storage errors.
      *
      */
-
     public String getResponse(String input) {
         try {
             return Parser.parseInput(input, taskList);
