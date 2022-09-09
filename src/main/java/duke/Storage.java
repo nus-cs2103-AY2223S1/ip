@@ -37,6 +37,7 @@ public class Storage {
         ArrayList<Task> res = new ArrayList<>();
         try {
             Scanner sc = new Scanner(file);
+            assert this.file.exists();
             while (sc.hasNext()) {
                 res.add(fileLineToTask(sc.nextLine()));
             }
@@ -46,7 +47,7 @@ public class Storage {
                 Files.createDirectories(Paths.get("./data"));
                 File f = new File("data/tasks.txt");
             } catch (IOException ex) {
-                System.out.println("Something went wrong: " + e.getMessage());
+                throw new DukeException("Failed to load tasks!");
             }
         }
         return res;

@@ -78,6 +78,7 @@ public class TaskList {
     public String delete(int index) {
         Task task = this.tasks.get(index);
         this.tasks.remove(index);
+        assert !this.tasks.contains(task);
         return "Noted. I've removed this task:\n" +
                 "  " + task.toString() + "\n" +
                 String.format("Now you have %d tasks in the list.", this.tasks.size());
@@ -91,6 +92,7 @@ public class TaskList {
      */
     public String add(Task task) {
         this.tasks.add(task);
+        assert this.tasks.contains(task);
         return "Got it. I've added this task:\n" +
                 "   " + task.toString() + "\n" +
                 String.format("Now you have %d tasks in the list.", this.tasks.size());
@@ -119,10 +121,15 @@ public class TaskList {
         StringBuilder sb = new StringBuilder().append("Here are the matching tasks in your list:\n");
         for (int i = 0; i < tasks.size(); i++) {
             Task curr = tasks.get(i);
+            assert curr != null;
             if (curr.description.contains(toFind)) {
                 sb.append(curr.toStringWithIndex(i + 1)).append("\n");
             }
         }
         return sb.toString();
+    }
+
+    public boolean isEmpty() {
+        return tasks.isEmpty();
     }
 }

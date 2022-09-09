@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.Storage;
-import duke.ui.Ui;
 import duke.task.TaskList;
 
 /**
@@ -17,6 +16,6 @@ public class ExitCommand implements Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) {
-        return Ui.getByeMessage();
+        return "hehe bye";
     }
 }

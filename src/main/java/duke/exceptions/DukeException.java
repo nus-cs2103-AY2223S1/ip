@@ -24,13 +24,5 @@ public class DukeException extends RuntimeException {
     public String getMessage() {
         return this.MESSAGE;
     }
-
-    /**
-     * Returns the string representation of this exception.
-     *
-     * @return String representing this exception.
-     */
-    public String toString() {
-        return "DukeException: " + MESSAGE;
-    }
+    
 }
