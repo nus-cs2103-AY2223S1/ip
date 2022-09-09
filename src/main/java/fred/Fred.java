@@ -41,6 +41,11 @@ public class Fred {
             String fullCommand = input;
             Command c = Parser.parse(fullCommand);
             c.execute(tasks, ui, storage);
+
+            if (c.isExit()) {
+                System.exit(0);
+            }
+
             return ui.getMessage();
         } catch (FredException e) {
             return e.getMessage();
