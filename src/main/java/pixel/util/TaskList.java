@@ -20,6 +20,15 @@ public class TaskList {
         this.filePath = filePath;
     }
 
+    private boolean findDuplicate(Task newTask) {
+        for (Task task : Storage.INPUT_TASKS) {
+            if (task.toString().equals(newTask.toString())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public String listTasks() {
         String output = "Here are the tasks in your list: \n";
         for (int i = 0; i < Pixel.count; i++) {
@@ -38,7 +47,8 @@ public class TaskList {
         return output;
     }
 
-    public String handleNewTask(String userInput, String type) throws IOException {
+    public String handleNewTask(String userInput, String type) throws IOException, DuplicateEntryException {
+
         int indexOfSlash = userInput.indexOf("/"); // returns -1 if such a string doesn't exist
         // If there's a "/by" or "/at" in the input string, then the info behind the "/by" or "/at" is the due
         // if there's no "/by" and "/at" string, then due should be empty
@@ -78,10 +88,15 @@ public class TaskList {
         }
         default: //shouldn't reach here
             throw new IncorrectFormatException("Incorrect format of input!"); // programme breaks
-
         }
 
+        // CHECK IF TASK ALREADY EXISTS
+        // If yes, throw exception
+        if (findDuplicate(newTask)) {
+            throw new DuplicateEntryException("Same task already exists in database!");
+        }
         Storage.INPUT_TASKS.add(Pixel.count, newTask);
+
         // index of last element in ArrayList is always smaller than size
         assert Storage.INPUT_TASKS.size() == (Pixel.count + 1)
             : "Size of ArrayList did not increase by 1 after adding new task";
@@ -94,6 +109,7 @@ public class TaskList {
         Storage.appendAllTasksToFile(this.filePath);
 
         Pixel.count += 1;
+
         return ("Got it. I've added this task: \n"
             + newTask + "\n"
             + "Now you have " + Pixel.count + " tasks in the list.");
