@@ -30,6 +30,7 @@ public class Deadline extends Task {
 
     @Override
     public String toStore() {
+        // Returns a string to be added to the save file.
         return "D" + super.toStore() + " : " + by;
     }
 }

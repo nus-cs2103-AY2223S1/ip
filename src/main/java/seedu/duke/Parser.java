@@ -22,7 +22,7 @@ public class Parser {
         if (command.equals("list")) {
             return this.taskList.list();
         } else if (command.startsWith("mark") || command.startsWith("unmark")) {
-            return taskList.toggleDone(command);
+            return taskList.markOrUnmarkAsDone(command);
         } else if (command.startsWith("delete")) {
             int index = Character.getNumericValue(command.charAt(command.length() - 1));
             return taskList.delete(index - 1);
