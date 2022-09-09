@@ -77,7 +77,7 @@ public class Ui {
     public String listTask(TaskList tasks) {
         return ("Here are the tasks in your list:\n" + tasks.listTasks());
     }
-
+    
     /**
      * To display a message after a {@code Todo} has been successfully added
      * @param tasks the current {@code TaskList}
@@ -102,6 +102,7 @@ public class Ui {
                 + ("Now you have " + tasks.size() + " tasks in the list.\n");
     }
 
+
     /**
      * To display a message after a {@code Event} has been successfully added
      * @param tasks the current {@code TaskList}
@@ -114,6 +115,7 @@ public class Ui {
                 + ("Now you have " + tasks.size() + " tasks in the list.\n");
     }
 
+
     /**
      * To display a message after a {@code Task} has been successfully marked
      * @param task the marked {@code Task}
@@ -124,6 +126,7 @@ public class Ui {
                 + ("  " + task.toString() + "\n");
     }
 
+
     /**
      * To display a message after a {@code Task} has been successfully unmarked
      * @param task the unmarked {@code Task}
@@ -133,6 +136,7 @@ public class Ui {
         return ("I've marked this task as not done yet:\n")
                 + ("  " + task.toString() + "\n");
     }
+
 
     /**
      * To display a message after a {@code Task} has been successfully deleted
