@@ -81,6 +81,7 @@ public class Parser {
     public static ArrayList<CommandMatcher> addTaskModificationCommands(ArrayList<CommandMatcher> commands) {
         commands.add(PrefixCommandMatcher.of("mark", (str, map) -> {
             Task task = TaskList.getTask(str);
+            task.markAsDone();
             return new DukeResponse(
                     "Marked your task as done:",
                     task.toString());
@@ -88,6 +89,7 @@ public class Parser {
 
         commands.add(PrefixCommandMatcher.of("unmark", (str, map) -> {
             Task task = TaskList.getTask(str);
+            task.markAsNotDone();
             return new DukeResponse(
                     "Aw... it's not done yet:",
                     task.toString());
@@ -95,6 +97,7 @@ public class Parser {
 
         commands.add(PrefixCommandMatcher.of("delete", (str, map) -> {
             Task task = TaskList.getTask(str);
+            TaskList.getTaskList().remove(task);
             return new DukeResponse(
                     "It seems you didn't need this task anymore, so I removed it:",
                     task.toString(),
