@@ -13,6 +13,10 @@ public class ListTasksAfterCommand extends ListTasksCommand {
     private final LocalDateTime dateTime;
     private String successMessage = "Here are your tasks:\n";
 
+    /**
+     * ListTaskAfterCommand constructor
+     * @param dateTime
+     */
     public ListTasksAfterCommand(LocalDateTime dateTime) {
         assert Objects.nonNull(dateTime);
         this.dateTime = dateTime;

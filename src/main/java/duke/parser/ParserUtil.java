@@ -11,11 +11,23 @@ import duke.domain.task.TaskDescription;
 import duke.domain.task.TaskIndex;
 import duke.exceptions.ParseException;
 
+/**
+ * ParserUtil class
+ */
 public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
             "dd-MM-yyyy HH:mm");
 
+    /**
+     * Returns the parsed task description
+     *
+     * @param description
+     *            The unparsed description
+     * @return Parsed task description
+     * @throws ParseException
+     *             When the task description is invalid
+     */
     public static TaskDescription parseTaskDescription(String description) throws ParseException {
         assert Objects.nonNull(description);
         String trimmedDescription = description.trim();
@@ -25,6 +37,15 @@ public class ParserUtil {
         return new TaskDescription(description);
     }
 
+    /**
+     * Returns the parsed task index
+     *
+     * @param oneBasedIndex
+     *            THe unparsed one based index
+     * @return The parsed task index
+     * @throws ParseException
+     *             If the index is wrong
+     */
     public static TaskIndex parseTaskIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!isNonZeroUnsignedInteger(trimmedIndex)) {
@@ -33,6 +54,13 @@ public class ParserUtil {
         return TaskIndex.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Returns a predicate if the given string is a non zero unsigned integer
+     *
+     * @param s
+     *            The test string
+     * @return If the given string is a non zero unsigned integer
+     */
     public static boolean isNonZeroUnsignedInteger(String s) {
         requireNonNull(s);
 
@@ -44,6 +72,13 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Returns a predicate if the given strNum is numeric
+     *
+     * @param strNum
+     *            The test string
+     * @return If the given string is a number
+     */
     public static boolean isNumeric(String strNum) {
         if (strNum == null) {
             return false;
@@ -56,6 +91,13 @@ public class ParserUtil {
         return true;
     }
 
+    /**
+     * Returns the parsed date time string
+     *
+     * @param inputDateTime
+     *            The given inputDateTime string
+     * @return The parsed date time string to LocalDateTime
+     */
     public static LocalDateTime parseDateTimeString(String inputDateTime)
             throws DateTimeParseException {
         return LocalDateTime.parse(inputDateTime, formatter);

@@ -32,7 +32,7 @@ public class TaskList {
     /**
      * Marks a task as complete.
      *
-     * @param idx
+     * @param taskIndex
      *            Find the task in the list
      * @return A task object
      * @throws TaskNotFoundException
@@ -51,7 +51,7 @@ public class TaskList {
     /**
      * The unmarkTask function marks a task as incomplete.
      *
-     * @param idx
+     * @param taskIndex
      *            Find the task in the list
      * @return The task that was un-marked
      * @throws TaskNotFoundException
@@ -83,7 +83,7 @@ public class TaskList {
     /**
      * The deleteTask function removes the task at index idx from the list of tasks.
      *
-     * @param idx
+     * @param taskIndex
      *            Find the task to be deleted
      * @return The task that was deleted
      * @throws TaskNotFoundException

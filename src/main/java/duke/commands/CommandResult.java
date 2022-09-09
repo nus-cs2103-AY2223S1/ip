@@ -8,6 +8,10 @@ import java.util.Objects;
 public class CommandResult {
     private final String message;
 
+    /**
+     * Constructor for CommandResult Class
+     * @param message
+     */
     public CommandResult(String message) {
         assert Objects.nonNull(message);
         this.message = message;

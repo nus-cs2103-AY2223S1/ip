@@ -1,12 +1,18 @@
 package duke.domain.task;
 
+/**
+ * TaskDescription Class
+ */
 public class TaskDescription {
-    public static final String MESSAGE_CONSTRAINTS = "Names should only contain alphanumeric characters and spaces, and it should not be blank";
-
+    public static final String MESSAGE_CONSTRAINTS = "Names should only contain"
+            + " alphanumeric characters and spaces, and it should not be blank";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-
     public final String taskDescription;
 
+    /**
+     * TaskDescription constructor method
+     * @param description
+     */
     public TaskDescription(String description) {
         taskDescription = description;
     }

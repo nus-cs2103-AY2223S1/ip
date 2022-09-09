@@ -4,8 +4,12 @@ import duke.commands.tasks.UnmarkTaskCommand;
 import duke.domain.task.TaskIndex;
 import duke.exceptions.ParseException;
 
+/**
+ * UnmarkTaskParser class
+ */
 public class UnmarkTaskParser implements IParser<UnmarkTaskCommand> {
 
+    @Override
     public UnmarkTaskCommand parse(String arguments) throws ParseException {
         if (ParserUtil.isNumeric(arguments)) {
             TaskIndex taskIndex = TaskIndex.fromOneBased(Integer.parseInt(arguments));

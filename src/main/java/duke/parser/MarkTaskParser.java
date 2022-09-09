@@ -4,8 +4,12 @@ import duke.commands.tasks.MarkTaskCommand;
 import duke.domain.task.TaskIndex;
 import duke.exceptions.ParseException;
 
+/**
+ * MarkTaskParser class
+ */
 public class MarkTaskParser implements IParser<MarkTaskCommand> {
 
+    @Override
     public MarkTaskCommand parse(String arguments) throws ParseException {
         if (ParserUtil.isNumeric(arguments)) {
             TaskIndex taskIndex = TaskIndex.fromOneBased(Integer.parseInt(arguments));

@@ -4,6 +4,9 @@ import duke.commands.tasks.ListTasksAfterCommand;
 import duke.commands.tasks.ListTasksBeforeCommand;
 import duke.commands.tasks.ListTasksCommand;
 
+/**
+ * ListTaskParser class
+ */
 public class ListTaskParser implements IParser<ListTasksCommand> {
 
     @Override

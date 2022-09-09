@@ -8,6 +8,10 @@ import java.util.Objects;
 public class ErrorCommand implements BaseCommand {
     private final String message;
 
+    /**
+     * Constructor for the ErrorCommand class
+     * @param message
+     */
     public ErrorCommand(String message) {
         assert Objects.nonNull(message);
         this.message = message;

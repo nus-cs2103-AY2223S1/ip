@@ -21,10 +21,10 @@ import duke.exceptions.ParseException;
  */
 public class Parser {
 
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile(
-            "(?<commandWord>\\S+)(?<arguments>.*)");
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
+    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile(
+            "(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
      * The parse function takes a string as input and parses it into commands.

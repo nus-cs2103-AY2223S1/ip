@@ -4,6 +4,9 @@ import duke.commands.tasks.AddTodoCommand;
 import duke.domain.Todo;
 import duke.exceptions.ParseException;
 
+/**
+ * AddTodoParser Class
+ */
 public class AddTodoParser implements IParser<AddTodoCommand> {
 
     @Override

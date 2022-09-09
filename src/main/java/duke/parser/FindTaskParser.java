@@ -2,6 +2,9 @@ package duke.parser;
 
 import duke.commands.tasks.FindTaskCommand;
 
+/**
+ * FindTaskParser class
+ */
 public class FindTaskParser implements IParser<FindTaskCommand> {
 
     @Override

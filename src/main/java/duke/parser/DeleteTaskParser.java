@@ -4,6 +4,9 @@ import duke.commands.tasks.DeleteTaskCommand;
 import duke.domain.task.TaskIndex;
 import duke.exceptions.ParseException;
 
+/**
+ * DeleteTaskParser Class
+ */
 public class DeleteTaskParser implements IParser<DeleteTaskCommand> {
 
     @Override

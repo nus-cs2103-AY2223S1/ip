@@ -173,7 +173,7 @@ public class Task {
      * The textContains function checks if the text of a task contains any of the
      * search terms.
      *
-     * @param String...
+     * @param searchTerms
      *            Pass in a variable number of strings to the function
      * @return A boolean value
      */

@@ -7,23 +7,26 @@ import duke.exceptions.InvalidDateTimeException;
 import duke.exceptions.InvalidTaskSpecificationException;
 import duke.exceptions.ParseException;
 
+/**
+ * AddEventParser Class
+ */
 public class AddEventParser implements IParser<AddEventCommand> {
 
     @Override
     public AddEventCommand parse(String arguments) throws ParseException {
         if (arguments.contains(AddEventCommand.SUBCOMMAND_WORD)) {
-            String[] EventArgs = arguments.split(
+            String[] eventArgs = arguments.split(
                     AddEventCommand.SUBCOMMAND_WORD);
-            String EventTitle = EventArgs[0];
-            String Event = EventArgs[1];
+            String eventTitle = eventArgs[0];
+            String eventSubArgs = eventArgs[1];
 
             Task newEvent;
             try {
                 newEvent = Task.of(
                         "D",
                         "0",
-                        EventTitle,
-                        Event);
+                        eventTitle,
+                        eventSubArgs);
             } catch (InvalidDateTimeException | InvalidTaskSpecificationException e) {
                 throw new ParseException(e.getMessage());
             }

@@ -7,6 +7,9 @@ import duke.exceptions.InvalidDateTimeException;
 import duke.exceptions.InvalidTaskSpecificationException;
 import duke.exceptions.ParseException;
 
+/**
+ * AddDeadlineParser Class
+ */
 public class AddDeadlineParser implements IParser<AddDeadlineCommand> {
 
     @Override
