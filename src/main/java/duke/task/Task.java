@@ -20,7 +20,6 @@ public class Task {
 
     /**
      * Returns the description of this task.
-     * 
      * @return Description of task.
      */
     public String getDesc() {

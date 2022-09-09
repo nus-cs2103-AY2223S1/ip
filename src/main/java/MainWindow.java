@@ -2,7 +2,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import duke.Duke;
-
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -32,6 +31,9 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/puppy.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/bot.png"));
 
+    /**
+     * Initialize the program.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());

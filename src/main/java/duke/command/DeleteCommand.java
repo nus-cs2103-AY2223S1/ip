@@ -5,8 +5,6 @@ import duke.TaskList;
 import duke.Ui;
 import duke.exception.DukeException;
 import duke.exception.InvalidInputException;
-import duke.task.Task;
-
 
 /**
  * Class to encapsulate a command that removes Task from list.
