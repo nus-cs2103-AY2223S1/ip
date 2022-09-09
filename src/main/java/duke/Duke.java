@@ -228,6 +228,7 @@ public class Duke extends Application {
         String outputString = "";
         outputString += "Here are the matching tasks in your list:\n";
 
+        // Partial search with keywords
         for (Task task : taskArrayList) {
             for (String keyword : keywords) {
                 if (task.getDescription().contains(keyword)) {
