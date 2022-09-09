@@ -90,7 +90,8 @@ public abstract class Task {
      */
     protected boolean containsKeyword(String ... keywords) {
         for (int i = 0; i < keywords.length; i++) {
-            if (this.description.contains(keywords[i].trim())) {
+            if (this.description.toLowerCase()
+                    .contains(keywords[i].trim().toLowerCase())) {
                 return true;
             }
         }
