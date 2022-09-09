@@ -80,7 +80,7 @@ public class TaskList {
                     output = "Nice! I've marked this task as done:\n"
                             + this.list.get(marker - 1).toString() + "\n";
                     return output;
-                } else {
+                } else { // can add unmark case here
                     this.list.get(marker - 1).markAsNotDone();
                     output = "Nice! I've marked this task as not done yet:\n"
                             + this.list.get(marker - 1).toString() + "\n";
@@ -205,7 +205,6 @@ public class TaskList {
      */
     public void loadTodo(String str) throws DukeException {
         String[] inputs = str.split(" , ", 3);
-        String output;
         if (inputs.length != 3) {
             throw new DukeException("Invalid Input from Data File: Insufficient details");
         } else {
@@ -241,6 +240,7 @@ public class TaskList {
                 deadlineDateTime = deadlineDateTime + dateTime[1];
                 temp = new Deadline(inputs[2], deadlineDateTime);
             } else {
+                assert dateTime.length == 1 : "There should be only one date for Deadline task in data file.";
                 LocalDate d = LocalDate.parse(dateTime[0], DateTimeFormatter.ofPattern("MMM d yyyy"));
                 String deadlineDateTime = d.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 temp = new Deadline(inputs[2], deadlineDateTime);
@@ -281,6 +281,7 @@ public class TaskList {
                 eventDateTime = eventDateTime + dateTime[1];
                 temp = new Event(inputs[2], eventDateTime);
             } else {
+                assert dateTime.length == 1 : "There should be only one date for Event task in data file.";
                 LocalDate d = LocalDate.parse(dateTime[0], DateTimeFormatter.ofPattern("MMM d yyyy"));
                 String eventDateTime = d.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 temp = new Event(inputs[2], eventDateTime);
