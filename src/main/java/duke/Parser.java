@@ -1,6 +1,7 @@
 package duke;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 import duke.command.AddCommand;
@@ -24,6 +25,7 @@ public class Parser {
             "Wrong usage of event.\nUsage: event some description /at some date";
     public static final String ERROR_WRONG_USAGE_OF_DEADLINE =
             "Wrong usage of deadline.\nUsage: deadline some description /by some date";
+    private static final String ERROR_NOT_DATE = "%s is not a date.";
 
     /**
      * Parses user command into Command instance to execute.
@@ -73,7 +75,7 @@ public class Parser {
             resultCommand = new DeleteCommand(indexes);
             break;
         case "on":
-            resultCommand = new TaskOnDateCommand(LocalDate.parse(argsString));
+            resultCommand = new TaskOnDateCommand(parseDate(argsString));
             break;
         case "find":
             resultCommand = new FindCommand(argsString);
@@ -113,7 +115,7 @@ public class Parser {
         }
         String description = args[0];
         String by = args[1];
-        LocalDate byDate = LocalDate.parse(by);
+        LocalDate byDate = parseDate(by);
         if (description.length() == 0) {
             throw new DukeException(Parser.ERROR_EMPTY_DESCRIPTION);
         }
@@ -138,7 +140,7 @@ public class Parser {
             throw new DukeException(Parser.ERROR_EMPTY_DESCRIPTION);
         }
         String at = args[1];
-        LocalDate atDate = LocalDate.parse(at);
+        LocalDate atDate = parseDate(at);
         return new Event(description, atDate);
     }
 
@@ -154,6 +156,21 @@ public class Parser {
             return Integer.parseInt(number);
         } catch (java.lang.NumberFormatException e) {
             throw new DukeException(String.format(Parser.ERROR_NOT_NUMBER, number));
+        }
+    }
+
+    /**
+     * Parses String to Date.
+     *
+     * @param date String representation of date
+     * @return LocalDate with value date.
+     * @throws DukeException If date is not of date format.
+     */
+    public static LocalDate parseDate(String date) throws DukeException {
+        try {
+            return LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+            throw new DukeException(String.format(Parser.ERROR_NOT_DATE, date));
         }
     }
 }
