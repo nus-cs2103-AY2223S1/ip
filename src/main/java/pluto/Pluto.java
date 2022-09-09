@@ -1,11 +1,15 @@
 package pluto;
 
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import pluto.command.Command;
 
 /**
  * Chat bot.
  */
-public class Pluto {
+public class Pluto extends Application {
     /** Writer and reader from local file */
     private Storage storage;
     /** List of tasks created bu the user */
@@ -29,6 +33,20 @@ public class Pluto {
     }
 
     /**
+     * Constructor that initializes global variables.
+     */
+    public Pluto() {
+        ui = new Ui();
+        try {
+            storage = new Storage("PlutoData.txt");
+            tasks = new TaskList(storage.load());
+        } catch (PlutoException e) {
+            ui.showError(e.getMessage());
+            tasks = new TaskList();
+        }
+    }
+
+    /**
      * Runs the programme by taking inputs and displaying relevant outputs.
      */
     public void run() {
@@ -44,6 +62,15 @@ public class Pluto {
                 ui.showError(e.getMessage());
             }
         }
+    }
+
+    @Override
+    public void start(Stage stage) {
+        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
+        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+
+        stage.setScene(scene); // Setting the stage to show our screen
+        stage.show(); // Render the stage.
     }
 
     /**
