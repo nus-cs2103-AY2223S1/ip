@@ -1,9 +1,7 @@
 package duke.gui;
 
 import duke.chatbot.ChatBot;
-import javafx.geometry.Insets;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
 
 /**
  * MainWindow is an AnchorPane that anchors the various containers present in the main application.

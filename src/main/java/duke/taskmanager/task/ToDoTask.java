@@ -16,10 +16,7 @@ public class ToDoTask extends Task {
      * @throws EmptyTaskException if taskName is empty
      */
     public ToDoTask(String taskName) throws EmptyTaskException {
-        super(taskName);
-        if (super.getTaskName().equals("")) {
-            throw new EmptyTaskException();
-        }
+        super(TASK_TYPE, taskName);
         assert !(super.getTaskName().equals("")) : "Task should not be empty";
     }
 
@@ -31,41 +28,7 @@ public class ToDoTask extends Task {
      * @throws EmptyTaskException if taskName is empty
      */
     public ToDoTask(String taskName, boolean isCompleted) throws EmptyTaskException {
-        super(taskName, isCompleted);
-        if (super.getTaskName().equals("")) {
-            throw new EmptyTaskException();
-        }
+        super(TASK_TYPE, taskName, isCompleted);
         assert !(super.getTaskName().equals("")) : "Task should not be empty";
-    }
-
-    /**
-     * Returns whether the task is empty. Returns false as this is not an empty task.
-     *
-     * @return false
-     */
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
-    /**
-     * Formats the details of the task into a format that can be read and written by
-     * the task manager.
-     *
-     * @return details of the task in a string format readable and writable by taskManager
-     */
-    @Override
-    public String getFormattedString() {
-        return TASK_TYPE + "<>" + (isCompleted() ? 1 : 0) + "<>" + getTaskName() + "\n";
-    }
-
-    /**
-     * Returns the details of the task to be displayed by the chatbot.
-     *
-     * @return details of the task
-     */
-    @Override
-    public String toString() {
-        return "[" + TASK_TYPE + "]" + super.toString();
     }
 }

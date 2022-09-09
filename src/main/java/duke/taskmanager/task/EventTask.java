@@ -12,7 +12,7 @@ import duke.taskmanager.exceptions.InvalidEventException;
  */
 public class EventTask extends Task {
     private static final String TASK_TYPE = "E";
-    private final LocalDateTime taskTime;
+    private final LocalDateTime eventTime;
     private final String dateFormat;
 
     /**
@@ -21,20 +21,17 @@ public class EventTask extends Task {
      * Default completion status of the task is false.
      *
      * @param taskName string of the name of the task
-     * @param taskTime string of the event time of the task in the format of dateFormat
+     * @param eventTime string of the event time of the task in the format of dateFormat
      * @param dateFormat string of the accepted format of dates.
      * @throws EmptyTaskException if taskName is empty
      * @throws InvalidEventException if the format of taskTime does not follow dateFormat
      */
-    public EventTask(String taskName, String taskTime, String dateFormat)
+    public EventTask(String taskName, String eventTime, String dateFormat)
             throws EmptyTaskException, InvalidEventException {
-        super(taskName);
+        super(TASK_TYPE, taskName);
         this.dateFormat = dateFormat;
-        if (super.getTaskName().equals("")) {
-            throw new EmptyTaskException();
-        }
         try {
-            this.taskTime = LocalDateTime.parse(taskTime, DateTimeFormatter.ofPattern(dateFormat));
+            this.eventTime = LocalDateTime.parse(eventTime, DateTimeFormatter.ofPattern(this.dateFormat));
         } catch (DateTimeParseException exception) {
             throw new InvalidEventException(dateFormat);
         }
@@ -46,45 +43,22 @@ public class EventTask extends Task {
      * the event time of the task provided in the form of a date specified by the dateFormat.
      *
      * @param taskName string of the name of the task
-     * @param taskTime string of the event time of the task in the format of dateFormat
+     * @param eventTime string of the event time of the task in the format of dateFormat
      * @param isCompleted boolean of the completion status of the task.
      * @param dateFormat string of the accepted format of dates.
      * @throws EmptyTaskException if taskName is empty
      * @throws InvalidEventException if the format of taskTime does not follow dateFormat
      */
-    public EventTask(String taskName, String taskTime, boolean isCompleted, String dateFormat)
+    public EventTask(String taskName, String eventTime, boolean isCompleted, String dateFormat)
             throws EmptyTaskException, InvalidEventException {
-        super(taskName, isCompleted);
+        super(TASK_TYPE, taskName, isCompleted);
         this.dateFormat = dateFormat;
-        if (super.getTaskName().equals("")) {
-            throw new EmptyTaskException();
-        }
         try {
-            this.taskTime = LocalDateTime.parse(taskTime);
+            this.eventTime = LocalDateTime.parse(eventTime);
         } catch (DateTimeParseException exception) {
             throw new InvalidEventException(dateFormat);
         }
         assert !(super.getTaskName().equals("")) : "Task should not be empty";
-    }
-
-    /**
-     * Returns the event time of the task in a nice format.
-     *
-     * @return event time of the task
-     */
-    public String getTaskTime() {
-        return (taskTime.getDayOfMonth() + " " + taskTime.getMonth() + " " + taskTime.getYear() + " | "
-                + taskTime.getHour() + ":" + String.format("%02d", taskTime.getMinute()));
-    }
-
-    /**
-     * Returns whether the task is empty. Returns false as this is not an empty task.
-     *
-     * @return false
-     */
-    @Override
-    public boolean isEmpty() {
-        return false;
     }
 
     /**
@@ -94,8 +68,8 @@ public class EventTask extends Task {
      * @return details of the task in a string format readable and writable by taskManager
      */
     @Override
-    public String getFormattedString() {
-        return TASK_TYPE + "<>" + (isCompleted() ? 1 : 0) + "<>" + getTaskName() + "<>" + this.taskTime + "\n";
+    public String getFormattedString(String attributeSeparator) {
+        return super.getFormattedString(attributeSeparator) + attributeSeparator + this.eventTime;
     }
 
     /**
@@ -105,6 +79,10 @@ public class EventTask extends Task {
      */
     @Override
     public String toString() {
-        return "[" + TASK_TYPE + "]" + super.toString() + " (at: " + getTaskTime() + ")";
+        return super.toString() + " (by: "
+                + this.eventTime.getDayOfMonth() + " "
+                + this.eventTime.getMonth() + " "
+                + this.eventTime.getYear() + " | "
+                + this.eventTime.getHour() + ":" + String.format("%02d", this.eventTime.getMinute()) + ")";
     }
 }

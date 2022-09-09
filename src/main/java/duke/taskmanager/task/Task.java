@@ -1,9 +1,12 @@
 package duke.taskmanager.task;
 
+import duke.taskmanager.exceptions.EmptyTaskException;
+
 /**
  * Task is am abstract class to be inherited by other types of tasks.
  */
 public abstract class Task {
+    private final String taskType;
     private final String taskName;
     private boolean isCompleted;
 
@@ -12,23 +15,38 @@ public abstract class Task {
      * Default completion status of the task is false.
      * To be inherited by different tasks.
      *
+     * @param taskType string of the type of task
      * @param taskName string of the name of the task
+     * @throws EmptyTaskException if taskName is empty
      */
-    Task(String taskName) {
+    Task(String taskType, String taskName) throws EmptyTaskException {
+        this.taskType = taskType;
         this.taskName = taskName;
         this.isCompleted = false;
+        if (taskName.equals("")) {
+            throw new EmptyTaskException();
+        }
     }
 
     /**
      * Abstract constructor for a task with information indicating the name of the task.
      * To be inherited by different tasks.
      *
+     * @param taskType string of the type of task
      * @param taskName string of the name of the task
      * @param isCompleted boolean of the completion status of the task.
+     * @throws EmptyTaskException if taskName is empty
      */
-    Task(String taskName, boolean isCompleted) {
+    Task(String taskType, String taskName, boolean isCompleted) throws EmptyTaskException {
+        this.taskType = taskType;
         this.taskName = taskName;
         this.isCompleted = isCompleted;
+        if (taskName.equals("")) {
+            throw new EmptyTaskException();
+        }
+    }
+    public String getTaskType() {
+        return this.taskType;
     }
 
     public String getTaskName() {
@@ -39,15 +57,31 @@ public abstract class Task {
         return this.isCompleted;
     }
 
-    public void setIsCompleted(boolean isCompleted) {
-        this.isCompleted = isCompleted;
+    public void setCompleted() {
+        this.isCompleted = true;
     }
 
-    public abstract boolean isEmpty();
-    public abstract String getFormattedString();
+    public void setNotCompleted() {
+        this.isCompleted = false;
+    }
 
+    /**
+     * Formats the details of the task into a format that can be read and written by
+     * the task manager.
+     *
+     * @return details of the task in a string format readable and writable by taskManager
+     */
+    public String getFormattedString(String attributeSeparator) {
+        return getTaskType() + attributeSeparator + (isCompleted() ? 1 : 0) + attributeSeparator + getTaskName();
+    }
+
+    /**
+     * Returns the details of the task to be displayed by the chatbot.
+     *
+     * @return details of the task
+     */
     @Override
     public String toString() {
-        return "[" + (isCompleted ? "X" : " ") + "] " + this.taskName;
+        return "[" + getTaskType() + "][" + (isCompleted() ? "X" : " ") + "] " + getTaskName();
     }
 }
