@@ -39,7 +39,7 @@ public class TaskList {
      *
      * @return Number of items in the ArrayList.
      */
-    public int size() {
+    public int getSize() {
         return this.list.size();
     }
 
@@ -67,28 +67,29 @@ public class TaskList {
      */
     public String markUnmarkItems(String str) throws DukeException {
         String[] inputs = str.split(" ", 2);
-        String output;
         if (inputs.length != 2) {
             throw new DukeException("Please indicate the task number that you want to mark/unmark.");
-        } else {
-            try {
-                int marker = Integer.valueOf(inputs[1]);
-                if (marker < 1 || marker > this.list.size()) {
-                    throw new DukeException("Please indicate a valid task number that you want to mark/unmark.");
-                } else if (inputs[0].equalsIgnoreCase("mark")) {
-                    this.list.get(marker - 1).markAsDone();
-                    output = "Nice! I've marked this task as done:\n"
-                            + this.list.get(marker - 1).toString() + "\n";
-                    return output;
-                } else {
-                    this.list.get(marker - 1).markAsNotDone();
-                    output = "Nice! I've marked this task as not done yet:\n"
-                            + this.list.get(marker - 1).toString() + "\n";
-                    return output;
-                }
-            } catch (NumberFormatException ex) {
-                throw new DukeException("Please indicate a valid task number.");
+        }
+        try {
+            String output;
+            int marker = Integer.valueOf(inputs[1]);
+            if (marker < 1 || marker > this.list.size()) {
+                throw new DukeException("Please indicate a valid task number that you want to mark/unmark.");
+            } else if (inputs[0].equalsIgnoreCase("mark")) {
+                this.list.get(marker - 1).markAsDone();
+                output = "Nice! I've marked this task as done:\n"
+                        + this.list.get(marker - 1).toString() + "\n";
+                return output;
+            } else if (inputs[0].equalsIgnoreCase("unmark")) {
+                this.list.get(marker - 1).markAsNotDone();
+                output = "Nice! I've marked this task as not done yet:\n"
+                        + this.list.get(marker - 1).toString() + "\n";
+                return output;
+            } else {
+                throw new DukeException("Command read is not a mark or unmark command.");
             }
+        } catch (NumberFormatException ex) {
+            throw new DukeException("Please indicate a valid task number.");
         }
     }
 
@@ -100,16 +101,14 @@ public class TaskList {
      */
     public String addTodo(String str) throws DukeException {
         String[] inputs = str.split(" ", 2);
-        String output;
         if (inputs.length != 2) {
             throw new DukeException("Please indicate a task description in this format: 'todo (description)' \n");
-        } else {
-            Todo temp = new Todo(inputs[1]);
-            this.list.add(temp);
-            output = "Got it. I've added this Todo task:\n" + temp.toString() + "\n"
-                    + "Now you have " + this.list.size() + " tasks in the list.\n";
-            return output;
         }
+        Todo temp = new Todo(inputs[1]);
+        this.list.add(temp);
+        String output = "Got it. I've added this Todo task:\n" + temp.toString() + "\n"
+                + "Now you have " + this.list.size() + " tasks in the list.\n";
+        return output;
     }
 
     /**
@@ -120,25 +119,22 @@ public class TaskList {
      */
     public String addDeadline(String str) throws DukeException {
         String[] inputs = str.split(" ", 2);
-        String output;
         if (inputs.length != 2) {
             throw new DukeException("Please indicate a task description for your Deadline task"
                     + " in this format: 'deadline (description) /by (date) (time)'\n");
-        } else {
-            String[] when = inputs[1].split(" /by ", 2);
-            if (when.length != 2) {
-                throw new DukeException("Please indicate a valid deadline for your Deadline task "
-                        + "in this format: 'deadline (description) /by (date) (time)'\n"
-                        + "Please enter the date in one of the following format:"
-                        + " yyyy-MM-dd, dd-MMM-yyyy, dd/MM/yyyy\n");
-            } else {
-                Deadline temp = new Deadline(when[0], when[1]);
-                this.list.add(temp);
-                output = "Got it. I've added this Deadline task:\n" + temp.toString() + "\n"
-                        + "Now you have " + this.list.size() + " tasks in the list.\n";
-                return output;
-            }
         }
+        String[] when = inputs[1].split(" /by ", 2);
+        if (when.length != 2) {
+            throw new DukeException("Please indicate a valid deadline for your Deadline task "
+                    + "in this format: 'deadline (description) /by (date) (time)'\n"
+                    + "Please enter the date in one of the following format:"
+                    + " yyyy-MM-dd, dd-MMM-yyyy, dd/MM/yyyy\n");
+        }
+        Deadline temp = new Deadline(when[0], when[1]);
+        this.list.add(temp);
+        String output = "Got it. I've added this Deadline task:\n" + temp.toString() + "\n"
+                + "Now you have " + this.list.size() + " tasks in the list.\n";
+        return output;
     }
 
     /**
@@ -149,23 +145,20 @@ public class TaskList {
      */
     public String addEvent(String str) throws DukeException {
         String[] inputs = str.split(" ", 2);
-        String output;
         if (inputs.length != 2) {
             throw new DukeException("Please indicate a task description for your Event task"
                     + " in this format: 'deadline (description) /at (date) (time)'\n");
-        } else {
-            String[] when = inputs[1].split(" /at ", 2);
-            if (when.length != 2) {
-                throw new DukeException("Please indicate a valid date and time for your Event task!\n"
-                        + "Do enter the command in this format: 'deadline (description) /at (date) (time)'\n");
-            } else {
-                Event temp = new Event(when[0], when[1]);
-                this.list.add(temp);
-                output = "Got it. I've added this Event task:\n" + temp.toString() + "\n"
-                        + "Now you have " + this.list.size() + " tasks in the list.\n";
-                return output;
-            }
         }
+        String[] when = inputs[1].split(" /at ", 2);
+        if (when.length != 2) {
+            throw new DukeException("Please indicate a valid date and time for your Event task!\n"
+                    + "Do enter the command in this format: 'deadline (description) /at (date) (time)'\n");
+        }
+        Event temp = new Event(when[0], when[1]);
+        this.list.add(temp);
+        String output = "Got it. I've added this Event task:\n" + temp.toString() + "\n"
+                + "Now you have " + this.list.size() + " tasks in the list.\n";
+        return output;
     }
 
     /**
@@ -174,26 +167,25 @@ public class TaskList {
      * @param str Delete command that the user provided.
      * @throws DukeException If no task number is provided or task number is out of range.
      */
-    public String deleteItems(String str) throws DukeException {
+    public String deleteItem(String str) throws DukeException {
         String[] inputs = str.split(" ", 2);
-        String output;
         if (inputs.length != 2) {
             throw new DukeException("Please indicate the task number that you want to delete.");
-        } else {
-            try {
-                int marker = Integer.valueOf(inputs[1]);
-                if (marker < 1 || marker > this.list.size()) {
-                    output = "Please indicate a valid task number.\n";
-                    return output;
-                } else {
-                    output = "Noted. I have removed this task:\n" + this.list.get(marker - 1).toString() + "\n";
-                    this.list.remove(marker - 1);
-                    output += "Now you have " + this.list.size() + " tasks in the list.\n";
-                    return output;
-                }
-            } catch (NumberFormatException ex) {
-                throw new DukeException("Please indicate a valid task number.");
+        }
+        try {
+            String output;
+            int marker = Integer.valueOf(inputs[1]);
+            if (marker < 1 || marker > this.list.size()) {
+                output = "Please indicate a valid task number.\n";
+                return output;
+            } else {
+                output = "Noted. I have removed this task:\n" + this.list.get(marker - 1).toString() + "\n";
+                this.list.remove(marker - 1);
+                output += "Now you have " + this.list.size() + " tasks in the list.\n";
+                return output;
             }
+        } catch (NumberFormatException ex) {
+            throw new DukeException("Please indicate a valid task number.");
         }
     }
 
@@ -205,20 +197,18 @@ public class TaskList {
      */
     public void loadTodo(String str) throws DukeException {
         String[] inputs = str.split(" , ", 3);
-        String output;
         if (inputs.length != 3) {
             throw new DukeException("Invalid Input from Data File: Insufficient details");
-        } else {
-            Todo temp = new Todo(inputs[2]);
-            if (inputs[1].equalsIgnoreCase("1")) {
-                temp.markAsDone();
-            } else if (inputs[1].equalsIgnoreCase("0")) {
-                temp.markAsNotDone();
-            } else {
-                throw new DukeException("Invalid Input from Data File: Incorrect marker");
-            }
-            this.list.add(temp);
         }
+        Todo temp = new Todo(inputs[2]);
+        if (inputs[1].equalsIgnoreCase("1")) {
+            temp.markAsDone();
+        } else if (inputs[1].equalsIgnoreCase("0")) {
+            temp.markAsNotDone();
+        } else {
+            throw new DukeException("Invalid Input from Data File: Incorrect marker");
+        }
+        this.list.add(temp);
     }
 
     /**
@@ -234,17 +224,11 @@ public class TaskList {
         }
         try {
             String[] dateTime = inputs[3].split(",", 2);
-            Deadline temp;
+            String deadlineDateTime = convertDate(dateTime[0]);
             if (dateTime.length == 2) {
-                LocalDate d = LocalDate.parse(dateTime[0], DateTimeFormatter.ofPattern("MMM d yyyy"));
-                String deadlineDateTime = d.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 deadlineDateTime = deadlineDateTime + dateTime[1];
-                temp = new Deadline(inputs[2], deadlineDateTime);
-            } else {
-                LocalDate d = LocalDate.parse(dateTime[0], DateTimeFormatter.ofPattern("MMM d yyyy"));
-                String deadlineDateTime = d.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                temp = new Deadline(inputs[2], deadlineDateTime);
             }
+            Deadline temp = new Deadline(inputs[2], deadlineDateTime);
             if (inputs[1].equalsIgnoreCase("1")) {
                 temp.markAsDone();
             } else if (inputs[1].equalsIgnoreCase("0")) {
@@ -274,17 +258,11 @@ public class TaskList {
         }
         try {
             String[] dateTime = inputs[3].split(",", 2);
-            Event temp;
+            String eventDateTime = convertDate(dateTime[0]);
             if (dateTime.length == 2) {
-                LocalDate d = LocalDate.parse(dateTime[0], DateTimeFormatter.ofPattern("MMM d yyyy"));
-                String eventDateTime = d.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 eventDateTime = eventDateTime + dateTime[1];
-                temp = new Event(inputs[2], eventDateTime);
-            } else {
-                LocalDate d = LocalDate.parse(dateTime[0], DateTimeFormatter.ofPattern("MMM d yyyy"));
-                String eventDateTime = d.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                temp = new Event(inputs[2], eventDateTime);
             }
+            Event temp = new Event(inputs[2], eventDateTime);
             if (inputs[1].equalsIgnoreCase("1")) {
                 temp.markAsDone();
             } else if (inputs[1].equalsIgnoreCase("0")) {
@@ -300,7 +278,17 @@ public class TaskList {
             throw new DukeException("Invalid Input from Data File: Incorrect Date/Time");
         }
     }
-
+    /**
+     * Converts date in the format "MMM d yyyy" to "yyyy-MM-dd".
+     *
+     * @param date Date that is to be converted.
+     * @throws DateTimeParseException If date is in an incorrect format.
+     */
+    public String convertDate(String date) throws DateTimeParseException {
+        LocalDate d = LocalDate.parse(date, DateTimeFormatter.ofPattern("MMM d yyyy"));
+        String deadlineDate = d.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return deadlineDate;
+    }
     /**
      * Find tasks that match the keyword inputted by user.
      *
@@ -312,23 +300,21 @@ public class TaskList {
         String output;
         if (inputs.length != 2) {
             throw new DukeException("Please indicate a keyword to search in this format: 'find (keyword)'\n");
-        } else {
-            ArrayList<Task> matched = new ArrayList<>();
-            for (int i = 0; i < this.list.size(); i++) {
-                if (this.list.get(i).containKeyword(inputs[1])) {
-                    matched.add(this.list.get(i));
-                }
-            }
-            if (matched.size() == 0) {
-                output = "There are no matching tasks found.\n";
-                return output;
-            } else {
-                output = "Here are the matching tasks in your list:\n";
-                for (int i = 0; i < matched.size(); i++) {
-                    output = output + (i + 1) + ". " + matched.get(i).toString() + "\n";
-                }
-                return output;
+        }
+        ArrayList<Task> matched = new ArrayList<>();
+        for (int i = 0; i < this.list.size(); i++) {
+            if (this.list.get(i).containsKeyword(inputs[1])) {
+                matched.add(this.list.get(i));
             }
         }
+        if (matched.size() == 0) {
+            output = "There are no matching tasks found.\n";
+        } else {
+            output = "Here are the matching tasks in your list:\n";
+            for (int i = 0; i < matched.size(); i++) {
+                output = output + (i + 1) + ". " + matched.get(i).toString() + "\n";
+            }
+        }
+        return output;
     }
 }
