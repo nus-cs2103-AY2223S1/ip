@@ -110,7 +110,10 @@ public class TaskList {
 
     public static String find(String input) {
         ArrayList<Task> temp = new ArrayList<>();
-        copyToList(temp).removeIf(s -> !s.getDescription().contains(input));
+
+        copyToList(temp).removeIf(s -> !s.getDescription().toLowerCase().contains(input.toLowerCase())
+                &&
+                !s.getDate().toLowerCase().contains(input.toLowerCase()));
         ;
         if (temp.size() == 0) {
             return (new DukeException("ERROR: empty list.").getMessage());

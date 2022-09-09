@@ -25,6 +25,7 @@ public class EventTask extends Task {
                 .ofLocalizedTime(FormatStyle.SHORT));
     }
 
+    @Override
     public String getDate() {
         return formattedDateTime;
     }

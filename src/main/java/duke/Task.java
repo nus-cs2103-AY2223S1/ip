@@ -25,6 +25,10 @@ public class Task {
         return this.description;
     }
 
+    public String getDate() {
+        return "";
+    };
+
     public void mark() {
         this.isDone = true;
     }
