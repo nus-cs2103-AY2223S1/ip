@@ -108,9 +108,12 @@ public abstract class Command {
                     throw new ArrayIndexOutOfBoundsException("OOPS!!! The description of a "
                             + comm + " cannot be empty.");
                 }
+                assert arr.length > 1 : "arr length should be greater than 1";
                 String[] temp = arr[1].split(" /");
                 String s1 = temp[0];
                 String s2 = temp[1].split(" ", 2)[1];
+                assert !s1.isBlank() : "String should have some values";
+                assert !s2.isBlank() : "String should have some values";
                 this.description = s1;
                 this.time = s2;
             }
@@ -182,8 +185,14 @@ public abstract class Command {
         }
 
         @Override
-        public void execute(TaskList tasks, Ui ui, Storage storage) {
+        public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+            if (index > tasks.size() - 1) {
+                throw new DukeException(String.format("Cannot delete task at %d", index + 1));
+            }
+
+            int oldTasksLength = tasks.size();
             Task t = tasks.remove(index);
+            assert oldTasksLength == tasks.size() + 1 : "tasks length should decrease by 1";
             ui.printDelete(t, tasks);
         }
     }
@@ -271,6 +280,7 @@ public abstract class Command {
                 Task t = tasks.get(i);
                 if (t.toString().contains(keyword)) {
                     indexArr.add(i);
+                    assert t.toString().contains(keyword);
                 }
             }
             ui.printMatchingList(tasks, indexArr);
