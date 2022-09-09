@@ -18,7 +18,6 @@ public class MainWindow extends AnchorPane {
     @FXML
     private ScrollPane scrollPane;
 
-
     /** Container for dialog box. */
     @FXML
     private VBox dialogContainer;

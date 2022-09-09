@@ -18,7 +18,7 @@ import cheese.exception.CheeseException;
 public class Parser {
     /**
      * Parses user input into command.
-     * 
+     *
      * @param fullCommand User input.
      * @return Instance of <code>Command</code> that corresponds to user input.
      * @throws CheeseException If given user input is invalid or contains error.
@@ -64,16 +64,16 @@ public class Parser {
 
     /**
      * Validates and parses command to create a new deadline.
-     * 
+     *
      * @param fullCommandArray Array containing user input split by space.
      * @return Deadline command with extracted arguments.
      * @throws CheeseException If command has invalid arguments or command does not contain the
-     *         correct flag.
+     *                         correct flag.
      */
     private static Command parseDeadlineCommand(String[] fullCommandArray) throws CheeseException {
         validateCommandHasNArguments(fullCommandArray, 1);
         String deadlineArgument = fullCommandArray[1];
-        if (deadlineArgument.indexOf("/by") == -1) {
+        if (!deadlineArgument.contains("/by")) {
             throw new CheeseException("A deadline requires a /by flag.");
         }
         String[] deadlineArgumentArray = deadlineArgument.split("/by", 2);
@@ -87,16 +87,16 @@ public class Parser {
 
     /**
      * Validates and parses command to create a new event.
-     * 
+     *
      * @param fullCommandArray Array containing user input split by space.
      * @return Event command with extracted arguments.
      * @throws CheeseException If command has invalid arguments or command does not contain the
-     *         correct flag.
+     *                         correct flag.
      */
     private static Command parseEventCommand(String[] fullCommandArray) throws CheeseException {
         validateCommandHasNArguments(fullCommandArray, 1);
         String eventArgument = fullCommandArray[1];
-        if (eventArgument.indexOf("/at") == -1) {
+        if (!eventArgument.contains("/at")) {
             throw new CheeseException("A deadline requires an /at flag.");
         }
         String[] eventArgumentArray = eventArgument.split("/at", 2);
@@ -110,9 +110,9 @@ public class Parser {
 
     /**
      * Checks if given user input has n arguments
-     * 
+     *
      * @param fullCommandArray Array containing user input after splitting by space.
-     * @param n Desired number of arguments.
+     * @param n                Desired number of arguments.
      * @throws CheeseException If given user input does not contain n arguments.
      */
     private static void validateCommandHasNArguments(String[] fullCommandArray, int n)
@@ -124,7 +124,7 @@ public class Parser {
 
     /**
      * Parses String argument to int.
-     * 
+     *
      * @param argument Argument to parse to int.
      * @return Integer that is parsed.
      * @throws CheeseException If argument is in non-integer format.

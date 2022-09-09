@@ -25,7 +25,6 @@ public class DeleteCommand extends Command {
     /**
      * Executes operations to delete task from list and save the list.
      *
-     * @param {@inheritDoc}
      * @throws CheeseException If given index of task to delete does not match a task from
      *                         <code>taskList</code>.
      */
