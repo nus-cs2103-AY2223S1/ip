@@ -36,7 +36,7 @@ public class Parser {
     }
 
     private Command prepareTodo(String argument) {
-        Pattern pattern = Pattern.compile("(.+)");
+        Pattern pattern = Pattern.compile(TodoCommand.REGEX);
         Matcher matcher = pattern.matcher(argument);
         if (!matcher.matches()) {
             Ui.printMessage("The description of a todo cannot be empty.");
@@ -46,7 +46,7 @@ public class Parser {
     }
 
     private Command prepareDeadline(String argument) {
-        Pattern pattern = Pattern.compile("(?<description>.+?)\\s/by\\s(?<dateTime>.+)");
+        Pattern pattern = Pattern.compile(DeadlineCommand.REGEX);
         Matcher matcher = pattern.matcher(argument);
         if (!matcher.matches()) {
             Ui.printMessage("The description or datetime cannot be empty");
@@ -58,7 +58,7 @@ public class Parser {
     }
 
     private Command prepareEvent(String argument) {
-        Pattern pattern = Pattern.compile("(?<description>.+?)\\s/at\\s(?<dateTime>.+)");
+        Pattern pattern = Pattern.compile(EventCommand.REGEX);
         Matcher matcher = pattern.matcher(argument);
         if (!matcher.matches()) {
             Ui.printMessage("The description or datetime cannot be empty");
@@ -70,7 +70,7 @@ public class Parser {
     }
 
     private Command prepareFind(String argument) {
-        Pattern pattern = Pattern.compile("(.+)");
+        Pattern pattern = Pattern.compile(FindCommand.REGEX);
         Matcher matcher = pattern.matcher(argument);
         if (!matcher.matches()) {
             Ui.printMessage("The description of find cannot be empty.");

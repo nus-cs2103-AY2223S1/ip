@@ -11,6 +11,7 @@ public class DeadlineCommand implements Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Add a deadline task. Parameters: DESCRIPTION DATETIME. Example: " + COMMAND_WORD
             + " return book /by 2022-08-22";
+    public static final String REGEX = "(?<description>.+?)\\s/by\\s(?<dateTime>.+)";
 
     private String description;
     private String dateTime;
