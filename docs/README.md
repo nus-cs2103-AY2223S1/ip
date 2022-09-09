@@ -84,14 +84,16 @@ Expected outcome: All tasks will be returned sorted based on their date of creat
 
 - Example Usage: 
   - Displays all tasks that fall from 1200 19 Dec 2022 onwards.
-  - `schedule_range /from 1200 19 Dec 2022`
+  
+    `schedule_range /from 1200 19 Dec 2022`
 
 #### Get schedules from given datetime range
-    - `schedule_range /from <LocalDateTime string> /to <LocalDateTime string>`
+`schedule_range /from <LocalDateTime string> /to <LocalDateTime string>`
 
 - Example Usage:
-    - Displays all tasks that fall from 1200 19 Dec 2022 onwards to 0001 25 Dec 2025.
-    - `schedule_range /from 1200 19 Dec 2022 /to 0001 25 Dec 2025`
+  - Displays all tasks that fall from 1200 19 Dec 2022 onwards to 0001 25 Dec 2025.
+
+    `schedule_range /from 1200 19 Dec 2022 /to 0001 25 Dec 2025`
 
 ## Feature - Exit
 Exit the program
