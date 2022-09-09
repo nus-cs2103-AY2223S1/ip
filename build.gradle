@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    //id 'checkstyle'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '5.1.0'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+}
+
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.0'
+    String javaFxVersion = '14'
+
+    implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-controls', version: javaFxVersion, classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-fxml', version: javaFxVersion, classifier: 'mac'
+    implementation group: 'org.openjfx', name: 'javafx-graphics', version: javaFxVersion, classifier: 'mac'
+}
+application {
+    mainClassName = "Duke.Duke.Application"
+}
+repositories {
+    mavenCentral()
+}
+
+shadowJar {
+    archiveBaseName = "Duke"
+    archiveClassifier = null
+}
