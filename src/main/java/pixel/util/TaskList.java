@@ -1,6 +1,7 @@
 package pixel.util;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import pixel.Pixel;
 import pixel.task.Deadline;
@@ -19,7 +20,26 @@ public class TaskList {
         this.filePath = filePath;
     }
 
+    public String listTasks() {
+        String output = "Here are the tasks in your list: \n";
+        for (int i = 0; i < Pixel.count; i++) {
+            Task currentTask = Storage.INPUT_TASKS.get(i);
+            output += ((i + 1) + ". " + currentTask + "\n");
+        }
+        return output;
+    }
+
+    public String listFindResults(ArrayList<Task> findResults) {
+        String output ="Here are the matching tasks in your list: \n";
+        for (int i = 0; i < findResults.size(); i++) {
+            Task currentTask = findResults.get(i);
+            output += ((i + 1) + ". " + currentTask + "\n");
+        }
+        return output;
+    }
+
     public String handleNewTask(String userInput, String type) throws IOException, DuplicateEntryException {
+
         int indexOfSlash = userInput.indexOf("/"); // returns -1 if such a string doesn't exist
         // If there's a "/by" or "/at" in the input string, then the info behind the "/by" or "/at" is the due
         // if there's no "/by" and "/at" string, then due should be empty
@@ -80,9 +100,7 @@ public class TaskList {
         Storage.resetFile(this.filePath);
 
         // run through all the files in the list and update pixel.txt accordingly
-        for (Task task : Storage.INPUT_TASKS) {
-            Storage.appendToFile(task, this.filePath);
-        }
+        Storage.appendAllTasksToFile(this.filePath);
 
         Pixel.count += 1;
         return ("Got it. I've added this task: \n"

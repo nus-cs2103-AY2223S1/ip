@@ -103,9 +103,7 @@ public class Storage {
             }
 
             resetFile(filePath);
-            for (Task task : Storage.INPUT_TASKS) {
-                Storage.appendToFile(task, filePath);
-            }
+            Storage.appendAllTasksToFile(filePath);
 
             Pixel.count -= 1;
             output += ("Now you have " + Pixel.count + " tasks in the list.");
@@ -116,13 +114,19 @@ public class Storage {
         }
     }
 
+    public static void appendAllTasksToFile(String filePath) throws IOException {
+        for (Task task : Storage.INPUT_TASKS) {
+            Storage.appendTaskToFile(task, filePath);
+        }
+    }
+
     /**
      * Appends a new task to the external file
      *
      * @param task new task to be appended
      * @throws IOException when the filePath is invalid
      */
-    public static void appendToFile(Task task, String filePath) throws IOException {
+    public static void appendTaskToFile(Task task, String filePath) throws IOException {
         String textToAdd = task.formatTaskBeforeSave();
         Writer bufferedFileWriter = new BufferedWriter(new FileWriter(filePath, true));
         // FileWriter(String fileName, boolean append)
