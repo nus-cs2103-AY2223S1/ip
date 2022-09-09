@@ -1,5 +1,8 @@
 package Duke.Gui;
+
 import Duke.Duke;
+import Duke.Main;
+import Duke.Ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -7,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.WindowEvent;
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
@@ -24,6 +28,9 @@ public class MainWindow extends AnchorPane {
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/duke.png"));
+
+    /** The amount of time to wait after receiving the exit command from user in millisecond */
+    private final int EXIT_PAUSE_TIME = 5000;
 
     @FXML
     public void initialize() {
@@ -54,9 +61,12 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = duke.getResponse(input);
+        if (response.equals(Main.EXIT_SIGNAL)) {
+            System.exit(0);
+        }
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getDukeDialog(Ui.getExitMsg(), dukeImage)
         );
         userInput.clear();
     }

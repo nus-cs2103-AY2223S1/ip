@@ -1,5 +1,5 @@
 package Duke.Command;
-
+import Duke.Main;
 import Duke.TaskList;
 import Duke.Ui;
 import Duke.FileStorage.Storage;
@@ -12,7 +12,7 @@ public class ExitCommand extends Command{
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        return ui.getExitMsg();
+        return Main.EXIT_SIGNAL;
     }
 
     @Override 

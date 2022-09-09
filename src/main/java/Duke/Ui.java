@@ -126,7 +126,7 @@ public class Ui {
     }
 
     /** Returns the exit message for the user. */
-    public String getExitMsg() {
+    public static String getExitMsg() {
         return "Goodbye, see you next time!";
     }
 }

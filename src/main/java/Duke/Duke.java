@@ -4,6 +4,7 @@ import Duke.Command.Command;
 import Duke.Command.InvalidCommandException;
 import Duke.FileStorage.InvalidStorageException;
 import Duke.FileStorage.Storage;
+import Duke.Main;
 
 /**
  * This class represents the chatbot interface that allows
@@ -50,7 +51,7 @@ public class Duke {
         try {
             Command c = Parser.parse(input);
             if (c.isExit()) {
-                return "Bye";
+                return Main.EXIT_SIGNAL;
             } else {
                 return c.execute(tasks, ui, storage);
             }
@@ -65,34 +66,4 @@ public class Duke {
             }
         }
     }
-
-    /**
-     * Runs the main logic of Duke.
-     */
-    // public void run(String[] args) {
-    //     Application.launch(Main.class, args);
-    //     ui.showWelcome();
-    //     boolean isExit = false;
-    //     while (!isExit) {
-    //         try {
-    //             String fullCommand = ui.readCommand();
-    //             Parser.parse(fullCommand);
-    //             Command c = Parser.parse(fullCommand);
-    //             c.execute(tasks, ui, storage);
-    //             isExit = c.isExit();
-    //         } catch (InvalidCommandException e) {
-    //             ui.showErr(e.getMessage());
-    //         } catch (IndexOutOfBoundsException e) {
-    //             ui.showErr(String.format("Thats an invalid number!\n" 
-    //                     + "Please enter a number between %d and %d", 1, tasks.getNumOfTasks()));
-    //         } finally {
-    //             ui.showHorizontalLineLong();
-    //         }
-    //     }
-    // }
-
-    // public static void main(String[] args) {
-    //     new Duke("./data/tasks.txt").run(args);
-    // }
-
 }
