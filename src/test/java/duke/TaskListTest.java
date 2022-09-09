@@ -3,8 +3,6 @@ package duke;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import javax.accessibility.AccessibleAttributeSequence;
-
 import duke.task.Todo;
 
 public class TaskListTest {

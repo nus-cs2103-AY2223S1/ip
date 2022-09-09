@@ -48,7 +48,7 @@ public class TaskList {
             System.out.println(SPACING + "Nice! I have marked this task as done:");
             System.out.println(SPACING + "[" + task.getStatusIcon() +"] " + task.getTask());
         } else {
-            System.out.println(SPACING + "No task at position " + Integer.toString(position) + "!\n");
+            System.out.println(SPACING + "No task at position " + Integer.toString(position + 1) + "!\n");
         }
     }
 
@@ -59,7 +59,7 @@ public class TaskList {
             System.out.println(SPACING + "Nice! I have marked this task as undone:");
             System.out.println(SPACING + "[" + task.getStatusIcon() +"] " + task.getTask());
         } else {
-            System.out.println(SPACING + "No task at position " + Integer.toString(position) + "!\n");
+            System.out.println(SPACING + "No task at position " + Integer.toString(position + 1) + "!\n");
         }
     }
 
