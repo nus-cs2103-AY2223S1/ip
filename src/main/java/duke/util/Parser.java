@@ -92,7 +92,7 @@ public class Parser {
      * @throws InvalidCommandFormatException If description of the Deadline Task is empty.
      */
     private static DeadlineCommand parseDeadlineCommand(String commandArgument) throws InvalidCommandFormatException {
-        String[] argumentSplit = getCommandArgumentSplit(commandArgument, " /by ");
+        String[] argumentSplit = splitByDelimiter(commandArgument, " /by ");
         if (argumentSplit.length < 2) {
             throw new InvalidCommandFormatException(DeadlineCommand.getFormat());
         }
@@ -109,7 +109,7 @@ public class Parser {
      * @throws InvalidCommandFormatException If description of the Event Task is empty.
      */
     private static EventCommand parseEventCommand(String commandArgument) throws InvalidCommandFormatException {
-        String[] argumentSplit = getCommandArgumentSplit(commandArgument, " /at ");
+        String[] argumentSplit = splitByDelimiter(commandArgument, " /at ");
         if (argumentSplit.length < 2) {
             throw new InvalidCommandFormatException(EventCommand.getFormat());
         }
@@ -180,22 +180,26 @@ public class Parser {
             return new SortCommand();
         }
 
-        String[] commandArgSplit = commandArgument.split("\\s+");
-        if (commandArgSplit.length > 2) {
+        String[] commandArgSplit = splitByDelimiter(commandArgument, "\\s+");
+        int numArguments = commandArgSplit.length;
+
+        if (numArguments > 2) {
             throw new InvalidCommandFormatException(SortCommand.getFormat());
         }
 
-        if (commandArgSplit.length == 2) {
-            return new SortCommand(SortOrder.parse(commandArgSplit[0]), SortMetric.parse(commandArgSplit[1]));
-        } else {
-            String arg = commandArgSplit[0];
-            if (!SortOrder.isValidOrder(arg) || !SortMetric.isValidMetric(arg)) {
-                throw new InvalidCommandFormatException(SortCommand.getFormat());
-            }
-            return SortOrder.isValidOrder(arg)
-                    ? new SortCommand(SortOrder.parse(arg))
-                    : new SortCommand(SortMetric.parse(commandArgSplit[0]));
+        if (numArguments == 2) {
+            SortOrder order = SortOrder.parse(commandArgSplit[0]);
+            SortMetric metric = SortMetric.parse(commandArgSplit[1]);
+            return new SortCommand(order, metric);
         }
+
+        String arg = commandArgSplit[0];
+        if (!SortOrder.isValidOrder(arg) && !SortMetric.isValidMetric(arg)) {
+            throw new InvalidCommandFormatException(SortCommand.getFormat());
+        }
+        return SortOrder.isValidOrder(arg)
+                ? new SortCommand(SortOrder.parse(arg))
+                : new SortCommand(SortMetric.parse(arg));
     }
 
     /**
@@ -266,7 +270,7 @@ public class Parser {
      * @param delimiter Delimiter to split the command argument by.
      * @return Array of smaller command arguments.
      */
-    private static String[] getCommandArgumentSplit(String commandArgument, String delimiter) {
+    private static String[] splitByDelimiter(String commandArgument, String delimiter) {
         String[] argumentSplit = commandArgument.split(delimiter);
         for (int i = 0; i < argumentSplit.length; i++) {
             argumentSplit[i] = argumentSplit[i].strip();
