@@ -36,7 +36,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        String greetingMessage = "Hello, I'm Raiden!\n" + "What can I do for you?\n";
+        String greetingMessage = "Hello, I'm Raiden.\n" + "What can I do for you?\n";
         this.dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(greetingMessage, this.dukeImage));
     }

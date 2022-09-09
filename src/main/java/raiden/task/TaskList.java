@@ -4,7 +4,7 @@ import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.List;
 
-import raiden.DukeException;
+import raiden.RaidenException;
 import raiden.Storage;
 
 /**
@@ -35,9 +35,9 @@ public class TaskList {
      * @param command The command represented by an array of Strings.
      * @param storage The storage associated with this command.
      * @return The String message for successfully adding a task.
-     * @throws DukeException if the add command is invalid.
+     * @throws RaidenException if the add command is invalid.
      */
-    public String addTask(String[] command, Storage storage) throws DukeException {
+    public String addTask(String[] command, Storage storage) throws RaidenException {
         assert command.length > 0 : "String array command must not be empty.";
         String taskType = command[0];
         assert taskType.equals("todo") || taskType.equals("deadline") || taskType.equals("event")
@@ -59,18 +59,18 @@ public class TaskList {
      * @param command The command represented by an array of Strings.
      * @param storage The storage associated with this command.
      * @return The String message for successfully adding a to-do task.
-     * @throws DukeException if the todo command is invalid.
+     * @throws RaidenException if the todo command is invalid.
      */
-    public String addToDo(String[] command, Storage storage) throws DukeException {
+    public String addToDo(String[] command, Storage storage) throws RaidenException {
         assert command.length > 0 : "String array command must not be empty.";
         if (command.length == 1) {
-            throw new DukeException("Please specify what task you wish to do:\n"
+            throw new RaidenException("Please specify what task you wish to do:\n"
                     + "todo <description>");
         }
         assert command[0].equals("todo") : "command must be todo";
         assert command.length == 2 : "command must consist of 'todo' and task description only.";
         StringBuilder result = new StringBuilder();
-        result.append("Got it! Raiden has added this task:\n");
+        result.append("Got it. Raiden has added this task:\n");
         String description = command[1];
         Task newTask = new ToDo(description);
         result.append(newTask);
@@ -90,24 +90,24 @@ public class TaskList {
      * @param command The command represented by an array of Strings.
      * @param storage The storage associated with this command.
      * @return The String message for successfully adding a deadline.
-     * @throws DukeException if the deadline command is invalid.
+     * @throws RaidenException if the deadline command is invalid.
      */
-    public String addDeadline(String[] command, Storage storage) throws DukeException {
+    public String addDeadline(String[] command, Storage storage) throws RaidenException {
         assert command.length > 0 : "String array command must not be empty.";
         if (command.length == 1) {
-            throw new DukeException("Please specify what task you wish to do:\n"
+            throw new RaidenException("Please specify what task you wish to do:\n"
                     + "deadline <description> /by <date/time>");
         }
         assert command[0].equals("deadline") : "command must be deadline";
         String[] deadline = command[1].split(" /by ", 2);
         if (deadline.length == 1) {
-            throw new DukeException("Please specify the description and the date/time of this deadline:\n"
+            throw new RaidenException("Please specify the description and the date/time of this deadline:\n"
                     + "deadline <description> /by <date/time>");
         }
         assert deadline.length == 2 : "command must consist of 'deadline', task description and date/time.";
         try {
             StringBuilder result = new StringBuilder();
-            result.append("Got it! Raiden has added this task:\n");
+            result.append("Got it. Raiden has added this task:\n");
             Task newTask = new Deadline(deadline[0], deadline[1]);
             result.append(newTask);
             this.taskList.add(newTask);
@@ -119,7 +119,7 @@ public class TaskList {
             storage.addTaskToSave(newTask);
             return result.toString();
         } catch (DateTimeException e) {
-            throw new DukeException("Uh oh! Please enter your date/time in this format:\n"
+            throw new RaidenException("Please enter your date/time in this format:\n"
                     + "DD MM YYYY HH:mm(optional)");
         }
     }
@@ -130,24 +130,24 @@ public class TaskList {
      * @param command The command represented by an array of Strings.
      * @param storage The storage associated with this command.
      * @return The String message for successfully adding an event.
-     * @throws DukeException if the event command is invalid.
+     * @throws RaidenException if the event command is invalid.
      */
-    public String addEvent(String[] command, Storage storage) throws DukeException {
+    public String addEvent(String[] command, Storage storage) throws RaidenException {
         assert command.length > 0 : "String array command must not be empty.";
         if (command.length == 1) {
-            throw new DukeException("Please specify what task you wish to do:\n"
+            throw new RaidenException("Please specify what task you wish to do:\n"
                     + "event <description> /at <date/time>");
         }
         assert command[0].equals("event") : "command must be event";
         String[] event = command[1].split(" /at ", 2);
         if (event.length == 1) {
-            throw new DukeException("Please specify the description and the date/time of this event:\n"
+            throw new RaidenException("Please specify the description and the date/time of this event:\n"
                     + "event <description> /at <date/time>");
         }
         assert event.length == 2 : "command must consist of 'event', task description and date/time.";
         try {
             StringBuilder result = new StringBuilder();
-            result.append("Got it! Raiden has added this task:\n");
+            result.append("Got it. Raiden has added this task:\n");
             Task newTask = new Event(event[0], event[1]);
             result.append(newTask);
             this.taskList.add(newTask);
@@ -159,7 +159,7 @@ public class TaskList {
             storage.addTaskToSave(newTask);
             return result.toString();
         } catch (DateTimeException e) {
-            throw new DukeException("Uh oh! Please enter your date/time in this format:\n"
+            throw new RaidenException("Please enter your date/time in this format:\n"
                     + "DD MM YYYY HH:mm(optional)");
         }
     }
@@ -189,12 +189,12 @@ public class TaskList {
      * @param command The command represented by an array of Strings.
      * @param storage The storage associated with this command.
      * @return The String message for successfully marking a task.
-     * @throws DukeException if the mark command is invalid.
+     * @throws RaidenException if the mark command is invalid.
      */
-    public String markTask(String[] command, Storage storage) throws DukeException {
+    public String markTask(String[] command, Storage storage) throws RaidenException {
         assert command.length > 0 : "String array command must not be empty.";
         if (command.length == 1) {
-            throw new DukeException("Please specify the task to mark by its id:\n"
+            throw new RaidenException("Please specify the task to mark by its id:\n"
                     + "mark <id>");
         }
         assert command[0].equals("mark") : "command must be mark";
@@ -202,15 +202,15 @@ public class TaskList {
             int id = Integer.parseInt(command[1]);
             int len = this.taskList.size();
             if (id <= 0 || id > len) {
-                throw new DukeException("Invalid task id!");
+                throw new RaidenException("Invalid task id!");
             }
             // Mark the task in the save file
             storage.markTaskInSave(id - 1);
             return this.taskList.get(id - 1).mark();
         } catch (NumberFormatException e) {
-            throw new DukeException("Please specify the task to mark by its integer id:\n"
+            throw new RaidenException("Please specify the task to mark by its integer id:\n"
                     + "mark <id>");
-        } catch (DukeException e) {
+        } catch (RaidenException e) {
             throw e;
         }
     }
@@ -221,12 +221,12 @@ public class TaskList {
      * @param command The command represented by an array of Strings.
      * @param storage The storage associated with this command.
      * @return The String message for successfully unmarking a task.
-     * @throws DukeException if the unmark command is invalid.
+     * @throws RaidenException if the unmark command is invalid.
      */
-    public String unmarkTask(String[] command, Storage storage) throws DukeException {
+    public String unmarkTask(String[] command, Storage storage) throws RaidenException {
         assert command.length > 0 : "String array command must not be empty.";
         if (command.length == 1) {
-            throw new DukeException("Please specify the task to unmark by its id:\n"
+            throw new RaidenException("Please specify the task to unmark by its id:\n"
                     + "unmark <id>");
         }
         assert command[0].equals("unmark") : "command must be unmark";
@@ -234,13 +234,13 @@ public class TaskList {
             int id = Integer.parseInt(command[1]);
             int len = this.taskList.size();
             if (id <= 0 || id > len) {
-                throw new DukeException("Invalid task id!");
+                throw new RaidenException("Invalid task id!");
             }
             // Unmark the task in the save file
             storage.unmarkTaskInSave(id - 1);
             return this.taskList.get(id - 1).unmark();
         } catch (NumberFormatException e) {
-            throw new DukeException("Please specify the task to unmark by its integer id:\n"
+            throw new RaidenException("Please specify the task to unmark by its integer id:\n"
                     + "mark <id>");
         }
     }
@@ -251,12 +251,12 @@ public class TaskList {
      * @param command The command represented by an array of Strings.
      * @param storage The storage associated with this command.
      * @return The String message for successfully deleting a task.
-     * @throws DukeException if the delete command is invalid.
+     * @throws RaidenException if the delete command is invalid.
      */
-    public String deleteTask(String[] command, Storage storage) throws DukeException {
+    public String deleteTask(String[] command, Storage storage) throws RaidenException {
         assert command.length > 0 : "String array command must not be empty.";
         if (command.length == 1) {
-            throw new DukeException("Please specify the task to be deleted by its id:\n"
+            throw new RaidenException("Please specify the task to be deleted by its id:\n"
                     + "delete <id>");
         }
         assert command[0].equals("delete") : "command must be delete";
@@ -264,13 +264,13 @@ public class TaskList {
             int id = Integer.parseInt(command[1]);
             int len = this.taskList.size();
             if (len == 0) {
-                throw new DukeException("Your task list is empty!");
+                throw new RaidenException("Your task list is empty!");
             }
             if (id <= 0 || id > len) {
-                throw new DukeException("Invalid task id!");
+                throw new RaidenException("Invalid task id!");
             }
             StringBuilder result = new StringBuilder();
-            result.append("Noted. I've removed this task:");
+            result.append("Understood. I've removed this task:");
             result.append(this.taskList.get(id - 1));
             this.taskList.remove(id - 1);
             String line = String.format("Now you have %d task%s in the list.",
@@ -280,7 +280,7 @@ public class TaskList {
             storage.deleteTaskFromSave(id - 1);
             return result.toString();
         } catch (NumberFormatException e) {
-            throw new DukeException("Please specify the task to delete by its integer id:\n"
+            throw new RaidenException("Please specify the task to delete by its integer id:\n"
                     + "mark <id>");
         }
     }
@@ -344,12 +344,12 @@ public class TaskList {
      *
      * @param command The command represented by an array of Strings.
      * @return The String message for successfully finding a task.
-     * @throws DukeException if the find command is invalid.
+     * @throws RaidenException if the find command is invalid.
      */
-    public String findTask(String[] command) throws DukeException {
+    public String findTask(String[] command) throws RaidenException {
         assert command.length > 0 : "String array command must not be empty.";
         if (command.length == 1) {
-            throw new DukeException("Please provide a keyword to search for the task:\n"
+            throw new RaidenException("Please provide a keyword to search for the task:\n"
                     + "find <keyword>");
         }
         assert command[0].equals("find") : "command must be find.";
@@ -376,12 +376,12 @@ public class TaskList {
      *
      * @param command The command represented by an array of Strings.
      * @return The String message for successfully editing a task.
-     * @throws DukeException if the edit command is invalid.
+     * @throws RaidenException if the edit command is invalid.
      */
-    public String editTask(String[] command, Storage storage) throws DukeException {
+    public String editTask(String[] command, Storage storage) throws RaidenException {
         assert command.length > 0 : "String array command must not be empty.";
         if (command.length == 1) {
-            throw new DukeException("Please specify the task to be edited:\n"
+            throw new RaidenException("Please specify the task to be edited:\n"
                     + "To edit the description: `editD <id> <new_description>`\n"
                     + "To edit the time: `editT <id> <new_date/time>");
         }
@@ -404,11 +404,11 @@ public class TaskList {
      *
      * @param command The command represented by an array of Strings.
      * @return The String message for successfully editing a task.
-     * @throws DukeException if the edit command is invalid.
+     * @throws RaidenException if the edit command is invalid.
      */
-    public String editTaskDescription(String[] command, Storage storage) throws DukeException {
+    public String editTaskDescription(String[] command, Storage storage) throws RaidenException {
         if (command.length != 2) {
-            throw new DukeException("Please specify the new description for this task!");
+            throw new RaidenException("Please specify the new description for this task!");
         }
         String idString = command[0];
         String newDescription = command[1];
@@ -416,16 +416,16 @@ public class TaskList {
             int id = Integer.parseInt(idString);
             int len = this.taskList.size();
             if (id <= 0 || id > len) {
-                throw new DukeException("Invalid task id!");
+                throw new RaidenException("Invalid task id!");
             }
             String result = this.taskList.get(id - 1).changeDescription(newDescription);
             // Update the task in the save file
             storage.editTaskInSave(id - 1, this.taskList.get(id - 1));
             return result;
         } catch (NumberFormatException e) {
-            throw new DukeException("Please specify the task to edit by its integer id:\n"
+            throw new RaidenException("Please specify the task to edit by its integer id:\n"
                     + "editT <id> <new_description");
-        } catch (DukeException e) {
+        } catch (RaidenException e) {
             throw e;
         }
     }
@@ -435,11 +435,11 @@ public class TaskList {
      *
      * @param command The command represented by an array of Strings.
      * @return The String message for successfully editing a task.
-     * @throws DukeException if the edit command is invalid.
+     * @throws RaidenException if the edit command is invalid.
      */
-    public String editTaskTime(String[] command, Storage storage) throws DukeException {
+    public String editTaskTime(String[] command, Storage storage) throws RaidenException {
         if (command.length != 2) {
-            throw new DukeException("Please specify the new date/time for this task!");
+            throw new RaidenException("Please specify the new date/time for this task!");
         }
         String idString = command[0];
         String newDate = command[1];
@@ -447,19 +447,19 @@ public class TaskList {
             int id = Integer.parseInt(idString);
             int len = this.taskList.size();
             if (id <= 0 || id > len) {
-                throw new DukeException("Invalid task id!");
+                throw new RaidenException("Invalid task id!");
             }
             String result = this.taskList.get(id - 1).changeDate(newDate);
             // Update the task in the save file
             storage.editTaskInSave(id - 1, this.taskList.get(id - 1));
             return result;
         } catch (NumberFormatException e) {
-            throw new DukeException("Please specify the task to edit by its integer id:\n"
+            throw new RaidenException("Please specify the task to edit by its integer id:\n"
                     + "editT <id> <new_description");
         } catch (DateTimeException e) {
-            throw new DukeException("Uh oh! Please enter your date/time in this format:\n"
+            throw new RaidenException("Please enter your date/time in this format:\n"
                     + "DD MM YYYY HH:mm(optional)");
-        } catch (DukeException e) {
+        } catch (RaidenException e) {
             throw e;
         }
     }

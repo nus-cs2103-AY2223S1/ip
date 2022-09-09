@@ -1,6 +1,6 @@
 package raiden.command;
 
-import raiden.DukeException;
+import raiden.RaidenException;
 import raiden.Storage;
 import raiden.task.TaskList;
 
@@ -29,7 +29,7 @@ public class EditCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public String execute() throws DukeException {
+    public String execute() throws RaidenException {
         return this.taskList.editTask(this.command, this.storage) + "\n";
     }
 

@@ -29,12 +29,12 @@ public class Ui {
     }
 
     /**
-     * Prints the error message when DukeException occurs.
+     * Prints the error message when RaidenException occurs.
      *
-     * @param e The DukeException for this error.
-     * @return The String message of the DukeException.
+     * @param e The RaidenException for this error.
+     * @return The String message of the RaidenException.
      */
-    public String showError(DukeException e) {
+    public String showError(RaidenException e) {
         return e.toString() + "\n";
     }
 
@@ -43,9 +43,9 @@ public class Ui {
      *
      * @param storage The storage associated with Raiden.
      * @param taskList The TaskList associated with Raiden.
-     * @throws DukeException if DukeException occurs when saving to file.
+     * @throws RaidenException if RaidenException occurs when saving to file.
      */
-    public void endSession(Storage storage, TaskList taskList) throws DukeException {
+    public void endSession(Storage storage, TaskList taskList) throws RaidenException {
         this.isActive = false;
         this.sc.close();
         storage.writeToSave(taskList);

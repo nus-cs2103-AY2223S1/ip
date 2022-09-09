@@ -1,7 +1,7 @@
 package raiden.command;
 
-import raiden.DukeException;
 import raiden.Main;
+import raiden.RaidenException;
 import raiden.Storage;
 import raiden.Ui;
 import raiden.task.TaskList;
@@ -31,7 +31,7 @@ public class ExitCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public String execute() throws DukeException {
+    public String execute() throws RaidenException {
         this.ui.endSession(this.storage, this.taskList);
         Main.closeStage();
         return "Bye! Hope to see you again soon!";

@@ -49,6 +49,6 @@ public class Event extends Task {
     @Override
     public String changeDate(String newDate) {
         this.date = DateParser.parseStringToDate(newDate);
-        return "OK, the task has been changed to the following:\n" + this;
+        return "Understood, the task has been changed to the following:\n" + this;
     }
 }

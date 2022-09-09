@@ -21,7 +21,7 @@ public class Raiden {
         try {
             this.storage.initialiseSaveFile();
             this.taskList = storage.createTaskList();
-        } catch (DukeException e) {
+        } catch (RaidenException e) {
             this.ui.showError(e);
             taskList = new TaskList();
         }
@@ -48,7 +48,7 @@ public class Raiden {
             try {
                 Command command = Parser.parse(input, this.storage, this.taskList, this.ui);
                 return command.execute();
-            } catch (DukeException e) {
+            } catch (RaidenException e) {
                 return this.ui.showError(e);
             }
         }

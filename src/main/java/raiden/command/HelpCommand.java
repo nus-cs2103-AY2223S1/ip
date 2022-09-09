@@ -1,6 +1,6 @@
 package raiden.command;
 
-import raiden.DukeException;
+import raiden.RaidenException;
 
 /**
  * Represents the command to show all the available commands.
@@ -10,9 +10,9 @@ public class HelpCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public String execute() throws DukeException {
+    public String execute() throws RaidenException {
         StringBuilder sb = new StringBuilder();
-        sb.append("Here is a list of commands Raiden knows!\n");
+        sb.append("Here is a list of commands Raiden knows:\n");
         sb.append("1. list\n- View all the tasks in your list.\n");
         sb.append("2. find <keyword>\n"
                 + "- Search for tasks in your list that contain the keyword or phrase provided.\n");
@@ -27,9 +27,9 @@ public class HelpCommand extends Command {
         sb.append("6. mark <task_id>\n- Mark the task with the given id in your list as done.\n");
         sb.append("7. unmark <task_id>\n- Mark the task with the given id in your list as not done.\n");
         sb.append("8. bye\n- Exit Raiden bot.\n");
-        sb.append("9a. editD <task_id> <new_description>\n- Edit the description of the task with the given id in "
+        sb.append("9. editD <task_id> <new_description>\n- Edit the description of the task with the given id in "
                 + "your list\n");
-        sb.append("9b. editT <task_id> <new_date/time>\n- Edit the date/time of the task with the given id in "
+        sb.append("10. editT <task_id> <new_date/time>\n- Edit the date/time of the task with the given id in "
                 + "your list");
         return sb.toString();
     }

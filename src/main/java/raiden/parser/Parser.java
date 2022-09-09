@@ -1,6 +1,6 @@
 package raiden.parser;
 
-import raiden.DukeException;
+import raiden.RaidenException;
 import raiden.Storage;
 import raiden.Ui;
 import raiden.command.AddCommand;
@@ -28,9 +28,9 @@ public class Parser {
      * @param taskList The TaskList associated with the command, if any.
      * @param ui The Ui associated with the command, if any.
      * @return The respective Command that should follow from the user's input.
-     * @throws DukeException if error occurs in the Command's execution.
+     * @throws RaidenException if error occurs in the Command's execution.
      */
-    public static Command parse(String command, Storage storage, TaskList taskList, Ui ui) throws DukeException {
+    public static Command parse(String command, Storage storage, TaskList taskList, Ui ui) throws RaidenException {
         String[] words = command.split(" ", 2);
         if (ExitCommand.isCommand(command)) {
             return new ExitCommand(ui, storage, taskList);

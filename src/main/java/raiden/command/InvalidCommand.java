@@ -1,6 +1,6 @@
 package raiden.command;
 
-import raiden.DukeException;
+import raiden.RaidenException;
 
 /**
  * Represents an invalid, unrecognised command given by the user.
@@ -10,7 +10,7 @@ public class InvalidCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public String execute() throws DukeException {
-        throw new DukeException("Unknown command, please try again! \nType \"help\" for a list of commands.");
+    public String execute() throws RaidenException {
+        throw new RaidenException("Unknown command, please try again. \nType \"help\" for a list of commands.");
     }
 }

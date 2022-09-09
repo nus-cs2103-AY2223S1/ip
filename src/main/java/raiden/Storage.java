@@ -25,16 +25,16 @@ public class Storage {
     /**
      * Creates save file if it does not already exist.
      *
-     * @throws DukeException if error occurs while creating save directory or save file
+     * @throws RaidenException if error occurs while creating save directory or save file
      */
-    public void initialiseSaveFile() throws DukeException {
+    public void initialiseSaveFile() throws RaidenException {
         Path dataPath = Paths.get(System.getProperty("user.dir"), "data");
         if (!Files.exists(dataPath)) {
             // Create 'data' directory if it does not exist
             try {
                 Files.createDirectory(dataPath);
             } catch (IOException e) {
-                throw new DukeException("I/O Error occurred when creating save directory!");
+                throw new RaidenException("I/O Error occurred when creating save directory!");
             }
         }
         if (!Files.exists(this.path)) {
@@ -42,7 +42,7 @@ public class Storage {
             try {
                 Files.createFile(this.path);
             } catch (IOException e) {
-                throw new DukeException("I/O Error occurred when creating save file!");
+                throw new RaidenException("I/O Error occurred when creating save file!");
             }
         }
     }
@@ -51,9 +51,9 @@ public class Storage {
      * Creates TaskList with history of commands from save file.
      *
      * @return TaskList from history of commands
-     * @throws DukeException if error occurs in reading file or when adding previous commands
+     * @throws RaidenException if error occurs in reading file or when adding previous commands
      */
-    public TaskList createTaskList() throws DukeException {
+    public TaskList createTaskList() throws RaidenException {
         try {
             List<String> history = Files.readAllLines(this.path);
             TaskList taskList = new TaskList();
@@ -62,7 +62,7 @@ public class Storage {
             }
             return taskList;
         } catch (IOException e) {
-            throw new DukeException("I/O Error occurred when reading from save file!");
+            throw new RaidenException("I/O Error occurred when reading from save file!");
         }
     }
 
@@ -70,9 +70,9 @@ public class Storage {
      * Overwrites the user's save file with the current tasks in the list.
      *
      * @param taskList The TaskList to save.
-     * @throws DukeException if error occurs while writing to save file.
+     * @throws RaidenException if error occurs while writing to save file.
      */
-    public void writeToSave(TaskList taskList) throws DukeException {
+    public void writeToSave(TaskList taskList) throws RaidenException {
         try {
             if (taskList.isEmpty()) {
                 Files.write(this.path, new byte[0]);
@@ -82,7 +82,7 @@ public class Storage {
             byte[] byteArray = sb.toString().getBytes();
             Files.write(this.path, byteArray);
         } catch (IOException e) {
-            throw new DukeException("I/O Error occurred while overwriting save file!");
+            throw new RaidenException("I/O Error occurred while overwriting save file!");
         }
     }
 
@@ -90,9 +90,9 @@ public class Storage {
      * Adds task to save file.
      *
      * @param task The task to be added to the save file.
-     * @throws DukeException if error occurs while reading from or writing to save file.
+     * @throws RaidenException if error occurs while reading from or writing to save file.
      */
-    public void addTaskToSave(Task task) throws DukeException {
+    public void addTaskToSave(Task task) throws RaidenException {
         try {
             List<String> history = Files.readAllLines(this.path);
             history.add(task.toCommand());
@@ -104,7 +104,7 @@ public class Storage {
                     .toString();
             Files.write(this.path, saveResult.getBytes());
         } catch (IOException e) {
-            throw new DukeException("I/O Error occurred when reading from save file!");
+            throw new RaidenException("I/O Error occurred when reading from save file!");
         }
     }
 
@@ -112,9 +112,9 @@ public class Storage {
      * Removes task from save file.
      *
      * @param id The id of the task to be removed.
-     * @throws DukeException if error occurs while reading from or writing to save file.
+     * @throws RaidenException if error occurs while reading from or writing to save file.
      */
-    public void deleteTaskFromSave(int id) throws DukeException {
+    public void deleteTaskFromSave(int id) throws RaidenException {
         try {
             List<String> history = Files.readAllLines(this.path);
             history.remove(id);
@@ -124,7 +124,7 @@ public class Storage {
             }
             Files.write(this.path, sb.toString().getBytes());
         } catch (IOException e) {
-            throw new DukeException("I/O Error occurred when reading from save file!");
+            throw new RaidenException("I/O Error occurred when reading from save file!");
         }
     }
 
@@ -132,9 +132,9 @@ public class Storage {
      * Marks the Task in the save file.
      *
      * @param id The id of the task to be marked in the save file.
-     * @throws DukeException if error occurs while reading from or writing to save file.
+     * @throws RaidenException if error occurs while reading from or writing to save file.
      */
-    public void markTaskInSave(int id) throws DukeException {
+    public void markTaskInSave(int id) throws RaidenException {
         try {
             List<String> history = Files.readAllLines(this.path);
             String[] command = history.get(id).split(" \\| ", 3);
@@ -147,7 +147,7 @@ public class Storage {
             }
             Files.write(this.path, sb.toString().getBytes());
         } catch (IOException e) {
-            throw new DukeException("I/O Error occurred when reading from save file!");
+            throw new RaidenException("I/O Error occurred when reading from save file!");
         }
     }
 
@@ -155,9 +155,9 @@ public class Storage {
      * Unmarks the Task in the save file.
      *
      * @param id The id of the task to be unmarked in the save file.
-     * @throws DukeException if error occurs while reading from or writing to save file.
+     * @throws RaidenException if error occurs while reading from or writing to save file.
      */
-    public void unmarkTaskInSave(int id) throws DukeException {
+    public void unmarkTaskInSave(int id) throws RaidenException {
         try {
             List<String> history = Files.readAllLines(this.path);
             String[] command = history.get(id).split(" \\| ", 3);
@@ -170,7 +170,7 @@ public class Storage {
             }
             Files.write(this.path, sb.toString().getBytes());
         } catch (IOException e) {
-            throw new DukeException("I/O Error occurred when reading from save file!");
+            throw new RaidenException("I/O Error occurred when reading from save file!");
         }
     }
 
@@ -179,9 +179,9 @@ public class Storage {
      *
      * @param id The id of the task to edit.
      * @param task The new task in the save file.
-     * @throws DukeException if error occurs while reading from or writing to save file.
+     * @throws RaidenException if error occurs while reading from or writing to save file.
      */
-    public void editTaskInSave(int id, Task task) throws DukeException {
+    public void editTaskInSave(int id, Task task) throws RaidenException {
         try {
             List<String> history = Files.readAllLines(this.path);
             history.set(id, task.toCommand());
@@ -193,7 +193,7 @@ public class Storage {
                     .toString();
             Files.write(this.path, saveResult.getBytes());
         } catch (IOException e) {
-            throw new DukeException("I/O Error occurred when reading from save file!");
+            throw new RaidenException("I/O Error occurred when reading from save file!");
         }
     }
 }

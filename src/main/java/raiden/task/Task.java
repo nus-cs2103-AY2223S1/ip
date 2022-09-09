@@ -1,6 +1,6 @@
 package raiden.task;
 
-import raiden.DukeException;
+import raiden.RaidenException;
 
 /**
  * Represents a Task with a description and a completion status.
@@ -59,7 +59,7 @@ public abstract class Task {
             return "This task has already been marked as done.";
         }
         completeTask();
-        return "Nice! I've marked this task as done:\n" + this;
+        return "Splendid. I've marked this task as done:\n" + this;
     }
 
     /**
@@ -73,7 +73,7 @@ public abstract class Task {
             return "This task has already been marked as not done.";
         }
         this.isDone = false;
-        return "OK, I've marked this task as not done yet:\n" + this;
+        return "Understood, I've marked this task as not done yet:\n" + this;
     }
 
     /**
@@ -94,7 +94,7 @@ public abstract class Task {
      */
     public String changeDescription(String newDescription) {
         this.description = newDescription;
-        return "OK, the task has been changed to the following:\n" + this;
+        return "Understood, the task has been changed to the following:\n" + this;
     }
 
     /**
@@ -102,7 +102,7 @@ public abstract class Task {
      *
      * @param newTime The String representing the new Date/time
      * @return The String message for successfully editing the time.
-     * @throws DukeException if the Task type is ToDo because it has no date/time.
+     * @throws RaidenException if the Task type is ToDo because it has no date/time.
      */
-    public abstract String changeDate(String newTime) throws DukeException;
+    public abstract String changeDate(String newTime) throws RaidenException;
 }

@@ -1,6 +1,6 @@
 package raiden.task;
 
-import raiden.DukeException;
+import raiden.RaidenException;
 
 /**
  * Represents a ToDo task.
@@ -39,7 +39,7 @@ public class ToDo extends Task {
      * {@inheritDoc}
      */
     @Override
-    public String changeDate(String newDate) throws DukeException {
-        throw new DukeException("ToDo tasks do not have date and time!");
+    public String changeDate(String newDate) throws RaidenException {
+        throw new RaidenException("ToDo tasks do not have date and time!");
     }
 }
