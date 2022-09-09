@@ -188,6 +188,6 @@ public class Parser {
             return findTask(s, tasks);
         } else {
             return ERROR_PREFIX + "I'm sorry, but I don't know what that means :-(";
-        }   
+        }
     }
 }
