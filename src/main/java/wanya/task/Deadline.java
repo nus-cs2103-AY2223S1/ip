@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  */
 public class Deadline extends Task{
     private LocalDateTime dueDate;
-    private final String TASK_TYPE = "D";
+    private static final String TASK_TYPE = "D";
 
     /**
      * Creates a Deadline object when given task name and due date.
@@ -33,8 +33,12 @@ public class Deadline extends Task{
      * @throws DateTimeException if invalid date format is given.
      */
     public Deadline(String taskName, boolean hasCompleted, String dueDate) throws DateTimeException {
-        super(taskName, hasCompleted);
-        this.dueDate = DateTimeParser.getDateTime(dueDate);
+        this(taskName, dueDate);
+        if (hasCompleted) {
+            setComplete();
+        } else {
+            setIncomplete();
+        }
     }
 
     /**

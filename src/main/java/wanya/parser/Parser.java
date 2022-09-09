@@ -5,8 +5,6 @@ import wanya.task.TaskList;
 import wanya.ui.Ui;
 import wanya.WanyaException;
 
-import java.time.DateTimeException;
-
 /**
  * Represents a parser that helps to understand user's input commands.
  */
@@ -18,11 +16,17 @@ public class Parser {
      * @param command the first word of the user input.
      * @throws WanyaException if description of task is empty.
      */
-    public static void checkTask(String[] inputs, String command) throws WanyaException {
+    private static void checkTask(String[] inputs, String command) throws WanyaException {
         //handle the error where no task name
         String description = inputs.length > 1 ? inputs[1].trim() : "";
-        if (inputs.length == 1 || description.startsWith("/at")
-                || description.startsWith("/by") || description.equals("")) {
+
+        boolean doesDescriptionStartWithAt = description.startsWith("/at");
+        boolean doesDescriptionStartWithBy = description.startsWith("/by");
+        boolean doesDescriptionStartWithDate = doesDescriptionStartWithAt || doesDescriptionStartWithBy;
+        boolean isDescriptionEmpty = description.equals("");
+        boolean isInvalidDescription = (doesDescriptionStartWithDate || isDescriptionEmpty);
+
+        if (isInvalidDescription) {
             throw new WanyaException("The description of " + command + " cannot be empty");
         }
     }
@@ -36,7 +40,7 @@ public class Parser {
      * @throws WanyaException if task number provided is negative or
      *         greater than the number of tasks in TaskList.
      */
-    public static int checkTaskNumber(String[] inputs, TaskList tasks) throws WanyaException {
+    private static int checkTaskNumber(String[] inputs, TaskList tasks) throws WanyaException {
         //handle error without task number
         if (inputs.length == 1 || inputs[1].trim().equals("")) {
             throw new WanyaException("You didn't put the task number at the back :(.\n" +
@@ -54,11 +58,57 @@ public class Parser {
     }
 
     /**
+     * Handles the Mark and Unmark commands for completeness of each tasks.
+     *
+     * @param command the first word of the user input.
+     * @param inputs list of Strings that user has inputted.
+     * @param tasks TaskList that contains all the tasks.
+     * @param storage Storage that stores the tasks in hard drive.
+     * @return String message to be printed to gui whether task is marked successfully.
+     * @throws WanyaException if task number provided is invalid or no task number provided.
+     */
+    private static String handleMarkingCommands(String command, String[] inputs
+            , TaskList tasks, Storage storage) throws WanyaException {
+
+        int indexOfTask = checkTaskNumber(inputs, tasks);
+        String response = command.equals("mark")
+                          ? tasks.get(indexOfTask - 1).setComplete()
+                          : tasks.get(indexOfTask - 1).setIncomplete();
+        storage.save(tasks);
+        return response;
+    }
+
+    /**
+     * Handles the add task commands to add different type of tasks to task list.
+     *
+     * @param command the first word of the user input.
+     * @param inputs list of Strings that user has inputted.
+     * @param tasks TaskList that contains all the tasks.
+     * @param storage Storage that stores the tasks in hard drive.
+     * @return String message to be printed to gui whether task is added successfully.
+     * @throws WanyaException if invalid description is provided to add task.
+     */
+    private static String handleAddTaskCommands(String command, String[] inputs
+            , TaskList tasks, Storage storage) throws WanyaException {
+        checkTask(inputs, command);
+        String response;
+        if (command.equals("todo")) {
+            response = tasks.addToDo(inputs[1]);
+        } else {
+            assert command.equals("deadline") || command.equals("event"): "Invalid command entered!";
+            response = tasks.addTaskWithDate(command, inputs[1]);
+        }
+        storage.save(tasks);
+        return response;
+    }
+
+    /**
      * Instructs the bot to take actions based on the command given by users.
      *
      * @param commandInput String that user inputs.
      * @param tasks TaskList that contains all the tasks.
      * @param ui Ui that handles the strings to print.
+     * @param storage Storage that stores the tasks in hard drive.
      * @return String message to print on GUI.
      */
     public static String parseCommand(String commandInput, TaskList tasks, Ui ui, Storage storage) {
@@ -71,34 +121,10 @@ public class Parser {
                 return ui.exit();
             } else if (commandInput.equals("list")) {
                 return tasks.showTasks();
-            } else if (command.equals("mark")) {
-                int indexToMark = checkTaskNumber(inputs, tasks);
-                response = tasks.get(indexToMark - 1).setComplete();
-                storage.save(tasks);
-            } else if (command.equals("unmark")) {
-                int indexToUnmark = checkTaskNumber(inputs, tasks);
-                response = tasks.get(indexToUnmark - 1).setIncomplete();
-                storage.save(tasks);
-            } else if (command.equals("todo")) {
-                checkTask(inputs, command);
-                response = tasks.addToDo(inputs[1]);
-                storage.save(tasks);
-            } else if (command.equals("deadline")) {
-                checkTask(inputs, command);
-                try {
-                    response = tasks.addDeadline(inputs[1]);
-                    storage.save(tasks);
-                } catch (DateTimeException e) {
-                    return ui.showDateTimeFormat("D");
-                }
-            } else if (command.equals("event")) {
-                checkTask(inputs, command);
-                try {
-                    response = tasks.addEvent(inputs[1]);
-                    storage.save(tasks);
-                } catch (DateTimeException e) {
-                    return ui.showDateTimeFormat("E");
-                }
+            } else if (command.equals("mark") || command.equals("unmark")) {
+               response = handleMarkingCommands(command, inputs, tasks, storage);
+            } else if (command.equals("todo") || command.equals("deadline") || command.equals("event")) {
+                response = handleAddTaskCommands(command, inputs, tasks, storage);
             } else if (command.equals("delete")) {
                 int index = checkTaskNumber(inputs, tasks);
                 response = tasks.deleteTask(index);

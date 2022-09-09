@@ -4,7 +4,7 @@ package wanya.task;
  * Represents the todo task.
  */
 public class ToDo extends Task {
-    private final String TASK_TYPE = "T";
+    private static final String TASK_TYPE = "T";
 
     /**
      * Creates a todo object when given task name.
@@ -22,7 +22,12 @@ public class ToDo extends Task {
      * @param hasCompleted whether the task has been completed.
      */
     public ToDo(String taskName, boolean hasCompleted) {
-        super(taskName, hasCompleted);
+        this(taskName);
+        if (hasCompleted) {
+            setComplete();
+        } else {
+            setIncomplete();
+        }
     }
 
     /**

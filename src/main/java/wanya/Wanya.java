@@ -19,7 +19,6 @@ public class Wanya {
     public Wanya() {
         ui = new Ui();
         storage = new Storage("tasks.txt");
-        ui.showLoading();
         try {
             tasks = new TaskList(storage.load());
         } catch (WanyaException e) {

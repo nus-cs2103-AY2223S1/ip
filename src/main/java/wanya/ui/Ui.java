@@ -41,11 +41,12 @@ public class Ui {
      * @param taskType the initial of the task.
      * @return String message to inform user of valid date time format.
      */
-    public String showDateTimeFormat(String taskType) {
+    public static String showDateTimeFormat(String taskType) {
         String preposition = taskType.equals("E") ? "/at" : "/by";
-        return("Please enter a valid date behind " + preposition + " with the format " +
+        String dateTimeErrorMsg = ("Please enter a valid date behind " + preposition + " with the format " +
                         "\"yyyy-mm-dd HH:mm\" where time is optional.\n " +
                          "If time is provided, leave it in 24 hours format.");
+        return dateTimeErrorMsg;
     }
 
     /**
@@ -54,6 +55,7 @@ public class Ui {
      * @return String loading message.
      */
     public static String showLoading() {
-       return("....Loa....Loading....Please wait....");
+        String loadingMessage = "....Loa....Loading....Please wait....";
+       return loadingMessage;
     }
 }
