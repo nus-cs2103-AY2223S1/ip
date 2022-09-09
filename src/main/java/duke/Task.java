@@ -50,24 +50,22 @@ public class Task {
      * Changes the task from undone to done. Output in the console
      * details of the task done to inform the user about the change.
      */
-    public void markDone() {
+    public String markDone() {
 
         this.isDone = true;
 
-        System.out.println(Ui.straightLine + "\n  Good Job! You're Killing It!\n  [X] " + taskDescription
-                + "\n" + Ui.straightLine + "\n");
+        return "\n  Good Job! You're Killing It!\n  [X] " + taskDescription;
     }
 
     /**
      * Changes the task from done to undone. Output in the console
      * details of the task undone to inform user about the change.
      */
-    public void markUndone() {
+    public String markUndone() {
 
         this.isDone = false;
 
-        System.out.println(Ui.straightLine + "\n  AAaaa please get it done soon...\n  [ ] " + taskDescription
-                + "\n" + Ui.straightLine + "\n");
+        return "\n  AAaaa please get it done soon...\n  [ ] " + taskDescription;
     }
 
     /**
@@ -84,18 +82,18 @@ public class Task {
     /**
      * Outputs in the console the task added to the list of tasks.
      */
-    public void printAdded() {
-        System.out.println(Ui.straightLine + "\n added: " + taskDescription + "\n" + Ui.straightLine + "\n\n");
+    public String printAdded() {
+        return "\n added: " + taskDescription + "\n";
     }
 
     /**
      * Outputs in the console the full details of the task.
      */
-    public void printTask() {
+    public String printTask() {
         if (!isDone) {
-            System.out.println("  " + index + ".[ ] " + taskDescription);
+            return "  " + index + ".[ ] " + taskDescription;
         } else {
-            System.out.println("  " + index + ".[X] " + taskDescription);
+            return "  " + index + ".[X] " + taskDescription;
         }
 
     }
@@ -129,8 +127,8 @@ public class Task {
     /**
      * Outputs in the console the task deleted from the list of tasks.
      */
-    public void printDeleted() {
-        System.out.println(Ui.straightLine + "\n  duke.Task deleted!\n" + Ui.straightLine + "\n");
+    public String printDeleted() {
+        return "\n  duke.Task deleted!\n";
     }
 
 }

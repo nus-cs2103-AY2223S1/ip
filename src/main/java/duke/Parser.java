@@ -50,42 +50,42 @@ public class Parser {
      *
      * @param userInput the String input from the console.
      */
-    public void parse(String userInput) {
+    public String parse(String userInput) {
         if (userInput.startsWith("mark")) {
             try {
                 char i = userInput.charAt(5);
                 int index = Character.getNumericValue(i);
-                tasks.markDone(index);
+                return tasks.markDone(index);
 
             } catch (StringIndexOutOfBoundsException e) {
-                ui.printInsufficientInfoException(Ui.Keywords.mark);
+                return ui.printInsufficientInfoException(Ui.Keywords.mark);
             } catch (IndexOutOfBoundsException e) {
-                ui.printIndexOutOfBoundsException(Ui.Keywords.unmark);
+                return ui.printIndexOutOfBoundsException(Ui.Keywords.unmark);
             }
         } else if (userInput.startsWith("unmark")) {
             try {
                 char i = userInput.charAt(7);
                 int index = Character.getNumericValue(i);
-                tasks.markUndone(index);
+                return tasks.markUndone(index);
             } catch (StringIndexOutOfBoundsException e) {
-                ui.printInsufficientInfoException(Ui.Keywords.unmark);
+                return ui.printInsufficientInfoException(Ui.Keywords.unmark);
             } catch (IndexOutOfBoundsException e) {
-                ui.printIndexOutOfBoundsException(Ui.Keywords.unmark);
+                return ui.printIndexOutOfBoundsException(Ui.Keywords.unmark);
             }
         } else if (userInput.startsWith("list")) {
-            tasks.printList();
+            return tasks.printList();
         } else if (userInput.startsWith("delete")) {
             char i = userInput.charAt(7);
             int index = Character.getNumericValue(i);
 
-            tasks.deleteTask(index);
+            return tasks.deleteTask(index);
         } else if (userInput.startsWith("todo")) {
             try {
                 String task = userInput.substring(5);
 
-                tasks.addToDo(task);
+                return tasks.addToDo(task);
             } catch (StringIndexOutOfBoundsException e) {
-                ui.printInsufficientInfoException(Ui.Keywords.todo);
+                return ui.printInsufficientInfoException(Ui.Keywords.todo);
             }
         } else if (userInput.startsWith("deadline")) {
             try {
@@ -104,10 +104,10 @@ public class Parser {
                 LocalDate d1 = LocalDate.parse(dateStr, df);
                 String task = userInput.substring(9, indexOfSlash);
 
-                tasks.addDeadline(task, d1, newTime);
+                return tasks.addDeadline(task, d1, newTime);
 
             } catch (StringIndexOutOfBoundsException e) {
-                ui.printInsufficientInfoException(Ui.Keywords.deadline);
+                return ui.printInsufficientInfoException(Ui.Keywords.deadline);
             }
         } else if (userInput.startsWith("event")) {
             try {
@@ -126,17 +126,17 @@ public class Parser {
                 LocalDate d1 = LocalDate.parse(date, df);
                 String task = userInput.substring(6, indexOfSlash);
 
-                tasks.addEvent(task, d1, newTime);
+                return tasks.addEvent(task, d1, newTime);
 
             } catch (StringIndexOutOfBoundsException e) {
-                ui.printInsufficientInfoException(Ui.Keywords.event);
+                return ui.printInsufficientInfoException(Ui.Keywords.event);
             }
         } else if (userInput.startsWith("find")) {
           // search keyword only
           String keyword = userInput.substring(5);
-          tasks.findMatchingTask(keyword);
+          return tasks.findMatchingTask(keyword);
         } else {
-            ui.printUnrecognisedWord();
+            return ui.printUnrecognisedWord();
         }
     }
 

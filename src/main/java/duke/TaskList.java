@@ -23,76 +23,76 @@ public class TaskList {
         return tasks.get(index);
     }
 
-    public void addToDo(String task) {
+    public String addToDo(String task) {
         ToDo newToDo = new ToDo(false, task, tasks.size() + 1);
         tasks.add(newToDo);
 
-        newToDo.printAdded();
+        return newToDo.printAdded();
     }
 
-    public void addDeadline(String task, LocalDate d1, String newTime) {
+    public String addDeadline(String task, LocalDate d1, String newTime) {
         Deadline newDeadline = new Deadline(false, task, tasks.size() + 1, d1, newTime);
         tasks.add(newDeadline);
 
-        newDeadline.printAdded();
+        return newDeadline.printAdded();
     }
 
-    public void addEvent(String task, LocalDate d1, String newTime) {
+    public String addEvent(String task, LocalDate d1, String newTime) {
         Event newEvent = new Event(false, task, tasks.size() + 1, d1, newTime);
         tasks.add(newEvent);
 
-        newEvent.printAdded();
+        return newEvent.printAdded();
     }
 
-    public void deleteTask(int index) {
+    public String deleteTask(int index) {
         try {
-            Task t = tasks.get(index);
-            t.printDeleted();
+            Task t = tasks.get(index - 1);
+            String deleted = t.printDeleted();
             tasks.remove(index - 1);
-            System.out.println("  Now you have " + (tasks.size() - 1)+ " left\n" + ui.straightLine + "\n");
+            return deleted + "\n  Now you have " + tasks.size()+ " left\n";
         } catch (StringIndexOutOfBoundsException e) {
-            ui.printInsufficientInfoException(Ui.Keywords.delete);
+            return ui.printInsufficientInfoException(Ui.Keywords.delete);
         } catch (IndexOutOfBoundsException e) {
-            ui.printIndexOutOfBoundsException(Ui.Keywords.delete);
+            return ui.printIndexOutOfBoundsException(Ui.Keywords.delete);
         }
     }
 
-    public void markDone(int index) {
+    public String markDone(int index) {
         Task t = tasks.get(index - 1);
 
-        t.markDone();
+        return t.markDone();
     }
 
-    public void markUndone(int index) {
+    public String markUndone(int index) {
         Task t = tasks.get(index - 1);
 
-        t.markUndone();
+        return t.markUndone();
     }
 
-    public void findMatchingTask(String keyword) {
+    public String findMatchingTask(String keyword) {
+
+        String matches = "";
 
         if (tasks.isEmpty()) {
-            ui.printNoMatchingTask();
+            return ui.printNoMatchingTask();
         }
-
-        System.out.println(ui.straightLine);
 
         for (Task task: tasks) {
             if (task.getDescription().contains(keyword)) {
-                task.printTask();
+                String taskStr = task.printTask();
+                matches += taskStr + "\n";
             }
         }
 
-        System.out.println(ui.straightLine);
+        return matches;
     }
 
-    public void printList() {
+    public String printList() {
         if (tasks.isEmpty()) {
-            ui.printTaskListEmpty();
+            return ui.printTaskListEmpty();
         } else {
 
-            System.out.println(ui.straightLine);
-
+            String list = "";
             int freshIndex = 1;
 
             for (Task task : tasks) {
@@ -101,10 +101,11 @@ public class TaskList {
             }
 
             for (Task task : tasks) {
-                task.printTask();
+                String newTask = task.printTask();
+                list += newTask + "\n";
             }
 
-            System.out.println(ui.straightLine + "\n");
+            return list;
         }
     }
 

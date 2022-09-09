@@ -9,40 +9,32 @@ public class Duke {
     private static TaskList taskList;
     private static Ui ui;
 
-    public static void main(String[] args) {
+    public Duke() {
 
         ui = new Ui();
 
-        ui.printGreeting();
+        //ui.printGreeting();
         storage = new Storage("./src/main/KiwiList.txt");
 
         taskList = storage.load();
 
-        taskList.printList();
-
-        run(taskList, ui, storage);
-
     }
 
-    public static void run(TaskList taskList, Ui ui, Storage storage) {
+    public static String getTasks() {
+        return taskList.printList();
+    }
+
+    public String getResponse(String input) {
 
         Parser p = new Parser(taskList, ui);
-        Scanner sc = new Scanner(System.in);
 
-        String input = sc.nextLine();
+        String userInput = input;
 
-        while (!input.equalsIgnoreCase("Bye")) {
-
-            p.parse(input);
-
-            if (sc.hasNextLine()) {
-                input = sc.nextLine();
-            }
+        if (!userInput.equalsIgnoreCase("Bye")) {
+            return p.parse(input);
+        } else {
+            storage.save(taskList);
+            return ui.printGoodbyeMessage();
         }
-
-        storage.save(taskList);
-
-        ui.printGoodbyeMessage();
-
     }
 }

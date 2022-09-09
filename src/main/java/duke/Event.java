@@ -27,16 +27,16 @@ public class Event extends Task {
      * Changes the task from undone to done and produces output in the console
      * to let user know it has been changed.
      */
-    public void markDone() {
-        super.markDone();
+    public String markDone() {
+        return super.markDone();
     }
 
     /**
      * Changes the task from done to undone and produces output in the console
      * to let user know it has been changed.
      */
-    public void markUndone() {
-        super.markUndone();
+    public String markUndone() {
+        return super.markUndone();
     }
 
     /**
@@ -55,23 +55,23 @@ public class Event extends Task {
      * the user it has been added to list of tasks.
      */
     @Override
-    public void printAdded() {
-        System.out.println(Ui.straightLine + "\n  Looks like you have a new event:\n    [E][ ] " + this.getDescription()
-                            + " (at: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")" +
-                            "\n  " + this.getIndex() + " tasks left, 頑張れ!\n" + Ui.straightLine + "\n");
+    public String printAdded() {
+        return "\n  Looks like you have a new event:\n    [E][ ] " + this.getDescription()
+                + " (at: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")"
+                + "\n  " + this.getIndex() + " tasks left, ganbare!\n";
     }
 
     /**
      * Outputs in the console the details of the event.
      */
     @Override
-    public void printTask() {
+    public String printTask() {
         if (!this.getStatus()) {
-            System.out.println("  " + this.getIndex() + ".[E][ ] " + this.getDescription() + " (at: " +
-                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")");
+            return "  " + this.getIndex() + ".[E][ ] " + this.getDescription() + " (at: "
+                    + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")";
         } else {
-            System.out.println("  " + this.getIndex() + ".[E][X] " + this.getDescription() + " (at: " +
-                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")");
+            return "  " + this.getIndex() + ".[E][X] " + this.getDescription() + " (at: "
+                    + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")";
         }
     }
 
@@ -112,13 +112,13 @@ public class Event extends Task {
      * has been deleted.
      */
     @Override
-    public void printDeleted() {
+    public String printDeleted() {
         if (!this.getStatus()) {
-            System.out.println(Ui.straightLine + "\n  duke.Task deleted!\n    [E][ ] " + this.getDescription()
-                    + "(at: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")");
+            return "\n  duke.Task deleted!\n    [E][ ] " + this.getDescription()
+                    + "(at: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")";
         } else {
-            System.out.println(Ui.straightLine + "\n  duke.Task deleted!\n    [E][X] " + this.getDescription()
-                    + "(at: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")");
+            return "\n  duke.Task deleted!\n    [E][X] " + this.getDescription()
+                    + "(at: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")";
         }
     }
 

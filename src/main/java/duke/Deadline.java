@@ -25,15 +25,15 @@ public class Deadline extends Task {
     /**
      * Updates the deadline from incomplete to complete.
      */
-    public void markDone() {
-        super.markDone();
+    public String markDone() {
+        return super.markDone();
     }
 
     /**
      * Updates the deadline from complete to incomplete.
      */
-    public void markUndone() {
-        super.markUndone();
+    public String markUndone() {
+        return super.markUndone();
     }
 
     /**
@@ -50,23 +50,23 @@ public class Deadline extends Task {
      * Outputs the deadline added to the list of tasks in the console.
      */
     @Override
-    public void printAdded() {
-        System.out.println(Ui.straightLine + "\n  Yep, it's in!\n    [D][ ] " + this.getDescription() + " (by: " +
-                            date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")\n  " +
-                            this.getIndex() + " tasks left, 頑張れ!\n" + Ui.straightLine + "\n");
+    public String printAdded() {
+        return "\n  Yep, it's in!\n    [D][ ] " + this.getDescription() + " (by: "
+                + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")\n  "
+                + this.getIndex() + " tasks left, ganbare!\n";
     }
 
     /**
      * Outputs the full details of the deadline in the console.
      */
     @Override
-    public void printTask() {
+    public String printTask() {
         if (!this.getStatus()) {
-            System.out.println("  " + this.getIndex() + ".[D][ ] " + this.getDescription() + " (by: " +
-                                date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time + ")");
+            return "  " + this.getIndex() + ".[D][ ] " + this.getDescription() + " (by: "
+                    + date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time + ")";
         } else {
-            System.out.println("  " + this.getIndex() + ".[D][X] " + this.getDescription() + " (by: " +
-                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")");
+            return "  " + this.getIndex() + ".[D][X] " + this.getDescription() + " (by: "
+                    + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")";
         }
     }
 
@@ -105,13 +105,13 @@ public class Deadline extends Task {
     /**
      * Outputs the full details of the deadline being deleted in the console.
      */
-    public void printDeleted() {
+    public String printDeleted() {
         if (!this.getStatus()) {
-            System.out.println(Ui.straightLine + "\n  duke.Task deleted!\n    [D][ ] " + this.getDescription()
-                    + "(by: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time + ")");
+            return "\n  duke.Task deleted!\n    [D][ ] " + this.getDescription()
+                    + "(by: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time + ")";
         } else {
-            System.out.println(Ui.straightLine + "\n  duke.Task deleted!\n    [D][X] " + this.getDescription()
-                    + "(by: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time + ")");
+            return "\n  duke.Task deleted!\n    [D][X] " + this.getDescription()
+                    + "(by: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time + ")";
         }
     }
 }

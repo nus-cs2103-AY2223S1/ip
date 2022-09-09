@@ -2,8 +2,6 @@ package duke;
 
 public class ToDo extends Task {
 
-    private String straightLine = "  ----------------------------------------------------------------------------------";
-
     /**
      * A constructor to initialize the duke.ToDo object.
      *
@@ -18,15 +16,15 @@ public class ToDo extends Task {
     /**
      * Updates the duke.ToDo from incomplete to complete.
      */
-    public void markDone() {
-        super.markDone();
+    public String markDone() {
+        return super.markDone();
     }
 
     /**
      * Updates the duke.ToDo from complete to incomplete.
      */
-    public void markUndone() {
-        super.markUndone();
+    public String markUndone() {
+        return super.markUndone();
     }
 
     /**
@@ -43,20 +41,20 @@ public class ToDo extends Task {
      * Outputs the full details of the duke.ToDo added to the console.
      */
     @Override
-    public void printAdded() {
-        System.out.println(straightLine + "\n  Its been added!\n    [T][ ] " + this.getDescription()
-                + "\n  " + this.getIndex() + " tasks left! ^-^\n" + straightLine + "\n");
+    public String printAdded() {
+        return "\n  Its been added!\n    [T][ ] " + this.getDescription()
+                + "\n  " + this.getIndex() + " tasks left! ^-^\n";
     }
 
     /**
      * Outputs the full details of the duke.ToDo to the console.
      */
     @Override
-    public void printTask() {
+    public String printTask() {
         if (!this.getStatus()) {
-            System.out.println("  " + this.getIndex() + ".[T][ ] " + this.getDescription());
+            return "  " + this.getIndex() + ".[T][ ] " + this.getDescription();
         } else {
-            System.out.println("  " + this.getIndex() + ".[T][X] " + this.getDescription());
+            return "  " + this.getIndex() + ".[T][X] " + this.getDescription();
         }
     }
 
@@ -86,11 +84,11 @@ public class ToDo extends Task {
      * Outputs the full details of the duke.ToDo that is deleted to the console.
      */
     @Override
-    public void printDeleted() {
+    public String printDeleted() {
         if (!this.getStatus()) {
-            System.out.println(straightLine + "\n  duke.Task deleted!\n    [T][ ] " + this.getDescription());
+            return "\n  duke.Task deleted!\n    [T][ ] " + this.getDescription();
         } else {
-            System.out.println(straightLine + "\n  duke.Task deleted!\n    [T][X] " + this.getDescription());
+            return "\n  duke.Task deleted!\n    [T][X] " + this.getDescription();
         }
     }
 
