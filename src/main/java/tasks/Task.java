@@ -1,7 +1,9 @@
 package tasks;
 
+import java.time.LocalDateTime;
+
 /**
- * Specifies the task to be done.
+ * Specify the task to be done.
  */
 public abstract class Task {
     private String taskDescription;
@@ -31,7 +33,7 @@ public abstract class Task {
     }
 
     /**
-     * Checks whether the task is marked, and update the status icon
+     * Check whether the task is marked, and update the status icon
      * to be an "X".
      * @return Status icon on whether the task is marked or unmarked.
      */
@@ -40,11 +42,20 @@ public abstract class Task {
     }
 
     /**
-     * Gets description for this task.
+     * Get description for this task.
      * @return Task description for the task.
      */
     protected String getTaskDescription() {
         return taskDescription;
+    }
+
+    /**
+     * Check whether the task has the keyword in the task description.
+     * @param keyword Keyword to be found in task description.
+     * @return True if keyword is found, False otherwise.
+     */
+    public boolean containsKeyword(String keyword) {
+        return taskDescription.contains(keyword);
     }
 
     /**
@@ -55,16 +66,13 @@ public abstract class Task {
     public abstract String parseToFile();
 
     /**
-     * Checks whether the task has the keyword in the task description.
-     * @param keyword Keyword to be found in task description.
-     * @return True if keyword is found, False otherwise.
+     * Get the date and time of the task.
+     * @return the date and time of the task within a LocalDateTime object.
      */
-    public boolean containsKeyword(String keyword) {
-        return taskDescription.contains(keyword);
-    }
+    public abstract LocalDateTime getTaskDateTime();
 
     /**
-     * Returns a formatted task to the user.
+     * Return a formatted task to the user.
      * @return Formatted task to the user.
      */
     @Override

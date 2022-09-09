@@ -1,5 +1,7 @@
 package tasks;
 
+import java.time.LocalDateTime;
+
 /**
  * Manager class for todo tasks. Handles the
  * parsing and formatting of the task itself.
@@ -21,6 +23,16 @@ public class Todo extends Task {
     @Override
     public String parseToFile() {
         return String.format("T # %s # %s # ", super.getStatusIcon(), super.getTaskDescription());
+    }
+
+    /**
+     * Since there are no timings for a todo task,
+     * the task will return a null timing.
+     * @return null due to todo tasks not having timings.
+     */
+    @Override
+    public LocalDateTime getTaskDateTime() {
+        return null;
     }
 
     /**
