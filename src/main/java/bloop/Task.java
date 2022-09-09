@@ -57,7 +57,7 @@ public abstract class Task {
      * @param dateTime LocalDateTime object with the date and time entered by the user.
      * @return Formatted date and time.
      */
-    public String formatDateTime(LocalDateTime dateTime) {
+    public static String formatDateTime(LocalDateTime dateTime) {
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a");
         return dateTime.format(outputFormatter);
     }

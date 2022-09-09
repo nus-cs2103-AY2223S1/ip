@@ -1,52 +1,40 @@
 package bloop;
 
+
 import java.io.IOException;
-import java.util.Scanner;
+
+import javafx.application.Application;
+
+import bloop.GUI.Main;
+
 
 /**
  * Chatbot to keep track of tasks.
  */
 public class Bloop {
 
-    private static Ui ui;
+    private static Storage storage = new Storage("BloopData.txt");;
+    private static TaskList tasks = new TaskList(storage);
+    private static Parser parser = new Parser(tasks);
 
-    private static Storage storage;
-
-    private static TaskList tasks;
-
-    private static Parser parser;
-
-    /**
-     * Constructor for Bloop.
-     */
-    public Bloop() {
-        ui = new Ui();
-        storage = new Storage("BloopData.txt", ui);
-        tasks = new TaskList(ui, storage);
-    }
-
-    private static void chat() {
-        Bloop bloop = new Bloop();
-        ui.startMessage();
-        ui.formatSpecifier();
+    private static void chatStart() {
         storage.makeFile(tasks.getList());
-        parser = new Parser(tasks);
-        Scanner sc = new Scanner(System.in);
-        String text = sc.nextLine();
-        while (text.compareTo("bye") != 0) {
-            try {
-                parser.parse(text);
-            } catch (BloopException be) {
-                ui.print(be.getMessage());
-            } catch (IOException e) {
-                ui.print(e.getMessage());
-            }
-            text = sc.nextLine();
-        }
-        ui.endMessage();
     }
+
+    public String getResponse(String input) {
+        try {
+            return Parser.parse(input);
+        } catch (BloopException e) {
+            return e.getMessage();
+        } catch (IOException e) {
+            return e.getMessage();
+        }
+    }
+
+
 
     public static void main(String[] args) {
-        chat();
+        chatStart();
+        Application.launch(Main.class, args);
     }
 }

@@ -13,17 +13,14 @@ import java.util.Scanner;
 public class Storage {
 
     private String filePath;
-    private Ui ui;
 
     /**
      * Constructor for Storage object.
      *
      * @param filePath File path.
-     * @param ui Ui object.
      */
-    public Storage(String filePath, Ui ui) {
+    public Storage(String filePath) {
         this.filePath = filePath;
-        this.ui = ui;
     }
 
     /**
@@ -39,7 +36,7 @@ public class Storage {
                 addPrevTasks(tasks);
             }
         } catch (IOException e) {
-            ui.print("Couldn't create file. Sorry.");
+            System.out.println("Couldn't create file");
             System.exit(0);
         }
     }

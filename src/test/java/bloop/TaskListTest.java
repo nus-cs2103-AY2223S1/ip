@@ -10,7 +10,7 @@ class TaskListTest {
     public void addTask_emptyCommand_exceptionThrown() {
         Ui ui = new Ui();
         Storage storage = new Storage("BloopDataTest.txt", ui);
-        TaskList taskList = new TaskList(ui, storage);
+        TaskList taskList = new TaskList(storage);
         try {
             taskList.addTask("todo", 'T');
             fail();
