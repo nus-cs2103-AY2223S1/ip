@@ -1,5 +1,9 @@
 package duke.task;
 
+import duke.Parser;
+import duke.exceptions.DukeException;
+import duke.exceptions.DukeInvalidDateException;
+
 /**
  * An abstract class representing the Tasks included in Duke.
  */
@@ -49,6 +53,32 @@ public abstract class Task {
      */
     public String toStringWithIndex(int index) {
         return index + "." + this.toString();
+    }
+
+    public static Task createTask(String commandType, String[] inputs) {
+        Task task;
+        try {
+            switch(commandType) {
+            case "TODO":
+                task = new ToDo(Parser.getDescription(inputs, null), false);
+                break;
+            case "DEADLINE":
+                task = new Deadline(Parser.getDescription(inputs, "/by"),
+                        false,
+                        Parser.getTime(inputs, "/by"));
+                break;
+            case "EVENT":
+                task = new Event(Parser.getDescription(inputs, "/at"),
+                        false,
+                        Parser.getTime(inputs, "/at"));
+                break;
+            default:
+                throw new DukeException("I'm sorry, but I don't know what that means :-(");
+            }
+        } catch (NumberFormatException e) {
+            throw new DukeInvalidDateException();
+        }
+        return task;
     }
 
     /**
