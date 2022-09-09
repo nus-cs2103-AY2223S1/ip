@@ -13,6 +13,7 @@ import duke.task.TaskList;
  * App to store and keep track of tasks.
  */
 public class Duke {
+    public static final String NAME = "Duke";
     public static final String GREETING = "Hello! I'm Duke.\nWhat can I do for you?";
     public static final Path STORAGE_PATH = Paths.get(System.getProperty("user.dir"), "data", "duke.txt");
 
