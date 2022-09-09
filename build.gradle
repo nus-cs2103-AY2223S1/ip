@@ -11,7 +11,7 @@ checkstyle {
 
 group 'org.example'
 version '0.1'
-mainClassName = 'duke.services.Duke'
+mainClassName = 'duke.gui.Launcher'
 
 // Output to build/libs/Duke.jar
 shadowJar {

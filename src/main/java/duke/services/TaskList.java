@@ -13,19 +13,23 @@ public class TaskList {
     /** The tasks stored */
     private static List<Task> tasks = new ArrayList<>();
 
-    /**
-     * Gets the tasks stored
-     */
     public static List<Task> getTasks() {
         return tasks;
     }
 
     /**
+     * @param i The index of the task in the tasklist
+     * @return A string describing the task w.r.t to the tasklist
+     */
+    private static String getTaskInfo(int i) {
+        return "  " + (i + 1) + ". " + tasks.get(i);
+    }
+    /**
      * Stores the task and displays outcome
      */
     public static void addTask(Task task) {
         tasks.add(task);
-        Ui.sayLines(new String[] {
+        Duke.setReply(new String[] {
             "Got it. I've added this task:",
             "  " + task,
             "Now you have " + tasks.size() + " task" + (tasks.size() == 1 ? "" : "s") + " in the list."
@@ -66,7 +70,7 @@ public class TaskList {
      */
     public static void markTaskAsDone(String[] words) {
         Task task = tasks.get(Parser.getTaskNumber(words) - 1).markAsDone();
-        Ui.sayLines(new String[]{
+        Duke.setReply(new String[]{
             "Nice! I've marked this task as done:",
             "  " + task
         });
@@ -79,7 +83,7 @@ public class TaskList {
      */
     public static void markTaskAsNotDone(String[] words) {
         Task task = tasks.get(Parser.getTaskNumber(words) - 1).markAsNotDone();
-        Ui.sayLines(new String[]{
+        Duke.setReply(new String[]{
             "OK, I've marked this task as not done yet:",
             "  " + task
         });
@@ -92,7 +96,7 @@ public class TaskList {
      */
     public static void deleteTask(String[] words) {
         Task removedTask = tasks.remove(Parser.getTaskNumber(words) - 1);
-        Ui.sayLines(new String[]{
+        Duke.setReply(new String[]{
             "Noted. I've removed this task:",
             "  " + removedTask,
             "Now you have " + tasks.size() + " task" + (tasks.size() == 1 ? "" : "s") + " in the list."
@@ -106,9 +110,9 @@ public class TaskList {
         String[] taskDescriptions = new String[getTasks().size() + 1];
         taskDescriptions[0] = "Here are the tasks in your list:";
         for (int i = 1; i < taskDescriptions.length; ++i) {
-            taskDescriptions[i] = "  " + i + "." + tasks.get(i - 1);
+            taskDescriptions[i] = "  " + i + ". " + tasks.get(i - 1);
         }
-        Ui.sayLines(taskDescriptions);
+        Duke.setReply(taskDescriptions);
     }
 
     /**
@@ -122,14 +126,14 @@ public class TaskList {
         }
         String keyword = words.length == 1 ? "" : keywordBuilder.deleteCharAt(keywordBuilder.length() - 1).toString();
 
-        ArrayList<String> matchingTasks = new ArrayList<String>();
+        ArrayList<String> matchingTasks = new ArrayList<>();
         matchingTasks.add("Here are the tasks containing the keyword \"" + keyword + "\" :");
         for (int i = 0; i < tasks.size(); ++i) {
             Task currTask = tasks.get(i);
             if (currTask.getDescription().contains(keyword)) {
-                matchingTasks.add("  " + (i + 1) + "." + currTask);
+                matchingTasks.add("  " + (i + 1) + ". " + currTask);
             }
         }
-        Ui.sayLines(matchingTasks.toArray(String[]::new));
+        Duke.setReply(matchingTasks.toArray(String[]::new));
     }
 }
