@@ -64,6 +64,7 @@ public class TaskList {
      */
     public void delete(int index) {
         Task deletedTask = this.tasks.get(index);
+        assert deletedTask != null : "Task not found";
         this.tasks.remove(index);
         ui.printMessage("Noted. I've removed this task:");
         ui.printMessage("  " + deletedTask);
@@ -75,6 +76,7 @@ public class TaskList {
      * @param index Index of Task to be marked completed
      */
     public void markCompleted(int index) {
+        Task task = tasks.get(index);
         tasks.get(index).markCompleted();
         ui.printMessage("Nice! I've marked this task as done:");
         ui.printMessage("  " + tasks.get(index));
