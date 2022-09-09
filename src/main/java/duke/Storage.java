@@ -49,10 +49,12 @@ public class Storage {
         String fullTaskDescription = s.substring(9);
         switch (s.charAt(3)) {
         case 'T':
+            assert s.length() >= 8 : "Loaded todo task is not long enough";
             task = new ToDoTask(fullTaskDescription);
             break;
         case 'D':
             String[] parts = fullTaskDescription.split(" \\(by: ");
+            assert parts.length > 0 : "Loaded deadline task has no description";
             String deadlineDescription = parts[0];
             String deadlineDate = parts[1].substring(0, parts[1].length() - 1); // removes last bracket
             DateTimeFormatter pattern = new DateTimeFormatterBuilder()
@@ -67,6 +69,7 @@ public class Storage {
             break;
         case 'E':
             String[] sections = fullTaskDescription.split(" \\(at: ");
+            assert sections.length > 0 : "Loaded event task has no description";
             String eventDescription = sections[0];
             String eventDate = sections[1].substring(0, sections[1].length() - 1); // removes last bracket
             task = new EventTask(eventDescription, eventDate);

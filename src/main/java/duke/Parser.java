@@ -18,6 +18,8 @@ public class Parser {
      */
     public static Command parse(String fullCommand) throws DukeException {
         String[] spacedArr = fullCommand.split(" ", 2);
+
+        assert spacedArr.length >= 1 : "User input should have more than 1 word";
         
         if (spacedArr.length == 1) {
             return parseSingleWordCommand(spacedArr[0]);
