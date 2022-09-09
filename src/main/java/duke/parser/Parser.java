@@ -20,7 +20,7 @@ import duke.command.SearchCommand;
 import duke.command.TagCommand;
 import duke.command.TaggedByCommand;
 import duke.command.TaskTagsCommand;
-import duke.command.TodoCommand;
+import duke.command.ToDoCommand;
 import duke.command.UnmarkCommand;
 import duke.command.UntagCommand;
 import duke.exception.DukeException;
@@ -58,150 +58,284 @@ public class Parser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
         case MarkCommand.COMMAND_WORD:
-            try {
-                int index = Integer.parseInt(arr[1]) - 1;
-                return new MarkCommand(index);
-            } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                throw new DukeException(Ui.invalidMarkInput());
-            }
+            return parseMarkInput(arr);
         case UnmarkCommand.COMMAND_WORD:
-            try {
-                int index = Integer.parseInt(arr[1]) - 1;
-                return new UnmarkCommand(index);
-            } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                throw new DukeException(Ui.invalidUnmarkInput());
-            }
-        case TodoCommand.COMMAND_WORD:
-            try {
-                String description = arr[1];
-                return new TodoCommand(new ToDo(description));
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(Ui.invalidTaskInput(Task.TaskType.ToDo));
-            }
+            return parseUnmarkInput(arr);
+        case ToDoCommand.COMMAND_WORD:
+            return parseToDoCommand(arr);
         case DeadlineCommand.COMMAND_WORD:
-            try {
-                String info = arr[1];
-
-                String[] descriptionAndDateTime = info.split(" /by ", 2);
-                String description = descriptionAndDateTime[0];
-
-                String by = descriptionAndDateTime[1];
-                String[] dateTime = by.split(" ");
-                LocalDate day = LocalDate.parse(dateTime[0], dateFormatter);
-
-                //check if time was provided
-                if (dateTime.length == 1) {
-                    return new DeadlineCommand(new Deadline(description, day));
-                } else {
-                    LocalTime time = LocalTime.parse(dateTime[1], timeFormatter);
-                    return new DeadlineCommand(new Deadline(description, day, time));
-                }
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(Ui.invalidTaskInput(Task.TaskType.Deadline));
-            } catch (DateTimeParseException e) {
-                throw new DukeException(Ui.invalidDateTimeInput());
-            }
+            return parseDeadlineCommand(arr);
         case EventCommand.COMMAND_WORD:
-            try {
-                String info = arr[1];
-
-                String[] descriptionAndTimings = info.split(" /", 2);
-                String description = descriptionAndTimings[0];
-
-                String otherEventInfo = descriptionAndTimings[1];
-                String[] prepAndTiming = otherEventInfo.split("\\s+", 2);
-                String preposition = prepAndTiming[0];
-
-                String timings = prepAndTiming[1];
-                String[] startEndDateTimes = timings.split(" - ");
-                LocalDateTime startDateTime = LocalDateTime.parse(startEndDateTimes[0], dateTimeFormatter);
-
-                //assume user provided end date and time
-                try {
-                    LocalDateTime endDateTime = LocalDateTime.parse(startEndDateTimes[1], dateTimeFormatter);
-                    return new EventCommand(new Event(description, preposition, startDateTime, endDateTime));
-                //error indicates user only provided an end time
-                } catch (DateTimeParseException e) {
-                    LocalTime endTime = LocalTime.parse(startEndDateTimes[1], timeFormatter);
-                    return new EventCommand(new Event(description, preposition, startDateTime, endTime));
-                }
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(Ui.invalidTaskInput(Task.TaskType.Event));
-            } catch (DateTimeParseException e) {
-                throw new DukeException(Ui.invalidStartEndDateInput());
-            }
+            return parseEventCommand(arr);
         case DeleteCommand.COMMAND_WORD:
-            try {
-                int index = Integer.parseInt(arr[1]) - 1;
-                return new DeleteCommand(index);
-            } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                throw new DukeException(Ui.invalidDeleteInput());
-            }
+            return parseDeleteCommand(arr);
         case SearchCommand.COMMAND_WORD:
-            try {
-                LocalDate searchDate = LocalDate.parse(arr[1], dateFormatter);
-                return new SearchCommand(searchDate);
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(Ui.emptyDateInput());
-            } catch (DateTimeParseException e) {
-                throw new DukeException(Ui.invalidDateInput());
-            }
+            return parseSearchCommand(arr);
         case FindCommand.COMMAND_WORD:
-            try {
-                String keywords = arr[1];
-                if (keywords.equals("")) {
-                    throw new DukeException(Ui.emptyFindInput());
-                }
-                return new FindCommand(keywords);
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(Ui.emptyFindInput());
-            }
+            return parseFindCommand(arr);
         case TagCommand.COMMAND_WORD:
-            try {
-                String tagInfo = arr[1];
-                String[] taskAndTag = tagInfo.split("\\s+#", 2);
-
-                int index = Integer.parseInt(taskAndTag[0]) - 1;
-                String tagName = "#" + taskAndTag[1];
-                Tag tag = Tag.of(tagName);
-                return new TagCommand(index, tag);
-            } catch (IndexOutOfBoundsException | NumberFormatException e) {
-                throw new DukeException(Ui.invalidTagInput());
-            }
+            return parseTagCommand(arr);
         case UntagCommand.COMMAND_WORD:
-            try {
-                String tagInfo = arr[1];
-                String[] taskAndTag = tagInfo.split(" #", 2);
-
-                int index = Integer.parseInt(taskAndTag[0]) - 1;
-                String tagName = "#" + taskAndTag[1];
-                Tag tag = Tag.of(tagName);
-                return new UntagCommand(index, tag);
-            } catch (IndexOutOfBoundsException | NumberFormatException e) {
-                throw new DukeException(Ui.invalidTagInput());
-            }
+            return parseUntagCommand(arr);
         case AllTagsCommand.COMMAND_WORD:
             return new AllTagsCommand();
         case TaskTagsCommand.COMMAND_WORD:
-            try {
-                int index = Integer.parseInt(arr[1]) - 1;
-                return new TaskTagsCommand(index);
-            } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                throw new DukeException(Ui.invalidTaskTagsInput());
-            }
+            return parseTaskTagsCommand(arr);
         case TaggedByCommand.COMMAND_WORD:
-            try {
-                String tagName = arr[1];
-                if (!tagName.startsWith("#")) {
-                    tagName = "#" + tagName;
-                }
-                Tag tag = Tag.of(tagName);
-                return new TaggedByCommand(tag);
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(Ui.invalidTaggedByInput());
-            }
+            return parseTaggedByCommand(arr);
         default:
             return new DefaultCommand();
+        }
+    }
+
+    /**
+     * Parses the arguments for a "mark" command.
+     *
+     * @param inputArr Array containing the arguments.
+     * @return A MarkCommand to be executed.
+     * @throws DukeException if the user entered invalid arguments.
+     */
+    private static MarkCommand parseMarkInput(String[] inputArr) throws DukeException {
+        try {
+            int index = Integer.parseInt(inputArr[1]) - 1;
+            return new MarkCommand(index);
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw new DukeException(Ui.invalidMarkInput());
+        }
+    }
+
+    /**
+     * Parses the arguments of an "unmark" command.
+     *
+     * @param inputArr Array containing the arguments.
+     * @return A UnmarkCommand to be executed.
+     * @throws DukeException if the user entered invalid arguments.
+     */
+    private static UnmarkCommand parseUnmarkInput(String[] inputArr) throws DukeException {
+        try {
+            int index = Integer.parseInt(inputArr[1]) - 1;
+            return new UnmarkCommand(index);
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw new DukeException(Ui.invalidUnmarkInput());
+        }
+    }
+
+    /**
+     * Parses the arguments of a "todo" command.
+     *
+     * @param inputArr Array containing the arguments.
+     * @return A ToDoCommand to be executed.
+     * @throws DukeException if the user did not enter a description for the ToDo.
+     */
+    private static ToDoCommand parseToDoCommand(String[] inputArr) throws DukeException {
+        try {
+            String description = inputArr[1];
+            return new ToDoCommand(new ToDo(description));
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Ui.invalidTaskInput(Task.TaskType.ToDo));
+        }
+    }
+
+    /**
+     * Parses the arguments of a "deadline" command.
+     *
+     * @param inputArr Array containing the arguments.
+     * @return A DeadlineCommand to be executed.
+     * @throws DukeException if the user entered invalid information for the Deadline.
+     */
+    private static DeadlineCommand parseDeadlineCommand(String[] inputArr) throws DukeException {
+        try {
+            String info = inputArr[1];
+
+            String[] descriptionAndDateTime = info.split(" /by ", 2);
+            String description = descriptionAndDateTime[0];
+
+            String by = descriptionAndDateTime[1];
+            String[] dateTime = by.split(" ");
+            LocalDate day = LocalDate.parse(dateTime[0], dateFormatter);
+
+            //check if time was provided
+            if (dateTime.length == 1) {
+                return new DeadlineCommand(new Deadline(description, day));
+            } else {
+                LocalTime time = LocalTime.parse(dateTime[1], timeFormatter);
+                return new DeadlineCommand(new Deadline(description, day, time));
+            }
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Ui.invalidTaskInput(Task.TaskType.Deadline));
+        } catch (DateTimeParseException e) {
+            throw new DukeException(Ui.invalidDateTimeInput());
+        }
+    }
+
+    /**
+     * Parses the arguments of an "Event" command.
+     *
+     * @param inputArr Array containing the arguments.
+     * @return An EventCommand to be executed.
+     * @throws DukeException if the user entered invalid information for the Event.
+     */
+    private static EventCommand parseEventCommand(String[] inputArr) throws DukeException {
+        try {
+            String info = inputArr[1];
+
+            String[] descriptionAndTimings = info.split(" /", 2);
+            String description = descriptionAndTimings[0];
+
+            String otherEventInfo = descriptionAndTimings[1];
+            String[] prepAndTiming = otherEventInfo.split("\\s+", 2);
+            String preposition = prepAndTiming[0];
+
+            String timings = prepAndTiming[1];
+            String[] startEndDateTimes = timings.split(" - ");
+            LocalDateTime startDateTime = LocalDateTime.parse(startEndDateTimes[0], dateTimeFormatter);
+
+            //assume user provided end date and time
+            try {
+                LocalDateTime endDateTime = LocalDateTime.parse(startEndDateTimes[1], dateTimeFormatter);
+                return new EventCommand(new Event(description, preposition, startDateTime, endDateTime));
+            } catch (DateTimeParseException e) { // error indicates user only provided an end time
+                LocalTime endTime = LocalTime.parse(startEndDateTimes[1], timeFormatter);
+                return new EventCommand(new Event(description, preposition, startDateTime, endTime));
+            }
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Ui.invalidTaskInput(Task.TaskType.Event));
+        } catch (DateTimeParseException e) {
+            throw new DukeException(Ui.invalidStartEndDateInput());
+        }
+    }
+
+    /**
+     * Parses the arguments for a "delete" command.
+     *
+     * @param inputArr Array containing the arguments.
+     * @return A DeleteCommand to be executed.
+     * @throws DukeException if the user entered invalid arguments.
+     */
+    private static DeleteCommand parseDeleteCommand(String[] inputArr) throws DukeException {
+        try {
+            int index = Integer.parseInt(inputArr[1]) - 1;
+            return new DeleteCommand(index);
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw new DukeException(Ui.invalidDeleteInput());
+        }
+    }
+
+    /**
+     * Parses the arguments for a "search" command.
+     *
+     * @param inputArr Array containing the arguments.
+     * @return A SearchCommand to be executed.
+     * @throws DukeException if the user entered invalid arguments.
+     */
+    private static SearchCommand parseSearchCommand(String[] inputArr) throws DukeException {
+        try {
+            LocalDate searchDate = LocalDate.parse(inputArr[1], dateFormatter);
+            return new SearchCommand(searchDate);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Ui.emptyDateInput());
+        } catch (DateTimeParseException e) {
+            throw new DukeException(Ui.invalidDateInput());
+        }
+    }
+
+    /**
+     * Parses the arguments for a "find" command.
+     *
+     * @param inputArr Array containing the arguments.
+     * @return A FindCommand to be executed.
+     * @throws DukeException if the user entered invalid arguments.
+     */
+    private static FindCommand parseFindCommand(String[] inputArr) throws DukeException {
+        try {
+            String keywords = inputArr[1];
+            if (keywords.equals("")) {
+                throw new DukeException(Ui.emptyFindInput());
+            }
+
+            return new FindCommand(keywords);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Ui.emptyFindInput());
+        }
+    }
+
+    /**
+     * Parses the arguments for a "tag" command.
+     *
+     * @param inputArr Array containing the arguments.
+     * @return A TagCommand to be executed.
+     * @throws DukeException if the user entered invalid arguments.
+     */
+    private static TagCommand parseTagCommand(String[] inputArr) throws DukeException {
+        try {
+            String tagInfo = inputArr[1];
+            String[] taskAndTag = tagInfo.split("\\s+#", 2);
+
+            int index = Integer.parseInt(taskAndTag[0]) - 1;
+            //follow format of tag names since '#' was removed by .split()
+            String tagName = "#" + taskAndTag[1];
+            Tag tag = Tag.of(tagName);
+            return new TagCommand(index, tag);
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
+            throw new DukeException(Ui.invalidTagInput());
+        }
+    }
+
+    /**
+     * Parses the arguments for an "untag" command.
+     *
+     * @param inputArr Array containing the arguments.
+     * @return An UntagCommand to be executed.
+     * @throws DukeException if the user entered invalid arguments.
+     */
+    private static UntagCommand parseUntagCommand(String[] inputArr) throws DukeException {
+        try {
+            String tagInfo = inputArr[1];
+            String[] taskAndTag = tagInfo.split("\\s+#", 2);
+
+            int index = Integer.parseInt(taskAndTag[0]) - 1;
+            //follow format of tag names since '#' was removed by .split()
+            String tagName = "#" + taskAndTag[1];
+            Tag tag = Tag.of(tagName);
+            return new UntagCommand(index, tag);
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
+            throw new DukeException(Ui.invalidTagInput());
+        }
+    }
+
+    /**
+     * Parses the arguments for a "tasktags" command.
+     *
+     * @param inputArr Array containing the arguments.
+     * @return A TaskTagsCommand to be executed.
+     * @throws DukeException if the user entered invalid arguments.
+     */
+    private static TaskTagsCommand parseTaskTagsCommand(String[] inputArr) throws DukeException {
+        try {
+            int index = Integer.parseInt(inputArr[1]) - 1;
+            return new TaskTagsCommand(index);
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw new DukeException(Ui.invalidTaskTagsInput());
+        }
+    }
+
+    /**
+     * Parses the arguments for a "taggedby" command.
+     *
+     * @param inputArr Array containing the arguments.
+     * @return A TaggedByCommand to be executed.
+     * @throws DukeException if the user did not enter a tag to search for.
+     */
+    private static TaggedByCommand parseTaggedByCommand(String[] inputArr) throws DukeException {
+        try {
+            String tagName = inputArr[1];
+            if (!tagName.startsWith("#")) { //if user forgot to input correct format for the tag
+                tagName = "#" + tagName;
+            }
+            Tag tag = Tag.of(tagName);
+            return new TaggedByCommand(tag);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Ui.invalidTaggedByInput());
         }
     }
 
@@ -294,6 +428,12 @@ public class Parser {
         return event;
     }
 
+    /**
+     * Makes sense of the given string of tags and saves them.
+     *
+     * @param task Task to save the tags under.
+     * @param allTags String of tags to parse.
+     */
     private static void saveTags(Task task, String allTags) {
         String[] tagList = allTags.split(" ");
 

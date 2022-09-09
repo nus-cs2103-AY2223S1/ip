@@ -73,6 +73,7 @@ public class TaskList {
             reply += "\n  " + x + ". " + task.toString();
             x++;
         }
+
         assert x > 1 : "No tasks in task list.";
         return reply;
     }
@@ -85,13 +86,16 @@ public class TaskList {
      */
     public String add(Task t) {
         String reply;
+
         tasks.add(t);
         reply = Ui.START + "added:\n" + "     " + t;
+
         if (tasks.size() == 1) {
             reply += "\n  you now have 1 task in the list. type list to see it!";
         } else {
             reply += "\n  now you have " + tasks.size() + " tasks in the list. type list to view them.";
         }
+
         return reply;
     }
 
@@ -106,24 +110,29 @@ public class TaskList {
     public String delete(int i) throws DukeException {
         if (tasks.isEmpty()) {
             return Ui.START + "hmm, you do not have any tasks in your list to delete. add some now!";
-        } else {
-            String reply = "";
-            try {
-                Task t = tasks.remove(i);
-                reply += Ui.START + "okay! i have deleted the following task from your list:";
-                reply += "\n     " + t;
-                if (tasks.size() == 0) {
-                    reply += "\n  your list is now empty. time to add some more!";
-                } else if (tasks.size() == 1) {
-                    reply += "\n  you now have 1 task remaining in the list. type list to see it!";
-                } else {
-                    reply += "\n  now you have " + tasks.size() + " tasks in the list. type list to view them.";
-                }
-                return reply;
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(Ui.requestValidInput(tasks.size()));
-            }
         }
+
+        Task t;
+
+        try {
+            t = tasks.remove(i);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Ui.requestValidInput(tasks.size()));
+        }
+
+        String reply = "";
+        reply += Ui.START + "okay! i have deleted the following task from your list:";
+        reply += "\n     " + t;
+
+        if (tasks.isEmpty()) {
+            reply += "\n  your list is now empty. time to add some more!";
+        } else if (tasks.size() == 1) {
+            reply += "\n  you now have 1 task remaining in the list. type list to see it!";
+        } else {
+            reply += "\n  now you have " + tasks.size() + " tasks in the list. type list to view them.";
+        }
+
+        return reply;
     }
 
     /**
@@ -142,6 +151,7 @@ public class TaskList {
                 x++;
             }
         }
+
         if (x == 1) {
             return Ui.START + "There are no tasks occurring on " + date + ".";
         } else {
@@ -166,6 +176,7 @@ public class TaskList {
                 x++;
             }
         }
+
         if (x == 1) {
             return Ui.START + "there are no tasks matching the search term '"
                     + keyword + "'.";
@@ -184,18 +195,21 @@ public class TaskList {
      * @throws DukeException if the user entered an invalid index.
      */
     public String mark(int t) throws DukeException {
+        if (tasks.isEmpty()) {
+            return Ui.START + "hmm, you do not have any tasks in your list to be marked. add some now!";
+        }
+
+        Task doneTask;
+
         try {
-            if (tasks.isEmpty()) {
-                return Ui.START + "hmm, you do not have any tasks in your list to be marked. add some now!";
-            } else {
-                Task doneTask = tasks.get(t);
-                doneTask.setDone();
-                return Ui.START + "good job! this task has been marked as done:"
-                        + "\n     " + doneTask;
-            }
+            doneTask = tasks.get(t);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(Ui.requestValidInput(tasks.size()));
         }
+
+        doneTask.setDone();
+        return Ui.START + "good job! this task has been marked as done:"
+                + "\n     " + doneTask;
     }
 
     /**
@@ -211,14 +225,17 @@ public class TaskList {
             return Ui.START + "hmm, you do not have any tasks in your list. add some now!";
         }
 
+        Task undoneTask;
+
         try {
-            Task undoneTask = tasks.get(t);
-            undoneTask.setUndone();
-            return Ui.START + "ok, i've marked this task as not done yet:"
-                    + "\n     " + undoneTask;
+            undoneTask = tasks.get(t);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(Ui.requestValidInput(tasks.size()));
         }
+
+        undoneTask.setUndone();
+        return Ui.START + "ok, i've marked this task as not done yet:"
+                + "\n     " + undoneTask;
     }
 
     /**
@@ -235,12 +252,15 @@ public class TaskList {
             return Ui.START + "you do not have any tasks in your list to be tagged. add some now!";
         }
 
+        Task task;
+
         try {
-            Task task = tasks.get(t);
-            return task.addTag(tag);
+            task = tasks.get(t);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(Ui.requestValidInput(tasks.size()));
         }
+
+        return task.addTag(tag);
     }
 
     /**
@@ -257,12 +277,15 @@ public class TaskList {
             return Ui.START + "there are no tasks in your list. add some now!";
         }
 
+        Task task;
+
         try {
-            Task task = tasks.get(t);
-            return task.deleteTag(tag);
+            task = tasks.get(t);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(Ui.requestValidInput(tasks.size()));
         }
+
+        return task.deleteTag(tag);
     }
 
     /**
@@ -277,12 +300,15 @@ public class TaskList {
             return Ui.START + "there are no tasks in your list. add some now!";
         }
 
+        Task task;
+
         try {
-            Task task = tasks.get(t);
-            return task.printTags();
+            task = tasks.get(t);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(Ui.requestValidInput(tasks.size()));
         }
+
+        return task.printTags();
     }
 
     /**
