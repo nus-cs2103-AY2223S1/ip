@@ -1,4 +1,8 @@
 package org.Olivia.calendar;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * a specific entry in a calendar
  * over the course of the development process, i will try to make this as close to the ics file format as possible
@@ -7,10 +11,18 @@ package org.Olivia.calendar;
 public class CalendarEntry {
     private String title;
     private boolean isCompleted;
+    private List<String> tags;
 
     public CalendarEntry(String title){
         this.title=title;
         this.isCompleted =false;
+        this.tags=new ArrayList<String>();
+    }
+
+    public CalendarEntry(String title, List<String> tags){
+        this.title=title;
+        this.isCompleted =false;
+        this.tags=tags;
     }
 
     public int markAsCompleted(){
@@ -36,6 +48,18 @@ public class CalendarEntry {
         return this.title;
     }
 
+    public List<String> getTags(){
+        return this.tags;
+    }
+
+    public String getTagsAsString(){
+        String ans="";
+        for (String tag: tags){
+            ans=ans+"#"+tag+" ";
+        }
+        return ans;
+    }
+
     @Override
     public String toString(){
         String ans="";
@@ -45,7 +69,7 @@ public class CalendarEntry {
         else {
             ans=ans+"[ ] ";
         }
-        return ans+this.title;
+        return ans+this.title+" "+this.getTagsAsString();
     }
 
     @Override

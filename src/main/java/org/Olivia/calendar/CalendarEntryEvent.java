@@ -1,5 +1,7 @@
 package org.Olivia.calendar;
 
+import java.util.List;
+
 /**
  * represents an event on the calendar (i.e. a task with a start-time and an end-time)
  * It takes all the parameters as Strings and parse them using CalendarTime.parseInput()
@@ -13,7 +15,11 @@ public class CalendarEntryEvent extends CalendarEntry {
         this.startTime = CalendarTime.parseInput(startTime);
         this.endTime = CalendarTime.parseInput(endTime);
     }
-
+    public CalendarEntryEvent(String title, String startTime, String endTime, List<String> tags) throws Exception {
+        super(title, tags);
+        this.startTime = CalendarTime.parseInput(startTime);
+        this.endTime = CalendarTime.parseInput(endTime);
+    }
     @Override
     public String toString(){
         return "[E]"+super.toString()+" (at: "+this.startTime.toString() +" - "+this.endTime.toString() +")";

@@ -76,6 +76,9 @@ public class CalendarTime {
      * @throws Exception cannot parse e input string
      */
     public static CalendarTime parseInput(String input) throws Exception {
+        if (input.indexOf("#")!=-1) {
+            input = input.substring(0,input.indexOf("#"));
+        }
         input = stripPaddingBlanks(input);
         //both date (/) and time(:) are present but no blank is present
         //or length of the input string is not expected

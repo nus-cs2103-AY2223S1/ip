@@ -1,11 +1,13 @@
 package org.Olivia.IO;
 
+import org.Olivia.Dispatchers.GuiEventDispatcher;
 import org.Olivia.calendar.*;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -26,8 +28,9 @@ public class FileHandler {
     }
 
     private CalendarEntry parseTodoEntry(String line) throws Exception{
+        List<String> tags= GuiEventDispatcher.parseTags(line);
         CalendarEntry ans;
-        ans = new CalendarEntryTodo(line.substring(7));
+        ans = new CalendarEntryTodo(line.substring(7), tags);
         if (line.substring(3, 6).equals("[X]")) {
             ans.markAsCompleted();
         }
@@ -35,8 +38,9 @@ public class FileHandler {
     }
 
     private CalendarEntry parseDeadlineEntry(String line) throws Exception{
+        List<String> tags= GuiEventDispatcher.parseTags(line);
         CalendarEntry ans;
-        ans = new CalendarEntryDeadline(line.substring(7, line.indexOf(" (by: ")), line.substring(line.indexOf(" (by: ") + 6, line.length() - 1));
+        ans = new CalendarEntryDeadline(line.substring(7, line.indexOf(" (by: ")), line.substring(line.indexOf(" (by: ") + 6, line.length() - 1), tags);
         if (line.substring(3, 6).equals("[X]")) {
             ans.markAsCompleted();
         }
@@ -44,12 +48,13 @@ public class FileHandler {
     }
 
     private CalendarEntry parseEventEntry(String line) throws Exception{
+        List<String> tags= GuiEventDispatcher.parseTags(line);
         CalendarEntry ans;
         String time = line.substring(line.indexOf(" (at: ") + 6);
         String startTime = time.split(" - ")[0];
         String endTime = time.split(" - ")[1];
         endTime = endTime.substring(0, endTime.length() - 1);
-        ans = new CalendarEntryEvent(line.substring(7, line.indexOf(" (at: ")), startTime, endTime);
+        ans = new CalendarEntryEvent(line.substring(7, line.indexOf(" (at: ")), startTime, endTime, tags);
         if (line.substring(3, 6).equals("[X]")) {
             ans.markAsCompleted();
         }

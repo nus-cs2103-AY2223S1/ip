@@ -1,4 +1,7 @@
 package org.Olivia.calendar;
+
+import java.util.List;
+
 /**
  * represents a deadline on the calendar (i.e. a task with a single time)
  * It takes all the parameters as Strings and parse them using CalendarTime.parseInput()
@@ -8,6 +11,11 @@ public class CalendarEntryDeadline extends CalendarEntry {
     private CalendarTime time;
     public CalendarEntryDeadline(String title, String time) throws Exception {
         super(title);
+        this.time=CalendarTime.parseInput(time);
+    }
+
+    public CalendarEntryDeadline(String title, String time, List<String> tags) throws Exception {
+        super(title, tags);
         this.time=CalendarTime.parseInput(time);
     }
 

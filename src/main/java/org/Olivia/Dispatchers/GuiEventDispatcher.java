@@ -12,6 +12,7 @@ import org.Olivia.IO.UiHandler;
 import org.Olivia.calendar.*;
 
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -70,10 +71,28 @@ public class GuiEventDispatcher {
                 this.table.deleteEntry(Integer.parseInt(args[1])) + "\n";
     }
 
+    public static List<String> parseTags(String input){
+        if (input.indexOf("#")==-1){
+            return new ArrayList<>();
+        }
+        input=input.substring(input.indexOf("#"));
+        List<String> ans=new ArrayList<>();
+        String[] tags=input.split("#");
+
+        for (String tag: tags){
+            tag=tag.trim();
+            if (!tag.equals("")){
+                ans.add(tag);
+            }
+        }
+        return ans;
+    }
+
     private String addEntryToCalendar(String input) throws Exception {
         String[] args = input.toLowerCase().split(" ");
+        List<String> tags=parseTags(input);
         if (args[0].equals("todo") && args.length >= 2) {
-            CalendarEntryTodo entry = new CalendarEntryTodo(input.substring(5));
+            CalendarEntryTodo entry = new CalendarEntryTodo(input.substring(5), tags);
             int status = this.table.addEntry(entry);
             if (status == 200) {
                 disk.syncToFile(this.table);
@@ -89,7 +108,7 @@ public class GuiEventDispatcher {
             input = input.substring(9);
             String time = input.substring(input.indexOf("/by") + 4);
             String title = input.substring(0, input.indexOf("/by") - 1);
-            CalendarEntryDeadline entry = new CalendarEntryDeadline(title, time);
+            CalendarEntryDeadline entry = new CalendarEntryDeadline(title, time, tags);
             int status = this.table.addEntry(entry);
             if (status == 200) {
                 disk.syncToFile(this.table);
@@ -105,7 +124,7 @@ public class GuiEventDispatcher {
             input = input.substring(6);
             String time = input.substring(input.indexOf("/at") + 4);
             String title = input.substring(0, input.indexOf("/at") - 1);
-            CalendarEntryEvent entry = new CalendarEntryEvent(title, time.split(" - ")[0], time.split(" - ")[1]);
+            CalendarEntryEvent entry = new CalendarEntryEvent(title, time.split(" - ")[0], time.split(" - ")[1], tags);
             int status = this.table.addEntry(entry);
             if (status == 200) {
                 disk.syncToFile(this.table);
