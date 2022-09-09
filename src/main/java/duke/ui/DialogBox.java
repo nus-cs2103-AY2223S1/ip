@@ -37,7 +37,6 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         this.dialog.setText(text);
         displayPicture.setImage(img);
     }
@@ -50,6 +49,7 @@ public class DialogBox extends HBox {
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
+        setStyle("-fx-background-color: #FFCCFF");
     }
 
     /**
