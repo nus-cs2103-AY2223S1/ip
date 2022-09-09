@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.Storage;
+import duke.exceptions.DukeInvalidParameterException;
 import duke.ui.Ui;
 import duke.task.TaskList;
 
@@ -27,7 +28,7 @@ public class DeleteCommand implements Command{
      * @param storage Storage created when starting Duke.
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) {
+    public String execute(TaskList tasks, Storage storage) throws DukeInvalidParameterException {
         String res = tasks.delete(TO_DELETE);
         storage.refresh(tasks);
         return res;

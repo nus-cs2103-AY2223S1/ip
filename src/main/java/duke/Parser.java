@@ -1,6 +1,7 @@
 package duke;
 
 import duke.command.*;
+import duke.exceptions.DukeException;
 
 import java.time.LocalDate;
 
@@ -22,30 +23,27 @@ public class Parser {
         String[] inputs = input.split(" ", 2);
         String head = inputs[0].toUpperCase();
         Command res;
-        try {
-            switch (head) {
-            case "BYE":
-                res = new ExitCommand();
-                break;
-            case "LIST":
-                res = new ListCommand();
-                break;
-            case "MARK":
-                res = new MarkCommand(Integer.parseInt(inputs[1]) - 1);
-                break;
-            case "UNMARK":
-                res = new UnmarkCommand(Integer.parseInt(inputs[1]) - 1);
-                break;
-            case "DELETE":
-                res = new DeleteCommand(Integer.parseInt(inputs[1]) - 1);
-                break;
-            default:
-                res = new AddCommand(inputs);
-            }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeException("Missing parameters (require Integer) for the command!");
-        } catch (NumberFormatException e) {
-            throw new DukeException("Invalid parameters (require Integer) for the command!");
+        switch (head) {
+        case "BYE":
+            res = new ExitCommand();
+            break;
+        case "LIST":
+            res = new ListCommand();
+            break;
+        case "MARK":
+            res = new MarkCommand(Integer.parseInt(inputs[1]) - 1);
+            break;
+        case "UNMARK":
+            res = new UnmarkCommand(Integer.parseInt(inputs[1]) - 1);
+            break;
+        case "DELETE":
+            res = new DeleteCommand(Integer.parseInt(inputs[1]) - 1);
+            break;
+        case "FIND":
+            res = new FindCommand(inputs[1]);
+            break;
+        default:
+            res = new AddCommand(inputs);
         }
         return res;
     }

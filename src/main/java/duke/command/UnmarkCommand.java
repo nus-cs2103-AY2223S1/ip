@@ -1,7 +1,7 @@
 package duke.command;
 
 import duke.Storage;
-import duke.ui.Ui;
+import duke.exceptions.DukeInvalidParameterException;
 import duke.task.TaskList;
 
 /**
@@ -28,8 +28,13 @@ public class UnmarkCommand implements Command{
      * @param storage Storage created when starting Duke.
      */
     @Override
-    public String execute(TaskList tasks, Storage storage) {
-        String res = tasks.unmark(TO_UN_MARK);
+    public String execute(TaskList tasks, Storage storage) throws DukeInvalidParameterException {
+        String res;
+        try {
+            res = tasks.unmark(TO_UN_MARK);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new DukeInvalidParameterException("target to unmark does not exist!");
+        }
         storage.refresh(tasks);
         return res;
     }

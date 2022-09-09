@@ -1,6 +1,7 @@
 package duke;
 
 import duke.command.Command;
+import duke.exceptions.DukeException;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
@@ -34,9 +35,12 @@ public class Duke {
         try {
             Command c = Parser.parse(input);
             res = c.execute(tasks, storage);
+        } catch (NumberFormatException e) {
+            throw new DukeException("Invalid parameters (require Integer) for the command!");
         } catch (DukeException e) {
             res = Ui.getErrorMessage(e.getMessage());
         }
+        assert res != null;
         return res;
     }
 }

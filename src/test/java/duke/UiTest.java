@@ -24,25 +24,4 @@ public class UiTest {
     public void tearDown() {
         System.setOut(standardOut);
     }
-
-    /*
-    @Test
-    public void dukePrintTest() {
-        Ui.dukePrint("hello");
-        assertEquals("____________________________________________________________\n" +
-                "     hello\n" +
-                "     ____________________________________________________________",
-                outputStreamCaptor.toString().trim());
-    }
-
-    @Test
-    public void showWelcomeTest() {
-        new Ui().showWelcome();
-        assertEquals("____________________________________________________________\n" +
-                        "     Oi! I'm Dook\n" +
-                        "     What's up?\n" +
-                        "     Please type your date and time in this format: yyyy-mm-dd\n" +
-                        "     ____________________________________________________________",
-                outputStreamCaptor.toString().trim());
-    } */
 }

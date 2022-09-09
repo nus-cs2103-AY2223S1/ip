@@ -1,5 +1,6 @@
 package duke;
 
+import duke.exceptions.DukeException;
 import duke.task.*;
 
 import java.io.File;

@@ -1,13 +1,16 @@
 package duke.command;
 
-import duke.DukeException;
+import duke.exceptions.DukeException;
 import duke.Parser;
 import duke.Storage;
-import duke.ui.Ui;
+import duke.exceptions.DukeInvalidDateException;
 import duke.task.Deadline;
+import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.ToDo;
+
+
 
 /**
  * Represents the command for the addition of new tasks to Duke's TaskList.
@@ -36,22 +39,26 @@ public class AddCommand implements Command {
     @Override
     public String execute(TaskList tasks, Storage storage) throws DukeException {
         Task task;
-        switch(commandType) {
-        case "TODO":
-            task = new ToDo(Parser.getDescription(inputs, null), false);
-            break;
-        case "DEADLINE":
-            task = new Deadline(Parser.getDescription(inputs, "/by"),
-                    false,
-                    Parser.getTime(inputs, "/by"));
-            break;
-        case "EVENT":
-            task = new Deadline(Parser.getDescription(inputs, "/at"),
-                    false,
-                    Parser.getTime(inputs, "/at"));
-            break;
-        default:
-            throw new DukeException("I'm sorry, but I don't know what that means :-(");
+        try {
+            switch(commandType) {
+            case "TODO":
+                task = new ToDo(Parser.getDescription(inputs, null), false);
+                break;
+            case "DEADLINE":
+                task = new Deadline(Parser.getDescription(inputs, "/by"),
+                        false,
+                        Parser.getTime(inputs, "/by"));
+                break;
+            case "EVENT":
+                task = new Event(Parser.getDescription(inputs, "/at"),
+                        false,
+                        Parser.getTime(inputs, "/at"));
+                break;
+            default:
+                throw new DukeException("I'm sorry, but I don't know what that means :-(");
+            }
+        } catch (NumberFormatException e) {
+            throw new DukeInvalidDateException();
         }
         String res = tasks.add(task);
         storage.addTaskToStorage(task);
