@@ -7,6 +7,9 @@ import javafx.application.Application;
  */
 public class Launcher {
     public static void main(String[] args) {
+
+        // calling launch method sends String array of arguments into launch method
+        // invokes start method
         Application.launch(Main.class, args);
     }
 }
