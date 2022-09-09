@@ -14,6 +14,7 @@ public enum Command {
     FIND,
     LIST,
     MARK,
+    TAG,
     TODO,
     UNMARK;
 
@@ -44,6 +45,20 @@ public enum Command {
                     output += String.valueOf(i + 1) + "." + task + "\n";
                 }
                 break;
+
+            case TAG:
+                if (input.length() == 3) {
+                    throw new DukeException("Choose which task to tag!");
+                }
+
+                if (input.length() ==5) {
+                    throw new DukeException("Choose your tag for this task!");
+                }
+                taskNumber = Integer.parseInt(input.substring(4, 5));
+                String tag = input.substring(6);
+                output += tasks.get(taskNumber - 1).setTag(tag);
+                break;
+                
 
             case MARK:
                 if (input.length() == 4) {
@@ -131,7 +146,7 @@ public enum Command {
                     }
                 }
                 break;
-
+            
             default:
                 throw new DukeException("I'm sorry, but I dont know what you mean :(");
 

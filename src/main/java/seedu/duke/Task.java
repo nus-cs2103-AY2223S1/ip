@@ -8,6 +8,7 @@ public class Task {
     protected String description;
     /* Represents whether the task is completed */
     protected boolean isDone;
+    protected String tag;
 
     /**
      * Constructor for Task
@@ -17,6 +18,7 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        this.tag = "";
     }
 
     /**
@@ -42,7 +44,7 @@ public class Task {
      */
     public String setDone() {
         this.isDone = true;
-        return "Nice! I've marked this task as done:\n[X] " + this.description;
+        return "Nice! I've marked this task as done:\n[X] " + this.description + this.tag;
     }
 
     /**
@@ -50,11 +52,16 @@ public class Task {
      */
     public String setUndone() {
         this.isDone = false;
-        return "OK, I've marked this task as not done yet:\n[ ] " + this.description;
+        return "OK, I've marked this task as not done yet:\n[ ] " + this.description + this.tag;
+    }
+
+    public String setTag(String tag) {
+        this.tag = String.format("# %s ", tag);
+        return "Got it! I have set the tag of this task:\n" + this.description + this.tag;
     }
 
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "] " + this.getDescription();
+        return "[" + this.getStatusIcon() + "] " + this.getDescription() + this.tag;
     }
 }
