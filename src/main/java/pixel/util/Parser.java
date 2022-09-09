@@ -142,6 +142,11 @@ public class Parser { // inner class
                     + UserInterface.PROMPT_MESSAGE);
             }
 
+        } catch (DuplicateEntryException e) {
+            return (e + "\n"
+                + "You may want to add a different task :) \n"
+                + UserInterface.AFTER_INVALID_INPUT + "\n"
+                + UserInterface.PROMPT_MESSAGE);
         }
     }
 

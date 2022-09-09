@@ -1,2 +1,2 @@
-T | Not Done | werewer| 
-D | Not Done | rregergre| 
+T | Not Done | s| 
+T | Not Done | g| 

@@ -20,6 +20,15 @@ public class TaskList {
         this.filePath = filePath;
     }
 
+    private boolean findDuplicate(Task newTask) {
+        for (Task task : Storage.INPUT_TASKS) {
+            if (task.toString().equals(newTask.toString())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public String listTasks() {
         String output = "Here are the tasks in your list: \n";
         for (int i = 0; i < Pixel.count; i++) {
@@ -79,17 +88,14 @@ public class TaskList {
         }
         default: //shouldn't reach here
             throw new IncorrectFormatException("Incorrect format of input!"); // programme breaks
-
         }
-
 
         // CHECK IF TASK ALREADY EXISTS
         // If yes, throw exception
-        if (Storage.INPUT_TASKS.contains(newTask)) {
+        if (findDuplicate(newTask)) {
             throw new DuplicateEntryException("Same task already exists in database!");
         }
         Storage.INPUT_TASKS.add(Pixel.count, newTask);
-
 
         // index of last element in ArrayList is always smaller than size
         assert Storage.INPUT_TASKS.size() == (Pixel.count + 1)
@@ -103,6 +109,7 @@ public class TaskList {
         Storage.appendAllTasksToFile(this.filePath);
 
         Pixel.count += 1;
+
         return ("Got it. I've added this task: \n"
             + newTask + "\n"
             + "Now you have " + Pixel.count + " tasks in the list.");
