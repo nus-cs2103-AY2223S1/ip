@@ -33,7 +33,7 @@ public class MainWindow extends AnchorPane {
     public void setFred(Fred f) {
         fred = f;
         dialogContainer.getChildren().addAll(
-                DialogBox.getFredDialog("Hello! I'm fred.Fred! What can I do for you?", fredImage)
+                DialogBox.getFredDialog("Hello! I'm Fred! What can I do for you?", fredImage)
         );
     }
 
