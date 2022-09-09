@@ -110,6 +110,22 @@ public class TaskList {
     }
 
     /**
+     * Returns all Deadlines.
+     *
+     * @return ArrayList of all Deadlines
+     */
+    public ArrayList<Deadline> getDeadlines() {
+        ArrayList<Deadline> deadlineArrayList = new ArrayList<Deadline>();
+        for (int i = 0; i < this.tasks.size(); i++) {
+            if (this.tasks.get(i) instanceof Deadline) {
+                Deadline deadline = (Deadline) tasks.get(i);
+                deadlineArrayList.add(deadline);
+            }
+        }
+        return deadlineArrayList;
+    }
+
+    /**
      * Returns String representation of TaskList.
      *
      * @return String representation of TaskList

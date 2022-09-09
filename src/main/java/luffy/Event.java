@@ -1,5 +1,7 @@
 package luffy;
 
+import java.time.LocalDate;
+
 /**
  * Event class to represent an event.
  *
@@ -12,7 +14,7 @@ public class Event extends Task {
      * @param description Description of Event
      * @param at Time of Event
      */
-    public Event(String description, String at) {
+    public Event(String description, LocalDate at) {
         super(description);
         this.type = "[E]";
         this.at = at;

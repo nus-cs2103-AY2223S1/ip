@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -56,11 +57,13 @@ public class Storage {
                         tasks.add(currentTask);
                         break;
                     case "[E]":
-                        currentTask = new Event(taskDescription, taskLine[3]);
+                        LocalDate at = LocalDate.parse(taskLine[3]);
+                        currentTask = new Event(taskDescription, at);
                         tasks.add(currentTask);
                         break;
                     case "[D]":
-                        currentTask = new Deadline(taskDescription, taskLine[3]);
+                        LocalDate by = LocalDate.parse(taskLine[3]);
+                        currentTask = new Deadline(taskDescription, by);
                         tasks.add(currentTask);
                         break;
                     }

@@ -1,5 +1,7 @@
 package luffy;
 
+import java.time.LocalDate;
+
 /**
  * Task abstract class to represent a task. Tasks consist of Deadlines, Events and Todos.
  *
@@ -9,8 +11,8 @@ public abstract class Task {
     protected String description;
     protected boolean isDone;
     protected String type;
-    protected String by;
-    protected String at;
+    protected LocalDate by;
+    protected LocalDate at;
 
     /**
      * Abstract constructor for Task.

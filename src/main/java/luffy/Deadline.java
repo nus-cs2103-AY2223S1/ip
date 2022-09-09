@@ -1,5 +1,7 @@
 package luffy;
 
+import java.time.LocalDate;
+
 /**
  * Deadline class to represent a deadline.
  *
@@ -13,10 +15,19 @@ public class Deadline extends Task{
      * @param description Description of Deadline
      * @param by Deadline for deadline task
      */
-    public Deadline(String description, String by) {
+    public Deadline(String description, LocalDate by) {
         super(description);
         this.type = "[D]";
         this.by = by;
+    }
+
+    /**
+     * Returns By of Deadline.
+     *
+     * @return By of Deadline
+     */
+    public LocalDate getBy() {
+        return this.by;
     }
 
     /**

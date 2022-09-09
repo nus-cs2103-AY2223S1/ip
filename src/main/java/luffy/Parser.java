@@ -2,6 +2,9 @@ package luffy;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 /**
@@ -90,7 +93,7 @@ public class Parser {
         try {
             String[] splitString = s.split(" /by ");
             LocalDate deadlineDate = LocalDate.parse(splitString[1]);
-            Task newTask = new Deadline(splitString[0].substring(9), deadlineDate.toString());
+            Task newTask = new Deadline(splitString[0].substring(9), deadlineDate);
             tasks.add(newTask);
             return ui.returnTaskListStatus(tasks);
         } catch (StringIndexOutOfBoundsException e) {
@@ -113,7 +116,7 @@ public class Parser {
         try {
             String[] splitString = s.split(" /at ");
             LocalDate eventDate = LocalDate.parse(splitString[1]);
-            Task newTask = new Event(splitString[0].substring(6), eventDate.toString());
+            Task newTask = new Event(splitString[0].substring(6), eventDate);
             tasks.add(newTask);
             return ui.returnTaskListStatus(tasks);
         } catch (StringIndexOutOfBoundsException e) {
@@ -162,6 +165,20 @@ public class Parser {
         }
     }
 
+    public String listDeadlines(String s, TaskList tasks) {
+        ArrayList<Deadline> deadlines = tasks.getDeadlines();
+        String responseString = "";
+        if (deadlines.size() > 0) {
+            Collections.sort(deadlines, Comparator.comparing(Deadline::getBy));
+            for (int i = 0; i < deadlines.size(); i++) {
+                responseString += (deadlines.get(i) + "\n");
+            }
+            return responseString;
+        } else {
+            return "There are no current Deadlines!";
+        }
+    }
+
     /**
      * Parses through user inputs and returns appropriate response.
      *
@@ -178,6 +195,8 @@ public class Parser {
             return unmarkTask(s, tasks);
         } else if (s.length() >= 4 && s.substring(0, 4).equals("todo")) {
             return createTodo(s, tasks);
+        } else if (s.length() >= 9 && s.substring(0, 9).equals("deadlines")) {
+            return listDeadlines(s, tasks);
         } else if (s.length() >= 8 && s.substring(0, 8).equals("deadline")) {
             return createDeadline(s, tasks);
         } else if (s.length() >= 5 && s.substring(0, 5).equals("event")) {
