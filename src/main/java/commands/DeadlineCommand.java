@@ -49,7 +49,7 @@ public class DeadlineCommand extends Command {
         String description = Parser.splitArrayIntoSubstrings(this.args, "/by").get(0);
 
         String unparsedDatetime = Parser.splitArrayIntoSubstrings(this.args, "/by").get(1);
-        assert unparsedDatetime.equals("") : "Parsing error occured in Deadline: datetime";
+        assert !unparsedDatetime.equals("") : "Parsing error occured in Deadline: datetime";
 
         LocalDateTime taskDeadline = parseDeadlineDatetime(unparsedDatetime);
         Deadline newDeadline = new Deadline(description, taskDeadline);

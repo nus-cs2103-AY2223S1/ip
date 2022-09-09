@@ -33,9 +33,9 @@ public class EventCommand extends Command {
         String unparsedStartDateTime = unparsedTimeRange.split("-")[0].strip();
         String unparsedEndDateTime = unparsedTimeRange.split("-")[1].strip();
 
-        assert unparsedTimeRange.equals("") : "Parsing error occured in Event: time range";
-        assert unparsedStartDateTime.equals("") : "Parsing error occured in Event: start datetime";
-        assert unparsedEndDateTime.equals("") : "Parsing error occured in Event: end datetime";
+        assert !unparsedTimeRange.equals("") : "Parsing error occured in Event: time range";
+        assert !unparsedStartDateTime.equals("") : "Parsing error occured in Event: start datetime";
+        assert !unparsedEndDateTime.equals("") : "Parsing error occured in Event: end datetime";
 
         if (!Parser.isValidDatetime(unparsedStartDateTime, EVENT_DATETIME_START_OR_END_FORMAT) || !Parser.isValidDatetime(unparsedEndDateTime, EVENT_DATETIME_START_OR_END_FORMAT)) {
             throw new WrongDatetimeFormatException(EVENT_DATETIME_INPUT_FORMAT);

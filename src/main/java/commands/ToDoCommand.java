@@ -22,8 +22,8 @@ public class ToDoCommand extends Command {
     @Override
     public String execute(TaskList taskList) {
         String todoItem = String.join(" ", this.args);
-        assert todoItem.equals("") : "Parsing error occured in Todo: todo item";
-        
+        assert !todoItem.equals("") : "Parsing error occured in Todo: todo item";
+
         ToDo newToDo = new ToDo(String.join(" ", this.args));
         taskList.addTask(newToDo);
         return ChatResponse.returnChatAddTask(newToDo, taskList);
