@@ -14,6 +14,8 @@ import duke.util.TaskList;
  * @author hyuchen@u.nus.edu
  */
 public class MarkCommand extends Command {
+    private static final String MARK_TASK = "Great Job on completing this task! ^.^ :\n";
+    private static final String UNMARK_TASK = "Grrr, remember to finish your task! =3=:\n";
     private final ArrayList<String> words;
     private final String firstWord;
 
@@ -37,17 +39,18 @@ public class MarkCommand extends Command {
      * @param ui the user interface object
      * @throws DukeException if the user input is unrecognised
      */
-    public void execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
+    public String execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
+        StringBuilder output = new StringBuilder();
+        int taskNum = Integer.parseInt(words.get(0));
         switch (firstWord) {
         case "mark":
             // Work on implementing error for empty mark argument
-            int taskNum = Integer.parseInt(words.get(0));
             if (taskNum > 0 && taskNum <= tasklist.tasks.size()) {
                 tasklist.tasks.get(taskNum - 1).markDone();
-                System.out.println(Messages.SPACER + "\n"
-                        + "Great Job on completing this task! ^.^ :\n"
-                        + tasklist.printTaskStatus(taskNum - 1) + "\n"
-                        + Messages.SPACER);
+                output.append(Messages.SPACER).append("\n")
+                        .append(MARK_TASK)
+                        .append(tasklist.tasks.get(taskNum - 1)).append("\n")
+                        .append(Messages.SPACER);
             } else if (tasklist.tasks.size() == 0) {
                 throw new DukeException(Messages.SPACER + "\n"
                         + "There's nothing in your list to mark! T^T\n"
@@ -60,13 +63,12 @@ public class MarkCommand extends Command {
             break;
         case "unmark":
             // Work on implementing error for empty unmark argument
-            taskNum = Integer.parseInt(words.get(0));
             if (taskNum > 0 && taskNum <= tasklist.tasks.size()) {
                 tasklist.tasks.get(taskNum - 1).markUndone();
-                System.out.println(Messages.SPACER + "\n"
-                        + "Grrr, remember to finish your task! =3=:\n"
-                        + tasklist.printTaskStatus(taskNum - 1) + "\n"
-                        + Messages.SPACER);
+                output.append(Messages.SPACER).append("\n")
+                        .append(UNMARK_TASK)
+                        .append(tasklist.tasks.get(taskNum - 1)).append("\n")
+                        .append(Messages.SPACER);
             } else if (tasklist.tasks.size() == 0) {
                 throw new DukeException(Messages.SPACER + "\n"
                         + "There's nothing in your list to unmark! T^T\n"
@@ -79,9 +81,10 @@ public class MarkCommand extends Command {
             break;
         default:
             // Defensive coding for default statement.
-            System.out.println(Messages.SPACER + "\n"
-                    + Messages.UNKNOWN_COMMAND
-                    + Messages.SPACER);
+            output.append(Messages.SPACER).append("\n")
+                    .append(Messages.UNKNOWN_COMMAND)
+                    .append(Messages.SPACER);
         }
+        return output.toString();
     }
 }

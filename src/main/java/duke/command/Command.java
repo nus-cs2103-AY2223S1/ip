@@ -20,5 +20,5 @@ public abstract class Command {
      * @param ui the ui object
      * @throws DukeException if the user input is unrecognised
      */
-    public abstract void execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException;
+    public abstract String execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException;
 }

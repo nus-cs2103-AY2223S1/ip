@@ -35,27 +35,16 @@ public class Duke {
     /**
      * Main run method for the program.
      */
-    private void run() {
+    public String getResponse(String input) {
         ui.showWelcome();
         while (true) {
             System.out.print(">> ");
             try {
-                String fullCommand = ui.readCommand();
-                Command cmd = Parser.parse(fullCommand);
-                cmd.execute(storage, tasklist, ui);
+                Command cmd = Parser.parse(input);
+                return cmd.execute(storage, tasklist, ui);
             } catch (DukeException e) {
                 ui.showError(e.getMessage());
             }
         }
-    }
-
-    /**
-     * Main method for the program.
-     *
-     * @param args The command line arguments
-     */
-    public static void main(String[] args) {
-        Duke dk = new Duke("data/duke.txt");
-        dk.run();
     }
 }

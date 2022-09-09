@@ -34,16 +34,18 @@ public class ListCommand extends Command {
      * @param ui the user interface object
      * @throws DukeException if the user input is unrecognised
      */
-    public void execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
+    public String execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
+        StringBuilder output = new StringBuilder();
         if (words.size() == 0) {
-            System.out.println(Messages.SPACER + "\n"
-                    + "Here's your list ^3^:\n"
-                    + tasklist.printList() + "\n"
-                    + Messages.SPACER);
+            output.append(Messages.SPACER).append("\n")
+                    .append("Here's your list ^3^:\n")
+                    .append(tasklist.printList()).append("\n")
+                    .append(Messages.SPACER);
         } else {
             throw new DukeException(Messages.SPACER + "\n"
                     + "Please only enter 'list' to view your list. T^T\n"
                     + Messages.SPACER);
         }
+        return output.toString();
     }
 }

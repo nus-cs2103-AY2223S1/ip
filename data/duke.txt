@@ -1,3 +1,4 @@
-T | 0 | kartik
 E | 0 | kartik doing | rvrc
 D | 0 | valo | tntn
+D | 0 | kartik | next week
+E | 0 | andrew | monday

@@ -19,6 +19,7 @@ import duke.util.TaskList;
  * @author hyuchen@u.nus.edu
  */
 public class AddCommand extends Command {
+    private static final String TASK_ADDED = "I've added this task for you! :>\n";
     private final ArrayList<String> words;
     private final String firstWord;
 
@@ -42,19 +43,20 @@ public class AddCommand extends Command {
      * @param ui the user interface object
      * @throws DukeException if the user input is unrecognised
      */
-    public void execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
+    public String execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
         String input = String.join(" ", words);
+        StringBuilder output = new StringBuilder();
         switch (firstWord) {
         case "todo":
             if (words.size() != 0) {
                 Todo todo = new Todo(input);
                 tasklist.addTask(todo);
-                System.out.println(Messages.SPACER + "\n"
-                        + "I've added this task for you! :>\n"
-                        + todo + "\n"
-                        + "You have " + tasklist.tasks.size()
-                        + (tasklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n")
-                        + Messages.SPACER);
+                output.append(Messages.SPACER).append("\n")
+                        .append(TASK_ADDED)
+                        .append(todo).append("\n")
+                        .append("You have ").append(tasklist.tasks.size())
+                        .append((tasklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n"))
+                        .append(Messages.SPACER);
             } else {
                 throw new DukeException(Messages.SPACER + "\n"
                         + "Please enter a task following 'todo' and I'll add it into your list. T^T\n"
@@ -65,59 +67,48 @@ public class AddCommand extends Command {
             // After adding new exceptions, throw them here
             String remainingDdlWords = String.join(" ", words.subList(0, words.indexOf("/by")));
             String ddl = String.join(" ", words.subList(words.indexOf("/by") + 1, words.size()));
+            LocalDate ddlDate = LocalDate.parse(ddl);
+            String newDdl = ddlDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
+            Deadline deadline;
             if (ddl.matches("\\d{4}-\\d{2}-\\d{2}")) {
-                LocalDate ddlDate = LocalDate.parse(ddl);
-                String newDdl = ddlDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
-                Deadline deadline = new Deadline(remainingDdlWords, newDdl);
-                tasklist.addTask(deadline);
-                System.out.println(Messages.SPACER + "\n"
-                        + "I've added this task for you! :>\n"
-                        + deadline + "\n"
-                        + "You have " + tasklist.tasks.size()
-                        + (tasklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n")
-                        + Messages.SPACER);
+                deadline = new Deadline(remainingDdlWords, newDdl);
             } else {
-                Deadline deadline = new Deadline(remainingDdlWords, ddl);
-                tasklist.addTask(deadline);
-                System.out.println(Messages.SPACER + "\n"
-                        + "I've added this task for you! :>\n"
-                        + deadline + "\n"
-                        + "You have " + tasklist.tasks.size()
-                        + (tasklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n")
-                        + Messages.SPACER);
+                deadline = new Deadline(remainingDdlWords, ddl);
             }
+            tasklist.addTask(deadline);
+            output.append(Messages.SPACER).append("\n")
+                    .append(TASK_ADDED)
+                    .append(deadline).append("\n")
+                    .append("You have ").append(tasklist.tasks.size())
+                    .append((tasklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n"))
+                    .append(Messages.SPACER);
             break;
         case "event":
             // After adding new exceptions, throw them here
             String remainingEventWords = String.join(" ", words.subList(0, words.indexOf("/at")));
             String evt = String.join(" ", words.subList(words.indexOf("/at") + 1, words.size()));
+            LocalDate evtDate = LocalDate.parse(evt);
+            String newEvt = evtDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
+            Event event;
             if (evt.matches("\\d{4}-\\d{2}-\\d{2}")) {
-                LocalDate evtDate = LocalDate.parse(evt);
-                String newEvt = evtDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
-                Event event = new Event(remainingEventWords, newEvt);
-                tasklist.addTask(event);
-                System.out.println(Messages.SPACER + "\n"
-                        + "I've added this task for you! :>\n"
-                        + event + "\n"
-                        + "You have " + tasklist.tasks.size()
-                        + (tasklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n")
-                        + Messages.SPACER);
+                event = new Event(remainingEventWords, newEvt);
             } else {
-                Event event = new Event(remainingEventWords, evt);
-                tasklist.addTask(event);
-                System.out.println(Messages.SPACER + "\n"
-                        + "I've added this task for you! :>\n"
-                        + event + "\n"
-                        + "You have " + tasklist.tasks.size()
-                        + (tasklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n")
-                        + Messages.SPACER);
+                event = new Event(remainingEventWords, evt);
             }
+            tasklist.addTask(event);
+            output.append(Messages.SPACER).append("\n")
+                    .append(TASK_ADDED)
+                    .append(event).append("\n")
+                    .append("You have ").append(tasklist.tasks.size())
+                    .append((tasklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n"))
+                    .append(Messages.SPACER);
             break;
         default:
             // Defensive coding for default statement.
-            System.out.println(Messages.SPACER + "\n"
-                    + Messages.UNKNOWN_COMMAND
-                    + Messages.SPACER);
+            output.append(Messages.SPACER).append("\n")
+                    .append(Messages.UNKNOWN_COMMAND)
+                    .append(Messages.SPACER);
         }
+        return output.toString();
     }
 }

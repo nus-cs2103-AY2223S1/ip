@@ -19,9 +19,11 @@ public class InvalidCommand extends Command {
      * @param tasklist the task list object
      * @param ui the user interface object
      */
-    public void execute(Storage storage, TaskList tasklist, Ui ui) {
-        System.out.println(Messages.SPACER + "\n"
-                + Messages.UNKNOWN_COMMAND
-                + Messages.SPACER);
+    public String execute(Storage storage, TaskList tasklist, Ui ui) {
+        StringBuilder output = new StringBuilder();
+        output.append(Messages.SPACER).append("\n")
+                .append(Messages.UNKNOWN_COMMAND)
+                .append(Messages.SPACER);
+        return output.toString();
     }
 }

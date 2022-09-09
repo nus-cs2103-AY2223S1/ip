@@ -20,9 +20,10 @@ public class ExitCommand extends Command {
      * @param ui the user interface object
      * @throws DukeException if the user input is unrecognised
      */
-    public void execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
+    public String execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
         ui.showGoodbye();
         storage.writeToFile(tasklist);
         System.exit(0);
+        return null;
     }
 }

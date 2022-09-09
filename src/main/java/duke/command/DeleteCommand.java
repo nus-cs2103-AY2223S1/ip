@@ -14,6 +14,7 @@ import duke.util.TaskList;
  * @author hyuchen@u.nus.edu
  */
 public class DeleteCommand extends Command {
+    private static final String REMOVED_TASK = "Boo~ Don't be a quitter! I've removed this task for you. =3=\n";
     private final ArrayList<String> words;
 
     /**
@@ -34,19 +35,20 @@ public class DeleteCommand extends Command {
      * @param ui the user interface object
      * @throws DukeException if the user input is unrecognised
      */
-    public void execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
+    public String execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
         String input = String.join(" ", words);
+        StringBuilder output = new StringBuilder();
         // Work on implementing error for "delete hello"
         int taskNum = Integer.parseInt(input);
         if (taskNum > 0 && taskNum <= tasklist.tasks.size()) {
             String deletedTask = tasklist.tasks.get(taskNum - 1).toString();
             tasklist.deleteTask(taskNum);
-            System.out.println(Messages.SPACER + "\n"
-                    + "Boo~ Don't be a quitter! I've removed this task for you. =3=\n"
-                    + deletedTask + "\n"
-                    + "You have " + tasklist.tasks.size()
-                    + (tasklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n")
-                    + Messages.SPACER);
+            output.append(Messages.SPACER).append("\n")
+                    .append(REMOVED_TASK)
+                    .append(deletedTask).append("\n")
+                    .append("You have ").append(tasklist.tasks.size())
+                    .append((tasklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n"))
+                    .append(Messages.SPACER);
         } else if (tasklist.tasks.size() == 0) {
             throw new DukeException(Messages.SPACER + "\n"
                     + "There's nothing in your list to delete! T^T\n"
@@ -56,5 +58,6 @@ public class DeleteCommand extends Command {
                     + "Please enter a valid task number to delete. T^T\n"
                     + Messages.SPACER);
         }
+        return output.toString();
     }
 }
