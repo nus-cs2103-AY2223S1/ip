@@ -81,6 +81,7 @@ public class Parser {
                 }
 
                 if (line.matches("deadline .* by .*")) {
+                    assert line.startsWith("deadline ");
                     String[] res = line.substring(9).split(" by ");
                     String desc = res[0];
                     String deadline = res[1];
@@ -90,6 +91,7 @@ public class Parser {
                 }
 
                 if (line.matches("deadline .* /by .*")) {
+                    assert line.startsWith("deadline ");
                     String[] res = line.substring(9).split(" /by ");
                     String desc = res[0];
                     LocalDate date = LocalDate.parse(res[1]);
@@ -101,6 +103,7 @@ public class Parser {
                 }
 
                 if (line.matches("event .* at .*")) {
+                    assert line.startsWith("event ");
                     String[] res = line.substring(6).split(" at ");
                     String desc = res[0];
                     String time = res[1];
@@ -110,6 +113,7 @@ public class Parser {
                 }
 
                 if (line.matches("todo .*")) {
+                    assert line.startsWith("todo ");
                     line = line.substring(5);
                     todolist.addTask(line);
                     return "Added: " + line;
@@ -125,6 +129,7 @@ public class Parser {
                 }
 
                 if (line.matches("find .*")) {
+                    assert line.startsWith("find ");
                     String search = line.substring(5);
                     TaskList results = todolist.find(search);
                     return "These are the matching results I could find:" + results.getData();
