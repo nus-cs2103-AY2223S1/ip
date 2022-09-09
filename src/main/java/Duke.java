@@ -1,12 +1,15 @@
-import jdk.jfr.Event;
-
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
-import java.util.stream.Stream;
+
 /*Week 2 done*/
 /*Level 1*/
-/*Need Fixing */.
+/*Need Fixing */
 public class Duke {
     /*testing branch*/
+    /*testsvdsv*/
     private static final List<Task> ListofMessages  = new ArrayList<>();
 
     public static void Openingmessage() { /*Displays message when chatbot starts up*/
@@ -16,6 +19,36 @@ public class Duke {
     public static void removeItem (int ItemIndex){
         ListofMessages.remove(ItemIndex);
     }
+
+    public static void UpdateFile (File thefile) throws IOException {
+
+        FileWriter fw = new FileWriter(thefile);
+        PrintWriter pw = new PrintWriter(fw);
+
+        int LengthOfArrayList;
+        LengthOfArrayList = ListofMessages.size();
+        for (int i = 0; i < LengthOfArrayList; i++) {
+            if (ListofMessages.get(i) instanceof ToDos) {
+                String task = (((ToDos) ListofMessages.get(i)).getToDoDescirption()).trim();
+                int statusofITEM = (((ToDos) ListofMessages.get(i)).getStatusint());
+                pw.println("T " + statusofITEM + " | " + task);
+            }else if (ListofMessages.get(i) instanceof Deadlines) {
+                String task = (((Deadlines) ListofMessages.get(i)).getDeadLineTask()).trim();
+                String date = (((Deadlines) ListofMessages.get(i)).getDeadLine());
+                int statusofITEM = (((Deadlines) ListofMessages.get(i)).getStatusint());
+                pw.println("D " + statusofITEM + " | " + task + " | "+ date);
+            }else{
+                String task = (((Events) ListofMessages.get(i)).getEventsDescription()).trim();
+                String date = (((Events) ListofMessages.get(i)).getEvent());
+                int statusofITEM = (((Events) ListofMessages.get(i)).getStatusint());
+                pw.println("E " + statusofITEM +" | " + task +" | " + date );
+            }
+
+        }
+
+        pw.close();
+    }
+
 
     public static void DisplayListOfMessages() {
         int LengthOfArrayList;
@@ -53,19 +86,99 @@ public class Duke {
         return NumberOfItems;
     }
 
-    public static void main(String[] args) throws DukeException {
+    public static void main(String[] args) throws DukeException, IOException {
 
-        Openingmessage(); /*Opening Message*/
         Scanner input = new Scanner(System.in);
-        int tasktobedone;
+
+
+            File log = new File("log.txt");
+
+
+            if(log.exists()==false){
+//                System.out.println("We had to make a new file.");
+                log.createNewFile();
+             }
+             Scanner readfile = new Scanner(log);
+            while(readfile.hasNextLine()) {
+                String firsttask = readfile.next();
+                if (firsttask.equals("T")) {
+                    int status = readfile.nextInt();
+                    String Skipbar =readfile.next();
+                    String task = readfile.nextLine();
+
+                    ToDos t = new ToDos(task);
+                    if (status == 1){
+                        t.setStatus();
+                    }
+                    ListofMessages.add(t);
+
+                } else if (firsttask.equals("D")) {
+                    int status = readfile.nextInt();
+                    String Skipbar =readfile.next();
+                    String addtask = readfile.next().trim();
+                    String bar = "|";
+                    String tocheck = "";
+                    int i = 0;
+                    while (true) {
+                        String toappend = readfile.next().trim();
+                        tocheck = toappend;
+                        addtask = addtask + " " + toappend;
+                        i++;
+                        if(!tocheck.equals(bar)){
+                            break;
+                        }
+                    }
+                    String skipbar2 = readfile.next();
+                    String deadlineday =  readfile.next().trim();
+                    System.out.println(status);
+                    System.out.println(addtask);
+                    System.out.println(deadlineday);
+                    Deadlines d = new Deadlines(addtask, deadlineday);
+                    if (status == 1){
+                        d.setStatus();
+                    }
+                    ListofMessages.add(d);
+                } else {
+                    int status = readfile.nextInt();
+                    String Skipbar =readfile.next();
+                    String addtask = readfile.next().trim();
+                    String bar = "|";
+                    String tocheck = "";
+                    while (true) {
+                        String toappend = readfile.next().trim();
+                        tocheck = toappend;
+                        addtask = addtask + " " + toappend;
+                        if(!tocheck.equals(bar)){
+                            break;
+                        }
+                    }
+                    String skipbar2 = readfile.next();
+                    String deadlineday =  readfile.nextLine().trim();
+                    System.out.println(status);
+                    System.out.println(addtask);
+                    System.out.println(deadlineday);
+                    Events t = new Events(addtask, deadlineday);
+                    if (status == 1){
+                        t.setStatus();
+                    }
+                    ListofMessages.add(t);
+                }
+            }
+
+
+            Openingmessage(); /*Opening Message*/
+
+
+
+            int tasktobedone;
 
             while (true) { //Main start
 
-                String message = input.next();
+                String message = input.next(); //Task to be done by system
 
                 //Make sure message is valid
                 if(!(message.equals("list")) &&!(message.equals("todo"))&& !(message.equals("event"))&&
-                        !(message.equals("deadline"))&&!(message.equals("delete"))){
+                        !(message.equals("deadline"))&&!(message.equals("delete"))&&!(message.equals("bye"))&&!(message.equals("mark"))){
                     throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-();");
                 }
 
@@ -82,6 +195,7 @@ public class Duke {
                         System.out.println(Tobedisplayed);
                         removeItem(nextvalue);
                         System.out.println(NumberOfItemsInList());
+                        UpdateFile(log);
                     }else if(tasktobehandled instanceof Deadlines){
                         String deadline = (((Deadlines) tasktobehandled).getDeadLine());
                         String deadlinetask = (((Deadlines) tasktobehandled).getDeadLineTask());
@@ -91,6 +205,7 @@ public class Duke {
                         System.out.println(Tobedisplayed);
                         removeItem(nextvalue);
                         System.out.println(NumberOfItemsInList());
+                        UpdateFile(log);
                     }else{ //instance of event
                         String eventdescription = (((Events) tasktobehandled).getEventsDescription());  //Task
                         String symbol = (((Events) tasktobehandled).getItem()); //Symbol
@@ -100,7 +215,7 @@ public class Duke {
                         System.out.println(Tobedisplayed);
                         removeItem(nextvalue);
                         System.out.println(NumberOfItemsInList());
-
+                        UpdateFile(log);
                     }
                     //Remove at the end
 
@@ -124,7 +239,7 @@ public class Duke {
                     System.out.println(GotIt);
                     System.out.println(DisplayItemWithTask);
                     System.out.println(NumberOfItemsInList());
-
+                    UpdateFile(log);
                 }
 
                 //Deadline item
@@ -155,6 +270,8 @@ public class Duke {
                         String DisplayItemWithTask = DisplayItem + getStatus + firsthalf + "(" + "by: " + secondhalf + ")";
                         System.out.println(DisplayItemWithTask);
                         System.out.println(NumberOfItemsInList());
+                        UpdateFile(log);
+
                     } catch (StringIndexOutOfBoundsException e) {
                         throw new DukeException(" ☹ OOPS!!! The description of a deadline cannot be empty.");
                     }
@@ -189,7 +306,7 @@ public class Duke {
                     String DisplayItemWithTask = DisplayItem + getStatus + firsthalf + "(" + "at: " + secondhalf + ")";
                     System.out.println(DisplayItemWithTask);
                     System.out.println(NumberOfItemsInList());
-
+                    UpdateFile(log);
 
                 }
                 //Command is list
@@ -199,11 +316,12 @@ public class Duke {
                 }
 
                 //Check if the message is done
-                String CheckIfTaskIsDone = "done";
+                String CheckIfTaskIsDone = "mark";
                 if (message.equals(CheckIfTaskIsDone)) {
-                    tasktobedone = (input.nextInt()) - 1;
-                    Task TheTask = (ListofMessages.get(tasktobedone));
 
+                    tasktobedone = (input.nextInt()) - 1;
+
+                    Task TheTask = (ListofMessages.get(tasktobedone));
 
                     if (TheTask instanceof ToDos) {
                         TheTask.setStatus();
@@ -212,6 +330,8 @@ public class Duke {
                         String ToBeprinted = TheTask.getStatusIcon();
                         ToBeprinted = "[" + ToBeprinted + "]" + TheTask.getTask();
                         System.out.println(ToBeprinted);
+                        UpdateFile(log);
+
                     } else if (TheTask instanceof Deadlines) {
                         TheTask.setStatus();
                         ListofMessages.set(tasktobedone, TheTask);
@@ -226,8 +346,6 @@ public class Duke {
                         System.out.println("Nice! I've marked this task as done");
                         String ToBeprinted = TheTask.getStatusIcon();
                         String ToAdd = ((Events) ListofMessages.get(tasktobedone)).getEventsDescription();
-                        //    System.out.println("hello world");
-                        // System.out.println(ToAdd);
                         ToBeprinted = "[" + ToBeprinted + "]" + TheTask.getTask();
                         System.out.println(ToBeprinted);
                     }
