@@ -20,6 +20,7 @@ public class ToDoTask extends Task {
         if (super.getTaskName().equals("")) {
             throw new EmptyTaskException();
         }
+        assert !(super.getTaskName().equals("")) : "Task should not be empty";
     }
 
     /**
@@ -34,6 +35,7 @@ public class ToDoTask extends Task {
         if (super.getTaskName().equals("")) {
             throw new EmptyTaskException();
         }
+        assert !(super.getTaskName().equals("")) : "Task should not be empty";
     }
 
     /**

@@ -82,6 +82,7 @@ public class ChatBot {
      * @param input string of the input provided by the user
      */
     public void processCommand(String input) {
+        assert isRunning == true : "chatbot should be running";
         Scanner inputScanner = new Scanner(input);
         String response = "";
         try {
