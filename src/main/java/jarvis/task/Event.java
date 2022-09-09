@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
  * Event --- event task.
  */
 public class Event extends Task {
-    private final LocalDateTime at;
+    private final LocalDateTime startAt;
 
     /**
      * Constructor.
@@ -17,7 +17,7 @@ public class Event extends Task {
      */
     public Event(String description, String at) {
         super(description);
-        this.at = LocalDateTime.parse(at, DateTimeFormatter.ofPattern("" + "[dd/MM/yyyy HHmm]"
+        this.startAt = LocalDateTime.parse(at, DateTimeFormatter.ofPattern("" + "[dd/MM/yyyy HHmm]"
                 + "[MMM dd yyyy hh:mm a]"));
     }
 
@@ -26,13 +26,13 @@ public class Event extends Task {
      *
      * @return date of event.
      */
-    public String getAt() {
-        return this.at.format(DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a"));
+    public String getStartAt() {
+        return this.startAt.format(DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a"));
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.at.format(DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a"))
-                + ")";
+        return "[E]" + super.toString() + " (at: "
+                + this.startAt.format(DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a")) + ")";
     }
 }

@@ -30,14 +30,14 @@ public class FindCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Storage storage) throws JarvisException {
-        List<Task> found = tasks.findTasks(super.getDescription());
+        List<Task> tasksFound = tasks.findTasks(super.getDescription());
 
-        if (found.size() > 0) {
+        if (tasksFound.size() > 0) {
             StringBuilder output = new StringBuilder();
             output.append("Here are the matching tasks in your list:\n");
-            for (int i = 0; i < found.size(); i++) {
-                output.append(String.format("\t %d. %s", i + 1, found.get(i)));
-                if (i + 1 < found.size()) {
+            for (int i = 0; i < tasksFound.size(); i++) {
+                output.append(String.format("\t %d. %s", i + 1, tasksFound.get(i)));
+                if (i + 1 < tasksFound.size()) {
                     output.append("\n");
                 }
             }
