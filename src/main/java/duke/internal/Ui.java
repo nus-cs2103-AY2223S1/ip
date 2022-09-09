@@ -33,12 +33,6 @@ public class Ui {
      * Prints the welcome message.
      */
     public Ui showWelcome() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        responses.add(logo);
         responses.add("Hello! I'm Duke!");
         responses.add("What can I do for you?");
         return this;
