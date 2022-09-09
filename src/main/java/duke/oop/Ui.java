@@ -41,15 +41,13 @@ public class Ui {
     }
 
     public String listAllItems(List<Task> tasks) {
-        //printLine();
         String result = "";
-        result += "-".repeat(100);
-        for (int i = 0; i < tasks.size(); i++) {
+        for (int i = 0; i < tasks.size() - 1; i++) {
             int number = i + 1;
-            result += "\n" + number + ". " + tasks.get(i).toString();
-            //System.out.println(number + ". " + tasks.get(i).toString());
+            result += number + ". " + tasks.get(i).toString() + "\n";
         }
-        result += "\n" + "-".repeat(100);
+        int size = tasks.size();
+        result += size + ". " + tasks.get(size - 1).toString();
         return result;
     }
 }
