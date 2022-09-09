@@ -45,10 +45,11 @@ public class Ui {
      */
     public static void exitProgram() {
         new Thread(() -> {
-            try{
+            try {
                 Thread.sleep(3000);
-            }catch(Exception e){
-            }finally{
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            } finally {
                 Platform.exit();
             }
         }).start();
@@ -77,7 +78,7 @@ public class Ui {
     public String listTask(TaskList tasks) {
         return ("Here are the tasks in your list:\n" + tasks.listTasks());
     }
-    
+
     /**
      * To display a message after a {@code Todo} has been successfully added
      * @param tasks the current {@code TaskList}
