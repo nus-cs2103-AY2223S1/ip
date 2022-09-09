@@ -1,3 +1,1 @@
-T | 1 | hello world
-E | 0 | sleep | 2022-12-12
-D | 1 | eat | 2021-12-01
+T | 0 | hello world
