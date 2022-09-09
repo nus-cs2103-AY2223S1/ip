@@ -1,4 +1,4 @@
-[T][ ] read book
+[T][X] read book
 [D][ ] return book (by: JUN 06 2022)
 [D][X] book review (by: JUN 22 2022)
 [E][ ] book session (at: Monday 3pm )

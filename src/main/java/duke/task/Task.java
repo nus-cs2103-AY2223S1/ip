@@ -1,6 +1,6 @@
 package duke.task;
 
-public class Task {
+public class Task implements Comparable<Task> {
     protected String description;
     protected boolean isDone;
 
@@ -21,5 +21,14 @@ public class Task {
     
     public boolean containsKeyword(String keyword) {
         return description.contains(keyword);
+    }
+    
+    @Override
+    public int compareTo(Task task) {
+        return this instanceof DeadlineTask
+                ? this.compareTo(task)
+                : task instanceof DeadlineTask
+                ? 1
+                : 0;
     }
 }
