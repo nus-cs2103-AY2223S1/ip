@@ -15,6 +15,7 @@ public class Duke {
     private TaskList taskList;
     private Parser parser;
 
+
     public Duke(String filePath) {
         this.storage = new Storage(filePath);
         this.taskList = storage.readFromDisk();
@@ -27,9 +28,5 @@ public class Duke {
 
     public static void main(String[] args) {
         Launcher.main(args);
-    }
-
-    void saveTaskList() {
-        storage.saveToDisk(this.taskList);
     }
 }

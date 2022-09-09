@@ -53,7 +53,6 @@ public class MainWindow extends AnchorPane {
         String response = duke.getResponse(input);
 
         if (Objects.equals(response, Ui.showGoodbyeMessage())) {
-            duke.saveTaskList();
             Platform.exit();
         }
 

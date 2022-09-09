@@ -87,8 +87,8 @@ public class Parser {
             String toDoName = userCommand.substring(5).strip();
             taskList.add(new ToDo(toDoName, false));
             return String.format("Duke: I have added the to-do %s.\n", toDoName);
-        }
 
+        }
     }
 
     private String handleRemoveCommand(String userCommand) {

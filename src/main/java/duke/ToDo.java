@@ -19,6 +19,6 @@ public class ToDo extends Task {
      */
     @Override
     public String toFileRepresentation() {
-        return String.format("T|%d|%s", this.isComplete() ? 1 : 0, this.getName());
+        return "T" + "|" + (this.isComplete() ? "1" : "0") + "|" + this.getName();
     }
 }
