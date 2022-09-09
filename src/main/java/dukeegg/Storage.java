@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import exceptions.DukeException;
-import exceptions.InvalidTaskException;
+import exceptions.InvalidTaskDecodedException;
 import task.Deadline;
 import task.Event;
 import task.Task;
@@ -61,14 +61,14 @@ public class Storage {
         switch (taskValues[0]) {
         case "T": {
             if (taskValues.length != 3) {
-                throw new InvalidTaskException(TaskType.T, taskData);
+                throw new InvalidTaskDecodedException(TaskType.T, taskData);
             }
             decodedTask = new Todo(taskValues[2], taskValues[1].equals("1"));
             break;
         }
         case "D": {
             if (taskValues.length != 4) {
-                throw new InvalidTaskException(TaskType.D, taskData);
+                throw new InvalidTaskDecodedException(TaskType.D, taskData);
             }
             decodedTask = new Deadline(taskValues[2], taskValues[1].equals("1"), LocalDateTime.parse(taskValues[3],
                     Task.DATE_TIME_PARSER));
@@ -76,14 +76,14 @@ public class Storage {
         }
         case "E": {
             if (taskValues.length != 4) {
-                throw new InvalidTaskException(TaskType.E, taskData);
+                throw new InvalidTaskDecodedException(TaskType.E, taskData);
             }
             decodedTask = new Event(taskValues[2], taskValues[1].equals("1"), LocalDateTime.parse(taskValues[3],
                     Task.DATE_TIME_PARSER));
             break;
         }
         default:
-            throw new InvalidTaskException(taskData);
+            throw new InvalidTaskDecodedException(taskData);
         }
         return decodedTask;
     }

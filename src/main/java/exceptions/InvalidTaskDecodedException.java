@@ -5,7 +5,7 @@ import task.TaskType;
 /**
  * Used when the task data being decoded is invalid.
  */
-public class InvalidTaskException extends DukeException {
+public class InvalidTaskDecodedException extends DukeException {
 
     /**
      * Constructs an exception that indicates that the task data being read from the storage file does not adhere to
@@ -13,7 +13,7 @@ public class InvalidTaskException extends DukeException {
      *
      * @param taskData The specified task data.
      */
-    public InvalidTaskException(String taskData) {
+    public InvalidTaskDecodedException(String taskData) {
         super("😅 OOPS!!! Invalid format for \n" + taskData);
     }
 
@@ -24,7 +24,7 @@ public class InvalidTaskException extends DukeException {
      * @param taskType The specified task type.
      * @param taskData The specified task data.
      */
-    public InvalidTaskException(TaskType taskType, String taskData) {
+    public InvalidTaskDecodedException(TaskType taskType, String taskData) {
         super("😅 OOPS!!! Invalid format for " + taskType.getValue() + "\n" + taskData);
     }
 }

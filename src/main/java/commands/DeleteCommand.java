@@ -4,6 +4,7 @@ import dukeegg.Storage;
 import dukeegg.TaskList;
 import dukeegg.Ui;
 import exceptions.DukeException;
+import exceptions.InvalidTaskIndexException;
 import task.Task;
 
 /**
@@ -27,11 +28,15 @@ public class DeleteCommand extends Command {
      * {@inheritDoc}
      */
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        // Tasks are displayed as 1-indexed, but they are stored as 0-indexed.
-        int taskIndex = Integer.parseInt(inputStrings[1].trim()) - 1;
-        Task task = tasks.removeTask(taskIndex);
+        try {
+            // Tasks are displayed as 1-indexed, but they are stored as 0-indexed.
+            int taskIndex = Integer.parseInt(inputStrings[1].trim()) - 1;
 
-        return ui.showRemoveTask(task, tasks.size());
+            Task task = tasks.removeTask(taskIndex);
+            return ui.showRemoveTask(task, tasks.size());
+        } catch (NumberFormatException | IndexOutOfBoundsException exception) {
+            throw new InvalidTaskIndexException();
+        }
     }
 
     /**

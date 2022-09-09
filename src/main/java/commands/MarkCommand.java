@@ -4,6 +4,7 @@ import dukeegg.Storage;
 import dukeegg.TaskList;
 import dukeegg.Ui;
 import exceptions.DukeException;
+import exceptions.InvalidTaskIndexException;
 import task.Task;
 
 /**
@@ -35,7 +36,7 @@ public class MarkCommand extends Command {
             task.markTask();
             return ui.showMarkTask(task);
         } catch (NumberFormatException | IndexOutOfBoundsException exception) {
-            throw new DukeException("     ☹ OOPS!!! The index specified is invalid.");
+            throw new InvalidTaskIndexException();
         }
     }
 

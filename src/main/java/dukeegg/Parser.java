@@ -25,7 +25,7 @@ public class Parser {
      * @throws DukeException if an error was thrown during the construction of command.
      */
     public static Command parse(String command) throws DukeException {
-        // Limit of 2 is used to avoid splitting the second argument in fullCommand.
+        // Limit of 2 is used to avoid splitting the second argument.
         String[] inputValues = command.split(" ", 2);
         switch (inputValues[0]) {
         case "bye": {
