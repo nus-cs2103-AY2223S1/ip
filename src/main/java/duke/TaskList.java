@@ -21,7 +21,8 @@ public class TaskList {
 
     /**
      * Add Task to the TaskList.
-     * @param t - The Task to be added.
+     * 
+     * @param t The Task to be added.
      */
     public void addTask(Task t) {
         this.tasks.add(t);
@@ -29,7 +30,8 @@ public class TaskList {
 
     /**
      * Retrieves the specified Task from TaskList.
-     * @param i - An int specifying the index of the Task in the TaskList.
+     * 
+     * @param i An int specifying the index of the Task in the TaskList.
      * @return The Task at the given index.
      */
     public Task getTask(int i) {
@@ -39,7 +41,8 @@ public class TaskList {
 
     /**
      * Removes the specified Task from the TaskList.
-     * @param i - An int specifying the index of the Task in the TaskList.
+     * 
+     * @param i An int specifying the index of the Task in the TaskList.
      */
     public void removeTask(int i) {
         assert getTaskListSize() > i;
@@ -48,6 +51,7 @@ public class TaskList {
 
     /**
      * Gets the length of the TaskList (i.e the number of Tasks in the TaskList).
+     * 
      * @return The number of Tasks in the TaskList.
      */
     public int getTaskListSize() {
@@ -55,10 +59,12 @@ public class TaskList {
     }
 
     /**
-     * Lists the Tasks in the TaskList.
+     * Returns all the Tasks in the TaskList in a String format.
+     * 
      * @return A String representing the Tasks in the TaskList.
      */
-    public String listTasks() {
+    @Override
+    public String toString() {
         StringBuilder list = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
             list.append(i + 1).append(" ").append(tasks.get(i)).append(i != tasks.size() - 1 ? "\n" : "");

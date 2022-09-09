@@ -24,10 +24,10 @@ public class Storage {
     /**
      * Constructor for Storage.
      * 
-     * @param tl - The TaskList to load the saved data onto.
-     * @throws DukeException - When there is an error loading storage.
+     * @param taskList The TaskList to load the saved data onto.
+     * @throws DukeException When there is an error loading storage.
      */
-    Storage(TaskList tl) throws DukeException {
+    Storage(TaskList taskList) throws DukeException {
         try {
             File savedTasks = new File(SAVE_FILE);
             if (savedTasks.exists()) {
@@ -37,15 +37,15 @@ public class Storage {
                     char firstChar = task.charAt(0);
                     assert firstChar == 'T' || firstChar == 'E' || firstChar == 'D';
                     switch (task.charAt(0)) {
-                        case 'T':
-                            tl.addTask(ToDo.taskFromSave(task));
-                            break;
-                        case 'E':
-                            tl.addTask(Event.taskFromSave(task));
-                            break;
-                        case 'D':
-                            tl.addTask(Deadline.taskFromSave(task));
-                            break;
+                    case 'T':
+                        taskList.addTask(ToDo.taskFromSave(task));
+                        break;
+                    case 'E':
+                        taskList.addTask(Event.taskFromSave(task));
+                        break;
+                    case 'D':
+                        taskList.addTask(Deadline.taskFromSave(task));
+                        break;
                     }
                 }
             } else {
@@ -65,16 +65,16 @@ public class Storage {
     /**
      * Saves the given TaskList.
      * 
-     * @param tl - The TaskList to be saved.
-     * @throws DukeException - When there is an error saving storage.
+     * @param taskList The TaskList to be saved.
+     * @throws DukeException When there is an error saving storage.
      */
-    public void saveTaskList(TaskList tl) throws DukeException {
+    public void saveTaskList(TaskList taskList) throws DukeException {
         try {
             File savedTasks = new File(SAVE_FILE);
             FileWriter fw = new FileWriter(savedTasks);
-            int noOfTasks = tl.getTaskListSize();
+            int noOfTasks = taskList.getTaskListSize();
             for (int i  = 0; i < noOfTasks; i++) {
-                fw.write(tl.getTask(i).saveString());
+                fw.write(taskList.getTask(i).saveString());
                 fw.write(System.lineSeparator());
             }
             fw.close();
