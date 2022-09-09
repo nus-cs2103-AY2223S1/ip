@@ -8,7 +8,9 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 import duke.exception.DukeException;
+import duke.parser.Parser;
 import duke.storage.Storage;
+import duke.tag.Tag;
 import duke.ui.Ui;
 
 /**
@@ -32,26 +34,22 @@ public class TaskList {
     public TaskList(ArrayList<String[]> infoList) {
         for (String[] info : infoList) {
             Task t;
-            if (info[0].equals("T")) {
-                t = new ToDo(info[2]);
-            } else if (info[0].equals("D")) {
-                if (info.length == 4) {
-                    t = new Deadline(info[2], LocalDate.parse(info[3]));
-                } else {
-                    t = new Deadline(
-                            info[2], LocalDate.parse(info[3]), LocalTime.parse(info[4]));
-                }
-            } else {
-                try {
-                    t = new Event(
-                            info[2], info[3], LocalDateTime.parse(info[4]),
-                            LocalDateTime.parse(info[5]));
-                } catch (DateTimeParseException e) {
-                    t = new Event(
-                            info[2], info[3], LocalDateTime.parse(info[4]),
-                            LocalTime.parse(info[5]));
-                }
+
+            switch (info[0]) {
+            case "T":
+                t = Parser.parseToDo(info);
+                break;
+            case "D":
+                t = Parser.parseDeadline(info);
+                break;
+            case "E":
+                t = Parser.parseEvent(info);
+                break;
+            default:
+                t = null;
             }
+
+            assert t != null : "Task description has not been correctly saved to file.";
             add(t);
             if (info[1].equals("1")) {
                 t.setDone();
@@ -65,18 +63,18 @@ public class TaskList {
      * @return A string containing the list of tasks.
      */
     public String printList() {
-        if (tasks.size() == 0) {
+        if (tasks.isEmpty()) {
             return Ui.START + "your list is empty. start adding some tasks to do now!";
-        } else {
-            String reply = Ui.START + "these are the tasks in your list:";
-            int x = 1;
-            for (Task task : tasks) {
-                reply += "\n  " + x + ". " + task.toString();
-                x++;
-            }
-            assert x > 1 : "No tasks in task list.";
-            return reply;
         }
+
+        String reply = Ui.START + "these are the tasks in your list:";
+        int x = 1;
+        for (Task task : tasks) {
+            reply += "\n  " + x + ". " + task.toString();
+            x++;
+        }
+        assert x > 1 : "No tasks in task list.";
+        return reply;
     }
 
     /**
@@ -106,7 +104,7 @@ public class TaskList {
      * @throws DukeException if the user entered an invalid index.
      */
     public String delete(int i) throws DukeException {
-        if (tasks.size() == 0) {
+        if (tasks.isEmpty()) {
             return Ui.START + "hmm, you do not have any tasks in your list to delete. add some now!";
         } else {
             String reply = "";
@@ -123,7 +121,7 @@ public class TaskList {
                 }
                 return reply;
             } catch (IndexOutOfBoundsException e) {
-                throw new DukeException(Ui.SAD_FACE + "please enter an integer from 1 - " + tasks.size());
+                throw new DukeException(Ui.requestValidInput(tasks.size()));
             }
         }
     }
@@ -187,7 +185,7 @@ public class TaskList {
      */
     public String mark(int t) throws DukeException {
         try {
-            if (tasks.size() == 0) {
+            if (tasks.isEmpty()) {
                 return Ui.START + "hmm, you do not have any tasks in your list to be marked. add some now!";
             } else {
                 Task doneTask = tasks.get(t);
@@ -196,13 +194,12 @@ public class TaskList {
                         + "\n     " + doneTask;
             }
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(Ui.SAD_FACE + "please enter an integer from 1 - " + tasks.size());
+            throw new DukeException(Ui.requestValidInput(tasks.size()));
         }
     }
 
     /**
-     * Marks the task at the specified position of the task list
-     * as not done.
+     * Marks the task at the specified position of the task list as not done.
      *
      * @param t Index of the task to unmark.
      * @return A string informing the user that the specified task was unmarked, or that
@@ -210,17 +207,81 @@ public class TaskList {
      * @throws DukeException if the user entered an invalid index.
      */
     public String unmark(int t) throws DukeException {
+        if (tasks.isEmpty()) {
+            return Ui.START + "hmm, you do not have any tasks in your list. add some now!";
+        }
+
         try {
-            if (tasks.size() == 0) {
-                return Ui.START + "hmm, you do not have any tasks in your list. add some now!";
-            } else {
-                Task undoneTask = tasks.get(t);
-                undoneTask.setUndone();
-                return Ui.START + "ok, i've marked this task as not done yet:"
-                        + "\n     " + undoneTask;
-            }
+            Task undoneTask = tasks.get(t);
+            undoneTask.setUndone();
+            return Ui.START + "ok, i've marked this task as not done yet:"
+                    + "\n     " + undoneTask;
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(Ui.SAD_FACE + "please enter an integer from 1 - " + tasks.size());
+            throw new DukeException(Ui.requestValidInput(tasks.size()));
+        }
+    }
+
+    /**
+     * Tags the task at the specified position of the task list with
+     * the given tag.
+     *
+     * @param t Index of the task to tag.
+     * @param tag Tag to tag the task with.
+     * @return A string informing the user about whether the task was tagged or not.
+     * @throws DukeException if the user entered an invalid index.
+     */
+    public String tag(int t, Tag tag) throws DukeException {
+        if (tasks.isEmpty()) {
+            return Ui.START + "you do not have any tasks in your list to be tagged. add some now!";
+        }
+
+        try {
+            Task task = tasks.get(t);
+            return task.addTag(tag);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Ui.requestValidInput(tasks.size()));
+        }
+    }
+
+    /**
+     * Removes the given tag from the task at the specified position of the
+     * task list.
+     *
+     * @param t Index of the task to untag.
+     * @param tag Tag to be deleted from the task.
+     * @return A string informing the user about whether the task was untagged or not.
+     * @throws DukeException if the user entered an invalid index.
+     */
+    public String untag(int t, Tag tag) throws DukeException {
+        if (tasks.isEmpty()) {
+            return Ui.START + "there are no tasks in your list. add some now!";
+        }
+
+        try {
+            Task task = tasks.get(t);
+            return task.deleteTag(tag);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Ui.requestValidInput(tasks.size()));
+        }
+    }
+
+    /**
+     * Prints out a list of tags under the specified task.
+     *
+     * @param t Index of the task.
+     * @return A string containing a list of tags under the specified task, if any.
+     * @throws DukeException if the user entered an invalid index.
+     */
+    public String getTags(int t) throws DukeException {
+        if (tasks.isEmpty()) {
+            return Ui.START + "there are no tasks in your list. add some now!";
+        }
+
+        try {
+            Task task = tasks.get(t);
+            return task.printTags();
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Ui.requestValidInput(tasks.size()));
         }
     }
 
@@ -228,13 +289,14 @@ public class TaskList {
      * Saves the contents of the task list to a data file.
      *
      * @param storage Storage to save the tasks to the hard drive.
-     * @throws IOException If the data file cannot be found on the hard drive.
+     * @throws IOException if the data file cannot be found on the hard drive.
      */
     public void writeToFile(Storage storage) throws IOException {
         int len = tasks.size();
         String[] taskDescriptions = new String[len];
         for (int i = 0; i < len; i++) {
-            taskDescriptions[i] = tasks.get(i).fileDescription() + "\n";
+            taskDescriptions[i] = tasks.get(i).fileDescription()
+                    + tasks.get(i).fileTags() + "\n";
         }
         storage.save(taskDescriptions);
     }

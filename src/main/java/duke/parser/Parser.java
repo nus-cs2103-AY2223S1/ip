@@ -6,19 +6,25 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import duke.commands.ByeCommand;
-import duke.commands.Command;
-import duke.commands.DeadlineCommand;
-import duke.commands.DefaultCommand;
-import duke.commands.DeleteCommand;
-import duke.commands.EventCommand;
-import duke.commands.FindCommand;
-import duke.commands.ListCommand;
-import duke.commands.MarkCommand;
-import duke.commands.SearchCommand;
-import duke.commands.TodoCommand;
-import duke.commands.UnmarkCommand;
+import duke.command.AllTagsCommand;
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DefaultCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.SearchCommand;
+import duke.command.TagCommand;
+import duke.command.TaggedByCommand;
+import duke.command.TaskTagsCommand;
+import duke.command.TodoCommand;
+import duke.command.UnmarkCommand;
+import duke.command.UntagCommand;
 import duke.exception.DukeException;
+import duke.tag.Tag;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -42,7 +48,8 @@ public class Parser {
      * @throws DukeException if the user has entered an invalid input.
      */
     public static Command parse(String input) throws DukeException {
-        String[] arr = input.split(" ", 2);
+        // splits input into the command and additional info, removing all white spaces between the two
+        String[] arr = input.split("\\s+", 2);
         String command = arr[0];
 
         switch (command) {
@@ -102,7 +109,7 @@ public class Parser {
                 String description = descriptionAndTimings[0];
 
                 String otherEventInfo = descriptionAndTimings[1];
-                String[] prepAndTiming = otherEventInfo.split(" ", 2);
+                String[] prepAndTiming = otherEventInfo.split("\\s+", 2);
                 String preposition = prepAndTiming[0];
 
                 String timings = prepAndTiming[1];
@@ -149,10 +156,150 @@ public class Parser {
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException(Ui.emptyFindInput());
             }
+        case TagCommand.COMMAND_WORD:
+            try {
+                String tagInfo = arr[1];
+                String[] taskAndTag = tagInfo.split("\\s+#", 2);
+
+                int index = Integer.parseInt(taskAndTag[0]) - 1;
+                String tagName = "#" + taskAndTag[1];
+                Tag tag = Tag.of(tagName);
+                return new TagCommand(index, tag);
+            } catch (IndexOutOfBoundsException | NumberFormatException e) {
+                throw new DukeException(Ui.invalidTagInput());
+            }
+        case UntagCommand.COMMAND_WORD:
+            try {
+                String tagInfo = arr[1];
+                String[] taskAndTag = tagInfo.split(" #", 2);
+
+                int index = Integer.parseInt(taskAndTag[0]) - 1;
+                String tagName = "#" + taskAndTag[1];
+                Tag tag = Tag.of(tagName);
+                return new UntagCommand(index, tag);
+            } catch (IndexOutOfBoundsException | NumberFormatException e) {
+                throw new DukeException(Ui.invalidTagInput());
+            }
+        case AllTagsCommand.COMMAND_WORD:
+            return new AllTagsCommand();
+        case TaskTagsCommand.COMMAND_WORD:
+            try {
+                int index = Integer.parseInt(arr[1]) - 1;
+                return new TaskTagsCommand(index);
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                throw new DukeException(Ui.invalidTaskTagsInput());
+            }
+        case TaggedByCommand.COMMAND_WORD:
+            try {
+                String tagName = arr[1];
+                if (!tagName.startsWith("#")) {
+                    tagName = "#" + tagName;
+                }
+                Tag tag = Tag.of(tagName);
+                return new TaggedByCommand(tag);
+            } catch (IndexOutOfBoundsException e) {
+                throw new DukeException(Ui.invalidTaggedByInput());
+            }
         default:
             return new DefaultCommand();
         }
+    }
 
+    /**
+     * Makes sense of the information about the ToDo that was saved
+     * to a local file.
+     *
+     * @param info Information about the ToDo in text form.
+     * @return A new ToDo task created from the information.
+     */
+    public static ToDo parseToDo(String[] info) {
+        String description = info[2];
+        ToDo toDo = new ToDo(description);
 
+        //check for tags
+        if (info.length > 3) {
+            String allTags = info[3];
+            saveTags(toDo, allTags);
+        }
+
+        return toDo;
+    }
+
+    /**
+     * Makes sense of the information about the Deadline that was saved
+     * to a local file.
+     *
+     * @param info Information about the Deadline in text form.
+     * @return A new Deadline task created from the information.
+     */
+    public static Deadline parseDeadline(String[] info) {
+        String description = info[2];
+        LocalDate day = LocalDate.parse(info[3]);
+        Deadline deadline;
+        LocalTime time;
+
+        if (info.length == 4) {
+            deadline = new Deadline(description, day);
+        //check if 5th information is time or the tags
+        } else if (info.length == 5) {
+            try {
+                time = LocalTime.parse(info[4]);
+                deadline = new Deadline(description, day, time);
+            } catch (DateTimeParseException e) {
+                deadline = new Deadline(description, day);
+                String allTags = info[4];
+                saveTags(deadline, allTags);
+            }
+        } else {
+            time = LocalTime.parse(info[4]);
+            deadline = new Deadline(description, day, time);
+            String allTags = info[5];
+            saveTags(deadline, allTags);
+        }
+
+        return deadline;
+    }
+
+    /**
+     * Makes sense of the information about the Event that was saved
+     * to a local file.
+     *
+     * @param info Information about the Event in text form.
+     * @return A new Event task created from the information.
+     */
+    public static Event parseEvent(String[] info) {
+        String description = info[2];
+        String preposition = info[3];
+        LocalDateTime startDateTime = LocalDateTime.parse(info[4]);
+        Event event;
+        LocalDateTime endDateTime;
+        LocalTime endTime;
+
+        try {
+            endDateTime = LocalDateTime.parse(info[5]);
+            event = new Event(
+                    description, preposition, startDateTime, endDateTime);
+        } catch (DateTimeParseException e) {
+            endTime = LocalTime.parse(info[5]);
+            event = new Event(
+                    description, preposition, startDateTime, endTime);
+        }
+
+        //check for tags
+        if (info.length > 6) {
+            String allTags = info[6];
+            saveTags(event, allTags);
+        }
+
+        return event;
+    }
+
+    private static void saveTags(Task task, String allTags) {
+        String[] tagList = allTags.split(" ");
+
+        for (String tagName : tagList) {
+            Tag tag = Tag.of(tagName);
+            task.addTag(tag);
+        }
     }
 }

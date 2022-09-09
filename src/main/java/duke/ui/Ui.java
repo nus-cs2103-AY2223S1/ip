@@ -122,12 +122,13 @@ public class Ui {
     }
 
     /**
-     * Sends when the user enters any commands not recognised by Duke.
+     * Informs the user that they have entered invalid arguments for the "tag" command.
      *
-     * @return A string informing the user whenever Duke does not understand the input.
+     * @return A string informing the user that they did not enter the task index or tag correctly.
      */
-    public static String invalidInput() {
-        return SAD_FACE + "sorry, i don't know what that means :(";
+    public static String invalidTagInput() {
+        return SAD_FACE
+                + "please enter a valid integer followed by the name of the tag in the format #<name>.";
     }
 
     /**
@@ -138,6 +139,44 @@ public class Ui {
      */
     public static String emptyFindInput() {
         return SAD_FACE + "please enter the keywords you would like to search for.";
+    }
+
+    /**
+     * Requests the user to enter a valid integer in the given range.
+     *
+     * @param size Size of the task list.
+     * @return A string requesting the user to enter a valid integer.
+     */
+    public static String requestValidInput(int size) {
+        return SAD_FACE + "please enter an integer from 1 - " + size;
+    }
+
+    /**
+     * Informs the user that they have entered invalid arguments for the "tasktags" command.
+     *
+     * @return A string informing the user that they have entered an invalid argument.
+     */
+    public static String invalidTaskTagsInput() {
+        return SAD_FACE + "please enter a valid integer for the task whose tags you would like to view.";
+    }
+
+    /**
+     * Informs the user that they have entered invalid arguments for the "taggedby" command.
+     *
+     * @return A string informing the user that they have entered an invalid argument.
+     */
+    public static String invalidTaggedByInput() {
+        return SAD_FACE + "please tell me the name of the tag you would like to search for "
+                + "using the format #<name>.";
+    }
+
+    /**
+     * Sends when the user enters any commands not recognised by Duke.
+     *
+     * @return A string informing the user whenever Duke does not understand the input.
+     */
+    public static String invalidInput() {
+        return SAD_FACE + "sorry, i don't know what that means :(";
     }
 
     /**
