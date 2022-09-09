@@ -221,7 +221,7 @@ public class TaskList {
 
         if (matchingTasks.isEmpty()) {
             String noMatchTasks = "Oopsie! There are no matching tasks in your list?\n"
-                    + "Maybe you have typed in wrongly..."
+                    + "Maybe you have typed in wrongly...";
             return noMatchTasks;
         }
 
