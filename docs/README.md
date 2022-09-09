@@ -4,9 +4,6 @@ Ren is a **desktop task manager app optimized for use via a Command Line Interfa
 while still having the benefits of a Graphical User Interface (GUI). If you can type fast, 
 Ren can manage your tasks faster than traditional GUI apps.
 
-* Table of Contents
-  {:toc}
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -46,7 +43,7 @@ Have no worries about saving your data manually!
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
 
