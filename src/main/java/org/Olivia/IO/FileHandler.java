@@ -15,43 +15,56 @@ import java.util.Scanner;
  * @author ZHANG TONGJUN (albertZhangTJ)
  */
 public class FileHandler {
-    private String fileName = "./stored/default.dat";
+    private String fileName;
 
     public FileHandler() {
-
+        this.fileName = "./stored/default.dat";
     }
 
     public FileHandler(String fileName) {
         this.fileName = fileName;
     }
 
-    private CalendarEntry parseEntry(String line) throws Exception {
-        //System.out.println("Parsing "+line);
+    private CalendarEntry parseTodoEntry(String line) throws Exception{
         CalendarEntry ans;
+        ans = new CalendarEntryTodo(line.substring(7));
+        if (line.substring(3, 6).equals("[X]")) {
+            ans.markAsCompleted();
+        }
+        return ans;
+    }
+
+    private CalendarEntry parseDeadlineEntry(String line) throws Exception{
+        CalendarEntry ans;
+        ans = new CalendarEntryDeadline(line.substring(7, line.indexOf(" (by: ")), line.substring(line.indexOf(" (by: ") + 6, line.length() - 1));
+        if (line.substring(3, 6).equals("[X]")) {
+            ans.markAsCompleted();
+        }
+        return ans;
+    }
+
+    private CalendarEntry parseEventEntry(String line) throws Exception{
+        CalendarEntry ans;
+        String time = line.substring(line.indexOf(" (at: ") + 6);
+        String startTime = time.split(" - ")[0];
+        String endTime = time.split(" - ")[1];
+        endTime = endTime.substring(0, endTime.length() - 1);
+        ans = new CalendarEntryEvent(line.substring(7, line.indexOf(" (at: ")), startTime, endTime);
+        if (line.substring(3, 6).equals("[X]")) {
+            ans.markAsCompleted();
+        }
+        return ans;
+    }
+
+    private CalendarEntry parseEntry(String line) throws Exception {
         if (line.substring(0, 3).equals("[T]")) {
-            ans = new CalendarEntryTodo(line.substring(7));
-            if (line.substring(3, 6).equals("[X]")) {
-                ans.markAsCompleted();
-            }
-            return ans;
+            return this.parseTodoEntry(line);
         }
         else if (line.substring(0, 3).equals("[D]") && line.indexOf(" (by: ") != -1) {
-            ans = new CalendarEntryDeadline(line.substring(7, line.indexOf(" (by: ")), line.substring(line.indexOf(" (by: ") + 6, line.length() - 1));
-            if (line.substring(3, 6).equals("[X]")) {
-                ans.markAsCompleted();
-            }
-            return ans;
+            return this.parseDeadlineEntry(line);
         }
         else if (line.substring(0, 3).equals("[E]") && line.indexOf(" (at: ") != -1 && line.substring(line.indexOf(" (at: ")).indexOf(" - ") != -1) {
-            String time = line.substring(line.indexOf(" (at: ") + 6);
-            String startTime = time.split(" - ")[0];
-            String endTime = time.split(" - ")[1];
-            endTime = endTime.substring(0, endTime.length() - 1);
-            ans = new CalendarEntryEvent(line.substring(7, line.indexOf(" (at: ")), startTime, endTime);
-            if (line.substring(3, 6).equals("[X]")) {
-                ans.markAsCompleted();
-            }
-            return ans;
+            return this.parseEventEntry(line);
         }
 
         throw new IOException("File: " + this.fileName + " unreadable, possibly corrupted");
