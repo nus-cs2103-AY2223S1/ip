@@ -14,8 +14,9 @@ public class PrintTasksCommand extends Command {
     }
 
     @Override
-    public boolean execute() {
-        ui.showTasks(tasks);
-        return true;
+    public String execute() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the tasks in your list:\n").append(tasks.toString());
+        return sb.toString();
     }
 }

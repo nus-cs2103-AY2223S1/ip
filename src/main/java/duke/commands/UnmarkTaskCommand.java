@@ -22,18 +22,21 @@ public class UnmarkTaskCommand extends Command {
     }
 
     @Override
-    public boolean execute() {
+    public String execute() {
         try {
             Task unmarkedTask = tasks.unmarkTask(Integer.parseInt(index) - 1);
-            ui.showUnmarkTaskResponse(unmarkedTask);
             storage.saveToFile(tasks.getList());
-            return true;
+
+            String response = String.format(
+                    "OK, I've marked this task as not done yet:\n  %s`",
+                    unmarkedTask);
+            return response;
         } catch (TaskNotFoundException e) {
-            ui.showError(e);
-            return false;
+            String response = String.format("Oops! %s", e.getMessage());
+            return response;
         } catch (NumberFormatException e) {
-            ui.showInvalidFormatError(index);
-            return false;
+            String response = String.format("Oops! I could not recognise this format: %s\n", index);
+            return response;
         }
     }
 

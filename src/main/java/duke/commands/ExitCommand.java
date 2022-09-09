@@ -11,9 +11,8 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public boolean execute() {
-        ui.showBye();
+    public String execute() {
         System.exit(0);
-        return true;
+        return "";
     }
 }

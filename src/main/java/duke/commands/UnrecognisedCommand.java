@@ -11,8 +11,8 @@ public class UnrecognisedCommand extends Command {
     }
 
     @Override
-    public boolean execute() {
-        ui.showCommandUnknown();
-        return true;
+    public String execute() {
+        String response = "Oops! I'm sorry, but I don't know what that means.";
+        return response;
     }
 }

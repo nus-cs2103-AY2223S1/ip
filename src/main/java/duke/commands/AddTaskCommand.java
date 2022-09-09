@@ -28,17 +28,21 @@ public class AddTaskCommand extends Command {
     }
 
     @Override
-    public boolean execute() {
+    public String execute() {
         try {
             Task newTask = TaskParser.stringToTask(type, taskString);
             tasks.addTask(newTask);
-            ui.showAddTaskResponse(newTask, tasks);
             storage.saveToFile(tasks.getList());
+
+            String response = String.format(
+                    "Got it. I've added this task:\n  %s\nNow you have %d tasks in the list.",
+                    newTask, tasks.getSize());
+            return response;
         } catch (EmptyTaskDescException | EmptyTaskDateException | NoSuchTaskTypeException |
                  UnrecognisedDateException e) {
-            ui.showError(e);
-            return false;
+
+            String response = String.format("Oops! %s", e.getMessage());
+            return response;
         }
-        return true;
     }
 }

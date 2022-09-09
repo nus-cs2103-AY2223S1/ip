@@ -22,18 +22,21 @@ public class MarkTaskCommand extends Command {
     }
 
     @Override
-    public boolean execute() {
+    public String execute() {
         try {
             Task markedTask = tasks.markTask(Integer.parseInt(index) - 1);
-            ui.showMarkTaskResponse(markedTask);
             storage.saveToFile(tasks.getList());
-            return true;
+
+            String response = String.format(
+                    "Nice! I've marked this task as done:\n  %s",
+                    markedTask);
+            return response;
         } catch (TaskNotFoundException e) {
-            ui.showError(e);
-            return false;
+            String response = String.format("Oops! %s", e.getMessage());
+            return response;
         } catch (NumberFormatException e) {
-            ui.showInvalidFormatError(index);
-            return false;
+            String response = String.format("Oops! I could not recognise this format: %s\n", index);
+            return response;
         }
     }
 

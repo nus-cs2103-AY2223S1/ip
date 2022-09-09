@@ -20,7 +20,7 @@ public class FindTaskCommand extends Command {
     }
 
     @Override
-    public boolean execute() {
+    public String execute() {
         List<Task> matchingTasks = tasks.find(searchTerm);
 
         StringBuilder sb = new StringBuilder();
@@ -30,8 +30,7 @@ public class FindTaskCommand extends Command {
             sb.append(String.format("%d.%s\n", i, task.toString()));
             ++i;
         }
-        System.out.print(sb.toString());
-        return true;
+        return sb.toString();
     }
 
 }

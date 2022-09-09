@@ -21,18 +21,22 @@ public class DeleteTaskCommand extends Command {
     }
 
     @Override
-    public boolean execute() {
+    public String execute() {
         try {
             Task deletedTask = tasks.deleteTask(Integer.parseInt(index) - 1);
-            ui.showDeleteTaskResponse(deletedTask, tasks);
             storage.saveToFile(tasks.getList());
-            return true;
+
+            String response = String.format(
+                    "Noted. I've removed this task:\n  %s\nNow you have %d tasks in the list",
+                    deletedTask, tasks.getSize()
+            );
+            return response;
         } catch (TaskNotFoundException e) {
-            ui.showError(e);
-            return false;
+            String response = String.format("Oops! %s", e.getMessage());
+            return response;
         } catch (NumberFormatException e) {
-            ui.showInvalidFormatError(index);
-            return false;
+            String response = String.format("Oops! I could not recognise this format: %s", index);
+            return response;
         }
     }
 }
