@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 import duke.taskmanager.task.DeadlineTask;
 import duke.taskmanager.task.EmptyTask;
@@ -162,13 +163,9 @@ public class TaskManager {
      * @return a response message listing out the task containing the keyword
      */
     public String findTask(String keyword) {
-        List<Integer> keywordList = new ArrayList<>();
-        for (int i = 0; i < this.taskList.size(); i++) {
-            if (this.taskList.get(i).getTaskName().contains(keyword)) {
-                keywordList.add(i);
-            }
-        }
-        if (keywordList.size() == 0) {
+        int[] keywordList = IntStream.range(0, this.taskList.size())
+                .filter(i -> this.taskList.get(i).getTaskName().contains(keyword)).toArray();
+        if (keywordList.length == 0) {
             return "You have no tasks in your list with the keyword \"" + keyword + "\".\n";
         } else {
             StringBuilder stringBuilder = new StringBuilder();
