@@ -1,15 +1,32 @@
-package main.java.amanda;
+package amanda;
+
+import java.io.IOException;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import amanda.gui.MainWindow;
 
 /**
- * Main class runs the program
+ * A GUI for Duke using FXML.
  */
-public class Main {
-    /**
-     * Main method
-     * @param args command line arguments
-     */
-    public static void main(String[] args) {
-        Amanda amanda = new Amanda("./src/main/java/data/amanda.txt");
-        amanda.run();
+public class Main extends Application {
+
+    private final Amanda amanda = new Amanda("data/amanda.txt");
+
+    @Override
+    public void start(Stage stage) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
+            AnchorPane ap = fxmlLoader.load();
+            Scene scene = new Scene(ap);
+            stage.setScene(scene);
+            fxmlLoader.<MainWindow>getController().setAmanda(amanda);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

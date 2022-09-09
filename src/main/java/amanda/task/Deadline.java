@@ -1,4 +1,4 @@
-package main.java.amanda.task;
+package amanda.task;
 
 /**
  * Deadline is a task that has a deadline.

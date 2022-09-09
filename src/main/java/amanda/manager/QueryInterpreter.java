@@ -1,56 +1,47 @@
-package main.java.amanda.manager;
+package amanda.manager;
 
 import java.util.StringTokenizer;
 
-import main.java.amanda.command.AddCommand;
-import main.java.amanda.command.Command;
-import main.java.amanda.command.DeleteCommand;
-import main.java.amanda.command.ExitCommand;
-import main.java.amanda.command.ListCommand;
-import main.java.amanda.command.MarkCommand;
-import main.java.amanda.command.UnmarkCommand;
-import main.java.amanda.exception.AmandaException;
+import amanda.command.*;
+import amanda.exception.EmptyDateException;
+import amanda.exception.InvalidCommandException;
+import amanda.exception.InvalidDateFormatException;
+import amanda.exception.InvalidDescriptionException;
+import amanda.exception.InvalidIndexException;
+import amanda.task.Task;
+
 
 /**
  * QueryInterpreter is interprets/parse the user input.
  */
 public class QueryInterpreter {
-
-    /**
-     * Constructor for QueryInterpreter class.
-     */
-    public QueryInterpreter() {
-    }
-
     /**
      * Interprets the user input.
      * @param input one line of the user input command.
      * @return command object that can execute what is interpreted from the user input.
-     * @throws AmandaException throw an exception when the user input is not in the right format
      *      and cannot be interpreted by the method.
      */
-    public static Command interpret(String input) throws AmandaException {
+    public static Command interpret(String input) throws InvalidCommandException, InvalidDateFormatException,
+            EmptyDateException, InvalidDescriptionException, InvalidIndexException {
 
-        TaskMaker generator = new TaskMaker();
+        TaskMaker taskMaker = new TaskMaker();
         String type = getType(input);
 
         switch (type) {
-        case "not a command":
-            throw new AmandaException("\nI have no idea what you just said.\n");
-        case "":
-            throw new AmandaException("\nDon't call me up and say nothing!\n");
         case "task":
-            return new AddCommand(generator.make(input));
+            return new AddCommand(taskMaker.make(input));
         case "list":
             return new ListCommand();
+        case "find":
+            return new FindCommand(input);
         case "mark":
-            return new MarkCommand(Integer.parseInt(getIndex(input)));
+            return new MarkCommand(TaskList.getList().get(getIndex(input) - 1), getIndex(input));
         case "unmark":
-            return new UnmarkCommand(Integer.parseInt(getIndex(input)));
+            return new UnmarkCommand(TaskList.getList().get(getIndex(input) - 1), getIndex(input));
         case "delete":
-            return new DeleteCommand(Integer.parseInt(getIndex(input)));
+            return new DeleteCommand(TaskList.getList().get(getIndex(input) - 1), getIndex(input));
         default:
-            return new ExitCommand();
+            throw new InvalidCommandException();
         }
     }
 
@@ -67,11 +58,8 @@ public class QueryInterpreter {
         String type = tokens.nextToken(); // type is the first word entered by the user
         if (type.equals("todo") | type.equals("deadline") | type.equals("event")) {
             return "task";
-        } else if (type.equals("list") | type.equals("mark") | type.equals("unmark")
-                | type.equals("delete") | type.equals("bye")) {
-            return type;
         } else {
-            return "not a command";
+            return type;
         }
     }
 
@@ -80,9 +68,16 @@ public class QueryInterpreter {
      * @param input one line of the user input.
      * @return the index of the task that the user wants to operate on.
      */
-    public static String getIndex(String input) {
+    public static int getIndex(String input) throws InvalidIndexException {
         StringTokenizer tokens = new StringTokenizer(input, " ");
         tokens.nextToken(); // skips the first word of the user input
-        return tokens.nextToken(); // return the number followed by the command word.
+        if (!tokens.hasMoreTokens()) {
+            throw new InvalidIndexException();
+        }
+        try {
+            return Integer.parseInt(tokens.nextToken());
+        } catch (NumberFormatException e) {
+            throw new InvalidIndexException();
+        }
     }
 }

@@ -1,4 +1,4 @@
-package main.java.amanda.task;
+package amanda.task;
 
 /**
  * Event is a task associated with a the starting time of the event.

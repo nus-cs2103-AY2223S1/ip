@@ -1,37 +1,39 @@
-package main.java.amanda.command;
+package amanda.command;
 
-import main.java.amanda.exception.AmandaException;
-import main.java.amanda.manager.StoreManager;
-import main.java.amanda.manager.TaskList;
-import main.java.amanda.ui.Ui;
+import amanda.manager.StoreManager;
+import amanda.manager.TaskList;
+import amanda.task.Task;
+import amanda.ui.Ui;
 
 /**
  * DeleteCommand is a command that delete the specified task number from the current task list.
  */
 public class DeleteCommand extends Command {
 
+    private final int idx;
+    private final Task task;
     /**
      * Constructor for DeleteCommand class.
      */
-    public DeleteCommand(int taskNo) {
-        super(null, taskNo);
+    public DeleteCommand(Task task, int idx) {
+        this.task = task;
+        this.idx = idx;
     }
 
     /**
      * Delete the corresponding task to the index input by the user from the current task list and calls the ui
      * to shew the output to the user.
      * @param tasks the current task list.
-     * @param ui the current Ui.
      * @param store the store manager that write any changes to the storage file.
-     * @throws AmandaException throw an exception if the index input by the user is invalid.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, StoreManager store) throws AmandaException {
-        if (taskNo > tasks.getList().size() | taskNo <= 0) { // Check if index input by user is in the valid range.
-            throw new AmandaException("     That task does not even exist. Why are you wasting my time?");
+    public void execute(TaskList tasks, StoreManager store) {
+        if (TaskList.getList().size() == 0) {
+            Ui.addResponse("You have nothing else to delete lazy bum!");
+        } else {
+            TaskList.getList().remove(idx - 1); // remove the task from the list.
+            store.store(); // update the storage with the removal of the task.
+            Ui.deleteResponse(task);
         }
-        tasks.getList().remove(taskNo - 1); // remove the task from the list.
-        store.store(tasks); // update the storage with the removal of the task.
-        ui.showDeleteCommand(tasks); // print messages for Delete Command.
     }
 }

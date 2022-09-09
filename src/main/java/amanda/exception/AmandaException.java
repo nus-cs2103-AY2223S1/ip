@@ -1,4 +1,4 @@
-package main.java.amanda.exception;
+package amanda.exception;
 
 /**
  * AmandaException is an exception thrown when amanda doesn't understand the user input.

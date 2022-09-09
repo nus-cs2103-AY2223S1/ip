@@ -1,4 +1,4 @@
-package main.java.amanda.task;
+package amanda.task;
 
 /**
  * To-do is a simple task with a description and no time associated with it.

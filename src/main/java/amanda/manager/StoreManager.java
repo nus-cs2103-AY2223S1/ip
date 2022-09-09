@@ -1,19 +1,20 @@
-package main.java.amanda.manager;
+package amanda.manager;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-import main.java.amanda.task.Deadline;
-import main.java.amanda.task.Event;
-import main.java.amanda.task.Task;
-import main.java.amanda.task.Todo;
+import amanda.exception.InvalidDataException;
+import amanda.task.Deadline;
+import amanda.task.Event;
+import amanda.task.Task;
+import amanda.task.TaskState;
+import amanda.task.Todo;
+import amanda.ui.Ui;
 
 /**
  * StoreManager manages the storage of the task list.
@@ -32,27 +33,26 @@ public class StoreManager {
 
     /**
      * Load the task list stored in the storage file into a new task list.
-     * @param taskList the new task list.
      */
-    public void load(TaskList taskList) {
-        if (Files.notExists(Paths.get(path))) { // if file given in the provided path in the constructor does not exist.
-            File file = new File(this.path);
-            file.getParentFile().mkdirs(); // create the parent directories.
-            try {
-                file.createNewFile(); // create the file
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            File file = new File(this.path);
-            Scanner read = null;
-            try {
-                read = new Scanner(file); // use scanner to read from the file
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            assert read != null;
+    public void load() {
+        File storage = new File(path);
+        if (!storage.exists()) { // if file given in the provided path in the constructor does not exist.
+            File directory = new File(storage.getParent());
+            directory.mkdir(); // create the parent directories.
+        }
+        try {
+            storage.createNewFile(); // create the file
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            TaskList.resetList();
+            Scanner read = new Scanner(storage); // use scanner to read from the file
             String curr = read.nextLine();
+            if (curr.isEmpty()) {
+                return;
+            }
             /*
             Iterate through every line of the storage file and create corresponding
             tasks to add to a new task list. Thus recreating the task list from the
@@ -61,27 +61,43 @@ public class StoreManager {
             while (true) {
                 StringTokenizer tokens = new StringTokenizer(curr, "/");
                 String token = tokens.nextToken();
-                if (token.equals("T")) {
+                switch (token) {
+                case "T": {
                     boolean isDone = tokens.nextToken().equals("1");
                     Task task = new Todo(tokens.nextToken());
+                    if (task.getDesc().isEmpty()) {
+                        throw new InvalidDataException();
+                    }
                     if (isDone) {
                         task.doTask();
                     }
-                    taskList.getList().add(task);
-                } else if (token.equals("D")) {
+                    TaskList.getList().add(task);
+                    break;
+                }
+                case "D": {
                     boolean isDone = tokens.nextToken().equals("1");
                     Task task = new Deadline(tokens.nextToken(), tokens.nextToken());
+                    if (task.getDesc().isEmpty()) {
+                        throw new InvalidDataException();
+                    }
                     if (isDone) {
                         task.doTask();
                     }
-                    taskList.getList().add(task);
-                } else if (token.equals("E")) {
+                    TaskList.getList().add(task);
+                    break;
+                }
+                case "E": {
                     boolean isDone = tokens.nextToken().equals("1");
                     Task task = new Event(tokens.nextToken(), tokens.nextToken());
+                    if (task.getDesc().isEmpty()) {
+                        throw new InvalidDataException();
+                    }
                     if (isDone) {
                         task.doTask();
                     }
-                    taskList.getList().add(task);
+                    TaskList.getList().add(task);
+                    break;
+                }
                 }
                 if (!read.hasNextLine()) {
                     break;
@@ -89,31 +105,30 @@ public class StoreManager {
                 curr = read.nextLine();
             }
             read.close();
+        } catch (FileNotFoundException | InvalidDataException e) {
+            Ui.addResponse(e.getMessage());
         }
     }
 
     /**
      * Store the current task list into the storage file.
-     * @param taskList the current task list.
      */
-    public void store(TaskList taskList) {
-        PrintWriter writer = null;
+    public void store() {
         try {
-            writer = new PrintWriter(this.path, "UTF-8"); // create PrintWriter object to write to the storage file.
-        } catch (FileNotFoundException | UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+            FileWriter writer = new FileWriter(path); // create PrintWriter object to write to the storage file.
 
-        // Iterate through the current task list and update the storage file with the newest state of the task list
-        for (Task t : taskList.getList()) {
-            String curr = t.getType() + "/" + t.getState() + "/" + t.getTask();
-            if (!t.getType().equals("T")) {
-                curr += "/" + t.getTime();
+            // Iterate through the current task list and update the storage file with the newest state of the task list
+            for (Task t : TaskList.getList()) {
+                String state = t.getState() == TaskState.DONE ? "1" : "0";
+                String curr = t.getType() + "/" + state + "/" + t.getDesc();
+                if (!t.getType().equals("T")) {
+                    curr += "/" + t.getTime();
+                }
+                writer.write(curr + "\n");
             }
-            assert writer != null;
-            writer.println(curr);
+            writer.close();
+        } catch (IOException e) {
+            Ui.addResponse(e.getMessage());
         }
-        assert writer != null;
-        writer.close();
     }
 }

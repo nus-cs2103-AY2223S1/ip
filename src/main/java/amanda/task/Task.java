@@ -1,4 +1,4 @@
-package main.java.amanda.task;
+package amanda.task;
 
 /**
  * Task is something that the user wants to get done.
@@ -9,6 +9,7 @@ public class Task {
 
     /**
      * Constructor for Task class.
+     *
      * @param description
      */
     public Task(String description) {
@@ -18,6 +19,7 @@ public class Task {
 
     /**
      * Convert the done/not done status of the task into a "X" or " " symbol for printing.
+     *
      * @return "X" if task is done, " " if task is not done.
      */
     public String getStatusIcon() {
@@ -40,18 +42,18 @@ public class Task {
 
     /**
      * Get the description of the task.
+     *
      * @return the description of the task.
      */
-    public String getTask() {
+    public String getDesc() {
         return this.description;
     }
 
     /**
      * Get the state of the task.
-     * @return "1" if the task is done, "0" if the task is not done.
      */
-    public String getState() {
-        return state == TaskState.DONE ? "1" : "0";
+    public TaskState getState() {
+        return state;
     }
 
     /**
@@ -71,8 +73,10 @@ public class Task {
             return "T";
         } else if (this instanceof Deadline) {
             return "D";
-        } else {
+        } else if (this instanceof Event) {
             return "E";
+        } else {
+            return "?";
         }
     }
 

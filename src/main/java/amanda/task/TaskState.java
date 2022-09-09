@@ -1,4 +1,4 @@
-package main.java.amanda.task;
+package amanda.task;
 
 /**
  * State of the task

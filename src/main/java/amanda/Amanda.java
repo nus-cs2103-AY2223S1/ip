@@ -1,54 +1,45 @@
-package main.java.amanda;
+package amanda;
 
-import java.util.Scanner;
-
-import main.java.amanda.command.Command;
-import main.java.amanda.exception.AmandaException;
-import main.java.amanda.manager.QueryInterpreter;
-import main.java.amanda.manager.StoreManager;
-import main.java.amanda.manager.TaskList;
-import main.java.amanda.ui.Ui;
+import amanda.command.Command;
+import amanda.exception.EmptyDateException;
+import amanda.exception.InvalidCommandException;
+import amanda.exception.InvalidDateFormatException;
+import amanda.exception.InvalidDescriptionException;
+import amanda.exception.InvalidIndexException;
+import amanda.manager.QueryInterpreter;
+import amanda.manager.StoreManager;
+import amanda.manager.TaskList;
+import amanda.ui.Ui;
 
 /**
  * Amanda is an interactive chatbot that keeps track of users tasks and deadlines.
  */
 public class Amanda {
 
-    private final StoreManager store;
-    private final TaskList tasks;
-    private final Ui ui;
+	private final StoreManager store;
+	private final TaskList tasks;
 
-    /**
-     * Constructor of the Amanda class.
-     * @param filePath Path to the storage file of main.java.amanda.
-     */
-    public Amanda(String filePath) {
-        store = new StoreManager(filePath);
-        ui = new Ui();
-        tasks = new TaskList();
-        store.load(tasks);
-    }
+	/**
+	 * Constructor of the Amanda class.
+	 * @param filePath Path to the storage file of amanda.
+	 */
+	public Amanda(String filePath) {
+		store = new StoreManager(filePath);
+		tasks = new TaskList();
+		store.load();
+	}
 
-    /**
-     * Runs Amanda
-     */
-    public void run() {
-        ui.showWelcome(); // print welcome message
-        boolean isExit = false;
-        Scanner sc = new Scanner(System.in);
-        while (!isExit) { // amanda runs until isExit return true
-            try {
-                String fullCommand = ui.readCommand(sc);
-                ui.showLine(); // show the divider line ("_______")
-                Command c = QueryInterpreter.interpret(fullCommand);
-                c.execute(tasks, ui, store); // executes the command
-                isExit = c.isExit(); // check if newest user input is an exit command
-            } catch (AmandaException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
-            }
-        }
-        sc.close();
-    }
+	/**
+	 * Runs Amanda
+	 */
+	public String getResponse(String input) {
+		try {
+			Command c = QueryInterpreter.interpret(input);
+			c.execute(tasks, store); // executes the command
+		} catch (InvalidCommandException | InvalidIndexException
+				| InvalidDescriptionException | InvalidDateFormatException | EmptyDateException e) {
+			Ui.addResponse(e.getMessage());
+		}
+		return Ui.getAmandaResponse();
+	}
 }
