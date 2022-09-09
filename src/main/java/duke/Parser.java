@@ -15,9 +15,12 @@ import duke.task.ToDo;
 public class Parser {
 
     private static String[] listTasks(String response, List<Task> tasks) {
+        assert response != null;
+        assert tasks != null;
         String[] output = new String[tasks.size() + 1];
         output[0] = response;
         for (int i = 0; i < tasks.size(); i++) {
+            assert tasks.get(i) != null;
             output[i + 1] = (i + 1) + "." + tasks.get(i).toString();
         }
         return output;
@@ -37,6 +40,7 @@ public class Parser {
 
         commands = addCatchAllCommand(commands);
 
+        assert commands != null;
         return commands;
     }
 
@@ -46,7 +50,10 @@ public class Parser {
      * @return ArrayList of chatbot commands.
      */
     public static ArrayList<CommandMatcher> addTaskCommands(ArrayList<CommandMatcher> commands) {
+        assert commands != null;
         commands.add(new PrefixCommandMatcher("deadline", (str, map) -> {
+            assert str != null;
+            assert map != null;
             Task task = new Deadline(str, map.getOrDefault("by", "[unknown]"));
             TaskList.getTaskList().add(task);
             return new DukeResponse(
@@ -55,6 +62,8 @@ public class Parser {
         }));
 
         commands.add(new PrefixCommandMatcher("todo", (str, map) -> {
+            assert str != null;
+            assert map != null;
             Task task = new ToDo(str);
             TaskList.getTaskList().add(task);
             return new DukeResponse(
@@ -63,6 +72,8 @@ public class Parser {
         }));
 
         commands.add(new PrefixCommandMatcher("event", (str, map) -> {
+            assert str != null;
+            assert map != null;
             Task task = new Event(str, map.getOrDefault("at", "[unknown]"));
             TaskList.getTaskList().add(task);
             return new DukeResponse(
@@ -79,7 +90,10 @@ public class Parser {
      * @return ArrayList of chatbot commands.
      */
     public static ArrayList<CommandMatcher> addTaskModificationCommands(ArrayList<CommandMatcher> commands) {
+        assert commands != null;
         commands.add(PrefixCommandMatcher.of("mark", (str, map) -> {
+            assert str != null;
+            assert map != null;
             Task task = TaskList.getTask(str);
             task.markAsDone();
             return new DukeResponse(
@@ -88,6 +102,8 @@ public class Parser {
         }));
 
         commands.add(PrefixCommandMatcher.of("unmark", (str, map) -> {
+            assert str != null;
+            assert map != null;
             Task task = TaskList.getTask(str);
             task.markAsNotDone();
             return new DukeResponse(
@@ -96,6 +112,8 @@ public class Parser {
         }));
 
         commands.add(PrefixCommandMatcher.of("delete", (str, map) -> {
+            assert str != null;
+            assert map != null;
             Task task = TaskList.getTask(str);
             TaskList.getTaskList().remove(task);
             return new DukeResponse(
@@ -113,13 +131,17 @@ public class Parser {
      * @return ArrayList of chatbot commands.
      */
     public static ArrayList<CommandMatcher> addTaskViewingCommands(ArrayList<CommandMatcher> commands) {
+        assert commands != null;
         commands.add(new CommandMatcher((str) -> str.equals("list"), (str) -> {
+            assert str != null;
             List<Task> tasks = TaskList.getTaskList();
             return new DukeResponse(
                     listTasks("Here, your tasks:", tasks));
         }));
 
         commands.add(new PrefixCommandMatcher("find", (str, map) -> {
+            assert str != null;
+            assert map != null;
             List<Task> tasks = TaskList.filterTasks(str);
             return new DukeResponse(
                     listTasks("Here are the tasks that you might be looking for:", tasks));

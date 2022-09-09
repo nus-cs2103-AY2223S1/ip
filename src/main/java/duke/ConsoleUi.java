@@ -26,6 +26,7 @@ public class ConsoleUi implements UiInterface {
     public void printStyledMessage(String... lines) {
         System.out.println(UPPER_BAR);
         for (String str : lines) {
+            assert str != null;
             System.out.print(LEFT_BAR);
             System.out.println(str);
         }

@@ -28,6 +28,8 @@ public class Deadline extends Task {
     public Deadline(String description, String by, boolean isDone) {
         super(description, isDone);
         datetime = new ParsedDateTime(by);
+        assert description != null;
+        assert by != null;
     }
 
     /**

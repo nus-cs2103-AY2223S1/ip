@@ -15,6 +15,7 @@ public class DukeException extends Exception {
      */
     public DukeException(DukeResponse response) {
         super("[DukeException]");
+        assert response != null;
         this.response = response;
     }
 

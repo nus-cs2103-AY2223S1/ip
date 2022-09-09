@@ -19,6 +19,8 @@ public class CommandMatcher {
      * @param action Action to run.
      */
     public CommandMatcher(Predicate<String> shouldRunAction, Function<String, DukeResponse> action) {
+        assert shouldRunAction != null;
+        assert action != null;
         this.shouldRunAction = shouldRunAction;
         this.action = action;
     }
@@ -42,6 +44,8 @@ public class CommandMatcher {
      * @return Constructed CommandMatcher.
      */
     public static CommandMatcher of(String prefix, DukeExceptionFunction<String> action) {
+        assert prefix != null;
+        assert action != null;
         return new CommandMatcher((cmd) -> cmd.strip().startsWith(prefix),
                 DukeExceptionFunction.toFunction(action));
     }
@@ -54,8 +58,11 @@ public class CommandMatcher {
      * @return A DukeResponse if the string matches.
      */
     public Optional<DukeResponse> run(String input) {
+        assert input != null;
         if (shouldRunAction.test(input)) {
-            return Optional.of(action.apply(input));
+            DukeResponse result = action.apply(input);
+            assert result != null;
+            return Optional.of(result);
         }
         return Optional.empty();
     }

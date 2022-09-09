@@ -16,6 +16,7 @@ public class Task {
      */
     public Task(String name) {
         this(name, false);
+        assert name != null;
     }
 
     /**
@@ -25,6 +26,7 @@ public class Task {
      * @param isDone True if and only if the task is done.
      */
     public Task(String name, boolean isDone) {
+        assert name != null;
         this.name = name;
         this.isDone = isDone;
     }

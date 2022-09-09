@@ -57,6 +57,7 @@ public class DialogBox extends HBox {
      * @return Dialog box.
      */
     public static DialogBox getUserDialog(String text, Image img) {
+        assert text != null;
         return new DialogBox(text, img);
     }
 
@@ -68,6 +69,7 @@ public class DialogBox extends HBox {
      * @return Dialog box.
      */
     public static DialogBox getDukeDialog(String text, Image img) {
+        assert text != null;
         var db = new DialogBox(text, img);
         db.flip();
         return db;

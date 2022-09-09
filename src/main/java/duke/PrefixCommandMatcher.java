@@ -52,6 +52,8 @@ public class PrefixCommandMatcher extends CommandMatcher {
                     // accept
                     return action.apply(commandParts[0], map);
                 }));
+        assert prefix != null;
+        assert action != null;
     }
 
     private static Predicate<String> makePrefixMatcher(String prefix) {
@@ -65,6 +67,8 @@ public class PrefixCommandMatcher extends CommandMatcher {
      * @param action Action to do.
      */
     public static PrefixCommandMatcher of(String prefix, DukeExceptionBiFunction<String, Map<String, String>> action) {
+        assert prefix != null;
+        assert action != null;
         return new PrefixCommandMatcher(prefix,
                 DukeExceptionBiFunction.toBiFunction(action));
     }
