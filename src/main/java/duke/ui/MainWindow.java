@@ -1,25 +1,24 @@
 package duke.ui;
 
+import duke.Duke;
 import duke.DukeException;
 import duke.Ui;
-import javafx.application.Platform;
+import duke.command.Command;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.*;
-
-import duke.Duke;
-import duke.command.Command;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
@@ -48,7 +47,8 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     public void initialize() {
-        Background background = new Background(new BackgroundFill(Color.valueOf("203649"), new CornerRadii(0), new Insets(0)));
+        Background background = new Background(new BackgroundFill(Color.valueOf("203649"),
+                new CornerRadii(0), new Insets(0)));
         Font font = new Font("SF Mono Medium", 12);
         pane.setBackground(background);
         dialogContainer.setBackground(background);
