@@ -2,10 +2,10 @@ package duke.task;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
-import duke.Duke;
+import duke.DukeException;
+import duke.DukeResponse;
 
 /**
  * Holds the list of tasks
@@ -32,21 +32,19 @@ public class TaskList {
      * Gets task from index as string.
      *
      * @param index Index as a string.
-     * @return Optional.of(task) if successful, else Optional.empty().
+     * @return Task if successful.
+     * @throws DukeException if not successful.
      */
-    public static Optional<Task> getTask(String index) {
+    public static Task getTask(String index) throws DukeException {
         try {
             int idx = Integer.parseInt(index);
-            Task task = taskList.get(idx - 1);
-            return Optional.of(task);
+            return taskList.get(idx - 1);
         } catch (NumberFormatException ex) {
-            Duke.getUi().printStyledMessage(
-                    "Sorry, I didn't understand " + index + ", please give me a number.");
-            return Optional.empty();
+            throw new DukeException(new DukeResponse(
+                    "Sorry, I didn't understand " + index + ", please give me a number."));
         } catch (IndexOutOfBoundsException ex) {
-            Duke.getUi().printStyledMessage(
-                    "Sorry, the number " + index + ", wasn't in the range.");
-            return Optional.empty();
+            throw new DukeException(new DukeResponse(
+                    "Sorry, the number " + index + ", wasn't in the range."));
         }
     }
 

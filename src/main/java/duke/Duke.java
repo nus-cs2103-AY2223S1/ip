@@ -3,6 +3,7 @@ package duke;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import duke.task.TaskList;
 
@@ -32,12 +33,12 @@ public class Duke {
         return ui;
     }
 
-    private static void handleCommand(String command) {
+    private static DukeResponse handleCommand(String command) {
+        Optional<DukeResponse> response = Optional.empty();
         for (CommandMatcher matcher : commands) {
-            if (matcher.run(command)) {
-                break;
-            }
+            response = response.or(() -> matcher.run(command));
         }
+        return response.orElse(new DukeResponse("I cannot figure out this command..."));
     }
 
     /**
@@ -65,7 +66,8 @@ public class Duke {
             if (command.equals("bye")) {
                 isStillRunning = false;
             } else {
-                handleCommand(command);
+                DukeResponse response = handleCommand(command);
+                response.print(ui); // ensure response is printed
             }
         }
 

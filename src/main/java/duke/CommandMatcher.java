@@ -1,6 +1,7 @@
 package duke;
 
-import java.util.function.Consumer;
+import java.util.Optional;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
@@ -9,7 +10,7 @@ import java.util.function.Predicate;
  */
 public class CommandMatcher {
     private Predicate<String> shouldRunAction;
-    private Consumer<String> action;
+    private Function<String, DukeResponse> action;
 
     /**
      * Creates an object that handles checking and executing a command.
@@ -17,7 +18,7 @@ public class CommandMatcher {
      * @param shouldRunAction Predicate to check if the command should be run.
      * @param action Action to run.
      */
-    public CommandMatcher(Predicate<String> shouldRunAction, Consumer<String> action) {
+    public CommandMatcher(Predicate<String> shouldRunAction, Function<String, DukeResponse> action) {
         this.shouldRunAction = shouldRunAction;
         this.action = action;
     }
@@ -25,12 +26,24 @@ public class CommandMatcher {
     /**
      * Creates an object that handles checking and executing a command.
      *
+     * @param shouldRunAction Predicate to check if the command should be run.
+     * @param action Action to run.
+     * @return Constructed CommandMatcher.
+     */
+    public static CommandMatcher of(Predicate<String> shouldRunAction, DukeExceptionFunction<String> action) {
+        return new CommandMatcher(shouldRunAction, DukeExceptionFunction.toFunction(action));
+    }
+
+    /**
+     * Creates an object that handles checking and executing a command.
+     *
      * @param prefix Prefix of the command which is checked.
      * @param action Action to run.
+     * @return Constructed CommandMatcher.
      */
-    public CommandMatcher(String prefix, Consumer<String> action) {
-        this.shouldRunAction = (cmd) -> cmd.strip().startsWith(prefix);
-        this.action = action;
+    public static CommandMatcher of(String prefix, DukeExceptionFunction<String> action) {
+        return new CommandMatcher((cmd) -> cmd.strip().startsWith(prefix),
+                DukeExceptionFunction.toFunction(action));
     }
 
     /**
@@ -38,13 +51,12 @@ public class CommandMatcher {
      * If it does, it would execute the action.
      *
      * @param input String to check if it is for this command.
-     * @return If the string matches.
+     * @return A DukeResponse if the string matches.
      */
-    public boolean run(String input) {
+    public Optional<DukeResponse> run(String input) {
         if (shouldRunAction.test(input)) {
-            action.accept(input);
-            return true;
+            return Optional.of(action.apply(input));
         }
-        return false;
+        return Optional.empty();
     }
 }
