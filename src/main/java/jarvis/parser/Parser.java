@@ -1,13 +1,7 @@
 package jarvis.parser;
 
 import jarvis.JarvisException;
-import jarvis.command.AddCommand;
-import jarvis.command.ByeCommand;
-import jarvis.command.Command;
-import jarvis.command.DeleteCommand;
-import jarvis.command.FindCommand;
-import jarvis.command.ListCommand;
-import jarvis.command.MarkCommand;
+import jarvis.command.*;
 
 /**
  * Parser --- parses commands entered by the user.
@@ -35,6 +29,8 @@ public class Parser {
             return new DeleteCommand(command);
         case "find":
             return new FindCommand(command);
+        case "sort":
+            return new SortCommand(command);
         case "todo":
         case "deadline":
         case "event":
