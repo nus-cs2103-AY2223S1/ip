@@ -67,25 +67,11 @@ public class Storage {
             while (scanner.hasNext()) {
                 String start = scanner.next();
                 if (start.equals("T")) {
-                    String isDoneSymbol = scanner.next();
-                    scanner.skip("\\s\\|\\s");
-                    String description = scanner.nextLine();
-                    Task t = new ToDo(description, (isDoneSymbol.equals("1")));
-                    taskList.add(t);
+                    addTodo(taskList, scanner);
                 } else if (start.equals("E")) {
-                    String isDoneSymbol = scanner.next();
-                    String description = scanner.next();
-                    scanner.skip("\\s\\|\\s");
-                    String at = scanner.nextLine();
-                    Task t = new Event(description, at, (isDoneSymbol.equals("1")));
-                    taskList.add(t);
+                    addEvent(taskList, scanner);
                 } else if (start.equals("D")) {
-                    String isDoneSymbol = scanner.next();
-                    String description = scanner.next();
-                    scanner.skip("\\s\\|\\s");
-                    String by = scanner.nextLine();
-                    Task t = new Deadline(description, by, (isDoneSymbol.equals("1")));
-                    taskList.add(t);
+                    addDeadline(taskList, scanner);
                 } else {
                     throw new FredException("Loading... Data file entry is wrong!");
                 }
@@ -96,5 +82,46 @@ public class Storage {
         } catch (FileNotFoundException e) {
             throw new FredException("Loading Error!");
         }
+    }
+
+    /**
+     * Add ToDo from data file to taskList
+     * @param taskList Fred's taskList
+     * @param scanner Scanner for data file
+     */
+    public void addTodo(ArrayList<Task> taskList, Scanner scanner) {
+        String isDoneSymbol = scanner.next();
+        scanner.skip("\\s\\|\\s");
+        String description = scanner.nextLine();
+        Task t = new ToDo(description, (isDoneSymbol.equals("1")));
+        taskList.add(t);
+    }
+
+    /**
+     * Add Event from data file to taskList
+     * @param taskList Fred's taskList
+     * @param scanner Scanner for data file
+     */
+    public void addEvent(ArrayList<Task> taskList, Scanner scanner) {
+        String isDoneSymbol = scanner.next();
+        String description = scanner.next();
+        scanner.skip("\\s\\|\\s");
+        String at = scanner.nextLine();
+        Task t = new Event(description, at, (isDoneSymbol.equals("1")));
+        taskList.add(t);
+    }
+
+    /**
+     * Add Deadline from data file to taskList
+     * @param taskList Fred's taskList
+     * @param scanner Scanner for data file
+     */
+    public void addDeadline(ArrayList<Task> taskList, Scanner scanner) {
+        String isDoneSymbol = scanner.next();
+        String description = scanner.next();
+        scanner.skip("\\s\\|\\s");
+        String by = scanner.nextLine();
+        Task t = new Deadline(description, by, (isDoneSymbol.equals("1")));
+        taskList.add(t);
     }
 }
