@@ -6,21 +6,38 @@ import duke.tasks.TaskList;
 import duke.ui.Ui;
 
 /**
- * Adds a person to the address book.
+ * Command to end the current session
  */
 public class ByeCommand extends Command {
 
     public static final String COMMAND_WORD = "bye";
 
+    /**
+     * Constructs a ByeCommand instance
+     */
     public ByeCommand() {
         super();
     }
 
+    /**
+     * Returns a boolean value true if the command is a bye command,
+     * false otherwise.
+     *
+     * @return a boolean value on whether the command is a bye command
+     */
     @Override
     public boolean isByeCommand() {
         return true;
     }
 
+    /**
+     * Executes the command to store the current tasks to the local storage
+     *
+     * @param tasks The current list of tasks
+     * @param ui The Ui instance to return the result to the user
+     * @param storage The Storage instance to store the result to local storage
+     * @throws DukeException if errors are encountered during execution
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         storage.writeToFile(tasks.toArrayList());

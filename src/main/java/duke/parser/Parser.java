@@ -24,10 +24,10 @@ import duke.tasks.Todo;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Parses the input from the user to their specific commands
+ */
 public class Parser {
-
-    public static final Pattern STORED_TASK_DATA_FORMAT =
-            Pattern.compile("(N|M)\\|(event|todo|deadline)\\s+(.+)\\s+(/at|/by|/empty)\\s+(.*)");
 
     public static final Pattern STORED_TASK_DATA_RAW_FORMAT =
             Pattern.compile("(N|M)\\|(event|todo|deadline)\\s+(.*)");
@@ -35,12 +35,13 @@ public class Parser {
     public static final Pattern BASIC_COMMAND_FORMAT =
             Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
-    public static final Pattern KEYWORDS_ARGS_FORMAT =
-            Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)"); // one or more keywords separated by whitespace
-
-//    public static final Pattern STORED_TASK_DATA_FORMAT =
-//            Pattern.compile("(?<marked>\\S+)(?<commandWord>\\S+)(?<arguments>.*)");
-
+    /**
+     * Parses the input from the user to their commands
+     *
+     * @param input a string containing the command input by the user
+     * @return a Command corresponding to the input string
+     * @throws DukeException if the command is invalid
+     */
     public Command parse(String input) throws DukeException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
         if (!matcher.matches()) {
@@ -80,10 +81,22 @@ public class Parser {
         }
     }
 
+    /**
+     * Prepares the arguments for initialising a Todo command
+     *
+     * @param args the description for initialising a Todo command
+     * @return the command of initialising a Todo command
+     */
     private Command prepareTodo(String args) {
         return new TodoCommand(args.trim());
     }
 
+    /**
+     * Prepares the arguments for initialising a Deadline command
+     *
+     * @param args the description for initialising a Deadline command
+     * @return the command of initialising a Deadline command
+     */
     private Command prepareDeadline(String args) {
         try {
             String[] strArr = parseDeadlineArgument(args);
@@ -95,6 +108,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Prepares the arguments for initialising an Event command
+     *
+     * @param args the description for initialising an Event command
+     * @return the command of initialising an Event command
+     */
     private Command prepareEvent(String args) {
         try {
             String[] strArr = parseEventArgument(args);
@@ -106,6 +125,15 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the arguments for the Deadline arguments
+     *
+     * @param args string containing the description and the deadline of the task
+     * @return a string array where the first element represents the description
+     *     and the second element represents the deadline of the task
+     * @throws DukeException if the description is empty or if the command doesn't
+     *     follow a specific command
+     */
     private static String[] parseDeadlineArgument(String args) throws DukeException {
         String description = "";
         String by = "";
@@ -138,6 +166,15 @@ public class Parser {
         return strArr;
     }
 
+    /**
+     * Parses the arguments for the Event arguments
+     *
+     * @param args string containing the description and the time of the task
+     * @return a string array where the first element represents the description
+     *     and the second element represents the time of the task
+     * @throws DukeException if the description is empty or if the command doesn't
+     *     follow a specific command
+     */
     private static String[] parseEventArgument(String args) throws DukeException {
         String description = "";
         String at = "";
@@ -170,6 +207,12 @@ public class Parser {
         return strArr;
     }
 
+    /**
+     * Prepares the arguments for initialising a Mark command
+     *
+     * @param args the description for initialising a Mark command
+     * @return the command of initialising a Mark command
+     */
     private Command prepareMark(String args) {
         int taskIndex;
         try {
@@ -180,6 +223,12 @@ public class Parser {
         return new MarkCommand(taskIndex);
     }
 
+    /**
+     * Prepares the arguments for initialising an Unmark command
+     *
+     * @param args the description for initialising an Unmark command
+     * @return the command of initialising an Unmark command
+     */
     private Command prepareUnmark(String args) {
         int taskIndex;
         try {
@@ -190,6 +239,12 @@ public class Parser {
         return new UnmarkCommand(taskIndex);
     }
 
+    /**
+     * Prepares the arguments for initialising a Delete command
+     *
+     * @param args the description for initialising a Delete command
+     * @return the command of initialising a Delete command
+     */
     private Command prepareDelete(String args) {
         int taskIndex;
         try {
@@ -200,6 +255,13 @@ public class Parser {
         return new DeleteCommand(taskIndex);
     }
 
+    /**
+     * Parses the arguments for converting a task from storage to a Task
+     * instance that can be stored in the TaskList object
+     *
+     * @param args the string retrieved from the lcoal file
+     * @return the task after the arguments are parsed
+     */
     public static Task parseTask(String args) throws DukeException {
 
         boolean isMarked = false;
@@ -220,14 +282,6 @@ public class Parser {
             isMarked = false;
             break;
         }
-
-//        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(arguments.trim());
-//        if (!matcher.matches()) {
-//            throw new DukeInvalidCommandException();
-//        }
-
-//        final String commandWord = matcher.group("commandWord");
-//        final String taskArguments = matcher.group("arguments");
 
         Task t;
 

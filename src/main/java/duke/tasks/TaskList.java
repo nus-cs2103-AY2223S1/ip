@@ -7,15 +7,27 @@ import duke.storage.Storage;
 
 import java.util.ArrayList;
 
+/**
+ * Encapsulates a list of tasks in Duke
+ */
 public class TaskList {
 
     protected ArrayList<Task> tasks;
     protected Storage storage;
 
+    /**
+     * Initialises the tasks array
+     */
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Initialises the tasks array by using existing data stored in
+     * the local machine
+     *
+     * @param data An ArrayList of strings containing the saved user data
+     */
     public TaskList(ArrayList<? extends String> data) {
         this.tasks = new ArrayList<>();
         try {
@@ -27,6 +39,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Shows the list of tasks currently added to the TaskList
+     *
+     * @return a string containing the tasks added to the TaskList separated
+     *     by a newline character
+     */
     public String showList() {
         String str = "";
         for (int i = 0; i < tasks.size() - 1; i++) {
@@ -38,6 +56,14 @@ public class TaskList {
         return str;
     }
 
+    /**
+     * Marks the task in the index-th position of the tasks array
+     * as done.
+     *
+     * @param index the position of the task in the tasks array
+     * @throws DukeException if index exceeds the size of the tasks array
+     *     or if index is less than or equal to 0
+     */
     public void markAsDone(int index) throws DukeException {
         if (index < 1 || index > this.tasks.size()) {
             throw new DukeOutOfRangeException(this.tasks.size());
@@ -46,6 +72,14 @@ public class TaskList {
         task.markAsDone();
     }
 
+    /**
+     * Marks the task in the index-th position of the tasks array
+     * as not done.
+     *
+     * @param index the position of the task in the tasks array
+     * @throws DukeException if index exceeds the size of the tasks array
+     *     or if index is less than or equal to 0
+     */
     public void markAsNotDone(int index) throws DukeException {
         if (index < 1 || index > this.tasks.size()) {
             throw new DukeOutOfRangeException(this.tasks.size());
@@ -54,10 +88,22 @@ public class TaskList {
         task.markAsNotDone();
     }
 
+    /**
+     * Adds a task to the ArrayList of tasks
+     *
+     * @param task the task to be added to the list of tasks
+     */
     public void add(Task task) {
         this.tasks.add(task);
     }
 
+    /**
+     * Deletes a task from the tasks array
+     *
+     * @param index the position of the task in the tasks array
+     * @throws DukeException if index exceeds the size of the tasks array
+     *      or if index is less than or equal to 0
+     */
     public void deleteTask(int index) throws DukeException {
         if (index < 1 || index > this.tasks.size()) {
             throw new DukeOutOfRangeException(this.tasks.size());
@@ -66,10 +112,23 @@ public class TaskList {
         this.tasks.remove(index - 1);
     }
 
+    /**
+     * Shows the number of tasks in the TaskList
+     *
+     * @return the number of tasks in the TaskList
+     */
     public String showNumberOfTasks() {
         return "\nNow you have " + this.tasks.size() + " tasks in the list.";
     }
 
+    /**
+     * Retrieves the task in the index-th position of the tasks array
+     *
+     * @param index the position of the task in the tasks array
+     * @return the task in the index-th position of the tasks array
+     * @throws DukeException if index exceeds the size of the tasks array
+     *      or if index is less than or equal to 0
+     */
     public String getTask(int index) throws DukeException {
         if (index < 1 || index > this.tasks.size()) {
             throw new DukeOutOfRangeException(this.tasks.size());
@@ -77,6 +136,11 @@ public class TaskList {
         return this.tasks.get(index - 1).toString();
     }
 
+    /**
+     * Returns the tasks ArrayList
+     *
+     * @return the tasks ArrayList
+     */
     public ArrayList<Task> toArrayList() {
         return tasks;
     }
