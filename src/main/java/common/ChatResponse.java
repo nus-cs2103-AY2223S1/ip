@@ -117,9 +117,23 @@ public class ChatResponse {
 
     /**
      * Returns the task list where tasks matches a given target.
+     *
+     * @param taskList The task list.
      */
     public static String returnChatFindResults(TaskList taskList) {
         String results = String.format("Here are the matching tasks in your list: \n");
         return String.join(results, returnChatTaskList(taskList));
+    }
+
+    /**
+     * Returns formatted string containing count
+     * of a specified task.
+     *
+     * @param task  Task of the count.
+     * @param count Count of the task.
+     * @return Formatted string containing the count of the task.
+     */
+    public static String returnStatisticTaskCount(String task, Integer count) {
+        return String.format("The count of %s is %s.\n", task, count);
     }
 }
