@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DeadlineTest {
     Deadline testEvent = new Deadline("lunch", "2022-02-03", "12:00");
     @Test
-    public void testToString(){
+    public void testToString() {
         assertEquals(testEvent.toString(), "[D][ ] lunch (by: Feb 3 2022, 1200PM)");
     }
 

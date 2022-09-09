@@ -21,7 +21,7 @@ public class Deadline extends Task {
      * @param date Date of deadline
      * @param time Time of deadline
      */
-    Deadline(String description, String date, String time) {
+    public Deadline(String description, String date, String time) {
         super(description);
         this.date = LocalDate.parse(date);
         this.time = LocalTime.parse(time);
@@ -34,8 +34,9 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return type + super.toString() + " (by: " + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ", "
-                + time.format(DateTimeFormatter.ofPattern("hhmma")) + ")";
+        String strDate = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        String strTime = time.format(DateTimeFormatter.ofPattern("hhmma"));
+        return type + super.toString() + " (by: " + strDate + ", " + strTime + ")";
     }
 
     /**

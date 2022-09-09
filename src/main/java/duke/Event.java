@@ -37,9 +37,10 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return type + super.toString() + " (at: " + date.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
-                + ", " + from.format(DateTimeFormatter.ofPattern("hhmma")) + " to "
-                + to.format(DateTimeFormatter.ofPattern("hhmma")) + ")";
+        String strDate = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        String strFrom = from.format(DateTimeFormatter.ofPattern("hhmma"));
+        String strTo = to.format(DateTimeFormatter.ofPattern("hhmma"));
+        return type + super.toString() + " (at: " + strDate + ", " + strFrom + " to " + strTo + ")";
     }
 
     /**
