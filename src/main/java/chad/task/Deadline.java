@@ -1,7 +1,6 @@
 package chad.task;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Deadline task that inherits from task
@@ -17,8 +16,6 @@ public class Deadline extends Task {
      */
     public Deadline(String description, LocalDateTime dateTime) {
         super(description);
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HHmm");
-//        this.dateTime = LocalDateTime.parse(dateTime, formatter);
         this.dateTime = dateTime;
 
     }

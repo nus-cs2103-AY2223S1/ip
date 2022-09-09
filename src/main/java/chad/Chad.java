@@ -7,44 +7,60 @@ import java.util.Scanner;
 import chad.exception.ChadException;
 import chad.task.Task;
 
-
-
 /**
  * Main way for users to interact with Chadbot
  */
 public class Chad {
     private static ArrayList<Task> taskList;
+
+    /**
+     * Initialize a new task list
+     */
     public Chad() {
         try {
              taskList = Storage.initializeArrayList();
         } catch (ChadException ce) {
             System.out.println(ce.getMessage());
-            taskList = new ArrayList<>();
         }
-
     }
+
+    /**
+     * Get a string response by parsing it into read command
+     * @param input input
+     * @return String response
+     */
+    public String getResponse(String input) {
+        String output;
+        try {
+            output = Parser.readCommand(taskList, input);
+        }catch (ChadException ce) {
+            output = ce.getMessage();
+        }
+        return output;
+    }
+
     /**
      * Main Function of Chad
-     * @throws IOException Thrown when helper file cannot be open
-     * @throws ChadException Thrown when invalid error occurs
      */
-    public static void run() throws IOException, ChadException {
+    public static void run() {
         Scanner sc = new Scanner(System.in);
-        Ui.greet();
-
+        Utility.printToConsole(Ui.greet());
         while (true) {
             String userInput = sc.nextLine();
-            Parser.readUserInput(taskList, userInput);
+            String output;
+            try {
+                output = Parser.readCommand(taskList, userInput);
+            } catch (ChadException ce) {
+                output = ce.getMessage();
+            }
+            Utility.printToConsole(output);
+            if (userInput.equals("bye")) {
+                break;
+            }
         }
     }
 
-    public String getResponse(String input) {
-        String output = Parser.readUserInput(taskList, input);
-        return output;
-
-    }
-
-    public static void main(String[] args) throws ChadException, IOException {
+    public static void main(String[] args) throws ChadException {
         run();
     }
 }

@@ -1,7 +1,6 @@
 package chad.task;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * chad.task.Event task that is a child of task
@@ -17,8 +16,6 @@ public class Event extends Task {
      */
     public Event(String description, LocalDateTime dateTime) {
         super(description);
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HHmm");
-//        this.dateTime = LocalDateTime.parse(dateTime, formatter);
         this.dateTime = dateTime;
     }
 
