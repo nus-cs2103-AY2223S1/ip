@@ -20,6 +20,11 @@ public class Storage {
         taskList = new ArrayList<>();
         saveFile = givenSaveFile;
     }
+
+    /**
+     * Loads the list of tasks from the save file.
+     * @return List of tasks
+     */
     public List<Task> loadFromFile() {
         boolean isSaveFileCreated = saveFile.exists();
         if (!isSaveFileCreated) {
@@ -45,6 +50,10 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Persists the list of tasks to the save file.
+     * @param givenTaskList List of tasks in use by the app.
+     */
     public void saveToFile(List<Task> givenTaskList) {
         taskList = givenTaskList;
         try {

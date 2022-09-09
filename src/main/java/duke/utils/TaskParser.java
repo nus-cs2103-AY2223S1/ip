@@ -8,6 +8,16 @@ import duke.tasks.*;
 
 public class TaskParser {
 
+    /**
+     * Parses a String from the input containing task information into a Task.
+     * @param type Type of the Task.
+     * @param s String containing task information.
+     * @return Task object.
+     * @throws EmptyTaskDateException If a date is required but not specified.
+     * @throws EmptyTaskDescException If no description is specified.
+     * @throws NoSuchTaskTypeException If no such task type exists.
+     * @throws UnrecognisedDateException If the format of the given date is unrecognised.
+     */
     public static Task stringToTask(TaskType type, String s)
             throws EmptyTaskDateException, EmptyTaskDescException, NoSuchTaskTypeException, UnrecognisedDateException {
         if ("".equals(s)) {

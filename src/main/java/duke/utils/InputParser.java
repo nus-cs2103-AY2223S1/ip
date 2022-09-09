@@ -7,6 +7,14 @@ import duke.ui.Ui;
 
 public class InputParser {
 
+    /**
+     * Parses the input string.
+     * @param input Input string.
+     * @param tasks TaskList in use by the app.
+     * @param storage Storage in use by the app.
+     * @param ui Ui in use by the app.
+     * @return Command to be executed.
+     */
     public Command parse(String input, TaskList tasks, Storage storage, Ui ui) {
         int spaceIndex = input.indexOf(' ');
         String command, body;

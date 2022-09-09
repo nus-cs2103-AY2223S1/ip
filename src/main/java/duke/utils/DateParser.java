@@ -14,6 +14,13 @@ public class DateParser {
             DateTimeFormatter.ofPattern("dd/MM/yyyy")
     };
 
+    /**
+     * Parses the given String to a LocalDate.
+     * Accepts multiple formats.
+     * @param s String representing the date.
+     * @return LocalDate corresponding to the given string.
+     * @throws UnrecognisedDateException If the given string does not follow any defined format.
+     */
     public static LocalDate stringToDate(String s) throws UnrecognisedDateException {
         for (DateTimeFormatter formatter : formatterList) {
             try {
