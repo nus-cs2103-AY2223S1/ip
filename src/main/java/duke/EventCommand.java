@@ -15,14 +15,13 @@ public class EventCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         Event event = new Event(this.description, this.at);
-        tasks.addTask(event);
-        storage.save(tasks);
         String addTaskMessage = ui.showAddTask(event, tasks.getSize());
         if (tasks.checkDuplicates(event)) {
-            return addTaskMessage + "\n" + ui.showDuplicateMessage();
-        } else {
-            return addTaskMessage;
+            addTaskMessage += "\n" + ui.showDuplicateMessage();
         }
+        tasks.addTask(event);
+        storage.save(tasks);
+        return addTaskMessage;
     }
 
     @Override

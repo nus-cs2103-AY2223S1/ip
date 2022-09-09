@@ -1,3 +1,2 @@
-E | 1 | project meeting | 2022-10-10
-T | 0 | borrow shit
-T | 0 | borrow
+T | 0 | borrow book
+D | 0 | cs2103t homework | 2022-10-10

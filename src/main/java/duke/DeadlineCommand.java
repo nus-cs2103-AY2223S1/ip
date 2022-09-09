@@ -22,14 +22,13 @@ public class DeadlineCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         Task deadline = new Deadline(this.description, this.by);
-        tasks.addTask(deadline);
-        storage.save(tasks);
         String addTaskMessage = ui.showAddTask(deadline, tasks.getSize());
         if (tasks.checkDuplicates(deadline)) {
-            return addTaskMessage + "\n" + ui.showDuplicateMessage();
-        } else {
-            return addTaskMessage;
+            addTaskMessage += "\n" + ui.showDuplicateMessage();
         }
+        tasks.addTask(deadline);
+        storage.save(tasks);
+        return addTaskMessage;
     }
 
     @Override
