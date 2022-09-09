@@ -42,6 +42,4 @@ public class Ui {
     public void greet() {
         System.out.println("Hello I'm best bot Qoobee!\n" + "What can I do for you? ^.^");
     }
-
-
 }

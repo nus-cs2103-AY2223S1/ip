@@ -55,4 +55,7 @@ public class Task {
         this.isDone = false;
     }
 
+    public String storageToString() {
+        return " ";
+    }
 }

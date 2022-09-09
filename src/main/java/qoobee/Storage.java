@@ -7,7 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -48,23 +47,18 @@ public class Storage {
                     this.list.add(todo);
                     save(list);
                 } else if (stringArray[0].equals("D")) {
-                    String[] dateTime = stringArray[3].split(" ", 4);
-                    String[] time = dateTime[3].split(":", 2);
-                    Task deadline = new Deadline(stringArray[2],
-                            LocalDateTime.of(Integer.parseInt(dateTime[2]), Integer.parseInt(dateTime[1]),
-                                    Integer.parseInt(dateTime[0]), Integer.parseInt(time[0]),
-                                    Integer.parseInt(time[1])));
+                    Task deadline = new Deadline(stringArray[2], DateTimeParser.getDateTime(stringArray[3]));
                     if (stringArray[1].equals("1")) {
                         deadline.markAsDone();
                     }
-                    list.add(deadline);
+                    this.list.add(deadline);
                     save(list);
                 } else if (stringArray[0].equals("E")) {
                     Task event = new Event(stringArray[2], stringArray[3]);
                     if (stringArray[1].equals("1")) {
                         event.markAsDone();
                     }
-                    list.add(event);
+                    this.list.add(event);
                     save(list);
                 }
             }
@@ -85,32 +79,7 @@ public class Storage {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
             for (Task task : taskList) {
-                if (task instanceof ToDo) {
-                    writer.write("T | ");
-                    if (task.getStatusIcon() == "X") {
-                        writer.write("1 | ");
-                    } else {
-                        writer.write("0 | ");
-                    }
-                    writer.write(task.getDescription());
-                } else if (task instanceof Deadline) {
-                    writer.write("D | ");
-                    if (task.getStatusIcon() == "X") {
-                        writer.write("1 | ");
-                    } else {
-                        writer.write("0 | ");
-                    }
-                    writer.write(task.getDescription() + " | " + ((Deadline) task).getDateTime());
-                } else if (task instanceof Event) {
-                    writer.write("D | ");
-                    if (task.getStatusIcon() == "X") {
-                        writer.write("1 | ");
-                    } else {
-                        writer.write("0 | ");
-                    }
-                    writer.write(task.getDescription() + " | " + ((Event) task).getAt());
-                }
-                writer.write(System.lineSeparator());
+                writer.write(task.storageToString());
             }
             writer.close();
         } catch (IOException e) {

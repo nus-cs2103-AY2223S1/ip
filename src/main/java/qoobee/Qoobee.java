@@ -5,7 +5,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import java.util.Scanner;
 
 /**
  * Contains the main class which is primarily run.
@@ -38,20 +37,6 @@ public class Qoobee {
         }
     }
 
-    /**
-     * Starts the bot for the user to interact with.
-     */
-    public void run() {
-        Scanner scanner = new Scanner(System.in);
-        ui.greet();
-        while (scanner.hasNext()) {
-            String input = scanner.nextLine();
-            parser.parse(input);
-            if (!ui.isOn()) {
-                break;
-            }
-        }
-    }
 
     /**
      * You should have your own function to generate a response to user input.

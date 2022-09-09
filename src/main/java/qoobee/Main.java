@@ -16,6 +16,10 @@ public class Main extends Application {
     private Qoobee qoobee = new Qoobee();
     private static Stage stage;
 
+    /**
+     * Starts the stage when application launches.
+     * @param stage The specified stage.
+     */
     @Override
     public void start(Stage stage) {
         try {
@@ -32,6 +36,9 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Closes the application.
+     */
     public static void closeStage() {
         Main.stage.close();
     }
