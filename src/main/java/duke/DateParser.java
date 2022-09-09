@@ -8,9 +8,9 @@ import java.time.format.DateTimeParseException;
  */
 public class DateParser {
     /**
-     * Takes the date string and parses it into LocalDate object
+     * Takes the date string and parses it into {@link LocalDate} object
      * @param date
-     * @return LocalDate object for the date string
+     * @return {@link LocalDate} object for the date string
      */
     public static LocalDate parseDate(String date) {
         LocalDate parsedDate = null;

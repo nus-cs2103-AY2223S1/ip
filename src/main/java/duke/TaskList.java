@@ -16,32 +16,49 @@ public class TaskList {
     private List<Task> tasks;
 
     /**
-     * Initializes an empty duke.TaskList
+     * Initialize an empty <code>TaskList</code>
      */
     public TaskList() {
         tasks = new ArrayList<>();
     }
 
     /**
-     * Initializes a taskList that contains existing tasks that have been saved
+     * Initialize a <code>TaskList</code> that contains existing tasks that have been saved
      * @param taskList List of existing tasks to be loaded
      */
     public TaskList(List<Task> taskList) {
         this.tasks = taskList;
     }
 
+    /**
+     * Add Task to the current TaskList
+     * @param t the task object to add to the TaskList
+     */
     public void addTask(Task t) {
         tasks.add(t);
     }
 
+    /**
+     * Delete task from the current TaskList
+     * @param index
+     */
     public void deleteTask(int index) {
         this.tasks.remove(index - 1);
     }
 
+    /**
+     * Get task from the TaskList based on index
+     * @param index
+     * @return the selected task
+     */
     public Task getTask(int index) {
         return this.tasks.get(index - 1);
     }
 
+    /**
+     * Loop through the TaskList and create a string representing all the tasks
+     * @return returns a string of all tasks in the TaskList
+     */
     public String getAllTasks() {
         String result = "";
         ListIterator<Task> listIterator = tasks.listIterator();
@@ -54,8 +71,8 @@ public class TaskList {
     }
 
     /**
-     * Searches the list if the description matches the query string
-     * @param query query string
+     * Search the list for a task with matching description
+     * @param query string to search for in the TaskList
      * @return
      */
     public List<Task> findTask(String query) {
@@ -71,6 +88,10 @@ public class TaskList {
         return result;
     }
 
+    /**
+     * Return the size of the current TaskList
+     * @return the size of the TaskList
+     */
     public int getSize() {
         return tasks.size();
     }

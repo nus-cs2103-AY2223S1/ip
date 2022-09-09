@@ -6,7 +6,7 @@ import duke.storage.Storage;
 import duke.ui.Ui;
 
 /**
- * Removes Task from the task list
+ * Command that removes Task from the task list
  */
 public class DeleteCommand extends Command {
     private final int index;
