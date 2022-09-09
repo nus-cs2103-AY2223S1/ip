@@ -1,4 +1,4 @@
-# User Guide
+# SocDuke User Guide
 
 ## Features 
 
