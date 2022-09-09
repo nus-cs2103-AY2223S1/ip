@@ -29,6 +29,7 @@ public class DialogBox extends HBox {
     private ImageView displayPicture;
 
 
+
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -54,12 +55,15 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        var db = new DialogBox(text, img);
+        db.setStyle("-fx-background-color: #00FF00");
+        return db;
     }
 
     public static DialogBox getDukeDialog(String text, Image img) {
         checkExitMessage(text);
         var db = new DialogBox(text, img);
+        db.setStyle("-fx-background-color: #00DDDD");
         db.flip();
         return db;
     }

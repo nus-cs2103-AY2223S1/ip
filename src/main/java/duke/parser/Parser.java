@@ -39,7 +39,7 @@ public class Parser {
     private static final String INVALID_INTEGER_MESSAGE = "please input a valid integer";
     private static final String INVALID_FIND_DATE_MESSAGE = "Input a valid date in the format YYYY-MM-DD";
     private static final String INVALID_DATE_MESSAGE = "Input valid date in the format YYYY-MM-DD "
-            + "HH:mm\nor YYYY-MM-DD for deadlines and YYYY-MM-DD HH:mm-HH:mm for events";
+            + "HH:mm\nor YYYY-MM-DD for deadlines\nand YYYY-MM-DD HH:mm-HH:mm for events";
     /**
      * Parses the user input and returns a command if the input is valid.
      *
