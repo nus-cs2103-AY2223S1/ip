@@ -24,6 +24,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toFileRepresentation() {
-        return "D" + "|" + (this.isComplete() ? "1" : "0") + "|" + this.getName() + "|" + this.dueDate.toString();
+        return String.format("D|%d|%s|%s", this.isComplete() ? 1 : 0, this.getName(), this.dueDate.toString());
     }
 }
