@@ -25,6 +25,7 @@ public class Parser {
      * @throws DukeException when user command is invalid.
      */
     public static Command parse(String userInput) throws DukeException {
+        assert userInput != null : "Parser::parse has null input";
         String[] strings = userInput.split(" ");
 
         switch (strings[0]) {
