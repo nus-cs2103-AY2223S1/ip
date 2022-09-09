@@ -21,14 +21,14 @@ public class Task {
      * Marks the task as done.
      */
     public void markAsDone() {
-        this.isDone = true;
+        isDone = true;
     }
 
     /**
      * Marks the task as not done.
      */
     public void markAsNotDone() {
-        this.isDone = false;
+        isDone = false;
     }
 
     /**
@@ -42,7 +42,7 @@ public class Task {
     }
 
     private char getDoneMarker() {
-        return this.isDone ? MARKER_DONE : MARKER_NOT_DONE;
+        return isDone ? MARKER_DONE : MARKER_NOT_DONE;
     }
 
     /**
