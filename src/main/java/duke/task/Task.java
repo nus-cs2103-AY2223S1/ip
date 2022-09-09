@@ -1,6 +1,9 @@
 package duke.task;
 
+import duke.DukeException;
+
 import java.time.LocalDate;
+import java.util.NoSuchElementException;
 
 
 /**
@@ -9,9 +12,14 @@ import java.time.LocalDate;
  */
 public abstract class Task {
 
+    protected enum Priority {
+        HIGH, MEDIUM, LOW;
+    }
+
     private String description;
     private Boolean isDone;
 
+    private Priority priority;
 
 
     /**
@@ -36,6 +44,14 @@ public abstract class Task {
      */
     public void unmarkDone() {
         this.isDone = false;
+    }
+
+    public void attachPriority(String priority) throws DukeException {
+        try {
+            this.priority = Priority.valueOf(priority);
+        } catch (IllegalArgumentException e) {
+            throw new DukeException("Please enter a valid priority.");
+        }
     }
 
     /**
@@ -71,12 +87,6 @@ public abstract class Task {
         return "[" + getStatusIcon() + "] " + this.description;
     }
 
-    /**
-     * Compare date between tasks.
-     * @param date Specified date of task.
-     * @return true only if both task on the same date.
-     */
-    public abstract boolean compareDate(LocalDate date);
 
 
 }

@@ -105,4 +105,14 @@ public class TaskList {
             throw new DukeException("Task not found");
         }
     }
+
+    public Task attachPriority(int i, String priority) throws DukeException {
+        try {
+            Task target = taskList.get(i - 1);
+            target.attachPriority(priority);
+            return target;
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Task not found");
+        }
+    }
 }

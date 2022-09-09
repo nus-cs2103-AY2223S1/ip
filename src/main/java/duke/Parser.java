@@ -9,6 +9,7 @@ import duke.commands.EventCommand;
 import duke.commands.FindCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
+import duke.commands.PriorityCommand;
 import duke.commands.TodoCommand;
 import duke.commands.UnmarkCommand;
 
@@ -62,6 +63,9 @@ public class Parser {
         case FindCommand.COMMAND_WORD:
             return parseFind(strings);
 
+        case PriorityCommand.COMMAND_WORD:
+            return parsePriority(strings);
+
         default:
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
 
@@ -103,6 +107,18 @@ public class Parser {
                 throw new DukeException("Invalid Input.");
             }
             return new UnmarkCommand(Integer.parseInt(strings[1]));
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Please enter an index to unmark.");
+        }
+
+    }
+
+    private static PriorityCommand parsePriority(String[] strings) throws DukeException {
+        try {
+            if (strings.length > 3) {
+                throw new DukeException("Invalid Input.");
+            }
+            return new PriorityCommand(Integer.parseInt(strings[1]), strings[2].toUpperCase());
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Please enter an index to unmark.");
         }

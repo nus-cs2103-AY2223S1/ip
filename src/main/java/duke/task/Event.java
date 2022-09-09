@@ -13,6 +13,7 @@ public class Event extends Task {
     private String eventAt;
     private LocalDate eventDate;
 
+
     /**
      * Constructs a Event object
      * @param description description for the event.
