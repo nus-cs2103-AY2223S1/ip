@@ -17,6 +17,11 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Sets the status of completion of the task.
+     *
+     * @param isDone The value to set the status of completion of the task.
+     */
     public void isDoneSetter(boolean isDone) {
         this.isDone = isDone;
     }
