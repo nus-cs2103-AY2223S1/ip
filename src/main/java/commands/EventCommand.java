@@ -51,8 +51,8 @@ public class EventCommand extends Command {
         String description = Parser.splitArrayIntoSubstrings(this.args, "/at").get(0);
 
         String unparsedTimeRange = Parser.splitArrayIntoSubstrings(this.args, "/at").get(1);
-        String unparsedStartDateTime = unparsedTimeRange.split("-")[0].strip();
-        String unparsedEndDateTime = unparsedTimeRange.split("-")[1].strip();
+        String unparsedStartDateTime = Parser.splitString(unparsedTimeRange, "-", 0);
+        String unparsedEndDateTime = Parser.splitString(unparsedTimeRange, "-", 1);
 
         LocalDateTime startTimeRange = parseEventDatetime(unparsedStartDateTime);
         LocalDateTime endTimeRange = parseEventDatetime(unparsedEndDateTime);
