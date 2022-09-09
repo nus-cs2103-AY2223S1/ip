@@ -12,7 +12,7 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String fileFormat() {
+    public String convertToFileFormat() {
         return String.format("deadline | %s | %s | %b", super.description, by, super.isDone);
     }
 

@@ -8,7 +8,7 @@ import duke.task.TaskList;
 import java.util.Scanner;
 
 public class Ui {
-    public void welcomeMessage() {
+    public void showWelcomeMessage() {
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
     }
 

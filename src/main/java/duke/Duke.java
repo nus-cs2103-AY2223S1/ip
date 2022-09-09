@@ -18,7 +18,7 @@ public class Duke {
     }
 
     public void run() {
-        ui.welcomeMessage();
+        ui.showWelcomeMessage();
         ui.readUserInputThenOutputMessage(taskList, storage);
     }
 

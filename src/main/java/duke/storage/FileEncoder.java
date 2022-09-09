@@ -17,6 +17,6 @@ public class FileEncoder {
     }
 
     private static void encodeLine(FileWriter fileWriter, Task task) throws IOException {
-        fileWriter.write(task.fileFormat() + System.lineSeparator());
+        fileWriter.write(task.convertToFileFormat() + System.lineSeparator());
     }
 }

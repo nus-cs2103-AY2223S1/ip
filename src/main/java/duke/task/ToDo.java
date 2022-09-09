@@ -6,7 +6,7 @@ public class ToDo extends Task {
     }
 
     @Override
-    public String fileFormat() {
+    public String convertToFileFormat() {
         return String.format("todo | %s | %b", super.description, super.isDone);
     }
 

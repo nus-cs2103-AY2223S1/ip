@@ -35,7 +35,7 @@ public abstract class Task {
         }
     }
 
-    public abstract String fileFormat();
+    public abstract String convertToFileFormat();
 
     @Override
     public String toString() {
