@@ -177,6 +177,21 @@ public class Parser {
                 }
                 dialogContainer.getChildren().addAll(DialogBox.getDukeDialog(tasksWithKeyword, dukeImage));
             }
+        } else if (response.length() > 5 && response.substring(0, 6).equals("update")) {
+            if (response.length() <= 7) {
+                String needMoreInfo =
+                        "Please indicate task number and/or details for the update after 'update'!";
+                throw new DukeException(needMoreInfo);
+            } else {
+                int taskNumber = Integer.parseInt(response.substring(7, 8)) - 1;
+                String updateText = response.substring(9);
+
+                Task t = tasks.getTask(taskNumber);
+                t.update(updateText, dialogContainer, dukeImage);
+            }
+
+
+
         } else if (response.equals("bye")) {
             ;
         } else {

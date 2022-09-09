@@ -1,5 +1,8 @@
 package duke;
 
+import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -42,9 +45,36 @@ public class Deadline extends Task {
             String time = by.substring(spacePos + 1);
             this.byDate = LocalDate.parse(date);
             this.byTime = LocalTime.parse(time);
-        } else {
+        } else if (by.contains("-")) {
             this.byDate = LocalDate.parse(by);
+        } else if (by.contains(":")) {
+            this.byTime = LocalTime.parse(by);
         }
+    }
+
+    @Override
+    public void update(String input, VBox dialogContainer, Image dukeImage) {
+        int byIndex = input.indexOf("/by");
+        if (byIndex == -1) {
+            updateDescription(input);
+        } else if (byIndex == 0) {
+            updateDateTime(input.substring(4));
+        } else {
+            String description = input.substring(0, byIndex - 1);
+            String dateTime = input.substring(byIndex + 4);
+
+            updateDescription(description);
+            updateDateTime(dateTime);
+        }
+        this.sendTaskUpdatedMessage(dialogContainer, dukeImage);
+    }
+
+    private void updateDescription(String description) {
+        super.description = description;
+    }
+
+    private void updateDateTime(String dateTime) {
+        convertToDateTime(dateTime);
     }
 
     /**

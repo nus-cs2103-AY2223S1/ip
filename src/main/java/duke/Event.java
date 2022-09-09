@@ -1,5 +1,8 @@
 package duke;
 
+import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -42,9 +45,36 @@ public class Event extends Task {
             String time = at.substring(spacePos + 1);
             this.atDate = LocalDate.parse(date);
             this.atTime = LocalTime.parse(time);
-        } else {
+        } else if (at.contains("-")) {
             this.atDate = LocalDate.parse(at);
+        } else if (at.contains(":")) {
+            this.atTime = LocalTime.parse(at);
         }
+    }
+
+    @Override
+    public void update(String input, VBox dialogContainer, Image dukeImage) {
+        int byIndex = input.indexOf("/at");
+        if (byIndex == -1) {
+            updateDescription(input);
+        } else if (byIndex == 0) {
+            updateDateTime(input.substring(4));
+        } else {
+            String description = input.substring(0, byIndex - 1);
+            String dateTime = input.substring(byIndex + 4);
+
+            updateDescription(description);
+            updateDateTime(dateTime);
+        }
+        this.sendTaskUpdatedMessage(dialogContainer, dukeImage);
+    }
+
+    private void updateDescription(String description) {
+        super.description = description;
+    }
+
+    private void updateDateTime(String dateTime) {
+        convertToDateTime(dateTime);
     }
 
     /**
