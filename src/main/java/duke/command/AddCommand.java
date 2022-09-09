@@ -35,6 +35,7 @@ public class AddCommand implements Command {
         Task task = Task.createTask(commandType, inputs);
         String res = tasks.add(task);
         storage.addTaskToStorage(task);
+        assert !tasks.isEmpty();
         return res;
     }
 
