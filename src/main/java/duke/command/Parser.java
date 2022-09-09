@@ -1,7 +1,11 @@
 package duke.command;
 
+import duke.TaskList;
+import duke.Ui;
+import duke.exception.DukeException;
 import duke.exception.UnknownCommandException;
 
+import java.util.Arrays;
 import java.util.Set;
 
 /**
@@ -11,7 +15,7 @@ public class Parser {
 
     /** Set to store all known commands. */
     private static final Set<String> commandList = Set.of("bye", "list", "mark", "unmark", "todo",
-            "deadline", "event", "delete", "find", "fixed");
+            "deadline", "event", "delete", "find", "fixed", "meow");
 
     /**
      * Returns a command based on the input string.
@@ -51,6 +55,13 @@ public class Parser {
             return new FindCommand(postCmd);
         case "fixed":
             return new FixedDurationCommand(postCmd);
+        case "meow":
+            return new Command() {
+                @Override
+                public void execute(TaskList taskList, Ui ui) {
+                    this.response = Arrays.stream(postSplit).reduce("", (curr, word) -> curr + "meow ");
+                }
+            };
         default:
             return null;
         }
