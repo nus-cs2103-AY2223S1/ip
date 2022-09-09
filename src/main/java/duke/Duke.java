@@ -3,7 +3,6 @@ package duke;
 import duke.command.Command;
 import duke.exceptions.DukeException;
 import duke.task.TaskList;
-import duke.ui.Ui;
 
 /**
  * Duke is an automated chat-bot which can help you manage your tasks.
@@ -38,8 +37,9 @@ public class Duke {
         } catch (NumberFormatException e) {
             throw new DukeException("Invalid parameters (require Integer) for the command!");
         } catch (DukeException e) {
-            res = Ui.getErrorMessage(e.getMessage());
+            res = e.getMessage();
         }
+
         assert res != null;
         return res;
     }
