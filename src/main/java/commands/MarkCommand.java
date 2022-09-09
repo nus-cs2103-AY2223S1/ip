@@ -16,6 +16,7 @@ public class MarkCommand extends Command {
         if (args.length < 1) {
             throw new DukeException("Missing index!");
         }
+        assert args.length >= 1 : "Arguments are of wrong length!";
         try {
             int index = Integer.parseInt(args[0]) - 1;
             if (index < 0) {
