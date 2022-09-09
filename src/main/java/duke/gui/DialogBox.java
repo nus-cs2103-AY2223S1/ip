@@ -66,11 +66,16 @@ public class DialogBox extends HBox {
 
     private static void checkExitMessage(String text) {
         if (text.equals(Ui.EXIT_MESSAGE)) {
-            new Timer().schedule(new TimerTask() {
-                public void run() {
-                    System.exit(0);
-                }
-            }, 1000);
+            new Timer().schedule(createTimerTask(), 1000);
         }
     }
+
+    private static TimerTask createTimerTask() {
+        return new TimerTask() {
+            public void run() {
+                System.exit(0);
+            }
+        };
+    }
 }
+

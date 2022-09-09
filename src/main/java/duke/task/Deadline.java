@@ -10,8 +10,6 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
     protected LocalDate by;
     protected LocalTime time;
-    protected DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-    protected DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MMM d yyyy");
 
     /**
      * Creates a deadline object upon receiving a deadline command from the user.

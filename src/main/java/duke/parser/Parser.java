@@ -137,7 +137,12 @@ public class Parser {
     private Command prepareTasksCommand(String args, TaskType type) {
         try {
             String[] components = args.split("\\s+", 2);
-            Task task = createTaskWithPriority(components[0], components[1], type);;
+            Task task;
+            if (components.length == 1) {
+                task = createTaskWithPriority(components[0], "", type);;
+            } else {
+                task = createTaskWithPriority(components[0], components[1], type);
+            }
             switch (type) {
             case TODO:
                 return new ToDoCommand(task);
@@ -188,7 +193,7 @@ public class Parser {
             priority = Priority.valueOf(component1.toUpperCase());
             description = component2;
         } else {
-            description = appendDescription(component1, component2);
+            description = String.join(" ", component1, component2);
         }
         switch (type) {
         case TODO:
@@ -246,15 +251,6 @@ public class Parser {
             break;
         }
         return task;
-    }
-
-
-    private String appendDescription(String ... components) {
-        StringBuilder str = new StringBuilder();
-        for (String component : components) {
-            str.append(component).append(" ");
-        }
-        return str.toString();
     }
 
     private int parseIntegerString(String string) {

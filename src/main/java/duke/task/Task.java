@@ -1,6 +1,7 @@
 package duke.task;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * The abstract superclass of all types of tasks the user can input.
@@ -12,6 +13,8 @@ public abstract class Task {
     public final TaskType type;
     protected String description;
     protected boolean isDone;
+    protected final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+    protected final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MMM d yyyy");
     private Priority priority;
     protected Task(String description, TaskType type) {
         this.description = description;
