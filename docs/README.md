@@ -1,4 +1,5 @@
-# User Guide
+# User Guide - Duke Task Manager
+![Screenshot](Ui.png)
 
 ## Features 
 
