@@ -12,7 +12,9 @@ import javafx.stage.Stage;
 /**
  * A GUI for Duke using FXML.
  * <p>
- * Adapted from <a href="https://se-education.org/guides/tutorials/javaFxPart4.html">se-education</a>
+ * @@author Jeffry Lum-reused
+ * Reused from <a href="https://se-education.org/guides/tutorials/javaFxPart4.html">se-education</a>
+ * with minor modifications
  */
 public class Main extends Application {
     private Duke duke = new Duke();
@@ -32,6 +34,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setTitle("Renaissance Duke");
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             stage.show();
         } catch (IOException e) {
@@ -39,3 +42,4 @@ public class Main extends Application {
         }
     }
 }
+//@@author

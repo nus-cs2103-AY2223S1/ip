@@ -28,7 +28,7 @@ public enum Output {
     HELP("Here are the commands you can use:\n"
             + "\t 1. todo(t) <task name>\n"
             + "\t 2. deadline(dl) <task name> /by <date>\n"
-            + "\t 3. event(e) <task name> /at <date>\n"
+            + "\t 3. event(e) <task name> /at <place>\n"
             + "\t 4. list(ls)\n"
             + "\t 5. mark(m) <task number>\n"
             + "\t 6. unmark(u) <task number>\n"
