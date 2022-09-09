@@ -106,7 +106,8 @@ public class TaskList {
      * @return the list
      */
     public List<String> exportTaskList() {
-        return this.taskList.stream()
+        return this.taskList
+                .stream()
                 .map(Task::exportString)
                 .collect(Collectors.toList());
     }
@@ -150,7 +151,8 @@ public class TaskList {
      */
     public String outputTasksBeforeString(LocalDateTime dateTime) {
         return convertTaskListToString(
-                this.taskList.stream()
+                this.taskList
+                        .stream()
                         .filter(task -> task.isBefore(dateTime))
                         .collect(Collectors.toList()));
     }
@@ -166,7 +168,8 @@ public class TaskList {
      */
     public String outputTasksAfterString(LocalDateTime dateTime) {
         return convertTaskListToString(
-                this.taskList.stream()
+                this.taskList
+                        .stream()
                         .filter(task -> task.isAfter(dateTime))
                         .collect(Collectors.toList()));
     }
@@ -181,7 +184,8 @@ public class TaskList {
      */
     public String searchTasks(String... searchTerms) {
         return convertTaskListToString(
-                this.taskList.stream()
+                this.taskList
+                        .stream()
                         .filter(task -> task.textContains(searchTerms))
                         .collect(Collectors.toList()));
     }
