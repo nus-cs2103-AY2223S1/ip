@@ -64,18 +64,20 @@ public class Storage {
             String task = sc.nextLine();
             char type = task.charAt(3);
             char status = task.charAt(6);
+            char priority = task.charAt(9);
 
             //Store task as Event and load it
             if (type == 'E') {
-                this.loadEvent(task, type, status);
+                this.loadEvent(task, status, priority);
 
             //Store task as Deadline and load it
             } else if (type == 'D') {
-                this.loadDeadline(task, type, status);
+                this.loadDeadline(task, status, priority);
 
             //Store task as Todo and load it
             } else {
-                this.loadToDo(task, type, status);
+                assert type == 'T';
+                this.loadToDo(task, status, priority);
             }
         }
     }
@@ -84,25 +86,28 @@ public class Storage {
      * Load the event task from the file.
      *
      * @param task String containing the event task.
-     * @param type char indicating the type of task.
      * @param status char indicating if the task is marked as done or not.
+     * @param priority char indicating priority of the task.
      * @throws IOException From writeToFile() method.
      */
-    public void loadEvent(String task, char type, char status) throws IOException {
+    public void loadEvent(String task, char status, char priority) throws IOException {
         //Check that the loaded event has a date and time
-        assert task.contains("/at");
+        assert task.contains("[E]");
 
         //Get the description and date and time fields of event
         int at = task.indexOf("(at:");
         String dateAndTime = task.substring(at + 5, task.lastIndexOf(")"));
 
         //Add the task to the task list array and update the file contents
-        this.previousTaskList.addTask(new Event(" " + task.substring(9, at - 1), dateAndTime));
+        this.previousTaskList.addTask(new Event(" " + task.substring(12, at - 1), dateAndTime));
 
         //Check if task is marked as done
         if (status == 'X') {
             this.previousTaskList.getTaskAtCurrentIndex().markAsDone();
         }
+
+        //Set priority of the task
+        this.readAndSetPriority(this.previousTaskList.getTaskAtCurrentIndex(), priority);
 
         //Update the contents of the task list file
         this.writeToFile();
@@ -112,28 +117,51 @@ public class Storage {
     }
 
     /**
+     * Set priority of task read from the file.
+     *
+     * @param task Task that is read from the file.
+     * @param priority char that indicates priority of the task.
+     */
+    public void readAndSetPriority(Task task, char priority) {
+        if (priority == 'H') {
+            task.setPriority("high");
+        }
+
+        if (priority == 'M') {
+            task.setPriority("medium");
+        }
+
+        if (priority == 'L') {
+            task.setPriority("low");
+        }
+    }
+
+    /**
      * Loads the deadline task from the file.
      *
      * @param task String containing the deadline task.
-     * @param type char indicating the type of task.
      * @param status char indicating if the task is marked as done or not.
+     * @param priority char indicating priority of the task.
      * @throws IOException From the writeToFile() method.
      */
-    public void loadDeadline(String task, char type, char status) throws IOException {
+    public void loadDeadline(String task, char status, char priority) throws IOException {
         //Check if task is a deadline
-        assert task.contains("/by");
+        assert task.contains("[D]");
 
         //Get the description and date and time fields
         int by = task.indexOf("(by:");
         String timingWithBracket = task.substring(by + 5, task.lastIndexOf(")"));
 
         //Add the task to the task list array and update the file contents
-        this.previousTaskList.addTask(new Deadline(" " + task.substring(9, by - 1), timingWithBracket));
+        this.previousTaskList.addTask(new Deadline(" " + task.substring(12, by - 1), timingWithBracket));
 
         //Check if task is marked as done
         if (status == 'X') {
             this.previousTaskList.getTaskAtCurrentIndex().markAsDone();
         }
+
+        //Set priority of the task
+        this.readAndSetPriority(this.previousTaskList.getTaskAtCurrentIndex(), priority);
 
         //Update the contents of the task list file
         this.writeToFile();
@@ -146,16 +174,13 @@ public class Storage {
      * Loads the ToDo task from the file.
      *
      * @param task String containing the ToDo task.
-     * @param type char indicating the type of task.
      * @param status char indicating if the task is marked as done or not.
+     * @param priority char indicating priority of the task.
      * @throws IOException From the writeToFile() method.
      */
-    public void loadToDo(String task, char type, char status) throws IOException {
-        //Check if task is a ToDo
-        assert type == 'T';
-
+    public void loadToDo(String task, char status, char priority) throws IOException {
         //Get description of ToDo
-        String description = task.substring(9);
+        String description = task.substring(12);
 
         //Add ToDo to task list
         this.previousTaskList.addTask(new ToDo(" " + description));
@@ -164,6 +189,8 @@ public class Storage {
         if (status == 'X') {
             this.previousTaskList.getTaskAtCurrentIndex().markAsDone();
         }
+
+        this.readAndSetPriority(this.previousTaskList.getTaskAtCurrentIndex(), priority);
 
         //Update the contents of the task list file
         this.writeToFile();
