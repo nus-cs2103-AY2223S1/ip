@@ -21,12 +21,12 @@ public class Deadline extends Task {
     public Deadline(String description, String by) throws DukeException {
         super(description);
         if (by.equals(" ")) {
-            throw new DukeException("☹ OOPS!!! The deadline needs to have a end day and/or date");
+            throw new DukeException("The deadline needs to have a end day and/or date nya.");
         }
         try {
             this.by = LocalDate.parse(by);
         } catch (DateTimeParseException e) {
-            throw new DukeException("date after /by should be in YYYY-MM-DD Format.");
+            throw new DukeException("Date after /by should be in YYYY-MM-DD Format nya.");
         }
     }
 
@@ -35,7 +35,7 @@ public class Deadline extends Task {
         try {
             this.by = LocalDate.parse(updatedBy);
         } catch (DateTimeParseException e) {
-            throw new DukeException("date after task number should be in YYYY-MM-DD Format.");
+            throw new DukeException("Date after task number should be in YYYY-MM-DD Format nya.");
         }
 
     }
