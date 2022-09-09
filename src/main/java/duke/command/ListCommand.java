@@ -2,9 +2,9 @@ package duke.command;
 
 import java.io.IOException;
 
+import duke.internal.MessageBuilder;
 import duke.internal.Parser;
 import duke.internal.Storage;
-import duke.internal.Ui;
 import duke.task.TaskList;
 
 /**
@@ -18,11 +18,12 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Storage storage, Ui ui, Parser parser) throws IOException {
+    public void execute(TaskList tasks, Storage storage, MessageBuilder messageBuilder,
+                        Parser parser) throws IOException {
         if (tasks.size() == 0) {
-            ui.showMessage("You do not have any tasks at the moment.");
+            messageBuilder.addLine("You do not have any tasks at the moment.");
         } else {
-            ui.showMessage("Here are your tasks!").showMessage(tasks.toString());
+            messageBuilder.addLine("Here are your tasks!").addLine(tasks.toString());
         }
     }
 }

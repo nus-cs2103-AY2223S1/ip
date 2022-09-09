@@ -2,9 +2,9 @@ package duke.command;
 
 import java.io.IOException;
 
+import duke.internal.MessageBuilder;
 import duke.internal.Parser;
 import duke.internal.Storage;
-import duke.internal.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -27,10 +27,11 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Storage storage, Ui ui, Parser parser) throws IOException {
+    public void execute(TaskList tasks, Storage storage, MessageBuilder messageBuilder,
+                        Parser parser) throws IOException {
         Task task = tasks.getTask(index);
         task.markAsUndone();
-        ui.showMessage("I've unmarked your task as done.").showMessage(task.toString());
+        messageBuilder.addLine("I've unmarked your task as done.").addLine(task.toString());
         storage.saveTasks(tasks);
     }
 }

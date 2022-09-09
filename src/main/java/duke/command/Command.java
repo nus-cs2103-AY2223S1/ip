@@ -2,9 +2,9 @@ package duke.command;
 
 import java.io.IOException;
 
+import duke.internal.MessageBuilder;
 import duke.internal.Parser;
 import duke.internal.Storage;
-import duke.internal.Ui;
 import duke.task.TaskList;
 
 /**
@@ -21,11 +21,12 @@ public abstract class Command {
     /**
      * Executes this command, potentially modifying the task list, storage, and UI.
      *
-     * @param tasks   the task list
-     * @param storage the storage helper for the task list
-     * @param ui      the user interface
-     * @param parser  the command parser
+     * @param tasks          the task list
+     * @param storage        the storage helper for the task list
+     * @param messageBuilder the user interface
+     * @param parser         the command parser
      * @throws IOException if an I/O error occurs while writing to the storage
      */
-    public abstract void execute(TaskList tasks, Storage storage, Ui ui, Parser parser) throws IOException;
+    public abstract void execute(TaskList tasks, Storage storage, MessageBuilder messageBuilder,
+                                 Parser parser) throws IOException;
 }

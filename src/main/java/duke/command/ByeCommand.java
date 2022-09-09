@@ -2,9 +2,9 @@ package duke.command;
 
 import java.io.IOException;
 
+import duke.internal.MessageBuilder;
 import duke.internal.Parser;
 import duke.internal.Storage;
-import duke.internal.Ui;
 import duke.task.TaskList;
 
 
@@ -19,8 +19,10 @@ public class ByeCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Storage storage, Ui ui, Parser parser) throws IOException {
+    public void execute(TaskList tasks, Storage storage, MessageBuilder messageBuilder,
+                        Parser parser) throws IOException {
         storage.saveTasks(tasks);
-        ui.showMessage("Bye! Hope to see you again soon!");
+        messageBuilder.addLine("Bye! Hope to see you again soon!")
+                .addLine("This window will close automatically in 3 seconds.");
     }
 }

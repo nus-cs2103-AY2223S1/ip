@@ -2,9 +2,9 @@ package duke.command;
 
 import java.io.IOException;
 
+import duke.internal.MessageBuilder;
 import duke.internal.Parser;
 import duke.internal.Storage;
-import duke.internal.Ui;
 import duke.task.TaskList;
 
 /**
@@ -34,9 +34,10 @@ public class AliasAddCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Storage storage, Ui ui, Parser parser) throws IOException {
+    public void execute(TaskList tasks, Storage storage, MessageBuilder messageBuilder,
+                        Parser parser) throws IOException {
         parser.addAlias(alias, command);
-        ui.showMessage("I've added your alias for " + command + "!")
-                .showMessage(String.format("You can now use `%s` in place of `%s`.", alias, command));
+        messageBuilder.addLine("I've added your alias for " + command + "!")
+                .addLine(String.format("You can now use `%s` in place of `%s`.", alias, command));
     }
 }

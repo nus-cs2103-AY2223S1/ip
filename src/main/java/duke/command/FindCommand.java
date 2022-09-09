@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import duke.internal.MessageBuilder;
 import duke.internal.Parser;
 import duke.internal.Storage;
-import duke.internal.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -30,15 +30,16 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Storage storage, Ui ui, Parser parser) throws IOException {
+    public void execute(TaskList tasks, Storage storage, MessageBuilder messageBuilder,
+                        Parser parser) throws IOException {
         List<Task> results = tasks.stream()
                 .filter(task -> task.getDescription().contains(query))
                 .collect(Collectors.toList());
         if (results.isEmpty()) {
-            ui.showMessage("No tasks matched your query.");
+            messageBuilder.addLine("No tasks matched your query.");
             return;
         }
         String repr = new TaskList(results).toString();
-        ui.showMessage("Here are the tasks matching your query!").showMessage(repr);
+        messageBuilder.addLine("Here are the tasks matching your query!").addLine(repr);
     }
 }
