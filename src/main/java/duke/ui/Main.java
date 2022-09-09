@@ -3,6 +3,7 @@ package duke.ui;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 import duke.Duke;
 import javafx.application.Application;
@@ -22,13 +23,19 @@ public class Main extends Application {
     );
     private static final Duke DUKE = new Duke(PATH);
     private static final String MAIN_WINDOW_FXML = "/view/MainWindow.fxml";
+    private static final String FONTSTYLE_PATH = "/stylesheets/fontstyle.css";
 
     @Override
     public void start(Stage stage) {
         try {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource(MAIN_WINDOW_FXML));
             Scene scene = new Scene(loader.load());
+            String fontstyle = Objects.requireNonNull(getClass().getResource(FONTSTYLE_PATH))
+                    .toExternalForm();
+
+            scene.getStylesheets().add(fontstyle);
             loader.<MainWindow>getController().setDuke(DUKE);
+
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
