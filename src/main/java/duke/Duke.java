@@ -1,8 +1,8 @@
 package duke;
 
-import duke.commands.Command;
-
 import java.util.Scanner;
+
+import duke.commands.Command;
 
 /**
  * Chatbot main.
@@ -18,7 +18,7 @@ public class Duke {
 
         ui.printWelcomeMessage();
         boolean breakLoop = false;
-        while(!breakLoop) {
+        while (!breakLoop) {
             String rawInput = scanner.nextLine().trim();
 
             Command command = parser.parse(rawInput);
@@ -39,7 +39,7 @@ public class Duke {
                 break;
             default:
                 String response = taskList.executeTask(command);
-                if(response != null) {
+                if (response != null) {
                     System.out.println(response);
                 }
             }

@@ -1,15 +1,5 @@
 package duke;
 
-import duke.items.Deadline;
-import duke.items.Event;
-import duke.items.Item;
-import duke.items.ToDo;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -17,6 +7,16 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import duke.items.Deadline;
+import duke.items.Event;
+import duke.items.Item;
+import duke.items.ToDo;
 
 /**
  * Object to handle storing and loading of user's list of tasks.
@@ -36,7 +36,7 @@ public class Storage {
      * Function to load items from file.
      * @return ArrayList of items loaded from the file.
      */
-    protected ArrayList<Item> loadItems(){
+    protected ArrayList<Item> loadItems() {
         JSONArray itemsJson;
         ArrayList<Item> storedItems = new ArrayList<>(100);
 
@@ -62,15 +62,17 @@ public class Storage {
         String time = (String) jsonObj.get("time");
         try {
             switch (itemType) {
-                case "[D]":
-                    storedItems.add(new Deadline(name, time, isDone));
-                    break;
-                case "[E]":
-                    storedItems.add(new Event(name, time, isDone));
-                    break;
-                case "[T]":
-                    storedItems.add(new ToDo(name, isDone));
-                    break;
+            case "[D]":
+                storedItems.add(new Deadline(name, time, isDone));
+                break;
+            case "[E]":
+                storedItems.add(new Event(name, time, isDone));
+                break;
+            case "[T]":
+                storedItems.add(new ToDo(name, isDone));
+                break;
+            default:
+                break;
             }
         } catch (DateTimeParseException e) {
             System.out.println("Failed to load items from save, file may be corrupted, please try again later.");
@@ -85,7 +87,7 @@ public class Storage {
     protected boolean saveItems(ArrayList<Item> storedItems) {
         JSONArray jsonArray = new JSONArray();
         storedItems.forEach(item -> this.parseItemToJson(item, jsonArray));
-        try (FileWriter fileWriter = new FileWriter(this.filePath)){
+        try (FileWriter fileWriter = new FileWriter(this.filePath)) {
             fileWriter.write(jsonArray.toJSONString());
         } catch (IOException e) {
             System.out.println("Error Writing to File.");

@@ -6,6 +6,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Abstract Item class to construct actual items on
+ */
 public abstract class Item {
     private boolean isDone = false;
     private final ItemTypes itemType;
@@ -50,7 +53,7 @@ public abstract class Item {
     }
 
     public String getDateTimeString() {
-        if(this.time == null) {
+        if (this.time == null) {
             return null;
         }
         return this.getDate().toString() + ((this.getTime() != null) ? " " + this.getTime().toString() : "");
@@ -82,7 +85,7 @@ public abstract class Item {
      * @throws DateTimeParseException If the input string for time is not in correct format.
      */
     protected void setLocalDateTime(String str) throws DateTimeParseException {
-        if(str == null) {
+        if (str == null) {
             isTimed = false;
             return;
         }

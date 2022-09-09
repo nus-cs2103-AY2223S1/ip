@@ -1,13 +1,13 @@
 package duke;
 
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+
 import duke.commands.Command;
 import duke.items.Deadline;
 import duke.items.Event;
 import duke.items.Item;
 import duke.items.ToDo;
-
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 
 /**
  * Object that takes in a Command Object then creates and stores the task.
@@ -57,8 +57,9 @@ public class TaskList {
             return deleteItem(arguments[0]);
         case FIND:
             return findString(arguments[0]);
+        default:
+            return null;
         }
-        return null;
     }
 
 
@@ -78,8 +79,8 @@ public class TaskList {
             Deadline deadline = new Deadline(item, due);
             return this.addItem(deadline);
         } catch (DateTimeParseException e) {
-            ui.printErrorMessage("Error Parsing Date Time Info, duke.items.Item not added, " +
-                    "please use this format /by YYYY-MM-DD HH:MM (omit time if not necessary)");
+            ui.printErrorMessage("Error Parsing Date Time Info, duke.items.Item not added, "
+                    + "please use this format /by YYYY-MM-DD HH:MM (omit time if not necessary)");
             return null;
         }
     }
@@ -89,8 +90,8 @@ public class TaskList {
             Event event = new Event(item, at);
             return this.addItem(event);
         } catch (DateTimeParseException e) {
-            ui.printErrorMessage("Error Parsing Date Time Info, duke.items.Item not added, " +
-                    "please use this format /at YYYY-MM-DD HH:MM (omit time if necessary)");
+            ui.printErrorMessage("Error Parsing Date Time Info, duke.items.Item not added, "
+                    + "please use this format /at YYYY-MM-DD HH:MM (omit time if necessary)");
             return null;
         }
     }
@@ -100,7 +101,7 @@ public class TaskList {
             return "    The list is currently empty Dattebayo!";
         }
         StringBuilder list = new StringBuilder("    Here's the list you asked for Dattebayo:");
-        for (int count = 0; count < this.storedItems.size(); count++){
+        for (int count = 0; count < this.storedItems.size(); count++) {
             list.append("\n").append("    ").append(count + 1).append(".").append(storedItems.get(count).toString());
         }
         return list.toString();
@@ -142,11 +143,11 @@ public class TaskList {
     }
 
     private int string2Int(String input) {
-        try{
+        try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            ui.printErrorMessage("Whoops! it seems you your index is not an integer Dattebayo!" +
-                    "\n'delete <Index>'");
+            ui.printErrorMessage("Whoops! it seems you your index is not an integer Dattebayo!"
+                    + "\n'delete <Index>'");
             return -1;
         }
     }
@@ -167,8 +168,8 @@ public class TaskList {
             }
             count++;
         }
-        return min1ItemFound ? strBuilder.toString() :
-                "    Sorry there were no results for '" + searchParam + "' Dattebayo:";
+        return min1ItemFound ? strBuilder.toString()
+                : "    Sorry there were no results for '" + searchParam + "' Dattebayo:";
     }
 
 }

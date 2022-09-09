@@ -52,7 +52,7 @@ public class Command {
             return false;
         }
         Command otherCommand = (Command) obj;
-        return otherCommand.getCommand().equals(this.command) &&
-                Arrays.equals(otherCommand.getArguments(), this.arguments);
+        return otherCommand.getCommand().equals(this.command)
+                && Arrays.equals(otherCommand.getArguments(), this.arguments);
     }
 }

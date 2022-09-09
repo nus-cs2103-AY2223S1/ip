@@ -4,6 +4,19 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
 
+apply plugin: 'checkstyle'
+
+checkstyle {
+    toolVersion '10.2'
+    configFile file("config/checkstyle/checkstyle.xml")
+}
+checkstyleMain {
+    source ='src/main/java'
+}
+checkstyleTest {
+    source ='src/test/java'
+}
+
 repositories {
     mavenCentral()
 }
