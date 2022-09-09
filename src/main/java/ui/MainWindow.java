@@ -23,7 +23,7 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
+    private final Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
 
     /**
      * Initializes the components within the MainWindow.

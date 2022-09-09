@@ -30,9 +30,9 @@ public class Storage {
     public static final String OUTPUT_FOLDER_NAME = "data";
     public static final String OUTPUT_FILE_NAME = "duke.txt";
     public static final String EMPTY_STRING = "";
-    private String folderPath;
-    private String filename;
-    private String userDirectory = System.getProperty("user.dir");
+    private final String folderPath;
+    private final String filename;
+    private final String userDirectory = System.getProperty("user.dir");
 
     /**
      * Creates a Storage object.
@@ -87,8 +87,7 @@ public class Storage {
     }
 
     private File getTasksFile(Path savedTasksPath) {
-        File tasksFile = new File(getAbsolutePath(savedTasksPath));
-        return tasksFile;
+        return new File(getAbsolutePath(savedTasksPath));
     }
 
     private ArrayList<Task> parseFileToTasks(File tasksFile) throws FileNotFoundException, DukeException {

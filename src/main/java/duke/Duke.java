@@ -15,10 +15,10 @@ import ui.Ui;
  * Storage, TaskList and Ui together.
  */
 public class Duke {
-    private Storage storage;
+    private final Storage storage;
     private TaskList tasks;
-    private Ui ui;
-    private Parser parser;
+    private final Ui ui;
+    private final Parser parser;
 
     /**
      * Creates the Duke object.

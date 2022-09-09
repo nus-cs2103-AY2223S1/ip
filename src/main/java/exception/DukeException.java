@@ -6,7 +6,7 @@ package exception;
  * outcomes.
  */
 public class DukeException extends Exception {
-    private String message;
+    private final String message;
 
     /**
      * Creates the DukeException object.

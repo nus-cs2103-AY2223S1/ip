@@ -1,7 +1,6 @@
 package task;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 import parser.DateTimeParser;
 
@@ -11,7 +10,7 @@ import parser.DateTimeParser;
  * that has a date and time that the Event is occurring at.
  */
 public class Event extends Task {
-    private LocalDateTime eventDateTime;
+    private final LocalDateTime eventDateTime;
 
     /**
      * Creates an Event object.
@@ -37,23 +36,7 @@ public class Event extends Task {
         return "[E]" + super.toString() + " (at: " + DateTimeParser.getReadingLocalDateTimeString(eventDateTime) + ")";
     }
 
-    public String getCommandLineFormatDateTime() {
-        return eventDateTime.toString();
-    }
-
-    public String getOutputFormatDateTime() {
-        return DateTimeParser.getReadingLocalDateTimeString(eventDateTime);
-    }
-
-    public String getLocalDateTimeString() {
-        return eventDateTime.toString();
-    }
-
     public String getLocalDateString() {
         return eventDateTime.toLocalDate().toString();
-    }
-
-    public LocalTime getLocalTime() {
-        return eventDateTime.toLocalTime();
     }
 }

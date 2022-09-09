@@ -8,7 +8,6 @@ import javafx.scene.layout.VBox;
 import parser.DateTimeParser;
 import storage.Storage;
 import task.Event;
-import task.Task;
 import task.TaskList;
 import ui.DialogBox;
 import ui.Ui;
