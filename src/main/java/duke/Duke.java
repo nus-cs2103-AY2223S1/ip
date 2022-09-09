@@ -201,7 +201,8 @@ public class Duke extends Application {
                     } else if (Parser.isFindTask(words)) {
                         String keywords = Parser.joinString(words, 1);
                         keywords = keywords.substring(0, keywords.length() - 1);
-                        return findMatchingTasks(taskArrayList, keywords);
+                        String[] allKeywords = keywords.split(" ");
+                        return findMatchingTasks(taskArrayList, allKeywords);
                     } else {
                         String outputString = "I don't know what you mean, so I will just echo you\n";
                         outputString += input;
@@ -223,13 +224,17 @@ public class Duke extends Application {
      * @param keywords the keywords the user typed
      * @return a String representing all the tasks that match the keywords
      */
-    public String findMatchingTasks(List<Task> taskArrayList, String keywords) {
+    public String findMatchingTasks(List<Task> taskArrayList, String[] keywords) {
         String outputString = "";
         outputString += "Here are the matching tasks in your list:\n";
 
+        // Partial search with keywords
         for (Task task : taskArrayList) {
-            if (task.getDescription().contains(keywords)) {
-                outputString += task.toString() + "\n";
+            for (String keyword : keywords) {
+                if (task.getDescription().contains(keyword)) {
+                    outputString += task.toString() + "\n";
+                    break;
+                }
             }
         }
         return outputString;
