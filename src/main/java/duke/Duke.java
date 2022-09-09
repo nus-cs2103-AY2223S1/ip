@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -199,15 +200,7 @@ public class Duke extends Application {
                     } else if (Parser.isFindTask(words)) {
                         String keywords = Parser.joinString(words, 1);
                         keywords = keywords.substring(0, keywords.length() - 1);
-                        String outputString = "";
-                        outputString += "Here are the matching tasks in your list:\n";
-
-                        for (Task task : taskArrayList) {
-                            if (task.getDescription().contains(keywords)) {
-                                outputString += task.toString() + "\n";
-                            }
-                        }
-                        return outputString;
+                        return findMatchingTasks(taskArrayList, keywords);
                     } else {
                         String outputString = "I don't know what you mean, so I will just echo you\n";
                         outputString += input;
@@ -221,6 +214,25 @@ public class Duke extends Application {
             storage.saveTasks();
         }
         return "Done";
+    }
+
+    /**
+     * Find the matching tasks based on keyword search
+     * @param taskArrayList the array list of all the tasks
+     * @param keywords the keywords the user typed
+     * @return a String representing all the tasks that match the keywords
+     */
+    public String findMatchingTasks(List<Task> taskArrayList, String keywords) {
+        String outputString = "";
+        outputString += "Here are the matching tasks in your list:\n";
+
+        for (Task task : taskArrayList) {
+            if (task.getDescription().contains(keywords)) {
+                outputString += task.toString() + "\n";
+            }
+        }
+        return outputString;
+
     }
 
     /**
