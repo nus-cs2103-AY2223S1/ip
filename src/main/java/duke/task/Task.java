@@ -6,6 +6,7 @@ package duke.task;
 public class Task {
     private String content;
     private boolean done;
+    private Tags tags;
 
     /**
      * Constructor for <code>Task</code>.
@@ -13,6 +14,16 @@ public class Task {
      */
     public Task(String content) {
         this.content = content;
+        this.tags = new Tags();
+        this.done = false;
+    }
+
+    public Task(String content, String[] tagsList) {
+        this.content = content;
+        this.tags = new Tags();
+        for (int i = 0; i < tagsList.length; i++) {
+            tags.addTags(new Tag(tagsList[i].trim()));
+        }
         this.done = false;
     }
 
@@ -55,13 +66,17 @@ public class Task {
         return this.done == true ? "1" : "0";
     }
 
+    public String tagsString() {
+        return tags.toString();
+    }
+
     /**
      * String representative of a Task.
      * @return
      */
     @Override
     public String toString() {
-        return "[" + (this.done ? "X" : " ") + "] " + this.content;
+        return "[" + (this.done ? "X" : " ") + "] " + this.content + " " + tagsString();
     }
 
     /**
@@ -69,6 +84,10 @@ public class Task {
      * @return
      */
     public String toMemoryString() {
-        return isDoneString() + " | " + content;
+        return isDoneString() + " | " + content + " | " + toMemoryTagString();
+    }
+
+    public String toMemoryTagString() {
+        return tags.toMemoryString();
     }
 }
