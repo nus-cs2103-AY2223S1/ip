@@ -66,7 +66,7 @@ public class Ui {
      * To display exit message
      */
     public String exitTask() {
-        return ("It's a great time talking with you.\nSee you next time!\n\nClosing automatically after 1.5 seconds.\n");
+        return ("It's a great time talking with you.\nSee you next time!\n\nClosing automatically after 3 seconds.\n");
     }
 
     /**
