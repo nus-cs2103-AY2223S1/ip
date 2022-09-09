@@ -42,7 +42,8 @@ public class Event extends Task {
                 + super.toString()
                 + " (at: "
                 + at.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
-                + ")";
+                + ") "
+                + super.tag;
     }
 
     /**

@@ -98,6 +98,12 @@ public class TaskList {
                 String.format("Now you have %d tasks in the list.", this.tasks.size());
     }
 
+    public String addTag(int to_tag, Tag tag) {
+        Task tagTask = tasks.get(to_tag);
+        tagTask.addTag(tag);
+        return String.format("Roger that. I've add the tag (%s) to %s", tag, tagTask);
+    }
+
     /**
      * Returns the String representation to be stored in the save file (tasks.txt).
      *

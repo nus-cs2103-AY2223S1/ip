@@ -10,6 +10,7 @@ import duke.exceptions.DukeInvalidDateException;
 public abstract class Task {
     protected final String description;
     protected boolean isDone;
+    protected Tag tag;
 
     /**
      * Constructs a Task.
@@ -20,6 +21,7 @@ public abstract class Task {
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
+        this.tag = Tag.NO_TAG;
     }
 
     /**
@@ -79,6 +81,10 @@ public abstract class Task {
             throw new DukeInvalidDateException();
         }
         return task;
+    }
+
+    public void addTag(Tag tag) {
+        this.tag = tag;
     }
 
     /**
