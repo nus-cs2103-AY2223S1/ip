@@ -92,6 +92,7 @@ public class Parser {
         }
     }
 
+
     private static String getName(String input, String taskType) {
         if (!taskType.equals("todo")) {
             return taskType.split(taskType + " ")[1].split(" /")[0];
