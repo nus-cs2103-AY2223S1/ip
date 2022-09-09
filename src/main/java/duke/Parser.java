@@ -1,6 +1,7 @@
 package duke;
 
 import duke.Duke.Command;
+import duke.exception.DukeInvalidCommandException;
 
 /**
  * Represents the command-parsing component of MakiBot.
@@ -31,8 +32,12 @@ public class Parser {
      * @param input The input {@code String} to be parsed.
      * @return The {@code Command} in the input.
      */
-    protected Command parseCommand(String input) {
+    protected Command parseCommand(String input) throws DukeInvalidCommandException {
         String[] fullCommand = parseFullCommand(input);
-        return Command.valueOf(fullCommand[0].toUpperCase());
+        String command = fullCommand[0].toUpperCase();
+        if (!Command.contains(command)) {
+            throw new DukeInvalidCommandException();
+        }
+        return Command.valueOf(command);
     }
 }

@@ -122,8 +122,8 @@ public class Ui {
      * @param task The new task that was added.
      * @param size The current size of the list.
      */
-    protected void printNewTaskMessage(Task task, int size) {
-        System.out.printf("Got it. I've added this task:\n"
+    protected String getNewTaskMessage(Task task, int size) {
+        return String.format("Got it. I've added this task:\n"
                         + "\t%s\n"
                         + "Now you have %d tasks in the list.",
                 task, size);
@@ -132,9 +132,9 @@ public class Ui {
     /**
      * Closes the scanner.
      */
-    protected void close() {
-        System.out.println("Bye. Hope to see you again soon!");
+    protected String close() {
         scanner.close();
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
@@ -142,14 +142,14 @@ public class Ui {
      *
      * @param tasks The list of tasks.
      */
-    protected void printAllTasks(ArrayList<Task> tasks) {
+    protected String getAllTasks(ArrayList<Task> tasks) {
+        StringBuilder message = new StringBuilder("Here are the tasks in your list:\n");
         if (tasks.isEmpty()) {
-            System.out.println("You have no tasks at the moment!");
-        } else {
-            System.out.println("Here are the tasks in your list:");
-            for (int i = 0; i < tasks.size(); i++) {
-                System.out.println(i + 1 + ". " + tasks.get(i));
-            }
+            return "You have no tasks at the moment!";
         }
+        for (int i = 0; i < tasks.size(); i++) {
+            message.append(String.format("%d. %s\n", i + 1, tasks.get(i)));
+        }
+        return message.toString();
     }
 }

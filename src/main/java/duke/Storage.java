@@ -86,7 +86,7 @@ public class Storage {
      *
      * @param tasks A list of tasks to save.
      */
-    protected void updateSaveFile(ArrayList<Task> tasks) {
+    protected String updateSaveFile(ArrayList<Task> tasks) {
         try {
             System.out.println(saveFilePath);
             FileWriter saveFileWriter = new FileWriter(saveFilePath);
@@ -97,18 +97,13 @@ public class Storage {
                 } else if (task instanceof Event) {
                     saveMsg += " | " + ((Event) task).getAt();
                 }
-                try {
-                    saveFileWriter.write(saveMsg + "\n");
-                } catch (IOException e) {
-                    System.out.println("An error occurred while saving your tasks.");
-                    e.printStackTrace();
-                }
+                saveFileWriter.write(saveMsg + "\n");
             }
-            System.out.println("Tasks saved successfully!");
             saveFileWriter.close();
+            return "Tasks saved successfully!";
         } catch (IOException e) {
-            System.out.println("An error occurred while saving your tasks.");
             e.printStackTrace();
+            return "An error occurred while saving your tasks.";
         }
     }
 }
