@@ -1,10 +1,12 @@
-# Duke project template
+# Our new and improved Duke 
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+Duke simulates a task manager where you can add 3 types of events, individually known as: Todo / Event / Deadline. These all come with a description of the task. They are stored in a list. You can mark/unmark/delete/view a list and more! 
 
-## Setting up in Intellij
+## What do I need to use the project?
 
-Prerequisites: JDK 11, update Intellij to the most recent version.
+Prerequisites: JDK 11
+
+## How do I set up this project? 
 
 1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
 1. Open the project into Intellij as follows:
@@ -22,3 +24,12 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    | |_| | |_| |   <  __/
    |____/ \__,_|_|\_\___|
    ```
+
+## Using our commands 
+Enter the corresponding input as required! 
+
+| Command Functionality | Syntax/Format Examples | Description |
+| --- | --- | --- | 
+| Add todo |todo <description>  | E.g: todo clean dishes
+Adds a todo event to the list |
+

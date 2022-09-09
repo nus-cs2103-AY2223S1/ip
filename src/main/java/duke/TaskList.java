@@ -1,11 +1,13 @@
 package duke;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import duke.events.Task;
 import duke.save.Storage;
 import duke.ui.Ui;
 
-import java.util.List;
-import java.util.ArrayList;
+
 
 /**
  * Helper class that contains the following:

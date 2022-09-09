@@ -162,9 +162,9 @@ public class Parser {
      * Helper method for input validation whenever an add task command is given
      * @param  input of type string
      * @throws InvalidCommandException if the command is not
-     * in our list of permissible tasks
+     *          in our list of permissible tasks
      * @throws EmptyTaskException if the correct command is given
-     * but not enough information is provided
+     *          but not enough information is provided
      */
     private static void taskValidator(String input) throws InvalidCommandException, EmptyTaskException {
         String taskIndicator = input.split(" ", 0)[0]; //splits into words
