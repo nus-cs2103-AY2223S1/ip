@@ -47,7 +47,7 @@ public class Parser {
         case UPDATE:
             return new UpdateDateCommand(getUpdatedTaskNumber(inputList), getUpdatedDate(inputList));
         default:
-            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new DukeException("I'm sorry nya, but I don't know what that means.");
         }
     }
 

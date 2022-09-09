@@ -131,6 +131,7 @@ public class TaskList {
      * @return TaskList that contains tasks that matches user search description.
      */
     public TaskList find(String userInput) {
+        //Solution below adapted from https://stackoverflow.com/questions/9146224/arraylist-filter
         ArrayList<Task> currTasks = new ArrayList<>(this.tasks);
         currTasks.removeIf(x -> !x.getDescription().toLowerCase().contains(userInput.toLowerCase()));
         return new TaskList(currTasks);
