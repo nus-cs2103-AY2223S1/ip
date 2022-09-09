@@ -136,7 +136,7 @@ public abstract class Task {
             return Ui.START + "the task has not been tagged with any tags.";
         }
 
-        String tags = Ui.START + "here's a list of the tags you have added so far: ";
+        String tags = Ui.START + "here's a list of the tags you have added so far to this task: ";
         for (Tag tag : tagList) {
             tags += "\n  " + tag.toString();
         }

@@ -38,12 +38,24 @@ public class Tag {
         return newTag;
     }
 
+    /**
+     * Maps the specified task to the specified tag.
+     *
+     * @param task Task to be added.
+     * @param tag Tag to add the task to.
+     */
     public static void addTaskToTag(Task task, Tag tag) {
         assert tagTaskMap.containsKey(tag) : "Tag has not been added to the HashMap.";
         ArrayList<Task> tasksUnderTag = tagTaskMap.get(tag);
         tasksUnderTag.add(task);
     }
 
+    /**
+     * Deletes the specified task from the specified tag.
+     *
+     * @param task Task to delete from the tag.
+     * @param tag Tag to delete the task from.
+     */
     public static void deleteTaskFromTag(Task task, Tag tag) {
         assert tagTaskMap.containsKey(tag) : "Tag has not been added to the HashMap.";
         ArrayList<Task> tasksUnderTag = tagTaskMap.get(tag);
@@ -57,15 +69,31 @@ public class Tag {
      *     tags created by the user.
      */
     public static String printTags() {
-        if (tagTaskMap.size() == 0) {
+        if (tagTaskMap.isEmpty()) {
             return Ui.START + "you have not added any tags. start tagging your tasks now!";
         }
 
-        String tagList = "These are the tags you have added:";
+        String tagList = "these are the tags you have added:";
         for (Tag tag : tagTaskMap.keySet()) {
             tagList += "\n  " + tag.toString();
         }
         return tagList;
+    }
+
+    public static String tasksUnder(Tag tag) {
+        ArrayList<Task> tasks = tagTaskMap.get(tag);
+        if (tasks.isEmpty()) {
+            return Ui.START + "there are no tasks tagged under " + tag.toString() + "."
+                    + "\n start tagging some tasks with this tag now!";
+        }
+
+        int x = 1;
+        String taskList = Ui.START + "these are the tasks tagged under " + tag.toString() + ":";
+        for (Task task : tasks) {
+            taskList += "\n" + x + ". " + task.toString();
+            x++;
+        }
+        return taskList;
     }
 
     @Override

@@ -63,18 +63,18 @@ public class TaskList {
      * @return A string containing the list of tasks.
      */
     public String printList() {
-        if (tasks.size() == 0) {
+        if (tasks.isEmpty()) {
             return Ui.START + "your list is empty. start adding some tasks to do now!";
-        } else {
-            String reply = Ui.START + "these are the tasks in your list:";
-            int x = 1;
-            for (Task task : tasks) {
-                reply += "\n  " + x + ". " + task.toString();
-                x++;
-            }
-            assert x > 1 : "No tasks in task list.";
-            return reply;
         }
+
+        String reply = Ui.START + "these are the tasks in your list:";
+        int x = 1;
+        for (Task task : tasks) {
+            reply += "\n  " + x + ". " + task.toString();
+            x++;
+        }
+        assert x > 1 : "No tasks in task list.";
+        return reply;
     }
 
     /**
@@ -104,7 +104,7 @@ public class TaskList {
      * @throws DukeException if the user entered an invalid index.
      */
     public String delete(int i) throws DukeException {
-        if (tasks.size() == 0) {
+        if (tasks.isEmpty()) {
             return Ui.START + "hmm, you do not have any tasks in your list to delete. add some now!";
         } else {
             String reply = "";
@@ -185,7 +185,7 @@ public class TaskList {
      */
     public String mark(int t) throws DukeException {
         try {
-            if (tasks.size() == 0) {
+            if (tasks.isEmpty()) {
                 return Ui.START + "hmm, you do not have any tasks in your list to be marked. add some now!";
             } else {
                 Task doneTask = tasks.get(t);
@@ -207,7 +207,7 @@ public class TaskList {
      * @throws DukeException if the user entered an invalid index.
      */
     public String unmark(int t) throws DukeException {
-        if (tasks.size() == 0) {
+        if (tasks.isEmpty()) {
             return Ui.START + "hmm, you do not have any tasks in your list. add some now!";
         }
 
@@ -231,7 +231,7 @@ public class TaskList {
      * @throws DukeException if the user entered an invalid index.
      */
     public String tag(int t, Tag tag) throws DukeException {
-        if (tasks.size() == 0) {
+        if (tasks.isEmpty()) {
             return Ui.START + "you do not have any tasks in your list to be tagged. add some now!";
         }
 
@@ -253,13 +253,33 @@ public class TaskList {
      * @throws DukeException if the user entered an invalid index.
      */
     public String untag(int t, Tag tag) throws DukeException {
-        if (tasks.size() == 0) {
+        if (tasks.isEmpty()) {
             return Ui.START + "there are no tasks in your list. add some now!";
         }
 
         try {
             Task task = tasks.get(t);
             return task.deleteTag(tag);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(Ui.requestValidInput(tasks.size()));
+        }
+    }
+
+    /**
+     * Prints out a list of tags under the specified task.
+     *
+     * @param t Index of the task.
+     * @return A string containing a list of tags under the specified task, if any.
+     * @throws DukeException if the user entered an invalid index.
+     */
+    public String getTags(int t) throws DukeException {
+        if (tasks.isEmpty()) {
+            return Ui.START + "there are no tasks in your list. add some now!";
+        }
+
+        try {
+            Task task = tasks.get(t);
+            return task.printTags();
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException(Ui.requestValidInput(tasks.size()));
         }

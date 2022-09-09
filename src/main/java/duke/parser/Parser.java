@@ -18,6 +18,8 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.SearchCommand;
 import duke.command.TagCommand;
+import duke.command.TaggedByCommand;
+import duke.command.TaskTagsCommand;
 import duke.command.TodoCommand;
 import duke.command.UnmarkCommand;
 import duke.command.UntagCommand;
@@ -46,7 +48,8 @@ public class Parser {
      * @throws DukeException if the user has entered an invalid input.
      */
     public static Command parse(String input) throws DukeException {
-        String[] arr = input.split(" ", 2);
+        // splits input into the command and additional info, removing all white spaces between the two
+        String[] arr = input.split("\\s+", 2);
         String command = arr[0];
 
         switch (command) {
@@ -106,7 +109,7 @@ public class Parser {
                 String description = descriptionAndTimings[0];
 
                 String otherEventInfo = descriptionAndTimings[1];
-                String[] prepAndTiming = otherEventInfo.split(" ", 2);
+                String[] prepAndTiming = otherEventInfo.split("\\s+", 2);
                 String preposition = prepAndTiming[0];
 
                 String timings = prepAndTiming[1];
@@ -156,7 +159,7 @@ public class Parser {
         case TagCommand.COMMAND_WORD:
             try {
                 String tagInfo = arr[1];
-                String[] taskAndTag = tagInfo.split(" #", 2);
+                String[] taskAndTag = tagInfo.split("\\s+#", 2);
 
                 int index = Integer.parseInt(taskAndTag[0]) - 1;
                 String tagName = "#" + taskAndTag[1];
@@ -179,6 +182,24 @@ public class Parser {
             }
         case AllTagsCommand.COMMAND_WORD:
             return new AllTagsCommand();
+        case TaskTagsCommand.COMMAND_WORD:
+            try {
+                int index = Integer.parseInt(arr[1]) - 1;
+                return new TaskTagsCommand(index);
+            } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                throw new DukeException(Ui.invalidTaskTagsInput());
+            }
+        case TaggedByCommand.COMMAND_WORD:
+            try {
+                String tagName = arr[1];
+                if (!tagName.startsWith("#")) {
+                    tagName = "#" + tagName;
+                }
+                Tag tag = Tag.of(tagName);
+                return new TaggedByCommand(tag);
+            } catch (IndexOutOfBoundsException e) {
+                throw new DukeException(Ui.invalidTaggedByInput());
+            }
         default:
             return new DefaultCommand();
         }
