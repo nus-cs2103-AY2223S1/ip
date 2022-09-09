@@ -1,7 +1,5 @@
 package exceptions;
 
-import task.TaskType;
-
 /**
  * Used when the task index being accessed is invalid..
  */
