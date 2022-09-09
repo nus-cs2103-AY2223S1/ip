@@ -1,4 +1,4 @@
-D |   | test dl|2022-01-01
-E | X | test event| t date
-T |   | test td2
-T | X | hello
+T | X | eat dinner#fun
+D |   | lecture vids|2022-09-11
+T |   | study code
+E | X | concert| september 15th#fun

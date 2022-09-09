@@ -2,6 +2,7 @@ package duke;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -20,6 +21,7 @@ public class Storage {
     public Storage(String filePath) {
         this.filePath = filePath;
     }
+
 
     /**
      * Loads the current text file, updates the ArrayList.
@@ -41,6 +43,7 @@ public class Storage {
         return strList;
     }
 
+
     /**
      * Writes the following tasks in the taskList to the text file.
      *
@@ -51,17 +54,34 @@ public class Storage {
         for (int i = 1; i <= tasks.size(); i++) {
             Task currTask = tasks.get(i - 1);
             if (currTask instanceof Todo) {
-                newTextLine.append("T | ").append(currTask.getStatusIcon()).append(" |")
-                        .append(currTask.description).append("\n");
+                if (!Objects.equals(currTask.getTag(), "")) {
+                    newTextLine.append("T | ").append(currTask.getStatusIcon()).append(" |")
+                            .append(currTask.description).append("#").append(currTask.getTag()).append("\n");
+                } else {
+                    newTextLine.append("T | ").append(currTask.getStatusIcon()).append(" |")
+                            .append(currTask.description).append("\n");
+                }
             } else if (currTask instanceof Deadline) {
                 Deadline currDeadline = (Deadline) currTask;
-                newTextLine.append("D | ").append(currDeadline.getStatusIcon()).append(" |")
-                        .append(currDeadline.description).append("|")
-                        .append(currDeadline.date.toString()).append("\n");
+                if (!Objects.equals(currTask.getTag(), "")) {
+                    newTextLine.append("D | ").append(currDeadline.getStatusIcon()).append(" |")
+                            .append(currDeadline.description).append("|")
+                            .append(currDeadline.date.toString()).append("#").append(currTask.getTag()).append("\n");
+                } else {
+                    newTextLine.append("D | ").append(currDeadline.getStatusIcon()).append(" |")
+                            .append(currDeadline.description).append("|")
+                            .append(currDeadline.date.toString()).append("\n");
+                }
             } else if (currTask instanceof Event) {
                 Event currEvent = (Event) currTask;
-                newTextLine.append("E | ").append(currEvent.getStatusIcon()).append(" |")
-                        .append(currEvent.description).append("|").append(currEvent.at).append("\n");
+                if (!Objects.equals(currTask.getTag(), "")) {
+                    newTextLine.append("E | ").append(currEvent.getStatusIcon()).append(" |")
+                            .append(currEvent.description).append("|").append(currEvent.at)
+                            .append("#").append(currTask.getTag()).append("\n");
+                } else {
+                    newTextLine.append("E | ").append(currEvent.getStatusIcon()).append(" |")
+                            .append(currEvent.description).append("|").append(currEvent.at).append("\n");
+                }
             }
         }
         newTextLine.close();
