@@ -16,6 +16,7 @@ public class Ui {
     private String description;
 
     public String displayDescription() {
+        assert description != null : "Ui::displayDescription has null description";
         return description;
     }
 

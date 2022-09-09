@@ -55,7 +55,9 @@ public class Deadline extends Task {
     }
 
     @Override
+
     public boolean isSameDate(LocalDate date) {
+        assert date != null : "Task::isSameDate has null LocalDate input.";
         return date.equals(this.deadline);
     }
 
