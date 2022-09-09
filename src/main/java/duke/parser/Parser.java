@@ -43,41 +43,55 @@ public class Parser {
      * @throws DukeException If the string to be parsed is not valid.
      */
     public Command parseText(String text) throws DukeException {
-        List<String> commands = Arrays.stream(text.trim().split(" ", 2))
+        List<String> commands = Arrays.stream(text.trim().toLowerCase().split(" ", 2))
                 .map(String::trim)
                 .collect(Collectors.toList());
 
         String mainCommand = commands.get(0);
         String description = commands.size() > 1 ? commands.get(1) : "";
 
-        if (mainCommand.equals("bye")) {
+        switch (mainCommand) {
+        case "bye":
             this.isListening = false;
             return new ByeCommand();
-        } else if (mainCommand.equals("list")) {
+
+        case "list":
             return new ListCommand();
-        } else if (mainCommand.equals("mark")) {
+
+        case "mark":
             return new MarkCommand(description);
-        } else if (mainCommand.equals("unmark")) {
+
+        case "unmark":
             return new UnmarkCommand(description);
-        } else if (mainCommand.equals("delete")) {
+
+        case "delete":
             return new DeleteCommand(description);
-        } else if (mainCommand.equals("todo")) {
+
+        case "todo":
             return new ToDoCommand(description);
-        } else if (mainCommand.equals("deadline")) {
+
+        case "deadline":
             return new DeadlineCommand(description);
-        } else if (mainCommand.equals("event")) {
+
+        case "event":
             return new EventCommand(description);
-        } else if (mainCommand.equals("find")) {
+
+        case "find":
             return new FindCommand(description);
-        } else if (mainCommand.equals("at")) {
+
+        case "at":
             return new AtCommand(description);
-        } else if (mainCommand.equals("any")) {
+
+        case "any":
             return new AnyCommand(description);
-        } else if (mainCommand.equals("all")) {
+
+        case "all":
             return new AllCommand(description);
-        } else if (mainCommand.isEmpty()) {
+
+        case "":
             throw new EmptyCommandException();
-        } else {
+
+        default:
             throw new DukeException();
         }
     }
