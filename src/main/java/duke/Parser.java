@@ -22,7 +22,7 @@ public class Parser {
      * @param response The user input.
      * @param tasks The TaskList object that contains the tasks currently stored in the Duke chat-bot.
      */
-    public void parse(String response, TaskList tasks) {
+    /*public void parse(String response, TaskList tasks) {
         if (response.equals("list")) {
             System.out.println("     The following are your saved tasks: ");
             for (int i = 0; i < tasks.getTasks().size(); i++) {
@@ -93,7 +93,7 @@ public class Parser {
                     + "       event\n"
                     + "       deadline\n");
         }
-    }
+    }*/
 
     /**
      * Overloaded method of parse(), meant for JavaFX.

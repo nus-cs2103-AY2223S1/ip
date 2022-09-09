@@ -39,6 +39,8 @@ public class Event extends Task {
     }
 
     private void convertToDateTime(String at) {
+        assert at.length() != 0 : "length of 'at' should not be 0";
+
         if (at.length() > 10) {
             int spacePos = at.indexOf(" ");
             String date = at.substring(0, spacePos);
@@ -54,6 +56,8 @@ public class Event extends Task {
 
     @Override
     public void update(String input, VBox dialogContainer, Image dukeImage) {
+        assert input.length() != 0 : "Length of input should not be 0";
+
         int byIndex = input.indexOf("/at");
         if (byIndex == -1) {
             updateDescription(input);

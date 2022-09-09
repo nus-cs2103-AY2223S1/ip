@@ -18,6 +18,8 @@ public class Todo extends Task {
 
     @Override
     public void update(String input, VBox dialogContainer, Image dukeImage) {
+        assert input != null : "input should not be null";
+
         super.description = input;
         this.sendTaskUpdatedMessage(dialogContainer, dukeImage);
     }

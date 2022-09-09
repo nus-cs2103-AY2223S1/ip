@@ -39,6 +39,8 @@ public class Deadline extends Task {
     }
 
     private void convertToDateTime(String by) {
+        assert by.length() != 0 : "length of 'by' should not be 0";
+
         if (by.length() > 10) {
             int spacePos = by.indexOf(" ");
             String date = by.substring(0, spacePos);
@@ -54,6 +56,8 @@ public class Deadline extends Task {
 
     @Override
     public void update(String input, VBox dialogContainer, Image dukeImage) {
+        assert input.length() != 0 : "Length of input should not be 0";
+
         int byIndex = input.indexOf("/by");
         if (byIndex == -1) {
             updateDescription(input);
