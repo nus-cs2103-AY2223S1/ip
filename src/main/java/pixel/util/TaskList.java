@@ -1,6 +1,7 @@
 package pixel.util;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import pixel.Pixel;
 import pixel.task.Deadline;
@@ -17,6 +18,24 @@ public class TaskList {
 
     public TaskList(String filePath) {
         this.filePath = filePath;
+    }
+
+    public String listTasks() {
+        String output = "Here are the tasks in your list: \n";
+        for (int i = 0; i < Pixel.count; i++) {
+            Task currentTask = Storage.INPUT_TASKS.get(i);
+            output += ((i + 1) + ". " + currentTask + "\n");
+        }
+        return output;
+    }
+
+    public String listFindResults(ArrayList<Task> findResults) {
+        String output ="Here are the matching tasks in your list: \n";
+        for (int i = 0; i < findResults.size(); i++) {
+            Task currentTask = findResults.get(i);
+            output += ((i + 1) + ". " + currentTask + "\n");
+        }
+        return output;
     }
 
     public String handleNewTask(String userInput, String type) throws IOException {
@@ -72,9 +91,7 @@ public class TaskList {
         Storage.resetFile(this.filePath);
 
         // run through all the files in the list and update pixel.txt accordingly
-        for (Task task : Storage.INPUT_TASKS) {
-            Storage.appendToFile(task, this.filePath);
-        }
+        Storage.appendAllTasksToFile(this.filePath);
 
         Pixel.count += 1;
         return ("Got it. I've added this task: \n"
