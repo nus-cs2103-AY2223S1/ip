@@ -59,6 +59,8 @@ public class Parser {
             return new ExitCommand();
         } else if (command.equals("list")) {
             return new ListCommand();
+        } else if (command.equals("sort")){
+            return new SortCommand();
         } else {
             throw new DukeException("Sorry, I don't understand that command :(");
         }
