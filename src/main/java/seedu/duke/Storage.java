@@ -35,10 +35,10 @@ public class Storage {
     /**
      * Initialises the TaskList storage with save data from the hard disk.
      *
-     * @param storage Where tasks are stored in the TaskList.
+     * @param tempStorage Where tasks are stored in the TaskList.
      */
-    public void initialise(ArrayList<Task> storage) {
-        storage.clear();
+    public void initialise(ArrayList<Task> tempStorage) {
+        tempStorage.clear();
 
         try {
             Scanner s = new Scanner(save);
@@ -60,6 +60,8 @@ public class Storage {
                 } else if (temp[0].equals("E")) {
                     newTask = new Event(temp[2], temp[3]);
 
+                } else if (temp[0].equals("F")) {
+                    newTask = new FixedDurationTask(temp[2], temp[3]);
                 } else {
                     throw new DukeException("");
                 }
@@ -68,7 +70,7 @@ public class Storage {
                     newTask.markDone();
                 }
 
-                storage.add(newTask);
+                tempStorage.add(newTask);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

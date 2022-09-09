@@ -24,15 +24,14 @@ public class TaskList {
      * @return A response to be displayed to the user.
      */
     public String addTask(String command) {
+        Task newTask;
 
         if (command.startsWith("todo")) {
             if (command.length() <= 5) {
                 return Ui.emptyDescription("Todo");
             }
 
-            Task newTask = new Todo(command.substring(5));
-            tempStorage.add(newTask);
-            saveFile.addTask(newTask.toStore());
+            newTask = new Todo(command.substring(5));
         } else if (command.startsWith("deadline")) {
             try {
                 if (command.length() <= 9) {
@@ -41,9 +40,7 @@ public class TaskList {
 
                 String[] temp = command.substring(9).split("/by ");
 
-                Task newTask = new Deadline(temp[0], temp[1]);
-                tempStorage.add(newTask);
-                saveFile.addTask(newTask.toStore());
+                newTask = new Deadline(temp[0], temp[1]);
             } catch (DateTimeParseException e) {
                 return Ui.wrongDateFormat();
             }
@@ -54,12 +51,20 @@ public class TaskList {
 
             String[] temp = command.substring(6).split("/at ");
 
-            Task newTask = new Event(temp[0], temp[1]);
-            tempStorage.add(newTask);
-            saveFile.addTask(newTask.toStore());
+            newTask = new Event(temp[0], temp[1]);
+        } else if (command.startsWith("FixedDuration")) {
+            if (command.length() <= 14) {
+                return Ui.emptyDescription("FixedDuration");
+            }
+
+            String[] temp = command.substring(14).split("/needs ");
+            newTask = new FixedDurationTask(temp[0], temp[1]);
         } else {
             return Ui.unknownCommand();
         }
+
+        tempStorage.add(newTask);
+        saveFile.addTask(newTask.toStore());
 
         return Ui.addText(tempStorage.get(tempStorage.size() - 1).toString(), tempStorage.size());
     }
