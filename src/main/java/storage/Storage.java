@@ -65,13 +65,15 @@ public class Storage {
             Scanner scanner = new Scanner(file).useDelimiter("\\s\\|\\s");
 
             while (scanner.hasNext()) {
-                String start = scanner.next();
-                if (start.equals("T")) {
-                    addTodo(taskList, scanner);
-                } else if (start.equals("E")) {
-                    addEvent(taskList, scanner);
-                } else if (start.equals("D")) {
-                    addDeadline(taskList, scanner);
+                String entry = scanner.nextLine();
+                char firstLetter = entry.charAt(0);
+
+                if (firstLetter == 'T') {
+                    loadTodo(taskList, entry);
+                } else if (firstLetter == 'E') {
+                    loadEvent(taskList, entry);
+                } else if (firstLetter == 'D') {
+                    loadDeadline(taskList, entry);
                 } else {
                     throw new FredException("Loading... Data file entry is wrong!");
                 }
@@ -85,43 +87,49 @@ public class Storage {
     }
 
     /**
-     * Add ToDo from data file to taskList
-     * @param taskList Fred's taskList
-     * @param scanner Scanner for data file
+     * Load Todo into taskList
+     * @param taskList Fred's tasklist
+     * @param entry entry in data file
      */
-    public void addTodo(ArrayList<Task> taskList, Scanner scanner) {
-        String isDoneSymbol = scanner.next();
-        scanner.skip("\\s\\|\\s");
-        String description = scanner.nextLine();
-        Task t = new ToDo(description, (isDoneSymbol.equals("1")));
-        taskList.add(t);
+    private void loadTodo(ArrayList<Task> taskList, String entry) {
+        String[] entryParts = entry.split(" \\| ");
+        String isDoneSymbol = entryParts[1].trim();
+        boolean isDone = isDoneSymbol.equals("1");
+        String description = entryParts[2].trim();
+        Task todo = new ToDo(description, isDone);
+
+        taskList.add(todo);
     }
 
     /**
-     * Add Event from data file to taskList
-     * @param taskList Fred's taskList
-     * @param scanner Scanner for data file
+     * Load Event into taskList
+     * @param taskList Fred's tasklist
+     * @param entry entry in data file
      */
-    public void addEvent(ArrayList<Task> taskList, Scanner scanner) {
-        String isDoneSymbol = scanner.next();
-        String description = scanner.next();
-        scanner.skip("\\s\\|\\s");
-        String at = scanner.nextLine();
-        Task t = new Event(description, at, (isDoneSymbol.equals("1")));
-        taskList.add(t);
+    private void loadEvent(ArrayList<Task> taskList, String entry) {
+        String[] entryParts = entry.split(" \\| ");
+        String isDoneSymbol = entryParts[1].trim();
+        boolean isDone = isDoneSymbol.equals("1");
+        String description = entryParts[2].trim();
+        String dateString = entryParts[3].trim();
+        Task event = new Event(description, dateString, isDone);
+
+        taskList.add(event);
     }
 
     /**
-     * Add Deadline from data file to taskList
-     * @param taskList Fred's taskList
-     * @param scanner Scanner for data file
+     * Load Deadline into taskList
+     * @param taskList Fred's tasklist
+     * @param entry entry in data file
      */
-    public void addDeadline(ArrayList<Task> taskList, Scanner scanner) {
-        String isDoneSymbol = scanner.next();
-        String description = scanner.next();
-        scanner.skip("\\s\\|\\s");
-        String by = scanner.nextLine();
-        Task t = new Deadline(description, by, (isDoneSymbol.equals("1")));
-        taskList.add(t);
+    private void loadDeadline(ArrayList<Task> taskList, String entry) {
+        String[] entryParts = entry.split(" \\| ");
+        String isDoneSymbol = entryParts[1].trim();
+        boolean isDone = isDoneSymbol.equals("1");
+        String description = entryParts[2].trim();
+        String dateString = entryParts[3].trim();
+        Task deadline = new Deadline(description, dateString, isDone);
+
+        taskList.add(deadline);
     }
 }
