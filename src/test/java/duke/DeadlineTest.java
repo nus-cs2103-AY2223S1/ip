@@ -3,9 +3,7 @@ package duke;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * A class for testing the Deadline object.
- */
+/** A class for testing the Deadline object. */
 public class DeadlineTest {
 
     /**

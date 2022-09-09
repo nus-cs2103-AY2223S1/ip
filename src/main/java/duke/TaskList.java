@@ -23,15 +23,18 @@ public class TaskList {
      * @return List of tasks stored as a string.
      */
     public String printList() {
+        //Create header for list
         String list = "Here are the tasks in your list:\n";
+
+        //Get size of the task array
         int size = this.taskArray.size();
 
+        //Print the contents of the tasks in the task array
         for (int i = 0; i < size; i++) {
             if (this.taskArray.get(i) != null) {
                 list += ((i + 1) + "." + this.taskArray.get(i).toString() + '\n');
             }
         }
-
         return list;
     }
 

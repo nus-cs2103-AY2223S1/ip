@@ -1,9 +1,14 @@
 package duke;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /** A class that creates a Task object. */
 public class Task {
     protected String description;
     protected boolean isDone;
+    protected LocalDate date;
+    protected LocalTime time;
 
     /**
      * A constructor that initialises the Task object.
@@ -21,7 +26,7 @@ public class Task {
      * @return The string that indicates if the task is done or not.
      */
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : " ");
     }
 
     /**
@@ -39,6 +44,24 @@ public class Task {
     }
 
     /**
+     * Sets the task's date.
+     *
+     * @param date String representing the date to be set.
+     */
+    public void setDate(String date) {
+        this.date = LocalDate.parse(date);
+    }
+
+    /**
+     * Sets the task's time.
+     *
+     * @param time String representing the time to be set.
+     */
+    public void setTime(String time) {
+        this.time = LocalTime.parse(time);
+    }
+
+    /**
      * Returns the description of the task and the status of it.
      *
      * @return String that describes the activity and the status of the task.
@@ -47,5 +70,4 @@ public class Task {
     public String toString() {
         return "[" + this.getStatusIcon() + "]" + this.description;
     }
-    //...
 }

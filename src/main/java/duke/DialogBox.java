@@ -40,6 +40,7 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
+        //Set text and image for dialog box
         dialog.setText(text);
         displayPicture.setImage(img);
     }

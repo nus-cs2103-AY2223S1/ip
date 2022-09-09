@@ -7,8 +7,6 @@ import java.time.format.DateTimeFormatter;
 /** A class that creates the Event task. */
 public class Event extends Task{
     protected String at;
-    protected LocalDate date;
-    protected LocalTime time;
 
     /**
      * A constructor for the Event task.
@@ -22,24 +20,6 @@ public class Event extends Task{
     }
 
     /**
-     * Parses the date and sets it to the object's date
-     *
-     * @param date Date to parse in
-     */
-    public void parseDate(String date) {
-        this.date = LocalDate.parse(date);
-    }
-
-    /**
-     * Parses the time and sets it to the object's time
-     *
-     * @param time Time to parse in
-     */
-    public void parseTime(String time) {
-        this.time = LocalTime.parse(time);
-    }
-
-    /**
      * Returns the description of the Event task.
      *
      * @return String that describes the activity, date and time of the Event task.
@@ -47,9 +27,8 @@ public class Event extends Task{
     @Override
     public String toString() {
         if (this.at.contains("/") || at.contains("-")) {
-            String date = this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
-            String time = this.time.toString();
-
+            String date = super.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+            String time = super.time.toString();
             return "[E]" + super.toString() + " (at: " + date + " " + time + ")";
         } else {
             return "[E]" + super.toString() + " (at: " + at + ")";

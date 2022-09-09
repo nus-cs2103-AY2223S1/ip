@@ -2,7 +2,6 @@ package duke;
 
 /** A class that creates a DukeException for invalid user inputs. */
 public class DukeException extends Exception{
-    protected String errorMessage;
 
     /**
      * A constructor for the DukeException.
@@ -11,7 +10,6 @@ public class DukeException extends Exception{
      */
     public DukeException(String errorMessage) {
         super(errorMessage);
-        this.errorMessage = errorMessage;
     }
 
 }
