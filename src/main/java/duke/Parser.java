@@ -7,6 +7,8 @@ import duke.tasks.Event;
 import duke.tasks.Task;
 import duke.tasks.ToDo;
 
+import java.util.Collection;
+
 /**
  * Represents a Parser class that is responsible for parsing user inputs.
  * 
@@ -120,6 +122,10 @@ public class Parser {
 
                     return "Here are your matching tasks:\n" + matchingTasks.listTasks();
 //                } catch ()
+            }
+            case "sort": {
+                tl.sort();
+                return tl.listTasks();
             }
             default:
                 return "I don't know that command please enter a valid command";
