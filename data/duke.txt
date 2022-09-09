@@ -1,3 +1,1 @@
-D | 1 | CS2100 Tutorial | 2022-09-09
-E | 1 | Summer CS Internship Interview | 2022-09-11
-T | 0 | test
+E | 0 | Internship Assessment | 2022-02-02

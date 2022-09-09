@@ -31,7 +31,7 @@ public class Ui {
      * @return response of duke in string.
      */
     public String showAddedTask(Task taskToAdd, TaskList tasks) {
-        return "Noted nya! I've added this task:\n"
+        return "Got it nya! I've added this task:\n"
                 + taskToAdd.toString() + "\n"
                 + "Now you have " + tasks.getLength() + " tasks in the list";
     }
@@ -55,7 +55,7 @@ public class Ui {
      * @return response of duke in string.
      */
     public String showMarkedTask(Task markedTask) {
-        return "Wow nya! I've marked this task as done:\n" + markedTask.toString();
+        return "Nice nya! I've marked this task as done:\n" + markedTask.toString();
     }
 
     /**
@@ -75,7 +75,7 @@ public class Ui {
      * @return response of duke in string.
      */
     public String showUnmarkedTask(Task unmarkedTask) {
-        return "I've marked this task as not done yet nya:\n"
+        return "Ok nya, I've marked this task as not done yet nya:\n"
                 + unmarkedTask.toString();
     }
 
