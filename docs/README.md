@@ -12,8 +12,8 @@ You are able to add three types of tasks, which are, Todo, Deadline and Event.
 ### Feature- Marking Tasks
 
 You are able to mark your task as completed or not completed. This allows you to manage your tasks more effectively.
-[X] This is a completed todo
-[ ] This is a incompleted todo
+- [X] This is a completed todo
+- [ ] This is a incompleted todo
 
 ### Feature- Edit Tasks date
 
