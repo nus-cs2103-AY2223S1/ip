@@ -47,6 +47,10 @@ application {
     mainClassName = "duke.Duke"
 }
 
+run {
+    enableAssertions = true
+}
+
 shadowJar {
     archiveBaseName = "duke"
     archiveClassifier = null
