@@ -8,8 +8,8 @@ public class DeadlineExceptionTest {
     @Test
     public void createDeadlineException_defaultInput_getCorrectErrorMessage() {
         DeadlineException sampleException = new DeadlineException();
-        assertEquals(sampleException.getMessage(), "☹ OOPS!!! " +
-                "The description and time limit of deadline cannot be empty.");
+        assertEquals(sampleException.getMessage(), "☹ OOPS!!! "
+                + "The description and time limit of deadline cannot be empty.");
     }
 
     @Test

@@ -8,8 +8,8 @@ public class EventExceptionTest {
     @Test
     public void createEventException_defaultInput_getCorrectErrorMessage() {
         EventException sampleException = new EventException();
-        assertEquals(sampleException.getMessage(), "☹ OOPS!!! " +
-                "The description and time of event cannot be empty.");
+        assertEquals(sampleException.getMessage(), "☹ OOPS!!! "
+                + "The description and time of event cannot be empty.");
     }
 
     @Test
