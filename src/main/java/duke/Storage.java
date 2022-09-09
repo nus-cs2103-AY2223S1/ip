@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import duke.exceptions.DukeDuplicateException;
 import duke.exceptions.DukeInvalidReadException;
 
 
@@ -92,9 +93,11 @@ public class Storage {
                 } else {
                     throw new DukeInvalidReadException();
                 }
-                TaskList.getTaskList().add(newTask);
+                TaskList.add(newTask);
             } catch (DukeInvalidReadException e) {
-                System.out.println(e.getMessage());
+                Ui.printError(e.getMessage());
+            } catch (DukeDuplicateException e) {
+                Ui.printError(e.getMessage());
             }
         };
 

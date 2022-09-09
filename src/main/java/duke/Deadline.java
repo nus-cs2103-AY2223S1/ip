@@ -50,4 +50,18 @@ public class Deadline extends Task {
     public String toStorageFormat() {
         return "D | " + super.toStorageFormat() + " | " + deadline;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof Deadline) {
+            Deadline otherTask = (Deadline) obj;
+            if (otherTask.description == this.description && this.deadline == otherTask.deadline) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

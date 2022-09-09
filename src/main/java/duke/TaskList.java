@@ -1,7 +1,10 @@
 package duke;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
+import duke.exceptions.DukeDuplicateException;
+import duke.exceptions.DukeException;
 import duke.exceptions.DukeMissingIndexException;
 
 
@@ -11,6 +14,8 @@ import duke.exceptions.DukeMissingIndexException;
  */
 public class TaskList {
 
+    // Used to check for duplicate
+    private static HashSet<String> taskSet = new HashSet<>();
     private static ArrayList<Task> taskList = new ArrayList<>();
 
     /**
@@ -18,7 +23,13 @@ public class TaskList {
      *
      * @param task task to be added.
      */
-    public static void add(Task task) {
+    public static void add(Task task) throws DukeDuplicateException {
+        String shortenedDescription = task.toString().substring(3);
+        if (taskSet.contains(shortenedDescription)) {
+            throw new DukeDuplicateException();
+        }
+        taskSet.add(shortenedDescription);
+        System.out.println(taskSet.size());
         taskList.add(task);
     }
 
@@ -77,6 +88,9 @@ public class TaskList {
         if (index >= taskList.size() || taskList.get(index) == null) {
             throw new DukeMissingIndexException();
         }
+        Task taskToDelete = taskList.get(index);
+        String shortenedDescription = taskToDelete.toString().substring(3);
+        taskSet.remove(shortenedDescription);
         taskList.remove(index);
     }
 
@@ -111,4 +125,5 @@ public class TaskList {
     public static ArrayList<Task> getTaskList() {
         return taskList;
     }
+
 }

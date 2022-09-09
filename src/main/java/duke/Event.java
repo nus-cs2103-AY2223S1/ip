@@ -52,4 +52,17 @@ public class Event extends Task {
         return "E | " + super.toStorageFormat() + " | " + at;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof Event) {
+            Event otherTask = (Event) obj;
+            if (otherTask.description == this.description && this.at == otherTask.at) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

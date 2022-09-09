@@ -5,6 +5,7 @@ import duke.Task;
 import duke.TaskList;
 import duke.ToDo;
 import duke.Ui;
+import duke.exceptions.DukeDuplicateException;
 import duke.exceptions.DukeEmptyCommandException;
 
 /**
@@ -38,6 +39,8 @@ public class AddToDoCommand extends Command {
             TaskList.add(newTask);
             return Ui.printAddTask(newTask);
         } catch (DukeEmptyCommandException e) {
+            return Ui.printError(e.getMessage());
+        } catch (DukeDuplicateException e) {
             return Ui.printError(e.getMessage());
         }
 

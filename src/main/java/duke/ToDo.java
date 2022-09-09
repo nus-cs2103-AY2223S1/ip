@@ -44,4 +44,19 @@ public class ToDo extends Task {
         return "T | " + super.toStorageFormat();
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        System.out.println("Called");
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof ToDo) {
+            ToDo otherTask = (ToDo) obj;
+            if (otherTask.description == this.description) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

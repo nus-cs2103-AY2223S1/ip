@@ -4,7 +4,7 @@ package duke;
  * Represents the most basic <code>Task</code>.
  */
 public class Task {
-    private String description;
+    protected String description;
     private boolean isDone;
 
     /**
@@ -79,4 +79,20 @@ public class Task {
             return "0 | " + description;
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        System.out.println("called");
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof Task) {
+            Event otherTask = (Event) obj;
+            if (otherTask.description == this.description) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
