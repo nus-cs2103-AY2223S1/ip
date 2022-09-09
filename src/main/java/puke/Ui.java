@@ -1,6 +1,5 @@
 package puke;
 
-import java.util.Scanner;
 
 /**
  * Handles the user interface for the User interactions
@@ -64,17 +63,16 @@ public class Ui {
      */
     public String taskManager(String s, int pos, Duke d) {
         if (s.equals("do")) {
-            Duke.d.tasklist.tasks.get(pos - 1).markAsDone();
+            d.tasklist.tasks.get(pos - 1).markAsDone();
             return "\n"
                     +  "     Nice! I've marked this task as done: \n"
-                    +  "       " + Duke.d.tasklist.tasks.get(pos-1) + "\n";
+                    +  "       " + d.tasklist.tasks.get(pos-1) + "\n";
 
         } else if (s.equals("undo")) {
-            Duke.d.tasklist.tasks.get(pos - 1).markAsUndone();
-            System.out.println("       " + Duke.d.tasklist.tasks.get(pos-1));
+            d.tasklist.tasks.get(pos - 1).markAsUndone();
             return "\n"
                     +  "     OK! I've marked this task as not done yet: \n"
-                    +  "       " + Duke.d.tasklist.tasks.get(pos-1) + "\n";
+                    +  "       " + d.tasklist.tasks.get(pos-1) + "\n";
         } else {
             return "    Failed to manage your tasks, try doing it yourself next time";
         }
