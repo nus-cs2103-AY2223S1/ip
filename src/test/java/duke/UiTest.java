@@ -37,12 +37,6 @@ public class UiTest {
     }
 
     @Test
-    public void showLineTest() {
-        ui.showLine();
-        assertEquals(outContent.toString(), "\t____________________________________________\n");
-    }
-
-    @Test
     public void showErrorTest() {
         ui.showError("error");
         assertEquals(outContent.toString(), "error\n");
