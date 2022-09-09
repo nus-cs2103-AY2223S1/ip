@@ -25,11 +25,14 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/Jeanie.jpg"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/qoobee.png"));
 
+    /**
+     * Initialises the chatbot.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        String greetingMessage = "Hello, I'm best bot Qoobee!\n" +
-                "What can I do for you? ^.^\n";
+        String greetingMessage = "Hello, I'm best bot Qoobee!\n"
+                + "What can I do for you? ^.^\n";
         this.dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(greetingMessage, this.dukeImage));
     }

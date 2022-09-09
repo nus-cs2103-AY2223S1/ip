@@ -6,6 +6,7 @@ package qoobee;
 public class Event extends Task {
 
     protected String at;
+    protected final String TASK_TYPE = "E";
 
     /**
      * Creates an Event given a description and date.
@@ -31,7 +32,22 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at:" + at + ")";
+        return "[" + TASK_TYPE + "]" + super.toString() + "(at:" + at + ")";
+    }
+
+    /**
+     * Returns the String representation of this event task to be stored in storage.
+     * @return The String representation of this event task.
+     */
+    @Override
+    public String storageToString() {
+        String status;
+        if (getStatusIcon() == "X") {
+            status = "1 | ";
+        } else {
+            status = "0 | ";
+        }
+        return TASK_TYPE + " | " + status + getDescription() + " | " + getAt() + "\n";
     }
 
 }

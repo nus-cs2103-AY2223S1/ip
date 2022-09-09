@@ -67,17 +67,67 @@ public class TaskList {
     }
 
     /**
-     * Removes a task from the list.
-     * @param index The index of the task identified.
-     * @throws QoobeeException if the task does not exist.
+     * Adds a todo to the list.
+     * @param commands A String of commands to be to be processed as a todo.
+     * @return A String to be returned by the chatbot.
+     * @throws QoobeeException if the user inputs an invalid command to add.
      */
-    public String removeTask(int index) throws QoobeeException {
+    public String addToDo(String[] commands) throws QoobeeException {
+        if (commands.length == 1 || commands[1].isBlank()) {
+            throw new QoobeeException("The description of a todo cannot be empty :^(");
+        } else {
+            Task todo = new ToDo(commands[1]);
+            return addTask(todo);
+        }
+    }
+
+    /**
+     * Adds a deadline to the list.
+     * @param commands A String of commands to be to be processed as a deadline.
+     * @return A String to be returned by the chatbot.
+     * @throws QoobeeException if the user inputs an invalid command to add.
+     */
+    public String addDeadline(String[] commands) throws QoobeeException {
+        if (commands.length == 1 || commands[1].isBlank()) {
+            throw new QoobeeException("The description of a deadline cannot be empty :^(");
+        } else if (!commands[1].contains("/by")) {
+            throw new QoobeeException("Please use /by to specify a deadline :]");
+        }
+        String[] deadlineArray = commands[1].split("/by", 2);
+        Task deadline = new Deadline(deadlineArray[0], deadlineArray[1].trim());
+        return addTask(deadline);
+    }
+
+    /**
+     * Adds an event to the list.
+     * @param commands A String of commands to be to be processed as a event.
+     * @return A String to be returned by the chatbot.
+     * @throws QoobeeException if the user inputs an invalid command to add.
+     */
+    public String addEvent(String[] commands) throws QoobeeException {
+        if (commands.length == 1 || commands[1].isBlank()) {
+            throw new QoobeeException("The description of a event cannot be empty :^(");
+        } else if (!commands[1].contains("/at")) {
+            throw new QoobeeException("Please use /at to specify a deadline :]");
+        }
+        String[] eventArray = commands[1].split("/at", 2);
+        Task event = new Event(eventArray[0], eventArray[1]);
+        return addTask(event);
+    }
+
+    /**
+     * Removes a task from the list given a list of commands.
+     * @param commands A String of commands to remove a task from the list.
+     * @return A String to be returned by the chatbot.
+     * @throws QoobeeException if the user inputs an invalid command to remove a task.
+     */
+    public String removeTask(String[] commands) throws QoobeeException {
         try {
-            Task task = taskList.remove(index);
+            Task task = taskList.remove(Integer.parseInt(commands[1]) - 1);
             storage.save(taskList);
             return "Noted. I've removed this task:\n" + task + "\n"
                     + "Now you have " + taskListSize() + " tasks in the list.";
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new QoobeeException("Please enter a right number!");
         }
     }
@@ -97,7 +147,7 @@ public class TaskList {
     /**
      * Marks a task as done.
      * @param task The task to be marked.
-     * @throws QoobeeException if the tast does not exist.
+     * @throws QoobeeException if the task does not exist.
      */
     public String mark(Task task) throws QoobeeException {
         assert task.getDescription().length() > 0 : "Task description cannot be empty";
@@ -107,8 +157,8 @@ public class TaskList {
     }
 
     /**
-     * Finds a task in the list
-     * @param description The description of the task
+     * Finds a task in the list.
+     * @param description The description of the task.
      */
     public String findTask(String description) {
         assert description.length() > 0 : "Task description to find cannot be empty";
@@ -130,5 +180,4 @@ public class TaskList {
             return sb.toString();
         }
     }
-
 }

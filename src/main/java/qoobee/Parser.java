@@ -1,5 +1,7 @@
 package qoobee;
 
+import java.time.DateTimeException;
+
 /**
  * Represents a parser that executes commands based on user's input.
  */
@@ -23,75 +25,40 @@ public class Parser {
      * @param input The user's input.
      */
     public String parse(String input) {
-        assert input.length() > 0: "Input cannot be empty";
+        assert input.length() > 0 : "Input cannot be empty";
         try {
-            if (input.equals("bye")) {
+            String[] commands = input.split(" ", 2);
+            String command = commands[0];
+            switch (command) {
+            case "bye":
                 this.ui.exit();
                 return "Bye. Don't miss me too much!";
-            } else if (input.equals("list")) {
+            case "list":
                 return tasks.printTasks();
-            } else {
-                String[] command = input.split(" ", 2);
-                assert command[1].length() > 0: "Description cannot be empty";
-                if (input.startsWith("mark")) {
-                    try {
-                        Task task = tasks.getTask(Integer.parseInt(command[1]) - 1);
-                        return tasks.mark(task);
-                    } catch (IndexOutOfBoundsException | NumberFormatException | QoobeeException e) {
-                        throw new QoobeeException("Please enter a right number!");
-                    }
-                } else if (input.startsWith("unmark")) {
-                    try {
-                        Task task = tasks.getTask(Integer.parseInt(command[1]) - 1);
-                        return tasks.unmark(task);
-                    } catch (IndexOutOfBoundsException | NumberFormatException e) {
-                        throw new QoobeeException("Please enter a right number!");
-                    }
-                } else if (input.startsWith("todo")) {
-                    if (command[1].isBlank()) {
-                        throw new QoobeeException("The description of a todo cannot be empty :^(");
-                    }
-                    Task todo = new ToDo(command[1]);
-                    return tasks.addTask(todo);
-                } else if (input.startsWith("deadline")) {
-                    if (command[1].isBlank()) {
-                        throw new QoobeeException("The description of a deadline cannot be empty :^(");
-                    }
-                    if (!command[1].contains("/by")) {
-                        throw new QoobeeException("Please use /by to specify a deadline :]");
-                    }
-                    String[] curr = command[1].split("/by ", 2);
-                    Task deadline = new Deadline(curr[0], curr[1]);
-                    return tasks.addTask(deadline);
-                } else if (input.startsWith("event")) {
-                    if (command[1].isBlank()) {
-                        throw new QoobeeException("The description of a event cannot be empty :^(");
-                    }
-                    if (!command[1].contains("/at")) {
-                        throw new QoobeeException("Please use /at to specify a deadline :]");
-                    }
-                    String[] curr = command[1].split("/at", 2);
-                    Task event = new Event(curr[0], curr[1]);
-                    return tasks.addTask(event);
-                } else if (input.startsWith("delete")) {
-                    try {
-                        int index = Integer.parseInt(command[1]) - 1;
-                        return tasks.removeTask(index);
-                    } catch (NumberFormatException e) {
-                        throw new QoobeeException("Please enter a right number!");
-                    }
-                } else if (input.startsWith("find")) {
-                    return tasks.findTask(command[1]);
-                } else {
-                    return "I'm sorry, but I don't know what that means :^(";
-                }
+            case "mark":
+                Task taskToMark = tasks.getTask(Integer.parseInt(commands[1]) - 1);
+                return tasks.mark(taskToMark);
+            case "unmark":
+                Task taskToUnmark = tasks.getTask(Integer.parseInt(commands[1]) - 1);
+                return tasks.unmark(taskToUnmark);
+            case "todo":
+                return tasks.addToDo(commands);
+            case "deadline":
+                return tasks.addDeadline(commands);
+            case "event":
+                return tasks.addEvent(commands);
+            case "delete":
+                return tasks.removeTask(commands);
+            case "find":
+                return tasks.findTask(commands[1]);
+            default:
+                return "I'm sorry, but I don't know what that means :^(";
             }
         } catch (QoobeeException e) {
-            System.out.println(e);
+            return (e.toString());
+        } catch (DateTimeException e) {
+            return ("Please enter in the format of yyyy-mm-dd hh:mm!");
         }
-        return "I'm sorry, but I don't know what that means :^(";
     }
-
-
 
 }
