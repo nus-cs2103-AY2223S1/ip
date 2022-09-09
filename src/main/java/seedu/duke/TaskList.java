@@ -129,13 +129,13 @@ public class TaskList {
      * @param command The user's input.
      * @return A response to be displayed to the user.
      */
-    public String toggleDone(String command) {
+    public String markOrUnmarkAsDone(String command) {
         assert command != null : "No command provided.";
 
         int index = Character.getNumericValue(command.charAt(command.length() - 1));
 
         try {
-            String temp = tempStorage.get(index - 1).toggleDone(command);
+            String temp = tempStorage.get(index - 1).markOrUnmarkAsDone(command);
             saveFile.reload(tempStorage);
             return temp;
         } catch (IndexOutOfBoundsException e) {

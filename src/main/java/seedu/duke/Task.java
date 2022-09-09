@@ -19,7 +19,7 @@ public class Task {
      * @param command The command that determines whether this task is done or not done.
      * @return A response to be displayed to the user.
      */
-    public String toggleDone(String command) {
+    public String markOrUnmarkAsDone(String command) {
         assert command != null : "No command provided.";
 
         if (command.startsWith("mark ")) {
