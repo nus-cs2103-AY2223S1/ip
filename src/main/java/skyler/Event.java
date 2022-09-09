@@ -19,6 +19,7 @@ public class Event extends Task {
     public Event(String description, LocalDateTime time) {
         super(description);
         this.time = time;
+        assert this instanceof Task : "Event should be a subtype of class";
     }
 
     /**

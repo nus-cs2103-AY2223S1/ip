@@ -28,6 +28,7 @@ public class Storage {
      */
     public Storage(String filePathChosen) {
         this.filePathChosen = filePathChosen;
+        assert !this.filePathChosen.equals("") : "Filepath for storage of task data should be specified";
     }
 
     /**
