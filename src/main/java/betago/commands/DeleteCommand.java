@@ -20,7 +20,7 @@ public class DeleteCommand implements Command {
     @Override
     public String execute(TaskList tasks, Storage storage, String str) {
         try {
-            String output = tasks.deleteItems(str);
+            String output = tasks.deleteItem(str);
             storage.saveItems();
             return output;
         } catch (DukeException e) {

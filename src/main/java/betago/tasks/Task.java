@@ -55,7 +55,7 @@ public class Task {
         return "";
     }
 
-    public boolean containKeyword(String keyword) {
+    public boolean containsKeyword(String keyword) {
         return this.description.toLowerCase().contains(keyword.toLowerCase());
     }
 }

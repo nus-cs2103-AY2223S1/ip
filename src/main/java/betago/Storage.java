@@ -24,7 +24,7 @@ public class Storage {
 
     /**
      * Checks if data/duke.txt file exists.
-     * If it exists, read the data file and create the TaskList accordingly.
+     * If it exists, calls the convertFile method accordingly to read file.
      * Else, create an empty data/duke.txt file.
      * Errors in creating the file or invalid text in the data file will print errors accordingly.
      */
@@ -32,28 +32,13 @@ public class Storage {
         try {
             File dir = new File("data");
             File f = new File("data/duke.txt");
-            if (dir.exists()) {
-                if (f.exists()) {
-                    Scanner sc1 = new Scanner(f);
-                    while (sc1.hasNextLine()) {
-                        String str = sc1.nextLine();
-                        if (str.charAt(0) == 'T') {
-                            this.tasks.loadTodo(str);
-                        } else if (str.charAt(0) == 'D') {
-                            this.tasks.loadDeadline(str);
-                        } else if (str.charAt(0) == 'E') {
-                            this.tasks.loadEvent(str);
-                        } else {
-                            Ui.printLoadFileError();
-                        }
-                    }
-                    sc1.close();
-                } else {
-                    f.createNewFile();
-                }
-            } else {
+            if (!dir.exists()) {
                 dir.mkdir();
                 f.createNewFile();
+            } else if (!f.exists()) {
+                f.createNewFile();
+            } else {
+                convertFile(f);
             }
         } catch (FileNotFoundException e) {
             Ui.printFileNotFoundError();
@@ -65,12 +50,35 @@ public class Storage {
     }
 
     /**
+     * Reads the data file and converts the entries into their respective tasks.
+     * @param f The file to be read from.
+     * @throws DukeException If there is an invalid data entry in the data file.
+     * @throws FileNotFoundException If the file f does not exist.
+     */
+    public void convertFile(File f) throws DukeException, FileNotFoundException {
+        Scanner sc1 = new Scanner(f);
+        while (sc1.hasNextLine()) {
+            String str = sc1.nextLine();
+            if (str.charAt(0) == 'T') {
+                this.tasks.loadTodo(str);
+            } else if (str.charAt(0) == 'D') {
+                this.tasks.loadDeadline(str);
+            } else if (str.charAt(0) == 'E') {
+                this.tasks.loadEvent(str);
+            } else {
+                Ui.printLoadFileError();
+            }
+        }
+        sc1.close();
+    }
+
+    /**
      * Saves tasks in TaskList into data/duke.txt file.
      */
     public void saveItems() {
         try {
             FileWriter fw = new FileWriter("data/duke.txt", false);
-            for (int i = 0; i < this.tasks.size(); i++) {
+            for (int i = 0; i < this.tasks.getSize(); i++) {
                 Task temp = this.tasks.get(i);
                 fw.write(temp.saveTask());
             }
