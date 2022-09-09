@@ -67,61 +67,73 @@ public class Ui {
         scn.close();
     }
 
+
     /**
      * To display a message after a {@code Todo} has been successfully added
      * @param tasks the current {@code TaskList}
      * @param todo the added {@code Todo}
      */
+
     public void todoTask(TaskList tasks, Todo todo) {
         System.out.println("\t Got it. I've added this task:");
         System.out.println("\t   " + todo.toString());
         System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
     }
 
+
     /**
      * To display a message after a {@code Deadline} has been successfully added
      * @param tasks the current {@code TaskList}
      * @param deadline the added {@code Deadline}
      */
+
     public void deadlineTask(TaskList tasks, Deadline deadline) {
         System.out.println("\t Got it. I've added this task:");
         System.out.println("\t   " + deadline.toString());
         System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
     }
 
+
     /**
      * To display a message after a {@code Event} has been successfully added
      * @param tasks the current {@code TaskList}
      * @param event the added {@code Event}
      */
+
     public void eventTask(TaskList tasks, Event event) {
         System.out.println("\t Got it. I've added this task:");
         System.out.println("\t   " + event.toString());
         System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
     }
 
+
     /**
      * To display a message after a {@code Task} has been successfully marked
      * @param task the marked {@code Task}
      */
+
     public void markTask(Task task) {
         System.out.println("\t I've marked this task as done:");
         System.out.println("\t   " + task.toString());
     }
 
+
     /**
      * To display a message after a {@code Task} has been successfully unmarked
      * @param task the unmarked {@code Task}
      */
+
     public void unmarkTask(Task task) {
         System.out.println("\t I've marked this task as not done yet:");
         System.out.println("\t   " + task.toString());
     }
 
+
     /**
      * To display a message after a {@code Task} has been successfully deleted
      * @param task the deleted {@code Task}
      */
+
     public void deleteTask(TaskList tasks, Task task) {
         System.out.println("\t Noted. I've removed this task:");
         System.out.println("\t   " + task.toString());
