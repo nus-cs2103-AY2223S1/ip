@@ -27,6 +27,8 @@ public class Event extends Task {
      */
     public Event(String description, String at, boolean isDone) {
         super(description, isDone);
+        assert description != null;
+        assert at != null;
         datetime = new ParsedDateTime(at);
     }
 

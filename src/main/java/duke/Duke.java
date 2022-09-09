@@ -21,6 +21,7 @@ public class Duke {
      * @param ui The current UI to use.
      */
     public static void setUi(UiInterface ui) {
+        assert ui != null;
         Duke.ui = ui;
     }
 
@@ -30,6 +31,7 @@ public class Duke {
      * @return UiInterface that helps display text to screen.
      */
     public static UiInterface getUi() {
+        assert ui != null;
         return ui;
     }
 

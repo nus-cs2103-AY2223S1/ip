@@ -20,6 +20,7 @@ public class TaskStorage {
         Storage storage = Storage.getFileState("./duke.txt");
         ArrayList<Task> tasks = new ArrayList<>();
         for (String[] line : storage.getLines()) {
+            assert line != null;
             TaskFactory.constructOptionalTask(line).ifPresent((task) -> tasks.add(task));
         }
         return tasks;

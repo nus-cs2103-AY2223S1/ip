@@ -76,9 +76,11 @@ public class Storage {
      * @param strings Strings to save.
      */
     public void saveLines(String[][] strings) {
+        assert strings != null;
         try {
             FileWriter writer = new FileWriter(fileName, false);
             for (int i = 0; i < strings.length; i++) {
+                assert strings[i] != null;
                 if (i > 0) {
                     writer.append('\n');
                 }
