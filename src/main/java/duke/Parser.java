@@ -2,13 +2,7 @@ package duke;
 
 import java.time.LocalDate;
 
-import duke.command.AddCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.FindCommand;
-import duke.command.InvalidCommand;
-import duke.command.ListCommand;
-import duke.command.QuackCommand;
+import duke.command.*;
 import duke.models.Deadline;
 import duke.models.Event;
 import duke.models.Task;
@@ -63,12 +57,12 @@ public class Parser {
             return new DeleteCommand(deleteIndex);
         case Constants.LIST_STRING:
             return new ListCommand();
-//            case Constants.MARK_STRING:
-//                int markIndex = Integer.parseInt(command.split(Constants.EMPTY_SPACE)[1]);
-//                return new MarkCommand(markIndex);
-//            case Constants.UNMARK_STRING:
-//                int unmarkIndex = Integer.parseInt(command.split(Constants.EMPTY_SPACE)[1]);
-//                return new UnmarkCommand(unmarkIndex);
+        case Constants.MARK_STRING:
+            int markIndex = Integer.parseInt(command.split(Constants.EMPTY_SPACE)[1]);
+            return new MarkCommand(markIndex);
+        case Constants.UNMARK_STRING:
+            int unmarkIndex = Integer.parseInt(command.split(Constants.EMPTY_SPACE)[1]);
+            return new UnmarkCommand(unmarkIndex);
         case Constants.FIND_STRING:
             String query = command.split(Constants.EMPTY_SPACE)[0];
             return new FindCommand(query);
