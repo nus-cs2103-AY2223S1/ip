@@ -6,7 +6,7 @@ plugins {
 }
 
 checkstyle {
-    toolVersion = '8.32'
+    toolVersion = '10.2'
 }
 
 repositories {
