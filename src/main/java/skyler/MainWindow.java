@@ -54,7 +54,7 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
 
         if (input.equals("bye")) {
-            this.stage.close();
+            stage.close();
         }
 
         String response = skyler.getResponse(input);
@@ -66,5 +66,4 @@ public class MainWindow extends AnchorPane {
 
         userInput.clear();
     }
-
 }
