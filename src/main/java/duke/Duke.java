@@ -43,7 +43,7 @@ public class Duke {
             command.execute(tasks, storage, ui, parser);
             return ui.flush();
         } catch (DukeException e) {
-            return e.getMessage() + ".";
+            return e.getMessage();
         } catch (Exception e) {
             return e.toString();
         }

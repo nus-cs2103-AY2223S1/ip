@@ -33,7 +33,8 @@ public class Ui {
      * Prints the welcome message.
      */
     public Ui showWelcome() {
-        responses.add("Hello! I'm Duke!");
+        responses.add("Hello! I'm the Knight!");
+        responses.add("You can also call me Ghost if you like!");
         responses.add("What can I do for you?");
         return this;
     }
@@ -67,7 +68,7 @@ public class Ui {
      * @return this UI object for method chaining
      */
     public Ui showTaskListSize(TaskList tasks) {
-        String message = String.format("You now have %d %s.\n",
+        String message = String.format("You now have %d %s!\n",
                 tasks.size(),
                 tasks.size() == 1 ? "task" : "tasks"
         );

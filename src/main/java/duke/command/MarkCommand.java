@@ -30,7 +30,7 @@ public class MarkCommand extends Command {
     public void execute(TaskList tasks, Storage storage, Ui ui, Parser parser) throws IOException {
         Task task = tasks.getTask(index);
         task.markAsDone();
-        ui.showMessage("I've marked this task as done.").showMessage(task.toString());
+        ui.showMessage("I've marked your task as done.").showMessage(task.toString());
         storage.saveTasks(tasks);
     }
 }

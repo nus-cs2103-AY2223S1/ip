@@ -22,7 +22,7 @@ public class ListCommand extends Command {
         if (tasks.size() == 0) {
             ui.showMessage("You do not have any tasks at the moment.");
         } else {
-            ui.showMessage("Here are your tasks.").showMessage(tasks.toString());
+            ui.showMessage("Here are your tasks!").showMessage(tasks.toString());
         }
     }
 }

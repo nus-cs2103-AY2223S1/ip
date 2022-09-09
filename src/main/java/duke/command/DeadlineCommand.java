@@ -39,7 +39,7 @@ public class DeadlineCommand extends Command {
     public void execute(TaskList tasks, Storage storage, Ui ui, Parser parser) throws IOException {
         Task task = new Deadline(description, deadline);
         tasks.addTask(task);
-        ui.showMessage("I've added this deadline.")
+        ui.showMessage("I've added your deadline.")
                 .showMessage(task.toString())
                 .showTaskListSize(tasks);
         storage.saveTasks(tasks);

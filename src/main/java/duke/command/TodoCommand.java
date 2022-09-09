@@ -30,7 +30,7 @@ public class TodoCommand extends Command {
     public void execute(TaskList tasks, Storage storage, Ui ui, Parser parser) throws IOException {
         Task task = new Todo(description);
         tasks.addTask(task);
-        ui.showMessage("I've added this task.")
+        ui.showMessage("I've added your task.")
                 .showMessage(task.toString())
                 .showTaskListSize(tasks);
         storage.saveTasks(tasks);

@@ -39,7 +39,7 @@ public class EventCommand extends Command {
     public void execute(TaskList tasks, Storage storage, Ui ui, Parser parser) throws IOException {
         Task task = new Event(description, datetime);
         tasks.addTask(task);
-        ui.showMessage("I've added this event.")
+        ui.showMessage("I've added your event.")
                 .showMessage(task.toString())
                 .showTaskListSize(tasks);
         storage.saveTasks(tasks);

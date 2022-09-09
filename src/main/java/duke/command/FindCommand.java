@@ -39,6 +39,6 @@ public class FindCommand extends Command {
             return;
         }
         String repr = new TaskList(results).toString();
-        ui.showMessage("Here are the tasks matching your query:").showMessage(repr);
+        ui.showMessage("Here are the tasks matching your query!").showMessage(repr);
     }
 }

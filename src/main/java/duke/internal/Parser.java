@@ -70,19 +70,21 @@ public class Parser {
     public Command parseString(String str) {
         String[] arguments = Parser.getArguments(str);
         if (arguments.length == 0) {
-            throw new DukeException("Missing command");
+            throw new DukeException("Give me a command!");
         }
         switch (arguments[0]) {
         case "bye":
             return new ByeCommand();
         case "todo":
             if (arguments.length < 2) {
-                throw new DukeException("Missing todo description");
+                throw new DukeException(
+                        "I need a description for your todo!\nUsage: todo <description>");
             }
             return new TodoCommand(Parser.concatenateArguments(arguments, 1));
         case "deadline":
             if (arguments.length < 3) {
-                throw new DukeException("Missing deadline description and/or deadline");
+                throw new DukeException("I need a description and and datetime for your deadline!\n"
+                        + "Usage: deadline <description> /by <deadline>");
             }
             // Find the "/by" delimiter to get the two arguments.
             int delimiter = Parser.findArgumentIndex(arguments, "/by");
@@ -92,7 +94,8 @@ public class Parser {
             );
         case "event":
             if (arguments.length < 3) {
-                throw new DukeException("Missing event description and/or date-time");
+                throw new DukeException("I need a description and and datetime for your event!\n"
+                        + "Usage: event <description> /at <datetime>");
             }
             delimiter = Parser.findArgumentIndex(arguments, "/at");
             assert delimiter > 0 : "/at should be present";
@@ -103,22 +106,22 @@ public class Parser {
             return new ListCommand();
         case "find":
             if (arguments.length < 2) {
-                throw new DukeException("Missing search query");
+                throw new DukeException("I need the search term!\nUsage: find <search term>");
             }
             return new FindCommand(Parser.concatenateArguments(arguments, 1));
         case "mark":
             if (arguments.length < 2) {
-                throw new DukeException("Missing index");
+                throw new DukeException("I need the task number!\nUsage: mark <task number>");
             }
             return new MarkCommand(Integer.parseInt(arguments[1]) - 1); // 1-indexed
         case "unmark":
             if (arguments.length < 2) {
-                throw new DukeException("Missing index");
+                throw new DukeException("I need the task number!\nUsage: unmark <task number>");
             }
             return new UnmarkCommand(Integer.parseInt(arguments[1]) - 1); // 1-indexed
         case "delete":
             if (arguments.length < 2) {
-                throw new DukeException("Missing index");
+                throw new DukeException("I need the task number!\nUsage: delete <task number>");
             }
             return new DeleteCommand(Integer.parseInt(arguments[1]) - 1);
         case "alias":
@@ -126,7 +129,7 @@ public class Parser {
         default:
             String alias = arguments[0];
             if (!aliases.containsKey(alias)) {
-                throw new DukeException("Unknown command");
+                throw new DukeException("Sorry! I didn't understand that command!");
             }
             String command = String.format("%s %s",
                     aliases.get(alias),
@@ -159,7 +162,7 @@ public class Parser {
             }
             String allAliases = this.aliases.entrySet()
                     .stream()
-                    .map(entry -> String.format("%s -> %s\n", entry.getKey(), entry.getValue()))
+                    .map(entry -> String.format("%s = %s\n", entry.getKey(), entry.getValue()))
                     .collect(Collectors.joining());
             return new AliasListCommand(allAliases);
         default:
@@ -180,24 +183,21 @@ public class Parser {
      */
     public void addAlias(String alias, String command) {
         if (alias.equals(command)) {
-            throw new DukeException("Cannot bind an alias to itself");
+            throw new DukeException("Sorry! I can't bind an alias to itself.");
         }
         if (!DEFAULT_ALIASES.containsValue(command)) {
             // This prevents any circular aliases, because aliases can only be bound to commands.
             if (aliases.containsKey(command)) {
-                throw new DukeException(String.format(
-                        "Cannot bind the alias `%s` to the existing alias `%s`",
-                        alias,
-                        command
-                ));
+                throw new DukeException(
+                        "Sorry! I can't bind an alias to existing aliases to prevent circular aliases.");
             }
-            throw new DukeException(String.format("The command `%s` does not exist", command));
+            throw new DukeException(String.format("The command `%s` does not exist!", command));
         }
         if (aliases.containsKey(alias)) {
-            throw new DukeException(String.format("The alias `%s` already exists", alias));
+            throw new DukeException(String.format("The alias `%s` already exists!", alias));
         }
         if (aliases.containsValue(alias)) {
-            throw new DukeException(String.format("Cannot bind the command `%s` as an alias", alias));
+            throw new DukeException(String.format("Sorry! I can't bind a command as an alias.", alias));
         }
         aliases.put(alias, command);
     }
@@ -211,7 +211,7 @@ public class Parser {
      */
     public String removeAlias(String alias) {
         if (!aliases.containsKey(alias)) {
-            throw new DukeException("Alias does not exist");
+            throw new DukeException("That alias does not exist!");
         }
         String command = aliases.get(alias);
         aliases.remove(alias);
@@ -230,7 +230,7 @@ public class Parser {
         return IntStream.range(0, arguments.length)
                 .filter(i -> arguments[i].equals(query))
                 .findFirst()
-                .orElseThrow(() -> new DukeException(String.format("Missing argument `%s`",
+                .orElseThrow(() -> new DukeException(String.format("Missing argument `%s`.",
                         query
                 )));
     }
