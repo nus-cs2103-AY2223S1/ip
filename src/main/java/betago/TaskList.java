@@ -42,7 +42,12 @@ public class TaskList {
     public int getSize() {
         return this.list.size();
     }
-
+    /**
+     * Clears the current list.
+     */
+    public void refreshList() {
+        this.list.clear();
+    }
     /**
      * Returns the list of Tasks in the current TaskList.
      *
