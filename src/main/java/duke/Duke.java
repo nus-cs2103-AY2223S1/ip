@@ -102,8 +102,8 @@ public class Duke extends Application {
 
     @Override
     public void start(Stage stage) {
-        Label helloWorld = new Label("Hello World!"); // Creating a new Label control
-        Scene scene = new Scene(helloWorld); // Setting the scene to be our Label
+        Label helloWorld = new Label("Hello World!");
+        Scene scene = new Scene(helloWorld);
 
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
@@ -134,7 +134,6 @@ public class Duke extends Application {
         scrollPane.setVvalue(1.0);
         scrollPane.setFitToWidth(true);
 
-        // You will need to import `javafx.scene.layout.Region` for this.
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
         userInput.setPrefWidth(325.0);
@@ -176,7 +175,6 @@ public class Duke extends Application {
      * @return a label with the specified text that has word wrap enabled.
      */
     private Label getDialogLabel(String text) {
-        // You will need to import `javafx.scene.control.Label`.
         Label textToAdd = new Label(text);
         textToAdd.setWrapText(true);
 
