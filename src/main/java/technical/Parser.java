@@ -1,5 +1,8 @@
 package technical;
 
+import javafx.util.Pair;
+import ui.Ui;
+
 import java.io.IOException;
 
 /**
@@ -20,8 +23,8 @@ public class Parser {
     /**
      * Lists the list of commands.
      */
-    public static void mismatch() {
-        Ui.reply("list of commands: list, mark, unmark, todo, deadline, event, delete");
+    public static String mismatch() {
+        return Ui.reply("list of commands: list, mark, unmark, todo, deadline, event, delete");
     }
 
     /**
@@ -31,45 +34,35 @@ public class Parser {
      * @return Whether the program should continue running
      * @throws IOException in case of failure to write into save file.
      */
-    public static boolean parseExecute(String line) throws IOException {
+    public static Pair<String, Boolean> parseExecute(String line) throws IOException {
         String[] arguments = Parser.tokenise(line);
         if (arguments[0].equals("bye")) {
-            Ui.bye();
-            return false;
+            return new Pair<>(Ui.bye(), false);
         }
         if (arguments[0].equals("list")) {
-            TaskList.list();
-            return true;
+            return new Pair<>(TaskList.list(), true);
         }
         if (arguments[0].equals("mark")) {
-            TaskList.mark(arguments);
-            return true;
+            return new Pair<>(TaskList.mark(arguments), true);
         }
         if (arguments[0].equals("unmark")) {
-            TaskList.unmark(arguments);
-            return true;
+            return new Pair<>(TaskList.unmark(arguments), true);
         }
         if (arguments[0].equals("todo")) {
-            TaskList.todo(arguments);
-            return true;
+            return new Pair<>(TaskList.todo(arguments), true);
         }
         if (arguments[0].equals("deadline")) {
-            TaskList.deadline(arguments);
-            return true;
+            return new Pair<>(TaskList.deadline(arguments), true);
         }
         if (arguments[0].equals("event")) {
-            TaskList.event(arguments);
-            return true;
+            return new Pair<>(TaskList.event(arguments), true);
         }
         if (arguments[0].equals("delete")) {
-            TaskList.delete(arguments);
-            return true;
+            return new Pair<>(TaskList.delete(arguments), true);
         }
         if (arguments[0].equals("find")) {
-            TaskList.find(arguments);
-            return true;
+            return new Pair<>(TaskList.find(arguments), true);
         }
-        mismatch();
-        return true;
+        return new Pair<>(mismatch(), true);
     }
 }
