@@ -25,7 +25,7 @@ public class TaskList {
     public TaskList(List<Task> taskList) {
         this.taskList = taskList;
     }
-    
+
     public int size() {
         return taskList.size();
     }
@@ -43,7 +43,7 @@ public class TaskList {
     public String mark(String action, int taskIndex) {
         Task task = taskList.get(taskIndex - 1);
         task.isDone = action.equals("mark");
-       return ((action.equals("mark")
+        return ((action.equals("mark")
                 ? "OK, I've marked this task as not done yet: \n"
                 : "Nice! I've marked this task as done: \n")
                 + task);

@@ -20,14 +20,13 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private Duke duke;
-    
+
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
-    
-    
+
     public MainWindow() {
     }
-    
+
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
@@ -39,14 +38,14 @@ public class MainWindow extends AnchorPane {
     public void setDuke(Duke d) {
         duke = d;
     }
-    
+
     public void displayMessage(String message) {
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(message, dukeImage)
         );
         userInput.clear();
     }
-    
+
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
