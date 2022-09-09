@@ -237,7 +237,7 @@ public class Parser {
      */
     public static Command parseFindCommand(String command) throws FredException {
         if (command.trim().equals("find")) {
-            throw new FredException("The input of delete cannot be empty!");
+            throw new FredException("The input of find cannot be empty!");
         }
 
         String commandWord = "find";
