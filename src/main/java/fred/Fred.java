@@ -46,7 +46,10 @@ public class Fred {
                 System.exit(0);
             }
 
-            return ui.getMessage();
+            String message = ui.getMessage();
+            assert(!message.isBlank());
+
+            return message;
         } catch (FredException e) {
             return e.getMessage();
         }

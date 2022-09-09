@@ -43,6 +43,7 @@ public class Storage {
                 f.createNewFile();
                 ui.storeMessage("No data file exists. New data file has been created.\n");
             }
+            assert (f.exists());
 
             FileWriter fileWriter = new FileWriter(filePath);
 
@@ -78,6 +79,7 @@ public class Storage {
                 } else if (firstLetter == 'D') {
                     loadDeadline(taskList, entry);
                 } else {
+                    assert(!start.equals("T") && !start.equals("E") && !start.equals("D"));
                     throw new FredException("Loading... Data file entry is wrong!");
                 }
             }
