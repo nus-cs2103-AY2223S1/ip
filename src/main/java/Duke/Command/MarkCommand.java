@@ -12,16 +12,16 @@ import Duke.Task.Task;
 public class MarkCommand extends Command{
 
     /** The id of the task to be marked. */
-    private int taskID;
+    private int[] taskID;
 
     /** The marked task. */
-    private Task markedTask;
+    private Task[] markedTask;
 
     /** Constructs the mark command given the id of task to be marked.
      * 
      * @param taskID The id of the task to be marked.
      */
-    public MarkCommand(int taskID) {
+    public MarkCommand(int[] taskID) {
         this.taskID = taskID;
     }
 
@@ -35,7 +35,7 @@ public class MarkCommand extends Command{
     }
 
     @Override public String toString() {
-        return String.format("Nice. I've marked this task:\n   %s", 
-                this.markedTask.toString());
+        return String.format("Noted. I've marked this task:   %s", 
+                TaskList.taskArrToString(this.markedTask));
     }
 }
