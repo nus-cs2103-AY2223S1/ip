@@ -84,7 +84,7 @@ public class TaskList {
     /**
      * Filters and returns a new TaskList object based on a search term.
      *
-     * @return the filtered TaskList
+     * @return taskList the filtered TaskList
      */
     public TaskList findTask(String description) {
         ArrayList<Task> list = new ArrayList<>();
@@ -98,6 +98,11 @@ public class TaskList {
         return new TaskList(list);
     }
 
+    /**
+     * Sort deadlines and return a new TaskList with the sorted deadlines.
+     *
+     * @return taskList sorted TaskList
+     */
     public TaskList sortDeadlines() {
         List<Task> list = this.taskList.stream().filter(task -> task instanceof Deadline).map(task -> (Deadline) task)
                 .sorted((o1, o2) -> o1.getDateTime().compareTo(o2.getDateTime())).collect(Collectors.toList());
