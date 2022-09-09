@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * This class is responsible for the bot Duke
@@ -315,6 +316,20 @@ public class Duke extends Application {
                 storage.saveTasks();
             }
         }
+    }
+
+    public String findMatchingTasksFromKeywords(List<Task> taskArrayList, String keywords) {
+        String outputString = "";
+        outputString += "Here are the matching tasks in your list:\n";
+        List<String> taskStrings = taskArrayList.stream().filter(x -> x.getDescription().contains(keywords))
+                .map(Task::toString).collect(Collectors.toList());
+
+        for (String toAdd : taskStrings) {
+            outputString += toAdd;
+        }
+
+        return outputString;
+
     }
 
     /**
