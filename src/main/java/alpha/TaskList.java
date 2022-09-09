@@ -1,10 +1,13 @@
 package alpha;
 
-import alpha.task.Task;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import alpha.task.Task;
+
+/**
+ * Operates on the list of tasks.
+ */
 public class TaskList {
 
     /** List of tasks to be operated on */
@@ -33,14 +36,14 @@ public class TaskList {
      *
      * @param uI Object of the Ui class to display the tasks.
      */
-    public void printTasks(Ui uI){
+    public void printTasks(Ui uI) {
         if (tasks.isEmpty()) {
-            uI.colouredPrint(uI.getANSI_CODE("ANSI_BLUE"), ">> " + "Your task list is empty!");
+            uI.colouredPrint(uI.getAnsiCode("ANSI_BLUE"), ">> " + "Your task list is empty!");
         } else {
-            uI.colouredPrint(uI.getANSI_CODE("ANSI_BLUE"), ">> " + "Your task list is as follows:");
+            uI.colouredPrint(uI.getAnsiCode("ANSI_BLUE"), ">> " + "Your task list is as follows:");
             int count = 1;
             for (Task task : tasks) {
-                uI.colouredPrint(uI.getANSI_CODE("ANSI_BLUE"), count + ") " + task.toString());
+                uI.colouredPrint(uI.getAnsiCode("ANSI_BLUE"), count + ") " + task.toString());
                 count++;
             }
         }

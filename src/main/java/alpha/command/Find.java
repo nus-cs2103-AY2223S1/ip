@@ -5,6 +5,9 @@ import alpha.FileOperations;
 import alpha.TaskList;
 import alpha.Ui;
 
+/**
+ * Finds all tasks with the input keyword.
+ */
 public class Find extends Command {
 
     /** Keyword to filter the list of tasks */
@@ -26,6 +29,7 @@ public class Find extends Command {
      */
     @Override
     public void execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
-        (new TaskList(taskList.filterTaskDescription(keyword))).printTasks(uI);
+        TaskList filteredTasks = (new TaskList(taskList.filterTaskDescription(keyword)));
+        filteredTasks.printTasks(uI);
     }
 }

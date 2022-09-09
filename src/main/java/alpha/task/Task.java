@@ -2,10 +2,13 @@ package alpha.task;
 
 import alpha.Ui;
 
+/**
+ * Stores and provides details of each task.
+ */
 public abstract class Task {
 
     /** Object of the Ui class to help display messages */
-    Ui uI = new Ui();
+    protected Ui uI = new Ui();
 
     /** Description of the task */
     protected String description;
@@ -74,7 +77,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return String.format(uI.getANSI_CODE("ANSI_BLUE") + "[ %s ] [ %s ] %s", this.getTaskType(),
-                this.getStatus(), this.getDescription() + uI.getANSI_CODE("ANSI_RESET"));
+        return String.format(uI.getAnsiCode("ANSI_BLUE") + "[ %s ] [ %s ] %s", this.getTaskType(),
+                this.getStatus(), this.getDescription() + uI.getAnsiCode("ANSI_RESET"));
     }
 }

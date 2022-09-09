@@ -1,5 +1,8 @@
 package alpha.task;
 
+/**
+ * Represents deadline type of task.
+ */
 public class Deadline extends Task {
 
     /** Deadline for the task */
@@ -22,7 +25,7 @@ public class Deadline extends Task {
      *
      * @return Task deadline.
      */
-    public String getDeadline(){
+    public String getDeadline() {
         return this.deadline;
     }
 
@@ -33,8 +36,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return super.toString() + String.format(uI.getANSI_CODE("ANSI_RED") +
-                " (by: %s)", this.deadline + uI.getANSI_CODE(""));
+        return super.toString() + String.format(uI.getAnsiCode("ANSI_RED")
+                + " (by: %s)", this.deadline + uI.getAnsiCode(""));
     }
 
     /**
@@ -45,9 +48,9 @@ public class Deadline extends Task {
      */
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) {
+        if (this == obj) {
             return true;
-        } else if(obj instanceof Deadline) {
+        } else if (obj instanceof Deadline) {
             Deadline d = (Deadline) obj;
 
             return (d.getDescription().equals(this.getDescription()) && d.getStatus().equals(this.getStatus())

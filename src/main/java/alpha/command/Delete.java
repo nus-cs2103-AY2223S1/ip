@@ -5,6 +5,9 @@ import alpha.FileOperations;
 import alpha.TaskList;
 import alpha.Ui;
 
+/**
+ * Deletes task of the input task number.
+ */
 public class Delete extends Command {
 
     /** The task number of the task to be deleted */
@@ -29,7 +32,7 @@ public class Delete extends Command {
     public void execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
         taskList.deleteTask(taskNumber);
         fileOperations.rewriteFile(taskList);
-        uI.colouredPrint(uI.getANSI_CODE("ANSI_BLUE"), ">> " + "deleted: Task " + this.taskNumber);
+        uI.colouredPrint(uI.getAnsiCode("ANSI_BLUE"), ">> " + "deleted: Task " + this.taskNumber);
     }
 
     /**
@@ -40,9 +43,9 @@ public class Delete extends Command {
      */
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) {
+        if (this == obj) {
             return true;
-        } else if(obj instanceof Delete) {
+        } else if (obj instanceof Delete) {
             Delete d = (Delete) obj;
             return (d.taskNumber == this.taskNumber);
         }

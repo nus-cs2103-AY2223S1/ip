@@ -1,5 +1,8 @@
 package alpha.task;
 
+/**
+ * Represents event type of task.
+ */
 public class Event extends Task {
 
     /** Event task date */
@@ -33,7 +36,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return super.toString() + String.format(uI.getANSI_CODE("ANSI_RED") + " (on: %s)", date + uI.getANSI_CODE(""));
+        return super.toString() + String.format(uI.getAnsiCode("ANSI_RED") + " (on: %s)", date + uI.getAnsiCode(""));
 
     }
 
@@ -45,9 +48,9 @@ public class Event extends Task {
      */
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) {
+        if (this == obj) {
             return true;
-        } else if(obj instanceof Event) {
+        } else if (obj instanceof Event) {
             Event e = (Event) obj;
             return (e.getDescription().equals(this.getDescription()) && e.getStatus().equals(this.getStatus())
                     && e.getTaskType().equals(this.getTaskType()) && e.getDate().equals(this.getDate()));

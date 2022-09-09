@@ -5,10 +5,13 @@ import alpha.FileOperations;
 import alpha.TaskList;
 import alpha.Ui;
 
+/**
+ * Marks task of the input task number.
+ */
 public class Mark extends Command {
 
     /** Task number of the task to be marked as done */
-    private int taskNumber;
+    private final int taskNumber;
 
     /**
      * Constructor that initialises the global variables.
@@ -29,7 +32,7 @@ public class Mark extends Command {
     public void execute(TaskList taskList, Ui uI, FileOperations fileOperations) throws AlphaException {
         taskList.modifyTaskStatus(taskNumber, true);
         fileOperations.rewriteFile(taskList);
-        uI.colouredPrint(uI.getANSI_CODE("ANSI_BLUE"), ">> " + "marked: Task " + this.taskNumber);
+        uI.colouredPrint(uI.getAnsiCode("ANSI_BLUE"), ">> " + "marked: Task " + this.taskNumber);
     }
 
     /**
@@ -40,9 +43,9 @@ public class Mark extends Command {
      */
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) {
+        if (this == obj) {
             return true;
-        } else if(obj instanceof Mark) {
+        } else if (obj instanceof Mark) {
             Mark m = (Mark) obj;
             return (m.taskNumber == this.taskNumber);
         }

@@ -5,6 +5,9 @@ import alpha.FileOperations;
 import alpha.TaskList;
 import alpha.Ui;
 
+/**
+ * Command entered by the user.
+ */
 public abstract class Command {
 
     /**

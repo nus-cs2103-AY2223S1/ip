@@ -1,41 +1,46 @@
 package alpha;
 
-import alpha.command.Command;
-import alpha.command.Exit;
 import java.util.Scanner;
 
+import alpha.command.Command;
+import alpha.command.Exit;
+
+/**
+ * Entry point of the program.
+ */
 public class Alpha {
 
     /** Object of the Ui class to take user inputs and display messages */
-    Ui uI = new Ui();
+    private Ui uI = new Ui();
 
     /** Object of the Parser class to help interpret the user input messages */
-    Parser parser = new Parser();
+    private Parser parser = new Parser();
 
     /** Object of the TaskList class to help operate on the list of tasks stored */
-    TaskList taskList;
+    private TaskList taskList;
 
     /** File directory that stores task list data locally */
-    final String FILE_PATH;
+    @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
+    private final String FILE_PATH;
 
     /** Object of the FileOperations class that helps read and write on file */
-    FileOperations fileOperations;
+    private FileOperations fileOperations;
 
     /**
-     * Constructor to initialise the global variable and create and read file.
-     *
-     * @param filePath Directory of the file.
-     */
-     public Alpha(String filePath) {
-         FILE_PATH = filePath;
-         fileOperations = new FileOperations(FILE_PATH);
-         try {
-             fileOperations.createFile();
-             taskList = new TaskList(fileOperations.readFile());
-         } catch(AlphaException e) {
-             uI.colouredPrint(uI.getANSI_CODE("ANSI_RED"), e.getMessage());
-         }
-     }
+      * Constructor to initialise the global variable and create and read file.
+      *
+      * @param filePath Directory of the file.
+      */
+    public Alpha(String filePath) {
+        FILE_PATH = filePath;
+        fileOperations = new FileOperations(FILE_PATH);
+        try {
+            fileOperations.createFile();
+            taskList = new TaskList(fileOperations.readFile());
+        } catch (AlphaException e) {
+            uI.colouredPrint(uI.getAnsiCode("ANSI_RED"), e.getMessage());
+        }
+    }
 
     /**
      * Runs the entire program by taking user inputs and executing the relevant commands.
@@ -45,7 +50,7 @@ public class Alpha {
         Scanner in = new Scanner(System.in);
         uI.welcomeMessage();
         boolean isExit = false;
-        while(!isExit) {
+        while (!isExit) {
             String userInput = uI.takeUserInput(in);
             try {
                 Command c = parser.interpretMessage(userInput);
@@ -54,10 +59,10 @@ public class Alpha {
                     isExit = true;
                 }
             } catch (AlphaException e) {
-                uI.colouredPrint(uI.getANSI_CODE("ANSI_RED"), e.getMessage());
+                uI.colouredPrint(uI.getAnsiCode("ANSI_RED"), e.getMessage());
             }
         }
-        uI.colouredPrint(uI.getANSI_CODE("ANSI_BLUE"), ">> Bye, see you soon!");
+        uI.colouredPrint(uI.getAnsiCode("ANSI_BLUE"), ">> Bye, see you soon!");
         System.exit(0);
     }
 

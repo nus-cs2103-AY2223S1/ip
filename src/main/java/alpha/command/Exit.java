@@ -4,6 +4,9 @@ import alpha.FileOperations;
 import alpha.TaskList;
 import alpha.Ui;
 
+/**
+ * Represents an exit command.
+ */
 public class Exit extends Command {
 
     /**
@@ -23,9 +26,9 @@ public class Exit extends Command {
      */
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) {
+        if (this == obj) {
             return true;
-        } else if(obj instanceof Exit) {
+        } else if (obj instanceof Exit) {
             return true;
         }
         return false;

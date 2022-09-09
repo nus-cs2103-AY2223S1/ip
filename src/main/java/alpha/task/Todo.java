@@ -1,5 +1,8 @@
 package alpha.task;
 
+/**
+ * Represents todo type task.
+ */
 public class Todo extends Task {
 
     /**
@@ -20,9 +23,9 @@ public class Todo extends Task {
      */
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) {
+        if (this == obj) {
             return true;
-        } else if(obj instanceof Todo) {
+        } else if (obj instanceof Todo) {
             Todo t = (Todo) obj;
             return (t.getDescription().equals(this.getDescription()) && t.getStatus().equals(this.getStatus())
                     && t.getTaskType().equals(this.getTaskType()));

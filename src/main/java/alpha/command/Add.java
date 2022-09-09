@@ -8,6 +8,9 @@ import alpha.task.Deadline;
 import alpha.task.Event;
 import alpha.task.Task;
 
+/**
+ * Adds a new task to the task list.
+ */
 public class Add extends Command {
 
     /** Task to be added to tbe list */
@@ -36,7 +39,7 @@ public class Add extends Command {
             Event event = (Event) task;
             textToAppend = "[" + event.getTaskType() + "] [" + event.getStatus() + "] "
                     + event.getDescription() + " (on " + event.getDate() + ")\n";
-        } else if (this.task instanceof Deadline){
+        } else if (this.task instanceof Deadline) {
             Deadline deadline = (Deadline) task;
             textToAppend = "[" + deadline.getTaskType() + "] [" + deadline.getStatus() + "] "
                     + deadline.getDescription() + " (by " + deadline.getDeadline() + ")\n";
@@ -44,7 +47,7 @@ public class Add extends Command {
             textToAppend = "[" + task.getTaskType() + "] [" + task.getStatus() + "] " + task.getDescription() + "\n";
         }
         fileOperations.writeToFile(textToAppend);
-        uI.colouredPrint(uI.getANSI_CODE("ANSI_BLUE"), ">> " + "added: " + task.getDescription());
+        uI.colouredPrint(uI.getAnsiCode("ANSI_BLUE"), ">> " + "added: " + task.getDescription());
     }
 
     /**
@@ -55,9 +58,9 @@ public class Add extends Command {
      */
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) {
+        if (this == obj) {
             return true;
-        } else if(obj instanceof Add) {
+        } else if (obj instanceof Add) {
             Add a = (Add) obj;
             return (a.task.equals(this.task));
         }

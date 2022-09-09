@@ -4,6 +4,9 @@ import alpha.FileOperations;
 import alpha.TaskList;
 import alpha.Ui;
 
+/**
+ * Lists all tasks in the task list.
+ */
 public class List extends Command {
 
     /**
@@ -24,9 +27,9 @@ public class List extends Command {
      */
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) {
+        if (this == obj) {
             return true;
-        } else if(obj instanceof List) {
+        } else if (obj instanceof List) {
             return true;
         }
         return false;
