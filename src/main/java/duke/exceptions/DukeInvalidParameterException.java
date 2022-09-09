@@ -7,7 +7,7 @@ public class DukeInvalidParameterException extends DukeException {
     }
 
     @Override
-    public String toString() {
+    public String getMessage() {
         return "Invalid parameters: " + super.getMessage();
     }
 }

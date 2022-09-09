@@ -85,6 +85,7 @@ public class Parser {
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new DukeException("Dates cannot be empty!");
         }
+        assert date != null;
         return LocalDate.parse(date);
     }
 
