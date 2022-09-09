@@ -2,7 +2,6 @@ package duke;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,7 +10,6 @@ import javafx.stage.Stage;
 
 /** A GUI for Duke using FXML. */
 public class Main extends Application {
-
     private Duke duke;
 
     @Override

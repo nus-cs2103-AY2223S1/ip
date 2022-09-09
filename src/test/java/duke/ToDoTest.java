@@ -3,9 +3,7 @@ package duke;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * A class that tests the ToDo class.
- */
+/** A class that tests the ToDo class. */
 public class ToDoTest {
 
     /**
