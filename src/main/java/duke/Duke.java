@@ -1,4 +1,5 @@
 package duke;
+
 import java.io.FileNotFoundException;
 
 /**
@@ -27,6 +28,10 @@ public class Duke {
 
     public Storage getStorage() {
         return storage;
+    }
+
+    protected String getResponse(String input) {
+        return "Duke heard: " + input;
     }
 
     /**
