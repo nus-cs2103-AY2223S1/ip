@@ -174,16 +174,14 @@ public class Duke extends Application {
         AnchorPane.setLeftAnchor(userInput , 1.0);
         AnchorPane.setBottomAnchor(userInput, 1.0);
 
+        //Part 3. Add functionality to handle user input.
         sendButton.setOnMouseClicked((event) -> {
-            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            userInput.clear();
+            handleUserInput();
         });
 
         userInput.setOnAction((event) -> {
-            dialogContainer.getChildren().add(getDialogLabel(userInput.getText()));
-            userInput.clear();
+            handleUserInput();
         });
-
     }
 
     /**
@@ -209,8 +207,8 @@ public class Duke extends Application {
         Label userText = new Label(userInput.getText());
         Label dukeText = new Label(getResponse(userInput.getText()));
         dialogContainer.getChildren().addAll(
-                new DialogueBox(userText, new ImageView(user)),
-                new DialogueBox(dukeText, new ImageView(duke))
+                DialogueBox.getUserDialog(userText, new ImageView(user)),
+                DialogueBox.getDukeDialog(dukeText, new ImageView(duke))
         );
         userInput.clear();
     }
