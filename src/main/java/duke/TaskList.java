@@ -2,6 +2,8 @@ package duke;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import duke.Task;
 
@@ -72,5 +74,13 @@ public class TaskList {
      */
     public int size() {
         return tasks.size();
+    }
+
+    /**
+     * Returns a stream of Tasks.
+     * @return a stream of Tasks.
+     */
+    public Stream<Task> stream() {
+        return this.tasks.stream();
     }
 }
