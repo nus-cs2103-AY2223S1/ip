@@ -6,6 +6,7 @@ package duke.task;
 public abstract class Task {
     private boolean isDone;
     private String text;
+    private String tag;
 
     /**
      * Constructor for Task.
@@ -13,9 +14,10 @@ public abstract class Task {
      * @param isDone boolean denoting whether Task should be marked.
      * @param text description of task.
      */
-    public Task(boolean isDone, String text) {
+    public Task(boolean isDone, String text, String tag) {
         this.isDone = isDone;
         this.text = text;
+        this.tag = tag;
     }
 
     /**
@@ -44,6 +46,10 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        return String.format("[%c] %s", isDone ? 'X' : ' ', this.text);
+        if (this.tag.isEmpty()) {
+            return String.format("[%c] %s", isDone ? 'X' : ' ', this.text);
+        } else {
+            return String.format("[%s] [%c] %s", this.tag, isDone ? 'X' : ' ', this.text);
+        }
     }
 }

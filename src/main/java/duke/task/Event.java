@@ -16,8 +16,8 @@ public class Event extends Task {
      * @param text description of task.
      * @param time date and time of Event's occurrence.
      */
-    public Event(boolean isDone, String text, LocalDateTime time) {
-        super(isDone, text);
+    public Event(boolean isDone, String text, String tag, LocalDateTime time) {
+        super(isDone, text, tag);
         this.time = time;
     }
 

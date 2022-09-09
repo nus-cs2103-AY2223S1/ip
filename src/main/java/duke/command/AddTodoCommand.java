@@ -22,16 +22,29 @@ public class AddTodoCommand extends AddCommand {
     public static AddTodoCommand of(String command) throws IllegalArgumentException {
         assert(command.startsWith("todo"));
 
-        boolean isDone = command.contains("/done");
-        if (isDone) {
-            command = command.replace("/done", "");
+        String tag;
+        String commandWithoutTag;
+        String[] commandTagArr = command.split("#");
+        if (commandTagArr.length == 2) {
+            tag = commandTagArr[1];
+            commandWithoutTag = commandTagArr[0];
+        } else if (commandTagArr.length > 2) {
+            throw new IllegalArgumentException(":( OOPS!!! Only 1 tag can be provided.\n");
+        } else {
+            tag = "";
+            commandWithoutTag = command;
         }
 
-        String text = command.replaceFirst("todo", "").strip();
+        boolean isDone = commandWithoutTag.contains("/done");
+        if (isDone) {
+            commandWithoutTag = commandWithoutTag.replace("/done", "");
+        }
+
+        String text = commandWithoutTag.replaceFirst("todo", "").strip();
         if (text.isEmpty()) {
             throw new IllegalArgumentException(":( OOPS!!! The description of a todo cannot be empty.\n");
         }
 
-        return new AddTodoCommand(command, new Todo(isDone, text));
+        return new AddTodoCommand(command, new Todo(isDone, text, tag));
     }
 }

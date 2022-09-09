@@ -27,14 +27,27 @@ public class AddEventCommand extends AddCommand {
     public static AddEventCommand of(String command) throws IllegalArgumentException {
         assert(command.startsWith("event"));
 
-        boolean isDone = command.contains("/done");
-        if (isDone) {
-            command = command.replace("/done", "");
+        String tag;
+        String commandWithoutTag;
+        String[] commandTagArr = command.split("#");
+        if (commandTagArr.length == 2) {
+            tag = commandTagArr[1];
+            commandWithoutTag = commandTagArr[0];
+        } else if (commandTagArr.length > 2) {
+            throw new IllegalArgumentException(":( OOPS!!! Only 1 tag can be provided.\n");
+        } else {
+            tag = "";
+            commandWithoutTag = command;
         }
 
-        String[] commandArr = command.split("/at");
-        String text = commandArr[0].replaceFirst("event", "").strip();
-        String time = commandArr.length > 1 ? commandArr[1].strip() : "";
+        boolean isDone = commandWithoutTag.contains("/done");
+        if (isDone) {
+            commandWithoutTag = commandWithoutTag.replace("/done", "");
+        }
+
+        String[] commandTimeArr = commandWithoutTag.split("/at");
+        String text = commandTimeArr[0].replaceFirst("event", "").strip();
+        String time = commandTimeArr.length > 1 ? commandTimeArr[1].strip() : "";
         if (text.isEmpty()) {
             throw new IllegalArgumentException(":( OOPS!!! The description of an event cannot be empty.\n");
         } else if (time.isEmpty()) {
@@ -47,6 +60,6 @@ public class AddEventCommand extends AddCommand {
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("🙁 OOPS!!! Provide a valid time (dd/MM/yy HHmm) for the event.\n");
         }
-        return new AddEventCommand(command, new Event(isDone, text, timeObj));
+        return new AddEventCommand(command, new Event(isDone, text, tag, timeObj));
     }
 }

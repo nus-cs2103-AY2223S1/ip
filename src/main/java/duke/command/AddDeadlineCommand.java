@@ -27,14 +27,27 @@ public class AddDeadlineCommand extends AddCommand {
     public static AddDeadlineCommand of(String command) throws IllegalArgumentException {
         assert(command.startsWith("deadline"));
 
-        boolean isDone = command.contains("/done");
-        if (isDone) {
-            command = command.replace("/done", "");
+        String tag;
+        String commandWithoutTag;
+        String[] commandTagArr = command.split("#");
+        if (commandTagArr.length == 2) {
+            tag = commandTagArr[1];
+            commandWithoutTag = commandTagArr[0];
+        } else if (commandTagArr.length > 2) {
+            throw new IllegalArgumentException(":( OOPS!!! Only 1 tag can be provided.\n");
+        } else {
+            tag = "";
+            commandWithoutTag = command;
         }
 
-        String[] commandArr = command.split("/by");
-        String text = commandArr[0].replaceFirst("deadline", "").strip();
-        String time = commandArr.length > 1 ? commandArr[1].strip() : "";
+        boolean isDone = commandWithoutTag.contains("/done");
+        if (isDone) {
+            commandWithoutTag = commandWithoutTag.replace("/done", "");
+        }
+
+        String[] commandDeadlineArr = commandWithoutTag.split("/by");
+        String text = commandDeadlineArr[0].replaceFirst("deadline", "").strip();
+        String time = commandDeadlineArr.length > 1 ? commandDeadlineArr[1].strip() : "";
         if (text.isEmpty()) {
             throw new IllegalArgumentException(":( OOPS!!! The description of a deadline cannot be empty.\n");
         } else if (time.isEmpty()) {
@@ -48,6 +61,6 @@ public class AddDeadlineCommand extends AddCommand {
             throw new IllegalArgumentException(
                     "🙁 OOPS!!! Provide a valid time (dd/MM/yy HHmm) for the deadline.\n");
         }
-        return new AddDeadlineCommand(command, new Deadline(isDone, text, timeObj));
+        return new AddDeadlineCommand(command, new Deadline(isDone, text, tag, timeObj));
     }
 }

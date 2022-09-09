@@ -18,6 +18,7 @@ public class TaskListTest {
         String commandString = "deadline test /by 10/02/22 1800";
         Deadline deadline = new Deadline(false,
                 "test",
+                "",
                 LocalDateTime.parse("10/02/22 1800", DateTimeFormatter.ofPattern("dd/MM/yy HHmm")));
         try {
             taskList.add(deadline,
