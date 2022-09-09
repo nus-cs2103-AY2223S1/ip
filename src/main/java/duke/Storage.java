@@ -11,6 +11,7 @@ import java.util.List;
 import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
+import duke.task.Priority;
 import duke.task.Task;
 import duke.task.ToDo;
 
@@ -26,6 +27,12 @@ public class Storage {
     private static final String TASK_DONE = "1";
     private static final String EVENT = "event";
     private static final String DEADLINE = "deadline";
+    private static final int TASK_TYPE_INDEX = 0;
+    private static final int TASK_PRIORITY_INDEX = 1;
+    private static final int TASK_DONE_INDEX = 2;
+    private static final int TASK_DESCRIPTION_INDEX = 3;
+    private static final int TASK_TIME_INDEX = 4;
+
 
     /**
      * Loads the data from the file found in the saved location into the task list.
@@ -106,29 +113,30 @@ public class Storage {
      * @throws DukeException if the method fails, printing the message output.
      */
     private static Task parseTask(String savedTask) throws DukeException {
-        Task task = null;
+        Task task;
         String[] taskArr;
         // savedTask is the string representation of the save file format of a task.
-        taskArr = savedTask.split(" \\| ", 4);
-        String taskType = taskArr[0]; // Todo, Event, Deadline
-        String taskDone = taskArr[1]; // 0 for unmarked, 1 for marked.
-        String taskDescription = taskArr[2]; // Description of the task.
+        taskArr = savedTask.split(" \\| ", 5);
+        String taskType = taskArr[TASK_TYPE_INDEX]; // Todo, Event, Deadline
+        String taskPriority = taskArr[TASK_PRIORITY_INDEX]; // HIGH, MEDIUM, LOW or NONE.
+        String taskDone = taskArr[TASK_DONE_INDEX]; // 0 for unmarked, 1 for marked.
+        String taskDescription = taskArr[TASK_DESCRIPTION_INDEX]; // Description of the task.
         switch (taskType) {
         case "T":
-            task = new ToDo(taskDescription);
+            task = new ToDo(taskDescription, Priority.getPriority(taskPriority));
             break;
 
         case "E":
-            String taskDuration = taskArr[3];
-            task = outputDateFormat(taskDescription, taskDuration, EVENT);
+            String taskDuration = taskArr[TASK_TIME_INDEX];
+            task = outputDateFormat(taskDescription, taskDuration, EVENT, taskPriority);
             break;
 
         case "D":
-            String taskDue = taskArr[3];
-            task = outputDateFormat(taskDescription, taskDue, DEADLINE);
+            String taskDue = taskArr[TASK_TIME_INDEX];
+            task = outputDateFormat(taskDescription, taskDue, DEADLINE, taskPriority);
             break;
         default: {
-            throw new DukeException("Something went wrong, please try again with correct formatting!");
+            throw new DukeException("Something went wrong, save file might need to be deleted!");
         }
         }
         if (taskDone.equals(TASK_DONE)) {
@@ -148,12 +156,13 @@ public class Storage {
         }
     }
 
-    private static Task outputDateFormat(String taskDescription, String taskTime, String type) throws DukeException {
+    private static Task outputDateFormat(String taskDescription, String taskTime, String type, String priority)
+            throws DukeException {
         LocalDateTime time = LocalDateTime.parse(taskTime, Task.OUTPUT_DATE_FORMAT);
         if (type.equals("event")) {
-            return new Event(taskDescription, time);
+            return new Event(taskDescription, time, Priority.getPriority(priority));
         } else if (type.equals("deadline")) {
-            return new Deadline(taskDescription, time);
+            return new Deadline(taskDescription, time, Priority.getPriority(priority));
         } else {
             throw new DukeException("Something went wrong, unexpected todo");
         }

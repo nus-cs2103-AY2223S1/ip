@@ -11,10 +11,14 @@ public class ToDoTest {
      */
     @Test
     public void saveFormat_saveFormatConversion_success() {
-        ToDo t1 = new ToDo("task1");
-        ToDo t2 = new ToDo("task2");
+        ToDo t0 = new ToDo("task0", Priority.NONE);
+        ToDo t1 = new ToDo("task1", Priority.LOW);
+        ToDo t2 = new ToDo("task2", Priority.MEDIUM);
+        ToDo t3 = new ToDo("task3", Priority.HIGH);
         t1.markDone();
-        assertEquals("T | 1 | task1", t1.saveFormat());
-        assertEquals("T | 0 | task2", t2.saveFormat());
+        assertEquals("T | none | 0 | task0", t0.saveFormat());
+        assertEquals("T | low | 1 | task1", t1.saveFormat());
+        assertEquals("T | medium | 0 | task2", t2.saveFormat());
+        assertEquals("T | high | 0 | task3", t3.saveFormat());
     }
 }

@@ -44,7 +44,7 @@ public class TaskList {
     public String addTask(Command type, String description) throws DukeException, IOException {
         Task task;
         if (type == Command.TODO) {
-            task = new ToDo(description);
+            task = ToDo.createToDo(description);
         } else if (type == Command.DEADLINE) {
             task = Deadline.createDeadline(description);
         } else {

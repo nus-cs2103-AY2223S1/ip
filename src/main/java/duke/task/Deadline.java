@@ -1,7 +1,6 @@
 package duke.task;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 
 import duke.exception.DukeException;
 
@@ -10,7 +9,8 @@ import duke.exception.DukeException;
  * and encapsulates the logic of a Deadline task.
  */
 public class Deadline extends Task {
-    private static final String MISFORMAT_DEADLINE = "Please follow the format of ~description~ /by dd-MM-yyyy HHmm!";
+    private static final String MISFORMAT_DEADLINE =
+            "Please follow the format of ~description~ /by dd-MM-yyyy HHmm /p high/medium/low/none!";
 
     /* Due Date field */
     private LocalDateTime dueDate;
@@ -20,8 +20,8 @@ public class Deadline extends Task {
      *
      * @param description description of the task.
      */
-    public Deadline(String description, LocalDateTime dueDate) {
-        super(description);
+    public Deadline(String description, LocalDateTime dueDate, Priority priority) {
+        super(description, priority);
         this.dueDate = dueDate;
     }
 
@@ -33,20 +33,34 @@ public class Deadline extends Task {
      * @throws DukeException if no task or incorrect formatting is given.
      */
     public static Deadline createDeadline(String in) throws DukeException {
+        String[] inputArr = splitDescAndDateDeadline(in);
+
+        String[] prioritySplit = splitPriority(inputArr[1]);
+
+        String description = inputArr[0];
+        String deadlineString = prioritySplit[0];
+        String priorityString = prioritySplit[1];
+
+        Priority priority = parsePriority(priorityString);
+
+        LocalDateTime deadline = parseTime(deadlineString);
+
+        return new Deadline(description, deadline, priority);
+    }
+
+    /**
+     * Splits the description and date for the Deadline user input based on the /by delimiter.
+     *
+     * @param in User's input.
+     * @return String array containing the description in the 1st address and the date + priority in the 2nd.
+     * @throws DukeException if input is misformatted.
+     */
+    private static String[] splitDescAndDateDeadline(String in) throws DukeException {
         String[] inputArr = in.split(" */by* ");
         if (inputArr.length != 2) {
             throw new DukeException(MISFORMAT_DEADLINE);
         }
-        String description = inputArr[0];
-        String dateString = inputArr[1];
-        LocalDateTime dateTime;
-        try {
-            dateTime = LocalDateTime.parse(dateString, INPUT_DATE_FORMAT);
-        } catch (DateTimeParseException e) {
-            throw new DukeException(MISFORMAT_DATE);
-        }
-
-        return new Deadline(description, dateTime);
+        return inputArr;
     }
 
     /**
@@ -56,7 +70,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + dueDate.format(OUTPUT_DATE_FORMAT) + ")";
+        return "[D]" + super.toString() + " (by: " + dueDate.format(OUTPUT_DATE_FORMAT) + ") " + priority;
     }
 
     /**
