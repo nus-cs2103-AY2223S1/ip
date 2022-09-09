@@ -44,14 +44,14 @@ public class InputParser {
 
     private TaskType getTaskType(String type) {
         switch(type) {
-            case "todo":
-                return TaskType.TODO;
-            case "event":
-                return TaskType.EVENT;
-            case "deadline":
-                return TaskType.DEADLINE;
-            default:
-                return null;
+        case "todo":
+            return TaskType.TODO;
+        case "event":
+            return TaskType.EVENT;
+        case "deadline":
+            return TaskType.DEADLINE;
+        default:
+            return null;
         }
     }
 
