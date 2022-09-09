@@ -29,7 +29,6 @@ public class MarkCommand extends Command {
     @Override
     public void execute(TaskList tasks, StoreManager store) {
         Ui.markResponse(task, task.getState());
-        System.out.println(idx);
         TaskList.getList().get(idx - 1).doTask(); // mark the current task as done.
         Ui.addResponse(task.toString());
         store.store(); // update the storage with the new state of the task.

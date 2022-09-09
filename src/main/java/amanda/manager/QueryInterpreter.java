@@ -8,7 +8,6 @@ import amanda.exception.InvalidCommandException;
 import amanda.exception.InvalidDateFormatException;
 import amanda.exception.InvalidDescriptionException;
 import amanda.exception.InvalidIndexException;
-import amanda.task.Task;
 
 
 /**
@@ -37,7 +36,7 @@ public class QueryInterpreter {
         case "mark":
             return new MarkCommand(TaskList.getList().get(getIndex(input) - 1), getIndex(input));
         case "unmark":
-            return new UnmarkCommand(TaskList.getList().get(getIndex(input) - 1), getIndex(input));
+            return new UnMarkCommand(TaskList.getList().get(getIndex(input) - 1), getIndex(input));
         case "delete":
             return new DeleteCommand(TaskList.getList().get(getIndex(input) - 1), getIndex(input));
         default:
@@ -50,17 +49,19 @@ public class QueryInterpreter {
      * @param input one line of the user input.
      * @return the type of command that the user input.
      */
-    public static String getType(String input) {
-        if (input.equals("")) {
-            return "";
+    public static String getType(String input) throws InvalidDescriptionException, InvalidCommandException {
+        if (input.isEmpty()) {
+            throw new InvalidDescriptionException();
         }
         StringTokenizer tokens = new StringTokenizer(input, " ");
         String type = tokens.nextToken(); // type is the first word entered by the user
         if (type.equals("todo") | type.equals("deadline") | type.equals("event")) {
             return "task";
-        } else {
+        } else if (type.equals("list") | type.equals("mark") | type.equals("unmark")
+                | type.equals("delete") | type.equals("bye") | type.equals("find")) {
             return type;
         }
+        throw new InvalidCommandException();
     }
 
     /**

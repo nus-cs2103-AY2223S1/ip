@@ -6,16 +6,16 @@ import amanda.task.Task;
 import amanda.ui.Ui;
 
 /**
- * UnmarkCommand is a command that unmark a task that is done.
+ * UnMarkCommand is a command that unMark a task that is done.
  */
-public class UnmarkCommand extends Command {
+public class UnMarkCommand extends Command {
 
     private final Task task;
     private final int idx;
     /**
      * Constructor for UnmarkCommand class
      */
-    public UnmarkCommand(Task task, int idx) {
+    public UnMarkCommand(Task task, int idx) {
         this.task = task;
         this.idx = idx;
     }
@@ -28,7 +28,6 @@ public class UnmarkCommand extends Command {
     @Override
     public void execute(TaskList tasks, StoreManager store) {
         Ui.unMarkResponse(task, task.getState());
-        System.out.println(idx);
         TaskList.getList().get(idx - 1).undoTask(); // mark the current task as not done.
         Ui.addResponse(task.toString());
         store.store(); // update the storage with the new state of the task.

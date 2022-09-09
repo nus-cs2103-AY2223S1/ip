@@ -27,6 +27,10 @@ public class Ui {
         amandaResponse += "Here are the tasks in your list, now stop disturbing me:\n";
     }
 
+    public static void findResponse() {
+        amandaResponse += "Here are the tasks I found in your list, now stop disturbing me:";
+    }
+
     /**
      * Print MarkCommand interactions.
      * @param task current task list.
@@ -58,11 +62,6 @@ public class Ui {
         amandaResponse += "It's fine! Out of sight, out of mind. Am i right?\n"
                 + task + "\nNow you have " + TaskList.getList().size() + " tasks in the list.";
     }
-
-    public static void findResponse() {
-        amandaResponse += "Here are the tasks I found in your list, now stop disturbing me:\n";
-    }
-
 
     public static void addResponse(String input) {
         amandaResponse += input;
