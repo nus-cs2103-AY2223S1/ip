@@ -56,7 +56,7 @@ public abstract class Task {
      * @param date Specified date of task.
      * @return true only if both task on the same date.
      */
-    public abstract boolean compareDate(LocalDate date);
+    public abstract boolean isSameDate(LocalDate date);
 
 
     /**

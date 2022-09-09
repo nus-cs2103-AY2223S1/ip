@@ -55,7 +55,7 @@ public class Deadline extends Task {
     }
 
     @Override
-    public boolean compareDate(LocalDate date) {
+    public boolean isSameDate(LocalDate date) {
         return date.equals(this.deadline);
     }
 

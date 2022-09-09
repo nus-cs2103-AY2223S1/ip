@@ -53,7 +53,7 @@ public class Event extends Task {
         }
     }
     @Override
-    public boolean compareDate(LocalDate date) {
+    public boolean isSameDate(LocalDate date) {
         return date.equals(this.eventDate);
     }
 
