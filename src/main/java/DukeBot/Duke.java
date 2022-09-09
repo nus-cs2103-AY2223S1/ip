@@ -29,6 +29,7 @@ public class Duke {
         return isExit;
     }
     public String getResponse(String s) {
+        assert storage != null;
         try {
             Command c = p.parse(s);
             String response = c.execute();
