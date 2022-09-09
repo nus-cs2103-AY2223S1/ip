@@ -1,5 +1,6 @@
 package Duke;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import Duke.Task.Task;
 
@@ -60,35 +61,87 @@ public class TaskList {
      * Deletes task from the list.
      * 
      * @param taskID The id of the tasks to be deleted. The first task is of id 1.
-     * @return The deleted task.
+     * @return The deleted tasks.
      * @throws ArrayIndexOutOfBoundsException
      */
-    public Task delTask(int taskID) throws ArrayIndexOutOfBoundsException {
-        return this.tasks.remove(taskID);
+    public Task[] delTask(int[] taskIDs) throws ArrayIndexOutOfBoundsException {
+        Task[] deletedTasks;
+        if (taskIDs.length == 1 && taskIDs[0] == -1) {
+            Object[] taskObjects = this.tasks.toArray();
+            deletedTasks = Arrays.copyOf(taskObjects, taskObjects.length, Task[].class);
+            assert deletedTasks.length == tasks.size()
+                    : "Number of tasks deleted should be same as number of input entries";
+            this.tasks = new ArrayList<>();
+        } else {
+            deletedTasks = new Task[taskIDs.length];
+            int numOfDeletedTask = 0;
+            Arrays.sort(taskIDs);
+            for (int i = 0; i < taskIDs.length; i++) {
+                deletedTasks[i] = this.tasks.remove(taskIDs[i] - numOfDeletedTask);
+                numOfDeletedTask += 1;
+            }
+            assert deletedTasks.length == taskIDs.length
+                    : "Number of tasks deleted should be same as number of input entries";
+        }
+        return deletedTasks;
     }
 
     /**
      * Marks a task as completed.
      * 
      * @param taskID The id of the tasks to be marked. The first task is of id 1.
-     * @return The marked task.
+     * @return The marked tasks.
      * @throws ArrayIndexOutOfBoundsException
      */
-    public Task markTask(int taskID) throws ArrayIndexOutOfBoundsException {
-        tasks.get(taskID).markTask();
-        return tasks.get(taskID);
+    public Task[] markTask(int[] taskIDs) throws ArrayIndexOutOfBoundsException {
+        Task[] markedTask;
+        if (taskIDs.length == 1 && taskIDs[0] == -1) {
+            for (int i = 0; i < tasks.size(); i++) {
+                tasks.get(i).markTask();
+            }
+            Object[] taskObjects = this.tasks.toArray();
+            markedTask = Arrays.copyOf(taskObjects, taskObjects.length, Task[].class);
+            assert markedTask.length == tasks.size()
+                    : "Number of tasks marked should be same as number of input entries";
+        } else {
+            markedTask = new Task[taskIDs.length];
+            for (int i = 0; i < taskIDs.length; i++) {
+                tasks.get(taskIDs[i]).markTask();
+                markedTask[i] = tasks.get(taskIDs[i]);
+            }
+            assert markedTask.length == taskIDs.length
+                    : "Number of tasks marked should be same as number of input entries";
+        }
+        return markedTask;
     }
 
     /**
      * Unmarks a task as completed.
      * 
      * @param taskID The id of the tasks to be unmarked. The first task is of id 1.
-     * @return The unmarked task.
+     * @return The unmarked tasks.
      * @throws ArrayIndexOutOfBoundsException
      */
-    public Task unmarkTask(int taskID) throws ArrayIndexOutOfBoundsException {
-        tasks.get(taskID).unmarkTask();
-        return tasks.get(taskID);
+    public Task[] unmarkTask(int[] taskIDs) throws ArrayIndexOutOfBoundsException {
+        Task[] unmarkedTask;
+        if (taskIDs.length == 1 && taskIDs[0] == -1) {
+            for (int i = 0; i < tasks.size(); i++) {
+                tasks.get(i).unmarkTask();
+            }
+            Object[] taskObjects = this.tasks.toArray();
+            unmarkedTask = Arrays.copyOf(taskObjects, taskObjects.length, Task[].class);
+            assert unmarkedTask.length == tasks.size()
+                    : "Number of tasks unmarked should be same as number of input entries";
+        } else {
+            unmarkedTask = new Task[taskIDs.length];
+            for (int i = 0; i < taskIDs.length; i++) {
+                tasks.get(taskIDs[i]).unmarkTask();
+                unmarkedTask[i] = tasks.get(taskIDs[i]);
+            }
+            assert unmarkedTask.length == taskIDs.length
+                    : "Number of tasks unmarked should be same as number of input entries";
+        }
+        return unmarkedTask;
     }
 
     /**
@@ -123,6 +176,15 @@ public class TaskList {
                 break;
             }
             res += String.format("\n %d.%s", i + 1, tasks.get(i).toString());
+        }
+        return res;
+    }
+
+    public static String taskArrToString(Task[] tasksArr) {
+        int i = 0;
+        String res = "";
+        for (Task task : tasksArr) {
+            res += String.format("\n %d.%s", i + 1, task.toString());
         }
         return res;
     }

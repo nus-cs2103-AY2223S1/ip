@@ -35,7 +35,7 @@ public class Parser {
      * is wrong.
      */
     private static final String INVALID_NUMBER_FORMAT_MSG = 
-            "☹ OOPS!!! Please use the following format for time dd.mm.yyyy hh:mm";
+            "☹ OOPS!!! Thats an invalid number!";
 
     /**
      * Parse the user input into a command.
@@ -70,21 +70,21 @@ public class Parser {
             return new ListCommand();
         case "mark":
             try {
-                int taskID = Integer.parseInt(commandDetails.replaceAll("[^0-9]", "")) - 1;
+                int[] taskID = parseTaskIds(commandDetails);
                 return new MarkCommand(taskID);
             } catch (NumberFormatException e) {
                 throw new InvalidCommandException(INVALID_NUMBER_FORMAT_MSG);
             }
         case "unmark":
             try {
-                int taskID = Integer.parseInt(commandDetails.replaceAll("[^0-9]", "")) - 1;
+                int[] taskID = parseTaskIds(commandDetails);
                 return new UnmarkCommand(taskID);
             } catch (NumberFormatException e) {
                 throw new InvalidCommandException(INVALID_NUMBER_FORMAT_MSG);
             }
         case "delete":
             try {
-                int taskID = Integer.parseInt(commandDetails.replaceAll("[^0-9]", "")) - 1;
+                int[] taskID = parseTaskIds(commandDetails);
                 return new DelCommand(taskID);
             } catch (NumberFormatException e) {
                 throw new InvalidCommandException(INVALID_NUMBER_FORMAT_MSG);
@@ -142,5 +142,18 @@ public class Parser {
             processedInputs[i] = processedInputs[i].trim();
         }
         return processedInputs;
+    }
+
+    private static int[] parseTaskIds(String command) {
+        if (command.equals("*")) {
+            int[] taskIds = {-1};
+            return taskIds;
+        }
+        String[] textIds = command.replaceAll("[^0-9]", " ").split("\\s+");
+        int[] taskIds = new int[textIds.length];
+        for (int i = 0; i < textIds.length; i++) {
+            taskIds[i] = Integer.parseInt(textIds[i]) - 1;
+        }
+        return taskIds;
     }
 }

@@ -12,16 +12,16 @@ import Duke.Task.Task;
 public class UnmarkCommand extends Command{
 
     /** The id of the task to be marked. */
-    private int taskID;
+    private int[] taskID;
 
     /** The unmarked task. */
-    private Task unmarkedTask;
+    private Task[] unmarkedTask;
 
     /** Constructs the mark command given the id of task to be marked.
      * 
      * @param taskID The id of the task to be marked.
      */
-    public UnmarkCommand(int taskID) {
+    public UnmarkCommand(int[] taskID) {
         this.taskID = taskID;
     }
 
@@ -35,8 +35,8 @@ public class UnmarkCommand extends Command{
     }
 
     @Override public String toString() {
-        return String.format("Ok. I've unmarked this task:\n   %s", 
-                this.unmarkedTask.toString());
+        return String.format("Ok. I've unmarked this task:   %s", 
+                TaskList.taskArrToString(this.unmarkedTask));
     }
 }
 
