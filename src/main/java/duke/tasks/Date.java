@@ -23,10 +23,10 @@ public class Date {
      *     correct format
      */
     public Date(String str) throws DukeInvalidDateException {
-        String[] splitted = str.split("\\s+");
-        this.date = parse(splitted[0]);
-        if (splitted.length > 1) {
-            this.time = Integer.valueOf(splitted[1]);
+        String[] splittedValues = str.split("\\s+");
+        this.date = parse(splittedValues[0]);
+        if (splittedValues.length > 1) {
+            this.time = Integer.valueOf(splittedValues[1]);
         }
     }
 
