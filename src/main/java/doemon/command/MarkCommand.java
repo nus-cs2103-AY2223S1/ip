@@ -6,7 +6,6 @@ import doemon.task.TaskList;
 import doemon.ui.Ui;
 
 public class MarkCommand extends Command {
-
     /** Index of the task to be marked. */
     private int taskIndex;
 

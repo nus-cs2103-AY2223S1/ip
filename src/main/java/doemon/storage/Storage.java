@@ -15,10 +15,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Storage {
-
     /** Path of the data file to write to. */
     private String filePath;
-
     /** Lines of save strings to be saved in data file */
     private ArrayList<String> taskSaveStrings;
 
@@ -39,7 +37,7 @@ public class Storage {
      * @throws TaskDataException If data file update fails.
      */
     public void addTaskData(Task task) throws TaskDataException {
-        this.taskSaveStrings.add(task.saveString());
+        this.taskSaveStrings.add(task.getSaveString());
         saveTasks();
     }
 

@@ -7,8 +7,9 @@ import doemon.task.TaskList;
 import java.util.Scanner;
 
 public class Ui {
-    /** Test art of Doemon. */
-    private static final String logo = "                       _______________\n" +
+    /** Text art of Doemon. */
+    private static final String logo =
+            "                       _______________\n" +
             "                      /  --. --.      \\ \n" +
             "                     /  | '| ' |   \\   \\ \n" +
             "                    / /  `-O--'     \\   \\ \n" +
@@ -92,7 +93,8 @@ public class Ui {
      * @param task Task to be marked.
      */
     public void showMarkTask(Task task) {
-        System.out.println(output(String.format("Yay! This task is now marked as done:\n\t  %s", task)));
+        System.out.println(output(
+                String.format("Yay! This task is now marked as done:\n\t  %s", task)));
     }
 
     /**
@@ -101,7 +103,8 @@ public class Ui {
      * @param task Task to be unmarked.
      */
     public void showUnmarkTask(Task task) {
-        System.out.println(output(String.format("I guess you weren't done with that one:\n\t  %s", task)));
+        System.out.println(output(
+                String.format("I guess you weren't done with that one:\n\t  %s", task)));
     }
 
     /**
@@ -111,8 +114,9 @@ public class Ui {
      * @param numTasks New total number of tasks.
      */
     public void showDeleteTask(Task task, int numTasks) {
-        System.out.println(output(String.format("I used a knife to slice off this task from my bread:\n\t  %s" +
-                "\n\tThere are %d items left on my bread.", task, numTasks)));
+        System.out.println(output(
+                String.format("I used a knife to slice off this task from my bread:\n\t  %s"
+                + "\n\tThere are %d items left on my bread.", task, numTasks)));
     }
 
     /**

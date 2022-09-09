@@ -6,7 +6,6 @@ import doemon.task.TaskList;
 import doemon.ui.Ui;
 
 public class UnmarkCommand extends Command {
-
     /** Index of the task to be unmarked. */
     private int taskIndex;
 
