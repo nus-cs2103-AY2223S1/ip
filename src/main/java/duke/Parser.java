@@ -42,6 +42,9 @@ public class Parser {
         case "FIND":
             res = new FindCommand(inputs[1]);
             break;
+        case "TAG":
+            res = new TagCommand(inputs);
+            break;
         default:
             res = new AddCommand(inputs);
         }
