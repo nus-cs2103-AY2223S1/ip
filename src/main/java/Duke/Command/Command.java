@@ -25,5 +25,5 @@ public abstract class Command {
      * @param ui The ui which the result of the execution will be displayed.
      * @param storage The storage to be updated by the command.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage);
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage);
 }

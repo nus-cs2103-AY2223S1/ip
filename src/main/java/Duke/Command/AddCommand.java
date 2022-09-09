@@ -23,13 +23,13 @@ public class AddCommand extends Command{
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         boolean isInsertSuccessful = tasks.insertTask(this.task);
         assert isInsertSuccessful : "Insertion should be completed successfully";
         boolean isWriteSuccessful = storage.writeListToFile(tasks);
         assert isWriteSuccessful : "Writing to file should be completed successfully";
-        ui.showResponse(String.format("%s\nNow you have %d tasks in the list.", 
-                this.toString(), tasks.getNumOfTasks()));
+        return String.format("%s\nNow you have %d tasks in the list.", 
+                this.toString(), tasks.getNumOfTasks());
     }
 
     @Override public String toString() {

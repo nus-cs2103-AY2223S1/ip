@@ -46,29 +46,53 @@ public class Duke {
     /**
      * Runs the main logic of Duke.
      */
-    public void run() { 
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Parser.parse(fullCommand);
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (InvalidCommandException e) {
-                ui.showErr(e.getMessage());
-            } catch (IndexOutOfBoundsException e) {
-                ui.showErr(String.format("Thats an invalid number!\n" 
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            if (c.isExit()) {
+                return "Bye";
+            } else {
+                return c.execute(tasks, ui, storage);
+            }
+        } catch (InvalidCommandException e) {
+            return ui.getErrMsg(e.getMessage());
+        } catch (IndexOutOfBoundsException e) {
+            if (tasks.getNumOfTasks() > 0) {
+                return ui.getErrMsg(String.format("Thats an invalid number!\n" 
                         + "Please enter a number between %d and %d", 1, tasks.getNumOfTasks()));
-            } finally {
-                ui.showHorizontalLineLong();
+            } else {
+                return ui.getErrMsg("You can't do that! There is no task in the list!");
             }
         }
     }
 
-    public static void main(String[] args) {
-        new Duke("./data/tasks.txt").run();
-    }
+    /**
+     * Runs the main logic of Duke.
+     */
+    // public void run(String[] args) {
+    //     Application.launch(Main.class, args);
+    //     ui.showWelcome();
+    //     boolean isExit = false;
+    //     while (!isExit) {
+    //         try {
+    //             String fullCommand = ui.readCommand();
+    //             Parser.parse(fullCommand);
+    //             Command c = Parser.parse(fullCommand);
+    //             c.execute(tasks, ui, storage);
+    //             isExit = c.isExit();
+    //         } catch (InvalidCommandException e) {
+    //             ui.showErr(e.getMessage());
+    //         } catch (IndexOutOfBoundsException e) {
+    //             ui.showErr(String.format("Thats an invalid number!\n" 
+    //                     + "Please enter a number between %d and %d", 1, tasks.getNumOfTasks()));
+    //         } finally {
+    //             ui.showHorizontalLineLong();
+    //         }
+    //     }
+    // }
+
+    // public static void main(String[] args) {
+    //     new Duke("./data/tasks.txt").run(args);
+    // }
 
 }
