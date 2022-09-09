@@ -63,14 +63,14 @@ public class Parser { // inner class
 
             } else if (strippedInput.startsWith("mark ")) {
                 int indexToChange = getMarkOrUnmarkIndex(strippedInput, Marking.MARK);
-                if ((indexToChange > 0) && (indexToChange < 100)) {
-                    Storage.INPUT_TASKS.get(indexToChange - 1).markAsDone();
+
+                if ((indexToChange < 1) || (indexToChange > 100)) {
+                    throw new IndexOutOfBoundsException("Only index 1 to 100 are supported");
                 }
 
+                Storage.INPUT_TASKS.get(indexToChange - 1).markAsDone();
                 Storage.resetFile(this.filePath);
-                for (Task task : Storage.INPUT_TASKS) {
-                    Storage.appendToFile(task, this.filePath);
-                }
+                Storage.appendAllTasksToFile(this.filePath);
 
                 return (" Nice! I've marked this task as done: \n"
                     + Storage.INPUT_TASKS.get(indexToChange - 1) + "\n"
@@ -78,27 +78,22 @@ public class Parser { // inner class
 
             } else if (strippedInput.startsWith("unmark ")) {
                 int indexToChange = getMarkOrUnmarkIndex(strippedInput, Marking.UNMARK);
-                if ((indexToChange > 0) && (indexToChange < 100)) {
-                    Storage.INPUT_TASKS.get(indexToChange - 1).markAsNotDone();
+
+                if ((indexToChange < 1) || (indexToChange > 100)) {
+                    throw new IndexOutOfBoundsException("Only index 1 to 100 are supported");
                 }
 
+                Storage.INPUT_TASKS.get(indexToChange - 1).markAsNotDone();
                 Storage.resetFile(this.filePath);
-                for (Task task : Storage.INPUT_TASKS) {
-                    Storage.appendToFile(task, this.filePath);
-                }
+                Storage.appendAllTasksToFile(this.filePath);
 
                 return ("OK, I've marked this task as not done yet: \n"
                     + Storage.INPUT_TASKS.get(indexToChange - 1) + "\n"
                     + UserInterface.AFTER_VALID_INPUT);
 
             } else if (userInput.strip().equals("list")) {
-                String output = "Here are the tasks in your list: \n";
-
-                for (int i = 0; i < Pixel.count; i++) {
-                    Task currentTask = Storage.INPUT_TASKS.get(i);
-                    output += ((i + 1) + ". " + currentTask + "\n");
-                }
-                return output + UserInterface.AFTER_VALID_INPUT;
+                String listOfTasks = this.taskList.listTasks();
+                return listOfTasks + UserInterface.AFTER_VALID_INPUT;
 
             } else if (userInput.strip().startsWith("delete ")) {
                 String output = Storage.deleteEntry(userInput, filePath);
@@ -106,19 +101,16 @@ public class Parser { // inner class
 
             } else if (userInput.strip().startsWith("find ")) {
                 ArrayList<Task> results = Storage.findEntry(userInput);
-                String output = "Here are the matching tasks in your list: \n";
-                for (int i = 0; i < results.size(); i++) {
-                    Task currentTask = results.get(i);
-                    output += ((i + 1) + ". " + currentTask + "\n");
-                }
-                return output + UserInterface.AFTER_VALID_INPUT;
+                String findResults = this.taskList.listFindResults(results);
+                return findResults + UserInterface.AFTER_VALID_INPUT;
 
             } else {
                 throw new IncorrectFormatException("Input should be a task or command!"); // programme breaks
             }
 
         } catch (IndexOutOfBoundsException e) {
-            return ("caught Index Out of Bounds Exception \n"
+            return (e + "\n"
+                + "caught Index Out of Bounds Exception \n"
                 + UserInterface.AFTER_INVALID_INPUT + "\n"
                 + UserInterface.PROMPT_MESSAGE);
 
