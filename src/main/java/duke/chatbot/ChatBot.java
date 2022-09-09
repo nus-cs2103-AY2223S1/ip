@@ -1,14 +1,17 @@
 package duke.chatbot;
 
-import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import duke.taskmanager.TaskManager;
+import duke.taskmanager.exceptions.EmptyCommandException;
 import duke.taskmanager.exceptions.EmptyTaskException;
+import duke.taskmanager.exceptions.InvalidArgumentsException;
 import duke.taskmanager.exceptions.InvalidCommandException;
 import duke.taskmanager.exceptions.InvalidDeadlineException;
 import duke.taskmanager.exceptions.InvalidEventException;
+import duke.taskmanager.exceptions.InvalidIndexException;
+import duke.taskmanager.exceptions.LoadDataException;
+import duke.taskmanager.exceptions.SaveDataException;
 import duke.taskmanager.task.DeadlineTask;
 import duke.taskmanager.task.EventTask;
 import duke.taskmanager.task.ToDoTask;
@@ -17,6 +20,8 @@ import duke.taskmanager.task.ToDoTask;
  * Chatbot that processes commands.
  */
 public class ChatBot {
+    private static final String HORIZONTAL_BAR = "------------------------------------------------------------";
+
     private final String name;
     private final TaskManager taskManager;
     private boolean isRunning;
@@ -32,27 +37,6 @@ public class ChatBot {
         this.taskManager = new TaskManager();
         this.isRunning = false;
         this.latestResponse = "";
-    }
-
-    /**
-     * Initializes the chatbot by setting its runningState to true and responds
-     * with a greeting message. The task manager is also initialized by loading
-     * any pre-existing data.
-     */
-    public void initialize() {
-        this.isRunning = true;
-        this.latestResponse = "Greetings, " + this.name + " at your service.\n"
-                + "How may I help you today?\n";
-        taskManager.load();
-    }
-
-    /**
-     * Terminates the chatbot by setting its runningState to false and responds
-     * with a goodbye message.
-     */
-    public void terminate() {
-        this.isRunning = false;
-        this.latestResponse = "Goodbye! It was nice seeing you.\nEnter anything to exit!\n";
     }
 
     /**
@@ -72,6 +56,49 @@ public class ChatBot {
     public String getLatestResponse() {
         return this.latestResponse;
     }
+    /**
+     * Returns the greeting message of the chatbot
+     *
+     * @return the greeting message
+     */
+    private String getGreetingResponse() {
+        return "Greetings, " + this.name + " at your service.\n"
+                + "How may I help you today?\n";
+    }
+
+    /**
+     * Returns the goodbye message of the chatbot
+     *
+     * @return the goodbye message
+     */
+    private String getGoodbyeResponse() {
+        return "Goodbye! It was nice seeing you.\n"
+                + "Enter anything to exit!\n";
+    }
+
+    /**
+     * Initializes the chatbot by setting its runningState to true and responds
+     * with a greeting message. The task manager is also initialized by loading
+     * any pre-existing data.
+     */
+    public void initialize() {
+        this.isRunning = true;
+        this.latestResponse = getGreetingResponse();
+        try {
+            taskManager.loadData();
+        } catch (LoadDataException exception) {
+            this.latestResponse = exception.getMessage();
+        }
+    }
+
+    /**
+     * Terminates the chatbot by setting its runningState to false and responds
+     * with a goodbye message.
+     */
+    public void terminate() {
+        this.isRunning = false;
+        this.latestResponse = getGoodbyeResponse();
+    }
 
     /**
      * Processes commands from an input by the user and calls the appropriate command
@@ -85,74 +112,109 @@ public class ChatBot {
         Scanner inputScanner = new Scanner(input);
         String response = "";
         try {
-            String command = inputScanner.next();
-            if (!(inputScanner.hasNext())) {
-                switch (command) {
-                case "bye":
-                    terminate();
-                    response = getLatestResponse();
-                    break;
-                case "list":
-                    response = taskManager.listTask();
-                    break;
-                case "todo":
-                    // Fallthrough
-                case "deadline":
-                    // Fallthrough
-                case "event":
-                    throw new EmptyTaskException();
-                case "find":
-                    // Fallthrough
-                default:
-                    throw new InvalidCommandException();
-                }
-            } else {
-                String arguments = inputScanner.nextLine().substring(1);
-                Scanner argumentScanner = new Scanner(arguments);
-                switch (command) {
-                case "todo":
-                    response = taskManager.addTask(new ToDoTask(argumentScanner.nextLine()));
-                    break;
-                case "deadline":
-                    argumentScanner.useDelimiter(" /by ");
-                    response = taskManager.addTask(new DeadlineTask(argumentScanner.next(),
-                            argumentScanner.next(), taskManager.getDateFormat()));
-                    break;
-                case "event":
-                    argumentScanner.useDelimiter(" /at ");
-                    response = taskManager.addTask(new EventTask(argumentScanner.next(),
-                            argumentScanner.next(), taskManager.getDateFormat()));
-                    break;
-                case "mark":
-                    response = taskManager.markTask(Integer.parseInt(arguments));
-                    break;
-                case "unmark":
-                    response = taskManager.unmarkTask(Integer.parseInt(arguments));
-                    break;
-                case "delete":
-                    response = taskManager.deleteTask(Integer.parseInt(arguments));
-                    break;
-                case "find":
-                    response = taskManager.findTask(arguments);
-                    break;
-                default:
-                    throw new InvalidCommandException();
-                }
-                System.out.println(wrapMessage(response));
-                argumentScanner.close();
-                taskManager.save();
+            // Guard Clause for empty commands
+            if (input.length() <= 0) {
+                throw new EmptyCommandException();
             }
-        } catch (InputMismatchException exception) {
-            response = "You need to put a number after your command!\n";
-        } catch (NoSuchElementException exception) {
-            response = "You placed invalid arguments!\n";
-        } catch (EmptyTaskException | InvalidDeadlineException | InvalidEventException exception) {
-            response = exception.toString();
-        } catch (InvalidCommandException exception) {
-            response = "Sorry, I don't understand what you mean by \"" + input + "\"\n";
+
+            // Get commands and arguments
+            String command = inputScanner.next();
+            boolean hasArguments = inputScanner.hasNext();
+            String arguments = "";
+            if (hasArguments) {
+                arguments = inputScanner.nextLine().substring(1);
+            }
+
+            switch (command) {
+            case "bye":
+                if (hasArguments) {
+                    throw new InvalidCommandException(input);
+                }
+                terminate();
+                response = getLatestResponse();
+                break;
+            case "list":
+                if (hasArguments) {
+                    throw new InvalidCommandException(input);
+                }
+                response = taskManager.listTask();
+                break;
+            case "todo":
+                String todoTaskName = "";
+                if (hasArguments) {
+                    todoTaskName = arguments;
+                }
+                response = taskManager.addTask(new ToDoTask(todoTaskName));
+                break;
+            case "deadline":
+                String deadlineTaskName = "";
+                String deadline = "";
+                if (hasArguments) {
+                    String[] argumentList = arguments.split(" /by ");
+                    if (argumentList.length < 2) {
+                        throw new InvalidArgumentsException();
+                    }
+                    deadlineTaskName = argumentList[0];
+                    deadline = argumentList[1];
+                }
+                response = taskManager.addTask(new DeadlineTask(deadlineTaskName, deadline,
+                        taskManager.getDateFormat()));
+                break;
+            case "event":
+                String eventTaskName = "";
+                String eventTime = "";
+                if (hasArguments) {
+                    String[] argumentList = arguments.split(" /at ");
+                    if (argumentList.length < 2) {
+                        throw new InvalidArgumentsException();
+                    }
+                    eventTaskName = argumentList[0];
+                    eventTime = argumentList[1];
+                }
+                response = taskManager.addTask(new EventTask(eventTaskName, eventTime,
+                        taskManager.getDateFormat()));
+                break;
+            case "mark":
+                response = taskManager.markTask(parseNumber(arguments));
+                break;
+            case "unmark":
+                response = taskManager.unmarkTask(parseNumber(arguments));
+                break;
+            case "delete":
+                response = taskManager.deleteTask(parseNumber(arguments));
+                break;
+            case "find":
+                if (!hasArguments) {
+                    throw new InvalidArgumentsException();
+                }
+                response = taskManager.findTask(arguments);
+                break;
+            default:
+                throw new InvalidCommandException(input);
+            }
+            System.out.println(wrapMessage(response));
+            taskManager.saveData();
+        } catch (EmptyCommandException | EmptyTaskException | InvalidArgumentsException | InvalidIndexException
+                 | InvalidDeadlineException | InvalidEventException | InvalidCommandException
+                 | SaveDataException exception) {
+            response = exception.getMessage();
         } finally {
             inputScanner.close();
             this.latestResponse = response;
+        }
+    }
+
+    /**
+     * Parses a string argument into a number.
+     *
+     * @throws InvalidIndexException when the string argument is not a number
+     */
+    private int parseNumber(String argument) throws InvalidIndexException {
+        try {
+            int itemNumber = Integer.parseInt(argument);
+            return itemNumber;
+        } catch (NumberFormatException exception) {
+            throw new InvalidIndexException();
         }
     }
 
@@ -163,9 +225,10 @@ public class ChatBot {
      */
     private String wrapMessage(String str) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("------------------------------------------------------------\n");
+        stringBuilder.append(HORIZONTAL_BAR);
+        stringBuilder.append("\n");
         stringBuilder.append(str);
-        stringBuilder.append("------------------------------------------------------------");
+        stringBuilder.append(HORIZONTAL_BAR);
         return stringBuilder.toString();
     }
 }

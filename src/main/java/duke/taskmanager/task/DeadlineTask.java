@@ -12,7 +12,7 @@ import duke.taskmanager.exceptions.InvalidDeadlineException;
  */
 public class DeadlineTask extends Task {
     private static final String TASK_TYPE = "D";
-    private final LocalDateTime taskTime;
+    private final LocalDateTime deadline;
     private final String dateFormat;
 
     /**
@@ -21,20 +21,17 @@ public class DeadlineTask extends Task {
      * Default completion status of the task is false.
      *
      * @param taskName string of the name of the task
-     * @param taskTime string of the deadline of the task in the format of dateFormat
+     * @param deadline string of the deadline of the task in the format of dateFormat
      * @param dateFormat string of the accepted format of dates.
      * @throws EmptyTaskException if taskName is empty
      * @throws InvalidDeadlineException if the format of taskTime does not follow dateFormat
      */
-    public DeadlineTask(String taskName, String taskTime, String dateFormat)
+    public DeadlineTask(String taskName, String deadline, String dateFormat)
             throws EmptyTaskException, InvalidDeadlineException {
-        super(taskName);
+        super(TASK_TYPE, taskName);
         this.dateFormat = dateFormat;
-        if (super.getTaskName().equals("")) {
-            throw new EmptyTaskException();
-        }
         try {
-            this.taskTime = LocalDateTime.parse(taskTime, DateTimeFormatter.ofPattern(dateFormat));
+            this.deadline = LocalDateTime.parse(deadline, DateTimeFormatter.ofPattern(this.dateFormat));
         } catch (DateTimeParseException exception) {
             throw new InvalidDeadlineException(dateFormat);
         }
@@ -45,44 +42,21 @@ public class DeadlineTask extends Task {
      * the deadline of the task provided in the form of a date specified by the dateFormat.
      *
      * @param taskName string of the name of the task
-     * @param taskTime string of the deadline of the task in the format of dateFormat
+     * @param deadline string of the deadline of the task in the format of dateFormat
      * @param isCompleted boolean of the completion status of the task.
      * @param dateFormat string of the accepted format of dates.
      * @throws EmptyTaskException if taskName is empty
      * @throws InvalidDeadlineException if the format of taskTime does not follow dateFormat
      */
-    public DeadlineTask(String taskName, String taskTime, boolean isCompleted, String dateFormat)
+    public DeadlineTask(String taskName, String deadline, boolean isCompleted, String dateFormat)
             throws EmptyTaskException, InvalidDeadlineException {
-        super(taskName, isCompleted);
+        super(TASK_TYPE, taskName, isCompleted);
         this.dateFormat = dateFormat;
-        if (super.getTaskName().equals("")) {
-            throw new EmptyTaskException();
-        }
         try {
-            this.taskTime = LocalDateTime.parse(taskTime);
+            this.deadline = LocalDateTime.parse(deadline);
         } catch (DateTimeParseException exception) {
             throw new InvalidDeadlineException(dateFormat);
         }
-    }
-
-    /**
-     * Returns the deadline of the task in a nice format.
-     *
-     * @return deadline of the task
-     */
-    public String getTaskTime() {
-        return (taskTime.getDayOfMonth() + " " + taskTime.getMonth() + " " + taskTime.getYear() + " | "
-                + taskTime.getHour() + ":" + String.format("%02d", taskTime.getMinute()));
-    }
-
-    /**
-     * Returns whether the task is empty. Returns false as this is not an empty task.
-     *
-     * @return false
-     */
-    @Override
-    public boolean isEmpty() {
-        return false;
     }
 
     /**
@@ -92,8 +66,8 @@ public class DeadlineTask extends Task {
      * @return details of the task in a string format readable and writable by taskManager
      */
     @Override
-    public String getFormattedString() {
-        return TASK_TYPE + "<>" + (isCompleted() ? 1 : 0) + "<>" + getTaskName() + "<>" + this.taskTime + "\n";
+    public String getFormattedString(String attributeSeparator) {
+        return super.getFormattedString(attributeSeparator) + attributeSeparator + this.deadline;
     }
 
     /**
@@ -103,6 +77,10 @@ public class DeadlineTask extends Task {
      */
     @Override
     public String toString() {
-        return "[" + TASK_TYPE + "]" + super.toString() + " (by: " + getTaskTime() + ")";
+        return super.toString() + " (by: "
+                + this.deadline.getDayOfMonth() + " "
+                + this.deadline.getMonth() + " "
+                + this.deadline.getYear() + " | "
+                + this.deadline.getHour() + ":" + String.format("%02d", this.deadline.getMinute()) + ")";
     }
 }

@@ -2,11 +2,16 @@ package duke.taskmanager;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import duke.taskmanager.exceptions.EmptyTaskException;
+import duke.taskmanager.exceptions.InvalidDeadlineException;
+import duke.taskmanager.exceptions.InvalidEventException;
+import duke.taskmanager.exceptions.InvalidFormattedStringException;
+import duke.taskmanager.exceptions.LoadDataException;
+import duke.taskmanager.exceptions.SaveDataException;
 import duke.taskmanager.task.DeadlineTask;
 import duke.taskmanager.task.EmptyTask;
 import duke.taskmanager.task.EventTask;
@@ -19,6 +24,8 @@ import duke.taskmanager.task.ToDoTask;
 public class TaskManager {
     private static final String FILE_PATH = "tasklist.txt";
     private static final String DATE_FORMAT = "dd/MM/yyyy,HHmm";
+    private static final String ATTRIBUTE_SEPARATOR = "<>";
+
     private final List<Task> taskList;
 
     /**
@@ -45,8 +52,9 @@ public class TaskManager {
      * @return a new task with details processed from the string
      * @throws Exception when the formatted string cannot be read
      */
-    private Task processFormattedString(String formattedString) throws Exception {
-        String[] arguments = formattedString.split("<>");
+    private Task processFormattedString(String formattedString) throws InvalidFormattedStringException,
+            EmptyTaskException, InvalidDeadlineException, InvalidEventException {
+        String[] arguments = formattedString.split(ATTRIBUTE_SEPARATOR);
         String taskType = arguments[0];
         boolean isCompleted = (arguments[1].equals("1"));
         String taskName = arguments[2];
@@ -55,9 +63,11 @@ public class TaskManager {
         case "T":
             return new ToDoTask(taskName, isCompleted);
         case "D":
-            return new DeadlineTask(taskName, arguments[3], isCompleted, DATE_FORMAT);
+            String deadline = arguments[3];
+            return new DeadlineTask(taskName, deadline, isCompleted, DATE_FORMAT);
         case "E":
-            return new EventTask(taskName, arguments[3], isCompleted, DATE_FORMAT);
+            String eventTime = arguments[3];
+            return new EventTask(taskName, eventTime, isCompleted, DATE_FORMAT);
         default:
             return new EmptyTask();
         }
@@ -107,7 +117,7 @@ public class TaskManager {
             if (this.taskList.get(itemNumber - 1).isCompleted()) {
                 return "The task is already marked you dummy.\n";
             } else {
-                this.taskList.get(itemNumber - 1).setIsCompleted(true);
+                this.taskList.get(itemNumber - 1).setCompleted();
                 return "I've marked this task as done. Good Job!\n";
             }
         } else {
@@ -128,7 +138,7 @@ public class TaskManager {
             if (!(this.taskList.get(itemNumber - 1).isCompleted())) {
                 return "The task is still not done you idiot.\n";
             } else {
-                this.taskList.get(itemNumber - 1).setIsCompleted(false);
+                this.taskList.get(itemNumber - 1).setNotCompleted();
                 return "The task has been unmarked.\n";
             }
         } else {
@@ -184,8 +194,10 @@ public class TaskManager {
      * Saves the current task list as a text file in the provided filepath.
      * The text file is saved using a readable format provided by the task.
      * Creates new file if it does not already exist in the filepath.
+     *
+     * @throws SaveDataException when the file cannot be saved
      */
-    public void save() {
+    public void saveData() throws SaveDataException {
         try {
             File file = new File(FILE_PATH);
             if (!(file.exists())) {
@@ -193,11 +205,12 @@ public class TaskManager {
             }
             FileWriter fileWriter = new FileWriter(file);
             for (Task task : this.taskList) {
-                fileWriter.write(task.getFormattedString());
+                fileWriter.write(task.getFormattedString(ATTRIBUTE_SEPARATOR));
+                fileWriter.write("\n");
             }
             fileWriter.close();
-        } catch (IOException exception) {
-            System.out.println(exception);
+        } catch (Exception exception) {
+            throw new SaveDataException();
         }
     }
 
@@ -205,26 +218,22 @@ public class TaskManager {
      * Loads the current task list from a text file in the provided filepath.
      * The text file is read using a readable format provided by the task.
      * Handles exception if file does not exist in the filepath.
+     *
+     * @throws LoadDataException when the file cannot be loaded
      */
-    public void load() {
+    public void loadData() throws LoadDataException {
         try {
             File file = new File(FILE_PATH);
             if (!(file.exists())) {
                 file.createNewFile();
             }
             Scanner fileScanner = new Scanner(file);
-            try {
-                while (fileScanner.hasNextLine()) {
-                    Task newTask = processFormattedString(fileScanner.nextLine());
-                    if (!(newTask.isEmpty())) {
-                        taskList.add(newTask);
-                    }
-                }
-            } catch (Exception exception) {
-                System.out.println(exception);
+            while (fileScanner.hasNextLine()) {
+                Task newTask = processFormattedString(fileScanner.nextLine());
+                taskList.add(newTask);
             }
-        } catch (IOException exception) {
-            System.out.println(exception);
+        } catch (Exception exception) {
+            throw new LoadDataException();
         }
     }
 }

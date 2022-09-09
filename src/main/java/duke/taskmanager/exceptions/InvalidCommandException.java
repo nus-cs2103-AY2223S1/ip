@@ -6,8 +6,10 @@ package duke.taskmanager.exceptions;
 public class InvalidCommandException extends Exception {
     /**
      * Exception that handles invalid commands provided by the user.
+     *
+     * @param input string of the invalid command given
      */
-    public InvalidCommandException() {
-        super();
+    public InvalidCommandException(String input) {
+        super("Sorry, I don't understand what you mean by \"" + input + "\"\n");
     }
 }

@@ -2,69 +2,91 @@ package duke.taskmanager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import duke.taskmanager.task.EmptyTask;
+import duke.taskmanager.exceptions.EmptyTaskException;
+import duke.taskmanager.task.ToDoTask;
 public class TaskManagerTest {
     @Test
     public void addTask() {
-        TaskManager taskManager = new TaskManager();
-        assertEquals(taskManager.addTask(new EmptyTask()), "\t> Added: \n");
+        try {
+            TaskManager taskManager = new TaskManager();
+            assertEquals(taskManager.addTask(new ToDoTask("test")), "> Added: test\n");
+        } catch (EmptyTaskException exception) {
+            Assertions.fail();
+        }
     }
 
     @Test
     public void list() {
-        TaskManager taskManager = new TaskManager();
-        assertEquals(taskManager.listTask(), "\tYou have no tasks in your list.\n");
-        taskManager.addTask(new EmptyTask());
-        assertEquals(taskManager.listTask(), "\tI have your list of tasks displayed below:\n\t1) [ ] \n");
+        try {
+            TaskManager taskManager = new TaskManager();
+            assertEquals(taskManager.listTask(), "You have no tasks in your list.\n");
+            taskManager.addTask(new ToDoTask("test"));
+            assertEquals(taskManager.listTask(), "I have your list of tasks displayed below:\n1) [ ] test\n");
+        } catch (EmptyTaskException exception) {
+            Assertions.fail();
+        }
     }
 
     @Test
     public void mark() {
-        TaskManager taskManager = new TaskManager();
-        assertEquals(taskManager.markTask(0), "\tThere is no such task!!\n");
-        assertEquals(taskManager.markTask(1), "\tThere is no such task!!\n");
-        assertEquals(taskManager.markTask(-1), "\tThere is no such task!!\n");
+        try {
+            TaskManager taskManager = new TaskManager();
+            assertEquals(taskManager.markTask(0), "There is no such task!!\n");
+            assertEquals(taskManager.markTask(1), "There is no such task!!\n");
+            assertEquals(taskManager.markTask(-1), "There is no such task!!\n");
 
-        taskManager.addTask(new EmptyTask());
-        assertEquals(taskManager.markTask(0), "\tThere is no such task!!\n");
-        assertEquals(taskManager.markTask(2), "\tThere is no such task!!\n");
-        assertEquals(taskManager.markTask(-1), "\tThere is no such task!!\n");
-        assertEquals(taskManager.markTask(1), "\tI've marked this task as done. Good Job!\n");
-        assertEquals(taskManager.markTask(1), "\tThe task is already marked you dummy.\n");
+            taskManager.addTask(new ToDoTask("test"));
+            assertEquals(taskManager.markTask(0), "There is no such task!!\n");
+            assertEquals(taskManager.markTask(2), "There is no such task!!\n");
+            assertEquals(taskManager.markTask(-1), "There is no such task!!\n");
+            assertEquals(taskManager.markTask(1), "I've marked this task as done. Good Job!\n");
+            assertEquals(taskManager.markTask(1), "The task is already marked you dummy.\n");
+        } catch (EmptyTaskException exception) {
+            Assertions.fail();
+        }
     }
 
     @Test
     public void unmark() {
-        TaskManager taskManager = new TaskManager();
-        assertEquals(taskManager.unmarkTask(0), "\tThere is no such task!!\n");
-        assertEquals(taskManager.unmarkTask(1), "\tThere is no such task!!\n");
-        assertEquals(taskManager.unmarkTask(-1), "\tThere is no such task!!\n");
+        try {
+            TaskManager taskManager = new TaskManager();
+            assertEquals(taskManager.unmarkTask(0), "There is no such task!!\n");
+            assertEquals(taskManager.unmarkTask(1), "There is no such task!!\n");
+            assertEquals(taskManager.unmarkTask(-1), "There is no such task!!\n");
 
-        taskManager.addTask(new EmptyTask());
-        assertEquals(taskManager.unmarkTask(0), "\tThere is no such task!!\n");
-        assertEquals(taskManager.unmarkTask(2), "\tThere is no such task!!\n");
-        assertEquals(taskManager.unmarkTask(-1), "\tThere is no such task!!\n");
-        assertEquals(taskManager.unmarkTask(1), "\tThe task is still not done you idiot.\n");
-        taskManager.markTask(1);
-        assertEquals(taskManager.unmarkTask(1), "\tThe task has been unmarked.\n");
-        assertEquals(taskManager.unmarkTask(1), "\tThe task is still not done you idiot.\n");
+            taskManager.addTask(new ToDoTask("test"));
+            assertEquals(taskManager.unmarkTask(0), "There is no such task!!\n");
+            assertEquals(taskManager.unmarkTask(2), "There is no such task!!\n");
+            assertEquals(taskManager.unmarkTask(-1), "There is no such task!!\n");
+            assertEquals(taskManager.unmarkTask(1), "The task is still not done you idiot.\n");
+            taskManager.markTask(1);
+            assertEquals(taskManager.unmarkTask(1), "The task has been unmarked.\n");
+            assertEquals(taskManager.unmarkTask(1), "The task is still not done you idiot.\n");
+        } catch (EmptyTaskException exception) {
+            Assertions.fail();
+        }
     }
 
     @Test
     public void delete() {
-        TaskManager taskManager = new TaskManager();
-        assertEquals(taskManager.deleteTask(0), "\tThere is no such task!!\n");
-        assertEquals(taskManager.deleteTask(1), "\tThere is no such task!!\n");
-        assertEquals(taskManager.deleteTask(-1), "\tThere is no such task!!\n");
+        try {
+            TaskManager taskManager = new TaskManager();
+            assertEquals(taskManager.deleteTask(0), "There is no such task!!\n");
+            assertEquals(taskManager.deleteTask(1), "There is no such task!!\n");
+            assertEquals(taskManager.deleteTask(-1), "There is no such task!!\n");
 
-        taskManager.addTask(new EmptyTask());
-        assertEquals(taskManager.deleteTask(0), "\tThere is no such task!!\n");
-        assertEquals(taskManager.deleteTask(2), "\tThere is no such task!!\n");
-        assertEquals(taskManager.deleteTask(-1), "\tThere is no such task!!\n");
-        assertEquals(taskManager.deleteTask(1), "The following item has been removed.\n[ ] \n"
-                + "You have 0 item(s) remaining.\n");
-        assertEquals(taskManager.deleteTask(1), "\tThere is no such task!!\n");
+            taskManager.addTask(new ToDoTask("test"));
+            assertEquals(taskManager.deleteTask(0), "There is no such task!!\n");
+            assertEquals(taskManager.deleteTask(2), "There is no such task!!\n");
+            assertEquals(taskManager.deleteTask(-1), "There is no such task!!\n");
+            assertEquals(taskManager.deleteTask(1), "The following item has been removed.\n[ ] test\n"
+                    + "You have 0 item(s) remaining.\n");
+            assertEquals(taskManager.deleteTask(1), "There is no such task!!\n");
+        } catch (EmptyTaskException exception) {
+            Assertions.fail();
+        }
     }
 }

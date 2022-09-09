@@ -1,6 +1,5 @@
 package duke.gui;
 
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -12,8 +11,8 @@ import javafx.scene.layout.VBox;
  * DialogContainer is a container to contain dialog boxes generated through user interaction.
  */
 public class DialogContainer extends ScrollPane {
-    private static final double CONTAINER_MIN_WIDTH = 400.0;
-    private static final double CONTAINER_MIN_HEIGHT = 550.0;
+    private static final double CONTAINER_PREF_WIDTH = 400.0;
+    private static final double CONTAINER_PREF_HEIGHT = 550.0;
 
     private final VBox dialogBoxContainer;
 
@@ -27,7 +26,7 @@ public class DialogContainer extends ScrollPane {
         this.dialogBoxContainer = new VBox();
         this.setContent(dialogBoxContainer);
 
-        this.setMinSize(CONTAINER_MIN_WIDTH, CONTAINER_MIN_HEIGHT);
+        this.setPrefSize(CONTAINER_PREF_WIDTH, CONTAINER_PREF_HEIGHT);
         this.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         this.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         this.setVvalue(1.0);
