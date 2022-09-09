@@ -12,12 +12,12 @@ public class Deadline extends Task{
         this.dateTime = super.dateTime;
     }
 
-    public Deadline(String description, String dateTime, boolean isDone) throws MissingArgumentException{
+    public Deadline(String description, String dateTime, boolean isDone) throws MissingArgumentException, InvalidDateException{
         super("deadline", description, dateTime, isDone);
         if (dateTime.equals("")) {
             throw new MissingArgumentException("ERROR: deadline command is missing arguments.");
         }
-        this.dateTime = dateTime;
+        this.dateTime = super.dateTime;
     }
 
     @Override

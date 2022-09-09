@@ -146,7 +146,7 @@ public class Duke {
     }
 
 
-    public static void loadLog(String fileAddress) throws InvalidCommandException, MissingArgumentException, FileNotFoundException{
+    public static void loadLog(String fileAddress) throws InvalidCommandException, InvalidDateException, MissingArgumentException, FileNotFoundException{
         try {
             Scanner fileReader = new Scanner(new File(fileAddress));
             ArrayList<String[]> loggedTasks = new ArrayList<String[]>();
@@ -188,6 +188,8 @@ public class Duke {
         } catch (MissingArgumentException e) {
             throw e;
         } catch (InvalidCommandException e) {
+            throw e;
+        } catch (InvalidDateException e) {
             throw e;
         } catch (FileNotFoundException e) {
             throw e;

@@ -12,12 +12,12 @@ public class Event extends Task{
         this.duration = super.dateTime;
     }
 
-    public Event(String description, String duration, boolean isDone) throws MissingArgumentException {
+    public Event(String description, String duration, boolean isDone) throws MissingArgumentException, InvalidDateException {
         super("event", description, duration, isDone);
         if (duration.equals("")) {
             throw new MissingArgumentException("ERROR: event command is missing arguments.");
         }
-        this.duration = duration;
+        this.duration = super.dateTime;
     }
 
     @Override

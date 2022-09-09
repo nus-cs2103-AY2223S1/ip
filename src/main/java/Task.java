@@ -29,10 +29,10 @@ public class Task {
         this.isDone = false;
     }
 
-    Task (String type, String description, String dateTime, boolean isDone) {
+    Task (String type, String description, String dateTime, boolean isDone) throws InvalidDateException{
         this.type = type;
         this.description = description;
-        this.dateTime = dateTime;
+        this.dateTime = convert(dateTime);
         this.isDone = isDone;
     }
 
