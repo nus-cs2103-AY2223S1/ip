@@ -52,46 +52,54 @@ public class Storage {
      */
     public List<Task> loadData() {
         try {
-            File dataFolder = new File(filePath.split("/", 2)[0]);
-            if (!dataFolder.exists()) {
-                dataFolder.mkdir();
-            }
-            File f = new File(filePath);
-            if (!f.exists()) {
-                f.createNewFile();
-            }
-            dataFile = f;
+            dataFile = getFile();
             assert dataFile.exists() : "File should exist";
             Scanner s = new Scanner(dataFile);
             List<Task> tasks = new ArrayList<>();
-            while (s.hasNext()) {
-                String line = s.nextLine();
-                String[] tempArr = line.split(" \\| ");
-                Task t;
-                switch (tempArr[0]) {
-                case "T":
-                    t = new Todo(tempArr[2]);
-                    break;
-                case "D":
-                    t = new Deadline(tempArr[2], tempArr[3]);
-                    break;
-                case "E":
-                    t = new Event(tempArr[2], tempArr[3]);
-                    break;
-                default:
-                    throw new DukeException("Invalid data in duke.txt");
-                }
-                if (tempArr[1].equals("1")) {
-                    t.mark();
-                }
-                tasks.add(t);
-            }
+            copyDataToList(s, tasks);
             fw = new FileWriter(filePath, false);
             return tasks;
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
+    }
+
+    private void copyDataToList(Scanner s, List<Task> tasks) {
+        while (s.hasNext()) {
+            String line = s.nextLine();
+            String[] tempArr = line.split(" \\| ");
+            Task t;
+            switch (tempArr[0]) {
+            case "T":
+                t = new Todo(tempArr[2]);
+                break;
+            case "D":
+                t = new Deadline(tempArr[2], tempArr[3]);
+                break;
+            case "E":
+                t = new Event(tempArr[2], tempArr[3]);
+                break;
+            default:
+                throw new DukeException("Invalid data in duke.txt");
+            }
+            if (tempArr[1].equals("1")) {
+                t.mark();
+            }
+            tasks.add(t);
+        }
+    }
+
+    private File getFile() throws IOException {
+        File dataFolder = new File(filePath.split("/", 2)[0]);
+        if (!dataFolder.exists()) {
+            dataFolder.mkdir();
+        }
+        File file = new File(filePath);
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        return file;
     }
 
     /**

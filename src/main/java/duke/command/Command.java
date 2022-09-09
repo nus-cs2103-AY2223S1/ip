@@ -110,12 +110,12 @@ public abstract class Command {
                 }
                 assert arr.length > 1 : "arr length should be greater than 1";
                 String[] temp = arr[1].split(" /");
-                String s1 = temp[0];
-                String s2 = temp[1].split(" ", 2)[1];
-                assert !s1.isBlank() : "String should have some values";
-                assert !s2.isBlank() : "String should have some values";
-                this.description = s1;
-                this.time = s2;
+                String description = temp[0];
+                String time = temp[1].split(" ", 2)[1];
+                assert !description.isBlank() : "String should have some values";
+                assert !time.isBlank() : "String should have some values";
+                this.description = description;
+                this.time = time;
             }
         }
 

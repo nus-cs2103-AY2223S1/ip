@@ -1,18 +1,5 @@
 package duke;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.Region;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-
 import java.io.IOException;
 
 import duke.command.Command;
@@ -74,24 +61,29 @@ public class Duke {
         ui.printGreetings();
         boolean isExit = false;
         while (!isExit) {
-            try {
-                String fullCommand = ui.getInput();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (ArrayIndexOutOfBoundsException | DukeException e) {
-                ui.printError(e);
-            } catch (IOException e) {
-                ui.printTab("Can't save to duke.txt. There is an invalid data, please edit accordingly");
-            } catch (Exception e) {
-                try {
-                    storage.updateData(tasks);
-                } catch (IOException e1) {
-                    e1.getMessage();
-                }
-
-            }
+            isExit = processCommand(isExit);
         }
+    }
+
+    private boolean processCommand(boolean isExit) {
+        try {
+            String fullCommand = ui.getInput();
+            Command c = Parser.parse(fullCommand);
+            c.execute(tasks, ui, storage);
+            isExit = c.isExit();
+        } catch (ArrayIndexOutOfBoundsException | DukeException e) {
+            ui.printError(e);
+        } catch (IOException e) {
+            ui.printTab("Can't save to duke.txt. There is an invalid data, please edit accordingly");
+        } catch (Exception e) {
+            try {
+                storage.updateData(tasks);
+            } catch (IOException e1) {
+                e1.getMessage();
+            }
+
+        }
+        return isExit;
     }
 
     /**
