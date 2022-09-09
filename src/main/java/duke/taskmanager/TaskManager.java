@@ -28,7 +28,7 @@ public class TaskManager {
     /**
      * Returns the date format to be used to allocate task by the task manager.
      *
-     * @return date format used by the task manager.
+     * @return date format used by the task manager
      */
     public String getDateFormat() {
         return DATE_FORMAT;

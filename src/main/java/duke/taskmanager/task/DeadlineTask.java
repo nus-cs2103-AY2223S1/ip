@@ -99,6 +99,6 @@ public class DeadlineTask extends Task {
      */
     @Override
     public String toString() {
-        return "[" + TASK_TYPE + "]" + super.toString() + " (by:" + getTaskTime() + ")";
+        return "[" + TASK_TYPE + "]" + super.toString() + " (by: " + getTaskTime() + ")";
     }
 }

@@ -14,9 +14,9 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 public class ChatBot {
     private final String name;
-    private boolean isRunning;
     private final TaskManager taskManager;
-
+    private boolean isRunning;
+    private String latestResponse;
     /**
      * Constructor for a chatbot that can be intialized or terminated.
      * Primarily used for processing commands to update its own task manager.
@@ -26,8 +26,9 @@ public class ChatBot {
      */
     public ChatBot(String name) {
         this.name = name;
-        this.isRunning = false;
         this.taskManager = new TaskManager();
+        this.isRunning = false;
+        this.latestResponse = "";
     }
 
     /**
@@ -37,8 +38,8 @@ public class ChatBot {
      */
     public void initialize() {
         this.isRunning = true;
-        System.out.println(wrapMessage("Greetings, " + this.name + " at your service.\n"
-                + "How may I help you today?\n"));
+        this.latestResponse = "Greetings, " + this.name + " at your service.\n"
+                + "How may I help you today?\n";
         taskManager.load();
     }
 
@@ -48,7 +49,7 @@ public class ChatBot {
      */
     public void terminate() {
         this.isRunning = false;
-        System.out.println(wrapMessage("Goodbye! It was nice seeing you.\n"));
+        this.latestResponse = "Goodbye! It was nice seeing you.\nEnter anything to exit!\n";
     }
 
     /**
@@ -61,14 +62,23 @@ public class ChatBot {
     }
 
     /**
+     * Returns the latest stored response.
+     *
+     * @return the string of the latest stored response
+     */
+    public String getLatestResponse() {
+        return this.latestResponse;
+    }
+
+    /**
      * Processes commands from an input by the user and calls the appropriate command
-     * for the task manager. Handles exceptions for invalid commands. Calls the
-     * save command of the task manager after every successful command processed.
+     * for the task manager and updates the latest response.
+     * Handles exceptions for invalid commands.
+     * Calls the save command of the task manager after every successful command.
      *
      * @param input string of the input provided by the user
-     * @return the response to the user input
      */
-    public String processCommand(String input) {
+    public void processCommand(String input) {
         Scanner inputScanner = new Scanner(input);
         String response = "";
         try {
@@ -76,7 +86,8 @@ public class ChatBot {
             if (!(inputScanner.hasNext())) {
                 switch (command) {
                 case "bye":
-                    this.isRunning = false;
+                    terminate();
+                    response = getLatestResponse();
                     break;
                 case "list":
                     response = taskManager.listTask();
@@ -119,7 +130,7 @@ public class ChatBot {
                     response = taskManager.deleteTask(Integer.parseInt(arguments));
                     break;
                 case "find":
-                    System.out.println(wrapMessage(taskManager.findTask(arguments)));
+                    response = taskManager.findTask(arguments);
                     break;
                 default:
                     throw new InvalidCommandException();
@@ -138,7 +149,7 @@ public class ChatBot {
             response = "Sorry, I don't understand what you mean by \"" + input + "\"\n";
         } finally {
             inputScanner.close();
-            return response;
+            this.latestResponse = response;
         }
     }
 
