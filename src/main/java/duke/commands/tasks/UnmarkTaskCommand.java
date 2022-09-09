@@ -1,21 +1,23 @@
 package duke.commands.tasks;
 
 import duke.commands.CommandResult;
-import duke.domain.Task;
+import duke.domain.task.Task;
+import duke.domain.task.TaskIndex;
 import duke.exceptions.TaskNotFoundException;
 
 /**
  * UnmarkTaskCommand class
  */
 public class UnmarkTaskCommand extends BaseTaskCommand {
+    public static final String COMMAND_WORD = "unmark";
     private String successMessage = "This task has been successfully unmarked!\n";
     private String errorMessage = "An error occurred when unmarking this task:\n";
-    private final Integer taskIndex;
+    private final TaskIndex taskIndex;
 
     /**
      *
      */
-    public UnmarkTaskCommand(Integer taskIndex) {
+    public UnmarkTaskCommand(TaskIndex taskIndex) {
         this.taskIndex = taskIndex;
     }
 

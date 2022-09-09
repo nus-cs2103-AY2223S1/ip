@@ -1,21 +1,23 @@
 package duke.commands.tasks;
 
 import duke.commands.CommandResult;
-import duke.domain.Task;
+import duke.domain.task.Task;
+import duke.domain.task.TaskIndex;
 import duke.exceptions.TaskNotFoundException;
 
 /**
  * MarkTaskCommand Class
  */
 public class MarkTaskCommand extends BaseTaskCommand {
+    public static final String COMMAND_WORD = "mark";
     private String successMessage = "This task has been successfully marked!\n";
     private String errorMessage = "An error occurred when marking this task:\n";
-    private final Integer taskIndex;
+    private final TaskIndex taskIndex;
 
     /**
      *
      */
-    public MarkTaskCommand(Integer taskIndex) {
+    public MarkTaskCommand(TaskIndex taskIndex) {
         this.taskIndex = taskIndex;
     }
 

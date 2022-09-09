@@ -3,6 +3,8 @@ package duke.domain;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import duke.domain.task.Task;
+
 /**
  * The type Event.
  */

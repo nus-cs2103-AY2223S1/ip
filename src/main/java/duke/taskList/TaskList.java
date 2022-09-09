@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import duke.domain.Task;
+import duke.domain.task.Task;
+import duke.domain.task.TaskIndex;
 import duke.exceptions.TaskNotFoundException;
 
 /**
@@ -37,9 +38,9 @@ public class TaskList {
      * @throws TaskNotFoundException
      *             When the task in the given index does not exist
      */
-    public Task markTask(int idx) throws TaskNotFoundException {
+    public Task markTask(TaskIndex taskIndex) throws TaskNotFoundException {
         try {
-            Task curr = taskList.get(idx);
+            Task curr = taskList.get(taskIndex.getZeroBased());
             curr.setComplete();
             return curr;
         } catch (IndexOutOfBoundsException e) {
@@ -56,9 +57,9 @@ public class TaskList {
      * @throws TaskNotFoundException
      *             When the task in the given index does not exist
      */
-    public Task unmarkTask(int idx) throws TaskNotFoundException {
+    public Task unmarkTask(TaskIndex taskIndex) throws TaskNotFoundException {
         try {
-            Task curr = taskList.get(idx);
+            Task curr = taskList.get(taskIndex.getZeroBased());
             curr.setIncomplete();
             return curr;
         } catch (IndexOutOfBoundsException e) {
@@ -88,9 +89,9 @@ public class TaskList {
      * @throws TaskNotFoundException
      *             When the task in the given index does not exist
      */
-    public Task deleteTask(int idx) throws TaskNotFoundException {
+    public Task deleteTask(TaskIndex taskIndex) throws TaskNotFoundException {
         try {
-            Task curr = taskList.get(idx);
+            Task curr = taskList.get(taskIndex.getZeroBased());
             taskList.remove(curr);
             taskSet.remove(curr);
             return curr;
@@ -178,7 +179,7 @@ public class TaskList {
      *            The search terms
      * @return A string
      */
-    public String searchTasks(String ... searchTerms) {
+    public String searchTasks(String... searchTerms) {
         return convertTaskListToString(
                 this.taskList.stream()
                         .filter(task -> task.textContains(searchTerms))
