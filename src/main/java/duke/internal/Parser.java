@@ -3,6 +3,7 @@ package duke.internal;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -23,9 +24,20 @@ import duke.command.UnmarkCommand;
 /**
  * A parser object can parse a command from a string,
  * and determine which Command object should be used to execute it.
- * TODO: add default commands
  */
 public class Parser {
+    private static final Set<String> DEFAULT_COMMANDS = Set.of(
+            "bye",
+            "todo",
+            "deadline",
+            "event",
+            "list",
+            "find",
+            "mark",
+            "unmark",
+            "delete",
+            "alias"
+    );
     private static final Map<String, String> DEFAULT_ALIASES = Map.of("t",
             "todo",
             "d",
@@ -186,7 +198,10 @@ public class Parser {
         if (alias.equals(command)) {
             throw new DukeException("Sorry! I can't bind an alias to itself.");
         }
-        if (!DEFAULT_ALIASES.containsValue(command)) {
+        if (DEFAULT_COMMANDS.contains(alias)) {
+            throw new DukeException("Sorry! I can't bind a command as an alias.");
+        }
+        if (!DEFAULT_COMMANDS.contains(command)) {
             // This prevents any circular aliases, because aliases can only be bound to commands.
             if (aliases.containsKey(command)) {
                 throw new DukeException(
@@ -196,9 +211,6 @@ public class Parser {
         }
         if (aliases.containsKey(alias)) {
             throw new DukeException(String.format("The alias `%s` already exists!", alias));
-        }
-        if (aliases.containsValue(alias)) {
-            throw new DukeException("Sorry! I can't bind a command as an alias.");
         }
         aliases.put(alias, command);
     }
