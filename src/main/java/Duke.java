@@ -7,6 +7,7 @@ import java.util.*;
 /*Week 2 done*/
 /*Level 1*/
 /*Need Fixing */
+//Level 7 done
 public class Duke {
     /*testing branch*/
     /*testsvdsv*/
