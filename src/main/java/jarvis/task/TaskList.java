@@ -88,6 +88,13 @@ public class TaskList {
         return tasksFound;
     }
 
+    /**
+     * Sort tasks by deadlines and event times.
+     */
+    public void sortTasks() {
+        tasks.sort(new TaskComparator());
+    }
+
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();
