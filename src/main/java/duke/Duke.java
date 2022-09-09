@@ -25,7 +25,6 @@ public class Duke {
         this.ui = new Ui(this.parser);
         try {
             this.parser.load();
-            System.out.println("Hello! I'm Duke\nWhat can I do for you?\n");
         } catch (IOException e) {
             System.out.println("Something went wrong: " + e.getMessage());
         } catch (DateTimeParseException e) {
