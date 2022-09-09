@@ -17,6 +17,7 @@ public class ToDoTask extends Task {
      */
     public ToDoTask(String taskName) throws EmptyTaskException {
         super(TASK_TYPE, taskName);
+        assert !(super.getTaskName().equals("")) : "Task should not be empty";
     }
 
     /**
@@ -28,5 +29,6 @@ public class ToDoTask extends Task {
      */
     public ToDoTask(String taskName, boolean isCompleted) throws EmptyTaskException {
         super(TASK_TYPE, taskName, isCompleted);
+        assert !(super.getTaskName().equals("")) : "Task should not be empty";
     }
 }

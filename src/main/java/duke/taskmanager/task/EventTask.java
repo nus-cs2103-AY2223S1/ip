@@ -35,6 +35,7 @@ public class EventTask extends Task {
         } catch (DateTimeParseException exception) {
             throw new InvalidEventException(dateFormat);
         }
+        assert !(super.getTaskName().equals("")) : "Task should not be empty";
     }
 
     /**
@@ -57,6 +58,7 @@ public class EventTask extends Task {
         } catch (DateTimeParseException exception) {
             throw new InvalidEventException(dateFormat);
         }
+        assert !(super.getTaskName().equals("")) : "Task should not be empty";
     }
 
     /**

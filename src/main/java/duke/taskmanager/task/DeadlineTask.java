@@ -35,6 +35,7 @@ public class DeadlineTask extends Task {
         } catch (DateTimeParseException exception) {
             throw new InvalidDeadlineException(dateFormat);
         }
+        assert !(super.getTaskName().equals("")) : "Task should not be empty";
     }
 
     /**
@@ -57,6 +58,7 @@ public class DeadlineTask extends Task {
         } catch (DateTimeParseException exception) {
             throw new InvalidDeadlineException(dateFormat);
         }
+        assert !(super.getTaskName().equals("")) : "Task should not be empty";
     }
 
     /**
