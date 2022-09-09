@@ -13,13 +13,13 @@ public enum SortMetric {
     TYPE;
 
     /** Command argument representing the deadline metric. */
-    private static final String DEADLINE_STRING = "dl";
+    private static final String DEADLINE_STRING = "deadline";
     /** Command argument representing the date added metric. */
-    private static final String DATE_ADDED_STRING = "da";
+    private static final String DATE_ADDED_STRING = "new";
     /** Command argument representing the task description metric. */
-    private static final String DESCRIPTION_STRING = "d";
+    private static final String DESCRIPTION_STRING = "des";
     /** Command argument representing the task type metric. */
-    private static final String TYPE_STRING = "t";
+    private static final String TYPE_STRING = "type";
 
     /**
      * Returns a SortMetric by parsing the command argument.

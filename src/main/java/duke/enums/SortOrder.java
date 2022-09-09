@@ -11,9 +11,9 @@ public enum SortOrder {
     DESCENDING;
 
     /** Command argument representing the ascending order. */
-    private static final String ASCENDING_STRING = "asc";
+    private static final String ASCENDING_STRING = "A";
     /** Command argument representing the descending order. */
-    private static final String DESCENDING_STRING = "dsc";
+    private static final String DESCENDING_STRING = "D";
 
     /**
      * Returns a SortOrder by parsing the command argument.
