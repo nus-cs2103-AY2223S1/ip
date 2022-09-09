@@ -94,6 +94,8 @@ public class Duke extends Application {
                 TaskList filtered = tasks.find(command.replace("find", "").trim());
                 Ui.printTasks(filtered);
                 continue;
+            default:
+                assert false : command;
             }
         }
     }
