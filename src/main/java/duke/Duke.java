@@ -1,21 +1,15 @@
 package duke;
 
 import duke.command.Command;
-import javafx.application.Application;
-import javafx.fxml.FXML;
+import duke.storage.Storage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-import java.util.Objects;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -58,8 +52,12 @@ public class Duke {
 
     public Duke() {
         ui = new Ui();
-        storage = new Storage("data/Duke.txt");
-        tasks = new TaskList();
+        storage = new Storage();
+        try {
+            tasks = new TaskList(storage.load());
+        } catch (IOException e) {
+            tasks = new TaskList();
+        }
     }
 
     /**

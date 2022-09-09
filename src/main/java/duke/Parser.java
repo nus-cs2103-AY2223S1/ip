@@ -86,6 +86,18 @@ public class Parser {
         }
     }
 
+    private static String combineArguments(String text, int start, int end) {
+        if (start > end) {
+            throw new DukeException("No string found");
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(findArgument(text, start));
+        for (int i = start + 1; i < end + 1; i++) {
+            stringBuilder.append(' ').append(findArgument(text, i));
+        }
+        return stringBuilder.toString();
+    }
+
     private static String parseDate(String date) {
         int firstIndex;
         int secondIndex;
@@ -358,56 +370,53 @@ public class Parser {
     }
 
     private static Command parseDeadline(String input) {
-        if (countArguments(input) < 4) {
-            String message = "To add a deadline task, enter a task name followed by /by and then a deadline";
+        System.out.println(input);
+        int numOfArguments = countArguments(input);
+        if (numOfArguments < 4) {
+            String message = "To add a deadline task, enter a task description followed by /by and then a deadline";
             throw new DukeException(message);
         }
-        if (countArguments(input) > 5) {
-            throw new DukeException("Incorrect number of arguments for command deadline");
-        }
-        if (!findArgument(input, 3).equalsIgnoreCase("/by")) {
-            throw new DukeException("You need to include /by to specify the deadline");
-        }
-        String taskName = findArgument(input, 2);
-        String date = findArgument(input, 4);
-        date = parseDate(date);
-        if (countArguments(input) == 5) {
-            String time = findArgument(input, 5);
-            time = parseTime(time);
+        if (findArgument(input,numOfArguments - 1).equalsIgnoreCase("/by")) {
+            System.out.println("HERE");
+            String taskName = combineArguments(input,2, numOfArguments - 2);
+            System.out.println(taskName);
+            String date = parseDate(findArgument(input, numOfArguments));
+            return new AddDeadlineCommand(taskName, date);
+        } else if (findArgument(input,numOfArguments - 2).equalsIgnoreCase("/by")) {
+            String taskName = combineArguments(input, 2, numOfArguments - 3);
+            String date = parseDate(findArgument(input, numOfArguments - 1));
+            String time = parseTime(findArgument(input, numOfArguments));
             return new AddDeadlineCommand(taskName, date, time);
         } else {
-            return new AddDeadlineCommand(taskName, date);
+            throw new DukeException("You need to add /by after the task description to specify a date");
         }
     }
 
     private static Command parseEvent(String input) {
-        if (countArguments(input) < 4) {
-            String message = "To add an event task, enter a task name followed by /at and then the event datetime";
+        int numOfArguments = countArguments(input);
+        if (numOfArguments < 4) {
+            String message = "To add an event task, enter a task description followed by /by and then a date";
             throw new DukeException(message);
         }
-        if (countArguments(input) > 5) {
-            throw new DukeException("Incorrect number of arguments for command deadline");
-        }
-        if (!findArgument(input, 3).equalsIgnoreCase("/at")) {
-            throw new DukeException("You need to include /at to specify the datetime");
-        }
-        String taskName = findArgument(input, 2);
-        String date = findArgument(input, 4);
-        date = parseDate(date);
-        if (countArguments(input) == 5) {
-            String time = findArgument(input, 5);
-            time = parseTime(time);
+        if (findArgument(input,numOfArguments - 1).equalsIgnoreCase("/at")) {
+            String taskName = combineArguments(input,2, numOfArguments - 2);
+            String date = parseDate(findArgument(input, numOfArguments));
+            return new AddEventCommand(taskName, date);
+        } else if (findArgument(input,numOfArguments - 2).equalsIgnoreCase("/at")) {
+            String taskName = combineArguments(input, 2, numOfArguments - 3);
+            String date = parseDate(findArgument(input, numOfArguments - 1));
+            String time = parseTime(findArgument(input, numOfArguments));
             return new AddEventCommand(taskName, date, time);
         } else {
-            return new AddEventCommand(taskName, date);
+            throw new DukeException("You need to add /at after the task description to specify a date");
         }
     }
 
     private static Command parseTodo(String input) {
-        if (countArguments(input) != 2) {
-            throw new DukeException("Incorrect number of arguments for command todo");
+        if (countArguments(input) < 2) {
+            throw new DukeException("You need to enter a task description!");
         }
-        String taskName = findArgument(input, 2);
+        String taskName = combineArguments(input,2, countArguments(input));
         return new AddTodoCommand(taskName);
     }
 

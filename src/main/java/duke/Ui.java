@@ -2,7 +2,6 @@ package duke;
 
 public class Ui {
 
-
     public void showWelcome() {
         System.out.println("Hi I'm Duke! What may I do for you?");
     }

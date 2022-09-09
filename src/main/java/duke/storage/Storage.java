@@ -1,5 +1,6 @@
-package duke;
+package duke.storage;
 
+import duke.Parser;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
 import duke.task.Task;
@@ -21,8 +22,21 @@ public class Storage {
 
     private String filePath;
 
+    /**
+     * Creates an instance of Storage with a user specified file path.
+     *
+     * @param filePath The location of the file to read from and write to.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
+    }
+
+    /**
+     * Creates an instance of Storage with a default file path. A file will be created in the location if it does not
+     * exist.
+     */
+    public Storage() {
+        this.filePath = "data/data.txt";
     }
 
     /**

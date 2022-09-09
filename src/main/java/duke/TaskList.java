@@ -54,6 +54,13 @@ public class TaskList {
         return listOfTasks.toString();
     }
 
+    /**
+     * Returns a Task specified by its position in the list.
+     *
+     * @param taskNum The index of the task to retrieve. The first task is 1.
+     * @return The Task at the specified index.
+     * @throws IndexOutOfBoundsException if there is no task at the input index.
+     */
     public Task getTask(int taskNum) throws IndexOutOfBoundsException {
         try {
             return taskList.get(taskNum - 1);
@@ -120,6 +127,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Filters the task list to only contain tasks with the specified keyword in the task description.
+     *
+     * @param keyword The keyword to search for in the tasks.
+     * @return A TaskList that contains only tasks that contain the keyword.
+     */
     public TaskList filter(String keyword) {
         TaskList filteredTaskList = new TaskList();
         for (Task task : taskList) {
@@ -131,13 +144,3 @@ public class TaskList {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
