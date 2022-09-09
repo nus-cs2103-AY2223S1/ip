@@ -16,10 +16,10 @@ import duke.task.Task;
 import duke.task.ToDoTask;
 
 public class Storage {
-    private final String FILE_PATH;
+    private final String filePath;
     
     public Storage(String FILE_PATH) {
-        this.FILE_PATH = FILE_PATH;
+        this.filePath = FILE_PATH;
     }
     
     /**
@@ -29,75 +29,72 @@ public class Storage {
      * @throws DukeException If data file cannot be accessed.
      */
     public ArrayList<Task> load() throws DukeException {
-        ArrayList<Task> data = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<>();
         try {
-            Scanner sc = new Scanner(new File(FILE_PATH));
+            Scanner sc = new Scanner(new File(filePath));
             while (sc.hasNext()) {
                 String s = sc.nextLine();
-                Task task;
-                switch (s.charAt(1)) {
-                case 'T':
-                    assert s.length() >= 8 : "Loaded todo task is not long enough";
-                    task = new ToDoTask(s.substring(7));
-                    break;
-                case 'D':
-                    String[] parts = s.substring(7).split(" \\(by: ");
-                    assert parts.length > 0 : "Loaded deadline task has no description";
-                    DateTimeFormatter pattern = new DateTimeFormatterBuilder()
-                            // case-insensitive to parse JAN and FEB
-                            .parseCaseInsensitive()
-                            // add pattern
-                            .appendPattern("MMM dd yyyy")
-                            // create formatter (use English Locale to parse month names)
-                            .toFormatter(Locale.ENGLISH);
-                    LocalDate date = LocalDate.parse(parts[1].substring(0, parts[1].length() - 1), pattern);
-                    task = new DeadlineTask(parts[0], date);
-                    break;
-                case 'E':
-                    String[] sections = s.substring(7).split(" \\(at: ");
-                    assert sections.length > 0 : "Loaded event task has no description";
-                    task = new EventTask(sections[0], sections[1]);
-                    break;
-                default:
-                    throw new DukeException("Unrecognised duke.task.Task Type");
-                }
-                if (s.charAt(4) == 'X') task.mark(true);
-                data.add(task);
+                Task task = getTask(s);
+                if (s.charAt(6) == 'X') task.mark(true);
+                tasks.add(task);
             }
         } catch (IOException e) {
             throw new DukeException(e.getMessage());
         }
-        return data;
+        return tasks;
     }
-    
-    public void appendFile(Task task) throws DukeException {
+
+    private Task getTask(String s) throws DukeException {
+        Task task;
+        String fullTaskDescription = s.substring(9);
+        switch (s.charAt(3)) {
+        case 'T':
+            assert s.length() >= 8 : "Loaded todo task is not long enough";
+            task = new ToDoTask(fullTaskDescription);
+            break;
+        case 'D':
+            String[] parts = fullTaskDescription.split(" \\(by: ");
+            assert parts.length > 0 : "Loaded deadline task has no description";
+            String deadlineDescription = parts[0];
+            String deadlineDate = parts[1].substring(0, parts[1].length() - 1); // removes last bracket
+            DateTimeFormatter pattern = new DateTimeFormatterBuilder()
+                    // case-insensitive to parse JAN and FEB
+                    .parseCaseInsensitive()
+                    // add pattern
+                    .appendPattern("MMM dd yyyy")
+                    // create formatter (use English Locale to parse month names)
+                    .toFormatter(Locale.ENGLISH);
+            LocalDate date = LocalDate.parse(deadlineDate, pattern);
+            task = new DeadlineTask(deadlineDescription, date);
+            break;
+        case 'E':
+            String[] sections = fullTaskDescription.split(" \\(at: ");
+            assert sections.length > 0 : "Loaded event task has no description";
+            String eventDescription = sections[0];
+            String eventDate = sections[1].substring(0, sections[1].length() - 1); // removes last bracket
+            task = new EventTask(eventDescription, eventDate);
+            break;
+        default:
+            throw new DukeException("Unrecognised Task Type");
+        }
+        return task;
+    }
+
+    public void appendFile(Task task, int pos) throws DukeException {
         try {
-            FileWriter fw = new FileWriter(FILE_PATH, true);
-            fw.write(task.toString() + "\n");
+            FileWriter fw = new FileWriter(filePath, true);
+            fw.write(pos + "." + task.toString() + "\n");
             fw.close();
         } catch (IOException e) {
             throw new DukeException(e.getMessage());
         } 
     }
-
-    public void writeFile(int pos, Task task) throws DukeException {
+    
+    public void updateFile(TaskList list) throws DukeException {
         try {
-            Scanner sc = new Scanner(new File(FILE_PATH));
-            StringBuilder copy = new StringBuilder();
-            int counter = 0;
-            while (sc.hasNext()) {
-                if (counter == pos) {
-                    if (task != null) copy.append(task).append("\n");
-                    sc.nextLine();
-                } else {
-                    copy.append(sc.nextLine()).append("\n");
-                }
-                counter++;
-            }
-            String fileContents = copy.toString();
-            sc.close();
-            FileWriter fw = new FileWriter(FILE_PATH, false);
-            fw.write(fileContents);
+            String newData = list.toString().substring(33);
+            FileWriter fw = new FileWriter(filePath, false);
+            fw.write(newData);
             fw.close();
         } catch (IOException e) {
             throw new DukeException(e.getMessage());

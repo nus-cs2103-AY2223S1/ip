@@ -4,7 +4,7 @@ import duke.DukeException;
 import duke.TaskList;
 
 public class DeleteCommand extends Command {
-    private int pos;
+    private final int pos;
     
     public DeleteCommand(int pos) {
         this.pos = pos;

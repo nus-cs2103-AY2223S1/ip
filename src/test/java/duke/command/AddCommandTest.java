@@ -1,12 +1,11 @@
 package duke.command;
 
 import duke.DukeException;
-import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AddCommandTest {
-    
     @Test
     public void execute_deadline_newDeadlineTask() throws DukeException {
         TaskListStub list = new TaskListStub();
