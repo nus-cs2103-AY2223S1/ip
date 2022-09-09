@@ -7,9 +7,7 @@ import doemon.task.TaskList;
 import java.util.Scanner;
 
 public class Ui {
-    /**
-     * Picture of Doemon made using text
-     */
+    /** Test art of Doemon. */
     private static final String logo = "                       _______________\n" +
             "                      /  --. --.      \\ \n" +
             "                     /  | '| ' |   \\   \\ \n" +
@@ -19,31 +17,44 @@ public class Ui {
             "                    \\  (___|_______) /  /\n" +
             "                     \\              /  /\n" +
             "                       |== (t) ===|____";
-
-    /**
-     * Introduction string that is printed when Doemon is started.
-     */
+    /** Introduction string that is printed when Doemon is started. */
     private static final String introStr = "Hello I'm\n" + logo + "\t\t\tDoemon!";
-
-    /**
-     * The string that is printed when Doemon is exited.
-     */
+    /** String that is printed when Doemon is exited. */
     private static final String exitStr = "I'm going to sleep now...See you again soon!";
 
+    /** Scanner used to take in user input. */
     private Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Reads next line of user input.
+     *
+     * @return User-inputted string.
+     */
     public String readCommand() {
         return scanner.nextLine();
     }
 
+    /**
+     * Displays welcome message.
+     */
     public void showWelcome() {
         System.out.println(output(this.introStr));
     }
 
+    /**
+     * Displays specified task.
+     *
+     * @param task Task to be displayed.
+     */
     public void showTask(Task task) {
         System.out.println(output(task.toString()));
     }
 
+    /**
+     * Displays the specified list of tasks.
+     *
+     * @param tasks List of tasks to be displayed.
+     */
     public void showTaskList(TaskList tasks) {
         StringBuilder listStringBuilder =
                 new StringBuilder("Here is what's on my bread:\n\t");
@@ -60,6 +71,12 @@ public class Ui {
         }
     }
 
+    /**
+     * Displays add task message.
+     *
+     * @param task Task to be added.
+     * @param numTasks New total number of tasks.
+     */
     public void showAddTask(Task task, int numTasks) {
         System.out.println(
                 output(String.format(
@@ -69,31 +86,56 @@ public class Ui {
                         numTasks)));
     }
 
+    /**
+     * Displays mark task message.
+     *
+     * @param task Task to be marked.
+     */
     public void showMarkTask(Task task) {
         System.out.println(output(String.format("Yay! This task is now marked as done:\n\t  %s", task)));
     }
 
+    /**
+     * Displays unmark task message.
+     *
+     * @param task Task to be unmarked.
+     */
     public void showUnmarkTask(Task task) {
         System.out.println(output(String.format("I guess you weren't done with that one:\n\t  %s", task)));
     }
 
+    /**
+     * Displays delete task message.
+     *
+     * @param task Task to be deleted.
+     * @param numTasks New total number of tasks.
+     */
     public void showDeleteTask(Task task, int numTasks) {
         System.out.println(output(String.format("I used a knife to slice off this task from my bread:\n\t  %s" +
                 "\n\tThere are %d items left on my bread.", task, numTasks)));
     }
 
+    /**
+     * Displays error message.
+     *
+     * @param e Error to be displayed.
+     */
     public void showError(DoemonException e) {
         System.out.println(output(e.toString()));
     }
 
+    /**
+     * Displays exit message.
+     */
     public void showExit() {
         System.out.println(output(this.exitStr));
     }
 
     /**
      * Returns a formatted string to display the given text.
-     * @param text the text to be formatted
-     * @return the formatted string
+     *
+     * @param text Text to be formatted.
+     * @return Formatted string.
      */
     private static String output(String text) {
         String line = "____________________________________________________________";
