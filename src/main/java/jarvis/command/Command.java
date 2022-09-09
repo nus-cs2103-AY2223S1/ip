@@ -20,6 +20,7 @@ public abstract class Command {
      * @param command the command entered by the user.
      */
     public Command(String command) {
+        assert command != null;
         String[] splitCommands = command.split(" ", 2);
         this.keyCommand = splitCommands[0];
         if (splitCommands.length > 1) {
