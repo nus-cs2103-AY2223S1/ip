@@ -19,9 +19,9 @@ public class Deadline extends Task {
     /**
      * Constructor for Deadline.
      * 
-     * @param description - The description of the Deadline.
-     * @param by - The date and time for the deadline (in YYYY-MM-DD HHMM format).
-     * @throws DukeException - When the description or by date is invalid.
+     * @param description The description of the Deadline.
+     * @param by The date and time for the deadline (in YYYY-MM-DD HHMM format).
+     * @throws DukeException When the description or by date is invalid.
      */
     public Deadline(String description, String by) throws DukeException {
         super(description);
@@ -42,9 +42,9 @@ public class Deadline extends Task {
     /**
      * Rebuilds the Deadline from a deadline save string.
      * 
-     * @param saveString - The save string containing deadline information.
+     * @param saveString The save string containing deadline information.
      * @return A deadline Task.
-     * @throws DukeException - When Deadline cannot be reconstructed from the given string.
+     * @throws DukeException When Deadline cannot be reconstructed from the given string.
      */
     public static Deadline taskFromSave(String saveString) throws DukeException {
         String[] tokens = saveString.split(" \\| ");

@@ -18,9 +18,9 @@ public class Event extends Task {
     /**
      * Constructor for Event.
      * 
-     * @param description - The description for the Event
-     * @param at - The date and time for the Event (in YYYY-MM-DD HHMM format).
-     * @throws DukeException - When the description or at date is invalid.
+     * @param description The description for the Event
+     * @param at The date and time for the Event (in YYYY-MM-DD HHMM format).
+     * @throws DukeException When the description or at date is invalid.
      */
     public Event(String description, String at) throws DukeException {
         super(description);
@@ -41,9 +41,9 @@ public class Event extends Task {
     /**
      * Rebuilds the Event from an event save string.
      *
-     * @param saveString - The save string containing Event information.
+     * @param saveString The save string containing Event information.
      * @return A Event Task.
-     * @throws DukeException - When Event cannot be reconstructed from the given string.
+     * @throws DukeException When Event cannot be reconstructed from the given string.
      */
     public static Event taskFromSave(String saveString) throws DukeException {
         String[] tokens = saveString.split(" \\| ");
