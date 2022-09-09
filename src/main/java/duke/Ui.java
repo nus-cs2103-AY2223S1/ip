@@ -11,7 +11,7 @@ public class Ui {
      * @return response of duke in string.
      */
     public static String showWelcome() {
-        return "Hello! I'm Duke\nWhat can I do for you?";
+        return "Hello nya! I'm SocDuke\nWhat can I do for you?";
     }
 
     /**
@@ -31,7 +31,7 @@ public class Ui {
      * @return response of duke in string.
      */
     public String showAddedTask(Task taskToAdd, TaskList tasks) {
-        return "Got it. I've added this task:\n"
+        return "Noted nya! I've added this task:\n"
                 + taskToAdd.toString() + "\n"
                 + "Now you have " + tasks.getLength() + " tasks in the list";
     }
@@ -44,7 +44,7 @@ public class Ui {
      * @return response of duke in string.
      */
     public String showDeletedTask(Task taskToRemove, TaskList tasks) {
-        return "Noted. I've removed this task:\n" + taskToRemove.toString()
+        return "Ok nya. I've removed this task:\n" + taskToRemove.toString()
                 + "\nNow you have " + tasks.getLength() + " tasks in the list";
     }
 
@@ -55,7 +55,7 @@ public class Ui {
      * @return response of duke in string.
      */
     public String showMarkedTask(Task markedTask) {
-        return "Nice! I've marked this task as done:\n" + markedTask.toString();
+        return "Wow nya! I've marked this task as done:\n" + markedTask.toString();
     }
 
     /**
@@ -65,7 +65,7 @@ public class Ui {
      * @return response of duke in string.
      */
     public String showUpdatedTask(Task updatedTask) {
-        return "Nice! I've updated this task's date:\n" + updatedTask.toString();
+        return "Noted nya! I've updated this task's date:\n" + updatedTask.toString();
     }
 
     /**
@@ -75,7 +75,7 @@ public class Ui {
      * @return response of duke in string.
      */
     public String showUnmarkedTask(Task unmarkedTask) {
-        return "OK, I've marked this task as not done yet:\n"
+        return "I've marked this task as not done yet nya:\n"
                 + unmarkedTask.toString();
     }
 
@@ -86,7 +86,7 @@ public class Ui {
      * @return response of duke in string.
      */
     public String showList(TaskList tasks) {
-        return "Here are the tasks in your list:\n"
+        return "Here are the tasks in your list nya:\n"
                 + tasks.toString();
     }
 
@@ -106,7 +106,7 @@ public class Ui {
      * @return response of duke in string.
      */
     public String showFilteredList(TaskList tasks) {
-        return "Here are the matching tasks in your list:\n"
+        return "Here are the matching tasks in your list nya:\n"
                 + tasks;
     }
 }
