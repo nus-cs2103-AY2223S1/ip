@@ -6,21 +6,24 @@ import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
 
-/**
- * The MarkCommand class represents user command mark.
- */
-public class MarkCommand extends Command {
 
-    public static final String COMMAND_WORD = "mark";
+/**
+ * The PriorityCommand class represents user command priority.
+ */
+public class PriorityCommand extends Command {
+
+    public static final String COMMAND_WORD = "priority";
     private int index;
+    private String priority;
 
     /**
      * Constructor for MarkCommand that takes in
      * an integer representing Task to mark done.
      * @param i Specified index.
      */
-    public MarkCommand(int i) {
+    public PriorityCommand(int i, String priority) {
         this.index = i;
+        this.priority = priority;
     }
 
     @Override
@@ -30,8 +33,9 @@ public class MarkCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        Task t = tasks.markDone(index);
+        Task t = tasks.attachPriority(index, priority);
         storage.save(tasks.getTaskList());
-        ui.showMark(t);
+        ui.showPriority(t, priority);
     }
+
 }

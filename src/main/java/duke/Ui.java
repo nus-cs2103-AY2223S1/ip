@@ -163,6 +163,10 @@ public class Ui {
         description = "OOPS!!!" + error;
     }
 
+    public void showPriority(Task t, String priority) {
+        description = t + "has been marked as " + priority.toUpperCase() + " priority.";
+    }
+
     /**
      * Show bye message to the user.
      */

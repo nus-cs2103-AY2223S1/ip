@@ -13,6 +13,7 @@ public class Deadline extends Task {
     private String ddl;
     private LocalDate deadline;
 
+
     /**
      * Constructs a Deadline object.
      * @param description description for the deadline.
