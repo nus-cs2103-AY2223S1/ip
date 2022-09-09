@@ -4,5 +4,3 @@ Here are the tasks in your list:
 3.[E][X] charity match (at: Jun 15 2022 14:00)
 4.[D][ ] project (by: Aug 09 2020 14:00)
 5.[T][ ] study
-6.[D][ ] 2103T project (by: Mar 02 2019 18:00)
-7.[E][ ] football match (at: Jun 05 2017 14:00)
