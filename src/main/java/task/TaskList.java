@@ -25,8 +25,7 @@ public class TaskList {
      */
 
     public TaskList() {
-        ArrayList<Task> task = new ArrayList<Task>(100);
-        this.taskArray = task;
+        this.taskArray = new ArrayList<Task>(100);
         this.size = 0;
     }
 
