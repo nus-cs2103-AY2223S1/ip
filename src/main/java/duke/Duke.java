@@ -67,6 +67,9 @@ public class Duke {
 
     }
 
+    /**
+     * Write the tasks in the archive and file storing list of tasks.
+     */
     public void writeAndCloseFile() {
         storage.writeFromTaskListToFile(filePath, tasks, false);
         storage.writeFromTaskListToFile("data/archive.txt", newlyAddedTasks, true);

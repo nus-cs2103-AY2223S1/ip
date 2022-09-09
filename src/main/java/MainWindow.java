@@ -45,6 +45,10 @@ public class MainWindow extends AnchorPane {
         );
     }
 
+    /**
+     * Set the Duke for the program/
+     * @param d The duke to be set.
+     */
     public void setDuke(Duke d) {
         duke = d;
     }
@@ -74,6 +78,5 @@ public class MainWindow extends AnchorPane {
             timer.schedule(task, 1000);
         }
         userInput.clear();
-
     }
 }

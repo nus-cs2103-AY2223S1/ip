@@ -42,8 +42,12 @@ public class Ui {
         System.out.println("Hello from\n" + logo);
     }
 
-    public static void printString(String s) {
-        System.out.println(s);
+    /**
+     * Print the string input.
+     * @param string The string input
+     */
+    public static void printString(String string) {
+        System.out.println(string);
     }
 
 }
