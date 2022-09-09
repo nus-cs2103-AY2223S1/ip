@@ -21,7 +21,7 @@ public abstract class Command {
     /**
      * Execute the action prescribed by the command.
      * 
-     * @param tasks The todo list that the command is operating on.
+     * @param tasks The task list that the command is operating on.
      * @param ui The ui which the result of the execution will be displayed.
      * @param storage The storage to be updated by the command.
      */

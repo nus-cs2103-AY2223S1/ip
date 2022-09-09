@@ -7,7 +7,7 @@ import Duke.Task.Task;
 
 /**
  * This class represents the delete command that removes tasks
- * from the todo list.
+ * from the task list.
  */
 public class DelCommand extends Command{
 
@@ -28,7 +28,8 @@ public class DelCommand extends Command{
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         this.deletedTask = tasks.delTask(this.taskID);
-        storage.writeListToFile(tasks);
+        boolean isWriteSuccessful = storage.writeListToFile(tasks);
+        assert isWriteSuccessful : "Writing to file should be completed successfully";
         return String.format("%s\nNow you have %d tasks in the list.", 
                 this.toString(), tasks.getNumOfTasks());
     }

@@ -28,7 +28,8 @@ public class UnmarkCommand extends Command{
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         this.unmarkedTask = tasks.unmarkTask(this.taskID);
-        storage.writeListToFile(tasks);
+        boolean isWriteSuccessful = storage.writeListToFile(tasks);
+        assert isWriteSuccessful : "Writing to file should be completed successfully";
         return String.format("%s\nNow still you have %d tasks in the list.", 
                 this.toString(), tasks.getNumOfTasks());
     }
