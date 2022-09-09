@@ -1,9 +1,12 @@
 package duke.command;
 
-import duke.storage.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.storage.Storage;
 
+/**
+ * Can be executed to exit the Duke program.
+ */
 public class ByeCommand extends Command {
 
     @Override

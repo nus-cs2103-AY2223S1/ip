@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * A class for dealing with displaying outputs to the user.
+ */
 public class Ui {
 
     public void showWelcome() {

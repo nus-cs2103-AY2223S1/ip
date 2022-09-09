@@ -1,9 +1,12 @@
 package duke.command;
 
-import duke.storage.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.storage.Storage;
 
+/**
+ * Represents a user command that is unrecognised.
+ */
 public class UnrecognisedCommand extends Command {
 
     @Override

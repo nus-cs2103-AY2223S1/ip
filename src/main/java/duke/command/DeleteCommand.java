@@ -1,13 +1,16 @@
 package duke.command;
 
-import duke.DukeException;
-import duke.storage.Storage;
-import duke.TaskList;
-import duke.Ui;
-import duke.task.Task;
-
 import java.io.IOException;
 
+import duke.DukeException;
+import duke.TaskList;
+import duke.Ui;
+import duke.storage.Storage;
+import duke.task.Task;
+
+/**
+ * Can be executed to delete a task.
+ */
 public class DeleteCommand extends Command {
 
     private final int taskNum;

@@ -1,14 +1,17 @@
 package duke.command;
 
+import java.io.IOException;
+
 import duke.DukeException;
-import duke.storage.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.storage.Storage;
 import duke.task.DeadlineTask;
 import duke.task.Task;
 
-import java.io.IOException;
-
+/**
+ * Can be executed to add a DeadlineTask.
+ */
 public class AddDeadlineCommand extends Command {
 
     private final Task deadlineTask;

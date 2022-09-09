@@ -1,9 +1,12 @@
 package duke.command;
 
-import duke.storage.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.storage.Storage;
 
+/**
+ * Represents a command that does nothing.
+ */
 public class NullCommand extends Command {
 
     @Override

@@ -1,11 +1,5 @@
 package duke.storage;
 
-import duke.Parser;
-import duke.task.DeadlineTask;
-import duke.task.EventTask;
-import duke.task.Task;
-import duke.task.TodoTask;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -14,6 +8,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+
+import duke.Parser;
+import duke.task.DeadlineTask;
+import duke.task.EventTask;
+import duke.task.Task;
+import duke.task.TodoTask;
 
 /**
  * Used to read and write data between Duke and a local file.
@@ -49,7 +49,7 @@ public class Storage {
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         StringBuilder outputMessage = new StringBuilder();
         String line = reader.readLine();
-        while(line != null) {
+        while (line != null) {
             outputMessage.append(line);
             outputMessage.append("\n");
             line = reader.readLine();
@@ -90,7 +90,7 @@ public class Storage {
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         String line = "INIT";
         int counter = 0;
-        while(line != null) {
+        while (line != null) {
             counter++;
             line = reader.readLine();
             if (counter == lineNum) {
@@ -114,7 +114,7 @@ public class Storage {
         StringBuilder outputMessage = new StringBuilder();
         String line = reader.readLine();
         int counter = 0;
-        while(line != null) {
+        while (line != null) {
             counter++;
             if (counter == lineNum) {
                 outputMessage.append(content);

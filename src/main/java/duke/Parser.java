@@ -1,5 +1,8 @@
 package duke;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+
 import duke.command.AddDeadlineCommand;
 import duke.command.AddEventCommand;
 import duke.command.AddTodoCommand;
@@ -13,9 +16,6 @@ import duke.command.NullCommand;
 import duke.command.SetPathCommand;
 import duke.command.UnmarkCommand;
 import duke.command.UnrecognisedCommand;
-
-import java.time.DateTimeException;
-import java.time.LocalDate;
 
 /**
  * Used to interpret user inputs and match them to available commands.
@@ -42,7 +42,7 @@ public class Parser {
     private static int countArguments(String input) {
         String str = input;
         int count = 0;
-        while(str.length() > 0) {
+        while (str.length() > 0) {
             int index = str.indexOf(' ');
             if (index == -1) {
                 count++;
@@ -69,20 +69,20 @@ public class Parser {
             count++;
             int index = str.indexOf(' ');
             if (count == argNum) {
-                if (index == - 1) {
+                if (index == -1) {
                     return str;
                 } else {
                     return str.substring(0, index);
                 }
             }
-            while (true)
+            while (true) {
                 if (str.charAt(index + 1) == ' ') {
                     index++;
                 } else {
                     break;
                 }
+            }
             str = str.substring(index + 1);
-
         }
     }
 
@@ -370,19 +370,16 @@ public class Parser {
     }
 
     private static Command parseDeadline(String input) {
-        System.out.println(input);
         int numOfArguments = countArguments(input);
         if (numOfArguments < 4) {
             String message = "To add a deadline task, enter a task description followed by /by and then a deadline";
             throw new DukeException(message);
         }
-        if (findArgument(input,numOfArguments - 1).equalsIgnoreCase("/by")) {
-            System.out.println("HERE");
-            String taskName = combineArguments(input,2, numOfArguments - 2);
-            System.out.println(taskName);
+        if (findArgument(input, numOfArguments - 1).equalsIgnoreCase("/by")) {
+            String taskName = combineArguments(input, 2, numOfArguments - 2);
             String date = parseDate(findArgument(input, numOfArguments));
             return new AddDeadlineCommand(taskName, date);
-        } else if (findArgument(input,numOfArguments - 2).equalsIgnoreCase("/by")) {
+        } else if (findArgument(input, numOfArguments - 2).equalsIgnoreCase("/by")) {
             String taskName = combineArguments(input, 2, numOfArguments - 3);
             String date = parseDate(findArgument(input, numOfArguments - 1));
             String time = parseTime(findArgument(input, numOfArguments));
@@ -398,11 +395,11 @@ public class Parser {
             String message = "To add an event task, enter a task description followed by /by and then a date";
             throw new DukeException(message);
         }
-        if (findArgument(input,numOfArguments - 1).equalsIgnoreCase("/at")) {
-            String taskName = combineArguments(input,2, numOfArguments - 2);
+        if (findArgument(input, numOfArguments - 1).equalsIgnoreCase("/at")) {
+            String taskName = combineArguments(input, 2, numOfArguments - 2);
             String date = parseDate(findArgument(input, numOfArguments));
             return new AddEventCommand(taskName, date);
-        } else if (findArgument(input,numOfArguments - 2).equalsIgnoreCase("/at")) {
+        } else if (findArgument(input, numOfArguments - 2).equalsIgnoreCase("/at")) {
             String taskName = combineArguments(input, 2, numOfArguments - 3);
             String date = parseDate(findArgument(input, numOfArguments - 1));
             String time = parseTime(findArgument(input, numOfArguments));
@@ -416,7 +413,7 @@ public class Parser {
         if (countArguments(input) < 2) {
             throw new DukeException("You need to enter a task description!");
         }
-        String taskName = combineArguments(input,2, countArguments(input));
+        String taskName = combineArguments(input, 2, countArguments(input));
         return new AddTodoCommand(taskName);
     }
 
@@ -435,5 +432,4 @@ public class Parser {
         String filePath = findArgument(input, 2);
         return new SetPathCommand(filePath);
     }
-
 }

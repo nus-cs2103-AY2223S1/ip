@@ -1,8 +1,8 @@
 package duke.task;
 
-import duke.Parser;
-
 import java.time.LocalDateTime;
+
+import duke.Parser;
 
 /**
  * Represents a task that is to be completed by a deadline.
@@ -78,6 +78,6 @@ public class DeadlineTask extends Task {
             return String.format("[D][%d] %s | %s %s %d", completed, getTaskDescription(),
                     wordDay, wordMonth, deadline.getYear());
         }
-
     }
+
 }

@@ -1,5 +1,8 @@
 package duke;
 
+import java.io.IOException;
+import java.util.Scanner;
+
 import duke.command.Command;
 import duke.storage.Storage;
 import javafx.scene.Scene;
@@ -8,9 +11,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
-
-import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * Represents a ChatBot named Duke. Duke can help you track your tasks.
@@ -21,21 +21,30 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
-    ScrollPane scrollPane;
-    VBox dialogContainer;
-    TextField userInput;
-    Button sendButton;
-    Scene scene;
+    private ScrollPane scrollPane;
+    private VBox dialogContainer;
+    private TextField userInput;
+    private Button sendButton;
+    private Scene scene;
 
     private Image user = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image duke = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
-    public static void main(String[] args) {
-        new Duke("data/Duke.txt").run();
+    /**
+     * Creates a new Duke.
+     */
+    public Duke() {
+        ui = new Ui();
+        storage = new Storage();
+        try {
+            tasks = new TaskList(storage.load());
+        } catch (IOException e) {
+            tasks = new TaskList();
+        }
     }
 
     /**
-     * Creates a new ChatBot that you can interact with.
+     * Creates a new Duke.
      *
      * @param filePath Path to the file where data of your tasks will be locally stored.
      */
@@ -50,14 +59,8 @@ public class Duke {
         }
     }
 
-    public Duke() {
-        ui = new Ui();
-        storage = new Storage();
-        try {
-            tasks = new TaskList(storage.load());
-        } catch (IOException e) {
-            tasks = new TaskList();
-        }
+    public static void main(String[] args) {
+        new Duke("data/data.txt").run();
     }
 
     /**
@@ -87,7 +90,7 @@ public class Duke {
                 command.execute(tasks, ui, storage);
                 isExit = command.isExit();
             } catch (DukeException e) {
-               ui.displayError(e);
+                ui.displayError(e);
             }
         }
     }

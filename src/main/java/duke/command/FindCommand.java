@@ -1,9 +1,12 @@
 package duke.command;
 
-import duke.storage.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.storage.Storage;
 
+/**
+ * Can be executed to filter a task.
+ */
 public class FindCommand extends Command {
 
     private final String keyword;

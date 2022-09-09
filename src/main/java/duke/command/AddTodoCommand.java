@@ -1,14 +1,17 @@
 package duke.command;
 
+import java.io.IOException;
+
 import duke.DukeException;
-import duke.storage.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TodoTask;
 
-import java.io.IOException;
-
+/**
+ * Can be executed to add a TodoTask.
+ */
 public class AddTodoCommand extends Command {
 
     private final Task todoTask;

@@ -1,4 +1,2 @@
-[T][0] asdas
-[T][0] sdfsdf
-[T][0] sdfsdf
-[T][0] adfd
+[D][0] cs2103 | 01 Jan 1111
+[D][0] cs2103 | 01 Jan 2002
