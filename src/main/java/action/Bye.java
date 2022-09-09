@@ -28,9 +28,6 @@ public class Bye {
         } catch (IOException e) {
             System.out.println("Oops");
         }
-
-        return "hehe";
-
         return "Goodbye hehe see u again";
 
     }

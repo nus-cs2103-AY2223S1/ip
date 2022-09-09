@@ -18,17 +18,10 @@ public class Find {
                 counter++;
             }
         }
-
-
-        if (output.isBlank()) {
-            return "----------------------\n" + "Oops nothing fits the description :(\n"
-
         if (output.toString().isBlank()) {
-
-                    + "----------------------\n";
+            return "----------------------\n" + "Oops nothing fits the description :(\n";
         } else {
-            return "----------------------\n" +
-                    output + "----------------------\n";
+            return "----------------------\n" + output + "----------------------\n";
         }
     }
 }
