@@ -58,7 +58,6 @@ public abstract class Task {
      * @param date Date of the task.
      * @return Created task.
      */
-
     public static Task of(String type, String name, String date) {
         if (type.equals("todo") || type.equals("T")) {
             return new ToDo(name);
