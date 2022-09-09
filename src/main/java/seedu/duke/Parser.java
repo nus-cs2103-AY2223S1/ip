@@ -26,6 +26,7 @@ public class Parser {
      * @return String output command.
      */
     public static String parse(String command, String input, TaskList taskList, Duke duke) {
+        assert input != "" : "input must not be empty!";
         String[] inputArr = input.split(" ");
         switch (command) {
         case "list":
@@ -53,6 +54,7 @@ public class Parser {
                     taskList.taskList.get(taskNum2 - 1));
             return output2;
         case "delete":
+
             try {
                 int taskNum3 = Integer.parseInt(inputArr[1]);
                 String deleteLine = taskList.deleteTask(taskNum3);
