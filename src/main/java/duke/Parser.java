@@ -6,6 +6,10 @@ import duke.Event;
 import duke.Deadline;
 import duke.ToDo;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class Parser {
 
     private TaskList taskList;
@@ -129,12 +133,19 @@ public class Parser {
     private String handleSearchCommand(String userCommand) {
         String searchTerm = userCommand.substring(7).strip();
 
-        String stringToReturn = "Duke: Here are your tasks that match the search term '" + searchTerm + "'.";
-        for (int i = 0; i < taskList.size(); i++) {
-            if (taskList.get(i).getName().contains(searchTerm)) {
-                stringToReturn = stringToReturn + String.format("\n%3d: %s", i + 1, taskList.get(i).toString());
-            }
+        StringBuilder stringToReturn = new StringBuilder();
+        stringToReturn.append("Duke: Here are the matching tasks.");
+
+        Stream<Task> filteredTasksStream = taskList
+                .stream()
+                .filter(task -> task.getName().contains(searchTerm));
+
+        List<Task> filteredTaskList = filteredTasksStream.collect(Collectors.toList());
+
+        for (int i = 0; i < filteredTaskList.size(); i++) {
+            stringToReturn.append(String.format("\n%3d: %s", i + 1, taskList.get(i).toString()));
         }
-        return stringToReturn;
+
+        return stringToReturn.toString();
     }
 }
