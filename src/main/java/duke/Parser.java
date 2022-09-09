@@ -15,7 +15,8 @@ public class Parser {
      * @return command
      */
     public static String getCommand(String userInput) {
-        return userInput.split(" ")[0];
+        String[] words = userInput.split(" ");
+        return words[0];
     }
 
     /**
@@ -25,7 +26,9 @@ public class Parser {
      * @return description
      */
     public static String getDescription(String userInput) {
-        return userInput.split(" ", 2)[1].split(" /")[0];
+        String[] words = userInput.split(" ", 2);
+        String[] description = words[1].split(" /");
+        return description[0];
     }
 
     /**
@@ -35,7 +38,9 @@ public class Parser {
      * @return date
      */
     public static String getDate(String userInput) {
-        return userInput.split(" /")[1].split(" ")[1];
+        String[] words = userInput.split(" /");
+        String[] dateTime = words[1].split(" ");
+        return dateTime[1];
     }
 
     /**
@@ -45,7 +50,10 @@ public class Parser {
      * @return start time
      */
     public static String getFrom(String userInput) {
-        return userInput.split(" /")[1].split(" ")[2].split("-")[0];
+        String[] words = userInput.split(" /");
+        String[] dateTime = words[1].split(" ");
+        String[] times = dateTime[2].split("-");
+        return times[0];
     }
 
     /**
@@ -55,7 +63,10 @@ public class Parser {
      * @return end time
      */
     public static String getTo(String userInput) {
-        return userInput.split(" /")[1].split(" ")[2].split("-")[1];
+        String[] words = userInput.split(" /");
+        String[] dateTime = words[1].split(" ");
+        String[] times = dateTime[2].split("-");
+        return times[1];
     }
 
     /**
@@ -74,8 +85,8 @@ public class Parser {
      * @param userInput user input
      * @return Whether the description is valid
      */
-    public static boolean isValidDescription(String userInput) {
-        return userInput.split(" ").length > 1;
+    public static boolean isInvalidDescription(String userInput) {
+        return userInput.split(" ").length <= 1;
     }
 
     /**
@@ -84,7 +95,17 @@ public class Parser {
      * @param userInput user input
      * @return Whether the DateTime is valid
      */
-    public static boolean isValidDateTime(String userInput) {
-        return userInput.split("/")[1].split(" ").length > 1;
+    public static boolean isInvalidDateTime(String userInput) {
+        String[] words = userInput.split("/");
+        String[] dateTime = words[1].split(" ");
+        return dateTime.length <= 1;
+    }
+
+    public static void isInvalidInput(String input) throws DukeException {
+        if (isInvalidDescription(input)) {
+            throw new DukeException("OOPS!!! The description of a duke.Event cannot be empty.");
+        } else if (Parser.isInvalidDateTime(input)) {
+            throw new DukeException("OOPS!!! The time and date of the duke.Event cannot be empty.");
+        }
     }
 }
