@@ -7,6 +7,7 @@ import java.time.LocalDate;
  * the user specified that needs to be done.
  */
 public class ToDo extends Task {
+
     /**
      * Constructs a ToDo object.
      *

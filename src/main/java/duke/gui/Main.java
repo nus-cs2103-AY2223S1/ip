@@ -2,15 +2,15 @@ package duke.gui;
 
 import java.io.IOException;
 
-
-
+import duke.Duke;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import duke.Duke;
+
+
 /**
  * A GUI for Duke using FXML.
  */
@@ -18,6 +18,9 @@ public class Main extends Application {
 
     private Duke duke = new Duke();
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void start(Stage stage) {
         try {

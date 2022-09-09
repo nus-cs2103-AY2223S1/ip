@@ -2,6 +2,7 @@ package duke.task;
 
 import java.time.LocalDate;
 
+
 /**
  * The Task class represents a task
  * added to the storage.
@@ -12,6 +13,7 @@ public abstract class Task {
     private Boolean isDone;
 
 
+
     /**
      * Construct a Task object.
      * @param description description for Task.
@@ -20,6 +22,7 @@ public abstract class Task {
         this.isDone = false;
         this.description = description;
     }
+
 
     /**
      * Mark the task as done.
@@ -67,4 +70,13 @@ public abstract class Task {
     public String toString() {
         return "[" + getStatusIcon() + "] " + this.description;
     }
+
+    /**
+     * Compare date between tasks.
+     * @param date Specified date of task.
+     * @return true only if both task on the same date.
+     */
+    public abstract boolean compareDate(LocalDate date);
+
+
 }
