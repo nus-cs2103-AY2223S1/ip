@@ -22,6 +22,6 @@ public class DateTimeParserTest {
     @Test
     public void testChangeDateTimeFormat() {
         assertEquals("15-Sep-2022 06:54 AM",
-                DateTimeParser.changeDateTimeFormat(LocalDateTime.of(2022, 9, 15, 6, 54)));
+                DateTimeParser.getReadingLocalDateTimeString(LocalDateTime.of(2022, 9, 15, 6, 54)));
     }
 }

@@ -10,12 +10,15 @@ import java.time.format.DateTimeFormatter;
  * LocalDateTime with an appropriate format.
  */
 public class DateTimeParser {
+    public static final String DATE_TIME_READING_FORMAT = "d-MMM-yyyy hh:mm a";
+    public static final String DATE_TIME_PARSING_FORMAT = "MMM d yyyy hh:mm a";
     private static DateTimeFormatter parsingDateTimeFormatter = java.time.format
-            .DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a");
+            .DateTimeFormatter.ofPattern(DATE_TIME_PARSING_FORMAT);
+    public static final String DATE_PARSING_FORMAT = "MMM d yyyy";
     private static DateTimeFormatter parsingDateFormatter = java.time.format
-            .DateTimeFormatter.ofPattern("MMM d yyyy");
+            .DateTimeFormatter.ofPattern(DATE_PARSING_FORMAT);
     private static DateTimeFormatter readingFormatter = java.time.format
-            .DateTimeFormatter.ofPattern("d-MMM-yyyy hh:mm a");
+            .DateTimeFormatter.ofPattern(DATE_TIME_READING_FORMAT);
 
     /**
      * Returns the LocalDateTime parsed from the input String.
@@ -57,7 +60,7 @@ public class DateTimeParser {
      * @param localDateTime to be reformatted.
      * @return the reformatted String of the LocalDateTime.
      */
-    public static String changeDateTimeFormat(LocalDateTime localDateTime) {
-        return localDateTime.format(DateTimeFormatter.ofPattern("d-MMM-yyyy hh:mm a"));
+    public static String getReadingLocalDateTimeString(LocalDateTime localDateTime) {
+        return localDateTime.format(DateTimeFormatter.ofPattern(DATE_TIME_READING_FORMAT));
     }
 }

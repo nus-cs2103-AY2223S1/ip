@@ -33,7 +33,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + DateTimeParser.changeDateTimeFormat(deadlineDateTime) + ")";
+        return "[D]" + super.toString() + " (by: " + DateTimeParser.getReadingLocalDateTimeString(deadlineDateTime) + ")";
     }
 
     public String getCommandLineFormatDateTime() {
@@ -41,7 +41,7 @@ public class Deadline extends Task {
     }
 
     public String getOutputFormatDateTime() {
-        return DateTimeParser.changeDateTimeFormat(deadlineDateTime);
+        return DateTimeParser.getReadingLocalDateTimeString(deadlineDateTime);
     }
 
     public String getLocalDateTimeString() {

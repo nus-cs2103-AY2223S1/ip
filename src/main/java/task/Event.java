@@ -34,7 +34,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + DateTimeParser.changeDateTimeFormat(eventDateTime) + ")";
+        return "[E]" + super.toString() + " (at: " + DateTimeParser.getReadingLocalDateTimeString(eventDateTime) + ")";
     }
 
     public String getCommandLineFormatDateTime() {
@@ -42,7 +42,7 @@ public class Event extends Task {
     }
 
     public String getOutputFormatDateTime() {
-        return DateTimeParser.changeDateTimeFormat(eventDateTime);
+        return DateTimeParser.getReadingLocalDateTimeString(eventDateTime);
     }
 
     public String getLocalDateTimeString() {

@@ -14,16 +14,40 @@ import task.TaskList;
  * output to the user.
  */
 public class Ui {
-    private Image uncleCheong = new Image(this.getClass().getResourceAsStream("/images/unclecheong.jpeg"));
+    public static final String GREETING = "Eh hello, my name is Uncle Cheong."
+            + "\nWhat you want?\n";
+    public static final String GOODBYE_MESSAGE = "Eh you leaving me so soon?\n";
+    public static final String ERROR_MESSAGE_PREFIX = "Eh something went wrong! ";
+    public static final String TASK_ADDED_MESSAGE = "Swee lah! I added this task liao:\n";
+    public static final String TASK_DELETED_MESSAGE = "Okay boss, this task I delete le:\n";
+    public static final String UNMARK_TASK_MESSAGE = "Eh? Not done yet? Okay I change liao: \n";
+    public static final String SCHEDULE_MESSAGE_PREFIX = "Here are your tasks at ";
+    public static final String EMPTY_SCHEDULE_MESSAGE = "You have no tasks scheduled on ";
+    public static final String TASK_COUNT_MESSAGE_PREFIX = "Boss, you got ";
+    public static final String TASK_COUNT_MESSAGE_SUFFIX = " tasks now\n";
+    public static final String NEXT_LINE_STRING = "\n";
+    public static final String DOT_INDICATOR = ". ";
+    private Image uncleCheongImage = new Image(this.getClass().getResourceAsStream("/images/unclecheong.jpeg"));
+    private Image errorImage = new Image(this.getClass().getResourceAsStream("/images/error.png"));
 
     private void appendUncleCheongResponseWithoutUserInput(String response, VBox dialogContainer) {
         dialogContainer.getChildren().add(DialogBox.getUncleCheongDialog(
-               response, uncleCheong));
+               response, uncleCheongImage));
     }
 
     private void appendUncleCheongResponseAndUserInput(String response, VBox dialogContainer, DialogBox userDialog) {
         dialogContainer.getChildren().addAll(userDialog, DialogBox.getUncleCheongDialog(
-                response, uncleCheong));
+                response, uncleCheongImage));
+    }
+
+    private void appendErrorResponseWithoutUserInput(String response, VBox dialogContainer) {
+        dialogContainer.getChildren().add(DialogBox.getUncleCheongErrorDialog(
+                response, errorImage));
+    }
+
+    private void appendErrorResponseAndUserInput(String response, VBox dialogContainer, DialogBox userDialog) {
+        dialogContainer.getChildren().addAll(userDialog, DialogBox.getUncleCheongErrorDialog(
+                response, errorImage));
     }
 
     /**
@@ -32,8 +56,7 @@ public class Ui {
      * @param dialogContainer VBox to add the greeting text to.
      */
     public void greet(VBox dialogContainer) {
-        appendUncleCheongResponseWithoutUserInput("Eh hello, my name is Uncle Cheong."
-                + "\nWhat you want?\n", dialogContainer);
+        appendUncleCheongResponseWithoutUserInput(GREETING, dialogContainer);
     }
 
     /**
@@ -42,7 +65,7 @@ public class Ui {
      * @param dialogContainer VBox to add the goodbye text to.
      */
     public void sayGoodbye(VBox dialogContainer, DialogBox userDialog) {
-        appendUncleCheongResponseAndUserInput("Eh you leaving me so soon?\n", dialogContainer, userDialog);
+        appendUncleCheongResponseAndUserInput(GOODBYE_MESSAGE, dialogContainer, userDialog);
     }
 
     /**
@@ -54,7 +77,7 @@ public class Ui {
      * @param userDialog contains the user's dialog to be added to the VBox.
      */
     public void sayErrorMessageWithUserInput(String error, VBox dialogContainer, DialogBox userDialog) {
-        appendUncleCheongResponseAndUserInput("Eh something went wrong! " + error, dialogContainer, userDialog);
+        appendErrorResponseAndUserInput(ERROR_MESSAGE_PREFIX + error, dialogContainer, userDialog);
     }
 
     /**
@@ -64,8 +87,7 @@ public class Ui {
      * @param dialogContainer VBox to add the error text to.
      */
     public void sayErrorMessageWithoutUserInput(String error, VBox dialogContainer) {
-        dialogContainer.getChildren().add(DialogBox.getUncleCheongDialog(
-                "Eh something went wrong! " + error, uncleCheong));
+        appendErrorResponseWithoutUserInput(ERROR_MESSAGE_PREFIX + error, dialogContainer);
     }
 
     /**
@@ -84,12 +106,12 @@ public class Ui {
         StringBuilder stringBuilder = new StringBuilder();
         int numberOfTasks = tasks.getSize();
         if (numberOfTasks > 0) {
-            stringBuilder.append(notEmptyMessage + "\n");
+            stringBuilder.append(notEmptyMessage + NEXT_LINE_STRING);
             for (int i = 0; i < numberOfTasks; i++) {
-                stringBuilder.append(i + 1 + ". " + tasks.taskStringAtIndex(i) + "\n");
+                stringBuilder.append(i + 1 + DOT_INDICATOR + tasks.taskStringAtIndex(i) + NEXT_LINE_STRING);
             }
         } else if (numberOfTasks == 0) {
-            stringBuilder.append(emptyMessage + "\n");
+            stringBuilder.append(emptyMessage + NEXT_LINE_STRING);
         }
         appendUncleCheongResponseAndUserInput(stringBuilder.toString(), dialogContainer, userDialog);
     }
@@ -101,8 +123,8 @@ public class Ui {
      * @param dialogContainer VBox to add the number of tasks text to.
      */
     public void printTaskCountMessage(TaskList tasks, VBox dialogContainer) {
-        appendUncleCheongResponseWithoutUserInput("Boss, you got "
-                + tasks.getSize() + " tasks now\n", dialogContainer);
+        appendUncleCheongResponseWithoutUserInput(TASK_COUNT_MESSAGE_PREFIX
+                + tasks.getSize() + TASK_COUNT_MESSAGE_SUFFIX, dialogContainer);
     }
 
     /**
@@ -113,8 +135,8 @@ public class Ui {
      * @param userDialog contains the user's dialog to be added to the VBox.
      */
     public void printAddedTaskMessage(Task task, VBox dialogContainer, DialogBox userDialog) {
-        appendUncleCheongResponseAndUserInput("Swee lah! I added this task liao:\n"
-                + task + "\n", dialogContainer, userDialog);
+        appendUncleCheongResponseAndUserInput(TASK_ADDED_MESSAGE
+                + task + NEXT_LINE_STRING, dialogContainer, userDialog);
     }
 
     /**
@@ -125,8 +147,8 @@ public class Ui {
      * @param userDialog contains the user's dialog to be added to the VBox.
      */
     public void printDeletedTaskMessage(Task task, VBox dialogContainer, DialogBox userDialog) {
-        appendUncleCheongResponseAndUserInput("Okay boss, this task I delete le:\n"
-                + task + "\n", dialogContainer, userDialog);
+        appendUncleCheongResponseAndUserInput(TASK_DELETED_MESSAGE
+                + task + NEXT_LINE_STRING, dialogContainer, userDialog);
     }
 
     /**
@@ -137,7 +159,7 @@ public class Ui {
      * @param userDialog contains the user's dialog to be added to the VBox.
      */
     public void printMarkedMessage(Task task, VBox dialogContainer, DialogBox userDialog) {
-        appendUncleCheongResponseAndUserInput("Swee lah! Your task done liao: \n"
+        appendUncleCheongResponseAndUserInput(TASK_ADDED_MESSAGE
                 + task, dialogContainer, userDialog);
     }
 
@@ -149,7 +171,7 @@ public class Ui {
      * @param userDialog contains the user's dialog to be added to the VBox.
      */
     public void printUnmarkedMessage(Task task, VBox dialogContainer, DialogBox userDialog) {
-        appendUncleCheongResponseAndUserInput("Eh? Not done yet? Okay I change liao: \n"
+        appendUncleCheongResponseAndUserInput(UNMARK_TASK_MESSAGE
                 + task, dialogContainer, userDialog);
     }
 
@@ -165,12 +187,12 @@ public class Ui {
         StringBuilder stringBuilder = new StringBuilder();
         int numberOfTasks = tasks.getSize();
         if (numberOfTasks > 0) {
-            stringBuilder.append("Here are your tasks at " + date + "\n");
+            stringBuilder.append(SCHEDULE_MESSAGE_PREFIX + date + NEXT_LINE_STRING);
             for (int i = 0; i < numberOfTasks; i++) {
-                stringBuilder.append(i + 1 + ". " + tasks.taskStringAtIndex(i) + "\n");
+                stringBuilder.append(i + 1 + DOT_INDICATOR + tasks.taskStringAtIndex(i) + NEXT_LINE_STRING);
             }
         } else if (numberOfTasks == 0) {
-            stringBuilder.append("You have no tasks scheduled on " + date + "\n");
+            stringBuilder.append(EMPTY_SCHEDULE_MESSAGE + date + NEXT_LINE_STRING);
         }
         appendUncleCheongResponseAndUserInput(stringBuilder.toString(), dialogContainer, userDialog);
     }

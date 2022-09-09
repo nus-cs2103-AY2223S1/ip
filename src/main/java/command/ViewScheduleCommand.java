@@ -6,9 +6,9 @@ import java.time.format.DateTimeParseException;
 import exception.DukeException;
 import javafx.scene.layout.VBox;
 import parser.DateTimeParser;
-import sorter.EventSorter;
 import storage.Storage;
 import task.Event;
+import task.Task;
 import task.TaskList;
 import ui.DialogBox;
 import ui.Ui;
@@ -55,7 +55,7 @@ public class ViewScheduleCommand extends Command {
     }
 
     private TaskList getTasksAtLocalDateTime(LocalDate localDate) {
-        TaskList<Event> requiredTaskList = new TaskList();
+        TaskList requiredTaskList = new TaskList();
         int currentTaskSize = tasks.getSize();
         for (int i = 0; i < currentTaskSize; i++) {
             if (tasks.get(i) instanceof Event) {
@@ -65,10 +65,6 @@ public class ViewScheduleCommand extends Command {
                 }
             }
         }
-
-        requiredTaskList.sort(
-                new EventSorter()
-        );
         return requiredTaskList;
     }
 }

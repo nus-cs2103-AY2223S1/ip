@@ -6,12 +6,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 /**
@@ -20,6 +25,8 @@ import javafx.scene.shape.Circle;
  * an ImageView.
  */
 public class DialogBox extends HBox {
+    public static final String UNCLE_CHEONG_DIALOG_STYLE = "-fx-background-color: lightblue; -fx-background-radius: 20;";
+    public static final String ERROR_DIALOG_STYLE = "-fx-background-color: red; -fx-background-radius: 20;";
     @FXML
     private Label dialog;
     @FXML
@@ -72,6 +79,24 @@ public class DialogBox extends HBox {
         DialogBox dialogBox = new DialogBox(l, iv);
         dialogBox.flip();
         dialogBox.displayPicture.setClip(new Circle(49.5, 49.5, 35));
+        dialogBox.dialog.setStyle(UNCLE_CHEONG_DIALOG_STYLE);
+        return dialogBox;
+    }
+
+    /**
+     * Factory method to create a DialogBox object that represents Uncle Cheong's error
+     * dialog when the user enters an invalid command.
+     *
+     * @param l Label to be contained within the DialogBox.
+     * @param iv ImageView to be contained within the DialogBox.
+     * @return the DialogBox object that represents the Uncle Cheong's dialog.
+     */
+    public static DialogBox getUncleCheongErrorDialog(String l, Image iv) {
+        DialogBox dialogBox = new DialogBox(l, iv);
+        dialogBox.flip();
+        dialogBox.displayPicture.setClip(new Circle(49.5, 49.5, 40));
+        dialogBox.dialog.setStyle(ERROR_DIALOG_STYLE);
+        dialogBox.dialog.setTextFill(Color.WHITE);
         return dialogBox;
     }
 }

@@ -1,17 +1,14 @@
 package task;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-
-import sorter.Sorter;
 
 /**
  * <h1>TaskList class</h1>
  * A list that contains all the tasks that the user is
  * required to do.
  */
-public class TaskList <T extends Task> {
-    private ArrayList<T> tasks;
+public class TaskList {
+    private ArrayList<Task> tasks;
 
     /**
      * Creates the TaskList object with the input Task
@@ -20,7 +17,7 @@ public class TaskList <T extends Task> {
      * @param tasks ArrayList of Task objects the TaskList is
      *              to contain.
      */
-    public TaskList(ArrayList<T> tasks) {
+    public TaskList(ArrayList tasks) {
         this.tasks = tasks;
     }
 
@@ -52,7 +49,7 @@ public class TaskList <T extends Task> {
      *
      * @param task Task to be added.
      */
-    public void add(T task) {
+    public void add(Task task) {
         tasks.add(task);
     }
 
@@ -92,13 +89,5 @@ public class TaskList <T extends Task> {
             }
         }
         return false;
-    }
-
-    public void sort(Comparator <? super T> comparator) {
-        tasks.sort(comparator);
-    }
-
-    public void sort(Sorter sorter) {
-        tasks.sort(sorter.getComparator());
     }
 }
