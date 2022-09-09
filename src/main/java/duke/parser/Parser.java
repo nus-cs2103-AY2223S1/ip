@@ -5,6 +5,7 @@ import duke.commands.Command;
 import duke.commands.DeadlineCommand;
 import duke.commands.DeleteCommand;
 import duke.commands.EventCommand;
+import duke.commands.FindCommand;
 import duke.commands.IncorrectCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
@@ -23,6 +24,8 @@ import duke.tasks.Todo;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import java.util.Arrays;
 
 /**
  * Parses the input from the user to their specific commands
@@ -69,6 +72,9 @@ public class Parser {
 
         case UnmarkCommand.COMMAND_WORD:
             return prepareUnmark(arguments);
+
+        case FindCommand.COMMAND_WORD:
+            return prepareFind(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -146,7 +152,7 @@ public class Parser {
             throw new DukeEmptyDescriptionException();
         }
 
-        for (int i = 1; i < splitted.length; i++) {
+        for (int i = 0; i < splitted.length; i++) {
             if (splitted[i].equals("/by")) {
                 isSplitterFound = true;
             } else if (isSplitterFound) {
@@ -161,8 +167,8 @@ public class Parser {
         }
 
         String[] strArr = new String[2];
-        strArr[0] = description;
-        strArr[1] = by;
+        strArr[0] = description.trim();
+        strArr[1] = by.trim();
         return strArr;
     }
 
@@ -187,7 +193,7 @@ public class Parser {
             throw new DukeEmptyDescriptionException();
         }
 
-        for (int i = 1; i < splitted.length; i++) {
+        for (int i = 0; i < splitted.length; i++) {
             if (splitted[i].equals("/at")) {
                 isSplitterFound = true;
             } else if (isSplitterFound) {
@@ -202,8 +208,8 @@ public class Parser {
         }
 
         String[] strArr = new String[2];
-        strArr[0] = description;
-        strArr[1] = at;
+        strArr[0] = description.trim();
+        strArr[1] = at.trim();
         return strArr;
     }
 
@@ -256,6 +262,16 @@ public class Parser {
     }
 
     /**
+     * Prepares the arguments for initialising an Event command
+     *
+     * @param args the description for initialising an Event command
+     * @return the command of initialising an Event command
+     */
+    private Command prepareFind(String args) {
+        return new FindCommand(args.trim());
+    }
+
+    /**
      * Parses the arguments for converting a task from storage to a Task
      * instance that can be stored in the TaskList object
      *
@@ -288,16 +304,16 @@ public class Parser {
         switch(commandWord) {
 
         case TodoCommand.COMMAND_WORD:
-            t = new Todo(m.group(2));
+            t = new Todo(m.group(3).trim());
             break;
 
         case DeadlineCommand.COMMAND_WORD:
-            String[] deadlineStrArr = parseDeadlineArgument(m.group(2));
+            String[] deadlineStrArr = parseDeadlineArgument(m.group(3));
             t = new Deadline(deadlineStrArr[0], deadlineStrArr[1]);
             break;
 
         case EventCommand.COMMAND_WORD:
-            String[] eventStrArr = parseEventArgument(m.group(2));
+            String[] eventStrArr = parseEventArgument(m.group(3));
             t = new Event(eventStrArr[0], eventStrArr[1]);
             break;
 

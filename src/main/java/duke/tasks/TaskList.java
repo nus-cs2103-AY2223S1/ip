@@ -144,4 +144,34 @@ public class TaskList {
     public ArrayList<Task> toArrayList() {
         return tasks;
     }
+
+    /**
+     * Shows a list that is filtered by the keyword
+     */
+    public String showFilteredList(String keyword) {
+        ArrayList<Task> filteredList = filterList(keyword);
+        String result = changeListToString(filteredList);
+        return result;
+    }
+
+    private ArrayList<Task> filterList(String keyword) {
+        ArrayList<Task> filteredTasks = new ArrayList<>();
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).checkIfContains(keyword)) {
+                filteredTasks.add(tasks.get(i));
+            }
+        }
+        return filteredTasks;
+    }
+
+    private String changeListToString(ArrayList<? extends Task> tasks) {
+        String str = "";
+        for (int i = 0; i < tasks.size() - 1; i++) {
+            str += ((i + 1) + "." + tasks.get(i) + "\n");
+        }
+        if (tasks.size() != 0) {
+            str += (tasks.size() + "." + tasks.get(tasks.size() - 1));
+        }
+        return str;
+    }
 }
