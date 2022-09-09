@@ -50,6 +50,8 @@ public class Duke {
     }
 
     public String getWelcome() {
-        return ui.showWelcome().flush();
+        return "Hello! I'm the Knight!\n"
+                + "You can also call me Ghost if you like!\n"
+                + "What can I do for you?";
     }
 }

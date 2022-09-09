@@ -30,16 +30,6 @@ public class Ui {
     }
 
     /**
-     * Prints the welcome message.
-     */
-    public Ui showWelcome() {
-        responses.add("Hello! I'm the Knight!");
-        responses.add("You can also call me Ghost if you like!");
-        responses.add("What can I do for you?");
-        return this;
-    }
-
-    /**
      * Prints an error message to the command line.
      *
      * @param message the error message to print

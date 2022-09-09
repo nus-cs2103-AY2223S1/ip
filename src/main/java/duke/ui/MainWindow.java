@@ -38,16 +38,21 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
+    /**
+     * Sets the Duke instance for the main window.
+     * Subsequently, the welcome message is displayed.
+     *
+     * @param duke the Duke instance
+     */
     public void setDuke(Duke duke) {
         this.duke = duke;
-        dialogContainer.getChildren().add(
-                DialogBox.getDukeDialog(duke.getWelcome(), DUKE_IMAGE)
-        );
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(duke.getWelcome(), DUKE_IMAGE));
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
-     * the dialog container. Clears the user input after processing.
+     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply
+     * and then appends them to the dialog container.
+     * Clears the user input after processing.
      */
     @FXML
     private void handleUserInput() {
