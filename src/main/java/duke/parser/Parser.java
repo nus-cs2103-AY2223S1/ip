@@ -1,7 +1,7 @@
 package duke.parser;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import duke.command.AddCommand;
 import duke.command.Command;
@@ -12,6 +12,10 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
+import duke.loanbook.command.AddContactCommand;
+import duke.loanbook.command.DeleteContactCommand;
+import duke.loanbook.command.ListContactsCommand;
+import duke.loanbook.command.LoanbookCommand;
 
 /**
  * Parser class that deals with making sense of the user command.
@@ -19,13 +23,6 @@ import duke.exception.DukeException;
  * @author Elgin
  */
 public class Parser {
-    /** All valid commands. */
-    private static final ArrayList<String> VALID_COMMANDS = new ArrayList<>(Arrays.asList("bye", "list", "todo",
-            "event", "deadline", "mark", "unmark", "delete", "find"));
-
-    /** All valid commands without arguments. */
-    private static final ArrayList<String> VALID_COMMANDS_WITHOUT_ARGS = new ArrayList<>(Arrays.asList("bye", "list"));
-
     /**
      * Parses the user input and return the command that the user is demanding.
      *
@@ -34,33 +31,138 @@ public class Parser {
      * @throws DukeException If no matching command is found that Duke supports.
      */
     public static Command parse(String userInput) throws DukeException {
+        if (Parser.isWrongDukeUsage(userInput)) {
+            throw new DukeException(Parser.getErrorMessage(userInput));
+        }
+
+        // e.g. list, event, deadline, mark, delete.
+        String userCommand = Parser.getUserCommand(userInput);
+
+        // prefix of the userCommand.
+        String arguments = Parser.getArguments(userInput, userCommand);
+
+        return Parser.getTaskCommand(userCommand, arguments);
+    }
+
+    /**
+     * Parses the user input for Loanbook commands.
+     *
+     */
+    public static LoanbookCommand parseLoanbookCommand(String userInput) {
+        if (Parser.isWrongDukeUsage(userInput)) {
+            throw new DukeException(Parser.getErrorMessage(userInput));
+        }
+
+        // e.g. list, event, deadline, mark, delete.
+        String userCommand = Parser.getUserCommand(userInput);
+
+        // prefix of the userCommand.
+        String arguments = Parser.getArguments(userInput, userCommand);
+
+        return Parser.getLoanbookCommand(userCommand, arguments);
+    }
+
+    /**
+     * Checks if user is using duke commands wrongly, i.e. using commands that require
+     * arguments without arguments.
+     *
+     * @param userInput What the user has keyed in.
+     * @return True if duke command is used correctly, false otherwise.
+     */
+    private static boolean isWrongDukeUsage(String userInput) {
+        String[] invalidCommands = new String[]{
+            "todo",
+            "event",
+            "deadline",
+            "mark",
+            "unmark",
+            "find",
+            "delete",
+            "loanbook delete",
+            "loanbook add"
+        };
+
+        // Convert String array to list
+        List<String> invalidList = Arrays.asList(invalidCommands);
+
+        return invalidList.contains(userInput);
+    }
+
+    /**
+     * Gets the error message for why the user is using Duke command wrongly.
+     *
+     * @param userInput What the user has keyed in.
+     * @return String representing the error message due to wrong usage.
+     */
+    private static String getErrorMessage(String userInput) {
+        switch(userInput) {
+        case "todo":
+        case "deadline":
+        case "event":
+            return "The description of a task cannot be empty!";
+        case "mark":
+            return "Usage 'mark index'";
+        case "unmark":
+            return "Usage 'unmark index'";
+        case "delete":
+            return "Usage 'delete index'";
+        case "find":
+            return "Usage 'find title'";
+        case "loanbook":
+            return "Wrong usage of loanbook!";
+        case "loanbook add":
+            return "Usage 'loanbook add name phone amount isOwe(true/false)";
+        case "loanbook delete":
+            return "Usage 'loanbook delete name'";
+        default:
+            return "There is no error in this user input!";
+        }
+    }
+
+    /**
+     * Gets the command that the user has keyed in (e.g. deadline, list, event, mark, unmark).
+     *
+     * @param userInput What the user has keyed in.
+     * @return String representation of the command.
+     */
+    private static String getUserCommand(String userInput) {
         String[] inputWords = userInput.trim().split(" ");
 
-        if (userInput.equals("todo") || userInput.equals("deadline") || userInput.equals("event")) {
-            throw new DukeException("The description of a task cannot be empty!");
-        }
+        // Because loanbook commands are 2 words, we need to concatenate them.
+        return inputWords[0].equals("loanbook")
+                ? inputWords[0] + " " + inputWords[1]
+                : inputWords[0];
+    }
 
-        if (userInput.equals("mark")) {
-            throw new DukeException("Usage 'mark index'");
-        }
+    /**
+     * Gets the prefix after the user command (deadline, list, event, mark, unmark).
+     *
+     * @param userInput What the user has keyed in.
+     * @param userCommand The command (e.g. deadline, list, event, mark, unmark).
+     * @return String representation of the prefix of userCommand.
+     */
+    private static String getArguments(String userInput, String userCommand) {
+        return userInput.substring(userCommand.length()).trim();
+    }
 
-        if (userInput.equals("unmark")) {
-            throw new DukeException("Usage 'unmark index'");
-        }
+    /**
+     * Checks whether the command the user wants to execute is a Task command.
+     *
+     * @param userInput What the user has keyed in.
+     * @return True if it is a Task command, false otherwise.
+     */
+    public static boolean isTaskCommand(String userInput) {
+        return !Parser.getUserCommand(userInput).startsWith("loanbook");
+    }
 
-        if (userInput.equals("delete")) {
-            throw new DukeException("Usage 'delete index'");
-        }
-
-        if (userInput.equals("find")) {
-            throw new DukeException("Usage 'find title'");
-        }
-
-        String userCommand = inputWords[0];
-        String arguments = Parser.canRunWithoutArgs(inputWords[0]) || !Parser.isValidCommand(inputWords[0])
-                ? ""
-                : userInput.substring(userCommand.length() + 1);
-
+    /**
+     * Gets the Task Command that the user is trying to execute.
+     *
+     * @param userCommand The command (e.g. deadline, list, event, mark, unmark).
+     * @param arguments Prefix of the command.
+     * @return Command that can be executed to create a result.
+     */
+    public static Command getTaskCommand(String userCommand, String arguments) {
         switch (userCommand) {
         case "todo":
         case "deadline":
@@ -83,23 +185,16 @@ public class Parser {
         }
     }
 
-    /**
-     * Checks whether single line command is allowed (Depends on your declaration).
-     *
-     * @param command The command that needs to be checked whether it is allowed to run without arguments.
-     * @return True if command can run without arguments, false otherwise.
-     */
-    public static boolean canRunWithoutArgs(String command) {
-        return Parser.VALID_COMMANDS_WITHOUT_ARGS.contains(command);
-    }
-
-    /**
-     * Checks whether it is a recognized command.
-     *
-     * @param command The command to be checked for validity.
-     * @return True if command is valid, false otherwise.
-     */
-    public static boolean isValidCommand(String command) {
-        return Parser.VALID_COMMANDS.contains(command);
+    public static LoanbookCommand getLoanbookCommand(String userCommand, String arguments) {
+        switch (userCommand) {
+        case "loanbook add":
+            return new AddContactCommand(arguments.split(" "));
+        case "loanbook list":
+            return new ListContactsCommand();
+        case "loanbook delete":
+            return new DeleteContactCommand(arguments);
+        default:
+            throw new DukeException("I'm sorry, I don't understand what that means :-(");
+        }
     }
 }

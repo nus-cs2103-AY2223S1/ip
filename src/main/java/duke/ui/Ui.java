@@ -117,4 +117,22 @@ public class Ui {
     public static String getSearchResultsMsg(String searchResults) {
         return "Here are the matching tasks in your list:\n" + searchResults;
     }
+
+    public static String getContactAddedMsg(String addedContact) {
+        return "Yes sir! I have added " + addedContact + " into the loanbook";
+    }
+
+    public static String getLoanbookContacts(String loanbookContacts) {
+        if (loanbookContacts.isEmpty()) {
+            return "No records are found in the loanbook...";
+        }
+
+        return "These are all the results! It is very accurate\n"
+                + loanbookContacts;
+    }
+
+    public static String getContactDeletedMsg(String nameToRemove) {
+        return "Alright! I've just removed this contact: \n"
+                + nameToRemove;
+    }
 }
