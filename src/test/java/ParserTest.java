@@ -8,7 +8,7 @@ import duke.DukeException;
 import duke.Parser;
 import duke.command.Command;
 import duke.command.ExitCommand;
-import duke.command.ListCommand;
+import duke.command.ListTaskCommand;
 
 public class ParserTest {
     @Test
@@ -24,6 +24,6 @@ public class ParserTest {
             fail(e.getMessage());
         }
         assertEquals(ExitCommand.of(), c1);
-        assertEquals(ListCommand.of(), c2);
+        assertEquals(ListTaskCommand.of(), c2);
     }
 }

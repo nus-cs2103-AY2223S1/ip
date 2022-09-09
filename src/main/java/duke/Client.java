@@ -15,10 +15,21 @@ public class Client {
         return this.phoneNumber == phoneNumber;
     }
 
+    public void changePhoneNumber(int newNumber) {
+        this.phoneNumber = newNumber;
+    }
+
+    public void changeAddress(String newAddress) {
+        this.address = newAddress;
+    }
     @Override
     public String toString() {
         return "Name: " + name + "\n" +
                 "Phone Number: " + phoneNumber + "\n" +
-                "Address: " + address + "\n";
+                "Address: " + address;
+    }
+
+    public String toSaveString() {
+        return name + " " + phoneNumber + " " + address;
     }
 }

@@ -35,4 +35,12 @@ public class ClientList {
         }
         return output.toString();
     }
+
+    public String toSaveString() {
+        StringBuilder output = new StringBuilder();
+        for(Client client: clientList) {
+            output.append(client.toSaveString()).append("\n");
+        }
+        return output.toString();
+    }
 }

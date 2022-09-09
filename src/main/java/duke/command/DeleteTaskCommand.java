@@ -3,7 +3,7 @@ package duke.command;
 import duke.ClientList;
 import duke.DukeException;
 import duke.Storage;
-import duke.TaskList;
+import duke.task.TaskList;
 import duke.task.Task;
 
 /**
@@ -30,7 +30,7 @@ public class DeleteTaskCommand extends Command {
      * @return
      */
     @Override
-    public String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage, ClientList clientList) throws DukeException {
+    public String execute(TaskList taskList, Storage storage, ClientList clientList) throws DukeException {
         Task deletedTask;
         try {
             deletedTask = taskList.get(index);
@@ -38,7 +38,7 @@ public class DeleteTaskCommand extends Command {
             throw new DukeException(String.format("Index %s does not exist on the list.", index + 1));
         }
         taskList.delete(index);
-        new SaveCommand().execute(taskList, commandOutputs, storage, clientList);
-        return commandOutputs.showDelete(taskList, deletedTask);
+        new SaveTaskListCommand().execute(taskList, storage, clientList);
+        return CommandOutputs.showDelete(taskList, deletedTask);
     }
 }

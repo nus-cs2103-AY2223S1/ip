@@ -30,7 +30,7 @@ public class Parser {
         case bye:
             return ExitCommand.of();
         case list:
-            return ListCommand.of();
+            throw new DukeException("List out clients or tasks?");
         case mark:
         case unmark:
             throw new DukeException(String.format("Choose which index to %s.", input));
@@ -52,6 +52,8 @@ public class Parser {
     private static Command parseMultipleWords(String instruction, String info) throws DukeException {
         Instructions instructionInput = convertToInstruction(instruction);
         switch (instructionInput) {
+        case list:
+            return parseList(info);
         case delete:
             return parseDelete(info);
         case mark:
@@ -146,6 +148,10 @@ public class Parser {
         return new AddClientCommand(name, number, address);
     }
 
+    private static Command parseList(String info) {
+        return info.equals("task") ? ListTaskCommand.of() : ListClientCommand.of();
+    }
+
     /**
      * Interprets information from saved file and returns the command to add the task on the line.
      *
@@ -153,29 +159,35 @@ public class Parser {
      * @return specific command to execute.
      * @throws DukeException If the file format is incorrect.
      */
-    public static Command parseSavedInput(String input) throws DukeException {
+    public static Command parseSavedTaskList(String input) throws DukeException {
         //Saved input is in the format: Instruction int(indicating mark) task etc.
-        String[] inputSplit = input.split(" ", 2);
+        String[] inputSplit = input.split(" ", 3);
         String instruction = inputSplit[0];
-        String information = inputSplit[1];
-        String[] infoSplit = information.split(" ", 2);
-        boolean done = infoSplit[0].equals("1");
-        String task = infoSplit[1];
+        boolean done = inputSplit[1].equals("1");
+        String task = inputSplit[2];
         switch (Instructions.valueOf(instruction)) {
         case todo:
-            return new AddSavedInputCommand(task, done);
+            return new AddSavedTaskCommand(task, done);
         case deadline:
             String[] taskAndBy = task.split(" ", 2);
             String deadlineTask = taskAndBy[0];
             String deadlineTiming = taskAndBy[1];
-            return new AddSavedInputCommand(deadlineTask, Instructions.deadline, deadlineTiming, done);
+            return new AddSavedTaskCommand(deadlineTask, Instructions.deadline, deadlineTiming, done);
         case event:
             String[] taskAndAt = task.split(" ", 2);
             String eventTask = taskAndAt[0];
             String eventTiming = taskAndAt[1];
-            return new AddSavedInputCommand(eventTask, Instructions.event, eventTiming, done);
+            return new AddSavedTaskCommand(eventTask, Instructions.event, eventTiming, done);
         default:
             throw new DukeException("Saved file input format incorrect");
         }
+    }
+
+    public static Command parseSavedClientList(String input) throws DukeException {
+        String[] inputSplit = input.split(" ", 3);
+        String name = inputSplit[0];
+        int phoneNumber = Integer.parseInt(inputSplit[1]);
+        String address = inputSplit[2];
+        return new AddSavedClientCommand(name, phoneNumber, address);
     }
 }

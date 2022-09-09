@@ -2,6 +2,7 @@ package duke;
 
 import duke.command.Command;
 import duke.command.CommandOutputs;
+import duke.task.TaskList;
 
 
 /**
@@ -20,8 +21,6 @@ public class Duke {
 
     private final Storage storage;
     private final TaskList taskList;
-    private final CommandOutputs commandOutputs;
-
     private final ClientList clientList;
 
     /**
@@ -30,10 +29,9 @@ public class Duke {
      */
     public Duke() {
         this.taskList = new TaskList();
-        this.commandOutputs = new CommandOutputs();
         this.clientList = new ClientList();
-        this.storage = new Storage("data", "data/Duke.txt");
-        storage.startUpPullStorage(commandOutputs, taskList, clientList);
+        this.storage = new Storage("data", "data/Tasks.txt", "data/Clients.txt");
+        storage.startUpPullStorage(taskList, clientList);
     }
 
     /**
@@ -45,7 +43,7 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Command c = Parser.parseInput(input);
-            return c.execute(taskList, commandOutputs, storage, clientList);
+            return c.execute(taskList, storage, clientList);
         } catch (DukeException e) {
             return e.getMessage();
         }

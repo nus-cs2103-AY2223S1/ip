@@ -3,11 +3,11 @@ package duke.command;
 import duke.*;
 import duke.task.TaskList;
 
-public class AddClientCommand extends Command {
+public class AddSavedClientCommand extends Command {
 
     private final Client client;
 
-    public AddClientCommand(String name, int phoneNumber, String address) {
+    public AddSavedClientCommand(String name, int phoneNumber, String address) {
         this.client = new Client(name, phoneNumber, address);
     }
 
@@ -23,7 +23,6 @@ public class AddClientCommand extends Command {
     @Override
     public String execute(TaskList taskList, Storage storage, ClientList clientList) throws DukeException {
         clientList.add(client);
-        new SaveClientListCommand().execute(taskList, storage, clientList);
-        return CommandOutputs.showNewClient(client, clientList);
+        return null;
     }
 }

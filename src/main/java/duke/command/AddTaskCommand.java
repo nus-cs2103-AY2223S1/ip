@@ -1,10 +1,7 @@
 package duke.command;
 
 import duke.*;
-import duke.task.Deadlines;
-import duke.task.Events;
-import duke.task.Task;
-import duke.task.ToDos;
+import duke.task.*;
 
 /**
  * Represents a command adding a new task into task list.
@@ -44,13 +41,12 @@ public class AddTaskCommand extends Command {
      * Adds new task into task list and saves it in save file.
      *
      * @param taskList task list.
-     * @param commandOutputs user interface of program.
      * @param storage files storing task list.
      * @return String response of Duke regarding user input.
      * @throws DukeException if timing is of the wrong format.
      */
     @Override
-    public String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage, ClientList clientList) throws DukeException {
+    public String execute(TaskList taskList, Storage storage, ClientList clientList) throws DukeException {
         Task newTask;
         switch (type) {
         case todo:
@@ -66,7 +62,7 @@ public class AddTaskCommand extends Command {
             throw new DukeException("Unknown Error");
         }
         taskList.add(newTask);
-        new SaveCommand().execute(taskList, commandOutputs, storage, clientList);
-        return commandOutputs.showAdd(taskList, newTask);
+        new SaveTaskListCommand().execute(taskList, storage, clientList);
+        return CommandOutputs.showAdd(taskList, newTask);
     }
 }

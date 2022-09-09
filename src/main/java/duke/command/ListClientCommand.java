@@ -1,15 +1,22 @@
 package duke.command;
 
-import duke.*;
+import duke.ClientList;
+import duke.DukeException;
+import duke.Storage;
 import duke.task.TaskList;
 
-public class DeleteClientCommand extends Command {
-    int phoneNumber;
+public class ListClientCommand extends Command {
 
-    public DeleteClientCommand(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    private static final ListClientCommand LIST_CLIENT_COMMAND = new ListClientCommand();
+
+    /**
+     * Returns the list command.
+     *
+     * @return list command.
+     */
+    public static ListClientCommand of() {
+        return LIST_CLIENT_COMMAND;
     }
-
 
     /**
      * Runs command that will do various changes based on the command.
@@ -22,8 +29,6 @@ public class DeleteClientCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Storage storage, ClientList clientList) throws DukeException {
-        Client deletedClient = clientList.delete(phoneNumber);
-        new SaveClientListCommand().execute(taskList, storage, clientList);
-        return CommandOutputs.showDeletedClient(deletedClient);
+        return CommandOutputs.showClientList(clientList);
     }
 }

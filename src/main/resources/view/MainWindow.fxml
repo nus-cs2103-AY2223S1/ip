@@ -16,7 +16,7 @@
          </font></Button>
         <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" hvalue="1.0" prefHeight="557.0" prefWidth="400.0" vvalue="1.0" >
             <content>
-                <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="395.0" style="-fx-background-color: lightblue; -fx-background-radius: 25;"/>
+                <VBox fx:id="dialogContainer" prefHeight="552.0" maxHeight="100000" prefWidth="395.0" style="-fx-background-color: lightblue; -fx-background-radius: 25;"/>
             </content>
         </ScrollPane>
     </children>

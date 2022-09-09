@@ -1,15 +1,12 @@
 package duke.command;
 
 import duke.*;
-import duke.task.Deadlines;
-import duke.task.Events;
-import duke.task.Task;
-import duke.task.ToDos;
+import duke.task.*;
 
 /**
  * Represents a command to transfer saved file content into task list.
  */
-public class AddSavedInputCommand extends Command {
+public class AddSavedTaskCommand extends Command {
     private static final Instructions TODO_INSTRUCTION = Instructions.todo;
     private static final String TODO_TIMING = "";
     private final String task;
@@ -18,7 +15,7 @@ public class AddSavedInputCommand extends Command {
     private final boolean done;
 
     /**
-     * Constructor for AddSavedInputCommand class,
+     * Constructor for AddSavedTaskCommand class,
      * to add todo tasks.
      *
      * @param task task in String.
@@ -26,7 +23,7 @@ public class AddSavedInputCommand extends Command {
      *             true if marked.
      *             false if unmarked.
      */
-    public AddSavedInputCommand(String task, boolean done) {
+    public AddSavedTaskCommand(String task, boolean done) {
         this.task = task;
         this.type = TODO_INSTRUCTION;
         this.timing = TODO_TIMING;
@@ -34,7 +31,7 @@ public class AddSavedInputCommand extends Command {
     }
 
     /**
-     * Another Constructor for AddSavedInputCommand class,
+     * Another Constructor for AddSavedTaskCommand class,
      * to add deadline or event tasks.
      *
      * @param task task in String.
@@ -44,7 +41,7 @@ public class AddSavedInputCommand extends Command {
      *             true if marked.
      *             false if unmarked.
      */
-    public AddSavedInputCommand(String task, Instructions instruction, String timing, boolean done) {
+    public AddSavedTaskCommand(String task, Instructions instruction, String timing, boolean done) {
         this.task = task;
         this.type = instruction;
         this.timing = timing;
@@ -55,7 +52,6 @@ public class AddSavedInputCommand extends Command {
      * Adds saved task into task list.
      *
      * @param taskList task list.
-     * @param commandOutputs user interface of program.
      * @param storage files storing task list.
      *
      * @return String response of Duke regarding user input
@@ -63,7 +59,7 @@ public class AddSavedInputCommand extends Command {
      * @throws DukeException if timing is of the wrong format.
      */
     @Override
-    public String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage, ClientList clientList) throws DukeException {
+    public String execute(TaskList taskList, Storage storage, ClientList clientList) throws DukeException {
         Task savedTask;
         switch (type) {
         case todo:

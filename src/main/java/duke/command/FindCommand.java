@@ -3,7 +3,7 @@ package duke.command;
 import duke.ClientList;
 import duke.DukeException;
 import duke.Storage;
-import duke.TaskList;
+import duke.task.TaskList;
 
 /**
  * Represents a command that finds a task by searching for a keyword.
@@ -30,8 +30,8 @@ public class FindCommand extends Command {
      * @throws DukeException if keyword list is empty.
      */
     @Override
-    public String execute(TaskList taskList, CommandOutputs commandOutputs, Storage storage, ClientList clientList) throws DukeException {
+    public String execute(TaskList taskList, Storage storage, ClientList clientList) throws DukeException {
         TaskList keywordList = taskList.findKeyWord(keyword);
-        return new ListKeywordCommand().execute(keywordList, commandOutputs, storage, clientList);
+        return new ListKeywordCommand().execute(keywordList, storage, clientList);
     }
 }
