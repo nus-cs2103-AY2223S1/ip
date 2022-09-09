@@ -59,7 +59,7 @@ public class Parser {
      * Parse bye
      * @return ExitCommand
      */
-    public static Command parseByeCommand() {
+    private static Command parseByeCommand() {
         return new ExitCommand();
     }
 
@@ -67,7 +67,7 @@ public class Parser {
      * Parse list
      * @return ListCommand
      */
-    public static Command parseListCommand() {
+    private static Command parseListCommand() {
         return new ListCommand();
     }
 
@@ -77,7 +77,7 @@ public class Parser {
      * @return MarkCommand
      * @throws FredException
      */
-    public static Command parseMarkCommand(String command) throws FredException {
+    private static Command parseMarkCommand(String command) throws FredException {
         if (command.trim().equals("mark")) {
             throw new FredException("The input of mark cannot be empty!");
         }
@@ -101,7 +101,7 @@ public class Parser {
      * @return UnmarkCommand
      * @throws FredException
      */
-    public static Command parseUnmarkCommand(String command) throws FredException {
+    private static Command parseUnmarkCommand(String command) throws FredException {
         if (command.trim().equals("unmark")) {
             throw new FredException("The input of unmark cannot be empty!");
         }
@@ -125,7 +125,7 @@ public class Parser {
      * @return AddCommand for ToDo
      * @throws FredException
      */
-    public static Command parseTodoCommand(String command) throws FredException {
+    private static Command parseTodoCommand(String command) throws FredException {
         if (command.trim().equals("todo")) {
             throw new FredException("The description of a todo cannot be empty.");
         }
@@ -142,7 +142,7 @@ public class Parser {
      * @return AddCommand for Event
      * @throws FredException
      */
-    public static Command parseEventCommand(String command) throws FredException {
+    private static Command parseEventCommand(String command) throws FredException {
         if (command.trim().equals("event")) {
             throw new FredException("The description of a event cannot be empty.");
         } else if (!command.contains("/at")) {
@@ -172,7 +172,7 @@ public class Parser {
      * @return AddCommand for Deadline
      * @throws FredException
      */
-    public static Command parseDeadlineCommand(String command) throws FredException {
+    private static Command parseDeadlineCommand(String command) throws FredException {
         if (command.trim().equals("deadline")) {
             throw new FredException("The description of a deadline cannot be empty.");
         } else if (!command.contains("/by")) {
@@ -202,7 +202,7 @@ public class Parser {
      * @return DeleteCommand
      * @throws FredException
      */
-    public static Command parseDeleteCommand(String command) throws FredException {
+    private static Command parseDeleteCommand(String command) throws FredException {
         if (command.trim().equals("delete")) {
             throw new FredException("The input of delete cannot be empty!");
         }
@@ -225,7 +225,7 @@ public class Parser {
      * @return SaveCommand
      * @throws FredException
      */
-    public static Command parseSaveCommand() throws FredException {
+    private static Command parseSaveCommand() throws FredException {
         return new SaveCommand();
     }
 
@@ -235,7 +235,7 @@ public class Parser {
      * @return FindCommand
      * @throws FredException
      */
-    public static Command parseFindCommand(String command) throws FredException {
+    private static Command parseFindCommand(String command) throws FredException {
         if (command.trim().equals("find")) {
             throw new FredException("The input of find cannot be empty!");
         }
