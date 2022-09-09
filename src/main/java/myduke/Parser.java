@@ -8,6 +8,7 @@ import command.Command;
 import command.DeleteCommand;
 import command.ExitCommand;
 import command.FindCommand;
+import command.HelpCommand;
 import command.ListCommand;
 import command.MarkCommand;
 import command.UnMarkCommand;
@@ -36,6 +37,8 @@ public class Parser {
             return new ExitCommand();
         case "list":
             return new ListCommand();
+        case "help":
+            return new HelpCommand();
         case "mark":
             return getMarkCommand(description);
         case "unmark":

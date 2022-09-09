@@ -73,4 +73,28 @@ public class Ui {
         String message = tasklist.toString();
         return wrapper(message);
     }
+
+    public String getHelpPage() {
+        String message = "List of commands available to user:\n"
+                + "help : brings out the help page\n"
+                + "list : displays all tasks stored in app\n"
+                + "bye  : exits the app\n"
+                + "todo DESCRIPTION : adds a todo to the app where DESCRIPTION is what the todo is\n"
+                + "                   make sure to leave a space between todo and the description\n"
+                + "deadline DESCRIPTION /by 2022-08-30T18:00 :\n"
+                + "adds a deadline to the app, remember to separate the description and date with /by\n"
+                + "date should be entered in the ISO format, YYYY-MM-DDTHH:mm\n"
+                + "event DESCRIPTION /at DATE : \n"
+                + "adds a event to the app, description and date to be separated with '/at'\n"
+                + "DATE can be in any format\n"
+                + "mark INDEX : marks a task in the list as completed, INDEX should be a number\n"
+                + "             and refers to the index of the task\n"
+                + "unmark INDEX : marks a task in the list as not complete, INDEX should be a number\n"
+                + "               and refers to the index of the task\n"
+                + "delete INDEX : delete a task from the list, INDEX is the index of the task, it should be a number\n"
+                + "find KEYWORD : finds all tasks with the given KEYWORD, keyword is case sensitive";
+
+
+        return wrapper(message);
+    }
 }
