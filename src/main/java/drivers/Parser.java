@@ -8,9 +8,9 @@ import commands.EventCommand;
 import commands.FindCommand;
 import commands.ListUserTextCommand;
 import commands.MarkTaskCommand;
+import commands.SortCommand;
 import commands.TodoCommand;
 import commands.UnmarkTaskCommand;
-import commands.SortCommand;
 import exceptions.TumuException;
 import exceptions.UnrecognisedCommandException;
 
