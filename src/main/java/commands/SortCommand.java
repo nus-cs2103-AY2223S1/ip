@@ -4,7 +4,6 @@ import drivers.Storage;
 import drivers.TaskList;
 import drivers.Ui;
 import exceptions.TumuException;
-import tasks.Task;
 
 /**
  * Class to be executed when a sort command is issued
