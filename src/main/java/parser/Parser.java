@@ -22,7 +22,7 @@ public class Parser {
     }
 
     public String parse(TaskList taskList, String str) throws DukeException {
-        String input[] = str.split(" ");
+        String[] input = str.split(" ");
         Command c = Command.read(input[0]);
         switch (c) {
             case BYE:

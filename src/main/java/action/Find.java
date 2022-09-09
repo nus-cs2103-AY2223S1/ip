@@ -9,18 +9,22 @@ public class Find {
 
     public static String findTasks(String[] str, TaskList taskList) {
         String search = str[1];
-        String output = "";
+        StringBuilder output = new StringBuilder();
         int counter = 1;
         ArrayList<Task> listOfTasks = taskList.getTaskList();
         for (int i = 0; i < taskList.taskListSize(); i++) {
             if (listOfTasks.get(i).hasWord(search)) {
-                output = output + String.format("%d. ", counter) + listOfTasks.get(i) + "\n";
+                output.append(String.format("%d. ", counter)).append(listOfTasks.get(i)).append("\n");
                 counter++;
             }
         }
 
+
         if (output.isBlank()) {
             return "----------------------\n" + "Oops nothing fits the description :(\n"
+
+        if (output.toString().isBlank()) {
+
                     + "----------------------\n";
         } else {
             return "----------------------\n" +

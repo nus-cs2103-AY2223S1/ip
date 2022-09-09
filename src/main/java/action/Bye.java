@@ -11,7 +11,13 @@ import java.util.ArrayList;
 public class Bye {
 
     public static String bye(String[] str, TaskList taskList, File file) {
+
         assert str.length == 1 : "must be a single word";
+
+        if (str.length != 1) {
+            return "Error";
+        }
+
         ArrayList<Task> listOfActions = taskList.getTaskList();
         try {
             FileWriter writer = new FileWriter(file.getPath());
@@ -22,7 +28,11 @@ public class Bye {
         } catch (IOException e) {
             System.out.println("Oops");
         }
+
         return "hehe";
+
+        return "Goodbye hehe see u again";
+
     }
 
     @Override
