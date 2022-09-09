@@ -107,6 +107,7 @@ public class TaskList {
      * @throws BloopException If the task is not specified.
      */
     public String addTask(String input, char type) throws BloopException {
+        assert Character.toUpperCase(input.split(" ")[0].charAt(0)) == type : "Wrong type";
         Task task;
         if (type == 'T') {
            if (input.trim().length() == 4) {
