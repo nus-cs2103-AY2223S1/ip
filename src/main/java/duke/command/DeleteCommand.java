@@ -1,8 +1,7 @@
 package duke.command;
 
-import duke.Storage;
+import duke.storage.Storage;
 import duke.exceptions.DukeInvalidParameterException;
-import duke.ui.Ui;
 import duke.task.TaskList;
 
 /**
