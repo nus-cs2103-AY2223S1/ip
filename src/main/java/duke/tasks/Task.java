@@ -63,4 +63,14 @@ public abstract class Task {
             return "N|";
         }
     }
+
+    /**
+     * Checks if the task description contains the specified keyword
+     *
+     * @param keyword the keyword to be matched with the task description
+     * @return a boolean value, true if the description contains the keyword, false otherwise
+     */
+    public boolean checkIfContains(String keyword) {
+        return description.contains(keyword);
+    }
 }
