@@ -113,7 +113,7 @@ public class Parser {
     }
 
     /**
-     * parse todo
+     * Parse todo
      * @param command command string
      * @return AddCommand for ToDo
      * @throws FredException
@@ -126,7 +126,7 @@ public class Parser {
     }
 
     /**
-     * parse event
+     * Parse event
      * @param command command string
      * @return AddCommand for Event
      * @throws FredException
@@ -150,7 +150,7 @@ public class Parser {
     }
 
     /**
-     * parse deadline
+     * Parse deadline
      * @param command command string
      * @return AddCommand for Deadline
      * @throws FredException
@@ -174,7 +174,7 @@ public class Parser {
     }
 
     /**
-     * parse delete
+     * Parse delete
      * @param command command string
      * @return DeleteCommand
      * @throws FredException
@@ -195,7 +195,7 @@ public class Parser {
     }
 
     /**
-     * parse save
+     * Parse save
      * @return SaveCommand
      * @throws FredException
      */
@@ -204,7 +204,7 @@ public class Parser {
     }
 
     /**
-     * parse find
+     * Parse find
      * @param command command string
      * @return FindCommand
      * @throws FredException
