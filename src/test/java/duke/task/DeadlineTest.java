@@ -1,7 +1,11 @@
 package duke.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,6 +44,17 @@ public class DeadlineTest {
             fail("Should have thrown DeadlineException");
         } catch (DeadlineException error) {
             return;
+        }
+    }
+
+    @Test
+    public void checkIsOnGivenDate_returnAsExpected() {
+        try {
+            Deadline sampleDeadline = new Deadline("cs2102 hw", "2022-09-17");
+            assertTrue(sampleDeadline.isOnGivenDate(LocalDate.parse("2022-09-17")));
+            assertFalse(sampleDeadline.isOnGivenDate(LocalDate.parse("2022-09-16")));
+        } catch (DeadlineException error) {
+            fail("Should not have thrown any exception");
         }
     }
 }

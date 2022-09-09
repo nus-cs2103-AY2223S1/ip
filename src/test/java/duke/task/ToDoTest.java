@@ -1,6 +1,9 @@
 package duke.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,5 +18,11 @@ public class ToDoTest {
     public void createToDo_validInput_getCorrectStorageRepresentation() {
         ToDo sampleToDo = new ToDo("cs2101 op1", "presentation");
         assertEquals(sampleToDo.toStorageRepresentation(), "T| |cs2101 op1#presentation");
+    }
+
+    @Test
+    public void checkIsOnGivenDate_shouldReturnFalse() {
+        ToDo sampleToDo = new ToDo("wash clothes");
+        assertFalse(sampleToDo.isOnGivenDate(LocalDate.parse("2022-01-01")));
     }
 }
