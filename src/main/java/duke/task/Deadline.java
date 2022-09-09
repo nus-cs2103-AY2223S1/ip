@@ -2,7 +2,6 @@ package duke.task;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a task that is to be done by a certain date and time.
