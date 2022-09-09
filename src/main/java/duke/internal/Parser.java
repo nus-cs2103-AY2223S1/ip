@@ -74,6 +74,92 @@ public class Parser {
         return command.split(" ");
     }
 
+    private static ByeCommand getByeCommand() {
+        return new ByeCommand();
+    }
+
+    private static TodoCommand getTodoCommand(String[] arguments) {
+        if (arguments.length < 2) {
+            throw new DukeException("I need a description for your todo!\nUsage: todo <description>");
+        }
+        return new TodoCommand(Parser.concatenateArguments(arguments, 1));
+    }
+
+    private static DeadlineCommand getDeadlineCommand(String[] arguments) {
+        if (arguments.length < 3) {
+            throw new DukeException("I need a description and and datetime for your deadline!\n"
+                    + "Usage: deadline <description> /by <deadline>");
+        }
+        // Find the "/by" delimiter to get the two arguments.
+        int delimiter = Parser.findArgumentIndex(arguments, "/by");
+        assert delimiter > 0 : "/by should be present";
+        return new DeadlineCommand(Parser.concatenateArguments(arguments, 1, delimiter),
+                Parser.concatenateArguments(arguments, delimiter + 1)
+        );
+    }
+
+    private static EventCommand getEventCommand(String[] arguments) {
+        int delimiter;
+        if (arguments.length < 3) {
+            throw new DukeException("I need a description and and datetime for your event!\n"
+                    + "Usage: event <description> /at <datetime>");
+        }
+        delimiter = Parser.findArgumentIndex(arguments, "/at");
+        assert delimiter > 0 : "/at should be present";
+        return new EventCommand(Parser.concatenateArguments(arguments, 1, delimiter),
+                Parser.concatenateArguments(arguments, delimiter + 1)
+        );
+    }
+
+    private static ListCommand getListCommand() {
+        return new ListCommand();
+    }
+
+    private static FindCommand getFindCommand(String[] arguments) {
+        if (arguments.length < 2) {
+            throw new DukeException("I need the search term!\nUsage: find <search term>");
+        }
+        return new FindCommand(Parser.concatenateArguments(arguments, 1));
+    }
+
+    private static MarkCommand getMarkCommand(String[] arguments) {
+        if (arguments.length < 2) {
+            throw new DukeException("I need the task number!\nUsage: mark <task number>");
+        }
+        return new MarkCommand(Integer.parseInt(arguments[1]) - 1);
+    }
+
+    private static UnmarkCommand getUnmarkCommand(String[] arguments) {
+        if (arguments.length < 2) {
+            throw new DukeException("I need the task number!\nUsage: unmark <task number>");
+        }
+        return new UnmarkCommand(Integer.parseInt(arguments[1]) - 1);
+    }
+
+    private static DeleteCommand getDeleteCommand(String[] arguments) {
+        if (arguments.length < 2) {
+            throw new DukeException("I need the task number!\nUsage: delete <task number>");
+        }
+        return new DeleteCommand(Integer.parseInt(arguments[1]) - 1);
+    }
+
+    /**
+     * Returns the index of the first occurrence of a search string in an array of arguments.
+     *
+     * @param arguments the array of arguments
+     * @param query     the search string
+     * @return the index of the first occurrence of the search string
+     * @throws DukeException if the search string is not found
+     */
+    private static int findArgumentIndex(String[] arguments, String query) {
+        return IntStream.range(0, arguments.length)
+                .filter(i -> arguments[i].equals(query))
+                .findFirst()
+                .orElseThrow(() -> new DukeException(String.format("Missing argument `%s`.",
+                        query
+                )));
+    }
+
     /**
      * Parses a command from a string.
      *
@@ -87,102 +173,27 @@ public class Parser {
         }
         switch (arguments[0]) {
         case "bye":
-            return new ByeCommand();
+            return getByeCommand();
         case "todo":
-            if (arguments.length < 2) {
-                throw new DukeException(
-                        "I need a description for your todo!\nUsage: todo <description>");
-            }
-            return new TodoCommand(Parser.concatenateArguments(arguments, 1));
+            return getTodoCommand(arguments);
         case "deadline":
-            if (arguments.length < 3) {
-                throw new DukeException("I need a description and and datetime for your deadline!\n"
-                        + "Usage: deadline <description> /by <deadline>");
-            }
-            // Find the "/by" delimiter to get the two arguments.
-            int delimiter = Parser.findArgumentIndex(arguments, "/by");
-            assert delimiter > 0 : "/by should be present";
-            return new DeadlineCommand(Parser.concatenateArguments(arguments, 1, delimiter),
-                    Parser.concatenateArguments(arguments, delimiter + 1)
-            );
+            return getDeadlineCommand(arguments);
         case "event":
-            if (arguments.length < 3) {
-                throw new DukeException("I need a description and and datetime for your event!\n"
-                        + "Usage: event <description> /at <datetime>");
-            }
-            delimiter = Parser.findArgumentIndex(arguments, "/at");
-            assert delimiter > 0 : "/at should be present";
-            return new EventCommand(Parser.concatenateArguments(arguments, 1, delimiter),
-                    Parser.concatenateArguments(arguments, delimiter + 1)
-            );
+            return getEventCommand(arguments);
         case "list":
-            return new ListCommand();
+            return getListCommand();
         case "find":
-            if (arguments.length < 2) {
-                throw new DukeException("I need the search term!\nUsage: find <search term>");
-            }
-            return new FindCommand(Parser.concatenateArguments(arguments, 1));
+            return getFindCommand(arguments);
         case "mark":
-            if (arguments.length < 2) {
-                throw new DukeException("I need the task number!\nUsage: mark <task number>");
-            }
-            return new MarkCommand(Integer.parseInt(arguments[1]) - 1); // 1-indexed
+            return getMarkCommand(arguments);
         case "unmark":
-            if (arguments.length < 2) {
-                throw new DukeException("I need the task number!\nUsage: unmark <task number>");
-            }
-            return new UnmarkCommand(Integer.parseInt(arguments[1]) - 1); // 1-indexed
+            return getUnmarkCommand(arguments);
         case "delete":
-            if (arguments.length < 2) {
-                throw new DukeException("I need the task number!\nUsage: delete <task number>");
-            }
-            return new DeleteCommand(Integer.parseInt(arguments[1]) - 1);
+            return getDeleteCommand(arguments);
         case "alias":
-            return handleAliasCommands(arguments);
+            return getAliasCommand(arguments);
         default:
-            String alias = arguments[0];
-            if (!aliases.containsKey(alias)) {
-                throw new DukeException("Sorry! I didn't understand that command!");
-            }
-            String command = String.format("%s %s",
-                    aliases.get(alias),
-                    Parser.concatenateArguments(arguments, 1)
-            );
-            return parseString(command);
-        }
-    }
-
-    private Command handleAliasCommands(String[] arguments) {
-        if (arguments.length < 2) {
-            throw new DukeException(
-                    "Usage: alias [add|remove|list] [alias] [command]");
-        }
-        switch (arguments[1]) {
-        case "add":
-            if (arguments.length != 4) {
-                throw new DukeException(
-                        "Invalid number of arguments. Usage: alias add [alias] [command]");
-            }
-            return new AliasAddCommand(arguments[2], arguments[3]);
-        case "remove":
-            if (arguments.length != 3) {
-                throw new DukeException("Invalid number of arguments. Usage: alias remove [alias]");
-            }
-            return new AliasRemoveCommand(arguments[2]);
-        case "list":
-            if (arguments.length != 2) {
-                throw new DukeException("Invalid number of arguments. Usage: alias list");
-            }
-            String allAliases = this.aliases.entrySet()
-                    .stream()
-                    .map(entry -> String.format("%s = %s\n", entry.getKey(), entry.getValue()))
-                    .collect(Collectors.joining());
-            return new AliasListCommand(allAliases);
-        default:
-            throw new DukeException(String.format(
-                    "Invalid argument `%s`. Usage: alias [add|remove|list] [alias] [command]",
-                    arguments[1]
-            ));
+            return expandAliasedCommand(arguments);
         }
     }
 
@@ -231,21 +242,56 @@ public class Parser {
         return command;
     }
 
+    private Command getAliasCommand(String[] arguments) {
+        if (arguments.length < 2) {
+            throw new DukeException("Usage: alias [add|remove|list] [alias] [command]");
+        }
+        switch (arguments[1]) {
+        case "add":
+            if (arguments.length != 4) {
+                throw new DukeException(
+                        "Invalid number of arguments. Usage: alias add [alias] [command]");
+            }
+            return new AliasAddCommand(arguments[2], arguments[3]);
+        case "remove":
+            if (arguments.length != 3) {
+                throw new DukeException("Invalid number of arguments. Usage: alias remove [alias]");
+            }
+            return new AliasRemoveCommand(arguments[2]);
+        case "list":
+            if (arguments.length != 2) {
+                throw new DukeException("Invalid number of arguments. Usage: alias list");
+            }
+            String allAliases = this.aliases.entrySet()
+                    .stream()
+                    .map(entry -> String.format("%s = %s\n", entry.getKey(), entry.getValue()))
+                    .collect(Collectors.joining());
+            return new AliasListCommand(allAliases);
+        default:
+            throw new DukeException(String.format(
+                    "Invalid argument `%s`. Usage: alias [add|remove|list] [alias] [command]",
+                    arguments[1]
+            ));
+        }
+    }
+
     /**
-     * Returns the index of the first occurrence of a search string in an array of arguments.
+     * Not to be mistaken for `getAliasCommand`, which handles the `alias` commands.
+     * This method de-aliases aliased commands and returns the Command object to execute.
+     * For example, it expands `m 1` to `mark 1`.
      *
-     * @param arguments the array of arguments
-     * @param query the search string
-     * @return the index of the first occurrence of the search string
-     * @throws DukeException if the search string is not found
+     * @return the Command object to execute
      */
-    private static int findArgumentIndex(String[] arguments, String query) {
-        return IntStream.range(0, arguments.length)
-                .filter(i -> arguments[i].equals(query))
-                .findFirst()
-                .orElseThrow(() -> new DukeException(String.format("Missing argument `%s`.",
-                        query
-                )));
+    private Command expandAliasedCommand(String[] arguments) {
+        String alias = arguments[0];
+        if (!aliases.containsKey(alias)) {
+            throw new DukeException("Sorry! I didn't understand that command!");
+        }
+        String command = String.format("%s %s",
+                aliases.get(alias),
+                Parser.concatenateArguments(arguments, 1)
+        );
+        return parseString(command);
     }
 
     /**
