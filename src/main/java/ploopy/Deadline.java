@@ -12,10 +12,9 @@ public class Deadline extends Task {
 
     /**
      * {@inheritDoc}
-     * Adds string representation of date.
      */
     @Override
-    public String toString() {
-        return String.format("%s (by: %s)", super.toString(), getDate());
+    public String getDate() {
+        return String.format("(by %s)", super.getDate());
     }
 }

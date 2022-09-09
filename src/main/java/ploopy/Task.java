@@ -23,6 +23,9 @@ public abstract class Task {
     private LocalDateTime dateTime;
     /** String format of date */
     private String dateStringForm;
+    /** Priority level of task*/
+    private String priority;
+
     /**
      * Constructor that takes a name and date
      *
@@ -32,6 +35,7 @@ public abstract class Task {
     public Task(String name, String date) {
         this.name = name;
         this.done = false;
+        priority = null;
         if (date != null) {
             dateStringForm = date;
             this.dateTime = LocalDateTime.parse(date, INPUT_FORMATTER);
@@ -47,7 +51,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s]%s %s", type, getStatus(), name);
+        return String.format("[%s]%s %s %s %s", type, getStatus(), name, getDate(), getPriorityForString());
     }
 
     /**
@@ -58,7 +62,6 @@ public abstract class Task {
      * @param date Date of the task.
      * @return Created task.
      */
-
     public static Task of(String type, String name, String date) {
         if (type.equals("todo") || type.equals("T")) {
             return new ToDo(name);
@@ -130,4 +133,23 @@ public abstract class Task {
         return dateStringForm;
     }
 
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    private String getPriorityForString() {
+        if (priority == null || priority.equals("none")) {
+            return "";
+        } else {
+            return "Priority: " + priority;
+        }
+    }
+
+    public int getPriorityForFile() {
+        if (priority == null || priority.equals("none")) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
 }

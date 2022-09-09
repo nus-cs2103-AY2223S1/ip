@@ -81,51 +81,6 @@ public class TaskList {
         return TextUI.deleteTaskMessage(deletedTask, taskList.size());
     }
 
-//    /**
-//     * Creates a ToDo task and adds it to the taskList.
-//     * Prints acknowledgement and writes task to storage file.
-//     *
-//     * @param input Name of task.
-//     * @throws PloopyException If a storage file error occurs.
-//     */
-//    public String createToDo(String input) throws PloopyException {
-//        Task newTask = new ToDo(input);
-//        taskList.add(newTask);
-//        storage.writeToFile(newTask);
-//        return TextUI.addTaskMessage(newTask, taskList.size());
-//    }
-//
-//    /**
-//     * Creates a Deadline task and adds it to the taskList.
-//     * Prints acknowledgement and writes task to storage file.
-//     *
-//     * @param name Name of task.
-//     * @param date Date of task.
-//     * @throws PloopyException If a storage file error occurs.
-//     */
-//    public String createDeadline(String name, String date) throws PloopyException {
-//        Task newTask = new Deadline(name, date);
-//        taskList.add(newTask);
-//        storage.writeToFile(newTask);
-//        return TextUI.addTaskMessage(newTask, taskList.size());
-//    }
-//
-//    /**
-//     * Creates an Event task and adds it to the taskList.
-//     * Prints acknowledgement and writes task to storage file.
-//     *
-//     * @param name Name of task
-//     * @param date Date of task
-//     * @throws PloopyException If a storage file error occurs.
-//     */
-//    public String createEvent(String name, String date) throws PloopyException {
-//        Task newTask = new Event(name, date);
-//        taskList.add(newTask);
-//        storage.writeToFile(newTask);
-//        return TextUI.addTaskMessage(newTask, taskList.size());
-//    }
-
-
     public String createTask(String type, String name, String date) throws PloopyException {
         Task newTask = Task.of(type, name, date);
         taskList.add(newTask);
@@ -166,17 +121,28 @@ public class TaskList {
     /**
      * Add tasks to taskList based on data from storage file.
      *
-     * @param input Data from storage file.
+     * @param data Data from storage file.
      */
-    public void addTasksFromFile(String input) {
-        String[] inputSequence = input.split("_");
+    public void addTasksFromFile(String data) {
+        String[] inputSequence = data.split("_");
         String type = inputSequence[0];
         String name = inputSequence[2];
-        String date = inputSequence.length > 3 ? inputSequence[3] : "";
+        String date = type.equals("T") ? "" : inputSequence[3];
+        String priority = type.equals("T") ? inputSequence[3] : inputSequence[4];
         Task createdTask = Task.of(type, name, date);
         if (inputSequence[1].equals("1")) {
             createdTask.markDone();
         }
+        if (Integer.parseInt(priority) == 1) {
+            createdTask.setPriority("high");
+        }
         taskList.add(createdTask);
+    }
+
+    public String setTaskPriority(int taskNumber, String priority) throws PloopyException {
+        Task task = taskList.get(taskNumber - 1);
+        task.setPriority(priority);
+        storage.rewriteFile(taskList);
+        return TextUI.changeTaskPriority(task);
     }
 }
