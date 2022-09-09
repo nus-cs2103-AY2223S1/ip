@@ -45,7 +45,7 @@ public class Ui {
                 listStatus = listStatus.concat(String.format("%d. %s\n", i + 1,
                         taskList.getTask(i)));
             }
-            listStatus.concat(String.format("Now you have %d tasks in the list.\n",
+            listStatus = listStatus.concat(String.format("Now you have %d tasks in the list.\n",
                     taskList.getSize()));
         }
         return listStatus;
@@ -91,9 +91,8 @@ public class Ui {
      * @return Message.
      */
     public static String formatMarkAsDoneString(int index, Task task) {
-        String markAsDoneString = String.format("Nice! I've marked this task as done:\n%d. %s",
-                index + 1, task);
-        return markAsDoneString;
+        String markAsDoneString = "Nice! I've marked this task as done:";
+        return String.format(markAsDoneString + "\n%d. %s", index + 1, task);
     }
 
     /**
@@ -104,9 +103,8 @@ public class Ui {
      * @return Message.
      */
     public static String formatMarkAsUndoneString(int index, Task task) {
-        String markAsUndoneString = String.format("Ok! I've marked this task as not done yet:\n%d. %s",
-                index + 1, task);
-        return markAsUndoneString;
+        String markAsUndoneString = "Ok! I've marked this task as not done yet:";
+        return String.format(markAsUndoneString + "\n%d. %s", index + 1, task);
     }
 
     /**
@@ -117,9 +115,8 @@ public class Ui {
      * @return Message.
      */
     public static String formatDeleteTaskString(int index, Task task) {
-        String taskDeleteString = String.format("Noted. I've removed this task:\n%d. %s",
-                index + 1, task);
-        return taskDeleteString;
+        String taskDeleteString = "Noted. I've removed this task:";
+        return String.format(taskDeleteString + "\n%d. %s", index + 1, task);
     }
 
     /**

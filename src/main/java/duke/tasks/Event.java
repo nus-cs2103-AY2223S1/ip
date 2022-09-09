@@ -36,9 +36,9 @@ public class Event extends Task {
         } else {
             isDone = "X";
         }
-        String eventDataString = String.format("E | %s | %s | %s\n", isDone, super.description,
+        String eventDataFormat = "E | %s | %s | %s\n";
+        return String.format(eventDataFormat, isDone, super.description,
                 Parser.formatDateTimeToData(dateAndTime));
-        return eventDataString;
     }
 
     /**
@@ -48,8 +48,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        String event = String.format("[E]%s (at: %s)", super.toString(),
+        String eventStringFormat = "[E]%s (at: %s)";
+        return String.format(eventStringFormat, super.toString(),
                 Parser.formatDateTimeToPrint(dateAndTime));
-        return event;
     }
 }
