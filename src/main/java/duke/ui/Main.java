@@ -9,6 +9,7 @@ import duke.Duke;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -22,6 +23,8 @@ public class Main extends Application {
             "tasks.txt"
     );
     private static final Duke DUKE = new Duke(PATH);
+    private static final Image KNIGHT_IMAGE = new Image(Objects.requireNonNull(MainWindow.class.getResourceAsStream(
+            "/images/icon.png")));
     private static final String MAIN_WINDOW_FXML = "/view/MainWindow.fxml";
     private static final String FONTSTYLE_PATH = "/stylesheets/fontstyle.css";
 
@@ -36,6 +39,8 @@ public class Main extends Application {
             scene.getStylesheets().add(fontstyle);
             loader.<MainWindow>getController().setDuke(DUKE);
 
+            stage.getIcons().add(KNIGHT_IMAGE);
+            stage.setTitle("Knight");
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {

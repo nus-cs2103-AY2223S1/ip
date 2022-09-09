@@ -23,6 +23,10 @@ import duke.command.UnmarkCommand;
 /**
  * A parser object can parse a command from a string,
  * and determine which Command object should be used to execute it.
+ * 
+ * TODO: add default commands
+ * TODO: fix bye command
+ * TODO: resizability
  */
 public class Parser {
     private static final Map<String, String> DEFAULT_ALIASES = Map.of("t",
