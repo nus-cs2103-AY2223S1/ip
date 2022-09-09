@@ -1,6 +1,6 @@
 package duke.command;
 
-import duke.Storage;
+import duke.storage.Storage;
 import duke.exceptions.DukeInvalidParameterException;
 import duke.task.TaskList;
 

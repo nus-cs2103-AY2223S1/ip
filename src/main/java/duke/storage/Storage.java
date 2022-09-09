@@ -1,4 +1,4 @@
-package duke;
+package duke.storage;
 
 import duke.exceptions.DukeException;
 import duke.task.*;
@@ -9,9 +9,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import static duke.storage.StorageReader.fileLineToTask;
 
 /**
  * A class for storing and retrieving save data for Duke.
@@ -84,25 +85,6 @@ public class Storage {
             fw.close();
         } catch (IOException e) {
             throw new DukeException(e.getMessage());
-        }
-    }
-
-    /**
-     * Readings a line from the save data and converts it to a task.
-     *
-     * @param fileLine File line to be read.
-     * @return Task based on the file line.
-     */
-    public static Task fileLineToTask(String fileLine) {
-        String delimiter = " \\| ";
-        String[] strings = fileLine.split(delimiter, 4);
-        boolean isDone = strings[1].equals("1");
-        if (strings[0].equals("T")) {
-            return new ToDo(strings[2], isDone);
-        } else if (strings[0].equals("D")) {
-            return new Deadline(strings[2], isDone, LocalDate.parse(strings[3]));
-        } else {
-            return new Event(strings[2], isDone, LocalDate.parse(strings[3]));
         }
     }
 }
