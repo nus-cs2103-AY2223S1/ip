@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * The Deadline class is a subclass of Task that has a due date and an optional due time.
  */
-public class Deadline extends Task{
+public class Deadline extends Task {
     
     /**
      * Stores the due date of the Deadline task.
