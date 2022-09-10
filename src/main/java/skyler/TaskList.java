@@ -24,6 +24,7 @@ public class TaskList {
     public TaskList(Storage storage, ArrayList<Task> tasks) {
         this.storage = storage;
         this.tasks = tasks;
+        assert this.tasks != null : "ArrayList of tasks should be initialised";
     }
 
     /**
@@ -34,6 +35,7 @@ public class TaskList {
     public TaskList(Storage storage) {
         this.storage = storage;
         this.tasks = new ArrayList<>();
+        assert this.tasks != null : "ArrayList of tasks should be initialised";
     }
 
     /**

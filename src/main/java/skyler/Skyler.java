@@ -20,8 +20,13 @@ public class Skyler {
     public Skyler(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
+
+        assert this.ui != null : "UI should be initialised";
+        assert this.storage != null : "Storage should be initialised";
+
         try {
             this.taskList = new TaskList(storage, storage.load());
+            assert this.taskList != null : "TaskList should be initialised";
         } catch (SkylerException e) {
             taskList = new TaskList(storage);
         } catch (IOException e) {

@@ -19,6 +19,7 @@ public class Deadline extends Task {
     public Deadline(String description, LocalDateTime deadline) {
         super(description);
         this.deadline = deadline;
+        assert this instanceof Task : "Deadline should be a subtype  of Task";
     }
 
     /**
