@@ -24,16 +24,18 @@ public class Event extends Task {
     }
 
     /**
-     * Changes the task from undone to done and produces output in the console
-     * to let user know it has been changed.
+     * Changes the Event from undone to done.
+     *
+     * @return a String representation on details of the Event done.
      */
     public String markDone() {
         return super.markDone();
     }
 
     /**
-     * Changes the task from done to undone and produces output in the console
-     * to let user know it has been changed.
+     * Changes the Event from done to undone.
+     *
+     * @return a String representation on details of the Event undone.
      */
     public String markUndone() {
         return super.markUndone();
@@ -51,8 +53,9 @@ public class Event extends Task {
     }
 
     /**
-     * Outputs in the console to let user know full details of the event and inform
-     * the user it has been added to list of tasks.
+     * Returns a string describing the Event added to the list of tasks.
+     *
+     * @return a String representation of Event added.
      */
     @Override
     public String printAdded() {
@@ -62,7 +65,9 @@ public class Event extends Task {
     }
 
     /**
-     * Outputs in the console the details of the event.
+     * Returns a string representation of the Event.
+     *
+     * @return a String describing the Event.
      */
     @Override
     public String printTask() {
@@ -76,9 +81,9 @@ public class Event extends Task {
     }
 
     /**
-     * Returns a string representation of the duke.Event.
+     * Returns a string representation of the Event.
      *
-     * @return string describing the event.
+     * @return a String describing the Event.
      */
     @Override
     public String toString() {
@@ -108,8 +113,9 @@ public class Event extends Task {
     }
 
     /**
-     * Outputs in the console the details of the event and informs users the task
-     * has been deleted.
+     * Returns a string describing the task deleted from the list of tasks.
+     *
+     * @return a String representation of the task deleted.
      */
     @Override
     public String printDeleted() {

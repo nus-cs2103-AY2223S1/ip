@@ -14,14 +14,18 @@ public class ToDo extends Task {
     }
 
     /**
-     * Updates the duke.ToDo from incomplete to complete.
+     * Changes the task from undone to done.
+     *
+     * @return a String representation on details of the ToDo done.
      */
     public String markDone() {
         return super.markDone();
     }
 
     /**
-     * Updates the duke.ToDo from complete to incomplete.
+     * Changes the task from done to undone.
+     *
+     * @return a String representation on details of the ToDo undone.
      */
     public String markUndone() {
         return super.markUndone();
@@ -38,7 +42,9 @@ public class ToDo extends Task {
     }
 
     /**
-     * Outputs the full details of the duke.ToDo added to the console.
+     * Returns a string describing the ToDo added to the list of tasks.
+     *
+     * @return a String representation of ToDo added.
      */
     @Override
     public String printAdded() {
@@ -47,7 +53,9 @@ public class ToDo extends Task {
     }
 
     /**
-     * Outputs the full details of the duke.ToDo to the console.
+     * Returns a string on the full details of the ToDo.
+     *
+     * @return a String representation of ToDo details.
      */
     @Override
     public String printTask() {
@@ -59,9 +67,9 @@ public class ToDo extends Task {
     }
 
     /**
-     * Returns a string representation of the duke.ToDo.
+     * Returns a string representation of the ToDo.
      *
-     * @return string describing the duke.ToDo.
+     * @return a String describing the ToDo.
      */
     @Override
     public String toString() {
@@ -80,15 +88,18 @@ public class ToDo extends Task {
             return "TY<" + this.getDescription() + ">";
         }
     }
+
     /**
-     * Outputs the full details of the duke.ToDo that is deleted to the console.
+     * Returns a string describing the ToDo deleted from the list of tasks.
+     *
+     * @return a String representation of the ToDo deleted.
      */
     @Override
     public String printDeleted() {
         if (!this.getStatus()) {
-            return "\n  duke.Task deleted!\n    [T][ ] " + this.getDescription();
+            return "\n  Task deleted!\n    [T][ ] " + this.getDescription();
         } else {
-            return "\n  duke.Task deleted!\n    [T][X] " + this.getDescription();
+            return "\n  Task deleted!\n    [T][X] " + this.getDescription();
         }
     }
 
