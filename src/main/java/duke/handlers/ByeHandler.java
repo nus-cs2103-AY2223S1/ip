@@ -4,15 +4,10 @@ import static duke.services.Ui.dukePrint;
 
 public class ByeHandler {
     /**
-     * Handles the bye Duke command.
+     * Handles the BYE Duke command.
      * Quits the running Duke instance.
      **/
-    public static void handle(){
-        dukePrint("Bye. duke.Duke doesn't miss you.");
-        System.exit(0);
-    }
-
     public static String getResponse(){
-        return("Bye. duke.Duke doesn't miss you.");
+        return("Bye. Duke doesn't miss you.");
     }
 }

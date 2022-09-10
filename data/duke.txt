@@ -1,4 +1,0 @@
-[T][X] todotest
-[T][ ] testtodotset
-[E][ ] me (at: Sep 15 2000)
-[T][ ] todos1
