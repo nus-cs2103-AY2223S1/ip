@@ -21,7 +21,7 @@ public class Parser {
         } else if (command.equals("list")) {
             mainWindow.printList(tasks);
         } else if (strs.length == 2 && (strs[0].equals("mark") || strs[0].equals("unmark"))) {
-            assert java.util.regex.Pattern.matches("\\d+", strs[1]) : "The second parameter should be an integer";
+            assert java.util.regex.Pattern.matches("\\d+", strs[1]) : "The 2nd parameter should be an integer";
             int index = Integer.parseInt(strs[1]) - 1;
             assert index <= tasksSize : "the number to be deleted should be less than or equals to " + tasksSize;
             assert index > 0 : "the number to be deleted shouldn't be less than or equals to 0";
@@ -31,7 +31,7 @@ public class Parser {
                 tasks.unMarkTaskAsDone(index);
             }
         } else if (strs.length == 2 && (strs[0].equals("delete"))) {
-            assert java.util.regex.Pattern.matches("\\d+", strs[1]) : "The second parameter should be an integer";
+            assert java.util.regex.Pattern.matches("\\d+", strs[1]) : "The 2nd parameter should be an integer";
             int index = Integer.parseInt(strs[1]) - 1;
             assert index <= tasksSize : "the number to be deleted should be less than or equals to " + tasksSize;
             assert index > 0 : "the number to be deleted shouldn't be less than or equals to 0";
