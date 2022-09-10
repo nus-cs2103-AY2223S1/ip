@@ -89,14 +89,14 @@ public class Storage {
             System.out.println(e.getMessage());
             return new ArrayList<>();
         } catch (IndexOutOfBoundsException e) {
-            // input file is invalid, just start from empty list;
+            // input file is invalid, just start from empty list
             return new ArrayList<>();
         }
         return pastTasks;
     }
 
     /**
-     * Parse TaskMemo to create Task list.
+     * Parses TaskMemo to create Task list.
      *
      * @param memo The input read from Task memory file.
      * @return Task created using info from memory.

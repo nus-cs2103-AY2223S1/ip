@@ -20,7 +20,6 @@ public class Duke {
      * duke.Duke constructor.
      *
      * @param filePath filePath of file to store Task information.
-     * @param tempFilePath filePath of temporary file to store information for rewriting.
      */
     public Duke(String filePath) {
         ui = new Ui();
@@ -35,7 +34,7 @@ public class Duke {
     }
 
     /**
-     * Parse user input to String.
+     * Parses user input to String.
      *
      * @param input user input.
      * @return String of command output or error.

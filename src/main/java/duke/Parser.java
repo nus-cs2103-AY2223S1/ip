@@ -22,7 +22,7 @@ public class Parser {
     }
 
     /**
-     * Parse user input into commands.
+     * Parses user input into commands.
      *
      * @param fullCommand user inputs.
      * @return Command of task to execute.
