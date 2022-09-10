@@ -25,16 +25,16 @@ public class DeleteCommand extends Command {
     /**
      * Deletes the task from the task list and the local file based on the task index.
      *
-     * @param tasks The list of tasks in Duke.
+     * @param taskList The list of tasks in Duke.
      * @param ui The TextUi class used to print message in Duke.
      * @param storage The storage used to save the tasks in the local file.
      */
     @Override
-    public void execute(TaskList tasks, TextUi ui, Storage storage) {
-        Task task = tasks.getTask(this.taskIndex);
-        tasks.removeTask(task);
-        storage.writeAllTasksToFile(tasks);
-        ui.showRemoveTaskMessage(task, tasks);
+    public void execute(TaskList taskList, TextUi ui, Storage storage) {
+        Task task = taskList.getTask(this.taskIndex);
+        taskList.removeTask(task);
+        storage.writeAllTasksToFile(taskList);
+        ui.showRemoveTaskMessage(task, taskList);
     }
 
     @Override

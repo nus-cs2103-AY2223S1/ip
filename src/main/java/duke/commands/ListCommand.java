@@ -13,13 +13,13 @@ public class ListCommand extends Command {
     /**
      * Lists the current tasks in the task list.
      *
-     * @param tasks The list of tasks in Duke.
+     * @param taskList The list of tasks in Duke.
      * @param ui The TextUi class used to print message in Duke.
      * @param storage The storage used to save the tasks in the local file.
      */
     @Override
-    public void execute(TaskList tasks, TextUi ui, Storage storage) {
-        ui.showListTaskMessage(tasks);
+    public void execute(TaskList taskList, TextUi ui, Storage storage) {
+        ui.showListTaskMessage(taskList);
     }
 
     @Override

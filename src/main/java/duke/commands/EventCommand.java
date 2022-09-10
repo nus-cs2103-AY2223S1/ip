@@ -28,15 +28,15 @@ public class EventCommand extends Command {
     /**
      * Adds the event task to the task list and save it to the local file.
      *
-     * @param tasks The list of tasks in Duke.
+     * @param taskList The list of tasks in Duke.
      * @param ui The TextUi class used to print message in Duke.
      * @param storage The storage used to save the tasks in the local file.
      */
     @Override
-    public void execute(TaskList tasks, TextUi ui, Storage storage) {
-        tasks.addTask(this.eventTask);
+    public void execute(TaskList taskList, TextUi ui, Storage storage) {
+        taskList.addTask(this.eventTask);
         storage.appendTaskToFile(this.eventTask);
-        ui.showAddTaskMessage(this.eventTask, tasks);
+        ui.showAddTaskMessage(this.eventTask, taskList);
     }
 
     @Override

@@ -107,14 +107,14 @@ public class Storage {
     /**
      * Overwrites the tasks in the file with the given tasks.
      *
-     * @param tasks The given tasks to be written to the file.
+     * @param taskList The given list of tasks to be written to the file.
      * @throws DukeException If the file is missing or unable to write to the file.
      */
-    public void writeAllTasksToFile(TaskList tasks) throws DukeException {
+    public void writeAllTasksToFile(TaskList taskList) throws DukeException {
         try {
             List<String> list = new ArrayList<>();
-            for (int i = 0; i < tasks.size(); i++) {
-                Task task = tasks.getTask(i);
+            for (int i = 0; i < taskList.size(); i++) {
+                Task task = taskList.getTask(i);
                 list.add(encodeTaskToString(task));
             }
             Files.write(FILE_PATH, list);

@@ -73,12 +73,12 @@ public class TextUi {
      * Prints the success message after a task is added.
      *
      * @param task The task to be added.
-     * @param tasks The list of tasks that the task is adding to.
+     * @param taskList The list of tasks that the task is adding to.
      */
-    public void showAddTaskMessage(Task task, TaskList tasks) {
-        String message =  "Got it. I've added this duke.task:\n" +
+    public void showAddTaskMessage(Task task, TaskList taskList) {
+        String message =  "Got it. I've added this task:\n" +
                 "  " + task + "\n" +
-                "Now you have " + tasks.size() + " duke.task(s) in the list.\n";
+                "Now you have " + taskList.size() + " task(s) in the list.\n";
 
         printTextWithDivider(message);
     }
@@ -100,7 +100,7 @@ public class TextUi {
      * @param task The task to be marked as undone.
      */
     public void showUnmarkTaskMessage(Task task) {
-        String message = "Ok, I've marked this duke.task as not done yet:\n" +
+        String message = "Ok, I've marked this task as not done yet:\n" +
                     task + "\n";
         printTextWithDivider(message);
     }
@@ -109,12 +109,12 @@ public class TextUi {
      * Prints the success message after a task is removed from the task list.
      *
      * @param task The task to be removed.
-     * @param tasks The task list that the task is being removed from.
+     * @param taskList The task list that the task is being removed from.
      */
-    public void showRemoveTaskMessage(Task task, TaskList tasks) {
-        String message = "Noted. I've removed this duke.task:\n" +
+    public void showRemoveTaskMessage(Task task, TaskList taskList) {
+        String message = "Noted. I've removed this task:\n" +
                 "  " + task + "\n" +
-                "Now you have " + tasks.size() + " duke.task(s) in the list.\n";
+                "Now you have " + taskList.size() + " task(s) in the list.\n";
         printTextWithDivider(message);
     }
 

@@ -25,15 +25,15 @@ public class MarkCommand extends Command {
     /**
      * Marks the task as done and updates the local file.
      *
-     * @param tasks The list of tasks in Duke.
+     * @param taskList The list of tasks in Duke.
      * @param ui The TextUi class used to print message in Duke.
      * @param storage The storage used to save the tasks in the local file.
      */
     @Override
-    public void execute(TaskList tasks, TextUi ui, Storage storage) {
-        Task task = tasks.getTask(taskIndex);
+    public void execute(TaskList taskList, TextUi ui, Storage storage) {
+        Task task = taskList.getTask(taskIndex);
         task.markAsDone();
-        storage.writeAllTasksToFile(tasks);
+        storage.writeAllTasksToFile(taskList);
         ui.showMarkTaskMessage(task);
     }
 

@@ -25,15 +25,15 @@ public class UnmarkCommand extends Command {
     /**
      * Marks the task as undone and updates the local file.
      *
-     * @param tasks The list of tasks in Duke.
+     * @param taskList The list of tasks in Duke.
      * @param ui The TextUi used to print message in Duke.
      * @param storage The storage used to save the tasks in the local file.
      */
     @Override
-    public void execute(TaskList tasks, TextUi ui, Storage storage) {
-        Task task = tasks.getTask(this.taskIndex);
+    public void execute(TaskList taskList, TextUi ui, Storage storage) {
+        Task task = taskList.getTask(this.taskIndex);
         task.maskUndone();
-        storage.writeAllTasksToFile(tasks);
+        storage.writeAllTasksToFile(taskList);
         ui.showUnmarkTaskMessage(task);
     }
 

@@ -12,7 +12,7 @@ import duke.ui.TextUi;
  */
 public class Duke {
     private Storage storage;
-    private TaskList tasks;
+    private TaskList taskList;
     private TextUi ui;
 
     /**
@@ -22,10 +22,10 @@ public class Duke {
         this.ui = new TextUi();
         this.storage = new Storage();
         try {
-            this.tasks = new TaskList(storage.loadTasks());
+            this.taskList = new TaskList(storage.loadTasks());
         } catch (DukeException e) {
             this.ui.showLoadingError();
-            this.tasks = new TaskList();
+            this.taskList = new TaskList();
         }
     }
 
@@ -39,7 +39,7 @@ public class Duke {
             try {
                 String fullCommand = this.ui.readUserInput();
                 Command c = Parser.parse(fullCommand);
-                c.execute(this.tasks, this.ui, this.storage);
+                c.execute(this.taskList, this.ui, this.storage);
                 isExit = c.isExit();
             } catch (DukeException e) {
                 this.ui.printTextWithDivider(e.getMessage());

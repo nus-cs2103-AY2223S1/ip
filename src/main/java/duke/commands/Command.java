@@ -11,11 +11,11 @@ public abstract class Command {
     /**
      * Executes the command.
      *
-     * @param tasks The list of tasks in Duke.
+     * @param taskList The list of tasks in Duke.
      * @param ui The TextUi class used to print message in Duke.
      * @param storage The storage used to save the tasks in the local file.
      */
-    public abstract void execute(TaskList tasks, TextUi ui, Storage storage);
+    public abstract void execute(TaskList taskList, TextUi ui, Storage storage);
 
     /**
      * Indicates whether Duke should terminate after the command is executed.

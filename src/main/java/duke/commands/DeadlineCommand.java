@@ -28,15 +28,15 @@ public class DeadlineCommand extends Command {
     /**
      * Adds the deadline task to the task list and save it to the file.
      *
-     * @param tasks The list of tasks in Duke.
+     * @param taskList The list of tasks in Duke.
      * @param ui The TextUi class used to print message in Duke.
      * @param storage The storage used to save the tasks in the local file.
      */
     @Override
-    public void execute(TaskList tasks, TextUi ui, Storage storage) {
-        tasks.addTask(this.deadlineTask);
+    public void execute(TaskList taskList, TextUi ui, Storage storage) {
+        taskList.addTask(this.deadlineTask);
         storage.appendTaskToFile(this.deadlineTask);
-        ui.showAddTaskMessage(this.deadlineTask, tasks);
+        ui.showAddTaskMessage(this.deadlineTask, taskList);
     }
 
     @Override
