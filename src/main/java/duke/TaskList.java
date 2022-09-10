@@ -60,14 +60,9 @@ public class TaskList {
      * @return returns a string of all tasks in the TaskList
      */
     public String getAllTasks() {
-        String result = "";
-        ListIterator<Task> listIterator = tasks.listIterator();
-        while (listIterator.hasNext()) {
-            Task t = listIterator.next();
-            result += listIterator.nextIndex()
-                    + ". " + t + "\n";
-        }
-        return result;
+        StringBuilder sb = new StringBuilder();
+        tasks.forEach(task -> sb.append(task).append("\n"));
+        return sb.toString();
     }
 
     /**
