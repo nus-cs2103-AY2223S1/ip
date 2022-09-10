@@ -82,7 +82,7 @@ public abstract class Task {
      * @param queries The keywords queried.
      * @return The boolean value of whether the description contains any keyword.
      */
-    public boolean isQueriesPresent(String[] queries) {
+    public boolean isQueriesPresent(String ... queries) {
         for (String query : queries) {
             if (this.description.contains(query)) {
                 return true;
