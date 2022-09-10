@@ -2,9 +2,9 @@ package tuna.command;
 
 import java.util.Arrays;
 
-import tuna.Storage;
-import tuna.TaskList;
-import tuna.Ui;
+import tuna.utility.Storage;
+import tuna.utility.TaskList;
+import tuna.utility.Ui;
 
 /**
  * Represents an add Todo Task command. An AddTodoCommand object contains the task description.

@@ -1,4 +1,4 @@
-package tuna;
+package tuna.utility;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

@@ -1,9 +1,10 @@
-package tuna;
+package tuna.utility;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
+import tuna.TunaException;
 import tuna.command.AddDeadLineCommand;
 import tuna.command.AddEventCommand;
 import tuna.command.AddTodoCommand;

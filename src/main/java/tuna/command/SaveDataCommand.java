@@ -1,9 +1,9 @@
 package tuna.command;
 
-import tuna.Storage;
-import tuna.TaskList;
 import tuna.TunaException;
-import tuna.Ui;
+import tuna.utility.Storage;
+import tuna.utility.TaskList;
+import tuna.utility.Ui;
 
 /**
  * Represents a save data command. A SaveDataCommand object contains the file path of the data file.

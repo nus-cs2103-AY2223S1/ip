@@ -1,9 +1,9 @@
 package tuna.command;
 
-import tuna.Storage;
-import tuna.TaskList;
 import tuna.TunaException;
-import tuna.Ui;
+import tuna.utility.Storage;
+import tuna.utility.TaskList;
+import tuna.utility.Ui;
 
 /**
  * Represents a un-mark item command. A UnMarkItemCommand contains the index of the task to be un-marked.

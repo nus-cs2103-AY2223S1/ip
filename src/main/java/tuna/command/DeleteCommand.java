@@ -1,10 +1,10 @@
 package tuna.command;
 
-import tuna.Storage;
-import tuna.TaskList;
 import tuna.TunaException;
-import tuna.Ui;
 import tuna.task.Task;
+import tuna.utility.Storage;
+import tuna.utility.TaskList;
+import tuna.utility.Ui;
 
 /**
  * Represents a Delete Task Command. A DeleteCommand object contains the index of the task to be deleted.

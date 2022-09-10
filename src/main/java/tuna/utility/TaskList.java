@@ -1,9 +1,10 @@
-package tuna;
+package tuna.utility;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import tuna.TunaException;
 import tuna.task.Deadline;
 import tuna.task.Event;
 import tuna.task.Task;

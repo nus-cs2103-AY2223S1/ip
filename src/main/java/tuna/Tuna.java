@@ -6,6 +6,10 @@ import tuna.command.CommandType;
 import tuna.command.LoadDataCommand;
 import tuna.command.SaveDataCommand;
 import tuna.command.WelcomeCommand;
+import tuna.utility.Parser;
+import tuna.utility.Storage;
+import tuna.utility.TaskList;
+import tuna.utility.Ui;
 
 /**
  * Represents a Tuna bot. A Tuna object contains its storage, task list, ui, parser, folder path and file path.

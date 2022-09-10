@@ -2,10 +2,10 @@ package tuna.command;
 
 import java.util.Arrays;
 
-import tuna.Storage;
-import tuna.TaskList;
 import tuna.TunaException;
-import tuna.Ui;
+import tuna.utility.Storage;
+import tuna.utility.TaskList;
+import tuna.utility.Ui;
 
 /**
  * Represents an add Event Task command. An AddEventCommand object contains the index of the /at command,

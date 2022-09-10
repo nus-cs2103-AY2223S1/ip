@@ -1,4 +1,4 @@
-package tuna;
+package tuna.utility;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import tuna.TunaException;
 import tuna.task.Deadline;
 import tuna.task.Event;
 import tuna.task.Task;

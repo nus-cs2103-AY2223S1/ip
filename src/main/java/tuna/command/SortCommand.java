@@ -1,8 +1,8 @@
 package tuna.command;
 
-import tuna.Storage;
-import tuna.TaskList;
-import tuna.Ui;
+import tuna.utility.Storage;
+import tuna.utility.TaskList;
+import tuna.utility.Ui;
 
 /**
  * Represents a Sort command.

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import tuna.command.CommandType;
+import tuna.utility.Parser;
 
 /**
  * Tests to test the Parser class.
