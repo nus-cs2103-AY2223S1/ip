@@ -2,24 +2,45 @@ package duke;
 
 import java.util.ArrayList;
 
-//contains the task list e.g., it has operations to add/delete tasks in the list
+/**
+ * Contains the task list & list operations.
+ */
 public class TaskList {
 
     private ArrayList<Task> log = new ArrayList<>();
     private ArrayList<Task> findLog = new ArrayList<>();
     private boolean wasFinding = false;
 
+    /**
+     * Constructs a TaskList.
+     */
     TaskList() {
     }
 
+    /**
+     * Replaces the contained log with the given ArrayList.
+     *
+     * @param log ArrayList that replaces the current log.
+     */
     public void setLog(ArrayList<Task> log) {
         this.log = log;
     }
 
+    /**
+     * Getter for the contained task list.
+     *
+     * @return ArrayList of tasks.
+     */
     public ArrayList<Task> getLog() {
         return log;
     }
 
+    /**
+     * Adds a To-Do to the task list.
+     *
+     * @param s Data for the To-Do.
+     * @throws DukeTaskException  If To-Do can't be created with the input.
+     */
     public Task addTodo(String s) throws DukeTaskException {
         wasFinding = false;
         Task temp = new Todo(s, false);
@@ -27,6 +48,12 @@ public class TaskList {
         return temp;
     }
 
+    /**
+     * Adds a Deadline to the task list.
+     *
+     * @param s Data for the Deadline.
+     * @throws DukeTaskException  If Deadline can't be created with the input.
+     */
     public Task addDeadline(String s) throws DukeTaskException {
         wasFinding = false;
         String by = dateFinder(s, "/by");
@@ -36,6 +63,12 @@ public class TaskList {
         return temp;
     }
 
+    /**
+     * Adds an Event to the task list.
+     *
+     * @param s Data for the Event.
+     * @throws DukeTaskException  If Event can't be created with the input.
+     */
     public Task addEvent(String s) throws DukeTaskException {
         wasFinding = false;
         String at = dateFinder(s, "/at");
@@ -45,6 +78,9 @@ public class TaskList {
         return temp;
     }
 
+    /**
+     * Prints out the contents of the task list.
+     */
     public void list() {
         wasFinding = false;
         printList();
@@ -64,14 +100,18 @@ public class TaskList {
         }
     }
 
-    // returns task marked
+    /**
+     * Marks and returns task marked.
+     */
     public Task mark(int n) {
         Task temp = findCurrentList().get(n);
         temp.mark();
         return temp;
     }
 
-    // returns task unmarked
+    /**
+     * Unmarks and returns task unmarked.
+     */
     public Task unmark(int n) {
         Task temp = findCurrentList().get(n);
         temp.unmark();
@@ -86,6 +126,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Deletes task in the given position.
+     *
+     * @param n Position (integer) of task to be deleted.
+     */
     public Task delete(int n) {
         Task temp = findCurrentList().get(n);
         findCurrentList().remove(n);

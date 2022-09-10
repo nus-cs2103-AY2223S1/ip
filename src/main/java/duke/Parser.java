@@ -1,9 +1,18 @@
 package duke;
 
-// deals with making sense of the user command
+/**
+ * Parser deals with making sense of the user command.
+ */
 public class Parser {
 
-    public Pair<Duke.Command, String> parse(String s) throws DukeException, DukeTaskException{
+    /**
+     * Parses a given input to identify the command given.
+     *
+     * @param s String of command to be carried out.
+     * @return Pair containing the parsed command and details.
+     * @throws DukeException  If something went wrong when constructing a task.
+     */
+    public Pair<Duke.Command, String> parse(String s) throws DukeException {
 
         boolean isMultipleWords = false;
         String firstWord = s;
