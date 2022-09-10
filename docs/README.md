@@ -1,181 +1,210 @@
 # User Guide
+Duke is a desktop app for managing tasks, optimized for use via a Command Line Interface (CLI) while still having the 
+benefits of a Graphical User Interface (GUI). If you can type fast, Duke can get your task management done faster than 
+traditional GUI apps.
 
-## Features 
+## Features
+You can add and manage three different types of tasks in Duke.
 
 ### Todo
 
-Description of the feature.
+Todos allow you to add tasks without any date attached. 
 
 ### Deadline
 
-Description of the feature.
+Deadlines allow you to add tasks that need to be done before a specific date.
 
 ### Event
 
-Description of the feature.
+Events allow you to add tasks that occur on a specific date. 
 
 ### List
 
-Description of the feature.
+You can view all your tasks in one place and sort them by date. 
+Moreover, your tasks are saved even after you exit the app, and will be reloaded when you use the app again.     
 
 ## Usage
 
-### `todo` - Describe action
+### `todo` - Adding a todo
 
-Describe the action and its outcome.
+Adds a todo to Duke. 
 
-Example of usage: 
+#### Example usage: 
 
-`todo (optional arguments)`
+`todo homework`
 
-Expected outcome:
+#### Expected outcome:
 
-Description of the outcome.
+A todo is added to the list. 
 
 ```
-expected output
+I've added this task:
+[T][] homework
+```
+
+<br/><br/>
+### `deadline` - Adding a deadline
+
+Adds a deadline to Duke.
+
+- The keyword `/by` must be provided
+- The provided date must be in the format `dd-mm-yyyy`
+
+#### Example usage:
+
+`deadline assignment /by 20-09-2022`
+
+#### Expected outcome:
+
+A deadline is added to the list.
+
+```
+I've added this task:
+[D][] assignment (by: 20 Sep 2022)
+```
+
+<br/><br/>
+### `event` - Adding an event
+
+Adds an event to Duke.
+
+- The keyword `/at` must be provided
+- The provided date must be in the format `dd-mm-yyyy`
+
+#### Example usage:
+
+`event lecture /at 10-09-2022`
+
+#### Expected outcome:
+
+An event is added to the list.
+
+```
+I've added this task:
+[E][] lecture (at: 10 Sep 2022)
+```
+
+<br/><br/>
+### `list` - Listing all tasks
+
+Displays all tasks saved in Duke. 
+
+#### Example usage:
+
+`list`
+
+#### Expected outcome:
+
+All tasks in the list are listed. 
+
+```
+Here are the tasks in your list:
+1. [T][] homework
+2. [D][] assignment (by: 20 Sep 2022)
+3. [E][] lecture (at: 10 Sep 2022)
+```
+
+<br/><br/>
+### `sort` - Sorting the task list
+
+Sorts all tasks in the list by date. Todos are sorted last.
+
+#### Example usage:
+
+`sort`
+
+#### Expected outcome:
+
+All tasks in the list are sorted by date.
+
+```
+Here are the tasks in your list, sorted:
+1. [E][] lecture (at: 10 Sep 2022)
+2. [D][] assignment (by: 20 Sep 2022)
+3. [T][] homework
+```
+
+<br/><br/>
+### `mark` - Marking a task as done
+
+Marks a task as done in Duke. The completed task will remain in the list. 
+
+#### Example usage:
+
+`mark 2`
+
+#### Expected outcome:
+
+The number 2 task in the list is marked as done.
+
+```
+Nice! I've marked this task as done:
+[D][X] assignment (by: 20 Sep 2022)
 ```
 <br/><br/>
-### `deadline` - Describe action
 
-Describe the action and its outcome.
+### `unmark` - Marking a task as not done
 
-Example of usage:
+Marks a task as not done yet in Duke.
 
-`deadline (optional arguments)`
+#### Example usage:
 
-Expected outcome:
+`unmark 2`
 
-Description of the outcome.
+#### Expected outcome:
 
-```
-expected output
-```
-<br/><br/>
-### `event` - Describe action
-
-Describe the action and its outcome.
-
-Example of usage:
-
-`event (optional arguments)`
-
-Expected outcome:
-
-Description of the outcome.
+The number 2 task in the list is marked as not done yet.
 
 ```
-expected output
+Okay, I've marked this task as not done yet:
+[D][] assignment (by: 20 Sep 2022)
 ```
 <br/><br/>
-### `mark` - Describe action
 
-Describe the action and its outcome.
+### `delete` - Deleting a task
 
-Example of usage:
+Deletes a task from Duke. 
 
-`mark (optional arguments)`
+#### Example usage:
 
-Expected outcome:
+`delete 3`
 
-Description of the outcome.
+#### Expected outcome:
+
+The number 3 task in the list is deleted.  
 
 ```
-expected output
+I've removed this task:
+[E][] lecture (at: 10 Sep 2022)
 ```
+
 <br/><br/>
-### `unmark` - Describe action
+### `find` - Finding tasks
 
-Describe the action and its outcome.
+Finds all tasks containing the given keyword.
 
-Example of usage:
+#### Example usage:
 
-`unmark (optional arguments)`
+`find homework`
 
-Expected outcome:
+#### Expected outcome:
 
-Description of the outcome.
+All tasks containing the word "homework" are listed. 
 
 ```
-expected output
+Here are the matching tasks in your list:
+[T][] homework
 ```
+
 <br/><br/>
-### `delete` - Describe action
+### `bye` - Exiting Duke
 
-Describe the action and its outcome.
+Closes Duke. 
 
-Example of usage:
+#### Example usage:
 
-`delete (optional arguments)`
+`bye`
 
-Expected outcome:
+#### Expected outcome:
 
-Description of the outcome.
-
-```
-expected output
-```
-<br/><br/>
-### `find` - Describe action
-
-Describe the action and its outcome.
-
-Example of usage:
-
-`find (optional arguments)`
-
-Expected outcome:
-
-Description of the outcome.
-
-```
-expected output
-```
-<br/><br/>
-### `list` - Describe action
-
-Describe the action and its outcome.
-
-Example of usage:
-
-`list (optional arguments)`
-
-Expected outcome:
-
-Description of the outcome.
-
-```
-expected output
-```
-<br/><br/>
-### `sort` - Describe action
-
-Describe the action and its outcome.
-
-Example of usage:
-
-`sort (optional arguments)`
-
-Expected outcome:
-
-Description of the outcome.
-
-```
-expected output
-```
-<br/><br/>
-### `bye` - Describe action
-
-Describe the action and its outcome.
-
-Example of usage:
-
-`bye (optional arguments)`
-
-Expected outcome:
-
-Description of the outcome.
-
-```
-expected output
-```
+Duke is closed.
