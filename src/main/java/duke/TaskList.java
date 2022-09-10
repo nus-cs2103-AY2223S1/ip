@@ -130,14 +130,14 @@ public class TaskList {
 
         return t.markUndone();
     }
-
+    
     /**
      * Finds matching tasks in the TaskList using the keyword provided.
      *
      * @param keyword A string representing a possible word in task description.
      * @return A String representation of the list of matching tasks.
      */
-    public String findMatchingTask(String keyword) {
+    public String findMatchingTasks(String keyword) {
 
         String matches = "";
 
