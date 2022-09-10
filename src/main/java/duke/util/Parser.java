@@ -175,7 +175,6 @@ public class Parser {
             break;
         default:
             assert false;
-            Ui.showUnknownError();
         }
     }
 }
