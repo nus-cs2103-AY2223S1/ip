@@ -61,6 +61,8 @@ public class Parser {
                     Pattern.CASE_INSENSITIVE);
             Pattern helpRegex = Pattern.compile("help|h",
                     Pattern.CASE_INSENSITIVE);
+            Pattern deleteRegex = Pattern.compile("delete|remove|r",
+                    Pattern.CASE_INSENSITIVE);
             commandAliases.put("todo", todoRegex);
             commandAliases.put("list", listRegex);
             commandAliases.put("deadline", deadlineRegex);
@@ -71,6 +73,7 @@ public class Parser {
             commandAliases.put("longdesc", longdescRegex);
             commandAliases.put("istoday", istodayRegex);
             commandAliases.put("help", helpRegex);
+            commandAliases.put("delete", deleteRegex);
             commandAliasesHashMap = commandAliases;
         }
     }

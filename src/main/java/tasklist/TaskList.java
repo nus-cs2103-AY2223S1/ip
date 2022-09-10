@@ -7,14 +7,14 @@ import task.Task;
  * Manage all interactions between Duke and UserInputHistory FILE storage.
  */
 public class TaskList {
-    private final ArrayList userInputHistoryList = new ArrayList();
+    private final ArrayList<Task> userInputHistoryList = new ArrayList<>();
 
     /**
      * Adds Task to list.
      *
      * @param t Task to add.
      */
-    public void addTask(T t) {
+    public void addTask(Task t) {
         userInputHistoryList.add(t);
     }
 
@@ -23,7 +23,7 @@ public class TaskList {
      *
      * @param e Event to add.
      */
-    public void addEvent(T e) {
+    public void addEvent(Task e) {
         userInputHistoryList.add(e);
     }
 
@@ -32,7 +32,7 @@ public class TaskList {
      *
      * @param d Deadline to add.
      */
-    public void addDeadline(T d) {
+    public void addDeadline(Task d) {
         userInputHistoryList.add(d);
     }
 
@@ -112,7 +112,7 @@ public class TaskList {
      * @param n Index to return.
      * @return Task/Event/Deadline.
      */
-    public T getTask(int n) {
+    public Task getTask(int n) {
         return userInputHistoryList.get(n - 1);
     }
 

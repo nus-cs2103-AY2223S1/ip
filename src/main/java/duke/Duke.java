@@ -1,6 +1,7 @@
 package duke;
 
 import command.Command;
+import command.DeleteTaskCommand;
 import exceptions.DukeException;
 import javafx.application.Application;
 import javafx.stage.Stage;

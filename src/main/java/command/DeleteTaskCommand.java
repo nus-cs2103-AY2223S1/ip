@@ -17,7 +17,7 @@ public class DeleteTaskCommand extends Command {
     }
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
-        int n = Parser.getTaskNumber(ui.getCurrentInput(), taskList.getSize());
+        int n = Integer.getInteger(slicedUserCommands[1]);
         taskList.deleteTask(n);
         if (storage.isLineDeleted(n)) {
             ui.showMessage("Deleted task");
