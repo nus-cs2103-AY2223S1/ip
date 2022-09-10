@@ -2,6 +2,7 @@ package henry;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * TaskList represents the actual list to which tasks
@@ -97,5 +98,9 @@ public class TaskList implements Iterable<Task> {
     @Override
     public Iterator<Task> iterator() {
         return tasks.iterator();
+    }
+
+    public Stream<Task> stream() {
+        return tasks.stream();
     }
 }

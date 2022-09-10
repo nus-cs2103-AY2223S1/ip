@@ -1,6 +1,9 @@
 package command;
 
+import java.util.HashSet;
+
 import henry.Task;
+import henry.TaskList;
 
 /**
  * Responsible for finding tasks given a search term.
@@ -10,7 +13,7 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     private static final String MESSAGE_SUCCESS = "I'VE FOUND THESE MATCHING TASKS:\n %1$s";
-    private final String[] termsToFind;
+    private final HashSet<String> termsToFind;
 
     /**
      * Creates a new FindCommand with the given search terms.
@@ -18,26 +21,29 @@ public class FindCommand extends Command {
      * @param searchTerms a variable amount of search terms
      */
     public FindCommand(String... searchTerms) {
-        int argsLength = searchTerms.length;
-        termsToFind = new String[argsLength];
-        for (int i = 0; i < termsToFind.length; i++) {
-            termsToFind[i] = searchTerms[i].trim();
-        }
+        termsToFind = getCleanedArgs(searchTerms);
     }
 
     @Override
     public CommandResult execute() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("\n");
-        final int[] i = {1};
-        taskList.forEach(task -> appendToStringBuilder(sb, task, i[0]++));
-        return new CommandResult(String.format(MESSAGE_SUCCESS, sb.toString().trim()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, appendToStringBuilder(taskList)));
     }
 
-    private void appendToStringBuilder(StringBuilder sb, Task task, int index) {
-        if (isMatch(task)) {
-            sb.append(" ").append(index).append(task).append("\n");
+    private HashSet<String> getCleanedArgs(String[] args) {
+        HashSet<String> temp = new HashSet<>();
+        for (String arg : args) {
+            temp.add(arg.trim());
         }
+        return temp;
+    }
+
+    private String appendToStringBuilder(TaskList taskList) {
+        StringBuilder sb = new StringBuilder("\n");
+        final int[] i = {1};
+        taskList.stream().filter(this::isMatch).forEach(task -> {
+            sb.append(i[0]++).append(". ").append(task).append("\n");
+        });
+        return sb.toString().trim();
     }
 
     private boolean isMatch(Task task) {
