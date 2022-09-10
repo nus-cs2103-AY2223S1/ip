@@ -1,8 +1,8 @@
 package duke.commands;
 
+import duke.gui.Ui;
 import duke.storage.Storage;
 import duke.task.TaskList;
-import duke.ui.TextUi;
 
 /**
  * Represents a list command.
@@ -16,10 +16,11 @@ public class ListCommand extends Command {
      * @param taskList The list of tasks in Duke.
      * @param ui The TextUi class used to print message in Duke.
      * @param storage The storage used to save the tasks in the local file.
+     * @return The string representation of the current list of tasks.
      */
     @Override
-    public void execute(TaskList taskList, TextUi ui, Storage storage) {
-        ui.showListTaskMessage(taskList);
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        return ui.getListCommandMessage(taskList);
     }
 
     @Override
