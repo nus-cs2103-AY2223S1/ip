@@ -1,9 +1,82 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
     static List<Task> tasks = new ArrayList<>();
+
+    static final String FILE_PATH = "data/duke.txt";
+
+    private static void readDataFile() {
+        tasks = new ArrayList<>();
+
+        try {
+            File file = new File(FILE_PATH);
+            if (!file.exists()) {
+                System.out.printf("File %s not found\n\n", FILE_PATH);
+                return;
+            }
+
+            Scanner s = new Scanner(file);
+            while (s.hasNextLine()) {
+                String data = s.nextLine();
+                String[] taskInfo = data.split(" \\| ");
+
+                Task task;
+                switch (taskInfo[0]) {
+                    case "T":
+                        task = new Todo(taskInfo[2]);
+                        break;
+                    case "E":
+                        task = new Event(taskInfo[2], taskInfo[3]);
+                        break;
+                    case "D":
+                        task = new Deadline(taskInfo[2], taskInfo[3]);
+                        break;
+                    default:
+                        throw new DukeException("Corrupt file");
+                }
+                if (taskInfo[1] == "1") {
+                    task.mark();
+                }
+                tasks.add(task);
+            }
+            s.close();
+
+            System.out.printf("Loaded tasks from %s\n\n", FILE_PATH);
+        } catch (Exception e) {
+            System.out.println("Error: Could not read from file");
+            System.out.println(e);
+        }
+    }
+
+    private static void syncTasksToFile() {
+        try {
+            File file = new File(FILE_PATH);
+            if (!file.exists()) {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+            }
+
+            FileWriter writer = new FileWriter(FILE_PATH);
+            ArrayList<String> taskStrings = new ArrayList<>();
+            for (Task task : tasks) {
+                String taskString = task.toFileString();
+                taskStrings.add(taskString);
+            }
+
+            String fileString = String.join("\n", taskStrings);
+            writer.write(fileString);
+            writer.close();
+        } catch (Exception e) {
+            System.out.println("Error: could not write to file");
+            System.out.println(e);
+        }
+    }
 
     private static void markTask(String input, boolean done) throws DukeException {
         String[] splitInput = input.split(" ");
@@ -22,6 +95,7 @@ public class Duke {
                     ? "Nice! I've marked this task as done:\n  %s\n"
                     : "OK, I've marked this task as not done yet:\n  %s\n";
             System.out.printf(successMessage, task.toString());
+            syncTasksToFile();
         } catch (Exception e) {
             throw new DukeException("That is not a valid task number!");
         }
@@ -37,6 +111,7 @@ public class Duke {
             Task task = tasks.remove(taskIdx - 1);
             System.out.printf("Noted. I've removed this task:\n  %s\n", task.toString());
             System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+            syncTasksToFile();
         } catch (Exception e) {
             throw new DukeException("That is not a valid task number!");
         }
@@ -87,13 +162,15 @@ public class Duke {
                     : new Event(splitInput[0], splitInput[1]);
         }
         tasks.add(task);
+        syncTasksToFile();
         System.out.printf("Got it. I've added this task:\n  %s\n", task.toString());
         System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
     }
 
     public static void main(String[] args) {
+        readDataFile();
         System.out.println("Hello! I'm Duke\n" +
-                           "What can I do for you?\n");
+                "What can I do for you?\n");
         Scanner s = new Scanner(System.in);
         while (true) {
             String input = s.nextLine();
