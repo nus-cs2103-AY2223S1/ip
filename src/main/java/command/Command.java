@@ -1,5 +1,10 @@
 package command;
 
+import java.io.IOException;
+
+import exception.InvalidCommandException;
+import exception.InvalidDateException;
+import exception.MissingArgumentException;
 import main.Storage;
 import main.TaskList;
 import main.Ui;
@@ -17,7 +22,7 @@ public abstract class Command {
         return false;
     }
 
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage); //Referenced from Marcus Ong Wee's code
+    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws IOException, InvalidCommandException, InvalidDateException, MissingArgumentException; //Referenced from Marcus Ong Wee's code
 
     public abstract Task getTask();
 

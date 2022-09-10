@@ -17,12 +17,13 @@ public class MarkCommand extends Command{
     }
 
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-
+        int listPos = Integer.parseInt(commandArgs);
+        tasks.mark(listPos);
+        ui.mark(listPos);
     }
 
     @Override
     public Task getTask() {
-        // TODO Auto-generated method stub
         return null;
     }
 }

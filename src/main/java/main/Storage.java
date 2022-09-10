@@ -28,9 +28,10 @@ public class Storage {
         this.storage = storage;
     }
     
-    public TaskList loadLog(String fileAddress, Parser parser) throws InvalidCommandException, InvalidDateException, MissingArgumentException, FileNotFoundException{
+    public TaskList loadLog() throws InvalidCommandException, InvalidDateException, MissingArgumentException, FileNotFoundException{
         try {
-            Scanner fileReader = new Scanner(new File(fileAddress));
+            Parser parser = new Parser();
+            Scanner fileReader = new Scanner(new File(logFileAddress));
             TaskList newTaskList = new TaskList();
             while (fileReader.hasNextLine()) {
                 String nextLogLine = fileReader.nextLine();
@@ -43,11 +44,8 @@ public class Storage {
                 Command parsedCommand = parser.parseCommand(loggedTask[1]);
                 newTaskList.add(parsedCommand.getTask());
             }
-        } catch (MissingArgumentException e) {
-            throw e;
+            return newTaskList;
         } catch (InvalidCommandException e) {
-            throw e;
-        } catch (InvalidDateException e) {
             throw e;
         } catch (FileNotFoundException e) {
             throw e;

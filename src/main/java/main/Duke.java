@@ -26,9 +26,9 @@ public class Duke {
     private boolean isEnd = false;
 
     public Duke() {
-        this.ui = new Ui();
         this.tasks = new TaskList();
-        this.parser = new Parser(this);
+        this.ui = new Ui(this.tasks);
+        this.parser = new Parser();
         this.storage = new Storage(this.tasks, this.ui, this.storage);
     }
 
@@ -100,34 +100,6 @@ public class Duke {
             }
         }
 
-    public static String[] parseCommand(String userCommand) throws InvalidCommandException {
-        String[] parsedCommand = {"","",""};
-        String splitUserStatement[] = userCommand.split(" ", 2);
-        if (!isValidCommand(splitUserStatement[0])) {
-            throw new InvalidCommandException("Thats not an available command.");
-        }
-        String command = splitUserStatement[0];
-        parsedCommand[0] = command;
-        String userArgs = "";
-        if (splitUserStatement.length > 1) {
-            userArgs = splitUserStatement[1];
-        }
-        String[] splitUserArgs = {"",""};
-        if (command.equals(COMMAND_DEADLINE)) {
-            splitUserArgs = userArgs.split("/by", 2);
-        }
-        else if (command.equals(COMMAND_EVENT)) {
-            splitUserArgs = userArgs.split("/at", 2);
-        } else {
-            splitUserArgs = userArgs.split("/", 2);
-        }
-        parsedCommand[1] = splitUserArgs[0];
-        if (splitUserArgs.length > 1) {
-            parsedCommand[2] = splitUserArgs[1];
-        }
-        return parsedCommand;
-
-    }
 
     public static void end() {
         chat("Bye! Hope to see you again!");

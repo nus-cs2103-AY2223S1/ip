@@ -24,10 +24,8 @@ public class Parser {
     private static final String COMMAND_MARK = "mark";
     private static final String COMMAND_UNMARK = "unmark";
 
-    Duke chatbot;
-
-    Parser(Duke chatbot) {
-        this.chatbot = chatbot;
+    Parser() {
+        ;
     }
 
     public Command parseCommand(String userCommand) throws InvalidCommandException {

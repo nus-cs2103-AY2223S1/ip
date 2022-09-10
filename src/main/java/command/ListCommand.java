@@ -17,12 +17,11 @@ public class ListCommand extends Command {
     }
 
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-
+        ui.list(tasks);
     }
 
     @Override
     public Task getTask() {
-        // TODO Auto-generated method stub
         return null;
     }
 }

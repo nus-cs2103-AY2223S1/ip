@@ -20,6 +20,18 @@ public class TaskList {
         this.tasks.add(newTask);
     }
 
+    public Task get(int pos) {
+        return this.tasks.get(pos);
+    }
+
+    public void mark(int pos) {
+        this.tasks.get(pos).mark();
+    }
+
+    public void unmark(int pos) {
+        this.tasks.get(pos).unmark();
+    }
+
     public ArrayList<Task> getTasks() {
         return this.tasks;
     }

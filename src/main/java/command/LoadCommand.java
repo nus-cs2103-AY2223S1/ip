@@ -1,5 +1,10 @@
 package command;
 
+import java.io.FileNotFoundException;
+
+import exception.InvalidCommandException;
+import exception.InvalidDateException;
+import exception.MissingArgumentException;
 import main.Storage;
 import main.TaskList;
 import main.Ui;
@@ -16,13 +21,12 @@ public class LoadCommand extends Command{
         return false;
     }
 
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws InvalidDateException, InvalidCommandException, MissingArgumentException, FileNotFoundException{
+        storage.loadLog();
     }
 
     @Override
     public Task getTask() {
-        // TODO Auto-generated method stub
         return null;
     }
 }
