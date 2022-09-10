@@ -5,9 +5,6 @@
 
 # Gradle build files
 /.gradle/
-/gradle/
-/gradlew
-/gradlew.bat
 /build/
 src/main/resources/docs/
 
