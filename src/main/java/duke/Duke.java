@@ -25,7 +25,7 @@ public class Duke {
     public static String EMOJI = "\uD83E\uDD16";
 
     /** The greeting to show on booting up the task manager. */
-    public static String GREETING = String.format("Hello! I'm %s %s.\nWhat can I do for you?", BOT_NAME, EMOJI);
+    public static String GREETING = String.format("%s %s HERE.\nWhat can I do for you?", BOT_NAME, EMOJI);
 
     public Duke(String filePath) {
         this.storage = new Storage(filePath);

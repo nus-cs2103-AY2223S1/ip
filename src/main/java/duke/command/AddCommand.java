@@ -18,8 +18,8 @@ public class AddCommand extends Command {
     @Override
     public String execute(TaskList tasks, Storage storage) {
         tasks.addTask(this.task);
-        String response = "Got it. I've added this duke.task:\n " + this.task +
-                "\nNow you have " + tasks.getLength() + " tasks in the list.";
+        String response = "ADD TASK:\n" + this.task +
+                "\nNow you have " + tasks.getLength() + " tasks remaining!";
         storage.saveTasks(tasks);
 
         return response;

@@ -27,7 +27,7 @@ public class FindCommand extends Command {
             matchingTasks += "\n" + task;
         }
 
-        String response = "Here are the matching tasks in your list:" + matchingTasks;
+        String response = "These tasks in your list match your query:" + matchingTasks;
 
         return response;
     }

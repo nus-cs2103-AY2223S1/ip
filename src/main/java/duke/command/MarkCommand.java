@@ -25,10 +25,10 @@ public class MarkCommand extends Command {
         String response = "";
         if (mark.equals("mark")) {
             task = tasks.markTask(taskNumber, true);
-            response = "Nice! I've marked this duke.task as done:\n" + task;
+            response = "Good job! I've marked this task as done:\n" + task;
         } else if (mark.equals("unmark")) {
             task = tasks.markTask(taskNumber, false);
-            response = "OK, I've marked this duke.task as not done yet:\n" + task;
+            response = "OK then, I've marked this task as not done yet:\n" + task;
         }
         storage.saveTasks(tasks);
 
