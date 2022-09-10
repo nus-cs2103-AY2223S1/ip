@@ -33,8 +33,6 @@ public class Duke extends Application {
     /** Boolean attribute to know if Duke is running. */
     private boolean dukeIsRunning = false;
 
-    private Scene scene;
-
     /**
      * Constructor of <Code>Duke</Code> object.
      * @param directory Directory path on disk to find/save task list.
