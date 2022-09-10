@@ -1,7 +1,148 @@
-Hello from
- ____        _        
-|  _ \ _   _| | _____ 
+Loading from save...
+
+Hello, I'm Duke!
+ ____        _
+|  _ \ _   _| | _____
 | | | | | | | |/ / _ \
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
+
+Duke: What can I do for you?
+
+Duke: Here are the tasks in your list:
+*No tasks! ^_^*
+
+Duke: Got it! Duke has added this task:
+[T][ ] uninstall League of Legends
+Duke: Now you have 1 task in the list.
+
+☹ OOPS!!! Duke got an error!
+Duke: Uh oh! Please enter your date/time in this format:
+dd mm yyyy hh:mm(optional)
+
+Duke: Got it! Duke has added this task:
+[D][ ] MA1521 HW 1 (by: Apr 30 2022 12:00)
+Duke: Now you have 2 tasks in the list.
+
+☹ OOPS!!! Duke got an error!
+Duke: Uh oh! Please enter your date/time in this format:
+dd mm yyyy hh:mm(optional)
+
+Duke: Got it! Duke has added this task:
+[E][ ] birthday (at: Aug 08 2023 00:00)
+Duke: Now you have 3 tasks in the list.
+
+Duke: Got it! Duke has added this task:
+[T][ ] delete this task
+Duke: Now you have 4 tasks in the list.
+
+☹ OOPS!!! Duke got an error!
+Duke: Please specify the task to be deleted by its id:
+delete <id>
+
+☹ OOPS!!! Duke got an error!
+Duke: Please specify the task to delete by its integer id:
+mark <id>
+
+Duke: Noted. I've removed this task:
+[T][ ] delete this task
+Duke: Now you have 3 tasks in the list.
+
+Duke: Here are the tasks in your list:
+1. [T][ ] uninstall League of Legends
+2. [D][ ] MA1521 HW 1 (by: Apr 30 2022 12:00)
+3. [E][ ] birthday (at: Aug 08 2023 00:00)
+
+☹ OOPS!!! Duke got an error!
+Duke: Please specify the task to mark by its id:
+mark <id>
+
+☹ OOPS!!! Duke got an error!
+Duke: Please specify the task to unmark by its id:
+unmark <id>
+
+☹ OOPS!!! Duke got an error!
+Duke: Invalid task id!
+
+☹ OOPS!!! Duke got an error!
+Duke: Please specify the task to mark by its integer id:
+mark <id>
+
+☹ OOPS!!! Duke got an error!
+Duke: Invalid task id!
+
+☹ OOPS!!! Duke got an error!
+Duke: Please specify the task to unmark by its integer id:
+mark <id>
+
+Duke: Nice! I've marked this task as done:
+[T][X] uninstall League of Legends
+
+Duke: Here are the tasks in your list:
+1. [T][X] uninstall League of Legends
+2. [D][ ] MA1521 HW 1 (by: Apr 30 2022 12:00)
+3. [E][ ] birthday (at: Aug 08 2023 00:00)
+
+Duke: Nice! I've marked this task as done:
+[D][X] MA1521 HW 1 (by: Apr 30 2022 12:00)
+
+Duke: Nice! I've marked this task as done:
+[E][X] birthday (at: Aug 08 2023 00:00)
+
+Duke: Here are the tasks in your list:
+1. [T][X] uninstall League of Legends
+2. [D][X] MA1521 HW 1 (by: Apr 30 2022 12:00)
+3. [E][X] birthday (at: Aug 08 2023 00:00)
+
+Duke: OK, I've marked this task as not done yet:
+[E][ ] birthday (at: Aug 08 2023 00:00)
+
+Duke: OK, I've marked this task as not done yet:
+[D][ ] MA1521 HW 1 (by: Apr 30 2022 12:00)
+
+Duke: Here are the tasks in your list:
+1. [T][X] uninstall League of Legends
+2. [D][ ] MA1521 HW 1 (by: Apr 30 2022 12:00)
+3. [E][ ] birthday (at: Aug 08 2023 00:00)
+
+☹ OOPS!!! Duke got an error!
+Duke: Please provide a keyword to search for the task:
+find <keyword>
+
+Duke: Hm...Duke found no matching task in your list.
+
+Duke: Here are the matching tasks in your list:
+1. [D][ ] MA1521 HW 1 (by: Apr 30 2022 12:00)
+
+
+☹ OOPS!!! Duke got an error!
+Duke: Please specify what task you wish to do:
+todo <description>
+
+☹ OOPS!!! Duke got an error!
+Duke: Please specify what task you wish to do:
+deadline <description> /by <date/time>
+
+☹ OOPS!!! Duke got an error!
+Duke: Please specify the description and the date/time of this deadline:
+deadline <description> /by <date/time>
+
+☹ OOPS!!! Duke got an error!
+Duke: Please specify what task you wish to do:
+event <description> /at <date/time>
+
+☹ OOPS!!! Duke got an error!
+Duke: Please specify the description and the date/time of this event:
+event <description> /at <date/time>
+
+☹ OOPS!!! Duke got an error!
+Unknown command, please try again! Type "help" for a list of commands.
+
+☹ OOPS!!! Duke got an error!
+Unknown command, please try again! Type "help" for a list of commands.
+
+☹ OOPS!!! Duke got an error!
+Unknown command, please try again! Type "help" for a list of commands.
+
+Duke: Bye! Hope to see you again soon!
 
