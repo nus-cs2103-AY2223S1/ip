@@ -5,6 +5,7 @@ import duke.util.Parser;
 import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
+
 import java.io.File;
 
 /**
@@ -15,6 +16,9 @@ public class Duke {
     private final TaskList list;
     private final Parser p;
 
+    /**
+     * Constructor for Duke, the main logic of the program.
+     */
     public Duke() {
         storage = new Storage("data" + File.separator + "taskList.txt");
         list = new TaskList(storage);

@@ -10,12 +10,16 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
+
 import static java.time.temporal.ChronoUnit.DAYS;
 
+/**
+ * Tasks that are recurring with yearly, monthly, weekly or daily frequency.
+ */
 public class Recurring extends Task {
-    private final static DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("dd MMM yy h:mma");
-    private enum PERIOD { yearly, monthly, weekly, daily }
-    private PERIOD period;
+    private static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("dd MMM yy h:mma");
+    private enum FREQUENCY_PERIOD { yearly, monthly, weekly, daily }
+    private FREQUENCY_PERIOD period;
     private String dateKeyedIn;
     private LocalDateTime startDate;
     private LocalDateTime now;
@@ -24,6 +28,13 @@ public class Recurring extends Task {
     private ArrayList<LocalDateTime> dates = new ArrayList<>();
 
 
+    /**
+     * Constructor for new Recurring task.
+     * @param desc Description of task.
+     * @param date Start date of the recurring task in dd/MM/yy format.
+     * @param numberOfTimes How many times is the task recurring for.
+     * @throws WrongArgumentException Thrown when input date/time is in the wrong format.
+     */
     public Recurring(String desc, String date, int numberOfTimes) throws WrongArgumentException {
         super(desc);
         this.now = LocalDateTime.now();
@@ -47,7 +58,7 @@ public class Recurring extends Task {
             // recurring yearly
             date = LocalDate.parse(input, DateTimeFormatter.ofPattern("dd/MM/yy")).withYear(this.now.getYear());
             dateTime = LocalDateTime.of(date, time);
-            this.period = PERIOD.yearly;
+            this.period = FREQUENCY_PERIOD.yearly;
             yearly(dateTime, times);
         } catch (DateTimeException e) {
             try {
@@ -55,22 +66,23 @@ public class Recurring extends Task {
                 int n = Integer.parseInt(input);
                 date = LocalDate.of(this.now.getYear(), this.now.getMonth(), n);
                 dateTime = LocalDateTime.of(date, time);
-                this.period = PERIOD.monthly;
+                this.period = FREQUENCY_PERIOD.monthly;
                 monthly(dateTime, times);
             } catch (NumberFormatException f) {
                 try {
                     // recurring weekly
                     LocalDate now = LocalDate.now();
-                    date = now.with(TemporalAdjusters.next(DayOfWeek.from(DateTimeFormatter.ofPattern("E").parse(input))));
+                    DateTimeFormatter day = DateTimeFormatter.ofPattern("E");
+                    date = now.with(TemporalAdjusters.next(DayOfWeek.from(day.parse(input))));
                     dateTime = LocalDateTime.of(date, time);
-                    this.period = PERIOD.weekly;
+                    this.period = FREQUENCY_PERIOD.weekly;
                     weekly(dateTime, times);
                 } catch (DateTimeException g) {
                     try {
                         // recurring daily
                         time = LocalTime.parse(input, Task.INPUT_TIME_FORMAT);
                         dateTime = LocalDateTime.of(this.now.toLocalDate(), time);
-                        this.period = PERIOD.daily;
+                        this.period = FREQUENCY_PERIOD.daily;
                         daily(dateTime, times);
                     } catch (DateTimeException h) {
                         throw new WrongArgumentException(input, f);
@@ -124,6 +136,10 @@ public class Recurring extends Task {
         }
     }
 
+    /**
+     * Calculates number of times task occurs after current time when loaded from save file.
+     * @param date Date when the first task occurred.
+     */
     public void calculateRemaining(LocalDateTime date) {
         LocalDateTime now = LocalDateTime.now();
         long diff = DAYS.between(date, now);
@@ -131,13 +147,13 @@ public class Recurring extends Task {
         if (diff > 0) {
             switch (this.period) {
             case yearly:
-                alreadyHappened = (int) Math.ceil((double) (diff/365.0));
+                alreadyHappened = (int) Math.ceil((double) (diff / 365.0));
                 break;
             case monthly:
-                alreadyHappened = (int) Math.ceil((double) (diff/12.0));
+                alreadyHappened = (int) Math.ceil((double) (diff / 12.0));
                 break;
             case weekly:
-                alreadyHappened = (int) Math.ceil((double) (diff/7.0));
+                alreadyHappened = (int) Math.ceil((double) (diff / 7.0));
                 break;
             case daily:
                 alreadyHappened = (int) diff;
@@ -149,6 +165,10 @@ public class Recurring extends Task {
         this.timesRemaining = this.originalTimes - alreadyHappened;
     }
 
+    /**
+     * Lists past/future dates where the task had/going to occur.
+     * @return The string of dates.
+     */
     public String showDates() {
         StringBuilder str = new StringBuilder();
         for (LocalDateTime l : dates) {

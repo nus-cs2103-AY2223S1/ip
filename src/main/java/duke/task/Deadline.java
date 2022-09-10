@@ -6,11 +6,16 @@ import java.time.LocalTime;
 /**
  * Class for tasks with a deadline.
  */
-public class Deadline extends Task{
-    private final String dateTime;
+public class Deadline extends Task {
     protected LocalDate byDate;
     protected LocalTime byTime = null;
+    private final String dateTime;
 
+    /**
+     * Constructor for new Deadline task.
+     * @param description Description of task.
+     * @param by Deadline of the task in dd/MM/yy format.
+     */
     public Deadline(String description, String by) {
         super(description);
         this.dateTime = by;

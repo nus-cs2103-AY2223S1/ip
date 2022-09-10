@@ -27,7 +27,7 @@ public class Ui {
             { "remaining", "remaining [index]" },
             { "list", "list" },
             { "bye", "bye" },
-            }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
+    }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
 
     public static String showHello() {
         return "Hello! What plans do you currently have?" + "\nUse /? for help";

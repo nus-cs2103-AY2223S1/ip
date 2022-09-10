@@ -6,11 +6,16 @@ import java.time.LocalTime;
 /**
  * Class for tasks that happens at a particular time.
  */
-public class Event extends Task{
-    private final String dateTime;
+public class Event extends Task {
     protected LocalDate atDate;
     protected LocalTime atTime = null;
+    private final String dateTime;
 
+    /**
+     * Constructor for new Event task.
+     * @param description Description of the event.
+     * @param at The date when the event is occurring in dd/MM/yy format.
+     */
     public Event(String description, String at) {
         super(description);
         this.dateTime = at;

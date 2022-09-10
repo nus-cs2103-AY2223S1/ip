@@ -18,7 +18,12 @@ public class Storage {
         this.FILE_PATH = path;
     }
 
-    public ArrayList<String> load() throws FileNotFoundException{
+    /**
+     * To load tasks from save file.
+     * @return The ArrayList containing the tasks.
+     * @throws FileNotFoundException Thrown when no save file is found.
+     */
+    public ArrayList<String> load() throws FileNotFoundException {
         ArrayList<String> output = new ArrayList<>();
         File dataFile = new File(FILE_PATH);
         if (dataFile.exists()) {
@@ -31,6 +36,10 @@ public class Storage {
         return output;
     }
 
+    /**
+     * To save the current tasks into a save file.
+     * @param list The TaskList object containing the list of tasks
+     */
     public void saveToFile(TaskList list) {
         File directory = new File("data");
         File save = new File(FILE_PATH);
