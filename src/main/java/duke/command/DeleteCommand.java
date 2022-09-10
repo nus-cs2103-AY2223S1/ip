@@ -35,6 +35,9 @@ public class DeleteCommand extends Command {
     @Override
     public String execute(Ui ui, TaskList taskList) {
         assert(ui != null && taskList != null);
+        if (num >= taskList.getSize() || num < 0) {
+            return ui.showInvalidIndexMessage();
+        }
         Task task = taskList.getTask(this.num);
         taskList.removeTask(this.num);
         int size = taskList.getSize();

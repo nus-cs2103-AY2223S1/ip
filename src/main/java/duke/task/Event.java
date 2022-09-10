@@ -32,6 +32,16 @@ public class Event extends Task {
     public LocalDateTime getAtTime() {
         return this.atTime;
     }
+
+    /**
+     * @param newAtTime new at time stated
+     */
+    public void setAtTime(String newAtTime) {
+        String format = "HHmm, d/MM/yyyy";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+        this.atTime = LocalDateTime.parse(newAtTime, formatter);
+    }
+
     /**
      * {@inheritDoc}
      * @return String of event with details, TaskType, name, isMarked and time.
@@ -44,9 +54,5 @@ public class Event extends Task {
                 + " (at: " + atTime.format(formatter) + ")";
     }
 
-    public void setAtTime(String newAtTime) {
-        String format = "HHmm, d/MM/yyyy";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
-        this.atTime = LocalDateTime.parse(newAtTime, formatter);
-    }
+
 }

@@ -44,13 +44,23 @@ public class DialogBox extends HBox {
         text.setMinWidth(50);
         text.setMinHeight(25);
         text.setWrapText(true);
-        displayPicture.setFitWidth(100.0);
-        displayPicture.setFitHeight(125);
+        setDisplayPictureSize(100, 125);
 
         this.setPadding(new Insets(10, 10, 10, 10));
         this.setAlignment(Pos.TOP_RIGHT);
         this.getChildren().addAll(text, displayPicture);
         this.setSpacing(10);
+    }
+
+    /**
+     * Sets the display picture to specified size.
+     *
+     * @param width width of picture
+     * @param height height of picture
+     */
+    private void setDisplayPictureSize(int width, int height) {
+        displayPicture.setFitWidth(width);
+        displayPicture.setFitHeight(height);
     }
 
     /**

@@ -19,7 +19,7 @@ public class ExitCommand extends Command {
     }
 
     /**
-     * Executes the exit command and prompt the program to terminate
+     * Executes the exit command and prompt the program to terminate.
      *
      * @param ui Ui to show Exit operation messages
      * @param taskList TaskList to execute command

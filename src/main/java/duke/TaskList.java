@@ -50,7 +50,7 @@ public class TaskList {
     }
 
     /**
-     * Add a new task into the TaskList.
+     * Adds a new task into the TaskList.
      *
      * @param newTask new task added
      */
@@ -60,7 +60,7 @@ public class TaskList {
     }
 
     /**
-     * Remove a task at index num in the TaskList.
+     * Removes a task at index num in the TaskList.
      *
      * @param num Index of task
      */

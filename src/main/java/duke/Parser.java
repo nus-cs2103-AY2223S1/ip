@@ -15,19 +15,17 @@ import duke.exception.DukeException;
  * Parser to parse user input and interpret which commands user are inputting.
  */
 public class Parser {
+    private static Ui ui = new Ui();
 
     /**
-     * Parse input of users and analysing which command is used.
+     * Parses input of users and analysing which command is used.
      *
      * @param inputs User input
      * @return Command referred to the user input
      */
     public static Command parse(String... inputs) {
         assert(inputs != null);
-        String input = inputs[0];
-        String[] commands = input.split(" ", 2);
-        int index;
-
+        String[] commands = inputs[0].split(" ", 2);
         try {
             switch (commands[0]) {
             case "bye":
@@ -35,42 +33,90 @@ public class Parser {
             case "list":
                 return new ListCommand(commands[0]);
             case "mark":
-                if (commands.length != 2 || commands[1].length() < 1) {
-                    throw new DukeException("The index of a task cannot be empty.");
-                }
-                index = Integer.parseInt(commands[1]);
-                return new MarkCommand(commands[0], index - 1);
+                return getMarkCommand(commands);
             case "unmark":
-                if (commands.length != 2 || commands[1].length() < 1) {
-                    throw new DukeException("The index of a task cannot be empty.");
-                }
-                index = Integer.parseInt(commands[1]);
-                return new UnmarkCommand(commands[0], index - 1);
+                return getUnmarkCommand(commands);
             case "delete":
-                if (commands.length != 2 || commands[1].length() < 1) {
-                    throw new DukeException("The index of a task cannot be empty.");
-                }
-                index = Integer.parseInt(commands[1]);
-                return new DeleteCommand(commands[0], index - 1);
+                return getDeleteCommand(commands);
             case "find":
-                if (commands.length != 2 || commands[1].length() < 1) {
-                    throw new DukeException("The keyword of a task cannot be empty.");
-                }
-                return new FindCommand(commands[0], commands[1]);
+                return getFindCommand(commands);
             case "snooze":
-                if (commands.length != 2 || commands[1].length() < 1) {
-                    throw new DukeException("The information to snooze a task cannot be empty.");
-                }
-                String[] snoozeInfo = commands[1].split(" ", 2);
-                index = Integer.parseInt(snoozeInfo[0]);
-                String newDate = snoozeInfo[1];
-                return new SnoozeCommand(commands[0], index - 1, newDate);
+                return getSnoozeCommand(commands);
             default:
-                return new AddCommand(input);
+                return new AddCommand(inputs[0]);
             }
-        } catch (DukeException | IndexOutOfBoundsException e) {
-            System.out.println(e.getMessage());
+        } catch (DukeException e) {
             return null;
         }
+    }
+
+    /**
+     * @param commands list of commands
+     * @return new mark command
+     * @throws DukeException If index is empty
+     */
+    private static MarkCommand getMarkCommand(String[] commands) throws DukeException {
+        int index;
+        if (commands.length != 2 || commands[1].length() < 1) {
+            throw new DukeException("The index of a task cannot be empty.");
+        }
+        index = Integer.parseInt(commands[1]);
+        return new MarkCommand(commands[0], index - 1);
+    }
+
+    /**
+     * @param commands list of commands
+     * @return new unmark command
+     * @throws DukeException If index empty
+     */
+    private static UnmarkCommand getUnmarkCommand(String[] commands) throws DukeException {
+        int index;
+        if (commands.length != 2 || commands[1].length() < 1) {
+            throw new DukeException("The index of a task cannot be empty.");
+        }
+        index = Integer.parseInt(commands[1]);
+        return new UnmarkCommand(commands[0], index - 1);
+    }
+
+    /**
+     * @param commands list of commands
+     * @return new delete command
+     * @throws DukeException If index empty
+     */
+    private static DeleteCommand getDeleteCommand(String[] commands) throws DukeException {
+        int index;
+        if (commands.length != 2 || commands[1].length() < 1) {
+            throw new DukeException("The index of a task cannot be empty.");
+        }
+        index = Integer.parseInt(commands[1]);
+        return new DeleteCommand(commands[0], index - 1);
+    }
+
+    /**
+     * @param commands list of commands
+     * @return new find command
+     * @throws DukeException If keyword empty
+     */
+    private static FindCommand getFindCommand(String[] commands) throws DukeException {
+        if (commands.length != 2 || commands[1].length() < 1) {
+            throw new DukeException("The keyword of a task cannot be empty.");
+        }
+        return new FindCommand(commands[0], commands[1]);
+    }
+
+    /**
+     * @param commands list of commands
+     * @return new snooze command
+     * @throws DukeException If snooze time empty
+     */
+    private static SnoozeCommand getSnoozeCommand(String[] commands) throws DukeException {
+        int index;
+        if (commands.length != 2 || commands[1].length() < 1) {
+            throw new DukeException("The information to snooze a task cannot be empty.");
+        }
+        String[] snoozeInfo = commands[1].split(" ", 2);
+        index = Integer.parseInt(snoozeInfo[0]);
+        String newDate = snoozeInfo[1];
+        return new SnoozeCommand(commands[0], index - 1, newDate);
     }
 }
