@@ -18,7 +18,7 @@ import duke.task.Todo;
  */
 public class FileManager {
     /**
-     * Save the list of tasks to a file.
+     * Saves the list of tasks to a file.
      *
      * @param list List of tasks to save
      * @param filePath The path of the file to save to
@@ -36,7 +36,7 @@ public class FileManager {
     }
 
     /**
-     * Write the list of tasks to a file.
+     * Writes the list of tasks to a file.
      *
      * @param filePath The path of the file to write to
      * @param list List of tasks to write

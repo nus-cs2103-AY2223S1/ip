@@ -86,7 +86,7 @@ public class Duke {
     }
 
     /**
-     * Set the output stream for the Duke program.
+     * Sets the output stream for the Duke program.
      */
     public void setOut() {
         System.setOut(new PrintStream(outputStream, true, StandardCharsets.UTF_8));
