@@ -40,6 +40,8 @@ public class Parser {
             throw new IOException("File, duke.text, does not exist");
         }
         FileWriter fw = null;
+        assert (fw != null);
+
         try {
             fw = new FileWriter(filePath);
             fw.write(TaskList.printTaskList(tasks));
