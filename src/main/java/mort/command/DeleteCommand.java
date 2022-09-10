@@ -12,11 +12,15 @@ import mort.ui.Ui;
 public class DeleteCommand extends Command {
     /** Index of task to be deleted */
     private int taskNumber;
-    
+
+    /**
+     * Constructor to initialize the delete command with the task number.
+     * @param taskNumber
+     */
     public DeleteCommand(int taskNumber) {
         this.taskNumber = taskNumber;
     }
-    
+
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MortException {
         try {

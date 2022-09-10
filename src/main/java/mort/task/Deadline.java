@@ -68,7 +68,7 @@ public class Deadline extends Task {
         this.hasTime = true;
         this.isDone = isDone;
     }
-    
+
     private String formatBy() {
         if (this.hasTime) {
             return this.byDateTime.format(DateTimeFormatter.ofPattern("d MMM yyyy, h:mm a"));
@@ -76,7 +76,7 @@ public class Deadline extends Task {
             return this.byDate.format(DateTimeFormatter.ofPattern("d MMM yyyy"));
         }
     }
-    
+
     private String saveFormatBy() {
         if (this.hasTime) {
             return this.byDateTime.format(DateTimeFormatter.ofPattern("d/M/yyyy HHmm"));

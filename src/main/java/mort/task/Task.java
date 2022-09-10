@@ -16,7 +16,6 @@ public abstract class Task {
      * Completion status is always false when task is first created.
      * @param desc The task description
      */
-    
     public Task(String desc) {
         this.desc = desc;
         this.isDone = false;
@@ -85,7 +84,6 @@ public abstract class Task {
     public String getSaveFormat() {
         return "| " + (isDone ? 1 : 0) + " | " + this.desc;
     }
-    
 
     /**
      * Checks if a given date matches date of the task.
@@ -93,7 +91,7 @@ public abstract class Task {
      * @return True if there is a match; false otherwise.
      */
     public abstract boolean isDateMatch(LocalDate date);
-    
+
     /**
      * Returns the string representation of the task.
      * @return The string representation of the task.

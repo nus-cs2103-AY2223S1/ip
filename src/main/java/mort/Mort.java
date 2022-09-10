@@ -55,5 +55,4 @@ public class Mort {
     public String welcome() {
         return ui.getWelcomeMessage();
     }
-    
 }

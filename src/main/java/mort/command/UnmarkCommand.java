@@ -11,11 +11,11 @@ import mort.ui.Ui;
 public class UnmarkCommand extends Command {
     /** Index of the task to be marked as incomplete */
     private int taskNumber;
-    
+
     public UnmarkCommand(int taskNumber) {
         this.taskNumber = taskNumber;
     }
-    
+
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MortException {
         try {

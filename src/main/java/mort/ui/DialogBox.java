@@ -26,7 +26,7 @@ public class DialogBox extends HBox {
     private ImageView displayPicture;
 
     private final Circle clip = new Circle(50, 50, 50);
-    
+
     private DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -51,11 +51,11 @@ public class DialogBox extends HBox {
         this.getChildren().setAll(tmp);
         this.setAlignment(Pos.TOP_LEFT);
     }
-    
+
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
-    
+
     public static DialogBox getMortDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();

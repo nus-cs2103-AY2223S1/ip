@@ -5,7 +5,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import mort.command.*;
+import mort.command.AddCommand;
+import mort.command.Command;
+import mort.command.CommandWord;
+import mort.command.DeleteCommand;
+import mort.command.ExitCommand;
+import mort.command.FindCommand;
+import mort.command.ListCommand;
+import mort.command.MarkCommand;
+import mort.command.UnmarkCommand;
+import mort.command.ViewCommand;
 import mort.exception.MortException;
 import mort.task.TaskType;
 import mort.ui.Ui;
@@ -25,7 +34,7 @@ public class Parser {
         String[] parsedCommand = strippedCommand.split(" ", 2);
         return createCommand(parsedCommand, strippedCommand);
     }
-    
+
     private static Command createCommand(String[] parsedCommand, String strippedCommand) throws MortException {
         assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
         try {
@@ -101,12 +110,12 @@ public class Parser {
     public static String[] parseSavedTask(String savedTask) {
         return savedTask.split(" \\| ", 4);
     }
-    
+
     private static Command validateToDo(String[] parsedCommand) throws MortException {
         assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
         boolean hasBlankDescription = parsedCommand.length < 2;
         boolean containsPipeCharacter = !hasBlankDescription && parsedCommand[1].contains("|");
-        
+
         if (hasBlankDescription) {
             throw new MortException("It seems you've invented a way to do nothing. Typical...\n"
                     + Ui.getCommandHelp(CommandWord.TODO));
@@ -116,7 +125,7 @@ public class Parser {
             return new AddCommand(TaskType.TODO, parsedCommand[1]);
         }
     }
-    
+
     private static Command validateDeadline(String[] parsedCommand) throws MortException {
         assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
         boolean hasBlankDescriptionWithoutDate = parsedCommand.length < 2;
@@ -130,7 +139,7 @@ public class Parser {
             boolean hasBlankDescriptionWithDate = parsedTask[0].startsWith("/by") || parsedTask[0].isBlank();
             boolean hasBlankDate = parsedTask.length < 2;
             boolean containsPipeCharacter = parsedTask[0].contains("|");
-            
+
             if (hasBlankDescriptionWithDate) {
                 throw new MortException("It seems you've invented a way to do nothing. Typical...\n"
                         + Ui.getCommandHelp(CommandWord.DEADLINE));
@@ -158,7 +167,7 @@ public class Parser {
             boolean hasBlankDescriptionWithDate = parsedTask[0].startsWith("/at") || parsedTask[0].isBlank();
             boolean hasBlankDate = parsedTask.length < 2;
             boolean containsPipeCharacter = parsedTask[0].contains("|");
-            
+
             if (hasBlankDescriptionWithDate) {
                 throw new MortException("It seems you've invented a way to do nothing. Typical...\n"
                         + Ui.getCommandHelp(CommandWord.EVENT));
@@ -196,7 +205,7 @@ public class Parser {
             return new MarkCommand(num);
         }
     }
-    
+
     private static Command validateView(String[] parsedCommand) throws MortException {
         assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
         boolean hasBlankDate = parsedCommand.length < 2;
@@ -218,7 +227,7 @@ public class Parser {
             return new FindCommand(parsedCommand[1]);
         }
     }
-    
+
     private static Command validateUnmark(String[] parsedCommand) throws MortException {
         assert parsedCommand.length > 0 : "Length of parsedCommand should be greater than 0";
         boolean hasBlankTaskNumber = parsedCommand.length < 2;

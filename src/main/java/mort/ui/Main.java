@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
 import mort.Mort;
 
 /**
@@ -15,7 +14,7 @@ import mort.Mort;
  */
 public class Main extends Application {
     private Mort mort = new Mort();
-    
+
     @Override
     public void start(Stage stage) {
         try {

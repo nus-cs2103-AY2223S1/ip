@@ -1,10 +1,10 @@
 package mort.ui;
 
-import mort.command.CommandWord;
-import mort.task.Task;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import mort.command.CommandWord;
+import mort.task.Task;
 
 /**
  * Class that deals with user interactions.
@@ -12,31 +12,31 @@ import java.time.format.DateTimeFormatter;
 public class Ui {
     public Ui() {
     }
-    
+
     public String getWelcomeMessage() {
         return "Oh, it's you again...\nMort, begrudgingly at your service.\n"
                 + "Hmph, what do you want now?";
     }
-    
+
     public String getExitMessage() {
         return "With all due disrespect, leave me alone next time.";
     }
-    
+
     public String getError(String errorMessage) {
         return errorMessage;
     }
-    
+
     public String getAddMessage(Task task, int size) {
         return "Seriously? Another one?\nGive me strength...\n"
                 + "  " + task + "\n" + "You have " + size + " task"
                 + (size > 1 ? "s" : "") + ". Bummer.";
     }
-    
+
     public String getDeleteMessage(Task task, int size) {
         return "Good riddance, I say.\n  " + task
                 + "\nYou have " + size + " task" + (size == 1 ? "" : "s") + ".";
     }
-    
+
     public String getListMessage(String tasks) {
         if (tasks.isBlank()) {
             return "You don't have any tasks. Make yourself useful.\n";
@@ -44,7 +44,7 @@ public class Ui {
             return "*rolls eyes*\nFine. Here are your tasks:\n" + tasks;
         }
     }
-    
+
     public String getMissingTaskError(CommandWord commandWord, int num) {
         StringBuilder sb = new StringBuilder();
         switch (commandWord) {
@@ -57,15 +57,17 @@ public class Ui {
         case UNMARK:
             sb.append("Brilliant. You've asked me to mark an imaginary task as incomplete.\n");
             break;
+        default:
+            break;
         }
         return sb.append("Task number ").append(num).append(" does not exist.").toString();
     }
-    
+
     public static String getUnknownCommandMessage(String command) {
         return "'" + command + "' is not a valid command.\nIf you want my help, the least "
                 + "you could do is say something I understand.";
     }
-    
+
     public static String getCommandHelp(CommandWord keyword) {
         StringBuilder sb = new StringBuilder("Type \"");
         switch (keyword) {
@@ -93,10 +95,12 @@ public class Ui {
         case VIEW:
             sb.append("view <date>\" to view all tasks on that date.");
             break;
+        default:
+            break;
         }
         return sb.toString();
     }
-    
+
     public String getFindMessage(String keyword, String result) {
         if (result.isBlank()) {
             return "No matches found for '" + keyword + "'. Did you have fun wasting my time?";
@@ -105,7 +109,7 @@ public class Ui {
                     + keyword + "':\n" + result;
         }
     }
-    
+
     public String getViewMessage(String tasks, LocalDate date) {
         String formattedDate = date.format(DateTimeFormatter.ofPattern("d MMM yyyy"));
         if (tasks.isBlank()) {

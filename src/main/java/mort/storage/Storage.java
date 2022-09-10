@@ -12,7 +12,11 @@ import java.util.List;
 
 import mort.exception.MortException;
 import mort.parser.Parser;
-import mort.task.*;
+import mort.task.Deadline;
+import mort.task.Event;
+import mort.task.Task;
+import mort.task.TaskList;
+import mort.task.ToDo;
 
 /**
  * Class that contains methods to save tasks to a file
@@ -78,7 +82,7 @@ public class Storage {
             throw new MortException();
         }
     }
-    
+
     private Task createTask(String[] parsedTask) throws MortException {
         String taskType = parsedTask[0];
         boolean isDone = parsedTask[1].contains("1");
@@ -94,10 +98,12 @@ public class Storage {
         case "E":
             task = createEvent(description, isDone, parsedTask[3]);
             break;
+        default:
+            break;
         }
         return task;
     }
-    
+
     private Deadline createDeadline(String description, boolean isDone, String dateString) throws MortException {
         boolean hasTime = dateString.contains(" ");
         if (hasTime) {
@@ -118,5 +124,5 @@ public class Storage {
             LocalDate date = Parser.convertStringToDate(dateString);
             return new Event(description, date, isDone);
         }
-    } // add full commit message, changes already added/staged for commit
+    }
 }

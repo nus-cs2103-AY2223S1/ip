@@ -3,10 +3,8 @@ package mort.task;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Class that stores the list of tasks and methods to manipulate the tasks.
@@ -39,9 +37,9 @@ public class TaskList {
         StringBuilder sb = new StringBuilder();
         this.tasks.forEach(t -> sb.append(this.tasks.indexOf(t) + 1)
                 .append(". ").append(t).append("\n"));
-        
+
         return sb.toString();
-        
+
          */
     }
 
@@ -139,5 +137,5 @@ public class TaskList {
                 .append(task)
                 .append("\n"));
         return sb.toString();
-    } 
+    }
 }

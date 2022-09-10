@@ -1,12 +1,12 @@
 package mort.command;
 
+import java.time.LocalDate;
+
 import mort.exception.MortException;
 import mort.parser.Parser;
 import mort.storage.Storage;
 import mort.task.TaskList;
 import mort.ui.Ui;
-
-import java.time.LocalDate;
 
 /**
  * Represents a command to view all tasks for a given date.
@@ -23,7 +23,7 @@ public class ViewCommand extends Command {
         this.dateString = dateString;
         assert !this.dateString.isBlank();
     }
-    
+
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MortException {
         LocalDate date = Parser.convertStringToDate(dateString);

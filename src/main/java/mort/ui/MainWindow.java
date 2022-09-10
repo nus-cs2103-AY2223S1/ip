@@ -39,7 +39,10 @@ public class MainWindow extends AnchorPane {
             BackgroundRepeat.REPEAT,
             BackgroundPosition.DEFAULT,
             BackgroundSize.DEFAULT);
-    
+
+    /**
+     * Initializes properties of userInput, scrollPane, dialogContainer and sendButton.
+     */
     @FXML
     public void initialize() {
         userInput.setStyle("-fx-control-inner-background: #DCD7C9; -fx-background-radius: 5px;");
@@ -67,7 +70,7 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getMortDialog(response, mortImage)
         );
         userInput.clear();
-        
+
         if (input.equals("bye")) {
             //reused syinyichen
             PauseTransition pause = new PauseTransition(Duration.seconds(1));
@@ -76,9 +79,8 @@ public class MainWindow extends AnchorPane {
             });
             pause.play();
         }
-
     }
-    
+
     private void showWelcomeMessage() {
         dialogContainer.getChildren().addAll(DialogBox.getMortDialog(mort.welcome(), mortImage));
     }

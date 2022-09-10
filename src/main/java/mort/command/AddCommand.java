@@ -23,7 +23,7 @@ public class AddCommand extends Command {
     private String dateString;
 
     /**
-     * Constructor to initialise the add command with the task type and description.
+     * Constructor to initialize the add command with the task type and description.
      * @param taskType The task type.
      * @param description The task description.
      */
@@ -45,7 +45,7 @@ public class AddCommand extends Command {
         this.dateString = dateString;
         assert !this.description.isBlank() : "desc should not be blank";
     }
-    
+
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws MortException {
         Task task = createTask();
@@ -67,11 +67,13 @@ public class AddCommand extends Command {
         case EVENT:
             task = createEvent();
             break;
+        default:
+            break;
         }
-        
+
         return task;
     }
-    
+
     private Deadline createDeadline() throws MortException {
         boolean hasTime = dateString.contains(" ");
         if (hasTime) {
@@ -80,7 +82,7 @@ public class AddCommand extends Command {
             return new Deadline(this.description, Parser.convertStringToDate(this.dateString));
         }
     }
-    
+
     private Event createEvent() throws MortException {
         boolean hasTime = dateString.contains(" ");
         if (hasTime) {
