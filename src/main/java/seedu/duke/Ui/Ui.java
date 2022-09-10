@@ -123,6 +123,15 @@ public class Ui {
      * @param searchString
      * @param foundList
      */
+
+    public static String nameEdited(int index, Task task) {
+        return "I have edited task number " + index + " to " + task.toString() + ", Master.";
+    }
+
+    public static String timeEdited(int index, Task task) {
+        return "I have edited task number " + index + " to " + task.toString() + ", Master.";
+    }
+
     public static String found(String searchString, TaskList foundList) {
         if (foundList.size() == 1) {
             return "I have found the following task matching \"" + searchString + "\":\n"

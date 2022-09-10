@@ -37,6 +37,16 @@ public class EventTask extends Task {
         }
     }
 
+    public void editTime(String date) {
+        try {
+            this.date = LocalDate.parse(date);
+            time = null;
+        } catch (DateTimeParseException e) {
+            this.time = date;
+            this.date = null;
+        }
+    }
+
     @Override
     public String getType() {
         return TYPE;

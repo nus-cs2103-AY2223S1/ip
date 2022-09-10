@@ -3,7 +3,7 @@ package seedu.duke.task;
 public class Task {
     String name;
     boolean isDone;
-    String type = "[T]";
+    String TYPE = null;
 
     public Task(String name) {
         this.name = name;
@@ -24,13 +24,14 @@ public class Task {
         }
     }
 
+    public boolean getDone() {
+        return this.isDone;
+    }
+
     public String getName() {
         return name;
     }
-
-    public String getType() {
-        return type;
-    }
+    public String getType() { return TYPE;};
 
     public boolean markDone() {
         if (isDone) {
@@ -46,6 +47,10 @@ public class Task {
         }
         this.isDone = false;
          return true;
+    }
+
+    public void changeDesc(String newName) {
+        this.name = newName;
     }
 
     @Override

@@ -19,6 +19,10 @@ public class ToDoTask extends Task {
         super(name, isDone);
     }
 
+    @Override
+    public String getType() {
+        return TYPE;
+    }
     /**
      * Returns string in form: [E] task name
      * @return

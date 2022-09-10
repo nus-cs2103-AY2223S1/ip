@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Parser {
     private static final String[] COMMANDS_ARRAY =
-            new String[] {"mark", "unmark", "delete", "todo", "deadline", "event", "find"};
+            new String[] {"mark", "unmark", "delete", "edit", "todo", "deadline", "event", "find"};
     private static final List<String> COMMANDS = Arrays.asList(COMMANDS_ARRAY);
 
     /**
@@ -56,6 +56,33 @@ public class Parser {
                         throw new DukeException("Please input only 'delete' and a number, Master.");
                     }
                     return new DeleteCommand(index);
+                } else if (commandWord.equals("edit")) {
+                    String[] taskDesc = details.split(" ", 3);
+                    int index;
+                    if (taskDesc.length == 2) { // assume description change
+                        try {
+                            index = Integer.parseInt(taskDesc[0]) - 1;
+                        } catch (NumberFormatException e) {
+                            throw new DukeException("Please input the index of the task, " +
+                                    "followed by the new description, Master.");
+                        }
+                        return new EditNameCommand(index, taskDesc[1]);
+                    } else {
+                        try {
+                            index = Integer.parseInt(taskDesc[0]) - 1;
+                            if (taskDesc[1].equals("name")) {
+                                return new EditNameCommand(index, taskDesc[2]);
+                            } else if (taskDesc[1].equals("time") || taskDesc.equals("deadline")) {
+                                return new EditTimeCommand(index, taskDesc[2]);
+                            } else { // assume edit name
+                                return new EditNameCommand(index, taskDesc[1] + " " + taskDesc[2]);
+                            }
+                        } catch (NumberFormatException e) {
+                            throw new DukeException("Please input the index of the task, " +
+                                    "followed by the new description, Master.");
+                        }
+
+                    }
 
                 } else if (commandWord.equals("todo")) {
                     return new ToDoCommand(details);

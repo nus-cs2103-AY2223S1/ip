@@ -1,6 +1,6 @@
-[T][X] eat
-[E][ ] eat (on: 5pm)
+[T][X] sleep later
+[E][ ] eat later (on: 5pm)
 [D][ ] eat (by: 5pm)
-[D][ ] eat (by: 7pm)
+[D][ ] eat (by: Aug 4 2022)
 [D][ ] eat (by: 10pm)
 [T][ ] eat apple
