@@ -18,7 +18,7 @@ public class Ui {
 
     /**
      * Returns the welcome message.
-     * 
+     *
      * @return Welcome message.
      */
     public static String getWelcomeMessage() {
@@ -53,7 +53,7 @@ public class Ui {
 
     /**
      * Returns the mark Task message.
-     * 
+     *
      * @param t Task that was marked complete.
      * @return Mark Task message.
      */
@@ -64,18 +64,18 @@ public class Ui {
 
     /**
      * Returns the unmark Task message.
-     * 
+     *
      * @param t Task that was unmarked.
      * @return Unmark Task message.
      */
     public String getUnmarkTaskMessage(Task t) {
         return String.format("OK, I've marked this task as undone:\n%s\n", t);
-    }    
+    }
 
 
     /**
      * Returns the add Task message.
-     * 
+     *
      * @param t Task that was added.
      * @param numOfTasks Number of Task objects in the TaskList adding.
      * @return Add Task message.
@@ -88,7 +88,7 @@ public class Ui {
 
     /**
      * Returns the delete Task message.
-     * 
+     *
      * @param t Task that was deleted.
      * @param numOfTasks Number of Task objects in the TaskList after deleting.
      * @return Delete Task message.
@@ -101,17 +101,17 @@ public class Ui {
 
     /**
      * Returns the exit message.
-     * 
+     *
      * @return Exit message.
      */
     public String getExitMessage() {
         return "Bye. Hope to see you again soon!\n";
     }
 
-    
+
     /**
      * Returns the data file success message.
-     * 
+     *
      * @return Data file success message.
      */
     public String getDataFileSuccessMessage() {
@@ -123,7 +123,7 @@ public class Ui {
 
     /**
      * Returns the invalid command message.
-     * 
+     *
      * @return Invalid command message.
      */
     public String getInvalidCommandErrorMessage() {
@@ -133,7 +133,7 @@ public class Ui {
 
     /**
      * Returns the add Task invalid syntax error message.
-     * 
+     *
      * @param e IllegalArgumentException that was thrown.
      * @return Add Task invalid syntax error message.
      */
@@ -144,7 +144,7 @@ public class Ui {
 
     /**
      * Returns the data file not found error message.
-     * 
+     *
      * @return Data file not found error message.
      */
     public String getDataFileNotFoundErrorMessage() {
@@ -154,7 +154,7 @@ public class Ui {
 
     /**
      * Returns the data file read error message.
-     * 
+     *
      * @return Data file read error message.
      */
     public String getDataFileReadErrorMessage() {
@@ -164,7 +164,7 @@ public class Ui {
 
     /**
      * Returns the data file deserialize error message.
-     * 
+     *
      * @return Data file deserialize error message.
      */
     public String getDataFileDeserializeErrorMessage() {
@@ -175,7 +175,7 @@ public class Ui {
     /**
      * Returns the create new TaskList message.
      * Used if data file could not be read in successfully.
-     * 
+     *
      * @return Create new TaskList message.
      */
     public String getCreateNewTaskListMessage() {

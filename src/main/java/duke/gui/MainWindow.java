@@ -34,7 +34,7 @@ public class MainWindow extends AnchorPane {
 
     /**
      * Initialize the Main Window.
-     * 
+     *
      * Note that initialize() is called first before setDuke().
      * Hence, the duke attribute is still null when this function is called.
      */
@@ -66,11 +66,11 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         dialogContainer.getChildren().add(DialogBox.getUserDialog(input, userImage));
         userInput.clear();
-        
+
         // Process input and print response
         String response = duke.getResponse(input);
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(response, dukeImage));
-        
+
     }
-    
+
 }

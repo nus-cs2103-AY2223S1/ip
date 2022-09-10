@@ -56,7 +56,7 @@ public class DialogBox extends HBox {
 
     /**
      * Returns a DialogBox representing the user's message.
-     * 
+     *
      * @param text User's message.
      * @param img User's picture.
      * @return DialogBox representing the user's message.
@@ -68,7 +68,7 @@ public class DialogBox extends HBox {
 
     /**
      * Returns a DialogBox representing Duke's message.
-     * 
+     *
      * @param text Duke's message.
      * @param img Duke's picture.
      * @return DialogBox representing Duke's message.
@@ -78,5 +78,5 @@ public class DialogBox extends HBox {
         db.flip();
         return db;
     }
-    
+
 }

@@ -36,7 +36,7 @@ public class Deadline extends Task {
 
 
     /**
-     * Parse the specified dateAndTime string into a LocalDateTime object.
+     * Parses the specified dateAndTime string into a LocalDateTime object.
      *
      * @param dateAndTime String containing the date and time in the format: yyyy-mm-dd hh:mm
      * @return LocalDateTime object representing the specified date and time.

@@ -41,7 +41,7 @@ public class Duke {
     /** TaskList object to store the user's tasks */
     private TaskList storedTasks;
 
-    
+
 
 
     /**
@@ -55,7 +55,7 @@ public class Duke {
 
     /**
      * Reads the data file and returns the status message.
-     * 
+     *
      * @return Status message.
      */
     public String initialize() {
@@ -306,7 +306,7 @@ public class Duke {
 
     private String handleInvalidCommand() {
         return ui.getInvalidCommandErrorMessage();
-    }    
+    }
 
 
     // Calls the relevant function based on the given command
@@ -363,14 +363,14 @@ public class Duke {
         default:
             result = handleInvalidCommand();
         }
-        
+
         return result;
     }
 
 
     /**
      * Returns the response to the specified input.
-     * 
+     *
      * @param input User input string.
      * @return Response string.
      */
@@ -383,16 +383,6 @@ public class Duke {
 
 
     public static void main(String[] args) {
-        
-        // Duke d = new Duke();
 
-        // String input = "todo buy bread";
-        // String input = "deadline return book /by 2022-12-16 18:00";
-        // String input = "event book club /at Mon 2-4pm";
-        // String input = "delete 2";
-        // String input = "list";
-        // String[] command = Parser.parseCommand(input);
-
-        // System.out.println(d.executeCommand(command));
     }
 }

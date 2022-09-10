@@ -28,8 +28,8 @@ public class TaskList implements Serializable {
     }
 
 
-    
-    
+
+
     public int getSize() {
         return this.tasks.size();
     }
@@ -90,7 +90,7 @@ public class TaskList implements Serializable {
             // Collect the results back into a linked list
             .collect(c);
 
-        
+
         return new TaskList(results);
     }
 

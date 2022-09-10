@@ -52,13 +52,14 @@
     The order rule "STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE" consists of:
       1. STATIC: static imports
       2. STANDARD_JAVA_PACKAGE: standard java/javax imports
-      3. SPECIAL_IMPORTS: defined as org imports
+      3. SPECIAL_IMPORTS: defined as org and duke imports
       4. THIRD_PARTY_PACKAGE: defined as com imports
+      5. All other imports should be placed in one final block at the bottom of the import list
     -->
     <module name="CustomImportOrder">
         <property name="customImportOrderRules"
             value="STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE"/>
-        <property name="specialImportsRegExp" value="^org\."/>
+        <property name="specialImportsRegExp" value="^(org|duke)\."/>
         <property name="thirdPartyPackageRegExp" value="^com\."/>
         <property name="sortImportsInGroupAlphabetically" value="true"/>
     </module>
