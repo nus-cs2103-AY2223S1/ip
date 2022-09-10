@@ -27,4 +27,14 @@ public class TaskList {
     public void removeTask(Task task) {
         this.tasks.remove(task);
     }
+
+    public ArrayList<Task> findTask(String query) {
+        ArrayList<Task> foundTasks = new ArrayList<>();
+        for (Task task : this.tasks) {
+            if (task.containsQuery(query)) {
+                foundTasks.add(task);
+            }
+        }
+        return foundTasks;
+    }
 }

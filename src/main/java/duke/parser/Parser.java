@@ -1,15 +1,7 @@
 package duke.parser;
 
 
-import duke.commands.Command;
-import duke.commands.DeadlineCommand;
-import duke.commands.ListCommand;
-import duke.commands.TodoCommand;
-import duke.commands.EventCommand;
-import duke.commands.MarkCommand;
-import duke.commands.UnmarkCommand;
-import duke.commands.ByeCommand;
-import duke.commands.DeleteCommand;
+import duke.commands.*;
 import duke.exception.DukeException;
 import duke.task.Task;
 
@@ -113,6 +105,9 @@ public class Parser {
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 throw new DukeException("OOPS!!! The duke.task index specified is not valid.\n");
             }
+        // Find a task by searching for a keyword
+        case FindCommand.COMMAND_WORD:
+            return prepareFindCommand(inputs);
         case ByeCommand.COMMAND_WORD:
             if (inputs.length == 2) {
                 throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(.\n");
@@ -122,5 +117,13 @@ public class Parser {
         default:
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(.\n");
         }
+    }
+
+    public static FindCommand prepareFindCommand(String[] inputs) {
+        if (inputs.length == 1 || inputs[1].equals("")) {
+            throw new DukeException("OOPS!!! The task description cannot be empty\n");
+        }
+
+        return new FindCommand(inputs[1]);
     }
 }
