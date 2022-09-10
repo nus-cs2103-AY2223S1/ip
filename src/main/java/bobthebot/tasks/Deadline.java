@@ -39,6 +39,17 @@ public class Deadline extends Task {
         return date + ", " + time;
     }
 
+    public Boolean isWithinWeekOfDeadline() {
+        String[] splitEvent = by.split(" ");
+        String dueDate = splitEvent[0].trim();
+        LocalDate formattedDueDate = LocalDate.parse(dueDate);
+
+        LocalDate today = LocalDate.now();
+        LocalDate oneWeekLater = today.plusWeeks(1);
+
+        return formattedDueDate.isBefore(oneWeekLater);
+    }
+
     /**
      * Returns a String representation of a deadline.
      *

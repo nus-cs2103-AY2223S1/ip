@@ -24,10 +24,9 @@ public class Event extends Task {
      * Changes the format of the date from YYYY-MM-DD to MMM D YYYY
      * Eg. Method will change 2022-12-12 to Dec 12 2022.
      *
-     * @param at Date to be changed.
      * @return String in format MMM D YYYY.
      */
-    public String changeAtFormat(String at) {
+    private String changeAtFormat() {
         // split the date and the time
         String[] splitDeadline = at.split(" ");
         String givenDate = splitDeadline[0].trim();
@@ -39,6 +38,17 @@ public class Event extends Task {
         return date + ", " + time;
     }
 
+    public Boolean isWithinWeekOfEvent() {
+        String[] splitEvent = at.split(" ");
+        String eventDate = splitEvent[0].trim();
+        LocalDate formattedEventDate = LocalDate.parse(eventDate);
+
+        LocalDate today = LocalDate.now();
+        LocalDate oneWeekLater = today.plusWeeks(1);
+
+        return formattedEventDate.isBefore(oneWeekLater);
+    }
+
     /**
      * Returns a String representation of an event.
      *
@@ -46,7 +56,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.changeAtFormat(at) + ")";
+        return "[E]" + super.toString() + " (at: " + this.changeAtFormat() + ")";
     }
 
     /**

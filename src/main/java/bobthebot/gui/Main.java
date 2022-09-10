@@ -3,8 +3,10 @@ package bobthebot.gui;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import bobthebot.command.ReminderCommand;
 import bobthebot.exceptions.BobException;
 import bobthebot.tasks.ToDoList;
+import bobthebot.utils.LanguageBank;
 import bobthebot.utils.Parser;
 import bobthebot.utils.Storage;
 import bobthebot.utils.Ui;
@@ -152,7 +154,12 @@ public class Main extends Application {
                 System.exit(0);
             }
         };
-        new Timer().schedule(exitApp, 500);
-        return Ui.sayGoodbye(todolist);
+        new Timer().schedule(exitApp, 2000);
+
+        ReminderCommand reminderCommand = new ReminderCommand(todolist);
+        String result = reminderCommand.execute() + "\n";
+        result += Ui.sayGoodbye(todolist);
+
+        return result;
     }
 }
