@@ -14,15 +14,7 @@ There are 3 simple steps!
 3. Execute the jar format
    1. Ensure you're on the correct working directory 
    2. Entering the command `java -jar duke.jar` in the terminal 
-3. If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+3. If the setup is correct, you should see a ![welcome message as follows](./WelcomeDuke.JPG):
 
 ## Using our commands 
 Enter the corresponding input as required! 

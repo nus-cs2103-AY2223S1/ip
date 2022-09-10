@@ -58,31 +58,6 @@ public class Duke {
     }
 
 
-    public static void main(String[] args) {
-        new Duke().run();
-    }
-
-    /**
-     * DEPRECATED
-     * Displays the welcome message.
-     * Initializes the scanner to scan for inputs
-     * Lets the parser parse the correct input
-     * Terminate the program if the user requests for it
-     */
-    public static void run() {
-        Ui.welcomeMessage();
-        Scanner sc = new Scanner(System.in);
-        String input;
-        while (true) {
-            input = sc.nextLine();
-            if (input.equals("bye")) {
-                Ui.displayMessage(Ui.ENDING_MESSAGE);
-                break;
-            }
-            //if not, parser can parse data
-            Parser.parseData(input, tasks);
-        }
-    }
 
 
 }

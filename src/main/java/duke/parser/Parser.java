@@ -128,9 +128,7 @@ public class Parser {
     }
 
     /**
-     * Helper method to validate and generate the Task method when created
-     * Abstracted from the main switch statement
-     * Returns a valid string, and passes the task to be added into the tasklist
+     * Helper method to validate and generate a task creation input
      * @param input
      */
     private static String taskMessageGenerator(TaskList taskList, String input) {

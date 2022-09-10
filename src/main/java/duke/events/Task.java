@@ -31,11 +31,8 @@ public class Task implements Serializable {
     }
 
     /**
-     * Default method when comparing whether a date clashes with the above
-     * To be overriden by tasks that are bound by date (e.g: Event/Deadline)
-     * Returns True if the task occurs on the same date as given
+     * Compares stored date with an unparsed Date, returns true if they are the same.
      * @param date Pseudo Date
-     * @return
      */
     public boolean compareDate(String date) {
         return false;
