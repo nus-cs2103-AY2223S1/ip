@@ -134,7 +134,7 @@ public class Parser {
     protected String insertTask(Task task) {
         tasks.add(task);
         StringBuilder sb = new StringBuilder();
-        sb.append("added: ");
+        sb.append("added: \n");
         sb.append("\t" + task + "\n");
         sb.append(String.format("you have %d task(s) in the list\n", tasks.size()));
 
@@ -155,7 +155,7 @@ public class Parser {
             int index = Integer.parseInt(words[1]);
             tasks.get(index - 1).markDone();
             StringBuilder sb = new StringBuilder();
-            sb.append("cool, this task is marked as done");
+            sb.append("cool, this task is marked as done\n");
             sb.append("\t" + tasks.get(index - 1));
 
             return sb.toString();
@@ -180,7 +180,7 @@ public class Parser {
             int index = Integer.parseInt(words[1]);
             tasks.get(index - 1).markUndone();
             StringBuilder sb = new StringBuilder();
-            sb.append("ok, this task is marked as not done yet");
+            sb.append("ok, this task is marked as not done yet\n");
             sb.append("\t" + tasks.get(index - 1));
 
             return sb.toString();
@@ -206,7 +206,7 @@ public class Parser {
             tasks.remove(index - 1);
             return "ok, i removed this task";
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException | DukeException e) {
-            return "format: mark <number>";
+            return "format: delete <number>";
         } catch (IndexOutOfBoundsException e) {
             return "enter a valid index";
         }
@@ -235,7 +235,7 @@ public class Parser {
             } else {
                 StringBuilder sb = new StringBuilder();
                 int count = 1;
-                sb.append("\there are your matching tasks:");
+                sb.append("\there are your matching tasks:\n");
                 for (Task task : matchingTasks) {
                     sb.append(String.format("\t%d. %s\n", count, task));
                     count++;
@@ -263,6 +263,11 @@ public class Parser {
         return "bye!";
     }
 
+    /**
+     * Gives user reminders of tasks with due dates.
+     *
+     * @return Returns String filled with reminders
+     */
     protected String reminder() {
         ArrayList<Task> reminders = new ArrayList<>();
         for (int i = 0; i < tasks.size(); i++) {
