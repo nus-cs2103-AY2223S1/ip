@@ -4,14 +4,10 @@ import java.util.Scanner;
 
 import duke.taskmanager.TaskManager;
 import duke.taskmanager.exceptions.EmptyCommandException;
-import duke.taskmanager.exceptions.EmptyTaskException;
 import duke.taskmanager.exceptions.InvalidArgumentsException;
 import duke.taskmanager.exceptions.InvalidCommandException;
-import duke.taskmanager.exceptions.InvalidDeadlineException;
-import duke.taskmanager.exceptions.InvalidEventException;
 import duke.taskmanager.exceptions.InvalidIndexException;
 import duke.taskmanager.exceptions.LoadDataException;
-import duke.taskmanager.exceptions.SaveDataException;
 import duke.taskmanager.task.DeadlineTask;
 import duke.taskmanager.task.EventTask;
 import duke.taskmanager.task.ToDoTask;
@@ -151,7 +147,7 @@ public class ChatBot {
                 String deadlineTaskName = "";
                 String deadline = "";
                 if (hasArguments) {
-                    String[] argumentList = arguments.split(" /by ");
+                    String[] argumentList = arguments.split(DeadlineTask.TASK_DELIMITER);
                     if (argumentList.length < 2) {
                         throw new InvalidArgumentsException();
                     }
@@ -165,7 +161,7 @@ public class ChatBot {
                 String eventTaskName = "";
                 String eventTime = "";
                 if (hasArguments) {
-                    String[] argumentList = arguments.split(" /at ");
+                    String[] argumentList = arguments.split(EventTask.TASK_DELIMITER);
                     if (argumentList.length < 2) {
                         throw new InvalidArgumentsException();
                     }
@@ -190,14 +186,23 @@ public class ChatBot {
                 }
                 response = taskManager.findTask(arguments);
                 break;
+            case "update":
+                if (!hasArguments) {
+                    throw new InvalidArgumentsException();
+                }
+
+                String[] argumentList = arguments.split(TaskManager.UPDATE_DELIMITER);
+                if (argumentList.length < 2) {
+                    throw new InvalidArgumentsException();
+                }
+                response = taskManager.updateTask(parseNumber(argumentList[0]), argumentList[1]);
+                break;
             default:
                 throw new InvalidCommandException(input);
             }
             System.out.println(wrapMessage(response));
             taskManager.saveData();
-        } catch (EmptyCommandException | EmptyTaskException | InvalidArgumentsException | InvalidIndexException
-                 | InvalidDeadlineException | InvalidEventException | InvalidCommandException
-                 | SaveDataException exception) {
+        } catch (Exception exception) {
             response = exception.getMessage();
         } finally {
             inputScanner.close();

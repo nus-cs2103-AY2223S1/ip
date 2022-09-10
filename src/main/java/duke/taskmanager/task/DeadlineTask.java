@@ -5,15 +5,17 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import duke.taskmanager.exceptions.EmptyTaskException;
+import duke.taskmanager.exceptions.InvalidArgumentsException;
 import duke.taskmanager.exceptions.InvalidDeadlineException;
 
 /**
  * Deadline Task is a Task with the additional deadline information.
  */
 public class DeadlineTask extends Task {
+    public static final String TASK_DELIMITER = "/by ";
     private static final String TASK_TYPE = "D";
-    private final LocalDateTime deadline;
     private final String dateFormat;
+    private LocalDateTime deadline;
 
     /**
      * Creates a new deadline task with information indicating the name of the task and
@@ -33,7 +35,7 @@ public class DeadlineTask extends Task {
         try {
             this.deadline = LocalDateTime.parse(deadline, DateTimeFormatter.ofPattern(this.dateFormat));
         } catch (DateTimeParseException exception) {
-            throw new InvalidDeadlineException(dateFormat);
+            throw new InvalidDeadlineException(this.dateFormat);
         }
         assert !(super.getTaskName().equals("")) : "Task should not be empty";
     }
@@ -56,9 +58,53 @@ public class DeadlineTask extends Task {
         try {
             this.deadline = LocalDateTime.parse(deadline);
         } catch (DateTimeParseException exception) {
-            throw new InvalidDeadlineException(dateFormat);
+            throw new InvalidDeadlineException(this.dateFormat);
         }
         assert !(super.getTaskName().equals("")) : "Task should not be empty";
+    }
+
+    /**
+     * Sets the deadline of the task with the given string
+     *
+     * @param deadline string of the deadline
+     * @throws InvalidDeadlineException when date format is invalid
+     */
+    private void setDeadline(String deadline) throws InvalidDeadlineException {
+        try {
+            this.deadline = LocalDateTime.parse(deadline, DateTimeFormatter.ofPattern(this.dateFormat));
+        } catch (DateTimeParseException exception) {
+            throw new InvalidDeadlineException(this.dateFormat);
+        }
+    }
+
+    /**
+     * Updates the task with the given arguments
+     *
+     * @param arguments string of arguments to update the task
+     * @throws InvalidArgumentsException when the arguments given are empty or date format is invalid
+     */
+    @Override
+    public void update(String arguments) throws InvalidArgumentsException, InvalidDeadlineException {
+        if (arguments.length() <= 0) {
+            throw new InvalidArgumentsException();
+        }
+        String[] argumentList = arguments.split(TASK_DELIMITER);
+        if (argumentList.length <= 0) {
+            throw new InvalidArgumentsException();
+        }
+
+        if (arguments.startsWith(TASK_DELIMITER)) {
+            setDeadline(argumentList[1]);
+        } else {
+            if (argumentList.length == 1) {
+                setTaskName(argumentList[0]);
+            } else if (argumentList.length == 2) {
+                setTaskName(argumentList[0]);
+                setDeadline(argumentList[1]);
+            } else {
+                throw new InvalidArgumentsException();
+            }
+        }
     }
 
     /**

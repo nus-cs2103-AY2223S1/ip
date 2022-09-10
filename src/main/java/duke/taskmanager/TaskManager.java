@@ -7,12 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
-import duke.taskmanager.exceptions.EmptyTaskException;
-import duke.taskmanager.exceptions.InvalidDeadlineException;
-import duke.taskmanager.exceptions.InvalidEventException;
-import duke.taskmanager.exceptions.InvalidFormattedStringException;
-import duke.taskmanager.exceptions.LoadDataException;
-import duke.taskmanager.exceptions.SaveDataException;
+import duke.taskmanager.exceptions.*;
 import duke.taskmanager.task.DeadlineTask;
 import duke.taskmanager.task.EmptyTask;
 import duke.taskmanager.task.EventTask;
@@ -23,6 +18,7 @@ import duke.taskmanager.task.ToDoTask;
  * TaskManager class manages a list of task and provide functions to manipulate the list.
  */
 public class TaskManager {
+    public static final String UPDATE_DELIMITER = " >> ";
     private static final String FILE_PATH = "tasklist.txt";
     private static final String DATE_FORMAT = "dd/MM/yyyy,HHmm";
     private static final String ATTRIBUTE_SEPARATOR = "<>";
@@ -185,6 +181,26 @@ public class TaskManager {
             }
             return stringBuilder.toString();
         }
+    }
+
+    /**
+     * Updates a task according to item number and the arguments provided.
+     *
+     * @param itemNumber index of the task to be updated
+     * @param arguments string of the arguments to update the task with
+     * @return a response message indicating that the task has been updated
+     */
+    public String updateTask(int itemNumber, String arguments) throws Exception {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (itemNumber > 0 && itemNumber <= this.taskList.size()) {
+            this.taskList.get(itemNumber - 1).update(arguments);
+            stringBuilder.append("The following item has been updated.\n");
+            stringBuilder.append(itemNumber).append(") ")
+                    .append(this.taskList.get(itemNumber - 1).toString()).append("\n");
+        } else {
+            return "There is no such task!!\n";
+        }
+        return stringBuilder.toString();
     }
 
     /**

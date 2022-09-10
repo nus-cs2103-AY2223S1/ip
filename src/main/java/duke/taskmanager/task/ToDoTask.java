@@ -1,6 +1,7 @@
 package duke.taskmanager.task;
 
 import duke.taskmanager.exceptions.EmptyTaskException;
+import duke.taskmanager.exceptions.InvalidArgumentsException;
 
 /**
  * ToDoTask is a Task with task information.
@@ -30,5 +31,19 @@ public class ToDoTask extends Task {
     public ToDoTask(String taskName, boolean isCompleted) throws EmptyTaskException {
         super(TASK_TYPE, taskName, isCompleted);
         assert !(super.getTaskName().equals("")) : "Task should not be empty";
+    }
+
+    /**
+     * Updates the task with the given arguments
+     *
+     * @param arguments string of arguments to update the task
+     * @throws InvalidArgumentsException when the arguments given are empty
+     */
+    @Override
+    public void update(String arguments) throws InvalidArgumentsException {
+        if (arguments.length() <= 0) {
+            throw new InvalidArgumentsException();
+        }
+        super.setTaskName(arguments);
     }
 }
