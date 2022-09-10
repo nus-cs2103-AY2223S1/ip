@@ -48,6 +48,10 @@ public class Task {
                 + description
                 + LINE_SEPARATOR;
     }
+    
+    public String getDateString() {
+        return "UNDATED";
+    }
 
     @Override
     public String toString() {

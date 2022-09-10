@@ -31,8 +31,7 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog(Messages.WELCOME_MESSAGE, dukeImage)
-        );
+                DialogBox.getDukeDialog(Messages.WELCOME_MESSAGE, dukeImage));
     }
 
     public void setDuke(Duke d) {

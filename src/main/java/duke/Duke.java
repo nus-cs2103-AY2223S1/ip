@@ -57,7 +57,7 @@ public class Duke {
         Command c = Parser.parse(input);
         return c.execute(storage, tasks, ui);
     }
-
+    
     public static void main(String[] args) {
         new Duke("data/duke.txt").run();
     }

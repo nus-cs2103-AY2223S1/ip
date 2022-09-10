@@ -11,6 +11,7 @@ import duke.command.FindCommand;
 import duke.command.IncorrectCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
+import duke.command.ViewCommand;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
@@ -37,6 +38,9 @@ public class Parser {
                 break;
             case "list":
                 command = new ListCommand();
+                break;
+            case "view":
+                command = new ViewCommand();
                 break;
             case "mark":
             case "unmark":
