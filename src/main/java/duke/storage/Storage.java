@@ -16,6 +16,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A storage in Duke that deals with loading tasks from the file and saving tasks in the file.
+ */
 public class Storage {
     private static final String HOME = System.getProperty("user.home");
     private static final String FILE_NAME = "duke.txt";
@@ -23,10 +26,18 @@ public class Storage {
     private static final Path FILE_PATH = Paths.get(HOME, DIR_NAME, FILE_NAME);
     private static final Path DIR_PATH = Paths.get(HOME, DIR_NAME);
 
+    /**
+     * Creates a new instance of storage.
+     */
     public Storage() {
         initialize();
     }
 
+    /**
+     * Initializes the storage, creates the directory and file if they are not present.
+     *
+     * @throws DukeException If the directory or file is missing but unable to create.
+     */
     private void initialize() throws DukeException {
         try {
             if (!isDirectoryPresent()) {
@@ -45,6 +56,7 @@ public class Storage {
         }
     }
 
+
     private boolean isDirectoryPresent() {
         return Files.exists(DIR_PATH);
     }
@@ -53,6 +65,12 @@ public class Storage {
         return Files.exists(FILE_PATH);
     }
 
+    /**
+     * Loads the tasks from the file.
+     *
+     * @return The array list of tasks from the file.
+     * @throws DukeException If the file is missing or unable to read from the file.
+     */
     public ArrayList<Task> loadTasks() throws DukeException {
         ArrayList<Task> taskList = new ArrayList<>();
 
@@ -69,6 +87,12 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Adds a task to the file.
+     *
+     * @param task The task to be added to the file.
+     * @throws DukeException If the file is missing or unable to write to the file.
+     */
     public void appendTaskToFile(Task task) throws DukeException {
         try {
             FileWriter fw = new FileWriter(FILE_PATH.toString(), true);
@@ -80,6 +104,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Overwrites the tasks in the file with the given tasks.
+     *
+     * @param tasks The given tasks to be written to the file.
+     * @throws DukeException If the file is missing or unable to write to the file.
+     */
     public void writeAllTasksToFile(TaskList tasks) throws DukeException {
         try {
             List<String> list = new ArrayList<>();
@@ -93,6 +123,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Decode the tasks from the file and creates the corresponding task.
+     *
+     * @param encodedTask The task to be decoded.
+     * @return The corresponding task object from the encoded task.
+     */
     private Task decodeTaskFromString(String encodedTask) {
         String[] components = encodedTask.split(" \\| ", 3);
         Task task;
