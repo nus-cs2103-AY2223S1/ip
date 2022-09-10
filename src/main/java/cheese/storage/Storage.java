@@ -40,6 +40,8 @@ public class Storage {
         TaskList taskList = new TaskList();
         try {
             File file = new File(filePath);
+            assert file.exists() : "File does not exist";
+
             Scanner scanner = new Scanner(file);
 
             while (scanner.hasNext()) {
