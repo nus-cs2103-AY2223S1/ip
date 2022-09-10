@@ -26,12 +26,9 @@ public class Duke {
         try {
             response = p.parseInput(userInput, false);
         } catch (DukeException e) {
+            assert false;
             return Ui.showErrorOccurred(e);
         }
         return response;
-    }
-
-    public static void main(String[] args) {
-
     }
 }
