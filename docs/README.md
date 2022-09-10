@@ -3,6 +3,9 @@
 following to navigate to the relevant section you are looking for:
 1. [Feature showcase](#1-feature-showcase)
    * [1.1. Adding tasks](#11-adding-tasks)
+     * [1.1.1 Adding deadlines](#111-deadline-a-task-with-a-due-date)
+     * [1.1.2 Adding events](#112-event----a-task-with-a-venue)
+     * [1.1.3. Adding tasks to do](#113-todo-----a-basic-task-to-be-completed)
    * [1.2. Deleting tasks](#12-deleting-tasks)
    * [1.3. Listing all tasks](#13-listing-all-tasks)
    * [1.4. Marking tasks as done](#14-marking-tasks-as-done)
@@ -21,32 +24,32 @@ following to navigate to the relevant section you are looking for:
 ## 1. Feature showcase
 ### 1.1. Adding tasks
 There are three possible tasks you can add:
- 1. `deadline`: a task with a due date
-![alt text](images/add-deadline.img)
- 2. `event`   : a task with a venue
- ![alt text](images/add-event.img)
- 3. `todo`    : a basic task to be completed
-![alt text](images/add-todo.img)
+ #### 1.1.1 `deadline`: a task with a due date
+![alt text](images/add-deadline.png)
+ #### 1.1.2. `event`   : a task with a venue
+ ![alt text](images/add-event.png)
+ #### 1.1.3. `todo`    : a basic task to be completed
+![alt text](images/add-todo.png)
 
 ### 1.2. Deleting tasks
 Tasks can be deleted:
-![alt text](images/delete-task.img)
+![alt text](images/delete-task.png)
 
 ### 1.3. Listing all tasks
 You can list all available tasks:
-![alt text](images/list-tasks.img)
+![alt text](images/list-tasks.png)
 
 ### 1.4. Marking tasks as done
 Tasks can be marked as done:
-![alt text](images/mark-tasks.img)
+![alt text](images/mark-tasks.png)
 The task marked as done will now be marked with a `[X]`:
-![alt text](images/show-marked.img)
+![alt text](images/show-marked.png)
 
 ### 1.5. Marking tasks as undone
 Tasks can be marked as undone:
-![alt text](images/unmark-task.img)
+![alt text](images/unmark-task.png)
 The check mark `[X]` will now be removed:
-![alt text](images/show-unmarked.img)
+![alt text](images/show-unmarked.png)
 
 
 
