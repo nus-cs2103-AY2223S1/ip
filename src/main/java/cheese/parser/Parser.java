@@ -16,6 +16,10 @@ import cheese.exception.CheeseException;
  * Represents a parser to translate user input into command.
  */
 public class Parser {
+
+    /** Offset of task index specified by user and index of corresponding task. */
+    public static final int INDEX_OFFSET = -1;
+
     /**
      * Parses user input into command.
      *
@@ -40,15 +44,15 @@ public class Parser {
         case "mark":
             validateCommandHasNArguments(fullCommandArray, 1);
             String markArgument = fullCommandArray[1];
-            return new MarkCommand(parseArgumentToInt(markArgument));
+            return new MarkCommand(parseArgumentToIndex(markArgument));
         case "unmark":
             validateCommandHasNArguments(fullCommandArray, 1);
             String unmarkArgument = fullCommandArray[1];
-            return new UnmarkCommand(parseArgumentToInt(unmarkArgument));
+            return new UnmarkCommand(parseArgumentToIndex(unmarkArgument));
         case "delete":
             validateCommandHasNArguments(fullCommandArray, 1);
             String deleteArgument = fullCommandArray[1];
-            return new DeleteCommand(parseArgumentToInt(deleteArgument));
+            return new DeleteCommand(parseArgumentToIndex(deleteArgument));
         case "todo":
             validateCommandHasNArguments(fullCommandArray, 1);
             String todoArgument = fullCommandArray[1];
@@ -129,13 +133,13 @@ public class Parser {
      * @return Integer that is parsed.
      * @throws CheeseException If argument is in non-integer format.
      */
-    private static int parseArgumentToInt(String argument) throws CheeseException {
-        int parsedArgument;
+    private static int parseArgumentToIndex(String argument) throws CheeseException {
+        int index;
         try {
-            parsedArgument = Integer.parseInt(argument);
+            index = Integer.parseInt(argument) + INDEX_OFFSET;
         } catch (NumberFormatException e) {
             throw new CheeseException("Cannot convert non-integer to integer.");
         }
-        return parsedArgument;
+        return index;
     }
 }

@@ -16,10 +16,10 @@ public class UnmarkCommand extends Command {
     /**
      * Constructs an instance of <code>UnmarkCommand</code>.
      *
-     * @param givenIndex Index of task to unmark using 1-based indexing.
+     * @param taskIndex Index of task to unmark using 1-based indexing.
      */
-    public UnmarkCommand(int givenIndex) {
-        taskIndex = givenIndex - 1;
+    public UnmarkCommand(int taskIndex) {
+        this.taskIndex = taskIndex;
     }
 
     /**

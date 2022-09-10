@@ -16,10 +16,10 @@ public class MarkCommand extends Command {
     /**
      * Constructs an instance of <code>MarkCommand</code>.
      *
-     * @param givenIndex Index of task to mark as done using 1-based indexing.
+     * @param taskIndex Index of task to mark as done using 1-based indexing.
      */
-    public MarkCommand(int givenIndex) {
-        taskIndex = givenIndex - 1;
+    public MarkCommand(int taskIndex) {
+        this.taskIndex = taskIndex;
     }
 
     /**

@@ -1,9 +1,5 @@
 package cheese.storage;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
 import cheese.data.TaskList;
 import cheese.exception.CheeseException;
 import cheese.task.Deadline;
@@ -11,16 +7,24 @@ import cheese.task.Event;
 import cheese.task.Task;
 import cheese.task.Todo;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
 /**
  * Represents a storage that interacts with <code>Cheese</code>'s save file.
  */
 public class Storage {
+    /** Delimiter of storage file */
+    public static final String delimiter = " // ";
+
     /** File path of save file. */
     private String filePath;
 
     /**
      * Constructs an instance of <code>Storage</code>.
-     * 
+     *
      * @param filePath File path of save file.
      */
     public Storage(String filePath) {
@@ -29,7 +33,7 @@ public class Storage {
 
     /**
      * Loads task list from save file.
-     * 
+     *
      * @return Instance of <code>TaskList</code> loaded from save file.
      * @throws CheeseException If save file contains corrupted data.
      */
@@ -53,7 +57,7 @@ public class Storage {
 
     /**
      * Saves given task list to save file.
-     * 
+     *
      * @param taskList Task list to save.
      */
     public void save(TaskList taskList) {
@@ -69,16 +73,19 @@ public class Storage {
 
     /**
      * Parses string from save file to task.
-     * 
+     *
      * @param taskString String from save file to parse.
      * @return Task parsed from string.
      * @throws CheeseException If string from save file is corrupted.
      */
     private Task decodeStringToTask(String taskString) throws CheeseException {
-        String[] taskStringArray = taskString.split(" // ");
+        final String DELIMITER = " // ";
+        String[] taskStringArray = taskString.split(DELIMITER);
+
         String taskType = taskStringArray[0];
         boolean isDone = taskStringArray[1].equals("T");
         String description = taskStringArray[2];
+
         switch (taskType) {
         case "todo":
             return new Todo(isDone, description);
