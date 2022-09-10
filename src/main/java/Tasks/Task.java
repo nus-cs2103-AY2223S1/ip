@@ -7,7 +7,7 @@ public class Task {
     enum Priority {
         H, M, L
     }
-    private boolean marked = false;
+    private boolean isMarked = false;
     private Priority priority = Priority.L;
     private String taskName;
 
@@ -16,11 +16,11 @@ public class Task {
     }
 
     public void setMarked() {
-        this.marked = true;
+        this.isMarked = true;
     }
 
     public void setUnmarked() {
-        this.marked = false;
+        this.isMarked = false;
     }
 
     public void setPriority(String s) {
@@ -42,7 +42,7 @@ public class Task {
     }
 
     public String getMarkedStatus() {
-        return this.marked ? "[X]" : "[ ]";
+        return this.isMarked ? "[X]" : "[ ]";
     }
 
     public String getTaskName() {
