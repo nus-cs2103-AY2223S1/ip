@@ -39,14 +39,15 @@ public class Parser {
      */
     public static String parseCommand(String command, TaskList taskList, Ui ui) {
         try {
-            if (command.equals("bye")) {
+            String trimmedCommand = command.replaceAll("\\s{2,}", " ").trim();
+            String[] splitStr = trimmedCommand.split(" ");
+            if (splitStr[0].equals("bye") && splitStr.length == 1) {
                 return ui.quit();
-            } else if (command.equals("list")) {
+            } else if (command.trim().equals("list") && splitStr.length == 1) {
                 return ui.listOutTasks(taskList);
             } else {
-                String[] splitStr = command.split(" ");
                 Task taskToMark = getTaskToMark(splitStr, taskList);
-                Task taskToAdd = getTaskToAdd(command);
+                Task taskToAdd = getTaskToAdd(trimmedCommand);
                 Task taskToDelete = getTaskToDelete(splitStr, taskList);
                 List<Task> taskListWithKeyWord = getAllTaskWithKeyword(command, taskList);
                 if (taskToMark != null) {
