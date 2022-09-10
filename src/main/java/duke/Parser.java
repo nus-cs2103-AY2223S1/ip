@@ -30,29 +30,29 @@ public class Parser {
      * @param request Takes in user requests as Strings.
      * @return Returns a boolean to let the Duke program know whether the user has given instructions to terminate.
      */
-    public boolean parse(String request) {
+    public String parse(String request) {
         if (request.equals("bye")) {                    // 1. Terminates Greg
-            return true;
+            return "Goodbye, your tasks have been saved! See you soon!";
         }
 
         else if (request.equals("list")) {              // 2. Lists out tasks
-            taskList.printList();
+            return taskList.printList();
         } 
 
         else if (request.startsWith("mark")) {            // 3. Mark task as done
             int taskNumber = Integer.parseInt(request.split(" ")[1]) - 1;
-            taskList.markTask(taskNumber);
+            return taskList.markTask(taskNumber);
         }
 
         else if (request.startsWith("unmark")) {         // 4. Mark task as undone
             int taskNumber = Integer.parseInt(request.split(" ")[1]) - 1;
-            taskList.unmarkTask(taskNumber);
+            return taskList.unmarkTask(taskNumber);
         }
 
         else if (request.startsWith("todo")) {          // 5a. Adding in tasks (Todo)
             String todoTask = request.replace("todo ", "");
             Todo todo = new Todo(todoTask);
-            taskList.addTask(todo);
+            return taskList.addTask(todo);
         }
 
         else if (request.startsWith("deadline")) {      // 5b. Adding in tasks (Deadline)
@@ -65,7 +65,7 @@ public class Parser {
             } else {                                           // Deadline without a specific due time
                 deadline = new Deadline(deadlineTask[0], deadlineTask[1]); 
             }
-            taskList.addTask(deadline);
+            return taskList.addTask(deadline);
         }
 
         else if (request.startsWith("event")) {         // 5c. Adding in tasks (Event)
@@ -73,24 +73,20 @@ public class Parser {
             String[] eventDateAndTime = eventTask[1].split(" ");
             String eventTime = eventDateAndTime[1].substring(0,2) + ":" + eventDateAndTime[1].substring(2,4);
             Event event = new Event(eventTask[0], eventDateAndTime[0], eventTime);
-            taskList.addTask(event);
+            return taskList.addTask(event);
         }
 
         else if (request.startsWith("delete")) {        // 6. Deleting tasks
             String[] deleteTask = request.split(" ");
             int taskIndex = Integer.parseInt(deleteTask[1]);
-            taskList.deleteTask(taskIndex);
+            return taskList.deleteTask(taskIndex);
         }
 
         else if (request.startsWith("find ")) {         // 7. Find tasks
             String matchWith = request.replace("find ", "");
-            taskList.find(matchWith);
+            return taskList.find(matchWith);
+        } else {                                               // Inappropriate input
+            return "OOPS!!! I'm sorry, but I don't know what that means :-(\n";
         }
-
-        // Inappropriate input
-        else {
-            System.out.println("    OOPS!!! I'm sorry, but I don't know what that means :-(\n");
-        }
-        return false;
     }
 }

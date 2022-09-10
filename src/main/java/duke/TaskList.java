@@ -20,11 +20,6 @@ public class TaskList {
     protected int numTasks;
     
     /**
-     * Constant used for printing indents.
-     */
-    private static String SPACING = "    ";
-
-    /**
      * Constructor to create a TaskLIst when no previous data is available.
      */
     TaskList() { 
@@ -70,26 +65,28 @@ public class TaskList {
      * Adds a task.
      * @param newTask Task to be added.
      */
-    public void addTask(Task newTask) {
+    public String addTask(Task newTask) {
         taskList.add(newTask);
         numTasks += 1;
-        System.out.println(SPACING + "Got it. I've added this task:");
-        System.out.println(SPACING + newTask.toString());
-        System.out.println(SPACING + "Now you have " + Integer.toString(numTasks) + " tasks in the list.\n");
+        String output = "Got it. I've added this task:\n";
+        output += newTask.toString() + "\n";
+        output += "Now you have " + Integer.toString(numTasks) + " tasks in the list.\n";
+        return output;
     }
 
     /**
      * Marks a task at the specified position to be done.
      * @param position Position of task to be marked.
      */
-    public void markTask(int position) {
+    public String markTask(int position) {
         if (position < numTasks) {
             Task task = taskList.get(position);
             task.setStatus(1);
-            System.out.println(SPACING + "Nice! I have marked this task as done:");
-            System.out.println(SPACING + "[" + task.getStatusIcon() +"] " + task.getTask());
+            String output = "Nice! I have marked this task as done:\n";
+            output += "[" + task.getStatusIcon() +"] " + task.getTask();
+            return output;
         } else {
-            System.out.println(SPACING + "No task at position " + Integer.toString(position + 1) + "!\n");
+            return "No task at position " + Integer.toString(position + 1) + "!\n";
         }
     }
 
@@ -97,14 +94,15 @@ public class TaskList {
      * Marks a task at the specified position to be not done.
      * @param position Position of the task to be unmarked.
      */
-    public void unmarkTask(int position) {
+    public String unmarkTask(int position) {
         if (position < numTasks) {
             Task task = taskList.get(position);
             task.setStatus(0);
-            System.out.println(SPACING + "Nice! I have marked this task as undone:");
-            System.out.println(SPACING + "[" + task.getStatusIcon() +"] " + task.getTask());
+            String output = "Nice! I have marked this task as undone:\n";
+            output += "[" + task.getStatusIcon() +"] " + task.getTask();
+            return output;
         } else {
-            System.out.println(SPACING + "No task at position " + Integer.toString(position + 1) + "!\n");
+            return "No task at position " + Integer.toString(position + 1) + "!\n";
         }
     }
 
@@ -112,19 +110,19 @@ public class TaskList {
      * Deletes the task at the specified position from the TaskList.
      * @param position Position of the task to be deleted.
      */
-    public void deleteTask(int position) {
+    public String deleteTask(int position) {
         if (numTasks == 0) { // No tasks in list
-            System.out.println(SPACING + "List empty. Add tasks into your list!\n");
-            
+            return "List empty. Add tasks into your list!\n";
         } 
         else if (position > numTasks) {
-            System.out.println(SPACING + "No such task!\n");
+            return "No such task!\n";
         } else { 
             Task deletedTask = taskList.remove(position - 1);
             numTasks -= 1;
-            System.out.println(SPACING + "Noted. I've removed this task:");
-            System.out.println(SPACING + deletedTask.toString());
-            System.out.println(SPACING + "Now you have " + Integer.toString(numTasks) + " tasks in the list.\n");
+            String output = "Noted. I've removed this task:\n";
+            output += deletedTask.toString() + "\n";
+            output += "Now you have " + Integer.toString(numTasks) + " tasks in the list.";
+            return output;
         }
     }
 
@@ -132,25 +130,32 @@ public class TaskList {
      * Searches for tasks in the tasklist containing the keyword.
      * @param keyword Keyword to be searched in the tasks.
      */
-    public void find(String keyword) {
-        System.out.println(SPACING + "Here are the matching tasks in your list:");
+    public String find(String keyword) {
+        String output = "Here are the matching tasks in your list:";
+        int matchesFound = 0;
         for (int i = 0; i < numTasks; i++) {
             Task task = taskList.get(i);
             String taskDescription = taskList.get(i).getTask();
             if (taskDescription.contains(keyword)) {
-                System.out.println(SPACING + Integer.toString(i+1) + "." + task.toString());
+                output += "\n" + Integer.toString(i+1) + "." + task.toString();
+                matchesFound += 1;
             }
+        }
+        if (matchesFound > 0) {
+            return output;
+        } else {
+            return "No matches found!";
         }
     }
 
     /**
      * Prints the entire TaskList.
      */
-    public void printList() {
-        System.out.println(SPACING + "Here are the tasks in your list:");
+    public String printList() {
+        String output = "Here are the tasks in your list:\n";
         for (int i = 0; i < numTasks; i++) {
-            System.out.println(SPACING + Integer.toString(i+1) + "." + taskList.get(i).toString());
+            output += Integer.toString(i+1) + "." + taskList.get(i).toString() + "\n";
         }
-        System.out.println();
+        return output;
     }
 }

@@ -8,55 +8,33 @@ package duke;
  * @since 2022-09-10
  */
 
-
 public class Duke {
     private TaskList tasks;
     private Storage storage;
-    private Ui ui;
-    
+    private Parser parser;
+
+    public String getResponse(String input) {
+        String reply = parser.parse(input);
+        try {
+            storage.store(tasks.getList());
+        } catch (Exception e) {
+            System.out.println();
+        }
+        return "Greg says: " + reply;
+    }
+
     /**
      * Constructor for Duke.
      * @param filepath This is the filepath where the data file duke.txt would be stored.
      */
 
-    public Duke(String filepath) throws Exception {
-        this.ui = new Ui();
+    public Duke(String filepath) {
         this.storage = new Storage(filepath);
         try {
             tasks = new TaskList(storage.load());
-        } finally {
-            System.out.println();
+        } catch (Exception e) {
+            this.tasks = new TaskList();
         }
-        //} catch (DukeException e) {
-        //    tasks = new TaskList();
-        //}
-    }
-
-    /**
-     * This method sets up the classes that Duke is reliant on.
-     * @throws Exception
-     */
-    public void run() throws Exception {
-        ui.greet();
-        Parser parser = new Parser(tasks);
-        boolean terminate = false;
-        while (!terminate) {
-            String input = ui.getInput();
-            ui.printFrontSpacing();
-            terminate = parser.parse(input);
-            storage.store(tasks.getList());
-            if (terminate == true) {
-                ui.sayBye();
-            }
-            ui.printBackSpacing();
-        }
-    }
-
-    /**
-     * Main method to run Duke.
-     * @param args No arguments required in the CLI
-     */
-    public static void main(String[] args) throws Exception {
-        new Duke("./data/duke.txt").run();
+        this.parser = new Parser(tasks);
     }
 }
