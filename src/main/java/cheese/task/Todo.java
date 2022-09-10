@@ -26,6 +26,14 @@ public class Todo extends Task {
     }
 
     /**
+     * Does nothing.
+     */
+    @Override
+    public void snooze() {
+
+    }
+
+    /**
      * Returns string representation of todo to save in file (eg. todo // T // Wash clothes).
      *
      * @return String representation of todo to save in file.

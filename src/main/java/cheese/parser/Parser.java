@@ -7,6 +7,7 @@ import cheese.command.DeleteCommand;
 import cheese.command.FindCommand;
 import cheese.command.ListCommand;
 import cheese.command.MarkCommand;
+import cheese.command.SnoozeCommand;
 import cheese.command.TodoCommand;
 import cheese.command.UnknownCommand;
 import cheese.command.UnmarkCommand;
@@ -49,6 +50,10 @@ public class Parser {
             validateCommandHasNArguments(fullCommandArray, 1);
             String unmarkArgument = fullCommandArray[1];
             return new UnmarkCommand(parseArgumentToIndex(unmarkArgument));
+        case "snooze":
+            validateCommandHasNArguments(fullCommandArray, 1);
+            String snoozeArgument = fullCommandArray[1];
+            return new SnoozeCommand(parseArgumentToIndex(snoozeArgument));
         case "delete":
             validateCommandHasNArguments(fullCommandArray, 1);
             String deleteArgument = fullCommandArray[1];

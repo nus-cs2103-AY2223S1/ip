@@ -10,7 +10,9 @@ import java.util.ArrayList;
  */
 public class Response {
     /**
-     * Prints welcome message.
+     * Returns welcome message.
+     *
+     * @return Message to display to welcome user.
      */
     public static String getWelcomeMessage() {
         return "Woof! I'm Cheese, your puppy assistant.\n" + "What can I do for you?";
@@ -21,6 +23,7 @@ public class Response {
      *
      * @param addedTask   Task that was added.
      * @param newListSize New task list size after adding task.
+     * @return Message to display after adding task.
      */
     public static String getAddTaskMessage(Task addedTask, int newListSize) {
         return "Gotcha! I have a paw-fect memory!\n" + "  " + addedTask + "\n" + "You have " + newListSize + " task(s) in the list.";
@@ -31,6 +34,7 @@ public class Response {
      *
      * @param deletedTask       Task that was deleted.
      * @param remainingListSize New task list size after deleting task.
+     * @return Message to display after deleting task.
      */
     public static String getDeleteTaskMessage(Task deletedTask, int remainingListSize) {
         return "Gotcha! I'll forget about this task!\n" + "  " + deletedTask + "\n" + "You have " + remainingListSize + " task(s) remaining.";
@@ -40,6 +44,7 @@ public class Response {
      * Returns message after marking task as complete.
      *
      * @param taskDone Task that was marked as complete.
+     * @return Message to display after marking task as complete.
      */
     public static String getMarkTaskAsDoneMessage(Task taskDone) {
         return "Paw-some! Another task done!\n" + "  " + taskDone;
@@ -49,15 +54,27 @@ public class Response {
      * Returns message after marking task as incomplete.
      *
      * @param taskNotDone Task that was marked as incomplete.
+     * @return Message to display after marking task as incomplete.
      */
     public static String getMarkTaskAsNotDoneMessage(Task taskNotDone) {
         return "Okay, I've marked this task as not done yet.\n" + "  " + taskNotDone;
     }
 
     /**
+     * Returns message after snoozing task.
+     *
+     * @param taskSnoozed Task that was snoozed.
+     * @return Message to display after snoozing task.
+     */
+    public static String getSnoozeTaskMessage(Task taskSnoozed) {
+        return "Gotcha! I've snoozed this task by 1 day.\n" + "  " + taskSnoozed;
+    }
+
+    /**
      * Returns message containing task list.
      *
      * @param taskList Task list to print.
+     * @return Message to display list.
      */
     public static String getTaskListMessage(TaskList taskList) {
         return taskList.toString();
@@ -67,6 +84,7 @@ public class Response {
      * Returns message containing search result.
      *
      * @param searchResult List of searched tasks to print.
+     * @return Message to display search results.
      */
     public static String getSearchResultMessage(ArrayList<Task> searchResult) {
         String msg = "";
@@ -78,6 +96,8 @@ public class Response {
 
     /**
      * Returns unknown command message.
+     *
+     * @return Message to display unknown command.
      */
     public static String getUnknownCommandMessage() {
         return "Sowwy, I don't understand";
@@ -85,6 +105,8 @@ public class Response {
 
     /**
      * Returns goodbye message.
+     *
+     * @return Goodbye message.
      */
     public static String getGoodbyeMessage() {
         return "Going so soon? :') Bye";

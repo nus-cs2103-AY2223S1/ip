@@ -7,18 +7,18 @@ import cheese.task.Task;
 import cheese.ui.Response;
 
 /**
- * Represents a user command to mark a task as done.
+ * Represents a user command to snooze a task.
  */
-public class MarkCommand extends Command {
-    /** Index of task to mark as done using 0-based indexing. */
+public class SnoozeCommand extends Command {
+    /** Index of task to snooze using 0-based indexing. */
     private int taskIndex;
 
     /**
-     * Constructs an instance of <code>MarkCommand</code>.
+     * Constructs an instance of <code>SnoozeCommand</code>.
      *
-     * @param taskIndex Index of task to mark as done using 0-based indexing.
+     * @param taskIndex Index of task to snooze using 0-based indexing.
      */
-    public MarkCommand(int taskIndex) {
+    public SnoozeCommand(int taskIndex) {
         this.taskIndex = taskIndex;
     }
 
@@ -30,8 +30,8 @@ public class MarkCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Storage storage) throws CheeseException {
-        Task taskDone = taskList.markTaskAsDone(taskIndex);
+        Task taskSnoozed = taskList.snoozeTask(taskIndex);
         storage.save(taskList);
-        return Response.getMarkTaskAsDoneMessage(taskDone);
+        return Response.getSnoozeTaskMessage(taskSnoozed);
     }
 }

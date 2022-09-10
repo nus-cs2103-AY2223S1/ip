@@ -83,6 +83,12 @@ public class TaskList {
         return task;
     }
 
+    public Task snoozeTask(int taskIndex) throws CheeseException {
+        Task task = getTask(taskIndex);
+        task.snooze();
+        return task;
+    }
+
     /**
      * Gets size of task list.
      *
