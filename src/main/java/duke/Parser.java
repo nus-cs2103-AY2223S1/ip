@@ -1,12 +1,6 @@
 package duke;
 
-import duke.command.AddCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.ExitCommand;
-import duke.command.FindCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
+import duke.command.*;
 
 public class Parser {
     /**
@@ -39,7 +33,10 @@ public class Parser {
             return new DeleteCommand(userInput);
         } else if (command.equals(Duke.Keyword.FIND.getKeyword())) {
             return new FindCommand(userInput);
-        }else {
+        } else if (command.equals(Duke.Keyword.PRIORITY.getKeyword())) {
+            return new PriorityCommand(userInput);
+        }
+        else {
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }

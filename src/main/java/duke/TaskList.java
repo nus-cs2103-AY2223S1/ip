@@ -111,6 +111,17 @@ public class TaskList {
         return message;
     }
 
+    public Task updateTaskPriority(int index, String priorityString) throws DukeException {
+        if (index <= 0 || index > getTaskListSize()) {
+            throw new DukeException("OOPS!!! The task index is out of range");
+        }
+        index = index - 1;
+        Task task = this.taskList.get(index);
+        task.setPriority(priorityString);
+        this.taskList.set(index, task);
+        return task;
+    }
+
     /**
      * Returns the string representation of the TaskList showing all the Tasks inside to be printed to user.
      *
