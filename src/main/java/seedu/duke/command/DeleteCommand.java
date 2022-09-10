@@ -21,11 +21,13 @@ public class DeleteCommand extends Command {
      * @throws DukeException
      */
     public String execute(TaskList list) throws DukeException {
-        if (index >= list.size()) {
+        int len = list.size();
+        if (index >= len) {
             throw new DukeException("There is no task " + index + " just yet, Master.");
         }
         Task temp = list.get(index);
         list.remove(index);
+        assert len == list.size() + 1 : "List size should have reduced by 1";
         return Ui.deleted(temp);
     }
 }

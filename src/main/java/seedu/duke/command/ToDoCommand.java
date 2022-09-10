@@ -22,8 +22,11 @@ public class ToDoCommand extends Command {
      */
     @Override
     public String execute(TaskList list) throws DukeException {
+        int len = list.size();
         ToDoTask task = new ToDoTask(details);
         list.add(task);
+
+        assert len == list.size() - 1 : "List size should have increased by 1";
         return Ui.added(task);
     }
 }

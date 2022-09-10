@@ -24,8 +24,10 @@ public class EventCommand extends Command {
      */
     @Override
     public String execute(TaskList list) throws DukeException {
+        int len = list.size();
         EventTask task = new EventTask(details, time);
         list.add(task);
+        assert len == list.size() - 1 : "List size should have increased by 1";
         return Ui.added(task);
     }
 }

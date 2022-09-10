@@ -4,6 +4,7 @@ import seedu.duke.Ui.Ui;
 import seedu.duke.command.Command;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
 
@@ -40,6 +41,7 @@ public class Duke {
             Command command = Parser.parse(input);
             output = command.execute(list);
             if (command.isExit()) {
+                assert Files.exists(filePath) : "filePath does not exist";
                 storage.saveList(list, filePath);
                 output += Ui.saved(list);
             }
