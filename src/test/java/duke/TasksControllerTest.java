@@ -17,11 +17,11 @@ public class TasksControllerTest {
     }
 
     @Test
-    public void toStringTest() {
+    public void getTaskStringTest() {
         ToDo task1 = new ToDo("CS2103T");
         ArrayList<Task> tasks = new ArrayList<>();
         tasks.add(task1);
         TasksController controller = new TasksController(tasks);
-        assertEquals(controller.toString(), "1. [T][] CS2103T\n");
+        assertEquals(controller.getTasksString(tasks), "1. [T][] CS2103T\n");
     }
 }

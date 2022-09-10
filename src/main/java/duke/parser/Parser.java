@@ -39,7 +39,7 @@ public class Parser {
      * @return command string
      * @throws InvalidCommandException InvalidCommandException is thrown when input is invalid
      */
-    private String parseCommand(String inputText) throws InvalidCommandException {
+    public String parseCommand(String inputText) throws InvalidCommandException {
         String[] splitCommand = inputText.split("/p");
         String commandText = splitCommand[0].strip();
         if (!legalCommands.contains(commandText)) {
@@ -54,7 +54,7 @@ public class Parser {
      * @return the task string
      * @throws InvalidTaskException InvalidTaskException is thrown when the input task is invalid
      */
-    private String parseTask(String inputText) throws InvalidTaskException {
+    public String parseTask(String inputText) throws InvalidTaskException {
         String[] splitCommand = inputText.split("/p");
         String taskText = splitCommand[1].strip();
         if (!legalTasks.contains(taskText)) {
@@ -69,7 +69,7 @@ public class Parser {
      * @return content of a task
      * @throws EmptyContentException EmptyContentException is thrown when the content is empty
      */
-    private String parseContent(String inputText) throws EmptyContentException {
+    public String parseContent(String inputText) throws EmptyContentException {
         String[] splitCommand = inputText.split("/p");
         String taskContent = splitCommand[2].strip();
         if (taskContent.isBlank()) {
@@ -84,7 +84,7 @@ public class Parser {
      * @return time string
      * @throws InvalidTimeException InvalidTimeException is thrown when the input time is in wrong format
      */
-    private String parseTime(String inputText) throws InvalidTimeException {
+    public String parseTime(String inputText) throws InvalidTimeException {
         String[] splitCommand = inputText.split("/p");
         String time = splitCommand[3].strip();
         if (!checkTimeFormat(time)) {
