@@ -12,7 +12,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Creates a DeleteCommand.
-     * 
+     *
      * @param index Task ID of task to be deleted.
      */
     public DeleteCommand(int index) {
@@ -21,7 +21,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Executes the DeleteCommand to delete a Task from the list.
-     * 
+     *
      * @param tasks TaskList that task will be deleted from.
      * @param ui Ui that displays success or error to user.
      * @param storage Persistent storage of task list.

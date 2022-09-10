@@ -12,7 +12,7 @@ public class UnmarkCommand extends Command {
 
     /**
      * Creates a UnmarkCommand.
-     * 
+     *
      * @param index Task ID of task to be marked as undone.
      */
     public UnmarkCommand(int index) {
@@ -21,7 +21,7 @@ public class UnmarkCommand extends Command {
 
     /**
      * Executes the UnmarkCommand to mark a Task as undone.
-     * 
+     *
      * @param tasks TaskList containing task to be marked as undone.
      * @param ui Ui that displays success or error to user.
      * @param storage Persistent storage of task list.

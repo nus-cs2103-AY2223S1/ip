@@ -2,6 +2,7 @@ package duke;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import duke.task.Task;
 
 /**
@@ -19,7 +20,7 @@ public class TaskList {
 
     /**
      * Creates a TaskList that already has some tasks stored.
-     * 
+     *
      * @param persistedTasks The tasks that were stored previously.
      */
     public TaskList(List<Task> persistedTasks) {
@@ -28,7 +29,7 @@ public class TaskList {
 
     /**
      * Adds a task to the list.
-     * 
+     *
      * @param task The new task to be added.
      */
     public void add(Task task) {
@@ -51,7 +52,7 @@ public class TaskList {
 
     /**
      * Deletes a task from the list.
-     * 
+     *
      * @param taskId The id of the task to be deleted.
      */
     public String delete(int taskId) {
@@ -62,7 +63,7 @@ public class TaskList {
 
     /**
      * Marks a task as done.
-     * 
+     *
      * @param taskId The id of the task to be marked as done.
      */
     public String markAsDone(int taskId) {
@@ -73,7 +74,7 @@ public class TaskList {
 
     /**
      * Marks a task as undone.
-     * 
+     *
      * @param taskId The id of the task to be marked as undone.
      */
     public String markAsUndone(int taskId) {

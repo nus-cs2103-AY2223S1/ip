@@ -12,7 +12,7 @@ public class FindCommand extends Command {
 
     /**
      * Creates a FindCommand.
-     * 
+     *
      * @param keyword Phrase used to search for matching tasks.
      */
     public FindCommand(String keyword) {
@@ -21,7 +21,7 @@ public class FindCommand extends Command {
 
     /**
      * Executes the FindCommand to find tasks from the list.
-     * 
+     *
      * @param tasks TaskList to search from.
      * @param ui Ui that displays success or error to user.
      * @param storage Persistent storage of task list.

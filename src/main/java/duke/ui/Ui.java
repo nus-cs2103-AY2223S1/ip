@@ -18,7 +18,7 @@ public class Ui {
 
     /**
      * Displays an error message to the user.
-     * 
+     *
      * @param error The error message to be displayed.
      */
     public void showError(String error) {
@@ -27,7 +27,7 @@ public class Ui {
 
     /**
      * Obtains user input via System.in.
-     * 
+     *
      * @return Raw input from the user in String format.
      */
     public String readCommand() {
@@ -43,7 +43,7 @@ public class Ui {
 
     /**
      * Displays custom input between line breaks.
-     * 
+     *
      * @param input
      */
     public void printString(String input) {

@@ -12,7 +12,7 @@ public class MarkCommand extends Command {
 
     /**
      * Creates a MarkCommand.
-     * 
+     *
      * @param index Task ID of task to be marked as done.
      */
     public MarkCommand(int index) {
@@ -21,7 +21,7 @@ public class MarkCommand extends Command {
 
     /**
      * Executes the MarkCommand to mark a Task as done.
-     * 
+     *
      * @param tasks TaskList containing task to be marked as done.
      * @param ui Ui that displays success or error to user.
      * @param storage Persistent storage of task list.
