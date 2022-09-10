@@ -14,11 +14,12 @@ public class Event extends Task {
      * @param isDone A boolean to indicate if the event is done.
      * @param eventDescription A string to detail the event.
      * @param index The task number in the list of tasks to do.
+     * @param tag A string to describe event in one word.
      * @param date A LocalDate to detail date of event.
      * @param time A string to detail time of event.
      */
-    public Event(boolean isDone, String eventDescription, int index, LocalDate date, String time) {
-        super(isDone, eventDescription, index);
+    public Event(boolean isDone, String eventDescription, int index, String tag, LocalDate date, String time) {
+        super(isDone, eventDescription, index, tag);
         this.date = date;
         this.time = time;
     }
@@ -126,6 +127,11 @@ public class Event extends Task {
             return "\n  duke.Task deleted!\n    [E][X] " + this.getDescription()
                     + "(at: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")";
         }
+    }
+
+    @Override
+    public String tag(String hashtag) {
+        return super.tag(hashtag);
     }
 
 }

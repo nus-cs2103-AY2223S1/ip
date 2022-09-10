@@ -90,18 +90,8 @@ public class Parser {
         } else if (userInput.startsWith("deadline")) {
             try {
                 int indexOfSlash = userInput.indexOf("/");
-                String dateStr = userInput.substring(indexOfSlash + 4, indexOfSlash + 13);
-                String time = userInput.substring(indexOfSlash + 14);
-                String newTime = parseTime(time);
-                DateTimeFormatterBuilder builder = new DateTimeFormatterBuilder()
-                        .parseCaseInsensitive().parseLenient()
-                        .appendPattern("[yyyy-MM-dd]")
-                        .appendPattern("[M/dd/yyyy]")
-                        .appendPattern("[M/d/yyyy]")
-                        .appendPattern("[MM/dd/yyyy]")
-                        .appendPattern("[MMM dd yyyy]");
-                DateTimeFormatter df = builder.toFormatter(Locale.ENGLISH);
-                LocalDate d1 = LocalDate.parse(dateStr, df);
+                LocalDate d1 = parseEventOrDeadlineDate(userInput, indexOfSlash);
+                String newTime = parseEventOrDeadlineTime(userInput, indexOfSlash);
                 String task = userInput.substring(9, indexOfSlash);
 
                 return tasks.addDeadline(task, d1, newTime);
@@ -112,18 +102,8 @@ public class Parser {
         } else if (userInput.startsWith("event")) {
             try {
                 int indexOfSlash = userInput.indexOf("/");
-                String date = userInput.substring(indexOfSlash + 4, indexOfSlash + 13);
-                String time = userInput.substring(indexOfSlash + 14);
-                String newTime = parseTime(time);
-                DateTimeFormatterBuilder builder = new DateTimeFormatterBuilder()
-                        .parseCaseInsensitive().parseLenient()
-                        .appendPattern("[yyyy-MM-dd]")
-                        .appendPattern("[M/dd/yyyy]")
-                        .appendPattern("[M/d/yyyy]")
-                        .appendPattern("[MM/dd/yyyy]")
-                        .appendPattern("[MMM dd yyyy]");
-                DateTimeFormatter df = builder.toFormatter(Locale.ENGLISH);
-                LocalDate d1 = LocalDate.parse(date, df);
+                LocalDate d1 = parseEventOrDeadlineDate(userInput, indexOfSlash);
+                String newTime = parseEventOrDeadlineTime(userInput, indexOfSlash);
                 String task = userInput.substring(6, indexOfSlash);
 
                 return tasks.addEvent(task, d1, newTime);
@@ -134,9 +114,36 @@ public class Parser {
         } else if (userInput.startsWith("find")) {
           String keyword = userInput.substring(5);
           return tasks.findMatchingTasks(keyword);
+        } else if (userInput.startsWith("tag")) {
+            char i = userInput.charAt(4);
+            int index = Character.getNumericValue(i);
+            String hashtag = userInput.substring(6);
+
+            return tasks.tagTask(index, hashtag);
         } else {
             return ui.printUnrecognisedWord();
         }
+    }
+
+    public LocalDate parseEventOrDeadlineDate(String userInput, int indexOfSlash) {
+
+        String date = userInput.substring(indexOfSlash + 4, indexOfSlash + 13);
+        DateTimeFormatterBuilder builder = new DateTimeFormatterBuilder()
+                .parseCaseInsensitive().parseLenient()
+                .appendPattern("[yyyy-MM-dd]")
+                .appendPattern("[M/dd/yyyy]")
+                .appendPattern("[M/d/yyyy]")
+                .appendPattern("[MM/dd/yyyy]")
+                .appendPattern("[MMM dd yyyy]");
+        DateTimeFormatter df = builder.toFormatter(Locale.ENGLISH);
+        LocalDate d1 = LocalDate.parse(date, df);
+        return d1;
+    }
+
+    public String parseEventOrDeadlineTime(String userInput, int indexOfSlash) {
+        String time = userInput.substring(indexOfSlash + 14);
+        String newTime = parseTime(time);
+        return newTime;
     }
 
 }

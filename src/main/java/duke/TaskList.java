@@ -47,7 +47,7 @@ public class TaskList {
      * @return A String with the details of ToDo Object added.
      */
     public String addToDo(String task) {
-        ToDo newToDo = new ToDo(false, task, tasks.size() + 1);
+        ToDo newToDo = new ToDo(false, task, tasks.size() + 1, "");
         tasks.add(newToDo);
         assert tasks.size() >= 1 : "TaskList should have at least one task"
                 + "since at least one task has been added.";
@@ -64,7 +64,7 @@ public class TaskList {
      * @return A String with the details of Deadline Object added.
      */
     public String addDeadline(String task, LocalDate d1, String newTime) {
-        Deadline newDeadline = new Deadline(false, task, tasks.size() + 1, d1, newTime);
+        Deadline newDeadline = new Deadline(false, task, tasks.size() + 1, "", d1, newTime);
         tasks.add(newDeadline);
         assert tasks.size() >= 1 : "TaskList should have at least one task"
                 + "since at least one task has been added.";
@@ -81,7 +81,7 @@ public class TaskList {
      * @return A string with the details of Event Object added.
      */
     public String addEvent(String task, LocalDate d1, String newTime) {
-        Event newEvent = new Event(false, task, tasks.size() + 1, d1, newTime);
+        Event newEvent = new Event(false, task, tasks.size() + 1, "", d1, newTime);
         tasks.add(newEvent);
         assert tasks.size() >= 1 : "TaskList should have at least one task"
                 + "since at least one task has been added.";
@@ -180,6 +180,12 @@ public class TaskList {
 
             return list;
         }
+    }
+
+    public String tagTask(int index, String hashtag) {
+        Task t = tasks.get(index - 1);
+
+        return t.tag(hashtag);
     }
 
 }

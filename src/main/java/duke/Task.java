@@ -5,6 +5,7 @@ public class Task {
     private boolean isDone;
     private String taskDescription;
     private int index;
+    private String tag;
 
     /**
      * A constructor to initialize a task object.
@@ -12,11 +13,13 @@ public class Task {
      * @param isDone A boolean to indicate if the task is completed.
      * @param taskDescription A string to detail the task.
      * @param index A integer to indicate position of the task in list of tasks.
+     * @param tag A string to describe event in one word.
      */
-    public Task(boolean isDone, String taskDescription, int index) {
+    public Task(boolean isDone, String taskDescription, int index, String tag) {
         this.isDone = isDone;
         this.taskDescription = taskDescription;
         this.index = index;
+        this.tag = tag;
     }
 
     /**
@@ -47,6 +50,10 @@ public class Task {
     public int getIndex() {
         assert index > 0;
         return index;
+    }
+
+    public String getTag() {
+        return tag;
     }
 
     /**
@@ -142,4 +149,9 @@ public class Task {
         return "\n  duke.Task deleted!\n";
     }
 
+    public String tag(String hashtag) {
+        this.tag = hashtag;
+
+        return "Your tag " + hashtag + " has been added to the task :)";
+    }
 }

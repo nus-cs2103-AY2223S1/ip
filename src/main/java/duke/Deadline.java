@@ -9,15 +9,16 @@ public class Deadline extends Task {
     private final String time;
 
     /**
-     * A constructor to initialize a duke.Deadline object.
+     * A constructor to initialize a Deadline object.
      *
      * @param isDone A boolean to indicate if the deadline is completed.
      * @param deadlineDescription A string to describe the deadline.
      * @param index An integer to indicate the position of the duke.Deadline in list of tasks.
+     * @param tag A string to describe deadline in one word.
      * @param date A String to indicate the date to be completed by.
      */
-    public Deadline(boolean isDone, String deadlineDescription, int index, LocalDate date, String time) {
-        super(isDone, deadlineDescription, index);
+    public Deadline(boolean isDone, String deadlineDescription, int index, String tag, LocalDate date, String time) {
+        super(isDone, deadlineDescription, index, tag);
         this.date = date;
         this.time = time;
     }
@@ -115,6 +116,7 @@ public class Deadline extends Task {
      *
      * @return a String representation of the Deadline deleted.
      */
+    @Override
     public String printDeleted() {
         if (!this.getStatus()) {
             return "\n  duke.Task deleted!\n    [D][ ] " + this.getDescription()
@@ -123,5 +125,10 @@ public class Deadline extends Task {
             return "\n  duke.Task deleted!\n    [D][X] " + this.getDescription()
                     + "(by: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time + ")";
         }
+    }
+
+    @Override
+    public String tag(String hashtag) {
+        return super.tag(hashtag);
     }
 }

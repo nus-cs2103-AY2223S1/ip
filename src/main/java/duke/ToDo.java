@@ -8,9 +8,10 @@ public class ToDo extends Task {
      * @param isDone A boolean to indicate if the duke.ToDo is done.
      * @param toDoDescription A String to detail what to do.
      * @param index An integer to indicate the position of the duke.ToDo in the list of tasks.
+     * @param tag A string to describe event in one word.
      */
-    public ToDo(boolean isDone, String toDoDescription, int index) {
-        super(isDone, toDoDescription, index);
+    public ToDo(boolean isDone, String toDoDescription, int index, String tag) {
+        super(isDone, toDoDescription, index, tag);
     }
 
     /**
@@ -101,6 +102,11 @@ public class ToDo extends Task {
         } else {
             return "\n  Task deleted!\n    [T][X] " + this.getDescription();
         }
+    }
+
+    @Override
+    public String tag(String hashtag) {
+        return super.tag(hashtag);
     }
 
 }

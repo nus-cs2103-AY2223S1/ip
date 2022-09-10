@@ -70,9 +70,9 @@ public class Storage {
             if (input.startsWith("T")) {
                 String desc = descStr(input);
                 if (String.valueOf(input.charAt(1)) == "Y") {
-                    tasks.add(new ToDo(true, desc, index));
+                    tasks.add(new ToDo(true, desc, index, ""));
                 } else {
-                    tasks.add(new ToDo(false, desc, index));
+                    tasks.add(new ToDo(false, desc, index, ""));
                 }
                 index++;
                 continue;
@@ -82,9 +82,9 @@ public class Storage {
                 String time = timeStr(input);
                 LocalDate date = dateStr(input);
                 if (String.valueOf(input.charAt(1)) == "Y") {
-                    tasks.add(new Deadline(true, desc, index, date, time));
+                    tasks.add(new Deadline(true, desc, index, "", date, time));
                 } else {
-                    tasks.add(new Deadline(false, desc, index, date, time));
+                    tasks.add(new Deadline(false, desc, index, "", date, time));
                 }
                 index++;
                 continue;
@@ -94,9 +94,9 @@ public class Storage {
                 String time = timeStr(input);
                 LocalDate date = dateStr(input);
                 if (String.valueOf(input.charAt(1)) == "Y") {
-                    tasks.add(new Event(true, desc, index, date, time));
+                    tasks.add(new Event(true, desc, index, "", date, time));
                 } else {
-                    tasks.add(new Event(false, desc, index, date, time));
+                    tasks.add(new Event(false, desc, index, "", date, time));
                 }
                 index++;
                 continue;
