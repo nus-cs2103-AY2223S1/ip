@@ -19,24 +19,6 @@ public class TaskList {
     }
 
     /**
-     * Adds Event to list.
-     *
-     * @param e Event to add.
-     */
-    public void addEvent(Task e) {
-        userInputHistoryList.add(e);
-    }
-
-    /**
-     * Adds Deadline to list.
-     *
-     * @param d Deadline to add.
-     */
-    public void addDeadline(Task d) {
-        userInputHistoryList.add(d);
-    }
-
-    /**
      * Deletes task at index (n - 1) in the list.
      *
      * @param n Index to remove.
