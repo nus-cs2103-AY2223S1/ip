@@ -3,6 +3,9 @@ package justin.command;
 import justin.*;
 import justin.task.Task;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 /**
  * Represents a command to delete a particular
  * task from the TaskList.
@@ -10,14 +13,16 @@ import justin.task.Task;
  */
 public class DeleteCommand extends Command {
     private String[] nums;
-    private Task deletedTask;
+    private Integer[] nos;
 
     /**
      * Constructor for the DeleteCommand class.
-     * @param num The position of the task in the TaskList.
+     * @param nums The array of numbers of the tasks
+     *            to be deleted in the TaskList.
      */
     public DeleteCommand(String... nums) {
         this.nums = nums;
+        this.nos = new Integer[nums.length];
     }
 
     /**
@@ -40,8 +45,12 @@ public class DeleteCommand extends Command {
                 throw new DukeException("Please include numbers only or write in a proper format!");
             }
         }
-        for (String s: nums) {
-            list.delete(Integer.parseInt(s));
+        for (int i = 0; i < nos.length; i++) {
+            nos[i] = Integer.parseInt(nums[i]);
+        }
+        Arrays.sort(nos, Collections.reverseOrder()); //reverse order because need to delete the largest number first
+        for (int no: nos) {
+            list.delete(no);
         }
         storage.save(list);
         return msg + ui.countMessage(list);

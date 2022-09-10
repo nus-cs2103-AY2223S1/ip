@@ -31,6 +31,11 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String execute(TaskList list, Ui ui, Storage storage) throws DukeException {
+        try {
+            assert nums.length <= 30: "Too many tasks to unmark!";
+        } catch (AssertionError e) {
+            throw new DukeException(e.getMessage());
+        }
         String msg = ui.unmarkMessage();
         for (String s: nums) {
             try {

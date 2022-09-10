@@ -60,9 +60,4 @@ public class MainWindow extends AnchorPane {
         DialogBox justinBox = DialogBox.getJustinDialog(msg, justin, JUSTIN_DESCRIPTION);
         dialogContainer.getChildren().add(justinBox);
     }
-
-    public void handleException(String str) {
-        DialogBox justinBox = DialogBox.getJustinDialog(str, justin, JUSTIN_DESCRIPTION);
-        dialogContainer.getChildren().add(justinBox);
-    }
 }

@@ -1,6 +1,0 @@
-T | Done! |  i
-T | Done! |  g
-T | Done! | g
-T | Undone | h
-T | Undone | j
-T | Undone | kk

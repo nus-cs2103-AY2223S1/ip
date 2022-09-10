@@ -34,8 +34,13 @@ public class AddToDoCommand extends Command {
      */
     @Override
     public String execute(TaskList list, Ui ui, Storage storage) throws DukeException {
+        try {
+            assert description.length <= 30 : "Too many tasks to add!";
+        } catch (AssertionError e) {
+            throw new DukeException(e.getMessage());
+        }
         String msg = ui.addMessage();
-        for (String des: description) {
+        for (String des : description) {
             Task task = new ToDo(des, isDone);
             list.addTask(task);
             storage.save(list);
