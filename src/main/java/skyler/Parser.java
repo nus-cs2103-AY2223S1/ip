@@ -14,6 +14,7 @@ public class Parser {
      */
     public Parser(TaskList taskList) {
         this.taskList = taskList;
+        assert taskList != null : "TaskList should be initialised";
     }
 
     /**

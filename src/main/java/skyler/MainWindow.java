@@ -32,14 +32,17 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().addAll(DialogBox.getSkylerDialog(Ui.GREETING, skylerImage));
+        assert skylerImage != null : "Skyler profile image should be initialised";
     }
 
     public void setSkyler(Skyler skyler) {
         this.skyler = skyler;
+        assert this.skyler != null : "Skyler should be initialised";
     }
 
     public void setStage(Stage stage) {
         this.stage = stage;
+        assert this.stage != null : "Stage should be initialised";
     }
 
     /**
@@ -51,7 +54,7 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
 
         if (input.equals("bye")) {
-            this.stage.close();
+            stage.close();
         }
 
         String response = skyler.getResponse(input);
@@ -59,7 +62,8 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getSkylerDialog(response, skylerImage)
         );
+        assert userImage != null : "User profile image should be initialised";
+
         userInput.clear();
     }
-
 }
