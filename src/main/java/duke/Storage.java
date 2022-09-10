@@ -11,16 +11,38 @@ import java.io.FileWriter;
 import java.io.BufferedReader;
 import java.util.ArrayList;
 
+/**
+ * The Storage class helps the Duke program store its list of tasks into a file specified by the program.
+ * The Storage class also reads from a .txt file and converts the text into an ArrayList of Tasks.
+ *  
+ */
 public class Storage {
+    
+    /**
+     * ArrayList of Tasks to store Tasks loaded from data.txt.
+     */
     ArrayList<Task> tasks;
+    
+    /**
+     * The filepath where the data of the Duke program is to be stored to and loaded from.
+     */
     String filepath;
 
+    /**
+     * Constructor of Storage class.
+     * @param filepath Takes in the filepath to load and store data.
+     */
     public Storage(String filepath) {
         this.tasks = new ArrayList<Task>();
         this.filepath = filepath;
     }
 
-    // Loads tasks from file and returns an ArrayList of Tasks objects (not done)
+    /**
+     * Loads tasks from the data.txt file and converts each line into Tasks to be added into an 
+     * ArrayList of Tasks. 
+     * @return Returns an ArrayList of Tasks objects.
+     * @throws Exception
+     */
     public ArrayList<Task> load() throws Exception {
         new File("./data").mkdirs();
         File dataStore = new File(filepath);
@@ -57,7 +79,11 @@ public class Storage {
         return tasks;
     } 
 
-    // Stores tasks into file
+    /**
+     * Stores tasks into the data.txt file at the specified filepath.
+     * @param tasks Takes in the current Tasks returned from TaskList in the form of an ArrayList of Tasks.
+     * @throws Exception
+     */
     public void store(ArrayList<Task> tasks) throws Exception {
         FileWriter myWriter = new FileWriter(filepath);
         int numTasks = tasks.size();
