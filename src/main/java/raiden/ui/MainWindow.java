@@ -28,7 +28,7 @@ public class MainWindow extends AnchorPane {
     private Raiden raiden;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Raiden.png"));
+    private Image raidenImage = new Image(this.getClass().getResourceAsStream("/images/Raiden.png"));
     private Image raidenGreetingImage = new Image(this.getClass().getResourceAsStream("/images/RaidenGreet.png"));
 
     /**
@@ -38,17 +38,18 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         String greetingMessage = "Hello, I'm Raiden.\n" + "What can I do for you?\n";
+        this.dialogContainer.minHeightProperty().bind(scrollPane.heightProperty().subtract(2));
         this.dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog(greetingMessage, this.raidenGreetingImage));
+                DialogBox.getRaidenDialog(greetingMessage, this.raidenGreetingImage));
     }
 
     /**
-     * Sets the raiden of this MainWindow as the Raiden object given.
+     * Sets the Raiden of this MainWindow as the Raiden object given.
      *
-     * @param d The given Raiden object.
+     * @param raiden The given Raiden object.
      */
-    public void setDuke(Raiden d) {
-        this.raiden = d;
+    public void setRaiden(Raiden raiden) {
+        this.raiden = raiden;
     }
 
     /**
@@ -61,7 +62,7 @@ public class MainWindow extends AnchorPane {
         String response = this.raiden.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getRaidenDialog(response, raidenImage)
         );
         userInput.clear();
     }

@@ -75,7 +75,7 @@ public class DialogBox extends HBox {
      * @param img Raiden's image.
      * @return The DialogBox of Raiden's response.
      */
-    public static DialogBox getDukeDialog(String text, Image img) {
+    public static DialogBox getRaidenDialog(String text, Image img) {
         var dialogBox = new DialogBox(text, img);
         dialogBox.flip();
         return dialogBox;

@@ -35,7 +35,7 @@ public class Main extends Application {
             Main.stage.setMinWidth(STAGE_MIN_WIDTH);
             Main.stage.setMinHeight(STAGE_MIN_HEIGHT);
             Main.stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setDuke(raiden);
+            fxmlLoader.<MainWindow>getController().setRaiden(raiden);
             Main.stage.show();
         } catch (IOException e) {
             e.printStackTrace();
