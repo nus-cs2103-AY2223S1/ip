@@ -1,23 +1,20 @@
 package fred;
 
-import commands.Command;
-
-import exception.FredException;
-
-import parser.Parser;
-
-import task.Deadline;
-import task.Event;
-import task.Task;
-import task.ToDo;
-
-import org.junit.jupiter.api.Test;
-import tasklist.TaskList;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import org.junit.jupiter.api.Test;
+
+import commands.Command;
+import exception.FredException;
+import parser.Parser;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.ToDo;
+import tasklist.TaskList;
 
 public class FredTest {
 
