@@ -1,10 +1,10 @@
 package duke;
 
-/** A class that creates a DukeException for exceptions specific to Duke. */
+/** Represents an exception specific to Duke. */
 public class DukeException extends Exception{
 
     /**
-     * A constructor for the DukeException.
+     * Initialises the DukeException.
      *
      * @param errorMessage Error message to be printed out.
      */

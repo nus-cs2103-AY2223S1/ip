@@ -22,16 +22,25 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
     private Duke duke;
-    private Ui ui = new Ui();
+    private Ui ui;
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
 
+    /**
+     * Initialises the Main window.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        this.ui = new Ui();
         dialogContainer.getChildren().add(DialogBox.getDukeDialog(ui.run(), dukeImage));
     }
 
+    /**
+     * Sets the Duke bot.
+     *
+     * @param d Duke bot to be set.
+     */
     public void setDuke(Duke d) {
         duke = d;
     }
@@ -44,7 +53,7 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         //Parse the user input and return response from duke bot
         String userText = userInput.getText();
-        String dukeText = duke.getResponse(duke.parse(userInput.getText()));
+        String dukeText = duke.parse(userInput.getText());
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, userImage),
                 DialogBox.getDukeDialog(dukeText, dukeImage)

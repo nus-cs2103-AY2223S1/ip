@@ -2,14 +2,14 @@ package duke;
 
 import java.io.IOException;
 
-/** A class that initialises and runs the Duke bot. */
+/** Represents the Duke bot. */
 public class Duke {
     private Storage storage;
     private TaskList taskList;
     private Parser parser;
 
     /**
-     * A constructor that initialises the Duke bot
+     * Initialises the Duke bot.
      *
      * @param taskList List of tasks.
      * @param pathName The path of the text file to store and load data.
@@ -26,19 +26,12 @@ public class Duke {
 
     /**
      * Parses the input entered by the user.
+     *
+     * @param text String input from the user.
+     * @return String representing the output after parsing the user input.
      */
     public String parse(String text) {
         return this.parser.parse(text);
-    }
-
-    /**
-     * Returns the response of the Duke bot.
-     *
-     * @param input Response of Duke bot.
-     * @return String as the response of the Duke bot.
-     */
-    public String getResponse(String input) {
-        return input;
     }
 
 }

@@ -25,10 +25,10 @@ public class DialogBox extends HBox {
     private ImageView displayPicture;
 
     /**
-     * A constructor for the dialog box.
+     * Creates a dialog box.
      *
-     * @param text Text from the user.
-     * @param img Image to represent the user's face.
+     * @param text Text from the speaker.
+     * @param img Image to represent the speaker's face.
      */
     private DialogBox(String text, Image img) {
         try {
@@ -40,7 +40,7 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
-        //Set text and image for dialog box
+        //Set text and image for Dialog Box
         dialog.setText(text);
         displayPicture.setImage(img);
     }

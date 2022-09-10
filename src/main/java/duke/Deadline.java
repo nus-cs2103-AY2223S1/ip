@@ -2,15 +2,15 @@ package duke;
 
 import java.time.format.DateTimeFormatter;
 
-/** A class that creates deadline task. */
+/** Represents a Task of type Deadline. */
 public class Deadline extends Task {
     protected String by;
 
     /**
-     * A constructor that initialises the deadline task.
+     * Creates a Deadline task.
      *
-     * @param description Description of the deadline task.
-     * @param by Describes the date and time for the deadline.
+     * @param description Description of the Deadline task.
+     * @param by Date and time of the Deadline task.
      */
     public Deadline(String description, String by) {
         super(description);
@@ -18,10 +18,9 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns string of the deadline task.
+     * Gets the string representation of the Deadline task.
      *
-     * @inheritDoc Inherits from toString() method but returns description of deadline task.
-     * @return String that describes the deadline task and its deadline.
+     * @return String representation of the Deadline task.
      */
     @Override
     public String toString() {

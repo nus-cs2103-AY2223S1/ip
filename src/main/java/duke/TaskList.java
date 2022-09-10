@@ -2,13 +2,13 @@ package duke;
 
 import java.util.ArrayList;
 
-/** A class that stores the list of tasks. */
+/** Represents an ArrayList that stores a list of tasks. */
 public class TaskList {
     private ArrayList<Task> taskArray;
     private int index;
 
     /**
-     * A constructor that initialises the list of tasks.
+     * Initialises the ArrayList that stores a list of tasks.
      *
      * @param taskArray ArrayList of tasks to be stored.
      */
@@ -18,7 +18,7 @@ public class TaskList {
     }
 
     /**
-     * Prints out the list of tasks stored in the array.
+     * Prints out the list of tasks stored in the ArrayList.
      *
      * @return List of tasks stored as a string.
      */
@@ -39,7 +39,7 @@ public class TaskList {
     }
 
     /**
-     * Adds a task to the array.
+     * Adds a task to the ArrayList.
      *
      * @param task Task to be added.
      */
@@ -48,40 +48,40 @@ public class TaskList {
     }
 
     /**
-     * Increments the index of the array.
+     * Increments the index of the ArrayList.
      */
     public void incrementIndex() {
         this.index += 1;
     }
 
     /**
-     * Decrements the index of the array.
+     * Decrements the index of the ArrayList.
      */
     public void decrementIndex() {
         this.index -= 1;
     }
 
     /**
-     * Gets the current index of the array.
+     * Gets the current index of the ArrayList.
      *
-     * @return Current index of array as an integer.
+     * @return Current index of ArrayList as an integer.
      */
     public int getIndex() {
         return this.index;
     }
 
     /**
-     * Gets the task stored at an index of the array.
+     * Gets the task stored at an index of the ArrayList
      *
      * @param index Integer where a task is stored.
-     * @return Task that is stored at the index of the array.
+     * @return Task that is stored at the index of the ArrayList.
      */
     public Task getTask(int index) {
         return this.taskArray.get(index);
     }
 
     /**
-     * Gets the task at the current index of the array.
+     * Gets the task at the current index of the ArrayList.
      *
      * @return Task at the current index.
      */
@@ -90,7 +90,7 @@ public class TaskList {
     }
 
     /**
-     * Removes the task at the specified index from the array.
+     * Removes the task at the specified index from the ArrayList.
      *
      * @param index Index of the task to be removed.
      */
@@ -99,7 +99,7 @@ public class TaskList {
     }
 
     /**
-     * Marks the task at the specified index of the array to be done.
+     * Marks the task at the specified index of the ArrayList to be done.
      *
      * @param index Index of the task to be marked as done.
      */
@@ -109,7 +109,7 @@ public class TaskList {
     }
 
     /**
-     * Unmarks the task at the specified index of the array to be not done.
+     * Changes the status of the task at the specified index of the ArrayList to be not done.
      *
      * @param index Index of the array to be unmarked.
      */
@@ -119,7 +119,7 @@ public class TaskList {
     }
 
     /**
-     * Set the priority of the task in the taskList array.
+     * Sets the priority of the task in the ArrayList.
      *
      * @param index Index of the task involved.
      * @param priority String representing the priority of the task to be set.

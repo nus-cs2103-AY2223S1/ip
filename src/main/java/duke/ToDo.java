@@ -1,21 +1,21 @@
 package duke;
 
-/** A class that creates the ToDo task. */
+/** Represents a Task of type ToDo. */
 public class ToDo extends Task {
 
     /**
-     * A constructor that initialises the ToDo object.
+     * Creates a ToDo task.
      *
-     * @param description Describes the activity of the ToDo task.
+     * @param description Description of the ToDo task.
      */
     public ToDo(String description) {
         super(description);
     }
 
     /**
-     * Returns the description of the ToDo task.
+     * Gets the string representation of the ToDo task.
      *
-     * @return String that describes the activity of the ToDo task.
+     * @return String representation of the ToDo task.
      */
     @Override
     public String toString() {

@@ -3,7 +3,7 @@ package duke;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-/** A class that creates a Task object. */
+/** Represents a Task. */
 public class Task {
     enum Priority {
         LOW,
@@ -17,7 +17,7 @@ public class Task {
     protected Priority priority;
 
     /**
-     * A constructor that initialises the Task object.
+     * Creates a Task.
      *
      * @param description Describes the activity of the task.
      */
@@ -43,7 +43,7 @@ public class Task {
     }
 
     /**
-     * Unmark the task as not done.
+     * Changes the status of the task to show that it is not done.
      */
     public void unMarkTask() {
         this.isDone = false;
@@ -68,7 +68,7 @@ public class Task {
     }
 
     /**
-     * Set the priority of the task based on user input.
+     * Sets the priority of the task based on user input.
      *
      * @param priority String input representing desired priority.
      */
@@ -93,7 +93,7 @@ public class Task {
     }
 
     /**
-     * Get priority of the task.
+     * Gets priority of the task.
      *
      * @return String representing the priority of the task.
      */
@@ -121,9 +121,9 @@ public class Task {
     }
 
     /**
-     * Returns the description, status and priority of the task.
+     * Returns the string representation of the task.
      *
-     * @return String that describes the activity, status and priority of the task.
+     * @return String representation of the task.
      */
     @Override
     public String toString() {

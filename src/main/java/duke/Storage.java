@@ -8,14 +8,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
 
-/** A class that creates the Storage object. */
+/** Represents a storage which saves the list of tasks. */
 public class Storage {
     private String pathName;
     private File file;
     private TaskList previousTaskList;
 
     /**
-     * A constructor that initialises the Storage object.
+     * Initialises the Storage object.
      *
      * @param pathName Path name of the text file where the list of tasks is stored.
      * @param previousTaskList ArrayList of tasks.
@@ -83,7 +83,7 @@ public class Storage {
     }
 
     /**
-     * Load the event task from the file.
+     * Loads the Event task from the file.
      *
      * @param task String containing the event task.
      * @param status char indicating if the task is marked as done or not.
@@ -117,7 +117,7 @@ public class Storage {
     }
 
     /**
-     * Set priority of task read from the file.
+     * Sets priority of task read from the file.
      *
      * @param task Task that is read from the file.
      * @param priority char that indicates priority of the task.
@@ -137,7 +137,7 @@ public class Storage {
     }
 
     /**
-     * Loads the deadline task from the file.
+     * Loads the Deadline task from the file.
      *
      * @param task String containing the deadline task.
      * @param status char indicating if the task is marked as done or not.

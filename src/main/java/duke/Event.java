@@ -1,15 +1,13 @@
 package duke;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-/** A class that creates the Event task. */
+/** Represents a Task of type Event. */
 public class Event extends Task{
     protected String at;
 
     /**
-     * A constructor for the Event task.
+     * Initialises the Event task.
      *
      * @param description Describes the activity of the Event task.
      * @param at Date and time of the Event task.
@@ -20,9 +18,9 @@ public class Event extends Task{
     }
 
     /**
-     * Returns the description of the Event task.
+     * Gets the string representation of the Event task.
      *
-     * @return String that describes the activity, date and time of the Event task.
+     * @return String representation of the Event task.
      */
     @Override
     public String toString() {

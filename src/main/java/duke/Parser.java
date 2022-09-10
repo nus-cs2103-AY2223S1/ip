@@ -9,7 +9,7 @@ public class Parser {
     private Storage storage;
 
     /**
-     * A constructor that initialises the Parser object.
+     * Initialises the Parser object.
      *
      * @param taskList List of tasks stored as an array.
      * @param storage  Stores the data of the list of tasks.
@@ -70,7 +70,7 @@ public class Parser {
     }
 
     /**
-     * Set priority of the task.
+     * Sets priority of the task.
      *
      * @param inputString String array containing all the words in the user input.
      * @return String showing that the priority of the task has been set.
@@ -209,7 +209,7 @@ public class Parser {
     }
 
     /**
-     * Parse date and time of task.
+     * Parses date and time of task.
      *
      * @param task The task that is involved.
      * @param dateAndTime String containing date and time of the task.
