@@ -48,7 +48,6 @@ public class Recurring extends Task {
             date = LocalDate.parse(input, DateTimeFormatter.ofPattern("dd/MM/yy")).withYear(this.now.getYear());
             dateTime = LocalDateTime.of(date, time);
             this.period = PERIOD.yearly;
-            this.startDate = dateTime;
             yearly(dateTime, times);
         } catch (DateTimeException e) {
             try {
@@ -56,7 +55,6 @@ public class Recurring extends Task {
                 int n = Integer.parseInt(input);
                 date = LocalDate.of(this.now.getYear(), this.now.getMonth(), n);
                 dateTime = LocalDateTime.of(date, time);
-                this.startDate = dateTime;
                 this.period = PERIOD.monthly;
                 monthly(dateTime, times);
             } catch (NumberFormatException f) {
@@ -65,7 +63,6 @@ public class Recurring extends Task {
                     LocalDate now = LocalDate.now();
                     date = now.with(TemporalAdjusters.next(DayOfWeek.from(DateTimeFormatter.ofPattern("E").parse(input))));
                     dateTime = LocalDateTime.of(date, time);
-                    this.startDate = dateTime;
                     this.period = PERIOD.weekly;
                     weekly(dateTime, times);
                 } catch (DateTimeException g) {
@@ -73,7 +70,6 @@ public class Recurring extends Task {
                         // recurring daily
                         time = LocalTime.parse(input, Task.INPUT_TIME_FORMAT);
                         dateTime = LocalDateTime.of(this.now.toLocalDate(), time);
-                        this.startDate = dateTime;
                         this.period = PERIOD.daily;
                         daily(dateTime, times);
                     } catch (DateTimeException h) {
@@ -89,6 +85,7 @@ public class Recurring extends Task {
         if (this.now.isAfter(dateTime)) {
             first = dateTime.plusYears(1);
         }
+        this.startDate = first;
         for (int i = 0; i < times; i++) {
             this.dates.add(first.plusYears(i));
         }
@@ -99,6 +96,7 @@ public class Recurring extends Task {
         if (this.now.isAfter(dateTime)) {
             first = dateTime.plusMonths(1);
         }
+        this.startDate = first;
         for (int i = 0; i < times; i++) {
             this.dates.add(first.plusMonths(i));
         }
@@ -109,6 +107,7 @@ public class Recurring extends Task {
         if (this.now.isAfter(dateTime)) {
             first = dateTime.plusWeeks(1);
         }
+        this.startDate = first;
         for (int i = 0; i < times; i++) {
             this.dates.add(first.plusWeeks(i));
         }
@@ -119,6 +118,7 @@ public class Recurring extends Task {
         if (this.now.isAfter(dateTime)) {
             first = dateTime.plusDays(1);
         }
+        this.startDate = first;
         for (int i = 0; i < times; i++) {
             this.dates.add(first.plusDays(i));
         }
@@ -160,7 +160,7 @@ public class Recurring extends Task {
 
     @Override
     public String format() {
-        return "recurring " + this.description + " /every " + this.dateKeyedIn + " *" + this.timesRemaining
+        return "recurring " + this.description + " /every " + this.dateKeyedIn + " *" + this.originalTimes
                 + "|" + this.getStatusIcon() + "|" + this.startDate;
     }
 
