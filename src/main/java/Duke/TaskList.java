@@ -58,4 +58,19 @@ public class TaskList {
         }
         System.out.println(out);
     }
+
+    public String getAllTasks() {
+        if (list.isEmpty()) {
+            return "No tasks in the task list at the moment.\n";
+        }
+        String out = "";
+        out += "Here are the tasks in your list:\n";
+        int num = 1;
+        for (Task x : list) {
+            out += num + ". " + x.toString() + "\n";
+            num++;
+        }
+        return out;
+    }
+
 }
