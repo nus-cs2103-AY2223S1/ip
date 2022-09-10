@@ -3,6 +3,7 @@ package bobthebot.gui;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import bobthebot.exceptions.BobException;
 import bobthebot.tasks.ToDoList;
 import bobthebot.utils.Parser;
 import bobthebot.utils.Storage;
@@ -129,7 +130,15 @@ public class Main extends Application {
         if (input.equals("bye")) {
             return quit();
         }
-        return parser.parseCommand(input, this.todolist);
+
+        String response = null;
+        try {
+            response = parser.parseCommand(input, this.todolist);
+        } catch (BobException exception) {
+            response = exception.getMessage();
+        } finally {
+            return response;
+        }
     }
 
 

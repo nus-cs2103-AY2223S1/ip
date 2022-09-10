@@ -1,6 +1,13 @@
 package bobthebot.utils;
 
+import bobthebot.command.*;
+import bobthebot.exceptions.BobException;
+import bobthebot.exceptions.InvalidDateTimeException;
 import bobthebot.tasks.ToDoList;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Parser class which primarily handles the logic of how the handle the input.
@@ -13,66 +20,195 @@ public class Parser {
      * @param list The Todo List which the command will act on.
      * @return String representing result of the command.
      */
-    public String parseCommand(String command, ToDoList list) {
-        if (command.toLowerCase().equals("list")) {
-            return Ui.listMessage(list);
-        } else if (command.startsWith("mark")) {
-            try {
-                if (list.getLength() == 0) {
-                    String errorString = "\tPlease add items to your list before wanting to mark them as done!";
-                    Ui.printErrorMessage(errorString);
-                    return errorString;
-                } else {
-                    int index = Integer.parseInt(command.replace("mark ", ""));
-                    return list.markItemDone(index);
-                }
-            } catch (NumberFormatException e) {
-                return list.addTask(command);
-            }
-        } else if (command.startsWith("unmark")) {
-            try {
-                if (list.getLength() == 0) {
-                    String errorString = "\tPlease add items to your list before wanting to mark them as undone!";
-                    Ui.printErrorMessage(errorString);
-                    return errorString;
-                } else {
-                    int index = Integer.parseInt(command.replace("unmark ", ""));
-                    return list.markItemUndone(index);
-                }
-            } catch (NumberFormatException e) {
-                return list.addTask(command);
-            }
-        } else if (command.startsWith("delete")) {
-            try {
-                if (list.getLength() == 0) {
-                    String errorString = "\tPlease add items to your list before deleting them!";
-                    Ui.printErrorMessage(errorString);
-                    return errorString;
-                } else {
-                    int index = Integer.parseInt(command.replace("delete ", ""));
-                    return list.deleteTask(index - 1);
-                }
-            } catch (NumberFormatException e) {
-                String result = e.toString() + "\n";
-                result += "\tPlease enter the index of the item you would like to delete!\n";
-                result += "\tEg. delete 2 (where 2 is the index of the item you would like to delete)";
-                Ui.printErrorMessage(result);
-                return result;
-            }
-        } else if (command.startsWith("find")) {
-            command = command.replace("find", "").trim();
-            String result = "\tHere are the matching items on your list: \n";
-            int index = 1;
-            for (int i = 0; i < list.getLength(); i++) {
-                if (list.getTask(i).toString().contains(command)) {
-                    result += "\t" + index + ". " + list.getTask(i).toString() + "\n";
-                    index++;
-                }
-            }
-            Ui.formatMessage(result);
-            return result;
-        } else {
-            return list.addTask(command);
+    public String parseCommand(String command, ToDoList list) throws BobException {
+        String[] splitCommand = command.trim().split("\\s+", 2);
+        switch (splitCommand[0]) {
+        case "list":
+            return parseList(list);
+        case "mark":
+            return parseMark(splitCommand, list);
+        case "unmark":
+            return parseUnmark(splitCommand, list);
+        case "delete":
+            return parseDelete(splitCommand, list);
+        case "find":
+            return parseFind(splitCommand, list);
+        case "todo":
+            return parseTodo(splitCommand, list);
+        case "deadline":
+             return parseDeadline(splitCommand, list);
+        case "event":
+             return parseEvent(splitCommand, list);
+        default:
+            throw new BobException(LanguageBank.INVALID_INPUT_ERROR_MESSAGE);
+        }
+    }
+
+    /**
+     * Parses the "list" command, which shows the user the items in the ToDo list, their type and status.
+     *
+     * @param list ToDoList which "list" command acts on.
+     * @return String representing the output of the "list" command.
+     */
+    private String parseList(ToDoList list) {
+        ListCommand listCommand = new ListCommand(list);
+        return listCommand.execute();
+    }
+
+    /**
+     * Parses the "mark" command, which marks an item on the list as done.
+     *
+     * @param splitCommand A String array containing the "mark" command and it's argument.
+     * @param list ToDoList which "mark" command acts on.
+     * @return String representing the output of the "mark" command.
+     */
+    private String parseMark(String[] splitCommand, ToDoList list) throws BobException {
+        if (list.getLength() == 0) {
+            throw new BobException(LanguageBank.MARK_DONE_EMPTY_LIST_ERROR_MESSAGE);
+        }
+
+        if (splitCommand.length < 2) {
+            throw new BobException(LanguageBank.MARK_DONE_INVALID_INDEX_ERROR_MESSAGE);
+        }
+
+        int index = Integer.parseInt(splitCommand[1]);
+        MarkCommand markCommand = new MarkCommand(index, list);
+        return markCommand.execute();
+    }
+
+    /**
+     * Parses the "unmark" command, which marks an item on the list as undone.
+     *
+     * @param splitCommand A String array containing the "unmark" command and it's argument.
+     * @param list ToDoList which "unmark" command acts on.
+     * @return String representing the output of the "unmark" command.
+     */
+    private String parseUnmark(String[] splitCommand, ToDoList list) throws BobException {
+        if (splitCommand.length < 2) {
+            throw new BobException(LanguageBank.MARK_UNDONE_INVALID_INDEX_ERROR_MESSAGE);
+        }
+
+        if (list.getLength() == 0) {
+            throw new BobException(LanguageBank.MARK_UNDONE_EMPTY_LIST_ERROR_MESSAGE);
+        }
+
+        int index = Integer.parseInt(splitCommand[1]);
+        UnmarkCommand unmarkCommand = new UnmarkCommand(index, list);
+        return unmarkCommand.execute();
+    }
+
+    /**
+     * Parses the "delete" command, which deletes the specified element in the list.
+     *
+     * @param splitCommand A String array containing the "delete" command and it's argument.
+     * @param list ToDoList which "mark" command acts on.
+     * @return String representing the output of the "mark" command.
+     */
+    private String parseDelete(String[] splitCommand, ToDoList list) throws BobException {
+        if (splitCommand.length < 2) {
+            throw new BobException(LanguageBank.DELETE_INVALID_INDEX_ERROR_MESSAGE);
+        }
+
+        int index = Integer.parseInt(splitCommand[1]);
+        if (index > list.getLength() || index <= 0) {
+            throw new BobException(LanguageBank.DELETE_EMPTY_LIST_ERROR_MESSAGE);
+        }
+
+        DeleteCommand deleteCommand = new DeleteCommand(index, list);
+        return deleteCommand.execute();
+    }
+
+    /**
+     * Parses the "find" command, which finds the elements in the ToDo list which match with
+     *     the argument of the command.
+     *
+     * @param splitCommand A String array containing the "find" command and it's argument.
+     * @param list ToDoList which "find" command acts on.
+     * @return String representing the output of the "find" command.
+     */
+    private String parseFind(String[] splitCommand, ToDoList list) {
+        FindCommand findCommand = new FindCommand(list, splitCommand[1]);
+        return findCommand.execute();
+    }
+
+    private String parseTodo(String[] splitCommand, ToDoList list) throws BobException {
+        if (splitCommand.length < 2) {
+            throw new BobException(LanguageBank.TODO_INVALID_FORMAT_ERROR_MESSAGE);
+        }
+
+        TodoCommand todoCommand = new TodoCommand(splitCommand[1], list);
+        return todoCommand.execute();
+    }
+
+    private String parseDeadline(String[] splitCommand, ToDoList list) throws BobException {
+        if (splitCommand.length < 2) {
+            throw new BobException(LanguageBank.DEADLINE_INVALID_FORMAT_ERROR_MESSAGE);
+        }
+
+        String[] splitDeadline = splitCommand[1].split(" /by ");
+
+        if (splitDeadline.length < 2) {
+            throw new BobException(LanguageBank.DATE_INVALID_FORMAT_ERROR_MESSAGE);
+        }
+
+        String dueDate = splitDeadline[1];
+
+        try {
+            parseDateTime(dueDate);
+        } catch (InvalidDateTimeException exception) {
+            throw new BobException(exception.getMessage());
+        }
+
+        DeadlineCommand deadlineCommand = new DeadlineCommand(splitDeadline[0], splitDeadline[1], list);
+        return deadlineCommand.execute();
+    }
+
+    private String parseEvent(String[] splitCommand, ToDoList list) throws BobException {
+        if (splitCommand.length < 2) {
+            throw new BobException(LanguageBank.EVENT_INVALID_FORMAT_ERROR_MESSAGE);
+        }
+
+        String[] splitEvent = splitCommand[1].split(" /at ");
+
+        if (splitEvent.length < 2) {
+            throw new BobException(LanguageBank.DATE_INVALID_FORMAT_ERROR_MESSAGE);
+        }
+
+        String eventDate = splitEvent[1];
+
+        try {
+            parseDateTime(eventDate);
+        } catch (InvalidDateTimeException exception) {
+            throw new BobException(exception.getMessage());
+        }
+
+        EventCommand eventCommand = new EventCommand(splitEvent[0], splitEvent[1], list);
+        return eventCommand.execute();
+    }
+
+    private void parseDateTime(String dateTime) throws InvalidDateTimeException {
+        LocalDateTime currDate = LocalDateTime.now();
+
+        DateTimeFormatter format = null;
+        LocalDateTime deadlineDate = null;
+        try {
+            format = DateTimeFormatter.ofPattern("uuuu-MM-dd kkmm");
+            deadlineDate = LocalDateTime.parse(dateTime, format);
+        } catch (DateTimeParseException exception) {
+            throw new InvalidDateTimeException(LanguageBank.DATE_INVALID_FORMAT_ERROR_MESSAGE);
+        }
+
+        Boolean isAfter = deadlineDate.isAfter(currDate);
+
+        dateTime = dateTime.trim();
+        String regex = "(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2})(\\d{2})";
+
+        if (!dateTime.matches(regex)) {
+            throw new InvalidDateTimeException(LanguageBank.DATE_INVALID_FORMAT_ERROR_MESSAGE);
+        }
+
+        if (dateTime.matches(regex) && !isAfter) {
+            throw new InvalidDateTimeException(LanguageBank.DATE_BEFORE_PRESENT_ERROR_MESSAGE);
         }
     }
 }

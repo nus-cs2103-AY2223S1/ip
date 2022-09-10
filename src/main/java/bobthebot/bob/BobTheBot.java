@@ -2,6 +2,7 @@ package bobthebot.bob;
 
 import java.util.Scanner;
 
+import bobthebot.exceptions.BobException;
 import bobthebot.tasks.ToDoList;
 import bobthebot.utils.Parser;
 import bobthebot.utils.Storage;
@@ -35,20 +36,22 @@ public class BobTheBot {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             String command = scanner.nextLine();
-            if (command.toLowerCase().equals("bye")) {
+            if (command.equals("bye")) {
                 assert command == "bye" : "BobTheBot.java: command should be bye";
                 Ui.sayGoodbye(list);
                 break;
             }
-            parser.parseCommand(command, list);
-        }
 
+            try {
+                parser.parseCommand(command, list);
+            } catch (BobException exception) {
+                Ui.printErrorMessage(exception.getMessage());
+            }
+        }
         scanner.close();
     }
 
-    /*
     public static void main(String[] args) {
         new BobTheBot("./../../data/data.txt").run();
     }
-    */
 }
