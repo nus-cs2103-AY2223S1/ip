@@ -18,7 +18,7 @@ public class Deadline extends TimeBasedTask {
     }
 
     /**
-     * String representation of the Deadline object.
+     * Returns string representation of the Deadline object.
      *
      * @return String representation of the deadline task.
      */

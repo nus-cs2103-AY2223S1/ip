@@ -43,14 +43,14 @@ public abstract class Task {
     }
 
     /**
-     * Mark a task as done.
+     * Marks a task as done.
      */
     public void markAsDone() {
         this.isDone = true;
     }
 
     /**
-     * Mark a task as not done.
+     * Marks a task as not done.
      */
     public void markAsNotDone() {
         this.isDone = false;
@@ -66,6 +66,8 @@ public abstract class Task {
     }
 
     /**
+     * Returns string representation of the Task object.
+     *
      * @return String representation of the task.
      */
     @Override

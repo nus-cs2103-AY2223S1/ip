@@ -18,7 +18,7 @@ public class Event extends TimeBasedTask {
     }
 
     /**
-     * String representation of the Event object.
+     * Returns string representation of the Event object.
      *
      * @return String representation of the event.
      */

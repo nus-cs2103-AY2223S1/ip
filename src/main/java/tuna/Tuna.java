@@ -8,7 +8,7 @@ import tuna.command.SaveDataCommand;
 import tuna.command.WelcomeCommand;
 
 /**
- * Represents a Duke bot. A Duke object contains its storage, task list, ui, parser, folder path and file path.
+ * Represents a Tuna bot. A Tuna object contains its storage, task list, ui, parser, folder path and file path.
  */
 public class Tuna {
 
@@ -26,7 +26,7 @@ public class Tuna {
     private String filePath;
 
     /**
-     * Creates a Duke object.
+     * Creates a Tuna object.
      *
      * @param folderPath folder path of the data file.
      * @param filePath file path of the data file.
@@ -53,7 +53,7 @@ public class Tuna {
     }
 
     /**
-     * Runs the functionalities of the Duke bot in terminal.
+     * Runs the functionalities of the Tuna bot in terminal.
      */
     public void run() {
         try {
@@ -90,7 +90,7 @@ public class Tuna {
     }
 
     /**
-     * Main function to run Duke.
+     * Runs Tuna in the terminal.
      *
      * @param args command line arguments.
      */
