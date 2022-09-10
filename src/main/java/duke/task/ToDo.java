@@ -1,7 +1,7 @@
 package duke.task;
 
 /**
- * Encapsulates a to-do task stored by Apollo.
+ * Encapsulates a to-do task stored by Artemis.
  *
  * @author Kartikeya
  */

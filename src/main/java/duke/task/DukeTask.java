@@ -3,7 +3,7 @@ package duke.task;
 import duke.exception.DukeException;
 
 /**
- * Encapsulates a task stored in Apollo.
+ * Encapsulates a task stored in Artemis.
  *
  * @author Kartikeya
  */

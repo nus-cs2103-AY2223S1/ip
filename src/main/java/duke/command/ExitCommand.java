@@ -8,14 +8,14 @@ import duke.tasklist.TaskList;
 
 
 /**
- * Encapsulates saving and quitting Apollo.
+ * Encapsulates saving and quitting Artemis.
  *
  * @author Kartikeya
  */
 public class ExitCommand implements Command {
     /**
      * {@inheritDoc}
-     * Saves itemList to storage, shows outro to the user and exits from Apollo.
+     * Saves itemList to storage, shows outro to the user and exits from Artemis.
      */
     @Override
     public String execute(TaskList itemList, Storage storage) {

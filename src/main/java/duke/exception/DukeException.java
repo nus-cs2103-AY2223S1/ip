@@ -1,7 +1,7 @@
 package duke.exception;
 
 /**
- * Encapsulates an error encountered by Apollo.
+ * Encapsulates an error encountered by Artemis.
  *
  * @author Kartikeya
  */

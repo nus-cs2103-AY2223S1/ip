@@ -4,7 +4,7 @@ import duke.exception.DukeException;
 import duke.parser.DukeDateTimeFormatter;
 
 /**
- * Encapsulates a deadline task stored by Apollo.
+ * Encapsulates a deadline task stored by Artemis.
  *
  * @author Kartikeya
  */

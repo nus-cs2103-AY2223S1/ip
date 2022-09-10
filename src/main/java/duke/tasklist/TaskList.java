@@ -7,13 +7,13 @@ import duke.storage.Storage;
 import duke.task.DukeTask;
 
 /**
- * Encapsulates the list of items stored by Apollo.
+ * Encapsulates the list of items stored by Artemis.
  *
  * @author Kartikeya
  */
 public class TaskList {
     private static final String ITEM_DOESNT_EXIST = "This item does not exist.";
-    // Stores the items given to Apollo
+    // Stores the items given to Artemis
     private final ArrayList<DukeTask> items;
 
     public TaskList(ArrayList<DukeTask> items) {
