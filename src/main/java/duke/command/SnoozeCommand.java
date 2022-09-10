@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.Duke;
+import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import duke.exception.DukeException;
@@ -37,7 +38,7 @@ public class SnoozeCommand extends Command {
      * @param taskList TaskList to execute mark command
      */
     @Override
-    public String execute(Ui ui, TaskList taskList) throws DukeException {
+    public String execute(Ui ui, TaskList taskList, Storage storage) throws DukeException {
         assert(ui != null && taskList != null);
         Task task;
         try {
@@ -55,6 +56,7 @@ public class SnoozeCommand extends Command {
         } else {
             throw new DukeException(ui.invalidSnoozeTaskMessage());
         }
+        storage.writeFile(taskList);
         return ui.showSnoozeMessage(task);
     }
 }

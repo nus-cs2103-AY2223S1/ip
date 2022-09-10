@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import duke.exception.DukeException;
@@ -33,5 +34,5 @@ public abstract class Command {
      * @param ui Ui to show operation messages
      * @param taskList TaskList to execute command
      */
-    public abstract String execute(Ui ui, TaskList taskList) throws DukeException;
+    public abstract String execute(Ui ui, TaskList taskList, Storage storage) throws DukeException;
 }

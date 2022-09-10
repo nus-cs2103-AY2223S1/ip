@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
@@ -27,7 +28,7 @@ public class FindCommand extends Command {
      * @param ui Ui to show find messages.
      * @param taskList TaskList to find tasks with name that has keywords in it.
      */
-    public String execute(Ui ui, TaskList taskList) {
+    public String execute(Ui ui, TaskList taskList, Storage storage) {
         assert(ui != null && taskList != null);
         TaskList findTaskList = new TaskList();
         int count = 1;

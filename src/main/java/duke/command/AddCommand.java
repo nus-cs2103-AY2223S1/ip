@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import duke.exception.DukeException;
@@ -30,7 +31,7 @@ public class AddCommand extends Command {
      * @param taskList TaskList to execute add operation
      */
     @Override
-    public String execute(Ui ui, TaskList taskList) throws DukeException {
+    public String execute(Ui ui, TaskList taskList, Storage storage) throws DukeException {
         assert(ui != null && taskList != null);
         Task newTask;
         String[] commands = getInfo().split(" ", 2);
@@ -45,9 +46,10 @@ public class AddCommand extends Command {
             newTask = getEventTask(commands);
             break;
         default:
-            return new InvalidCommand(commands).execute(ui, taskList);
+            return new InvalidCommand(commands).execute(ui, taskList, storage);
         }
         taskList.addTask(newTask);
+        storage.writeFile(taskList);
         return ui.showAddMessage(newTask, taskList.getSize());
     }
 
