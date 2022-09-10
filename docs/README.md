@@ -124,8 +124,7 @@ There are not 4 tasks in the list.
 
 Mark the task specified by the index as complete.
 
-<details>
-<summary>Expected outcome</summary>
+<details><summary>Expected outcome</summary>
 
 ```
 mark 4
