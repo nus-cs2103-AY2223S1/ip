@@ -39,7 +39,7 @@ public class TaskList extends ArrayList<Task> {
      * @param keyword Word to be searched for.
      * @return filtered list of task.
      */
-    public ArrayList<Task> filterByKeyword(String keyword) {
+    public TaskList filterByKeyword(String keyword) {
         TaskList filtered = new TaskList();
         for (Task task : this) {
             if (task.matches(keyword)) {

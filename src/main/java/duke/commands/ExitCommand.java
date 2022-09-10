@@ -17,6 +17,11 @@ public class ExitCommand extends Command {
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof DeadlineCommand;
+        return obj instanceof ExitCommand;
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
     }
 }

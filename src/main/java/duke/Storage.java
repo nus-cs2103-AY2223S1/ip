@@ -10,7 +10,6 @@ import java.net.URISyntaxException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Optional;
 
 import duke.task.Deadline;
@@ -119,7 +118,7 @@ public class Storage {
      * @param tasks the list of tasks to save.
      * @return true if the tasks were saved successfully.
      */
-    public boolean saveTasks(ArrayList<Task> tasks) {
+    public boolean saveTasks(TaskList tasks) {
         try {
             StringBuilder sb = new StringBuilder();
             for (Task task : tasks) {

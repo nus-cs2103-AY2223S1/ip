@@ -17,4 +17,14 @@ public class ListCommand extends Command {
                 false,
                 Message.User.DUKE);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof ListCommand;
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }

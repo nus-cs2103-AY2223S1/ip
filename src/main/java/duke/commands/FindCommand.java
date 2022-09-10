@@ -1,10 +1,7 @@
 package duke.commands;
 
-import java.util.ArrayList;
-
 import duke.DukeException;
 import duke.Message;
-import duke.task.Task;
 import duke.task.TaskList;
 
 /**
@@ -24,10 +21,27 @@ public class FindCommand extends Command {
 
     @Override
     public Message execute(TaskList tasks) throws DukeException {
-        ArrayList<Task> filteredTasks = tasks.filterByKeyword(this.keyword);
+        TaskList filteredTasks = tasks.filterByKeyword(this.keyword);
         if (filteredTasks.isEmpty()) {
             throw new DukeException(MESSAGE_FAILURE);
         }
         return new Message(MESSAGE_SUCCESS + filteredTasks, false, Message.User.DUKE);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof FindCommand)) {
+            return false;
+        }
+        FindCommand other = (FindCommand) obj;
+        return this.keyword.equals(other.keyword);
+    }
+
+    @Override
+    public int hashCode() {
+        return this.keyword.hashCode();
     }
 }

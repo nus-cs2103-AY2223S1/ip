@@ -1,6 +1,8 @@
 package duke.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -66,5 +68,17 @@ class TaskListTest {
         tasks.add(e1);
         assertTrue(tasks.containsTask(e1));
         assertFalse(tasks.containsTask(e2));
+    }
+
+    @Test
+    void testEquals() {
+        TaskList tasks1 = new TaskList();
+        TaskList tasks2 = new TaskList();
+        TaskList tasks3 = new TaskList();
+        ToDo task1 = new ToDo("task1");
+        tasks1.add(task1);
+        tasks2.add(task1);
+        assertEquals(tasks1, tasks2);
+        assertNotEquals(tasks1, tasks3);
     }
 }
