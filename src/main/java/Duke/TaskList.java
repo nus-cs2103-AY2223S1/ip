@@ -8,19 +8,17 @@ import java.util.ArrayList;
  */
 public class TaskList {
     ArrayList<Task> tasks;
-    Ui ui;
     MainWindow mainWindow;
     Storage storage;
 
     /**
      * The method takes in two parameter
-     * @param ui of type Ui
-     * @param storage of type Ui
+     * @param storage of type Storage
      */
-    public TaskList(Ui ui, Storage storage, MainWindow mainWindow) {
+    public TaskList(Storage storage, MainWindow mainWindow) {
         this.mainWindow = mainWindow;
         this.tasks = storage.load();
-        this.ui = ui;
+
         this.storage = storage;
     }
 

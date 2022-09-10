@@ -17,15 +17,13 @@ public class Storage {
     BufferedReader bR;
     File dukeFile;
     MainWindow mainWindow;
-    Ui ui;
 
     /**
      * The method takes in two parameters
      * @param pathName of type String
      * @param fileName of type String
      */
-    public Storage(Ui ui, String pathName, String fileName, MainWindow mainWindow) {
-        this.ui = ui;
+    public Storage(String pathName, String fileName, MainWindow mainWindow) {
         this.mainWindow = mainWindow;
         Path file = Paths.get(pathName);
         File curr = new File(String.valueOf(pathName), fileName);
@@ -50,29 +48,7 @@ public class Storage {
             bR = new BufferedReader(new FileReader(dukeFile));
             ArrayList<Task> tasksToDo = new ArrayList<>();
             String currLine = bR.readLine();
-            while (currLine != null) {
-                String[] details = currLine.split("\\|");
-                boolean done = !Objects.equals(details[1], "0");
-                String type = details[0];
-                String[] date;
-                switch (type) {
-                    case "T":
-                        tasksToDo.add(new Todo(details[2], done));
-                        break;
-                    case "D":
-                        date = details[3].split("T");
-                        tasksToDo.add(new Deadline(details[2], done, date[0] + " " + date[1]));
-                        break;
-                    case "E":
-                        date = details[3].split("T");
-                        tasksToDo.add(new Event(details[2], done, date[0] + " " + date[1]));
-                        break;
-                    default:
-                        break;
-                }
-                currLine = bR.readLine();
-            }
-            return tasksToDo;
+            return handleFileList(tasksToDo, currLine);
         } catch (IOException e) {
             mainWindow.printErrorMessage(e.toString());
         }
@@ -87,8 +63,8 @@ public class Storage {
     public boolean updateFile(Task task) {
         try {
             String taskStr = task.getType() == 'T' ?
-                    ('T' + "|" + task.getDone() + "|" + task.getTask())
-                    : (task.getType() + "|" + task.getDone() + "|" + task.getTask() + "|" + task.getOriginalDetail());
+                    getTodoString(task)
+                    : getEventDeadlineString(task);
             Files.write(Paths.get(filePath), (taskStr + System.lineSeparator()).getBytes(), StandardOpenOption.APPEND);
             return true;
         } catch (IOException e) {
@@ -114,5 +90,39 @@ public class Storage {
             mainWindow.printErrorMessage(e.toString());
             return false;
         }
+    }
+
+    public ArrayList<Task> handleFileList(ArrayList<Task> tasksToDo, String currLine) throws IOException {
+        while (currLine != null) {
+            String[] details = currLine.split("\\|");
+            boolean done = !Objects.equals(details[1], "0");
+            String type = details[0];
+            String[] date;
+            switch (type) {
+                case "T":
+                    tasksToDo.add(new Todo(details[2], done));
+                    break;
+                case "D":
+                    date = details[3].split("T");
+                    tasksToDo.add(new Deadline(details[2], done, date[0] + " " + date[1]));
+                    break;
+                case "E":
+                    date = details[3].split("T");
+                    tasksToDo.add(new Event(details[2], done, date[0] + " " + date[1]));
+                    break;
+                default:
+                    break;
+            }
+            currLine = bR.readLine();
+        }
+        return tasksToDo;
+    }
+
+    public String getTodoString(Task task) {
+        return 'T' + "|" + task.getDone() + "|" + task.getTask();
+    }
+
+    public String getEventDeadlineString(Task task) {
+        return task.getType() + "|" + task.getDone() + "|" + task.getTask() + "|" + task.getOriginalDetail();
     }
 }
