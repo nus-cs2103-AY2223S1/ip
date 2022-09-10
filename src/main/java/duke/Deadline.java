@@ -15,6 +15,8 @@ public class Deadline extends Task{
      */
     private String time = null;
 
+    private boolean isConverterdTime = false;
+
     public Deadline(String name) {
         super(name);
 
@@ -63,6 +65,10 @@ public class Deadline extends Task{
             return "";
         }
 
+        if (isConverterdTime) {
+            return this.time;
+        }
+
         String hh = this.time.substring(0,2);
         String mm = this.time.substring(2,4);
 
@@ -75,6 +81,10 @@ public class Deadline extends Task{
                     ? "12:" + mm + "am"
                     : hh + ":" + mm + "am";
         }
+    }
+
+    public void setIsConvertedTime() {
+        isConverterdTime = true;
     }
 
 }

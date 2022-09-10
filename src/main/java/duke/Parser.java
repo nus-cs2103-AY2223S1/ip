@@ -1,5 +1,6 @@
 package duke;
 
+import duke.command.ArchiveCommand;
 import duke.command.Command;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
@@ -101,6 +102,13 @@ public class Parser {
                 throw new DukeException("Input the word that you want to find/match!");
             } else {
                 return new FindCommand(arr[1]);
+            }
+        } else if (arr[0].equalsIgnoreCase("archive")) {
+            if (!inputChecker(arr)) {
+                throw new DukeException("Input the specific index of the task that you want to archive," +
+                        " or all if want to archive all tasks!");
+            } else {
+                return new ArchiveCommand(arr[1]);
             }
         }
         else {

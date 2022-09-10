@@ -14,6 +14,8 @@ public class Event extends Task {
      */
     private LocalDate date;
 
+    private boolean isConverterdTime = false;
+
     public Event(String name) {
         super(name);
     }
@@ -27,7 +29,6 @@ public class Event extends Task {
     public String getTaskType() {
         return "E";
     }
-
 
     /**
      * Returns the string representation of the event task.
@@ -60,6 +61,11 @@ public class Event extends Task {
         if(this.time == null) {
             return "";
         }
+
+        if (isConverterdTime) {
+            return this.time;
+        }
+
         String hh = this.time.substring(0,2);
         String mm = this.time.substring(2,4);
 
@@ -72,6 +78,10 @@ public class Event extends Task {
                     ? "12:" + mm + "am"
                     : hh + ":" + mm + "am";
         }
+    }
+
+    public void setIsConvertedTime() {
+        isConverterdTime = true;
     }
 
 }
