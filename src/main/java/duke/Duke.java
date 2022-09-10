@@ -1,4 +1,5 @@
 package duke;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.time.LocalDate;
@@ -6,19 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
 public class Duke {
-    static List<Task> tasks = new ArrayList<>();
-
+    List<Task> tasks = new ArrayList<>();
     static final String FILE_PATH = "data/duke.txt";
 
-    private static void readDataFile() {
+    Duke() {
+        readDataFile();
+    }
+
+    private void readDataFile() {
         tasks = new ArrayList<>();
 
         try {
             File file = new File(FILE_PATH);
             if (!file.exists()) {
-                System.out.printf("File %s not found\n\n", FILE_PATH);
+                System.out.printf("File %s not found\n", FILE_PATH);
                 return;
             }
 
@@ -57,7 +60,7 @@ public class Duke {
         }
     }
 
-    private static void syncTasksToFile() {
+    private void syncTasksToFile() {
         try {
             File file = new File(FILE_PATH);
             if (!file.exists()) {
@@ -81,13 +84,7 @@ public class Duke {
         }
     }
 
-    /**
-     * Marks task as complete or incomplete.
-     * @param input
-     * @param done
-     * @throws DukeException
-     */
-    private static void markTask(String input, boolean done) throws DukeException {
+    private String markTask(String input, boolean done) throws DukeException {
         String[] splitInput = input.split(" ");
         if (splitInput.length < 2) {
             throw new DukeException("Please specify the number of the task");
@@ -103,14 +100,14 @@ public class Duke {
             String successMessage = done
                     ? "Nice! I've marked this task as done:\n  %s\n"
                     : "OK, I've marked this task as not done yet:\n  %s\n";
-            System.out.printf(successMessage, task.toString());
             syncTasksToFile();
+            return String.format(successMessage, task.toString());
         } catch (Exception e) {
             throw new DukeException("That is not a valid task number!");
         }
     }
 
-    private static void deleteTask(String input) throws DukeException {
+    private String deleteTask(String input) throws DukeException {
         String[] splitInput = input.split("delete ");
         if (splitInput.length < 2) {
             throw new DukeException("Please specify the number of the task to delete");
@@ -118,22 +115,49 @@ public class Duke {
         try {
             int taskIdx = Integer.parseInt(splitInput[1]);
             Task task = tasks.remove(taskIdx - 1);
-            System.out.printf("Noted. I've removed this task:\n  %s\n", task.toString());
-            System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
             syncTasksToFile();
+            return String.format("Noted. I've removed this task:\n  %s\nNow you have %d tasks in the list.\n", task.toString(), tasks.size());
         } catch (Exception e) {
             throw new DukeException("That is not a valid task number!");
         }
     }
 
-    private static void printTasks() {
+    private String printTasks() {
         if (tasks.size() == 0) {
-            System.out.println("You currently have no tasks. ");
+            return "You currently have no tasks. ";
         } else {
-            System.out.println("Here are the tasks in your list:");
+            ArrayList<String> result = new ArrayList<>();
+            result.add("Here are the tasks in your list:");
             for (int i = 0; i < tasks.size(); i++) {
-                System.out.println(i + 1 + "." + tasks.get(i));
+                result.add(String.format("%d. %s", i + 1, tasks.get(i).toString()));
             }
+            return String.join("\n", result);
+        }
+    }
+
+    public String getResponse(String input) {
+        try {
+            if (input.equals("list")) {
+                return printTasks();
+            } else if (input.startsWith("mark ")) {
+                return markTask(input, true);
+            } else if (input.startsWith("unmark ")) {
+                return markTask(input, false);
+            } else if (input.startsWith("delete ")) {
+                return deleteTask(input);
+            } else if (input.startsWith("todo ")) {
+                return addTask(input, TaskType.TODO);
+            } else if (input.startsWith("deadline ")) {
+                return addTask(input, TaskType.DEADLINE);
+            } else if (input.startsWith("event ")) {
+                return addTask(input, TaskType.EVENT);
+            } else if (input.startsWith("find ")) {
+                return searchTask(input);
+            } else {
+                throw new DukeException("what");
+            }
+        } catch (Exception e) {
+            return (e.getMessage());
         }
     }
 
@@ -149,7 +173,7 @@ public class Duke {
         }
     }
 
-    private static void addTask(String input, TaskType type) throws DukeException {
+    private String addTask(String input, TaskType type) throws DukeException {
         String[] splitInput = input.split(type.string);
         String errorMessage = type == TaskType.TODO
                 ? "Please add a description for the %s"
@@ -173,53 +197,18 @@ public class Duke {
         }
         tasks.add(task);
         syncTasksToFile();
-        System.out.printf("Got it. I've added this task:\n  %s\n", task.toString());
-        System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
+        return String.format("Got it. I've added this task:\n  %s\nNow you have %d tasks in the list.\n", task.toString(), tasks.size());
     }
 
-    private static void searchTask(String input) {
+    private String searchTask(String input) {
         String searchString = input.split("find ")[1];
-        System.out.println("Here are the matching tasks in your list:");
+        ArrayList<String> result = new ArrayList<>();
+        result.add("Here are the matching tasks in your list:");
         for (Task task : tasks) {
             if (task.description.contains(searchString)) {
-                System.out.println(task.toString());
+                result.add(task.toString());
             }
         }
-    }
-
-    public static void main(String[] args) {
-        readDataFile();
-        System.out.println("Hello! I'm Duke\n" +
-                "What can I do for you?\n");
-        Scanner s = new Scanner(System.in);
-        while (true) {
-            String input = s.nextLine();
-            try {
-                if (input.equals("bye")) {
-                    System.out.println("Bye. Hope to see you again soon!");
-                    break;
-                } else if (input.equals("list")) {
-                    printTasks();
-                } else if (input.startsWith("mark ")) {
-                    markTask(input, true);
-                } else if (input.startsWith("unmark ")) {
-                    markTask(input, false);
-                } else if (input.startsWith("delete ")) {
-                    deleteTask(input);
-                } else if (input.startsWith("todo ")) {
-                    addTask(input, TaskType.TODO);
-                } else if (input.startsWith("deadline ")) {
-                    addTask(input, TaskType.DEADLINE);
-                } else if (input.startsWith("event ")) {
-                    addTask(input, TaskType.EVENT);
-                } else if (input.startsWith("find ")) {
-                    searchTask(input);
-                }else {
-                    throw new DukeException("what");
-                }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return String.join("\n", result);
     }
 }
