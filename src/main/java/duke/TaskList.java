@@ -192,6 +192,10 @@ public class TaskList {
         return result;
     }
 
+    /**
+     * Finds any task that is due one week from now and returns them as a list
+     * @return
+     */
     public String dueSoon() {
         String result = "";
         for (Task task : tasks) {
@@ -199,7 +203,7 @@ public class TaskList {
                 Deadline deadline = (Deadline) task;
                 LocalDate soon = LocalDate.now().plusWeeks(1);
                 LocalDate dueDate = deadline.getDeadline();
-                if(dueDate.isBefore(soon)) {
+                if (dueDate.isBefore(soon)) {
                     result += deadline + "\n";
                 }
             }
