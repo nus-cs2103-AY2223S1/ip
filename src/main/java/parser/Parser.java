@@ -14,7 +14,6 @@ import commands.MarkCommand;
 import commands.SaveCommand;
 import commands.UnmarkCommand;
 import exception.FredException;
-import fred.Fred;
 import task.TaskType;
 
 

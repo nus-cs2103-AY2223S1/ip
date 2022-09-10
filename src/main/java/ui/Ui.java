@@ -1,7 +1,5 @@
 package ui;
 
-import java.util.Scanner;
-
 /**
  * Ui has all the methods and logic that interacts directly with the user through
  * the console.
