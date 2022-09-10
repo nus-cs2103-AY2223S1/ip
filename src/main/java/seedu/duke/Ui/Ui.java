@@ -1,12 +1,15 @@
-package seedu.duke;
+package seedu.duke.Ui;
 
+import seedu.duke.DukeException;
+import seedu.duke.TaskList;
 import seedu.duke.task.Task;
 
 /**
  * Class for printing messages for user to view.
  */
 public class Ui {
-    private static final String LOGO  = " ____        _        \n"
+    private static final String LOGO  =
+              " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
@@ -16,33 +19,35 @@ public class Ui {
     /**
      * Greets a first time user.
      */
-    public static void greetNew() {
-        System.out.println("Hello from\n" + LOGO);
-        System.out.println("Nice to meet you, Master.\n" +
-                "I have created a new list for you.");
+    public static String greetNew() {
+        return "Hello from\n" + LOGO + "Nice to meet you, Master.\n"
+                + "I have created a new list for you.";
     }
 
     /**
      * Greets a returning user.
      */
-    public static void greetReturning() {
-        System.out.println("Hello from\n" + LOGO);
-        System.out.println("Welcome back, Master.\n");
+    public static String greetReturning() {
+        return "Hello from\n" + LOGO + "Welcome back, Master.\n";
+    }
+
+    public static String greet() {
+        return "Hello from\n" + LOGO;
     }
 
     /**
      * Greets a leaving user.
      */
-    public static void exit() {
-        System.out.println("Goodbye! Thank you for visiting\n" + LOGO);
+    public static String exit() {
+        return "Goodbye! Thank you for visiting\n" + LOGO;
     }
 
     /**
      * Confirms a list has been saved.
      * @param list
      */
-    public static void saved(TaskList list) {
-        System.out.println("I have saved your list:\n" + list.toString());
+    public static String saved(TaskList list) {
+        return "I have saved your list:\n" + list.toString();
     }
 
     /**
@@ -50,12 +55,12 @@ public class Ui {
      * @param list
      * @throws DukeException
      */
-    public static void printList(TaskList list) throws DukeException {
+    public static String printList(TaskList list) throws DukeException {
         if (list.isEmpty()) {
             throw new DukeException("There is nothing in your list yet, Master.");
         } else {
-            System.out.println("Here is your to-do list, Master:\n" +
-                    list.toString());
+            return "Here is your to-do list, Master:\n" +
+                    list.toString();
         }
     }
 
@@ -67,12 +72,12 @@ public class Ui {
      * @param success
      * @throws DukeException
      */
-    public static void marked(TaskList list, int index, boolean success) throws DukeException {
+    public static String marked(TaskList list, int index, boolean success) throws DukeException {
         Task curr = list.get(index);
         if (success) {
-            System.out.println("Well done, Master! I have marked "
+            return "Well done, Master! I have marked "
                     + curr.toString() +
-                    " as done.");
+                    " as done.";
         } else {
             throw new DukeException("This task has already been marked done, Master.");
         }
@@ -86,12 +91,12 @@ public class Ui {
      * @param success
      * @throws DukeException
      */
-    public static void unmarked(TaskList list, int index, boolean success) throws DukeException {
+    public static String unmarked(TaskList list, int index, boolean success) throws DukeException {
         Task curr = list.get(index);
         if (success) {
-            System.out.println("Oh no :( I have marked " +
+            return "Oh no :( I have marked " +
                     curr.toString()
-                    + " as undone, Master.");
+                    + " as undone, Master.";
         } else {
             throw new DukeException("This duke.task was already marked undone, Master.");
         }
@@ -101,16 +106,16 @@ public class Ui {
      * Confirms that a task has been deleted.
      * @param task
      */
-    public static void deleted(Task task) {
-        System.out.println("Very well, I have deleted " + task.toString() + " from your list, Master.");
+    public static String deleted(Task task) {
+        return "Very well, I have deleted " + task.toString() + " from your list, Master.";
     }
 
     /**
      * Confirms that a task has been added.
      * @param task
      */
-    public static void added(Task task) {
-        System.out.println("I have added " + task.toString() + " to the list, Master.");
+    public static String added(Task task) {
+        return "I have added " + task.toString() + " to the list, Master.";
     }
 
     /**
@@ -118,13 +123,13 @@ public class Ui {
      * @param searchString
      * @param foundList
      */
-    public static void found(String searchString, TaskList foundList) {
+    public static String found(String searchString, TaskList foundList) {
         if (foundList.size() == 1) {
-            System.out.println("I have found the following task matching \"" + searchString + "\"");
-            System.out.println(foundList);
+            return "I have found the following task matching \"" + searchString + "\":\n"
+                    + foundList;
         } else {
-            System.out.println("I have found the following tasks matching \"" + searchString + "\"");
-            System.out.println(foundList);
+            return "I have found the following tasks matching \"" + searchString + "\":\n"
+                    + foundList;
         }
     }
 
@@ -132,9 +137,9 @@ public class Ui {
      * Informs user that no items matching search were found.
      * @param searchString
      */
-    public static void notFound(String searchString) {
-        System.out.println("Sorry, Master." +
-                "I was not able to find any tasks matching \"" + searchString + "\"");
+    public static String notFound(String searchString) {
+        return "Sorry, Master." +
+                "I was not able to find any tasks matching \"" + searchString + "\"";
     }
 
 }

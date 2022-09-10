@@ -2,7 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.DukeException;
 import seedu.duke.TaskList;
-import seedu.duke.Ui;
+import seedu.duke.Ui.Ui;
 import seedu.duke.task.ToDoTask;
 
 /**
@@ -21,9 +21,9 @@ public class ToDoCommand extends Command {
      * @throws DukeException
      */
     @Override
-    public void execute(TaskList list) throws DukeException {
+    public String execute(TaskList list) throws DukeException {
         ToDoTask task = new ToDoTask(details);
         list.add(task);
-        Ui.added(task);
+        return Ui.added(task);
     }
 }

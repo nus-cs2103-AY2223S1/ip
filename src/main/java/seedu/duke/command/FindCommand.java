@@ -2,7 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.DukeException;
 import seedu.duke.TaskList;
-import seedu.duke.Ui;
+import seedu.duke.Ui.Ui;
 import seedu.duke.task.Task;
 
 /**
@@ -23,7 +23,7 @@ public class FindCommand extends Command {
      * @throws DukeException
      */
     @Override
-    public void execute(TaskList list) throws DukeException {
+    public String execute(TaskList list) throws DukeException {
         TaskList foundList = new TaskList();
         for (int i = 0; i < list.size(); i++) {
             Task curr = list.get(i);
@@ -32,9 +32,9 @@ public class FindCommand extends Command {
             }
         }
         if (!foundList.isEmpty()) {
-            Ui.found(searchString, foundList);
+            return Ui.found(searchString, foundList);
         } else {
-            Ui.notFound(searchString);
+            return Ui.notFound(searchString);
         }
     }
 }

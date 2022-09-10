@@ -1,7 +1,7 @@
 package seedu.duke.command;
 
 import seedu.duke.TaskList;
-import seedu.duke.Ui;
+import seedu.duke.Ui.Ui;
 
 /**
  * Class to execute exit command
@@ -17,7 +17,7 @@ public class ExitCommand extends Command {
      * @param list
      */
     @Override
-    public void execute(TaskList list) {
-        Ui.exit();
+    public String execute(TaskList list) {
+        return Ui.exit();
     }
 }

@@ -2,7 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.DukeException;
 import seedu.duke.TaskList;
-import seedu.duke.Ui;
+import seedu.duke.Ui.Ui;
 import seedu.duke.task.Task;
 
 /**
@@ -20,12 +20,12 @@ public class DeleteCommand extends Command {
      * @param list list from which to delete the task
      * @throws DukeException
      */
-    public void execute(TaskList list) throws DukeException {
+    public String execute(TaskList list) throws DukeException {
         if (index >= list.size()) {
             throw new DukeException("There is no task " + index + " just yet, Master.");
         }
         Task temp = list.get(index);
         list.remove(index);
-        Ui.deleted(temp);
+        return Ui.deleted(temp);
     }
 }

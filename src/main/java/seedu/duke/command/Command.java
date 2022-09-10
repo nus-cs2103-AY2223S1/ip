@@ -12,5 +12,7 @@ public class Command {
         return isExit;
     }
 
-    public void execute(TaskList list) throws DukeException {}
+    public String execute(TaskList list) throws DukeException {
+        return "";
+    }
 }

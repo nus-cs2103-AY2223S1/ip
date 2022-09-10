@@ -1,4 +1,4 @@
-[T][ ] eat
+[T][X] eat
 [E][ ] eat (on: 5pm)
 [D][ ] eat (by: 5pm)
 [D][ ] eat (by: 7pm)

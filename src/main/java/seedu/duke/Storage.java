@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.Ui.Ui;
 import seedu.duke.task.DeadlineTask;
 import seedu.duke.task.EventTask;
 import seedu.duke.task.ToDoTask;
@@ -32,9 +33,6 @@ public class Storage {
             file = Paths.get(".", "data", "list.txt");
             if (!Files.exists(file)) {
                 Files.createFile(file);
-                Ui.greetNew();
-            } else {
-                Ui.greetReturning();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -51,7 +49,6 @@ public class Storage {
     public void saveList(TaskList list, Path file) throws IOException {
         try {
             Files.write(file, list.toStringList());
-            Ui.saved(list);
         } catch (IOException e) {
             e.printStackTrace();
         }

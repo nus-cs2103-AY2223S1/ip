@@ -2,7 +2,7 @@ package seedu.duke.command;
 
 import seedu.duke.DukeException;
 import seedu.duke.TaskList;
-import seedu.duke.Ui;
+import seedu.duke.Ui.Ui;
 
 /**
  * Class to execute list command
@@ -19,7 +19,7 @@ public class ListCommand extends Command {
      * @throws DukeException
      */
     @Override
-    public void execute(TaskList list) throws DukeException {
-        Ui.printList(list);
+    public String execute(TaskList list) throws DukeException {
+        return Ui.printList(list);
     }
 }
