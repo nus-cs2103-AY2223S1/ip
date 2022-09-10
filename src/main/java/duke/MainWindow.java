@@ -49,6 +49,7 @@ public class MainWindow extends AnchorPane {
 
         if (!Duke.getIsRunning()) {
             stage.close();
+            return;
         }
 
         Duke.giveInput(input);
