@@ -1,7 +1,11 @@
 package duke.task;
 
+import duke.exception.DukeException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Date;
 
 /**
  * Deadline task with TaskType, description,
@@ -19,11 +23,15 @@ public class Deadline extends Task {
      * @param isMarked Denotes whether the deadline is done yet
      * @param timeStr Time of deadline
      */
-    public Deadline(TaskType taskType, String name, boolean isMarked, String timeStr) {
+    public Deadline(TaskType taskType, String name, boolean isMarked, String timeStr) throws DukeException {
         super(taskType, name, isMarked);
-        String format = "HHmm, d/MM/yyyy";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
-        this.byTime = LocalDateTime.parse(timeStr, formatter);
+        try {
+            String format = "HHmm, d/MM/yyyy";
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+            this.byTime = LocalDateTime.parse(timeStr, formatter);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Enter your byTime in this format : HHmm, d/MM/yyyy");
+        }
     }
 
     /**
@@ -35,11 +43,16 @@ public class Deadline extends Task {
 
     /**
      * @param newByTime new by time stated
+     * @throws DukeException If invalid time format
      */
-    public void setByTime(String newByTime) {
-        String format = "HHmm, d/MM/yyyy";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
-        this.byTime = LocalDateTime.parse(newByTime, formatter);
+    public void setByTime(String newByTime) throws DukeException {
+        try {
+            String format = "HHmm, d/MM/yyyy";
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+            this.byTime = LocalDateTime.parse(newByTime, formatter);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Enter your byTime in this format : HHmm, d/MM/yyyy");
+        }
     }
 
     /**

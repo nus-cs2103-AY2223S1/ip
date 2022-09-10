@@ -1,6 +1,7 @@
 package duke;
 
 import duke.command.Command;
+import duke.exception.DukeException;
 import duke.ui.Launcher;
 
 /**
@@ -26,13 +27,9 @@ public class Duke {
     /**
      * Gets response from the user input through the parser and execute commands.
      */
-    public String getResponse(String input) {
+    public String getResponse(String input) throws DukeException {
         assert(ui != null && taskList != null && input != null);
-        Command command = Parser.parse(input);
-        if (command == null) {
-            return "Invalid arguments for this command!";
-        }
-        return command.execute(ui, taskList);
+        return Parser.parse(input).execute(ui, taskList);
     }
 
     public static void main(String[] args) {

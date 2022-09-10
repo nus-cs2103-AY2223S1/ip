@@ -2,6 +2,7 @@ package duke.command;
 
 import duke.TaskList;
 import duke.Ui;
+import duke.exception.DukeException;
 import duke.task.Task;
 
 /**
@@ -30,10 +31,10 @@ public class UnmarkCommand extends Command {
      * @param taskList TaskList to execute unmark command
      */
     @Override
-    public String execute(Ui ui, TaskList taskList) {
+    public String execute(Ui ui, TaskList taskList) throws DukeException {
         assert(ui != null && taskList != null);
         if (num >= taskList.getSize() || num < 0) {
-            return ui.showInvalidIndexMessage();
+            throw new DukeException(ui.showInvalidIndexMessage());
         }
         Task task = taskList.getTask(num);
         task.setUnmarked();

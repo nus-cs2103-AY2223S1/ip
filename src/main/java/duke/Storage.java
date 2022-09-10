@@ -41,18 +41,16 @@ public class Storage {
      * Loads the file and save tasks into ArrayList.
      *
      * @return ArrayList with task read from the text file
-     * @throws DukeException If invalid commands or arguments
      */
     public ArrayList<Task> load() {
         readFile();
         return tasks;
     }
 
+
     /**
      * Reads the file and create directory or file if either one is missing.
      * If the file is not missing, read the file and add task into ArrayList.
-     *
-     * @throws DukeException If there is invalid task in text file
      */
     public void readFile() {
         try {
@@ -123,7 +121,6 @@ public class Storage {
      * Writes file to store task in a text file.
      *
      * @param taskList TaskList to extract task and save it inside a text file
-     * @throws DukeException If there is invalid task
      */
     public void writeFile(TaskList taskList) {
         try {
@@ -131,8 +128,9 @@ public class Storage {
             ArrayList<Task> tasks = taskList.getTasks();
             writeTasks(fw, tasks);
             fw.close();
-        } catch (IOException msg) {
+        } catch (IOException | DukeException msg) {
             System.out.println("Failed to save file.");
+            System.out.println(msg);
         }
     }
 
@@ -143,7 +141,7 @@ public class Storage {
      * @param tasks task to write
      * @throws IOException If unable to write task into file.
      */
-    private void writeTasks(FileWriter fw, ArrayList<Task> tasks) throws IOException {
+    private void writeTasks(FileWriter fw, ArrayList<Task> tasks) throws IOException, DukeException {
         for (int i = 0; i < tasks.size(); i++) {
             Task curr = tasks.get(i);
 
@@ -151,7 +149,7 @@ public class Storage {
             String marked = curr.isMarked()
                     ? "1 / "
                     : "0 / ";
-            String name = curr.getName() + " / ";;
+            String name = curr.getName() + " / ";
             LocalDateTime time = getLocalDateTimeText(curr);
 
             String line = getWriteText(type, marked, name, time);
@@ -163,9 +161,12 @@ public class Storage {
      * @param curr task
      * @return local date time text of task
      */
-    private LocalDateTime getLocalDateTimeText(Task curr) {
-        LocalDateTime time = null;
+    private LocalDateTime getLocalDateTimeText(Task curr) throws DukeException {
+        LocalDateTime time;
         switch (curr.getTaskType()) {
+        case TODO:
+            time = null;
+            break;
         case DEADLINE:
             Deadline dl = (Deadline) curr;
             time = dl.getByTime();
@@ -175,7 +176,7 @@ public class Storage {
             time = event.getAtTime();
             break;
         default:
-            break;
+            throw new DukeException("No LocalDateTime for this task!");
         }
         return time;
     }
@@ -184,8 +185,8 @@ public class Storage {
      * @param curr task
      * @return task type text
      */
-    private String getTypeText(Task curr) {
-        String type = "";
+    private String getTypeText(Task curr) throws DukeException {
+        String type;
         switch (curr.getTaskType()) {
         case TODO:
             type = "T / ";
@@ -197,7 +198,7 @@ public class Storage {
             type = "E / ";
             break;
         default:
-            break;
+            throw new DukeException("Invalid Task Type.");
         }
         return type;
     }

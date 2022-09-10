@@ -5,6 +5,7 @@ import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
+import duke.command.InvalidCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.SnoozeCommand;
@@ -23,30 +24,26 @@ public class Parser {
      * @param inputs User input
      * @return Command referred to the user input
      */
-    public static Command parse(String... inputs) {
+    public static Command parse(String... inputs) throws DukeException {
         assert(inputs != null);
         String[] commands = inputs[0].split(" ", 2);
-        try {
-            switch (commands[0]) {
-            case "bye":
-                return new ExitCommand(commands[0]);
-            case "list":
-                return new ListCommand(commands[0]);
-            case "mark":
-                return getMarkCommand(commands);
-            case "unmark":
-                return getUnmarkCommand(commands);
-            case "delete":
-                return getDeleteCommand(commands);
-            case "find":
-                return getFindCommand(commands);
-            case "snooze":
-                return getSnoozeCommand(commands);
-            default:
-                return new AddCommand(inputs[0]);
-            }
-        } catch (DukeException e) {
-            return null;
+        switch (commands[0]) {
+        case "bye":
+            return new ExitCommand(commands[0]);
+        case "list":
+            return new ListCommand(commands[0]);
+        case "mark":
+            return getMarkCommand(commands);
+        case "unmark":
+            return getUnmarkCommand(commands);
+        case "delete":
+            return getDeleteCommand(commands);
+        case "find":
+            return getFindCommand(commands);
+        case "snooze":
+            return getSnoozeCommand(commands);
+        default:
+            return new AddCommand(inputs[0]);
         }
     }
 
@@ -60,8 +57,12 @@ public class Parser {
         if (commands.length != 2 || commands[1].length() < 1) {
             throw new DukeException("The index of a task cannot be empty.");
         }
-        index = Integer.parseInt(commands[1]);
-        return new MarkCommand(commands[0], index - 1);
+        try {
+            index = Integer.parseInt(commands[1]);
+            return new MarkCommand(commands[0], index - 1);
+        } catch (NumberFormatException e) {
+            throw new DukeException("This index is not a number!");
+        }
     }
 
     /**
@@ -72,7 +73,7 @@ public class Parser {
     private static UnmarkCommand getUnmarkCommand(String[] commands) throws DukeException {
         int index;
         if (commands.length != 2 || commands[1].length() < 1) {
-            throw new DukeException("The index of a task cannot be empty.");
+            throw new DukeException("This index of a task cannot be empty.");
         }
         index = Integer.parseInt(commands[1]);
         return new UnmarkCommand(commands[0], index - 1);
@@ -88,8 +89,12 @@ public class Parser {
         if (commands.length != 2 || commands[1].length() < 1) {
             throw new DukeException("The index of a task cannot be empty.");
         }
-        index = Integer.parseInt(commands[1]);
-        return new DeleteCommand(commands[0], index - 1);
+        try {
+            index = Integer.parseInt(commands[1]);
+            return new DeleteCommand(commands[0], index - 1);
+        } catch (NumberFormatException e) {
+            throw new DukeException("This index is not a number!");
+        }
     }
 
     /**
@@ -111,12 +116,21 @@ public class Parser {
      */
     private static SnoozeCommand getSnoozeCommand(String[] commands) throws DukeException {
         int index;
+        String newDate;
         if (commands.length != 2 || commands[1].length() < 1) {
             throw new DukeException("The information to snooze a task cannot be empty.");
         }
         String[] snoozeInfo = commands[1].split(" ", 2);
-        index = Integer.parseInt(snoozeInfo[0]);
-        String newDate = snoozeInfo[1];
+        try {
+            index = Integer.parseInt(snoozeInfo[0]);
+        } catch (NumberFormatException e) {
+            throw new DukeException("This index is not a number!");
+        }
+        try {
+            newDate = snoozeInfo[1];
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Enter a valid date!");
+        }
         return new SnoozeCommand(commands[0], index - 1, newDate);
     }
 }

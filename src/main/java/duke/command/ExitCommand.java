@@ -27,10 +27,8 @@ public class ExitCommand extends Command {
     @Override
     public String execute(Ui ui, TaskList taskList) {
         assert(ui != null && taskList != null);
-        System.out.println(ui.showExitMessage());
         Storage storage = new Storage(ui, getFilePath());
         storage.writeFile(taskList);
-        javafx.application.Platform.exit();
         return ui.showExitMessage();
     }
 

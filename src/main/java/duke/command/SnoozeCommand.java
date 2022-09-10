@@ -1,7 +1,9 @@
 package duke.command;
 
+import duke.Duke;
 import duke.TaskList;
 import duke.Ui;
+import duke.exception.DukeException;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -35,10 +37,14 @@ public class SnoozeCommand extends Command {
      * @param taskList TaskList to execute mark command
      */
     @Override
-    public String execute(Ui ui, TaskList taskList) {
+    public String execute(Ui ui, TaskList taskList) throws DukeException {
         assert(ui != null && taskList != null);
         Task task;
-        task = taskList.getTask(num);
+        try {
+            task = taskList.getTask(num);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Enter a valid index");
+        }
         TaskType taskType = task.getTaskType();
         if (taskType == TaskType.DEADLINE) {
             Deadline deadline = (Deadline) task;
@@ -47,7 +53,7 @@ public class SnoozeCommand extends Command {
             Event event = (Event) task;
             event.setAtTime(newDate);
         } else {
-            ui.showUnknownMessage();
+            throw new DukeException(ui.invalidSnoozeTaskMessage());
         }
         return ui.showSnoozeMessage(task);
     }

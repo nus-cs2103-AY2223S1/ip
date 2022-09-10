@@ -28,29 +28,24 @@ public class AddCommand extends Command {
      *
      * @param ui Ui used to show add messages
      * @param taskList TaskList to execute add operation
-     * @throws DukeException If there is invalid commands or arguments
      */
     @Override
-    public String execute(Ui ui, TaskList taskList) {
+    public String execute(Ui ui, TaskList taskList) throws DukeException {
         assert(ui != null && taskList != null);
         Task newTask;
         String[] commands = getInfo().split(" ", 2);
-        try {
-            switch (commands[0]) {
-            case "todo":
-                newTask = getTodoTask(commands);
-                break;
-            case "deadline":
-                newTask = getDeadlineTask(commands);
-                break;
-            case "event":
-                newTask = getEventTask(commands);
-                break;
-            default:
-                return ui.showUnknownMessage();
-            }
-        } catch (DukeException e) {
-            return e.getMessage();
+        switch (commands[0]) {
+        case "todo":
+            newTask = getTodoTask(commands);
+            break;
+        case "deadline":
+            newTask = getDeadlineTask(commands);
+            break;
+        case "event":
+            newTask = getEventTask(commands);
+            break;
+        default:
+            return new InvalidCommand(commands).execute(ui, taskList);
         }
         taskList.addTask(newTask);
         return ui.showAddMessage(newTask, taskList.getSize());
@@ -66,7 +61,6 @@ public class AddCommand extends Command {
         if (commands.length < 2 || commands[1].length() == 0) {
             throw new DukeException("The description of a todo cannot be empty.");
         }
-
         newTask = new Todo(TaskType.TODO, commands[1], false);
         return newTask;
     }
@@ -84,10 +78,9 @@ public class AddCommand extends Command {
         }
 
         splitDate = commands[1].split(" /by ", 2);
-
         if (splitDate.length < 2 || splitDate[0].length() == 0) {
             throw new DukeException("The description of a deadline cannot be empty.");
-        } else if (splitDate[1].length() == 0) {
+        } else if (splitDate.length < 2 | splitDate[1].length() == 0) {
             throw new DukeException("The date of a deadline cannot be empty.");
         }
 
@@ -109,10 +102,9 @@ public class AddCommand extends Command {
         }
 
         splitDate = commands[1].split(" /at ", 2);
-
         if (splitDate[0].length() == 0) {
             throw new DukeException("The description of an event cannot be empty.");
-        } else if (splitDate[1].length() == 0) {
+        } else if (splitDate.length < 2 | splitDate[1].length() == 0) {
             throw new DukeException("The date of an event cannot be empty.");
         }
 

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 
+import duke.exception.DukeException;
 import org.junit.jupiter.api.Test;
 
 import duke.task.Deadline;
@@ -16,6 +17,9 @@ public class TaskListTest {
     private Task task1 = new Todo(TaskType.TODO, "todo", false);
     private Task task2 = new Deadline(TaskType.DEADLINE, "deadline", false, "1200, 12/12/2022");
     private Task task3 = new Event(TaskType.EVENT, "event", false, "1200, 12/12/2022");
+
+    public TaskListTest() throws DukeException {
+    }
 
     @Test
     public void checkEmptyTaskList_emptyConstructor_returnEmptyTaskList() {
