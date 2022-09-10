@@ -3,6 +3,7 @@ package task;
 import java.util.ArrayList;
 
 import exception.LunaException;
+import exception.LunaDuplicateTaskException;
 
 /**
  * Represents a list of tasks saved by the user.
@@ -43,9 +44,26 @@ public class TaskList {
      *
      * @param task New Task to be added.
      */
-    public void add(Task task) {
+    public void add(Task task) throws LunaException {
         assert task != null;
+//        if (tasks.toString().contains(task.toString())) {
+//            throw new LunaDuplicateTaskException();
+//        }
+        checkDuplicate(task);
         tasks.add(task);
+    }
+
+    /**
+     * Checks if the specified Task to be added is already in the TaskList.
+     *
+     * @param task New Task to be added.
+     */
+    public void checkDuplicate(Task task) throws LunaException {
+        for (int i = 0; i < size(); i++) {
+            if (tasks.get(i).equals(task)) {
+                throw new LunaDuplicateTaskException();
+            }
+        }
     }
 
     /**

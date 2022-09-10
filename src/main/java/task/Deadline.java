@@ -25,6 +25,29 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    public boolean checkDescription(Deadline dOne, Deadline dTwo) {
+        return dOne.description.equals(dTwo.description);
+    }
+
+    public boolean checkBy(Deadline dOne, Deadline dTwo) {
+        return dOne.by.equals(dTwo.by);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Deadline) {
+            Deadline obj = (Deadline) o;
+
+            if (checkDescription(obj, this) || checkBy(obj, this)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     /**
      * Returns the string representation of the Deadline with type and date specified.
      *

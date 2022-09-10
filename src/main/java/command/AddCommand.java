@@ -2,6 +2,7 @@ package command;
 
 import java.time.LocalDate;
 
+import exception.LunaException;
 import storage.Storage;
 // Import Tasks
 import task.Deadline;
@@ -49,7 +50,11 @@ public class AddCommand extends Command {
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.add(this.task);
-        return ui.showAdded(tasks, this.task);
+        try {
+            tasks.add(this.task);
+            return ui.showAdded(tasks, this.task);
+        } catch (LunaException e) {
+            return ui.showError(e);
+        }
     }
 }

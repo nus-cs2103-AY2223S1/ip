@@ -24,6 +24,29 @@ public class Event extends Task {
         this.at = at;
     }
 
+    public boolean checkDescription(Event eventOne, Event eventTwo) {
+        return eventOne.description.equals(eventTwo.description);
+    }
+
+    public boolean checkAt(Event eventOne, Event eventTwo) {
+        return eventOne.at.equals(eventTwo.at);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Event) {
+            Event obj = (Event) o;
+
+            if (checkDescription(obj, this) || checkAt(obj, this)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     /**
      * Returns the string representation of the Event with name and date specified.
      *
