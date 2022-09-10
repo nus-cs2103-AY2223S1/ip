@@ -1,5 +1,6 @@
 Hello! I'm Tuna
-What can I do for you?
+Welcome back to the app
+What can I do for you today?
 Here are the tasks in your list:
 1. [D][X] return book (by: 12 Aug 2022 1500hrs)
 2. [T][ ] look for book
@@ -8,4 +9,4 @@ Here are the tasks in your list:
 5. [D][X] read book (by: 11 Aug 2022 2359hrs)
 6. [T][ ] new task
 
-Bye. Hope to see you again soon!
+Bye! Don't forget to do your tasks! Hope to see you again soon!
