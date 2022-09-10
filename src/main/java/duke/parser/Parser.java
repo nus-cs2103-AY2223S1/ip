@@ -113,18 +113,18 @@ public class Parser {
 
     private void checkNoArg(String command, String arg) throws DukeException {
         if (!arg.equals("")) {
-            throw new DukeException(command + " " + "must not have an argument.");
+            throw new DukeException(command + " " + "must not have any argument.");
         }
     }
 
     private boolean getSortArg(String option) throws DukeException {
         switch (option.toLowerCase()) {
         case "ascending":
-            return false;
-        case "descending":
             return true;
+        case "descending":
+            return false;
         default:
-            throw new DukeException("Sort must be specified: descending or ascending.");
+            throw new DukeException("Sort must be correctly specified: descending or ascending.");
         }
     }
 

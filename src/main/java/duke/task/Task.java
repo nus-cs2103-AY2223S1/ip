@@ -31,7 +31,7 @@ public abstract class Task {
     }
 
     public boolean containKeyword(String keyword) {
-        return this.taskDescription.contains(keyword);
+        return this.taskDescription.toLowerCase().contains(keyword.toLowerCase());
     }
 
     /**

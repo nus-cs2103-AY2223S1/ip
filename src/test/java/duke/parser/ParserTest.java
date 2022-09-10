@@ -25,7 +25,7 @@ public class ParserTest {
             sut.parse("list testing");
             fail();
         } catch (DukeException e) {
-            assertEquals("list must not have an argument.", e.getMessage());
+            assertEquals("list must not have any argument.", e.getMessage());
         }
     }
 
@@ -268,6 +268,66 @@ public class ParserTest {
             assertEquals("An event must contain a description and a date.", e.getMessage());
         }
     }
+
+    @Test
+    public void parse_findWithoutArg_success() {
+        try {
+            sut.parse("find");
+        } catch (DukeException e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void parse_findWithArg_success() {
+        try {
+            sut.parse("find test");
+            sut.parse("find multiple words");
+            sut.parse("find containing integers 132");
+            sut.parse("find containing symbols %");
+        } catch (DukeException e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void parse_sortAscending_success() {
+        try {
+            sut.parse("sort ascending");
+        } catch (DukeException e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void parse_sortDescending_success() {
+        try {
+            sut.parse("sort descending");
+        } catch (DukeException e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void parse_sortWithoutArg_exceptionThrown() {
+        try {
+            sut.parse("sort");
+            fail();
+        } catch (DukeException e) {
+            assertEquals("Sort must be correctly specified: descending or ascending.", e.getMessage());
+        }
+    }
+
+    @Test
+    public void parse_sortWithInvalidArg_exceptionThrown() {
+        try {
+            sut.parse("sort date");
+            fail();
+        } catch (DukeException e) {
+            assertEquals("Sort must be correctly specified: descending or ascending.", e.getMessage());
+        }
+    }
+
 
     @Test
     public void parse_bye_success() {

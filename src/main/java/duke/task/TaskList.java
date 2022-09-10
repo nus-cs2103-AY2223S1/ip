@@ -126,14 +126,16 @@ public class TaskList {
     /**
      * Sorts the current task list by date.
      *
-     * @param isDescending Boolean value to decide whether to sort ascending or descending.
+     * Sort from earliest to latest when isAscending is true and vice versa.
+     *
+     * @param isAscending Boolean value to decide whether to sort ascending or descending.
      */
-    public void sortByDate(boolean isDescending) {
-        Comparator<Task> byDate = getDateComparator(isDescending);
+    public void sortByDate(boolean isAscending) {
+        Comparator<Task> byDate = getDateComparator(isAscending);
         this.taskList.sort(byDate);
     }
 
-    private Comparator<Task> getDateComparator(boolean isDescending) {
+    private Comparator<Task> getDateComparator(boolean isAscending) {
         return new Comparator<>() {
             @Override
             public int compare(Task task1, Task task2) {
@@ -143,7 +145,7 @@ public class TaskList {
                     return -1;
                 } else {
                     int res = handleTaskWithDate(task1, task2);
-                    return isDescending ? res : res * -1;
+                    return isAscending ? res : res * -1;
                 }
             }
 
