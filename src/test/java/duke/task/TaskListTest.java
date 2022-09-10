@@ -1,6 +1,5 @@
-package duke;
+package duke.task;
 
-import duke.task.TaskList;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

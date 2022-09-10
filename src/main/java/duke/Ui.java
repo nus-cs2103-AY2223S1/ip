@@ -8,11 +8,6 @@ import duke.task.TaskList;
  * Represents the user interface for Duke.
  */
 public abstract class Ui {
-    private static final String LOGO = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String GREET_WELCOME = "Hello ! I am Duke, your task tracking assistant!";
     private static final String GREET_EXIT = "Bye. Hope to see you again soon!";
 
@@ -29,7 +24,6 @@ public abstract class Ui {
      * @param taskList list of stored tasks
      */
     public static String printTaskList(TaskList taskList) {
-        String header;
         if (taskList.isEmpty()) {
             return "OOPS! Nothing to see here";
         } else {
@@ -67,13 +61,11 @@ public abstract class Ui {
      * @param match string of <code>Task</code> matching the search keywords
      */
     public static String printTaskSearch(String match) {
-        String output;
         if (match.isBlank()) {
-            output = "Duke: Sorry! Cannot find any matching tasks in your list.";
+            return "Duke: Sorry! Cannot find any matching tasks in your list.";
         } else {
-            output = "Here are the matching tasks in your list:\n" + match;
+            return "Here are the matching tasks in your list:\n" + match;
         }
-        return output;
     }
 
     /**
