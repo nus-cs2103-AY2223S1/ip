@@ -62,8 +62,8 @@ Returns a list of tasks that contain "return" in the task name.
 ### `mark`, `unmark` - marks tasks as done/not done in the list respectively.
 
 Syntaxes:
-- `mark <task numbers in list>
-- `unmark <task numbers in list>
+- `mark <task numbers in list>`
+- `unmark <task numbers in list>`
 
 Example of usage:
 
