@@ -2,7 +2,6 @@ package duke.command;
 
 import java.util.ArrayList;
 
-import duke.common.Messages;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.ui.Ui;
@@ -43,20 +42,14 @@ public class DeleteCommand extends Command {
         if (taskNum > 0 && taskNum <= tasklist.tasks.size()) {
             String deletedTask = tasklist.tasks.get(taskNum - 1).toString();
             tasklist.deleteTask(taskNum);
-            output.append(Messages.SPACER).append("\n")
-                    .append(REMOVED_TASK)
+            output.append(REMOVED_TASK)
                     .append(deletedTask).append("\n")
                     .append("You have ").append(tasklist.tasks.size())
-                    .append((tasklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n"))
-                    .append(Messages.SPACER);
+                    .append((tasklist.tasks.size() == 1 ? " task! :D" : " tasks! :D"));
         } else if (tasklist.tasks.size() == 0) {
-            throw new DukeException(Messages.SPACER + "\n"
-                    + "There's nothing in your list to delete! T^T\n"
-                    + Messages.SPACER);
+            throw new DukeException("There's nothing in your list to delete! T^T");
         } else {
-            throw new DukeException(Messages.SPACER + "\n"
-                    + "Please enter a valid task number to delete. T^T\n"
-                    + Messages.SPACER);
+            throw new DukeException("Please enter a valid task number to delete. T^T");
         }
         return output.toString();
     }

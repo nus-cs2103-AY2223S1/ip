@@ -51,16 +51,12 @@ public class AddCommand extends Command {
             if (words.size() != 0) {
                 Todo todo = new Todo(input);
                 tasklist.addTask(todo);
-                output.append(Messages.SPACER).append("\n")
-                        .append(TASK_ADDED)
+                output.append(TASK_ADDED)
                         .append(todo).append("\n")
                         .append("You have ").append(tasklist.tasks.size())
-                        .append((tasklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n"))
-                        .append(Messages.SPACER);
+                        .append((tasklist.tasks.size() == 1 ? " task! :D" : " tasks! :D"));
             } else {
-                throw new DukeException(Messages.SPACER + "\n"
-                        + "Please enter a task following 'todo' and I'll add it into your list. T^T\n"
-                        + Messages.SPACER);
+                throw new DukeException("Please enter a task following 'todo' and I'll add it into your list. T^T");
             }
             break;
         case "deadline":
@@ -76,12 +72,10 @@ public class AddCommand extends Command {
                 deadline = new Deadline(remainingDdlWords, ddl);
             }
             tasklist.addTask(deadline);
-            output.append(Messages.SPACER).append("\n")
-                    .append(TASK_ADDED)
+            output.append(TASK_ADDED)
                     .append(deadline).append("\n")
                     .append("You have ").append(tasklist.tasks.size())
-                    .append((tasklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n"))
-                    .append(Messages.SPACER);
+                    .append((tasklist.tasks.size() == 1 ? " task! :D" : " tasks! :D"));
             break;
         case "event":
             // After adding new exceptions, throw them here
@@ -96,18 +90,14 @@ public class AddCommand extends Command {
                 event = new Event(remainingEventWords, evt);
             }
             tasklist.addTask(event);
-            output.append(Messages.SPACER).append("\n")
-                    .append(TASK_ADDED)
+            output.append(TASK_ADDED)
                     .append(event).append("\n")
                     .append("You have ").append(tasklist.tasks.size())
-                    .append((tasklist.tasks.size() == 1 ? " task! :D\n" : " tasks! :D\n"))
-                    .append(Messages.SPACER);
+                    .append((tasklist.tasks.size() == 1 ? " task! :D" : " tasks! :D"));
             break;
         default:
             // Defensive coding for default statement.
-            output.append(Messages.SPACER).append("\n")
-                    .append(Messages.UNKNOWN_COMMAND)
-                    .append(Messages.SPACER);
+            output.append(Messages.UNKNOWN_COMMAND);
         }
         return output.toString();
     }

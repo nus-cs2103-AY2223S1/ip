@@ -55,7 +55,7 @@ public class Task {
      * @return String representation of a tick or empty string
      */
     public String getStatusIcon() {
-        return this.isDone ? "✔" : " ";
+        return this.isDone ? "\u2713" : " ";
     }
 
     /**

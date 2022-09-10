@@ -47,43 +47,29 @@ public class MarkCommand extends Command {
             // Work on implementing error for empty mark argument
             if (taskNum > 0 && taskNum <= tasklist.tasks.size()) {
                 tasklist.tasks.get(taskNum - 1).markDone();
-                output.append(Messages.SPACER).append("\n")
-                        .append(MARK_TASK)
-                        .append(tasklist.tasks.get(taskNum - 1)).append("\n")
-                        .append(Messages.SPACER);
+                output.append(MARK_TASK)
+                        .append(tasklist.tasks.get(taskNum - 1));
             } else if (tasklist.tasks.size() == 0) {
-                throw new DukeException(Messages.SPACER + "\n"
-                        + "There's nothing in your list to mark! T^T\n"
-                        + Messages.SPACER);
+                throw new DukeException("There's nothing in your list to mark! T^T");
             } else {
-                throw new DukeException(Messages.SPACER + "\n"
-                        + "Please enter a valid task number to mark. T^T\n"
-                        + Messages.SPACER);
+                throw new DukeException("Please enter a valid task number to mark. T^T");
             }
             break;
         case "unmark":
             // Work on implementing error for empty unmark argument
             if (taskNum > 0 && taskNum <= tasklist.tasks.size()) {
                 tasklist.tasks.get(taskNum - 1).markUndone();
-                output.append(Messages.SPACER).append("\n")
-                        .append(UNMARK_TASK)
-                        .append(tasklist.tasks.get(taskNum - 1)).append("\n")
-                        .append(Messages.SPACER);
+                output.append(UNMARK_TASK)
+                        .append(tasklist.tasks.get(taskNum - 1));
             } else if (tasklist.tasks.size() == 0) {
-                throw new DukeException(Messages.SPACER + "\n"
-                        + "There's nothing in your list to unmark! T^T\n"
-                        + Messages.SPACER);
+                throw new DukeException("There's nothing in your list to unmark! T^T");
             } else {
-                throw new DukeException(Messages.SPACER + "\n"
-                        + "Please enter a valid task number to unmark. T^T\n"
-                        + Messages.SPACER);
+                throw new DukeException("Please enter a valid task number to unmark. T^T");
             }
             break;
         default:
             // Defensive coding for default statement.
-            output.append(Messages.SPACER).append("\n")
-                    .append(Messages.UNKNOWN_COMMAND)
-                    .append(Messages.SPACER);
+            output.append(Messages.UNKNOWN_COMMAND);
         }
         return output.toString();
     }

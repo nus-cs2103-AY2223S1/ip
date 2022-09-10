@@ -20,10 +20,6 @@ public class InvalidCommand extends Command {
      * @param ui the user interface object
      */
     public String execute(Storage storage, TaskList tasklist, Ui ui) {
-        StringBuilder output = new StringBuilder();
-        output.append(Messages.SPACER).append("\n")
-                .append(Messages.UNKNOWN_COMMAND)
-                .append(Messages.SPACER);
-        return output.toString();
+        return Messages.UNKNOWN_COMMAND;
     }
 }

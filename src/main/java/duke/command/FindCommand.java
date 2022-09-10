@@ -44,14 +44,10 @@ public class FindCommand extends Command {
             }
         }
         if (foundTasksList.tasks.size() == 0) {
-            output.append(Messages.SPACER).append("\n")
-                    .append("I couldn't find matching tasks T^T\n")
-                    .append(Messages.SPACER);
+            output.append("I couldn't find matching tasks T^T");
         } else {
-            output.append(Messages.SPACER).append("\n")
-                    .append("These are the tasks you are searching for ^3^:\n")
-                    .append(foundTasksList.printList()).append("\n")
-                    .append(Messages.SPACER);
+            output.append("These are the tasks you are searching for ^3^:\n")
+                    .append(foundTasksList.printList());
         }
         return output.toString();
     }

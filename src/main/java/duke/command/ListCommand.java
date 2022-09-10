@@ -2,7 +2,6 @@ package duke.command;
 
 import java.util.ArrayList;
 
-import duke.common.Messages;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.ui.Ui;
@@ -37,14 +36,10 @@ public class ListCommand extends Command {
     public String execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
         StringBuilder output = new StringBuilder();
         if (words.size() == 0) {
-            output.append(Messages.SPACER).append("\n")
-                    .append("Here's your list ^3^:\n")
-                    .append(tasklist.printList()).append("\n")
-                    .append(Messages.SPACER);
+            output.append("Here's your list ^3^:\n")
+                    .append(tasklist.printList());
         } else {
-            throw new DukeException(Messages.SPACER + "\n"
-                    + "Please only enter 'list' to view your list. T^T\n"
-                    + Messages.SPACER);
+            throw new DukeException("Please only enter 'list' to view your list. T^T");
         }
         return output.toString();
     }
