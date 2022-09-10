@@ -51,7 +51,7 @@ public class Duke {
     }
 
     /**
-     * Used to load tasks from data.txt when Duke first starts up.
+     * Loads tasks from data.txt when Duke first starts up.
      */
     public void startUp() {
         Ui ui = new Ui(FILE_NAME);
@@ -192,7 +192,6 @@ public class Duke {
     }
 
     /**
-     * Iteration 1:
      * Creates a label with the specified text and adds it to the dialog container.
      *
      * @param text String containing text to add
