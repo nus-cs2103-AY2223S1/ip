@@ -5,7 +5,7 @@ import duke.storage.Storage;
 import duke.tasklist.TaskList;
 
 /**
- * Encapsulates a command given to Apollo.
+ * Encapsulates a command given to Artemis.
  *
  * @author Kartikeya
  */

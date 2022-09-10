@@ -15,8 +15,9 @@ import javafx.scene.layout.VBox;
  * Controller for MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
-    public static final String INTRO = "Welcome to Apollo!\n"
-            + "How can I help you today?";
+    public static final String INTRO = "Welcome to Artemis!\n"
+            + "How can I help you today?\n"
+            + "Hint: Type \"help\" to get a list of available commands!";
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -31,6 +32,8 @@ public class MainWindow extends AnchorPane {
             .getResourceAsStream("/images/DaUser.png")));
     private final Image dukeImage = new Image(Objects.requireNonNull(this.getClass()
             .getResourceAsStream("/images/DaDuke.png")));
+    private final Image errorImage = new Image(Objects.requireNonNull(this.getClass()
+            .getResourceAsStream("/images/DaError.png")));
 
     @FXML
     public void initialize() {
@@ -63,7 +66,8 @@ public class MainWindow extends AnchorPane {
         }
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(output, dukeImage)
+                DialogBox.getDukeDialog(output,
+                        output.startsWith("Hang on!") ? errorImage : dukeImage)
         );
         userInput.clear();
     }

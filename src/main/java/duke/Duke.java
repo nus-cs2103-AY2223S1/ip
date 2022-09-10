@@ -7,7 +7,7 @@ import duke.storage.Storage;
 import duke.tasklist.TaskList;
 
 /**
- * Apollo is a chatbot that keeps tracks of various items, encapsulated
+ * Artemis is a chatbot that keeps tracks of various items, encapsulated
  * as a Duke instance.
  *
  * @author Kartikeya
@@ -17,7 +17,7 @@ public class Duke {
     private TaskList itemList;
 
     /**
-     * Constructor for an instance of Apollo.
+     * Constructor for an instance of Artemis.
      * Initialises storage, itemList, ui and parser.
      */
     public Duke() {
@@ -30,7 +30,7 @@ public class Duke {
     }
 
     /**
-     * Executes instructions passed into Apollo.
+     * Executes instructions passed into Artemis.
      *
      * @param input the input string
      * @return the output string

@@ -25,7 +25,7 @@ public class Main extends Application {
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             fxmlLoader.<MainWindow>getController().sendWelcome();
-            stage.setTitle("Apollo");
+            stage.setTitle("Artemis");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

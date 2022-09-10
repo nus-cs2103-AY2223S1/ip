@@ -6,6 +6,7 @@ import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
+import duke.command.HelpCommand;
 import duke.command.ListItemsCommand;
 import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
@@ -23,13 +24,13 @@ public class Parser {
      * Processes chat inputs using a switch statement, throwing a duke.exception.DukeException
      * on incorrect inputs.
      *
-     * @param inputString String given to Apollo
+     * @param inputString String given to Artemis
      * @throws DukeException Indicates incorrect inputs
      */
     public static Command parseUserInput(String inputString) throws DukeException {
         String[] input = inputString.split(" ");
         try {
-            switch (input[0]) {
+            switch (input[0].toLowerCase()) {
             case "bye": {
                 return new ExitCommand();
             }
@@ -56,6 +57,9 @@ public class Parser {
             }
             case "time": {
                 return new UpdateTimeCommand(inputString);
+            }
+            case "help": {
+                return new HelpCommand();
             }
             default: {
                 return new AddItemCommand(input);

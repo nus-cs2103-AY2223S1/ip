@@ -8,7 +8,7 @@ import java.time.format.DateTimeParseException;
 import duke.exception.DukeException;
 
 /**
- * Encapsulates date-time formatting for Apollo tasks.
+ * Encapsulates date-time formatting for Artemis tasks.
  *
  * @author Kartikeya
  */
