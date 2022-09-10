@@ -16,7 +16,7 @@ public class UnmarkCommand extends Command {
     public void execute(TaskList taskList, Ui ui) throws DukeException {
         String taskNumber = input.substring(7);
         int number = Integer.parseInt(taskNumber);
-
+        assert number > 0 : "index must be > 0";
         if (number <= 0 || number > taskList.size()) {
             throw new DukeException("OOPS!!! Sorry, I can't mark this as"
                     + " undone if it does not exist\n");
