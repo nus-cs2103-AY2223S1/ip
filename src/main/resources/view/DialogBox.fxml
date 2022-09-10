@@ -11,6 +11,6 @@
         <ImageView fx:id="displayPicture" fitHeight="60" fitWidth="60" pickOnBounds="true" />
     </children>
     <padding>
-        <Insets left="5.0" right="5.0" top="5.0" />
+        <Insets left="5.0" right="5.0" top="5.0" bottom="5.0" />
     </padding>
 </fx:root>
