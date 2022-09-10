@@ -2,6 +2,7 @@ package duke;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  * @since 2022-08-28
  */
 public class Parser {
-    public Parser() {}
+    private Parser() {}
 
     /**
      * This method is used to convert the date in YYYY-MM-DD format to MMM d YYYY
@@ -22,79 +23,100 @@ public class Parser {
      * @param date This is string of date in YYYY-MM-DD format
      * @return String This returns the string of the date in the MMM d YYYY format
      */
-    public static String parseDate(String date) {
+    public static String parseDate(String date) throws DateTimeParseException {
         LocalDate d = LocalDate.parse(date);
         String formattedDate = d.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
         return formattedDate;
     }
 
     /**
-     * This method is used to convert the user's string input into commands like
+     * Convert the user's raw string input into commands like
      * quit, list out tasks, adding/removing/marking/finding specific tasks. When
      * an invalid input is received, an error is thrown and user can try another
      * input
-     * @param command This is the user's string input
+     * @param rawInput This is the user's string input
      * @param taskList This is the user's current list of tasks
      * @param ui This is for the Duke program to interact/print outputs to the user
      */
-    public static String parseCommand(String command, TaskList taskList, Ui ui) {
+    public static String parseCommand(String rawInput, TaskList taskList, Ui ui) {
         try {
-            String trimmedCommand = command.replaceAll("\\s{2,}", " ").trim();
-            String[] splitStr = trimmedCommand.split(" ");
-            if (splitStr[0].equals("bye") && splitStr.length == 1) {
+            String trimmedInput = rawInput.replaceAll("\\s{2,}", " ").trim();
+            String[] splitStr = trimmedInput.split(" ");
+            String commandType = splitStr[0];
+
+            if (splitStr.length == 1) {
+                switch (commandType) {
+                case "bye":
                 return ui.quit();
-            } else if (command.trim().equals("list") && splitStr.length == 1) {
+                case "list":
                 return ui.listOutTasks(taskList);
-            } else {
-                Task taskToMark = getTaskToMark(splitStr, taskList);
-                Task taskToAdd = getTaskToAdd(trimmedCommand);
-                Task taskToDelete = getTaskToDelete(splitStr, taskList);
-                List<Task> taskListWithKeyWord = getAllTaskWithKeyword(command, taskList);
-                if (taskToMark != null) {
-                    String action = splitStr[0];
-                    if (action.equals("mark")) {
-                        return ui.markTask(taskToMark);
-                    } else {
-                        return ui.unmarkTask(taskToMark);
-                    }
-                } else if (taskToAdd != null) {
-                    return ui.addTask(taskList, taskToAdd);
-                } else if (taskToDelete != null) {
-                    return ui.deleteTask(taskList, taskToDelete);
-                } else if (taskListWithKeyWord.size() != 0) {
-                    return ui.printTasksWithKeyword(taskListWithKeyWord);
-                } else {
-                    throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(\n");
                 }
             }
+
+            String commandBody = trimmedInput.substring(commandType.length() + 1);
+            int commandBodyWordCount = commandBody.split(" ").length;
+
+            switch (commandType) {
+                case "mark":
+                case "unmark":
+                    Task taskToMark = getTaskToMark(commandBody, commandBodyWordCount, taskList);
+                    return commandType.equals("mark") ? ui.markTask(taskToMark) : ui.unmarkTask(taskToMark);
+                case "delete":
+                    Task taskToDelete = getTaskToDelete(commandBody,commandBodyWordCount,taskList);
+                    return ui.deleteTask(taskList, taskToDelete);
+                case "find":
+                    List<Task> taskListWithKeyWord = getAllTaskWithKeyword(commandBody, taskList);
+                    return ui.printTasksWithKeyword(taskListWithKeyWord);
+                case "todo":
+                    Task toDoToAdd = getToDoToAdd(commandBody,commandBodyWordCount);
+                    return ui.addTask(taskList,toDoToAdd);
+                case "deadline":
+                    Task deadlineToAdd = getDeadlineToAdd(commandBody,commandBodyWordCount);
+                    return ui.addTask(taskList,deadlineToAdd);
+                case "event":
+                    Task eventToAdd = getEventToAdd(commandBody,commandBodyWordCount);
+                    return ui.addTask(taskList, eventToAdd);
+            }
+            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(\n");
+
         } catch (DukeException de) {
             return de.getMessage();
+        } catch (DateTimeParseException dtpe) {
+            return "Deadline date is entered incorrectly. Enter date in YYYY-MM-DD format (e.g 2019-10-02)";
         }
     }
 
     /**
-     * This method takes in the string input of the user
-     * and return the task from the taskList to be deleted.
-     * When an invalid number is entered, user will get to
-     * enter again
-     * @param splitStr This is the user's string input split with " " into an array
-     * @param taskList This is the user's list of tasks
+     * Checks if the user's chosen task index number is valid
+     * @param index The user's chosen task index number
+     * @param taskList The current tasklist
+     * @return Returns true when is valid
+     * @throws DukeException Throw DukeException when not valid
+     */
+    private static boolean isValidIndex(int index, TaskList taskList) throws DukeException {
+       if (index > 0 && index <= taskList.getSize()) {
+           return true;
+       } else {
+           throw new DukeException("OOPS!!! Index " + index + " is not valid. Please enter a task number from 0 - " + taskList.getSize());
+       }
+    }
+
+    /**
+     * Deletes the task from the tasklist
+     * @param commandBody User's string input without the starting command word split with " " into an array
+     * @param commandBodyWordCount Number of words in command body separated by " "
+     * @param taskList User's list of tasks
      * @return Task The task from the user's task list to be deleted
      * @throws DukeException This tells user to enter a valid number when an invalid task number is entered
      */
-    private static Task getTaskToDelete(String[] splitStr, TaskList taskList) throws DukeException {
+    private static Task getTaskToDelete(String commandBody, int commandBodyWordCount, TaskList taskList) throws DukeException {
         try {
-            if (splitStr.length != 2) {
+            if (commandBodyWordCount != 1) {
                 return null;
             }
-            int index = Integer.parseInt(splitStr[1]);
-            String action = splitStr[0];
-            boolean validAction = action.equals("delete");
-            boolean validIndex = index > 0 && index <= taskList.getSize();
-            if (validIndex && validAction) {
+            int index = Integer.parseInt(commandBody);
+            if (isValidIndex(index, taskList)) {
                 return taskList.getTask(index - 1);
-            } else if (validAction && !validIndex) {
-                throw new DukeException("OOPS!!! Please enter a valid task number to delete");
             }
             return null;
         } catch (NumberFormatException e) {
@@ -103,28 +125,21 @@ public class Parser {
     }
 
     /**
-     * This method takes in the string input of the user
-     * and return the task from the taskList to be marked/unmarked.
-     * When an invalid number is entered, user will get to
-     * enter again
-     * @param splitStr This is the user's string input split with " " into an array
-     * @param taskList This is the user's list of tasks
+     * Marks the task from taskList to be done/undone
+     * @param commandBody User's string input without the starting command word split with " " into an array
+     * @param commandBodyWordCount Number of words in command body separated by " "
+     * @param taskList User's list of tasks
      * @return Task The task from the user's task list to be marked/unmarked
-     * @throws DukeException This tells user to enter a valid number when an invalid task number is entered
+     * @throws DukeException Tells user to enter a valid number when an invalid task number is entered
      */
-    private static Task getTaskToMark(String[] splitStr, TaskList taskList) throws DukeException {
+    private static Task getTaskToMark(String commandBody, int commandBodyWordCount, TaskList taskList) throws DukeException {
         try {
-            if (splitStr.length != 2) {
+            if (commandBodyWordCount != 1) {
                 return null;
             }
-            int index = Integer.parseInt(splitStr[1]);
-            String action = splitStr[0];
-            boolean validAction = action.equals("mark") || action.equals("unmark");
-            boolean validIndex = index > 0 && index <= taskList.getSize();
-            if (validIndex && validAction) {
+            int index = Integer.parseInt(commandBody);
+            if (isValidIndex(index,taskList)) {
                 return taskList.getTask(index - 1);
-            } else if (validAction && !validIndex) {
-                throw new DukeException("OOPS!!! Please enter a valid task number to mark/unmark");
             }
             return null;
         } catch (NumberFormatException e) {
@@ -133,62 +148,73 @@ public class Parser {
     }
 
     /**
-     * This method takes in the string input of the user
-     * and return the task from the taskList to be added.
-     * @param str This is the user's string input
-     * @return Task The task to be added to the user's task list
-     * @throws DukeException This tells the user whether the task is missing a date or description
+     * Creates a ToDo task to be added with
+     * description from the command body
+     * Retruns ToDo if description is in command body
+     * @param commandBody The command of the user without the starting command type
+     * @param commandBodyWordCount The number of words in the command body
+     * @return ToDo task with description from command body
+     * @throws DukeException Throws DukeException if command body is empty
      */
-    private static Task getTaskToAdd(String str) throws DukeException {
-        String[] splitStr = str.split(" ");
-        String type = splitStr[0];
-        if (type.equals("todo")) {
-            if (splitStr.length < 2) {
-                throw new DukeException("OOPS!!! The description of a todo cannot be empty.\n");
-            }
-            String description = str.substring(type.length() + 1);
-            return new ToDo(description);
-        } else if (type.equals("deadline")) {
-            if (splitStr.length < 2) {
-                throw new DukeException("OOPS!!! The description of a deadline cannot be empty.\n");
-            }
-            if (str.indexOf("/by") - 1 < 0) {
-                throw new DukeException("OOPS!!! Please set date of deadline with /by.\n");
-            }
-            String description = str.substring(type.length() + 1, str.indexOf("/by") - 1);
-            String date = str.substring(str.indexOf("/by") + 4);
-            String formattedDate = Parser.parseDate(date);
-            return new Deadline(description, formattedDate);
-        } else if (type.equals("event")) {
-            if (splitStr.length < 2) {
-                throw new DukeException("OOPS!!! The description of an event cannot be empty.\n");
-            }
-            if (str.indexOf("/at") - 1 < 0) {
-                throw new DukeException("OOPS!!! Please set date of event with /at.\n");
-            }
-            String description = str.substring(type.length() + 1, str.indexOf("/at") - 1);
-            String date = str.substring(str.indexOf("/at") + 4);
-            String formattedDate = Parser.parseDate(date);
-            return new Event(description, formattedDate);
+    private static Task getToDoToAdd(String commandBody, int commandBodyWordCount) throws DukeException {
+        if (commandBodyWordCount < 1) {
+            throw new DukeException("OOPS!!! The description of a todo cannot be empty.\n");
         } else {
-            return null;
+            return new ToDo(commandBody);
         }
     }
 
     /**
-     * This method takes in the users string input
-     * and returns a list of tasks that contains
-     * the user's search keyword
-     * @param str Command input from user
+     * Creates a Deadline task to be added with description
+     * and date from the command body
+     * @param commandBody The command of the user without the starting command type
+     * @param commandBodyWordCount The number of words in the command body
+     * @return Deadline task with description and date from command body
+     * @throws DukeException
+     */
+    private static Task getDeadlineToAdd(String commandBody, int commandBodyWordCount) throws DukeException {
+        if (commandBodyWordCount < 3) {
+            throw new DukeException("OOPS!!! Add an deadline in the following format: \n\ndeadline <task description> /by <YYYY-MM-DD>\n");
+        }
+        if (commandBody.indexOf(" /by") - 1 < 0) {
+            throw new DukeException("OOPS!!! Please set date of deadline with /by.\n");
+        }
+        String description = commandBody.substring(0,commandBody.indexOf("/by") - 1);
+        String date = commandBody.substring(commandBody.indexOf("/by") + 4);
+        String formattedDate = Parser.parseDate(date);
+        return new Deadline(description, formattedDate);
+    }
+
+    /**
+     * Creates a Event task to be added with description
+     * and date from the command body
+     * @param commandBody The command of the user without the starting command type
+     * @param commandBodyWordCount The number of words in the command body
+     * @return Event task with description and date from command body
+     * @throws DukeException
+     */
+    private static Task getEventToAdd (String commandBody, int commandBodyWordCount) throws DukeException {
+        if (commandBodyWordCount < 3) {
+            throw new DukeException("OOPS!!! Add an event in the following format: \n\nevent <task description> /at <date>\n");
+        }
+        if (commandBody.indexOf(" /at") - 1 < 0) {
+            throw new DukeException("OOPS!!! Please set date of at with /at.\n");
+        }
+        String description = commandBody.substring(0,commandBody.indexOf("/at") - 1);
+        String date = commandBody.substring(commandBody.indexOf("/at") + 4);
+        return new Event(description, date);
+    }
+
+    /**
+     * Finds the list of tasks that
+     * contain the keyword from the user
+     * @param keyword Command body from user
      * @param taskList User's complete task list
      * @return list of tasks containing user's search keyword
      * @throws DukeException This tells the user if no such task contains the user's search keyword
      */
-    private static List<Task> getAllTaskWithKeyword(String str, TaskList taskList) throws DukeException {
-        String[] splitStr = str.split(" ");
+    private static List<Task> getAllTaskWithKeyword(String keyword, TaskList taskList) throws DukeException {
         List<Task> taskListWithKeyword = new ArrayList<>();
-        if (splitStr[0].equals("find")) {
-            String keyword = str.substring(5);
             for (int i = 0; i < taskList.getSize(); i++) {
                 if (taskList.getTask(i).toString().contains(keyword)) {
                     taskListWithKeyword.add(taskList.getTask(i));
@@ -197,7 +223,6 @@ public class Parser {
             if (taskListWithKeyword.size() == 0) {
                 throw new DukeException("OOPS!!! No such task with keyword is found.");
             }
-        }
         return taskListWithKeyword;
     }
 }

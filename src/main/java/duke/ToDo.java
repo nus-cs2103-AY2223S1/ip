@@ -18,7 +18,7 @@ public class ToDo extends Task {
         super(description, isDone);
     }
     /**
-     * This method returns the task's type, completion status and description
+     * Returns the task's type, completion status and description
      * @return String This returns the string of the todo task in the specified format
      */
     public String toString() {

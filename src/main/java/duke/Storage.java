@@ -19,7 +19,7 @@ import java.util.Scanner;
  */
 public class Storage {
 
-    private String filePath;
+    final private String filePath;
 
     /**
      * Constructor for Storage class
@@ -30,7 +30,7 @@ public class Storage {
     }
 
     /**
-     * This method gets the existing txt file in the
+     * Gets the existing txt file in the
      * file path and creates the txt file if it
      * does not exist
      * @return File This is the txtfile that stores all the user's task information
@@ -50,7 +50,7 @@ public class Storage {
     }
 
     /**
-     * This method gets the existing text file and
+     * Gets the existing text file and
      * converts the text into a list of the user's tasks
      * @return List This is the current list of the user's tasks
      */
@@ -90,7 +90,7 @@ public class Storage {
     }
 
     /**
-     * This method saves the latest version of the user's task
+     * Saves the latest version of the user's task
      * list to the txt file
      * @param taskList This is the latest version of user's task list
      */

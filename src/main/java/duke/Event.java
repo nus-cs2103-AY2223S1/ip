@@ -38,6 +38,6 @@ public class Event extends Task {
      * @return String This returns the string of the event in the specified format
      */
     public String toString() {
-        return "[E][" + this.getStatusIcon() + "] " + this.description + " (at: " + at + ")";
+        return "[E][" + getStatusIcon() + "] " + description + " (at: " + at + ")";
     }
 }

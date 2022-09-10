@@ -18,8 +18,7 @@ public class TaskList {
     }
 
     /**
-     * This method prints out all the
-     * tasks in the user's task list.
+     * Prints out all the tasks in the user's task list.
      */
     public String printList() {
         String str = "Here are the tasks in your list:\n";
@@ -30,8 +29,7 @@ public class TaskList {
     }
 
     /**
-     * This method returns the number of tasks
-     * in the user's task list
+     * Returns the number of tasks in the user's task list
      * @return int This returns the number of tasks
      */
     public int getSize() {
@@ -39,8 +37,7 @@ public class TaskList {
     }
 
     /**
-     * This method adds a task to
-     * the user's task list
+     * Adds a task to the user's task list
      * @param task Task to be added to user's task list
      */
     public void addTask(Task task) {
@@ -48,7 +45,7 @@ public class TaskList {
     }
 
     /**
-     * This method deletes a task from
+     * Deletes a task from
      * the user's task list
      * @param task Task to be deleted from user's task list
      */
@@ -57,8 +54,7 @@ public class TaskList {
     }
 
     /**
-     * This method gets the
-     * list of tasks from the user
+     * Gets the list of tasks from the user
      * @return List of tasks from the user
      */
     public List<Task> getList() {
@@ -66,8 +62,7 @@ public class TaskList {
     }
 
     /**
-     * This method gets the task
-     * of a certain number from the list
+     * Gets the task of a certain number from the list
      * @param i This is the task number
      * @return Task This returns the task of a certain number from the list
      */

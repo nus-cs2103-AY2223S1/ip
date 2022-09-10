@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class Ui {
     /**
-     * This method prints out the greeting message
+     * Prints out the greeting message
      * when the user starts the Duke program
      */
     public String greet() {
@@ -21,7 +21,7 @@ public class Ui {
     }
 
     /**
-     * This method prints out the quitting message
+     * Prints out the quitting message
      * when the user exits the Duke program
      */
     public String quit() {
@@ -29,8 +29,8 @@ public class Ui {
     }
 
     /**
-     * This method starts the Duke program
-     * and start accepting String input from the user
+     * Starts the Duke program and keeps accepting String
+     * input from the user until user terminates program
      * @param sc Scanner that scans the user's String input
      * @param storage Storage to load and save the user's todo task list
      * @param taskList TaskList to update the user's task list
@@ -47,7 +47,7 @@ public class Ui {
     }
 
     /**
-     * This method lists out the tasks
+     * Lists out the tasks
      * in the user's task list
      * @param tasks List of tasks to be printed out
      */
@@ -56,7 +56,7 @@ public class Ui {
     }
 
     /**
-     * This method marks the task and
+     * Marks the task as completed and
      * prints out a message
      * @param taskToMark The task from the list to be marked
      */
@@ -66,8 +66,8 @@ public class Ui {
     }
 
     /**
-     * This method unmarks the task and
-     * prints out a message
+     * Marks the task as uncompleted
+     * and prints out a message
      * @param taskToMark The task from the list to be unmarked
      */
     public String unmarkTask(Task taskToMark) {
@@ -76,9 +76,8 @@ public class Ui {
     }
 
     /**
-     * This method adds the new task to
-     * the user's task list and prints out
-     * a message
+     * Adds the new task to the user's task list
+     * and prints out a message
      * @param taskList TaskList of the user
      * @param taskToAdd The new task to be added to user's task list
      */
@@ -89,9 +88,8 @@ public class Ui {
     }
 
     /**
-     * This method deletes the task
-     * from the user's task list and prints
-     * out a message
+     * Deletes the task from the user's task list
+     * and prints out a message
      * @param taskList TaskList of the user
      * @param taskToDelete The task from the user's task list to be deleted
      */
@@ -102,11 +100,13 @@ public class Ui {
     }
 
     /**
-     * This method prints out all the tasks
-     * with the user's search keyword
+     * Prints out all the tasks with the user's search keyword
      * @param taskListWithKeyword List of tasks containing user's search keyword
      */
     public String printTasksWithKeyword(List<Task> taskListWithKeyword) {
+        if (taskListWithKeyword == null) {
+            return "There are no tasks that match the keyword \n";
+        }
         String str = "Here are the matching tasks in your list:\n";
         for (int i = 1; i <= taskListWithKeyword.size(); i++) {
             str += i + "." + taskListWithKeyword.get(i - 1) + "\n";
