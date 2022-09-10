@@ -5,7 +5,10 @@ import duke.exception.NoArgumentException;
 import duke.exception.WrongArgumentException;
 import duke.task.Deadline;
 import duke.task.Event;
+import duke.task.Recurring;
 import duke.task.ToDo;
+
+import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 /**
@@ -18,7 +21,7 @@ public class Parser {
      * Valid commands as datatype
      */
     public enum ListCommands {
-        todo, deadline, event, mark, unmark, delete, find
+        todo, deadline, event, recurring, mark, unmark, delete, find, remaining
     }
 
     public Parser(TaskList list) {
@@ -37,7 +40,7 @@ public class Parser {
      * @throws NoArgumentException If only the command is given without any arguments.
      */
     public String parseInput(String userInput, boolean fromSave)
-            throws WrongArgumentException, FileParseException, NoArgumentException {
+            throws WrongArgumentException, FileParseException, NoArgumentException, ClassCastException {
         if (isListCommand(userInput.split(" ")[0])) {
             return this.parseListCommands(userInput, fromSave);
         } else if (userInput.equals("bye")) {
@@ -73,12 +76,13 @@ public class Parser {
      * @throws NoArgumentException If only the command is given without any arguments.
      */
     private String parseListCommands(String input, boolean fromSave)
-            throws WrongArgumentException, FileParseException, NoArgumentException {
+            throws WrongArgumentException, FileParseException, NoArgumentException, ClassCastException {
         String mark = null;
         String response;
         String[] arr;
+        String[] item = new String[0];
         if (fromSave) {
-            String[] item = input.split("\\|");
+            item = input.split("\\|");
             mark = item[1];
             arr = item[0].split(" ", 2);
         } else {
@@ -94,7 +98,11 @@ public class Parser {
         if (response != null) {
             return response;
         }
-        parseAddTaskCommand(command, arr[1], fromSave);
+        if (item.length == 3) {
+            parseAddTaskCommand(command, true, arr[1], item[2]);
+        } else {
+            parseAddTaskCommand(command, fromSave, arr[1]);
+        }
         if (mark != null && mark.equals("X")) {
             list.markAsDone(list.getSize() - 1);
         }
@@ -104,7 +112,8 @@ public class Parser {
         return "";
     }
 
-    private String parseTaskCommand(ListCommands command, String index) throws WrongArgumentException {
+    private String parseTaskCommand(ListCommands command, String index)
+            throws WrongArgumentException, ClassCastException {
         try {
             switch (command) {
             case mark: {
@@ -121,31 +130,38 @@ public class Parser {
             }
             case find:
                 return Ui.findKeyword(index, list.searchFor(index));
+            case remaining: {
+                int n = Integer.parseInt(index) - 1;
+                Recurring t = (Recurring) list.getTask(n);
+                return Ui.showRemaining(t);
+            }
             default:
                 return null;
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new WrongArgumentException(index, e);
+        } catch (ClassCastException f) {
+            throw new ClassCastException("Task " + index + " is not a Recurring Task");
         }
     }
 
-    private void parseAddTaskCommand(ListCommands command, String arg, boolean fromSave)
+    private void parseAddTaskCommand(ListCommands command, boolean fromSave, String... arg)
             throws NoArgumentException, WrongArgumentException, FileParseException {
         switch (command) {
         case todo:
             try {
-                list.add(new ToDo(arg));
+                list.add(new ToDo(arg[0]));
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new NoArgumentException("todo", e);
             }
             break;
         case deadline:
             try {
-                String[] desc = arg.split(" /by ");
+                String[] desc = arg[0].split(" /by ");
                 list.add(new Deadline(desc[0], desc[1]));
             } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
                 if (fromSave) {
-                    throw new FileParseException(command + arg, e);
+                    throw new FileParseException(command + arg[0], e);
                 } else {
                     if (e instanceof ArrayIndexOutOfBoundsException) {
                         throw new NoArgumentException("deadline", e);
@@ -158,11 +174,11 @@ public class Parser {
             break;
         case event:
             try {
-                String[] desc = arg.split(" /at ");
+                String[] desc = arg[0].split(" /at ");
                 list.add(new Event(desc[0], desc[1]));
             } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
                 if (fromSave) {
-                    throw new FileParseException(command + arg, e);
+                    throw new FileParseException(command + arg[0], e);
                 } else {
                     if (e instanceof ArrayIndexOutOfBoundsException) {
                         throw new NoArgumentException("event", e);
@@ -173,6 +189,27 @@ public class Parser {
                 }
             }
             break;
+        case recurring:
+            try {
+                String[] desc = arg[0].split(" /every ");
+                String[] arr = desc[1].split(" \\*");
+                Recurring r = new Recurring(desc[0], arr[0], Integer.parseInt(arr[1]));
+                if (fromSave) {
+                    r.calculateRemaining(LocalDateTime.parse(arg[1]));
+                }
+                list.add(r);
+            } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
+                if (fromSave) {
+                    throw new FileParseException(command + arg[0], e);
+                } else {
+                    if (e instanceof ArrayIndexOutOfBoundsException) {
+                        throw new NoArgumentException("recurring", e);
+                    } else {
+                        //e will definitely be a DateTimeParseException
+                        throw new WrongArgumentException(((DateTimeParseException) e).getParsedString(), e);
+                    }
+                }
+            }
         default:
             assert false;
         }

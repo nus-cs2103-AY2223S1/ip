@@ -4,6 +4,7 @@ import duke.exception.DukeException;
 import duke.exception.FileParseException;
 import duke.exception.NoArgumentException;
 import duke.exception.WrongArgumentException;
+import duke.task.Recurring;
 import duke.task.Task;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ public class Ui {
             "todo", "todo [description]",
             "deadline", "deadline [description] /by [dd/MM/yy] <24hr time>",
             "event", "event [description] /at [dd/MM/yy] <24hr time>",
+            "recurring", "recurring [description] /every [d/M or d or day or time] </at 24hr time> *[times]",
             "find", "find [String]",
             "mark", "mark [index]",
             "unmark", "unmark [index]",
@@ -86,6 +88,13 @@ public class Ui {
         return "You currently have " + list.getSize() + " tasks in the list\n";
     }
 
+    public static String showRemaining(Recurring task) {
+        StringBuilder str = new StringBuilder("Dates for the task: ");
+        str.append(task.getDescription()).append("\n");
+        str.append(task.showDates());
+        return str.toString();
+    }
+
     public static String findKeyword(String keyword, ArrayList<Task> list) {
         StringBuilder str = new StringBuilder();
         str.append("I have found the following tasks containing '").append(keyword).append("'\n");
@@ -102,6 +111,7 @@ public class Ui {
         StringBuilder str = new StringBuilder();
         str.append("The following line is corrupted:\n\t").append(e.getMessage());
         str.append("\nPls note that it'll be deleted\n");
+        System.out.println(str);
         return str.toString();
     }
 
@@ -115,6 +125,10 @@ public class Ui {
             str.append(Ui.tryAgain());
         }
         return str.toString();
+    }
+
+    public static String sendMessage(String msg) {
+        return msg;
     }
 
     public static String tryAgain() {

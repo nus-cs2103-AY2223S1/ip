@@ -81,6 +81,10 @@ public class TaskList {
         return output;
     }
 
+    public Task getTask(int index) {
+        return this.listOfTasks.get(index);
+    }
+
     public Task lastTaskAdded() {
         return this.listOfTasks.get(this.listOfTasks.size() - 1);
     }

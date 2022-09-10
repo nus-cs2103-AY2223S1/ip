@@ -28,6 +28,8 @@ public class Duke {
         } catch (DukeException e) {
             assert false;
             return Ui.showErrorOccurred(e);
+        } catch (ClassCastException f) {
+            response = f.getMessage();
         }
         return response;
     }

@@ -5,10 +5,10 @@ import java.time.format.DateTimeFormatter;
 public abstract class Task {
     protected String description;
     private boolean isDone;
-    protected static DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yy");
+    protected static DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("d/M/yy");
     protected static DateTimeFormatter OUTPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd MMM yy");
     protected static DateTimeFormatter INPUT_TIME_FORMAT = DateTimeFormatter.ofPattern("HHmm");
-    protected static DateTimeFormatter OUTPUT_TIME_FORMAT = DateTimeFormatter.ofPattern("h.mma");
+    protected static DateTimeFormatter OUTPUT_TIME_FORMAT = DateTimeFormatter.ofPattern("h:mma");
 
     public abstract String format();
 
