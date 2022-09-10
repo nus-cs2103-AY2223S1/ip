@@ -3,7 +3,7 @@ package duke.model;
 /**
  * A class representing the Task to be tracked.
  */
-public class Task {
+public class Task implements Cloneable {
     protected String description;
     protected boolean isDone;
     private static int numOfTasks;
@@ -25,6 +25,10 @@ public class Task {
      */
     protected String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 
     /**
@@ -51,6 +55,15 @@ public class Task {
     }
 
     /**
+     * Sets the total number of tasks being tracked.
+     *
+     * @param num the number to set as the total number of tasks
+     */
+    public static void setNumOfTasks(int num) {
+        numOfTasks = num;
+    }
+
+    /**
      * Increments the total number of tasks being tracked.
      */
     public static void incrementNumOfTasks() {
@@ -64,14 +77,31 @@ public class Task {
         numOfTasks -= 1;
     }
 
+    /**
+     * Returns if the task's description contains the input description.
+     *
+     * @param description The description to be compared with.
+     * @return A boolean representing if the task's description contains the input description.
+     */
     public boolean contains(String description) {
         return this.description.contains(description);
     }
 
     /**
+     * Makes a shallow copy of this Task.
+     *
+     * @return A shallow copy of this Task.
+     * @throws CloneNotSupportedException If a shallow copy could not be made.
+     */
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    /**
      * Returns a formatted string of a Task to be stored in the storage.
      *
-     * @return a formatted string of a Task for storage
+     * @return A formatted string of a Task for storage.
      */
     public String toStorage() {
         return "";
@@ -80,7 +110,7 @@ public class Task {
     /**
      * Returns a string representation of a Task.
      *
-     * @return a string representing a Task
+     * @return A string representing a Task.
      */
     @Override
     public String toString() {

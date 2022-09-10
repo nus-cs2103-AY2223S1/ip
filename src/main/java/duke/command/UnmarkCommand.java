@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.exception.DukeException;
 import duke.model.TaskList;
 import duke.storage.Storage;
 import duke.ui.Ui;
@@ -13,7 +14,7 @@ public class UnmarkCommand extends Command {
 
     /**
      * A constructor for an UnmarkCommand.
-     * @param taskNumber
+     * @param taskNumber The task number of the relevant Task in the TaskList.
      */
     public UnmarkCommand(int taskNumber) {
         this.taskNumber = taskNumber;
@@ -22,14 +23,20 @@ public class UnmarkCommand extends Command {
     /**
      * Executes a Command.
      *
-     * @param taskList a list of tasks
-     * @param storage a location to store the task information
+     * @param taskList A list of tasks.
+     * @param storage A location to store the task information.
      */
     @Override
     public String execute(TaskList taskList, Storage storage) {
-        taskList.unmark(this.taskNumber);
-        storage.writeToFile(taskList);
-        String response = Ui.unmark(taskList.getTask(this.taskNumber));
+        String response;
+        try {
+            taskList.unmark(this.taskNumber);
+            storage.writeToFile(taskList);
+            response = Ui.unmark(taskList.getTask(this.taskNumber));
+        } catch (DukeException e) {
+            response = e.getMessage();
+        }
+
         assert response != null : "response should not be null";
         return response;
     }

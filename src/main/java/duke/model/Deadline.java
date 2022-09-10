@@ -13,8 +13,8 @@ public class Deadline extends Task {
     /**
      * A constructor for a Deadline.
      *
-     * @param description
-     * @param date
+     * @param description The details of the activity.
+     * @param date The date of the activity.
      */
     public Deadline(String description, String date) {
         super(description);
@@ -24,7 +24,7 @@ public class Deadline extends Task {
     /**
      * Returns a formatted string of a Deadline to be stored in the storage.
      *
-     * @return a formatted string of a Deadline for storage
+     * @return A formatted string of a Deadline for storage.
      */
     @Override
     public String toStorage() {
@@ -34,7 +34,7 @@ public class Deadline extends Task {
     /**
      * Returns a string representation of a Deadline.
      *
-     * @return a string representing a Deadline
+     * @return A string representing a Deadline.
      */
     @Override
     public String toString() {

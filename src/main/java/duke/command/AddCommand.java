@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.exception.DukeException;
 import duke.model.TaskList;
 import duke.model.Task;
 import duke.storage.Storage;
@@ -15,7 +16,7 @@ public class AddCommand extends Command {
     /**
      * A constructor for a AddCommand.
      *
-     * @param task the Task associated with the command.
+     * @param task The Task associated with the command.
      */
     public AddCommand(Task task) {
         createdTask = task;
@@ -24,14 +25,20 @@ public class AddCommand extends Command {
     /**
      * Executes a Command.
      *
-     * @param taskList a list of tasks
-     * @param storage a location to store the task information
+     * @param taskList A list of tasks.
+     * @param storage A location to store the task information.
      */
     @Override
     public String execute(TaskList taskList, Storage storage) {
-        taskList.add(createdTask);
-        storage.writeToFile(taskList);
-        String response = Ui.add(createdTask);
+        String response;
+        try {
+            taskList.add(createdTask);
+            storage.writeToFile(taskList);
+            response = Ui.add(createdTask);
+        } catch (DukeException e) {
+            response = e.getMessage();
+        }
+
         assert response != null : "response should not be null";
         return response;
     }

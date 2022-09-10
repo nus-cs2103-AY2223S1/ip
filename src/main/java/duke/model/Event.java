@@ -14,9 +14,9 @@ public class Event extends Task {
     /**
      * A constructor for an Event.
      *
-     * @param description
-     * @param startDate
-     * @param endDate
+     * @param description The details of the activity.
+     * @param startDate The start date of the activity.
+     * @param endDate The end date of the activity.
      */
     public Event(String description, String startDate, String endDate) {
         super(description);
@@ -27,7 +27,7 @@ public class Event extends Task {
     /**
      * Returns a formatted string of an Event to be stored in the storage.
      *
-     * @return a formatted string of an Event for storage
+     * @return A formatted string of an Event for storage
      */
     @Override
     public String toStorage() {
@@ -38,7 +38,7 @@ public class Event extends Task {
     /**
      * Returns a string representation of an Event.
      *
-     * @return a string representing an Event
+     * @return A string representing an Event
      */
     @Override
     public String toString() {

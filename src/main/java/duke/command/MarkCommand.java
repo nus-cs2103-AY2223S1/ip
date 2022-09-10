@@ -1,5 +1,7 @@
 package duke.command;
 
+import duke.Duke;
+import duke.exception.DukeException;
 import duke.model.TaskList;
 import duke.storage.Storage;
 import duke.ui.Ui;
@@ -14,7 +16,7 @@ public class MarkCommand extends Command {
     /**
      * A constructor for a MarkCommand.
      *
-     * @param taskNumber the task number of the relevant Task in the TaskList.
+     * @param taskNumber The task number of the relevant Task in the TaskList.
      */
     public MarkCommand(int taskNumber) {
         this.taskNumber = taskNumber;
@@ -23,14 +25,20 @@ public class MarkCommand extends Command {
     /**
      * Executes a Command.
      *
-     * @param taskList a list of tasks
-     * @param storage a location to store the task information
+     * @param taskList A list of tasks.
+     * @param storage A location to store the task information.
      */
     @Override
     public String execute(TaskList taskList, Storage storage) {
-        taskList.mark(this.taskNumber);
-        storage.writeToFile(taskList);
-        String response = Ui.mark(taskList.getTask(this.taskNumber));
+        String response;
+        try {
+            taskList.mark(this.taskNumber);
+            storage.writeToFile(taskList);
+            response = Ui.mark(taskList.getTask(this.taskNumber));
+        } catch (DukeException e) {
+            response = e.getMessage();
+        }
+
         assert response != null : "response should not be null";
         return response;
     }

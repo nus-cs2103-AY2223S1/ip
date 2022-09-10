@@ -17,6 +17,8 @@ import static java.lang.Integer.parseInt;
  */
 public class Parser {
 
+    private static String lastUserInput;
+
     enum Keyword {
         BYE("bye"),
         LIST("list"),
@@ -26,7 +28,8 @@ public class Parser {
         DEADLINE("deadline"),
         EVENT("event"),
         DELETE("delete"),
-        FIND("find");
+        FIND("find"),
+        UNDO("undo");
 
         private String value;
 
@@ -62,6 +65,7 @@ public class Parser {
      * @return a Command associated with the user's input
      */
     public static Command parse(String userInput) throws DukeException {
+
         String[] input = userInput.split(" ", 2);
 
         String inputKeyword = input[0];
@@ -72,21 +76,31 @@ public class Parser {
 
         String[] inputArray;
 
+        Command command;
+
         switch (keyword) {
         case BYE:
-            return new ExitCommand();
+            command = new ExitCommand();
+            break;
         case LIST:
-            return new ListCommand();
+            command = new ListCommand();
+            break;
         case MARK:
-            return new MarkCommand(parseInt(input[1]));
+            command = new MarkCommand(parseInt(input[1]));
+            Parser.updateLastUserInput(userInput);
+            break;
         case UNMARK:
-            return new UnmarkCommand(parseInt(input[1]));
+            command = new UnmarkCommand(parseInt(input[1]));
+            Parser.updateLastUserInput(userInput);
+            break;
         case TODO:
             inputArray = userInput.split(" ", 0);
             if (inputArray.length < 2) {
                 throw new DukeException("Please put in a description!");
             }
-            return new AddCommand(new ToDo(input[1]));
+            command = new AddCommand(new ToDo(input[1]));
+            Parser.updateLastUserInput(userInput);
+            break;
         case DEADLINE:
             inputArray = userInput.split(" ", 0);
 
@@ -102,7 +116,9 @@ public class Parser {
             if (!Parser.isValid(description[1]) || description[1].split(" ").length > 1) {
                 throw new DukeException("Invalid date given!");
             }
-            return new AddCommand(new Deadline(description[0], description[1]));
+            command = new AddCommand(new Deadline(description[0], description[1]));
+            Parser.updateLastUserInput(userInput);
+            break;
         case EVENT:
             inputArray = userInput.split(" ", 0);
             if (!userInput.contains("/at")) {
@@ -122,14 +138,24 @@ public class Parser {
             if (!Parser.isValid(dates[0]) || !Parser.isValid(dates[1])) {
                 throw new DukeException("Invalid start/end date!");
             }
-            return new AddCommand(new Event(description[0], dates[0], dates[1]));
+            command = new AddCommand(new Event(description[0], dates[0], dates[1]));
+            Parser.updateLastUserInput(userInput);
+            break;
         case DELETE:
-            return new DeleteCommand(parseInt(input[1]));
+            command = new DeleteCommand(parseInt(input[1]));
+            Parser.updateLastUserInput(userInput);
+            break;
         case FIND:
-            return new FindCommand(input[1]);
+            command = new FindCommand(input[1]);
+            break;
+        case UNDO:
+            command = new UndoCommand(lastUserInput);
+            break;
         default:
-            return null;
+            command = null;
+            break;
         }
+        return command;
     }
 
     public static boolean isValid(String date) {
@@ -139,5 +165,13 @@ public class Parser {
             return false;
         }
         return true;
+    }
+
+    public static void updateLastUserInput(String input) {
+        Parser.lastUserInput = input;
+    }
+
+    public static String getLastUserInput() {
+        return Parser.lastUserInput;
     }
 }

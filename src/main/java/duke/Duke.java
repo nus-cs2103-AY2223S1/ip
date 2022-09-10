@@ -6,7 +6,6 @@ import duke.model.TaskList;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.ui.Ui;
-import java.util.Scanner;
 
 /**
  * The main class for the chatbot.
@@ -23,8 +22,7 @@ public class Duke {
      * @param filePath the file path for storage
      */
     public Duke (String filePath) {
-        Scanner sc = new Scanner(System.in);
-        this.ui = new Ui(sc);
+        this.ui = new Ui();
         this.storage = new Storage(filePath);
         this.tasklist = new TaskList(storage.loadFromFile());
     }
