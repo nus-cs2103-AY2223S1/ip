@@ -3,21 +3,23 @@
 This repo contains the code for the Snoopy chatbot.
 Snoopy is optimized for use via a Graphical User Interface (GUI).
 
+Snoopy is supported by Java 11 and up.
+
 Let Snoopy help you with your task management, starting today!
 
 ## Features 
 
 ### Add a todo task: `todo`
 
-Adds a todo task to the list.
+Adds a standard todo task to the list.
 
 ### Add a deadline task: `deadline`
 
-Adds a deadline task to the list.
+Adds task with a deadline to the list.
 
 ### Add an event task: `event`
 
-Adds an event task to the list.
+Adds a task with a start and end time to the list.
 
 ### List out all tasks: `list`
 
@@ -25,11 +27,11 @@ Obtains full list of tasks.
 
 ### Mark task as complete: `mark`
 
-Mark selected task as complete.
+Marks selected task as complete.
 
 ### Unmark task as complete: `unmark`
 
-Mark selected task as not completed.
+Marks selected task as not completed.
 
 ### Find tasks: `find`
 
@@ -64,4 +66,4 @@ Keyword | Usage
 **Delete** | `delete TASKNUMBER` <br> e.g. `delete 2`
 **Find** | `find KEYWORD` <br> e.g. `find eat`
 **Priority** | `priority TASKNUMBER` <br> e.g. `priority 3`
-**Bye** | `bye``
+**Bye** | `bye`
