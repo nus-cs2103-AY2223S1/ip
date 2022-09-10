@@ -24,8 +24,7 @@ This command will list all the tasks in the task list.
 
 **Usage:** `list`
 
-<details>
-<summary>Expected outcome</summary>
+**Expected outcome**
 
 ```
 list
@@ -34,16 +33,13 @@ list
 2. [D][ ] sweep the floor (by: 10 Oct 2022)
 ```
 
-</details>
-
 ### `todo` - Add a Todo task to the task list
 
 **Usage:** `todo <task description>`
 
 A todo task with the task description specified will be added to the task list.
 
-<details>
-<summary>Expected outcome</summary>
+**Expected outcome**
 
 ```
 todo do homework
@@ -52,8 +48,6 @@ Task added:
   [T][] do homework
 There are not 3 tasks in the list.
 ```
-
-</details>
 
 ### `deadline` - Add a Deadline task to the task list
 
@@ -64,8 +58,7 @@ A deadline task with the specified description and date will be added to the tas
 > Note: the format of `date` should be `YYYY-MM-DD`. <br>
 > eg. `2022-10-01` for 1st October 2022
 
-<details>
-<summary>Expected outcome</summary>
+**Expected outcome**
 
 ```
 deadline go home /by 2022-11-12
@@ -74,8 +67,6 @@ Task added:
   [D][ ] go home (by: 12 Nov 2022)
 There are not 4 tasks in the list.
 ```
-
-</details>
 
 ### `event` - Add an Event task to the task list
 
@@ -86,8 +77,7 @@ An event task with the specified description and date will be added to the task 
 > Note: the format of `date` should be `YYYY-MM-DD`. <br>
 > eg. `2022-10-01` for 1st October 2022
 
-<details>
-<summary>Expected outcome</summary>
+**Expected outcome**
 
 ```
 event sale /at 2022-12-12
@@ -97,16 +87,13 @@ Task added:
 There are not 5 tasks in the list.
 ```
 
-</details>
-
 ### `delete` - Delete a task from the task list
 
 **Usage:** `delete <index>`
 
 Remove the task specified by the index from the task list and the storage file.
 
-<details>
-<summary>Expected outcome</summary>
+**Expected outcome**
 
 ```
 delete 5
@@ -116,15 +103,13 @@ Task deleted:
 There are not 4 tasks in the list.
 ```
 
-</details>
-
 ### `mark` - Mark a task
 
 **Usage:** `mark <index>`
 
 Mark the task specified by the index as complete.
 
-<details><summary>Expected outcome</summary>
+**Expected outcome**
 
 ```
 mark 4
@@ -133,16 +118,13 @@ I have marked this task as done:
   [D][X] go home (by: 12 Nov 2022)
 ```
 
-</details>
-
 ### `unmark` - Unmark a task
 
 **Usage:** `unmark <index>`
 
 Mark the task specified by the index as incomplete.
 
-<details>
-<summary>Expected outcome</summary>
+**Expected outcome**
 
 ```
 mark 4
@@ -151,16 +133,13 @@ I have unmarked the completion of this task:
   [D][ ] go home (by: 12 Nov 2022)
 ```
 
-</details>
-
 ### `update` - Update the description of a task
 
 **Usage:** `update <index> <new description>`
 
 Update the task specified by the index with a new description.
 
-<details>
-<summary>Expected outcome</summary>
+**Expected outcome**
 
 ```
 update 4 go back home
@@ -169,16 +148,13 @@ I have updated the description of this task:
   [D][ ] go back home (by: 12 Nov 2022)
 ```
 
-</details>
-
 ### `find` - Look for tasks in the task list
 
 **Usage:** `find <search query>`
 
 Search the task list for a task with a description containing the query specified.
 
-<details>
-<summary>Expected outcome</summary>
+**Expected outcome**
 
 ```
 find home
@@ -188,20 +164,15 @@ This is what I found:
   2. [D][] go back home (by: 12 Nov 2022)
 ```
 
-</details>
-
 ### `bye` - Exit the application
 
 **Usage:** `bye`
 
 Close the duke application
 
-<details>
-<summary>Expected outcome</summary>
+**Expected outcome**
 
 Duke application window will be close.
-
-</details>
 
 # References
 
