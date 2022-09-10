@@ -1,3 +1,7 @@
+package drake.commands;
+
+import drake.*;
+
 import java.io.IOException;
 
 public abstract class TaskOperationCommand extends Command {

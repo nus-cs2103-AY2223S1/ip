@@ -1,12 +1,18 @@
+package drake.commands;
+
+import drake.*;
+import drake.tasks.Deadline;
+import drake.tasks.Task;
+
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EventCommand extends CreateTaskCommand {
+public class DeadlineCommand extends CreateTaskCommand {
 
-    private final static Pattern descriptionPattern = Pattern.compile("(?<taskName>.*) /at (?<at>.*)");
+    private final static Pattern descriptionPattern = Pattern.compile("(?<taskName>.*) /by (?<by>.*)");
 
-    public EventCommand(String fullInput) {
+    public DeadlineCommand(String fullInput) {
         super(fullInput);
     }
 
@@ -14,10 +20,10 @@ public class EventCommand extends CreateTaskCommand {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DrakeException, IOException {
         Matcher match = descriptionPattern.matcher(description);
         if (!match.matches()) {
-            throw new IncompatibleCommandException("An event task without an event time?");
+            throw new IncompatibleCommandException("A deadline task without a deadline?");
         }
         ui.printLine("I've added this task:");
-        Task addedTask = tasks.addTask(new Event(match.group("taskName"), match.group("at")));
+        Task addedTask = tasks.addTask(new Deadline(match.group("taskName"), match.group("by")));
         ui.printLine(addedTask);
         storage.addTask(addedTask);
         super.execute(tasks, ui, storage);

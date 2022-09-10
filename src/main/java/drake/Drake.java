@@ -1,3 +1,7 @@
+package drake;
+
+import drake.commands.Command;
+
 import java.io.IOException;
 
 public class Drake {

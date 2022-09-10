@@ -1,3 +1,7 @@
+package drake;
+
+import drake.commands.*;
+
 public class Parser {
 
     public static Command parse(String fullInput) throws UnknownCommandException,

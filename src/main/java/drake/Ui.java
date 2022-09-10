@@ -1,3 +1,5 @@
+package drake;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -22,7 +24,7 @@ public class Ui {
         }
         System.out.println(logo);
         System.out.println("!@#$%^&*()-+!@#$%^&*()`~`!@#$");
-        System.out.println("Drake's (me) the kind of guy to help you out uwu");
+        System.out.println("drake.Drake's (me) the kind of guy to help you out uwu");
         System.out.println("Go ahead, make that hotline bling");
         System.out.println(DASH);
     }

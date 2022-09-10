@@ -1,3 +1,11 @@
+package drake;
+
+import drake.commands.CommandType;
+import drake.tasks.Deadline;
+import drake.tasks.Event;
+import drake.tasks.Task;
+import drake.tasks.Todo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -113,12 +121,5 @@ public class Storage {
             }
         }
         return csv.append("\n").toString();
-    }
-
-    //For debugging
-    private void printTasks() {
-        for (List<String> task : tasks) {
-            System.out.println(task);
-        }
     }
 }

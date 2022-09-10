@@ -1,18 +1,22 @@
+package drake.commands;
+
+import drake.*;
+
 import java.io.IOException;
 
-public class MarkCommand extends TaskOperationCommand {
+public class DeleteCommand extends TaskOperationCommand {
 
-    public MarkCommand(String fullInput) throws IncompatibleCommandException {
+    public DeleteCommand(String fullInput) throws IncompatibleCommandException {
         super(fullInput);
     }
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DrakeException, IOException {
         if (tasks.isValidTaskNumber(taskNumber)) {
-            System.out.println("I've marked this task as done!");
-            tasks.markAsDone(taskNumber);
-            storage.updateTask(taskNumber, CommandType.MARK);
+            System.out.println("I've removed this task: ");
             ui.printLine(tasks.getTaskToString(taskNumber));
+            tasks.removeTask(taskNumber);
+            storage.updateTask(taskNumber, CommandType.DELETE);
         } else {
             throw new InvalidTaskNumberException();
         }
