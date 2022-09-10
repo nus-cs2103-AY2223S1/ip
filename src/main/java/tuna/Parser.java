@@ -40,7 +40,8 @@ public class Parser {
             } else if (command.equals("sort")) {
                 return new SortCommand();
             } else if (UNKNOWN_COMMANDS.contains(command)) {
-                throw new TunaException("OOPS!!! The description of a " + command + " cannot be empty.");
+                throw new TunaException("I'm sorry I do not understand the command. The description of a " + command
+                        + " command cannot be empty.");
             }
         } else if (inputs.length == 2) {
             if (inputs[0].equals("mark")) {
@@ -54,7 +55,7 @@ public class Parser {
             } else if (inputs[0].equals("find")) {
                 return new FindCommand(inputs);
             }
-        } else {
+        }
             switch (inputs[0]) {
             case "todo":
                 return new AddTodoCommand(inputs);
@@ -63,9 +64,8 @@ public class Parser {
             case "event":
                 return new AddEventCommand(inputs);
             default:
-                throw new TunaException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                throw new TunaException("Oops! Sorry! I do not know what that means");
             }
-        }
-        throw new TunaException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+
     }
 }

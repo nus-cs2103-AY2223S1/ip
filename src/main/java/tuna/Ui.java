@@ -20,7 +20,7 @@ public class Ui {
      * @return welcome message.
      */
     public String welcomeMessage() {
-        return "Hello! I'm Tuna\nWhat can I do for you?";
+        return "Hello! I'm Tuna\nWelcome back to the app\nWhat can I do for you today?";
     }
 
     /**
@@ -29,27 +29,7 @@ public class Ui {
      * @return bye message.
      */
     public String byeMessage() {
-        return "Bye. Hope to see you again soon!";
-    }
-
-    /**
-     * Throws exception when /by is not included in a deadline command.
-     *
-     * @return Return value omitted as Exception is thrown.
-     * @throws TunaException Exception thrown to indicate that /by was not included in the command.
-     */
-    public String deadLineErrorMessage() throws TunaException {
-        throw new TunaException("Oops! Remember to include /by and the deadline after your task description");
-    }
-
-    /**
-     * Throws exception when /at is not included in an event command.
-     *
-     * @return Return value is omitted as Exception is thrown.
-     * @throws TunaException Exception thrown to indicate that /at was not included in the command.
-     */
-    public String eventErrorMessage() throws TunaException {
-        throw new TunaException("Oops! Remember to include /at and the event time after your task description");
+        return "Bye! Don't forget to do your tasks! Hope to see you again soon!";
     }
 
     /**
