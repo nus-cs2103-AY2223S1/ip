@@ -54,7 +54,7 @@ public class Event extends DukeTask {
     public String updateTime(String newAt) throws DukeException {
         this.at = newAt;
         formatTime();
-        return "Event time updated!";
+        return "Success! Event time updated.";
     }
 
     @Override

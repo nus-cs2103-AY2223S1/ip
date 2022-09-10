@@ -41,7 +41,7 @@ the latest version simultaneously.
 
 ### Viewing list of available commands
 
-Shows all available commands.  
+Shows all available commands in a new window.  
 Usage: `help`
 
 ### Creating a task with a description: `todo` 

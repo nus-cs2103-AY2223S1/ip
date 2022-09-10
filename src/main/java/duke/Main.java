@@ -27,7 +27,7 @@ public class Main extends Application {
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             fxmlLoader.<MainWindow>getController().sendWelcome();
             stage.setTitle("Artemis");
-            stage.getIcons().add(new Image(String.valueOf(Main.class.getResource("/images/DaDuke.png"))));
+            stage.getIcons().add(new Image("/images/DaDuke.png"));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

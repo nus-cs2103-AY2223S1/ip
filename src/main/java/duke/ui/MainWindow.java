@@ -1,5 +1,6 @@
 package duke.ui;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 import duke.Duke;
@@ -34,6 +35,10 @@ public class MainWindow extends AnchorPane {
             .getResourceAsStream("/images/DaDuke.png")));
     private final Image errorImage = new Image(Objects.requireNonNull(this.getClass()
             .getResourceAsStream("/images/DaError.png")));
+    private final Image successImage = new Image(Objects.requireNonNull(this.getClass()
+            .getResourceAsStream("/images/DaSuccess.png")));
+    private final Image successYellowImage = new Image(Objects.requireNonNull(this.getClass()
+            .getResourceAsStream("/images/DaSuccessYellow.png")));
 
     @FXML
     public void initialize() {
@@ -61,14 +66,35 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         String output = duke.execute(input);
         assert !output.equals("") : "Execution output should never be empty.";
-        if (output.equals("Screen cleared!")) {
+        if (input.toLowerCase().startsWith("clear")) {
             dialogContainer.getChildren().clear();
+        }
+        if (input.toLowerCase().startsWith("help")) {
+            HelpPopup.display();
         }
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(output,
-                        output.startsWith("Hang on!") ? errorImage : dukeImage)
-        );
+                DialogBox.getDukeDialog(output, getDukeImage(output)));
         userInput.clear();
+    }
+
+    /**
+     * Returns an appropriate image for the output string.
+     *
+     * @param output the string returned by Artemis
+     * @return the image corresponding to the output
+     */
+    private Image getDukeImage(String output) {
+        HashMap<String, Image> images = new HashMap<>() {{
+                put("Hang on!", errorImage);
+                put("Success!", successImage);
+                put("Whoops!", successYellowImage);
+            }};
+        for (String start : images.keySet()) {
+            if (output.startsWith(start)) {
+                return images.get(start);
+            }
+        }
+        return dukeImage;
     }
 }
