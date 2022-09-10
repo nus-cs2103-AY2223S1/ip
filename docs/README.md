@@ -3,8 +3,8 @@
 following to navigate to the relevant section you are looking for:
 1. [Feature showcase](#1-feature-showcase)
    * [1.1. Adding tasks](#11-adding-tasks)
-     * [1.1.1 Adding deadlines](#111-deadline-a-task-with-a-due-date)
-     * [1.1.2 Adding events](#112-event----a-task-with-a-venue)
+     * [1.1.1. Adding deadlines](#111-deadline-a-task-with-a-due-date)
+     * [1.1.2. Adding events](#112-event----a-task-with-a-venue)
      * [1.1.3. Adding tasks to do](#113-todo-----a-basic-task-to-be-completed)
    * [1.2. Deleting tasks](#12-deleting-tasks)
    * [1.3. Listing all tasks](#13-listing-all-tasks)
@@ -24,17 +24,17 @@ following to navigate to the relevant section you are looking for:
 ## 1. Feature showcase
 ### 1.1. Adding tasks
 There are three possible tasks you can add:
- #### 1.1.1 `deadline`: a task with a due date
+#### 1.1.1 `deadline`: a task with a due date
    <p align="center">
       <img src="images/add-deadline.png" />
    </p>
 
- #### 1.1.2. `event`   : a task with a venue
+#### 1.1.2. `event`   : a task with a venue
    <p align="center">
       <img src="images/add-event.png" />
    </p>
 
- #### 1.1.3. `todo`    : a basic task to be completed
+#### 1.1.3. `todo`    : a basic task to be completed
    <p align="center">
       <img src="images/add-todo.png" />
    </p>
