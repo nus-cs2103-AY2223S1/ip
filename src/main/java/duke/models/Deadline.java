@@ -19,11 +19,19 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    /**
+     * Returns the string representation of the {@code Deadline} object
+     * @return "D"
+     */
     @Override
     public String getSymbol() {
         return "D";
     }
 
+    /**
+     * Returns the description of the {@code Deadline} object
+     * @return
+     */
     @Override
     public String getDescription() {
         return this.description;
