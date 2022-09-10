@@ -41,7 +41,7 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().add(
-            DialogBox.getHenryDialog(GREETING, henryImage)
+            HenryDialogBox.getHenryDialog(GREETING, henryImage)
         );
     }
 
@@ -64,13 +64,13 @@ public class MainWindow extends AnchorPane {
         try {
             String response = henry.getResponse(input);
             dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getHenryDialog(response, henryImage)
+                UserDialogBox.getUserDialog(input, userImage),
+                HenryDialogBox.getHenryDialog(response, henryImage)
             );
         } catch (HenryException e) {
             dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getHenryDialog(e.getMessage(), henryImage)
+                UserDialogBox.getUserDialog(input, userImage),
+                HenryDialogBox.getHenryDialog(e.getMessage(), henryImage)
             );
         }
         userInput.clear();

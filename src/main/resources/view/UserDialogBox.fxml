@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.shape.Circle?>
 <fx:root xmlns:fx="http://javafx.com/fxml" alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
          prefWidth="400.0" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx">
     <children>
@@ -13,10 +12,9 @@
                 <Insets bottom="4.0" left="4.0" right="4.0" top="4.0"/>
             </padding>
             <HBox.margin>
-                <Insets right="10.0"/>
+                <Insets/>
             </HBox.margin>
         </Label>
-        <Circle fx:id="displayPicture" radius="50.0"/>
     </children>
     <padding>
         <Insets bottom="15.0" left="5.0" right="5.0" top="15.0"/>
