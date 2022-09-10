@@ -37,6 +37,10 @@ public abstract class Task {
 
     public abstract String fileFormat();
 
+    public boolean doesContain(String keyword) {
+        return description.contains(keyword);
+    }
+
     @Override
     public String toString() {
         return String.format("[%s] %s", getStatusIcon(), description);
