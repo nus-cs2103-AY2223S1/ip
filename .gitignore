@@ -18,4 +18,3 @@ text-ui-test/EXPECTED-UNIX.TXT
 data
 *.class
 /src/main/java/ui/MainWindowBuilder.java
-/src/main/java/sorter
