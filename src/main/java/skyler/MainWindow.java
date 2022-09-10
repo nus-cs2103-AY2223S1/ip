@@ -53,9 +53,7 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
 
-        if (input.equals("bye")) {
-            stage.close();
-        }
+        closeStageIfByeInput(input, this.stage);
 
         String response = skyler.getResponse(input);
         dialogContainer.getChildren().addAll(
@@ -65,5 +63,11 @@ public class MainWindow extends AnchorPane {
         assert userImage != null : "User profile image should be initialised";
 
         userInput.clear();
+    }
+
+    private void closeStageIfByeInput(String input, Stage stage) {
+        if (input.equals("bye")) {
+            stage.close();
+        }
     }
 }

@@ -125,7 +125,7 @@ public class TaskList {
         String[] deadlineComponents = descWithDate.split(" /by ", 2);
 
         // process date and time
-        LocalDateTime dt = processDateTime(deadlineComponents[1]);
+        LocalDateTime dt = formatDateTime(deadlineComponents[1]);
 
         Deadline newDeadline = new Deadline(deadlineComponents[0], dt);
         tasks.add(newDeadline);
@@ -149,7 +149,7 @@ public class TaskList {
         String[] eventComponents = descWithDate.split(" /at ", 2);
 
         // process date and time
-        LocalDateTime dt = processDateTime(eventComponents[1]);
+        LocalDateTime dt = formatDateTime(eventComponents[1]);
 
         Event newEvent = new Event(eventComponents[0], dt);
         tasks.add(newEvent);
@@ -230,7 +230,7 @@ public class TaskList {
      * @param strDateTime String representation of date and time.
      * @return Corresponding LocalDateTime object.
      */
-    public static LocalDateTime processDateTime(String strDateTime) {
+    public static LocalDateTime formatDateTime(String strDateTime) {
         String[] timeInfo = strDateTime.split(" ", 2);
 
         String unformattedTime = timeInfo[1];

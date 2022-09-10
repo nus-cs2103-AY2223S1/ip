@@ -26,43 +26,46 @@ public class Parser {
      * @throws TaskNotRecognisedException If command is not recognised.
      */
     public String parse(String command) throws EmptyDescriptionException, TaskNotRecognisedException {
-        if (command.equals("list")) {
+        if (checkIsCommandType(command, "list")) {
             return taskList.list();
-        } else if (command.startsWith("mark")) {
-            int itemID = Integer.parseInt(command.substring(command.length() - 1));
+        } else if (checkIsCommandType(command, "mark")) {
+            int itemID = getItemID(command);
             return taskList.mark(itemID);
-        } else if (command.startsWith("unmark")) {
-            int itemID = Integer.parseInt(command.substring(command.length() - 1));
+        } else if (checkIsCommandType(command, "unmark")) {
+            int itemID = getItemID(command);
             return taskList.unmark(itemID);
-        } else if (command.startsWith("todo")) {
-            String[] commandArguments = command.split(" ", 2);
-            if (command.trim().equals("todo")) {
-                throw new EmptyDescriptionException();
-            }
+        } else if (checkIsCommandType(command, "todo")) {
+            String[] commandArguments = getCommandArguments(command);
             return taskList.addTodo(commandArguments[1]);
-        } else if (command.startsWith("deadline")) {
-            String[] commandArguments = command.split(" ", 2);
-            if (command.trim().equals("deadline")) {
-                throw new EmptyDescriptionException();
-            }
+        } else if (checkIsCommandType(command, "deadline")) {
+            String[] commandArguments = getCommandArguments(command);
             return taskList.addDeadline(commandArguments[1]);
-        } else if (command.startsWith("event")) {
-            String[] commandArguments = command.split(" ", 2);
-            if (command.trim().equals("event")) {
-                throw new EmptyDescriptionException();
-            }
+        } else if (checkIsCommandType(command, "event")) {
+            String[] commandArguments = getCommandArguments(command);
             return taskList.addEvent(commandArguments[1]);
-        } else if (command.startsWith("delete")) {
-            int itemID = Integer.parseInt(command.substring(command.length() - 1));
+        } else if (checkIsCommandType(command, "delete")) {
+            int itemID = getItemID(command);
             return taskList.delete(itemID);
-        } else if (command.startsWith("find")) {
-            String[] commandArguments = command.split(" ", 2);
-            if (command.trim().equals("find")) {
-                throw new EmptyDescriptionException();
-            }
+        } else if (checkIsCommandType(command, "find")) {
+            String[] commandArguments = getCommandArguments(command);
             return taskList.findTask(commandArguments[1]);
         } else {
             throw new TaskNotRecognisedException();
         }
+    }
+
+    private boolean checkIsCommandType(String command, String type) throws EmptyDescriptionException {
+        if (!type.equals("list") && command.trim().equals(type)) {
+            throw new EmptyDescriptionException();
+        }
+        return command.startsWith(type);
+    }
+
+    private int getItemID(String command) {
+        return Integer.parseInt(command.substring(command.length() - 1));
+    }
+
+    private String[] getCommandArguments(String command) {
+        return command.split(" ", 2);
     }
 }
