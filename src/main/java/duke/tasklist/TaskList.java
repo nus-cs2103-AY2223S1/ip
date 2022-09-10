@@ -87,18 +87,21 @@ public class TaskList {
     public List<Task> getTaskList(){
         return this.taskList;
     }
+    public String taskOnSpecificDay(LocalDate d) {
+        String res = "";
+        for (int i = 0; i < this.taskList.size(); i++) {
+            if (this.taskList.get(i).isOnSpecificDay(d)) {
+                res += this.taskList.get(i).printTask() + "\n";
+            }
+        }
+        return res;
+    }
+
     public String getASpecificDay(String s) {
         try {
             String day = s.split(" ")[1];
             LocalDate d = LocalDate.parse(day);
-            String res="";
-            for (int i = 0; i < this.taskList.size(); i++) {
-                if (this.taskList.get(i).getDay() != null) {
-                    if (this.taskList.get(i).getDay().equals(d)) {
-                        res += this.taskList.get(i).printTask() + "\n";
-                    }
-                }
-            }
+            String res = taskOnSpecificDay(d);
             if (res.equals("")) {
                 return "You don't have tasks on this day.";
             } else {
@@ -108,13 +111,12 @@ public class TaskList {
             return "the input format is not correct " + e.getMessage();
         }
     }
-    public String find(String fullCommand) {
-        String target = fullCommand.split(" ",2)[1];
-        String res = "Here is the matching tasks in your list:\n";
+    public String findMatch(String target) {
+        String res = "";
         int count = 1;
         for (int i = 0; i < countTask(); i++) {
             String[] temp = this.taskList.get(i).printTask().split(" ");
-            for (int j = 0; j < temp.length; j++){
+            for (int j = 0; j < temp.length; j++) {
                 if (temp[j].equals(target)) {
                     res += count + "." + this.taskList.get(i).printTask() + "\n";
                     count ++;
@@ -125,6 +127,12 @@ public class TaskList {
         if (count == 1){
             res += "There is no match for your search.";
         }
+        return res;
+    }
+    public String find(String fullCommand) {
+        String target = fullCommand.split(" ",2)[1];
+        String res = "Here is the matching tasks in your list:\n";
+        res += findMatch(target);
         return res;
     }
 }

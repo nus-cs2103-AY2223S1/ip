@@ -25,10 +25,13 @@ public class MarkingCommand extends Command {
      */
     @Override
     public String execute(TaskList taskList, Storage storage) throws DukeException {
-        if (this.fullCommand.split(" ")[0].equals("mark")) {
-           return taskList.markAsDone(Integer.valueOf(this.fullCommand.split(" ")[1]) - 1, storage);
+        String typeDescription = this.fullCommand.split(" ")[0];
+        if (typeDescription.equals("mark")) {
+            int index = Integer.valueOf(this.fullCommand.split(" ")[1]) - 1;
+            return taskList.markAsDone(index, storage);
         } else {
-            return taskList.markUndone(Integer.valueOf(this.fullCommand.split(" ")[1]) - 1, storage);
+            int index = Integer.valueOf(this.fullCommand.split(" ")[1]) - 1;
+            return taskList.markUndone(index, storage);
         }
     }
 }

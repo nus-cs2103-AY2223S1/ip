@@ -21,7 +21,8 @@ public class DeadLine extends Task {
         } catch (IndexOutOfBoundsException ie) {
             throw (new DukeException("OOPS!!! The description of a deadline cannot be empty."));
         } try {
-            super.correctDescrition(description.split("by")[0].split(" ", 2)[1]);
+            String formattedDescription = description.split("by")[0].split(" ", 2)[1];
+            super.correctDescrition(formattedDescription);
             super.getFullDescription(description.split(" ",2)[1]);
             this.by = description.split("by")[1];
         } catch (IndexOutOfBoundsException ie) {

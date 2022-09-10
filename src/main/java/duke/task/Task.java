@@ -98,4 +98,14 @@ public class Task {
     public LocalDate getDay(){
         return this.day;
     }
+    public boolean isOnSpecificDay(LocalDate d) {
+        if (this.day == null) {
+            return false;
+        }
+        if (this.day.equals(d)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
