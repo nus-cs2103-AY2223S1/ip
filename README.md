@@ -14,7 +14,21 @@ There are 3 simple steps!
 3. Execute the jar format
    1. Ensure you're on the correct working directory 
    2. Entering the command `java -jar duke.jar` in the terminal 
-3. If the setup is correct, you should see a ![welcome message as follows](./WelcomeDuke.JPG):
+3. If the setup is correct, you should see a something like this : ![welcome message as follows](./WelcomeDuke.JPG)
+
+
+
+## Quick Start
+1. To view a list of commands, type `help` into the chatbox, a popup should appear with the relevant commands
+2. Some example commands you can try:
+    * `list`: Returns a list view of all contacts stored
+    * `delete 3`: Deletes the 3rd contact shown in the current app
+    * `todo wash the dishes`: Adds a todo, with the description to wash the dishes 
+    
+
+
+
+
 
 ## Using our commands 
 Enter the corresponding input as required! 
