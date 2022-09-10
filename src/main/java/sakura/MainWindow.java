@@ -43,7 +43,7 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     public void initialize() {
-        Background background = new Background(new BackgroundFill(Color.valueOf("B30047"), new CornerRadii(0), new Insets(0)));
+        Background background = new Background(new BackgroundFill(Color.valueOf("a93451"), new CornerRadii(0), new Insets(0)));
         Font font = new Font("Lucida Sans Typewriter Regular", 12);
         pane.setBackground(background);
         dialogContainer.setBackground(background);
