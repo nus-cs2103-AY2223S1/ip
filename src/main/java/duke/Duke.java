@@ -1,8 +1,5 @@
 package duke;
 
-import java.util.Scanner;
-
-
 public class Duke {
 
     private static Storage storage;

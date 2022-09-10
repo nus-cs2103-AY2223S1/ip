@@ -116,7 +116,7 @@ public class Task {
      *
      * @return A string representation of task to be saved in the hard disk.
      */
-    public String savedString() {
+    public String toSavedString() {
         if (!isDone) {
             return "GN<" + taskDescription + ">";
         } else {

@@ -73,7 +73,7 @@ public class ToDo extends Task {
     }
 
     @Override
-    public String savedString() {
+    public String toSavedString() {
         if (!this.getStatus()) {
             return "TN<" + this.getDescription() + ">";
         } else {

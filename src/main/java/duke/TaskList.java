@@ -69,7 +69,7 @@ public class TaskList {
         return t.markUndone();
     }
 
-    public String findMatchingTask(String keyword) {
+    public String findMatchingTasks(String keyword) {
 
         String matches = "";
 

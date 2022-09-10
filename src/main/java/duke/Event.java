@@ -97,7 +97,7 @@ public class Event extends Task {
      * @return A string representation of event to be saved in the hard disk.
      */
     @Override
-    public String savedString() {
+    public String toSavedString() {
         if (!this.getStatus()) {
             return "EN<" + this.getDescription() + ">" + "(" +
                     date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + ")" + "{" + time + "}" + "/n";

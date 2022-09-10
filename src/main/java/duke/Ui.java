@@ -27,7 +27,8 @@ public class Ui {
      * Outputs the greeting message when starting up the project.
      */
     public static String printGreeting() {
-        return "Hello! I'm KiwiQE :) \nWhat can I do for you? \n" + Duke.getTasks();
+        return "Hello! I'm KiwiQE :) \nWhat can I do for you? \n"
+                + Duke.getTasks();
     }
 
     /**
