@@ -1,7 +1,5 @@
 package commands;
 
-import java.util.Arrays;
-
 import dukeegg.Storage;
 import dukeegg.TaskList;
 import dukeegg.Ui;

@@ -10,7 +10,7 @@ public class Ui {
     private static final String INDENTATION = "  ";
 
     /**
-     * Prints the messages after adding a task, based on the task's fields.
+     * Prints the message after adding a task, based on the task's fields.
      *
      * @param task              The specified task.
      * @param numberOfTasksLeft The number of tasks left.
@@ -23,7 +23,7 @@ public class Ui {
     }
 
     /**
-     * Prints the messages after removing a task, based on the task's fields.
+     * Prints the message after removing a task, based on the task's fields.
      *
      * @param task              The specified task.
      * @param numberOfTasksLeft The number of tasks left.
@@ -36,7 +36,7 @@ public class Ui {
     }
 
     /**
-     * Prints the messages after marking a task as done, based on the task's fields.
+     * Prints the message after marking a task as done, based on the task's fields.
      *
      * @param task The specified task.
      * @return The formatted message.
@@ -47,7 +47,7 @@ public class Ui {
     }
 
     /**
-     * Prints the messages after marking a task as not done, based on the task's fields.
+     * Prints the message after marking a task as not done, based on the task's fields.
      *
      * @param task The specified task.
      * @return The formatted message.
@@ -57,11 +57,23 @@ public class Ui {
                 + INDENTATION + task;
     }
 
+    /**
+     * Prints the message after tagging a task with some tag.
+     *
+     * @param task The specified task.
+     * @return The formatted message.
+     */
     public String showTagTask(Task task) {
         return "OK, I've tagged this task:\n"
                 + INDENTATION + task;
     }
 
+    /**
+     * Prints the message after removing a tag from the task.
+     *
+     * @param task The specified task.
+     * @return The formatted message.
+     */
     public String showUntagTask(Task task) {
         return "OK, I've untagged this task:\n"
                 + INDENTATION + task;
