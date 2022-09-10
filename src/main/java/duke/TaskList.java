@@ -129,6 +129,21 @@ public class TaskList {
     }
 
     /**
+     * Searches for tasks in the tasklist containing the keyword.
+     * @param keyword Keyword to be searched in the tasks.
+     */
+    public void find(String keyword) {
+        System.out.println(SPACING + "Here are the matching tasks in your list:");
+        for (int i = 0; i < numTasks; i++) {
+            Task task = taskList.get(i);
+            String taskDescription = taskList.get(i).getTask();
+            if (taskDescription.contains(keyword)) {
+                System.out.println(SPACING + Integer.toString(i+1) + "." + task.toString());
+            }
+        }
+    }
+
+    /**
      * Prints the entire TaskList.
      */
     public void printList() {

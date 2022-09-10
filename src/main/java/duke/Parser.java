@@ -25,7 +25,8 @@ public class Parser {
 
     /**
      * Parses String inputs from the user and determines the appropriate method of TaskList to call upon to
-     * execute user requests. User instructions available include listing, marking and unmarking tasks, adding and deleting tasks.
+     * execute user requests. User instructions available include listing, marking and unmarking tasks, 
+     * adding and deleting tasks, and finding tasks.
      * @param request Takes in user requests as Strings.
      * @return Returns a boolean to let the Duke program know whether the user has given instructions to terminate.
      */
@@ -79,7 +80,15 @@ public class Parser {
             String[] deleteTask = request.split(" ");
             int taskIndex = Integer.parseInt(deleteTask[1]);
             taskList.deleteTask(taskIndex);
-        } else {                                               // Inappropriate input
+        }
+
+        else if (request.startsWith("find ")) {         // 7. Find tasks
+            String matchWith = request.replace("find ", "");
+            taskList.find(matchWith);
+        }
+
+        // Inappropriate input
+        else {
             System.out.println("    OOPS!!! I'm sorry, but I don't know what that means :-(\n");
         }
         return false;
