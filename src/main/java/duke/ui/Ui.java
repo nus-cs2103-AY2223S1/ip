@@ -12,7 +12,6 @@ public class Ui {
 
 
     private Scanner sc;
-//    private static final String DIVIDER = "\t-----------------------------------------------------";
 
     /**
      * A constructor for a Ui.
@@ -127,12 +126,5 @@ public class Ui {
             }
         }
         return str;
-    }
-
-    /**
-     * Displays a line divider for Ui cleanliness.
-     */
-    public void showDivider() {
-        System.out.println("\t-----------------------------------------------------");
     }
 }
