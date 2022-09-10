@@ -2,6 +2,7 @@ package tuna.command;
 
 import tuna.Storage;
 import tuna.TaskList;
+import tuna.TunaException;
 import tuna.Ui;
 import tuna.task.Task;
 
@@ -21,7 +22,6 @@ public class DeleteCommand extends Command {
     public DeleteCommand(int index) {
         super(CommandType.DELETE);
         this.index = index - 1;
-        assert this.index >= 0;
     }
 
     /**
@@ -31,7 +31,12 @@ public class DeleteCommand extends Command {
      * @param ui Ui object.
      * @param storage Storage object.
      */
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws TunaException {
+        if (index < 0 || index >= tasks.getTotalTasks()) {
+            throw new TunaException("Oops! Seems like the index you entered is out of range");
+        }
+        assert index >= 0;
+        assert index < tasks.getTotalTasks();
         Task deletedTask = tasks.getTask(index);
         tasks.deleteTask(index);
         return ui.deletedTaskMessage(deletedTask, tasks.getTotalTasks());

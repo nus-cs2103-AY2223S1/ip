@@ -2,6 +2,7 @@ package tuna.command;
 
 import tuna.Storage;
 import tuna.TaskList;
+import tuna.TunaException;
 import tuna.Ui;
 
 /**
@@ -20,7 +21,6 @@ public class MarkItemCommand extends Command {
     public MarkItemCommand(int index) {
         super(CommandType.MARK);
         this.index = index - 1;
-        assert this.index >= 0;
     }
 
     /**
@@ -29,8 +29,14 @@ public class MarkItemCommand extends Command {
      * @param tasks TaskList object.
      * @param ui Ui object.
      * @param storage Storage object.
+     * @throws TunaException Exception thrown when index provided is out of range.
      */
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws TunaException {
+        if (index < 0 || index >= tasks.getTotalTasks()) {
+            throw new TunaException("Oops! Seems like the index you entered is out of range");
+        }
+        assert index >= 0;
+        assert index < tasks.getTotalTasks();
         tasks.markItem(index);
         return ui.markTaskMessage(tasks.getTask(index));
     }

@@ -1,7 +1,6 @@
 package tuna.task;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import tuna.TunaException;
 
 /**
  * Represents a Deadline task.
@@ -12,9 +11,10 @@ public class Deadline extends TimeBasedTask {
      *
      * @param description the description of the task.
      * @param by the deadline of the task.
+     * @throws TunaException Exception thrown when the date and time provided is not formatted correctly.
      */
-    public Deadline(String description, String by) {
-        super(description, "D", LocalDateTime.parse(by, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+    public Deadline(String description, String by) throws TunaException {
+        super(description, "D", by);
     }
 
     /**

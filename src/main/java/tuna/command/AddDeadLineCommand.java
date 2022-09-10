@@ -42,8 +42,9 @@ public class AddDeadLineCommand extends Command {
      * @param tasks TaskList object.
      * @param ui Ui object.
      * @param storage Storage object.
+     * @throws TunaException Exception thrown when the date and time provided is not formatted correctly.
      */
-    public String execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws TunaException {
         tasks.addDeadLine(taskDescription, by);
         return ui.taskAddedMessage(tasks.getLatestTask(), tasks.getTotalTasks());
     }

@@ -3,6 +3,8 @@ package tuna.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import tuna.TunaException;
+
 /**
  * Represents a time based task. A TimeBasedTask object contains a LocalDateTime object indicating the date and time
  * of the task.
@@ -16,11 +18,19 @@ public abstract class TimeBasedTask extends Task {
      *
      * @param taskDescription description of the task.
      * @param taskType the type of the task.
-     * @param dateTime LocalDateTime object indicating the date and time of the task.
+     * @param stringRepresentationOfDateTime LocalDateTime object indicating the date and time of the task.
+     * @throws TunaException Exception thrown when the date and time provided is not formatted correctly.
      */
-    public TimeBasedTask(String taskDescription, String taskType, LocalDateTime dateTime) {
+    public TimeBasedTask(String taskDescription, String taskType, String stringRepresentationOfDateTime)
+            throws TunaException {
         super(taskDescription, taskType);
-        this.dateTime = dateTime;
+        try {
+            dateTime = LocalDateTime.parse(stringRepresentationOfDateTime,
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        } catch (java.time.format.DateTimeParseException e) {
+            throw new TunaException("Seems like you formatted the date and time wrongly, remember to format it as "
+                    + "such:\nyyyy-mm-dd hh:mm");
+        }
     }
 
     /**

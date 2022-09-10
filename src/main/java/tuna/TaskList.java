@@ -79,8 +79,9 @@ public class TaskList {
      *
      * @param taskDescription task description of the deadline task.
      * @param by deadline of the task.
+     * @throws TunaException Exception thrown when the date and time provided is not formatted correctly.
      */
-    public void addDeadLine(String taskDescription, String by) {
+    public void addDeadLine(String taskDescription, String by) throws TunaException {
         tasks.add(new Deadline(taskDescription, by));
     }
 
@@ -89,8 +90,9 @@ public class TaskList {
      *
      * @param taskDescription task description of the event task.
      * @param at start time of the event.
+     * @throws TunaException Exception thrown when the date and time provided is not formatted correctly.
      */
-    public void addEvent(String taskDescription, String at) {
+    public void addEvent(String taskDescription, String at) throws TunaException {
         tasks.add(new Event(taskDescription, at));
     }
 

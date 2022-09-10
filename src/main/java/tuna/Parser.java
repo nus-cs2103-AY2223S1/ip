@@ -56,16 +56,15 @@ public class Parser {
                 return new FindCommand(inputs);
             }
         }
-            switch (inputs[0]) {
-            case "todo":
-                return new AddTodoCommand(inputs);
-            case "deadline":
-                return new AddDeadLineCommand(inputs);
-            case "event":
-                return new AddEventCommand(inputs);
-            default:
-                throw new TunaException("Oops! Sorry! I do not know what that means");
-            }
-
+        switch (inputs[0]) {
+        case "todo":
+            return new AddTodoCommand(inputs);
+        case "deadline":
+            return new AddDeadLineCommand(inputs);
+        case "event":
+            return new AddEventCommand(inputs);
+        default:
+            throw new TunaException("Oops! Sorry! I do not know what that means");
+        }
     }
 }

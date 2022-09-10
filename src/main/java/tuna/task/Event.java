@@ -1,7 +1,6 @@
 package tuna.task;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import tuna.TunaException;
 
 /**
  * Represents an Event task.
@@ -12,9 +11,10 @@ public class Event extends TimeBasedTask {
      *
      * @param description the description of the event.
      * @param at the start time of the event.
+     * @throws TunaException Exception thrown when the date and time provided is not formatted correctly.
      */
-    public Event(String description, String at) {
-        super(description, "E", LocalDateTime.parse(at, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+    public Event(String description, String at) throws TunaException {
+        super(description, "E", at);
     }
 
     /**
