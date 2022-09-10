@@ -20,6 +20,7 @@ public abstract class Task {
 
     public void markAsDone() {
         isDone = true;
+        assert isDone == true : "Task should be marked as done.";
     }
 
     public void markAsUndone() {
