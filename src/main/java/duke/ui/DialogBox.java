@@ -37,9 +37,9 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
+        dialog.setFont(Font.font("Courier", 13));
         dialog.setPadding(new Insets(10));
         dialog.setText(text);
-        dialog.setFont(Font.font("Courier", 13));
 
         displayPicture.setImage(img);
         displayPicture.setFitHeight(50);
