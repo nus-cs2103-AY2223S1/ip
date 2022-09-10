@@ -1,14 +1,15 @@
 package duke.task;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 public class DeadlineTest {
     private static final String DEADLINE_DESCRIPTION = "return book";
-    private static final LocalDateTime DEADLINE_TIMING = LocalDateTime.parse("2022-09-10 11:11", Task.DATE_TIME_FORMATTER);
+    private static final LocalDateTime DEADLINE_TIMING = LocalDateTime.parse("2022-09-10 11:11",
+            Task.DATE_TIME_FORMATTER);
     private static final Deadline DEADLINE = new Deadline(DEADLINE_DESCRIPTION, DEADLINE_TIMING);
 
     @Test

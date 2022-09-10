@@ -1,11 +1,11 @@
 package duke.commands;
 
+import java.time.LocalDateTime;
+
 import duke.storage.Storage;
 import duke.task.Event;
 import duke.task.TaskList;
 import duke.ui.TextUi;
-
-import java.time.LocalDateTime;
 
 /**
  * Represents an event command
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";
 
-    private Event eventTask;
+    private final Event eventTask;
 
     /**
      * Creates a new instance of event command and event task.

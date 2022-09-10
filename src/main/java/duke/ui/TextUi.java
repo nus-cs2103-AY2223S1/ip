@@ -1,10 +1,11 @@
 package duke.ui;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import duke.task.Task;
 import duke.task.TaskList;
 
-import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * A TextUI class to deal with the interactions with the user.
@@ -38,18 +39,18 @@ public class TextUi {
      * Prints the welcome message with the Duke logo.
      */
     public void showWelcomeMessage() {
-         String logo = " ____        _        \n"
+        String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
 
-         String greetingMsg = "Hello! I'm duke.Duke\n"
+        String greetingMsg = "Hello! I'm duke.Duke\n"
                 + "What can I do for you?\n";
 
-         String welcomeMsg = logo + greetingMsg;
+        String welcomeMsg = logo + greetingMsg;
 
-         printTextWithDivider(welcomeMsg);
+        printTextWithDivider(welcomeMsg);
     }
 
     /**
@@ -76,9 +77,9 @@ public class TextUi {
      * @param taskList The list of tasks that the task is adding to.
      */
     public void showAddTaskMessage(Task task, TaskList taskList) {
-        String message =  "Got it. I've added this task:\n" +
-                "  " + task + "\n" +
-                "Now you have " + taskList.size() + " task(s) in the list.\n";
+        String message = "Got it. I've added this task:\n"
+                + "  " + task + "\n"
+                + "Now you have " + taskList.size() + " task(s) in the list.\n";
 
         printTextWithDivider(message);
     }
@@ -89,8 +90,8 @@ public class TextUi {
      * @param task The task to be marked as done.
      */
     public void showMarkTaskMessage(Task task) {
-        String message = "Nice! I've marked this as done:\n" +
-                    task + "\n";
+        String message = "Nice! I've marked this as done:\n"
+                + task + "\n";
         printTextWithDivider(message);
     }
 
@@ -100,8 +101,8 @@ public class TextUi {
      * @param task The task to be marked as undone.
      */
     public void showUnmarkTaskMessage(Task task) {
-        String message = "Ok, I've marked this task as not done yet:\n" +
-                    task + "\n";
+        String message = "Ok, I've marked this task as not done yet:\n"
+                + task + "\n";
         printTextWithDivider(message);
     }
 
@@ -112,9 +113,9 @@ public class TextUi {
      * @param taskList The task list that the task is being removed from.
      */
     public void showRemoveTaskMessage(Task task, TaskList taskList) {
-        String message = "Noted. I've removed this task:\n" +
-                "  " + task + "\n" +
-                "Now you have " + taskList.size() + " task(s) in the list.\n";
+        String message = "Noted. I've removed this task:\n"
+                + "  " + task + "\n"
+                + "Now you have " + taskList.size() + " task(s) in the list.\n";
         printTextWithDivider(message);
     }
 
