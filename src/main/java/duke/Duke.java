@@ -98,7 +98,7 @@ public class Duke {
     }
 
     /**
-     * The method used to run the Duke program from the command line.
+     * Runs the Duke program.
      *
      * @param args The command line arguments.
      */
