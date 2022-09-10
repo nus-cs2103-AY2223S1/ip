@@ -4,29 +4,28 @@ import duke.Storage;
 import duke.Ui;
 import duke.exception.DukeException;
 import duke.exception.DukeOutOfBoundException;
-import duke.task.Task;
 import duke.task.TaskList;
-
 /**
- * The UnmarkCommand class deletes a task from TaskList.
+ * The BatchDescDeleteCommand class deletes Task with specified description.
  */
-public class UnmarkCommand extends Command {
-    private int index;
+public class BatchDescDeleteCommand extends Command {
+    private String description;
 
     /**
-     * Constructor for a unmarkCommand.
+     * Constructor for a BatchDescDeleteCommand.
      *
-     * @param index index of Task to be unmarked.
+     * @param description Description specified
      */
-    public UnmarkCommand(int index) {
-        this.index = index;
+    public BatchDescDeleteCommand(String description) {
+        this.description = description;
     }
 
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         try {
-            Task unmarkedTask = taskList.unmark(index);
-            String message = ui.printUnmarkTask(unmarkedTask) + '\n';
+            taskList.batchDescDelete(description);
+            String message = ui.printList(taskList.toString()) + '\n';
+            message += ui.printSizeOfList(taskList.size());
             storage.save(taskList);
             return message;
         } catch (DukeOutOfBoundException e) {

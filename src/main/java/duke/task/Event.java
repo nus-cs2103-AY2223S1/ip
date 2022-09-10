@@ -12,8 +12,21 @@ import java.time.format.DateTimeFormatter;
  * @author Tan Jia Rong
  */
 public class Event extends Task {
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy MMM dd hh:mma");
+
     /** Stores the timing of the Event */
     protected LocalDateTime at;
+
+    /**
+     * Constructor for Dummy Event.
+     *
+     */
+    public Event() {
+        super();
+
+        LocalDateTime dummyAt = LocalDateTime.now();
+        this.at = dummyAt;
+    }
 
     /**
      * Constructor for Event.
@@ -24,6 +37,9 @@ public class Event extends Task {
     public Event(String description, LocalDateTime at) {
         super(description);
         this.at = at;
+
+        //check the class invariant
+        assert hasValidDateTime() : "Construction failed - Invalid LocalDateTime.";
     }
 
     /**
@@ -36,6 +52,18 @@ public class Event extends Task {
     public Event(String description, boolean isDone, LocalDateTime at) {
         super(description, isDone);
         this.at = at;
+
+        //check the class invariant
+        assert hasValidDateTime() : "Construction failed - Invalid LocalDateTime.";
+    }
+
+    /**
+     * Returns validity of at.
+     *
+     * @return true if valid at, false otherwise.
+     */
+    private boolean hasValidDateTime() {
+        return this.at != null;
     }
 
     /**
@@ -44,8 +72,8 @@ public class Event extends Task {
      * @return Date and Time of Event.
      */
     public String printDateTime() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY MMM dd hh:mma");
-        return at.format(formatter);
+        String eventDate = at.format(DATE_TIME_FORMATTER);
+        return eventDate;
     }
 
     /**

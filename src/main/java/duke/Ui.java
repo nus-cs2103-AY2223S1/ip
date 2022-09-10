@@ -12,26 +12,13 @@ import duke.task.Task;
  * @author Tan Jia Rong
  */
 public class Ui {
-    private static final String BOT_NAME = "Duke";
-
-    /**
-     * Return greeting message.
-     *
-     * @return Greeting message.
-     */
-    public String greetings() {
-        String greet = "Hello! I'm the Magical ChatBot, " + BOT_NAME + "!\n"
-                + "What can I help you with today?";
-
-        return greet;
-    }
 
     /**
      * Return farewell message.
      *
      * @return Farewell message.
      */
-    public String farewell() {
+    public String bidFarewell() {
         return "Bye Bye! Hope to see you again soon!\n";
     }
 
@@ -42,6 +29,7 @@ public class Ui {
      * @return Message on task completion.
      */
     public String printMarkTask(Task task) {
+        assert isValidTask(task) : "printMarkTask Failed: Task is null";
         return "Nice! I've marked this task as done:\n" + task;
     }
 
@@ -52,6 +40,7 @@ public class Ui {
      * @return Message on task completion undo-ed.
      */
     public String printUnmarkTask(Task task) {
+        assert isValidTask(task) : "printUnmarkTask Failed: Task is null";
         return "Ok! I've marked this task as not done yet:\n" + task;
     }
 
@@ -72,6 +61,7 @@ public class Ui {
      * @return message on current TaskList.
      */
     public String printList(String tasks) {
+        assert isValidTasks(tasks) : "printList Failed: List of tasks is empty";
         return "Here are the tasks in your list: \n" + tasks;
     }
 
@@ -82,6 +72,7 @@ public class Ui {
      * @return message on matching tasks.
      */
     public String printMatchedList(String tasks) {
+        assert isValidTasks(tasks) : "printMatchedTask Failed: List of tasks is empty";
         return "Here are the matching tasks in your list: \n" + tasks;
     }
 
@@ -92,6 +83,7 @@ public class Ui {
      * @return Task addition message.
      */
     public String printAddTask(Task task) {
+        assert isValidTask(task) : "printAddTask Failed: Task is null";
         return "Got it. I've added this task:\n" + task;
     }
 
@@ -102,13 +94,14 @@ public class Ui {
      * @return Task deletion message.
      */
     public String printDeleteTask(Task task) {
+        assert isValidTask(task) : "printDeleteTask Failed: Task is null";
         return "Noted. I've removed this task:\n" + task;
     }
 
     /**
-     * prints help message.
+     * Prints help message.
      *
-     * @returns List of available commands.
+     * @return List of available commands.
      */
     public String printHelpList() {
         String listHelpMessage = "List: List all tasks\n"
@@ -135,13 +128,13 @@ public class Ui {
         StringBuilder sb = new StringBuilder();
 
         sb.append("Here are the list of available commands\n" + '\n');
-        sb.append(listHelpMessage + '\n');
-        sb.append(markHelpMessage + '\n');
-        sb.append(unmarkHelpMessage + '\n');
-        sb.append(deleteHelpMessage + '\n');
-        sb.append(todoHelpMessage + '\n');
-        sb.append(deadlineHelpMessage + '\n');
-        sb.append(eventHelpMessage + '\n');
+        sb.append(listHelpMessage).append('\n');
+        sb.append(markHelpMessage).append('\n');
+        sb.append(unmarkHelpMessage).append('\n');
+        sb.append(deleteHelpMessage).append('\n');
+        sb.append(todoHelpMessage).append('\n');
+        sb.append(deadlineHelpMessage).append('\n');
+        sb.append(eventHelpMessage).append('\n');
 
         return sb.toString();
     }
@@ -153,6 +146,37 @@ public class Ui {
      * @return Error message
      */
     public String printErr(String message) {
+        assert isValidMessage(message) : "printErr Failed: Message is empty";
         return message;
+    }
+
+    /**
+     * Returns validity of a task
+     *
+     * @param task The specified task
+     * @return true if valid task, false otherwise.
+     */
+    private boolean isValidTask(Task task) {
+        return task != null;
+    }
+
+    /**
+     * Returns validity of the list of tasks
+     *
+     * @param tasks The specified list of tasks
+     * @return true if valid list of tasks, false otherwise.
+     */
+    private boolean isValidTasks(String tasks) {
+        return tasks != null;
+    }
+
+    /**
+     * Returns validity of the message
+     *
+     * @param message The specified message
+     * @return true if valid message, false otherwise.
+     */
+    private boolean isValidMessage(String message) {
+        return !message.isEmpty();
     }
 }

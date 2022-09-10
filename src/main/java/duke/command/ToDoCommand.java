@@ -2,6 +2,7 @@ package duke.command;
 
 import duke.Storage;
 import duke.Ui;
+import duke.exception.DukeException;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.ToDo;
@@ -22,7 +23,7 @@ public class ToDoCommand extends Command {
     }
 
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         Task todo = new ToDo(description);
         taskList.add(todo);
 

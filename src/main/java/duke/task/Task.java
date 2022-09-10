@@ -1,5 +1,7 @@
 package duke.task;
 
+import java.time.LocalDateTime;
+
 /**
  * A Task class that stores the Description and State of the Task.
  *
@@ -8,11 +10,22 @@ package duke.task;
  * @author Tan Jia Rong
  */
 public class Task {
+    private static final String ICON_DONE = "X";
+    private static final String ICON_NOTDONE = " ";
     /** Stores the description of the task */
     protected String description;
     /** Stores the status of the task */
     protected boolean isDone;
 
+
+    /**
+     * Constructor for Dummy Task.
+     *
+     */
+    public Task() {
+        this.description = "Dummy Description";
+        this.isDone = false;
+    }
 
     /**
      * Constructor for Task.
@@ -22,6 +35,9 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+
+        //check the class invariant
+        assert hasValidState() : "Construction failed - not valid state.";
     }
 
     /**
@@ -33,6 +49,9 @@ public class Task {
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
+
+        //check the class invariant
+        assert hasValidState() : "Construction failed - not valid state.";
     }
 
     /**
@@ -52,25 +71,7 @@ public class Task {
      */
     public String getStatusIcon() {
         // mark done task with X
-        return (this.isDone ? "X" : " ");
-    }
-
-    /**
-     * Gets status of the Task.
-     *
-     * @return Status of the Task.
-     */
-    public boolean getIsDone() {
-        return this.isDone;
-    }
-
-    /**
-     * Gets date of Task.
-     *
-     * @return Date of Task.
-     */
-    public String getDate() {
-        return "Not Applicable";
+        return (this.isDone ? ICON_DONE : ICON_NOTDONE);
     }
 
     /**
@@ -97,12 +98,34 @@ public class Task {
     }
 
     /**
+     * Implements the class invariant.
+     *
+     * Perform all checks on the state of the object.
+     * One may assert that this method returns true at the end
+     * of every public method.
+     * @return true if valid State, false otherwise.
+     */
+    private boolean hasValidState() {
+        return isValidDescription(this.description);
+    }
+
+    /**
+     * Returns validity of description.
+     *
+     * @param description The description of the task.
+     * @return true if valid description, false otherwise.
+     */
+    private boolean isValidDescription(String description) {
+        return !description.isEmpty();
+    }
+
+    /**
      * Stringify task for storage.
      *
      * @return a string representing the task
      */
     public String stringify() {
-        return String.format("%s | %d", this.description, this.isDone ? 1 : 0);
+        return String.format("%s | %s", this.description, getStatusIcon());
     }
 
     /**

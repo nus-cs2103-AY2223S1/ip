@@ -38,6 +38,8 @@ public class Storage {
     public Storage(String filePath) {
         this.filePath = filePath;
         this.file = new File(this.filePath);
+
+        assert hasValidState() : "Construction Failed: Invalid state";
     }
 
     /**
@@ -45,38 +47,13 @@ public class Storage {
      *
      * @param taskList The List of Task to write from.
      */
-    public void save(TaskList taskList) {
-        // Create Directory or File if it does not exist
-        try {
-            if (!this.file.exists()) {
-                File directory = new File(this.file.getParent());
-
-                if (!directory.exists()) {
-                    directory.mkdirs();
-                }
-
-                this.file.createNewFile();
-            }
-        } catch (IOException e) {
-            System.out.println("Exception Occurred: " + e.getMessage());
-        }
-
+    public void save(TaskList taskList) throws DukeException {
         // Write into File
         try {
-            FileWriter fileWriter = new FileWriter(this.file.getAbsoluteFile(), false);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-
-            List<Task> tasks = taskList.getTasks();
-
-            for (Task task : tasks) {
-                String data = task.stringify();
-                bufferedWriter.write(data);
-                bufferedWriter.newLine();
-            }
-
-            bufferedWriter.close();
-        } catch (IOException e) {
-            System.out.println("Hmm... Error while saving your data to file");
+            makeFileIfDoesNotExist();
+            writeToFile(taskList);
+        } catch (DukeException e) {
+            throw new DukeException("Error Saving Tasks: " + e.getMessage());
         }
     }
 
@@ -84,13 +61,96 @@ public class Storage {
      * Loads tasks from save file.
      */
     public List<Task> load() throws DukeException {
-        List<Task> tasks = new ArrayList<>();
-
         if (!this.file.exists()) {
-            System.out.println("Save file does not exist");
-            return tasks;
+            throw new DukeException("Failed to load File: Save file does not exist");
         }
 
+        try {
+            List<Task> tasks = new ArrayList<>();
+            readFromFile(tasks);
+
+            return tasks;
+        } catch (DukeException e) {
+            throw new DukeException("Failed to Load File: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Creates Directory if it does not exist
+     *
+     * @return true if directory exists or is created, false otherwise.
+     * @throws DukeException Exception thrown when directory could not be created.
+     */
+    private boolean makeDirectoryIfDoesNotExist() throws DukeException {
+        try {
+            File directory = new File(this.file.getParent());
+            boolean isDirectoryCreated = directory.exists();
+
+            if (!isDirectoryCreated) {
+                boolean isSuccess = directory.mkdirs();
+                return isSuccess;
+            } else {
+                return true;
+            }
+        } catch (SecurityException e) {
+            throw new DukeException("Insufficient Permission to create and read file");
+        }
+    }
+
+    /**
+     * Creates File in directory if it does not exist.
+     *
+     * @return True if file exist or is created, false otherwise.
+     * @throws DukeException Exception thrown when file could not be created.
+     */
+    private boolean makeFileIfDoesNotExist() throws DukeException {
+        try {
+            makeDirectoryIfDoesNotExist();
+
+            boolean isFileCreated = this.file.exists();
+
+            if (!isFileCreated) {
+                boolean isSuccess = this.file.createNewFile();
+                return isSuccess;
+            } else {
+                return true;
+            }
+        } catch (IOException e) {
+            throw new DukeException("Cant create Save File.");
+        }
+    }
+
+    /**
+     * Writes data into save file.
+     *
+     * @param taskList The list which data is read from.
+     * @throws DukeException Exception thrown when data could not be saved.
+     */
+    private void writeToFile(TaskList taskList) throws DukeException {
+        try {
+            FileWriter fileWriter = new FileWriter(this.file.getAbsoluteFile(), false);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            List<Task> tasks = taskList.getTasks();
+
+            for (Task task : tasks) {
+                String saveData = task.stringify();
+                bufferedWriter.write(saveData);
+                bufferedWriter.newLine();
+            }
+
+            bufferedWriter.close();
+        } catch (IOException e) {
+            throw new DukeException("Failure writing data to file");
+        }
+    }
+
+    /**
+     * Reads save data into list of tasks.
+     * @param tasks The list where data is stored.
+     * @throws DukeException Exception thrown when data is unreadable.
+     */
+    private void readFromFile(List<Task> tasks) throws DukeException {
         try {
             FileReader fileReader = new FileReader(this.file.getAbsoluteFile());
             BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -98,31 +158,101 @@ public class Storage {
             String line = bufferedReader.readLine();
 
             while (line != null) {
+                String[] taskData = line.split(" \\| ");
+                String type = taskData[0];
 
-                String[] arr = line.split(" \\| ");
-                String type = arr[0];
                 switch (type) {
                 case "T":
-                    tasks.add(new ToDo(arr[1], arr[2].equals("1")));
+                    addTodo(tasks, taskData);
                     break;
                 case "E":
-                    tasks.add(new Event(arr[1], arr[2].equals("1"), LocalDateTime.parse(arr[3])));
+                    addEvent(tasks, taskData);
                     break;
                 case "D":
-                    tasks.add(new Deadline(arr[1], arr[2].equals("1"), LocalDateTime.parse(arr[3])));
+                    addDeadline(tasks, taskData);
                     break;
                 default:
-                    // Does Nothing
+                    throw new DukeException("Invalid String in load file.");
                 }
 
                 line = bufferedReader.readLine();
             }
 
             bufferedReader.close();
-
-            return tasks;
         } catch (IOException | DateTimeParseException e) {
             throw new DukeException("Invalid String in load file.");
         }
+    }
+
+    /**
+     * Implements the class invariant.
+     *
+     * Perform all checks on the state of the object.
+     * One may assert that this method returns true at the end
+     * of every public method.
+     * @return true if valid State, false otherwise.
+     */
+    private boolean hasValidState() {
+        return isValidFilePath(this.filePath) && isValidFile(this.file);
+    }
+
+    /**
+     * Returns validity of filePath.
+     *
+     * @param filePath The filePath to store Save File.
+     * @return true if valid filePath, false otherwise.
+     */
+    private boolean isValidFilePath(String filePath) {
+        return !filePath.isEmpty();
+    }
+
+    /**
+     * Returns validity of File.
+     *
+     * @param file The Save File.
+     * @return true if valid file, false otherwise.
+     */
+    private boolean isValidFile(File file) {
+        return file != null;
+    }
+
+    /**
+     * Adds Deadline into tasks when reading from save file.
+     * @param tasks The list that Deadline is added to.
+     * @param taskData The Data read from save file.
+     */
+    private void addDeadline(List<Task> tasks, String[] taskData) {
+        String description = taskData[1];
+        String doneStatus = taskData[2];
+        String dateTime = taskData[3];
+        LocalDateTime dueDate = LocalDateTime.parse(dateTime);
+        Deadline deadlineTask = new Deadline(description, doneStatus.equals("X"), dueDate);
+        tasks.add(deadlineTask);
+    }
+
+    /**
+     * Adds Event into tasks when reading from save file.
+     * @param tasks The list that Event is added to.
+     * @param taskData The Data read from save file.
+     */
+    private void addEvent(List<Task> tasks, String[] taskData) {
+        String description = taskData[1];
+        String doneStatus = taskData[2];
+        String dateTime = taskData[3];
+        LocalDateTime eventDate = LocalDateTime.parse(dateTime);
+        Event eventTask = new Event(description, doneStatus.equals("X"), eventDate);
+        tasks.add(eventTask);
+    }
+
+    /**
+     * Adds Todo into tasks when reading from save file.
+     * @param tasks The list that Todo is added to.
+     * @param taskData The Data read from save file.
+     */
+    private void addTodo(List<Task> tasks, String[] taskData) {
+        String description = taskData[1];
+        String doneStatus = taskData[2];
+        ToDo toDoTask = new ToDo(description, doneStatus.equals("X"));
+        tasks.add(toDoTask);
     }
 }

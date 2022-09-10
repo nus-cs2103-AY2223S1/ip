@@ -1,7 +1,6 @@
 package duke;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import duke.command.Command;
 import duke.exception.DukeException;
@@ -18,14 +17,10 @@ import duke.task.TaskList;
  * @author Tan Jia Rong
  */
 public class Duke {
-    // Location of save file
-    private static final String SAVE_LOCATION = "./data/data.txt";
-
     // Initialise variables
-    private Scanner sc = new Scanner(System.in);
-    private TaskList tasks;
-    private Storage storage;
     private Ui ui;
+    private Storage storage;
+    private TaskList tasks;
 
     /**
      * Constructor for ChatBot, Duke.
@@ -41,41 +36,76 @@ public class Duke {
             ui.printErr(e.getMessage());
             this.tasks = new TaskList(new ArrayList<>());
         }
+        assert hasValidState() : "Construction Failure: Invalid State";
     }
 
     /**
-     * Executes the ChatBot Program.
+     * Returns a list of String of max size 2 to MainWindow.
+     * String[0] stores response to the user.
+     * String[1] stores the state of the program, where
+     * "0" = Program should not quit after this.
+     * "1" = Program should quit after this.
+     * @param input user input
+     * @return a list of String of size 2
      */
-    public void run() {
-        // Greets User
-        System.out.println(ui.greetings());
-        boolean isExit = false;
+    public String[] getResponse(String input) {
 
-        String command = this.sc.next();
-        String description = this.sc.nextLine();
+        String[] response;
 
-        while (!isExit) {
-            try {
-                Command c = Parser.parse(command, description, tasks);
-                System.out.println(c.execute(this.tasks, this.ui, this.storage));
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                System.out.println(ui.printErr(e.getMessage()));
-            } finally {
-                command = sc.next();
-                description = sc.nextLine();
-            }
+        try {
+            Command command = Parser.parse(input);
+
+            String message = command.execute(tasks, ui, storage);
+            String exitStatus = command.isExit() ? "1" : "0";
+            response = new String[]{message, exitStatus};
+            return response;
+        } catch (DukeException e) {
+            String message = ui.printErr(e.getMessage());
+            String exitStatus = "0";
+            response = new String[]{message, exitStatus};
+            return response;
         }
     }
 
     /**
-     * Returns the Duke ChatBot.
+     * Implements the class invariant.
      *
-     * @param args arguments (if any).
+     * Perform all checks on the state of the object.
+     * One may assert that this method returns true at the end
+     * of every public method.
+     * @return true if valid State, false otherwise.
      */
-    public static void main(String[] args) {
-        // Initialise variables
-        Duke duke = new Duke(SAVE_LOCATION);
-        duke.run();
+    private boolean hasValidState() {
+        return isValidUi(this.ui) && isValidStorage(this.storage) && isValidTaskList(this.tasks);
+    }
+
+    /**
+     * Returns validity of TaskList.
+     *
+     * @param tasks The specified TaskList.
+     * @return true if valid TaskList, false otherwise.
+     */
+    private boolean isValidTaskList(TaskList tasks) {
+        return tasks != null;
+    }
+
+    /**
+     * Returns validity of Storage.
+     *
+     * @param storage The specified Storage.
+     * @return true if valid Storage, false otherwise.
+     */
+    private boolean isValidStorage(Storage storage) {
+        return storage != null;
+    }
+
+    /**
+     * Returns validity of Ui.
+     *
+     * @param ui The specified Ui.
+     * @return true if valid Ui, false otherwise.
+     */
+    private boolean isValidUi(Ui ui) {
+        return ui != null;
     }
 }

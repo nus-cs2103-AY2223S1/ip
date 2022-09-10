@@ -11,8 +11,21 @@ import java.time.format.DateTimeFormatter;
  * @author Tan Jia Rong
  */
 public class Deadline extends Task {
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy MMM dd hh:mma");
+
     /** Stores the due date of the Deadline. */
     protected LocalDateTime by;
+
+    /**
+     * Constructor for Dummy Deadline.
+     *
+     */
+    public Deadline() {
+        super();
+
+        LocalDateTime dummyBy = LocalDateTime.now();
+        this.by = dummyBy;
+    }
 
     /**
      * Constructor for Deadline.
@@ -23,10 +36,13 @@ public class Deadline extends Task {
     public Deadline(String description, LocalDateTime by) {
         super(description);
         this.by = by;
+
+        //check the class invariant
+        assert hasValidDateTime() : "Construction failed - Invalid LocalDateTime.";
     }
 
     /**
-     * Constructor for Deadline.
+     * Constructor for Deadline given completeness of task.
      *
      * @param description Description of the Deadline.
      * @param isDone Completeness of Deadline.
@@ -35,6 +51,18 @@ public class Deadline extends Task {
     public Deadline(String description, boolean isDone, LocalDateTime by) {
         super(description, isDone);
         this.by = by;
+
+        //check the class invariant
+        assert hasValidDateTime() : "Construction failed - Invalid LocalDateTime.";
+    }
+
+    /**
+     * Returns validity of by.
+     *
+     * @return true if valid by, false otherwise.
+     */
+    private boolean hasValidDateTime() {
+        return this.by != null;
     }
 
     /**
@@ -43,8 +71,8 @@ public class Deadline extends Task {
      * @return Date and Time of Deadline.
      */
     public String printDateTime() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY MMM dd hh:mma");
-        return by.format(formatter);
+        String dueDate = by.format(DATE_TIME_FORMATTER);
+        return dueDate;
     }
 
     /**
