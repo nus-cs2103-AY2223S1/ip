@@ -6,8 +6,8 @@ import task.Task;
 /**
  * Manage all interactions between Duke and UserInputHistory FILE storage.
  */
-public class TaskList<T extends Task> {
-    private final ArrayList<T> userInputHistoryList = new ArrayList<>();
+public class TaskList {
+    private final ArrayList userInputHistoryList = new ArrayList();
 
     /**
      * Adds Task to list.

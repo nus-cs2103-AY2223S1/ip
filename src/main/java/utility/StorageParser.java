@@ -34,8 +34,6 @@ public class StorageParser {
         String[] dateAndDescription;
         LocalDate date;
         Task t;
-        Deadline d;
-        Event e;
         switch(type) {
         case 'T':
             t = new Task(line.substring(START_OF_DESCRIPTION_IN_TASK));
@@ -46,23 +44,23 @@ public class StorageParser {
         case 'D':
             dateAndDescription = getDateAndDescription(line);
             date = LocalDate.parse(dateAndDescription[DATE]);
-            d = new Deadline(dateAndDescription[DESCRIPTION], date);
+            t = new Deadline(dateAndDescription[DESCRIPTION], date);
             if (isMarked) {
-                d.markAsDone();
+                t.markAsDone();
             }
-            return d;
+            return t;
         case 'E':
             dateAndDescription = getDateAndDescription(line);
             date = LocalDate.parse(dateAndDescription[DATE]);
-            e = new Event(dateAndDescription[DESCRIPTION], date);
+            t = new Event(dateAndDescription[DESCRIPTION], date);
             if (isMarked) {
-                e.markAsDone();
+                t.markAsDone();
             }
-            return e;
+            return t;
         default:
             return null;
-
         }
+
     }
 
     private static String[] getDateAndDescription(String line) {
