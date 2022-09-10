@@ -17,7 +17,7 @@ public class Event extends Task {
      */
     public Event(String taskName, String time) {
         super(taskName);
-        this.taskName  = taskName;
+        this.taskName = taskName;
         this.time = time;
     }
 

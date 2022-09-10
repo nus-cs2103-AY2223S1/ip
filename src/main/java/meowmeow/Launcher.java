@@ -1,7 +1,6 @@
 package meowmeow;
 
 import javafx.application.Application;
-import meowmeow.Meowmeow;
 
 /**
  * A launcher class to workaround classpath issues.

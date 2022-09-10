@@ -63,7 +63,7 @@ public class TaskList {
                 numOfInputs += 1;
 
                 return "(=^-w-^=) " + t + " has been added to your task list!\n"
-                + "You now have " + numOfInputs + " tasks >w<";
+                    + "You now have " + numOfInputs + " tasks >w<";
             }
         } catch (MeowmeowException e) {
             return e.toString();
