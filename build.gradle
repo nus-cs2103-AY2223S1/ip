@@ -49,7 +49,7 @@ test {
 }
 
 application {
-    mainClassName = "tuna.Tuna"
+    mainClassName = "tuna.gui.Launcher"
 }
 
 shadowJar {

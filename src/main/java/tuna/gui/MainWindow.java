@@ -40,7 +40,7 @@ public class MainWindow extends AnchorPane {
     public void setTuna(Tuna d) throws TunaException {
         tuna = d;
         dialogContainer.getChildren().addAll(
-                DialogBox.getTunaDialog(tuna.initialise(), tunaImage)
+                TunaDialogBox.getTunaDialog(tuna.initialise(), tunaImage)
         );
     }
 
@@ -53,8 +53,8 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         String response = tuna.getResponse(input);
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getTunaDialog(response, tunaImage)
+                UserDialogBox.getUserDialog(input, userImage),
+                TunaDialogBox.getTunaDialog(response, tunaImage)
         );
         userInput.clear();
     }
