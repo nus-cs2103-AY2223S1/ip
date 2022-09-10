@@ -9,7 +9,8 @@ public class Deadline extends Task {
     private final LocalDateTime deadline;
 
     /**
-     * Constructs a deadline with some description and a datetime to indicate the deadline.
+     * Constructs a deadline with description, a boolean to indicate isDone, and a datetime to indicate the
+     * deadline.
      *
      * @param description The specified description.
      * @param isDone      The boolean indicating whether the task is done.
@@ -19,6 +20,20 @@ public class Deadline extends Task {
         super(description, isDone);
         this.deadline = deadline;
         this.taskType = TaskType.D;
+    }
+
+    /**
+     * Constructs a deadline with description, a boolean to indicate isDone, a datetime to indicate the
+     * deadline, and a tag.
+     *
+     * @param description The specified description.
+     * @param isDone      The boolean indicating whether the task is done.
+     * @param tag         The specified tag.
+     * @param deadline    The specified datetime for the deadline.
+     */
+    public Deadline(String description, boolean isDone, String tag, LocalDateTime deadline) {
+        this(description, isDone, deadline);
+        this.tag = tag;
     }
 
     public String getDeadline() {

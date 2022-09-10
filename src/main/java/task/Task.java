@@ -17,18 +17,61 @@ public abstract class Task {
 
     protected final String description;
     protected boolean isDone;
+    protected String tag;
     protected TaskType taskType;
 
     /**
-     * Constructor for a task that takes in some description to identify the task and a boolean which determines
-     * whether they are done or not, which is only called in the different task types;
+     * Constructor of a task that takes in a description to identify the task.
+     *
+     * @param description The specified description.
+     */
+    public Task(String description) {
+        this.description = description;
+    }
+
+    /**
+     * Constructor for a task that takes in description to identify the task, and a boolean which determines
+     * whether they are done or not, which is only called in the different task types.
      *
      * @param description The specified description.
      * @param isDone      The boolean indicating whether the task is done.
      */
     public Task(String description, boolean isDone) {
-        this.description = description;
+        this(description);
         this.isDone = isDone;
+    }
+
+    /**
+     * Constructor for a task that takes in description to identify the task, a boolean which determines
+     * whether they are done or not, which is only called in the different task types, and a tag.
+     *
+     * @param description The specified description.
+     * @param isDone      The boolean indicating whether the task is done.
+     * @param tag         The specified tag.
+     */
+    public Task(String description, boolean isDone, String tag) {
+        this(description, isDone);
+        this.tag = tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    /**
+     * Sets the tag to be null.
+     */
+    public void clearTag() {
+        this.tag = null;
+    }
+
+    /**
+     * Returns whether the tag is null.
+     *
+     * @return true if the tag is null, false otherwise.
+     */
+    public boolean hasTag() {
+        return this.tag != null;
     }
 
     /**
@@ -65,22 +108,27 @@ public abstract class Task {
     }
 
     /**
-     * Converts the task into a String where each field is delimited by some
-     * delimiter.
+     * Converts the task into a String where each field is delimited by some delimiter.
      *
      * @param delimiter The specified delimiter.
      * @return The values of the task fields delimited by delimiter.
      */
     public String encode(String delimiter) {
-        return this.taskType + delimiter + (this.isDone ? "1" : "0") + delimiter + this.description;
+        return this.taskType + delimiter
+                + (this.isDone ? "1" : "0") + delimiter
+                + this.tag + delimiter
+                + this.description;
     }
 
     /**
-     * Returns the string formatted display of a task, with its status icon, task
-     * type, and description.
+     * Returns the string formatted display of a task, with its status icon, task type, tag if it exists, and
+     * description.
      */
     @Override
     public String toString() {
-        return "[" + this.taskType + "] [" + this.getStatusIcon() + "] " + this.description;
+        return "[" + this.taskType + "] "
+                + "[" + this.getStatusIcon() + "] "
+                + (this.hasTag() ? "[#" + this.tag + "] " : "")
+                + this.description;
     }
 }

@@ -13,6 +13,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 
 /**
  * An example of a custom control using FXML.
@@ -36,7 +40,10 @@ public class DialogBox extends HBox {
         }
 
         this.dialog.setText(text);
+        this.dialog.setFont(Font.font(java.awt.Font.MONOSPACED, FontWeight.BOLD,
+                FontPosture.REGULAR, 12));
         this.displayPicture.setImage(img);
+        this.dialog.setMinHeight(Region.USE_PREF_SIZE);
     }
 
     public static DialogBox getUserDialog(String text, Image img) {

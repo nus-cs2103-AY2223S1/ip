@@ -8,22 +8,22 @@ import exceptions.InvalidTaskIndexException;
 import task.Task;
 
 /**
- * Marks the specified task as done,
+ * Removes the tag of a task.
  */
-public class MarkCommand extends Command {
+public class UntagCommand extends Command {
     private final String[] inputStrings;
 
     /**
-     * Constructs a mark command, which marks the task with the input index as done.
+     * Constructs an untag command, which removes the tag of the task at the specified task index.
      *
      * @param inputStrings The specified input strings.
      */
-    public MarkCommand(String[] inputStrings) {
+    public UntagCommand(String[] inputStrings) {
         this.inputStrings = inputStrings;
     }
 
     /**
-     * Marks the task as complete.
+     * Removes the tag of a task.
      * <p>
      * {@inheritDoc}
      */
@@ -33,8 +33,9 @@ public class MarkCommand extends Command {
             int taskIndex = Integer.parseInt(inputStrings[1].trim()) - 1;
 
             Task task = tasks.getTask(taskIndex);
-            task.markTask();
-            return ui.showMarkTask(task);
+            task.clearTag();
+
+            return ui.showUntagTask(task);
         } catch (NumberFormatException | IndexOutOfBoundsException exception) {
             throw new InvalidTaskIndexException();
         }

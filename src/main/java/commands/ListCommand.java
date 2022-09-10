@@ -17,9 +17,6 @@ public class ListCommand extends Command {
         return ui.showCurrentTasks(tasks);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public boolean isExit() {
         return false;
     }

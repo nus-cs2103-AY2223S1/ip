@@ -34,9 +34,6 @@ public class FindCommand extends Command {
         return ui.showMatchingTasks(filteredTasks);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public boolean isExit() {
         return false;
     }

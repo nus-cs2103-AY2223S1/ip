@@ -8,8 +8,10 @@ import commands.EventCommand;
 import commands.FindCommand;
 import commands.ListCommand;
 import commands.MarkCommand;
+import commands.TagCommand;
 import commands.TodoCommand;
 import commands.UnmarkCommand;
+import commands.UntagCommand;
 import exceptions.DukeException;
 import exceptions.InvalidCommandException;
 
@@ -54,6 +56,12 @@ public class Parser {
         }
         case "find": {
             return new FindCommand(inputValues);
+        }
+        case "tag": {
+            return new TagCommand(inputValues);
+        }
+        case "untag": {
+            return new UntagCommand(inputValues);
         }
         default: {
             throw new InvalidCommandException();
