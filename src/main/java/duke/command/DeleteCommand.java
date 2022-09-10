@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.exception.DukeException;
 import duke.model.TaskList;
 import duke.storage.Storage;
 import duke.ui.Ui;
@@ -14,7 +15,7 @@ public class DeleteCommand extends Command {
     /**
      * A constructor for a DeleteCommand.
      *
-     * @param taskNumber the task number of the Task to be deleted in the TaskList.
+     * @param taskNumber The task number of the Task to be deleted in the TaskList.
      */
     public DeleteCommand(int taskNumber) {
         this.taskNumber = taskNumber;
@@ -23,13 +24,19 @@ public class DeleteCommand extends Command {
     /**
      * Executes a Command.
      *
-     * @param taskList a list of tasks
-     * @param storage a location to store the task information
+     * @param taskList A list of tasks.
+     * @param storage A location to store the task information.
      */
     @Override
     public String execute(TaskList taskList, Storage storage) {
-        String response = Ui.delete(taskList.delete(this.taskNumber));
-        storage.writeToFile(taskList);
+        String response;
+        try {
+            response = Ui.delete(taskList.delete(this.taskNumber));
+            storage.writeToFile(taskList);
+        } catch (DukeException e) {
+            response = e.getMessage();
+        }
+
         assert response != null : "response should not be null";
         return response;
     }

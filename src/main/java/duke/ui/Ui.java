@@ -3,24 +3,10 @@ package duke.ui;
 import duke.model.Task;
 import duke.model.TaskList;
 
-import java.util.Scanner;
-
 /**
  * Deals with interactions with the user.
  */
 public class Ui {
-
-
-    private Scanner sc;
-
-    /**
-     * A constructor for a Ui.
-     *
-     * @param sc a scanner object to handle user inputs
-     */
-    public Ui(Scanner sc) {
-        this.sc = sc;
-    }
 
     /**
      * Greets the user by printing some lines upon start-up.
@@ -36,22 +22,6 @@ public class Ui {
      */
     public static String sayBye() {
          return "\tNice seeing you! Bye!";
-    }
-
-    /**
-     * Reads the command given by the user.
-     *
-     * @return a string representing the user's input
-     */
-    public String readCommand() {
-        return this.sc.nextLine();
-    }
-
-    /**
-     * Closes the scanner object.
-     */
-    public void close() {
-        this.sc.close();
     }
 
     /**
@@ -109,7 +79,7 @@ public class Ui {
     }
 
     /**
-     * Searches and prints a list of tasks which match the input description.
+     * Searches and displays a list of tasks which match the input description.
      *
      * @param description keywords for searching the TaskList
      * @param taskList the TaskList to search in
@@ -126,5 +96,13 @@ public class Ui {
             }
         }
         return str;
+    }
+
+    public static String undoCommandMessage(Boolean isReverted, String lastUserInput) {
+        if (isReverted) {
+            return "Alright! I've reverted your last change:\n\t" + lastUserInput;
+        } else {
+            return "Sorry, I'm unable to undo any past changes!";
+        }
     }
 }

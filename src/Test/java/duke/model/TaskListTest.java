@@ -1,5 +1,7 @@
 package duke.model;
 
+import duke.Duke;
+import duke.exception.DukeException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -10,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TaskListTest {
 
     @Test
-    public void mark_success() {
+    public void mark_success() throws DukeException {
         List<Task> list = new ArrayList<>();
         list.add(new Deadline("fishing", "2021-05-04"));
         TaskList taskList = new TaskList(list);
@@ -19,7 +21,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void unmark_success() {
+    public void unmark_success() throws DukeException {
         List<Task> list = new ArrayList<>();
         list.add(new Event("jumping jacks", "2019-08-19", "2020-07-10"));
         TaskList taskList = new TaskList(list);

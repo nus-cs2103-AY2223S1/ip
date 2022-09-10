@@ -8,7 +8,7 @@ public class ToDo extends Task {
     /**
      * A constructor for a ToDo.
      *
-     * @param description the details of the activity.
+     * @param description The details of the activity.
      */
     public ToDo(String description) {
         super(description);
@@ -17,7 +17,7 @@ public class ToDo extends Task {
     /**
      * Returns a formatted string of a ToDo to be stored in the storage.
      *
-     * @return a formatted string for a ToDo storage
+     * @return A formatted string for a ToDo storage.
      */
     @Override
     public String toStorage() {
@@ -27,7 +27,7 @@ public class ToDo extends Task {
     /**
      * Returns a string representation of a ToDo.
      *
-     * @return a string representing a ToDo
+     * @return A string representing a ToDo.
      */
     @Override
     public String toString() {

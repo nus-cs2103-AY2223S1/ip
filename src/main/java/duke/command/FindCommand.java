@@ -14,7 +14,7 @@ public class FindCommand extends Command {
     /**
      * A constructor for a FindCommand.
      *
-     * @param description the input description given by user
+     * @param description The input description given by user.
      */
     public FindCommand(String description) {
         this.description = description;
@@ -23,8 +23,8 @@ public class FindCommand extends Command {
     /**
      * Executes a Command.
      *
-     * @param taskList a list of tasks
-     * @param storage a location to store the task information
+     * @param taskList A list of tasks.
+     * @param storage A location to store the task information.
      */
     @Override
     public String execute(TaskList taskList, Storage storage) {

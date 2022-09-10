@@ -12,15 +12,15 @@ public abstract class Command {
     /**
      * Executes a Command.
      *
-     * @param taskList a list of tasks
-     * @param storage a location to store the task information
+     * @param taskList A list of tasks.
+     * @param storage A location to store the task information.
      */
     public abstract String execute(TaskList taskList, Storage storage);
 
     /**
      * Returns if the Command leads to the exit of the program.
      *
-     * @return if the program is to exit
+     * @return A boolean representing if the program is to exit.
      */
     public Boolean getIsExit() {
         return this.isExit;

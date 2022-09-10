@@ -3,7 +3,6 @@ package duke.controller;
 import java.io.IOException;
 import java.util.Collections;
 
-import duke.controller.MainWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -52,10 +51,26 @@ public class DialogBox extends HBox {
         setAlignment(Pos.TOP_LEFT);
     }
 
+    /**
+     * Gets the user's dialog box.
+     *
+     * @param text The text for the dialog box.
+     * @param img The image of the user.
+     *
+     * @return A user dialog box.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Gets the chatbot's dialog box.
+     *
+     * @param text The text for the dialog box.
+     * @param img The image of the chatbot.
+     *
+     * @return A chatbot dialog box.
+     */
     public static DialogBox getDukeDialog(String text, Image img) {
         var db = new DialogBox(text, img);
         db.flip();
