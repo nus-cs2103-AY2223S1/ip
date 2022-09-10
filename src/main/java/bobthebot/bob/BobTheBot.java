@@ -36,6 +36,7 @@ public class BobTheBot {
         while (scanner.hasNextLine()) {
             String command = scanner.nextLine();
             if (command.toLowerCase().equals("bye")) {
+                assert command == "bye" : "BobTheBot.java: command should be bye";
                 Ui.sayGoodbye(list);
                 break;
             }
