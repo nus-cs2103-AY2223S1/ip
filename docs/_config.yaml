@@ -5,6 +5,16 @@ remote_theme: just-the-docs/just-the-docs
 
 color_scheme: "light"
 
+# Aux links for the upper right navigation
 aux_links:
   "Duke on GitHub":
     - "//github.com/nerbnerb/ip"
+
+# External navigation links
+nav_external_links:
+  - title: Duke on GitHub
+    url: "//github.com/nerbnerb/ip"
+
+# Back to top link
+back_to_top: true
+back_to_top_text: "Back to top"
