@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -19,9 +18,6 @@
             <content>
                 <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="495.0" style="-fx-background-color: FDF4E8;" />
             </content>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
         </ScrollPane>
     </children>
 </AnchorPane>

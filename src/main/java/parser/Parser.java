@@ -17,6 +17,7 @@ import exception.LunaException;
 import exception.LunaInvalidCommandException;
 import exception.LunaInvalidDateException;
 import exception.LunaInvalidDescriptionException;
+import exception.LunaInvalidFormatException;
 import exception.LunaInvalidIndexException;
 // Import Tasks
 import task.Deadline;
@@ -54,12 +55,18 @@ public class Parser {
             if (cmd.length() <= 9) {
                 throw new LunaInvalidDescriptionException();
             }
+            if (!cmdSplit[1].contains(" /by ")) {
+                throw new LunaInvalidFormatException();
+            }
             String[] desSplit = cmdSplit[1].split(" /by ");
             command = new AddCommand("deadline", desSplit[0], parseDate(desSplit[1]));
             break;
         case "event":
             if (cmd.length() <= 6) {
                 throw new LunaInvalidDescriptionException();
+            }
+            if (!cmdSplit[1].contains(" /at ")) {
+                throw new LunaInvalidFormatException();
             }
             String[] split = cmdSplit[1].split(" /at ");
             command = new AddCommand("event", split[0], parseDate(split[1]));
