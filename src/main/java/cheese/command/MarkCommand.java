@@ -26,7 +26,7 @@ public class MarkCommand extends Command {
      * Executes operations to mark task as done and save the list.
      *
      * @throws CheeseException If given index of task to mark does not match a task from
-     *                         <code>taskList</code>.
+     *                         <code>taskList</code> or there is an error in saving.
      */
     @Override
     public String execute(TaskList taskList, Storage storage) throws CheeseException {

@@ -1,6 +1,7 @@
 package cheese.command;
 
 import cheese.data.TaskList;
+import cheese.exception.CheeseException;
 import cheese.storage.Storage;
 import cheese.task.Deadline;
 import cheese.task.Task;
@@ -29,9 +30,11 @@ public class DeadlineCommand extends Command {
 
     /**
      * Executes operations to create a new deadline, add deadline to list, and save the list.
+     *
+     * @throws CheeseException If there is an error saving to the file.
      */
     @Override
-    public String execute(TaskList taskList, Storage storage) {
+    public String execute(TaskList taskList, Storage storage) throws CheeseException {
         Task addedTask = taskList.add(new Deadline(description, deadline));
         storage.save(taskList);
         return Response.getAddTaskMessage(addedTask, taskList.getSize());
