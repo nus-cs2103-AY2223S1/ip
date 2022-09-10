@@ -100,7 +100,7 @@ public class Deadline extends Task {
      * @return a String representation of deadline to be saved in the hard disk.
      */
     @Override
-    public String savedString() {
+    public String toSavedString() {
         if (!this.getStatus()) {
             return "DN<" + this.getDescription() + ">" + "(" +
                     date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + ")" + "{" + time + "}" + "/n";

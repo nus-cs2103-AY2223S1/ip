@@ -29,7 +29,8 @@ public class Ui {
      * @return a String with greeting message and saved list of tasks.
      */
     public static String printGreeting() {
-        return "Hello! I'm KiwiQE :) \nWhat can I do for you? \n" + Duke.getTasks();
+        return "Hello! I'm KiwiQE :) \nWhat can I do for you? \n"
+                + Duke.getTasks();
     }
 
     /**

@@ -132,9 +132,8 @@ public class Parser {
                 return ui.printInsufficientInfoException(Ui.Keywords.event);
             }
         } else if (userInput.startsWith("find")) {
-          // search keyword only
           String keyword = userInput.substring(5);
-          return tasks.findMatchingTask(keyword);
+          return tasks.findMatchingTasks(keyword);
         } else {
             return ui.printUnrecognisedWord();
         }
