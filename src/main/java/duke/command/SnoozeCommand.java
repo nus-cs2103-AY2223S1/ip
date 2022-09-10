@@ -44,7 +44,7 @@ public class SnoozeCommand extends Command {
         try {
             task = taskList.getTask(num);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Enter a valid index");
+            throw new DukeException(ui.showInvalidIndexMessage());
         }
         TaskType taskType = task.getTaskType();
         if (taskType == TaskType.DEADLINE) {

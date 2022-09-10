@@ -10,6 +10,14 @@ import javafx.util.Duration;
  */
 public class Ui {
     /**
+     * @return greet message
+     */
+    public String getGreetMessage() {
+        return "Hello! I'm Smart!\n"
+                + "What can I do for you?";
+    }
+
+    /**
      * Shows unknown message.
      *
      * @return unknown message
@@ -32,7 +40,7 @@ public class Ui {
                 : "tasks";
         return "Got it. I've added this task:\n "
                 + task + "\nNow you have "
-                + size + " " + plural + " in the list.";
+                + size + " " + plural + " in the list!";
     }
 
     /**
@@ -58,7 +66,8 @@ public class Ui {
      * @return exit message
      */
     public static String showExitMessage() {
-        return "Bye. Hope to see you again soon!";
+        return "Bye. Exiting in few seconds!\n"
+                + "Hope to see you again soon!";
     }
 
     /**
@@ -115,7 +124,7 @@ public class Ui {
      * @return unmark message
      */
     public String showUnmarkMessage(Task task) {
-        return "OK, I've marked this task as not done yet:\n  " + task.toString();
+        return "OK, I've marked this task as not done:\n  " + task.toString();
     }
 
     /**
@@ -133,7 +142,7 @@ public class Ui {
      * @return task not found message
      */
     public String showFindEmptyMessage() {
-        return ("There are no matching task in your list\n");
+        return ("Awhh, there are no matching task in your list\n");
     }
 
     /**
@@ -143,7 +152,7 @@ public class Ui {
      * @return snooze message
      */
     public String showSnoozeMessage(Task task) {
-        return "OK, I've snoozed this task:\n  " + task.toString();
+        return "Noted, I've snoozed this task:\n  " + task.toString();
     }
 
     /**
@@ -152,7 +161,7 @@ public class Ui {
      * @return invalid index message
      */
     public String showInvalidIndexMessage() {
-        return "Invalid index! \nPlease enter a valid index.";
+        return "Nooo, invalid index! \nPlease enter a valid index.";
     }
 
     /**
@@ -170,6 +179,14 @@ public class Ui {
      * @return invalid Snoozed Task Message
      */
     public String invalidSnoozeTaskMessage() {
-        return "You can only snooze DEADLINES and EVENTS only!!!";
+        return "You can only snooze DEADLINES and EVENTS tasks only!!!";
+    }
+
+    /**
+     * @return invalid task message
+     */
+    public String showInvalidTaskMessage() {
+        return "What you have entered is invalid!\n"
+                + "Please enter command with valid arguments!";
     }
 }

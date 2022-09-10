@@ -5,7 +5,6 @@ import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
-import duke.command.InvalidCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.SnoozeCommand;

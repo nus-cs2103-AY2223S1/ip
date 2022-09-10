@@ -27,6 +27,6 @@ public class InvalidCommand extends Command {
      */
     @Override
     public String execute(Ui ui, TaskList taskList, Storage storage) {
-        return "Please enter command with valid arguments!";
+        return ui.showInvalidTaskMessage();
     }
 }
