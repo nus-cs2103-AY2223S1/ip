@@ -51,7 +51,7 @@ public class Event extends Task {
     @Override
     public int compareTo(Task o) {
         if (o instanceof ToDo) {
-            return 1;
+            return -1;
         } else if (o instanceof Deadline) {
             return this.date.compareTo(((Deadline) o).date);
         } else if (o instanceof Event) {

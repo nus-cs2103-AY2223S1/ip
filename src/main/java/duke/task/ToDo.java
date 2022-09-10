@@ -28,7 +28,7 @@ public class ToDo extends Task {
     @Override
     public int compareTo(Task o) {
         if (o instanceof Deadline || o instanceof Event) {
-            return -1;
+            return 1;
         } else {
             return this.description.compareTo(o.description);
         }

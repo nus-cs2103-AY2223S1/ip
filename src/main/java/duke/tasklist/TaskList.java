@@ -130,6 +130,6 @@ public class TaskList {
     }
 
     public void sort() {
-        Collections.sort(tasks, Collections.reverseOrder());
+        Collections.sort(tasks);
     }
 }
