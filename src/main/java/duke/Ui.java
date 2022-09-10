@@ -28,6 +28,11 @@ public class Ui {
         return msg;
     }
 
+    public String editPriorityMsg(String pr) {
+        String msg = "Priority for the task has been set to " + pr;
+        return msg;
+    }
+
     /**
      * Displays to the user the welcome message on running Duke.
      *
@@ -84,11 +89,20 @@ public class Ui {
     }
 
     public String viewListMsg(ArrayList<Task> tasks) {
-        String msg = ("\tHere are the tasks in your list:\n");
-        for (int i = 0; i < tasks.size(); i++) {
-            int num = i + 1;
-            msg += ("\t" + num + "." + tasks.get(i).toString() + "\n");
+        if (tasks.size() != 0) {
+            String msg = ("\tHere are the tasks in your list:\n");
+            for (int i = 0; i < tasks.size(); i++) {
+                int num = i + 1;
+                msg += ("\t" + num + "." + tasks.get(i).toString() + "\n");
+            }
+            return msg;
+        } else {
+            return tasksNotFoundMsg();
         }
+    }
+
+    public String tasksNotFoundMsg() {
+        String msg = "No tasks in the list\nPlease add a task";
         return msg;
     }
 
