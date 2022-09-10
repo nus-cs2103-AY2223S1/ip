@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class Task implements Serializable {
     private final String taskDescription;
 
-    private boolean taskStatus;
+    private boolean isMarked;
 
     /**
      * Constructor for Task class
@@ -17,19 +17,19 @@ public class Task implements Serializable {
      */
     public Task(String taskDescription) {
         this.taskDescription = taskDescription;
-        this.taskStatus = false;
+        this.isMarked = false;
     }
 
     /**
      * Change the status of a task
      */
     public void changeStatus(boolean newStatus) {
-        this.taskStatus = newStatus;
+        this.isMarked = newStatus;
     }
 
     @Override
     public String toString() {
-        if (taskStatus) {
+        if (isMarked) {
             return "[X] " + taskDescription;
         } else {
             return "[] " + taskDescription;

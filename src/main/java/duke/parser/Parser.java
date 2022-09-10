@@ -34,7 +34,7 @@ public class Parser {
     }
 
     /**
-     * Parse the input command
+     * Parses the input command
      * @param inputText user's input for a command
      * @return command string
      * @throws InvalidCommandException InvalidCommandException is thrown when input is invalid
@@ -49,7 +49,7 @@ public class Parser {
     }
 
     /**
-     * Parser the input task
+     * Parses the input task
      * @param inputText user's input for a task
      * @return the task string
      * @throws InvalidTaskException InvalidTaskException is thrown when the input task is invalid
@@ -64,7 +64,7 @@ public class Parser {
     }
 
     /**
-     * Parse the content of a task
+     * Parses the content of a task
      * @param inputText user's input for task content
      * @return content of a task
      * @throws EmptyContentException EmptyContentException is thrown when the content is empty
@@ -79,7 +79,7 @@ public class Parser {
     }
 
     /**
-     * Parse the time
+     * Parses the time
      * @param inputText user's input for time
      * @return time string
      * @throws InvalidTimeException InvalidTimeException is thrown when the input time is in wrong format

@@ -56,19 +56,19 @@ public class Storage {
      */
     public boolean save(ArrayList<Task> taskList) {
         File file = new File(filePath);
-        boolean saved = false;
+        boolean isSaved = false;
         try {
             FileOutputStream fos = new FileOutputStream(file);
             ObjectOutputStream writer = new ObjectOutputStream(fos);
             writer.writeObject(taskList);
             fos.close();
             writer.close();
-            saved = true;
+            isSaved = true;
         } catch (IOException e) {
             System.out.println(e.toString());
             System.out.println("Oops! Something wrong with your personal file...");
         }
-        return saved;
+        return isSaved;
     }
 
     /**
