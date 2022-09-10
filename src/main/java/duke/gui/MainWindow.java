@@ -16,11 +16,11 @@ import javafx.util.Duration;
  * Controller for gui.MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
-    /** <Code>String</Code> to be shown on initialization. */
+    /** {@code String} to be shown on initialization. */
     private static final String GREETING =
             "Duke at your service. How may I help you?\n";
 
-    /** <Code>String</Code> of all available commands and their format. */
+    /** {@code String} of all available commands and their format. */
     private static final String AVAILABLE_COMMANDS =
             "Available commands:\n"
             + "   deadline [TASK DESCRIPTION] /by [YYYY/MM/DD] (/p [PRIORITY])\n"
@@ -43,7 +43,7 @@ public class MainWindow extends AnchorPane {
             new Image(this.getClass().getResourceAsStream(
                     "/images/DaDuke.png"));
 
-    /** Instance of <Code>Duke</Code> object to chat with. */
+    /** Instance of {@code Duke} object to chat with. */
     private Duke duke;
 
     /** Container for chat content to scroll. */
@@ -62,12 +62,17 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
+    @FXML
+    private AnchorPane anchorPane;
+
     /**
-     * Initializes <Code>MainWindow</Code> and greets user.
+     * Initializes {@code MainWindow} and greets user.
      */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.prefHeightProperty().bind(scrollPane.heightProperty());
+        dialogContainer.prefWidthProperty().bind(scrollPane.widthProperty());
         dialogContainer.getChildren().addAll(
                 DialogBox.getDukeDialog(GREETING + AVAILABLE_COMMANDS,
                         dukeImage)
@@ -75,9 +80,9 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Sets the <Code>Duke</Code> instance which user is talking to
+     * Sets the {@code Duke} instance which user is talking to
      * and whom users will get responses from.
-     * @param d Duke object to get responses from.
+     * @param d {@code Duke} object to get responses from.
      */
     public void setDuke(Duke d) {
         duke = d;
