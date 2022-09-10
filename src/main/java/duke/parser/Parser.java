@@ -1,15 +1,7 @@
 package duke.parser;
 
 
-import duke.commands.Command;
-import duke.commands.DeadlineCommand;
-import duke.commands.ListCommand;
-import duke.commands.TodoCommand;
-import duke.commands.EventCommand;
-import duke.commands.MarkCommand;
-import duke.commands.UnmarkCommand;
-import duke.commands.ByeCommand;
-import duke.commands.DeleteCommand;
+import duke.commands.*;
 import duke.exception.DukeException;
 import duke.task.Task;
 
@@ -51,6 +43,10 @@ public class Parser {
         // Delete task
         case DeleteCommand.COMMAND_WORD:
             return prepareDeleteCommand(inputs);
+        // Find tasks by keyword
+        case FindCommand.COMMAND_WORD:
+            return prepareFindCommand(inputs);
+        // Exits the application
         case ByeCommand.COMMAND_WORD:
             return prepareByeCommand(inputs);
         default:
@@ -164,5 +160,13 @@ public class Parser {
         }
 
         return new ByeCommand();
+    }
+
+    public static FindCommand prepareFindCommand(String[] inputs) {
+        if (inputs.length == 1 || inputs[1].equals("")) {
+            throw new DukeException("OOPS!!! The task description cannot be empty\n");
+        }
+
+        return new FindCommand(inputs[1]);
     }
 }

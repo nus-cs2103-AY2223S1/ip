@@ -3,6 +3,7 @@ package duke.ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -115,5 +116,15 @@ public class TextUi {
                 "  " + task + "\n" +
                 "Now you have " + tasks.size() + " duke.task(s) in the list.\n";
         printTextWithDivider(message);
+    }
+
+    public void showFindTaskMessage(ArrayList<Task> taskList) {
+        StringBuilder message = new StringBuilder();
+        message.append("Here are the matching tasks in your list:\n");
+        for (int i = 0; i < taskList.size(); i++) {
+            // Display task as 1-index
+            message.append(i + 1).append(".").append(taskList.get(i)).append("\n");
+        }
+        printTextWithDivider(message.toString());
     }
 }

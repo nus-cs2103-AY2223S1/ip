@@ -56,6 +56,10 @@ public abstract class Task {
         return this.taskType.getTaskSymbol() + " | " + encodedStatus + " | " + this.description;
     }
 
+    public boolean containsQuery(String query) {
+        return this.description.contains(query);
+    }
+
     @Override
     public String toString() {
         return "[" + this.taskType.getTaskSymbol() + "]" + "[" + this.getStatusIcon() + "] " + this.description;
