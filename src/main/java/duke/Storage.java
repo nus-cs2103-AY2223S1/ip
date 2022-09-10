@@ -40,70 +40,11 @@ public class Storage {
             while ( line != null){
                 String modifiedLine = line.replaceFirst("(\\d+\\.)", "" );
                 if (modifiedLine.contains("[T]")) {
-                    if (modifiedLine.contains("[ ]")) {
-                        String todoDescription = modifiedLine.replace("[T][ ] ", "");
-                        Todo newTask = new Todo(todoDescription);
-                        tasklist.add(newTask);
-                    } else {
-                        String todoDescription = modifiedLine.replace("[T][X] ", "");
-                        Todo newTask = new Todo(todoDescription);
-                        newTask.markAsDone();
-                        tasklist.add(newTask);
-                    }
+                    extractTodoTask(tasklist, modifiedLine);
                 } else if (modifiedLine.contains("[E]")) {
-                    if (modifiedLine.contains("[ ]")) {
-                        String evDescrip = modifiedLine.replace("[E][ ] ", "");
-                        String description = evDescrip.substring(0, evDescrip.indexOf("(") - 1);
-                        String eventTime = evDescrip.substring(evDescrip.indexOf("(")+1,evDescrip.indexOf(")"));
-                        // data in textfile contains : after at, to replace it with whitespace
-                        String modEventTime = eventTime.replaceFirst(": ", " ");
-                        Event newTask = new Event(description, modEventTime);
-                        tasklist.add(newTask);
-                    } else {
-                        // replace the formats with empty string
-                        String evDescrip = modifiedLine.replace("[E][X] ", "");
-                        // get 2 substring for description and eventTime
-                        String description = evDescrip.substring(0, evDescrip.indexOf("(") - 1);
-                        String eventTime = evDescrip.substring(evDescrip.indexOf("(")+1,evDescrip.indexOf(")"));
-                        // data in textfile contains : after at, to replace it with whitespace
-                        String modEventTime = eventTime.replaceFirst(": ", " ");
-                        Event newTask = new Event(description, modEventTime);
-                        newTask.markAsDone();
-                        tasklist.add(newTask);
-                    }
+                    extractEventTask(tasklist, modifiedLine);
                 } else if (modifiedLine.contains("[D]")) {
-                    if (modifiedLine.contains("[ ]")) {
-                        // replace the formats with empty string
-                        String deadlineDsc = modifiedLine.replace("[D][ ] ", "");
-                        // get 2 substring for description and deadlineTime
-                        String description = deadlineDsc.substring(0, deadlineDsc.indexOf("(") - 1);
-                        String dlTime = deadlineDsc.substring(deadlineDsc.indexOf("(")+1,deadlineDsc.indexOf(")"));
-                        String modDeadlineTime = dlTime.replaceFirst("by: ", "");
-                        // to convert string to date
-                        DateTimeFormatter convertFormatter = DateTimeFormatter.ofPattern("MMM d yyyy");
-                        LocalDate deadlineDate = LocalDate.parse(modDeadlineTime, convertFormatter);
-                        // to put in the same format as Deadline class parameter
-                        DateTimeFormatter stringFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                        String modifiedString = deadlineDate.format(stringFormatter);
-                        Deadline newTask = new Deadline(description, modifiedString);
-                        tasklist.add(newTask);
-                    } else {
-                        // replace the formats with empty string
-                        String deadlineDsc = modifiedLine.replace("[D][X] ", "");
-                        // get 2 substring for description and deadlineTime
-                        String description = deadlineDsc.substring(0, deadlineDsc.indexOf("(") - 1);
-                        String dlTime = deadlineDsc.substring(deadlineDsc.indexOf("(")+1,deadlineDsc.indexOf(")"));
-                        String modDeadlineTime = dlTime.replaceFirst("by: ", "");
-                        // to convert string to date
-                        DateTimeFormatter convertFormatter = DateTimeFormatter.ofPattern("MMM d yyyy");
-                        LocalDate deadlineDate = LocalDate.parse(modDeadlineTime, convertFormatter);
-                        // to put in the same format as Deadline class parameter
-                        DateTimeFormatter stringFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                        String modifiedString = deadlineDate.format(stringFormatter);
-                        Deadline newTask = new Deadline(description, modifiedString);
-                        newTask.markAsDone();
-                        tasklist.add(newTask);
-                    }
+                    extractDeadlineTask(tasklist, modifiedLine);
                 }
                 // read next line
                 line = reader.readLine();
@@ -118,5 +59,76 @@ public class Storage {
             Parser.echo("File not found so let's create one!");
         }
         return tasklist;
+    }
+
+    private void extractDeadlineTask(ArrayList<Task> tasklist, String modifiedLine) {
+        if (modifiedLine.contains("[ ]")) {
+            // replace the formats with empty string
+            String deadlineDsc = modifiedLine.replace("[D][ ] ", "");
+            // get 2 substring for description and deadlineTime
+            String description = deadlineDsc.substring(0, deadlineDsc.indexOf("(") - 1);
+            String dlTime = deadlineDsc.substring(deadlineDsc.indexOf("(")+1,deadlineDsc.indexOf(")"));
+            String modDeadlineTime = dlTime.replaceFirst("by: ", "");
+            // to convert string to date
+            DateTimeFormatter convertFormatter = DateTimeFormatter.ofPattern("MMM d yyyy");
+            LocalDate deadlineDate = LocalDate.parse(modDeadlineTime, convertFormatter);
+            // to put in the same format as Deadline class parameter
+            DateTimeFormatter stringFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String modifiedString = deadlineDate.format(stringFormatter);
+            Deadline newTask = new Deadline(description, modifiedString);
+            tasklist.add(newTask);
+        } else {
+            // replace the formats with empty string
+            String deadlineDsc = modifiedLine.replace("[D][X] ", "");
+            // get 2 substring for description and deadlineTime
+            String description = deadlineDsc.substring(0, deadlineDsc.indexOf("(") - 1);
+            String dlTime = deadlineDsc.substring(deadlineDsc.indexOf("(")+1,deadlineDsc.indexOf(")"));
+            String modDeadlineTime = dlTime.replaceFirst("by: ", "");
+            // to convert string to date
+            DateTimeFormatter convertFormatter = DateTimeFormatter.ofPattern("MMM d yyyy");
+            LocalDate deadlineDate = LocalDate.parse(modDeadlineTime, convertFormatter);
+            // to put in the same format as Deadline class parameter
+            DateTimeFormatter stringFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String modifiedString = deadlineDate.format(stringFormatter);
+            Deadline newTask = new Deadline(description, modifiedString);
+            newTask.markAsDone();
+            tasklist.add(newTask);
+        }
+    }
+
+    private void extractEventTask(ArrayList<Task> tasklist, String modifiedLine) {
+        if (modifiedLine.contains("[ ]")) {
+            String evDescrip = modifiedLine.replace("[E][ ] ", "");
+            String description = evDescrip.substring(0, evDescrip.indexOf("(") - 1);
+            String eventTime = evDescrip.substring(evDescrip.indexOf("(")+1,evDescrip.indexOf(")"));
+            // data in textfile contains : after at, to replace it with whitespace
+            String modEventTime = eventTime.replaceFirst(": ", " ");
+            Event newTask = new Event(description, modEventTime);
+            tasklist.add(newTask);
+        } else {
+            // replace the formats with empty string
+            String evDescrip = modifiedLine.replace("[E][X] ", "");
+            // get 2 substring for description and eventTime
+            String description = evDescrip.substring(0, evDescrip.indexOf("(") - 1);
+            String eventTime = evDescrip.substring(evDescrip.indexOf("(")+1,evDescrip.indexOf(")"));
+            // data in textfile contains : after at, to replace it with whitespace
+            String modEventTime = eventTime.replaceFirst(": ", " ");
+            Event newTask = new Event(description, modEventTime);
+            newTask.markAsDone();
+            tasklist.add(newTask);
+        }
+    }
+
+    private void extractTodoTask(ArrayList<Task> tasklist, String modifiedLine) {
+        if (modifiedLine.contains("[ ]")) {
+            String todoDescription = modifiedLine.replace("[T][ ] ", "");
+            Todo newTask = new Todo(todoDescription);
+            tasklist.add(newTask);
+        } else {
+            String todoDescription = modifiedLine.replace("[T][X] ", "");
+            Todo newTask = new Todo(todoDescription);
+            newTask.markAsDone();
+            tasklist.add(newTask);
+        }
     }
 }
