@@ -1,24 +1,87 @@
-# Duke project template
+# User Guide
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+## Features
 
-## Setting up in Intellij
+### `todo XXX` - Adds a todo task
 
-Prerequisites: JDK 11, update Intellij to the most recent version.
+Adds a new ToDo task to the Duke's tasklist.
 
-1. Open Intellij (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project first)
-1. Open the project into Intellij as follows:
-   1. Click `Open`.
-   1. Select the project directory, and click `OK`.
-   1. If there are any further prompts, accept the defaults.
-1. Configure the project to use **JDK 11** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
-   In the same dialog, set the **Project language level** field to the `SDK default` option.
-3. After that, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE). If the setup is correct, you should see something like the below as the output:
-   ```
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   ```
+Example of usage:
+
+`todo project`
+
+### `deadline XXX /by DD/MM/YYYY HHMM` - Adds a deadline task
+
+Adds a new Deadline task to the Duke's tasklist.
+
+The date and time must be in the format DD/MM/YYYY HHMM (24 hour).
+
+Example of usage:
+
+`deadline homework /by 20/12/2022 1800`
+
+### `event XXX /at DD/MM/YYYY HHMM` - Adds a event task
+
+Adds a new Event task to the Duke's tasklist.
+
+The date and time must be in the format DD/MM/YYYY HHMM (24 hour).
+
+Example of usage:
+
+`event meeting /at 20/11/2022 1100`
+
+### `delete i` - Delete task at index i
+
+Deletes a task in Duke's taskList.
+The index i refers to the index number shown in the displayed tasklist.
+Index i range = [1, total tasks in taskList].
+
+Example of usage:
+
+`delete 1` deletes the first task in Duke's taskList.
+
+### `mark i` - Mark task at index i as done
+
+Mark the specified task in Duke's taskList as done.
+The index i refers to the index number shown in the displayed tasklist.
+Index i range = [1, total tasks in taskList].
+
+Example of usage:
+
+`mark 1` mark the first task in Duke's taskList.
+
+### `unmark i` - Unmark task at index i as not done
+
+Unmark the specified task in Duke's taskList as not done.
+The index i refers to the index number shown in the displayed tasklist.
+Index i range = [1, total tasks in taskList].
+
+Example of usage:
+
+`unmark 1` unmark the first task in Duke's taskList.
+
+### `find XXX` - Find the tasks containing XXX
+
+Find tasks in Duke's taskList that contains XXX.
+
+Example of usage:
+
+`find project` returns tasks containing "project" in the description.
+
+`find 12 Dec` returns tasks with "12 Dec" as their dates.
+
+### `count completed` - Get the number of completed tasks.
+
+Get the number of completed tasks in Duke's taskList.
+
+### `count uncompleted` - Get the number of uncompleted tasks.
+
+Get the number of uncompleted tasks in Duke's taskList.
+
+### `bye` - Exit the program
+
+Exit the program and save the changes to the taskList in a file.
+
+### `list` - Display taskList
+
+Show a list of all the tasks in Duke's taskList.
