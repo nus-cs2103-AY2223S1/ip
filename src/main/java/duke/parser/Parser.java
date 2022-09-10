@@ -201,9 +201,9 @@ public class Parser {
         switch (type) {
         case TODO:
             if (priority != null) {
-                task = new ToDo(component2, TaskType.TODO, priority);
+                task = new ToDo(component2, type, priority);
             } else {
-                task = new ToDo(description, TaskType.TODO);
+                task = new ToDo(description, type);
             }
             return task;
         case DEADLINE:
