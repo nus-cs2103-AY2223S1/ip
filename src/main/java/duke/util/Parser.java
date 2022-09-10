@@ -75,7 +75,6 @@ public class Parser {
     private String parseListCommands(String input, boolean fromSave)
             throws WrongArgumentException, FileParseException, NoArgumentException {
         String mark = null;
-        String response;
         String[] arr;
         if (fromSave) {
             String[] item = input.split("\\|");
@@ -85,70 +84,48 @@ public class Parser {
             arr = input.split(" ", 2);
         }
         ListCommands command = ListCommands.valueOf(arr[0]);
-        try {
-            response = parseTaskCommand(command, arr[1]);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new NoArgumentException(command.toString(), e);
-        }
 
-        if (response != null) {
-            return response;
-        }
-        parseAddTaskCommand(command, arr[1], fromSave);
-        if (mark != null && mark.equals("X")) {
-            list.markAsDone(list.getSize() - 1);
-        }
-        if (!fromSave) {
-            return Ui.addTask(list.lastTaskAdded()) + Ui.getListSize(list);
-        }
-        return "";
-    }
-
-    private String parseTaskCommand(ListCommands command, String index) throws WrongArgumentException {
         try {
             switch (command) {
             case mark: {
-                int n = Integer.parseInt(index) - 1;
-                return Ui.markTaskDone(list.markAsDone(n));
+                int index = Integer.parseInt(arr[1]) - 1;
+                return Ui.markTaskDone(list.markAsDone(index));
             }
             case unmark: {
-                int n = Integer.parseInt(index) - 1;
-                return Ui.markTaskNotDone(list.markAsNotDone(n));
+                int index = Integer.parseInt(arr[1]) - 1;
+                return Ui.markTaskNotDone(list.markAsNotDone(index));
             }
             case delete: {
-                int n = Integer.parseInt(index) - 1;
-                return Ui.deleteTask(list.delete(n));
+                int index = Integer.parseInt(arr[1]) - 1;
+                return Ui.deleteTask(list.delete(index));
             }
             case find:
-                return Ui.findKeyword(index, list.searchFor(index));
-            default:
-                return null;
+                String keyword = arr[1];
+                return Ui.findKeyword(keyword, list.searchFor(keyword));
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new WrongArgumentException(index, e);
+            throw new WrongArgumentException(arr[1], e);
         }
-    }
 
-    private void parseAddTaskCommand(ListCommands command, String arg, boolean fromSave)
-            throws NoArgumentException, WrongArgumentException, FileParseException {
+        assert arr.length > 1;
         switch (command) {
         case todo:
             try {
-                list.add(new ToDo(arg));
+                list.add(new ToDo(arr[1]));
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new NoArgumentException("todo", e);
+                throw new NoArgumentException(0, e);
             }
             break;
         case deadline:
             try {
-                String[] desc = arg.split(" /by ");
+                String[] desc = arr[1].split(" /by ");
                 list.add(new Deadline(desc[0], desc[1]));
             } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
                 if (fromSave) {
-                    throw new FileParseException(command + arg, e);
+                    throw new FileParseException(input, e);
                 } else {
                     if (e instanceof ArrayIndexOutOfBoundsException) {
-                        throw new NoArgumentException("deadline", e);
+                        throw new NoArgumentException(1, e);
                     } else {
                         // e will definitely be a DateTimeParseException
                         throw new WrongArgumentException(((DateTimeParseException) e).getParsedString(), e);
@@ -158,18 +135,16 @@ public class Parser {
             break;
         case event:
             try {
-                String[] desc = arg.split(" /at ");
+                String[] desc = arr[1].split(" /at ");
                 list.add(new Event(desc[0], desc[1]));
             } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
                 if (fromSave) {
-                    throw new FileParseException(command + arg, e);
+                    throw new FileParseException(input, e);
+                }
+                if (e instanceof ArrayIndexOutOfBoundsException) {
+                    throw new NoArgumentException(2, e);
                 } else {
-                    if (e instanceof ArrayIndexOutOfBoundsException) {
-                        throw new NoArgumentException("event", e);
-                    } else {
-                        //e will definitely be a DateTimeParseException
-                        throw new WrongArgumentException(((DateTimeParseException) e).getParsedString(), e);
-                    }
+                    throw new WrongArgumentException(((DateTimeParseException) e).getParsedString(), e);
                 }
             }
             break;
@@ -177,5 +152,13 @@ public class Parser {
             assert false;
             return Ui.showUnknownError();
         }
+        if (mark != null && mark.equals("X")) {
+            list.markAsDone(list.getSize() - 1);
+        }
+        if (!fromSave) {
+            return Ui.addTask(list.lastTaskAdded()) + Ui.getListSize(list);
+        }
+
+        return "";
     }
 }
