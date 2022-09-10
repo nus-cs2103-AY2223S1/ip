@@ -327,9 +327,9 @@ public class Parser {
             throw new DukeException("Task number must be an integer!"
                     + "\n   delete [TASK NUMBER]\n");
         }
-        Boolean taskNumberIsNegativeOrZero = taskNumber <= 0;
-        Boolean taskNumberIsLargerThanTaskCount = taskNumber > size;
-        if (taskNumberIsNegativeOrZero || taskNumberIsLargerThanTaskCount) {
+        Boolean hasNegativeOrZeroTaskNumber = taskNumber <= 0;
+        Boolean hasTaskNumberLargerThanTaskCount = taskNumber > size;
+        if (hasNegativeOrZeroTaskNumber || hasTaskNumberLargerThanTaskCount) {
             throw new DukeException("Task number is invalid."
                     + String.format("You have %d tasks!", size)
                     + "\n   delete [TASK NUMBER]\n");

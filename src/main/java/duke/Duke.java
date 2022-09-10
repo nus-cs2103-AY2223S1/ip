@@ -11,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
- * Defines <Code>Duke</Code> class.
+ * Defines {@code Duke} class.
  * <p>Main class for the Duke application.</p>
  */
 public class Duke extends Application {
@@ -21,20 +21,20 @@ public class Duke extends Application {
     /** Filename to save task list on disk. */
     private static final String OUTPUT_FILENAME = "list.txt";
 
-    /** <Code>TaskList</Code> to store <Code>Tasks</Code> created by user. */
+    /** {@code TaskList} to store {@code Tasks} created by user. */
     private final TaskList taskList = new TaskList();
 
-    /** <Code>Storage</Code> to handle reading and writing task list to disk. */
+    /** {@code Storage} to handle reading and writing task list to disk. */
     private final Storage storage;
 
-    /** <Code>Parser</Code> to parse and handle user inputs. */
+    /** {@code Parser} to parse and handle user inputs. */
     private final Parser parser;
 
     /** Boolean attribute to know if Duke is running. */
-    private boolean dukeIsRunning = false;
+    private boolean isRunning = false;
 
     /**
-     * Constructor of <Code>Duke</Code> object.
+     * Constructor of {@code Duke} object.
      * @param directory Directory path on disk to find/save task list.
      * @param filename  Filename to save task list on disk.
      */
@@ -44,7 +44,7 @@ public class Duke extends Application {
     }
 
     /**
-     * Constructor of <Code>Duke</Code> without arguments.
+     * Constructor of {@code Duke} without arguments.
      * Necessary for JavaFX.
      */
     public Duke() {
@@ -53,12 +53,12 @@ public class Duke extends Application {
     }
 
     /**
-     * Loads from <Code>fxml</Code> file to scene and stages scene.
+     * Loads from {@code fxml} file to scene and stages scene.
      * @param stage Stage to pass the application scene to.
      */
     @Override
     public void start(Stage stage) {
-        dukeIsRunning = true;
+        isRunning = true;
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Duke.class.getResource(
@@ -79,14 +79,14 @@ public class Duke extends Application {
      * @return Boolean object of whether Duke is running.
      */
     public Boolean checkIfRunning() {
-        return dukeIsRunning;
+        return isRunning;
     }
 
     /**
      * Parses a given user input to determine the response
      * to be returned by Duke.
      * @param userInput Input given by user.
-     * @return          <Code>String</Code> response by Duke.
+     * @return          {@code String} response by Duke.
      */
     public String getResponse(String userInput) {
         try {
@@ -100,7 +100,7 @@ public class Duke extends Application {
             storage.writeToFile(taskList);
             // Return any output.
             if (output.equals("exit sequence initiated")) {
-                dukeIsRunning = false;
+                isRunning = false;
                 return "Bye. Hope to see you again soon!";
             } else {
                 return output;
