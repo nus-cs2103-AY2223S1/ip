@@ -1,5 +1,9 @@
 package duke.task;
 
+import duke.DukeException;
+
+import java.time.LocalDate;
+
 /**
  * The Task class represents a task containing a description and its state of completion.
  */
@@ -36,6 +40,14 @@ public abstract class Task {
      * @return String representation of the icon of the type of the task.
      */
     protected abstract String getTypeIcon();
+
+    /**
+     * Gets the date of the task.
+     *
+     * @return The date of the task.
+     */
+    public abstract LocalDate getDate() throws DukeException;
+
 
     /**
      * Returns the icon of the completion state of the task in string format.

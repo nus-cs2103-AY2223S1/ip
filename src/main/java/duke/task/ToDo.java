@@ -1,5 +1,9 @@
 package duke.task;
 
+import duke.DukeException;
+
+import java.time.LocalDate;
+
 /**
  * The ToDo class represents a task containing a string description only.
  */
@@ -23,6 +27,11 @@ public class ToDo extends Task {
     public ToDo(String taskDescription, boolean isDone) {
         super(taskDescription);
         this.isDoneSetter(isDone);
+    }
+
+    @Override
+    public LocalDate getDate() throws DukeException {
+        throw new DukeException("ToDo has no date details.");
     }
 
     /**
