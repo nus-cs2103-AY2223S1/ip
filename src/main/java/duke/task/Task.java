@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.exception.DukeException;
+
 /**
  * Class for Task.
  *
@@ -7,6 +9,19 @@ package duke.task;
  * @version CS2103T AY 22/23 Sem 1
  */
 public class Task {
+    enum Priority {
+        HIGH("High"), MEDIUM("Medium"), LOW("Low"), NA(" ");
+        private String string;
+        private Priority(String string) {
+            this.string = string;
+        }
+
+        @Override
+        public String toString() {
+            return string;
+        }
+    }
+
     /**
      * The details of the task.
      */
@@ -15,6 +30,10 @@ public class Task {
      * The status of the task.
      */
     protected boolean isDone;
+    /**
+     * Priority level of task.
+     */
+    protected Priority priority;
 
     /**
      * A constructor to initialize Task.
@@ -24,6 +43,7 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        this.priority = Priority.NA;
     }
 
     /**
@@ -50,6 +70,20 @@ public class Task {
     }
 
     /**
+     * Change the priority of the task.
+     *
+     * @param stringPriority New priority of the task.
+     */
+    public void setPriority(String stringPriority) {
+        String p = stringPriority.equals(" ") ? "NA" : stringPriority.toUpperCase();
+        try {
+            this.priority = Priority.valueOf(p);
+        } catch (IllegalArgumentException e) {
+            throw new DukeException(stringPriority + " is not a valid priority level.");
+        }
+    }
+
+    /**
      * Get the string format of the task which will be written in the file.
      *
      * @return String format of the task which will be written in the file.
@@ -65,7 +99,7 @@ public class Task {
      */
     @Override
     public String toString() {
-        String s = String.format("[%s] %s", this.getStatusIcon(), this.description);
+        String s = String.format("[%s][%s] %s", this.getStatusIcon(), this.priority, this.description);
         return s;
     }
 }

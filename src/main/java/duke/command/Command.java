@@ -59,6 +59,8 @@ public abstract class Command {
             //Fallthrough
         case "unmark":
             return new MarkCommand(arr);
+        case "priority":
+            return new PriorityCommand(arr);
         case "todo":
             //Fallthrough
         case "deadline":
@@ -239,6 +241,45 @@ public abstract class Command {
                 ui.printUnMarked(t);
                 break;
             }
+        }
+    }
+
+    /**
+     * Class for 'priority' command
+     */
+    private static class PriorityCommand extends Command {
+        /**
+         * The index of the element whose priority is being set.
+         */
+        private int index;
+
+        /**
+         * The priority level to be set.
+         */
+        private String priority;
+
+        /**
+         * A constructor to initialize PriorityCommand based on the command given.
+         *
+         * @param arr An array with the first element being the keyword of the command,
+         *            and if applicable the rest of the command in the second element.
+         */
+        private PriorityCommand(String[] arr) {
+            String[] temp = arr[1].split(" ", 2);
+            this.index = Integer.parseInt(temp[0]) - 1;
+            this.priority = temp[1];
+        }
+
+        @Override
+        public Boolean isExit() {
+            return false;
+        }
+
+        @Override
+        public void execute(TaskList tasks, Ui ui, Storage storage) {
+            Task t = tasks.get(index);
+            t.setPriority(priority);
+            ui.printPriority(t);
         }
     }
 

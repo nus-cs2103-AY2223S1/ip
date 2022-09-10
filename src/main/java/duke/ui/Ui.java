@@ -141,6 +141,14 @@ public class Ui {
         duke.setResponse("OK, I've marked this task as not done yet:\n" + t);
     }
 
+    public void printPriority(Task t) {
+        showLine();
+        printTab("OK, I've set the priority of this task:");
+        printTab("  " + t);
+        showLine();
+        duke.setResponse("OK, I've set the priority of this task:\n" + t);
+    }
+
     /**
      * Prints the list of tasks in tasklist.
      *

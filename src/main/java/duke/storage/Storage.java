@@ -72,13 +72,13 @@ public class Storage {
             Task t;
             switch (tempArr[0]) {
             case "T":
-                t = new Todo(tempArr[2]);
+                t = new Todo(tempArr[3]);
                 break;
             case "D":
-                t = new Deadline(tempArr[2], tempArr[3]);
+                t = new Deadline(tempArr[3], tempArr[4]);
                 break;
             case "E":
-                t = new Event(tempArr[2], tempArr[3]);
+                t = new Event(tempArr[3], tempArr[4]);
                 break;
             default:
                 throw new DukeException("Invalid data in duke.txt");
@@ -86,6 +86,7 @@ public class Storage {
             if (tempArr[1].equals("1")) {
                 t.mark();
             }
+            t.setPriority(tempArr[2]);
             tasks.add(t);
         }
     }

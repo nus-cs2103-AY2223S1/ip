@@ -39,8 +39,8 @@ public class Deadline extends Task {
     @Override
     public String getStringToSave() {
         return this.isDone
-                ? "D | 1 | " + description + " | " + by
-                : "D | 0 | " + description + " | " + by;
+                ? "D | 1 | " + priority + " | " + description + " | " + by
+                : "D | 0 | " + priority + " | " + description + " | " + by;
     }
 
     @Override

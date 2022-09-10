@@ -19,8 +19,8 @@ public class Todo extends Task {
     @Override
     public String getStringToSave() {
         return this.isDone
-                ? "T | 1 | " + description
-                : "T | 0 | " + description;
+                ? "T | 1 | " + priority + " | " + description
+                : "T | 0 | " + priority + " | " + description;
     }
 
     @Override

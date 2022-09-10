@@ -39,8 +39,8 @@ public class Event extends Task {
     @Override
     public String getStringToSave() {
         return this.isDone
-                ? "E | 1 | " + description + " | " + at
-                : "E | 0 | " + description + " | " + at;
+                ? "E | 1 | " + priority + " | " + description + " | " + at
+                : "E | 0 | " + priority + " | " + description + " | " + at;
     }
 
     @Override
