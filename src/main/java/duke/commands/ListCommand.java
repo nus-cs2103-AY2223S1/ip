@@ -16,7 +16,9 @@ public class ListCommand extends Command {
         System.out.println("Here are the tasks in your list:");
         ListIterator<Task> listIterator = taskList.getListIterator();
         while (listIterator.hasNext()) {
-            System.out.println(listIterator.nextIndex() + 1 + "." + listIterator.next());
+            int taskIndex = listIterator.nextIndex() + 1;
+            Task task = listIterator.next();
+            System.out.println(taskIndex + "." + task);
         }
     }
 }

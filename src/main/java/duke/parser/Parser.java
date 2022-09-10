@@ -5,6 +5,7 @@ import duke.commands.Command;
 import duke.commands.DeadlineCommand;
 import duke.commands.DeleteCommand;
 import duke.commands.EventCommand;
+import duke.commands.FindCommand;
 import duke.commands.IncorrectCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
@@ -43,6 +44,8 @@ public class Parser {
             return new UnmarkCommand(userInput);
         case DELETE:
             return new DeleteCommand(userInput);
+        case FIND:
+            return new FindCommand(userInput);
         case BYE:
             return new ByeCommand();
         default:

@@ -48,6 +48,10 @@ public abstract class Task {
 
     public abstract String convertToFileFormat();
 
+    public boolean doesContain(String keyword) {
+        return description.contains(keyword);
+    }
+
     /**
      * Returns string representation of this task.
      * @return String representation of this task.
