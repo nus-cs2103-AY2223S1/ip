@@ -45,7 +45,7 @@ test {
 }
 
 application {
-    mainClassName = "duke.dukerobot.Launcher"
+    mainClassName = "duke.dukerobot.Duke"
 }
 
 shadowJar {
