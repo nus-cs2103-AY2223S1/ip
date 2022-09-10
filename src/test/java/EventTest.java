@@ -10,6 +10,7 @@ import task.Event;
 
 
 public class EventTest {
+    @Test
     public void testEmptyDescription() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy hh:mm a");
         LocalDateTime eventDateTime = LocalDateTime.parse("Sep 2 2022 06:54 AM", formatter);
