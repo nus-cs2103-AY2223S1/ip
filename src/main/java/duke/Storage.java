@@ -15,7 +15,6 @@ import duke.task.Todo;
 /** Storage object used for file operations such as read and write of TaskList to text file. */
 public class Storage {
 
-    private Ui ui;
     private String filePath;
 
     /**
@@ -24,7 +23,6 @@ public class Storage {
      * @param filePath File path of the text file used for storage.
      */
     public Storage(String filePath) {
-        this.ui = new Ui();
         assert !filePath.isEmpty() : "Filepath should not be empty";
         this.filePath = filePath;
     }
@@ -35,55 +33,54 @@ public class Storage {
      *
      * @return An ArrayList of Task objects.
      */
-    public ArrayList<Task> loadTaskList() {
+    public ArrayList<Task> loadTaskList() throws DukeException{
         ArrayList<Task> taskList = new ArrayList<>();
         File file;
-        try {
-            file = new File(this.filePath);
-            if (file.isDirectory()) {
-                throw new DukeException("OOPS!!! Invalid file path, path given is a directory");
-            }
-            if (file.exists()) {
-                try {
-                    Scanner scanner = new Scanner(file);
-                    while (scanner.hasNextLine()) {
-                        String nextLine = scanner.nextLine();
-                        String[] splitString = nextLine.split("\\|");
-
-                        Task task;
-                        switch (splitString[0]) {
-                        case "T":
-                            task = new Todo(splitString[2]);
-                            break;
-                        case "D": {
-                            task = new Deadline(splitString[2], splitString[3]);
-                            break;
-                        }
-                        case "E": {
-                            task = new Event(splitString[2], splitString[3]);
-                            break;
-                        }
-                        default:
-                            throw new DukeException("OOPS!!! Invalid task type found in file!");
-                        }
-
-                        if ((splitString[1] == "1")) {
-                            task.setTaskStatus(true);
-                        } else {
-                            task.setTaskStatus(false);
-                        }
-
-                        taskList.add(task);
-                    }
-                } catch (FileNotFoundException fileNotFoundException) {
-                    throw new DukeException("OOPS!!! File could not be found");
-                }
-            }
-        } catch (DukeException exception) {
-            ui.printMessage(exception.toString());
-        } finally {
-            return taskList;
+        file = new File(this.filePath);
+        if (file.isDirectory()) {
+            throw new DukeException("OOPS!!! Invalid file path, path given is a directory");
         }
+        if (file.exists()) {
+            try {
+                Scanner scanner = new Scanner(file);
+                while (scanner.hasNextLine()) {
+                    String nextLine = scanner.nextLine();
+                    String[] splitString = nextLine.split("\\|");
+
+                    Task task;
+                    switch (splitString[0]) {
+                    case "T":
+                        task = new Todo(splitString[3]);
+                        break;
+                    case "D": {
+                        task = new Deadline(splitString[3], splitString[4]);
+                        break;
+                    }
+                    case "E": {
+                        task = new Event(splitString[3], splitString[4]);
+                        break;
+                    }
+                    default:
+                        throw new DukeException("OOPS!!! Invalid task type found in file!");
+                    }
+
+                    if ((splitString[1] == "1")) {
+                        task.setTaskStatus(true);
+                    } else {
+                        task.setTaskStatus(false);
+                    }
+
+                    task.setPriority(Integer.parseInt(splitString[2]));
+
+                    taskList.add(task);
+                }
+            } catch (FileNotFoundException fileNotFoundException) {
+                throw new DukeException("OOPS!!! File could not be found");
+            }
+        }
+
+        return taskList;
+
     }
 
     /**
@@ -91,44 +88,41 @@ public class Storage {
      *
      * @param currTaskList Current TaskList to be saved
      */
-    public void saveTaskList(TaskList currTaskList) {
+    public void saveTaskList(TaskList currTaskList) throws DukeException {
         File file;
         ArrayList<Task> taskList = currTaskList.getTaskList();
-        try {
-            file = new File(this.filePath);
-            if (file.isDirectory()) {
-                throw new DukeException("OOPS!!! Invalid file path, path given is a directory");
-            }
 
-            if (!file.exists()) {
-                try {
-                    if (!file.getParentFile().mkdirs()) {
-                        throw new DukeException("OOPS!!! Directory could not be created");
-                    }
+        file = new File(this.filePath);
 
-                    if (!file.createNewFile()) {
-                        throw new DukeException("OOPS!!! File could not be created");
-                    }
-                } catch (IOException exception) {
-                    throw new DukeException("OOPS!!! Something went wrong when trying to create file. Error message: "
-                            + exception.getMessage());
-                }
-            }
+        if (file.isDirectory()) {
+            throw new DukeException("OOPS!!! Invalid file path, path given is a directory");
+        }
 
+        if (!file.exists()) {
             try {
-                FileWriter fileWriter = new FileWriter(file);
-                for (Task task : taskList) {
-                    //lineSeparator used to support multiple systems
-                    fileWriter.write(task.toFileString() + System.lineSeparator());
+                if (!file.getParentFile().mkdirs()) {
+                    throw new DukeException("OOPS!!! Directory could not be created");
                 }
-                fileWriter.close();
+
+                if (!file.createNewFile()) {
+                    throw new DukeException("OOPS!!! File could not be created");
+                }
             } catch (IOException exception) {
-                throw new DukeException("☹ OOPS!!! Could not be written to file. Error message: "
+                throw new DukeException("OOPS!!! Something went wrong when trying to create file. Error message: "
                         + exception.getMessage());
             }
+        }
 
-        } catch (DukeException exception) {
-            ui.printMessage(exception.toString());
+        try {
+            FileWriter fileWriter = new FileWriter(file);
+            for (Task task : taskList) {
+                //lineSeparator used to support multiple systems
+                fileWriter.write(task.toFileString() + System.lineSeparator());
+            }
+            fileWriter.close();
+        } catch (IOException exception) {
+            throw new DukeException("☹ OOPS!!! Could not be written to file. Error message: "
+                    + exception.getMessage());
         }
     }
 }

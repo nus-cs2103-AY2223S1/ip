@@ -6,7 +6,7 @@ public class Duke {
     private TaskList taskList;
     private Storage storage;
 
-    public Duke(String filePath) {
+    public Duke(String filePath) throws DukeException{
         assert !filePath.isEmpty() : "Filepath should not be empty";
         storage = new Storage(filePath);
         taskList = new TaskList(storage.loadTaskList());
@@ -14,7 +14,7 @@ public class Duke {
 
     public enum Keyword {
         EXIT("bye"), LIST("list"), TODO("todo"), DEADLINE("deadline"), EVENT("event"), DELETE("delete"), MARK("mark"),
-        UNMARK("unmark"), FIND("find");
+        UNMARK("unmark"), FIND("find"), PRIORITY("priority");
 
         private String keyword;
 
