@@ -15,6 +15,13 @@ public class FindCommand extends Command {
         this.query = query;
     }
 
+    /**
+     * Prints all tasks that match with the query.
+     *
+     * @param taskList The list of tasks in Duke.
+     * @param ui The TextUi class used to print message in Duke.
+     * @param storage The storage used to save the tasks in the local file.
+     */
     @Override
     public void execute(TaskList taskList, TextUi ui, Storage storage) {
         ArrayList<Task> foundTask = taskList.findTask(this.query);

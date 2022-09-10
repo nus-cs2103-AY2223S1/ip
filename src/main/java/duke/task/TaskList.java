@@ -61,6 +61,12 @@ public class TaskList {
         this.taskList.remove(task);
     }
 
+    /**
+     * Finds the matching tasks in the task list by the given query.
+     *
+     * @param query The given search query.
+     * @return The list of matching tasks
+     */
     public ArrayList<Task> findTask(String query) {
         ArrayList<Task> foundTasks = new ArrayList<>();
         for (Task task : this.taskList) {
