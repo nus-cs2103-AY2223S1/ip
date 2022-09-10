@@ -5,6 +5,11 @@ package DukeBot;
  */
 public class Ui {
 
+    public static String showPriorityChange(Task newTask) {
+        return "I have changed the priority of this task:\n" +
+        newTask;
+    }
+
     /**
      * Returns the new task as a string.
      *

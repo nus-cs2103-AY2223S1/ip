@@ -1,12 +1,6 @@
 package DukeBot;
 
-import DukeBot.command.Command;
-import DukeBot.command.DeleteCommand;
-import DukeBot.command.ExitCommand;
-import DukeBot.command.FindCommand;
-import DukeBot.command.ListCommand;
-import DukeBot.command.MarkCommand;
-import DukeBot.command.NewTaskCommand;
+import DukeBot.command.*;
 
 /**
  * Encapsulates the class that parses the commands from user.
@@ -48,6 +42,8 @@ public class Parser {
             return new ExitCommand(str, tasks);
         case "find":
             return new FindCommand(str, tasks);
+        case "priority":
+            return new PriorityCommand(str, tasks);
         default:
             throw new DukeException("Not sure what you mean.");
         }

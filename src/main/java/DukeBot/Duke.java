@@ -21,7 +21,6 @@ public class Duke {
             tasks = new TaskList();
         }
         p = new Parser(tasks);
-        storage.write(tasks);
     }
 
     public boolean isExit() {
