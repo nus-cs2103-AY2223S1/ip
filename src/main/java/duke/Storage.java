@@ -8,7 +8,9 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.File;
 
-// deals with loading tasks from the file and saving tasks in the file
+/**
+ * Deals with loading tasks from the file and saving tasks in the file.
+ */
 public class Storage {
     private ArrayList<Task> log;
     private BufferedWriter writer;
@@ -20,6 +22,13 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Goes through the save file, loading data.
+     *
+     * @param t TaskList in which data is loaded to.
+     * @throws IOException  If an error arises from file access.
+     * @throws DukeException If something goes wrong with commands sent to Duke.
+     */
     public void load(TaskList t) throws IOException, DukeException {
 
         //TODO: un-hardcode directory checks with a parser
@@ -30,7 +39,6 @@ public class Storage {
             new File("data").mkdirs();
         }
 
-        //
         File saveFile = new File("data/tasks.txt");
         saveFile.createNewFile();
 
@@ -69,6 +77,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Goes through the TaskList, saving all tasks to the file.
+     *
+     * @param t TaskList to be saved.
+     * @throws IOException  If an error occurs from file access.
+     */
     public void save(TaskList t) throws IOException {
         log = t.getLog();
 

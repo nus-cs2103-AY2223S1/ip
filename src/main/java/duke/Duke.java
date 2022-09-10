@@ -5,10 +5,6 @@ import java.io.IOException;
 
 public class Duke {
 
-    public static void main(String[] args) {
-            new Duke("data/tasks.txt").run();
-        }
-
     private String filePath;
     private Ui ui;
     private Storage storage;
@@ -17,6 +13,9 @@ public class Duke {
 
     private boolean isRunning = false;
 
+    /**
+     * Constructs Duke.
+     */
     public Duke(String filePath) {
         this.filePath = filePath;
         ui = new Ui();
@@ -25,6 +24,9 @@ public class Duke {
         tasklist = new TaskList();
     }
 
+    /**
+     * Runs Duke.
+     */
     public void run() {
         try {
             isRunning = true;
@@ -56,6 +58,14 @@ public class Duke {
         }
     }
 
+    /**
+     * Executes Duke's actions based on parsed input.
+     *
+     * @param c enum representing command to be completed.
+     * @param s string containing the specifics of a command.
+     * @throws IOException  If something went wrong with saving/loading.
+     * @throws DukeTaskException  If the specifics of a command is wrong.
+     */
     private void execute(Command c, String s) throws IOException, DukeTaskException {
         switch(c) {
         case BYE:
@@ -99,14 +109,23 @@ public class Duke {
         }
     }
 
+    /**
+     * Stops Duke from running.
+     */
     public void stop() {
         isRunning = false;
     }
 
+    /**
+     * Prints a line separator.
+     */
     public static void printLine() {
         System.out.println("--------------------------------------");
     }
 
+    /**
+     * Enums for the range of commands Duke can complete.
+     */
     public enum Command {
         BYE,
         LIST,

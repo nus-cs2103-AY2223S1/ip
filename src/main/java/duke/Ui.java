@@ -2,24 +2,40 @@ package duke;
 
 import java.util.Scanner;
 
-// deals with interactions with the user
+/**
+ * Deals with interactions with the user.
+ */
 public class Ui {
 
     private Scanner s;
 
+    /**
+     * Starts accepting input form the user.
+     */
     public void start() {
         // Creating the scanner to get input
         this.s = new Scanner(System.in);
     }
 
+    /**
+     * Passes the user input to Duke.
+     *
+     * @return String representing user input.
+     */
     public String getInput() {
         return s.nextLine();
     }
 
+    /**
+     * Stops receiving user inputs.
+     */
     public void end() {
         s.close();
     }
 
+    /**
+     * Prints out Duke's greeting to the user.
+     */
     public void greet() {
         String logo = " ____                 \n"
                 + "|  _ \\ _ _ _ __ _____ \n"
