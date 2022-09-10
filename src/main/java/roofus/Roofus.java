@@ -48,8 +48,10 @@ public class Roofus {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * A method to get Roofus's response.
+     *
+     * @param fullCommand The string representation of user's input.
+     * @return String Returns Roofus's response to user's input.
      */
     public String getResponse(String fullCommand) {
         try {

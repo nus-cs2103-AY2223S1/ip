@@ -8,7 +8,9 @@ import roofus.task.Task;
 public class Ui {
 
     /**
-     * Formats and prints Roofus's greetings.
+     * Formats Roofus's greetings.
+     *
+     * @return Roofus's greetings.
      */
     public String greet() {
         return "Hello I'm ROOOOFUS!!!\n"
@@ -16,16 +18,19 @@ public class Ui {
     }
 
     /**
-     * Formats and prints the program's termination message.
+     * Formats the program's termination message.
+     *
+     * @return The termination message
      */
     public String signOff() {
         return "Bye. Hope to see you again soon!";
     }
 
     /**
-     * Formats and prints any error messages.
+     * Formats any error messages.
      *
      * @param message The error message to be formatted and printed.
+     * @return The formatted error message.
      */
     public String printErrMessage(String message) {
         if (message.isEmpty()) {
@@ -35,10 +40,11 @@ public class Ui {
     }
 
     /**
-     * Formats and prints delete task message.
+     * Formats the delete task message.
      *
      * @param task The specified task to be removed.
      * @param taskLength The length of TaskList after removal.
+     * @return The delete task message.
      */
     public String delete(String task, int taskLength) {
         return String.format("Noted. I've removed this task:\n%s\n"
@@ -46,9 +52,10 @@ public class Ui {
     }
 
     /**
-     * Formats and prints all tasks in TaskList.
+     * Formats all tasks in TaskList.
      *
      * @param taskList A Tasklist that contains all tasks.
+     * @return The current list of tasks.
      */
     public String list(TaskList taskList) {
         String finalString = "Here are the tasks in your list:\n";
@@ -61,9 +68,10 @@ public class Ui {
     }
 
     /**
-     * Formats and prints all tasks that contains key in TaskList.
+     * Formats all tasks that contains key in TaskList.
      *
      * @param taskList A Tasklist that contains all tasks.
+     * @return The list of tasks that matches the key.
      */
     public String filterList(TaskList taskList, String key) {
         assert key.length() > 0 : "key should not be empty";
@@ -80,9 +88,10 @@ public class Ui {
     }
 
     /**
-     * Formats and prints mark task message.
+     * Formats mark task message.
      *
      * @param task The task to be marked as done.
+     * @return The mark task message.
      */
     public String mark(Task task) {
         return "Nice! I've marked this task as done:\n"
@@ -90,9 +99,10 @@ public class Ui {
     }
 
     /**
-     * Formats and prints unmark task message.
+     * Formats unmark task message.
      *
      * @param task The task to be marked as not done.
+     * @return The unmark task message.
      */
     public String unmark(Task task) {
         return "OK, I've marked this task as not done yet:\n"
@@ -100,10 +110,11 @@ public class Ui {
     }
 
     /**
-     * Formats and prints add task message.
+     * Formats add task message.
      *
      * @param task The task to be added to TaskList.
      * @param taskLength The length of TaskList after the addition.
+     * @return The add tasks message.
      */
     public String addTask(Task task, int taskLength) {
         String reply = String.format("Got it. I've added this task:\n%s\n"
@@ -113,7 +124,9 @@ public class Ui {
     }
 
     /**
-     * Formats and prints clear TaskList message.
+     * Formats clear TaskList message.
+     *
+     * @return String The clear TaskList message.
      */
     public String clearStorage() {
         return "Storage has been cleared :)";

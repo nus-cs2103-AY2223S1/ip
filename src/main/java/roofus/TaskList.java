@@ -48,7 +48,7 @@ public class TaskList {
     }
 
     /**
-     * Sort the taskLists by task's natural ordering.
+     * Sort the taskLists based the dates of the tasks in ascending order.
      *
      * @see Task
      */

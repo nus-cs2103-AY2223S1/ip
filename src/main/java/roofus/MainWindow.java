@@ -32,6 +32,11 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getRoofusDialog(roofus.greet(), roofusImage));
     }
 
+    /**
+     * Initialise Roofus with an instance.
+     *
+     * @param f
+     */
     public void setRoofus(Roofus f) {
         roofus = f;
     }
