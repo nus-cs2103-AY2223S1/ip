@@ -1,8 +1,13 @@
 package duke;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
+import duke.command.Command;
+import duke.exception.DukeException;
+import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.tasklist.TaskList;
+import duke.ui.Ui;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -16,13 +21,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import duke.command.Command;
-import duke.exception.DukeException;
-import duke.parser.Parser;
-import duke.storage.Storage;
-import duke.tasklist.TaskList;
-import duke.ui.Ui;
 import javafx.util.Duration;
 
 
@@ -43,8 +41,6 @@ public class Duke extends Application {
     private Storage storage = new Storage("data/duke.txt");
     private TaskList tasks;
 
-    //private TaskList undoTasks;
-
     private Ui ui = new Ui();
 
     /**
@@ -62,23 +58,17 @@ public class Duke extends Application {
         ui = new Ui();
         storage = new Storage(filePath);
         tasks = new TaskList(storage.loadFile());
-        //undoTasks = new TaskList(storage.loadFile());
     }
 
     /**
      * Initializes the stage
-     * @param stage the primary stage for this application, onto which
-     * the application scene can be set.
-     * Applications may create other stages, if needed, but they will not be
-     * primary stages.
+     * @param stage the primary stage for this application, onto which the application scene can be set.
      */
     @Override
     public void start(Stage stage) throws IOException {
-        //Step 1. Setting up required components
-        tasks = new TaskList(storage.loadFile());
-        //undoTasks = new TaskList(storage.loadFile());
 
-        //The container for the content of the chat to scroll.
+        tasks = new TaskList(storage.loadFile());
+
         scrollPane = new ScrollPane();
         dialogContainer = new VBox();
         scrollPane.setContent(dialogContainer);
@@ -108,7 +98,6 @@ public class Duke extends Application {
         scrollPane.setVvalue(1.0);
         scrollPane.setFitToWidth(true);
 
-        // You will need to import `javafx.scene.layout.Region` for this.
         dialogContainer.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
         userInput.setPrefWidth(325.0);
@@ -145,7 +134,6 @@ public class Duke extends Application {
     }
 
     /**
-     * Iteration 1:
      * Creates a label with the specified text and adds it to the dialog container.
      * @param text String containing text to add
      * @return a label with the specified text that has word wrap enabled.
@@ -159,7 +147,6 @@ public class Duke extends Application {
     }
 
     /**
-     * Iteration 2:
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
@@ -174,8 +161,9 @@ public class Duke extends Application {
     }
 
     /**
-     * You should have your own function to generate a response to user input.
-     * Replace this stub with your completed method.
+     * Generates a response from the commands entered
+     * @param input the command that was inputted
+     * @return a string that corresponds to the command entered
      */
     public String getResponse(String input) {
         try {
@@ -186,15 +174,6 @@ public class Duke extends Application {
                 delay.play();
             }
             return command.execute(tasks, ui, storage);
-            /*
-            if (!input.equals("undo")) {
-                //undoTasks = tasks;
-                return command.execute(tasks, ui, storage);
-            } else {
-                tasks = undoTasks;
-                return command.execute(tasks, ui, storage);
-            }
-             */
         } catch (DukeException e) {
             return ui.showError(e.getMessage());
         }

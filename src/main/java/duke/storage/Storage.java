@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import duke.parser.Parser;
 import duke.task.Deadline;
 import duke.task.Event;
@@ -13,6 +14,7 @@ import duke.task.Task;
 import duke.task.ToDo;
 import duke.tasklist.TaskList;
 import duke.ui.Ui;
+
 /**
  * Storage class that is used to save and load files
  */
@@ -60,23 +62,27 @@ public class Storage {
                     if (line.startsWith("[T][X]")) {
                         tasks.get(tasks.size() - 1).markAsDone();
                     }
-                } else if (line.startsWith("[D]")) {
-                    String tempDeadline = "deadline"
-                            + line.substring(line.lastIndexOf("]") + 1, line.lastIndexOf("("))
-                            + "/by "
-                            + Parser.parseLocalDate(line.substring(line.lastIndexOf(":") + 2, line.lastIndexOf(")")));
-                    tasks.add(new Deadline(tempDeadline));
-                    if (line.startsWith("[D][X]")) {
-                        tasks.get(tasks.size() - 1).markAsDone();
-                    }
-                } else if (line.startsWith("[E]")) {
-                    String tempEvent = "event"
-                            + line.substring(line.lastIndexOf("]") + 1, line.lastIndexOf("("))
-                            + "/at "
-                            + Parser.parseLocalDate(line.substring(line.lastIndexOf(":") + 2, line.lastIndexOf(")")));
-                    tasks.add(new Event(tempEvent));
-                    if (line.startsWith("[E][X]")) {
-                        tasks.get(tasks.size() - 1).markAsDone();
+                } else {
+                    String substring = line.substring(line.lastIndexOf("]") + 1, line.lastIndexOf("("));
+                    String substring1 = line.substring(line.lastIndexOf(":") + 2, line.lastIndexOf(")"));
+                    if (line.startsWith("[D]")) {
+                        String tempDeadline = "deadline"
+                                + substring
+                                + "/by "
+                                + Parser.parseLocalDate(substring1);
+                        tasks.add(new Deadline(tempDeadline));
+                        if (line.startsWith("[D][X]")) {
+                            tasks.get(tasks.size() - 1).markAsDone();
+                        }
+                    } else if (line.startsWith("[E]")) {
+                        String tempEvent = "event"
+                                + substring
+                                + "/at "
+                                + Parser.parseLocalDate(substring1);
+                        tasks.add(new Event(tempEvent));
+                        if (line.startsWith("[E][X]")) {
+                            tasks.get(tasks.size() - 1).markAsDone();
+                        }
                     }
                 }
             }
@@ -86,6 +92,7 @@ public class Storage {
         }
         return tasks;
     }
+
     /**
      * Saves the tasklist line by line in a duke.txt file
      *

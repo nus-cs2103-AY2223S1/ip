@@ -111,9 +111,8 @@ public class Ui {
      * @return string that shows task deleted
      */
     public String showTaskDeleted(TaskList taskList, Task deletedTask) {
-        return ("Noted. I've removed this task:\n"
-                + deletedTask) +
-                ("\nNow you have " + (taskList.getTaskListSize()) + " tasks in the list.");
+        return ("Noted. I've removed this task:\n" + deletedTask)
+                + ("\nNow you have " + (taskList.getTaskListSize()) + " tasks in the list.");
     }
 
     /**
@@ -150,12 +149,12 @@ public class Ui {
         }
         return stringBuilder.toString();
     }
-/*
-    public String showUndo() {
-        return ("The previous command has been undone.");
-    }
- */
 
+    /**
+     * Displays the sort message
+     * @param taskList the taskList to be displayed
+     * @return string that shows the sorted tasklist
+     */
     public String showSortMessage(TaskList taskList) {
         StringBuilder stringBuilder = new StringBuilder("Here is the new sorted list:\n");
         for (int i = 0; i < taskList.getTaskListSize(); i++) {
