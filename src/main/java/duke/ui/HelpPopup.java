@@ -33,7 +33,7 @@ public class HelpPopup {
         ScrollPane sp = new ScrollPane(); // Scrolling provided in case of overflow
         sp.setContent(layout);
         Scene scene1 = new Scene(sp, 300, 250);
-        scene1.setFill(Color.LIGHTBLUE);
+        scene1.setFill(Color.web("#e6f5fc"));
         popupWindow.setScene(scene1);
         popupWindow.setWidth(412); // Ideal width to prevent need for scrolling
         popupWindow.setHeight(637); // Ideal height to prevent need for scrolling

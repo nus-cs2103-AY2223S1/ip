@@ -4,6 +4,7 @@ import duke.command.AddItemCommand;
 import duke.command.ClearScreenCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
+import duke.command.EmptyCommand;
 import duke.command.ExitCommand;
 import duke.command.FindCommand;
 import duke.command.HelpCommand;
@@ -60,6 +61,9 @@ public class Parser {
             }
             case "help": {
                 return new HelpCommand();
+            }
+            case "empty": {
+                return new EmptyCommand();
             }
             default: {
                 return new AddItemCommand(input);

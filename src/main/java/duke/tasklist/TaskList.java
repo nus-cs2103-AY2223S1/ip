@@ -155,12 +155,24 @@ public class TaskList {
     }
 
     /**
+     * Clears current TaskList and returns string signifying completion.
+     * @return the string signifying the task list has been cleared
+     */
+    public String clearList() {
+        items.clear();
+        return "Success! Your task list is now empty.";
+    }
+
+    /**
      * Returns string signifying the items stored in the list.
      *
      * @return string signifying stored items
      */
     @Override
     public String toString() {
+        if (items.isEmpty()) {
+            return "You have no tasks saved.";
+        }
         StringBuilder output = new StringBuilder("Here are your current tasks:");
         for (int i = 0; i < items.size(); i++) {
             output.append("\n   ").append(i + 1).append(". ").append(items.get(i));
