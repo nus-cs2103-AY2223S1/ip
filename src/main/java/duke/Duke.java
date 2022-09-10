@@ -91,16 +91,21 @@ public class Duke {
             String error = DukeException.taskErrorMessage(command);
             return Parser.echo(error);
         }
-        int n = getIndexInTaskList(deleteTaskNumber);
-        if (n > tasks.size() - 1){
-            return Parser.echo(DukeException.IndexOutofBoundsException(tasks));
+        if (command.contains("all")) {
+            String massTaskStatus = getMassTaskStatus(command);
+            return massTaskStatus;
+        } else {
+            int n = getIndexInTaskList(deleteTaskNumber);
+            if (n > tasks.size() - 1){
+                return Parser.echo(DukeException.IndexOutofBoundsException(tasks));
+            }
+            Task deletedTask = tasks.remove(n);
+            String taskStatus = String.format("Noted. I've removed this task:\n" +
+                    "%s\n" +
+                    "Now you have %d tasks in the list.", deletedTask, tasks.size());
+            Parser.writeToFile(tasks);
+            return Parser.echo(taskStatus);
         }
-        Task deletedTask = tasks.remove(n);
-        String taskStatus = String.format("Noted. I've removed this task:\n" +
-                "%s\n" +
-                "Now you have %d tasks in the list.", deletedTask, tasks.size());
-        Parser.writeToFile(tasks);
-        return Parser.echo(taskStatus);
     }
 
     /**
@@ -169,14 +174,42 @@ public class Duke {
      * @param command full command given by the user
      */
     private String getReplyForMarkAndUnmark(String command) throws IOException {
-        int n = getIndexInTaskList(command);
-        if (n > tasks.size()){
-            return Parser.echo(DukeException.IndexOutofBoundsException(tasks));
+        if (command.contains("all")) {
+            String massTaskStatus = getMassTaskStatus(command);
+            return massTaskStatus;
+        } else {
+            int n = getIndexInTaskList(command);
+            if (n > tasks.size()){
+                return Parser.echo(DukeException.IndexOutofBoundsException(tasks));
+            }
+            String taskStatus = getTaskStatus(n, command);
+            return Parser.echo(taskStatus);
         }
-        String taskStatus = getTaskStatus(n, command);
-        return Parser.echo(taskStatus);
     }
 
+    private String getMassTaskStatus(String command) throws IOException {
+        String taskStatus = "";
+        if (command.contains("unmark")) {
+            for(int i = 0; i < tasks.size(); i++) {
+                tasks.get(i).markAsUndone();
+            }
+            Parser.writeToFile(tasks);
+            taskStatus = String.format("OK, I've marked all %d task(s) as not done yet.\n", tasks.size());
+        } else if (command.contains("mark")) {
+            for(int i = 0; i < tasks.size(); i++) {
+                tasks.get(i).markAsDone();
+            }
+            Parser.writeToFile(tasks);
+            taskStatus = String.format("Nice! I've marked all %d task(s) as done:\n", tasks.size());
+        } else if (command.contains("delete")) {
+            int initialTaskSize = tasks.size();
+            tasks.clear();
+            Parser.writeToFile(tasks);
+            taskStatus = String.format("Noted. I've removed all %d task(s)\n" +
+                    "Now you have 0 task in the list.\n", initialTaskSize);
+        }
+        return Parser.echo(taskStatus);
+    }
     /**
      * Method to find index in the Tasklist from the command
      * @param command full command given by the user

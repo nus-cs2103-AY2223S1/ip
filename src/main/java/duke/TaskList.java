@@ -77,6 +77,10 @@ public class TaskList {
         return this.allTasks.remove(index);
     }
 
+    public void clear() {
+        this.allTasks.clear();
+    }
+
     public TaskList find(String word) {
         ArrayList<Task> newList = new ArrayList<>();
         for (int i = 0; i < this.allTasks.size(); i++) {
