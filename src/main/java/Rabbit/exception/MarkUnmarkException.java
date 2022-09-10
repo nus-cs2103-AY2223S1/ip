@@ -1,4 +1,4 @@
-package Rabbit.RabbitException;
+package rabbit.exception;
 
 /**
  * the class of exceptions related to the mark

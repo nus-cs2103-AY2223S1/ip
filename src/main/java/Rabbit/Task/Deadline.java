@@ -1,4 +1,4 @@
-package Rabbit.Task;
+package rabbit.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

@@ -1,4 +1,4 @@
-package Rabbit.Task;
+package rabbit.task;
 
 /**
  * A subclass of task.
