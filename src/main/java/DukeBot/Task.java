@@ -7,6 +7,7 @@ public abstract class Task {
 
     private static int taskCount = 0;
 
+    private Priority priority;
     private String description;
     private boolean isComplete = false;
 
@@ -18,8 +19,21 @@ public abstract class Task {
     public Task(String description) {
         this.description = description;
         Task.taskCount++;
+        this.priority = Priority.MEDIUM;
     }
 
+    public String getPriorityString() {
+        return this.priority.name();
+    }
+
+    /**
+     * Sets the priority for a task.
+     *
+     * @param priority The priority that is given to the task.
+     */
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
     /**
      * Get the status icon of a task.
      *
@@ -83,7 +97,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return String.format("[%s] %s", this.getStatusIcon(), this.description);
+        return String.format("[%s][%s] %s", this.getStatusIcon(), this.getPriorityString(), this.description);
     }
 
 

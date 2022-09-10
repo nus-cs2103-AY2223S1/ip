@@ -66,21 +66,44 @@ public class Storage {
     private void loadLineToDuke(Scanner scanner, TaskList taskList) throws DukeException {
         String[] command = scanner.nextLine().split(",");
         Task newTask;
-        switch (command[0]) {
-        case "T":
-            newTask = new ToDo(command[2]);
+        String taskDescription = command[2];
+        String date;
+        String priority;
+        switch (command.length) {
+        case 4:
+            date = null;
+            priority = command[3];
             break;
-        case "D":
-            newTask = new Deadline(command[2], command[3]);
-            break;
-        case "E":
-            newTask = new Event(command[2], command[3]);
+        case 5:
+            date = command[3];
+            priority = command[4];
             break;
         default:
-            throw new DukeException("Ensure Task is in this format\n\"D,1,Read book,Sunday");
+            throw new DukeException("Ensure Task is in this format\n\"D,1,Read book,2000-12-31,H");
+        }
+        switch (command[0]) {
+        case "T":
+            newTask = new ToDo(taskDescription);
+            break;
+        case "D":
+            newTask = new Deadline(taskDescription, date);
+            break;
+        case "E":
+            newTask = new Event(taskDescription, date);
+            break;
+        default:
+            throw new DukeException("Ensure Task is in this format\n\"D,1,Read book,2000-12-31,H");
         }
         if (command[1].equals("1")) {
             newTask.markComplete();
+        }
+        switch (priority) {
+        case "L":
+            newTask.setPriority(Priority.LOW);
+        case "M":
+            newTask.setPriority(Priority.MEDIUM);
+        case "H":
+            newTask.setPriority(Priority.HIGH);
         }
         taskList.addTask(newTask);
     }
