@@ -24,11 +24,12 @@ public class Event extends Task {
         try {
             super.correctDescrition(description.split("on",2)[0].split(" ", 2)[1]);
             super.getFullDescription(description.split(" ",2)[1]);
-
             this.at = description.split("on",2)[1];
         } catch (Exception ie) {
-            throw(new DukeException("OOPS!!! The description of a event is still not correct."));
+            throw (new DukeException("OOPS!!! The description of a event is still not correct."));
         }
+        int eventDescriptionLength = description.split(" ").length;
+        assert eventDescriptionLength > 3: "event description should have 4 words or more";
         this.description = description;
 
     }

@@ -38,9 +38,8 @@ public class Task {
     /**
      * Undone this task and print reply
      */
-    public void taskUndone(){
-        this.isDone=false;
-
+    public void taskUndone() {
+        this.isDone = false;
     }
 
     /**
@@ -53,11 +52,14 @@ public class Task {
 
     //create a certain kind of task
     public static Task createATask(String s) throws DukeException {
-        if (s.split(" ")[0].equals("todo")) {
+        String des = s.split(" ")[0];
+        assert des.equals("todo") || des.equals("deadline") || des.equals("event"):
+                "des should be one of todo, deadline or event";
+        if (des.equals("todo")) {
             return new ToDo(s);
-        } else if (s.split(" ")[0].equals("deadline")) {
+        } else if (des.equals("deadline")) {
             return new DeadLine(s);
-        } else if (s.split(" ")[0].equals("event")) {
+        } else if (des.equals("event")) {
             return new Event(s);
         }
         return null;

@@ -19,6 +19,8 @@ public class ToDo extends Task {
         } catch (IndexOutOfBoundsException ie) {
             throw (new DukeException("OOPS!!! The description of a todo is still not complete."));
         }
+        int todoDescriptionLength = description.split(" ").length;
+        assert todoDescriptionLength > 1: "todo description should have 2 words or more";
         this.description = description;
     }
     /**
