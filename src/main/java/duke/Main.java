@@ -1,5 +1,6 @@
 package duke;
 
+<<<<<<< HEAD
 import javafx.scene.layout.Region;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -71,3 +72,36 @@ public class Main extends Application {
         // more code to be added here later
     }
 }
+=======
+import java.io.IOException;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+/**
+ * A GUI for Duke using FXML.
+ */
+public class Main extends Application {
+
+    private Duke duke = new Duke();
+
+    @Override
+    public void start(Stage stage) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
+            AnchorPane ap = fxmlLoader.load();
+            Scene scene = new Scene(ap);
+            stage.setTitle("MyDuke");
+            stage.setScene(scene);
+            fxmlLoader.<MainWindow>getController().setDuke(duke);
+            fxmlLoader.<MainWindow>getController().showWelcome();
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+>>>>>>> branch-Level-10

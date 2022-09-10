@@ -36,10 +36,10 @@ public class Storage {
             list.add(in);
         }
         s.close();
-        System.out.println("I have added tasks from your previous session to the current list");
         if (list.isEmpty()) {
             throw new FileNotFoundException();
         }
+
         return list;
     }
 

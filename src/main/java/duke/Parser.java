@@ -20,34 +20,26 @@ public class Parser {
      * @return True if program should continue, false otherwise
      * @throws DukeException If the user input is invalid
      */
-    public static boolean parse(String in, TaskList tasks, Ui ui, Storage storage)
+    public static String parse(String in, TaskList tasks, Ui ui, Storage storage)
         throws DukeException {
         if (!withinScope(in)) {
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-( ");
         } else if (in.equals("list")) {
-            tasks.list();
-            return false;
+            return tasks.list();
         } else if (in.startsWith("delete")) {
-            tasks.delete(in);
-            return false;
+            return tasks.delete(in);
         } else if (in.startsWith("find")) {
-            tasks.find(in);
-            return false;
+            return tasks.find(in);
         } else if (in.startsWith("unmark")) {
-            tasks.unmarkTask(in);
-            return false;
+            return tasks.unmarkTask(in);
         } else if (in.startsWith("mark")) {
-            tasks.markTask(in);
-            return false;
+            return tasks.markTask(in);
         } else if (in.startsWith("deadline")) {
-            tasks.deadline(in);
-            return false;
+            return tasks.deadline(in);
         } else if (in.startsWith("event")) {
-            tasks.event(in);
-            return false;
+            return tasks.event(in);
         } else if (in.startsWith("todo")) {
-            tasks.todo(in);
-            return false;
+            return tasks.todo(in);
         } else {
             throw new DukeException("☹ OOPS!!! I'm sorry but please check spelling :-(");
         }
