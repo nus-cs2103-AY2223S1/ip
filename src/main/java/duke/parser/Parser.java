@@ -269,7 +269,7 @@ public class Parser {
     public ArrayList<String> writeFileContents(ArrayList<Task> taskList) {
         ArrayList<String> list = new ArrayList<>();
         for (Task task : taskList) {
-            String string = task.priorityEncode() + " | "
+            String string = task.getPriority().name() + " | "
                     + task.getDoneStatus() + " | " + task.getDescription().trim();
             switch (task.type) {
             case TODO: {
