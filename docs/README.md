@@ -1,7 +1,7 @@
 # Raiden User Guide
-:sparkles::zap:**Raiden is an interactive chat-bot that manages your tasks for you!:sparkles::zap:**<br>
+✨⚡**Raiden is an interactive chat-bot that manages your tasks for you!**⚡✨<br>
 
-:zap:**Raiden**:zap: is a **desktop chat-bot app** for **managing and storing tasks**, optimised for use
+⚡**Raiden**⚡ is a **desktop chat-bot app** for **managing and storing tasks**, optimised for use
 with the benefits of a **responsive Graphical User Interface (GUI)!**<br>
 
 # Quick Start
@@ -20,7 +20,7 @@ Your tasks are also automatically saved locally, so you can continue where you l
 The save file can be located in the same folder with the Raiden `jar` file.
 
 ![Ui](Ui.png)
-> "Don't try and get me to cook. I can take care of anything else, but not that."
+> "Don't try and get me to cook. I can take care of anything else, but not that." - Raiden
 
 ## Help with Commands
 Displays a help message with the list of every command Raiden knows, including the description and the syntax to use
