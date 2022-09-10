@@ -13,6 +13,10 @@ public abstract class Task {
         return isDone ? "X" : " ";
     }
 
+    /**
+     * Mark the task as done if not done yet.
+     * If the task is already marked as done, an error message is output.
+     */
     public void markAsDone() {
         if (isDone) {
             System.out.println("This task is already marked as done!");
@@ -22,10 +26,17 @@ public abstract class Task {
         }
     }
 
+    /**
+     * Mark the task as done without printing any message.
+     */
     public void markAsDoneWithoutMessage() {
         this.isDone = true;
     }
 
+    /**
+     * Mark the task as not done yet if done.
+     * If the task is already marked as not done yet, an error message is output.
+     */
     public void markAsUndone() {
         if (!isDone) {
             System.out.println("This task is already marked as not done yet!");
@@ -37,6 +48,10 @@ public abstract class Task {
 
     public abstract String fileFormat();
 
+    /**
+     * Returns string representation of this task.
+     * @return String representation of this task.
+     */
     @Override
     public String toString() {
         return String.format("[%s] %s", getStatusIcon(), description);

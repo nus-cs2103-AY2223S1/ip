@@ -10,6 +10,10 @@ public class ToDo extends Task {
         return String.format("todo | %s | %b", super.description, super.isDone);
     }
 
+    /**
+     * Returns string representation of this task.
+     * @return String representation of this task.
+     */
     @Override
     public String toString() {
         return String.format("[T]%s", super.toString());

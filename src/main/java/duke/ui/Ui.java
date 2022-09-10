@@ -8,10 +8,16 @@ import duke.task.TaskList;
 import java.util.Scanner;
 
 public class Ui {
+    /**
+     * Prints welcome message.
+     */
     public void welcomeMessage() {
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
     }
 
+    /**
+     * Read user input, execute the command and output the message.
+     */
     public void readUserInputThenOutputMessage(TaskList taskList, Storage storage) {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {

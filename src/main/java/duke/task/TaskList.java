@@ -3,6 +3,9 @@ package duke.task;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * Contains task list. Support operations such as add or delete tasks in the list.
+ */
 public class TaskList {
     private final List<Task> taskList;
 
