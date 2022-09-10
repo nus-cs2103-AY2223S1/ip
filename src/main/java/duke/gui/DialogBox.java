@@ -15,24 +15,24 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 /**
- * Defines the <Code>DialogBox</Code> class.
+ * Defines the {@code DialogBox} class.
  * <p>
  *     This control represents a dialog box consisting of an
- *     <Code>ImageView</Code> to represent the speaker, and
+ *     {@code ImageView} to represent the speaker, and
  *     a label containing text from the speaker.
  * </p>
  */
 public class DialogBox extends HBox {
-    /** <Code>Label</Code> object for dialog text. */
+    /** {@code Label} object for dialog text. */
     @FXML
     private Label dialog;
 
-    /** <Code>ImageView</Code> object for user/Duke image. */
+    /** {@code ImageView} object for user/Duke image. */
     @FXML
     private ImageView displayPicture;
 
     /**
-     * Constructor for <Code>DialogBox</Code>.
+     * Constructor for {@code DialogBox}.
      * @param text Text said by speaker to be shown in dialog box.
      * @param img  Image representing the speaker.
      */
@@ -66,7 +66,7 @@ public class DialogBox extends HBox {
      * Factory method to instantiate a new dialog box for the user.
      * @param text Text said by user to be shown in dialog box.
      * @param img  Image representing the user.
-     * @return     <Code>DialogBox</Code> object showing what was
+     * @return     {@code DialogBox} object showing what was
      *             said by the user.
      */
     public static DialogBox getUserDialog(String text, Image img) {
@@ -74,7 +74,7 @@ public class DialogBox extends HBox {
         // Count number of lines in string
         int numberOfLines = text.split("\r\n|\r|\n").length;
         // Set minimum height of label to be relative to number of lines.
-        db.setMinHeight(Math.max(99, numberOfLines * 25));
+        db.setMinHeight(Math.max(99, numberOfLines * 30));
         return db;
     }
 
@@ -82,7 +82,7 @@ public class DialogBox extends HBox {
      * Factory method to instantiate a new dialog box for Duke.
      * @param text Text said by Duke to be shown in dialog box.
      * @param img  Image representing Duke.
-     * @return     <Code>DialogBox</Code> object showing what was
+     * @return     {@code DialogBox} object showing what was
      *             said by Duke.
      */
     public static DialogBox getDukeDialog(String text, Image img) {
@@ -93,7 +93,7 @@ public class DialogBox extends HBox {
         // Count number of lines in string
         int numberOfLines = text.split("\r\n|\r|\n").length;
         // Set minimum height of label to be relative to number of lines.
-        db.setMinHeight(Math.max(99, numberOfLines * 25));
+        db.setMinHeight(Math.max(99, numberOfLines * 30));
         return db;
     }
 }
