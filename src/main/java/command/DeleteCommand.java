@@ -1,6 +1,5 @@
 package command;
 
-import exception.LunaException;
 import storage.Storage;
 // Import Tasks
 import task.Task;
@@ -26,12 +25,7 @@ public class DeleteCommand extends Command {
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        try {
-            storage.updateStorage(tasks);
-            Task task = tasks.delete(this.num);
-            return ui.showDeleted(tasks, task);
-        } catch (LunaException e) {
-            return ui.showError(e);
-        }
+        Task task = tasks.delete(this.num);
+        return ui.showDeleted(tasks, task);
     }
 }

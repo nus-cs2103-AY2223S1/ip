@@ -18,7 +18,7 @@ import exception.LunaInvalidCommandException;
 import exception.LunaInvalidDateException;
 import exception.LunaInvalidDescriptionException;
 import exception.LunaInvalidIndexException;
-// Import Tasks;
+// Import Tasks
 import task.Deadline;
 import task.Event;
 import task.Task;
@@ -99,22 +99,22 @@ public class Parser {
         String text = tasks.substring(7);
         if (text.startsWith("[T]")) {
             // Abstract task description
-            String[] split = text.split("] ");
+            String[] sp = text.split("] ");
 
             // Create new Todo
-            Task task = new Todo(split[1]);
+            Task task = new Todo(sp[1]);
 
             // Update status
-            if (split[0].substring(3).equals("[✧")) {
+            if (sp[0].substring(3).equals("[✧")) {
                 task.setStatusIcon(true);
             }
             return task;
         } else if (text.startsWith("[D]")) {
             // Abstract task description and date
-            String[] split = text.split("] ");
-            String [] desSplit = split[1].split(" BY ");
+            String[] sp = text.split("] ");
+            String [] desSplit = sp[1].split(" BY ");
             String des = desSplit[0];
-            String by = desSplit[1].substring(0, 11);
+            String by = desSplit[1].substring(0, 10);
 
             // Create date
             LocalDate date = LocalDate.parse(by, DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
@@ -123,16 +123,16 @@ public class Parser {
             Task task = new Deadline(des, date);
 
             // Update status
-            if (split[0].substring(3).equals("[✧")) {
+            if (sp[0].substring(3).equals("[✧")) {
                 task.setStatusIcon(true);
             }
             return task;
         } else if (text.startsWith("[E]")) {
             // Abstract task description and date
-            String[] split = text.split("] ");
-            String [] desSplit = split[1].split(" AT ");
+            String[] sp = text.split("] ");
+            String [] desSplit = sp[1].split(" AT ");
             String des = desSplit[0];
-            String at = desSplit[1].substring(0, 11);
+            String at = desSplit[1].substring(0, 10);
 
             // Create date
             LocalDate date = LocalDate.parse(at, DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
@@ -141,7 +141,7 @@ public class Parser {
             Task task = new Event(des, date);
 
             // Update status
-            if (split[0].substring(3).equals("[✧")) {
+            if (sp[0].substring(3).equals("[✧")) {
                 task.setStatusIcon(true);
             }
             return task;

@@ -44,12 +44,6 @@ public class Ui {
      */
     public String showWelcome() {
         // Print Welcome message
-//        String logo =
-//                  "    _                     ★ ☁️   ⋆\n"
-//                + "   | |    _   _ _____   ___ _ 🌙 ☁️\n"
-//                + "   | |   | | | |  __ \\ /     |☁️  ️✴  ⋆\n"
-//                + "   | |__ | |_| | |  | |    | |\n"
-//                + "   |____| \\__,_|_|  |_|\\__/|_|\n";
         String toPrint = "Hello. ⛅️ This is\n \t\t\t\t\t L \t U \t N \t A 🌙\n";
 
         // Print available commands
@@ -102,7 +96,7 @@ public class Ui {
      * @param e An Exception to be displayed to user
      */
     public String showError(LunaException e) {
-        return addLine(e.toString());
+        return "✡︎✮ ✰ ✦ ✨️ ❍ " + e.toString() + " ✨   ❇︎ ✫❍   ❈ ✶";
     }
 
     /**

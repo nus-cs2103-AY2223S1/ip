@@ -1,5 +1,6 @@
 package command;
 
+import exception.LunaException;
 import storage.Storage;
 import task.TaskList;
 import ui.Ui;
@@ -18,6 +19,11 @@ public class ExitCommand extends Command {
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
-        return ui.showFarewell();
+        try {
+            storage.updateStorage(tasks);
+            return ui.showFarewell();
+        } catch (LunaException e) {
+            return ui.showError(e);
+        }
     }
 }
