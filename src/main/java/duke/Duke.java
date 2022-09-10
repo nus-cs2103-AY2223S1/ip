@@ -82,7 +82,7 @@ public class Duke {
     }
 
     /**
-     * Marks task as complete.
+     * Marks task as complete or incomplete.
      * @param input
      * @param done
      * @throws DukeException
