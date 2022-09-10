@@ -19,10 +19,10 @@ Raiden handles 3 types of tasks:
 Your tasks are also automatically saved locally, so you can continue where you left off with your tasks!<br>
 The save file can be located in the same folder with the Raiden `jar` file.
 
-![Ui](docs/Ui.png)
+![Ui](Ui.png)
 > "Don't try and get me to cook. I can take care of anything else, but not that."
 
-##Help with Commands
+## Help with Commands
 Displays a help message with the list of every command Raiden knows, including the description and the syntax to use
 the commands.
 ### Usage
@@ -31,7 +31,7 @@ the commands.
 <b>Example Usage:</b> `help`<br>
 <b>Expected Outcome:</b> A list of all the commands Raiden knows will be displayed.
 
-![Help](docs/images/help.PNG)
+![Help](images/help.PNG)
 
 ## Add Tasks
 Adds a new task, which is either a <b>ToDo, Deadline</b> or <b>Event</b>, to the list of tasks.<br>
@@ -59,7 +59,7 @@ DD MM YYYY
 - MM - month
 - YYYY - year
 - HH - hour
-- mm - minutes
+- mm - minute
 
 <b>Example Usage:</b> `todo Brush my teeth`<br>
 <b>Expected Outcome:</b> Adds a ToDo task with the description "Brush my teeth"
@@ -70,7 +70,7 @@ DD MM YYYY
 <b>Example Usage:</b> `event Drinking party /at 12 09 2022`<br>
 <b>Expected Outcome:</b> Adds an Event task with the description "Drinking party" with the date at 12 Sep 2022.
 
-![Add](docs/images/add.PNG)
+![Add](images/add.PNG)
 
 ## List Tasks
 Displays all the current tasks in the list with their descriptions, completion status and date/time (for Deadline and Event tasks).
@@ -81,7 +81,7 @@ Displays all the current tasks in the list with their descriptions, completion s
 <b>Example Usage:</b> `list`<br>
 <b>Expected Outcome:</b> The list of all the current tasks will be displayed.
 
-![List](docs/images/list.PNG)
+![List](images/list.PNG)
 
 ## Mark Tasks
 Marks and displays a task as completed. A task's id is its position in the list.
@@ -91,7 +91,7 @@ Marks and displays a task as completed. A task's id is its position in the list.
 <b>Example Usage:</b> `mark 5`<br>
 <b>Expected Outcome:</b> Marks the 5th task in the list as completed.
 
-![Mark](docs/images/mark.PNG)
+![Mark](images/mark.PNG)
 
 ## Unmark Tasks
 Unmarks and displays a task as uncompleted. A task's id is its position in the list.
@@ -101,7 +101,7 @@ Unmarks and displays a task as uncompleted. A task's id is its position in the l
 <b>Example Usages:</b> `unmark 5`<br>
 <b>Expected Outcome:</b> Marks the 5th task in the list as not completed yet.
 
-![Unark](docs/images/unmark.PNG)
+![Unark](images/unmark.PNG)
 
 ## Delete Tasks
 Removes a task from the list. The task to be removed is indicated by its id, which is its position in the list.
@@ -114,7 +114,7 @@ Removes a task from the list. The task to be removed is indicated by its id, whi
 <b>Expected Outcome:</b><br>
 Deletes the 5th task from the list.
 
-![Delete](docs/images/delete.PNG)
+![Delete](images/delete.PNG)
 
 ## Find Tasks
 Searches for tasks that contain a keyword or phrase specified by the user.
@@ -124,7 +124,7 @@ Searches for tasks that contain a keyword or phrase specified by the user.
 <b>Example Usage:</b> `find drink`<br>
 <b>Expected Outcome:</b> Searches for tasks with the keyword "drink" in the description.
 
-![Find](docs/images/find.PNG)
+![Find](images/find.PNG)
 
 ## Edit Tasks' Descriptions
 Edits the description of a task.
@@ -134,7 +134,7 @@ Edits the description of a task.
 <b>Example Usage:</b> `editD 6 Singing prayers`<br>
 <b>Expected Outcome:</b> Edits and changes the description of the 6th task in the list to "Singing prayers".
 
-![EditD](docs/images/editD.PNG)
+![EditD](images/editD.PNG)
 
 ## Edit Tasks' Date/Time
 Edits the date/time of a deadline or event task.
@@ -144,7 +144,7 @@ Edits the date/time of a deadline or event task.
 <b>Example Usages:</b> `editT 6 31 12 2099 23:59`<br>
 <b>Expected Outcome:</b> Edits and changes the date and time of the 6th task in the list to 31 December 2099, 11:59pm.
 
-![EditT](docs/images/editT.PNG)
+![EditT](images/editT.PNG)
 
 ## Exit
 Closes the Raiden chat-bot when user wishes to exit. Say goodbye to Raiden!

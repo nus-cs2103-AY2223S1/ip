@@ -22,7 +22,7 @@ The save file can be located in the same folder with the Raiden `jar` file.
 ![Ui](docs/Ui.png)
 > "Don't try and get me to cook. I can take care of anything else, but not that."
 
-##Help with Commands
+## Help with Commands
 Displays a help message with the list of every command Raiden knows, including the description and the syntax to use
 the commands.
 ### Usage
@@ -59,7 +59,7 @@ DD MM YYYY
 - MM - month
 - YYYY - year
 - HH - hour
-- mm - minutes
+- mm - minute
 
 <b>Example Usage:</b> `todo Brush my teeth`<br>
 <b>Expected Outcome:</b> Adds a ToDo task with the description "Brush my teeth"
