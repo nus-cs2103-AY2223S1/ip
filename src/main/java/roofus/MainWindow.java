@@ -22,13 +22,13 @@ public class MainWindow extends AnchorPane {
 
     private Roofus roofus = new Roofus();
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image roofusImage = new Image(this.getClass().getResourceAsStream("/images/roofusPic.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
+    private Image roofusImage = new Image(this.getClass().getResourceAsStream("/images/roofus.png"));
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        dialogContainer.getChildren().addAll(
+        dialogContainer.getChildren().add(
                 DialogBox.getRoofusDialog(roofus.greet(), roofusImage));
     }
 
