@@ -8,27 +8,27 @@ import java.util.ArrayList;
  * Tasks and to print the whole TaskList.
  */
 public class TaskList {
-    
+
     /**
      * Stores the Tasks in an ArrayList.
      */
     protected ArrayList<Task> taskList;
-    
+
     /**
      * Stores the number of tasks currently.
      */
     protected int numTasks;
-    
+
     /**
      * Constructor to create a TaskLIst when no previous data is available.
      */
-    TaskList() { 
+    TaskList() {
         this.taskList = new ArrayList<Task>();
         this.numTasks = 0;
     }
 
     /**
-     * Overlaoded onstructor to create a TaskList when previous data is found.
+     * Overloaded constructor to create a TaskList when previous data is found.
      * @param taskList Takes in an ArrayList of Tasks loaded from previous use.
      */
     TaskList(ArrayList<Task> taskList) {
@@ -71,6 +71,7 @@ public class TaskList {
         String output = "Got it. I've added this task:\n";
         output += newTask.toString() + "\n";
         output += "Now you have " + Integer.toString(numTasks) + " tasks in the list.\n";
+        assert numTasks > 0;
         return output;
     }
 
@@ -113,10 +114,10 @@ public class TaskList {
     public String deleteTask(int position) {
         if (numTasks == 0) { // No tasks in list
             return "List empty. Add tasks into your list!\n";
-        } 
+        }
         else if (position > numTasks) {
             return "No such task!\n";
-        } else { 
+        } else {
             Task deletedTask = taskList.remove(position - 1);
             numTasks -= 1;
             String output = "Noted. I've removed this task:\n";
@@ -127,7 +128,7 @@ public class TaskList {
     }
 
     /**
-     * Searches for tasks in the tasklist containing the keyword.
+     * Searches for tasks in the TaskList containing the keyword.
      * @param keyword Keyword to be searched in the tasks.
      */
     public String find(String keyword) {
@@ -142,6 +143,7 @@ public class TaskList {
             }
         }
         if (matchesFound > 0) {
+            assert output.contains(keyword);
             return output;
         } else {
             return "No matches found!";
