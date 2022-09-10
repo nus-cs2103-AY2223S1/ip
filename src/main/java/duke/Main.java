@@ -14,6 +14,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
     private static final String FXML_VIEW_MAIN_WINDOW = "/view/MainWindow.fxml";
+    private static final String TITLE = "Duke";
 
     private final Duke duke = new Duke(Duke.DEFAULT_STORAGE_PATH);
 
@@ -24,6 +25,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
+            stage.setTitle(TITLE);
             fxmlLoader.<MainWindow>getController().setDuke(duke);
             fxmlLoader.<MainWindow>getController().showWelcome();
             stage.show();

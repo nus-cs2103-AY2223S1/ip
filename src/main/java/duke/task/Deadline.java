@@ -44,7 +44,7 @@ public class Deadline extends Task {
      * @param by Deadline date in String format.
      */
     public Deadline(String description, String by) throws DukeException {
-        this(description, Task.INCOMPLETE, Parser.parseDate(by));
+        this(description, Task.IS_INCOMPLETE, Parser.parseDate(by));
     }
 
     /**

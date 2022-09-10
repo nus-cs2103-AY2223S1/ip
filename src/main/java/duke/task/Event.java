@@ -44,7 +44,7 @@ public class Event extends Task {
      * @param at Event date in String format.
      */
     public Event(String description, String at) throws DukeException {
-        this(description, Task.INCOMPLETE, Parser.parseDate(at));
+        this(description, Task.IS_INCOMPLETE, Parser.parseDate(at));
     }
 
     /**

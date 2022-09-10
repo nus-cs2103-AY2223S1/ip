@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
  */
 public abstract class Task {
     protected static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy");
-    protected static final boolean INCOMPLETE = false;
+    protected static final boolean IS_INCOMPLETE = false;
 
     private static final int STATUS_COMPLETE_INT = 1;
     private static final String STATUS_COMPLETE_STRING = "[X]";
@@ -50,7 +50,7 @@ public abstract class Task {
      * Sets {@code isComplete} to {@code false}
      */
     public void unmark() {
-        isComplete = INCOMPLETE;
+        isComplete = IS_INCOMPLETE;
     }
 
     /**
@@ -82,7 +82,7 @@ public abstract class Task {
      * Returns {@code isComplete} status in integer format.
      *
      * @return {@code isComplete} status.
-     *         {@code 0} signifies incomplete. {@code 1} signifies complete.
+     * {@code 0} signifies incomplete. {@code 1} signifies complete.
      */
     int getStatusNumber() {
         return isComplete ? STATUS_COMPLETE_INT : STATUS_INCOMPLETE_INT;

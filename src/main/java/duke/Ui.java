@@ -11,6 +11,7 @@ import duke.task.Task;
  * Class that handles input and output between the user.
  */
 public class Ui {
+    public static final String MESSAGE_EXIT = "Bye bye!";
     private static final String PADDING = "  ";
     private static final String MESSAGE_WELCOME = "Hello! I'm Duke.\nWhat can I do for you?";
     private static final String MESSAGE_TASK_NOT_FOUND = "No task matched your query!";
@@ -19,7 +20,6 @@ public class Ui {
     private static final String MESSAGE_TASK_DESCRIPTION_UPDATED = "I have updated the description of this task: ";
     private static final String MESSAGE_TASK_UPDATED_COMPLETE = "I have marked this task as done: ";
     private static final String MESSAGE_TASK_UPDATED_INCOMPLETE = "I have unmarked the completion of this task: ";
-    private static final String MESSAGE_EXIT = "Bye bye!";
     private static final String MESSAGE_PREFIX_ERROR = "Error! ";
     private static final String MESSAGE_PREFIX_TASK_FOUND = "Here is what I found:\n";
     private static final String MESSAGE_PREFIX_UNKNOWN_COMMAND = "Unknown command: ";

@@ -274,7 +274,8 @@ public abstract class Parser {
     static Command parseUpdate(String input) throws DukeException {
         try (Scanner lineScanner = new Scanner(input)) {
             int index = parseIndex(lineScanner.next());
-            String description = lineScanner.next();
+            lineScanner.skip(lineScanner.delimiter());
+            String description = lineScanner.nextLine();
             return new UpdateCommand(index, description);
         } catch (NoSuchElementException e) {
             throw new DukeException(ERROR_MESSAGE_UPDATE_FORMAT_INVALID, e);

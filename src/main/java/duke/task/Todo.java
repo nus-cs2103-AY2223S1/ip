@@ -6,6 +6,7 @@ package duke.task;
 public class Todo extends Task {
     private static final String STRING_FORMAT_STORAGE = "T | %s";
     private static final String STRING_FORMAT_DISPLAY = "[T]%s";
+
     /**
      * Constructor for Todo.
      *
@@ -22,7 +23,7 @@ public class Todo extends Task {
      * @param description Description of task.
      */
     public Todo(String description) {
-        this(description, Task.INCOMPLETE);
+        this(description, Task.IS_INCOMPLETE);
     }
 
     @Override

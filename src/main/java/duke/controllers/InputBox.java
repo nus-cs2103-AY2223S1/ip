@@ -1,6 +1,8 @@
 package duke.controllers;
 
 import duke.Duke;
+import duke.Ui;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -48,9 +50,16 @@ public class InputBox extends AnchorPane {
             return;
         }
         String response = duke.getResponse(input);
+        checkResponseAndExitIfRequired(response);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, dukeImage));
         userInput.clear();
+    }
+
+    private static void checkResponseAndExitIfRequired(String response) {
+        if (response.equals(Ui.MESSAGE_EXIT)) {
+            Platform.exit();
+        }
     }
 }

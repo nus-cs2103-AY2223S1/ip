@@ -40,7 +40,7 @@ public class TaskList {
     }
 
     /**
-     * Add task to list.
+     * Adds task to list.
      *
      * @param task Task to add.
      * @return Task which was added.
