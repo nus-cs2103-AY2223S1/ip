@@ -1,7 +1,6 @@
 package Duke;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * The class make sense of the user command
@@ -15,24 +14,31 @@ public class Parser {
      * @param tasks of type TaskList
      */
     public static void readLine(Ui ui, String command, TaskList tasks, MainWindow mainWindow) {
+        int tasksSize = tasks.getSize();
         String[] strs = command.split(" ");
         if (command.equals("bye")) {
             ui.closeApplication();
         } else if (command.equals("list")) {
             mainWindow.printList(tasks);
         } else if (strs.length == 2 && (strs[0].equals("mark") || strs[0].equals("unmark"))) {
+            assert java.util.regex.Pattern.matches("\\d+", strs[1]) : "The second parameter should be an integer";
             int index = Integer.parseInt(strs[1]) - 1;
+            assert index <= tasksSize : "the number to be deleted should be less than or equals to " + tasksSize;
+            assert index > 0 : "the number to be deleted shouldn't be less than or equals to 0";
             if (strs[0].equals("mark")) {
                 tasks.markTaskAsDone(index);
             } else if (strs[0].equals("unmark")) {
                 tasks.unMarkTaskAsDone(index);
             }
         } else if (strs.length == 2 && (strs[0].equals("delete"))) {
+            assert java.util.regex.Pattern.matches("\\d+", strs[1]) : "The second parameter should be an integer";
             int index = Integer.parseInt(strs[1]) - 1;
+            assert index <= tasksSize : "the number to be deleted should be less than or equals to " + tasksSize;
+            assert index > 0 : "the number to be deleted shouldn't be less than or equals to 0";
             tasks.delete(index);
         } else if (strs.length == 2 && (strs[0].equals("find"))) {
             ArrayList<Task> tempTasks = new ArrayList<>();
-            for (int i = 0; i < tasks.getSize(); i++) {
+            for (int i = 0; i < tasksSize; i++) {
                 if (tasks.getTask(i).getTask().contains(strs[1])) {
                     tempTasks.add(tasks.getTask(i));
                 }
