@@ -32,6 +32,14 @@ public class Deadline extends Task {
         by = date;
     }
 
+    /**
+     * Set date of deadline to given date
+     * @param date Date that the deadline is to be set to
+     */
+    public void setBy(LocalDate date) {
+        by = date;
+    }
+
     @Override
     public String getSaveFormat() {
         return "D"

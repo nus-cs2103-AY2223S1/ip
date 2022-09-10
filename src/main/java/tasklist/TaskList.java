@@ -1,9 +1,13 @@
 package tasklist;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import exception.FredException;
+import task.Deadline;
+import task.Event;
 import task.Task;
+import task.ToDo;
 
 /**
  * TaskList that Fred uses to store the tasks of the current session
@@ -144,4 +148,33 @@ public class TaskList {
         return list;
     }
 
+    /**
+     * Snooze task with given taskIndex to given date
+     * @param taskIndex taskIndex of task to be snoozed
+     * @param date date for task to be snoozed to
+     * @return String containing snoozed task
+     */
+    public String snooze(int taskIndex, LocalDate date) throws FredException {
+
+        String message = "Here is the new snoozed task:\n";
+        Task task = getTask(taskIndex);
+
+        if (task instanceof ToDo) {
+            throw new FredException("ToDo cannot be snoozed!");
+        } else if (task instanceof Event) {
+            Event event = (Event) task;
+            event.setAt(date);
+            message += event.toString();
+            message += "\n";
+        } else if (task instanceof Deadline) {
+            Deadline deadline = (Deadline) task;
+            deadline.setBy(date);
+            message += deadline.toString();
+            message += "\n";
+        } else {
+            assert (!(task instanceof ToDo) && !(task instanceof Event) && !(task instanceof Deadline));
+        }
+
+        return message;
+    }
 }
