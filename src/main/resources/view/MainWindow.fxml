@@ -26,11 +26,9 @@
                     vvalue="1.0" fitToWidth="true"
                     AnchorPane.leftAnchor="0.0"
                     AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
-                    AnchorPane.bottomAnchor="41.0"
-                    style=" -fx-border-color:red;">
+                    AnchorPane.bottomAnchor="41.0">
             <content>
-                <VBox fx:id="dialogContainer" styleClass="dialog-container"
-                      style=" -fx-border-color:black;" />
+                <VBox fx:id="dialogContainer" styleClass="dialog-container"/>
             </content>
         </ScrollPane>
     </children>
