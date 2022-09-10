@@ -67,6 +67,7 @@ public class TaskList {
     public String markTask(String in) {
         char n = in.charAt(5);
         int number = Character.getNumericValue(n) - 1;
+        assert number >= 0 : "index should be >= 0";
         Task t = tasks.get(number);
         t.markAsDone();
         String line1 =  "Nice! I've marked this task as done:";
@@ -84,6 +85,7 @@ public class TaskList {
     public String unmarkTask(String in) {
         char n = in.charAt(7);
         int number = Character.getNumericValue(n) - 1;
+        assert number >= 0 : "index should be >= 0";
         Task t = tasks.get(number);
         t.markAsUndone();
         String line1 = "OK, I've marked this task as not done yet:";
@@ -117,6 +119,7 @@ public class TaskList {
     public String delete(String in) {
         char n = in.charAt(7);
         int number = Character.getNumericValue(n) - 1;
+        assert number >= 0 : "idx should be >= 0";
         System.out.println("Noted. I've removed this task:");
         System.out.println("  " + tasks.get(number).toString());
         tasks.remove(number);
@@ -230,6 +233,7 @@ public class TaskList {
         if (toBeFound.trim().isEmpty()) {
             throw new DukeException("☹ OOPS!!! The description of what is to be found cannot be empty.");
         } else {
+            assert toBeFound.length() > 0 : "keywords should not be empty";
             int count = 1;
             String find = "Here are the matching tasks in your list:" + "\n";
             for ( Task task : tasks ) {
