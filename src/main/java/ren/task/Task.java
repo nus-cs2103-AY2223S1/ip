@@ -80,7 +80,7 @@ public abstract class Task {
     }
 
     /**
-     * Check if the description of this task contains a search term.
+     * Checks if the description of this task contains a search term.
      *
      * @param term The Search Term.
      * @return true if it contains the search term, false otherwise.

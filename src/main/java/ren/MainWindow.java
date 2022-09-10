@@ -37,7 +37,11 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     public void initialize() {
+        // Credits for Image
+        // https://pixabay.com/vectors/blank-profile-picture-mystery-man-973460/
         InputStream userImageLoader = this.getClass().getResourceAsStream("/images/user.png");
+        // Credits for Image
+        // https://www.freepik.com/free-photo/robot-with-clipboard_958202.htm#query=robot&position=9&from_view=author
         InputStream renImageLoader = this.getClass().getResourceAsStream("/images/ren.png");
         assert userImageLoader != null : "userImage in MainWindow should not be null";
         assert renImageLoader != null : "renImage in MainWindow should not be null";

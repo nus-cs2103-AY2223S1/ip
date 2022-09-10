@@ -83,7 +83,7 @@ public class Storage {
     }
 
     /**
-     * Overwrite the File with a new list of Tasks.
+     * Overwrites the File with a new list of Tasks.
      */
     private void writeToFile() {
         // Disable writing to File if error occurred during creation of file or reading of file.
@@ -105,7 +105,7 @@ public class Storage {
     }
 
     /**
-     * Append a new Task's information to the File.
+     * Appends a new Task's information to the File.
      */
     private void appendToFile() {
         // Disable writing to File if error occurred during creation of file or reading of file.
