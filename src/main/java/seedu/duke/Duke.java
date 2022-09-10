@@ -16,6 +16,7 @@ import java.util.Scanner;
  * unmark [item index] - marks the given item as undone
  * delete [item index] - removes the given item from list
  * list - prints the list
+ * find [search string] - searchs the list for items matching the string and prints them
  * bye - saves the list and closes the program
  */
 public class Duke {

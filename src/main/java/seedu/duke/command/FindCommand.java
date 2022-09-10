@@ -5,6 +5,9 @@ import seedu.duke.TaskList;
 import seedu.duke.Ui;
 import seedu.duke.task.Task;
 
+/**
+ * Class for executing find command
+ */
 public class FindCommand extends Command {
     private String searchString;
 
@@ -12,6 +15,13 @@ public class FindCommand extends Command {
         this.searchString = searchString;
     }
 
+    /**
+     * Finds items in the list matching the keywords, and compiles them into a new
+     * TaskList. Should be noted that the indices of the new list do not match
+     * the indices on the initial list.
+     * @param list
+     * @throws DukeException
+     */
     @Override
     public void execute(TaskList list) throws DukeException {
         TaskList foundList = new TaskList();

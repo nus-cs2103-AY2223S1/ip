@@ -113,6 +113,11 @@ public class Ui {
         System.out.println("I have added " + task.toString() + " to the list, Master.");
     }
 
+    /**
+     * Prints the list of items matching the search.
+     * @param searchString
+     * @param foundList
+     */
     public static void found(String searchString, TaskList foundList) {
         if (foundList.size() == 1) {
             System.out.println("I have found the following task matching \"" + searchString + "\"");
@@ -123,6 +128,10 @@ public class Ui {
         }
     }
 
+    /**
+     * Informs user that no items matching search were found.
+     * @param searchString
+     */
     public static void notFound(String searchString) {
         System.out.println("Sorry, Master." +
                 "I was not able to find any tasks matching \"" + searchString + "\"");
