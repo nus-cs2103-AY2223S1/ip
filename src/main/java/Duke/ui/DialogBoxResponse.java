@@ -5,9 +5,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-public class DukeDialogBox extends HBox {
+public class DialogBoxResponse extends HBox {
 
-    public DukeDialogBox(Label l, ImageView iv) {
+    public DialogBoxResponse(Label l, ImageView iv) {
 
         l.setWrapText(true);
         iv.setFitWidth(100.0);

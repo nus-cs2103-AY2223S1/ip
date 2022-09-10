@@ -5,9 +5,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-public class UserDialogBox extends HBox {
+public class DialogBoxInput extends HBox {
 
-    public UserDialogBox(Label l, ImageView iv) {
+    public DialogBoxInput(Label l, ImageView iv) {
 
         l.setWrapText(true);
         iv.setFitWidth(100.0);

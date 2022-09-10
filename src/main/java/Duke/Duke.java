@@ -46,29 +46,35 @@ public class Duke extends Application {
 
     @Override
     public void start(Stage stage) {
-        GuiUi guiUi = new GuiUi(stage, this);
-        dukeUi = guiUi;
+        dukeUi = new GuiUi(stage, this);
+        dukeUi.show();
         initialiseStorage();
+        loadTaskFromStorageIntoTasks();
         welcomeUser();
-        guiUi.show();
     }
 
     private void initialiseStorage() {
         try {
             storage = new Storage(filepath);
-            tasks = new TaskList(storage.load());
-            if (tasks.getNumberOfTask() > 0) {
-                dukeUi.handleOutput(dukeResponses.loadFileSuccessfully() +
-                        '\n' + dukeResponses.listTasks(tasks));
-            }
         } catch (DukeException | IOException e) {
-            dukeUi.handleOutput(dukeResponses.loadFileFailed() + '\n' + e.getMessage());
+            dukeUi.displayOutput(dukeResponses.loadFileFailed() + '\n' + e.getMessage());
+        }
+    }
+
+    private void loadTaskFromStorageIntoTasks() {
+        try {
+            tasks = new TaskList(storage.load());
+            if (tasks.isNotEmpty()) {
+                dukeUi.displayOutput(dukeResponses.loadTaskSuccessfully() + '\n' + dukeResponses.listTasks(tasks));
+            }
+        } catch (DukeException e) {
             tasks = new TaskList();
+            dukeUi.displayOutput(dukeResponses.loadTaskFailed() + '\n' + e.getMessage());
         }
     }
 
     private void welcomeUser() {
-        dukeUi.handleOutput(dukeResponses.startPrompt());
+        dukeUi.displayOutput(dukeResponses.startPrompt());
     }
 
     public String receiveInput(String inputString) {
@@ -129,7 +135,7 @@ public class Duke extends Application {
     private void terminate() {
         try {
             storage.storeTask(tasks);
-            dukeUi.handleOutput(dukeResponses.endPrompt());
+            dukeUi.displayOutput(dukeResponses.endPrompt());
             TimerTask exitApp = new TimerTask() {
                 @Override
                 public void run() {
@@ -139,7 +145,7 @@ public class Duke extends Application {
             new Timer().schedule(exitApp, new Date(System.currentTimeMillis() + 1000));
         } catch (IOException err) {
             String response = String.format("IO Exception: %s", err.getMessage());
-            dukeUi.handleOutput(response);
+            dukeUi.displayOutput(response);
         }
     }
 

@@ -136,12 +136,12 @@ public class DukeResponses {
     }
 
     /**
-     * Returns a string of the success message when a file is successfully loaded.
+     * Returns a string of the success message when the tasks are successfully loaded.
      *
-     * @return a string of the success message when a file is successfully loaded.
+     * @return a string of the success message when the tasks are successfully loaded.
      */
-    public String loadFileSuccessfully() {
-        return "File loaded successfully!";
+    public String loadTaskSuccessfully() {
+        return "Tasks loaded successfully!";
     }
 
     /**
@@ -150,7 +150,16 @@ public class DukeResponses {
      * @return a string of the success message when a file failed to load.
      */
     public String loadFileFailed() {
-        return "There seems to be an issue with the data file. Will clear the current list";
+        return "There seems to be an issue with accessing the data file. Will clear the current list";
+    }
+
+    /**
+     * Returns a string of the success message when the task failed to load.
+     *
+     * @return a string of the success message when the task failed to load.
+     */
+    public String loadTaskFailed() {
+        return "There seems to be an issue with format of the data file. Will clear the current list";
     }
 
 }

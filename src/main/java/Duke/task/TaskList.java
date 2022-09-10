@@ -75,6 +75,10 @@ public class TaskList {
         return tasks.size();
     }
 
+    public boolean isNotEmpty() {
+        return !tasks.isEmpty();
+    }
+
     /**
      * Adds a task into the task list.
      *

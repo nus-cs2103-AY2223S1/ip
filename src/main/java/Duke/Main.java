@@ -3,9 +3,9 @@ package Duke;
 import javafx.application.Application;
 
 /**
- * A launcher class to workaround classpath issues.
+ * This is the main entry of the application.
  */
-public class LauncherGui {
+public class Main {
     public static void main(String[] args) {
         Application.launch(Duke.class, args);
     }

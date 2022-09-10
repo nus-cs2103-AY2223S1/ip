@@ -27,14 +27,19 @@ public class Storage {
     public Storage(String path) throws FileFailedToLoadException, IOException {
         filepath = path;
         File file = new File(filepath);
-        if (!file.exists()) {
-            boolean isMakeDirectorySuccessful = file.getParentFile().mkdirs();
-            boolean isFileCreatedSuccessful = file.createNewFile();
-            if (!isFileCreatedSuccessful || !isMakeDirectorySuccessful) {
-                throw new FileFailedToLoadException();
-            }
-        }
+        createFileIfFileDoesNotExist(file);
         scanner = new Scanner(file);
+    }
+
+    private void createFileIfFileDoesNotExist(File file) throws IOException, FileFailedToLoadException {
+        if (file.exists()) {
+            return;
+        }
+        boolean isMakeDirectoryUnsuccessful = file.getParentFile().mkdirs();
+        boolean isFileCreatedUnsuccessful = file.createNewFile();
+        if (isFileCreatedUnsuccessful || isMakeDirectoryUnsuccessful) {
+            throw new FileFailedToLoadException();
+        }
     }
 
     /**
