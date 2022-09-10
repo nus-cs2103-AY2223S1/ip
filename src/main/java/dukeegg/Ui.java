@@ -7,7 +7,7 @@ import task.Task;
  */
 public class Ui {
     private static final String LONG_LINE = "____________________________________________________________\n";
-    private static final String INDENTATION = "    ";
+    private static final String INDENTATION = "  ";
 
     /**
      * Prints the messages after adding a task, based on the task's fields.
@@ -53,7 +53,17 @@ public class Ui {
      * @return The formatted message.
      */
     public String showUnmarkTask(Task task) {
-        return "OK, I've marked this task as not done yet:"
+        return "OK, I've marked this task as not done yet:\n"
+                + INDENTATION + task;
+    }
+
+    public String showTagTask(Task task) {
+        return "OK, I've tagged this task:\n"
+                + INDENTATION + task;
+    }
+
+    public String showUntagTask(Task task) {
+        return "OK, I've untagged this task:\n"
                 + INDENTATION + task;
     }
 
@@ -61,7 +71,7 @@ public class Ui {
      * Prints the error message involved with retrieving tasks from a storage file.
      */
     public void showLoadingError() {
-        System.out.println("There was some error initializing the chatbot, no tasks are loaded.");
+        System.out.println("There was some error initialising the chatbot, no tasks are loaded.");
     }
 
     /**
