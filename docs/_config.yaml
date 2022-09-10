@@ -1,5 +1,7 @@
 title: Duke
 description: I am Duke.
+baseurl: "/ip"
+url: "https://nerbnerb.github.io"
 
 remote_theme: just-the-docs/just-the-docs
 
@@ -13,7 +15,7 @@ aux_links:
 # External navigation links
 nav_external_links:
   - title: Duke on GitHub
-    url: "//github.com/nerbnerb/ip"
+    url: "https://github.com/nerbnerb/ip"
 
 # Back to top link
 back_to_top: true

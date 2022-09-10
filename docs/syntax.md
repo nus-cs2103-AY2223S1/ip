@@ -2,6 +2,7 @@
 layout: default
 title: Date/time syntax
 nav_order: 3
+permalink: /syntax
 ---
 
 # Date/time syntax
