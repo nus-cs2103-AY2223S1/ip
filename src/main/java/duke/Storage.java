@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,7 +12,6 @@ import java.util.Scanner;
  * loading of tasks from the file and saving tasks in the file
  */
 public class Storage {
-
     private String filepath;
     private ArrayList<Task> tasks = new ArrayList<>();
 
@@ -33,19 +31,19 @@ public class Storage {
      */
     protected void addToListfromFile(String taskname) {
         boolean bool = (taskname.charAt(4) == 'X' ? true : false);
+        int num = (taskname.charAt(7) == '0') ? 0 : 1;
         if (taskname.charAt(1) == 'T') {
-            Task newTask = new ToDo(taskname.substring(7), bool);
+            Task newTask = new ToDo(taskname.substring(10), bool, num);
             tasks.add(newTask);
         } else if (taskname.charAt(1) == 'E') {
-            String des = taskname.substring(7, taskname.indexOf("(") - 1);
+            String des = taskname.substring(10, taskname.indexOf("(") - 1);
             String at = taskname.substring(taskname.indexOf(":") + 2, taskname.indexOf(")"));
-            Task newTask = new Event(des, bool, at);
+            Task newTask = new Event(des, bool, at, num);
             tasks.add(newTask);
         } else {
-            String des = taskname.substring(7, taskname.indexOf("(") - 1);
+            String des = taskname.substring(10, taskname.indexOf("(") - 1);
             String by = taskname.substring(taskname.indexOf(":") + 2, taskname.indexOf(")"));
-            LocalDate deadline = LocalDate.parse(by);
-            Task newTask = new Deadline(des, bool, deadline);
+            Task newTask = new Deadline(des, bool, by, num);
             tasks.add(newTask);
         }
     }

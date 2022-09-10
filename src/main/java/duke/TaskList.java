@@ -3,7 +3,6 @@ package duke;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -43,28 +42,24 @@ public class TaskList {
      */
     public String addToList(String taskName, Ui ui) {
         try {
-            //if task is a to-do
             if (taskName.matches("\\btodo\\s.*\\b")) {
                 assert taskName.length() >= 6 : "addToList function is not working for todo";
-                Task newTask = new ToDo(taskName.substring(5), false);
+                Task newTask = new ToDo(taskName.substring(5), false, 0);
                 tasks.add(newTask);
                 return ui.taskAddMsg(newTask, tasks.size());
             }
-            //if task is an event
             if (taskName.matches("\\bevent\\s.*\\s/at\\s.*\\b")) {
                 assert taskName.length() >= 13 : "addToList function is not working for event";
                 String des = taskName.substring(6, taskName.indexOf("/") - 1);
                 String at = taskName.substring(taskName.indexOf("/") + 4, taskName.length());
-                Task newTask = new Event(des, false, at);
+                Task newTask = new Event(des, false, at, 0);
                 tasks.add(newTask);
                 return ui.taskAddMsg(newTask, tasks.size());
             }
-            //if task is a deadline
             if (taskName.matches("\\bdeadline\\s.*\\s/by\\s.*\\b")) {
                 String des = taskName.substring(9, taskName.indexOf("/") - 1);
                 String by = taskName.substring(taskName.indexOf("/") + 4);
-                LocalDate deadline = LocalDate.parse(by);
-                Task newTask = new Deadline(des, false, deadline);
+                Task newTask = new Deadline(des, false, by, 0);
                 tasks.add(newTask);
                 return ui.taskAddMsg(newTask, tasks.size());
             }
@@ -98,9 +93,13 @@ public class TaskList {
         Task task = tasks.get(num - 1);
         tasks.get(num - 1).markAsDone();
         return ui.taskDoneMsg(task);
-
     }
 
+    public String editPriority(int num, String priority, Ui ui) {
+        Task task = tasks.get(num - 1);
+        task.setPriority(priority);
+        return ui.editPriorityMsg(priority);
+    }
 
     /**
      * Mark a task as undone.
@@ -148,7 +147,5 @@ public class TaskList {
     public int size() {
         return tasks.size();
     }
-
-
 }
 

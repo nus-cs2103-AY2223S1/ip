@@ -14,19 +14,28 @@ public class Parser {
     protected String commandParser(String command, TaskList tasklist, Ui ui) {
         if (command.equals("list")) {
             return tasklist.viewList(ui);
-        } else if (command.matches("\\bmark\\s\\d+\\b")) {
+        }
+        if (command.matches("\\bmark\\s\\d+\\b")) {
             assert command.length() >= 6 : "commandParser is not working";
             int num = Integer.parseInt(command.replaceAll("[^0-9]", ""));
             return tasklist.taskDone(num, ui);
-        } else if (command.matches("\\bunmark\\s\\d+\\b")) {
+        }
+        if (command.matches("\\bunmark\\s\\d+\\b")) {
             int num = Integer.parseInt(command.replaceAll("[^0-9]", ""));
             return tasklist.taskUndone(num, ui);
-        } else if (command.matches("\\bdelete\\s\\d+\\b")) {
+        }
+        if (command.matches("\\bdelete\\s\\d+\\b")) {
             int num = Integer.parseInt(command.replaceAll("[^0-9]", ""));
             return tasklist.deleteTask(num, ui);
-        } else if (command.matches("\\bfind\\s.*\\b")) {
+        }
+        if (command.matches("\\bfind\\s.*\\b")) {
             String text = command.substring(5);
             return tasklist.findTask(text, ui);
+        }
+        if (command.matches("\\bpriority\\s\\d+\\s[a-z]+\\b")) {
+            String[] inputSequence = command.split("\\s");
+            return tasklist.editPriority(Integer.parseInt(inputSequence[1]),
+                    inputSequence[2], ui);
         } else {
             return tasklist.addToList(command, ui);
         }

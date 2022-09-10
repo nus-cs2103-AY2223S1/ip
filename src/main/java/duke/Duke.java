@@ -35,7 +35,6 @@ public class Duke extends Application {
         this.parser = new Parser();
     }
 
-
     @Override
     public void start(Stage stage) {
         try {
@@ -107,8 +106,8 @@ public class Duke extends Application {
         } else {
             return parser.commandParser(input, tasks, ui);
         }
-
     }
+
 
     private void handleUserInput() {
         Label userText = new Label(userInput.getText() + "\t");
@@ -119,6 +118,4 @@ public class Duke extends Application {
         );
         userInput.clear();
     }
-
-
 }
