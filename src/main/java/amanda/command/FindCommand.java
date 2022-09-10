@@ -1,17 +1,23 @@
 package amanda.command;
 
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
 import amanda.manager.StoreManager;
 import amanda.manager.TaskList;
 import amanda.task.Task;
 import amanda.ui.Ui;
 
-import java.util.ArrayList;
-import java.util.StringTokenizer;
-
+/**
+ * FindCommand is a command to search for all the tasks in the current list with the given keyword by the user
+ */
 public class FindCommand extends Command {
+	private String key;
 
-	String key;
-
+	/**
+	 * Constructor for FindCommand
+	 * @param input keyword.
+	 */
 	public FindCommand(String input) {
 		StringTokenizer tokens = new StringTokenizer(input, " ");
 		tokens.nextToken();

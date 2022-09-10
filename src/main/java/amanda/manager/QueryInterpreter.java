@@ -2,7 +2,13 @@ package amanda.manager;
 
 import java.util.StringTokenizer;
 
-import amanda.command.*;
+import amanda.command.Command;
+import amanda.command.AddCommand;
+import amanda.command.DeleteCommand;
+import amanda.command.FindCommand;
+import amanda.command.ListCommand;
+import amanda.command.MarkCommand;
+import amanda.command.UnMarkCommand;
 import amanda.exception.EmptyDateException;
 import amanda.exception.InvalidCommandException;
 import amanda.exception.InvalidDateFormatException;
@@ -70,6 +76,7 @@ public class QueryInterpreter {
      * @return the index of the task that the user wants to operate on.
      */
     public static int getIndex(String input) throws InvalidIndexException {
+        assert !input.isEmpty() : "Input is empty.";
         StringTokenizer tokens = new StringTokenizer(input, " ");
         tokens.nextToken(); // skips the first word of the user input
         if (!tokens.hasMoreTokens()) {
