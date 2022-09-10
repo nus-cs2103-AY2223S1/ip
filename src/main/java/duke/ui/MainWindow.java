@@ -39,7 +39,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        DialogBox greeting = DialogBox.getDukeDialog(dukeImage, "Hello! I'm Duke\nWhat can I do for you ^_^");
+        DialogBox greeting = DialogBox.getDukeDialog(dukeImage, "Hello! I'm Pixel\nWhat can I do for you? ^_^");
         dialogContainer.getChildren().add(greeting);
         header.getChildren().add(new Header("Duke"));
         userInput.setPromptText("Enter a command!");

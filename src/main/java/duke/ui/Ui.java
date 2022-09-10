@@ -22,7 +22,7 @@ public class Ui {
     private static final String NO_MATCHING_TASKS = "No matching tasks!";
     private static final String NUMBER_OF_TASKS_LEFT_FORMAT = "\n\nNow you have %d %s in the list!";
     private static final String UNMARK_TASK_FORMAT = "Okay! I have marked this task as not done:\n\n%s";
-    private static final String WELCOME_MESSAGE = "Hello! I'm Duke\nWhat can I do for you? ^_^";
+    private static final String WELCOME_MESSAGE = "Hello! I'm Pixel\nWhat can I do for you? ^_^";
     private final Scanner scanner;
     /**
      * Constructs a new Ui

@@ -8,7 +8,7 @@ import duke.storage.Storage;
 import duke.ui.Ui;
 
 /**
- * This class represents the Duke chatbot
+ * This class represents the chatbot
  */
 public class Duke {
 
