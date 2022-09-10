@@ -84,7 +84,7 @@ public class TaskList {
 
     /**
      * Method to show contents of list.
-     * @return
+     * @return the contents of the list as a string.
      */
     public static String showList() {
         if (taskList.size() == 0) {
