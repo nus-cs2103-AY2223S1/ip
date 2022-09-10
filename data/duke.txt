@@ -1,8 +1,2 @@
-T|0|player
-D|0|running|1998-10-03T18:00
-T|0|runner
-T|0|playerrrrrrrrr
-T|0|runnn
-T|0|readd
-T|0|playyyy
-T|0|eat
+T|1|play
+T|1|eat
