@@ -230,6 +230,17 @@ public class ToDoList {
         return this.list.get(index);
     }
 
+    public ToDoList findTasks(String keyword) {
+        ArrayList<Task> matchingTasks = new ArrayList<>();
+        for (int i = 0; i < this.getLength(); i++) {
+            if (this.getTask(i).toString().contains(keyword)) {
+                matchingTasks.add(this.getTask(i));
+            }
+        }
+        ToDoList listWithMatchingTasks = new ToDoList(matchingTasks, storage);
+        return listWithMatchingTasks;
+    }
+
     /**
      * Returns a String containing all the elements in the list.
      *
@@ -238,7 +249,7 @@ public class ToDoList {
     @Override
     public String toString() {
         int numOfElements = this.list.size();
-        String res = "\tHere are your tasks:\n";
+        String res = "";
         for (int i = 1; i <= numOfElements; i++) {
             String curr = "\t" + i + ". " + this.list.get(i - 1).toString();
             if (i != numOfElements) {

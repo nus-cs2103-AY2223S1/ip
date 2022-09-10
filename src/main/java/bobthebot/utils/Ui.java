@@ -150,8 +150,10 @@ public class Ui {
             formatMessage(toPrint);
             return toPrint;
         } else {
-            formatMessage(list.toString());
-            return list.toString();
+            String toPrint = "\tHere are your tasks:\n";
+            toPrint += list.toString();
+            formatMessage(toPrint);
+            return toPrint;
         }
     }
 }
