@@ -2,7 +2,7 @@
 
 ## Features 
 
-### Add tasks
+### Manage tasks
 
 - Add `ToDo`, `Event` and `Deadline` tasks
 - Mark tasks as done
@@ -82,6 +82,40 @@ Nice! I've mark this task as done:
 [D][X] CS2103T quiz by: 2022-02-02
 ```
 
+### `unmark` - Unmarks a task on the list
+
+Format: `unmark <task index>`
+
+Example of usage:
+
+`unmark 4`
+
+Expected outcome:
+
+Roofus unmarks tasks by removing the 'X'.
+
+```
+Ok. I've marked this task as not done yet:
+[D][] CS2103T quiz by: 2022-02-02
+```
+
+### `list` - Lists all tasks in the list
+
+Example of usage:
+
+`list`
+
+Expected outcome:
+
+Roofus will print out all the tasks.
+
+```
+Here are the tasks in your list:
+1. [T][] first task 
+2. [D][X] second task /by 2022-02-10
+3. [E][] third task /at 2022-01-20
+```
+
 ### `sort` - Sorts the tasks in the list based on task's date
 
 Example of usage:
@@ -132,4 +166,18 @@ Roofus will echo the deleted task and give the total number of tasks in the list
 Noted. I've removed this task:
 [D][X] CS2103T quiz by: 2022-02-02
 Now you have 3 tasks in the list.
+```
+
+### `clear` - Clears all tasks from the list
+
+Example of usage:
+
+`clear`
+
+Expected outcome:
+
+All data in storage will be cleared.
+
+```
+Storage has been cleared :)
 ```
