@@ -42,6 +42,10 @@ public class Parser {
                 return tasks.event(in);
             } else if (in.startsWith("todo")) {
                 return tasks.todo(in);
+            } else if (in.startsWith("tag")) {
+                return tasks.tag(in);
+            } else if (in.startsWith("listtag")) {
+                return tasks.listTag(in);
             } else {
                 throw new DukeException("☹ OOPS!!! I'm sorry but please check spelling :-(");
             }
@@ -57,7 +61,8 @@ public class Parser {
      */
     public static boolean withinScope(String in) {
         return (in.startsWith("list") || in.startsWith("mark") || in.startsWith("unmark") || in.startsWith("deadline")
-                || in.startsWith("event") || in.startsWith("todo") || in.startsWith("delete") || in.startsWith("find"));
+                || in.startsWith("event") || in.startsWith("todo") || in.startsWith("delete") || in.startsWith("find")
+                || in.startsWith("tag") || in.startsWith("listtag"));
     }
 
 
