@@ -81,7 +81,7 @@ public class FindCommand implements Command {
             if (i != 0) {
                 parsedOutput.append("\n");
             }
-            parsedOutput.append("  ").append(foundItems.get(i).toString());
+            parsedOutput.append("      ").append(foundItems.get(i).toString());
         }
         return parsedOutput.toString();
     }

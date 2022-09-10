@@ -26,16 +26,16 @@ public class HelpCommand implements Command {
     private final String[] commandDescriptions = {
         "Creates task with given description.",
         "Creates deadline with given description set by given time.\n"
-                + "          Time must be formatted as: yyyy-mm-dd hhmm",
+                + "      24-hr time must be formatted as: yyyy-mm-dd hhmm",
         "Creates event with the given description set at given time.\n"
-                + "          Time must be formatted as: yyyy-mm-dd hhmm",
+                + "      24-hr time must be formatted as: yyyy-mm-dd hhmm",
         "Lists all currently saved tasks.",
         "Marks given task num from \"list\" as complete.",
         "Marks given task num from \"list\" as incomplete.",
         "Deletes given task num from \"list\" permanently.",
         "Returns all tasks whose descriptions match given text.",
-        "Clears window of all dialogues.",
-        "Shows list of commands",
+        "Clears window of all messages.",
+        "Shows all available commands.",
         "Saves all tasks to storage and exits Artemis.",
     };
     private final String[] commandUsage = {
@@ -58,13 +58,15 @@ public class HelpCommand implements Command {
     @Override
     public String execute(TaskList itemList, Storage storage) throws DukeException {
         StringBuilder availableCommands = new StringBuilder(
-                "Here is a list of case-sensitive available commands:\n");
+                "Here is a list of (case-sensitive) available commands:\n");
+        assert commandNames.length == commandDescriptions.length
+                && commandDescriptions.length == commandUsage.length;
         for (int i = 0; i < commandNames.length; i++) {
             availableCommands
                     .append(commandNames[i])
-                    .append("\n          ")
+                    .append("\n      ")
                     .append(commandDescriptions[i])
-                    .append("\n          eg. ")
+                    .append("\n      eg. ")
                     .append(commandUsage[i])
                     .append(i + 1 == commandNames.length ? "" : "\n");
         }

@@ -155,9 +155,9 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        StringBuilder output = new StringBuilder("Your current tasks:");
+        StringBuilder output = new StringBuilder("Here are your current tasks:");
         for (int i = 0; i < items.size(); i++) {
-            output.append("\n  " + (i + 1) + ". " + items.get(i));
+            output.append("\n   ").append(i + 1).append(". ").append(items.get(i));
         }
         return output.toString();
     }
