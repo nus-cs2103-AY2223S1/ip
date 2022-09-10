@@ -171,9 +171,7 @@ public class TaskList {
     public String outputTasksAfterString(LocalDateTime dateTime) {
         List<Task> filteredTasks = this.taskList
                 .stream()
-                .filter(task -> task.isAfter(dateTime))
-                .collect(Collectors.toList());
-        Collections.sort(filteredTasks);
+                .filter(task -> task.isAfter(dateTime)).sorted().collect(Collectors.toList());
         return convertTaskListToString(filteredTasks);
     }
 

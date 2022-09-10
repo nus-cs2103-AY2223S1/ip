@@ -20,7 +20,7 @@ public class UnmarkTaskCommand extends BaseTaskCommand {
      *
      */
     public UnmarkTaskCommand(TaskIndex taskIndex) {
-        assert !Objects.nonNull(taskIndex);
+        assert Objects.nonNull(taskIndex);
         this.taskIndex = taskIndex;
     }
 

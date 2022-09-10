@@ -1,10 +1,13 @@
 package duke.parser;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import duke.commands.BaseCommand;
 import duke.commands.ExitCommand;
+import duke.commands.HelpCommand;
 import duke.commands.tasks.AddDeadlineCommand;
 import duke.commands.tasks.AddEventCommand;
 import duke.commands.tasks.AddTodoCommand;
@@ -26,6 +29,25 @@ public class Parser {
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile(
             "(?<commandWord>\\S+)(?<arguments>.*)");
+    private final Set<String> availableCommands;
+
+    /**
+     * Parser constructor method
+     */
+    public Parser() {
+        this.availableCommands = new HashSet<>();
+        this.availableCommands.add(AddTodoCommand.COMMAND_WORD);
+        this.availableCommands.add(AddDeadlineCommand.COMMAND_WORD);
+        this.availableCommands.add(AddEventCommand.COMMAND_WORD);
+        this.availableCommands.add(FindTaskCommand.COMMAND_WORD);
+        this.availableCommands.add(ListTasksCommand.COMMAND_WORD);
+        this.availableCommands.add(MarkTaskCommand.COMMAND_WORD);
+        this.availableCommands.add(UnmarkTaskCommand.COMMAND_WORD);
+        this.availableCommands.add(DeleteTaskCommand.COMMAND_WORD);
+        this.availableCommands.add(SortTasksCommand.COMMAND_WORD);
+        this.availableCommands.add(HelpCommand.COMMAND_WORD);
+        this.availableCommands.add(ExitCommand.COMMAND_WORD);
+    }
 
     /**
      * The parse function takes a string as input and parses it into commands.
@@ -70,6 +92,8 @@ public class Parser {
             return new DeleteTaskParser().parse(arguments);
         case SortTasksCommand.COMMAND_WORD:
             return new SortTasksParser().parse(arguments);
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand(availableCommands);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         default:

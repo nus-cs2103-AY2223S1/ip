@@ -55,7 +55,7 @@ public class ParserTest {
      *
      * @param feedbackMessage
      *            Provide feedback to the user
-     * @param String...
+     * @param inputs
      *            Pass an array of strings to the function
      * @return An errorcommand
      */
@@ -78,7 +78,7 @@ public class ParserTest {
      *
      * @param input
      *            Pass the input to the parseandassertcommandtype function
-     * @param Class&lt;T&gt;
+     * @param expectedCommandClass
      *            Specify the type of command that is expected to be returned
      * @return A command of the expected type
      */

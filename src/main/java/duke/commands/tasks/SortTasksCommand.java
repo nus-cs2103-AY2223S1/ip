@@ -11,12 +11,12 @@ import duke.enums.SortTaskEnum;
 public class SortTasksCommand extends BaseTaskCommand {
     public static final String COMMAND_WORD = "sort";
     private String successMessage = "This task has been successfully added!\n";
-    private SortTaskEnum direction;
+    private final SortTaskEnum direction;
 
     /**
-     * ListTasksBeforeCommand constructor method
+     * SortTasksCommand constructor method
      *
-     * @param dateTime
+     * @param direction
      */
     public SortTasksCommand(SortTaskEnum direction) {
         assert Objects.nonNull(direction);
